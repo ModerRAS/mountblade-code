@@ -121826,51 +121826,88 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
  * 
  * @note 原始函数名：FUN_1807388f6
  */
-UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
+/**
+ * @brief UI系统内存池初始化函数
+ * 
+ * 该函数负责初始化UI系统的内存池，为UI组件和数据结构分配内存。
+ * 主要功能包括：
+ * 1. 分配UI系统内存池
+ * 2. 设置内存池参数和大小
+ * 3. 初始化内存管理结构
+ * 4. 返回内存池句柄
+ * 
+ * @param uiContext UI系统上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return UIHandle 操作结果句柄，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_1807388f6
+ */
+UIHandle InitializeUIMemoryPoolAndComponents(longlong uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
-  longlong allocatedMemory;
-  ulonglong iterationCount;
-  longlong *pstringCompareIndex;
-  UIHandle processingStatus;
-  ulonglong loopCounter;
-  uint maxProcessingCount;
-  ulonglong *componentData;
-  ulonglong iterationCounter;
+  // 内存池管理变量
+  longlong allocatedMemory;                    // 分配的内存池地址
+  ulonglong memoryPoolCapacity;                 // 内存池容量
+  longlong *componentNamePointer;              // UI组件名称指针
+  UIHandle operationResult;                    // 操作结果状态
+  ulonglong processingIndex;                    // 处理索引
+  uint maxComponentCount;                      // 最大组件数量
+  ulonglong *componentDataTable;                // 组件数据表指针
+  ulonglong componentIndex;                     // 组件索引
   
-  loopCounter = 0;
-  allocatedMemory = InitializeUIMemoryPool(*(UIHandle *)(uiContext + 0x1a0),0x127f8,targetBuffer,0x91,0);
-  iterationCount = loopCounter;
+  // 初始化处理索引
+  processingIndex = 0;
+  
+  // 初始化UI内存池
+  allocatedMemory = InitializeUIMemoryPool(*(UIHandle *)(uiContext + UIContextSystemDataOffset), 
+                                          UIStandardPoolSize, targetBuffer, UIPoolInitializationFlag, 0);
+  memoryPoolCapacity = processingIndex;
+  
+  // 获取内存池容量信息
   if (allocatedMemory != 0) {
-    iterationCount = FUN_180743e90(allocatedMemory);
+    memoryPoolCapacity = QueryUIMemoryPoolCapacity(allocatedMemory);
   }
-  *componentData = iterationCount;
-  if (iterationCount == 0) {
-    processStatus = 0x26;
+  
+  // 存储内存池容量到组件数据表
+  *componentDataTable = memoryPoolCapacity;
+  
+  // 验证内存池分配结果
+  if (memoryPoolCapacity == 0) {
+    operationResult = UIInitializationFailed;
   }
   else {
-    pstringCompareIndex = (longlong *)(_DAT_180be12f0 + 0x160);
-    iterationCounter = loopCounter;
+    // 初始化组件名称指针
+    componentNamePointer = (longlong *)(GlobalUIDataTable + UIComponentNameTableOffset);
+    componentIndex = processingIndex;
+    
+    // 遍历组件名称表，统计组件数量
     do {
-      maxProcessingCount = (uint)iterationCounter;
-      if (*pstringCompareIndex == 0) break;
-      maxProcessingCount = maxProcessingCount + 1;
-      iterationCounter = (ulonglong)maxProcessingCount;
-      loopCounter = loopCounter + 1;
-      pstringCompareIndex = pstringCompareIndex + 1;
-    } while ((longlong)loopCounter < 8);
-    if (7 < (int)maxProcessingCount) {
-                     WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),iterationCount,&UIContextHandleData080,0xa3,1);
+      maxComponentCount = (uint)componentIndex;
+      if (*componentNamePointer == 0) break;
+      maxComponentCount = maxComponentCount + 1;
+      componentIndex = (ulonglong)maxComponentCount;
+      processingIndex = processingIndex + 1;
+      componentNamePointer = componentNamePointer + 1;
+    } while ((longlong)processingIndex < UIMaxComponentSlots);
+    
+    // 检查组件数量是否超出限制
+    if (UIMaxComponentCountLimit < (int)maxComponentCount) {
+      // 组件数量超出限制，执行清理操作
+      CleanupUIComponentData(*(UIHandle *)(GlobalUIDataTable + UIContextSystemDataOffset), 
+                            memoryPoolCapacity, &UIContextHandleData080, UICleanupFlag, 1);
     }
-    processStatus = ManageUIState();
-    if ((int)processStatus == 0) {
-      *(ulonglong *)((longlong)(int)maxProcessingCount * 8 + 0x160 + _DAT_180be12f0) = iterationCount;
-      *(uint *)(iterationCount + 0x116b8) = maxProcessingCount;
-      return 0;
+    
+    // 管理UI系统状态
+    operationResult = ManageUIState();
+    if ((int)operationResult == UIOperationSuccess) {
+      // 保存组件数据到全局表
+      *(ulonglong *)((longlong)(int)maxComponentCount * 8 + UIComponentNameTableOffset + GlobalUIDataTable) = memoryPoolCapacity;
+      *(uint *)(memoryPoolCapacity + UIComponentIndexOffset) = maxComponentCount;
+      return UIOperationSuccess;
     }
   }
-  return processingStatus;
+  return operationResult;
 }
 
 
@@ -121891,20 +121928,36 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
  * 
  * @note 原始函数名：FUN_1807389a0
  */
-UIHandle ProcessUIContextHandleAllocation(void)
+/**
+ * @brief 分配和设置UI上下文句柄
+ * 
+ * 该函数负责分配UI系统的上下文句柄，并将其设置到相应的数据结构中。
+ * 主要功能包括：
+ * 1. 验证上下文句柄分配的有效性
+ * 2. 分配新的上下文句柄
+ * 3. 将句柄存储到全局数据表
+ * 4. 更新句柄索引信息
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_1807389a0
+ */
+UIHandle AllocateAndSetUIContextHandle(void)
 
 {
-  UIHandle result;
-  int preservedRegisterEBX;
-  longlong allocatedHandle;
+  UIHandle validationResult;                   // 验证结果
+  int contextHandleIndex;                     // 上下文句柄索引
+  longlong allocatedContextHandle;            // 分配的上下文句柄
   
-  result = ValidateUIContextHandleAllocation();
-  if ((int)result == 0) {
-    *(longlong *)((longlong)preservedRegisterEBX * 8 + 0x160 + _DAT_180be12f0) = allocatedHandle;
-    *(int *)(allocatedHandle + 0x116b8) = preservedRegisterEBX;
-    return 0;
+  // 验证上下文句柄分配的有效性
+  validationResult = ValidateUIContextHandleAllocation();
+  if ((int)validationResult == UIOperationSuccess) {
+    // 将分配的句柄存储到全局数据表
+    *(longlong *)((longlong)contextHandleIndex * 8 + UIComponentNameTableOffset + GlobalUIDataTable) = allocatedContextHandle;
+    *(int *)(allocatedContextHandle + UIContextHandleIndexOffset) = contextHandleIndex;
+    return UIOperationSuccess;
   }
-  return result;
+  return validationResult;
 }
 
 
