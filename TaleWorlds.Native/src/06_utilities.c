@@ -264,6 +264,7 @@
 #define MemoryRegionNegativeOffset18 -0x18                        // 内存区域负偏移量18 - 用于内存区域计算
 #define MemoryRegionNegativeOffset50 -0x50                        // 内存区域负偏移量50 - 用于内存区域计算
 #define MemoryRegionNegativeOffset24 -0x24                        // 内存区域负偏移量24 - 用于内存区域计算
+#define MemoryRegionNegativeOffset68 -0x68                        // 内存区域负偏移量68 - 用于内存区域计算
 
 // 异常上下文处理器偏移量常量
 #define ExceptionHandlerCallbackOffset1FE0 0x1fe0          // 异常处理器回调偏移量1FE0 - 用于存储异常处理器回调函数指针
