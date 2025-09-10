@@ -31046,7 +31046,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
             charBuffer = charBuffer + 1;
             *stringDataPointer = charValue;
             stringDataPointer = stringDataPointer + -1;
-          } while (charBuffer < stringPointer);
+          } while (charBuffer < stringDataPointer);
         }
         *destinationDataPointer = 0;
         processingResult = 0;
