@@ -285229,7 +285229,19 @@ long long ExecuteMatrixTransformAndFloatCalculations(void)
 
 
 
-long long FUN_18022ac3f(void
+/**
+ * @brief 获取系统参数和栈帧地址
+ * 
+ * 该函数用于获取系统参数和栈帧地址的偏移值，主要功能包括：
+ * - 计算系统参数和栈帧地址的组合值
+ * - 返回用于内存访问的偏移地址
+ * 
+ * @return long long 返回计算后的系统参数偏移值
+ * 
+ * @note 原始函数名：FUN_18022ac3f
+ */
+#define GetSystemParameterAndStackFrameOffset FUN_18022ac3f
+long long GetSystemParameterAndStackFrameOffset(void
 {
   long long StackFrameAddressPointer;
   long long SystemParameter;
@@ -285989,7 +286001,22 @@ void InitializeSystemMemoryCallbackConfiguration(long long ContextHandle)
 
 
 
-uint64_t FUN_18022bbe0(long long ContextHandle,int OperationBufferSize
+/**
+ * @brief 处理字符表操作和上下文管理
+ * 
+ * 该函数负责处理字符表操作和上下文管理，主要功能包括：
+ * - 根据操作缓冲区大小调整上下文句柄
+ * - 获取字符表指针并执行字符表操作
+ * - 返回字符表操作结果或默认地址
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作对象
+ * @param OperationBufferSize 操作缓冲区大小，用于计算偏移量
+ * @return uint64_t 返回字符表指针或默认地址
+ * 
+ * @note 原始函数名：FUN_18022bbe0
+ */
+#define ProcessCharacterTableAndContextManagement FUN_18022bbe0
+uint64_t ProcessCharacterTableAndContextManagement(long long ContextHandle,int OperationBufferSize
 {
   long long MainCalculationResult;
   

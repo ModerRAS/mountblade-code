@@ -130812,7 +130812,7 @@ void ValidateExceptionHandlerContextCall(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180912710(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionHandlerResultCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ValidationResultOffset),**(ByteFlag **)(dataBuffer + ExceptionHandlerDataBufferOffset68),
