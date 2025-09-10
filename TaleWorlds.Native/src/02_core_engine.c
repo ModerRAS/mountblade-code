@@ -57532,7 +57532,7 @@ SystemDataRelease:
             do {
               ReferenceCountPointer = ReferenceCountPointer218;
               MemoryBlockIndex1 = 0;
-              SystemEventTemplatePointer2 = (uint *)((long long)*(int *)(SystemUnsignedValue180 + lStack_1d0 * 4) * 0x5c +
+              SystemEventTemplatePointer2 = (uint *)((long long)*(int *)(SystemUnsignedValue180 + SystemStackOffset1d0 * 4) * 0x5c +
                                 *(long long *)(ContextHandle + 0x68));
               hasDataBeenUpdated = false;
               SystemConfigurationIterator = (long long                       (int)((*(long long *)((long long)(ReferenceCountPointer218 + (unsigned long long)*SystemEventTemplatePointer2 * 8) + 8) -
@@ -57682,7 +57682,7 @@ UnicodeBufferAllocation:
                 }
               }
               SystemStackOffset464 = SystemStackOffset464 + 1;
-            } while (lStack_1d0 < 3);
+            } while (SystemStackOffset1d0 < 3);
           }
           MemoryAllocationPointer1f0 = (int *)((long long)MemoryAllocationPointer1f0 + 1);
           SystemStackPointer1f8 = SystemStackPointer1f8 + 3;
@@ -208570,31 +208570,31 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
   }
   
   // 处理窗口点映射
-  StackValidationFlag = (uint32_t)StackProcessingValue78;
-  StackValidationValue24 = StackProcessingValue78.HighPart;
-  ProcessingCounter = (uint32_t)StackProcessingVariable70;
-  StackProcessingValue1c = StackProcessingVariable70.HighPart;
-  MapWindowPoints(*(void *)(ContextHandle + 8),0,&StackValidationFlag,2);
+  WindowAreaHeight = (uint32_t)WindowAreaWidth;
+  CursorPositionY = WindowAreaWidth.HighPart;
+  ProcessingCounter = (uint32_t)WindowPositionY;
+  StackFrameOffset = WindowPositionY.HighPart;
+  MapWindowPoints(*(void *)(ContextHandle + 8),0,&WindowAreaHeight,2);
   
   // 计算函数地址
-  FunctionAddress = CONCAT44(StackValidationValue24,StackValidationFlag);
+  FunctionAddress = CONCAT44(CursorPositionY,WindowAreaHeight);
   
   // 获取客户区域和光标位置
-  GetClientRect(*(void *)(ContextHandle + 8),&StackProcessingValue78);
-  GetCursorPos(&SystemDataValue1);
+  GetClientRect(*(void *)(ContextHandle + 8),&WindowAreaWidth);
+  GetCursorPos(&SystemContextData1);
   
   // 计算内存地址掩码
   MemoryAddressMaskPointer = (unsigned long long)(*(int *)(ContextHandle + 0x13c) - 1U & 1);
   
   // 更新字符状态缓冲区
   CharacterStatusBuffer = (void *)(ContextHandle + 0xac + MemoryAddressMaskPointer * 0x48);
-  *CharacterStatusBuffer = StackProcessingValue78;
-  CharacterStatusBuffer[1] = StackProcessingVariable70;
+  *CharacterStatusBuffer = WindowAreaWidth;
+  CharacterStatusBuffer[1] = WindowPositionY;
   
   // 更新字符位置缓冲区
   CharacterStatusBuffer = (void *)(ContextHandle + 0xbc + MemoryAddressMaskPointer * 0x48);
-  *CharacterStatusBuffer = CONCAT44(SystemDataValue1,StackProcessingValue);
-  CharacterStatusBuffer[1] = CONCAT44(SystemDataValue2,StackProcessingUnsignedValue60);
+  *CharacterStatusBuffer = CONCAT44(SystemContextData1,FocusWindowStatus);
+  CharacterStatusBuffer[1] = CONCAT44(SystemContextData2,CursorPositionX);
   
   // 更新缓冲区偏移量
   CharacterStatusBuffer = (void *)(ContextHandle + 0xcc + MemoryAddressMaskPointer * 0x48);
