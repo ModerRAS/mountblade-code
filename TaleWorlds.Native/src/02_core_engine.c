@@ -67077,7 +67077,7 @@ void InitializeSystemStatusAndMemory(void
   SystemValue1c8 = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)auStack_418;
   MemoryPoolIndex7 = 0;
-  uStack_3e4 = 0;
+  StackMemoryPoolIndex = 0;
   lStack_310 = SystemThreadPool;
   StringLength = (int)((*(long long *)(SystemThreadPool + 0x10) - *(long long *)(SystemThreadPool + 8)) / 0x60);
   if (0 < StringLength) {
