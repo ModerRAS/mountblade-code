@@ -406020,6 +406020,9 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define stackUInt98 UIStackBuffer98
 #define stackUInt90 UIStackBuffer90
 
+// UI系统颜色处理常量
+#define DataBitmask UIColorChannelBitmask           // UI颜色通道位掩码：用于限制颜色值到0-255范围
+
 
 
 
