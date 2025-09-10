@@ -654,6 +654,9 @@ typedef enum {
 #define _DAT_180d4a7b0 UIFunctionTable7b0                 // UI函数表7b0 - 存储UI函数指针
 #define _DAT_180d4a778 UIFunctionTable778                 // UI函数表778 - 存储UI函数指针
 #define _DAT_180d4a750 UIFunctionTable750                 // UI函数表750 - 存储UI函数指针
+#define _DAT_180d4a708 UIFunctionTable708                 // UI函数表708 - 存储UI函数指针
+#define _DAT_180d4a958 UIFunctionTable958                 // UI函数表958 - 存储UI函数指针
+#define _DAT_180d4a928 UIFunctionTable928                 // UI函数表928 - 存储UI函数指针
 #define _DAT_180d4a720 UIAnimationProcessorPointer       // UI动画处理器指针 - 处理UI动画
 #define _DAT_180d4a6e8 UILayoutProcessorPointer          // UI布局处理器指针 - 处理UI布局
 #define _DAT_180d4a6c8 UIInputProcessorPointer           // UI输入处理器指针 - 处理UI输入
@@ -31386,30 +31389,30 @@ void InitializeUIRenderingFunctions(void)
   }
   UIFunctionTable7e0 = FUN_18068f4f0;
   if (bVar6) {
-    _DAT_180d4a7e0 = FUN_18068f680;
+    UIFunctionTable7e0 = FUN_18068f680;
   }
-  _DAT_180d4a7b0 = FUN_18068f810;
+  UIFunctionTable7b0 = FUN_18068f810;
   if (bVar6) {
-    _DAT_180d4a7b0 = FUN_18068f9a0;
+    UIFunctionTable7b0 = FUN_18068f9a0;
   }
   if (UIBoolVar4) {
-    _DAT_180d4a7b0 = FUN_180695750;
+    UIFunctionTable7b0 = FUN_180695750;
   }
-  _DAT_180d4a778 = FUN_18068fb30;
+  UIFunctionTable778 = FUN_18068fb30;
   if (bVar6) {
-    _DAT_180d4a778 = FUN_18068fba0;
+    UIFunctionTable778 = FUN_18068fba0;
   }
-  _DAT_180d4a750 = FUN_18068fc10;
+  UIFunctionTable750 = FUN_18068fc10;
   if (bVar6) {
-    _DAT_180d4a750 = FUN_18068fc80;
+    UIFunctionTable750 = FUN_18068fc80;
   }
-  _DAT_180d4a708 = FUN_18068fcf0;
+  UIFunctionTable708 = FUN_18068fcf0;
   if (bVar6) {
-    _DAT_180d4a708 = FUN_18068fd60;
+    UIFunctionTable708 = FUN_18068fd60;
   }
-  _DAT_180d4a958 = FUN_18068fdd0;
+  UIFunctionTable958 = FUN_18068fdd0;
   if (UIBoolVar4) {
-    _DAT_180d4a958 = FUN_180695820;
+    UIFunctionTable958 = FUN_180695820;
   }
   _DAT_180d4a928 = FUN_18068fe10;
   if (UIBoolVar4) {
