@@ -99,6 +99,17 @@
 #define SystemConfigStatusOffset               0x2290   // 系统配置状态偏移量
 #define SystemConfigValidationOffset           0x22d8   // 系统配置验证偏移量
 
+// 系统验证和状态常量
+#define SystemValidationSuccess                1        // 系统验证成功
+#define SystemValidationFailure                0        // 系统验证失败
+#define SystemNullPointer                      0x0      // 系统空指针
+#define SystemNullTerminator                   '\0'     // 系统空终止符
+#define SystemInitializationFlagMask          0x1      // 系统初始化标志掩码
+#define SystemStandardAllocationSize           0x10     // 系统标准分配大小
+#define SystemStringIndexOffset                0x11     // 系统字符串索引偏移量
+#define SystemEncryptionKeyOffset              0x74     // 系统加密密钥偏移量
+#define SystemResourceCounterDecrement         -1       // 系统资源计数器递减值
+
 // 系统缓冲区偏移量
 #define SystemBufferStatusOffset               0x10     // 系统缓冲区状态偏移量
 
@@ -24746,34 +24757,34 @@ bool SystemNodeCheckStatus(void)
   systemEncryptionKey = 0;
   systemValidationResult = 0;
   systemHashNodeData = &SystemStringTemplate;
-  if (encryptionKeyPointer != (void**)0x0) {
+  if (encryptionKeyPointer != (void**)SystemNullPointer) {
     systemHashNodeData = encryptionKeyPointer;
   }
   stringOffsetValue = systemIndex;
   ValidateSystemStringFormat(&systemEncryptionKey, systemHashNodeData, &SystemStringConstant);
-  if (systemValidationResult == 0) {
+  if (systemValidationResult == SystemValidationFailure) {
     systemNodeStatus = false;
   }
   else {
     InitializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer, &systemEncryptionKey);
-    if (systemValidationResult != 0) {
+    if (systemValidationResult != SystemValidationSuccess) {
       fclose();
-      systemValidationResult = 0;
-      LOCK();
+      systemValidationResult = SystemValidationFailure;
+      SystemThreadLock();
       SystemReferenceCounterStorage = SystemReferenceCounterStorage + SystemResourceCounterDecrement;
-      UNLOCK();
+      SystemThreadUnlock();
     }
-    systemNodeStatus = InitializationStatusFlag != '\0';
+    systemNodeStatus = InitializationStatusFlag != SystemNullTerminator;
   }
-  if (systemValidationResult != 0) {
+  if (systemValidationResult != SystemValidationSuccess) {
     fclose();
-    systemValidationResult = 0;
-    LOCK();
+    systemValidationResult = SystemValidationFailure;
+    SystemThreadLock();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + SystemResourceCounterDecrement;
-    UNLOCK();
+    SystemThreadUnlock();
   }
   stringBufferPointer = &SystemGlobalDataPointer;
-  if (encryptionKeyPointer != (void**)0x0) {
+  if (encryptionKeyPointer != (void**)SystemNullPointer) {
       SystemCleanupFunction();
   }
   return systemNodeStatus;
