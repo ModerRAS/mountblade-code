@@ -251,6 +251,10 @@
 #define ExceptionHandlerContextDataOffset 0x70
 #define ExceptionHandlerStatusValidationOffset 0x1d8
 
+// === 指针验证常量
+#define PointerValidationOffset58 0x58                           // 指针验证偏移量58 - 用于指针验证的偏移位置
+#define PointerCheckIndex3 3                                    // 指针检查索引3 - 用于指针状态检查的索引位置
+
 // 异常上下文处理器偏移量常量
 #define ExceptionHandlerCallbackOffset1FE0 0x1fe0          // 异常处理器回调偏移量1FE0 - 用于存储异常处理器回调函数指针
 #define ExceptionHandlerParameterOffset1FD0 0x1fd0           // 异常处理器参数偏移量1FD0 - 用于传递给异常处理器回调函数的参数
@@ -46133,7 +46137,7 @@ void CleanupExceptionStateResources(void* cleanupContext, int64_t contextData)
   // 检查资源清理标志位是否被设置
   if ((*(uint *)(contextData + ResourceCleanupFlagOffset30) & 1) != 0) {
     // 清除资源清理标志位
-    *(uint *)(contextData + ResourceCleanupFlagOffset30) = *(uint *)(contextData + ResourceCleanupFlagOffset30) & 0xfffffffe;
+    *(uint *)(contextData + ResourceCleanupFlagOffset30) = *(uint *)(contextData + ResourceCleanupFlagOffset30) & SystemStatusFlagClearMask;
     
     // 释放相关资源
     CleanupResourceHandler(*(DataBuffer *)(contextData + ExceptionHandlerDataBufferOffsetD8));
@@ -46479,7 +46483,7 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
 
 {
   if ((*(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 1) != 0) {
-    *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) = *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 0xfffffffe;
+    *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) = *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & SystemStatusFlagClearMask;
     CleanupResourceHandler(*(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1b8));
   }
   return;
@@ -79964,12 +79968,12 @@ void ValidateAndProcessPointer(DataBuffer CleanupContext, int64_t PointerContext
 {
   int64_t *PointerToCheck;
   
-  PointerToCheck = *(int64_t **)(PointerContext + 0x58);
+  PointerToCheck = *(int64_t **)(PointerContext + PointerValidationOffset58);
   if (PointerToCheck == (int64_t *)0x0) {
-    *(int64_t *)(PointerContext + 0x58) = 0;
+    *(int64_t *)(PointerContext + PointerValidationOffset58) = 0;
     return;
   }
-  if (((char)PointerToCheck[3] == '\0') && (*PointerToCheck != 0)) {
+  if (((char)PointerToCheck[PointerCheckIndex3] == '\0') && (*PointerToCheck != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
     TerminateSystemE0(PointerToCheck);

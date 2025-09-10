@@ -988,7 +988,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackFloatValue118 fStack0000000000000118            // 栈浮点值118
 #define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
 #define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
-#define SystemSecurityValidationBuffer aCoreEngineUnsignedValue318    // 系统安全验证缓冲区
+#define SystemSecurityValidationBuffer RenderConfigurationData318    // 系统安全验证缓冲区
 
 // 数据缓冲区和引用计数指针语义化宏定义
 #define DataBuffer1E0 pStackDataBuffer1e0                      // 数据缓冲区1E0
@@ -1054,7 +1054,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemMemoryBuffer SystemDataMemory                       // 系统内存缓冲区 - 系统数据内存
 
 // 新增的系统栈变量语义化定义 - 基于实际代码分析
-#define SystemSecurityValidationBuffer aCoreEngineUnsignedValue318  // 系统安全验证缓冲区
+#define SystemSecurityValidationBuffer RenderConfigurationData318  // 系统安全验证缓冲区
 #define SystemStackUnsigned270 uStack_270                          // 系统栈无符号270
 #define SystemStackOffset268 lStack_268                           // 系统栈偏移量268
 #define SystemStackOffset258 lStack_258                           // 系统栈偏移量258
@@ -66211,7 +66211,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
   void *CharacterStatusBuffer2;
   void *SystemStatusContext;
   long long LoopIndex;
-  uint8_t aCoreEngineUnsignedValue318 [32];
+  uint8_t RenderConfigurationData318 [32];
   uint8_t SystemInitializationFlags;
   int SystemStackInteger2e8;
   long long *SystemStackPointer2e0;
@@ -66244,7 +66244,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
   
   BufferAllocationStatus = SystemThreadPool;
   SystemValue1a8 = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aCoreEngineUnsignedValue318;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)RenderConfigurationData318;
   EncodingConversionResult = 0;
   SystemStackPointer2e0 = SystemThreadPool;
   SystemStackInteger2e8 = 0;
@@ -92795,7 +92795,7 @@ LAB_1801055b6:
  * 
  * @param ContextHandle 目标数据结构指针，包含渲染系统的配置信息
  */
-void CoreEngineInitializeRenderingSystem(long long ContextHandle
+void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCompletionCallback, uint8_t *RenderConfigurationData
 {
   unsigned long long RenderContextPointer;
   unsigned long long SystemValidationStatus;
@@ -92862,11 +92862,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   CoreEngineSetupRenderPipeline(RenderContextPointer,&SystemValidationStatus);
   SystemValidationStatus = RenderContextPointer;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemValidationStatus);
-  ConfigureRenderBuffers(aCoreEngineUnsignedValue,0);
+  ConfigureRenderBuffers(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x128) = 2;
-  CopySystemDataStructure(ContextHandle + 0x130,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x130,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xe0;
   (**(code **)(*(long long *)(ContextHandle + 0xe8) + 0x10))((long long *)(ContextHandle + 0xe8),SystemConfigStringTemplateD);
@@ -92876,11 +92876,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderTextures(aCoreEngineUnsignedValue,0);
+  SetupRenderTextures(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x2e8) = 2;
-  CopySystemDataStructure(ContextHandle + 0x2f0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x2f0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x2a0;
   (**(code **)(*(long long *)(ContextHandle + 0x2a8) + 0x10))((long long *)(ContextHandle + 0x2a8),SystemConfigStringTemplateE  ;
@@ -92890,11 +92890,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderShaders(aCoreEngineUnsignedValue,0);
+  InitializeRenderShaders(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x358) = 1;
-  CopySystemDataStructure(ContextHandle + 0x360,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x360,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x310;
   (**(code **)(*(long long *)(ContextHandle + 0x318) + 0x10))((long long *)(ContextHandle + 0x318),SystemConfigStringTemplateF  ;
@@ -92912,11 +92912,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderTargets(aCoreEngineUnsignedValue,0);
+  ConfigureRenderTargets(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1a88) = 1;
-  CopySystemDataStructure(ContextHandle + 0x1a90,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1a90,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1a40;
   (**(code **)(*(long long *)(ContextHandle + 0x1a48) + 0x10)            ((long long *)(ContextHandle + 0x1a48),SystemConfigStringTemplateH);
@@ -92950,11 +92950,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderStates(aCoreEngineUnsignedValue,0);
+  SetupRenderStates(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1b68) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1b70,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1b70,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1b20;
   (**(code **)(*(long long *)(ContextHandle + 0x1b28) + 0x10)            ((long long *)(ContextHandle + 0x1b28),&SystemContextTemplateQuindecenary);
@@ -92972,11 +92972,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderMaterials(aCoreEngineUnsignedValue,0);
+  InitializeRenderMaterials(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1c48) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1c50,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1c50,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1c00;
   (**(code **)(*(long long *)(ContextHandle + 0x1c08) + 0x10)            ((long long *)(ContextHandle + 0x1c08),&SystemContextTemplateSeptendecenary);
@@ -92986,11 +92986,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderLights(aCoreEngineUnsignedValue,0);
+  ConfigureRenderLights(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1cb8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1cc0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1cc0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1c70;
   (**(code **)(*(long long *)(ContextHandle + 0x1c78) + 0x10)            ((long long *)(ContextHandle + 0x1c78),&SystemContextTemplateOctodecenary);
@@ -93000,11 +93000,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderCameras(aCoreEngineUnsignedValue,0);
+  SetupRenderCameras(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x4a8) = 1;
-  CopySystemDataStructure(ContextHandle + 0x4b0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x4b0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x460;
   (**(code **)(*(long long *)(ContextHandle + 0x468) + 0x10))((long long *)(ContextHandle + 0x468),&SystemContextTemplateNovemdecenary  ;
@@ -93054,11 +93054,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderEffects(aCoreEngineUnsignedValue,0);
+  InitializeRenderEffects(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1fc8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1fd0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1fd0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1f80;
   (**(code **)(*(long long *)(ContextHandle + 0x1f88) + 0x10)            ((long long *)(ContextHandle + 0x1f88),&SystemContextTemplateQuinvigesimal);
@@ -93068,11 +93068,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderMeshes(aCoreEngineUnsignedValue,0);
+  ConfigureRenderMeshes(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x668) = 0;
-  CopySystemDataStructure(ContextHandle + 0x670,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x670,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x620;
   (**(code **)(*(long long *)(ContextHandle + 0x628) + 0x10))((long long *)(ContextHandle + 0x628),&SystemRenderBufferPrimary  ;
@@ -93082,11 +93082,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderAnimations(aCoreEngineUnsignedValue,0);
+  SetupRenderAnimations(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x6d8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x6e0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x6e0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x690;
   (**(code **)(*(long long *)(ContextHandle + 0x698) + 0x10))((long long *)(ContextHandle + 0x698),&SystemRenderBufferSecondary  ;
@@ -93096,11 +93096,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderPhysics(aCoreEngineUnsignedValue,0);
+  InitializeRenderPhysics(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x748) = 0;
-  CopySystemDataStructure(ContextHandle + 0x750,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x750,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x700;
   (**(code **)(*(long long *)(ContextHandle + 0x708) + 0x10))((long long *)(ContextHandle + 0x708),&SystemRenderBufferTertiary  ;
@@ -93110,11 +93110,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderAudio(aCoreEngineUnsignedValue,0);
+  ConfigureRenderAudio(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x898) = 0;
-  CopySystemDataStructure(ContextHandle + 0x8a0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x8a0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x850;
   (**(code **)(*(long long *)(ContextHandle + 0x858) + 0x10))((long long *)(ContextHandle + 0x858),&SystemRenderBufferQuaternary  ;
@@ -93124,11 +93124,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderUI(aCoreEngineUnsignedValue,0);
+  SetupRenderUI(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x7b8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x7c0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x7c0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x770;
   (**(code **)(*(long long *)(ContextHandle + 0x778) + 0x10))((long long *)(ContextHandle + 0x778),&SystemRenderBufferQuinary  ;
@@ -93138,11 +93138,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderNetwork(aCoreEngineUnsignedValue,0);
+  InitializeRenderNetwork(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x828) = 0;
-  CopySystemDataStructure(ContextHandle + 0x830,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x830,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x7e0;
   (**(code **)(*(long long *)(ContextHandle + 0x7e8) + 0x10))((long long *)(ContextHandle + 0x7e8),&SystemRenderBufferSenary  ;
@@ -93152,11 +93152,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderInput(aCoreEngineUnsignedValue,0);
+  ConfigureRenderInput(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x908) = 0;
-  CopySystemDataStructure(ContextHandle + 0x910,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x910,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x8c0;
   (**(code **)(*(long long *)(ContextHandle + 0x8c8) + 0x10))((long long *)(ContextHandle + 0x8c8),&SystemRenderBufferSeptenary  ;
@@ -93166,11 +93166,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderDebug(aCoreEngineUnsignedValue,0);
+  SetupRenderDebug(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x978) = 0;
-  CopySystemDataStructure(ContextHandle + 0x980,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x980,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x930;
   (**(code **)(*(long long *)(ContextHandle + 0x938) + 0x10))((long long *)(ContextHandle + 0x938),&SystemRenderConfigurationOffset5798  ;
@@ -93180,11 +93180,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderProfile(aCoreEngineUnsignedValue,0);
+  InitializeRenderProfile(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0xf98) = 0;
-  CopySystemDataStructure(ContextHandle + 4000,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 4000,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xf50;
   (**(code **)(*(long long *)(ContextHandle + 0xf58) + 0x10))((long long *)(ContextHandle + 0xf58),&SystemRenderConfigurationOffset57d8  ;
@@ -93194,11 +93194,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderStats(aCoreEngineUnsignedValue,0);
+  ConfigureRenderStats(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1078) = 0;
-  CopySystemDataStructure(ContextHandle + SystemMemoryFunctionOffset1080,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + SystemMemoryFunctionOffset1080,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x1030;
   (**(code **)(*(long long *)(ContextHandle + 0x1038) + 0x10)            ((long long *)(ContextHandle + 0x1038),&SystemRenderConfigurationOffset57c0);
@@ -93208,11 +93208,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderOptimization(aCoreEngineUnsignedValue,0);
+  SetupRenderOptimization(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x10e8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x10f0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x10f0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x10a0;
   (**(code **)(*(long long *)(ContextHandle + 0x10a8) + 0x10)            ((long long *)(ContextHandle + 0x10a8),&SystemRenderConfigurationOffset57f8);
@@ -93222,11 +93222,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderCache(aCoreEngineUnsignedValue,0);
+  InitializeRenderCache(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x9e8) = 0;
-  CopySystemDataStructure(ContextHandle + 0x9f0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x9f0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0x9a0;
   (**(code **)(*(long long *)(ContextHandle + 0x9a8) + 0x10))((long long *)(ContextHandle + 0x9a8),&SystemRenderConfigurationOffset57e8  ;
@@ -93236,11 +93236,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderStreaming(aCoreEngineUnsignedValue,0);
+  ConfigureRenderStreaming(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0xf28) = 0;
-  CopySystemDataStructure(ContextHandle + 0xf30,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0xf30,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xee0;
   (**(code **)(*(long long *)(ContextHandle + 0xee8) + 0x10))((long long *)(ContextHandle + 0xee8),&SystemRenderConfigurationOffset5828  ;
@@ -93250,11 +93250,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderCompression(aCoreEngineUnsignedValue,0);
+  SetupRenderCompression(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1008) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1010,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0x1010,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xfc0;
   (**(code **)(*(long long *)(ContextHandle + 0xfc8) + 0x10))((long long *)(ContextHandle + 0xfc8),&SystemRenderConfigurationOffset5808  ;
@@ -93264,11 +93264,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  InitializeRenderValidation(aCoreEngineUnsignedValue,0);
+  InitializeRenderValidation(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0xa58) = 0;
-  CopySystemDataStructure(ContextHandle + 0xa60,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0xa60,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xa10;
   (**(code **)(*(long long *)(ContextHandle + 0xa18) + 0x10))((long long *)(ContextHandle + 0xa18),&SystemRenderConfigurationOffset5850  ;
@@ -93278,11 +93278,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ConfigureRenderSecurity(aCoreEngineUnsignedValue,0);
+  ConfigureRenderSecurity(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0xac8) = 0;
-  CopySystemDataStructure(ContextHandle + 0xad0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0xad0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xa80;
   (**(code **)(*(long long *)(ContextHandle + 0xa88) + 0x10))((long long *)(ContextHandle + 0xa88),&SystemRenderConfigurationOffset5840  ;
@@ -93292,11 +93292,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  SetupRenderMonitoring(aCoreEngineUnsignedValue,0);
+  SetupRenderMonitoring(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0xba8) = 0;
-  CopySystemDataStructure(ContextHandle + 0xbb0,aCoreEngineUnsignedValue);
-  if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
+  CopySystemDataStructure(ContextHandle + 0xbb0,RenderConfigurationData);
+  if (RenderCompletionCallback != (code *)0x0) {
+    (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
   Utf16Char = ContextHandle + 0xb60;
   (**(code **)(*(long long *)(ContextHandle + 0xb68) + 0x10))((long long *)(ContextHandle + 0xb68),&SystemRenderConfigTemplateVignette  ;
@@ -93306,11 +93306,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ProcessSystemUnsignedValue(aCoreEngineUnsignedValue,0);
+  ProcessSystemUnsignedValue(RenderConfigurationData,0);
   Utf16Char = ContextHandle + 0xaf0;
   SystemRegisterFlag = SystemRegisterFlag & 0xffffffff00000000;
-  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,aCoreEngineUnsignedValue);
-  PerformSystemDataOperation(aCoreEngineUnsignedValue);
+  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,RenderConfigurationData);
+  PerformSystemDataOperation(RenderConfigurationData);
   ProcessRenderConfiguration(Utf16Char,&SystemRenderConfigTemplateColorGrading);
   SystemRegisterFlag = SystemRegisterFlag & 0xffffffff00000000;
   ProcessSystemFlag(Utf16Char,&SystemRegisterFlag);
@@ -93318,11 +93318,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ProcessSystemData(aCoreEngineUnsignedValue,0);
+  ProcessSystemData(RenderConfigurationData,0);
   Utf16Char = ContextHandle + 0xe70;
   SystemRegisterFlag = SystemRegisterFlag & 0xffffffff00000000;
-  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,aCoreEngineUnsignedValue);
-  PerformSystemDataOperation(aCoreEngineUnsignedValue);
+  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,RenderConfigurationData);
+  PerformSystemDataOperation(RenderConfigurationData);
   ProcessRenderConfiguration(Utf16Char,&SystemRenderConfigTemplateSpecialEffectA);
   SystemRegisterFlag = SystemRegisterFlag & 0xffffffff00000000;
   ProcessSystemFlag(Utf16Char,&SystemRegisterFlag);
@@ -93602,11 +93602,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ValidateSystemFlag(Utf16Char,&SystemRegisterFlag);
   SystemRegisterFlag = Utf16Char;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
-  ProcessSystemUnsignedValueA0(aCoreEngineUnsignedValueA0,0);
+  ProcessSystemUnsignedValueA0(RenderConfigurationDataA0,0);
   Utf16Char = ContextHandle + 0x2290;
   SystemRegisterFlag.LowPart = 1;
-  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,aCoreEngineUnsignedValueA0);
-  PerformSystemDataOperation(aCoreEngineUnsignedValueA0);
+  ProcessUtf16CharAndFlags(Utf16Char,&SystemRegisterFlag,RenderConfigurationDataA0);
+  PerformSystemDataOperation(RenderConfigurationDataA0);
   ProcessRenderConfiguration(Utf16Char,&SystemRenderConfigurationOffset5b48);
   SystemRegisterFlag.LowPart = 1;
   ProcessSystemFlag(Utf16Char,&SystemRegisterFlag);
@@ -171425,7 +171425,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
   float aMatrixElementE [4];
   uint32_t CoreEngineValueA8;
   float MatrixElementJ;
-  uint aCoreEngineUnsignedValueA0 [2];
+  uint RenderConfigurationDataA0 [2];
   long long *SystemStackPointer;
   uint SystemOperation90 [2];
   long long *aplStack_88 [10];
@@ -171455,7 +171455,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
              (float)StringProcessingStatus[SystemStatusCode + 0x10] + *(float *)((long long)&SystemCleanupFlagF + SystemStatusCode * 4);
         if ((*(byte *)(ContextHandle + 1) & 0x20) == 0) {
           ProcessDataMatchingOperation(*ContextHandle);
-          InitializeSystemResourceStructure(aCoreEngineUnsignedValueA0,0x10,2,&ProcessSystemDataStructure,CopyAndInitializeSystemData);
+          InitializeSystemResourceStructure(RenderConfigurationDataA0,0x10,2,&ProcessSystemDataStructure,CopyAndInitializeSystemData);
           CalculatedFilterValue = *(float *)(AllocatedMemorySize + 0x163c + CharacterTablePointer6);
           ContextPrimaryFloat9 = FilterInputValue + *(float *)(AllocatedMemorySize + 0x38 + *(long long *)(ContextHandle + 4));
           SystemContextPrimaryFloat8 = (*(float *)(AllocatedMemorySize + 0x40 + *(long long *)(ContextHandle + 6)) +
@@ -171465,15 +171465,15 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
             long long AllocatedMemorySize = *(long long *)(SecondaryProcessingStatusFlag + 4);
             pSystemRegisterFlag = SecondaryProcessingStatusFlag;
             if (AllocatedMemorySize == 0) {
-              ProcessSystemDataTable(aCoreEngineUnsignedValueA0,&pSystemRegisterFlag);
+              ProcessSystemDataTable(RenderConfigurationDataA0,&pSystemRegisterFlag);
             }
             else {
               if (((*(byte *)(AllocatedMemorySize + 0xa0) & 4) != 0) &&
                  ((SecondaryProcessingStatusFlag[0x14] != EncodingValidationResult || ((*(byte *)(*(long long *)(SecondaryProcessingStatusFlag + 6) + 0xa0) & 4) == 0                  ))) {
-                ProcessCharacterEncodingOperation(AllocatedMemorySize,EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
+                ProcessCharacterEncodingOperation(AllocatedMemorySize,EncodingValidationResult,1,RenderConfigurationDataA0);
               }
               if ((*(byte *)(*(long long *)(SecondaryProcessingStatusFlag + 6) + 0xa0) & 4) != 0) {
-                ProcessCharacterEncodingOperation(*(long long *)(SecondaryProcessingStatusFlag + 6),EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
+                ProcessCharacterEncodingOperation(*(long long *)(SecondaryProcessingStatusFlag + 6),EncodingValidationResult,1,RenderConfigurationDataA0);
               }
             }
             long long AllocatedMemorySize = *(long long *)(StringProcessingStatus + 4);
@@ -171490,8 +171490,8 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
                 ProcessCharacterEncodingOperation(*(long long *)(StringProcessingStatus + 6),EncodingValidationResult,0,SystemOperation90);
               }
             }
-            if (0 < (int)aCoreEngineUnsignedValueA0[0]) {
-              SystemStatusCode = (unsigned long long)aCoreEngineUnsignedValueA0[0];
+            if (0 < (int)RenderConfigurationDataA0[0]) {
+              SystemStatusCode = (unsigned long long)RenderConfigurationDataA0[0];
               ContextHandle3 = SystemStackPointer;
               do {
                 AllocatedMemorySize = *ContextHandle3;
@@ -171541,7 +171541,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
           SystemValidationChar = ProcessSystemCharacterValidation(afStack_e0,MatchCounter,EncodingValidationResult,&pSystemRegisterFlag,FloatPointerValue,
                                 ContextPrimaryFloat9 - FilterInputValue,VectorRegisterDa);
           AllocatedMemorySize = SystemConfigurationHandle;
-          if (((SystemValidationChar != '\0') && (0 < (int)aCoreEngineUnsignedValueA0[0])) && (0 < (int)SystemOperation90[0])) {
+          if (((SystemValidationChar != '\0') && (0 < (int)RenderConfigurationDataA0[0])) && (0 < (int)SystemOperation90[0])) {
             SecondaryProcessingStatusFlag[Utf16ConversionContext + 0x12] = pSystemRegisterFlag.LowPart;
             SecondaryProcessingStatusFlag[Utf16ConversionContext + 0x10] = pSystemRegisterFlag.LowPart;
             StringProcessingStatus[Utf16ConversionContext + 0xe] =
@@ -171551,7 +171551,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
             CharacterTablePointer6 = 0;
             do {
               MatchCounter = 0;
-              if (0 < (int)aCoreEngineUnsignedValueA0[CharacterTablePointer6 * 4]) {
+              if (0 < (int)RenderConfigurationDataA0[CharacterTablePointer6 * 4]) {
                 SystemConfigurationIterator = 0;
                 do {
                   LoopIndex = *(long long *)(SystemConfigurationIterator + *(long long *)(SystemOperation90 + CharacterTablePointer6 * 4 + -2));
@@ -171568,7 +171568,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
                   }
                   MatchCounter = MatchCounter + 1;
                   SystemConfigurationIterator = SystemConfigurationIterator + 8;
-                } while (MatchCounter < (int)aCoreEngineUnsignedValueA0[CharacterTablePointer6 * 4]);
+                } while (MatchCounter < (int)RenderConfigurationDataA0[CharacterTablePointer6 * 4]);
               }
               MatchCounter = 0;
               if (0 < (int)SystemOperation90[CharacterTablePointer6 * 4]) {
@@ -171600,7 +171600,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
           }
           LockOperationResultPointer = (int *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0x218);
           *LockOperationResultPointer = *LockOperationResultPointer + -1;
-          InitializeSystemMemoryBlock(aCoreEngineUnsignedValueA0,0x10,2,CopyAndInitializeSystemData);
+          InitializeSystemMemoryBlock(RenderConfigurationDataA0,0x10,2,CopyAndInitializeSystemData);
         }
         else {
           aMatrixElementE[2] = *(float *)(CharacterTablePointer6 + 0x1878);
@@ -178597,7 +178597,7 @@ void ProcessCharacterEncodingDataConversion(long long ContextHandle)
   void *ContextHandle;
   uint8_t *CoreEnginePointerBuffer158;
   uint32_t uStack_150;
-  uint8_t aCoreEngineUnsignedValue [16];
+  uint8_t RenderConfigurationData [16];
   char acStack_138 [256];
   unsigned long long FunctionAddress;
   
@@ -178630,10 +178630,10 @@ void ProcessCharacterEncodingDataConversion(long long ContextHandle)
   }
   ProcessSystemMemoryAllocationBuffer(acStack_138,SystemMemoryAllocationBuffer,ContextHandleTablePointer,StringProcessingStatus);
   ContextHandle = &UnknownDataStructureTemplate;
-  CoreEnginePointerBuffer158 = aCoreEngineUnsignedValue;
-  aCoreEngineUnsignedValue[0] = 0;
+  CoreEnginePointerBuffer158 = RenderConfigurationData;
+  RenderConfigurationData[0] = 0;
   uStack_150 = 6;
-  strcpy_s(aCoreEngineUnsignedValue,0x10,&SystemStringTemplate);
+  strcpy_s(RenderConfigurationData,0x10,&SystemStringTemplate);
   StackProcessingVariable = 1;
   ProcessSystemMemoryDataTransfer(ContextHandle + 0x438,&ContextHandle);
   StackProcessingVariable = 0;
@@ -184831,7 +184831,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
   int SystemStatusValue;
   uint Utf16Character;
   unsigned long long MemoryAllocationOffset;
-  uint8_t aCoreEngineUnsignedValue318 [32];
+  uint8_t RenderConfigurationData318 [32];
   long long *stackProcessingStatusFlag2f8;
   void **ppSystemInitializationMode;
   uint64_t uStack_2e8;
@@ -184858,7 +184858,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
   unsigned long long SystemStackFlag;
   
   CharacterTablePointer = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aCoreEngineUnsignedValue318;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)RenderConfigurationData318;
   pSystemContextValidationFlag = (char *)Utf8SourcePointer[1];
   OperationStatus = *pSystemContextValidationFlag;
   Utf8SourcePointer[1] = (long long)(pSystemContextValidationFlag + 1);
@@ -185105,7 +185105,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
     }
     pSystemValue2b8 = &ThreadLocalStorageTemplate;
   }
-    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)aCoreEngineUnsignedValue318);
+    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)RenderConfigurationData318);
 }
 
 
@@ -192315,7 +192315,7 @@ InitializeMemoryPoolManager(long long *ContextHandle,long long *ContextHandleSiz
   uint MemoryOffsetValue;
   uint64_t SystemStackRegisterBuffer;
   uint32_t CoreEngineValueA8;
-  uint32_t aCoreEngineUnsignedValueA0 [2];
+  uint32_t RenderConfigurationDataA0 [2];
   void *pSystemOperationFlag98;
   long long SystemTemporaryValue90;
   uint32_t StackValidationData;
@@ -192415,7 +192415,7 @@ LAB_180157585:
   SystemTemporaryValue90 = 0;
   StackValidationData = 0;
   StackProcessingValue78 = 0;
-  aCoreEngineUnsignedValueA0[0] = 0;
+  RenderConfigurationDataA0[0] = 0;
   SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(Utf8SourcePointer + 8) != NULL) {
     SystemCharacterStatusBuffer = *(void **)(Utf8SourcePointer + 8);
@@ -192423,7 +192423,7 @@ LAB_180157585:
   CoreEngineConfigureSystemEvent(&pSystemOperationFlag98,SystemCharacterStatusBuffer);
   EncodingValidationResult = (int)BufferAllocationStatus[5];
   *(int *)(BufferAllocationStatus + 5) = EncodingValidationResult + 1;
-  (**(code **)(*BufferAllocationStatus + 0x208))(BufferAllocationStatus,&SystemContextRegister,aCoreEngineUnsignedValueA0,EncodingValidationResult,Utf16EndPointer);
+  (**(code **)(*BufferAllocationStatus + 0x208))(BufferAllocationStatus,&SystemContextRegister,RenderConfigurationDataA0,EncodingValidationResult,Utf16EndPointer);
   if (*(int *)(SystemConfigData + 0x9a0) != 0) {
     SystemCharacterStatusBufferPointer = &SystemNullTemplate;
     SystemStackRegisterBuffer = 0;
@@ -195491,7 +195491,7 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   uint8_t auStack_3c0 [56];
   uint8_t aFunctionAddress8 [56];
   uint8_t auStack_350 [56];
-  uint8_t aCoreEngineUnsignedValue318 [56];
+  uint8_t RenderConfigurationData318 [56];
   uint8_t auStack_2e0 [56];
   uint8_t aSystemValue2a8 [56];
   uint8_t auStack_270 [56];
@@ -196492,8 +196492,8 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   SystemPriorityLevel.LowPart = 0x14;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
-  ProcessSystemPriorityAndFlags(aCoreEngineUnsignedValue318,&SystemPriorityLevel,&ProcessingFlags,1);
-  ProcessContextHandleTableOperation(ContextHandle,0xa0,aCoreEngineUnsignedValue318);
+  ProcessSystemPriorityAndFlags(RenderConfigurationData318,&SystemPriorityLevel,&ProcessingFlags,1);
+  ProcessContextHandleTableOperation(ContextHandle,0xa0,RenderConfigurationData318);
   SystemPriorityLevel.LowPart = 0x25;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
@@ -211629,7 +211629,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
   int LockOperationResult;
   long long SearchStartIndex;
   void *MemoryAddressMaskPointer;
-  uint8_t aCoreEngineUnsignedValue208 [32];
+  uint8_t RenderConfigurationData208 [32];
   void **ppDataProcessingStatus;
   uint64_t uStack_1e0;
   uint64_t SystemStackData;
@@ -211656,7 +211656,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
   unsigned long long uStack_18;
   
   uStack_1d0 = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aCoreEngineUnsignedValue208;
+  uStack_18 = EncodingDecodingKey ^ (unsigned long long)RenderConfigurationData208;
   CharacterTablePointer = *ContextHandleSize;
   SystemStackData = (uint8_t *)OperationBufferSize[5];
   *(uint32_t *)(OperationBufferSize + 4) = 1;
@@ -211721,7 +211721,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
   }
   ppDataProcessingStatus = &SystemMessageTemplatePointer;
   SystemMessageTemplatePointer = &ThreadLocalStorageTemplate;
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aCoreEngineUnsignedValue208);
+    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)RenderConfigurationData208);
 }
 
 
@@ -224030,7 +224030,7 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
   long long SystemContextValue;
   unsigned long long ValidationResult;
   unsigned long long Utf16Char4;
-  uint8_t aCoreEngineUnsignedValue [32];
+  uint8_t RenderConfigurationData [32];
   uint64_t BufferInitializationFlag;
   uint64_t **pThreadLocalStorageBuffer;
   uint64_t **pCoreEnginePointerBuffer110;
@@ -224061,7 +224061,7 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
   unsigned long long SystemPriorityLevel;
   
   SystemFlagE = 0xfffffffffffffffe;
-  SystemPriorityLevel = EncodingDecodingKey ^ (unsigned long long)aCoreEngineUnsignedValue;
+  SystemPriorityLevel = EncodingDecodingKey ^ (unsigned long long)RenderConfigurationData;
   TemporaryBuffer = (void *)*ContextHandle;
   ppSystemProcessFlagB = ContextHandle;
   CoreEngineSignedValueE8 = OperationBufferSize;
@@ -224259,7 +224259,7 @@ LAB_18018764a:
       lStack_68 = 0;
     }
   }
-    CoreEngineExecuteUtilityFunction(SystemPriorityLevel ^ (unsigned long long)aCoreEngineUnsignedValue);
+    CoreEngineExecuteUtilityFunction(SystemPriorityLevel ^ (unsigned long long)RenderConfigurationData);
 }
 
 
@@ -230894,7 +230894,7 @@ void InitializeCoreEngineSystemAndProcessCharacters(void)
   void *SystemCharacterStatusBuffer;
   void *CharacterStatusBuffer2;
   long long OperationResult13;
-  uint8_t aCoreEngineUnsignedValue208 [32];
+  uint8_t RenderConfigurationData208 [32];
   long long lStack_1e8;
   long long lStack_1e0;
   uint64_t *SystemPointerBuffer1d8;
@@ -230920,7 +230920,7 @@ void InitializeCoreEngineSystemAndProcessCharacters(void)
   unsigned long long FunctionAddress;
   
   uStack_1c0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aCoreEngineUnsignedValue208;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)RenderConfigurationData208;
   lStack_1e0 = CoreEngineSystemTimer;
   lStack_1c8 = SystemMemoryManagerPointer;
   plStack_1d0 = *(long long **)(SystemMemoryManagerPointer + 0xa0);
@@ -231230,7 +231230,7 @@ LAB_18018f515:
       plStack_1d0 = plStack_1d0 + 1;
     } while (plStack_1d0 != *(long long **)(lStack_1c8 + 0xa8));
   }
-    CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aCoreEngineUnsignedValue208);
+    CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)RenderConfigurationData208);
 }
 
 
@@ -285810,7 +285810,7 @@ LAB_18022bda0:
   uint8_t aSystemProcessFlagA [72];
   uint8_t *apMemoryOffsetValue [2];
   uint32_t CoreEngineValueA8;
-  uint8_t aCoreEngineUnsignedValueA0 [104];
+  uint8_t RenderConfigurationDataA0 [104];
   unsigned long long FunctionAddress;
   
   SystemUintBuffer240 = 0xfffffffffffffffe;
@@ -286060,10 +286060,10 @@ LAB_18022c460:
   ThreadLocalStorageBuffer = &ThreadLocalStorageTemplate;
   Utf16Char4 = *(void *)(ContextHandle + 0x1e0);
   apMemoryOffsetValue[0] = &SystemValidationStatus;
-  apMemoryOffsetValue[1] = aCoreEngineUnsignedValueA0;
-  aCoreEngineUnsignedValueA0[0] = 0;
+  apMemoryOffsetValue[1] = RenderConfigurationDataA0;
+  RenderConfigurationDataA0[0] = 0;
   CoreEngineValueA8 = 0x1d;
-  strcpy_s(aCoreEngineUnsignedValueA0,0x40,&SystemStringTemplateC);
+  strcpy_s(RenderConfigurationDataA0,0x40,&SystemStringTemplateC);
   Utf16Char4 = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,apMemoryOffsetValue,0);
   *(void *)(ContextHandle + 0x398) = Utf16Char4;
   apMemoryOffsetValue[0] = &ThreadLocalStorageTemplate;
