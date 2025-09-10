@@ -115437,7 +115437,7 @@ void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle
     memcpy(dataSource,dataSource + 0x20,(longlong)loopCounter * 2);
   }
   ProcessUIComponentOperation(&stack0x00000080);
-  FUN_18072f4d0(dataSource,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c),
+  ExecuteUIBufferDataOperation(dataSource,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec),loopCounter);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
@@ -115581,7 +115581,7 @@ void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlo
   }
   iStack0000000000000030 = (int)*(char *)(contextHandle + 0x12a5);
   StackData1 = *(UIDword *)(contextHandle + 0x1230);
-  FUN_180737240(contextHandle + 0x1290,in_XMM1._0_8_,*(UIHandle *)(contextHandle + 0x1258),
+  ProcessUIDataWithShortSource(contextHandle + 0x1290,in_XMM1._0_8_,*(UIHandle *)(contextHandle + 0x1258),
                 &stack0x00000040);
   iterationCount = ExecuteUIBufferDataOperation(basePointer + 0x20);
   uiValidationResult1 = *(int *)(contextHandle + 0x121c);
@@ -115590,7 +115590,7 @@ void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlo
     memcpy(iterationCount,basePointer + 0x20,(longlong)uiValidationResult1 * 2);
   }
   iterationCount = ProcessUIComponentOperation(&stack0x00000080);
-  FUN_18072f4d0(iterationCount,&stack0x00000080,*(UIDword *)(contextHandle + 0x121c),
+  ExecuteUIBufferDataOperation(iterationCount,&stack0x00000080,*(UIDword *)(contextHandle + 0x121c),
                 *(UIDword *)(contextHandle + 0x13ec),uiValidationResult1);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
@@ -116417,7 +116417,7 @@ int ValidateUIComponentContextAndState(ulonglong *uiContext,uint dataSource)
     astackInt78[localLong7] = localInt8 << 0xc;
   }
   if (uiValidationResult2 < 0x1000) {
-    FUN_180733d70(astackInt78,dataSource);
+    ProcessUIComponentWithIntDataSource(astackInt78,dataSource);
                      WARNING: Subroutine does not return
     ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt98);
   }
@@ -121234,7 +121234,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
         if (targetBuffer == 0) {
           if ((bufferSize == 0) && (resultPointer == 0)) {
             validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
-            *(undefined **)(validationIndex + 0x358) = &UNK_180741cf0;
+            *(undefined **)(validationIndex + 0x358) = &UIDataBufferRegistryPointer;
             *(undefined **)(validationIndex + 0x360) = &UIResourceTableRegistryPointer;
             *(undefined **)(validationIndex + 0x368) = &UIContextDataPointer;
             return 0;

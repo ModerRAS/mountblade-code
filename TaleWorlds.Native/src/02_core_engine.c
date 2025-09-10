@@ -206300,13 +206300,22 @@ void ProcessSystemConfigurationAndStringMatching(void)
 
 
 /**
- * 初始化系统编码验证器
+ * @brief 初始化系统编码验证器
  * 
- * 该函数负责初始化系统编码验证器，包括：
- * - 系统上下文初始化
- * - 编码验证状态设置
- * - 内存分配管理
- * - 系统事件队列处理
+ * 该函数负责初始化系统编码验证器，处理系统上下文和内存管理。
+ * 主要功能包括：
+ * - 系统上下文验证和状态管理
+ * - 内存缓冲区状态检查
+ * - 编码验证结果处理
+ * - 系统事件队列管理
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 完整的编码验证逻辑
+ * - 错误处理和恢复机制
+ * - 内存管理优化
+ * - 线程安全考虑
+ * 
+ * @warning 此实现包含硬编码的内存地址偏移量，可能需要根据具体系统配置调整
  */
 void InitializeSystemEncodingValidator(void)
 {
@@ -233225,7 +233234,7 @@ joined_r0x0001801906da:
     ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataTablePointer,StringProcessingStatus);
     SystemDataTablePointer = SystemDataTablePointer + 0x348;
   }
-  FUN_18018e7e0(SystemDataTablePointer,OperationBufferSize);
+  ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataTablePointer,OperationBufferSize);
   SecondaryProcessingStatusFlag = (void *)*ContextHandle;
   StringProcessingStatus = (void *)ContextHandle[1];
   if (SecondaryProcessingStatusFlag != StringProcessingStatus) {
@@ -233281,10 +233290,10 @@ joined_r0x0001801906da:
   AllocatedMemorySize = SystemDataRegistry;
 joined_r0x0001801906da:
   for (; SystemContext != StackFrameAddressPointer; SystemContext = SystemContext + 0x348) {
-    FUN_18018e7e0(SystemDataRegistry,SystemContext);
+    ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry,SystemContext);
     SystemDataRegistry = SystemDataRegistry + 0x348;
   }
-  FUN_18018e7e0(SystemDataRegistry);
+  ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry,NULL);
   SystemEventTemplatePointer = (void *)*PatternIndex;
   CharacterStatusBuffer = (void *)PatternIndex[1];
   if (SystemEventTemplatePointer != CharacterStatusBuffer) {
