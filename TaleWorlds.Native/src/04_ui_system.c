@@ -938,6 +938,20 @@ typedef enum {
 #define ProcessUIRenderData FUN_180705870
 
 /**
+ * @brief 计算UI数据范围和缩放值
+ * 
+ * 该函数根据输入的数据源范围计算相应的缩放值和范围映射。
+ * 主要用于UI组件的尺寸计算和数据缩放处理。
+ * 
+ * @param uiContext UI上下文指针，用于存储计算结果
+ * @param dataSource 数据源指针，包含范围和数值信息
+ * @param targetBuffer 目标缓冲区，用于存储处理后的数据
+ * 
+ * @note 原始函数名：FUN_180737100
+ */
+#define CalculateUIDataRangeAndScale FUN_180737100
+
+/**
  * @brief 清理UI资源
  * 
  * 该函数负责清理UI系统使用的各种资源，包括：
@@ -120094,6 +120108,7 @@ void UIReturnEmptyFunctionB(void)
  * 
  * @note 原始函数名：FUN_180737100
  */
+
 void CalculateUIDataRangeAndScale(UIWord *uiContext,short *dataSource,int targetBuffer)
 
 {
