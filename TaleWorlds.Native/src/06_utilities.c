@@ -11449,7 +11449,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18073b830 - 数据验证返回函数A1
 // 功能：验证数据并返回结果
-#define ValidateDataAndReturnA1 FUN_18073b830
+#define ValidateDataAndReturnA1 ValidateDataAndReturnResult
 
 // 原始函数名：FUN_18073b810 - 系统清理函数A1
 // 功能：清理系统资源
@@ -96927,7 +96927,7 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
 void ExceptionRecoveryHandlerC1(DataBuffer exceptionContext, int64_t streamContext)
 
 {
-                             DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + -0x98);
+                             DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + OutputStreamNegativeOffset);
   return;
 }
 
@@ -96990,7 +96990,7 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
 void CleanupExceptionDataC220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                DestroyBasicIostream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + -0x98);
+                                DestroyBasicIostream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + OutputStreamNegativeOffset);
   return;
 }
 

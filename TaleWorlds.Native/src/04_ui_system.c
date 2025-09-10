@@ -405828,8 +405828,8 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_1808ddf80 HandleUIValidationErrorProcessingAndRecovery    // 处理UI验证错误处理和恢复 - 处理UI验证过程中的错误和恢复
 #define FUN_18089e230 ProcessUIStringDataValidationAndFormat          // 处理UI字符串数据验证和格式 - 处理UI字符串数据的验证和格式化
 // UI系统事件数据和结构验证函数
-#define ValidateUIEventDataAndStructure FUN_1808aed00
-#define ProcessUIComponentMetrics FUN_1808afe30
+#define FUN_1808aed00 ValidateUIEventDataStructureAndIntegrity     // 验证UI事件数据结构和完整性 - 验证UI事件数据的结构和完整性
+#define FUN_1808afe30 ProcessUIComponentMetricsCalculation          // 处理UI组件度量计算 - 处理UI组件的度量计算
 #define ProcessUIComponentTransform FUN_1808dde10
 #define ProcessUIComponentLayout FUN_1808a8120
 #define ProcessUIComponentValidation FUN_1808a7c90
