@@ -244508,11 +244508,11 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
       }
       FUN_180202c00(pContextSecondaryFloat2,FloatVariablePointer4,(long long)(int)(MemoryAllocationHandle - 1) * 2,DataProcessingStatus);
       if (BufferValidationStatus < 0x1d) {
-        FUN_18009d8a0(pContextSecondaryFloat2,FloatVariablePointer4);
+        ProcessFloatingPointData(pContextSecondaryFloat2,FloatVariablePointer4);
       }
       else {
         pContextSecondaryFloat5 = pContextSecondaryFloat2 + 0x1c;
-        FUN_18009d8a0(pContextSecondaryFloat2);
+        ProcessFloatingPointData(pContextSecondaryFloat2);
         for (; pContextSecondaryFloat5 != FloatVariablePointer4; pContextSecondaryFloat5 = pContextSecondaryFloat5 + 1) {
           FilterInputValue5 = *pContextSecondaryFloat5;
           SystemContextPrimaryFloat = pContextSecondaryFloat5[-1];
@@ -245722,11 +245722,11 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
     }
     FUN_180202d20(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(Utf16Character - 1) * 2,0);
     if (BufferStatus3 < 0x1d) {
-      FUN_18009d8a0(FloatVariablePointer4,pContextSecondaryFloat4);
+      ProcessFloatingPointData(FloatVariablePointer4,pContextSecondaryFloat4);
     }
     else {
       pContextSecondaryFloat1 = FloatVariablePointer4 + 0x1c;
-      FUN_18009d8a0(FloatVariablePointer4);
+      ProcessFloatingPointData(FloatVariablePointer4);
       for (; pContextSecondaryFloat1 != pContextSecondaryFloat4; pContextSecondaryFloat1 = pContextSecondaryFloat1 + 1) {
         ContextSecondaryFloat = *pContextSecondaryFloat1;
         SystemContextPrimaryFloat = pContextSecondaryFloat1[-1];
@@ -245751,11 +245751,11 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
     }
     FUN_180202d20(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(MemoryAllocationOffset - 1) * 2,0);
     if (BufferStatus3 < 0x1d) {
-      FUN_18009d8a0(FloatVariablePointer4,pContextSecondaryFloat4);
+      ProcessFloatingPointData(FloatVariablePointer4,pContextSecondaryFloat4);
     }
     else {
       pContextSecondaryFloat1 = FloatVariablePointer4 + 0x1c;
-      FUN_18009d8a0(FloatVariablePointer4);
+      ProcessFloatingPointData(FloatVariablePointer4);
       for (; pContextSecondaryFloat1 != pContextSecondaryFloat4; pContextSecondaryFloat1 = pContextSecondaryFloat1 + 1) {
         ContextSecondaryFloat = *pContextSecondaryFloat1;
         SystemContextPrimaryFloat = pContextSecondaryFloat1[-1];
@@ -245934,11 +245934,11 @@ void ExecuteSystemInitializationAndCleanup(void)
     }
     FUN_180202d20();
     if (CharacterTablePointer < 0x1d) {
-      FUN_18009d8a0();
+      ProcessFloatingPointData();
     }
     else {
       pSystemFloatValue = SystemDataNode + 0x1c;
-      FUN_18009d8a0();
+      ProcessFloatingPointData();
       for (; pSystemFloatValue != SystemContext; pSystemFloatValue = pSystemFloatValue + 1) {
         ContextSecondaryFloat = *pSystemFloatValue;
         SystemContextPrimaryFloat = pSystemFloatValue[-1];
@@ -245963,11 +245963,11 @@ void ExecuteSystemInitializationAndCleanup(void)
     }
     FUN_180202d20(FloatVariablePointer4,pSystemFloatValue,(long long)(int)(Utf16Char4 - 1) * 2,0);
     if (CharacterTablePointer < 0x1d) {
-      FUN_18009d8a0(FloatVariablePointer4,pSystemFloatValue);
+      ProcessFloatingPointData(FloatVariablePointer4,pSystemFloatValue);
     }
     else {
       pSystemContextPrimaryFloat6 = FloatVariablePointer4 + 0x1c;
-      FUN_18009d8a0(FloatVariablePointer4);
+      ProcessFloatingPointData(FloatVariablePointer4);
       for (; pSystemContextPrimaryFloat6 != pSystemFloatValue; pSystemContextPrimaryFloat6 = pSystemContextPrimaryFloat6 + 1) {
         ContextSecondaryFloat = *pSystemContextPrimaryFloat6;
         SystemContextPrimaryFloat = pSystemContextPrimaryFloat6[-1];
@@ -260167,27 +260167,27 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemPriorityLevelData,aSystemPriorityLevel[0]);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableNonary,FunctionAddress);
   fStack_88 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableUndenary,&fStack_88,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableUndenary,&fStack_88,0);
   fStack_84 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableDuodenary,&fStack_84,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableDuodenary,&fStack_84,0);
   fStack_80 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableTertiary,&fStack_80,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableTertiary,&fStack_80,0);
   fStack_7c = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableQuattuordecenary,&fStack_7c,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableQuattuordecenary,&fStack_7c,0);
   fStack_78 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&DefaultSystemString,&fStack_78,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&DefaultSystemString,&fStack_78,0);
   fStack_74 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableSenary,&fStack_74,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableSenary,&fStack_74,0);
   fStack_70 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableSeptenary,&fStack_70,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableSeptenary,&fStack_70,0);
   fStack_6c = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableOctonary,&fStack_6c,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableOctonary,&fStack_6c,0);
   fStack_68 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableNonary,&fStack_68,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableNonary,&fStack_68,0);
   fStack_64 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableDenary,&fStack_64,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableDenary,&fStack_64,0);
   fStack_60 = 0.0;
-  FUN_180846210(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableUndenary,&fStack_60,0);
+  ProcessSystemEventQueue(*(void *)(ContextHandle + 0x368),&SystemEventQueueDataTableUndenary,&fStack_60,0);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableTerdecenary);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
