@@ -15883,7 +15883,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
  * 该函数负责清理系统资源并执行必要的清理操作。它会遍历系统中的资源，
  * 释放不再使用的资源，并执行安全检查以确保清理过程的安全性。
  * 
- * 该函数包含以下步骤：
+ * 功能说明：
  * 1. 检查系统上下文是否有效
  * 2. 初始化清理缓冲区和计数器
  * 3. 执行核心功能以获取资源列表
@@ -15892,9 +15892,11 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
  * 6. 执行安全验证
  * 
  * @note 此函数包含安全验证机制，确保资源清理过程的安全性
- * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * @warning 函数执行过程中某些操作不会返回（如ReleaseResource）
  * 
  * @see ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
+ * 
+ * @return void 无返回值
  */
 void ProcessResourceCleanup(void)
 
@@ -17010,17 +17012,6 @@ void ExecuteSystemNoOperation(void)
   return;
 }
 
-/**
- * @brief 空初始化函数
- * 
- * 该函数是一个不执行任何操作的初始化函数，主要用于系统初始化时的占位符。
- * 它保持了函数调用的接口一致性，但实际不执行任何操作。
- * 
- * @return void 无返回值
- * 
- * @note 此函数为空函数，主要用于系统初始化时的占位符
- * @warning 调用此函数不会产生任何效果
- */
 /**
  * @brief 初始化空函数
  * 
