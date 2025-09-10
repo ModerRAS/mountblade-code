@@ -49982,30 +49982,30 @@ uint64_t* InitializeThreadLocalStorageConfiguration(uint64_t targetDataStruct, u
  * @note 使用锁机制保证线程安全
  180075030
  */
-uint64_t* InitializeSystemDataStructureConfiguration(uint64_t* targetDataStructure, char sourceDataStructure, char reservedParameter1
+uint64_t* InitializeSystemDataStructureConfiguration(uint64_t* contextHandle, char operationBufferSize, char utf8SourcePointer)
 {
-  long long *systemContext;
+  long long *systemContextPtr;
   byte systemHighByte;
-  long long *memoryBlockPointer;
-  long long *engineContext;
+  long long *memoryBlockIndex;
+  long long *engineContextPtr;
   
-  *ContextHandle = &DataNodeTemplateA;
-  *ContextHandle = &DataNodeTemplateB;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  *ContextHandle = &SystemMemoryBlockTemplate;
-  ContextHandle[2] = &ThreadLocalStorageTemplate;
-  ContextHandle[3] = 0;
-  *(uint32_t *)(ContextHandle + 4) = 0;
-  ContextHandle[2] = &SystemConfigurationHandler;
-  ContextHandle[3] = ContextHandle + 5;
-  *(uint32_t *)(ContextHandle + 4) = 0;
-  *(uint8_t *)(ContextHandle + 5) = 0;
-  *(uint8_t *)((long long)ContextHandle + 0xb2) = 0;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  *(uint16_t *)(ContextHandle + 0x16) = 0;
-  ContextHandle[0x15] = 0;
-  *ContextHandle = &SystemDataStructureTemplate;
-  InitializeSystemData(ContextHandle + SystemNodeStatusOffset);
+  *contextHandle = &DataNodeTemplateA;
+  *contextHandle = &DataNodeTemplateB;
+  *(uint32_t *)(contextHandle + 1) = 0;
+  *contextHandle = &SystemMemoryBlockTemplate;
+  contextHandle[2] = &ThreadLocalStorageTemplate;
+  contextHandle[3] = 0;
+  *(uint32_t *)(contextHandle + 4) = 0;
+  contextHandle[2] = &SystemConfigurationHandler;
+  contextHandle[3] = contextHandle + 5;
+  *(uint32_t *)(contextHandle + 4) = 0;
+  *(uint8_t *)(contextHandle + 5) = 0;
+  *(uint8_t *)((long long)contextHandle + 0xb2) = 0;
+  *(uint32_t *)(contextHandle + 1) = 0;
+  *(uint16_t *)(contextHandle + 0x16) = 0;
+  contextHandle[0x15] = 0;
+  *contextHandle = &SystemDataStructureTemplate;
+  InitializeSystemData(contextHandle + SystemNodeStatusOffset);
   *(uint32_t *)(ContextHandle + 0x1e) = 0;
   LOCK();
   *(uint32_t *)(ContextHandle + 0x1d) = 0;
