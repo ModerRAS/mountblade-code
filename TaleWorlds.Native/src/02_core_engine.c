@@ -151,6 +151,8 @@
 // 异常处理和错误管理函数
 #define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
 #define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
+#define ProcessSystemMemoryBufferAndUtfConversion FUN_180186800 // 处理系统内存缓冲区和UTF转换
+#define ManageSystemContextAndMemoryAllocation FUN_180186880     // 管理系统上下文和内存分配
 #define InitializeSystemMemoryStack FUN_180628a40                // 初始化系统内存栈
 #define ProcessSystemBufferStatus FUN_18018be60                   // 处理系统缓冲区状态
 #define ValidateInputDataLength FUN_180639de0                      // 验证输入数据长度

@@ -9842,9 +9842,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：获取系统状态信息
 #define GetSystemStatusA0 FUN_180892ceb
 
-// 原始函数名：FUN_180892e35 - 系统配置验证函数A0
-// 功能：验证系统配置的有效性
-#define ValidateSystemConfigurationA0 FUN_180892e35
+// 原始函数名：FUN_180892e35 - 系统配置验证函数A0（替代版本）
+// 功能：验证系统配置的有效性，提供替代的验证方法
+#define ValidateSystemConfigurationA0Alternative FUN_180892e35
 
 // 原始函数名：FUN_180897d20 - 数据块安全处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
@@ -13577,26 +13577,26 @@ uint8_t SystemMemoryManagementQuaternaryFlag;
 uint8_t SystemMemoryManagementQuinaryFlag;
 uint8_t SystemMemoryManagementSenaryFlag;
 uint8_t SystemMemoryManagementSeptenaryFlag;
-uint8_t UtilityMemoryManagementOctonaryFlag;
-uint8_t UtilityMemoryManagementNonaryFlag;
-uint8_t UtilityMemoryManagementDenaryFlag;
-uint8_t UtilityMemoryManagementUndenaryFlag;
-uint8_t UtilityMemoryManagementDuodenaryFlag;
-uint8_t UtilityMemoryManagementTerdenaryFlag;
-uint8_t UtilityMemoryManagementQuattuordenaryFlag;
-uint8_t UtilityMemoryManagementQuindenaryFlag;
-uint8_t UtilityMemoryManagementSexdenaryFlag;
-uint8_t UtilityMemoryManagementSeptendenaryFlag;
+uint8_t SystemMemoryManagementOctonaryFlag;
+uint8_t SystemMemoryManagementNonaryFlag;
+uint8_t SystemMemoryManagementDenaryFlag;
+uint8_t SystemMemoryManagementUndenaryFlag;
+uint8_t SystemMemoryManagementDuodenaryFlag;
+uint8_t SystemMemoryManagementTerdenaryFlag;
+uint8_t SystemMemoryManagementQuattuordenaryFlag;
+uint8_t SystemMemoryManagementQuindenaryFlag;
+uint8_t SystemMemoryManagementSexdenaryFlag;
+uint8_t SystemMemoryManagementSeptendenaryFlag;
 // 工具系统内存管理数据块 - 缓存和临时数据
-uint8_t UtilityMemoryManagementPrimaryCache;
-uint8_t UtilityMemoryManagementSecondaryCache;
-uint8_t UtilityMemoryManagementTertiaryCache;
-uint8_t UtilityMemoryManagementQuaternaryCache;
-uint8_t UtilityMemoryManagementQuinaryCache;
-uint8_t UtilityMemoryManagementSenaryCache;
-uint8_t UtilityMemoryManagementSeptenaryCache;
-uint8_t UtilityMemoryManagementOctaryCache;
-uint8_t UtilityMemoryManagementNonaryCache;
+uint8_t SystemMemoryManagementPrimaryCache;
+uint8_t SystemMemoryManagementSecondaryCache;
+uint8_t SystemMemoryManagementTertiaryCache;
+uint8_t SystemMemoryManagementQuaternaryCache;
+uint8_t SystemMemoryManagementQuinaryCache;
+uint8_t SystemMemoryManagementSenaryCache;
+uint8_t SystemMemoryManagementSeptenaryCache;
+uint8_t SystemMemoryManagementOctonaryCache;
+uint8_t SystemMemoryManagementNonaryCache;
 uint8_t UtilityMemoryManagementDenaryCache;
 uint8_t UtilityMemoryManagementUndenaryCache;
 uint8_t UtilityMemoryManagementDuodenaryCache;
