@@ -50007,6 +50007,23 @@ void CleanupResourceStateWithTermination(DataBuffer operationBase,int64_t dataBu
 
 
 
+/**
+ * @brief 重置资源指针并执行清理操作
+ * 
+ * 该函数负责重置系统资源指针并执行必要的清理操作。它会：
+ * 1. 获取异常数据缓冲区指针
+ * 2. 设置临时异常处理器
+ * 3. 检查并处理异常状态
+ * 4. 重置相关数据结构
+ * 5. 设置默认异常处理器
+ * 
+ * @param operationBase 操作基地址，用于定位相关数据结构
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的上下文信息
+ * 
+ * @note 该函数是异常处理系统的重要组成部分，确保资源正确释放
+ * @warning 如果检测到异常状态，会终止系统执行并清理资源
+ * @see TerminateSystemExecutionAndCleanupResources, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
 void ResetResourcePointerAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {

@@ -1727,6 +1727,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ExecuteSystemFinalCleanup FUN_180159870                    // 执行系统最终清理
 #define ProcessSystemDataFinalization FUN_180156e40                 // 处理系统数据最终化
 #define ProcessMemoryBoundaryManagementEx FUN_180159820            // 处理内存边界管理扩展
+#define ProcessSystemContextAndUtf8SourceOperations FUN_1801853d0   // 处理系统上下文和UTF8源操作
 #define ProcessCharacterResourceRelease FUN_1801570c0               // 处理字符资源释放
 #define ExecuteCharacterDataCleanup FUN_18015bdc0                    // 执行字符数据清理
 #define ExecuteSystemResourceOptimization FUN_18015b4f0             // 执行系统资源优化
@@ -224006,6 +224007,26 @@ LAB_1801852f0:
 
 
 
+/**
+ * @brief 处理系统上下文和UTF8源数据操作
+ * 
+ * 该函数负责处理系统上下文和UTF8源数据的复杂操作，包括：
+ * 1. 内存分配和缓冲区管理
+ * 2. 字符状态缓冲区处理
+ * 3. 系统标志和上下文指针管理
+ * 4. 内存地址掩码和偏移量计算
+ * 5. NVGSDK高亮组的异步关闭操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param ContextHandleSize 上下文句柄大小指针，用于管理上下文大小
+ * @param Utf8SourcePointer UTF8源数据指针，包含要处理的UTF8数据
+ * @param Utf16EndPointer UTF16结束指针，标识UTF16数据的结束位置
+ * 
+ * @note 原始函数名：FUN_1801853d0
+ * @note 内存管理：函数内部会分配内存块并进行相应的清理操作
+ * @note 异步操作：函数会调用NVGSDK_Highlights_CloseGroupAsync进行异步操作
+ * @note 安全性：函数包含多层验证和错误处理机制
+ */
 void FUN_1801853d0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
