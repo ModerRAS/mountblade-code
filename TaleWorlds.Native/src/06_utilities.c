@@ -138580,7 +138580,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_180909540
  */
-#define InitializeSystemComponents InitializeSystemComponentsAndSetState
+#define InitializeSystemComponentsC FUN_18004c0c0
 
 /**
  * @brief 系统启动函数
