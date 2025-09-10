@@ -422,7 +422,7 @@
 #define ExtendedHandlerContextOffset560 0x560                    // 扩展异常上下文偏移量560
 #define ExtendedHandlerContextOffset548 0x548                    // 扩展异常上下文偏移量548
 #define ExceptionHandlerPointerOffset550 0x550                  // 异常处理器指针偏移量550
-#define SystemCleanupFlagAlternative 0x4                        // 系统清理标志备选值
+// 系统清理标志备选值 - 已在后面定义为0x80000000
 
 // 内存异常检查偏移量常量
 #define MemoryExceptionCheckOffset 0xe                       // 内存异常检查偏移量
@@ -5288,7 +5288,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18007f6a0
  * @warning 资源操作失败可能会导致系统不稳定，需要妥善处理错误情况
  */
-#define FUN_18007f6a0 ProcessSystemResourcesAndMemory
 #define ManageSystemResources ProcessSystemResourcesAndMemory
 
 /**
@@ -5317,7 +5316,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define FUN_1808fc5ac CheckSystemStatusAndHealth
 #define CheckSystemStatusAndCleanupResources CheckSystemStatusAndHealth
 
 /**
@@ -5334,7 +5332,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808fc51c
  * @warning 确保传入的参数有效，否则可能导致未定义行为
  */
-#define FUN_1808fc51c ExecuteUtilityOperationWithParameters
 #define ExecuteUtilityOperationWithParams ExecuteUtilityOperationWithParameters
 
 /**
@@ -5351,7 +5348,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808fc914
  * @warning 数据验证失败可能会导致系统异常，需要妥善处理
  */
-#define FUN_1808fc914 ValidateDataWithParametersAndValidation
 #define ValidateDataWithParams ValidateDataWithParametersAndValidation
 
 /**
@@ -5361,7 +5357,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc074
  */
-#define FUN_1808fc074 ValidateSystemStateAndCheckResources
 #define ValidateSystemStateAndCheckResources ValidateSystemStateAndCheckResources
 
 /**
@@ -5380,7 +5375,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1803f33b0
  * @warning 非法内存访问可能会导致系统崩溃，需要确保访问参数的有效性
  */
-#define FUN_1803f33b0 ProcessMemoryAccessWithValidation
 #define ProcessMemoryAccessWithValidation ProcessMemoryAccessWithValidation
 
 /**
@@ -130023,11 +130017,11 @@ void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer operatio
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48);
-  if (exceptionHandlerContext != 0) {
-    if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+  if (exceptionContext != 0) {
+    if (exceptionContext != 0) {
+      *(int *)(exceptionContext + ExceptionContextReferenceCountOffset) = *(int *)(exceptionContext + ExceptionContextReferenceCountOffset) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionContext,exceptionContext,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
