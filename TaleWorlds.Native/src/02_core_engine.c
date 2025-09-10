@@ -226184,7 +226184,23 @@ void ProcessSystemStackDataWith40Step(uint64_t ContextHandle,long long Operation
 
 
 
-883a0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_1801883a0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 系统栈数据处理函数C
+/**
+ * @brief 处理系统栈数据（通用处理）
+ * 
+ * 该函数负责处理系统栈数据，执行通用的栈数据处理操作。
+ * 主要功能包括：
+ * - 处理系统栈数据
+ * - 执行通用数据处理
+ * - 管理操作结果
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801883a0
+ */
+void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
   unsigned long long MemoryAllocationIndex;
