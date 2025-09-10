@@ -71844,10 +71844,10 @@ void* ProcessAudioSignal(void)
       audioSignal26 = 0.0;
       audioSignal27 = 0.0;
       audioSignal28 = 0.0;
-      audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientSource._0_4_;
+      audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientSource.PrimaryCoefficient;
       audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientSource.LowPart;
-      audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientSource._8_4_;
-      audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientSource._12_4_;
+      audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientSource.SecondaryCoefficient;
+      audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientSource.TertiaryCoefficient;
       audioDataPointer11 = audioDataIndexPtr;
       audioStatusIndex2 = audioStatusIndex0;
       do {
@@ -72028,9 +72028,9 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   if ((int)ThreadContext < 0) {
     ThreadContext = (ThreadContext - 1 | 0xfffffff8) + 1;
   }
-  SystemAudioContext._0_4_ = AudioInterpolationCoeff1 + SystemResourceCounterDecrement;
+  SystemAudioContext.PrimaryCoefficient = AudioInterpolationCoeff1 + SystemResourceCounterDecrement;
   SystemAudioContext.LowPart = AudioInterpolationCoeff2 + SystemResourceCounterDecrement;
-  SystemAudioContext._8_4_ = AudioInterpolationCoeff3 + SystemResourceCounterDecrement;
+  SystemAudioContext.SecondaryCoefficient = AudioInterpolationCoeff3 + SystemResourceCounterDecrement;
   SystemAudioContext._12_4_ = AudioInterpolationCoeff4 + SystemResourceCounterDecrement;
   SystemAudioStatusFlags._0_4_ = (float)SystemAudioContext._0_4_;
   SystemAudioStatusFlags.LowPart = (float)SystemAudioContext.LowPart;

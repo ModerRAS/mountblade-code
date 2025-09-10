@@ -255,6 +255,14 @@
 #define TemporaryExceptionHandlerOffset1FF8 0x1ff8           // 临时异常处理器偏移量1FF8 - 用于存储第四组临时异常处理器指针
 #define SystemStatusValidationOffset00 0x00                  // 系统状态验证偏移量00 - 用于验证第四组系统状态的偏移位置
 #define SystemStatusWordOffset10 0x10                        // 系统状态字偏移量10 - 用于存储第四组系统状态字的偏移位置
+#define TertiaryExceptionHandlerCallbackOffsetC0 0xc0         // 第三异常处理器回调偏移量C0 - 用于存储第三组异常处理器回调函数指针
+#define TertiaryExceptionHandlerParameterOffsetB0 0xb0         // 第三异常处理器参数偏移量B0 - 用于传递给第三组异常处理器回调函数的参数
+#define TemporaryExceptionHandlerOffset88 0x88               // 临时异常处理器偏移量88 - 用于存储第五组临时异常处理器指针
+#define SystemStatusValidationOffset90 0x90                  // 系统状态验证偏移量90 - 用于验证第五组系统状态的偏移位置
+#define SystemStatusWordOffsetA0 0xa0                        // 系统状态字偏移量A0 - 用于存储第五组系统状态字的偏移位置
+#define TemporaryExceptionHandlerOffset68 0x68               // 临时异常处理器偏移量68 - 用于存储第六组临时异常处理器指针
+#define SystemStatusValidationOffset70 0x70                  // 系统状态验证偏移量70 - 用于验证第六组系统状态的偏移位置
+#define SystemStatusWordOffset80 0x80                        // 系统状态字偏移量80 - 用于存储第六组系统状态字的偏移位置
 #define ExceptionHandlerContextCallbackOffset 0x1b8
 #define ExceptionHandlerContextFunctionOffsetPrimary 0x38
 #define ExceptionHandlerContextOffsetPrimary 0x40
