@@ -2800,7 +2800,7 @@
 #define OperationBaseOffset6C 0x6c                        // 操作基础偏移量6C
 #define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
 #define SystemContextPointerOffsetPrimary 0x90                 // 系统上下文指针偏移量90
-#define SystemValidationOffset790 0x790                  // 系统验证偏移量790
+#define SystemValidationOffset790 0x790                  // 系统主验证数据偏移量 - 用于存储系统验证的主要数据结构
 #define DataProcessingBufferOffsetNegative78 -0x78         // 数据处理缓冲区负偏移量78
 #define StackFrameContextOffsetNegative10 -0x10            // 栈帧上下文负偏移量10
 #define StackFrameContextOffsetNegative68 -0x68            // 栈帧上下文负偏移量68
@@ -121297,16 +121297,21 @@ void InitializeExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,Da
 /**
  * @brief 初始化异常处理器A9
  * 
- * 该函数负责初始化异常处理器A9，设置异常处理上下文中的处理器指针
- * 和状态标志。它会清理旧的异常处理器并设置新的临时异常处理器。
- * 这是A9版本的异常处理器初始化函数。
+ * 该函数负责初始化异常处理器的第九个版本（A9），设置异常处理上下文中的
+ * 处理器指针和状态标志。执行以下操作：
+ * 1. 获取异常上下文指针
+ * 2. 调用现有的异常处理器（如果存在）
+ * 3. 设置临时异常处理器
+ * 4. 清理状态标志和数据
+ * 5. 设置默认异常处理器
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给异常处理器
  * 
  * @note 原始函数名：Unwind_180910940
+ * @warning 如果状态检查失败，会调用系统终止函数
  */
 void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
