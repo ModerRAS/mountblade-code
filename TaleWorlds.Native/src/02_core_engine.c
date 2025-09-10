@@ -26104,11 +26104,11 @@ uint32_t SystemShutdownAndCleanup(void
   CoreEngineProcessSystemContext(SystemContext);
   *SystemContext = (long long ***)&SystemDefaultContext;
   QuaternaryStackContext = (long long ***)SystemContext;
-  (*(void *)(*SystemContext)[5])(SystemContext);
+  (*(void *)(*SystemContext)[SystemContextOperationOffset5])(SystemContext);
   TimeoutValue = TimeoutValueStorage;
   SystemContext = &PrimaryStackContext;
   PrimaryStackContext = SystemContext;
-  (*(void *)(*SystemContext)[5])(SystemContext);
+  (*(void *)(*SystemContext)[SystemContextOperationOffset5])(SystemContext);
   CoreEngineProcessTimeoutQueue(TimeoutValue,&PrimaryStackContext);
   while( true ) {
     if (*SystemContext == (long long ***)&SystemDefaultContext) {
