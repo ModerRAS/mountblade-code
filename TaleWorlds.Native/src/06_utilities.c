@@ -125865,29 +125865,63 @@ void ProcessExceptionContextA1(DataBuffer operationBase,int64_t dataBuffer,DataB
 
 
 
-void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器A2
+ * 
+ * 该函数负责处理异常上下文的第三组异常处理器设置和清理。
+ * 主要功能包括：
+ * 1. 获取异常上下文指针
+ * 2. 执行第三组异常处理器回调函数
+ * 3. 设置第五组临时异常处理器
+ * 4. 验证第五组系统状态并处理异常
+ * 5. 设置第六组临时异常处理器
+ * 6. 验证第六组系统状态并处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A（当前未使用）
+ * @param operationFlagB 操作标志B，用于传递给异常处理器
+ * 
+ * @note 原始函数名：Unwind_180911680
+ * @warning 该函数直接操作异常上下文，需要确保输入参数的有效性
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
+  FunctionPointer** tertiaryExceptionHandlerCallback;
   
+  // 获取异常上下文指针
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextDataOffsetc0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextDataOffsetc0))(exceptionContext + ExceptionHandlerContextDataOffsetb0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  
+  // 执行第三组异常处理器回调函数（如果存在）
+  tertiaryExceptionHandlerCallback = (FunctionPointer**)(exceptionContext + TertiaryExceptionHandlerCallbackOffsetC0);
+  if (*tertiaryExceptionHandlerCallback != (code *)0x0) {
+    (**tertiaryExceptionHandlerCallback)(exceptionContext + TertiaryExceptionHandlerParameterOffsetB0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset88) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionContext + ExceptionHandlerContextDataOffset90) != 0) {
+  
+  // 设置第五组临时异常处理器并验证系统状态
+  *(DataBuffer *)(exceptionContext + TemporaryExceptionHandlerOffset88) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + SystemStatusValidationOffset90) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset90) = 0;
-  *(DataWord *)(exceptionContext + ExceptionHandlerContextDataOffseta0) = 0;
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset88) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset68) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionContext + ExceptionHandlerContextDataOffset70) != 0) {
+  
+  // 重置第五组系统状态并设置默认异常处理器
+  *(DataBuffer *)(exceptionContext + SystemStatusValidationOffset90) = 0;
+  *(DataWord *)(exceptionContext + SystemStatusWordOffsetA0) = 0;
+  *(DataBuffer *)(exceptionContext + TemporaryExceptionHandlerOffset88) = &SystemDefaultExceptionHandlerB;
+  
+  // 设置第六组临时异常处理器并验证系统状态
+  *(DataBuffer *)(exceptionContext + TemporaryExceptionHandlerOffset68) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + SystemStatusValidationOffset70) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset70) = 0;
-  *(DataWord *)(exceptionContext + ExceptionHandlerContextDataOffset80) = 0;
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset68) = &SystemDefaultExceptionHandlerB;
+  
+  // 重置第六组系统状态并设置默认异常处理器
+  *(DataBuffer *)(exceptionContext + SystemStatusValidationOffset70) = 0;
+  *(DataWord *)(exceptionContext + SystemStatusWordOffset80) = 0;
+  *(DataBuffer *)(exceptionContext + TemporaryExceptionHandlerOffset68) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
