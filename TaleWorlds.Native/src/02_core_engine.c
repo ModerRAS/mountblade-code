@@ -70533,7 +70533,7 @@ void ProcessSystemDataStructure(long long *ContextHandle,long long OperationBuff
   void *StringProcessingStatus;
   void *NextNode;
   long long systemLoopCounter;
-  long long lStackX_18;
+  long long DataProcessingCounter;
   uint64_t MemoryPoolIndex;
   
   MemoryPoolIndex = 0xfffffffffffffffe;
