@@ -27,7 +27,9 @@
 #define SecurityValidationMask 0x40000000                     // 安全验证掩码 - 用于安全验证操作的掩码
 #define MemoryOperationFlag 0x4000000                        // 内存操作标志 - 标识内存操作状态的标志
 #define ThreadLocalStorageOffset 0x17c                        // 线程本地存储偏移量 - 线程本地存储的偏移位置
-#define ThreadLocalStorageBaseAddress 0x180c4f450            // 线程本地存储基地址 - 线程本地存储的基地址
+// 系统线程存储配置常量
+#define ThreadLocalStoragePrimaryAddress 0x180c4f450            // 线程本地存储主地址 - 线程本地存储的主基地址
+#define ThreadLocalStorageSecondaryAddress 0x180c4f460         // 线程本地存储辅助地址 - 线程本地存储的辅助基地址
 #define ResourceCleanupAlignment 0xfffffff0                  // 资源清理对齐值 - 资源清理操作的对齐值
 #define DataProcessingMultiplier 0xc                           // 数据处理乘数 - 数据处理操作的乘数
 #define OperationFlagMask 0x10000000                          // 操作标志掩码 - 操作状态的标志掩码
@@ -47,9 +49,12 @@
 #define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
 #define ExceptionHandlerContextOffset 0x1800                 // 异常处理上下文偏移量 - 异常处理上下文的存储位置
 #define ExceptionHandlerParameterOffset 0x17f0              // 异常处理参数偏移量 - 异常处理参数的存储位置
-#define SystemMutexCleanupBaseAddress 0x180c919f0            // 系统互斥锁清理基地址 - 系统互斥锁清理函数的基地址
-#define SystemExceptionInitializerA0BaseAddress 0x180d497e0    // 系统异常初始化器A0基地址 - 异常初始化器A0的基地址
-#define SystemExceptionInitializerB0BaseAddress 0x180d498a0    // 系统异常初始化器B0基地址 - 异常初始化器B0的基地址
+// 系统互斥锁管理常量
+#define SystemMutexCleanupPrimaryAddress 0x180c919f0            // 系统互斥锁清理主地址 - 系统互斥锁清理函数的主基地址
+#define SystemMutexCleanupSecondaryAddress 0x180c919f1          // 系统互斥锁清理辅助地址 - 系统互斥锁清理函数的辅助基地址
+// 系统异常初始化器常量
+#define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
+#define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
 
 // 浮点数数据偏移量常量
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
@@ -13302,11 +13307,11 @@ int32_t EventError;
  */
 void ProcessUtilityMemoryBlockOperations(void);
 // 工具系统内存处理相关变量
-void* MemoryPointerPrimary;
-uint32_t MemoryDataPrimary;
-uint32_t MemoryDataSecondary;
-uint32_t MemoryDataTertiary;
-uint32_t MemoryDataQuaternary;
+void* SystemMemoryPointer;                  // 系统内存指针 - 指向系统内存块的指针
+uint32_t SystemMemoryDataWord;              // 系统内存数据字 - 存储系统内存数据的32位字
+uint32_t SystemMemoryDataBuffer;            // 系统内存数据缓冲区 - 存储系统内存缓冲区数据
+uint32_t SystemMemoryBlockSize;             // 系统内存块大小 - 存储系统内存块的大小信息
+uint32_t SystemMemoryBlockCount;             // 系统内存块计数 - 存储系统内存块的数量信息
 
 /**
  * @brief 验证内存访问权限

@@ -116010,26 +116010,44 @@ void CleanupUIComponentDataProcessing(void)
 
 
 
-int FUN_180733d70(int *uiContext,int dataSource)
+/**
+ * @brief 处理UI组件事件状态和数据验证
+ * 
+ * 该函数负责处理UI组件的事件状态和数据验证，包括：
+ * - 事件状态的计算和验证
+ * - 组件数据的处理和转换
+ * - 循环迭代和批量处理
+ * - 结果验证和错误处理
+ * 
+ * 该函数主要用于UI组件的事件状态管理，确保事件数据的正确性和一致性。
+ * 
+ * @param uiContext UI上下文指针，包含组件数据和状态信息
+ * @param dataSource 数据源索引，指定要处理的数据范围
+ * 
+ * @return 处理结果状态码，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_180733d70
+ */
+int ProcessUIComponentEventStatus(int *uiContext,int dataSource)
 
 {
-  uint result;
-  byte IsEventProcessingActive;
-  int uiCompareResult;
+  uint validationResult;
+  byte isEventProcessingActive;
+  int uiComparisonResult;
   uint processingStatus;
-  longlong eventDataIndex;
+  longlong event dataIndex;
   int loopCounter;
-  longlong localLong7;
-  uint *ptrLocal8;
+  longlong calculatedOffset;
+  uint *componentHandlePtr;
   uint eventStatus;
   int processedCount;
-  int ProcessingResult1;
-  int ProcessingResult2;
-  uint *componentHandle;
-  longlong allocatedMemory4;
-  int ProcessingResult5;
-  int iStackX_10;
-  int iStackX_18;
+  int calculationResult1;
+  int calculationResult2;
+  uint *currentComponent;
+  longlong memoryAllocation;
+  int validationThreshold;
+  int stackVar10;
+  int stackVar18;
   
   iStackX_10 = dataSource + -1;
   ProcessingResult5 = 0x40000000;
