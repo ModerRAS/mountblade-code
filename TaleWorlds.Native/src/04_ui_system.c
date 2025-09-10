@@ -38720,40 +38720,40 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
                   UIDword param_6)
 
 {
-  UIByte astackUInt4e8 [32];
-  UIDword stackUInt4c8;
-  undefined *pstackUInt4c0;
-  undefined *pstackUInt4b8;
-  undefined *pstackUInt4b0;
-  UIByte astackUInt4a8 [64];
-  UIByte astackUInt468 [1088];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer4e8 [32];
+  UIDword operationFlags4c8;
+  UIPointer *renderTargetPointer4c0;
+  UIPointer *layoutParamPointer4b8;
+  UIPointer *dataSourcePointer4b0;
+  UIByte tempBuffer4a8 [64];
+  UIByte renderBuffer468 [1088];
+  ulonglong encryptedValue28;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt4e8;
+  encryptedValue28 = XorEncryptionKey ^ (ulonglong)encryptionBuffer4e8;
   if (targetBuffer == 0) {
-    stackUInt4c8 = 0x20;
-    func_0x00018000186c(uiContext - dataSource * 2,astackUInt4a8,dataSource,0x15);
+    operationFlags4c8 = 0x20;
+    func_0x00018000186c(uiContext - dataSource * 2,tempBuffer4a8,dataSource,0x15);
   }
   else {
     if (bufferSize == 0) {
-      stackUInt4c8 = 0x10;
-      pstackUInt4c0 = &g_uiComponentLayoutParams[0] + (longlong)targetBuffer * 0x60;
+      operationFlags4c8 = 0x10;
+      renderTargetPointer4c0 = &g_uiComponentLayoutParams[0] + (longlong)targetBuffer * 0x60;
       func_0x0001800015e7(uiContext,dataSource,resultPointer,param_6);
       goto LAB_180673f27;
     }
-    pstackUInt4c0 = (undefined *)CONCAT44(pstackUInt4c0._4_4_,0x20);
-    stackUInt4c8 = 0x15;
-    pstackUInt4b8 = &g_uiComponentLayoutParams[0] + (longlong)targetBuffer * 0x60;
-    func_0x00018000113a(uiContext - dataSource * 2,astackUInt4a8,dataSource,1);
+    renderTargetPointer4c0 = (undefined *)CONCAT44(renderTargetPointer4c0._4_4_,0x20);
+    operationFlags4c8 = 0x15;
+    layoutParamPointer4b8 = &g_uiComponentLayoutParams[0] + (longlong)targetBuffer * 0x60;
+    func_0x00018000113a(uiContext - dataSource * 2,tempBuffer4a8,dataSource,1);
   }
-  pstackUInt4b0 = &g_uiComponentLayoutParams[0] + (longlong)bufferSize * 0x60;
-  pstackUInt4b8 = (undefined *)CONCAT44(pstackUInt4b8._4_4_,param_6);
-  pstackUInt4c0 = (undefined *)CONCAT44(pstackUInt4c0._4_4_,0x10);
-  stackUInt4c8 = 0x10;
-  func_0x0001800013b1(astackUInt468,resultPointer,param_6,0x20);
+  dataSourcePointer4b0 = &g_uiComponentLayoutParams[0] + (longlong)bufferSize * 0x60;
+  layoutParamPointer4b8 = (undefined *)CONCAT44(layoutParamPointer4b8._4_4_,param_6);
+  renderTargetPointer4c0 = (undefined *)CONCAT44(renderTargetPointer4c0._4_4_,0x10);
+  operationFlags4c8 = 0x10;
+  func_0x0001800013b1(renderBuffer468,resultPointer,param_6,0x20);
 LAB_180673f27:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt4e8);
+  ExecuteUIRenderTask(encryptedValue28 ^ (ulonglong)encryptionBuffer4e8);
 }
 
 
