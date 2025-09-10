@@ -999,22 +999,22 @@
 #define ExceptionContextPointerOffsetResourceB 0xb08
 #define ExceptionContextPointerOffsetMemoryA 0xc00
 #define ExceptionContextPointerOffsetMemoryB 0xe08
-#define ExceptionContextPointerOffsetF00 0xf00
-#define ExceptionContextPointerOffsetF08 0xf08
+#define ExceptionContextPointerOffsetThreadA 0xf00
+#define ExceptionContextPointerOffsetThreadB 0xf08
 
 // 数据块上下文偏移量常量
-#define DataBlockContextOffset30 0x30
-#define DataBlockContextOffset1C 0x1c
+#define DataBlockContextOffsetPrimary 0x30
+#define DataBlockContextOffsetSecondary 0x1c
 
 // 数据缓冲区偏移量常量
-#define DataBufferOffset10 0x10
-#define DataBufferOffset14 0x14
+#define DataBufferOffsetHeader 0x10
+#define DataBufferOffsetTable 0x14
 
 // 异常上下文指针偏移量常量
-#define ExceptionHandlerContextOffset50 0x50
+#define ExceptionHandlerContextOffsetControl 0x50
 
 // 浮点数验证偏移量常量
-#define FloatValidationOffset10 0x10
+#define FloatValidationOffsetHeader 0x10
 
 // 系统参数偏移量常量
 #define SystemParameterOffsetSecondary 0x1c
@@ -2579,7 +2579,6 @@
 #define SystemParameterValidationOffset28 0x28          // 系统参数验证偏移量28
 #define ExceptionHandlerCleanupOffset8e0 0x8e0          // 异常处理器清理偏移量8e0
 #define ExceptionHandlerStateOffset8e8 0x8e8          // 异常处理器状态偏移量8e8
-#define MemoryPointerOffset8 0x8                       // 内存指针偏移量8
 #define ExceptionHandlerConfigOffset278 0x278          // 异常处理器配置偏移量278
 #define MemoryAllocationSecurityOffset 0x19            // 内存分配安全偏移量
 #define ResourceDataSecondaryOffset 0x1c               // 资源数据次级偏移量
@@ -21617,6 +21616,20 @@ void ExecuteSecurityValidation(void)
  * @warning 函数包含多个浮点数验证步骤，确保输入数据的有效性
  * @see QueryAndRetrieveSystemDataA0, ComponentDataValidationFailure
  */
+/**
+ * @brief 验证和处理浮点数数据
+ * 
+ * 该函数验证输入的浮点数数据的有效性，检查INF和NaN值，
+ * 并对有效的数据进行处理和转换。函数会检查各个浮点数组件
+ * 是否为无穷大值，并确保数据的有效性。
+ * 
+ * @param dataPtr 数据指针，指向包含浮点数数据的缓冲区
+ * @param contextPtr 上下文指针，包含系统上下文信息
+ * @return DataBuffer 返回验证结果和处理后的数据
+ * 
+ * @note 原始函数名：FUN_1808a5630
+ * @note 这是一个浮点数验证和处理函数，包含复杂的浮点数验证逻辑
+ */
 DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPtr)
 
 {
@@ -21626,15 +21639,15 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   uint vectorZRawData;
   uint vectorWRawData;
   DataBuffer validationResult;
-  int isVectorOffset20Infinity;
-  int isVectorOffset1cInfinity;
-  int isVectorOffset18Infinity;
-  int isVectorOffset2cInfinity;
+  int isDataOffset20Infinity;
+  int isDataOffset1cInfinity;
+  int isDataOffset18Infinity;
+  int isDataOffset2cInfinity;
   int64_t targetDataBuffer;
   int64_t systemContextArray [2];
   uint colorData;
   float vectorYFloatComponent;
-  int isVectorOffset28Infinity;
+  int isDataOffset28Infinity;
   int isVectorComponentXInfinity;
   int isVectorComponentYInfinity;
   int isVectorComponentZInfinity;
