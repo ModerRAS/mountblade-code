@@ -30089,20 +30089,20 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   DataWord validationStackData;
   float floatStackValue;
   uint calculatedResultStackValue;
-  DataWord flagStackDataA;
-  DataWord flagStackDataB;
-  DataWord flagStackDataC;
-  DataBuffer resourceStackDataA;
-  DataBuffer resourceStackDataB;
-  DataWord resultStackDataA;
-  DataWord resultStackDataB;
-  DataWord resultStackDataC;
-  DataWord resultStackDataD;
+  DataWord primaryValidationFlag;
+  DataWord secondaryValidationFlag;
+  DataWord tertiaryValidationFlag;
+  DataBuffer primaryResourceData;
+  DataBuffer secondaryResourceData;
+  DataWord primaryResultData;
+  DataWord secondaryResultData;
+  DataWord tertiaryResultData;
+  DataWord quaternaryResultData;
   int64_t offsetStackData;
   uint arrayIndexStackData;
   ByteFlag flagStackData;
-  ByteFlag dataTransferBufferA [512];
-  uint64_t SystemSecurityValidationData;
+  ByteFlag dataTransferBuffer [512];
+  uint64_t systemSecurityValidationData;
   
   // 美化后的变量名
   uint64_t securityValidationValue;
