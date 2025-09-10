@@ -5272,7 +5272,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define FUN_18007f840 ProcessSystemDataAndValidation
 #define ProcessAndValidateSystemData ProcessSystemDataAndValidation
 
 /**
@@ -5309,7 +5308,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18013ea00
  * @warning 清理操作失败可能会导致内存泄漏，需要确保所有资源都被正确释放
  */
-#define FUN_18013ea00 CleanupDataBufferAndMemory
 #define CleanupDataBufferAndReleaseMemory CleanupDataBufferAndMemory
 
 /**
@@ -125023,7 +125021,31 @@ void ExecuteExceptionHandlerCallback420(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理上下文重置器（偏移量0x18e0-0x18a8）
+ * 
+ * 该函数负责重置异常处理上下文中的关键状态字段，确保异常处理系统
+ * 在处理完成后能够恢复到正确的初始状态。它清理多个异常处理相关的
+ * 状态字段并设置默认的异常处理器。
+ * 
+ * 处理的字段包括：
+ * - 异常处理器指针（偏移量0x18e0）
+ * - 异常状态标志（偏移量0x18b0）
+ * - 异常数据字段（偏移量0x18c0）
+ * - 辅助异常处理器（偏移量0x18a8）
+ * - 次级异常处理器（偏移量0x1890）
+ * - 次级数据字段（偏移量0x18a0）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给异常处理器）
+ * 
+ * @note 原始函数名：Unwind_180911440
+ * @warning 此函数在异常处理关键路径上执行，必须确保原子性
+ * @see ProcessExceptionCleanupAtOffset180911460, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
+void ResetExceptionContextAtOffset18E0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -125283,7 +125305,31 @@ void ProcessExceptionCleanupAtOffset180911520(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理上下文重置器（偏移量0x1c60-0x1c08）
+ * 
+ * 该函数负责重置异常处理上下文中的关键状态字段，确保异常处理系统
+ * 在处理完成后能够恢复到正确的初始状态。它清理多个异常处理相关的
+ * 状态字段并设置默认的异常处理器。
+ * 
+ * 处理的字段包括：
+ * - 异常处理器指针（偏移量0x1c60）
+ * - 异常状态标志（偏移量0x1c30）
+ * - 异常数据字段（偏移量0x1c40）
+ * - 辅助异常处理器（偏移量0x1c28）
+ * - 次级异常处理器（偏移量0x1c10）
+ * - 次级数据字段（偏移量0x1c20）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给异常处理器）
+ * 
+ * @note 原始函数名：Unwind_180911540
+ * @warning 此函数在异常处理关键路径上执行，必须确保原子性
+ * @see ResetExceptionContextAtOffset18E0, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
+void ResetExceptionContextAtOffset1C60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
