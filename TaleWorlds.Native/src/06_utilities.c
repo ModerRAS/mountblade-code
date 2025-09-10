@@ -132804,7 +132804,61 @@ void *AllocateBufferEN0(void *bufferParams, size_t allocationSize);
  * 
  * @note 原始函数名：FUN_18088aca0
  */
-int CheckSystemStatusEP0(void *systemContext);
+int CheckSystemStatusEP0(void *systemContext)
+{
+    // 系统状态相关变量
+    uint32_t SystemHealthStatus;                  // 系统健康状态
+    uint32_t ResourceUtilizationLevel;            // 资源利用水平
+    uint32_t MemoryAvailabilityStatus;            // 内存可用性状态
+    uint32_t ProcessorPerformanceMetrics;         // 处理器性能指标
+    uint32_t SystemStatusCode;                    // 系统状态码
+    
+    // 初始化变量
+    SystemHealthStatus = 0;
+    ResourceUtilizationLevel = 0;
+    MemoryAvailabilityStatus = 0;
+    ProcessorPerformanceMetrics = 0;
+    SystemStatusCode = 0;
+    
+    // 验证系统上下文有效性
+    if (systemContext == NULL) {
+        return -1; // 无效系统上下文
+    }
+    
+    // 检查系统健康状态
+    SystemHealthStatus = GetSystemHealthStatus(systemContext);
+    if (SystemHealthStatus != 0) {
+        return SystemHealthStatus; // 返回健康状态错误码
+    }
+    
+    // 检查资源利用水平
+    ResourceUtilizationLevel = GetResourceUtilizationLevel(systemContext);
+    if (ResourceUtilizationLevel > 90) {
+        return -2; // 资源利用过高
+    }
+    
+    // 检查内存可用性
+    MemoryAvailabilityStatus = CheckMemoryAvailability(systemContext);
+    if (MemoryAvailabilityStatus != 0) {
+        return MemoryAvailabilityStatus; // 返回内存状态错误码
+    }
+    
+    // 检查处理器性能
+    ProcessorPerformanceMetrics = EvaluateProcessorPerformance(systemContext);
+    if (ProcessorPerformanceMetrics < 10) {
+        return -3; // 处理器性能过低
+    }
+    
+    // 综合评估系统状态
+    SystemStatusCode = EvaluateOverallSystemStatus(
+        SystemHealthStatus,
+        ResourceUtilizationLevel,
+        MemoryAvailabilityStatus,
+        ProcessorPerformanceMetrics
+    );
+    
+    return SystemStatusCode;
+}
 
 // 原始函数名：FUN_18088c970 - 数据同步函数EQ0
 // 功能：同步数据EQ0，确保数据一致性
