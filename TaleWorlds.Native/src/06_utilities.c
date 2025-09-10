@@ -140276,6 +140276,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 内存池管理函数A0
  * 
  * 管理系统内存池，包括内存分配、释放和整理操作
+ * 优化内存使用效率，减少内存碎片
+ * 
+ * @param PoolPointer 内存池指针
+ * @param PoolSize 内存池大小
+ * @param ManagementFlags 管理标志位
+ * @return int 管理结果状态码
  * 
  * @note 原始函数名：FUN_180046860
  */
@@ -140285,6 +140291,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统内存初始化函数A1
  * 
  * 初始化系统内存结构，设置内存管理参数
+ * 建立内存管理的基础架构和初始化内存池
+ * 
+ * @param MemoryConfig 内存配置指针
+ * @param MemorySize 内存大小
+ * @param InitFlags 初始化标志位
+ * @return int 初始化结果状态码
  * 
  * @note 原始函数名：FUN_180047e40
  */
@@ -140294,6 +140306,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统配置验证函数A0
  * 
  * 验证系统配置参数的正确性和有效性
+ * 检查配置参数的完整性、一致性和安全性
+ * 
+ * @param ConfigBuffer 配置缓冲区指针
+ * @param ConfigSize 配置大小
+ * @param ValidationFlags 验证标志位
+ * @return int 验证结果状态码
  * 
  * @note 原始函数名：FUN_180048980
  */
@@ -140303,6 +140321,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统状态检查函数A0
  * 
  * 检查系统状态，验证系统运行状态和健康情况
+ * 监控系统性能指标和资源使用情况
+ * 
+ * @param StatusBuffer 状态缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param CheckFlags 检查标志位
+ * @return int 检查结果状态码
  * 
  * @note 原始函数名：FUN_180048980
  */
