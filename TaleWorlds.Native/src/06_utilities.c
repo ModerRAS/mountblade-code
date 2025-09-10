@@ -63350,16 +63350,22 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 设置未知数据缓冲区指针
+ * @brief 设置系统保留数据缓冲区指针A
  * 
- * 该函数用于设置未知数据缓冲区指针，将特定的内存地址
- * 设置到指定的数据缓冲区位置
+ * 该函数用于设置系统保留数据缓冲区指针，将系统保留数据缓冲区的地址
+ * 设置到指定的异常上下文位置。这是异常处理机制的一部分。
  * 
- * @param operationBase 操作基础地址
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础地址，包含系统操作的基础信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理的上下文信息
+ * 
  * @note 原始函数名：Unwind_180905720
+ * @note 此函数在异常处理展开过程中调用
+ * @note 函数名中的A表示其在异常处理表中的位置
+ * 
+ * @warning 此函数操作敏感的异常处理结构，修改时需要特别小心
+ * @see SetSystemReservedDataBufferPointer, SystemUnknownDataBuffer
  */
-void SetUnknownDataBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
+void SetSystemReservedDataBufferPointerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40) = &SystemUnknownDataBuffer;
@@ -63369,16 +63375,22 @@ void SetUnknownDataBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 设置系统未知数据缓冲区指针
+ * @brief 设置系统保留数据缓冲区指针B
  * 
- * 该函数用于设置系统未知数据缓冲区指针，将特定的内存地址
- * 设置到指定的数据缓冲区位置
+ * 该函数用于设置系统保留数据缓冲区指针，将系统保留数据缓冲区的地址
+ * 设置到指定的异常上下文位置。这是异常处理机制的一部分。
  * 
- * @param operationBase 操作基础地址
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础地址，包含系统操作的基础信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理的上下文信息
+ * 
  * @note 原始函数名：Unwind_180905730
+ * @note 此函数在异常处理展开过程中调用
+ * @note 函数名中的B表示其在异常处理表中的位置
+ * 
+ * @warning 此函数操作敏感的异常处理结构，修改时需要特别小心
+ * @see SetSystemReservedDataBufferPointerA, SystemUnknownDataBuffer
  */
-void SetSystemUnknownDataBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
+void SetSystemReservedDataBufferPointerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset60) = &SystemUnknownDataBuffer;
