@@ -129083,7 +129083,7 @@ DataWord SystemDataWord;
 
 // 函数: void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
 // 功能：处理工具系统参数1，执行状态检查和操作
-// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
+// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
 // 返回值：无
 void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
 
@@ -129107,7 +129107,7 @@ void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext
 
 // 函数: void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
 // 功能：处理工具系统参数2，执行状态检查和操作
-// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
+// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
 // 返回值：无
 void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
 
@@ -129131,7 +129131,7 @@ void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext
 
 // 函数: void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
 // 功能：执行工具系统操作，处理数据和函数调用
-// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
+// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
 // 返回值：无
 void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
 
@@ -129158,7 +129158,7 @@ bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 
 // 函数: void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
 // 功能：处理工具系统事件，根据条件执行相应操作
-// 参数：eventTypeHandle-事件类型句柄，eventDataContext-事件数据上下文
+// 参数：eventTypeHandle - 事件类型句柄，eventDataContext - 事件数据上下文
 // 返回值：无
 void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
 
