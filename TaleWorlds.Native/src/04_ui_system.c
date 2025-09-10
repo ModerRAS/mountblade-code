@@ -7245,9 +7245,15 @@ void DestroyUIElement(void);
  /**
  * @brief 更新UI元素
  * 
- * 更新UI系统中的元素状态和属性
+ * 更新UI系统中的元素状态和属性。该函数负责：
+ * - 处理元素的位置、大小、旋转等属性变化
+ * - 更新元素的可见性和启用状态
+ * - 处理动画状态和过渡效果
+ * - 重新计算元素的布局参数
+ * - 触发相关的事件和回调
  * 
  * @note 原始函数名: 未指定
+ * @see CreateUIElement, RenderUIElement, ProcessUIAnimation
  */
 void UpdateUIElement(void);
 
