@@ -54085,7 +54085,7 @@ ResourceAllocationComplete:
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pUnsignedStackFlagSecondary = SystemDataBufferPointer;
-        SystemEncryptionContext._0_4_ = StartSystemThread(SystemDataBufferPointer);
+        SystemEncryptionContext.ThreadHandle = StartSystemThread(SystemDataBufferPointer);
       }
 MemoryPoolInitialized:
         memcpy(SystemDataBufferPointer + SystemContextReference,ConfigurationDataPointer,(long long)((int)ResourceDataOffset + 2));
@@ -55004,7 +55004,7 @@ SystemOperationSetup:
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pEncryptionOffset = SystemDataBufferPointer;
-        SystemMemoryBuffer._0_4_ = StartSystemThread(SystemDataBufferPointer);
+        SystemMemoryBuffer.ThreadHandle = StartSystemThread(SystemDataBufferPointer);
       }
 SystemResourceSetup:
         /* 系统资源设置：复制配置数据到系统数据缓冲区 */
@@ -65783,7 +65783,7 @@ ResourceInitializationLoop:
               if (!isResourceAvailable4) {
                 SystemThreadHandlePrimary = *SystemResourceOffsetPointer9;
                 SystemOperationFlag1b8.LowPart = *(uint32_t *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
-                SystemOperationFlag1b8._0_4_ = *(uint32_t *)(SystemThreadHandleCounter + 4 + SystemThreadHandlePrimary);
+                SystemThreadOperation.ThreadHandle = *(uint32_t *)(SystemThreadHandleCounter + 4 + SystemThreadHandlePrimary);
                 StackOperationValue = *(uint32_t *)(SystemThreadHandleCounter + SystemThreadHandlePrimary);
                 CalculationFlagsExtended = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,StackOperationValue);
                 SystemStackFlag = (int *)ConcatenatedSystemValue(0x7f7fffff,SystemOperationFlag1b8.LowPart);
@@ -66207,7 +66207,7 @@ LabelExpandSystemThread:
         SystemResourceOffsetPointer9 = pSystemMemoryAllocationOffset168;
         GlobalDataFlags = (uint)resourceManagerHandle;
         StackOperationValue = (uint32_t)((ulong long)resourceManagerHandle >> 0x20);
-        SystemOperationFlag1b8._0_4_ = SubtractWith84BitOperation(MatrixPointer1F8,0);
+        SystemMatrixOperation.ThreadHandle = SubtractWith84BitOperation(MatrixPointer1F8,0);
         SystemOperationFlag1b8.LowPart = (uint32_t)((ulong long)MatrixPointer1F8 >> 0x20);
         MatrixPointer1B0 = MatrixPointer208;
         StackAllocationSize = 3;

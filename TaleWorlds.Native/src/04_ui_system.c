@@ -119942,14 +119942,14 @@ void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *t
         transformIndex = GetUIProcessingValue(calculationResult2);
         calculationResult1 = (int)(short)(transformIndex + -0x780) * (int)uiContext0 + (uint)*param_9 * 4;
         if (calculationResult1 <= *targetBuffer) {
-          *targetBuffer = ProcessingResult2;
-          *dataSource = ProcessingResult3;
+          *targetBuffer = calculationResult1;
+          *dataSource = calculationResult2;
           *uiContext = (char)(int)param_6;
-          *bufferSize = (uint)isCharacterMatch;
+          *bufferSize = (uint)characterMatchFlag;
         }
       }
       param_6._0_4_ = (int)param_6 + 1;
-      plocalChar14 = plocalChar14 + 5;
+      charPointer = charPointer + 5;
       param_9 = param_9 + 1;
     } while ((int)param_6 < uiContext2);
   }
