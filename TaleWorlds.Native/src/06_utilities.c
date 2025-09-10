@@ -140246,6 +140246,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统资源处理函数A0
  * 
  * 处理系统资源的分配、管理和释放操作
+ * 包括内存资源、文件句柄、系统对象的管理
+ * 
+ * @param ResourcePointer 资源指针
+ * @param ResourceSize 资源大小
+ * @param OperationFlags 操作标志位
+ * @return int 处理结果状态码
  * 
  * @note 原始函数名：FUN_180044a30
  */
@@ -140255,6 +140261,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统组件初始化函数A0
  * 
  * 初始化系统组件，设置初始状态和配置参数
+ * 执行核心组件的初始化和状态检查
+ * 
+ * @param ComponentPointer 组件指针
+ * @param ComponentSize 组件大小
+ * @param InitFlags 初始化标志位
+ * @return int 初始化结果状态码
  * 
  * @note 原始函数名：FUN_180046860
  */
