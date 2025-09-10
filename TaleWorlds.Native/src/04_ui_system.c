@@ -407137,6 +407137,7 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_18076b5b0 EncodeUICharacterData             // 编码UI字符数据 - 将字符数据进行编码处理
 #define FUN_180749e60 InitializeUIContextAndHandles     // 初始化UI上下文和句柄 - 初始化UI上下文并分配相关句柄
 #define FUN_180745870 ProcessUIDataTransferOperation    // 处理UI数据传输操作 - 执行UI数据在不同缓冲区间的传输
+#define FUN_180739270 ProcessUIContextDataWithEncryption  // 处理UI上下文数据加密 - 处理UI上下文数据的加密传输操作
 
 
 
