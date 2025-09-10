@@ -35032,21 +35032,21 @@ ValidateDataWithDirectAllocation:
   }
   operationResult = securityCheckResult;
   if ((((*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) &&
-       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x94), (int)operationResult == 0)) &&
+       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset94), (int)operationResult == 0)) &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
      ((operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemManagementOffset98), (int)operationResult == 0 &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)))) {
     dataContext = *registerContext;
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + ResourceManagementOffset80);
     if (((((int)operationResult == 0) &&
-         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
+         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + SystemContextValidationOffset84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + systemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
+         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffsetA8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
+          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
@@ -35185,21 +35185,21 @@ DataProcessSectionA:
   }
   operationResult = securityCheckResult;
   if ((((*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) &&
-       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x94), (int)operationResult == 0)) &&
+       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset94), (int)operationResult == 0)) &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
      ((operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemManagementOffset98), (int)operationResult == 0 &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)))) {
     dataContext = *registerContext;
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + ResourceManagementOffset80);
     if (((((int)operationResult == 0) &&
-         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
+         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + SystemContextValidationOffset84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + systemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
+         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffsetA8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
+          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
@@ -35334,21 +35334,21 @@ DataProcessLabelA:
   }
   operationResult = securityCheckResult;
   if ((((*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) &&
-       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x94), (int)operationResult == 0)) &&
+       (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset94), (int)operationResult == 0)) &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
      ((operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemManagementOffset98), (int)operationResult == 0 &&
       (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)))) {
     dataContext = *registerContext;
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + ResourceManagementOffset80);
     if (((((int)operationResult == 0) &&
-         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
+         ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + SystemContextValidationOffset84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + systemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
+         (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffsetA8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
+          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
