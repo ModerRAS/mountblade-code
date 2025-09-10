@@ -323,6 +323,8 @@
 #define StackFrameResourcePointerOffset 0x40                 // 栈帧资源指针偏移量
 #define SystemStatusFlagMask 0x1                             // 系统状态标志掩码
 #define SystemStatusFlagClearMask 0xfffffffe                 // 系统状态标志清除掩码
+#define SystemStatusSecondaryFlagMask 0x2                     // 系统状态次要标志掩码
+#define SystemStatusSecondaryFlagClearMask 0xfffffffd        // 系统状态次要标志清除掩码
 
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffset170 0x170
@@ -6011,22 +6013,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExecuteDataCleanupA0 CleanupDataResources
 
 /**
- * @brief 处理数据流A0
+ * @brief 处理数据流扩展版
  * 
- * 该函数负责处理数据流，包括数据的读取、验证和传输
+ * 该函数负责处理数据流的高级操作，包括数据的读取、验证、传输和缓存管理。
+ * 它是数据流处理的核心函数，支持多种数据格式和传输协议。
  * 
  * @note 原始函数名：FUN_18089a690
  */
-#define ProcessDataStreamA0 FUN_18089a690
+#define ProcessDataStreamEx FUN_18089a690
 
 /**
- * @brief 验证数据流A0
+ * @brief 验证数据流完整性
  * 
- * 该函数负责验证数据流的有效性和完整性
+ * 该函数负责验证数据流的有效性和完整性，包括数据格式检查、
+ * 校验和验证和数据一致性检查，确保数据流的可靠性。
  * 
  * @note 原始函数名：FUN_18089a6e8
  */
-#define ValidateDataStreamA0 FUN_18089a6e8
+#define ValidateDataStreamIntegrity FUN_18089a6e8
 
 /**
  * @brief 处理数据转换A0
