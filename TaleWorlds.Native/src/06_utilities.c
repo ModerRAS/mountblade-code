@@ -8822,7 +8822,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180847820 - 资源指针获取函数
 // 功能：获取系统资源指针，用于访问和管理资源
-#define GetresourcePointer FUN_180847820
+#define GetResourcePointer FUN_180847820
 
 // 原始函数名：FUN_1808ddf80 - 系统资源清理函数
 // 功能：清理系统资源并释放内存
