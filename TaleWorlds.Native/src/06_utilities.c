@@ -680,6 +680,12 @@
 #define ResourceManagementOffset80 0x80                   // 资源管理偏移量80
 #define MemoryBlockMultiplier50 0x50                      // 内存块乘数50
 #define MemoryExceptionCheckOffsetE 0xe                   // 内存异常检查偏移量E
+
+// 数据缓冲区偏移量常量
+#define DataBufferOffsetE0 0xe0                           // 数据缓冲区偏移量E0
+#define DataBufferOffsetA8 0xa8                           // 数据缓冲区偏移量A8
+#define DataBufferOffsetD0 0xd0                           // 数据缓冲区偏移量D0
+#define DataBufferOffsetD8 0xd8                           // 数据缓冲区偏移量D8
 #define ExceptionRecoveryHandlerOffsetC0 0xc0
 #define ExceptionRecoveryHandlerOffsetD8 0xd8
 #define ExceptionRecoveryHandlerOffsetE8 0xe8
@@ -100019,9 +100025,9 @@ void InvokeFunctionPointerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffe
 
 
 /**
- * @brief 设置0x2a8偏移量的默认异常处理器B
+ * @brief 设置资源清理偏移量的默认异常处理器B
  * 
- * 该函数在数据缓冲区的0x2a8偏移量处设置默认异常处理器B的函数指针，
+ * 该函数在数据缓冲区的资源清理偏移量处设置默认异常处理器B的函数指针，
  * 用于处理特定偏移量的异常情况。
  * 
  * @param operationBase 操作基地址
@@ -100029,19 +100035,19 @@ void InvokeFunctionPointerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffe
  * 
  * @note 原始函数名：Unwind_18090c930
  */
-void SetDefaultExceptionHandlerBAtOffset2A8(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerBAtResourceCleanupOffset2A8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x2a8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ResourceCleanupOffset2A8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
 /**
- * @brief 设置0x890偏移量的默认异常处理器B
+ * @brief 设置系统配置偏移量的默认异常处理器B
  * 
- * 该函数在数据缓冲区的0x890偏移量处设置默认异常处理器B的函数指针，
+ * 该函数在数据缓冲区的系统配置偏移量处设置默认异常处理器B的函数指针，
  * 用于处理特定偏移量的异常情况。
  * 
  * @param operationBase 操作基地址
@@ -100049,19 +100055,19 @@ void SetDefaultExceptionHandlerBAtOffset2A8(DataBuffer operationBase,int64_t dat
  * 
  * @note 原始函数名：Unwind_18090c940
  */
-void SetDefaultExceptionHandlerBAtOffset890(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerBAtSystemConfigOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x890) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ResourceCleanupOffset890) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
 /**
- * @brief 设置0x2e0偏移量的默认异常处理器B
+ * @brief 设置系统上下文数据偏移量的默认异常处理器B
  * 
- * 该函数在数据缓冲区的0x2e0偏移量处设置默认异常处理器B的函数指针，
+ * 该函数在数据缓冲区的系统上下文数据偏移量处设置默认异常处理器B的函数指针，
  * 用于处理特定偏移量的异常情况。
  * 
  * @param operationBase 操作基地址
@@ -100069,19 +100075,19 @@ void SetDefaultExceptionHandlerBAtOffset890(DataBuffer operationBase,int64_t dat
  * 
  * @note 原始函数名：Unwind_18090c950
  */
-void SetDefaultExceptionHandlerBAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerBAtSystemContextDataOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + SystemContextDataOffset2E0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ResourceCleanupOffset2E0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
 /**
- * @brief 设置0x930偏移量的默认异常处理器B
+ * @brief 设置异常处理资源偏移量的默认异常处理器B
  * 
- * 该函数在数据缓冲区的0x930偏移量处设置默认异常处理器B的函数指针，
+ * 该函数在数据缓冲区的异常处理资源偏移量处设置默认异常处理器B的函数指针，
  * 用于处理特定偏移量的异常情况。
  * 
  * @param operationBase 操作基地址
@@ -100089,10 +100095,10 @@ void SetDefaultExceptionHandlerBAtOffset2E0(DataBuffer operationBase,int64_t dat
  * 
  * @note 原始函数名：Unwind_18090c960
  */
-void SetDefaultExceptionHandlerBAtOffset930(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerBAtExceptionResourceOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x930) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ResourceCleanupOffset930) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
