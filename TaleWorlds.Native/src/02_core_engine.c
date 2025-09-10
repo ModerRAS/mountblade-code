@@ -68575,7 +68575,7 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   void *pMemoryCopyBuffer;
   uint64_t *DataBufferPointer;
   uint32_t BufferValidationStatus;
-  long long lStack_248;
+  long long OperationBufferSizeValue;
   long long lStack_240;
   uint8_t SystemUintBuffer238 [16];
   code *pcStack_228;
