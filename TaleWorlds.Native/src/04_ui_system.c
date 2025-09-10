@@ -122859,34 +122859,34 @@ void ReleaseMemoryAndExecuteRender(void)
 
 
  void FUN_180739270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_180739270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer)
+void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
+                                        UIHandle resultPointer)
 
 {
   int processingResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  UIHandle stackUInt160;
-  UIHandle astackUInt158 [2];
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  UIHandle resultBufferHandle;
+  UIHandle contextHandles [2];
+  UIByte processingArray [256];
+  ulonglong xorEncryptionResult;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  processingResult = FUN_180749e60(uiContext,astackUInt158,0);
+  xorEncryptionResult = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  processingResult = FUN_180749e60(uiContext,contextHandles,0);
   if (processingResult == 0) {
-    pstackUInt168 = (UIByte *)resultPointer;
-    processingResult = FUN_180745870(astackUInt158[0],dataSource,targetBuffer,bufferSize);
-    if (processingResult == 0) goto LAB_180739325;
+    dataBufferPointer = (UIByte *)resultPointer;
+    processingResult = FUN_180745870(contextHandles[0],dataSource,targetBuffer,bufferSize);
+    if (processingResult == 0) goto ProcessingComplete;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    stackUInt160 = resultPointer;
-    pstackUInt168 = (UIByte *)bufferSize;
-    FUN_180738b40(stackArray148,0x100,dataSource,targetBuffer);
-    pstackUInt168 = stackArray148;
+    resultBufferHandle = resultPointer;
+    dataBufferPointer = (UIByte *)bufferSize;
+    FUN_180738b40(processingArray,0x100,dataSource,targetBuffer);
+    dataBufferPointer = processingArray;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextHandleData440);
   }
-LAB_180739325:
+ProcessingComplete:
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
 }
