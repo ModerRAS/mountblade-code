@@ -50147,16 +50147,34 @@ void CleanupSyncObject(DataBuffer operationBase, int64_t dataBuffer, DataBuffer 
  * 
  * @note 原始函数名可能是类似Unwind_开头的函数
  */
-void CleanupMutexLock(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理互斥锁
+ * 
+ * 该函数负责清理互斥锁相关的资源，包括：
+ * - 获取异常处理回调函数
+ * - 调用异常处理回调函数进行清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理回调
+ * 
+ * @note 原始函数名：Unwind_180906080
+ * @warning 该函数会调用异常处理回调，需要确保回调函数的有效性
+ */
+void CleanupMutexLock(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  FunctionPointer *exceptionHandlerCallback;
-  
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60),0,0,operationFlagB,SystemCleanupFlagAlternative);
-  }
-  return;
+    FunctionPointer *exceptionHandlerCallback;    // 异常处理回调函数指针
+    
+    // 获取异常处理回调函数指针
+    exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
+    
+    // 如果异常处理回调函数有效，则调用回调函数
+    if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+        (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
+    }
+    
+    return;
 }
 
 
