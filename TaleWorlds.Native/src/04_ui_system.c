@@ -1909,6 +1909,9 @@ typedef enum {
 // UI系统函数宏定义 - 处理UI上下文数据缓冲区
 #define ProcessUIContextDataBuffer FUN_18070ee86
 
+// UI系统函数宏定义 - 处理UI句柄验证
+#define func_0x000180766510 ValidateUIHandleProcessing
+
 // UI系统函数宏定义 - 处理UI浮点数据
 #define ProcessUIFloatData FUN_18070efdd
 
