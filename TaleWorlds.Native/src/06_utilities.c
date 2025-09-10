@@ -8924,11 +8924,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1808986b0 - 数据块验证函数A0
 // 功能：验证数据块的完整性和有效性
-#define ValidateDataBlockA0 FUN_1808986b0
+#define ValidateDataBlockA0 ValidateDataBlockIntegrity
 
 // 原始函数名：FUN_180898fc0 - 多段数据处理函数A0
 // 功能：处理多段数据，包括不同大小的数据块
-#define ProcessMultiSegmentDataA0 FUN_180898fc0
+#define ProcessMultiSegmentDataA0 ProcessMultiSegmentDataBlocks
 
 // 原始函数名：FUN_180899040 - 数据验证处理函数A0
 // 功能：验证并处理数据，包含多个验证阶段
@@ -9689,7 +9689,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180892ac0 - 浮点数验证和处理函数A2
 // 功能：验证浮点数数据的有效性，处理数据范围检查和更新操作
-#define ValidateAndProcessFloatingPointNumberA2 ValidateAndProcessFloatingPointNumberA2
+#define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
 
 // 原始函数名：FUN_180892bd0 - 复杂数据处理函数A0
 // 功能：处理复杂数据结构，执行多层验证和更新操作
@@ -11958,12 +11958,12 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define ValidateDataByte FUN_180853001
 
 // 原始函数名：FUN_180853002 - 安全内存清理函数
-// 功能：安全清理内存
-#define SecureClearMemory SecureClearMemoryFunction
+// 功能：安全清理内存并防止数据泄露
+#define SecureClearMemory SecureClearMemoryWithAntiLeakProtection
 
 // 原始函数名：FUN_180853003 - 加密数据完整性验证函数
-// 功能：验证加密数据完整性
-#define ValidateEncryptedDataIntegrity ValidateEncryptedDataIntegrityFunction
+// 功能：验证加密数据完整性和安全性
+#define ValidateEncryptedDataIntegrity ValidateEncryptedDataIntegrityWithSecurityCheck
 
 // 系统缓冲区配置常量
 // 功能：定义系统缓冲区的配置地址
@@ -16265,24 +16265,45 @@ uint8_t SystemResourceManagementTable;
 #define ValidateExceptionStatusG10 Unwind_1809059c0
 
 /**
- * @brief 处理对象数据并进行验证
+ * @brief 对象数据处理与验证函数
  * 
- * 该函数用于处理对象数据并进行验证操作，包括安全检查、资源处理和数据验证。
- * 函数执行以下步骤：
- * 1. 执行栈保护检查，防止栈溢出攻击
- * 2. 查询和检索系统数据
- * 3. 验证操作结果并处理数据
- * 4. 执行核心功能处理
- * 5. 处理执行结果，包括资源处理和内存清理
- * 6. 执行最终的安全验证
+ * 该函数是系统的核心数据处理组件，负责处理对象数据并执行全面的安全验证。
+ * 函数采用多层安全架构，确保数据处理的完整性和系统安全性。
  * 
- * @param ObjectHandle 对象句柄，用于标识要处理的对象
- * @param DataContext 数据上下文，包含处理所需的数据信息
+ * 主要功能模块：
+ * - 安全保护：栈溢出防护和数据完整性验证
+ * - 系统交互：查询系统状态和获取上下文信息
+ * - 资源管理：分配、处理和清理系统资源
+ * - 数据处理：执行核心业务逻辑和数据处理操作
+ * - 错误处理：全面的错误检测和恢复机制
  * 
- * @note 此函数包含安全验证机制，确保数据处理过程的安全性
- * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 处理流程：
+ * 1. 初始化安全防护机制，设置栈保护
+ * 2. 验证对象句柄和数据上下文的有效性
+ * 3. 查询系统状态并获取必要的上下文信息
+ * 4. 执行核心数据处理功能
+ * 5. 处理相关的系统资源
+ * 6. 执行清理操作和最终安全验证
  * 
- * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
+ * 安全特性：
+ * - 栈溢出防护机制
+ * - 数据边界检查
+ * - 资源访问控制
+ * - 内存安全验证
+ * - 异常处理和恢复
+ * 
+ * @param ObjectHandle 对象句柄标识符，用于定位和访问系统对象
+ * @param DataContext 数据上下文指针，包含处理所需的配置信息和数据参数
+ * 
+ * @return void 函数不返回值，通过系统状态和资源管理器传递结果
+ * 
+ * @note 该函数设计为不可中断操作，执行期间会锁定相关资源
+ * @warning 错误的参数可能导致系统不稳定，确保参数的有效性
+ * @warning 函数执行期间会修改系统状态，确保在适当的系统状态下调用
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation
+ * @see ReleaseResource, CleanupMemory, ValidateSystemParameters
+ * @see SecurityValidationBuffer, SystemContextArray
  */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
@@ -30971,12 +30992,12 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     if (outputBuffer != (DataWord *)0x0) {
       dataItemPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * ArrayElementSize16);
       processingResult = dataItemPointer[1];
-      DataItemFieldData2 = dataItemPointer[2];
-      DataItemFieldData3 = dataItemPointer[3];
+      secondaryFieldData = dataItemPointer[2];
+      tertiaryFieldData = dataItemPointer[3];
       *outputBuffer = *dataItemPointer;
       outputBuffer[1] = processingResult;
-      outputBuffer[2] = DataItemFieldData2;
-      outputBuffer[3] = DataItemFieldData3;
+      outputBuffer[2] = secondaryFieldData;
+      outputBuffer[3] = tertiaryFieldData;
     }
     totalProcessedLength = 0;
     currentBufferOffset = 0;
@@ -138473,6 +138494,10 @@ float ValidationIntermediateResultFloatB;
  * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultFloatB
  */
 int ValidationIntermediateResultIntegerA;
+
+// 原始函数名：ProcessMemoryBufferWithValidation - 内存缓冲区处理函数
+// 功能：处理内存缓冲区并进行安全验证
+#define ProcessMemoryBufferWithValidation ProcessMemoryBufferWithSecurityValidation
 
 /**
  * @brief 系统内存缓冲区验证和处理函数
