@@ -100024,7 +100024,7 @@ uint64_t ValidateMemoryAllocation(uint64_t ContextHandle)
 
 
 // 原始函数名：FUN_18010f0c3 - 系统资源清理和释放函数
-void CleanupSystemResourceAndRelease(void
+void CleanupSystemResourceAndRelease(void)
 {
   return;
 }
@@ -100034,7 +100034,7 @@ void CleanupSystemResourceAndRelease(void
 
 
 // 原始函数名：FUN_18010f0d0 - 数据结构复制和配置函数
-void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;

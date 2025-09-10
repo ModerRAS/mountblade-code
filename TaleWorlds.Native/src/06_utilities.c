@@ -10011,11 +10011,11 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180895360 - 数据处理函数C0
 // 功能：处理数据并执行相关操作
-#define ProcessDataC0 FUN_180895360
+#define ProcessDataC0 ProcessComplexDataStructure
 
 // 原始函数名：FUN_180862e00 - 释放资源
 // 功能：释放系统资源和清理句柄
-#define ReleaseResource FUN_180862e00
+#define ReleaseResource ReleaseSystemResourceHandle
 
 // 原始函数名：FUN_18085dbf0 - 清理内存
 // 功能：清理内存块和重置内存状态
