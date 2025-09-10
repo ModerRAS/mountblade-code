@@ -29496,21 +29496,25 @@ void CoreEngineProcessCharacterStatusBuffer(uint8_t *CharacterStatusBuffer) {
 }
 
 /**
- * @brief 重置数据缓冲区
+ * @brief 重置字符状态缓冲区
  * 
- * 该函数负责重置指定的数据缓冲区，将缓冲区内容清零，
+ * 该函数负责重置指定的字符状态缓冲区，将缓冲区内容清零，
  * 并重置相关的大小计数器。
  * 
- * @param CharacterStatusBuffer 要重置的数据缓冲区指针
+ * @param CharacterStatusBufferPointer 要重置的字符状态缓冲区指针
  * @return 无
  * 
  * @note 此函数会将缓冲区首字节设为0
- * @note 同时重置缓冲区大小计数器
+ * @note 同时重置缓冲区大小计数器（偏移量0x10处）
  */
-void CoreEngineResetCharacterStatusBuffer(uint8_t *CharacterStatusBuffer)
+void CoreEngineResetCharacterStatusBuffer(uint8_t *CharacterStatusBufferPointer)
 {
-  *CharacterStatusBuffer = 0;
-  *(uint32_t *)((long long)CharacterStatusBuffer + 0x10) = 0;
+  // 重置缓冲区首字节为0
+  *CharacterStatusBufferPointer = 0;
+  
+  // 重置缓冲区大小计数器（偏移量0x10处）
+  *(uint32_t *)((long long)CharacterStatusBufferPointer + 0x10) = 0;
+  
   return;
 }
 
