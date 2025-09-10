@@ -100002,16 +100002,34 @@ void ProcessSystemEventAndNotify(void
 
 
 
- void ProcessSystemEventQueueData(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemEventQueueData(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ /**
+ * @brief 处理系统事件队列数据
+ * 
+ * 处理系统事件队列中的数据，包括UTF-8到UTF-16的转换和事件数据处理。
+ * 该函数负责：
+ * - 处理事件队列数据的缓冲区管理
+ * - 执行UTF-8到UTF-16的字符编码转换
+ * - 管理事件数据的内存布局
+ * - 调用数据结构和栈处理函数
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的缓冲区容量
+ * @param Utf8SourcePointer UTF-8源数据指针，指向要处理的UTF-8数据
+ * @param Utf16EndPointer UTF-16结束指针，标识UTF-16数据的结束位置
+ * 
+ * @note 原始函数名显示有重复，可能是Ghidra逆向工程的结果
+ * @note 这是一个简化实现，实际实现中需要更复杂的错误处理和数据验证
+ */
+void ProcessSystemEventQueueData(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemEventQueueData(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  uint64_t uStackX_10;
+  uint64_t StackProcessingBufferSize;
   uint64_t ReservedStackSpace;
-  uint64_t uStackX_20;
+  uint64_t StackProcessingUtf16EndPointer;
   
-  uStackX_10 = OperationBufferSize;
+  StackProcessingBufferSize = OperationBufferSize;
   StackProcessingConfigurationFlag = Utf8SourcePointer;
-  uStackX_20 = Utf16EndPointer;
-  ProcessDataStructureAndStack(ContextHandle,&uStackX_10);
+  StackProcessingUtf16EndPointer = Utf16EndPointer;
+  ProcessDataStructureAndStack(ContextHandle,&StackProcessingBufferSize);
   return;
 }
 
@@ -100019,16 +100037,32 @@ void ProcessSystemEventAndNotify(void
 
 
 
-f040(uint64_t ContextHandle,uint64_t OperationBufferSizevoid ProcessDataStructureAndStack(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 处理数据结构和栈数据
+ * 
+ * 处理系统数据结构和栈数据的操作，包括数据验证、缓冲区管理和状态处理。
+ * 该函数负责：
+ * - 验证系统配置和状态
+ * - 处理字符表数据
+ * - 管理数据输入长度
+ * - 执行系统上下文和状态处理
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的缓冲区容量
+ * 
+ * @note 原始函数名：FUN_180043f040
+ * @note 函数名显示有重复，可能是Ghidra逆向工程的结果
+ */
+void ProcessDataStructureAndStack(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
   long long MainCalculationResult;
-  long long BufferStatus;
+  long long SystemConfigurationStatus;
   int MemoryComparisonResult;
   
-  BufferStatus = SystemConfigurationHandle;
+  SystemConfigurationStatus = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
-  if (*(char *)(*(long long *)(BufferStatus + 0x1af8) + 0xb4) == '\0') {
-    CharacterTablePointer = BufferStatus + 0x3054;
+  if (*(char *)(*(long long *)(SystemConfigurationStatus + 0x1af8) + 0xb4) == '\0') {
+    CharacterTablePointer = SystemConfigurationStatus + 0x3054;
     InputDataLength = ValidateSystemAndInitialize(LoopCounter,0xc01,ContextHandle,OperationBufferSize);
     if (CharacterTablePointer != 0) {
       if ((InputDataLength == -1) || (0xc00 < InputDataLength)) {
@@ -100036,7 +100070,7 @@ f040(uint64_t ContextHandle,uint64_t OperationBufferSizevoid ProcessDataStructur
       }
       *(uint8_t *)(InputDataLength + CharacterTablePointer) = 0;
     }
-    ProcessSystemContextAndStatus(LoopCounter,BufferStatus + 0x3054 + (long long)InputDataLength);
+    ProcessSystemContextAndStatus(LoopCounter,SystemConfigurationStatus + 0x3054 + (long long)InputDataLength);
   }
   return;
 }
