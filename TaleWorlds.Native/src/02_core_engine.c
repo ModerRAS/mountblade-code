@@ -100030,21 +100030,21 @@ void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBuf
   uint64_t OperationResult;
   long long MemoryPoolBlockSize;
   uint64_t ReservedStackSpace;
-  uint64_t uStackX_20;
+  uint64_t Utf16SourcePointer;
   uint32_t SystemStackFlag;
-  uint32_t uStack_44;
+  uint32_t SystemParameter1;
   uint32_t SystemPriorityLevel;
-  uint32_t uStack_3c;
+  uint32_t SystemParameter2;
   uint32_t FunctionAddress;
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
   SystemStackFlag = 0;
-  uStack_44 = *(uint32_t *)(SystemConfigurationHandle + 0x16c8);
+  SystemParameter1 = *(uint32_t *)(SystemConfigurationHandle + 0x16c8);
   SystemPriorityLevel = *(uint32_t *)(SystemConfigurationHandle + 0x16cc);
-  uStack_3c = *(uint32_t *)(SystemConfigurationHandle + 0x16d0);
+  SystemParameter2 = *(uint32_t *)(SystemConfigurationHandle + 0x16d0);
   FunctionAddress = *(uint32_t *)(SystemConfigurationHandle + 0x16d4);
   StackProcessingConfigurationFlag = Utf8SourcePointer;
-  uStackX_20 = Utf16EndPointer;
+  Utf16SourcePointer = Utf16EndPointer;
   ProcessSystemConfigurationAndData(SystemConfigurationHandle + 0x1b80,&SystemStackFlag);
   UnicodeCodePoint = ContextHandle[1];
   MemoryAddressMaskPointer = ContextHandle[2];
@@ -227571,7 +227571,14 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 
 
-8997c(voidvoid FUN_18018997c(void
+/**
+ * @brief 空操作函数
+ * 
+ * 不执行任何操作的空函数，直接返回
+ * 
+ * @note 原始函数名：FUN_18018997c
+ */
+void NoOperationFunction(void)
 {
   return;
 }
@@ -227579,7 +227586,15 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 
 
-8997d(voidvoid FUN_18018997d(void
+/**
+ * @brief 无效参数处理函数
+ * 
+ * 处理无效参数异常，该函数不会返回
+ * 
+ * @note 原始函数名：FUN_18018997d
+ * @warning 此函数不会返回，会触发系统异常处理
+ */
+void HandleInvalidParameter(void)
 {
                     // WARNING: Subroutine does not return
   _invalid_parameter_noinfo_noreturn();
