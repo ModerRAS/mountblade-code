@@ -123009,20 +123009,33 @@ BufferProcessComplete:
 
 
 
- void FUN_1807391b5(void)
-void ProcessUIBufferDataWithValidation(void)
+ /**
+ * @brief UI缓冲区数据验证处理器
+ * 
+ * 处理UI缓冲区数据的验证和复制操作
+ * 该函数负责：
+ * - 验证UI缓冲区数据
+ * - 复制已验证的数据
+ * - 执行UI上下文数据操作
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1807391b5
+ */
+void ValidateAndProcessUIBufferData(void)
+void ValidateAndProcessUIBufferData(void)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  UIDword preservedRegisterEBX;
-  UIDword preservedRegisterESI;
+  int dataProcessingResult;
+  int validationStatus;
+  UIDword dataSource;
+  UIDword operationContext;
   
-  processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,preservedRegisterEBX);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  dataProcessingResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
+  validationStatus = FUN_18074b880(&stack0x00000040 + dataProcessingResult,0x100 - dataProcessingResult,&UIBufferControlData);
+  CopyUIDataBuffer(&stack0x00000040 + (dataProcessingResult + validationStatus),0x100 - (dataProcessingResult + validationStatus));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(preservedRegisterESI,1);
+  ExecuteUIContextDataOperation(operationContext,1);
 }
 
 
@@ -123045,8 +123058,20 @@ void ConditionalReleaseMemoryAndExecuteRender(void)
 
 
 
- void FUN_18073924f(void)
-void ReleaseMemoryAndExecuteRender(void)
+ /**
+ * @brief UI内存释放和渲染执行器
+ * 
+ * 负责释放UI内存资源并执行渲染任务
+ * 该函数负责：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073924f
+ */
+void ReleaseUIMemoryAndExecuteRenderTask(void)
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong renderTaskParameter;
