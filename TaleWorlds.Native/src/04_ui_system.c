@@ -108976,13 +108976,20 @@ void ProcessUIRenderDataUpdate(UIHandle uiContext,UIHandle dataSource,int target
 
 
 
- void FUN_18072bbae(void)
-void FUN_18072bbae(void)
+ /**
+ * @brief UI渲染任务执行器A
+ * 
+ * 执行UI渲染任务的包装器函数，负责调用核心渲染任务
+ * 
+ * @note 原始函数名：FUN_18072bbae
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ExecuteUIRenderTaskWrapperA(void)
 
 {
   ulonglong stackParam00000120;
   
-                     WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000120 ^ (ulonglong)&stack0x00000000);
 }
 
