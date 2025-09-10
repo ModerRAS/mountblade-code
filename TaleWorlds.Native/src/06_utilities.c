@@ -218,6 +218,9 @@
 #define ExceptionHandlerContextOffset5e8 0x5e8
 #define ExceptionHandlerContextOffset5f8 0x5f8
 #define ExceptionHandlerContextSystemDataOffset30 0x30         // 异常上下文系统数据偏移量30 - 用于系统数据处理的偏移量
+#define DataBufferOffsetE0 0xe0                                  // 数据缓冲区偏移量E0 - 用于数据缓冲区操作
+#define DataBufferOffsetA8 0xa8                                  // 数据缓冲区偏移量A8 - 用于数据缓冲区操作
+#define DataBufferOffsetD0 0xd0                                  // 数据缓冲区偏移量D0 - 用于数据缓冲区操作
 #define ExceptionHandlerContextOffset600 0x600
 #define ExceptionHandlerContextOffset610 0x610
 
@@ -35959,7 +35962,7 @@ ValidateDataWithDirectAllocation:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
@@ -36112,7 +36115,7 @@ DataProcessSectionA:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
@@ -36261,7 +36264,7 @@ DataProcessLabelA:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffset9C), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
-          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
