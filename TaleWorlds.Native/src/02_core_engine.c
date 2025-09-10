@@ -224174,7 +224174,14 @@ LAB_1801857bd:
 
 
 
-85840(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180185840(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理长整型上下文句柄
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessLongIntegerContextHandle(long long ContextHandle, long long *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   long long BufferStatus;

@@ -1147,6 +1147,31 @@
 #define BufferSizeOffsetC 0xc
 #define BufferDataOffset29 0x29
 
+// 上下文处理偏移量常量
+#define ContextManagementOffset40 0x40
+#define ContextManagementOffset48 0x48
+#define ContextManagementOffset60 0x60
+#define ContextManagementOffset70 0x70
+#define ContextManagementOffset78 0x78
+#define ContextManagementOffset84 0x84
+#define ContextManagementOffset90 0x90
+#define ContextManagementOffset94 0x94
+#define ContextManagementOffset98 0x98
+#define ContextManagementOffsetA0 0xa0
+#define ContextManagementOffsetA4 0xa4
+#define ContextManagementOffsetA8 0xa8
+#define ContextManagementOffsetAC 0xac
+#define ContextManagementOffsetB0 0xb0
+#define ContextManagementOffsetB4 0xb4
+#define ContextManagementOffsetBC 0xbc
+#define ContextManagementOffsetC0 0xc0
+
+// 异常处理偏移量常量
+#define ExceptionHandlingOffset40 0x40
+#define ExceptionHandlingOffset48 0x48
+#define ExceptionHandlingOffset70 0x70
+#define ExceptionHandlingOffset78 0x78
+
 // 系统数据结构偏移量常量
 #define SystemDataSizeOffset48 0x48
 #define SystemDataPointerOffset40 0x40
