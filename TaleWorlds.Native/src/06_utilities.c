@@ -22726,47 +22726,47 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
 DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t contextParameter)
 
 {
-  float FloatValue;
-  int64_t DataContext;
-  int64_t MemoryBlockOffset;
-  DataBuffer ValidationResult;
-  int64_t ArrayIndex;
+  float inputValue;
+  int64_t dataContext;
+  int64_t memoryBlockOffset;
+  DataBuffer validationResult;
+  int64_t arrayIndex;
   int64_t systemContext;
-  int OperationResultBuffer [2];
-  int64_t StackBuffer;
+  int operationResultBuffer [2];
+  int64_t stackBuffer;
   
   if (dataParameter + SystemParameterValidationOffset28 != 0) {
-    ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + ExceptionHandlerCallbackOffset),&StackBuffer);
-    if ((int)ValidationResult != 0) {
-      return ValidationResult;
+    validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + ExceptionHandlerCallbackOffset),&stackBuffer);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
-    systemContext = StackBuffer;
-    if (StackBuffer != 0) {
-      systemContext = StackBuffer + -8;
+    systemContext = stackBuffer;
+    if (stackBuffer != 0) {
+      systemContext = stackBuffer + -8;
     }
-    DataContext = *(int64_t *)(systemContext + SystemDataSecondaryOffset18);
-    if (DataContext == 0) {
+    dataContext = *(int64_t *)(systemContext + SystemDataSecondaryOffset18);
+    if (dataContext == 0) {
       return ResourceNotFoundCode;
     }
-    OperationResultBuffer[0] = 0;
-    ValidationResult = ExecuteSystemOperationA0(contextParameter,systemContext,dataParameter + SystemParameterValidationOffset28,OperationResultBuffer);
-    if ((int)ValidationResult != 0) {
-      return ValidationResult;
+    operationResultBuffer[0] = 0;
+    validationResult = ExecuteSystemOperationA0(contextParameter,systemContext,dataParameter + SystemParameterValidationOffset28,operationResultBuffer);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
-    ArrayIndex = (int64_t)OperationResultBuffer[0];
+    arrayIndex = (int64_t)operationResultBuffer[0];
     systemContext = *(int64_t *)(systemContext + SystemDataParameterOffset20);
-    MemoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + ArrayIndex * SystemDataRecordMultiplier18);
-    if ((*(SystemByteType *)(MemoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
-      ValidationResult = ProcessDataValidationA0(MemoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
-      if ((int)ValidationResult != 0) {
-        return ValidationResult;
+    memoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + arrayIndex * SystemDataRecordMultiplier18);
+    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
+      validationResult = ProcessDataValidationA0(memoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
-      FloatValue = *(float *)(dataParameter + SystemDataSecondaryOffset18);
-      if ((*(float *)(MemoryBlockOffset + SystemFloatDataOffset38) <= FloatValue) &&
-         (FloatValue < *(float *)(MemoryBlockOffset + FloatDataValidationOffset3C) || FloatValue == *(float *)(MemoryBlockOffset + FloatDataValidationOffset3C))) {
-        DataContext = *(int64_t *)(dataParameter + systemContextPointerOffset90);
-        *(float *)(systemContext + 4 + ArrayIndex * SystemDataRecordMultiplier) = FloatValue;
-        *(DataBuffer *)(dataParameter + SystemDataParameterOffset20) = *(DataBuffer *)(DataContext + (int64_t)OperationResultBuffer[0] * 8);
+      inputValue = *(float *)(dataParameter + SystemDataSecondaryOffset18);
+      if ((*(float *)(memoryBlockOffset + SystemFloatDataOffset38) <= inputValue) &&
+         (inputValue < *(float *)(memoryBlockOffset + FloatDataValidationOffset3C) || inputValue == *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
+        dataContext = *(int64_t *)(dataParameter + systemContextPointerOffset90);
+        *(float *)(systemContext + 4 + arrayIndex * SystemDataRecordMultiplier) = inputValue;
+        *(DataBuffer *)(dataParameter + SystemDataParameterOffset20) = *(DataBuffer *)(dataContext + (int64_t)operationResultBuffer[0] * 8);
           CleanupSystemEventA0(*(DataBuffer *)(contextParameter + SystemManagementOffset98),dataParameter);
       }
       return ResourceInvalidErrorCode;
