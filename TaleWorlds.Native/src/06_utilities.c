@@ -5886,7 +5886,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180046860
  * @see InitializeSystemComponents, ValidateSystemContextA0
  */
-#define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolA0
+#define InitializeSystemMemoryPoolA0 FUN_180046860
 
 /**
  * @brief 初始化系统内存池并配置缓存
