@@ -889,7 +889,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define BufferInitializationPointerArray apBufferInitializationFlag // 缓冲区初始化指针数组
 #define ProcessingStatusFlagPointer9 SystemProcessingStatusFlagPointer9  // 处理状态标志指针9
 #define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
-#define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
+#define ProcessingStatusFlagPointer6 SystemProcessingStatusFlagPointer6  // 处理状态标志指针6
 #define SystemTemporaryRegister118 SystemTemporaryRegister118          // 系统临时寄存器118
 #define SystemValidationSystemValidationStackArray138 SystemValidationStackArray138                // 系统验证栈数组138
 #define BufferStatusRegister8 BufferStatusRegister8                        // 缓冲区状态寄存器8
@@ -248553,7 +248553,21 @@ LAB_180203b67:
 
 
 
-long long FUN_180203b2a(void
+/**
+ * @brief 处理字符串比较和内存块索引操作（变体B）
+ * 
+ * 该函数负责处理字符串比较操作和内存块索引管理，与前面的函数类似但返回不同的偏移量。
+ * 主要功能包括：
+ * - 执行字符串字节比较操作
+ * - 处理高字节指针和内存地址掩码
+ * - 管理内存块索引和系统上下文
+ * - 返回处理结果的内存地址（偏移量0x78）
+ * 
+ * @return long long 处理结果的内存地址偏移量
+ * 
+ * @note 原始函数名：FUN_180203b2a
+ */
+long long ProcessStringComparisonAndMemoryIndexVariantB(void)
 {
   byte StringComparisonByte;
   byte *HighBytePointer;
