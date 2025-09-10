@@ -227236,7 +227236,20 @@ void ProcessSystemStringIndexAndCharacterTableOperationEx(long long *ContextHand
 
 
 
-8a050(long long *ContextHandlevoid FUN_18018a050(long long *ContextHandle
+/**
+ * @brief 处理字符表数据的系统栈操作
+ * 
+ * 该函数负责处理字符表数据的系统栈操作，包括：
+ * - 遍历字符表数据
+ * - 处理系统栈数据
+ * - 管理字符表指针
+ * 
+ * @param ContextHandle 字符代码指针数组，包含字符表信息和数据
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018a050
+ */
+void ProcessCharacterTableStackOperation(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long BufferStatus;
@@ -227251,7 +227264,21 @@ void ProcessSystemStringIndexAndCharacterTableOperationEx(long long *ContextHand
 
 
 
-8a0b0(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18018a0b0(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16转换的内存释放
+ * 
+ * 该函数负责处理UTF-8到UTF-16转换过程中的内存释放操作，
+ * 根据操作缓冲区大小决定是否释放相关内存资源。
+ * 
+ * @param ContextHandle 字符代码，用于标识转换上下文
+ * @param OperationBufferSize 操作缓冲区大小，决定是否执行内存释放
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的数据
+ * @param Utf16EndPointer UTF-16结束指针，指示转换目标的边界
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018a0b0
+ */
+void ProcessUtf8ToUtf16ConversionMemoryRelease(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   if (OperationBufferSize != '\0') {
     free(ContextHandle,0x20,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);

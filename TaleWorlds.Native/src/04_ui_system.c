@@ -5026,6 +5026,29 @@ void* UIGestureCoordinates;
 #define UIDataTableEvent (void*)0x180980dc0       // UI事件数据表 - 存储事件相关数据
 #define UIDataTableResource (void*)0x180981620    // UI资源数据表 - 存储资源相关数据
 
+// UI系统上下文操作数据表定义
+#define UIContextOperationDataTable248 UNK_180957248    // UI上下文操作数据表248 - 存储上下文操作的基础数据
+#define UIContextOperationDataTable1c8 UNK_1809571c8    // UI上下文操作数据表1c8 - 存储上下文操作的配置数据
+#define UIContextOperationDataTable158 UNK_180957158    // UI上下文操作数据表158 - 存储上下文操作的状态数据
+#define UIContextOperationDataTable0f8 UNK_1809570f8    // UI上下文操作数据表0f8 - 存储上下文操作的验证数据
+#define UIContextOperationDataTable188 UNK_180957188    // UI上下文操作数据表188 - 存储上下文操作的缓存数据
+#define UIContextOperationDataTable260 UNK_180957260    // UI上下文操作数据表260 - 存储上下文操作的结果数据
+#define UIContextOperationDataTable310 UNK_180957310    // UI上下文操作数据表310 - 存储上下文操作的高级数据
+#define UIContextOperationDataTable898 UNK_180957898    // UI上下文操作数据表898 - 存储上下文操作的扩展数据
+#define UIContextOperationDataTable810 UNK_180957810    // UI上下文操作数据表810 - 存储上下文操作的索引数据
+#define UIContextOperationDataTable6a0 UNK_1809576a0    // UI上下文操作数据表6a0 - 存储上下文操作的临时数据
+#define UIContextOperationDataTable880 UNK_180957880    // UI上下文操作数据表880 - 存储上下文操作的缓冲区数据
+#define UIContextOperationDataTable7b0 UNK_1809577b0    // UI上下文操作数据表7b0 - 存储上下文操作的元数据
+#define UIContextOperationDataTable8d0 UNK_1809578d0    // UI上下文操作数据表8d0 - 存储上下文操作的统计数据
+#define UIContextOperationDataTable7f0 UNK_1809577f0    // UI上下文操作数据表7f0 - 存储上下文操作的日志数据
+
+// UI系统栈变量宏定义
+#define UIStackTransformMatrix70 &stack0x00000070        // UI变换矩阵栈70 - 存储UI变换矩阵数据
+#define UIStackTransformMatrix60 &stack0x00000060        // UI变换矩阵栈60 - 存储UI变换矩阵数据
+#define UIStackTransformBuffer40 &stack0x00000040         // UI变换缓冲区栈40 - 存储UI变换缓冲区数据
+#define UIStackTransformBuffer30 &stack0x00000030         // UI变换缓冲区栈30 - 存储UI变换缓冲区数据
+#define UIStackRenderTaskData00 &stack0x00000000         // UI渲染任务数据栈00 - 存储UI渲染任务数据
+
  // UI系统渲染缓冲区指针宏定义
 #define UIComponentDataBufferPointer (void*)0x18097f660        // UI组件数据缓冲区指针
 #define UIEventHandlingBufferPointer (void*)0x18097f960         // UI事件处理缓冲区指针
