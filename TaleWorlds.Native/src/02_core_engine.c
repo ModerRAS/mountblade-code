@@ -1730,6 +1730,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 新发现的字符编码处理函数
 #define ProcessContextHandleWithMemoryBoundaryValidation FUN_18018b160 // 处理带内存边界验证的字符代码
+#define ProcessCharacterEncodingBufferAllocationAndDataManagement FUN_18018b2e0 // 处理字符编码缓冲区分配和数据管理
 #define InitializeSystemPrimaryDataTemplate FUN_18018b3f0      // 初始化系统主数据模板
 #define InitializeSystemMemoryBoundaryAddress FUN_18018b430     // 初始化系统内存边界地址
 #define ProcessCharacterEncodingConversionAndStatusManagement FUN_18018be60 // 处理字符编码转换和状态管理
