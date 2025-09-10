@@ -100203,6 +100203,9 @@ void ResetExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
+// 高级系统回调相关常量
+#define AdvancedSystemCallbackOffset 0x178                         // 高级系统回调偏移量
+
 /**
  * @brief 执行高级系统回调函数
  * 
@@ -100214,10 +100217,9 @@ void ResetExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090cea0
  */
 void ExecuteAdvancedSystemCallback(DataBuffer operationBase, int64_t dataBuffer)
-
 {
-  if (*(int64_t **)(dataBuffer + DataBufferOffset178) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x178) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + AdvancedSystemCallbackOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + AdvancedSystemCallbackOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
