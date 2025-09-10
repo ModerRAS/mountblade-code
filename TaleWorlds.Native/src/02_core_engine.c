@@ -209169,6 +209169,25 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long ContextHandle)
 #define WindowOperationModeSecondary 1                       // 次要窗口操作模式
 #define WindowOperationModeShow 2                            // 显示窗口操作模式
 #define WindowOperationModeHide 3                            // 隐藏窗口操作模式
+#define WindowOperationModeFocus 4                            // 窗口焦点操作模式
+#define WindowOperationModeSetCursor 5                        // 设置光标操作模式
+#define WindowOperationModeMoveCursor 6                       // 移动光标操作模式
+#define WindowOperationModeSetPosition 7                     // 设置窗口位置操作模式
+#define WindowOperationModeClipCursor 8                       // 限制光标操作模式
+
+// 窗口操作参数偏移量
+#define WindowOperationParam1Offset 0x30                      // 窗口操作参数1偏移量
+#define WindowOperationParam2Offset 0x34                      // 窗口操作参数2偏移量
+#define WindowOperationParam3Offset 0x38                      // 窗口操作参数3偏移量
+#define WindowOperationParam4Offset 0x3c                      // 窗口操作参数4偏移量
+#define WindowOperationParam5Offset 0x40                     // 窗口操作参数5偏移量
+
+// 窗口类型常量
+#define WindowTypeDefault 0                                   // 默认窗口类型
+#define WindowTypeConsole 1                                   // 控制台窗口类型
+
+// 系统函数地址常量
+#define SetWindowPosFunctionAddress 0x40                     // SetWindowPos函数地址
 
 /**
  * @brief 处理字符编码状态和窗口操作
