@@ -4493,36 +4493,37 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define CleanupSystemDataPointerAndReleaseMemory CleanupSystemDataPointerA0
+#define ReleaseSystemDataPointerAndMemory ReleaseSystemDataPointerA0
 
 /**
- * @brief 系统上下文处理函数
+ * @brief 系统上下文处理器
  * 
- * 处理系统上下文信息，包括上下文的创建、维护和清理。
- * 该函数会验证上下文的有效性，并确保上下文数据的一致性。
- * 同时负责上下文状态的管理和同步操作。
+ * 处理系统上下文的创建、维护和销毁操作
+ * 该函数负责管理上下文的生命周期和状态转换
  * 
- * @param context 上下文结构体指针
- * @return 处理状态，成功返回0，失败返回错误码
+ * @param contextPointer 上下文指针
+ * @param operationType 操作类型
+ * @return 处理结果状态码
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcesssystemContextAndValidateState ProcessSystemContextA0
+#define ProcessSystemContext ProcessSystemContextB0
 
 /**
- * @brief 数据类型转换函数
+ * @brief 数据类型转换器
  * 
- * 在不同数据类型之间进行转换，确保数据格式的一致性和正确性。
- * 支持基本数据类型之间的转换，并会进行有效性验证。
+ * 在不同数据类型之间进行安全转换，确保数据不会丢失精度或溢出
+ * 支持基本数据类型和复杂数据结构的转换
  * 
- * @param source 源数据指针
- * @param targetType 目标类型枚举
- * @param result 转换结果输出指针
- * @return 转换状态，成功返回0，失败返回错误码
+ * @param sourceData 源数据
+ * @param sourceType 源数据类型
+ * @param targetType 目标数据类型
+ * @param resultPointer 结果存储指针
+ * @return 转换状态码
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ConvertDataTypeWithValidation ConvertDataTypeA0
+#define ConvertDataType ConvertDataTypeB0
 
 /**
  * @brief 系统内存管理函数
@@ -7230,7 +7231,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892974
  */
-#define CheckSystemInitializationStatus0 FUN_180892974
+#define CheckSystemInitializationStatus0 CheckSystemInitializationStatus0
 
 /**
  * @brief 处理系统数据A0
