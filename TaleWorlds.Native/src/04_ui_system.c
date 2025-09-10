@@ -123627,7 +123627,6 @@ CleanupAndRender:
 
 
  void FUN_18073979d(void)
-void FUN_18073979d(void)
 
 {
   ulonglong stackParam00000140;

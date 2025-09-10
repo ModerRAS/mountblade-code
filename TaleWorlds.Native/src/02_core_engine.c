@@ -2191,7 +2191,26 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemDataRelease FUN_1802e7e20            // 处理系统数据释放
 #define ProcessSystemBufferRelease FUN_18063ad30          // 处理系统缓冲区释放
 
-#define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
+// 系统初始化和状态管理函数
+#define ProcessSystemStateInitialization FUN_1801a2ea0      // 处理系统状态初始化
+#define ProcessSystemStateUpdate FUN_1801b9920             // 处理系统状态更新
+#define ProcessSystemConfigurationUpdate FUN_180319840      // 处理系统配置更新
+#define ProcessSystemThreading FUN_1801ba4d0                 // 处理系统线程
+#define ProcessSystemResourceCleanup FUN_180196de0          // 处理系统资源清理
+#define ProcessSystemContextCleanup FUN_180397ce0           // 处理系统上下文清理
+#define ProcessSystemMemoryReset FUN_180196d20              // 处理系统内存重置
+#define ProcessSystemResourceReset FUN_180196c40             // 处理系统资源重置
+#define ProcessSystemAudioCleanup FUN_180397770              // 处理系统音频清理
+#define ProcessSystemGraphicsCleanup FUN_18038bfe0           // 处理系统图形清理
+#define ProcessSystemFileSystemCleanup FUN_180389750         // 处理系统文件系统清理
+#define ProcessSystemNetworkCleanup FUN_180389000           // 处理系统网络清理
+#define ProcessSystemComponentCleanup FUN_1801c0df0         // 处理系统组件清理
+#define ProcessSystemComponentFinalization FUN_18024f2c0    // 处理系统组件最终化
+#define ProcessSystemMemoryFinalization FUN_180195450       // 处理系统内存最终化
+#define ProcessSystemGraphicsFinalization FUN_180383570      // 处理系统图形最终化
+#define ProcessSystemStateFinalization FUN_1801ba340         // 处理系统状态最终化
+
+#define ProcessSystemMemoryManagement FUN_18015c0a0
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
 #define ProcessSystemMemoryBufferFinalization FUN_180170da0   // 处理系统内存缓冲区最终化
