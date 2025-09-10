@@ -59621,7 +59621,7 @@ void CleanupExceptionResourceReferenceCount940(DataBuffer operationBase,int64_t 
 void CleanupExceptionResourceReferenceCount950(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x70));
+  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionCallbackOffset70));
   return;
 }
 
