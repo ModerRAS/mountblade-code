@@ -111845,8 +111845,24 @@ void ProcessUIDataBufferTransformation(int64_t UiContext, int64_t DataSource, fl
 
 
 
- void FUN_18072e568(longlong uiContext,uint dataSource,longlong targetBuffer,UIHandle bufferSize)
-void FUN_18072e568(longlong uiContext,uint dataSource,longlong targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief UI系统数据转换处理器
+ * 
+ * 该函数负责处理UI系统中的数据转换操作，包括：
+ * - 数据格式转换和标准化
+ * - 浮点数据批量处理
+ * - 内存数据块操作
+ * - 缓冲区边界检查
+ * 
+ * @param UiContext UI上下文指针，包含UI系统的状态信息
+ * @param DataSource 数据源标识符，指定输入数据源
+ * @param TargetBuffer 目标缓冲区指针，存储处理后的数据
+ * @param BufferSize 缓冲区大小，指定处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072e568
+ * @warning 函数执行大量内存操作，需要确保参数有效性
+ */
+void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64_t TargetBuffer, UIHandle BufferSize)
 
 {
   float *BaseValuePointer;
@@ -111858,11 +111874,11 @@ void FUN_18072e568(longlong uiContext,uint dataSource,longlong targetBuffer,UIHa
   float ResultFloatValue;
   float TemporaryFloatValue;
   float LocalFloatValue9;
-  float baseValue0;
-  float *baseScaleFactor;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
+  float BaseValue0;
+  float *ScaleFactorPointer;
+  int64_t MemoryBlock2;
+  int64_t MemoryBlock3;
+  int64_t MemoryBlock4;
   int unmodifiedEBX;
   longlong TargetHandle;
   longlong allocatedMemory5;
