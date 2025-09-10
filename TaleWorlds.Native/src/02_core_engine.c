@@ -75,6 +75,12 @@
 #define DataLinkCleanupOffset 0x38                          // 数据链接清理偏移量
 #define DataLinkCallbackOffset 0x60                         // 数据链接回调偏移量
 
+// 系统内存池和缓冲区常量
+#define SystemMemoryPoolBlockSize 0x180                      // 系统内存池块大小
+#define SystemContextOffset 0x180                             // 系统上下文偏移量
+#define SystemMemoryValidationAddress 0x180c84871            // 系统内存验证地址
+#define SystemSecondaryValidationAddress 0x180c82847          // 系统次要验证地址
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
@@ -42863,7 +42869,7 @@ SystemValidationStart: // 原始标签：LAB_180066bf4，SystemValidationStart
     do {
       MemoryPoolBlockSize = LoopCounter;
       CharacterTablePointer = MemoryPoolBlockSize + 1;
-    } while (*(char *)(MemoryPoolBlockSize + 0x180c84871) != '\0');
+    } while (*(char *)(MemoryPoolBlockSize + SystemMemoryValidationAddress) != '\0');
     if ((int)(MemoryPoolBlockSize + 1) != 0) {
       ValidationResult = (int)MemoryPoolBlockSize + 2;
       InputDataLength = ValidationResult;
@@ -43579,7 +43585,7 @@ void ManageBufferIndexllocation(long long *ContextHandle
   EngineContextValue = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
   SystemStackRegisterFlagB0 = 1;
   LocalStackValueC0 = EngineContextValue;
-  (**(code **)(MemoryBlockIndex + 0x180))(&EngineContextValue,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
+  (**(code **)(MemoryBlockIndex + SystemMemoryPoolBlockSize))(&EngineContextValue,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
   if (((char)SystemStackRegisterFlagB0 == '\0') && (EngineContextValue != 0)) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
@@ -43976,7 +43982,7 @@ long long CalculateAllocatedMemorySize(long long ContextHandle,long long Operati
       SystemValidationFunction = *(code **)(OperationBufferSize + 0x178);
     }
     *(code **)(ContextHandle + 0x178) = SystemValidationFunction;
-    *(void *)(ContextHandle + 0x180) = *(void *)(OperationBufferSize + 0x180);
+    *(void *)(ContextHandle + SystemContextOffset) = *(void *)(OperationBufferSize + SystemContextOffset);
   }
   *(void *)(ContextHandle + 0x188) = *(void *)(OperationBufferSize + 0x188);
   *(void *)(ContextHandle + 400) = *(void *)(OperationBufferSize + 400);
@@ -51286,7 +51292,7 @@ long long * ProcessCoreEngineDataStructureAndContext(long long *ContextHandle,lo
   *(long long *)(MemoryBlockIndex + 0x168) = SystemStringIndex;
   *(long long *)(MemoryBlockIndex + 0x170) = SystemContextValue;
   *(long long *)(MemoryBlockIndex + 0x178) = SystemDataTablePointer;
-  *(int *)(MemoryBlockIndex + 0x180) = (int)LoopIndex;
+  *(int *)(MemoryBlockIndex + SystemMemoryPoolBlockSize) = (int)LoopIndex;
   *(uint32_t *)(MemoryBlockIndex + 0x184) = MemoryPoolIndex;
   *(int *)(MemoryBlockIndex + 0x188) = (int)CharacterTablePointer;
   *(uint32_t *)(MemoryBlockIndex + 0x18c) = MemoryAddressMaskPointer;
@@ -52588,7 +52594,7 @@ SystemBufferValidationError:
       *(void *)(ContextHandle + 0x168) = SystemFlagA;
       *(void *)(ContextHandle + 0x170) = SystemFlagB;
       *(void *)(ContextHandle + 0x178) = OperationStatus;
-      *(void *)(ContextHandle + 0x180) = ErrorCode;
+      *(void *)(ContextHandle + SystemContextOffset) = ErrorCode;
       *(void *)(ContextHandle + 0x188) = SystemFlagE;
       *(void *)(ContextHandle + 400) = SystemFlagF;
       *(void *)(ContextHandle + 0x198) = SystemFlagG;
@@ -52601,7 +52607,7 @@ SystemBufferValidationError:
       *(void *)(ContextHandle + 0x168) = SystemFlagA;
       *(void *)(ContextHandle + 0x170) = SystemFlagB;
       *(void *)(ContextHandle + 0x178) = OperationStatus;
-      *(void *)(ContextHandle + 0x180) = ErrorCode;
+      *(void *)(ContextHandle + SystemContextOffset) = ErrorCode;
       *(void *)(ContextHandle + 0x188) = SystemFlagE;
       *(void *)(ContextHandle + 400) = SystemFlagF;
       *(void *)(ContextHandle + 0x198) = SystemFlagG;
@@ -52953,7 +52959,7 @@ void CoreEngineProcessSystemContext(void
     *(void *)(SystemContext + 0x168) = StackProcessingParameter68;
     *(void *)(SystemContext + 0x170) = StackProcessingParameter70;
     *(void *)(SystemContext + 0x178) = StackProcessingParameter78;
-    *(void *)(SystemContext + 0x180) = StackProcessingParameter80;
+    *(void *)(SystemContext + SystemContextOffset) = StackProcessingParameter80;
     *(void *)(SystemContext + 0x188) = StackProcessingParameter88;
     *(void *)(SystemContext + 400) = StackProcessingParameter3;
     *(void *)(SystemContext + 0x198) = StackProcessingParameter98;
@@ -52966,7 +52972,7 @@ void CoreEngineProcessSystemContext(void
     *(void *)(SystemContext + 0x168) = MemoryAllocationOffset;
     *(void *)(SystemContext + 0x170) = InputDataLength;
     *(void *)(SystemContext + 0x178) = MemoryAllocationBase;
-    *(void *)(SystemContext + 0x180) = MemoryPoolIndexSecondary;
+    *(void *)(SystemContext + SystemContextOffset) = MemoryPoolIndexSecondary;
     *(void *)(SystemContext + 0x188) = MemoryPoolIndexAdditional;
     *(void *)(SystemContext + 400) = MemoryPoolIndex7;
     *(void *)(SystemContext + 0x198) = MemoryPoolIndex8;
@@ -53226,7 +53232,7 @@ void ProcessFloatCalculationAndDataFiltering(void)
     *(void *)(SystemContext + 0x168) = StackProcessingParameter68;
     *(void *)(SystemContext + 0x170) = StackProcessingParameter70;
     *(void *)(SystemContext + 0x178) = StackProcessingParameter78;
-    *(void *)(SystemContext + 0x180) = StackProcessingParameter80;
+    *(void *)(SystemContext + SystemContextOffset) = StackProcessingParameter80;
     *(void *)(SystemContext + 0x188) = StackProcessingParameter88;
     *(void *)(SystemContext + 400) = StackProcessingParameter3;
     *(void *)(SystemContext + 0x198) = StackProcessingParameter98;
@@ -53239,7 +53245,7 @@ void ProcessFloatCalculationAndDataFiltering(void)
     *(void *)(SystemContext + 0x168) = MemoryAllocationOffset;
     *(void *)(SystemContext + 0x170) = InputDataLength;
     *(void *)(SystemContext + 0x178) = MemoryAllocationBase;
-    *(void *)(SystemContext + 0x180) = MemoryPoolIndexSecondary;
+    *(void *)(SystemContext + SystemContextOffset) = MemoryPoolIndexSecondary;
     *(void *)(SystemContext + 0x188) = MemoryPoolIndexAdditional;
     *(void *)(SystemContext + 400) = MemoryPoolIndex7;
     *(void *)(SystemContext + 0x198) = MemoryPoolIndex8;
@@ -53391,7 +53397,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
     *(void *)(SystemContext + 0x168) = StackProcessingParameter68;
     *(void *)(SystemContext + 0x170) = StackProcessingParameter70;
     *(void *)(SystemContext + 0x178) = StackProcessingParameter78;
-    *(void *)(SystemContext + 0x180) = StackProcessingParameter80;
+    *(void *)(SystemContext + SystemContextOffset) = StackProcessingParameter80;
     *(void *)(SystemContext + 0x188) = StackProcessingParameter88;
     *(void *)(SystemContext + 400) = StackProcessingParameter3;
     *(void *)(SystemContext + 0x198) = StackProcessingParameter98;
@@ -53574,7 +53580,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
     *(void *)(SystemContext + 0x168) = StackProcessingParameter68;
     *(void *)(SystemContext + 0x170) = StackProcessingParameter70;
     *(void *)(SystemContext + 0x178) = StackProcessingParameter78;
-    *(void *)(SystemContext + 0x180) = StackProcessingParameter80;
+    *(void *)(SystemContext + SystemContextOffset) = StackProcessingParameter80;
     *(void *)(SystemContext + 0x188) = StackProcessingParameter88;
     *(void *)(SystemContext + 400) = StackProcessingParameter3;
     *(void *)(SystemContext + 0x198) = StackProcessingParameter98;
@@ -53663,7 +53669,7 @@ void ProcessSystemMemoryAndValidationStatuss(void
     *(void *)(SystemContext + 0x168) = StackProcessingParameter68;
     *(void *)(SystemContext + 0x170) = StackProcessingParameter70;
     *(void *)(SystemContext + 0x178) = StackProcessingParameter78;
-    *(void *)(SystemContext + 0x180) = StackProcessingParameter80;
+    *(void *)(SystemContext + SystemContextOffset) = StackProcessingParameter80;
     *(void *)(SystemContext + 0x188) = StackProcessingParameter88;
     *(void *)(SystemContext + 400) = StackProcessingParameter3;
     *(void *)(SystemContext + 0x198) = StackProcessingParameter98;
