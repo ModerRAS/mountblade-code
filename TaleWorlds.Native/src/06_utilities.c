@@ -9387,15 +9387,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
 #define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
-// 原始函数名：FUN_180897d90 - 数据验证函数A0
+#define FUN_180897d90 ValidateDataBlockIntegrity
 // 功能：验证数据结构并执行相关操作，确保数据完整性
 #define ValidateDataStructureA0 ValidateDataStructureWithIntegrityCheck
 
-// 原始函数名：FUN_180898040 - 浮点数据处理函数A1
+#define FUN_180898040 ProcessFloatingPointData
 // 功能：处理复杂的浮点数据计算和转换，支持多种数值格式
 #define ProcessFloatingPointDataA1 ProcessComplexFloatingPointCalculations
 
-// 原始函数名：FUN_1808986b0 - 数据块验证函数A0
+#define FUN_1808986b0 ValidateDataBlockWithSecurity
 // 功能：验证数据块的完整性和有效性
 #define ValidateDataBlockA0 ValidateDataBlockIntegrity
 
