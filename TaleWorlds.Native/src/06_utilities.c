@@ -64679,7 +64679,7 @@ void SetSystemReservedDataBufferPointerA(DataBuffer operationBase,int64_t dataBu
 void SetSystemReservedDataBufferPointerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset60) = &SystemUnknownDataBuffer;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset60) = &SystemReservedDataBuffer;
   return;
 }
 
@@ -130064,28 +130064,50 @@ void ExecuteCallbackFunction(DataBuffer *callbackContext)
 void InitializeUtilityModule(void)
 
 {
-  int64_t memoryEndAddress;
-  int64_t currentMemoryAddress;
-  
-  GlobalExceptionHandlerPointer = &SystemTemporaryExceptionHandler;
-  if (SystemInitializationFlag != 0) {
-    SystemEmergencyShutdown();
-  }
-  SystemInitializationFlag = 0;
-  SystemDataPointer = 0;
-  GlobalExceptionHandlerPointer = &DefaultExceptionHandler;
-  if (SystemMemoryManager == 0) {
-    InitializeSystemMemory();
-    memoryEndAddress = SystemMemoryEndAddress;
-    for (currentMemoryAddress = SystemMemoryStartAddress; currentMemoryAddress != memoryEndAddress; currentMemoryAddress = currentMemoryAddress + 0x100) {
-      InitializeMemoryRegion(currentMemoryAddress);
+    int64_t SystemMemoryEndAddress;
+    int64_t CurrentMemoryRegionAddress;
+    
+    // 设置临时异常处理器，确保初始化过程中的异常能被正确处理
+    GlobalExceptionHandlerPointer = &SystemTemporaryExceptionHandler;
+    
+    // 检查系统是否已经初始化，如果已初始化则执行紧急关闭
+    if (SystemInitializationFlag != 0) {
+        SystemEmergencyShutdown();
     }
-    if (SystemMemoryStartAddress == 0) {
-      return;
+    
+    // 重置系统初始化标志和数据指针
+    SystemInitializationFlag = 0;
+    SystemDataPointer = 0;
+    
+    // 恢复默认异常处理器
+    GlobalExceptionHandlerPointer = &DefaultExceptionHandler;
+    
+    // 检查内存管理器是否已初始化
+    if (SystemMemoryManager == 0) {
+        // 初始化系统内存
+        InitializeSystemMemory();
+        
+        // 获取内存结束地址
+        SystemMemoryEndAddress = SystemMemoryEndAddress;
+        
+        // 遍历所有内存区域并进行初始化
+        for (CurrentMemoryRegionAddress = SystemMemoryStartAddress; 
+             CurrentMemoryRegionAddress != SystemMemoryEndAddress; 
+             CurrentMemoryRegionAddress = CurrentMemoryRegionAddress + 0x100) {
+            InitializeMemoryRegion(CurrentMemoryRegionAddress);
+        }
+        
+        // 验证内存起始地址是否有效
+        if (SystemMemoryStartAddress == 0) {
+            return;
+        }
+        
+        // 如果内存初始化过程中出现问题，执行紧急关闭
+        SystemEmergencyShutdown();
     }
+    
+    // 如果内存管理器已初始化但仍出现问题，执行紧急关闭
     SystemEmergencyShutdown();
-  }
-  SystemEmergencyShutdown();
 }
 
 
