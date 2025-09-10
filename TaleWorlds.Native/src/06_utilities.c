@@ -4782,6 +4782,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证系统数据的完整性和安全性
 #define ProcessSystemDataValidation ValidateSystemDataAndIntegrity
 
+// 数据处理配置常量
+#define DataProcessingStandardSize 0x14                           // 数据处理标准大小
+#define DataProcessingSecondaryOffset 0x4                          // 数据处理辅助偏移量
+#define DataProcessingTertiaryOffset 0x8                           // 数据处理第三偏移量
+#define DataProcessingQuaternaryOffset 0xc                          // 数据处理第四偏移量
+#define DataProcessingStackFlags 0x20214                          // 数据处理栈标志
+#define DataProcessingSecurityCheckValue 2                         // 数据处理安全检查值
+
 // FUN_函数批量美化定义 - 第一批：核心系统函数
 // 系统数据传输处理器 - 处理系统数据的传输和验证
 #define FUN_180062300 ProcessSystemDataTransferAndValidation
@@ -30509,8 +30517,8 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   stackValidationResult = 0;
   DataProcessingContext *dataProcessingContext;
   dataProcessingContext = &DataProcessingConfigurationTableA1;
-  securityCheckValue = 2;
-  stackOperationFlags = 0x20214;
+  securityCheckValue = DataProcessingSecurityCheckValue;
+  stackOperationFlags = DataProcessingStackFlags;
   operationResult = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
   if ((int)operationResult == 0) {
     exceptionContext = *(int64_t *)(operationBase[1] + OperationBaseConfigOffset);
