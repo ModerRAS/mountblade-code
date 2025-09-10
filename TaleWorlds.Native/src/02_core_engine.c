@@ -26126,27 +26126,27 @@ uint32_t SystemShutdownAndCleanup(void
   CleanupContext = (long long ****)CoreEngineAllocateSystemMemory(MemoryBlock,2,TimeoutValue);
   FinalContext = CleanupContext;
   if (CleanupContext != (long long ****)0x0) {
-    (*(void *)(*CleanupContext)[5])(CleanupContext);
+    (*(void *)(*CleanupContext)[SystemContextOperationOffset5])(CleanupContext);
   }
   SystemHandle = *(uint64_t **)(TimeoutValue + 400);
   FunctionPointer = *(void **)*SystemHandle;
   PrimaryStackContext = &SecondaryStackContext;
   SecondaryStackContext = (long long ***)CleanupContext;
   if (CleanupContext != (long long ****)0x0) {
-    (*(void *)(*CleanupContext)[5])(CleanupContext);
+    (*(void *)(*CleanupContext)[SystemContextOperationOffset5])(CleanupContext);
   }
   (*FunctionPointer)(SystemHandle,&SecondaryStackContext);
   CleanupFlags = MemoryAllocate(MemoryPoolManager,0x70,8,3,CleanupFlags,SystemContext,FinalContext);
   ThreadContext = (long long ***)CoreEngineAllocateSystemMemory(CleanupFlags,0,TimeoutValue);
   if (ThreadContext != (long long ***)0x0) {
-    (*(void *)(*ThreadContext)[5])(ThreadContext);
+    (*(void *)(*ThreadContext)[SystemContextOperationOffset5])(ThreadContext);
   }
   SystemHandle = *(uint64_t **)(TimeoutValue + 400);
   FunctionPointer = *(void **)*SystemHandle;
   PrimaryStackContext = (long long ****)&TertiaryStackContext;
   TertiaryStackContext = (long long **)ThreadContext;
   if (ThreadContext != (long long ***)0x0) {
-    (*(void *)(*ThreadContext)[5])(ThreadContext);
+    (*(void *)(*ThreadContext)[SystemContextOperationOffset5])(ThreadContext);
   }
   (*FunctionPointer)(SystemHandle,&TertiaryStackContext);
   CoreEngineInitializeSystemHandle(*(uint64_t *)(TimeoutValue + 400));
