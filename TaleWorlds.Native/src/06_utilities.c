@@ -28798,7 +28798,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
   DataBuffer systemMemoryBuffer;
   uint8_t *exceptionDataBuffer;
   float processedValue;
-  int64_t exceptionHandlerContext4;
+  int64_t ExceptionHandlerContext4;
   float *floatValuePointer;
   DataBuffer *exceptionBuffer6;
   ByteFlag TertiaryEncryptionKeyBuffer [32];
@@ -43307,59 +43307,59 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
           case SystemStatus12:
             systemStatusUnion[0] = SystemStatus12;
             break;
-          case 0x13:
-            systemStatusUnion[0] = 0x13;
+          case SystemStatus13:
+            systemStatusUnion[0] = SystemStatus13;
             break;
-          case 0x14:
-            systemStatusUnion[0] = 0x14;
+          case SystemStatus14:
+            systemStatusUnion[0] = SystemStatus14;
             break;
-          case 0x15:
-            systemStatusUnion[0] = 0x15;
+          case SystemStatus15:
+            systemStatusUnion[0] = SystemStatus15;
             break;
-          case 0x16:
-            systemStatusUnion[0] = 0x16;
+          case SystemStatus16:
+            systemStatusUnion[0] = SystemStatus16;
             break;
-          case 0x17:
-            systemStatusUnion[0] = 0x17;
+          case SystemStatus17:
+            systemStatusUnion[0] = SystemStatus17;
             break;
-          case 0x18:
-            systemStatusUnion[0] = 0x18;
+          case SystemStatus18:
+            systemStatusUnion[0] = SystemStatus18;
             break;
-          case 0x19:
-            systemStatusUnion[0] = 0x19;
+          case SystemStatus19:
+            systemStatusUnion[0] = SystemStatus19;
             break;
-          case 0x1a:
-            systemStatusUnion[0] = 0x1a;
+          case SystemStatus1A:
+            systemStatusUnion[0] = SystemStatus1A;
             break;
-          case 0x1b:
-            systemStatusUnion[0] = 0x1b;
+          case SystemStatus1B:
+            systemStatusUnion[0] = SystemStatus1B;
             break;
-          case 0x1c:
-            systemStatusUnion[0] = 0x1c;
+          case SystemStatus1C:
+            systemStatusUnion[0] = SystemStatus1C;
             break;
-          case 0x1d:
-            systemStatusUnion[0] = 0x1d;
+          case SystemStatus1D:
+            systemStatusUnion[0] = SystemStatus1D;
             break;
-          case 0x1e:
-            systemStatusUnion[0] = 0x1e;
+          case SystemStatus1E:
+            systemStatusUnion[0] = SystemStatus1E;
             break;
-          case 0x1f:
-            systemStatusUnion[0] = 0x1f;
+          case SystemStatus1F:
+            systemStatusUnion[0] = SystemStatus1F;
             break;
-          case 0x20:
-            systemStatusUnion[0] = 0x20;
+          case SystemStatus20:
+            systemStatusUnion[0] = SystemStatus20;
             break;
-          case 0x21:
-            systemStatusUnion[0] = 0x21;
+          case SystemStatus21:
+            systemStatusUnion[0] = SystemStatus21;
             break;
-          case 0x22:
-            systemStatusUnion[0] = 0x22;
+          case SystemStatus22:
+            systemStatusUnion[0] = SystemStatus22;
             break;
-          case 0x23:
-            systemStatusUnion[0] = 0x23;
+          case SystemStatus23:
+            systemStatusUnion[0] = SystemStatus23;
             break;
-          case 0x24:
-            systemStatusUnion[0] = 0x24;
+          case SystemStatus24:
+            systemStatusUnion[0] = SystemStatus24;
           }
           systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                             (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
