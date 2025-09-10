@@ -130005,10 +130005,21 @@ void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext
 
 
 
-// 函数: bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
-// 功能：检查工具系统状态，验证系统是否正常
-// 参数：systemContextHandle-系统上下文句柄
-// 返回值：true-系统正常，false-系统异常
+/**
+ * @brief 检查工具系统状态
+ * 
+ * 该函数负责验证工具系统的当前状态，通过检查系统上下文中的特定值
+ * 来判断系统是否正常运行。这是一个关键的系统健康检查函数。
+ * 
+ * @param systemContextHandle 系统上下文句柄指针，指向系统状态数据结构
+ * @return bool 系统状态检查结果：
+ *         - true: 系统状态正常
+ *         - false: 系统状态异常
+ * 
+ * @note 该函数通过比较特定的魔数(-0x3ffffffb)来验证系统状态
+ * @warning 该函数是系统稳定性检查的重要组成部分，不应修改其验证逻辑
+ * @see InitializeUtilityModule, ValidateSystemState
+ */
 bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 
 {
