@@ -228451,7 +228451,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
             ProcessCharacterMemoryAllocationAndBufferManagement(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
             return OperationBufferSize;
           }
-          FUN_18018af30(ContextHandle,OperationBufferSize,1);
+          ProcessContextHandleBufferManagementAndDataValidation(ContextHandle,OperationBufferSize,1);
           return OperationBufferSize;
         }
       }

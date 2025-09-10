@@ -187880,7 +187880,15 @@ float CalculateUIContextLogarithmicValue(longlong uiContext)
 
 
  void FUN_180776090(void)
-void FUN_180776090(void)
+/**
+ * @brief UI系统内存清理器
+ * 
+ * 该函数负责清理UI系统的内存区域，将指定的内存块清零。
+ * 这是一个不返回的函数，用于系统清理或重置操作。
+ * 
+ * @note 该函数不会返回，通常用于系统重置或紧急清理
+ */
+void ClearUISystemMemory(void)
 
 {
                      WARNING: Subroutine does not return
