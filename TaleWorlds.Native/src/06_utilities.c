@@ -5046,6 +5046,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808fc914
  * @warning 数据验证失败可能会导致系统异常，需要妥善处理
  */
+#define FUN_1808fc914 ValidateDataWithParametersAndValidation
 #define ValidateDataWithParams ValidateDataWithParametersAndValidation
 
 /**
@@ -5055,6 +5056,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc074
  */
+#define FUN_1808fc074 ValidateSystemStateAndCheckResources
 #define ValidateSystemStateAndCheckResources ValidateSystemStateAndCheckResources
 
 /**
@@ -5073,6 +5075,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1803f33b0
  * @warning 非法内存访问可能会导致系统崩溃，需要确保访问参数的有效性
  */
+#define FUN_1803f33b0 ProcessMemoryAccessWithValidation
 #define ProcessMemoryAccessWithValidation ProcessMemoryAccessWithValidation
 
 /**
@@ -13692,16 +13695,16 @@ uint8_t SystemDataQuinquagesiquinary;
 uint8_t SystemDataQuinquagesisenary;
 uint8_t SystemDataQuinquagesiseptenary;
 uint8_t SystemDataQuinquagesioctary;
-uint8_t UtilitySystemDataQuinquagesinonary;
-uint8_t UtilitySystemDataQuinquagesidenary;
-uint8_t UtilitySystemDataSexagesimary;
-uint8_t UtilitySystemDataSexagesisecondary;
-uint8_t UtilitySystemDataSexagesitertiary;
-uint8_t UtilitySystemDataSexagesiquaternary;
-uint8_t UtilitySystemDataSexagesiquinary;
-uint8_t UtilitySystemDataSexagesisenary;
-uint8_t UtilitySystemDataSexagesiseptenary;
-uint8_t UtilitySystemDataSexagesioctary;
+uint8_t SystemDataQuinquagesinonary;
+uint8_t SystemDataQuinquagesidenary;
+uint8_t SystemDataSexagesimary;
+uint8_t SystemDataSexagesisecondary;
+uint8_t SystemDataSexagesitertiary;
+uint8_t SystemDataSexagesiquaternary;
+uint8_t SystemDataSexagesiquinary;
+uint8_t SystemDataSexagesisenary;
+uint8_t SystemDataSexagesiseptenary;
+uint8_t SystemDataSexagesioctary;
 uint8_t UtilitySystemDataSexagesinonary;
 uint8_t UtilitySystemDataSexagesidenary;
 uint8_t UtilitySystemDataSeptuagesimary;
