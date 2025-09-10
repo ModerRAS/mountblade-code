@@ -242506,7 +242506,7 @@ LAB_18019d905:
 
 
 
-unsigned long long FUN_18019da10(uint32_t ContextHandle,long long OperationBufferSize
+unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t ContextHandle,long long OperationBufferSize
 {
   uint32_t Utf16Char;
   long long ****pppBufferAllocationStatus;
@@ -290444,6 +290444,19 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_1801293e0
  */
 #define AllocateSystemProcessingCharacterStatusBuffer FUN_1801293e0
+
+/**
+ * @brief 处理系统上下文转换和编码验证
+ * 
+ * 该函数负责处理系统上下文的转换操作和编码验证，主要功能包括：
+ * - 管理系统上下文的转换和内存分配
+ * - 执行编码验证和字符处理
+ * - 处理缓冲区分配状态和系统事件
+ * - 验证系统数据的完整性和安全性
+ * 
+ * @note 原始函数名：FUN_18019da10
+ */
+#define ProcessSystemContextConversionAndEncodingValidation FUN_18019da10
 
 /**
  * @brief 处理字符代码和浮点数据

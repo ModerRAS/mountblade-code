@@ -5233,8 +5233,8 @@ void CleanupNetworkConnectionStack(void* NetworkConnectionStackBuffer)
   ResourceCleanupStatus = NetworkValidationFailure;
   
   // 清理连接缓冲区
-  if (ConnectionBuffer) {
-    memset(ConnectionBuffer, 0, NetworkConnectionBufferSize);  // 清理连接缓冲区
+  if (NetworkConnectionBuffer) {
+    memset(NetworkConnectionBuffer, 0, NetworkConnectionBufferSize);  // 清理连接缓冲区
     MemoryCleanupStatus = NetworkValidationSuccess;  // 内存释放成功
   }
   
@@ -5278,7 +5278,7 @@ void CopyNetworkConnectionBuffer(void* NetworkConnectionSourceBuffer)
   SecurityValidationResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
-  if (SourceBuffer) {
+  if (NetworkConnectionSourceBuffer) {
     SourceDataValidationResult = NetworkValidationSuccess;   // 数据验证通过
     SecurityValidationResult = NetworkValidationSuccess;     // 安全验证通过
     
