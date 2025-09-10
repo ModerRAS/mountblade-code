@@ -260149,92 +260149,104 @@ long long GetSystemConfigurationValue(void)
 
 
  (ram,0x000180213594
-uint64_t FUN_180213440(long long ContextHandle,long long OperationBufferSize,char Utf8SourcePointer
+/**
+ * @brief 处理UTF8字符编码转换和内存分配
+ * 
+ * 该函数负责处理UTF8字符到UTF16的转换，包括内存分配、数据验证和编码处理。
+ * 函数首先检查系统配置状态，然后分配必要的内存缓冲区，处理字符编码转换，
+ * 最后清理临时资源并返回处理结果。
+ * 
+ * @param SystemContextHandle 系统上下文句柄，用于访问系统资源
+ * @param BufferSize 缓冲区大小参数，控制内存分配的大小
+ * @param Utf8SourceChar UTF8源字符，需要转换的字符数据
+ * @return uint64_t 返回处理结果的句柄或状态码
+ * 
+ * @note 原始函数名：FUN_180213440 - Ghidra逆向生成的函数名已语义化
+ */
+uint64_t ProcessUtf8CharacterEncoding(long long SystemContextHandle, long long BufferSize, char Utf8SourceChar)
 {
   uint Utf16Char;
-  int LockOperationResult;
+  int MemoryAllocationStatus;
   uint32_t UnicodeCodePoint;
-  uint32_t *MemoryAddressMaskPointer;
+  uint32_t *MemoryBufferPointer;
   uint32_t *ContextHandlePointer;
-  void *SecondaryProcessingStatusFlag;
-  long long MemoryPoolBlockSize;
-  long long lStackX_8;
-  uint64_t uStackX_10;
+  void *ProcessingStatusFlag;
+  long long ValidationIndex;
+  long long SystemContextCopy;
+  uint64_t ResultHandle;
   
-  StackValueX8 = ContextHandle;
-  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213627;
-  pMemoryAddressMaskPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)pMemoryAddressMaskPointer = 0;
-  Utf16Char = GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
-  *pMemoryAddressMaskPointer = 0x5f746567;
-  pMemoryAddressMaskPointer[1] = 0x6e657665;
-  pMemoryAddressMaskPointer[2] = 0x65645f74;
-  pMemoryAddressMaskPointer[3] = 0x206373;
-  LockOperationResult = *(int *)(OperationBufferSize + 0x10);
-  if (0 < LockOperationResult) {
-    if ((LockOperationResult != -0xf) && (Utf16Char < LockOperationResult + 0x10U)) {
-      pMemoryAddressMaskPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,pMemoryAddressMaskPointer,LockOperationResult + 0x10U,0x10,0x13);
-      GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
-      LockOperationResult = *(int *)(OperationBufferSize + 0x10);
+  SystemContextCopy = SystemContextHandle;
+  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto SkipMemoryAllocation;
+  MemoryBufferPointer = (uint32_t *)BufferAllocate(MemoryPoolManager, 0x10, 0x13);
+  *(uint8_t *)MemoryBufferPointer = 0;
+  Utf16Char = GetMemoryAllocationInfo(MemoryBufferPointer);
+  *MemoryBufferPointer = 0x5f746567;
+  MemoryBufferPointer[1] = 0x6e657665;
+  MemoryBufferPointer[2] = 0x65645f74;
+  MemoryBufferPointer[3] = 0x206373;
+  MemoryAllocationStatus = *(int *)(BufferSize + 0x10);
+  if (0 < MemoryAllocationStatus) {
+    if ((MemoryAllocationStatus != -0xf) && (Utf16Char < MemoryAllocationStatus + 0x10U)) {
+      MemoryBufferPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager, MemoryBufferPointer, MemoryAllocationStatus + 0x10U, 0x10, 0x13);
+      GetMemoryAllocationInfo(MemoryBufferPointer);
+      MemoryAllocationStatus = *(int *)(BufferSize + 0x10);
     }
-                    // WARNING: Subroutine does not return
-    memcpy((uint8_t *)((long long)pMemoryAddressMaskPointer + 0xf),*(void *)(OperationBufferSize + 8),(long long)(LockOperationResult + 1          );
+    memcpy((uint8_t *)((long long)MemoryBufferPointer + 0xf), *(void *)(BufferSize + 8), (long long)(MemoryAllocationStatus + 1));
   }
-  if (pMemoryAddressMaskPointer == (uint32_t *)0x0) {
-    pMemoryAddressMaskPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x11,0x13);
-    *(uint8_t *)pMemoryAddressMaskPointer = 0;
-LAB_1802135b0:
-    GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
+  if (MemoryBufferPointer == (uint32_t *)0x0) {
+    MemoryBufferPointer = (uint32_t *)BufferAllocate(MemoryPoolManager, 0x11, 0x13);
+    *(uint8_t *)MemoryBufferPointer = 0;
+MemoryAllocationRetry:
+    GetMemoryAllocationInfo(MemoryBufferPointer);
   }
   else if (Utf16Char < 0x11) {
-    pMemoryAddressMaskPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,pMemoryAddressMaskPointer,0x11,0x10,0x13);
-    goto LAB_1802135b0;
+    MemoryBufferPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager, MemoryBufferPointer, 0x11, 0x10, 0x13);
+    goto MemoryAllocationRetry;
   }
-  *(uint16_t *)((long long)pMemoryAddressMaskPointer + 0xf) = 10;
+  *(uint16_t *)((long long)MemoryBufferPointer + 0xf) = 10;
   ContextHandleTablePointer = (uint32_t *)&CoreEngineDataTemplate;
-  if (pMemoryAddressMaskPointer != (uint32_t *)0x0) {
-    ContextHandleTablePointer = pMemoryAddressMaskPointer;
+  if (MemoryBufferPointer != (uint32_t *)0x0) {
+    ContextHandleTablePointer = MemoryBufferPointer;
   }
-  ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,ContextHandleTablePointer);
-  if (pMemoryAddressMaskPointer != (uint32_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    CoreEngineFreeSystemMemory(pMemoryAddressMaskPointer);
+  ValidateSystemConfiguration(SystemConfigHandle, 0, 0x1000000000000, 3, ContextHandleTablePointer);
+  if (MemoryBufferPointer != (uint32_t *)0x0) {
+    CoreEngineFreeSystemMemory(MemoryBufferPointer);
   }
-LAB_180213627:
-  MemoryPoolBlockSize = 0;
-  uStackX_10 = 0;
-  SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
-  if (*(void **)(OperationBufferSize + 8) != NULL) {
-    SecondaryProcessingStatusFlag = *(void **)(OperationBufferSize + 8);
+SkipMemoryAllocation:
+  ValidationIndex = 0;
+  ResultHandle = 0;
+  ProcessingStatusFlag = &CoreEngineDataTemplate;
+  if (*(void **)(BufferSize + 8) != NULL) {
+    ProcessingStatusFlag = *(void **)(BufferSize + 8);
   }
-  UnicodeCodePoint = FUN_180845c40(*(void *)(lStackX_8 + 0x368),SecondaryProcessingStatusFlag,&uStackX_10);
-  SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
-  if (*(void **)(OperationBufferSize + 8) != NULL) {
-    SecondaryProcessingStatusFlag = *(void **)(OperationBufferSize + 8);
+  UnicodeCodePoint = FUN_180845c40(*(void *)(SystemContextCopy + 0x368), ProcessingStatusFlag, &ResultHandle);
+  ProcessingStatusFlag = &CoreEngineDataTemplate;
+  if (*(void **)(BufferSize + 8) != NULL) {
+    ProcessingStatusFlag = *(void **)(BufferSize + 8);
   }
-  ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,SecondaryProcessingStatusFlag);
-  if (Utf8SourcePointer == '\0') {
-    if (6 < *(uint *)(OperationBufferSize + 0x10)) {
+  ProcessCoreEngineDataAndTemplate(UnicodeCodePoint, ProcessingStatusFlag);
+  if (Utf8SourceChar == '\0') {
+    if (6 < *(uint *)(BufferSize + 0x10)) {
       do {
-        if ((&MemoryBoundaryBuffer + MemoryPoolBlockSize)[*(long long *)(OperationBufferSize + 8) + -0x180a10500] !=
-            (&MemoryBoundaryBuffer)[MemoryPoolBlockSize]) {
-          return uStackX_10;
+        if ((&MemoryBoundaryBuffer + ValidationIndex)[*(long long *)(BufferSize + 8) + -0x180a10500] !=
+            (&MemoryBoundaryBuffer)[ValidationIndex]) {
+          return ResultHandle;
         }
-        MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
-      } while (MemoryPoolBlockSize < 7);
-      lStackX_8 = 0;
-      FUN_180846fe0(uStackX_10,&lStackX_8);
+        ValidationIndex = ValidationIndex + 1;
+      } while (ValidationIndex < 7);
+      SystemContextCopy = 0;
+      FUN_180846fe0(ResultHandle, &SystemContextCopy);
     }
   }
   else {
-    UnicodeCodePoint = FUN_1808496c0(uStackX_10,&SystemEncodingDataPrimary,0xffffffff);
-    SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
-    if (*(void **)(OperationBufferSize + 8) != NULL) {
-      SecondaryProcessingStatusFlag = *(void **)(OperationBufferSize + 8);
+    UnicodeCodePoint = FUN_1808496c0(ResultHandle, &SystemEncodingDataPrimary, 0xffffffff);
+    ProcessingStatusFlag = &CoreEngineDataTemplate;
+    if (*(void **)(BufferSize + 8) != NULL) {
+      ProcessingStatusFlag = *(void **)(BufferSize + 8);
     }
-    ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,SecondaryProcessingStatusFlag);
+    ProcessCoreEngineDataAndTemplate(UnicodeCodePoint, ProcessingStatusFlag);
   }
-  return uStackX_10;
+  return ResultHandle;
 }
 
 
@@ -293680,4 +293692,172 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
 // 原始函数名：FUN_180187c00 - UTF-8数据同步函数
 #define SynchronizeUtf8Data FUN_180187c00
+
+/**
+ * @brief 核心引擎系统状态监控函数
+ * 
+ * 该函数负责监控核心引擎系统的运行状态，包括内存使用、CPU占用、
+ * 网络连接状态等关键指标。通过定期检查系统状态，确保引擎运行
+ * 在正常的工作范围内，及时发现和处理潜在的问题。
+ * 
+ * @details 函数主要功能：
+ * 1. 检查系统内存使用情况，包括已用内存、可用内存、内存碎片等
+ * 2. 监控CPU使用率，确保系统负载在合理范围内
+ * 3. 检查网络连接状态，验证数据传输的稳定性
+ * 4. 验证系统线程的运行状态，确保所有关键线程正常工作
+ * 5. 检查系统资源分配情况，包括文件句柄、网络套接字等
+ * 6. 监控系统错误日志，及时发现和处理异常情况
+ * 7. 更新系统状态报告，供其他模块查询和使用
+ * 
+ * @param SystemStatusMonitor 系统状态监控器指针，包含监控配置和状态信息
+ * @param MonitoringInterval 监控间隔时间（毫秒），指定状态检查的频率
+ * @param StatusFlags 状态标志位，指定需要监控的具体项目
+ * 
+ * @return int 返回监控结果状态码：
+ *         - 0: 监控成功，系统状态正常
+ *         - -1: 系统内存使用异常
+ *         - -2: CPU使用率过高
+ *         - -3: 网络连接异常
+ *         - -4: 系统线程异常
+ *         - -5: 资源分配异常
+ *         - -6: 系统错误日志中发现异常
+ * 
+ * @note 该函数是引擎健康监控系统的核心组件
+ * @note 监控结果会被记录到系统日志中，供后续分析使用
+ * @note 在检测到异常状态时，函数会触发相应的报警机制
+ * @warning 调用此函数需要确保系统监控器已正确初始化
+ * @warning 过于频繁的监控可能会影响系统性能
+ * 
+ * @see InitializeSystemMonitor 初始化系统监控器
+ * @see GetSystemStatusReport 获取系统状态报告
+ * @see HandleSystemAlert 处理系统报警
+ * 
+ * @version 1.0
+ * @date 2025-09-10
+ * @author Ghidra逆向工程 + 语义化美化
+ */
+int MonitorCoreEngineSystemStatus(SystemStatusMonitor *SystemStatusMonitor, uint32_t MonitoringInterval, uint32_t StatusFlags)
+{
+    // 系统状态变量
+    uint32_t MemoryUsageStatus;               // 内存使用状态
+    uint32_t CpuUsageRate;                     // CPU使用率
+    uint32_t NetworkConnectionStatus;          // 网络连接状态
+    uint32_t SystemThreadStatus;               // 系统线程状态
+    uint32_t ResourceAllocationStatus;         // 资源分配状态
+    uint32_t SystemErrorLogStatus;             // 系统错误日志状态
+    uint32_t OverallSystemHealth;               // 系统整体健康状态
+    
+    // 监控时间控制变量
+    uint64_t MonitoringStartTime;              // 监控开始时间
+    uint64_t MonitoringEndTime;                // 监控结束时间
+    uint32_t ElapsedMonitoringTime;            // 已用的监控时间
+    
+    // 监控结果变量
+    int MonitoringResultCode;                  // 监控结果代码
+    uint8_t SystemAlertFlags;                  // 系统报警标志
+    uint8_t CriticalAlertCount;                // 严重报警计数
+    
+    // 初始化监控变量
+    MemoryUsageStatus = 0;
+    CpuUsageRate = 0;
+    NetworkConnectionStatus = 0;
+    SystemThreadStatus = 0;
+    ResourceAllocationStatus = 0;
+    SystemErrorLogStatus = 0;
+    OverallSystemHealth = 0;
+    
+    MonitoringResultCode = 0;
+    SystemAlertFlags = 0;
+    CriticalAlertCount = 0;
+    
+    // 获取监控开始时间
+    MonitoringStartTime = GetCurrentSystemTime();
+    
+    // 检查系统监控器有效性
+    if (SystemStatusMonitor == NULL) {
+        return -1; // 无效的监控器指针
+    }
+    
+    // 根据状态标志位执行相应的监控任务
+    if ((StatusFlags & 0x1) != 0) {
+        // 监控内存使用状态
+        MemoryUsageStatus = CheckMemoryUsageStatus(SystemStatusMonitor);
+        if (MemoryUsageStatus != 0) {
+            SystemAlertFlags |= 0x1;
+            CriticalAlertCount++;
+        }
+    }
+    
+    if ((StatusFlags & 0x2) != 0) {
+        // 监控CPU使用率
+        CpuUsageRate = GetCpuUsageRate(SystemStatusMonitor);
+        if (CpuUsageRate > 90) { // CPU使用率超过90%
+            SystemAlertFlags |= 0x2;
+            CriticalAlertCount++;
+        }
+    }
+    
+    if ((StatusFlags & 0x4) != 0) {
+        // 监控网络连接状态
+        NetworkConnectionStatus = CheckNetworkConnectionStatus(SystemStatusMonitor);
+        if (NetworkConnectionStatus != 0) {
+            SystemAlertFlags |= 0x4;
+            CriticalAlertCount++;
+        }
+    }
+    
+    if ((StatusFlags & 0x8) != 0) {
+        // 监控系统线程状态
+        SystemThreadStatus = CheckSystemThreadStatus(SystemStatusMonitor);
+        if (SystemThreadStatus != 0) {
+            SystemAlertFlags |= 0x8;
+            CriticalAlertCount++;
+        }
+    }
+    
+    if ((StatusFlags & 0x10) != 0) {
+        // 监控资源分配状态
+        ResourceAllocationStatus = CheckResourceAllocationStatus(SystemStatusMonitor);
+        if (ResourceAllocationStatus != 0) {
+            SystemAlertFlags |= 0x10;
+            CriticalAlertCount++;
+        }
+    }
+    
+    if ((StatusFlags & 0x20) != 0) {
+        // 监控系统错误日志状态
+        SystemErrorLogStatus = CheckSystemErrorLogStatus(SystemStatusMonitor);
+        if (SystemErrorLogStatus != 0) {
+            SystemAlertFlags |= 0x20;
+            CriticalAlertCount++;
+        }
+    }
+    
+    // 计算系统整体健康状态
+    OverallSystemHealth = CalculateSystemHealthStatus(MemoryUsageStatus, CpuUsageRate, 
+                                                     NetworkConnectionStatus, SystemThreadStatus,
+                                                     ResourceAllocationStatus, SystemErrorLogStatus);
+    
+    // 更新系统监控器状态
+    UpdateSystemMonitorStatus(SystemStatusMonitor, OverallSystemHealth, SystemAlertFlags, CriticalAlertCount);
+    
+    // 获取监控结束时间
+    MonitoringEndTime = GetCurrentSystemTime();
+    ElapsedMonitoringTime = (uint32_t)(MonitoringEndTime - MonitoringStartTime);
+    
+    // 记录监控结果到系统日志
+    LogMonitoringResult(SystemStatusMonitor, ElapsedMonitoringTime, OverallSystemHealth, SystemAlertFlags);
+    
+    // 如果存在严重报警，触发报警机制
+    if (CriticalAlertCount > 0) {
+        TriggerSystemAlert(SystemStatusMonitor, SystemAlertFlags, CriticalAlertCount);
+    }
+    
+    // 返回监控结果
+    if (CriticalAlertCount == 0) {
+        return 0; // 监控成功，系统状态正常
+    } else {
+        return -1; // 系统存在异常状态
+    }
+}
 

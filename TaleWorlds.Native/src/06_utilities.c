@@ -406,6 +406,20 @@
 #define DataBufferOffset24 0x24
 #define DataBufferOffset30 0x30
 
+// 数据验证相关常量
+#define DataValidationThreshold6A 0x6a                    // 数据验证阈值6A - 用于数据验证操作的阈值
+#define DataValidationThreshold6D 0x6d                    // 数据验证阈值6D - 用于数据验证操作的阈值  
+#define DataValidationThreshold81 0x81                    // 数据验证阈值81 - 用于数据验证操作的阈值
+#define SecurityValidationFlag0x1C 0x1c                   // 安全验证标志0x1C - 用于安全验证操作的标志
+
+// 安全验证相关常量
+#define SecurityValidationCodeLMPO 0x4f4c4d50             // 安全验证代码LMPO - 用于安全验证的代码
+#define SecurityValidationCodeBLMP 0x424c4d50             // 安全验证代码BLMP - 用于安全验证的代码
+
+// 内存管理相关常量
+#define MemoryReleaseBufferSize 0x100                     // 内存释放缓冲区大小 - 用于内存释放操作的缓冲区大小
+#define MemoryAllocationUnitSize 1                        // 内存分配单元大小 - 用于内存分配的单元大小
+
 // 数据缓冲区偏移量常量
 #define DataBufferOffsetPrimary 0x44
 #define DataBufferOffsetSecondary 0x54
@@ -35872,11 +35886,11 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   ByteFlag securityBuffer1 [32];
   ByteFlag securityBuffer2 [32];
   
-  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,0x4f4c4d50);
+  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,SecurityValidationCodeLMPO);
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer1,0,0x424c4d50);
+  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer1,0,SecurityValidationCodeBLMP);
   if ((int)validationResult != 0) {
     return validationResult;
   }
