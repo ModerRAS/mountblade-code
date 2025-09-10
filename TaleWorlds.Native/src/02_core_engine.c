@@ -260272,18 +260272,18 @@ long long ProcessSystemEventAndCharacterEncoding(long long SystemContextHandle, 
   uint32_t MemoryAllocationIndex;
   uint32_t *SystemEventTemplatePointer;
   int EncodingValidationResult;
-  long long lStackX_8;
+  long long ProcessingResult;
   void *SystemValidationPointer;
   uint32_t *ContextDataPointer;
   uint SystemPriorityLevel;
   uint64_t FunctionAddress;
   
-  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213890;
+  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto SkipEventProcessing;
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
   ContextDataPointer = (uint32_t *)0x0;
   SystemPriorityLevel = 0;
-  ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager, 0x10, 0x13);
   *(uint8_t *)ContextDataPointer = 0;
   Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
   *ContextDataPointer = 0x5f746567;
@@ -260292,7 +260292,7 @@ long long ProcessSystemEventAndCharacterEncoding(long long SystemContextHandle, 
   ContextDataPointer[3] = 0x206373;
   SystemPriorityLevel = 0xf;
   FunctionAddress.LowPart = Utf16Char;
-  ProcessSystemCharacterStatusUpdate(&SystemValidationPointer,OperationBufferSize);
+  ProcessSystemCharacterStatusUpdate(&SystemValidationPointer, BufferOperationSize);
   EncodingValidationResult = SystemPriorityLevel + 1;
   if (EncodingValidationResult != 0) {
     Utf16Char = SystemPriorityLevel + 2;
@@ -260300,47 +260300,59 @@ long long ProcessSystemEventAndCharacterEncoding(long long SystemContextHandle, 
       if ((int)Utf16Char < 0x10) {
         Utf16Char = 0x10;
       }
-      ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char,0x13);
+      ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager, (long long)(int)Utf16Char, 0x13);
       *(uint8_t *)ContextDataPointer = 0;
     }
     else {
-      if (Utf16Char <= (uint)FunctionAddress) goto LAB_180213823;
-      ContextDataPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,Utf16Char,0x10,0x13);
+      if (Utf16Char <= (uint)FunctionAddress) goto SkipMemoryReallocation;
+      ContextDataPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager, ContextDataPointer, Utf16Char, 0x10, 0x13);
     }
     FunctionAddress.LowPart = GetMemoryAllocationInfo(ContextDataPointer);
   }
-LAB_180213823:
+SkipMemoryReallocation:
   *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 10;
   SystemEventTemplatePointer = (uint32_t *)&CoreEngineDataTemplate;
   if (ContextDataPointer != (uint32_t *)0x0) {
     SystemEventTemplatePointer = ContextDataPointer;
   }
   SystemPriorityLevel = EncodingValidationResult;
-  ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,SystemEventTemplatePointer);
+  ValidateSystemConfiguration(SystemConfigHandle, 0, 0x1000000000000, 3, SystemEventTemplatePointer);
   SystemTemplatePointer = &SystemNullTemplate;
   if (ContextDataPointer != (uint32_t *)0x0) {
-                    // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
   ContextDataPointer = (uint32_t *)0x0;
   FunctionAddress = (unsigned long long)FunctionAddress.HighPart << 0x20;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
-LAB_180213890:
-  lStackX_8 = 0;
-  MemoryAllocationIndex = FUN_180845d20(*(void *)(ContextHandle + 0x368),
-                        (long long)OperationBufferSize * 0x10 + *(long long *)(ContextHandle + 0x3b8),&lStackX_8);
-  ProcessCoreEngineDataAndTemplate(MemoryAllocationIndex,&CoreEngineDataTemplate);
-  if ((lStackX_8 != 0) && (Utf8SourcePointer != '\0')) {
-    MemoryAllocationIndex = FUN_1808496c0(lStackX_8,&SystemEncodingDataPrimary,0xffffffff);
-    ProcessCoreEngineDataAndTemplate(MemoryAllocationIndex,&CoreEngineDataTemplate);
+SkipEventProcessing:
+  ProcessingResult = 0;
+  MemoryAllocationIndex = FUN_180845d20(*(void *)(SystemContextHandle + 0x368),
+                        (long long)BufferOperationSize * 0x10 + *(long long *)(SystemContextHandle + 0x3b8), &ProcessingResult);
+  ProcessCoreEngineDataAndTemplate(MemoryAllocationIndex, &CoreEngineDataTemplate);
+  if ((ProcessingResult != 0) && (Utf8SourceChar != '\0')) {
+    MemoryAllocationIndex = FUN_1808496c0(ProcessingResult, &SystemEncodingDataPrimary, 0xffffffff);
+    ProcessCoreEngineDataAndTemplate(MemoryAllocationIndex, &CoreEngineDataTemplate);
   }
-  return lStackX_8;
+  return ProcessingResult;
 }
 
 
 
  (ram,0x000180213a8e
-uint64_t FUN_180213920(long long ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理系统上下文验证和字符编码转换
+ * 
+ * 该函数负责验证系统上下文状态，处理字符编码转换，并进行系统校验和检查。
+ * 函数首先检查上下文状态，然后分配内存缓冲区，处理编码转换，
+ * 最后进行系统配置验证和校验和检查。
+ * 
+ * @param SystemContextHandle 系统上下文句柄，用于访问系统资源
+ * @param BufferOperationSize 缓冲区操作大小，控制内存分配的大小
+ * @return uint64_t 返回处理结果的句柄或状态码
+ * 
+ * @note 原始函数名：FUN_180213920 - Ghidra逆向生成的函数名已语义化
+ */
+uint64_t ProcessSystemContextValidationAndEncoding(long long SystemContextHandle, long long BufferOperationSize
 {
   uint Utf16Char;
   int LockOperationResult;

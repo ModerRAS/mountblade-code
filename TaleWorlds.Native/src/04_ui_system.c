@@ -120875,12 +120875,24 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIHandle dataSource,UIHandle targe
                      WARNING: Subroutine does not return
     ExecuteUIDataTransfer(processingResult,1,uiContext,&UIUnknownData458,&stack0x00000040);
   }
-FUN_180738fbf:
-  if (lStack0000000000000030 != 0) {
+/**
+ * @brief UI资源清理和渲染任务执行函数
+ * 
+ * 该函数负责清理UI内存资源并执行渲染任务，包括：
+ * - 检查UI资源状态并执行清理
+ * - 执行UI渲染任务
+ * 
+ * @param ResourceCleanupFlag 资源清理标志，指示是否需要清理UI内存资源
+ * @param RenderTaskParameter 渲染任务参数，用于执行特定的UI渲染任务
+ * 
+ * @note 原始函数名：FUN_180738fbf
+ */
+void CleanupUIResourceAndExecuteRenderTask(bool ResourceCleanupFlag, uint64_t RenderTaskParameter)
+{
+  if (ResourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(RenderTaskParameter);
 }
 
 
@@ -120967,40 +120979,52 @@ void FUN_180738fe1(void)
 
 
  void FUN_180739010(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_180739010(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-
+/**
+ * @brief UI数据处理和渲染任务执行函数
+ * 
+ * 该函数负责处理UI数据并执行渲染任务，包括：
+ * - 初始化UI处理参数和缓冲区
+ * - 执行数据验证和处理操作
+ * - 根据处理结果选择不同的执行路径
+ * - 清理资源并执行最终的渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于管理UI状态和资源
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180739010
+ */
+void ProcessUIDataAndExecuteRenderTask(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong resourceCleanupFlag;
+  UIHandle resourceHandle;
+  UIByte dataProcessingBuffer[256];
+  ulonglong renderTaskParameter;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  renderTaskParameter = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceCleanupFlag = 0;
+  processingResult = InitializeUIProcessingContext(uiContext, &resourceHandle, &resourceCleanupFlag);
   if (processingResult == 0) {
-    processingResult = FUN_1807456c0(stackUInt140,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_1807390fd;
+    processingResult = TransferUIData(resourceHandle, dataSource, targetBuffer);
+    if (processingResult == 0) goto RenderTaskExecution;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b800(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
-                     WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_1809572a8);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataBuffer(dataProcessingBuffer, 0x100, dataSource);
+    uiCompareResult = CompareUIDataBuffer(dataProcessingBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(dataProcessingBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
+    dataBufferPointer = dataProcessingBuffer;
+    ExecuteUIDataTransfer(processingResult, 1, uiContext, &UIComponentDataF50, dataProcessingBuffer);
   }
-FUN_1807390fd:
-  if (stackLong148 != 0) {
+RenderTaskExecution:
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)encryptionBuffer);
 }
 
 
