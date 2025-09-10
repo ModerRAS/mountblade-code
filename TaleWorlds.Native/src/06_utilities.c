@@ -23467,7 +23467,7 @@ void ValidateResourceAccess(int64_t resourceDescriptor, int64_t accessRequest)
  * @param systemDataPointer 系统数据指针，用于查询和存储处理结果
  * 
  * @return DataBuffer 处理结果状态码，0表示成功，非零表示各种错误状态
- *   - 0x1d - 浮点数无效(INF或NaN)
+ *   - FloatInvalidTypeMask - 浮点数无效(INF或NaN)
  *   - 0x4a - 系统数据查询失败
  *   - 0x1e - 数据指针无效
  *   - 0x1f - 数据状态验证失败
@@ -26771,7 +26771,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   validationCounter = *(uint *)(systemContext + SystemValidationCounterOffset14);
   
   // 验证数据完整性
-  if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
+  if ((int)((validationCounter ^ (int)validationCounter >> SignBitShift31) - ((int)validationCounter >> SignBitShift31)) < 0) {
     if (0 < *(int *)(systemContext + ExceptionHandlerCallbackOffset)) {
       return ResourceInvalidErrorCode; // 返回系统状态错误码
     }
@@ -26795,7 +26795,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   *(DataWord *)(systemContext + ExceptionHandlerCallbackOffset) = 0;
   
   // 最终验证检查
-  if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
+  if ((0 < (int)((validationCounter ^ (int)validationCounter >> SignBitShift31) - ((int)validationCounter >> SignBitShift31))) &&
      (operationStatus = ValidateSystemMemoryA0(exceptionHandlerContext,0), (int)operationStatus != 0)) {
     return operationStatus;
   }
@@ -26826,7 +26826,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
   validationCounter = *(uint *)((int64_t)parameterContext + ParameterContextFlagsOffset);
   
   // 验证数据完整性
-  if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
+  if ((int)((validationCounter ^ (int)validationCounter >> SignBitShift31) - ((int)validationCounter >> SignBitShift31)) < 0) {
     if (0 < (int)parameterContext[1]) {
       return ResourceInvalidErrorCode; // 返回参数错误码
     }
@@ -26851,7 +26851,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
   *(DataWord *)(parameterContext + 1) = 0;
   
   // 最终验证和配置操作
-  if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
+  if ((0 < (int)((validationCounter ^ (int)validationCounter >> SignBitShift31) - ((int)validationCounter >> SignBitShift31))) &&
      (operationStatus = ValidateParametersA2(parameterContext,0), (int)operationStatus != 0)) {
     return operationStatus;
   }
