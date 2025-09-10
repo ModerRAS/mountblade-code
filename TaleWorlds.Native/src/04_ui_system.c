@@ -3435,6 +3435,7 @@ typedef enum {
 #define FUN_180742250 ReleaseUIRecomponentData
 #define FUN_180742460 InitializeUIComponentInstance
 #define FUN_180743e90 InitializeUIContextAndResources
+#define FUN_1807554e0 ConfigureUIContextSection
 #define FUN_180742190 FindUIAvailableMemorySlot
 #define FUN_180768380 UpdateUIComponentState
 #define FUN_180786990 CheckUIStateStatus
