@@ -132875,7 +132875,66 @@ int CheckSystemStatusEP0(void *systemContext)
  * 
  * @note 原始函数名：FUN_18088c970
  */
-int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
+int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
+{
+    // 数据同步相关变量
+    uint8_t *SourceDataPointer;                  // 源数据指针
+    uint8_t *TargetDataPointer;                  // 目标数据指针
+    uint32_t DataBlockSize;                      // 数据块大小
+    uint32_t SynchronizedBytesCount;             // 已同步字节数
+    uint32_t DataValidationResult;               // 数据验证结果
+    uint32_t SynchronizationStatusCode;          // 同步状态码
+    
+    // 初始化变量
+    SourceDataPointer = (uint8_t *)dataSource;
+    TargetDataPointer = (uint8_t *)dataTarget;
+    DataBlockSize = 0;
+    SynchronizedBytesCount = 0;
+    DataValidationResult = 0;
+    SynchronizationStatusCode = 0;
+    
+    // 验证数据源和目标有效性
+    if (dataSource == NULL || dataTarget == NULL) {
+        return -1; // 无效数据指针
+    }
+    
+    // 获取数据块大小
+    DataBlockSize = GetDataBlockSize(dataSource);
+    if (DataBlockSize == 0 || DataBlockSize > MaxSafeBufferSize) {
+        return -2; // 无效数据块大小
+    }
+    
+    // 验证目标缓冲区容量
+    if (!ValidateTargetBufferCapacity(dataTarget, DataBlockSize)) {
+        return -3; // 目标缓冲区容量不足
+    }
+    
+    // 执行数据同步
+    while (SynchronizedBytesCount < DataBlockSize) {
+        // 读取源数据
+        uint8_t dataByte = SourceDataPointer[SynchronizedBytesCount];
+        
+        // 验证数据完整性
+        DataValidationResult = ValidateDataByte(dataByte);
+        if (DataValidationResult != 0) {
+            return DataValidationResult; // 数据验证失败
+        }
+        
+        // 写入目标数据
+        TargetDataPointer[SynchronizedBytesCount] = dataByte;
+        
+        SynchronizedBytesCount++;
+    }
+    
+    // 验证同步结果
+    SynchronizationStatusCode = VerifyDataSynchronization(
+        dataSource,
+        dataTarget,
+        DataBlockSize
+    );
+    
+    return SynchronizationStatusCode;
+}
 
 // 原始函数名：FUN_18088cbb0 - 数据验证函数ER0
 // 功能：验证数据ER0，确保数据正确性
