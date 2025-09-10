@@ -839,7 +839,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackValidationFlag49 StackValidationFlag49                 // 栈验证标志49
 
 // 系统事件和标志变量定义
-#define SystemEventValidationStatus aEventValidationStatus      // 系统事件当前字符
+#define SystemEventValidationStatus SystemEventCurrentCharacterStatus      // 系统事件当前字符
 
 // 循环和计数变量语义化宏定义
 #define LoopIterationCounter LoopIndex                             // 循环迭代计数器 - 循环索引
@@ -1845,7 +1845,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ResetSystemCharacterState ResetSystemCharacterState   // 重置系统字符状态
 #define TemporaryProcessingStatus TemporaryStackValue58    // 临时处理状态
 #define TemporaryFloatResult TemporaryFloatStack44        // 临时浮点结果
-#define ProcessingValidationStatus ValidationStatus6                // 处理字符串缓冲区
+#define ProcessingValidationStatus SystemCharacterValidationStatus6                // 处理字符串缓冲区
 #define SystemPrimaryContext SystemContextValue            // 系统主上下文
 #define SystemConfigHandle SystemConfigurationHandle        // 系统配置句柄
 #define CharacterStringPointer CharacterPointer            // 字符串指针
