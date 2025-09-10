@@ -400193,7 +400193,7 @@ LAB_18089cad8:
         if ((int)processingStatus != 0) {
           return processingStatus;
         }
-        processStatus = FUN_1808de0e0(dataPointer,uiContextBasePointer + 0x77);
+        processStatus = ValidateUIDataBufferIntegrityAndSecurity(dataPointer,uiContextBasePointer + 0x77);
         if ((int)processingStatus != 0) {
           return processingStatus;
         }
