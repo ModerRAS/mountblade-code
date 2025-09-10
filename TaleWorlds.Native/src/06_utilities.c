@@ -62348,7 +62348,7 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
  * 
  * @note 原始函数名：Unwind_180904b00
  */
-void CleanupSystemStateB00(DataBuffer operationBase,int64_t dataBuffer)
+void SetSystemDataBufferExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40) = &SystemDataBuffer;
