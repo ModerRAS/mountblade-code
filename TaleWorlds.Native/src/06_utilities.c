@@ -90,7 +90,7 @@
 #define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
 #define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
 
-// 系统初始化错误码定义
+// === 系统初始化错误码定义 ===
 #define SystemInitializationSuccess 0x0                         // 系统初始化成功
 #define SystemMemoryStructureInitFailed 0x1                     // 系统内存结构初始化失败
 #define SystemConfigurationFailed 0x2                            // 系统配置失败
@@ -98,12 +98,11 @@
 #define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败
 #define SystemStateValidationFailed 0x5                          // 系统状态验证失败
 
-// 资源管理常量
+// === 资源管理常量 ===
 #define ResourceReferenceDecrement -1                             // 资源引用计数递减值
 
-// 浮点数数据偏移量常量
+// === 浮点数数据偏移量常量 ===
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
-#define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
 #define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
 #define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
 #define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
@@ -111,6 +110,7 @@
 #define DataBufferParameterDataOffset 4                       // 数据缓冲区参数数据偏移量 - 用于存储数据缓冲区中的参数数据
 #define HashChainDataOffset 4                                 // 哈希链数据偏移量 - 用于存储哈希链中的数据
 #define SecurityCheckResultDataOffset 4                       // 安全检查结果数据偏移量 - 用于存储安全检查结果的数据
+#define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
 #define DataBufferDataHandleOffset 4                          // 数据缓冲区数据句柄偏移量 - 用于存储数据缓冲区中的数据句柄
 #define OperationBaseStatusFlagOffset 4                        // 操作基础状态标志偏移量 - 用于存储操作基础的状态标志
 #define ValidationFloatValueSecondaryOffset 1                   // 验证浮点值辅助偏移量 - 用于存储验证浮点值的辅助数据
