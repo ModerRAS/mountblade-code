@@ -27888,7 +27888,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   unsigned long long Utf16Char;
   long long ContextHandle;
   unsigned long long SystemStatusCode;
-  long long TertiaryOperationResult;
+  long long TertiaryCalculationResult;
   char *ValidationStatusPointer;
   void *CharacterStatusBufferQuaternary;
   uint SystemPrimaryReturnCode;
@@ -79792,7 +79792,7 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
   uint32_t SystemSystemStatusCode;
   uint32_t SystemQuaternaryStatusCode;
   uint32_t SecondaryCalculationResult;
-  uint32_t TertiaryOperationResult;
+  uint32_t TertiaryCalculationResult;
   uint32_t MainCalculationResult;
   
   // 循环和上下文变量
