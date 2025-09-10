@@ -208103,7 +208103,7 @@ void ProcessWindowMessageAndCharacterEncoding(uint64_t ContextHandle,uint32_t Op
 
 
 
-// 函数: void FUN_180170e20(long long ContextHandle)
+// 函数: void InitializeWindowContext(long long ContextHandle)
 /**
  * @brief 处理引用计数和系统上下文管理
  * 
@@ -208117,8 +208117,8 @@ void ProcessWindowMessageAndCharacterEncoding(uint64_t ContextHandle,uint32_t Op
  * 
  * @note 原始函数名：FUN_180170e20
  */
-#define ProcessReferenceCountAndSystemContextManagement FUN_180170e20
-void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
+#define InitializeWindowContext FUN_180170e20
+void InitializeWindowContext(long long ContextHandle)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -208560,7 +208560,7 @@ void LoadCursorResourceAndSetToDataNode(void)
 
 
 
-// 函数: void FUN_180171101(long long ContextHandle)
+// 函数: void ValidateWindowContext(long long ContextHandle)
 /**
  * @brief 处理字符表指针和系统上下文操作
  * 
@@ -208574,8 +208574,8 @@ void LoadCursorResourceAndSetToDataNode(void)
  * 
  * @note 原始函数名：FUN_180171101
  */
-#define ProcessCharacterTablePointerAndSystemContextOperations FUN_180171101
-void ProcessCharacterTablePointerAndSystemContextOperations(long long ContextHandle)
+#define ValidateWindowContext FUN_180171101
+void ValidateWindowContext(long long ContextHandle)
 {
   long long CharacterTablePointer;
   long long SystemContext;
@@ -214105,7 +214105,7 @@ void ProcessSystemCharacterStatusBufferAndEventTemplateOperations(void)
 
 
 
-// 函数: long long FUN_180177c00(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: long long ProcessCharacterEncodingWithLength(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理内存边界和系统上下文验证
  * 
@@ -214124,8 +214124,8 @@ void ProcessSystemCharacterStatusBufferAndEventTemplateOperations(void)
  * 
  * @note 原始函数名：FUN_180177c00
  */
-#define ProcessMemoryBoundaryAndSystemContextValidation FUN_180177c00
-long long ProcessMemoryBoundaryAndSystemContextValidation(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+#define ProcessCharacterEncodingWithLength FUN_180177c00
+long long ProcessCharacterEncodingWithLength(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   char MemoryValidationStatus;
   char SystemContextCheckResult;
