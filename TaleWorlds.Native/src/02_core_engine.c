@@ -1,7 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 
-// TaleWorlds引擎核心模块
-// 包含系统初始化、内存管理、字符处理、数据验证等核心功能
+/**
+ * @file 02_core_engine.c
+ * @brief TaleWorlds引擎核心模块 - 核心系统功能实现
+ * 
+ * 本模块实现了Mount & Blade引擎的核心功能，包括：
+ * - 系统初始化和上下文管理
+ * - 内存管理和资源分配
+ * - 字符编码转换和字符串处理
+ * - 数据验证和错误处理
+ * - 系统状态管理和监控
+ * 
+ * @version 1.0
+ * @date 2025-09-10
+ * 
+ * @note 本文件为Ghidra逆向工程的代码美化版本
+ * @warning 请勿修改程序逻辑，仅进行变量名和函数名的语义化处理
+ */
 
 // C++标准库函数语义化宏定义
 #define DestroyBasicStreambuf DestroyStreamBufferObject
@@ -203,6 +218,43 @@
 #define FUN_180212e60 ProcessCharacterEncodingValidationEx                // 处理字符编码验证扩展
 #define FUN_180214c50 ProcessCharacterCodeLookupEx                        // 处理字符代码查找扩展
 #define FUN_1801e77d0 ProcessSystemStackFlagsAndVariables                 // 处理系统栈标志和变量
+
+// 核心引擎高级功能函数语义化宏定义
+#define FUN_18018c050 ExecuteSystemStringEncodingOperation              // 执行系统字符串编码操作
+#define FUN_18018cef0 ProcessSystemUnicodeConversion                     // 处理系统Unicode转换
+#define FUN_18018e0f0 HandleSystemStringEncoding                        // 处理系统字符串编码
+#define FUN_18018f6a0 ProcessSystemContextOperation                      // 处理系统上下文操作
+#define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
+#define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
+#define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
+#define FUN_180190780 ReleaseSystemHandle                               // 释放系统句柄
+#define FUN_1801907f0 ProcessSystemByteOperation                        // 处理系统字节操作
+#define FUN_180190a20 InitializeSystemContextTransfer                    // 初始化系统上下文传输
+#define FUN_180190a35 FinalizeSystemContextTransfer                      // 完成系统上下文传输
+#define FUN_180190a4d ResetSystemTransferState                           // 重置系统传输状态
+#define FUN_180190ad0 InitializeSystemMemoryManager                     // 初始化系统内存管理器
+#define FUN_180190adc CleanupSystemMemoryManager                        // 清理系统内存管理器
+#define FUN_180190ae0 ProcessSystemMemoryTransfer                       // 处理系统内存传输
+#define FUN_180190c90 HandleSystemDataProcessing                        // 处理系统数据处理
+#define FUN_180190c9f FinalizeSystemDataProcessing                      // 完成系统数据处理
+#define FUN_180190cc0 InitializeSystemContextManager                    // 初始化系统上下文管理器
+#define FUN_180190e00 ResetSystemContextManager                        // 重置系统上下文管理器
+#define FUN_180190e0a CleanupSystemContextManager                       // 清理系统上下文管理器
+#define FUN_180190e30 ProcessSystemContextData                          // 处理系统上下文数据
+#define FUN_180190fa0 HandleSystemContextTransfer                       // 处理系统上下文传输
+#define FUN_180190fbb FinalizeSystemContextTransfer                      // 完成系统上下文传输
+#define FUN_1801911b1 ResetSystemStringEncoding                        // 重置系统字符串编码
+#define FUN_1801912b0 ProcessSystemStringEncoding                     // 处理系统字符串编码
+#define FUN_180191d40 ExecuteSystemDataValidation                       // 执行系统数据验证
+#define FUN_180191df0 ValidateSystemContext                             // 验证系统上下文
+#define FUN_180191ea0 InitializeSystemValidator                         // 初始化系统验证器
+#define FUN_1801934d0 ProcessSystemMemoryValidation                     // 处理系统内存验证
+#define FUN_18013f220 CreateSystemContext                               // 创建系统上下文
+#define FUN_180193de0 ResetSystemDataValidator                          // 重置系统数据验证器
+#define FUN_180193e88 HandleSystemDataEncoding                          // 处理系统数据编码
+#define FUN_1801940f0 InitializeSystemDataProcessing                    // 初始化系统数据处理
+#define FUN_180194530 ProcessSystemSignedValue                          // 处理系统有符号值
+#define FUN_180194350 FinalizeSystemContextOperation                    // 完成系统上下文操作
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
