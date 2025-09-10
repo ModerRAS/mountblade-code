@@ -112779,7 +112779,7 @@ void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHan
         eventStatus = eventStatus - 1;
       } while (eventStatus != 0);
     }
-    RegisterPointer = RegisterPointer + register10 * 4;
+    registerPointer = registerPointer + register10 * 4;
     bufferSize = bufferSize + 1;
     dataSource = dataSource + 5;
     contextHandle = contextHandle + (int)dataPointer;
