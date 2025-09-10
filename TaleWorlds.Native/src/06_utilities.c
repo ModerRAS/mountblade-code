@@ -100174,6 +100174,11 @@ void ExecuteSystemCallbackFunction(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
+// 异常处理器重置相关常量
+#define ExceptionResetTemporaryHandlerOffset 0x148               // 异常重置临时处理器偏移量
+#define ExceptionResetStatusOffset 0x150                          // 异常重置状态偏移量
+#define ExceptionResetControlOffset 0x160                         // 异常重置控制偏移量
+
 /**
  * @brief 重置异常处理器
  * 
@@ -100185,15 +100190,14 @@ void ExecuteSystemCallbackFunction(DataBuffer operationBase, int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090ce90
  */
 void ResetExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
-
 {
-  *(DataBuffer *)(dataBuffer + DataBufferOffset148) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x150) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionResetTemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionResetStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x150) = 0;
-  *(DataWord *)(dataBuffer + ExceptionHandlerContextOffset160) = 0;
-  *(DataBuffer *)(dataBuffer + DataBufferOffset148) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionResetStatusOffset) = 0;
+  *(DataWord *)(dataBuffer + ExceptionResetControlOffset) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionResetTemporaryHandlerOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
