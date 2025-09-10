@@ -130060,12 +130060,12 @@ void HandleMultipleExceptionContextsAndCleanup(DataBuffer systemContextBase,int6
  * @warning 此函数调用不返回，会直接进入异常处理流程
  * @see HandleSystemException
  */
-void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer systemContextBase,int64_t exceptionDataBuffer,DataBuffer cleanupFlagA,DataBuffer cleanupFlagB)
 
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48);
+  exceptionContext = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset48);
   if (exceptionContext != 0) {
     if (exceptionContext != 0) {
       *(int *)(exceptionContext + ExceptionContextReferenceCountOffset) = *(int *)(exceptionContext + ExceptionContextReferenceCountOffset) + -1;
