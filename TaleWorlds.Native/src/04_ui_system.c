@@ -345,6 +345,30 @@ typedef enum {
 #define UIContextDataProcessor0C0 (void*)0x1809590c0        // UI上下文数据处理器0C0 - 数据处理操作
 #define UIContextResourceManager500 (void*)0x18095b500     // UI上下文资源管理器500 - 资源管理操作
 
+// 额外的UI上下文数据操作变量定义
+#define UIContextDataBufferCD0 (void*)0x180984cd0          // UI上下文数据缓冲区CD0 - 临时数据存储
+#define UIContextDataHandlerD40 (void*)0x18095ad40          // UI上下文数据处理器D40 - 数据处理操作
+#define UIContextDataControllerD60 (void*)0x18097ed60       // UI上下文数据控制器D60 - 数据控制功能
+#define UIContextDataProcessorC60 (void*)0x18097ec60        // UI上下文数据处理器C60 - 数据处理操作
+#define UIContextDataHandlerC10 (void*)0x180958c10          // UI上下文数据处理器C10 - 数据处理操作
+#define UIContextDataController9A0 (void*)0x1809589a0       // UI上下文数据控制器9A0 - 数据控制功能
+#define UIContextDataProcessorE30 (void*)0x18095ae30        // UI上下文数据处理器E30 - 数据处理功能
+#define UIContextDataController190 (void*)0x180986190       // UI上下文数据控制器190 - 数据控制操作
+#define UIContextDataBuffer2E0 (void*)0x1809842e0          // UI上下文数据缓冲区2E0 - 缓冲区数据存储
+#define UIContextDataHandlerAA0 (void*)0x18095aaa0          // UI上下文数据处理器AA0 - 数据处理操作
+#define UIContextDataProcessor140 (void*)0x180959140        // UI上下文数据处理器140 - 数据处理功能
+#define UIContextDataController258 (void*)0x180986258       // UI上下文数据控制器258 - 数据控制操作
+#define UIContextDataBuffer3D0 (void*)0x1809843d0          // UI上下文数据缓冲区3D0 - 缓冲区数据存储
+#define UIContextDataBuffer358 (void*)0x180984358          // UI上下文数据缓冲区358 - 缓冲区数据存储
+#define UIContextStringDataBA8 (void*)0x180981ba8          // UI上下文字符串数据BA8 - 字符串数据存储
+#define UIContextDataController660 (void*)0x18097f660       // UI上下文数据控制器660 - 数据控制功能
+#define UIContextDataBuffer080 (void*)0x180985080          // UI上下文数据缓冲区080 - 缓冲区数据存储
+#define UIContextDataHandlerAB8 (void*)0x180984ab8          // UI上下文数据处理器AB8 - 数据处理操作
+#define UIContextDataBuffer0B8 (void*)0x1809830b8          // UI上下文数据缓冲区0B8 - 缓冲区数据存储
+#define UIContextRenderData718 (void*)0x180980718          // UI上下文渲染数据718 - 渲染数据存储
+#define UIContextRenderData708 (void*)0x180980708          // UI上下文渲染数据708 - 渲染数据存储
+#define UIContextDataControllerA50 (void*)0x18097fa50       // UI上下文数据控制器A50 - 数据控制功能
+
 // UI系统全局变量语义化定义
 #define uiBufferData GlobalUIBufferData                  // UI缓冲区数据全局变量
 #define uiContext GlobalUIContext                        // UI上下文全局变量
@@ -47464,8 +47488,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventStatus7._4_2_ = BufferCapacityValue7;
       aeventStatus7._2_2_ = astackUIntbe8._0_2_ - astackUIntd38._0_2_;
       aeventStatus7._0_2_ = sVar162;
-      aiterationCount19 = pmaddwd(aeventCodeType13,_DAT_180947370);
-      aiterationCount54 = pmaddwd(aeventCodeType55,_DAT_180947370);
+      aiterationCount19 = pmaddwd(aeventCodeType13,UIVectorMultiplyMask4);
+      aiterationCount54 = pmaddwd(aeventCodeType55,UIVectorMultiplyMask4);
       aprocessingStatus0._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aprocessingStatus0._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aprocessingStatus0._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
@@ -47474,9 +47498,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingStatus42._4_4_ = aiterationCount54._4_4_ + 0x2000 >> 0xe;
       aprocessingStatus42._8_4_ = aiterationCount54._8_4_ + 0x2000 >> 0xe;
       aprocessingStatus42._12_4_ = aiterationCount54._12_4_ + 0x2000 >> 0xe;
-      aprocessingStatus24 = pmaddwd(aprocessingStatus23,_DAT_180947470);
+      aprocessingStatus24 = pmaddwd(aprocessingStatus23,UIVectorMultiplyMask20);
       aprocessingStatus43 = packssdw(aprocessingStatus42,aprocessingStatus0);
-      aeventCodeType11 = pmaddwd(aeventCodeType04,_DAT_180947470);
+      aeventCodeType11 = pmaddwd(aeventCodeType04,UIVectorMultiplyMask20);
       aiterationCount19 = pmaddwd(aeventCodeType04,_DAT_180947370);
       aiterationCount54 = pmaddwd(aprocessingStatus23,_DAT_180947370);
       aeventCodeType50 = pmaddwd(aeventCodeType81,_DAT_180947500);
@@ -192834,7 +192858,7 @@ undefined UNK_180984ad0;
 undefined DAT_180c4ea98;
 undefined DAT_180c4ea94;
 undefined UNK_180984be0;
-undefined UNK_180984cd0;
+undefined UIContextDataBufferCD0;
 undefined UNK_180984c90;
 undefined UNK_180984ca0;
 undefined UNK_180984cb0;
@@ -207257,7 +207281,7 @@ UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
     return eventCodeType;
   }
   loopCounter = dataSource * 8 + 0x10;
-  contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter,&UNK_18095ad40,0x4f,0,0,1);
+  contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter,&UIContextDataHandlerD40,0x4f,0,0,1);
   *(longlong *)(uiBufferData + 0x40) = contextDataHandle;
   if (contextDataHandle != 0) {
     loopCounter = contextDataHandle + 0xfU & 0xfffffffffffffff0;
@@ -207268,7 +207292,7 @@ UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
       *(UIHandle *)(uiContext + 0x48) = 0;
     }
     else {
-      contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter,&UNK_18095ad40,0x58,0,0,1)
+      contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter,&UIContextDataHandlerD40,0x58,0,0,1)
       ;
       *(longlong *)(uiBufferData + 0x48) = contextDataHandle;
       if (contextDataHandle == 0) {
@@ -207282,7 +207306,7 @@ UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
     }
     result = dataSource >> 1;
     contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                          ((dataSource >> 2) + result) * 8 + 0x10,&UNK_18095ad40,0x6b,0,0,1);
+                          ((dataSource >> 2) + result) * 8 + 0x10,&UIContextDataHandlerD40,0x6b,0,0,1);
     *(longlong *)(uiBufferData + 0x50) = contextDataHandle;
     if (contextDataHandle != 0) {
       *(ulonglong *)(uiContext + 0x30) = contextDataHandle + 0xfU & 0xfffffffffffffff0;
@@ -207293,7 +207317,7 @@ UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
       }
       while( true ) {
         if (iterationCount == 0) {
-          eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),result * 4,&UNK_18095ad40,
+          eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),result * 4,&UIContextDataHandlerD40,
                                 0x8a,0,0,1);
           *(UIHandle *)(uiContext + 0x58) = eventCodeType;
           *(UIHandle *)(uiContext + 0x38) = eventCodeType;
@@ -207337,7 +207361,7 @@ UIHandle FUN_1807894bb(longlong uiContext)
   }
   processingResult = (int)preservedRegister15;
   localInt7 = processingResult * 8 + 0x10;
-  contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),localInt7,&UNK_18095ad40,
+  contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),localInt7,&UIContextDataHandlerD40,
                         (int)preservedRegister12 + 0x4f);
   *(longlong *)(componentData + 0x40) = contextDataHandle;
   if (contextDataHandle != 0) {
@@ -207349,7 +207373,7 @@ UIHandle FUN_1807894bb(longlong uiContext)
       *(UIHandle *)(componentData + 0x48) = preservedRegister12;
     }
     else {
-      contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),localInt7,&UNK_18095ad40,
+      contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),localInt7,&UIContextDataHandlerD40,
                             (int)preservedRegister12 + 0x58);
       *(longlong *)(componentData + 0x48) = contextDataHandle;
       if (contextDataHandle == 0) {
@@ -207364,7 +207388,7 @@ UIHandle FUN_1807894bb(longlong uiContext)
     loopCounter = preservedRegister15 >> 1 & 0x7fffffff;
     eventProcessingCounter = (uint)loopCounter;
     contextDataHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                          (((uint)(preservedRegister15 >> 2) & 0x3fffffff) + eventProcessingCounter) * 8 + 0x10,&UNK_18095ad40,
+                          (((uint)(preservedRegister15 >> 2) & 0x3fffffff) + eventProcessingCounter) * 8 + 0x10,&UIContextDataHandlerD40,
                           0x6b);
     *(longlong *)(componentData + 0x50) = contextDataHandle;
     if (contextDataHandle != 0) {
@@ -207377,7 +207401,7 @@ UIHandle FUN_1807894bb(longlong uiContext)
       }
       while( true ) {
         if (maxProcessingCount == 0) {
-          eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),eventProcessingCounter * 4,&UNK_18095ad40,
+          eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),eventProcessingCounter * 4,&UIContextDataHandlerD40,
                                 0x8a);
           *(UIHandle *)(componentData + 0x58) = eventCodeType;
           *(UIHandle *)(componentData + 0x38) = eventCodeType;
@@ -207443,7 +207467,7 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
   MemoryAllocationOffset = ContextProcessingResult * 8 + 0x10;
   EventCounter = (UIByte)PreservedContextHandle;
   StackFlag1 = EventCounter;
-  StringCompareIndex = FUN_180741e10(*(UIHandle *)(uiContext + 0x1a0),MemoryAllocationOffset,&UNK_18095ad40);
+  StringCompareIndex = FUN_180741e10(*(UIHandle *)(uiContext + 0x1a0),MemoryAllocationOffset,&UIContextDataHandlerD40);
   *(longlong *)(UIContextcomponentData + 0x40) = StringCompareIndex;
   if (StringCompareIndex != 0) {
     ContextprocessStatus = StringCompareIndex + 0xfU & 0xfffffffffffffff0;
@@ -207456,7 +207480,7 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
     else {
       StackFlag2 = 1;
       StackFlag1 = EventCounter;
-      StringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),MemoryAllocationOffset,&UNK_18095ad40,
+      StringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),MemoryAllocationOffset,&UIContextDataHandlerD40,
                             (int)PreservedContextHandle + 0x58);
       *(longlong *)(UIContextcomponentData + 0x48) = StringCompareIndex;
       if (StringCompareIndex == 0) {
@@ -207473,7 +207497,7 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
     EventprocessStatus = (uint)ContextprocessingStatus;
     StackFlag1 = EventCounter;
     StringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                          (((uint)(PreservedSystemFlags >> 2) & 0x3fffffff) + EventprocessingStatus) * 8 + 0x10,&UNK_18095ad40,
+                          (((uint)(PreservedSystemFlags >> 2) & 0x3fffffff) + EventprocessingStatus) * 8 + 0x10,&UIContextDataHandlerD40,
                           0x6b);
     *(longlong *)(UIContextcomponentData + 0x50) = StringCompareIndex;
     if (stringCompareIndex != 0) {
@@ -207488,7 +207512,7 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
         if (maxProcessingCount == 0) {
           StackData2 = 1;
           StackData1 = eventProcessingCounter;
-          loopCounter = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),eventStatus * 4,&UNK_18095ad40,
+          loopCounter = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),eventStatus * 4,&UIContextDataHandlerD40,
                                 0x8a);
           *(UIHandle *)(componentData + 0x58) = loopCounter;
           *(UIHandle *)(componentData + 0x38) = loopCounter;
@@ -207552,7 +207576,7 @@ UIHandle ProcessUIComponentHandler(void)
   loopCounter = (uint)maxProcessingCount;
   StackData1 = (char)preservedRegister12;
   componentIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                        (((uint)(preservedRegister15 >> 2) & 0x3fffffff) + loopCounter) * 8 + 0x10,&UNK_18095ad40,
+                        (((uint)(preservedRegister15 >> 2) & 0x3fffffff) + loopCounter) * 8 + 0x10,&UIContextDataHandlerD40,
                         0x6b);
   *(longlong *)(componentData + 0x50) = componentIndex;
   if (allocatedMemoryPtr == 0) {
@@ -207576,7 +207600,7 @@ UIHandle ProcessUIComponentHandler(void)
     }
     StackData2 = 1;
     StackData1 = (char)preservedRegister12;
-    eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter * 4,&UNK_18095ad40,0x8a);
+    eventCode = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),loopCounter * 4,&UIContextDataHandlerD40,0x8a);
     *(UIHandle *)(componentData + 0x58) = eventCodeType;
     *(UIHandle *)(componentData + 0x38) = eventCodeType;
     FUN_180789360(eventCodeType,0,1,maxProcessingCount,loopCounter - 1);
@@ -207616,7 +207640,7 @@ UIHandle ProcessUIContextValidation(UIHandle uiContext)
       uiValidationResult = uiValidationResult >> 1;
     } while (uiValidationResult != 0);
   }
-  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UNK_18095ad40,0x8a);
+  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UIContextDataHandlerD40,0x8a);
   *(UIHandle *)(componentData + 0x58) = result;
   *(UIHandle *)(componentData + 0x38) = result;
   FUN_180789360(result,0,1,preservedRegister13D,preservedRegister13D + -1);
@@ -207647,7 +207671,7 @@ UIHandle ProcessUIComponentRegistration(UIHandle uiContext)
     }
     unmodifiedEBP = unmodifiedEBP >> 1;
   } while (unmodifiedEBP != 0);
-  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UNK_18095ad40,0x8a);
+  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UIContextDataHandlerD40,0x8a);
   *(UIHandle *)(componentData + 0x58) = result;
   *(UIHandle *)(componentData + 0x38) = result;
   FUN_180789360(result,0,1,preservedRegister13D,preservedRegister13D + -1);
@@ -207669,7 +207693,7 @@ UIHandle FUN_18078971b(void)
   UIByte StackData2;
   
   StackData2 = 1;
-  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UNK_18095ad40,0x8a);
+  result = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),preservedRegister13D * 4,&UIContextDataHandlerD40,0x8a);
   *(UIHandle *)(componentData + 0x58) = result;
   *(UIHandle *)(componentData + 0x38) = result;
   FUN_180789360(result,0,1,preservedRegister13D,preservedRegister13D + -1);
@@ -208166,19 +208190,19 @@ void FUN_180789cf0(longlong *uiContext)
   
   if (uiContext[8] != 0) {
                      WARNING: Subroutine does not return
-    AllocateUIResource(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[8],&UNK_18095ad40,0x94,1);
+    AllocateUIResource(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[8],&UIContextDataHandlerD40,0x94,1);
   }
   if (uiContext[9] != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[9],&UNK_18095ad40,0x95,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[9],&UIContextDataHandlerD40,0x95,1);
   }
   if (uiContext[10] != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[10],&UNK_18095ad40,0x96,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[10],&UIContextDataHandlerD40,0x96,1);
   }
   if (uiContext[0xb] != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[0xb],&UNK_18095ad40,0x97,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[0xb],&UIContextDataHandlerD40,0x97,1);
   }
   *(UIDword *)(uiBufferData + 3) = 0;
   *(longlong *)uiContext[1] = *uiContext;
@@ -208197,7 +208221,7 @@ void FUN_180789cf0(longlong *uiContext)
   uiContext[4] = 0;
   uiContext[5] = 0;
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UNK_18095ad40,0xab,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UIContextDataHandlerD40,0xab,1);
 }
 
 
@@ -308683,7 +308707,7 @@ LAB_18084f0bc:
     }
     FUN_1808bb9a0(processingStatus);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UNK_180984cd0,0x62,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UIContextDataBufferCD0,0x62,1);
   }
   CharacterDataOffset = uiContext[5];
   if (CharacterDataOffset != 0) {
@@ -308817,7 +308841,7 @@ LAB_18084f0bc:
     }
     ReleaseUIComponentHandle(componentHandle);
                      WARNING: Subroutine does not return
-    ReleaseUIRecomponentData(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentHandle,&UNK_180984cd0,0x62,1);
+    ReleaseUIRecomponentData(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentHandle,&UIContextDataBufferCD0,0x62,1);
   }
   contextIndex = uiContext[5];
   if (contextIndex != 0) {
@@ -308984,7 +309008,7 @@ LAB_18084f34c:
     }
     ReleaseUIComponentHandleEx(componentHandle);
                      WARNING: Subroutine does not return
-    ReleaseUIRecomponentData(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentHandle,&UNK_180984cd0,0x62,1);
+    ReleaseUIRecomponentData(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentHandle,&UIContextDataBufferCD0,0x62,1);
   }
   dataOffset = uiContext[5];
   if (dataOffset != 0) {
@@ -309106,7 +309130,7 @@ LAB_18084f34c:
     }
     FUN_1808bb9e0(processingStatus);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UNK_180984cd0,0x62,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UIContextDataBufferCD0,0x62,1);
   }
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
@@ -309276,7 +309300,7 @@ HASH_PROCESSING_LABEL:
       }
     }
     FUN_1808bbe80(resourceStatus);
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resourceStatus,&UNK_180984cd0,0x62,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resourceStatus,&UIContextDataBufferCD0,0x62,1);
   }
   dataOffset = uiContext[5];
   if (dataOffset != 0) {
@@ -309395,7 +309419,7 @@ LAB_18084f5dc:
     }
     FUN_1808bbe80(processingStatus);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UNK_180984cd0,0x62,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingStatus,&UIContextDataBufferCD0,0x62,1);
   }
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
@@ -309702,7 +309726,7 @@ LAB_18084f970:
 LAB_18084f987:
   FUN_1808bb9a0(pcontextDataHandle);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -309949,7 +309973,7 @@ LAB_18084f970:
 LAB_18084f987:
   FUN_1808bb9a0(peventDataIndex);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -310199,7 +310223,7 @@ LAB_18084fe50:
 LAB_18084fe67:
   FUN_1808bb9a0(pcontextDataHandle);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -310446,7 +310470,7 @@ LAB_18084fe50:
 LAB_18084fe67:
   FUN_1808bb9a0(peventDataIndex);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -310691,7 +310715,7 @@ LAB_180850330:
 LAB_180850347:
   FUN_1808bb9e0(pcontextDataHandle);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -310938,7 +310962,7 @@ LAB_180850330:
 LAB_180850347:
   FUN_1808bb9e0(peventDataIndex);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -311183,7 +311207,7 @@ LAB_180850810:
 LAB_180850827:
   FUN_1808bbe80(pcontextDataHandle);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -311430,7 +311454,7 @@ LAB_180850810:
 LAB_180850827:
   FUN_1808bbe80(peventDataIndex);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UIContextDataBufferCD0,0x193,1);
 }
 
 
@@ -314333,7 +314357,7 @@ int FUN_180852d40(longlong *uiContext,UIDword *dataSource,UIHandle *targetBuffer
   piterationCounter = (UIHandle *)0x0;
   if (ptrLocal6 == (UIHandle *)0x0) {
     piterationCounter = (UIHandle *)
-             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180984cd0,0x124,0,0,1);
+             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x38,&UIContextDataBufferCD0,0x124,0,0,1);
     if (piterationCounter == (UIHandle *)0x0) {
       processedCount = 0x26;
       piterationCounter = (UIHandle *)0x0;
@@ -314473,7 +314497,7 @@ int FUN_180852d79(void)
   piterationCounter = (UIHandle *)0x0;
   if (ptrLocal6 == (UIHandle *)0x0) {
     piterationCounter = (UIHandle *)
-             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180984cd0,0x124,0);
+             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x38,&UIContextDataBufferCD0,0x124,0);
     if (piterationCounter == (UIHandle *)0x0) {
       processedCount = 0x26;
       piterationCounter = (UIHandle *)0x0;
@@ -315027,7 +315051,7 @@ LAB_180853663:
     if (processStatus == 0) {
       FUN_1808bb9a0(componentData);
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentData,&UNK_180984cd0,0xe1,1);
+      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentData,&UIContextDataBufferCD0,0xe1,1);
     }
   }
 LAB_180853766:
@@ -353965,7 +353989,7 @@ LAB_1808747d2:
   }
   (**(code **)*ptrLocal3)(ptrLocal3,0);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ptrLocal3,&UNK_180984cd0,0x62,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ptrLocal3,&UIContextDataBufferCD0,0x62,1);
 }
 
 
@@ -354046,7 +354070,7 @@ UIHandle FUN_180874940(longlong *uiContext)
   }
   (**(code **)*piterationCount)(piterationCount,0);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UNK_180984cd0,0x62,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UIContextDataBufferCD0,0x62,1);
 }
 
 
@@ -354136,7 +354160,7 @@ UIHandle FUN_18087494c(longlong *uiContext)
   }
   (**(code **)*piterationCount)(piterationCount,0);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UNK_180984cd0,0x62,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UIContextDataBufferCD0,0x62,1);
 }
 
 
@@ -354192,7 +354216,7 @@ void FUN_180874980(UIDword uiContext)
   }
   (**(code **)*piterationCount)(piterationCount,0);
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UNK_180984cd0,0x62,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),piterationCount,&UIContextDataBufferCD0,0x62,1);
 }
 
 
