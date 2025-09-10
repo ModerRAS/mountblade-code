@@ -222732,7 +222732,17 @@ LAB_180183f13:
 
 
 
-83fa0(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointervoid FUN_180183fa0(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 处理UTF-8字符到其他编码格式的转换，支持多语言字符处理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 处理结果状态码
+ */
+void ProcessUtf8CharacterEncoding(long long ContextHandle, long long *ContextHandleSize, uint64_t Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
