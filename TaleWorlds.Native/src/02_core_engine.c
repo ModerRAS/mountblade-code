@@ -202171,8 +202171,8 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
 {
   uint16_t ConvertedUtf16Character;
   code *CharacterValidatorFunction;
-  char SystemOperationStatusCode;
-  int CharacterEncodingValidationStatus;
+  char SystemStatusFlag;
+  int EncodingValidationResult;
   long long SystemAllocatedMemorySize;
   uint32_t *SecondaryProcessingStatus;
   uint64_t SystemDataChecksum;
