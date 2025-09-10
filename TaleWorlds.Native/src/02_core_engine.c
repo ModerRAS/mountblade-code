@@ -102,6 +102,14 @@
 // 内存分配器偏移量常量
 #define MemoryAllocatorLibraryHandleOffset 0xb                // 内存分配器库句柄偏移量
 #define MemoryAllocatorFunctionPointerOffset 0xc              // 内存分配器函数指针偏移量
+
+// 系统上下文操作偏移量常量
+#define SystemContextOperationOffset5 5                       // 系统上下文操作偏移量5
+#define SystemContextOperationOffsetD 0xd                    // 系统上下文操作偏移量D (13)
+#define SystemContextOperationOffset7 7                       // 系统上下文操作偏移量7
+
+// 系统配置偏移量常量
+#define SystemConfigTimeoutOffset 400                        // 系统配置超时偏移量
 #define SystemEventTemplateBaseOffset 0x16c8                 // 系统事件模板基础偏移量
 #define SystemEventTemplateOffset1 0x1b88                    // 系统事件模板偏移量1
 #define SystemEventTemplateOffset2 -0x14                     // 系统事件模板偏移量2
