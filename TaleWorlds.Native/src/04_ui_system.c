@@ -119093,8 +119093,7 @@ void ValidateUIComponentState(longlong uiContext,UIHandle dataSource,UIDword tar
 
 
 
- void FUN_1807369a3(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize)
-void FUN_1807369a3(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize)
+ void ProcessUIDataWithMetrics(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
@@ -119326,8 +119325,7 @@ void FUN_180736a70(uint *uiContext,uint *dataSource,int targetBuffer,int bufferS
 
 
 
- void FUN_180736a9b(uint *uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_180736a9b(uint *uiContext,UIHandle dataSource,int targetBuffer)
+ void ProcessUIDataWithHandleTarget(uint *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   uint result;
