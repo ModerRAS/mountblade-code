@@ -294253,7 +294253,7 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @date 2025-09-10
  * @author Ghidra逆向工程 + 语义化美化
  */
-int MonitorCoreEngineSystemStatus(SystemStatusMonitor *SystemStatusMonitor, uint32_t MonitoringInterval, uint32_t StatusFlags)
+int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint32_t monitoringInterval, uint32_t statusFlags)
 {
     // 系统状态变量
     uint32_t MemoryUsageStatus;               // 内存使用状态
