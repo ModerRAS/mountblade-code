@@ -116,6 +116,13 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
 
+// 函数局部变量语义化定义
+#define ValidationStatus SystemValidationStatus              // 验证状态
+#define BufferStatus SystemBufferStatus                      // 缓冲区状态
+#define SearchStartIndex SystemSearchStartIndex              // 搜索起始索引
+#define MemoryAddressMaskPointer SystemMemoryAddressMaskPointer  // 内存地址掩码指针
+#define SystemArrayBuffer368 SystemProcessingBuffer368       // 系统数组缓冲区368
+
 // 系统初始化和配置函数语义化定义
 
 // 异常处理和错误管理函数
@@ -234284,15 +234291,16 @@ LAB_180190d41:
  * 
  * @note 原始函数名：FUN_180190e30
  */
-void FUN_180190e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
+#define ProcessSystemMemoryBufferAndCharacterEncoding FUN_180190e30
+void ProcessSystemMemoryBufferAndCharacterEncoding(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
-  char ValidationStatus;
-  long long BufferStatus;
-  long long SearchStartIndex;
-  uint64_t MemoryAddressMaskPointer;
-  uint8_t SystemArrayBuffer368 [848];
+  char SystemValidationStatus;
+  long long SystemBufferStatus;
+  long long SystemSearchStartIndex;
+  uint64_t SystemMemoryAddressMaskPointer;
+  uint8_t SystemProcessingBuffer368 [848];
   
-  MemoryAddressMaskPointer = 0xfffffffffffffffe;
+  SystemMemoryAddressMaskPointer = 0xfffffffffffffffe;
   BufferStatus = OperationBufferSize - ContextHandle;
   do {
     if ((BufferStatus < 0x5f28) || (Utf8SourcePointer < 1)) {
