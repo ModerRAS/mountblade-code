@@ -2441,6 +2441,7 @@ typedef enum {
 // UI系统数据处理函数宏定义
 #define ProcessUIDataTransformationWithValidation FUN_18071af00
 #define ProcessUIDataTransformationWithBuffer FUN_18071b080
+#define ProcessUIDataWithEncryptionAndValidation FUN_180739640
 
 // UI系统局部变量美化
 #define resultPointer UIResultPointer
@@ -2477,6 +2478,14 @@ typedef enum {
 
 // UI系统处理状态变量美化
 #define plocalChar16 UIProcessingCharBuffer      // UI处理字符缓冲区
+
+// UI系统数据缓冲区变量美化
+#define astackUInt188 UIDataEncryptionBuffer    // UI数据加密缓冲区 - 用于存储加密处理的数据
+#define pstackUInt168 UIDataBufferPointer        // UI数据缓冲区指针 - 指向当前处理的数据位置
+#define stackLong158 UIMemoryResourceHandle     // UI内存资源句柄 - 用于管理UI内存资源
+#define stackUInt150 UITemporaryHandle          // UI临时句柄 - 用于存储临时UI对象
+#define stackArray148 UIProcessingBuffer         // UI处理缓冲区 - 用于存储UI处理过程中的数据
+#define stackUInt48 UIEncryptionKey             // UI加密密钥 - 用于数据加密和解密操作
 #define result7 UIProcessingResult7              // UI处理结果7
 #define result8 UIProcessingResult8              // UI处理结果8
 #define componentData UIcomponentData               // UI源句柄
