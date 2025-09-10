@@ -112728,21 +112728,21 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
 void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
 
 {
-  float *BaseValuePointer;
+  float *baseValuePointer;
   float transformCoeff1;
-  float TransformCoefficient2;
-  float TransformCoefficient3;
-  float TransformCoefficient4;
-  float LocalFloatValue6;
-  float ResultFloatValue;
-  float *pTemporaryFloatValue;
+  float transformCoeff2;
+  float transformCoeff3;
+  float transformCoeff4;
+  float localFloatValue6;
+  float resultFloatValue;
+  float *temporaryFloatPointer;
   float *contextHandle;
   longlong basePointer;
   ulonglong eventStatus;
   uint dataPointer;
   float *baseScaleFactor;
   longlong register10;
-  longlong RegisterPointer;
+  longlong registerPointer;
   longlong preservedRegister15;
   longlong allocatedMemory2;
   float baseValue3;
@@ -112752,15 +112752,15 @@ void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHan
   allocatedMemory2 = preservedRegister15 - (longlong)bufferSize;
   do {
     transformCoeff1 = *bufferSize;
-    TransformCoefficient2 = dataSource[-2];
-    TransformCoefficient3 = dataSource[-1];
-    TransformCoefficient4 = *dataSource;
-    LocalFloatValue6 = dataSource[1];
-    ResultFloatValue = dataSource[2];
-    baseScaleFactor = (float *)(RegisterPointer + (longlong)*(int *)((longlong)bufferSize + allocatedMemory2) * -4);
+    transformCoeff2 = dataSource[-2];
+    transformCoeff3 = dataSource[-1];
+    transformCoeff4 = *dataSource;
+    localFloatValue6 = dataSource[1];
+    resultFloatValue = dataSource[2];
+    baseScaleFactor = (float *)(registerPointer + (longlong)*(int *)((longlong)bufferSize + allocatedMemory2) * -4);
     if (0 < (int)dataPointer) {
       eventStatus = (ulonglong)dataPointer;
-      pTemporaryFloatValue = contextHandle;
+      temporaryFloatPointer = contextHandle;
       do {
         baseValue3 = *(float *)((RegisterPointer - (longlong)contextHandle) + (longlong)pTemporaryFloatValue);
         *pTemporaryFloatValue = baseValue3;
