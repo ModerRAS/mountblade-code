@@ -67174,9 +67174,9 @@ void InitializeSystemStatusAndMemory(void
   unsigned long long MemoryPoolIndex7;
   long long BufferStatusRegister8;
   uint32_t VectorRegisterDa;
-  uint8_t auStack_418 [32];
-  void *puStack_3f8;
-  char acStack_3e8 [4];
+  uint8_t SystemDataBuffer[32];          // 系统数据缓冲区，用于存储加密/编码相关的数据
+  void *ConfigStringPointer;             // 配置字符串指针
+  char SystemConfigBuffer[4];            // 系统配置缓冲区
   uint UnsignedStackValue3e4;
   void **PointerStackPointer3e0;
   void *PointerStackValue3d8;
