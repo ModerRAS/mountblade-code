@@ -912,6 +912,7 @@ typedef enum {
 #define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
 #define FUN_1808a2740 ProcessUIComponentDataValidation              // 处理UI组件数据验证 - 验证UI组件数据的完整性和安全性
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
+#define FUN_180759220 ProcessUIComponentRegistration              // UI组件注册处理函数 - 处理UI组件的注册和配置
 #define FUN_18071ace8 UIResetOperationFunction                     // UI重置操作函数 - 执行UI重置操作
 #define FUN_180721810 ProcessUIDataTransformOperation              // 处理UI数据变换操作 - 处理UI数据的变换操作
 #define ExecuteUIContextDataOperation ExecuteUIContextDataOperation                // 执行UI上下文数据操作 - 执行UI上下文数据的操作
