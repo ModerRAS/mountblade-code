@@ -4738,6 +4738,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ResourceManagementOffset80 0x80                     // 资源管理偏移量80
 #define SystemDataParameterOffset20 0x20                    // 系统数据参数偏移量20
 
+// 对象状态标志常量
+#define ObjectStateFlagsOffset30 0x30                       // 对象状态标志偏移量30
+#define StateFlagBit2 2                                      // 状态标志位2
+#define StateFlag2ClearMask 0xfffffffd                       // 状态标志2清除掩码
+#define ResourceCleanupOffset78 0x78                         // 资源清理偏移量78
+
 // 异常处理器函数指针偏移量常量
 #define ExceptionHandlerFunctionPointerOffset1220 0x1220    // 异常处理器函数指针偏移量1220
 #define ExceptionHandlerFunctionPointerOffset1290 0x1290    // 异常处理器函数指针偏移量1290
