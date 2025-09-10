@@ -6147,22 +6147,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ResetDataProcessorA1 FUN_18089b540
 
 /**
- * @brief 处理数据序列A1
+ * @brief 批量处理数据序列
  * 
- * 该函数负责处理数据序列，包括序列的验证和转换
+ * 该函数负责处理数据序列，包括序列的验证、转换和优化，
+ * 支持大规模数据序列的批量处理和并行操作。
  * 
  * @note 原始函数名：FUN_18089bd70
  */
-#define ProcessDataSequenceA1 FUN_18089bd70
+#define ProcessDataSequenceBatch FUN_18089bd70
 
 /**
- * @brief 验证数据格式A1
+ * @brief 验证数据格式规范
  * 
- * 该函数负责验证数据的格式，确保数据符合预期的格式要求
+ * 该函数负责验证数据的格式，确保数据符合预期的格式要求，
+ * 包括数据类型检查、结构验证和格式规范验证。
  * 
  * @note 原始函数名：FUN_18089d250
  */
-#define ValidateDataFormatA1 FUN_18089d250
+#define ValidateDataFormatSpecification FUN_18089d250
 
 /**
  * @brief 获取系统状态A2
@@ -37755,16 +37757,16 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   int systemRegisterValue;
   int errorCounter;
   float processingValue;
-  float tempValue1;
-  float tempValue2;
-  float tempValue3;
-  float tempValue4;
-  float tempValue5;
-  float tempValue6;
+  float TemporaryProcessingValue1;
+  float TemporaryProcessingValue2;
+  float TemporaryProcessingValue3;
+  float TemporaryProcessingValue4;
+  float TemporaryProcessingValue5;
+  float TemporaryProcessingValue6;
   float mainValue;
-  float tempValue7;
-  DataWord tempValue8;
-  DataWord tempValue9;
+  float TemporaryMainValue;
+  DataWord TemporaryValidationResult1;
+  DataWord TemporaryValidationResult2;
   DataWord validationResult;
   float finalValue;
   

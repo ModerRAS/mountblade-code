@@ -105140,7 +105140,7 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
   intStackPointer278 = intStackArray248;
   intStackPointer280 = intStackArray1f8;
   floatStackPointer288 = floatStackArray258;
-  FUN_18072f890(&stackUInt68,dataSource,targetBuffer,bufferSize);
+  ProcessUITextProcessing(&stackUInt68,dataSource,targetBuffer,bufferSize);
   contextValue = TotalResult;
   if (((0 < (int)maxProcessingCount) && (contextValue = 0, 0xf < maxProcessingCount)) &&
      (((ulonglong)((longlong)&stackUInt68 + (longlong)(int)(maxProcessingCount - 1) * 2) < uiContext ||
@@ -106240,7 +106240,7 @@ void ProcessUIBufferData(longlong uiContext,int dataSource,int targetBuffer,long
          *(int *)((longlong)bufferSize + 0x24) + (bufferValue - ProcessingResult1 * eventStatus);
   }
   *(uint *)(bufferSize + 4) = eventStatus;
-  FUN_180705530(bufferSize,(ulonglong)bufferValue % (ulonglong)dataPointer);
+  ProcessUIContextEventDispatch(bufferSize,(ulonglong)bufferValue % (ulonglong)dataPointer);
   ProcessingResult1 = *(int *)((longlong)bufferSize + 0x14);
   bufferValue = *(uint *)(bufferSize + 2);
   if (0x20 < (uint)(ProcessingResult1 + processingResult6)) {
@@ -106327,7 +106327,7 @@ void ProcessUILayoutCalculation(longlong uiContext,longlong dataSource,UIHandle 
     *(UIDword *)(uiBufferData + 0x10b8) = 2;
   }
   if (bufferSize != 0) {
-    FUN_180728720(uiContext,dataSource,targetBuffer,resultPointer);
+    TransferUIDataToBuffer(uiContext,dataSource,targetBuffer,resultPointer);
     *(int *)(uiBufferData + 0x1058) = *(int *)(uiBufferData + 0x1058) + 1;
     return;
   }
@@ -106466,12 +106466,12 @@ void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBu
   int aiStackX_20 [2];
   
   if (*(int *)(uiBufferData + 0x1058) != 0) {
-    FUN_18072aa30(uiContext + 0x10a0,uiContext + 0x10a4,dataSource,targetBuffer);
+    ProcessUIBufferOperations(uiContext + 0x10a0,uiContext + 0x10a4,dataSource,targetBuffer);
     *(UIDword *)(uiBufferData + 0x1094) = 1;
     return;
   }
   if (*(int *)(uiBufferData + 0x1094) != 0) {
-    FUN_18072aa30(aiStackX_8,aiStackX_20,dataSource,targetBuffer);
+    ProcessUIBufferOperations(aiStackX_8,aiStackX_20,dataSource,targetBuffer);
     uiCompareResult = *(int *)(uiBufferData + 0x10a4);
     if (uiCompareResult < aiStackX_20[0]) {
       *(int *)(uiBufferData + 0x10a0) =

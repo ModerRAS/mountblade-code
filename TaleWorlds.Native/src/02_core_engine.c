@@ -2291,16 +2291,16 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessCharacterEncodingAndBufferManagement FUN_1801601c0
 
 // 网络同步器变量语义化宏定义
-#define SyncValidationStatus NetworkSyncStatusFlag         // 网络同步状态标志
-#define MonitorValidationStatus NetworkMonitorStatusFlag     // 网络监控状态标志
+#define SyncValidationStatus NetworkSystemSyncStatusFlag         // 网络同步状态标志
+#define MonitorValidationStatus NetworkSystemMonitorStatusFlag     // 网络监控状态标志
 #define GameDataSystemNodeStatusFlag GameDataNodeStatusFlag  // 游戏数据节点状态标志
 
 // 系统初始化和状态管理函数语义化映射
 #define InitializeSystemMemoryPool FUN_1806536d0            // 初始化系统内存池
 #define InitializeSystemDataTable FUN_180653940              // 初始化系统数据表
 #define InitializeSystemResourceHandler FUN_180653ef0        // 初始化系统资源处理器
-#define NetworkConnectionStatusFlag NetworkConnectionStatusFlag // 网络连接状态标志
-#define NetworkConnectionPoolStatusFlag NetworkConnectionPoolStatusFlag // 网络连接池状态标志
+#define NetworkConnectionStatusFlag NetworkSystemConnectionStatusFlag // 网络连接状态标志
+#define NetworkConnectionPoolStatusFlag NetworkSystemConnectionPoolStatusFlag // 网络连接池状态标志
 #define AudioManagerStatusFlag AudioManagerStatusFlag   // 音频管理器状态标志
 #define InputManagerStatusFlag InputManagerStatusFlag   // 输入管理器状态标志
 #define PhysicsManagerNodeStatusFlag PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
@@ -142110,7 +142110,7 @@ void InitializeSystemStringProcessing(void)
     Utf16Char4 = ProcessSystemStatusCode(SystemParameter2,StackFrameAddressPointer + 0x20);
     pSystemFloatValue = (float *)AllocateVertexBuffer(Utf16Char4,StackFrameAddressPointer + -0x18);
   }
-  CharacterDataValidationResult = cStack0000000000000048;
+  CharacterDataValidationResult = StackCharacterValidationResult;
   SystemParameter2[9] = *(long long *)pSystemFloatValue;
   if (*(char *)((long long)SystemParameter2 + 0xb2) == '\0') {
     if (FilterInputValue2 == 3.4028235e+38) {
@@ -142204,7 +142204,7 @@ LAB_18012a70f:
         SystemMemoryAllocationResult = CharacterStatusBuffer3[1];
         *(uint32_t *)(eventDataStructureHandle + 8) = *CharacterStatusBuffer3;
         *(uint32_t *)((long long)SystemParameter2 + 0x44) = SystemMemoryAllocationResult;
-        CharacterDataValidationResult = cStack0000000000000048;
+        CharacterDataValidationResult = StackCharacterValidationResult;
       }
     }
     else {
@@ -143723,7 +143723,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle)
     Utf16Char4 = ProcessSystemStatusCode(SystemParameter2,StackFrameAddressPointer + 0x20);
     pSystemFloatValue = (float *)AllocateVertexBuffer(Utf16Char4,StackFrameAddressPointer + -0x18);
   }
-  CharacterDataValidationResult = cStack0000000000000048;
+  CharacterDataValidationResult = StackCharacterValidationResult;
   SystemParameter2[9] = *(long long *)pSystemFloatValue;
   if (*(char *)((long long)SystemParameter2 + 0xb2) == '\0') {
     if (FilterInputValue2 == 3.4028235e+38) {
@@ -143817,7 +143817,7 @@ LAB_18012a70f:
         SystemMemoryAllocationResult = CharacterStatusBuffer3[1];
         *(uint32_t *)(eventDataStructureHandle + 8) = *CharacterStatusBuffer3;
         *(uint32_t *)((long long)SystemParameter2 + 0x44) = SystemMemoryAllocationResult;
-        CharacterDataValidationResult = cStack0000000000000048;
+        CharacterDataValidationResult = StackCharacterValidationResult;
       }
     }
     else {
@@ -145410,7 +145410,7 @@ void ProcessSystemStatusAndValidation(void
     Utf16Char4 = ProcessSystemStatusCode(SystemParameter2,StackFrameAddressPointer + 0x20);
     pSystemFloatValue = (float *)AllocateVertexBuffer(Utf16Char4,StackFrameAddressPointer + -0x18);
   }
-  CharacterDataValidationResult = cStack0000000000000048;
+  CharacterDataValidationResult = StackCharacterValidationResult;
   SystemParameter2[9] = *(long long *)pSystemFloatValue;
   if (*(char *)((long long)SystemParameter2 + 0xb2) == '\0') {
     if (FilterInputValue2 == 3.4028235e+38) {
@@ -145504,7 +145504,7 @@ LAB_18012a70f:
         SystemMemoryAllocationResult = CharacterStatusBuffer3[1];
         *(uint32_t *)(eventDataStructureHandle + 8) = *CharacterStatusBuffer3;
         *(uint32_t *)((long long)SystemParameter2 + 0x44) = SystemMemoryAllocationResult;
-        CharacterDataValidationResult = cStack0000000000000048;
+        CharacterDataValidationResult = StackCharacterValidationResult;
       }
     }
     else {
@@ -146999,7 +146999,7 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
     SystemStatusCode = ProcessSystemStatusCode(SystemParameter2,StackFrameAddressPointer + 0x20);
     SystemContextPrimaryFloatPointer = (float *)AllocateVertexBuffer(SystemStatusCode,StackFrameAddressPointer + -0x18);
   }
-  CharacterDataValidationResult = cStack0000000000000048;
+  CharacterDataValidationResult = StackCharacterValidationResult;
   *(void *)(SystemParameter2 + 0x48) = *(void *)SystemContextPrimaryFloatPointer;
   if (*(char *)(SystemParameter2 + 0xb2) == '\0') {
     if (FilterInputValue0 == 3.4028235e+38) {
@@ -147094,7 +147094,7 @@ LAB_18012a70f:
         SystemMemoryAllocationResult = SystemCharacterStatusBuffer[1];
         *(uint32_t *)(eventDataStructureHandle + 0x40) = *SystemCharacterStatusBuffer;
         *(uint32_t *)(eventDataStructureHandle + 0x44) = SystemMemoryAllocationResult;
-        CharacterDataValidationResult = cStack0000000000000048;
+        CharacterDataValidationResult = StackCharacterValidationResult;
       }
     }
     else {
