@@ -130083,10 +130083,10 @@ void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer systemCo
  * 该函数在异常处理过程中管理异常上下文的引用计数。当异常上下文存在时，
  * 会递减其引用计数，并在必要时调用系统异常处理器进行最终的异常处理。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
- * @param operationFlagA 操作标志A，用于异常处理
- * @param operationFlagB 操作标志B，用于异常处理
+ * @param systemContextBase 操作基础数据缓冲区
+ * @param exceptionDataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param cleanupFlagA 清理标志A，用于异常处理
+ * @param cleanupFlagB 清理标志B，用于异常处理
  * 
  * @note 原始函数名：Unwind_1809125b0
  * @warning 此函数调用不返回，会直接进入异常处理流程
