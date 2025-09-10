@@ -225443,36 +225443,36 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
 
 
 
-void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointer
+void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointer)
 {
-  long long *ContextHandle;
-  long long BufferStatus;
-  void **pSystemEventTemplatePointer;
-  void **ppMemoryAddressMaskPointer;
+  long long *SystemContextPointer;
+  long long SystemBufferStatus;
+  void **SystemEventTemplateDoublePointer;
+  void **MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  uint8_t aMemoryOffsetValue [32];
-  void **ppSystemOperationFlag98;
-  void **ppSystemOperation90;
-  void **pSystemEventPointer;
-  void **ppCalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
-  void *StackProcessingVariableBuffer;
-  long long lStack_68;
-  uint64_t StackProcessingUnsignedValue60;
-  uint64_t BufferOffset;
-  uint64_t SystemKeyPointer;
-  void **ppFunctionAddress;
-  unsigned long long ProcessingFlags;
+  uint8_t MemoryOffsetValue [32];
+  void **SystemOperationFlagPointer;
+  void **SystemOperationPointer;
+  void **SystemEventPointer;
+  void **CalculationFunctionAddressPointer;
+  uint64_t ProcessingValue;
+  void *ProcessingVariableBuffer;
+  long long StackMemoryBuffer;
+  uint64_t UnsignedProcessingValue;
+  uint64_t DataOffset;
+  uint64_t SystemKey;
+  void **FunctionAddressPointer;
+  unsigned long long SystemProcessingFlags;
   
-  BufferStatus = SystemBufferStatusA;
-  StackProcessingValue78 = 0xfffffffffffffffe;
-  ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
+  SystemBufferStatus = SystemBufferStatusA;
+  ProcessingValue = 0xfffffffffffffffe;
+  SystemProcessingFlags = EncodingDecodingKey ^ (unsigned long long)MemoryOffsetValue;
   if (*(long long *)(SystemBufferStatusA + 8) != 0) {
-    ppSystemOperationFlag98 = (void **)0x0;
-    ppSystemOperation90 = (void **)0x0;
+    SystemOperationFlagPointer = (void **)0x0;
+    SystemOperationPointer = (void **)0x0;
     CalculatedCodePoint = 0;
-    pSystemEventPointer = (void **)0x0;
+    SystemEventPointer = (void **)0x0;
     if (Utf8SourcePointer != 0) {
       do {
         StackProcessingUnsignedValue60 = 0;
