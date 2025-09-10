@@ -238906,7 +238906,23 @@ uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long Op
 
 
 
-uint64_t * FUN_180196bd0(uint64_t *ContextHandle
+// 函数: uint64_t * FUN_180196bd0(uint64_t *ContextHandle)
+/**
+ * @brief 初始化上下文句柄数据结构
+ * 
+ * 该函数负责初始化上下文句柄的数据结构，主要功能包括：
+ * - 将上下文句柄的前三个元素设置为0
+ * - 设置第4个元素为3（使用uint32_t类型）
+ * - 将第6-8个元素设置为0
+ * - 返回初始化后的上下文句柄
+ * 
+ * @param ContextHandle 要初始化的上下文句柄指针
+ * @return uint64_t* 初始化后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180196bd0
+ */
+#define InitializeContextHandleDataStructure FUN_180196bd0
+uint64_t * InitializeContextHandleDataStructure(uint64_t *ContextHandle)
 {
   *ContextHandle = 0;
   ContextHandle[1] = 0;
@@ -286432,7 +286448,22 @@ InitializeSystemMemoryBlockTemplate(uint64_t *ContextHandle,unsigned long long O
 
 
 
-long long FUN_18022a8cd(void
+// 函数: long long FUN_18022a8cd(void)
+/**
+ * @brief 执行矩阵变换和浮点数计算
+ * 
+ * 该函数负责执行复杂的矩阵变换和浮点数计算，主要功能包括：
+ * - 处理浮点数的矩阵变换操作
+ * - 计算过滤器和缩放因子
+ * - 管理系统参数和上下文数据
+ * - 执行复杂的数学运算
+ * 
+ * @return long long 计算结果状态码
+ * 
+ * @note 原始函数名：FUN_18022a8cd
+ */
+#define ExecuteMatrixTransformAndFloatCalculations FUN_18022a8cd
+long long ExecuteMatrixTransformAndFloatCalculations(void)
 {
   uint64_t *CharacterStatusBuffer;
   float *pContextSecondaryFloat;

@@ -3002,31 +3002,28 @@ int InitializeSystemSemaphore(void)
 /**
  * @brief 初始化系统内存管理器
  * 
- * 该函数负责初始化系统内存管理器，设置内存分配策略
- * 和管理机制，确保系统内存资源的有效利用。函数会遍历系统节点树，
- * 查找或创建内存管理器节点，并配置相关的标识符和回调函数。
+ * 该函数负责初始化系统内存管理器，设置内存分配策略和管理机制，
+ * 确保系统内存资源的有效利用。函数会遍历系统节点树，查找或创建
+ * 内存管理器节点，并配置相关的标识符和回调函数。
  * 
- * @note 该函数是系统初始化过程中的关键组件，负责建立内存管理的基础架构。
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 检查内存管理器节点是否已初始化
+ * 3. 遍历系统节点树查找内存管理器节点
+ * 4. 如果找不到合适节点，则分配新内存并创建节点
+ * 5. 配置节点标识符、数据指针和回调函数
  * 
- * @param void 无参数
- * @return void 无返回值
- */
-/**
- * @brief 初始化系统内存管理器
- * 
- * 该函数负责初始化系统的内存管理器，创建内存管理节点并设置相关的回调函数。
- * 它会遍历系统节点树，查找或创建内存管理器节点，并配置必要的参数。
- * 
- * @note 该函数在系统初始化过程中调用，确保内存管理器正确配置
- * @note 函数使用SystemDataTemplateD进行系统识别
+ * @note 该函数是系统初始化过程中的关键组件，负责建立内存管理的基础架构
+ * @note 使用SystemMemoryManagerTemplateId进行系统识别
  * @note 如果找不到合适的节点，会创建新的内存管理器节点
+ * @note 节点创建后会配置相关的标识符和回调函数
  * 
  * @param void 无参数
  * @return void 无返回值
  */
 void InitializeSystemMemoryManager(void)
 {
-  bool IsMemoryManagerNodeActive;                    // 内存管理器节点是否激活
+  bool IsMemoryManagerNodeInitialized;                    // 内存管理器节点是否已初始化
   void** SystemDataTable;                            // 系统数据表指针
   int MemoryManagerSystemIdentifierCompareResult;          // 内存管理器标识符比较结果
   int64_t* MemorySystemDataPointer;                // 内存系统数据指针
@@ -3083,8 +3080,17 @@ void InitializeSystemMemoryManager(void)
  * 为系统提供高效的内存分配服务。它会遍历系统节点树，创建或查找
  * 内存分配器节点，并设置相关的标识符和回调函数。
  * 
- * @note 该函数在系统初始化过程中调用，确保内存分配器能够正确配置
- * 和运行。函数会创建新的系统节点或使用现有节点来存储内存分配器配置。
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 检查内存分配器节点是否已初始化
+ * 3. 遍历系统节点树查找内存分配器节点
+ * 4. 如果找不到合适节点，则分配新内存并创建节点
+ * 5. 配置节点标识符、数据指针和回调函数
+ * 
+ * @note 该函数在系统初始化过程中调用，确保内存分配器能够正确配置和运行
+ * @note 使用MemoryAllocatorTemplateId进行系统识别
+ * @note 如果找不到合适的节点，会创建新的内存分配器节点
+ * @note 节点创建后会设置相关的标识符和数据指针
  * 
  * @param void 无参数
  * @return void 无返回值
@@ -3092,7 +3098,7 @@ void InitializeSystemMemoryManager(void)
 void InitializeSystemMemoryAllocator(void)
 
 {
-  char NodeActiveFlag;
+  char IsMemoryAllocatorNodeInitialized;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
   int64_t* MemorySystemDataPointer;
@@ -3109,9 +3115,9 @@ void InitializeSystemMemoryAllocator(void)
   SystemMemoryAllocatorSearchFunction = GetSystemMemoryAllocatorSearchFunction;
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentIndex];
-  while (!NodeActiveFlag) {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &MemoryAllocatorTemplateId, SystemIdentifierSize);
-    if (SystemIdentifierCompareResult < 0) {
+  while (!IsMemoryAllocatorNodeInitialized) {
+    MemoryAllocatorIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &MemoryAllocatorTemplateId, SystemIdentifierSize);
+    if (MemoryAllocatorIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -3120,9 +3126,9 @@ void InitializeSystemMemoryAllocator(void)
     }
     PreviousNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsMemoryAllocatorNodeInitialized = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNodePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&MemoryAllocatorTemplateId, PreviousNodePointer + NodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
+  if ((PreviousNodePointer == RootNodeReference) || (MemoryAllocatorIdentifierComparisonResult = memcmp(&MemoryAllocatorTemplateId, PreviousNodePointer + NodeIdentifierOffset, SystemIdentifierSize), MemoryAllocatorIdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
     PreviousNodePointer = AllocatedMemoryNode;
