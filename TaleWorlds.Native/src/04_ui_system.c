@@ -115250,7 +115250,7 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
   stackUIntd0 = *(UIDword *)(uiBufferData + 0x1230);
   stackIntd8 = loopCounter;
   ProcessUIDataWithShortSource(uiContext + 0x1290,targetBuffer,*(UIHandle *)(uiContext + 0x1258),astackUIntb8);
-  FUN_18072f4d0(dataSource + 0x20,targetBuffer,*(UIDword *)(uiBufferData + 0x121c),
+  ExecuteUIBufferDataOperation(dataSource + 0x20,targetBuffer,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec));
   if (!IsEventProcessingActive) {
                      WARNING: Subroutine does not return
@@ -115258,7 +115258,7 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
   }
   stackIntd8 = *(int *)(uiBufferData + 0x121c);
   ProcessUIComponentOperation(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
-  FUN_18072f4d0(dataSource,astackUInt78,*(UIDword *)(uiBufferData + 0x121c),
+  ExecuteUIBufferDataOperation(dataSource,astackUInt78,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec));
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt58 ^ (ulonglong)astackUIntf8);
@@ -115309,11 +115309,11 @@ void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle
   if (*(int *)(uiBufferData + 0x11e0) == 2) {
     loopCounter = loopCounter + (loopCounter >> 1);
   }
-  FUN_180737100(&stack0x00000040,targetBuffer,*(UIDword *)(uiBufferData + 0x121c));
+  ProcessUIDataWithWordSource(&stack0x00000040,targetBuffer,*(UIDword *)(uiBufferData + 0x121c));
   if ((*(int *)(uiBufferData + 0x1214) == 1) && (*(char *)(uiContext + 0x12a7) < '\x04')) {
     IsEventProcessingActive = true;
     ProcessUIComponentOperation(&stack0x00000080);
-    FUN_180737100(&stack0x00000060,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c));
+    ProcessUIDataWithWordSource(&stack0x00000060,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c));
     processStatus = 0;
     result = *(uint *)(uiContext + 0x121c);
     eventProcessingCounter = 0;
@@ -115422,8 +115422,8 @@ void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle
   else {
     IsEventProcessingActive = false;
   }
-  FUN_180737240(uiContext + 0x1290,targetBuffer,*(UIHandle *)(uiContext + 0x1258),&stack0x00000040,loopCounter);
-  FUN_18072f4d0(dataSource + 0x20,targetBuffer,*(UIDword *)(uiBufferData + 0x121c),
+  ProcessUIDataWithShortSource(uiContext + 0x1290,targetBuffer,*(UIHandle *)(uiContext + 0x1258),&stack0x00000040,loopCounter);
+  ExecuteUIBufferDataOperation(dataSource + 0x20,targetBuffer,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec));
   loopCounter = *(int *)(uiBufferData + 0x121c);
   if (!IsEventProcessingActive) {
@@ -115577,7 +115577,7 @@ void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlo
   StackData1 = *(UIDword *)(contextHandle + 0x1230);
   FUN_180737240(contextHandle + 0x1290,in_XMM1._0_8_,*(UIHandle *)(contextHandle + 0x1258),
                 &stack0x00000040);
-  iterationCount = FUN_18072f4d0(basePointer + 0x20);
+  iterationCount = ExecuteUIBufferDataOperation(basePointer + 0x20);
   uiValidationResult1 = *(int *)(contextHandle + 0x121c);
   if (eventHandle == 0) {
                      WARNING: Subroutine does not return
@@ -115617,14 +115617,14 @@ void ProcessUIHandleShortBufferTransfer(UIHandle uiContext,UIHandle dataSource,l
   }
   iStack0000000000000030 = (int)*(char *)(contextHandle + 0x12a5);
   StackData1 = *(UIDword *)(contextHandle + 0x1230);
-  FUN_180737240(contextHandle + 0x1290);
-  FUN_18072f4d0(basePointer + 0x20);
+  ProcessUIDataWithShortSource(contextHandle + 0x1290);
+  ExecuteUIBufferDataOperation(basePointer + 0x20);
   if (eventHandle == 0) {
                      WARNING: Subroutine does not return
     memcpy();
   }
   ProcessUIComponentOperation(&stack0x00000080);
-  FUN_18072f4d0();
+  ExecuteUIBufferDataOperation();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
 }
@@ -115647,7 +115647,7 @@ void InitializeUIRenderTaskAndExecute(void)
   ulonglong maxAllocations;
   
   ProcessUIComponentOperation(&stack0x00000080);
-  FUN_18072f4d0();
+  ExecuteUIBufferDataOperation();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
 }

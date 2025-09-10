@@ -10013,9 +10013,14 @@ ExceptionDataTable* ExceptionDataTableAddressPtr;
 // 功能：存储验证操作的上下文信息
 #define ValidationContextA1 ValidationContextA1
 
-// 数据缓冲区A0
-// 功能：存储数据缓冲区信息
-#define DataBufferA0 FUN_180899d90
+/**
+ * @brief 数据缓冲区A0
+ * 
+ * 存储系统数据缓冲区信息，用于数据缓存和处理操作
+ * 
+ * @note 原始函数名：FUN_180899d90
+ */
+#define DataBufferA0 SystemDataBufferA0
 
 // 数据缓冲区A1
 // 功能：存储数据缓冲区信息
