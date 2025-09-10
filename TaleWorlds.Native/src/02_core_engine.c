@@ -226640,7 +226640,20 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 
 
-8990f(long long *ContextHandle,long long *ContextHandleSizevoid FUN_18018990f(long long *ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理上下文句柄和缓冲区清理
+ * 
+ * 该函数负责清理和释放上下文句柄相关的资源：
+ * - 释放字符表指针关联的内存
+ * - 重置上下文句柄的各个字段
+ * - 处理Unicode码点的边界检查
+ * - 确保内存安全释放
+ * 
+ * @param ContextHandle 上下文句柄指针数组
+ * @param ContextHandleSize 上下文句柄大小
+ * @note 原始函数名：FUN_18018990f
+ */
+void ProcessContextHandleAndBufferCleanup(long long *ContextHandle, long long *ContextHandleSize)
 {
   long long MainCalculationResult;
   long long BufferStatus;
@@ -227024,7 +227037,21 @@ void ReleaseMemoryBlock24Bytes(uint64_t ContextHandle, char OperationBufferSize,
 
 
 
-89ee0(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180189ee0(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-16字符转换（主配置）
+ * 
+ * 该函数处理UTF-16字符的转换和系统配置：
+ * - 解析UTF-16字符并处理
+ * - 使用主配置参数进行系统配置
+ * - 管理栈处理配置标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180189ee0
+ */
+void ProcessUtf16CharacterConversionPrimary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
