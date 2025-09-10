@@ -270514,31 +270514,31 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
                                  *(UIByte (*) [32])(sourceDataPtr + vectorOffset1),0xee);
             eventProcessingCounterVector = vshufps_avx(processingStatusVector,maxProcessingCountVector,0x88);
             zmmRegister6 = ZEXT3264(eventProcessingCounterVector);
-            aprocessStatus = vshufps_avx(aprocessingStatus,maxProcessingCount,0xdd);
-            maxProcessingCount = vshufps_avx(aloopCounter,aiterationCounter,0xdd);
-            *(UIByte (*) [16])(dataSource + uiCompareResult5) = maxProcessingCount._16_16_;
-            aloopCounter = vshufps_avx(aloopCounter,aiterationCounter,0x88);
-            in_ZMM5 = ZEXT3264(aloopCounter);
-            *(UIByte (*) [16])(dataSource + (longlong)(int)param_7 + (longlong)uiCompareResult5) =
-                 aloopCounter._16_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)(int)(param_7 * 2) + (longlong)uiCompareResult5) =
-                 aprocessingStatus._16_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)uiCompareResult5 + (longlong)(int)(param_7 * 3)) =
-                 aeventProcessingCounter._16_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)(int)(param_7 * 4) + (longlong)uiCompareResult5) =
-                 maxProcessingCount._0_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)(int)(param_7 * 5) + (longlong)uiCompareResult5) =
-                 aloopCounter._0_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)(int)(param_7 * 6) + (longlong)uiCompareResult5) =
-                 aprocessingStatus._0_16_;
-            *(UIByte (*) [16])(dataSource + (longlong)(int)(param_7 * 7) + (longlong)uiCompareResult5) =
-                 aeventProcessingCounter._0_16_;
-            uiValidationResult8 = uiValidationResult8 + -1;
-            uiCompareResult5 = uiCompareResult5 + 4;
-          } while (uiValidationResult8 != 0);
+            processingStatusVector = vshufps_avx(processingStatusVector,maxProcessingCountVector,0xdd);
+            maxProcessingCountVector = vshufps_avx(loopCounterVector,iterationCounterVector,0xdd);
+            *(UIByte (*) [16])(dataSource + vectorOffset2) = maxProcessingCountVector._16_16_;
+            loopCounterVector = vshufps_avx(loopCounterVector,iterationCounterVector,0x88);
+            zmmRegister5 = ZEXT3264(loopCounterVector);
+            *(UIByte (*) [16])(dataSource + (longlong)(int)vectorSize + (longlong)vectorOffset2) =
+                 loopCounterVector._16_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)(int)(vectorSize * 2) + (longlong)vectorOffset2) =
+                 processingStatusVector._16_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)vectorOffset2 + (longlong)(int)(vectorSize * 3)) =
+                 eventProcessingCounterVector._16_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)(int)(vectorSize * 4) + (longlong)vectorOffset2) =
+                 maxProcessingCountVector._0_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)(int)(vectorSize * 5) + (longlong)vectorOffset2) =
+                 loopCounterVector._0_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)(int)(vectorSize * 6) + (longlong)vectorOffset2) =
+                 processingStatusVector._0_16_;
+            *(UIByte (*) [16])(dataSource + (longlong)(int)(vectorSize * 7) + (longlong)vectorOffset2) =
+                 eventProcessingCounterVector._0_16_;
+            alignmentCheckResult = alignmentCheckResult + -1;
+            vectorOffset2 = vectorOffset2 + 4;
+          } while (alignmentCheckResult != 0);
         }
-        dataSource = dataSource + (int)(param_7 * 8);
-        uiValidationResult2 = uiValidationResult2 + -1;
+        dataSource = dataSource + (int)(vectorSize * 8);
+        vectorProcessingCount = vectorProcessingCount + -1;
       } while (uiValidationResult2 != 0);
     }
     uiValidationResult2 = param_7 * 8;
