@@ -42822,7 +42822,7 @@ uint64_t ValidatesystemContextAndProcessData(void)
   BytePair FirstBytePair;
   BytePair SecondBytePair;
   BytePair TemporaryDataBufferF;
-  BytePair StackDataBufferG;
+  BytePair TemporaryDataBufferG;
   
   if (*(uint *)(systemInputAccumulator + SystemDataSecondaryOffset18) != registerContextValue) {
     return ResourceInvalidErrorCode;
@@ -42849,7 +42849,7 @@ uint64_t ValidatesystemContextAndProcessData(void)
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                             (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
           if (operationResult == 0) {
-            StackDataBufferG = SecondBytePair;
+            TemporaryDataBufferG = SecondBytePair;
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                               (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
             if (operationResult == 0) {
@@ -42902,7 +42902,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
   BytePair FirstBytePair;
   BytePair SecondBytePair;
   BytePair TemporaryDataBufferF;
-  BytePair StackDataBufferG;
+  BytePair TemporaryDataBufferG;
   
   operationResult = ProcessDataPointer(*DestinationContext,StackFrameContext + ArrayDataOffset);
   validationStatus = (uint64_t)operationResult;
@@ -42920,7 +42920,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                           (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
         if (operationResult == 0) {
-          StackDataBufferG = SecondBytePair;
+          TemporaryDataBufferG = SecondBytePair;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                             (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
           if (operationResult == 0) {
@@ -42969,7 +42969,7 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
   int64_t *DestinationContext;
   DataBuffer operationResult;
   BytePair TemporaryDataBufferF;
-  BytePair StackDataBufferG;
+  BytePair TemporaryDataBufferG;
   
   exceptionContext = *DestinationContext;
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))();
@@ -42978,7 +42978,7 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                       (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
     if (operationResult == 0) {
-      StackDataBufferG = operationResult._6_2_;
+      TemporaryDataBufferG = operationResult._6_2_;
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                         (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
       if (operationResult == 0) {
@@ -133229,7 +133229,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈数据缓冲区G
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferG StackDataBufferG
+#define TemporaryDataBufferG TemporaryDataBufferG
 
 // 栈数据缓冲区H
 // 功能：存储数据缓冲区的栈变量
