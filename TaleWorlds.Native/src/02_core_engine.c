@@ -67200,7 +67200,7 @@ StringLengthValidation:
     puStack_3a8 = (uint8_t *)0x0;
     uStack_3a0 = 0;
     CoreEngineProcessSystemEvent(&puStack_3b0,*(uint32_t *)(CharacterTablePointer6 + 0x10));
-    SystemStringIndex = lStack_310;
+    SystemStringIndex = SystemStackOffset310;
     PrimaryProcessingStatusFlag3 = puStack_3a8;
     if (*(int *)(CharacterTablePointer6 + 0x10) != 0) {
         memcpy(puStack_3a8,*(void *)(CharacterTablePointer6 + 8),*(int *)(CharacterTablePointer6 + 0x10) + 1);
@@ -67216,7 +67216,7 @@ StringLengthValidation:
     if (*(void **)(BufferStatusRegister8 + 8) != NULL) {
       puStack_3f8 = *(void **)(BufferStatusRegister8 + 8);
     }
-    ConfigurationString = *(void **)(lStack_3b8 + 0x28 + *(long long *)(lStack_310 + 8));
+    ConfigurationString = *(void **)(lStack_3b8 + 0x28 + *(long long *)(SystemStackOffset310 + 8));
     CharacterStatusBuffer5 = &CoreEngineDataTemplate;
     if (ConfigurationString != NULL) {
       CharacterStatusBuffer5 = ConfigurationString;
@@ -67271,7 +67271,7 @@ StringLengthValidation:
         pSystemValue2a8 = &ThreadLocalStorageTemplate;
       }
       ProcessCoreEnginePointerBuffer(&CoreEnginePointerBuffer158,BufferStatusRegister8);
-      SystemStringIndex = lStack_310;
+      SystemStringIndex = SystemStackOffset310;
       pCharacterTablePointer = &SystemNullTemplate;
       SystemValue2b0 = 0;
       pMemoryBlockCount = NULL;

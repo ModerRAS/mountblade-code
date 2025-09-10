@@ -93633,7 +93633,28 @@ void UIReturnEmptyFunction(void)
 
 
 
- void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
+ /**
+ * @brief UI系统内存分配处理函数
+ * 
+ * 该函数负责处理UI系统中的内存分配操作，包括：
+ * - 分配和管理UI组件的内存空间
+ * - 处理内存池的分配和释放
+ * - 验证内存分配的有效性
+ * - 处理内存分配失败的情况
+ * - 管理内存块的跟踪和回收
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源句柄，提供内存分配所需的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储分配结果
+ * @param bufferSize 缓冲区大小，指定需要分配的内存大小
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 参数6，用于传递额外的分配参数
+ * @param param_7 参数7，用于传递额外的分配参数
+ * @param param_8 参数8，用于传递额外的分配参数
+ * 
+ * @note 原始函数名：未指定
+ * @see InitializeUISystem, CleanupUISystem, ProcessUIBufferData
+ */
 void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
                   longlong param_6,int param_7,int param_8)
 

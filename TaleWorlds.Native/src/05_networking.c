@@ -4114,6 +4114,24 @@ NetworkHandle FinalizeNetworkSystem(void)
  * @warning 清理过程中如果遇到错误，系统会记录日志但继续执行清理操作
  * @warning 调用此函数后，连接上下文将不再有效，不应再被使用
  */
+/**
+ * @brief 清理网络连接资源
+ * 
+ * 该函数负责清理和释放网络连接相关的所有资源，包括：
+ * - 重置连接状态码和数据处理结果
+ * - 清理网络缓冲区内存
+ * - 释放句柄存储和缓冲区
+ * - 重置安全验证密钥
+ * 
+ * 这是一个重要的资源管理函数，确保网络连接关闭时所有相关资源都被正确释放，
+ * 防止内存泄漏和资源泄露。
+ * 
+ * @param ConnectionContext 网络连接句柄，标识要清理的连接资源
+ * 
+ * @note 此函数应该在网络连接关闭时调用，确保所有资源都被正确释放
+ * @warning 调用此函数后，ConnectionContext句柄将失效，不应再使用
+ * @see InitializeNetworkConnectionPool, CloseNetworkConnection
+ */
 void CleanupNetworkConnectionResources(NetworkHandle ConnectionContext)
 {
   int32_t NetworkConnectionStatusCode;                         // 网络连接状态码
