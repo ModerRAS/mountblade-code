@@ -5863,31 +5863,46 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateAndProcessData ValidateAndProcessDataB0
 
 /**
- * @brief 处理数据块
+ * @brief 数据块处理器
  * 
- * 该函数负责处理多个数据块，支持批量数据处理操作
+ * 处理多个数据块的批量操作，支持并行处理和流水线操作
+ * 
+ * @param dataBlockArray 数据块数组
+ * @param blockCount 数据块数量
+ * @param processingFlags 处理标志
+ * @return 处理结果状态码
  * 
  * @note 原始函数名：FUN_180899090
  */
-#define ProcessDataBlocks ProcessDataBlocks
+#define ProcessDataBlocks ProcessDataBlocksB0
 
 /**
- * @brief 验证并执行操作
+ * @brief 操作验证和执行器
  * 
- * 该函数负责验证系统参数并执行相应的操作，确保操作的安全性
+ * 验证系统参数并执行相应的操作，确保操作的安全性和有效性
+ * 
+ * @param operationPointer 操作指针
+ * @param parameterArray 参数数组
+ * @param validationFlags 验证标志
+ * @return 执行结果状态码
  * 
  * @note 原始函数名：FUN_180899100
  */
-#define ValidateAndExecuteOperations ValidateAndExecuteOperations
+#define ValidateAndExecuteOperations ValidateAndExecuteOperationsB0
 
 /**
- * @brief 初始化系统组件A0
+ * @brief 系统组件初始化器
  * 
- * 该函数负责初始化系统的各个组件，设置初始状态和配置
+ * 初始化系统的各个组件，设置初始状态和配置参数
+ * 
+ * @param componentArray 组件数组
+ * @param componentCount 组件数量
+ * @param initializationFlags 初始化标志
+ * @return 初始化结果状态码
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponentsA2 InitializeSystemComponentsA2
+#define InitializeSystemComponents InitializeSystemComponentsB0
 
 /**
  * @brief 带安全检查的数据验证A2
