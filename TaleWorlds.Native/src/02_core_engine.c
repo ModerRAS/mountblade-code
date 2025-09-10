@@ -240438,8 +240438,27 @@ void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandl
 
 
 
-unsigned long long FUN_180198b90(long long ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer,uint8_t Utf16EndPointer,
-                       uint64_t AdditionalParameter1,uint8_t AdditionalParameter2,char AdditionalParameter3
+/**
+ * @brief 系统内存缓冲区管理器
+ * 
+ * 该函数管理系统内存缓冲区的分配、验证和释放操作，
+ * 确保内存使用的安全性和效率。负责处理内存池管理、
+ * 缓冲区分配、系统事件处理和内存边界验证。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @param AdditionalParameter2 附加参数2
+ * @param AdditionalParameter3 附加参数3
+ * @return unsigned long long 返回操作状态码
+ * 
+ * @note 原始函数名：FUN_180198b90
+ * @warning 该函数包含复杂的内存管理逻辑，错误处理可能导致系统不稳定
+ */
+unsigned long long ManageSystemMemoryBuffer(long long ContextHandle, long long *ContextHandleSize, uint8_t Utf8SourcePointer, uint8_t Utf16EndPointer,
+                       uint64_t AdditionalParameter1, uint8_t AdditionalParameter2, char AdditionalParameter3)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
