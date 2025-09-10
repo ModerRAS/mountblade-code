@@ -8518,8 +8518,20 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define CheckSystemStatus CheckSystemStatusAndHealth
 
-// 系统命令执行函数 - 系统命令执行函数
-// 功能：执行系统命令和操作
+/**
+ * @brief 系统命令执行函数
+ * 
+ * 执行系统命令和操作，处理系统级别的指令和任务。
+ * 该函数负责解析和执行系统命令，确保命令的正确执行。
+ * 
+ * @param commandPointer 命令指针
+ * @param commandParameters 命令参数
+ * @param executionFlags 执行标志位
+ * @return 执行结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_18009fb60
+ * @note 这是系统命令执行的核心函数
+ */
 #define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 
