@@ -6281,7 +6281,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089e043
  */
-#define ExecuteDataSynchronizationA1 FUN_18089e043
+#define ExecuteDataSynchronizationA1 PerformDataSynchronizationOperation
 
 /**
  * @brief 处理数据流A1
@@ -6290,7 +6290,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089e0d0
  */
-#define ProcessDataStreamA1 FUN_18089e0d0
+#define ProcessDataStreamA1 ProcessDataStreamAndValidate
 
 /**
  * @brief 处理数据集合A1
@@ -6299,7 +6299,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ede0
  */
-#define ProcessDataCollectionA1 FUN_18089ede0
+#define ProcessDataCollectionA1 ProcessDataCollectionAndValidate
 
 /**
  * @brief 返回固定状态码A2

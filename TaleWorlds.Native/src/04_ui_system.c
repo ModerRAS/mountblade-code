@@ -5772,6 +5772,7 @@ void* UIGestureCoordinates;
 #define ProcessUIDataBuffer10Bytes FUN_18072d260            // 处理10字节UI数据缓冲区  
 #define ProcessUIDataBuffer12Bytes FUN_18072d5e0            // 处理12字节UI数据缓冲区
 #define ProcessUIDataBuffer16Bytes FUN_18072d9e0            // 处理16字节UI数据缓冲区
+#define CalculateUIDataTransformValue FUN_180734d70          // 计算UI数据变换值
 
 // UI系统组件操作函数
 
@@ -111930,12 +111931,12 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
   stackInt730 = *(int *)(uiBufferData + 0x121c);
   localInt5 = *(int *)(uiBufferData + 0x11e8) + stackInt730;
   *(UIByte *)(uiContext + 0x12a7) = 4;
-  LocalFloatValue6 = (float)FUN_180734d70(astackUInt6e8,targetBuffer,bufferSize,localInt5);
+  LocalFloatValue6 = (float)CalculateUIDataTransformValue(astackUInt6e8,targetBuffer,bufferSize,localInt5);
   if (((*(int *)(uiBufferData + 0x1214) != 0) && (*(int *)(uiBufferData + 0x1234) == 0)) &&
      (*(int *)(uiBufferData + 0x11e0) == 4)) {
     stackInt730 = *(int *)(uiBufferData + 0x121c);
     stackUInt738 = 2;
-    ResultFloatValue = (float)FUN_180734d70(astackUInt728,targetBuffer + (longlong)(localInt5 * 2) * 4,bufferSize,localInt5);
+    ResultFloatValue = (float)CalculateUIDataTransformValue(astackUInt728,targetBuffer + (longlong)(localInt5 * 2) * 4,bufferSize,localInt5);
     LocalFloatValue6 = LocalFloatValue6 - ResultFloatValue;
     FUN_180726a00(dataSource,astackUInt728,*(UIDword *)(uiBufferData + 0x121c));
     sourceDataInt = 3;
@@ -112017,11 +112018,11 @@ void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDwo
   *(UIDword *)(RegisterPointer + -0x70) = unmodifiedXMM8_Dc;
   *(UIDword *)(RegisterPointer + -0x6c) = unmodifiedXMM8_Dd;
   iStack0000000000000028 = dataSource;
-  TransformCoefficient4 = (float)FUN_180734d70(&stack0x00000070,targetBuffer,bufferSize,sourceDataInt);
+  TransformCoefficient4 = (float)CalculateUIDataTransformValue(&stack0x00000070,targetBuffer,bufferSize,sourceDataInt);
   if (((*(int *)(TargetHandle + 0x1214) != 0) && (*(int *)(TargetHandle + 0x1234) == 0)) &&
      (*(int *)(TargetHandle + 0x11e0) == 4)) {
     iStack0000000000000028 = *(int *)(TargetHandle + 0x121c);
-    LocalFloatValue6 = (float)FUN_180734d70(&stack0x00000030,targetBuffer + (longlong)(sourceDataInt * 2) * 4,bufferSize,sourceDataInt,
+    LocalFloatValue6 = (float)CalculateUIDataTransformValue(&stack0x00000030,targetBuffer + (longlong)(sourceDataInt * 2) * 4,bufferSize,sourceDataInt,
                                  2);
     LocalFloatValue9 = TransformCoefficient4 - LocalFloatValue6;
     FUN_180726a00(LocalFloatValue6,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
@@ -112082,7 +112083,7 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   ulonglong stackParam000006d0;
   
   StackData1 = *(UIDword *)(TargetHandle + 0x121c);
-  TransformCoefficient2 = (float)FUN_180734d70(&stack0x00000030,preservedRegister15 + (longlong)(eventHandle * 2) * 4,targetBuffer,
+  TransformCoefficient2 = (float)CalculateUIDataTransformValue(&stack0x00000030,preservedRegister15 + (longlong)(eventHandle * 2) * 4,targetBuffer,
                                eventHandle,2);
   ResultFloatValue = unmodifiedXMM8_Da - TransformCoefficient2;
   FUN_180726a00(TransformCoefficient2,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
@@ -116501,8 +116502,8 @@ LAB_180734d2f:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180734d70(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
-void FUN_180734d70(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
+ void CalculateUIDataTransformValue(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
+void CalculateUIDataTransformValue(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
 
 {
   UIByte astackUInt518 [40];
