@@ -114231,27 +114231,27 @@ void ProcessUIEventBufferTransfer(int uiContext,int dataSource,longlong targetBu
   int stackParameter110;
   int stackParameter120;
   
-  lStackX_10 = targetBuffer;
+  stackParameter10 = targetBuffer;
   do {
     *(int *)(register10 + 0x10f4) = dataSource * 0xbb38435 + 0x3619636b;
-    ProcessingResult2 = (int)((ulonglong)((longlong)*maxIterations * (longlong)*preservedRegister15) >> 0x10) +
+    calculationResult2 = (int)((ulonglong)((longlong)*maxIterations * (longlong)*preservedRegister15) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-2] * (longlong)maxIterations[2]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-4] * (longlong)maxIterations[4]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-6] * (longlong)maxIterations[6]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-9] * (longlong)maxIterations[9]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-8] * (longlong)maxIterations[8]) >> 0x10) +
-             (stackParam00000120 >> 1) +
+             (stackParameter120 >> 1) +
              (int)((ulonglong)((longlong)preservedRegister15[-7] * (longlong)maxIterations[7]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-5] * (longlong)maxIterations[5]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-3] * (longlong)maxIterations[3]) >> 0x10) +
              (int)((ulonglong)((longlong)preservedRegister15[-1] * (longlong)maxIterations[1]) >> 0x10);
-    if (stackParam00000120 == 0x10) {
-      ProcessingResult2 = (int)((ulonglong)((longlong)preservedRegister15[-0xb] * (longlong)maxIterations[0xb]) >>
+    if (stackParameter120 == 0x10) {
+      calculationResult2 = (int)((ulonglong)((longlong)preservedRegister15[-0xb] * (longlong)maxIterations[0xb]) >>
                     0x10) +
                (int)((ulonglong)((longlong)preservedRegister15[-0xd] * (longlong)maxIterations[0xd]) >>
                     0x10) +
                (int)((ulonglong)((longlong)preservedRegister15[-0xf] * (longlong)maxIterations[0xf]) >>
-                    0x10) + ProcessingResult2 +
+                    0x10) + calculationResult2 +
                (int)((ulonglong)((longlong)preservedRegister15[-0xe] * (longlong)maxIterations[0xe]) >>
                     0x10) +
                (int)((ulonglong)((longlong)preservedRegister15[-0xc] * (longlong)maxIterations[0xc]) >>
