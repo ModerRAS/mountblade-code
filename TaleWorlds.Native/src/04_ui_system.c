@@ -113201,7 +113201,7 @@ LAB_18072f294:
       ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt128,eventProcessingCounter);
     }
     ptrLocalInt9 = apstackIntc8[componentIndex & 1];
-    sourceDataInt = (int)*(short *)(&UNK_180956f6e + stackLongf0 * 2);
+    sourceDataInt = (int)*(short *)(&UIComponentDataPointerF6E + stackLongf0 * 2);
     eventProcessingCounter = (ulonglong)((componentIndex & 2) * -0x1000 + 0x1000);
     uiContext = psStack_e0;
   } while( true );
@@ -113356,9 +113356,9 @@ void ExecuteUIBufferDataOperation(UIByte *uiContext, longlong dataSource, uint t
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt138;
   contextDataHandle = (longlong)(int)targetBuffer;
-  componentTransformData = &UNK_180956df8;
+  componentTransformData = &UIComponentDataPointerDF8;
   if (targetBuffer == 0x10) {
-    componentTransformData = &UNK_180956de8;
+    componentTransformData = &UIComponentDataPointerDE8;
   }
   if (0 < (int)targetBuffer) {
     CharacterDataOffset = 0;
@@ -113759,12 +113759,12 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
   stackLong68 = 0;
   pcStack_70 = "\b\x10 ";
   while( true ) {
-    stackUInt60 = *(UIHandle *)(&UNK_180954860 + stackLong68);
+    stackUInt60 = *(UIHandle *)(&UIComponentHandleData860 + stackLong68);
     localInt9 = 0;
     uiCompareResult = 0;
     loopCounter = *bufferSize;
     stackUInt50 = *(UIHandle *)(&UIContextHandleTable878 + stackLong68);
-    stackUInt58 = *(UIHandle *)(&UNK_180954890 + stackLong68);
+    stackUInt58 = *(UIHandle *)(&UIComponentHandleData890 + stackLong68);
     stackInt84 = (int)*pcStack_70;
     if (0 < (int)param_9) {
       componentContextPtr = astackUInt78;
@@ -116902,43 +116902,53 @@ double ProcessUIFloatTransformAndCalculation(longlong uiContext, longlong dataSo
 
 
 
- void FUN_180734750(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180734750(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
-
+ /**
+ * @brief 处理UI数据转换和计算
+ * 
+ * 该函数将UI上下文数据与目标缓冲区数据进行转换计算，
+ * 使用特定的算法进行数据处理和结果存储。
+ * 
+ * @param uiContext UI上下文数据指针
+ * @param dataSource 数据源指针，用于存储处理结果
+ * @param targetBuffer 目标缓冲区，包含输入数据
+ * @param bufferSize 缓冲区大小
+ * @return void
+ */
+void ProcessUIDataConversion(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 {
-  int processingResult;
-  UIWord iterationCount;
-  int uiCompareResult;
-  int sourceDataInt;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
+  int intermediateResult;
+  UIWord convertedValue;
+  int contextValue;
+  int calculatedDifference;
+  int secondValue;
+  int scaledCounter;
+  longlong iterationIndex;
   
   if (0 < (longlong)bufferSize >> 1) {
-    localLong7 = 0;
+    iterationIndex = 0;
     do {
-      uiCompareResult = *uiContext;
-      loopCounter = *(short *)(targetBuffer + localLong7 * 4) * 0x400;
-      sourceDataInt = loopCounter - uiCompareResult;
-      sourceDataInt = (int)((ulonglong)((longlong)sourceDataInt * -0x647f) >> 0x10) + sourceDataInt;
-      processingResult = uiContext[1];
-      *uiContext = sourceDataInt + loopCounter;
-      localInt5 = *(short *)(targetBuffer + 2 + localLong7 * 4) * 0x400;
-      loopCounter = (int)((ulonglong)((longlong)(localInt5 - processingResult) * 0x2690) >> 0x10);
-      uiContext[1] = loopCounter + localInt5;
-      uiCompareResult = (processingResult + uiCompareResult + sourceDataInt + loopCounter >> 10) + 1 >> 1;
-      if (uiCompareResult < 0x8000) {
-        iterationCount = (UIWord)uiCompareResult;
-        if (uiCompareResult < -0x8000) {
-          iterationCount = 0x8000;
+      contextValue = *uiContext;
+      scaledCounter = *(short *)(targetBuffer + iterationIndex * 4) * 0x400;
+      calculatedDifference = scaledCounter - contextValue;
+      calculatedDifference = (int)((ulonglong)((longlong)calculatedDifference * -0x647f) >> 0x10) + calculatedDifference;
+      intermediateResult = uiContext[1];
+      *uiContext = calculatedDifference + scaledCounter;
+      secondValue = *(short *)(targetBuffer + 2 + iterationIndex * 4) * 0x400;
+      scaledCounter = (int)((ulonglong)((longlong)(secondValue - intermediateResult) * 0x2690) >> 0x10);
+      uiContext[1] = scaledCounter + secondValue;
+      contextValue = (intermediateResult + contextValue + calculatedDifference + scaledCounter >> 10) + 1 >> 1;
+      if (contextValue < 0x8000) {
+        convertedValue = (UIWord)contextValue;
+        if (contextValue < -0x8000) {
+          convertedValue = 0x8000;
         }
       }
       else {
-        iterationCount = 0x7fff;
+        convertedValue = 0x7fff;
       }
-      *(UIWord *)(dataSource + localLong7 * 2) = iterationCount;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < (longlong)bufferSize >> 1);
+      *(UIWord *)(dataSource + iterationIndex * 2) = convertedValue;
+      iterationIndex = iterationIndex + 1;
+    } while (iterationIndex < (longlong)bufferSize >> 1);
   }
   return;
 }
@@ -116946,55 +116956,67 @@ void FUN_180734750(int *uiContext,longlong dataSource,longlong targetBuffer,int 
 
 
 
- void FUN_180734778(void)
-void FUN_180734778(void)
-
+ /**
+ * @brief 释放UI数据内存
+ * 
+ * 该函数负责清理和释放UI系统中的数据内存，
+ * 处理组件数据的转换和释放操作。
+ * 
+ * @return void
+ */
+void ReleaseUIDataMemory(void)
 {
-  int processingResult;
-  UIWord iterationCount;
-  int uiCompareResult;
-  int sourceDataInt;
-  longlong contextHandle;
-  longlong basePointer;
+  int intermediateResult;
+  UIWord convertedValue;
+  int componentValue;
+  int calculatedDifference;
+  longlong dataCount;
+  longlong sourceBuffer;
   int *componentData;
-  longlong TargetHandle;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
+  longlong targetHandle;
+  int secondValue;
+  int scaledCounter;
+  longlong dataIndex;
   
-  localLong7 = 0;
+  dataIndex = 0;
   do {
-    uiCompareResult = *componentData;
-    loopCounter = *(short *)(basePointer + localLong7 * 4) * 0x400;
-    sourceDataInt = loopCounter - uiCompareResult;
-    sourceDataInt = (int)((ulonglong)((longlong)sourceDataInt * -0x647f) >> 0x10) + sourceDataInt;
-    processingResult = componentData[1];
-    *componentData = sourceDataInt + loopCounter;
-    localInt5 = *(short *)(basePointer + 2 + localLong7 * 4) * 0x400;
-    loopCounter = (int)((ulonglong)((longlong)(localInt5 - processingResult) * 0x2690) >> 0x10);
-    componentData[1] = loopCounter + localInt5;
-    uiCompareResult = (processingResult + uiCompareResult + sourceDataInt + loopCounter >> 10) + 1 >> 1;
-    if (uiCompareResult < 0x8000) {
-      iterationCount = (UIWord)uiCompareResult;
-      if (uiCompareResult < -0x8000) {
-        iterationCount = 0x8000;
+    componentValue = *componentData;
+    scaledCounter = *(short *)(sourceBuffer + dataIndex * 4) * 0x400;
+    calculatedDifference = scaledCounter - componentValue;
+    calculatedDifference = (int)((ulonglong)((longlong)calculatedDifference * -0x647f) >> 0x10) + calculatedDifference;
+    intermediateResult = componentData[1];
+    *componentData = calculatedDifference + scaledCounter;
+    secondValue = *(short *)(sourceBuffer + 2 + dataIndex * 4) * 0x400;
+    scaledCounter = (int)((ulonglong)((longlong)(secondValue - intermediateResult) * 0x2690) >> 0x10);
+    componentData[1] = scaledCounter + secondValue;
+    componentValue = (intermediateResult + componentValue + calculatedDifference + scaledCounter >> 10) + 1 >> 1;
+    if (componentValue < 0x8000) {
+      convertedValue = (UIWord)componentValue;
+      if (componentValue < -0x8000) {
+        convertedValue = 0x8000;
       }
     }
     else {
-      iterationCount = 0x7fff;
+      convertedValue = 0x7fff;
     }
-    *(UIWord *)(TargetHandle + localLong7 * 2) = iterationCount;
-    localLong7 = localLong7 + 1;
-  } while (localLong7 < contextHandle);
+    *(UIWord *)(targetHandle + dataIndex * 2) = convertedValue;
+    dataIndex = dataIndex + 1;
+  } while (dataIndex < dataCount);
   return;
 }
 
 
 
 
- void FUN_18073481b(void)
-void FUN_18073481b(void)
-
+ /**
+ * @brief 释放UI数据资源
+ * 
+ * 该函数负责释放UI系统中的数据资源，
+ * 清理内存和资源占用。
+ * 
+ * @return void
+ */
+void FreeUIDataResources(void)
 {
   return;
 }
@@ -117004,91 +117026,102 @@ void FUN_18073481b(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180734830(int *uiContext,UIWord *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180734830(int *uiContext,UIWord *dataSource,longlong targetBuffer,int bufferSize)
-
+ /**
+ * @brief 处理UI数据与Word缓冲区
+ * 
+ * 该函数处理UI上下文数据与Word数据源之间的转换，
+ * 使用加密和数据处理算法进行批量处理。
+ * 
+ * @param uiContext UI上下文数据指针
+ * @param dataSource Word类型数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return void
+ */
+void ProcessUIDataWithWordBuffer(int *uiContext,UIWord *dataSource,longlong targetBuffer,int bufferSize)
 {
-  int processingResult;
-  longlong componentIndex;
-  UIWord eventCodeType;
-  int sourceDataInt;
-  int *ptrLocalInt5;
-  ulonglong maxProcessingCount;
-  int localInt7;
-  int localInt8;
-  int localInt9;
-  int astackInt7c8 [4];
-  UIByte astackUInt7b8 [1920];
-  int *pstackInt38;
-  ulonglong stackUInt30;
+  int chunkSize;
+  longlong dataIndex;
+  UIWord eventCode;
+  int calculatedValue;
+  int *dataPointer;
+  ulonglong maxIterations;
+  int contextValue1;
+  int contextValue2;
+  int contextValue3;
+  int contextValue4;
+  int contextDataArray [4];
+  UIByte processingBuffer [1920];
+  int *contextPointer;
+  ulonglong encryptedPointer;
   
-  stackUInt30 = XorEncryptionKey ^ (ulonglong)&pstackInt38;
-  sourceDataInt = *uiContext;
-  localInt7 = uiContext[1];
-  localInt8 = uiContext[2];
-  localInt9 = uiContext[3];
-  pstackInt38 = uiContext;
+  encryptedPointer = XorEncryptionKey ^ (ulonglong)&contextPointer;
+  contextValue1 = *uiContext;
+  contextValue2 = uiContext[1];
+  contextValue3 = uiContext[2];
+  contextValue4 = uiContext[3];
+  contextPointer = uiContext;
   do {
-    processingResult = 0x1e0;
+    chunkSize = 0x1e0;
     if (bufferSize < 0x1e0) {
-      processingResult = bufferSize;
+      chunkSize = bufferSize;
     }
-    astackInt7c8[0] = sourceDataInt;
-    astackInt7c8[1] = localInt7;
-    astackInt7c8[2] = localInt8;
-    astackInt7c8[3] = localInt9;
-    ProcessUIComponentDataA9C0(uiContext + 4,astackUInt7b8,targetBuffer,&UIContextDataTableB0,processingResult);
-    if (2 < processingResult) {
-      ptrLocalInt5 = astackInt7c8;
-      maxProcessingCount = (ulonglong)((processingResult - 3U) / 3 + 1);
+    contextDataArray[0] = contextValue1;
+    contextDataArray[1] = contextValue2;
+    contextDataArray[2] = contextValue3;
+    contextDataArray[3] = contextValue4;
+    ProcessUIComponentDataA9C0(uiContext + 4,processingBuffer,targetBuffer,&UIContextDataTableB0,chunkSize);
+    if (2 < chunkSize) {
+      dataPointer = contextDataArray;
+      maxIterations = (ulonglong)((chunkSize - 3U) / 3 + 1);
       do {
-        ptrLocalInt5 = ptrLocalInt5 + 3;
-        sourceDataInt = ((int)((ulonglong)((longlong)ptrLocalInt5[-3] * 0x1259) >> 0x10) +
-                 (int)((ulonglong)((longlong)*ptrLocalInt5 * 0x61f) >> 0x10) +
-                 (int)((ulonglong)((longlong)ptrLocalInt5[-2] * 0x29f3) >> 0x10) +
-                 (int)((ulonglong)((longlong)ptrLocalInt5[-1] * 0x2054) >> 0x10) >> 5) + 1 >> 1;
-        if (sourceDataInt < 0x8000) {
-          eventCode = (UIWord)sourceDataInt;
-          if (sourceDataInt < -0x8000) {
+        dataPointer = dataPointer + 3;
+        calculatedValue = ((int)((ulonglong)((longlong)dataPointer[-3] * 0x1259) >> 0x10) +
+                 (int)((ulonglong)((longlong)*dataPointer * 0x61f) >> 0x10) +
+                 (int)((ulonglong)((longlong)dataPointer[-2] * 0x29f3) >> 0x10) +
+                 (int)((ulonglong)((longlong)dataPointer[-1] * 0x2054) >> 0x10) >> 5) + 1 >> 1;
+        if (calculatedValue < 0x8000) {
+          eventCode = (UIWord)calculatedValue;
+          if (calculatedValue < -0x8000) {
             eventCode = 0x8000;
           }
         }
         else {
           eventCode = 0x7fff;
         }
-        *dataSource = eventCodeType;
-        sourceDataInt = ((int)((ulonglong)((longlong)ptrLocalInt5[1] * 0x1259) >> 0x10) +
-                 (int)((ulonglong)((longlong)*ptrLocalInt5 * 0x29f3) >> 0x10) +
-                 (int)((ulonglong)((longlong)ptrLocalInt5[-1] * 0x2054) >> 0x10) +
-                 (int)((ulonglong)((longlong)ptrLocalInt5[-2] * 0x61f) >> 0x10) >> 5) + 1 >> 1;
-        if (sourceDataInt < 0x8000) {
-          eventCode = (UIWord)sourceDataInt;
-          if (sourceDataInt < -0x8000) {
+        *dataSource = eventCode;
+        calculatedValue = ((int)((ulonglong)((longlong)dataPointer[1] * 0x1259) >> 0x10) +
+                 (int)((ulonglong)((longlong)*dataPointer * 0x29f3) >> 0x10) +
+                 (int)((ulonglong)((longlong)dataPointer[-1] * 0x2054) >> 0x10) +
+                 (int)((ulonglong)((longlong)dataPointer[-2] * 0x61f) >> 0x10) >> 5) + 1 >> 1;
+        if (calculatedValue < 0x8000) {
+          eventCode = (UIWord)calculatedValue;
+          if (calculatedValue < -0x8000) {
             eventCode = 0x8000;
           }
         }
         else {
           eventCode = 0x7fff;
         }
-        dataSource[1] = eventCodeType;
+        dataSource[1] = eventCode;
         dataSource = dataSource + 2;
-        maxProcessingCount = maxProcessingCount - 1;
-      } while (maxProcessingCount != 0);
+        maxIterations = maxIterations - 1;
+      } while (maxIterations != 0);
     }
-    componentIndex = (longlong)processingResult;
-    bufferSize = bufferSize - processingResult;
-    targetBuffer = targetBuffer + componentIndex * 2;
-    sourceDataInt = astackInt7c8[componentIndex];
-    localInt7 = astackInt7c8[componentIndex + 1];
-    localInt8 = astackInt7c8[componentIndex + 2];
-    localInt9 = *(int *)(astackUInt7b8 + componentIndex * 4 + -4);
+    dataIndex = (longlong)chunkSize;
+    bufferSize = bufferSize - chunkSize;
+    targetBuffer = targetBuffer + dataIndex * 2;
+    contextValue1 = contextDataArray[dataIndex];
+    contextValue2 = contextDataArray[dataIndex + 1];
+    contextValue3 = contextDataArray[dataIndex + 2];
+    contextValue4 = *(int *)(processingBuffer + dataIndex * 4 + -4);
   } while (0 < bufferSize);
-  *pstackInt38 = sourceDataInt;
-  pstackInt38[1] = localInt7;
-  pstackInt38[2] = localInt8;
-  pstackInt38[3] = localInt9;
+  *contextPointer = contextValue1;
+  contextPointer[1] = contextValue2;
+  contextPointer[2] = contextValue3;
+  contextPointer[3] = contextValue4;
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt30 ^ (ulonglong)&pstackInt38);
+  ExecuteUIRenderTask(encryptedPointer ^ (ulonglong)&contextPointer);
 }
 
 
