@@ -146646,8 +146646,22 @@ UIHandle FUN_180750ee0(longlong *uiContext,int dataSource,UIHandle *targetBuffer
 
 
 UIHandle
-FUN_180750fa0(longlong uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,int *resultPointer,
-             int param_6)
+/**
+ * @brief 处理UI事件代码数据转换
+ * 
+ * 根据不同的参数类型，处理UI系统中的事件代码数据转换和计算。
+ * 支持多种数据类型的转换，包括百分比计算、缩放计算等。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param param_6 参数6，指定处理类型（1=百分比，2=直接，4=缩放）
+ * @return 处理状态码，0表示成功，0x1f表示失败
+ */
+UIStatus ProcessUIEventCodeDataConversion(longlong uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,int *resultPointer,
+                                         int param_6)
 
 {
   int processingResult;
@@ -146705,7 +146719,18 @@ FUN_180750fa0(longlong uiContext,longlong dataSource,longlong targetBuffer,UIDwo
 
 
 
-ulonglong FUN_180751170(longlong uiContext,ulonglong dataSource,uint targetBuffer)
+/**
+ * @brief 处理UI系统数据源初始化和配置
+ * 
+ * 初始化UI系统的数据源，配置相关参数，并执行必要的数据处理操作。
+ * 该函数负责设置数据源的状态，分配必要的资源，并调用相关的处理函数。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @return 处理状态码，0表示成功，非0表示失败或错误代码
+ */
+UIHandle ProcessUIDataSourceInitialization(longlong uiContext,ulonglong dataSource,uint targetBuffer)
 
 {
   code *plocalChar1;
