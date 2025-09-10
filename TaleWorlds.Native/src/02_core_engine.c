@@ -25927,9 +25927,9 @@ void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerP
   }
   else {
 SystemLibraryLoadSuccess:
-    if (MemoryAllocatorPointer[0xc] == 0) {
+    if (MemoryAllocatorPointer[MemoryAllocatorFunctionPointerOffset] == 0) {
       OperationResult = GetProcAddress(OperationResult,&SystemFunctionName);
-      MemoryAllocatorPointer[0xc] = OperationResult;
+      MemoryAllocatorPointer[MemoryAllocatorFunctionPointerOffset] = OperationResult;
       if (OperationResult == 0) {
         ThreadLocalStorageErrorHandler = &SystemNullTemplate;
         if (ThreadLocalStorageProcessingStatusFlag != NULL) {
