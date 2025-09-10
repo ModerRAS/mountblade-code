@@ -109290,33 +109290,32 @@ void FUN_18072c44d(void)
 
 
 
- void FUN_18072c8e6(void)
-void FUN_18072c8e6(void)
+ void ProcessUIEventValidationAndMemoryManagement(void)
 
 {
-  short sVar1;
+  short uiShortValue1;
   int uiValidationResult;
   int uiCompareResult;
-  int *ptrLocalInt4;
-  short *psVar5;
-  ulonglong maxProcessingCount;
-  short *psVar7;
-  uint unmodifiedEBX;
-  longlong BasePointer;
-  longlong contextOffset;
-  short sVar9;
-  longlong allocatedMemory0;
-  int eventHandle;
-  int iStack0000000000000040;
+  int *pUILocalIntPointer;
+  short *pUIShortPointer5;
+  ulonglong uiMaxProcessingCount;
+  short *pUIShortPointer7;
+  uint uiUnmodifiedRegisterValue;
+  longlong uiBasePointer;
+  longlong uiContextOffset;
+  short uiShortValue9;
+  longlong uiAllocatedMemory0;
+  int uiEventHandle;
+  int uiStackParameter40;
   
-  if (0 < (int)unmodifiedEBX) {
-    ptrLocalInt4 = (int *)(BasePointer + -0x10);
-    maxProcessingCount = (ulonglong)unmodifiedEBX;
+  if (0 < (int)uiUnmodifiedRegisterValue) {
+    pUILocalIntPointer = (int *)(uiBasePointer + -0x10);
+    uiMaxProcessingCount = (ulonglong)uiUnmodifiedRegisterValue;
     do {
-      uiValidationResult = *ptrLocalInt4;
-      ptrLocalInt4 = ptrLocalInt4 + 1;
-      *(UIWord *)(BasePointer + 0xae0 + (longlong)uiValidationResult * 2) = 1;
-      maxProcessingCount = maxProcessingCount - 1;
+      uiValidationResult = *pUILocalIntPointer;
+      pUILocalIntPointer = pUILocalIntPointer + 1;
+      *(UIWord *)(uiBasePointer + 0xae0 + (longlong)uiValidationResult * 2) = 1;
+      uiMaxProcessingCount = uiMaxProcessingCount - 1;
     } while (maxProcessingCount != 0);
   }
   sVar9 = *(short *)(BasePointer + 0xc04);
