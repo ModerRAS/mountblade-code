@@ -234857,7 +234857,7 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
     pValidationResult = (int *)(CharacterTablePointer + 0x10);
     do {
       if ((*(long long *)(pValidationResult + -2) == Utf8SourcePointer) && (*pValidationResult == Utf16EndPointer)) {
-        FUN_1802759e0(*(void *)(ThreadLocalStorageData + (long long)StringLength * 0x18),OperationBufferSize);
+        ProcessSystemConfigurationData(*(void *)(ThreadLocalStorageData + (long long)StringLength * 0x18),OperationBufferSize);
         EncodingValidationResult = _Mtx_unlock(MemoryBlockIndex);
         if (EncodingValidationResult == 0) {
           return OperationBufferSize;

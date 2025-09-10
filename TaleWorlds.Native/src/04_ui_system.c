@@ -399013,8 +399013,8 @@ UIHandle * FUN_18089c22e(void)
   
   resultPointer1 = (UIDword *)FUN_180847820();
   componentHandle = (UIHandle *)0x0;
-  eventStatus = *(uint *)(TargetHandle + 8);
-  iterationCount0 = *resultPointer1;
+  eventStatus = *(uint *)(uiTargetHandle + 8);
+  iterationCounter = *resultPointer1;
   iterationCount = resultPointer1[1];
   eventCode = resultPointer1[2];
   processStatus = resultPointer1[3];
