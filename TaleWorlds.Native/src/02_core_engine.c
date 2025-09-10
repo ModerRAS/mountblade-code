@@ -247,6 +247,18 @@
 #define ResetContextHandleState FUN_18017b28d                     // 重置上下文句柄状态
 #define ValidateContextHandle FUN_18017b2ed                      // 验证上下文句柄
 #define ProcessContextHandleWithUtf FUN_18017b400                 // 处理上下文句柄和UTF转换
+#define ProcessContextHandleWithUtfData FUN_18017b480             // 处理上下文句柄和UTF数据
+#define GetContextHandleWithUtfValidation FUN_18017b6e0           // 获取上下文句柄并进行UTF验证
+
+// 系统内存和数据处理函数
+#define ProcessSystemMemoryOperation FUN_180186430                // 处理系统内存操作
+#define ProcessSystemMemoryWithHandle FUN_1801864e0               // 处理带句柄的系统内存
+#define SetContextHandleMemorySize FUN_1801865a0                  // 设置上下文句柄内存大小
+#define ProcessSystemMemoryWithExtendedData FUN_1801879d0         // 处理带扩展数据的系统内存
+#define ProcessSystemMemoryWithExtendedHandle FUN_180187a30       // 处理带扩展句柄的系统内存
+#define ProcessSystemMemoryWithExtendedSize FUN_180187aa0         // 处理带扩展大小的系统内存
+#define ProcessSystemMemoryWithExtendedFlags FUN_180187b40        // 处理带扩展标志的系统内存
+#define ReleaseSystemMemoryHandle FUN_180187bd0                   // 释放系统内存句柄
 
 /**
  * @brief 配置核心引擎指针
