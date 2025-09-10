@@ -40026,15 +40026,24 @@ DataBuffer ValidateDataIntegrityA1(int64_t operationBase,DataBuffer *dataBuffer)
 /**
  * @brief 验证数据参数C0
  * 
- * 该函数负责验证数据参数的有效性，执行安全检查和端口控制请求验证
+ * 该函数负责验证数据参数的有效性，执行多层安全检查和端口控制请求验证。
+ * 它是系统安全验证机制的重要组成部分，确保数据操作的合法性和安全性。
  * 
- * @param DataContext 数据上下文，包含待验证的数据参数信息
- * @param SecurityBuffer 安全缓冲区，用于安全验证操作
+ * 主要功能包括：
+ * 1. 执行安全验证操作，包括栈验证和端口控制验证
+ * 2. 验证端口控制请求的有效性
+ * 3. 检查数据缓冲区的大小限制
+ * 4. 执行数据操作和参数设置
+ * 5. 处理异常情况并返回相应的错误码
  * 
- * @return void 无返回值，验证结果通过内部状态返回
+ * @param DataContext 数据上下文，包含待验证的数据参数信息和操作上下文
+ * @param SecurityBuffer 安全缓冲区，用于安全验证操作和存储安全相关数据
  * 
- * @note 此函数包含多层安全验证机制
- * @warning 验证失败会导致相关操作被拒绝
+ * @return void 无返回值，验证结果通过内部状态和错误码返回
+ * 
+ * @note 此函数包含多层安全验证机制，确保系统操作的合法性
+ * @warning 验证失败会导致相关操作被拒绝，并可能触发安全异常
+ * @see ExecuteSecurityValidation, ValidatePortControlRequest, ExecutePortControlOperation
  */
 void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
 
