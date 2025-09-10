@@ -4600,7 +4600,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18004b790
  * @note 这是系统数据处理的核心函数
  */
-#define ProcessAndValidateSystemData FUN_18004b790
+// 系统数据处理和验证函数
+#define ProcessAndValidateSystemData ProcessAndValidateSystemData
 #define ValidateSystemDataBufferAndCheckIntegrity ValidateSystemDataBufferA0
 
 /**
@@ -4628,7 +4629,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18064e900
  * @note 这是系统数据安全保护的重要函数
  */
-#define EncryptSystemData FUN_18064e900
+// 系统数据加密函数
+#define EncryptSystemData EncryptSystemData
 #define ReleaseSystemDataPointerAndMemory ReleaseSystemDataPointerA0
 
 /**
@@ -132196,9 +132198,9 @@ void CleanupSystemResourceA7(void)
 
 void ExecuteSystemValidationAndCleanup(void)
 {
-  int64_t systemValidationContext;
+  int64_t currentValidationContext;
   
-  systemValidationContext = SystemValidationContextPointer;
+  currentValidationContext = SystemValidationContextPointer;
   if (SystemValidationActiveFlag != '\0') {
     if (SystemValidationTerminationFlag != 0) {
         TerminateSystemExecutionAndCleanupResources();
@@ -132208,9 +132210,9 @@ void ExecuteSystemValidationAndCleanup(void)
       CleanupSystemMemoryRegion(SystemValidationContextPointer + 0x360,0xcc8,8,ExecuteMemoryCleanupCallback,SystemCleanupFlagAlternative);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
-      ReleaseSystemResources(systemValidationContext + 0x60);
+      ReleaseSystemResources(currentValidationContext + 0x60);
       ExecuteSystemCleanupRoutine();
-        TerminateValidationContext(systemValidationContext);
+        TerminateValidationContext(currentValidationContext);
     }
     SystemValidationContextPointer = 0;
   }
