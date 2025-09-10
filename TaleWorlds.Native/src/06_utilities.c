@@ -21118,6 +21118,22 @@ void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemConte
 
 
 
+/**
+ * @brief 验证数据返回状态A2
+ * 
+ * 该函数验证数据的有效性并检查返回状态，确保数据处理的正确性。
+ * 函数会检查数据是否包含浮点数无穷大值，并进行相应的系统查询和清理操作。
+ * 
+ * @param dataContext 数据上下文，包含要验证的数据信息
+ * @param systemContext 系统上下文，包含系统状态和操作信息
+ * 
+ * @return DataBuffer 验证结果
+ *         - 成功时返回0
+ *         - 失败时返回错误代码（如SystemFloatDataInvalid）
+ * 
+ * @note 该函数会执行系统清理操作
+ * @note 原始函数名：FUN_180896c39
+ */
 DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 
 {
@@ -21125,16 +21141,16 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   uint ValidationData;
   DataWord TemporaryValidationValue;
   
-  validationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
-  if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
+  ValidationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
+  if ((ValidationData & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset),&validationData);
-  if ((int)result == 0) {
+  Result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset),&ValidationData);
+  if ((int)Result == 0) {
     *(DataWord *)(MergeHighLowWords(TemporaryValidationValue,systemDataBuffer) + DataStorageBufferOffset) = *(DataWord *)(dataContext + DataProcessingContextOffset);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
   }
-  return result;
+  return Result;
 }
 
 
