@@ -68292,7 +68292,7 @@ SystemResourceFinalize:
     if (0 < SystemOperationResult) {
       SystemThreadHandleSecondary = 0x48;
       SystemThreadHandle5 = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
-      MatrixElement28 = fRam0000000180d49154;
+      MatrixElement28 = SystemMatrixScaleFactor;
       do {
         SystemThreadHandleSecondary = *(long long *)(ConfigDataHandle + 0x68);
         pInterpolationFactorX = (float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary);
@@ -68334,14 +68334,14 @@ SystemResourceFinalize:
         MatrixElement33 = TransformMatrixElement02;
         MatrixElement32 = TransformMatrixElement01;
         MatrixElement31 = TransformMatrixElement00;
-        if (*(int *)(SystemThreadHandle5 + SystemThreadHandleSecondary) < iRam0000000180d49150) {
+        if (*(int *)(SystemThreadHandle5 + SystemThreadHandleSecondary) < SystemThreadComparisonThreshold) {
           CheckSystemDataAvailability(0x180d49150);
-          if (iRam0000000180d49150 == -1) {
-            fRam0000000180d49154 = 1.0;
+          if (SystemThreadComparisonThreshold == -1) {
+            SystemMatrixScaleFactor = 1.0;
             InitializeSystemDataPointer(0x180d49150);
           }
           SystemThreadHandleSecondary = 0x48;
-          MatrixElement28 = fRam0000000180d49154;
+          MatrixElement28 = SystemMatrixScaleFactor;
         }
         if (MatrixElement31 < 3.051851e-05) {
           MatrixElement31 = 3.051851e-05;
