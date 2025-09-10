@@ -201,40 +201,40 @@
 // 系统初始化和配置函数语义化定义
 
 // 异常处理和错误管理函数
-#define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
-#define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
-#define ProcessSystemMemoryBufferAndUtfConversion FUN_180186800 // 处理系统内存缓冲区和UTF转换
-#define ManageSystemContextAndMemoryAllocation FUN_180186880     // 管理系统上下文和内存分配
-#define CleanupSystemStackData FUN_180186a90                     // 清理系统栈数据
-#define InitializeSystemMemoryStack FUN_180628a40                // 初始化系统内存栈
-#define ProcessSystemBufferStatus FUN_18018be60                   // 处理系统缓冲区状态
-#define ValidateInputDataLength FUN_180639de0                      // 验证输入数据长度
-#define ProcessMemoryPoolBlockSize FUN_180058830                    // 处理内存池块大小
-#define ProcessSystemCharacterEncodingValidationEx FUN_1800c4720  // 处理系统字符编码验证扩展
-#define ProcessSystemCharacterEncodingAndStatusManagementEx FUN_180190ae0 // 处理系统字符编码和状态管理扩展
-#define ProcessSystemDataTemplateInitialization FUN_1800e7d00    // 处理系统数据模板初始化
-#define ProcessSystemEventTemplatePrimary FUN_1801b99e0            // 处理系统事件模板主函数
-#define ProcessSystemMemoryBlockInitialization FUN_18004a130       // 处理系统内存块初始化
-#define ProcessSystemCharacterEncodingSecondary FUN_180207e00      // 处理系统字符编码次函数
-#define ProcessSystemEncodingDataSecondary FUN_180211f70          // 处理系统编码数据次函数
-#define ProcessSystemMemoryManagement FUN_180738730              // 处理系统内存管理
-#define CalculateCharacterEncodingValue FUN_180641cd0              // 计算字符编码值
-#define ProcessCharacterTableOperation FUN_180226430              // 处理字符表操作
+#define RecoverSystemFromException FUN_18018a9a0    // 从系统异常中恢复
+#define HandleMemoryOverflowException FUN_180188610       // 处理内存溢出异常
+#define ConvertMemoryBufferToUtf FUN_180186800 // 转换内存缓冲区到UTF格式
+#define AllocateSystemContextAndMemory FUN_180186880     // 分配系统上下文和内存
+#define ClearSystemStackData FUN_180186a90                     // 清理系统栈数据
+#define SetupSystemMemoryStack FUN_180628a40                // 设置系统内存栈
+#define CheckSystemBufferStatus FUN_18018be60                   // 检查系统缓冲区状态
+#define ValidateDataInputLength FUN_180639de0                      // 验证数据输入长度
+#define ManageMemoryPoolBlock FUN_180058830                    // 管理内存池块
+#define ValidateSystemCharacterEncoding FUN_1800c4720  // 验证系统字符编码
+#define ManageSystemEncodingAndStatus FUN_180190ae0 // 管理系统编码和状态
+#define InitializeSystemDataTemplate FUN_1800e7d00    // 初始化系统数据模板
+#define ProcessSystemEventTemplate FUN_1801b99e0            // 处理系统事件模板
+#define SetupSystemMemoryBlock FUN_18004a130       // 设置系统内存块
+#define ConvertSystemCharacterEncoding FUN_180207e00      // 转换系统字符编码
+#define ProcessSystemEncodingData FUN_180211f70          // 处理系统编码数据
+#define ManageSystemMemory FUN_180738730              // 管理系统内存
+#define ComputeCharacterEncodingValue FUN_180641cd0              // 计算字符编码值
+#define OperateCharacterTable FUN_180226430              // 操作字符表
 
 // 内存管理和数据处理函数
-#define ProcessSystemMemoryBlockAndContextData FUN_1801993a0       // 处理系统内存块和上下文数据
+#define HandleSystemMemoryAndContext FUN_1801993a0       // 处理系统内存和上下文
 
 // 系统缓冲区和数据处理函数
-#define ProcessSystemBufferDataTransfer FUN_18018e7e0               // 处理系统缓冲区数据传输
-#define ProcessSystemEncodingConversion FUN_1801917b0              // 处理系统编码转换
-#define ProcessSystemConfigurationData FUN_1802759e0               // 处理系统配置数据
+#define TransferSystemBufferData FUN_18018e7e0               // 传输系统缓冲区数据
+#define ConvertSystemEncoding FUN_1801917b0              // 转换系统编码
+#define ConfigureSystemData FUN_1802759e0               // 配置系统数据
 
 // 高频系统处理函数
-#define ProcessSystemBufferOperation FUN_180204980                  // 处理系统缓冲区操作
-#define CopySystemData FUN_18012ddc0                                // 复制系统数据
-#define ManageSystemMemoryPool FUN_180627ce0                        // 管理系统内存池
-#define ProcessFloatingPointData FUN_18009d8a0                     // 处理浮点数据
-#define ProcessSystemEventQueue FUN_180846210                      // 处理系统事件队列
+#define OperateSystemBuffer FUN_180204980                  // 操作系统缓冲区
+#define DuplicateSystemData FUN_18012ddc0                                // 复制系统数据
+#define ControlSystemMemoryPool FUN_180627ce0                        // 控制系统内存池
+#define CalculateFloatingPointData FUN_18009d8a0                     // 计算浮点数据
+#define HandleSystemEventQueue FUN_180846210                      // 处理系统事件队列
 
 /**
  * @brief 配置核心引擎指针

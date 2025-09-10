@@ -15547,11 +15547,21 @@ void ConfigureUtilitySystemBufferC(void);
 /**
  * @brief 处理工具系统数据
  * 
- * 处理工具系统的核心数据，包括数据验证、转换和存储操作
+ * 处理工具系统的核心数据，包括数据验证、转换和存储操作。
+ * 该函数负责：
+ * 1. 验证输入数据的完整性和有效性
+ * 2. 执行必要的数据转换和处理
+ * 3. 将处理后的数据存储到适当的缓冲区
+ * 4. 更新数据状态和元数据
+ * 5. 触发相关的系统事件和回调
  * 
  * @note 原始函数名: FUN_180942a20
+ * @param void 无参数
+ * @return void 无返回值
+ * @warning 数据处理错误可能导致系统状态不一致
+ * @see ValidateUtilitySystemData, ConfigureUtilitySystemBufferC
  */
-void ProcessUtilitySystemData(void);                // 处理工具系统数据
+void ProcessUtilitySystemData(void);
 
 /**
  * @brief 验证工具系统数据
