@@ -10031,19 +10031,19 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180896a30 - 字符串数据处理函数
 // 功能：处理字符串数据，包括解析和转换操作
-#define ProcessStringData FUN_180896a30
+#define ProcessStringData ProcessStringDataWithConversion
 
 // 原始函数名：FUN_180896aa0 - 编码数据处理函数
 // 功能：处理编码数据，包括解码和转换操作
-#define ProcessEncodedData FUN_180896aa0
+#define ProcessEncodedData ProcessEncodedDataWithDecoding
 
 // 原始函数名：FUN_1808605e0 - 处理工具操作
 // 功能：处理系统工具操作
-#define ProcessUtilityOperation FUN_1808605e0
+#define ProcessUtilityOperation ProcessSystemUtilityOperation
 
 // 原始函数名：FUN_1808bf350 - 执行核心功能
 // 功能：执行系统核心功能
-#define ExecuteCoreFunction FUN_1808bf350
+#define ExecuteCoreFunction ExecuteSystemCoreFunction
 
 // 原始函数名：FUN_180853000 - 处理输入数据
 // 功能：处理用户输入数据

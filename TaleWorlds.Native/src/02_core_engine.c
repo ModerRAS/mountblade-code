@@ -2179,12 +2179,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationVariantB FUN_180216210      // 处理系统内存分配变体B
 #define GetSystemErrorCodeEx FUN_18021aef5                       // 获取系统错误代码扩展
 #define IdentifySystemIdentifierByPatternVariantO FUN_180225667
-#define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7
-#define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7
-#define IdentifySystemIdentifierByPatternVariantR FUN_180225727
+#define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantR FUN_180225727  // 识别系统标识符模式R (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
-#define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7
+#define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7  // 识别系统标识符模式U (字符串模式匹配和标识符识别)
 
 // 原始函数名：FUN_180169350 - 核心引擎字符代码处理函数
 #define ProcessCoreEngineContextHandle FUN_180169350
