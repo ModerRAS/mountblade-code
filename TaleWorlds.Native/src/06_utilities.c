@@ -16131,7 +16131,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
       return componentValidationStatus;
     }
     if ((int8_t)systemDataQueryStatus == (int8_t)componentValidationStatus) {
-      if (componentValidationDataBuffer[0] == (int8_t)componentValidationStatus) {
+      if (componentValidationDataBuffer[PrimaryComponentValidationIndex] == (int8_t)componentValidationStatus) {
         componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         componentSearchIndex = 0;
         registeredComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
@@ -16367,9 +16367,9 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   if ((int32_t)ValidationResult != 0) {
     return ValidationResult;
   }
-  *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) = *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) + 1;
-  if (*(int32_t *)(LocalResourceBuffer[0] + ResourceTertiaryOffset) + *(int32_t *)(LocalResourceBuffer[0] + ResourceSecondaryOffset) +
-      *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) == 1) {
+  *(int32_t *)(LocalResourceBuffer[PrimaryLocalResourceBufferIndex] + ResourceReferenceCountOffset) = *(int32_t *)(LocalResourceBuffer[PrimaryLocalResourceBufferIndex] + ResourceReferenceCountOffset) + 1;
+  if (*(int32_t *)(LocalResourceBuffer[PrimaryLocalResourceBufferIndex] + ResourceTertiaryOffset) + *(int32_t *)(LocalResourceBuffer[PrimaryLocalResourceBufferIndex] + ResourceSecondaryOffset) +
+      *(int32_t *)(LocalResourceBuffer[PrimaryLocalResourceBufferIndex] + ResourceReferenceCountOffset) == 1) {
     LocalResourceBuffer[ResourceHandleArrayIndex] = 0;
     AllocationStatus = ValidateResourceHandle(LocalResourceBuffer);
     if (AllocationStatus == 0) {
@@ -16422,7 +16422,7 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
   
   memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + MemoryConfigOffset),MemoryRegionBuffer);
   if ((int)memoryUpdateStatus == 0) {
-    memoryRegionIterator = *(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset);
+    memoryRegionIterator = *(int64_t **)(MemoryRegionBuffer[PrimaryMemoryRegionBufferIndex] + MemoryRegionIteratorOffset);
     while ((*(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset) <= memoryRegionIterator &&
            (memoryRegionIterator < *(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset) + *(int *)(MemoryRegionBuffer[0] + MemoryRegionBoundOffset)))) {
       memoryRegionBlock = *memoryRegionIterator;
