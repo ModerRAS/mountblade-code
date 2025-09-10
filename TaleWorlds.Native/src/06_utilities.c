@@ -100132,18 +100132,18 @@ void ProcessExceptionContextCE70(DataBuffer operationBase,int64_t dataBuffer)
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(int64_t **)(exceptionHandlerContext + 0x58) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x58) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(exceptionContext + ExceptionContextProcessorOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionContext + ExceptionContextProcessorOffset) + SystemFloatDataOffset38))();
   }
-  *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset30) != 0) {
+  *(DataBuffer *)(exceptionContext + ExceptionContextTemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + ExceptionHandlerContextOffset30) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset30) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset40) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) + SystemFloatDataOffset38))();
+  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset30) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextControlOffset) = 0;
+  *(DataBuffer *)(exceptionContext + ExceptionContextTemporaryHandlerOffset) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t **)(exceptionContext + ExceptionHandlerContextDataOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionContext + ExceptionHandlerContextDataOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
