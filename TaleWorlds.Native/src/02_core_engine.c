@@ -26151,10 +26151,10 @@ uint32_t SystemShutdownAndCleanup(void
   (*FunctionPointer)(SystemHandle,&TertiaryStackContext);
   CoreEngineInitializeSystemHandle(*(uint64_t *)(TimeoutValue + 400));
   if (ThreadContext != (long long ***)0x0) {
-    (*(void *)(*ThreadContext)[7])(ThreadContext);
+    (*(void *)(*ThreadContext)[SystemContextOperationOffset7])(ThreadContext);
   }
   if (CleanupContext != (long long ****)0x0) {
-    (*(void *)(*CleanupContext)[7])(CleanupContext);
+    (*(void *)(*CleanupContext)[SystemContextOperationOffset7])(CleanupContext);
   }
   FinalContext = CleanupContextStorage;
   *(uint8_t *)(CleanupContextStorage[1] + 0x80) = 1;
