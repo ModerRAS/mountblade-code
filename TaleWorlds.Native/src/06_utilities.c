@@ -50,6 +50,12 @@
 #define DataOperationParameterOffset14 0x14                  // 数据操作参数偏移量14 - 用于数据操作的第二参数
 #define DataOperationParameterOffset16 0x16                  // 数据操作参数偏移量16 - 用于数据操作的第三参数
 
+// 资源清理偏移常量
+#define ResourceCleanupPrimaryOffset28 0x28                   // 资源清理主偏移量28 - 用于主资源清理操作
+#define ResourceCleanupSecondaryOffset48 0x48                // 资源清理辅助偏移量48 - 用于辅助资源清理操作
+#define ExceptionContextResetOffset18 0x18                    // 异常上下文重置偏移量18 - 用于异常上下文重置操作
+#define ExceptionContextResetOffset20 0x20                    // 异常上下文重置偏移量20 - 用于异常上下文重置操作
+
 // 安全和验证常量
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
@@ -5998,15 +6004,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：处理异常上下文回调，从0x50偏移量的0x348处获取异常上下文指针并执行回调
 #define ExecuteExceptionHandlerCallbackB150 InvokeExceptionHandlerCallbackB150
 
-// 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量0x28
-// 功能：清理偏移量0x28处的资源指针，处理内存引用计数和异常情况
+// 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量28
+// 功能：清理偏移量28处的资源指针，处理内存引用计数和异常情况
 #define CleanupResourceAtPrimaryPosition Unwind_1809049e0
 
-// 原始函数名：Unwind_1809049f0 - 资源清理函数偏移量0x48
-// 功能：清理偏移量0x48处的资源指针，处理内存引用计数和异常情况
+// 原始函数名：Unwind_1809049f0 - 资源清理函数偏移量48
+// 功能：清理偏移量48处的资源指针，处理内存引用计数和异常情况
 #define CleanupResourceAtSecondaryPosition Unwind_1809049f0
 
-// 原始函数名：Unwind_1809046d0 - 异常上下文重置函数偏移量0x18
+// 原始函数名：Unwind_1809046d0 - 异常上下文重置函数偏移量18
 // 功能：重置异常上下文处理器状态，设置临时异常处理器并清理状态标志
 #define ResetExceptionContextAtPrimaryOffset Unwind_1809046d0
 
