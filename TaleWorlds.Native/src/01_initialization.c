@@ -72041,9 +72041,9 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   MatrixElement28 = 0.0;
   MatrixElement30 = 0.0;
   AudioInterpolationFactorV = 0.0;
-  AudioMagnitudeSquared = SystemAudioContext._0_4_;
+  AudioMagnitudeSquared = SystemAudioContext.PrimaryCoefficient;
   AudioProcessingResult2 = SystemAudioContext.LowPart;
-  AudioSignal21 = SystemAudioContext._8_4_;
+  AudioSignal21 = SystemAudioContext.SecondaryCoefficient;
   AudioSignal22 = SystemAudioContext._12_4_;
   MatrixElement29 = 0.0;
   MatrixElement31 = 0.0;
