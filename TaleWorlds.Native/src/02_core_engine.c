@@ -222175,7 +222175,21 @@ void ProcessUtf8ToUtf16CharacterConversion(uint64_t ContextHandle, uint64_t Oper
 
 
 
-8364e(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18018364e(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 处理系统操作缓冲区大小设置
+ * 
+ * 该函数负责处理系统操作缓冲区大小的设置，主要功能包括：
+ * - 设置处理结果和操作缓冲区大小
+ * - 初始化空指针值和相关参数
+ * - 管理系统操作的状态标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18018364e
+ */
+#define SetSystemOperationBufferSize FUN_18018364e
+void SetSystemOperationBufferSize(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint64_t ProcessingResult;
   uint64_t *NullPointerValue;
@@ -222189,7 +222203,19 @@ void ProcessUtf8ToUtf16CharacterConversion(uint64_t ContextHandle, uint64_t Oper
 
 
 
-8366a(voidvoid FUN_18018366a(void
+/**
+ * @brief 处理系统数据节点和字符限制计算
+ * 
+ * 该函数负责处理系统数据节点和字符限制的计算，主要功能包括：
+ * - 执行主要的计算结果处理
+ * - 管理栈帧地址指针和系统数据节点
+ * - 处理寄存器值和字符限制
+ * - 执行系统相关的计算操作
+ * 
+ * @note 原始函数名：FUN_18018366a
+ */
+#define ProcessSystemDataNodeAndCharacterLimit FUN_18018366a
+void ProcessSystemDataNodeAndCharacterLimit(void)
 {
   long long MainCalculationResult;
   unsigned long long ProcessingResult;
