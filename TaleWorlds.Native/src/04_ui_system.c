@@ -399064,17 +399064,17 @@ UIHandle * FUN_18089c22e(void)
     renderDataPointer = (UIHandle *)(ulonglong)eventStatus;
     if (eventStatus != 0) {
 LAB_18089c40a:
-      eventStatus = *(uint *)(basePointer + -0x1d);
+      eventStatus = *(uint *)(uiContextBasePointer + -0x1d);
       dataPointer = eventStatus;
       if ((int)eventStatus < 0) {
         dataPointer = -eventStatus;
       }
-      processingResult9 = *(int *)(basePointer + -0x21);
+      processingResult = *(int *)(uiContextBasePointer + -0x21);
       if ((int)dataPointer < 0) {
-        if (0 < processingResult9) {
+        if (0 < processingResult) {
           return renderDataPointer;
         }
-        if ((0 < (int)eventStatus) && (*(longlong *)(basePointer + -0x29) != 0)) {
+        if ((0 < (int)eventStatus) && (*(longlong *)(uiContextBasePointer + -0x29) != 0)) {
                      WARNING: Subroutine does not return
           FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(basePointer + -0x29),
                         &UIResourceBuffer180957f70,0x100,1);
