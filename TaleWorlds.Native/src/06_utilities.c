@@ -17386,6 +17386,17 @@ uint8_t SystemResourceManagementTable;
  * @see ReleaseResource, CleanupMemory, ValidateSystemParameters
  * @see SecurityValidationBuffer, SystemContextArray
  */
+/**
+ * @brief 处理对象数据并进行验证
+ * 
+ * 该函数负责处理对象数据并执行必要的验证操作，确保数据完整性和安全性。
+ * 主要用于系统资源管理和数据处理流程。
+ * 
+ * @param ObjectHandle 对象句柄，标识要处理的对象
+ * @param DataContext 数据上下文，提供处理所需的数据环境
+ * 
+ * @note 原始函数名：ProcessObjectDataWithValidation
+ */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
