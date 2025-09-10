@@ -48180,7 +48180,7 @@ void HandleExceptionRecoveryD0(DataBuffer context, int64_t exceptionData, DataBu
  * @param recoveryParameter 恢复参数
  * @param additionalData 附加数据
  */
-void HandleExceptionRecoveryE0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
+void HandleExceptionRecoveryWithTableIteration(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
   DataBuffer *pExceptionHandlerEnd;
@@ -53344,7 +53344,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_1809034e0
  */
-void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer)
+void ManageResourceReferenceCountWithMemoryRegion(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -59215,7 +59215,7 @@ void InitializeExceptionHandlerContextA2(DataBuffer operationBase,int64_t dataBu
  * @note 该函数会设置多个异常处理器和清理标志
  * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
  */
-void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
+void ExceptionUnwindHandlerPrimary(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t exceptionContext;
   
@@ -59295,7 +59295,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
  * @note 该函数会设置多个异常处理器和清理标志
  * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
  */
-void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
+void ExceptionUnwindHandlerSecondary(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t exceptionContext;
   
@@ -60916,7 +60916,7 @@ void DestroyConditionFromBufferOnException(DataBuffer operationBase,int64_t data
  * @note 原始函数名：Unwind_180904810
  * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器E1和E2
  */
-void InitializeExceptionHandlersE1AndE2(DataBuffer operationBase, int64_t dataBuffer)
+void InitializePrimaryAndSecondaryExceptionHandlers(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
@@ -61874,7 +61874,7 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
  * @note 该函数会处理资源引用计数和验证状态
  * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
  */
-void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionUnwindHandlerWithDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
