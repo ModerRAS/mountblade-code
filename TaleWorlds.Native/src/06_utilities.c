@@ -35912,7 +35912,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   tertiarySecurityValue = securityCheckPointer[2];
   quaternarySecurityValue = securityCheckPointer[3];
   processResult = 0;
-  if (*(uint *)(dataBuffer + 8) < 0x6d) {
+  if (*(uint *)(dataBuffer + 8) < DataValidationThreshold6D) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = *dataBuffer;
       validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer78,4);
@@ -35930,13 +35930,13 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
       validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer70,8);
     }
     else {
-      validationOutcome = 0x1c;
+      validationOutcome = SecurityValidationFlag0x1C;
     }
   }
   if ((int)validationOutcome != 0) {
     return validationOutcome;
   }
-  if (0x81 < *(uint *)(dataBuffer + 8)) {
+  if (DataValidationThreshold81 < *(uint *)(dataBuffer + 8)) {
     validationOutcome = ValidateDataSecurityA0(dataBuffer,operationBase + OperationBaseOffset58);
     if ((int)validationOutcome != 0) {
       return validationOutcome;
