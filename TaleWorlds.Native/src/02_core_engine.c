@@ -237316,7 +237316,18 @@ ProcessContextHandleAllocationAndInitialization(uint64_t ContextHandle,uint64_t 
 
 
 
-uint64_t * FUN_180194ef0(long long ContextHandle
+/**
+ * @brief 字符状态缓冲区创建器
+ * 
+ * 该函数负责创建和初始化字符状态缓冲区，
+ * 分配内存并设置相关的系统指针。
+ * 
+ * @param ContextHandle 上下文句柄，用于管理系统状态
+ * @return uint64_t* 创建的字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180194ef0
+ */
+uint64_t * CreateCharacterStatusBuffer(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;

@@ -111757,58 +111757,58 @@ void ProcessUIDataBufferTransformation(int64_t UiContext, int64_t DataSource, fl
       DestinationPointer = BaseValuePointer;
     } while (DataOffset != 0);
   }
-  if ((ProcessingResult5 < (int)bufferSize) && (0xf < bufferSize - ProcessingResult5)) {
-    AllocatedMemoryBlock1 = (longlong)ProcessingResult5;
-    if (((ulonglong)(dataSource + (longlong)(int)(bufferSize - 1) * 4) < (ulonglong)(uiContext + AllocatedMemoryBlock1 * 4)
-        ) || ((ulonglong)(uiContext + (longlong)(int)(bufferSize - 1) * 4) <
-              (ulonglong)(dataSource + AllocatedMemoryBlock1 * 4))) {
-      contextValue = bufferSize - ProcessingResult5 & 0x8000000f;
-      if ((int)contextValue < 0) {
-        contextValue = (contextValue - 1 | 0xfffffff0) + 1;
+  if ((ProcessedBytes < (int)BufferSize) && (0xf < BufferSize - ProcessedBytes)) {
+    DataOffset = (int64_t)ProcessedBytes;
+    if (((uint64_t)(DataSource + (int64_t)(int)(BufferSize - 1) * 4) < (uint64_t)(UiContext + DataOffset * 4)
+        ) || ((uint64_t)(UiContext + (int64_t)(int)(BufferSize - 1) * 4) <
+              (uint64_t)(DataSource + DataOffset * 4))) {
+      AlignmentValue = BufferSize - ProcessedBytes & 0x8000000f;
+      if ((int)AlignmentValue < 0) {
+        AlignmentValue = (AlignmentValue - 1 | 0xfffffff0) + 1;
       }
-      AllocatedMemoryBlock8 = dataSource - uiContext;
-      BaseValuePointer2 = (float *)(uiContext + 0x10 + AllocatedMemoryBlock1 * 4);
+      MemoryDifference = DataSource - UiContext;
+      DestinationPointer = (float *)(UiContext + 0x10 + DataOffset * 4);
       do {
-        TransformCoefficient1 = (float *)(AllocatedMemoryBlock8 + -0x10 + (longlong)BaseValuePointer2);
+        TransformCoefficient1 = (float *)(MemoryDifference + -0x10 + (int64_t)DestinationPointer);
         TransformCoefficient2 = TransformCoefficient1[1];
         TransformCoefficient3 = TransformCoefficient1[2];
         TransformCoefficient4 = TransformCoefficient1[3];
-        ProcessingResult5 = ProcessingResult5 + 0x10;
-        AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + 0x10;
-        BaseValuePointer = (float *)(AllocatedMemoryBlock8 + (longlong)BaseValuePointer2);
+        ProcessedBytes = ProcessedBytes + 0x10;
+        DataOffset = DataOffset + 0x10;
+        BaseValuePointer = (float *)(MemoryDifference + (int64_t)DestinationPointer);
         LocalFloatValue6 = *BaseValuePointer;
         ResultFloatValue = BaseValuePointer[1];
         TemporaryFloatValue = BaseValuePointer[2];
         LocalFloatValue9 = BaseValuePointer[3];
-        BaseValuePointer = BaseValuePointer2 + 0x10;
-        BaseValuePointer2[-4] = *TransformCoefficient1 * targetBuffer;
-        BaseValuePointer2[-3] = TransformCoefficient2 * targetBuffer;
-        BaseValuePointer2[-2] = TransformCoefficient3 * targetBuffer;
-        BaseValuePointer2[-1] = TransformCoefficient4 * targetBuffer;
-        TransformCoefficient1 = (float *)(AllocatedMemoryBlock8 + -0x30 + (longlong)BaseValuePointer);
+        BaseValuePointer = DestinationPointer + 0x10;
+        DestinationPointer[-4] = *TransformCoefficient1 * TargetBuffer;
+        DestinationPointer[-3] = TransformCoefficient2 * TargetBuffer;
+        DestinationPointer[-2] = TransformCoefficient3 * TargetBuffer;
+        DestinationPointer[-1] = TransformCoefficient4 * TargetBuffer;
+        TransformCoefficient1 = (float *)(MemoryDifference + -0x30 + (int64_t)BaseValuePointer);
         TransformCoefficient2 = *TransformCoefficient1;
         TransformCoefficient3 = TransformCoefficient1[1];
         TransformCoefficient4 = TransformCoefficient1[2];
-        baseValue0 = TransformCoefficient1[3];
-        *BaseValuePointer2 = LocalFloatValue6 * targetBuffer;
-        BaseValuePointer2[1] = ResultFloatValue * targetBuffer;
-        BaseValuePointer2[2] = TemporaryFloatValue * targetBuffer;
-        BaseValuePointer2[3] = LocalFloatValue9 * targetBuffer;
-        TransformCoefficient1 = (float *)(AllocatedMemoryBlock8 + -0x20 + (longlong)BaseValuePointer);
+        BaseValue0 = TransformCoefficient1[3];
+        *DestinationPointer = LocalFloatValue6 * TargetBuffer;
+        DestinationPointer[1] = ResultFloatValue * TargetBuffer;
+        DestinationPointer[2] = TemporaryFloatValue * TargetBuffer;
+        DestinationPointer[3] = LocalFloatValue9 * TargetBuffer;
+        TransformCoefficient1 = (float *)(MemoryDifference + -0x20 + (int64_t)BaseValuePointer);
         LocalFloatValue6 = *TransformCoefficient1;
         ResultFloatValue = TransformCoefficient1[1];
         TemporaryFloatValue = TransformCoefficient1[2];
         LocalFloatValue9 = TransformCoefficient1[3];
-        BaseValuePointer2[4] = TransformCoefficient2 * targetBuffer;
-        BaseValuePointer2[5] = TransformCoefficient3 * targetBuffer;
-        BaseValuePointer2[6] = TransformCoefficient4 * targetBuffer;
-        BaseValuePointer2[7] = baseValue0 * targetBuffer;
-        BaseValuePointer2[8] = LocalFloatValue6 * targetBuffer;
-        BaseValuePointer2[9] = ResultFloatValue * targetBuffer;
-        BaseValuePointer2[10] = TemporaryFloatValue * targetBuffer;
-        BaseValuePointer2[0xb] = LocalFloatValue9 * targetBuffer;
-        BaseValuePointer2 = BaseValuePointer;
-      } while (AllocatedMemoryBlock1 < (int)(bufferSize - contextValue));
+        DestinationPointer[4] = TransformCoefficient2 * TargetBuffer;
+        DestinationPointer[5] = TransformCoefficient3 * TargetBuffer;
+        DestinationPointer[6] = TransformCoefficient4 * TargetBuffer;
+        DestinationPointer[7] = BaseValue0 * TargetBuffer;
+        DestinationPointer[8] = LocalFloatValue6 * TargetBuffer;
+        DestinationPointer[9] = ResultFloatValue * TargetBuffer;
+        DestinationPointer[10] = TemporaryFloatValue * TargetBuffer;
+        DestinationPointer[0xb] = LocalFloatValue9 * TargetBuffer;
+        DestinationPointer = BaseValuePointer;
+      } while (DataOffset < (int)(BufferSize - AlignmentValue));
     }
   }
   AllocatedMemoryBlock1 = (longlong)ProcessingResult5;
