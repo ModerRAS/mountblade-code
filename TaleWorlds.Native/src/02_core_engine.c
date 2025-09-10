@@ -234874,7 +234874,7 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
     __Throw_C_error_std__YAXH_Z(EncodingValidationResult);
   }
   ContextHandleTablePointer = (void *)FUN_1801940f0(MemoryBlockIndex,&SystemContextRegister,Utf8SourcePointer,Utf16EndPointer,ProcessingStatusFlag,SystemMemoryAllocationResult,EncodingConversionResult);
-  FUN_1802759e0(*ContextHandlePointer,OperationBufferSize);
+  ProcessSystemConfigurationData(*ContextHandlePointer,OperationBufferSize);
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
   }
