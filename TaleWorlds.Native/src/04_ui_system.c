@@ -10949,39 +10949,40 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
  void ProcessUIComponentDataValidation(longlong ComponentContext, longlong *DataBuffer, UIHandle ValidationFlags, UIHandle ErrorHandlingMode)
 
 {
+  UIDataSourcePointer dataSourcePointer;
   UIResultBuffer *pResultPointer;
   UISemaphoreHandle *pSemaphoreHandle;
   longlong *pDataStackPointer;
-  UIStackBuffer *pStackBuffer50;
-  UIStackBuffer *pStackBuffer48;
+  UIStackBuffer *pRenderStackBuffer50;
+  UIStackBuffer *pRenderStackBuffer48;
   UIDword stackData38;
-  UIStackBuffer *pStackBuffer30;
-  UIStackBuffer *pStackBuffer28;
+  UIStackBuffer *pDataStackBuffer30;
+  UIStackBuffer *pCallbackStackBuffer28;
   
-  plStackX_10 = dataSource;
-  UpdateUIState(uiContext + 0x168,&plStackX_10,targetBuffer,bufferSize,0xfffffffffffffffe);
-  (**(code **)(*dataSource + 8))(dataSource,&pstackUInt30);
-  (**(code **)(*dataSource + 0x10))(dataSource,&pstackUInt50);
-  piterationCount = &UIDefaultDataBuffer;
-  if (pstackUInt48 != (UIStackBuffer *)0x0) {
-    piterationCount = pstackUInt48;
+  dataSourcePointer = dataSource;
+  UpdateUIState(uiContext + 0x168,&dataSourcePointer,targetBuffer,bufferSize,0xfffffffffffffffe);
+  (**(code **)(*dataSource + 8))(dataSource,&pDataStackBuffer30);
+  (**(code **)(*dataSource + 0x10))(dataSource,&pRenderStackBuffer50);
+  UIIterationCounter iterationCount = &UIDefaultDataBuffer;
+  if (pRenderStackBuffer48 != (UIStackBuffer *)0x0) {
+    iterationCount = pRenderStackBuffer48;
   }
   resultPointer = &UIDefaultDataBuffer;
-  if (pstackUInt28 != (UIStackBuffer *)0x0) {
-    resultPointer = pstackUInt28;
+  if (pCallbackStackBuffer28 != (UIStackBuffer *)0x0) {
+    resultPointer = pCallbackStackBuffer28;
   }
-  (**(code **)(ManagedInterface + 0xe8))(resultPointer,piterationCount);
+  (**(code **)(ManagedInterface + 0xe8))(resultPointer,iterationCount);
   (**(code **)*dataSource)(dataSource);
-  pstackUInt50 = &PrimaryUIBuffer;
-  if (pstackUInt48 != (UIStackBuffer *)0x0) {
+  pRenderStackBuffer50 = &PrimaryUIBuffer;
+  if (pRenderStackBuffer48 != (UIStackBuffer *)0x0) {
                      WARNING: Subroutine does not return
     DestroyUIComponent();
   }
-  pstackUInt48 = (UIStackBuffer *)0x0;
-  stackUInt38 = 0;
-  pstackUInt50 = &SecondaryUIBuffer;
-  pstackUInt30 = &PrimaryUIBuffer;
-  if (pstackUInt28 != (UIStackBuffer *)0x0) {
+  pRenderStackBuffer48 = (UIStackBuffer *)0x0;
+  stackData38 = 0;
+  pRenderStackBuffer50 = &SecondaryUIBuffer;
+  pDataStackBuffer30 = &PrimaryUIBuffer;
+  if (pCallbackStackBuffer28 != (UIStackBuffer *)0x0) {
                      WARNING: Subroutine does not return
     DestroyUIComponent();
   }
