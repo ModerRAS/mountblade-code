@@ -51917,9 +51917,9 @@ void ProcessSystemMemoryAllocation(long long *ContextHandle
   unsigned long long SystemStackFlag;
   unsigned long long aSystemPriorityLevel [2];
   uint64_t ProcessingFlags;
-  char cStack_28;
-  char cStack_27;
-  char cStack_26;
+  char SystemValidationFlag28;
+  char SystemValidationFlag27;
+  char SystemValidationFlag26;
   unsigned long long ProcessingCounter;
   
   StackProcessingUnsignedValue60 = 0xfffffffffffffffe;
@@ -58244,11 +58244,11 @@ SystemEventProcessing:
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
-  ReferenceCountPointer3 = *(int **)(*DataBuffer1E0 + lStack_170);
+  ReferenceCountPointer3 = *(int **)(*DataBuffer1E0 + StackOffset170);
   ReferenceCountPointer218 = ReferenceCountPointer6;
-  if (((*(long long *)(*DataBuffer1E0 + lStack_170 + 8) - (long long)ReferenceCountPointer3 ^
+  if (((*(long long *)(*DataBuffer1E0 + StackOffset170 + 8) - (long long)ReferenceCountPointer3 ^
        (long long)LockOperationResultPointer0 - (long long)ReferenceCountPointer4) & 0xfffffffffffffffcU) != 0) {
-    *(int **)(*DataBuffer1E0 + lStack_170) = ReferenceCountPointer4;
+    *(int **)(*DataBuffer1E0 + StackOffset170) = ReferenceCountPointer4;
     StackProcessingVariable = *(int **)(*DataBuffer1E0 + lStack_170 + 8);
     *(int **)(*DataBuffer1E0 + lStack_170 + 8) = LockOperationResultPointer0;
     SystemStackPointer190 = *(int **)(pStackDataBuffer1e0[1] + lStack_170);
