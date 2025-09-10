@@ -288481,7 +288481,24 @@ LAB_18022ee7d:
 
 
 
-long long FUN_18022ef00(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理内存池分配和字符状态缓冲区
+ * 
+ * 该函数负责处理内存池分配和字符状态缓冲区管理，主要功能包括：
+ * - 分配内存池块并设置字符状态缓冲区
+ * - 处理Unicode码点和内存地址掩码
+ * - 执行字符串比较和内存块索引管理
+ * - 管理系统内存分配和释放操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作对象
+ * @param OperationBufferSize 操作缓冲区大小，用于内存分配
+ * @param Utf8SourcePointer UTF-8源指针，包含字符数据
+ * @return long long 返回处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18022ef00
+ */
+#define ProcessMemoryPoolAllocationAndCharacterBuffer FUN_18022ef00
+long long ProcessMemoryPoolAllocationAndCharacterBuffer(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;

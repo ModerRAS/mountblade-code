@@ -130822,7 +130822,7 @@ void ValidateExceptionHandlerResultCall(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemResourceManagementOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + SystemManagementOffset98,0x10,2,ManageSystemResourcesA0);
@@ -130832,7 +130832,7 @@ void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionContextFromDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
