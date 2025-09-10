@@ -127037,7 +127037,22 @@ void HandleExceptionContextAtOffset50VariantC(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x50偏移异常上下文（变体D）
+ * 
+ * 该函数负责处理数据缓冲区0x50偏移量处的异常上下文，执行异常处理操作
+ * 通过计算0x8偏移处的异常上下文地址并处理异常
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912540
+ */
+#define HandleExceptionContextAtOffset50VariantD Unwind_180912540
+
+void HandleExceptionContextAtOffset50VariantD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;

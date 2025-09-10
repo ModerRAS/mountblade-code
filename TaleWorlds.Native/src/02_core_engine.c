@@ -228448,7 +228448,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
         }
         if ((MemoryBlockBoundary == (long long *)*ContextHandle) || (*Utf16EndPointer < *(int *)((long long)MemoryBlockBoundary + 0x1c))) {
           if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) != '\0') {
-            FUN_18018af30(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
+            ProcessCharacterMemoryAllocationAndBufferManagement(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
             return OperationBufferSize;
           }
           FUN_18018af30(ContextHandle,OperationBufferSize,1);
