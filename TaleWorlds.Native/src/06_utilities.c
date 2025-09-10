@@ -43283,29 +43283,29 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
           case 10:
             systemStatusUnion[0] = 10;
             break;
-          case 0xb:
-            systemStatusUnion[0] = 0xb;
+          case SystemStatusB:
+            systemStatusUnion[0] = SystemStatusB;
             break;
-          case 0xc:
-            systemStatusUnion[0] = 0xc;
+          case SystemStatusC:
+            systemStatusUnion[0] = SystemStatusC;
             break;
-          case 0xd:
-            systemStatusUnion[0] = 0xd;
+          case SystemStatusD:
+            systemStatusUnion[0] = SystemStatusD;
             break;
-          case 0xe:
-            systemStatusUnion[0] = 0xe;
+          case SystemStatusE:
+            systemStatusUnion[0] = SystemStatusE;
             break;
-          case 0xf:
-            systemStatusUnion[0] = 0xf;
+          case SystemStatusF:
+            systemStatusUnion[0] = SystemStatusF;
             break;
-          case 0x10:
-            systemStatusUnion[0] = 0x10;
+          case SystemStatus10:
+            systemStatusUnion[0] = SystemStatus10;
             break;
-          case 0x11:
-            systemStatusUnion[0] = 0x11;
+          case SystemStatus11:
+            systemStatusUnion[0] = SystemStatus11;
             break;
-          case 0x12:
-            systemStatusUnion[0] = 0x12;
+          case SystemStatus12:
+            systemStatusUnion[0] = SystemStatus12;
             break;
           case 0x13:
             systemStatusUnion[0] = 0x13;
