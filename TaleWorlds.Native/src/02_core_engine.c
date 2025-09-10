@@ -59889,71 +59889,137 @@ void InitializeCoreEngineDataStructure(long long ContextHandle, long long *Conte
 1870(long long ContextHandle,long long *ContextHandleSize/**
  * @brief 处理核心引擎数据结构同步
  * 
- * 该函数负责处理核心引擎数据结构之间的同步操作
- * 包括内存管理、数据复制和系统状态同步
+ * 该函数负责处理核心引擎数据结构之间的同步操作，包括内存管理、
+ * 数据复制和系统状态同步。此函数确保数据在不同内存区域间保持一致性，
+ * 并正确管理内存资源的分配和释放。
  * 
- * @param ContextHandle 目标数据结构地址
- * @param OperationBufferSize 源数据结构指针
+ * @param ContextHandle 目标数据结构地址，用于存储同步后的数据
+ * @param ContextHandleSize 源数据结构指针，包含同步所需的源数据
+ * 
+ * @note 函数内部会处理内存分配失败的情况
+ * @note 使用系统全局变量来跟踪同步状态
+ * @note 使用加密密钥进行函数地址解密操作
+ * 
+ * @details
+ * 函数执行流程：
+ * 1. 初始化系统参数和加密密钥
+ * 2. 获取上下文引用计数
+ * 3. 检查锁定状态并处理系统资源
+ * 4. 分配内存池并初始化内存管理器
+ * 5. 设置数据结构和内存块索引
+ * 6. 处理主内存池的释放操作
+ * 7. 执行系统清理和资源释放
+ * 
+ * @warning 此函数涉及系统级内存操作，需要确保传入的参数有效
+ * @warning 内存分配失败可能导致系统同步失败
  */
 void ProcessCoreEngineDataSynchronization(long long ContextHandle,long long *ContextHandleSize)
 {
-  int LockResult;
-  uint64_t MemoryPoolIndex;
-  long long *MemoryBlockIndex;
-  long long SystemDataRegistry;
-  uint8_t SystemEncryptionKey[32];
-  uint32_t MemoryOffsetValue;
-  long long *SecondaryMemoryPoolPointer;
-  long long *PrimaryMemoryPoolPointer;
-  uint64_t CoreEngineUnsignedValueA0;
-  void *SystemOperationFlagPointer;
-  uint8_t *SystemOperationBuffer;
-  uint32_t StackValidationData;
-  uint8_t SystemStackBuffer[72];
-  unsigned long long FunctionAddress;
+  int LockResult;                                    // 锁定操作结果
+  uint64_t MemoryPoolIndex;                          // 内存池索引
+  long long *MemoryBlockIndex;                        // 内存块索引指针
+  long long SystemDataRegistry;                       // 系统数据注册表
+  uint8_t SystemEncryptionKey[32];                   // 系统加密密钥（32字节）
+  uint32_t MemoryOffsetValue;                        // 内存偏移值
+  long long *SecondaryMemoryPoolPointer;             // 次要内存池指针
+  long long *PrimaryMemoryPoolPointer;               // 主内存池指针
+  uint64_t SystemOperationStatusFlag;                // 系统操作状态标志
+  void *SystemResourceCleanupPointer;                // 系统资源清理指针
+  uint8_t *SystemOperationBuffer;                    // 系统操作缓冲区
+  uint32_t StackValidationData;                      // 栈验证数据
+  uint8_t SystemStackBuffer[72];                     // 系统栈缓冲区（72字节）
+  unsigned long long DecryptedFunctionAddress;       // 解密后的函数地址
   
-  CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
+  // 初始化系统操作状态标志
+  SystemOperationStatusFlag = 0xfffffffffffffffe;
+  
+  // 解密函数地址：使用编码解码密钥与系统加密密钥进行异或操作
+  DecryptedFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
+  
+  // 初始化内存偏移值
   MemoryOffsetValue = 0;
-  IntegerValue = **(int **)(ContextHandle + 8);
+  
+  // 获取上下文引用计数并递增
+  CoreEngineIntegerValue = **(int **)(ContextHandle + 8);
   *(int **)(ContextHandle + 8) = *(int **)(ContextHandle + 8) + 1;
+  
+  // 获取系统状态用于内存池索引
   MemoryPoolIndex = CoreEngineSystemState;
+  
+  // 检查锁定状态并处理系统资源
   if (LockResult != 0) {
-    IntegerValue = IntegerValue * 4;
-    pSystemOperationFlag98 = &SystemValidationStatus;
-    pSystemOperation90 = StackBuffer80;
-    StackBuffer80[0] = 0;
+    // 计算内存分配大小
+    CoreEngineIntegerValue = CoreEngineIntegerValue * 4;
+    
+    // 设置资源清理指针和操作缓冲区
+    SystemResourceCleanupPointer = &SystemValidationStatus;
+    SystemOperationBuffer = SystemStackBuffer;
+    
+    // 初始化栈缓冲区和验证数据
+    SystemStackBuffer[0] = 0;
     StackValidationData = 0x1c;
-    strcpy_s(StackBuffer80,0x40,&StringTemplateBuffer);
+    
+    // 复制字符串模板到栈缓冲区
+    strcpy_s(SystemStackBuffer, 0x40, &StringTemplateBuffer);
+    
+    // 释放系统内存资源
     ReleaseSystemMemoryResources();
-    pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
-    SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeTertiaryMemoryPoolManager(MemoryPoolIndex,&SystemContextPointerB0);
-    MemoryBlockIndex = SystemContextPointerB0;
-    SystemContextPointerB0[2] = SystemDataRegistry;
-    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
-    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
+    
+    // 设置线程本地存储模板
+    SystemResourceCleanupPointer = &ThreadLocalStorageTemplate;
+    
+    // 分配系统数据注册表内存
+    SystemDataRegistry = MemoryAllocate(MemoryPoolManager, CoreEngineIntegerValue, 0x10, 0x1e);
+    
+    // 初始化第三级内存池管理器
+    InitializeTertiaryMemoryPoolManager(MemoryPoolIndex, &SecondaryMemoryPoolPointer);
+    
+    // 设置内存块索引和数据注册表
+    MemoryBlockIndex = SecondaryMemoryPoolPointer;
+    SecondaryMemoryPoolPointer[2] = SystemDataRegistry;
+    
+    // 设置内存大小信息
+    *(int *)(SecondaryMemoryPoolPointer + 3) = CoreEngineIntegerValue;
+    *(int *)((long long)SecondaryMemoryPoolPointer + 0x1c) = CoreEngineIntegerValue;
+    *(uint8_t *)(SecondaryMemoryPoolPointer + 4) = 0;
+    
+    // 更新内存偏移值
     MemoryOffsetValue = 1;
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)*ContextHandleSize;
+    SecondaryMemoryPoolPointer = (long long *)0x0;
+    
+    // 处理主内存池的引用和释放
+    PrimaryMemoryPoolPointer = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    
+    // 如果主内存池存在，执行其清理函数
+    if (PrimaryMemoryPoolPointer != (long long *)0x0) {
+      (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
     }
+    
+    // 重置内存偏移值
     MemoryOffsetValue = 0;
-    if (SystemContextPointerB0 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerB0 + 0x38))();
+    
+    // 如果次要内存池存在，执行其清理函数
+    if (SecondaryMemoryPoolPointer != (long long *)0x0) {
+      (**(code **)(*SecondaryMemoryPoolPointer + 0x38))();
     }
-      memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
+    
+    // 复制上下文数据到新分配的内存
+    memcpy(*(void *)(*ContextHandleSize + 0x10), *(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  SystemContextPointerA8 = (long long *)*ContextHandleSize;
+  
+  // 清理主内存池引用
+  PrimaryMemoryPoolPointer = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    (**(code **)(*SystemContextPointerA8 + 0x38))();
+  
+  // 如果主内存池存在，执行其清理函数
+  if (PrimaryMemoryPoolPointer != (long long *)0x0) {
+    (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
   }
-    CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
+  
+  // 执行系统清理函数
+  CoreEngineExecuteUtilityFunction(DecryptedFunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
 }
 
 
