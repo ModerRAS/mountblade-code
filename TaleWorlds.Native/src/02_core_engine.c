@@ -99996,31 +99996,41 @@ SystemContextProcessingLabel:
 /**
  * @brief 验证系统内存分配（次要版本）
  * 
- * 该函数负责验证系统内存分配的次要操作
- * 提供额外的内存分配验证功能
+ * 该函数负责验证系统内存分配的次要操作，提供额外的内存分配验证功能。
+ * 主要功能包括：
+ * - 处理UTF-16字符编码转换
+ * - 验证系统上下文数据的有效性
+ * - 检查字符表和内存缓冲区状态
+ * - 执行浮点数据计算和验证
+ * - 管理系统内存块的分配和释放
  * 
- * @param ContextHandle 目标数据结构
- * @param OperationBufferSize 源数据结构
- * @return 验证状态，成功返回0，失败返回非0值
+ * @param SystemContextHandle 系统上下文句柄，用于标识内存操作的上下文
+ * @param MemoryBufferSize 操作缓冲区大小，指定内存操作的缓冲区容量
+ * @return char 验证状态，成功返回0，失败返回非0值
+ * 
+ * @note 原始函数名：包含Ghidra逆向工程变量，需要语义化美化
  */
-char ValidateSystemMemoryAllocationSecondary(uint64_t ContextHandle,uint OperationBufferSize
+char ValidateSystemMemoryAllocationSecondary(uint64_t SystemContextHandle, uint32_t MemoryBufferSize)
 {
-  uint64_t Utf16Char;
-  bool HighByte;
-  byte in_AL;
-  char OperationStatus;
-  char OperationStatus;
-  int RemainingSpace;
-  uint8_t OperationResult;
-  long long SystemContext;
-  uint RegisterEBPValue;
-  int CharacterTablePointer;
-  long long CharacterLimit;
-  char CharacterStatus2;
-  float ProcessedFloatValue8;
-  float *RenderParameterBuffer1;
-  char *RenderCharacterStatusBuffer;
-  uint8_t *RenderResultBuffer;
+  // 字符编码和数据处理变量
+  uint64_t UnicodeCharacter;                      // Unicode字符编码值
+  bool IsHighByteSet;                            // 高字节标志
+  uint8_t ALRegisterValue;                       // AL寄存器值
+  char MemoryValidationStatus;                   // 内存验证状态
+  uint8_t OperationResultCode;                   // 操作结果代码
+  
+  // 系统上下文和状态变量
+  uint64_t SystemContextAddress;                // 系统上下文地址
+  uint32_t EBPRegisterValue;                     // EBP寄存器值
+  int32_t CharacterTableAddress;                 // 字符表地址
+  int64_t CharacterProcessingLimit;              // 字符处理限制
+  char CharacterValidationStatus;                // 字符验证状态
+  
+  // 浮点数据处理变量
+  float ProcessedFloatValue;                     // 处理后的浮点值
+  float *RenderParameterBuffer;                  // 渲染参数缓冲区
+  char *CharacterStatusBuffer;                   // 字符状态缓冲区
+  uint8_t *ResultBuffer;                        // 结果缓冲区
   
   Utf16Char = *(void *)(SystemContext + SystemContextDataBufferOffset);
   if ((in_AL & 0x1e) != 0) {
