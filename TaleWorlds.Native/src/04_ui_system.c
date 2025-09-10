@@ -772,7 +772,7 @@ typedef enum {
 #define _DAT_180d4a928 UIFontDataProcessor928            // UI字体数据处理器928
 #define _DAT_180d4a910 UIEventDataTable910               // UI事件数据表910
 #define _DAT_180d4a8c0 UIComponentDataTable8C0          // UI组件数据表8C0
-#define _DAT_180d4a8a8 UIRenderStateTable8A8            // UI渲染状态表8A8
+#define UIRenderStateTable8A8 UIRenderStateTable8A8            // UI渲染状态表8A8
 
 #define DAT_1809472f0 UIConfigurationData2F0              // UI配置数据2F0 - 存储UI系统的配置信息
 #define DAT_180956f70 UILookupTableDataF70                // UI查找表数据F70 - 存储UI系统的查找表数据
@@ -4835,7 +4835,7 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag20 _DAT_180d4a928              // UI全局状态标志20
 #define UIGlobalStatusFlag21 _DAT_180d4a910              // UI全局状态标志21
 #define UIGlobalStatusFlag22 _DAT_180d4a8c0              // UI全局状态标志22
-#define UIGlobalStatusFlag23 _DAT_180d4a8a8              // UI全局状态标志23
+#define UIGlobalStatusFlag23 UIRenderStateTable8A8              // UI全局状态标志23
 
  // UI系统向量操作掩码和常数定义
 #define UIVectorOperationMask0 _DAT_180946ec0     // UI向量操作掩码0 - 用于X轴向量运算
@@ -4871,7 +4871,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask9 _DAT_1809473c0
 #define UIVectorMultiplyMask10 _DAT_1809473d0
 #define UIVectorMultiplyMask11 _DAT_1809473e0
-#define UIVectorMultiplyMask12 _DAT_1809473f0
+#define UIVectorMultiplyMask12 UIVectorCalculationMask3F0
  #define UIVectorMultiplyMask13 _DAT_180947400
  #define UIVectorMultiplyMask14 _DAT_180947410
  #define UIVectorMultiplyMask15 _DAT_180947420
@@ -4889,7 +4889,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask27 _DAT_1809474e0
 #define UIVectorMultiplyMask28 _DAT_1809474f0
 #define UIVectorMultiplyMask29 _DAT_180947500
-#define UIVectorMultiplyMask30 _DAT_180947510
+#define UIVectorMultiplyMask30 UIVectorCalculationMask510
  #define UIVectorMultiplyMask31 _DAT_180947520
 #define UIComponentIndexVector _DAT_180947040       // UI组件索引向量 - 存储UI组件的索引信息
 #define UIEventCounterVector _DAT_180947060          // UI事件计数器向量 - 存储UI事件计数信息
@@ -4991,7 +4991,7 @@ void* UIGestureCoordinates;
 #define UIGlobalOperationProcessorTypeV _DAT_180d4a928
 #define UIGlobalOperationProcessorTypeW _DAT_180d4a910
 #define UIGlobalOperationProcessorTypeX _DAT_180d4a8c0
-#define UIGlobalOperationProcessorTypeY _DAT_180d4a8a8
+#define UIGlobalOperationProcessorTypeY UIRenderStateTable8A8
 
 // UI系统组件数据指针宏定义
 #define UIComponentDataPointerE60 (void*)0x180956e60
@@ -31694,9 +31694,9 @@ void InitializeUIRenderingFunctions(void)
   if (UIBoolVar4) {
     UIFunctionTable8c0 = FUN_180695990;
   }
-  _DAT_180d4a8a8 = FUN_1806903c0;
+  UIRenderStateTable8A8 = FUN_1806903c0;
   if (UIBoolVar4) {
-    _DAT_180d4a8a8 = FUN_180695ac0;
+    UIRenderStateTable8A8 = FUN_180695ac0;
   }
   return;
 }
@@ -46645,14 +46645,14 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       astackUIntcb8._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       astackUIntcb8._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
       astackUIntcb8._12_4_ = aiterationCount19._12_4_ + 0x2000 >> 0xe;
-      aiterationCount19 = pmaddwd(aiterationCount20,_DAT_180947510);
+      aiterationCount19 = pmaddwd(aiterationCount20,UIVectorCalculationMask510);
       aeventCodeType2._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aeventCodeType2._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aeventCodeType2._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
       aeventCodeType2._12_4_ = aiterationCount19._12_4_ + 0x2000 >> 0xe;
       astackUIntcb8 = packssdw(astackUIntcb8,aeventCodeType2);
-      aiterationCount19 = pmaddwd(aiterationCount55,_DAT_180947510);
-      aiterationCount54 = pmaddwd(aTotalResult7,_DAT_180947510);
+      aiterationCount19 = pmaddwd(aiterationCount55,UIVectorCalculationMask510);
+      aiterationCount54 = pmaddwd(aTotalResult7,UIVectorCalculationMask510);
       aeventCodeType3._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aeventCodeType3._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aeventCodeType3._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
@@ -46662,19 +46662,19 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType51._8_4_ = aiterationCount54._8_4_ + 0x2000 >> 0xe;
       aeventCodeType51._12_4_ = aiterationCount54._12_4_ + 0x2000 >> 0xe;
       astackUIntc88 = packssdw(aeventCodeType51,aeventCodeType3);
-      aiterationCount19 = pmaddwd(aprocessingStatus36,_DAT_180947510);
+      aiterationCount19 = pmaddwd(aprocessingStatus36,UIVectorCalculationMask510);
       aeventCodeType52._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aeventCodeType52._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aeventCodeType52._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
       aeventCodeType52._12_4_ = aiterationCount19._12_4_ + 0x2000 >> 0xe;
-      aiterationCount19 = pmaddwd(aiterationCount83,_DAT_180947510);
+      aiterationCount19 = pmaddwd(aiterationCount83,UIVectorCalculationMask510);
       aeventCodeType4._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aeventCodeType4._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aeventCodeType4._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
       aeventCodeType4._12_4_ = aiterationCount19._12_4_ + 0x2000 >> 0xe;
       astackUIntcd8 = packssdw(aeventCodeType52,aeventCodeType4);
-      aiterationCount19 = pmaddwd(aeventCodeType01,_DAT_180947510);
-      aiterationCount54 = pmaddwd(aeventCodeType27,_DAT_180947510);
+      aiterationCount19 = pmaddwd(aeventCodeType01,UIVectorCalculationMask510);
+      aiterationCount54 = pmaddwd(aeventCodeType27,UIVectorCalculationMask510);
       aeventCodeType5._0_4_ = aiterationCount19._0_4_ + 0x2000 >> 0xe;
       aeventCodeType5._4_4_ = aiterationCount19._4_4_ + 0x2000 >> 0xe;
       aeventCodeType5._8_4_ = aiterationCount19._8_4_ + 0x2000 >> 0xe;
@@ -46684,14 +46684,14 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType53._8_4_ = aiterationCount54._8_4_ + 0x2000 >> 0xe;
       aeventCodeType53._12_4_ = aiterationCount54._12_4_ + 0x2000 >> 0xe;
       astackUIntc98 = packssdw(aeventCodeType53,aeventCodeType5);
-      aeventCodeType50 = pmaddwd(aeventCodeType27,_DAT_1809473f0);
-      aeventCodeType26 = pmaddwd(aeventCodeType01,_DAT_1809473f0);
-      aeventCodeType74 = pmaddwd(aprocessingStatus36,_DAT_1809473f0);
-      aiterationCount54 = pmaddwd(aTotalResult7,_DAT_1809473f0);
-      aiterationCount19 = pmaddwd(aeventStatus0,_DAT_1809473f0);
-      aeventCodeType11 = pmaddwd(aiterationCount83,_DAT_1809473f0);
-      aeventCodeType00 = pmaddwd(aiterationCount55,_DAT_1809473f0);
-      aiterationCount82 = pmaddwd(aiterationCount20,_DAT_1809473f0);
+      aeventCodeType50 = pmaddwd(aeventCodeType27,UIVectorCalculationMask3F0);
+      aeventCodeType26 = pmaddwd(aeventCodeType01,UIVectorCalculationMask3F0);
+      aeventCodeType74 = pmaddwd(aprocessingStatus36,UIVectorCalculationMask3F0);
+      aiterationCount54 = pmaddwd(aTotalResult7,UIVectorCalculationMask3F0);
+      aiterationCount19 = pmaddwd(aeventStatus0,UIVectorCalculationMask3F0);
+      aeventCodeType11 = pmaddwd(aiterationCount83,UIVectorCalculationMask3F0);
+      aeventCodeType00 = pmaddwd(aiterationCount55,UIVectorCalculationMask3F0);
+      aiterationCount82 = pmaddwd(aiterationCount20,UIVectorCalculationMask3F0);
       aeventCodeType02._0_4_ = aeventCodeType26._0_4_ + 0x2000 >> 0xe;
       aeventCodeType02._4_4_ = aeventCodeType26._4_4_ + 0x2000 >> 0xe;
       aeventCodeType02._8_4_ = aeventCodeType26._8_4_ + 0x2000 >> 0xe;
@@ -47165,9 +47165,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       acontextValue4._12_2_ = acontextValue3._14_2_;
       acontextValue4._14_2_ = aeventCodeType6._14_2_;
       astackUIntb98._0_2_ = aresult97._0_2_;
-      aiterationCount82 = pmaddwd(acontextValue4,_DAT_180947510);
-      aeventCodeType11 = pmaddwd(aeventCodeType76,_DAT_180947510);
-      aeventCodeType00 = pmaddwd(aprocessingStatus18,_DAT_180947510);
+      aiterationCount82 = pmaddwd(acontextValue4,UIVectorCalculationMask510);
+      aeventCodeType11 = pmaddwd(aeventCodeType76,UIVectorCalculationMask510);
+      aeventCodeType00 = pmaddwd(aprocessingStatus18,UIVectorCalculationMask510);
       aeventCodeType7._0_4_ = aiterationCount82._0_4_ + 0x2000 >> 0xe;
       aeventCodeType7._4_4_ = aiterationCount82._4_4_ + 0x2000 >> 0xe;
       aeventCodeType7._8_4_ = aiterationCount82._8_4_ + 0x2000 >> 0xe;
@@ -47177,7 +47177,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aresult96._8_4_ = aeventCodeType11._8_4_ + 0x2000 >> 0xe;
       aresult96._12_4_ = aeventCodeType11._12_4_ + 0x2000 >> 0xe;
       aeventCodeType50 = packssdw(aresult96,aeventCodeType7);
-      aiterationCount82 = pmaddwd(aeventStatus5,_DAT_180947510);
+      aiterationCount82 = pmaddwd(aeventStatus5,UIVectorCalculationMask510);
       aresult72._0_4_ = aeventCodeType00._0_4_ + 0x2000 >> 0xe;
       aresult72._4_4_ = aeventCodeType00._4_4_ + 0x2000 >> 0xe;
       aresult72._8_4_ = aeventCodeType00._8_4_ + 0x2000 >> 0xe;
@@ -47187,10 +47187,10 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType8._8_4_ = aiterationCount82._8_4_ + 0x2000 >> 0xe;
       aeventCodeType8._12_4_ = aiterationCount82._12_4_ + 0x2000 >> 0xe;
       aeventCodeType11 = packssdw(aresult72,aeventCodeType8);
-      aiterationCount82 = pmaddwd(aeventStatus5,_DAT_1809473f0);
-      aeventCodeType00 = pmaddwd(acontextValue4,_DAT_1809473f0);
-      aeventCodeType97 = pmaddwd(aprocessingStatus18,_DAT_1809473f0);
-      aeventCodeType74 = pmaddwd(aeventCodeType76,_DAT_1809473f0);
+      aiterationCount82 = pmaddwd(aeventStatus5,UIVectorCalculationMask3F0);
+      aeventCodeType00 = pmaddwd(acontextValue4,UIVectorCalculationMask3F0);
+      aeventCodeType97 = pmaddwd(aprocessingStatus18,UIVectorCalculationMask3F0);
+      aeventCodeType74 = pmaddwd(aeventCodeType76,UIVectorCalculationMask3F0);
       aeventStatus6._0_4_ = aiterationCount82._0_4_ + 0x2000 >> 0xe;
       aeventStatus6._4_4_ = aiterationCount82._4_4_ + 0x2000 >> 0xe;
       aeventStatus6._8_4_ = aiterationCount82._8_4_ + 0x2000 >> 0xe;
@@ -47357,10 +47357,10 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aresult97._6_2_ = astackUIntb88._2_2_;
       aresult97._4_2_ = astackUIntb98._2_2_;
       aresult97._2_2_ = astackUIntb88._0_2_;
-      aeventCodeType11 = pmaddwd(aiterationCount23,_DAT_1809473f0);
-      aeventCodeType00 = pmaddwd(aresult97,_DAT_1809473f0);
-      aiterationCount82 = pmaddwd(aresult97,_DAT_180947510);
-      aiterationCount54 = pmaddwd(aiterationCount23,_DAT_180947510);
+      aeventCodeType11 = pmaddwd(aiterationCount23,UIVectorCalculationMask3F0);
+      aeventCodeType00 = pmaddwd(aresult97,UIVectorCalculationMask3F0);
+      aiterationCount82 = pmaddwd(aresult97,UIVectorCalculationMask510);
+      aiterationCount54 = pmaddwd(aiterationCount23,UIVectorCalculationMask510);
       aiterationCount24._0_4_ = aeventCodeType11._0_4_ + 0x2000 >> 0xe;
       aiterationCount24._4_4_ = aeventCodeType11._4_4_ + 0x2000 >> 0xe;
       aiterationCount24._8_4_ = aeventCodeType11._8_4_ + 0x2000 >> 0xe;
@@ -47552,8 +47552,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType33._10_2_ = sVar249 + sVar412;
       aeventCodeType33._12_2_ = sVar278 + ContextFirstValue71;
       aeventCodeType33._14_2_ = sVar250 + sVar413;
-      aiterationCount54 = pmaddwd(acontextValue7,_DAT_1809473f0);
-      aiterationCount82 = pmaddwd(acontextValue7,_DAT_180947510);
+      aiterationCount54 = pmaddwd(acontextValue7,UIVectorCalculationMask3F0);
+      aiterationCount82 = pmaddwd(acontextValue7,UIVectorCalculationMask510);
       aresult74._8_8_ =
            (UIHandle)
            (CONCAT64(CONCAT42(CONCAT22(ContextFirstValue67 - sVar274,sVar408),ContextFirstValue66 - sVar273),
@@ -47562,7 +47562,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aresult74._4_2_ = sVar405 - sVar244;
       aresult74._2_2_ = ContextFirstValue48 - sVar251;
       aresult74._0_2_ = ContextFirstValue95 - sVar215;
-      aiterationCount19 = pmaddwd(aeventCodeType33,_DAT_1809473f0);
+      aiterationCount19 = pmaddwd(aeventCodeType33,UIVectorCalculationMask3F0);
       aiterationCounter2._2_2_ = ContextFirstValue68 - sVar275;
       aiterationCounter2._0_2_ = sVar410 - sVar247;
       aiterationCounter2._4_2_ = sVar411 - sVar248;
@@ -47571,7 +47571,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aiterationCounter2._10_2_ = ContextFirstValue70 - sVar277;
       aiterationCounter2._12_2_ = sVar413 - sVar250;
       aiterationCounter2._14_2_ = ContextFirstValue71 - sVar278;
-      aeventCodeType50 = pmaddwd(aeventCodeType33,_DAT_180947510);
+      aeventCodeType50 = pmaddwd(aeventCodeType33,UIVectorCalculationMask510);
       aeventprocessingStatus9._0_4_ = aiterationCount54._0_4_ + 0x2000 >> 0xe;
       aeventprocessingStatus9._4_4_ = aiterationCount54._4_4_ + 0x2000 >> 0xe;
       aeventprocessingStatus9._8_4_ = aiterationCount54._8_4_ + 0x2000 >> 0xe;
@@ -49171,7 +49171,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aresult15._4_2_ = sVar65 - sVar16;
     aresult15._2_2_ = ContextFirstValue7 - sVar23;
     aresult15._0_2_ = sVar59 - eventIndex;
-    aiterationCounter5 = pmaddwd(aeventProcessingCounter4,_DAT_1809473f0);
+    aiterationCounter5 = pmaddwd(aeventProcessingCounter4,UIVectorCalculationMask3F0);
     aeventStatus5 = pmaddwd(aresult15,_DAT_180947470);
     aresult13 = pmaddwd(aresult15,_DAT_180947370);
     maxProcessingCount0._2_2_ = sVar48 - ContextFirstValue3;
@@ -49195,8 +49195,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     acomponentIndex._4_4_ = aiterationCounter5._4_4_ + 0x2000 >> 0xe;
     acomponentIndex._8_4_ = aiterationCounter5._8_4_ + 0x2000 >> 0xe;
     acomponentIndex._12_4_ = aiterationCounter5._12_4_ + 0x2000 >> 0xe;
-    aiterationCounter5 = pmaddwd(aiterationCounter7,_DAT_180947510);
-    bufferValue8 = pmaddwd(aeventProcessingCounter9,_DAT_180947510);
+    aiterationCounter5 = pmaddwd(aiterationCounter7,UIVectorCalculationMask510);
+    bufferValue8 = pmaddwd(aeventProcessingCounter9,UIVectorCalculationMask510);
     bufferValue0._2_2_ = bufferValue5._8_2_ - aloopCounter2._8_2_;
     bufferValue0._0_2_ = aresult19._8_2_ - aeventProcessingCounter2._8_2_;
     bufferValue0._4_2_ = aresult19._10_2_ - aeventProcessingCounter2._10_2_;
@@ -49205,9 +49205,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     bufferValue0._10_2_ = bufferValue5._12_2_ - aloopCounter2._12_2_;
     bufferValue0._12_2_ = aresult19._14_2_ - aeventProcessingCounter2._14_2_;
     bufferValue0._14_2_ = bufferValue5._14_2_ - aloopCounter2._14_2_;
-    aloopCounter2 = pmaddwd(aeventProcessingCounter4,_DAT_180947510);
-    aresult19 = pmaddwd(aeventProcessingCounter9,_DAT_1809473f0);
-    aeventProcessingCounter2 = pmaddwd(aiterationCounter7,_DAT_1809473f0);
+    aloopCounter2 = pmaddwd(aeventProcessingCounter4,UIVectorCalculationMask510);
+    aresult19 = pmaddwd(aeventProcessingCounter9,UIVectorCalculationMask3F0);
+    aeventProcessingCounter2 = pmaddwd(aiterationCounter7,UIVectorCalculationMask3F0);
     aiterationCounter6._0_4_ = aeventStatus5._0_4_ + 0x2000 >> 0xe;
     aiterationCounter6._4_4_ = aeventStatus5._4_4_ + 0x2000 >> 0xe;
     aiterationCounter6._8_4_ = aeventStatus5._8_4_ + 0x2000 >> 0xe;
@@ -49245,8 +49245,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aiterationCount6._8_4_ = aloopCounter2._8_4_ + 0x2000 >> 0xe;
     aiterationCount6._12_4_ = aloopCounter2._12_4_ + 0x2000 >> 0xe;
     aiterationCounter7 = packssdw(aiterationCounter6,aiterationCount6);
-    aloopCounter2 = pmaddwd(bufferValue0,_DAT_180947510);
-    aeventProcessingCounter2 = pmaddwd(bufferValue0,_DAT_1809473f0);
+    aloopCounter2 = pmaddwd(bufferValue0,UIVectorCalculationMask510);
+    aeventProcessingCounter2 = pmaddwd(bufferValue0,UIVectorCalculationMask3F0);
     maxProcessingCount1._0_4_ = aiterationCounter5._0_4_ + 0x2000 >> 0xe;
     maxProcessingCount1._4_4_ = aiterationCounter5._4_4_ + 0x2000 >> 0xe;
     maxProcessingCount1._8_4_ = aiterationCounter5._8_4_ + 0x2000 >> 0xe;
@@ -53912,8 +53912,8 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   acomponentIndex0._0_2_ = bufferValue1._0_2_;
   acomponentIndex0._14_2_ = 0;
   bufferValue1 = pmaddwd(aresult76,_DAT_1809480a0);
-  acomponentIndex1 = pmaddwd(acomponentIndex0,_DAT_180947510);
-  aresult76 = pmaddwd(acomponentIndex0,_DAT_1809473f0);
+  acomponentIndex1 = pmaddwd(acomponentIndex0,UIVectorCalculationMask510);
+  aresult76 = pmaddwd(acomponentIndex0,UIVectorCalculationMask3F0);
   bufferValue4 = pmaddwd(aiterationCounter9,_DAT_1809473b0);
   aCounterResult2._0_4_ = aCounterResult1._0_4_ + 0x2000 >> 0xe;
   aCounterResult2._4_4_ = aCounterResult1._4_4_ + 0x2000 >> 0xe;
@@ -53978,7 +53978,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aCounterResult3._0_2_ = bufferValue1._0_2_;
   aCounterResult3._2_2_ = bufferValue1._8_2_;
   bufferValue4 = pmaddwd(aCounterResult3,_DAT_1809480c0);
-  acomponentIndex1 = pmaddwd(aCounterResult3,_DAT_1809473f0);
+  acomponentIndex1 = pmaddwd(aCounterResult3,UIVectorCalculationMask3F0);
   aresult70._0_4_ = aCounterResult1._0_4_ + 0x2000 >> 0xe;
   aresult70._4_4_ = aCounterResult1._4_4_ + 0x2000 >> 0xe;
   aresult70._8_4_ = aCounterResult1._8_4_ + 0x2000 >> 0xe;
@@ -54185,8 +54185,8 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aresult81._8_2_ = aresult76._12_2_;
   aresult81._10_2_ = 0;
   aresult81._14_2_ = 0;
-  bufferValue4 = pmaddwd(aiterationCounter4,_DAT_1809473f0);
-  bufferValue1 = pmaddwd(aresult73,_DAT_1809473f0);
+  bufferValue4 = pmaddwd(aiterationCounter4,UIVectorCalculationMask3F0);
+  bufferValue1 = pmaddwd(aresult73,UIVectorCalculationMask3F0);
   aresult94._0_4_ = aCounterResult1._0_4_ + 0x2000 >> 0xe;
   aresult94._4_4_ = aCounterResult1._4_4_ + 0x2000 >> 0xe;
   aresult94._8_4_ = aCounterResult1._8_4_ + 0x2000 >> 0xe;
@@ -54203,8 +54203,8 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aresult99 = packssdw(aiterationCounter2,aresult79);
   aresult76 = pmaddwd(aresult81,_DAT_1809480b0);
   bufferValue1 = pmaddwd(aresult81,_DAT_1809480e0);
-  acomponentIndex1 = pmaddwd(aiterationCounter4,_DAT_180947510);
-  bufferValue4 = pmaddwd(aresult73,_DAT_180947510);
+  acomponentIndex1 = pmaddwd(aiterationCounter4,UIVectorCalculationMask510);
+  bufferValue4 = pmaddwd(aresult73,UIVectorCalculationMask510);
   aiterationCounter5._0_4_ = acomponentIndex1._0_4_ + 0x2000 >> 0xe;
   aiterationCounter5._4_4_ = acomponentIndex1._4_4_ + 0x2000 >> 0xe;
   aiterationCounter5._8_4_ = acomponentIndex1._8_4_ + 0x2000 >> 0xe;
@@ -54262,11 +54262,11 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aresult83._4_2_ = bufferValue1._2_2_;
   aresult83._0_2_ = bufferValue1._0_2_;
   aresult83._2_2_ = aresult97._0_2_;
-  aresult88 = pmaddwd(acontextValue0,_DAT_1809473f0);
-  bufferValue1 = pmaddwd(acontextValue0,_DAT_180947510);
-  aresult76 = pmaddwd(aresult83,_DAT_1809473f0);
+  aresult88 = pmaddwd(acontextValue0,UIVectorCalculationMask3F0);
+  bufferValue1 = pmaddwd(acontextValue0,UIVectorCalculationMask510);
+  aresult76 = pmaddwd(aresult83,UIVectorCalculationMask3F0);
   aresult97 = paddsw(acomponentIndex1,aresult99);
-  bufferValue4 = pmaddwd(aresult83,_DAT_180947510);
+  bufferValue4 = pmaddwd(aresult83,UIVectorCalculationMask510);
   aresult99 = psubsw(aresult99,acomponentIndex1);
   acontextValue1._0_4_ = aresult88._0_4_ + 0x2000 >> 0xe;
   acontextValue1._4_4_ = aresult88._4_4_ + 0x2000 >> 0xe;
@@ -55168,12 +55168,12 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
     acomponentIndex3._14_2_ = aresult18._12_2_;
     aeventProcessingCounter9 = pmaddwd(aresult11,_DAT_1809480e0);
     aresult14 = pmaddwd(aresult11,_DAT_1809480b0);
-    aTotalResult5 = pmaddwd(aTotalResult2,_DAT_180947510);
-    aresult18 = pmaddwd(aresult17,_DAT_180947510);
+    aTotalResult5 = pmaddwd(aTotalResult2,UIVectorCalculationMask510);
+    aresult18 = pmaddwd(aresult17,UIVectorCalculationMask510);
     aeventStatus2 = psubsw(bufferValue7,aiterationCount9);
-    aeventCodeType1 = pmaddwd(aresult17,_DAT_1809473f0);
+    aeventCodeType1 = pmaddwd(aresult17,UIVectorCalculationMask3F0);
     aeventprocessingStatus8 = paddsw(aiterationCount9,bufferValue7);
-    aTotalResult0 = pmaddwd(aTotalResult2,_DAT_1809473f0);
+    aTotalResult0 = pmaddwd(aTotalResult2,UIVectorCalculationMask3F0);
     aresult16._0_4_ = aeventProcessingCounter9._0_4_ + 0x2000 >> 0xe;
     aresult16._4_4_ = aeventProcessingCounter9._4_4_ + 0x2000 >> 0xe;
     aresult16._8_4_ = aeventProcessingCounter9._8_4_ + 0x2000 >> 0xe;
@@ -55238,12 +55238,12 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
     adataPointer1._0_2_ = aeventStatus2._0_2_;
     adataPointer1._2_2_ = aeventProcessingCounter9._0_2_;
     bufferValue7 = psubsw(aiterationCount9,aeventCodeType1);
-    aeventProcessingCounter9 = pmaddwd(adataPointer1,_DAT_180947510);
-    aeventCodeType1 = pmaddwd(aresult18,_DAT_180947510);
+    aeventProcessingCounter9 = pmaddwd(adataPointer1,UIVectorCalculationMask510);
+    aeventCodeType1 = pmaddwd(aresult18,UIVectorCalculationMask510);
     aiterationCount9 = paddsw(aresult16,aTotalResult0);
-    aresult14 = pmaddwd(aresult18,_DAT_1809473f0);
+    aresult14 = pmaddwd(aresult18,UIVectorCalculationMask3F0);
     adataPointer9 = psubsw(aTotalResult0,aresult16);
-    aTotalResult5 = pmaddwd(adataPointer1,_DAT_1809473f0);
+    aTotalResult5 = pmaddwd(adataPointer1,UIVectorCalculationMask3F0);
     aresult16 = paddsw(aiterationCount9,aeventprocessingStatus8);
     aTotalResult0._0_4_ = aeventProcessingCounter9._0_4_ + 0x2000 >> 0xe;
     aTotalResult0._4_4_ = aeventProcessingCounter9._4_4_ + 0x2000 >> 0xe;
@@ -119574,8 +119574,7 @@ void FUN_180736a70(uint *uiContext,uint *dataSource,int targetBuffer,int bufferS
 
 
 
- void FUN_180736c49(void)
-void FUN_180736c49(void)
+ void CleanupUIBuffer(void)
 
 {
   UIByte aresult [16];
@@ -119711,8 +119710,7 @@ void FUN_180736c49(void)
 
 
 
- void FUN_180736d59(void)
-void FUN_180736d59(void)
+ void FreeUITemporaryMemory(void)
 
 {
   int processingResult;
