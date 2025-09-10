@@ -104056,6 +104056,18 @@ uint8_t InitializeSystemComponents(void
 
 
 
+/**
+ * @brief 处理字符变量和字符状态缓冲区
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小
+ * @return 处理结果状态码
+ * 
+ * 该函数处理字符变量和字符状态缓冲区的数据，包括：
+ * - 字符状态缓冲区的初始化和配置
+ * - 浮点数变换和计算
+ * - 内存池管理和数据验证
+ * - 系统配置操作
+ */
 unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *ContextHandle,char *ContextHandleSize
 {
   uint *CharacterStatusBuffer;
@@ -104081,21 +104093,21 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Contex
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
   float ContextSecondaryFloat3;
-  float fStackX_18;
-  float fStackX_1c;
-  char acStackX_20 [8];
-  float FloatStackValue108;
-  float FloatStackValue104;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  uint32_t ErrorCode;
-  uint32_t uStack_e4;
-  float fStack_e0;
-  float fStack_dc;
+  float StackTransformedFloatValue18;        // 栈变换浮点值18 - 用于存储变换后的浮点值
+  float StackFloatValue1c;                    // 栈浮点值1c - 用于存储计算过程中的浮点值
+  char StackCharacterBuffer20 [8];            // 栈字符缓冲区20 - 用于存储字符数据的缓冲区
+  float StackFloatValue108;                   // 栈浮点值108 - 用于存储计算过程中的浮点值
+  float StackFloatValue104;                   // 栈浮点值104 - 用于存储计算过程中的浮点值
+  float StackFloatValue100;                   // 栈浮点值100 - 用于存储计算过程中的浮点值
+  float StackFloatValueFc;                    // 栈浮点值FC - 用于存储计算过程中的浮点值
+  float StackFloatValueF8;                    // 栈浮点值F8 - 用于存储计算过程中的浮点值
+  float StackFloatValueF4;                    // 栈浮点值F4 - 用于存储计算过程中的浮点值
+  float StackFloatValueF0;                    // 栈浮点值F0 - 用于存储计算过程中的浮点值
+  float StackFloatValueEc;                    // 栈浮点值EC - 用于存储计算过程中的浮点值
+  uint32_t ErrorCode;                        // 错误代码 - 用于存储操作过程中的错误状态
+  uint32_t StackUnsignedValueE4;              // 栈无符号值E4 - 用于存储无符号整数值
+  float StackFloatValueE0;                    // 栈浮点值E0 - 用于存储计算过程中的浮点值
+  float StackFloatValueDc;                    // 栈浮点值DC - 用于存储计算过程中的浮点值
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
   SystemStatusCode = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
@@ -104124,12 +104136,12 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Contex
       ContextSecondaryFloat0 = 0.0;
     }
     else {
-      ProcessFloatAndSystemConfiguration(pMatrixTransformMultiplier,&fStackX_18,ContextPrimaryFloat9,0x7f7fffff,0xbf800000,ContextHandle,ValidationStatus3,0);
-      if (0.0 < fStackX_18) {
-        fStackX_18 = fStackX_18 - ContextPrimaryFloat9 / *pMatrixTransformMultiplier;
+      ProcessFloatAndSystemConfiguration(pMatrixTransformMultiplier,&StackTransformedFloatValue18,ContextPrimaryFloat9,0x7f7fffff,0xbf800000,ContextHandle,ValidationStatus3,0);
+      if (0.0 < StackTransformedFloatValue18) {
+        StackTransformedFloatValue18 = StackTransformedFloatValue18 - ContextPrimaryFloat9 / *pMatrixTransformMultiplier;
       }
-      ContextSecondaryFloat0 = (float)(int)(fStackX_18 + 0.95);
-      ContextPrimaryFloat9 = fStackX_1c;
+      ContextSecondaryFloat0 = (float)(int)(StackTransformedFloatValue18 + 0.95);
+      ContextPrimaryFloat9 = StackFloatValue1c;
     }
     ContextSecondaryFloat = *(float *)(CharacterTablePointer + 0x100);
     CalculatedFilterValue = *(float *)(CharacterTablePointer + 0x104);

@@ -20454,19 +20454,19 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_180891de0 - 事件处理函数DU0
 // 功能：处理系统事件
-#define HandleSystemEventDU0 FUN_180891de0
+#define HandleSystemEventDU0 HandleSystemEvents
 
 // 原始函数名：FUN_180894300 - 数据处理函数DV0
 // 功能：处理数据并验证
-#define ProcessDataValidationDV0 FUN_180894300
+#define ProcessDataValidationDV0 ProcessAndValidateData
 
 // 原始函数名：FUN_18084c470 - 清理函数DW0
 // 功能：清理系统资源
-#define CleanupSystemResourceDW0 FUN_18084c470
+#define CleanupSystemResourceDW0 CleanupSystemResources
 
 // 原始函数名：FUN_180891af0 - 重置函数DX0
 // 功能：重置系统状态
-#define ResetSystemStateDX0 FUN_180891af0
+#define ResetSystemStateDX0 ResetSystemState
 
 // 原始函数名：FUN_18089be10 - 数据验证和处理函数B0
 // 功能：验证和处理数据参数，执行系统操作，包含安全检查和完整性验证
