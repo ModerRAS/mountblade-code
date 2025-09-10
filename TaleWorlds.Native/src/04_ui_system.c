@@ -120296,75 +120296,99 @@ void ProcessUIComponentDataScalingSimple(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180737240(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,UIHandle bufferSize,
-void FUN_180737240(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIDword param_6)
+ /**
+ * @brief 处理UI数据缓冲区和加密操作
+ * 
+ * 该函数处理UI数据缓冲区，执行数据加密和安全验证操作。
+ * 主要用于保护敏感的UI数据传输和存储。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * 
+ * @note 原始函数名：FUN_180737240
+ */
+void ProcessUIDataBufferAndEncryptionOperation(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,UIHandle bufferSize,
+                                             UIHandle resultPointer,UIDword param_6)
 
 {
-  ulonglong result;
-  UIByte astackUInt158 [16];
-  UIDword stackUInt148;
-  UIHandle stackUInt120;
-  short *psStack_108;
-  UIHandle stackUInt100;
-  UIHandle stackUInte8;
-  ulonglong stackUInt50;
+  ulonglong calculationResult;
+  UIByte encryptionBuffer [16];
+  UIDword parameterStorage;
+  UIHandle bufferSizeStorage;
+  short *targetBufferStorage;
+  UIHandle dataSourceStorage;
+  UIHandle uiContextStorage;
+  ulonglong encryptionKey;
   
-  stackUInt50 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackUInt148 = param_6;
-  stackUInt120 = bufferSize;
-  psStack_108 = targetBuffer;
-  stackUInt100 = dataSource;
-  stackUInte8 = uiContext;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  parameterStorage = param_6;
+  bufferSizeStorage = bufferSize;
+  targetBufferStorage = targetBuffer;
+  dataSourceStorage = dataSource;
+  uiContextStorage = uiContext;
   ProcessUIDataWithShortParameters(dataSource,*(UIHandle *)(targetBuffer + 0x20),(int)targetBuffer[1]);
-  result = (longlong)*targetBuffer * 4 + 0xf;
-  if (result <= (ulonglong)((longlong)*targetBuffer * 4)) {
-    result = 0xffffffffffffff0;
+  calculationResult = (longlong)*targetBuffer * 4 + 0xf;
+  if (calculationResult <= (ulonglong)((longlong)*targetBuffer * 4)) {
+    calculationResult = 0xffffffffffffff0;
   }
-                     WARNING: Subroutine does not return
-  ProcessUIBufferOperation(result & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(calculationResult & 0xfffffffffffffff0);
 }
 
 
 
 
- void FUN_1807376c0(short *uiContext,short *dataSource,uint targetBuffer)
-void FUN_1807376c0(short *uiContext,short *dataSource,uint targetBuffer)
+ /**
+ * @brief 处理UI组件事件和数据验证
+ * 
+ * 该函数处理UI组件事件系统，执行数据验证和事件分发操作。
+ * 主要用于处理复杂的UI事件链和数据验证流程。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * 
+ * @note 原始函数名：FUN_1807376c0
+ */
+void ProcessUIComponentEventAndDataValidation(short *uiContext,short *dataSource,uint targetBuffer)
 
 {
-  short *psVar1;
-  short sVar2;
-  UIByte aeventCodeType [12];
-  UIByte aprocessingStatus [12];
+  short *dataIterator;
+  short componentValue;
+  UIByte eventCodeType [12];
+  UIByte processingStatus [12];
   longlong eventDataIndex;
   int loopCounter;
-  int localInt7;
+  int validationFlag;
   uint eventProcessingCounter;
-  short sVar9;
+  short eventCode;
   int processedCount;
-  longlong AllocatedMemoryBlock1;
-  short *psVar12;
+  longlong memoryBlockIndex;
+  short *componentPointer;
   ushort *componentHandle;
   ushort componentIndex;
-  ulonglong CounterResult;
-  longlong allocatedMemory6;
-  short sVar17;
-  uint result8;
-  uint result9;
-  longlong componentIndex0;
+  ulonglong counterResult;
+  longlong memoryBlockCounter;
+  short componentData;
+  uint validationResult1;
+  uint validationResult2;
+  longlong componentBaseIndex;
   int uiValidationResult1;
-  int uiValidationResult9;
+  int uiValidationResult2;
   int uiCompareResult0;
   int uiCompareResult1;
   int layoutCompareResult;
-  UIByte aiterationCount2 [16];
+  UIByte iterationBuffer2 [16];
   int uiCompareResult3;
-  UIByte aiterationCount5 [16];
+  UIByte iterationBuffer5 [16];
   int uiCompareResult4;
-  UIByte aiterationCount3 [16];
-  UIByte aiterationCount4 [16];
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount7 [16];
+  UIByte iterationBuffer3 [16];
+  UIByte iterationBuffer4 [16];
+  UIByte iterationBuffer6 [16];
+  UIByte iterationBuffer7 [16];
   UIWord iterationCount8;
   
   componentIndex0 = (longlong)(int)targetBuffer;
