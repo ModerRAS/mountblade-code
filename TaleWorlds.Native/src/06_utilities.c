@@ -11453,27 +11453,27 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18073b810 - 系统清理函数A1
 // 功能：清理系统资源
-#define CleanupSystemA1 FUN_18073b810
+#define CleanupSystemA1 CleanupSystemResourcesAndState
 
 // 原始函数名：FUN_1808678e0 - 状态查询函数A0
 // 功能：查询系统状态
-#define QuerySystemStatusA0 FUN_1808678e0
+#define QuerySystemStatusA0 QuerySystemStatusAndHealth
 
 // 原始函数名：FUN_18088c740 - 缓冲区初始化函数A0
 // 功能：初始化系统缓冲区
-#define InitializeBufferA0 FUN_18088c740
+#define InitializeBufferA0 InitializeSystemBufferAndContext
 
 // 原始函数名：FUN_1808bdd90 - 上下文验证函数A0
 // 功能：验证系统上下文
-#define ValidateContextA0 FUN_1808bdd90
+#define ValidateContextA0 ValidateSystemContextAndState
 
 // 原始函数名：FUN_1808c44f0 - 操作执行函数A0
 // 功能：执行系统操作
-#define ExecuteOperationA0 FUN_1808c44f0
+#define ExecuteOperationA0 ExecuteSystemOperationAndTasks
 
 // 原始函数名：FUN_180894860 - 参数验证函数A0
 // 功能：验证系统参数
-#define ValidateParametersA0 FUN_180894860
+#define ValidateParametersA0 ValidateSystemParametersAndConfig
 
 // 原始函数名：CleanupSystemEventA0 - 错误处理函数A0
 // 功能：处理系统错误
