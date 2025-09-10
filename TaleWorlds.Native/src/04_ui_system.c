@@ -627,6 +627,12 @@ typedef enum {
 #define IsValidationComplete UIValidationStatus
 #define uStackX_8 UIStackDataBuffer
 
+// UI系统局部变量语义化定义
+#define sVar4 UIContextSizeValue                    // UI上下文大小值 - 存储UI上下文的大小信息
+#define sVar7 UIContextStatusValue                   // UI上下文状态值 - 存储UI上下文的当前状态
+#define sVar14 UIProcessingResultValue               // UI处理结果值 - 存储UI处理过程中的结果数据
+#define psVar18 UIBufferPointer                       // UI缓冲区指针 - 指向UI数据缓冲区的指针
+
 // UI系统事件处理变量宏定义
 #define eventCompareResult UIEventCompareResult
 #define eventIterationCount UIEventIterationCount
