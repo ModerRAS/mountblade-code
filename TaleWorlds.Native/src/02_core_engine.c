@@ -183,6 +183,56 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
 
+// 系统上下文结构偏移量常量
+#define SystemContextEventSize 0xb                        // 系统上下文事件大小
+#define SystemContextEventDataOffset 0x18                  // 系统上下文事件数据偏移量
+#define SystemContextMemoryBlockOffset 0x20               // 系统上下文内存块偏移量
+#define SystemContextMemoryIndexOffset 0x28                // 系统上下文内存索引偏移量
+#define SystemContextMemoryPointerOffset 0x30              // 系统上下文内存指针偏移量
+#define SystemContextMemoryPointerSubOffset 0x10          // 系统上下文内存指针子偏移量
+#define SystemContextValidationOffset1 0x1506              // 系统上下文验证偏移量1
+#define SystemContextValidationOffset2 0x1e38              // 系统上下文验证偏移量2
+#define SystemContextStatusOffset410 0x410                 // 系统上下文状态偏移量410
+#define SystemContextStatusOffset415 0x415                 // 系统上下文状态偏移量415
+#define SystemContextStatusOffset41a 0x41a                 // 系统上下文状态偏移量41a
+#define SystemContextStatusOffset424 0x424                 // 系统上下文状态偏移量424
+#define SystemContextStatusOffset438 0x438                 // 系统上下文状态偏移量438
+#define SystemContextCharacterOffset90 0x90                // 系统上下文字符偏移量90
+#define SystemContextCharacterOffset118 0x118              // 系统上下文字符偏移量118
+#define SystemContextCharacterOffset11c 0x11c              // 系统上下文字符偏移量11c
+#define SystemContextCharacterOffset120 0x120              // 系统上下文字符偏移量120
+#define SystemContextCharacterOffset1d06 0x1d06             // 系统上下文字符偏移量1d06
+#define SystemContextCharacterOffset1d07 0x1d07             // 系统上下文字符偏移量1d07
+#define SystemContextCharacterOffset1dd0 0x1dd0             // 系统上下文字符偏移量1dd0
+
+// 系统核心引擎上下文偏移量常量
+#define CoreEngineSystemContextStatusOffset24 0x24          // 核心引擎系统上下文状态偏移量24
+#define CoreEngineSystemContextStatusOffset29 0x29          // 核心引擎系统上下文状态偏移量29
+#define CoreEngineSystemContextStatusOffset141 0x141        // 核心引擎系统上下文状态偏移量141
+
+// 系统上下文浮点数据偏移量常量
+#define SystemContextFloatDataXOffset 0x118                 // 系统上下文浮点数据X偏移量
+#define SystemContextFloatDataYOffset 0x11c                 // 系统上下文浮点数据Y偏移量
+
+// 系统上下文额外偏移量常量
+#define SystemContextDataBufferOffset 0x1dd0                // 系统上下文数据缓冲区偏移量
+#define SystemContextValidationOffset1dec 0x1dec             // 系统上下文验证偏移量1dec
+#define SystemContextValidationOffset1dd4 0x1dd4             // 系统上下文验证偏移量1dd4
+#define SystemContextCharacterTablePointerOffset 0x1e38      // 系统上下文字符表指针偏移量
+#define SystemContextCharacterOffset134 0x134                // 系统上下文字符偏移量134
+#define SystemContextCharacterOffset135 0x135                // 系统上下文字符偏移量135
+#define SystemContextCharacterOffset136 0x136                // 系统上下文字符偏移量136
+
+// 系统校验和位掩码常量
+#define SystemChecksumMask40 0x40                           // 系统校验和掩码40
+#define SystemChecksumMask10 0x10                           // 系统校验和掩码10
+#define SystemChecksumMask400 0x400                         // 系统校验和掩码400
+#define SystemChecksumMask800 0x800                         // 系统校验和掩码800
+#define SystemChecksumMask2000 0x2000                       // 系统校验和掩码2000
+#define SystemChecksumShiftBit10 10                          // 系统校验和位移位10
+#define SystemChecksumShiftBitB 0xb                         // 系统校验和位移位B
+#define SystemChecksumShiftBitD 0xd                         // 系统校验和位移位D
+
 // 函数局部变量语义化定义
 #define ValidationStatus SystemValidationStatus              // 验证状态
 #define BufferStatus SystemBufferStatus                      // 缓冲区状态
