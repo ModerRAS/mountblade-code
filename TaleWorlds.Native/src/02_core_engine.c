@@ -671,6 +671,18 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemContextValidationOffset5 0x1dd4              // 系统上下文验证偏移量5
 #define SystemContextValidationOffset6 0x1dec              // 系统上下文验证偏移量6
 
+// 字符表和内存处理相关常量
+#define CharacterTableProcessingOffset 0x3a0               // 字符表处理偏移量
+#define SystemBufferAllocationSize 0x20                    // 系统缓冲区分配大小
+#define SystemLoopCounter 1                                // 系统循环计数器
+#define SystemOperationSuccess 0x01                        // 系统操作成功状态
+#define SystemValidationSuccess 0x01                      // 系统验证成功状态
+#define FloatIncrementValue 0.0001                         // 浮点增量值
+#define FloatPrecisionValue1 0x3c23d70a                    // 浮点精度值1
+#define FloatPrecisionValue2 0x3f333333                    // 浮点精度值2
+#define SystemContextExtendedDataOffset 0x1b00            // 系统上下文扩展数据偏移量
+#define SystemContextPrimaryDataOffset 0x18               // 系统上下文主要数据偏移量
+
 // 图形上下文数据结构偏移量常量
 #define GraphicsContextTransformDataOffset 0x1b80           // 图形上下文变换数据偏移量
 #define GraphicsContextTransformFunctionOffset 0x1b88       // 图形上下文变换函数偏移量
@@ -100032,20 +100044,30 @@ char ValidateSystemMemoryAllocationSecondary(uint64_t SystemContextHandle, uint3
   char *CharacterStatusBuffer;                   // 字符状态缓冲区
   uint8_t *ResultBuffer;                        // 结果缓冲区
   
-  Utf16Char = *(void *)(SystemContext + SystemContextDataBufferOffset);
-  if ((in_AL & 0x1e) != 0) {
-    RegisterEBPValue = OperationBufferSize;
+  // 初始化系统上下文地址
+  SystemContextAddress = SystemContextHandle;
+  
+  // 读取UTF-16字符数据
+  UnicodeCharacter = *(uint64_t *)(SystemContextAddress + SystemContextDataBufferOffset);
+  
+  // 检查AL寄存器的标志位
+  if ((ALRegisterValue & 0x1e) != 0) {
+    EBPRegisterValue = MemoryBufferSize;
   }
-  if (((RegisterEBPValue & 0x20) == 0) ||
-     (*(long long *)(SystemContext + SystemContextSecondaryDataBufferOffset) != *(long long *)(CharacterLimit + 0x3a0))) {
-    HighByte = false;
+  
+  // 验证系统上下文数据和字符限制
+  if (((EBPRegisterValue & 0x20) == 0) ||
+     (*(int64_t *)(SystemContextAddress + SystemContextSecondaryDataBufferOffset) != *(int64_t *)(CharacterProcessingLimit + CharacterTableProcessingOffset))) {
+    IsHighByteSet = false;
   }
   else {
-    HighByte = true;
-    *(long long *)(SystemContext + 0x1b00) = CharacterLimit;
+    IsHighByteSet = true;
+    *(int64_t *)(SystemContextAddress + SystemContextExtendedDataOffset) = CharacterProcessingLimit;
   }
-  CharacterStatus2 = '\0';
-  OperationStatus = CheckSystemStatus();
+  
+  // 初始化字符验证状态
+  CharacterValidationStatus = '\0';
+  MemoryValidationStatus = CheckSystemStatus();
   if (OperationStatus == '\0') {
 CharacterDataValidationLabel:
     if (((*(char *)(SystemContext + 0x1dd0) != '\0') && ((RegisterEBPValue >> 0xc & 1) != 0)) &&
