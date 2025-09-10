@@ -116049,40 +116049,40 @@ int ProcessUIComponentEventStatus(int *uiContext,int dataSource)
   int stackVar10;
   int stackVar18;
   
-  iStackX_10 = dataSource + -1;
-  ProcessingResult5 = 0x40000000;
-  if (0 < iStackX_10) {
-    componentHandle = (uint *)(uiContext + iStackX_10);
-    iStackX_18 = dataSource;
+  stackVar10 = dataSource + -1;
+  validationThreshold = 0x40000000;
+  if (0 < stackVar10) {
+    currentComponent = (uint *)(uiContext + stackVar10);
+    stackVar18 = dataSource;
     do {
-      if (0x1ffdf3c < *componentHandle + 0xffef9e) goto LAB_18073414c;
-      allocatedMemory4 = (longlong)(int)(*componentHandle * -0x80);
-      eventStatus = 0x40000000 - (int)((ulonglong)(allocatedMemory4 * allocatedMemory4) >> 0x20);
-      ProcessingResult5 = (int)((ulonglong)((longlong)ProcessingResult5 * (longlong)(int)eventStatus) >> 0x20) * 4;
-      if (ProcessingResult5 < 0x1a36e) goto LAB_18073414c;
-      result = (eventStatus ^ (int)eventStatus >> 0x1f) - ((int)eventStatus >> 0x1f);
-      if (result == 0) {
-        uiCompareResult = -0x20;
+      if (0x1ffdf3c < *currentComponent + 0xffef9e) goto LAB_18073414c;
+      memoryAllocation = (longlong)(int)(*currentComponent * -0x80);
+      eventStatus = 0x40000000 - (int)((ulonglong)(memoryAllocation * memoryAllocation) >> 0x20);
+      validationThreshold = (int)((ulonglong)((longlong)validationThreshold * (longlong)(int)eventStatus) >> 0x20) * 4;
+      if (validationThreshold < 0x1a36e) goto LAB_18073414c;
+      validationResult = (eventStatus ^ (int)eventStatus >> 0x1f) - ((int)eventStatus >> 0x1f);
+      if (validationResult == 0) {
+        uiComparisonResult = -0x20;
       }
       else {
-        uiCompareResult = 0x1f;
-        if (result != 0) {
-          for (; result >> uiCompareResult == 0; uiCompareResult = uiCompareResult + -1) {
+        uiComparisonResult = 0x1f;
+        if (validationResult != 0) {
+          for (; validationResult >> uiComparisonResult == 0; uiComparisonResult = uiComparisonResult + -1) {
           }
         }
-        uiCompareResult = uiCompareResult + -0x1f;
+        uiComparisonResult = uiComparisonResult + -0x1f;
       }
-      uiCompareResult = uiCompareResult + 0x20;
-      if (result == 0) {
-        ProcessingResult2 = 0x1f;
+      uiComparisonResult = uiComparisonResult + 0x20;
+      if (validationResult == 0) {
+        calculationResult2 = 0x1f;
       }
       else {
-        ProcessingResult2 = 0x1f;
-        if (result != 0) {
-          for (; result >> ProcessingResult2 == 0; ProcessingResult2 = ProcessingResult2 + -1) {
+        calculationResult2 = 0x1f;
+        if (validationResult != 0) {
+          for (; validationResult >> calculationResult2 == 0; calculationResult2 = calculationResult2 + -1) {
           }
         }
-        ProcessingResult2 = 0x1e - ProcessingResult2;
+        calculationResult2 = 0x1e - calculationResult2;
       }
       processedCount = eventStatus << ((byte)ProcessingResult2 & 0x1f);
       localLong7 = 0x1fffffff / (longlong)(processedCount >> 0x10);
