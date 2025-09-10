@@ -119903,23 +119903,23 @@ void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *t
   *uiContext = 0;
   param_6._0_4_ = 0;
   if (0 < uiContext2) {
-    plocalChar14 = (char *)(param_7 + 3);
+    charPointer = (char *)(param_7 + 3);
     param_8 = param_8 - (longlong)param_9;
     do {
-      isCharacterMatch = param_9[param_8];
-      localChar2 = *plocalChar14;
-      localChar3 = plocalChar14[1];
-      localChar4 = plocalChar14[-2];
-      localChar5 = plocalChar14[-1];
-      ProcessingResult2 = (uint)isCharacterMatch - uiContext1;
-      ProcessingResult3 = (int)((ulonglong)
-                     ((longlong)localChar3 * (longlong)((int)localChar3 * resultPointer[0x18] + processedCount * -0x100)) >>
+      characterMatchFlag = param_9[param_8];
+      transformChar1 = *charPointer;
+      transformChar2 = charPointer[1];
+      transformChar3 = charPointer[-2];
+      transformChar4 = charPointer[-1];
+      calculationResult1 = (uint)characterMatchFlag - uiContext1;
+      calculationResult2 = (int)((ulonglong)
+                     ((longlong)transformChar2 * (longlong)((int)transformChar2 * resultPointer[0x18] + transformOffset4 * -0x100)) >>
                     0x10) +
                (int)((ulonglong)
                      ((longlong)
-                      ((int)plocalChar14[-3] * *resultPointer +
-                      (int)localChar4 * resultPointer[1] * 2 + loopCounter * -0x100 + (int)localChar5 * resultPointer[2] * 2 +
-                      (int)localChar3 * resultPointer[4] * 2 + resultPointer[3] * (int)localChar2 * 2)                      (longlong)plocalChar14[-3]) >> 0x10) +
+                      ((int)charPointer[-3] * *resultPointer +
+                      (int)transformChar3 * resultPointer[1] * 2 + loopCounter * -0x100 + (int)transformChar4 * resultPointer[2] * 2 +
+                      (int)transformChar2 * resultPointer[4] * 2 + resultPointer[3] * (int)transformChar1 * 2)                      (longlong)charPointer[-3]) >> 0x10) +
                (int)((ulonglong)
                      ((longlong)
                       ((int)localChar4 * resultPointer[6] +
