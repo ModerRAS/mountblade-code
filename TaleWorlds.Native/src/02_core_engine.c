@@ -31388,7 +31388,7 @@ SecondFloatProcessingComplete: // 原始标签：LAB_180052de5，SecondFloatProc
 
 
 
- void CoreEngineInitializeSystemContext(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint8_t Utf16EndPointer/**
+ /**
  * @brief 处理核心引擎配置更新和参数计算
  * 
  * 该函数负责处理核心引擎的配置更新，包括内存管理、配置同步和浮点参数计算。
@@ -31404,7 +31404,7 @@ SecondFloatProcessingComplete: // 原始标签：LAB_180052de5，SecondFloatProc
  * @note 包括内存管理、配置更新和参数计算
  * @note 函数会根据配置状态计算并设置浮点参数
  */
-void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *SystemContext, uint64_t ConfigurationParameter1, uint64_t ConfigurationParameter2, uint8_t ConfigurationFlags
+void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *SystemContext, uint64_t ConfigurationParameter1, uint64_t ConfigurationParameter2, uint8_t ConfigurationFlags)
 {
   int IntegerResult;
   long long ContextHandle;
@@ -31412,7 +31412,7 @@ void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *Syst
   uint64_t MemoryAllocationResult;
   long long *AllocatedMemorySizePointer;
   int *IntegerValuePointer;
-  long long LoopIndex;
+  long long SystemMemoryLoopIndex;
   unsigned long long ArrayIndex;
   uint Counter;
   unsigned long long LoopCounter;
