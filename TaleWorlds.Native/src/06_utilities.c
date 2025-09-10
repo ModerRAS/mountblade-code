@@ -6308,7 +6308,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ee64
  */
-#define ReturnFixedStatusCodeA2 FUN_18089ee64
+#define ReturnFixedStatusCodeA2 ReturnFixedStatusA2
 
 /**
  * @brief 执行数据验证A2
@@ -6317,7 +6317,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ef40
  */
-#define ExecuteDataValidationA2 FUN_18089ef40
+#define ExecuteDataValidationA2 PerformDataValidationA2
 
 /**
  * @brief 处理复杂数据结构A1
@@ -6326,7 +6326,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089f0b0
  */
-#define ProcessComplexDataStructureA1 FUN_18089f0b0
+#define ProcessComplexDataStructureA1 ProcessComplexDataStructureAndValidate
 
 /**
  * @brief 返回固定状态码A3
@@ -6335,7 +6335,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089f112
  */
-#define ReturnFixedStatusCodeA3 FUN_18089f112
+#define ReturnFixedStatusCodeA3 ReturnFixedStatusA3
 
 /**
  * @brief 处理数据转换A1
@@ -6344,7 +6344,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089f830
  */
-#define ProcessDataConversionA1 FUN_18089f830
+#define ProcessDataConversionA1 ConvertDataFormatAndTypeA1
 
 /**
  * @brief 验证数据同步A1
@@ -6749,7 +6749,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942060
  */
-#define ConfigureModuleExceptionHandler0 FUN_180942060
+#define ConfigureModuleExceptionHandler0 ConfigureModuleExceptionHandlerForModule0
 
 /**
  * @brief 模块1异常处理器配置函数
@@ -6758,7 +6758,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942080
  */
-#define ConfigureModuleExceptionHandler1 FUN_180942080
+#define ConfigureModuleExceptionHandler1 ConfigureModuleExceptionHandlerForModule1
 
 /**
  * @brief 模块2异常处理器配置函数
@@ -6767,7 +6767,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809420a0
  */
-#define ConfigureModuleExceptionHandler2 FUN_1809420a0
+#define ConfigureModuleExceptionHandler2 ConfigureModuleExceptionHandlerForModule2
 
 /**
  * @brief 模块3异常处理器配置函数
@@ -6776,7 +6776,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809420c0
  */
-#define ConfigureModuleExceptionHandler3 FUN_1809420c0
+#define ConfigureModuleExceptionHandler3 ConfigureModuleExceptionHandlerForModule3
 
 /**
  * @brief 设置默认异常处理器A9
