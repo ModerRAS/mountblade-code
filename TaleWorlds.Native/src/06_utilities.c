@@ -46273,9 +46273,9 @@ void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer unusedParameter,int64
 void ClearStateFlag2AndExecuteCallback(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  if ((*(uint *)(targetObjectPointer + 0x30) & 2) != 0) {
-    *(uint *)(targetObjectPointer + 0x30) = *(uint *)(targetObjectPointer + 0x30) & 0xfffffffd;
-    CleanupResourceHandler(targetObjectPointer + 0x78);
+  if ((*(uint *)(targetObjectPointer + ObjectStateFlagsOffset30) & StateFlagBit2) != 0) {
+    *(uint *)(targetObjectPointer + ObjectStateFlagsOffset30) = *(uint *)(targetObjectPointer + ObjectStateFlagsOffset30) & StateFlag2ClearMask;
+    CleanupResourceHandler(targetObjectPointer + ResourceCleanupOffset78);
   }
   return;
 }
@@ -139936,7 +139936,7 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
 }
 
 /**
- * @brief 系统内存缓冲区管理器 - 美化示例
+ * @brief 系统内存缓冲区管理器
  * 
  * 该函数管理系统内存缓冲区的分配、验证和释放操作，
  * 确保内存使用的安全性和效率。
@@ -139967,7 +139967,6 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
  *        - -3: 内存验证失败
  *        - -4: 内存处理失败
  * 
- * @note 这是美化示例，展示了如何将逆向工程的代码转换为语义化的代码
  * @note 原始函数名：FUN_180123456
  * @warning 调用者需要确保参数的有效性
  * @see AllocateSystemMemoryA0, ValidateMemoryBoundary, ProcessMemoryBufferWithValidation
@@ -140013,7 +140012,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         AllocatedBufferSize = BufferSize;
     }
     
-    // 执行内存操作
+    // 执行内存数据处理
     if ((OperationFlags & 0x2) != 0) {
         // 内存数据处理模式
         if (ValidatedMemoryPointer != NULL) {
@@ -140033,7 +140032,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         }
     }
     
-    // 清理操作
+    // 执行内存清理操作
     if ((OperationFlags & 0x4) != 0) {
         // 内存释放模式
         if (ValidatedMemoryPointer != NULL) {
