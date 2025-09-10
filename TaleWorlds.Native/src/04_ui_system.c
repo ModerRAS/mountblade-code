@@ -5058,6 +5058,82 @@ void* UIGestureCoordinates;
 #define UIExternalDataFE7F8 UNK_1809fe7f8
 #define UIExternalDataFD0A0 UNK_1809fd0a0
 
+// UI系统上下文处理数据宏定义
+#define UIContextHandleData080 UNK_180957080
+#define UIContextHandleData488 UNK_180957488
+#define UIContextHandleData458 UNK_180957458
+#define UIContextHandleData440 UNK_180957440
+#define UIContextHandleData538 UNK_180957538
+#define UIContextHandleData378 UNK_180957378
+#define UIContextHandleData320 UNK_180957320
+#define UIContextHandleData228 UNK_180957228
+#define UIContextHandleData410 UNK_180957410
+#define UIContextHandleData3F0 UNK_1809573f0
+#define UIContextHandleData1E8 UNK_1809571E8
+#define UIContextHandleData2C8 UNK_1809572C8
+#define UIContextHandleData4D0 UNK_1809574D0
+#define UIContextHandleData3B8 UNK_1809573B8
+#define UIContextHandleData170 UNK_180957170
+#define UIContextHandleData140 UNK_180957140
+#define UIContextHandleData428 UNK_180957428
+#define UIContextHandleData4F0 UNK_1809574F0
+#define UIContextHandleData128 UNK_180957128
+#define UIContextHandleData278 UNK_180957278
+#define UIContextHandleData110 UNK_180957110
+#define UIContextHandleData290 UNK_180957290
+#define UIContextHandleData560 UNK_180957560
+#define UIContextHandleData1A8 UNK_1809571A8
+#define UIContextHandleData398 UNK_180957398
+#define UIContextHandleData3D8 UNK_1809573D8
+#define UIContextHandleData300 UNK_180957300
+#define UIContextHandleData5B0 UNK_1809575B0
+#define UIContextHandleData4C0 UNK_1809574C0
+#define UIContextHandleData4A8 UNK_1809574A8
+#define UIContextHandleData580 UNK_180957580
+#define UIContextHandleData598 UNK_180957598
+#define UIContextHandleData2E8 UNK_1809572E8
+#define UIContextHandleData0E8 UNK_1809570E8
+#define UIContextHandleData358 UNK_180957358
+#define UIContextHandleData338 UNK_180957338
+#define UIContextHandleData208 UNK_180957208
+#define UIContextHandleData248 UNK_180957248
+#define UIContextHandleData1C8 UNK_1809571C8
+#define UIContextHandleData158 UNK_180957158
+#define UIContextHandleData0F8 UNK_1809570F8
+#define UIContextHandleData188 UNK_180957188
+#define UIContextHandleData260 UNK_180957260
+#define UIContextHandleData310 UNK_180957310
+
+// UI系统渲染数据宏定义（补充）
+#define UIRenderData898 UNK_180957898
+#define UIRenderData810 UNK_180957810
+#define UIRenderData6A0 UNK_1809576A0
+#define UIRenderData880 UNK_180957880
+#define UIRenderData7B0 UNK_1809577B0
+#define UIRenderData8D0 UNK_1809578D0
+#define UIRenderData7F0 UNK_1809577F0
+#define UIRenderData758 UNK_180957758
+#define UIRenderData620 UNK_180957620
+#define UIRenderData6E0 UNK_1809576E0
+#define UIRenderData5C8 UNK_1809575C8
+#define UIRenderData680 UNK_180957680
+#define UIRenderData770 UNK_180957770
+#define UIRenderData8B0 UNK_1809578B0
+
+// UI系统组件数据宏定义
+#define UIComponentDataF48 UNK_180957F48
+#define UIComponentDataF38 UNK_180957F38
+#define UIComponentDataFE8 UNK_180957FE8
+
+// UI系统句柄表宏定义
+#define UIHandleTableF6E UNK_180956F6E
+#define UIHandleTableDF8 UNK_180956DF8
+#define UIHandleTableDE8 UNK_180956DE8
+#define UIHandleTable860 UNK_180954860
+#define UIHandleTable890 UNK_180954890
+#define UIHandleTableE60 UNK_180956E60
+#define UIHandleTableF30 UNK_180956F30
+
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
 #define UIUnknownFunctionTable2 UIUnknownFunctionTable2
@@ -113119,29 +113195,43 @@ void ProcessUIDataWithValidation(longlong uiContext,int *dataSource,int *targetB
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
-void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
+ /**
+ * @brief 执行UI缓冲区数据操作
+ * 
+ * 该函数负责执行UI缓冲区的数据操作，包括：
+ * - 字符匹配和数据验证
+ * - UI组件的变换处理
+ * - 上下文数据的管理
+ * - 缓冲区数据的读写操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * 
+ * @note 原始函数名：FUN_18072f4d0
+ */
+void ExecuteUIBufferDataOperation(UIByte *uiContext, longlong dataSource, uint targetBuffer)
 
 {
-  byte *pisCharacterMatch;
+  byte *isCharacterMatch;
   int uiValidationResult;
-  UIHandle *ptrLocal3;
+  UIHandle *uiHandlePointer;
   uint processingStatus;
-  int *ptrLocalInt5;
+  int *uiResultPointer;
   longlong contextDataHandle;
-  int localInt7;
+  int iterationCount;
   longlong contextOffset;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   undefined *componentTransformData;
-  UIByte aresult1 [16];
+  UIByte resultBuffer1 [16];
   UIByte bufferValue [16];
-  UIByte in_XMM1 [16];
-  UIByte acontextValue [16];
-  UIByte acomponentIndex [16];
-  UIByte aCounterResult [16];
-  UIByte aTotalResult [16];
-  UIByte astackUInt138 [32];
-  uint stackUInt118;
+  UIByte xmm1Value [16];
+  UIByte contextValue [16];
+  UIByte componentIndex [16];
+  UIByte counterResult [16];
+  UIByte totalResult [16];
+  UIByte stackBuffer138 [32];
+  uint stackParameter118;
   int stackInt10c;
   int stackInt108;
   UIByte astackUInt104 [28];
