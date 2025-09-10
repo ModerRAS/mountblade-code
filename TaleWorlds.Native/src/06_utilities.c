@@ -54643,7 +54643,7 @@ void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   if (*(int64_t *)(extendedHandlerContext + 0x550) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(extendedHandlerContext + 0x550) = 0;
+  *(DataBuffer *)(extendedHandlerContext + ExtendedHandlerContextOffset550) = 0;
   *(DataWord *)(extendedHandlerContext + 0x560) = 0;
   *(DataBuffer *)(extendedHandlerContext + 0x548) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(extendedHandlerContext + 0x528) = &SystemTemporaryExceptionHandler;
