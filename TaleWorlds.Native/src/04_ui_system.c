@@ -7230,9 +7230,15 @@ void CreateUIElement(void);
  /**
  * @brief 销毁UI元素
  * 
- * 销毁UI系统中的元素对象，释放相关资源
+ * 销毁UI系统中的元素对象，释放相关资源。该函数负责：
+ * - 从UI渲染队列中移除元素
+ * - 释放元素占用的内存空间
+ * - 清理元素的事件处理器和回调函数
+ * - 释放与元素相关的纹理、字体等资源
+ * - 更新UI系统的内部状态
  * 
  * @note 原始函数名: 未指定
+ * @see CreateUIElement, InitializeUIComponent, CleanupUIResources
  */
 void DestroyUIElement(void);
 
