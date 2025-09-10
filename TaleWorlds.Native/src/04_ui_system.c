@@ -116084,9 +116084,9 @@ int ProcessUIComponentEventStatus(int *uiContext,int dataSource)
         }
         calculationResult2 = 0x1e - calculationResult2;
       }
-      processedCount = eventStatus << ((byte)ProcessingResult2 & 0x1f);
-      localLong7 = 0x1fffffff / (longlong)(processedCount >> 0x10);
-      ProcessingResult1 = (int)localLong7;
+      processedCount = eventStatus << ((byte)calculationResult2 & 0x1f);
+      calculatedOffset = 0x1fffffff / (longlong)(processedCount >> 0x10);
+      calculationResult1 = (int)calculatedOffset;
       ProcessingResult1 = (int)((ulonglong)
                      ((longlong)
                       ((int)((ulonglong)((longlong)processedCount * (longlong)(short)localLong7) >> 0x10) * -8)                      (longlong)ProcessingResult1) >> 0x10) + ProcessingResult1 * 0x10000;

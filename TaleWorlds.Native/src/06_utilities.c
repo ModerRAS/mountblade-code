@@ -13325,9 +13325,9 @@ uint32_t SystemMemoryBlockCount;             // 系统内存块计数 - 存储�
  */
 bool ValidateUtilityMemoryAccessPermissions(void);
 // 工具系统内存验证相关变量
-void *UtilityMemoryPointerSecondary;
-int32_t UtilityMemoryValidatePrimary;
-int32_t UtilityMemoryValidateSecondary;
+void *MemoryValidationContext;
+int32_t MemoryValidationResultCode;
+int32_t MemoryValidationErrorCode;
 int32_t UtilityMemoryValidateTertiary;
 int32_t UtilityMemoryValidateQuaternary;
 int32_t UtilityMemoryValidateQuinary;
@@ -28851,7 +28851,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
   DataWord SystemResourceValidationWord;
   float SystemInputFloatValueC;
   float FloatProcessingArray [2];
-  DataBuffer *SystemresourcePointerBuffer;
+  DataBuffer *SystemResourcePointerBuffer;
   int64_t ProcessingLongIntegerA;
   int64_t ProcessingLongIntegerB;
   uint8_t *SystemDataTransferPointer;
@@ -28901,7 +28901,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
     // 初始化异常缓冲区和资源验证
     exceptionBuffer6 = (DataBuffer *)(dataBuffer + SystemContextDataOffset8);
     SystemResourceValidationWord = 0;
-    SystemresourcePointerBuffer = exceptionBuffer6;
+    SystemResourcePointerBuffer = exceptionBuffer6;
     // 执行异常缓冲区操作
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionBuffer6);
     // 验证系统资源完整性
@@ -73830,7 +73830,7 @@ void ValidateAndProcessDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180907170
  */
-void CleanupSystemresourcePointer7170(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemResourcePointer7170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ExceptionHandlerContextOffset168) != (int64_t *)0x0) {
