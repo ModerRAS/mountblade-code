@@ -3167,6 +3167,9 @@
 #define StackFrameValidationFlagOffset77 0x77               // 栈帧验证标志偏移量77
 #define StackFrameSecondaryValidationFlagOffset7F 0x7f    // 栈帧次级验证标志偏移量7F
 #define StackFrameDataCheckOffsetNegative49 -0x49          // 栈帧数据检查负偏移量49
+#define StackFrameContextOffsetNegative21 -0x21               // 栈帧上下文负偏移量21 - 用于输入参数存储
+#define StackFrameContextOffsetNegative29 -0x29               // 栈帧上下文负偏移量29 - 用于异常缓冲区指针存储
+#define StackFrameContextOffsetNegative1D -0x1d               // 栈帧上下文负偏移量1D - 用于状态计数器存储
 
 // 数据缓冲区相关偏移量常量
 #define DataBufferSizeOffset8 0x8                          // 数据缓冲区大小偏移量8
@@ -90004,16 +90007,26 @@ void ExecuteMemoryInitializationOperationA4(DataBuffer operationBase,int64_t dat
 
 
 /**
- * @brief 系统配置处理函数A0
+ * @brief 系统配置处理函数A1
  * 
  * 该函数处理系统配置数据，调用系统配置处理函数来执行配置操作。
+ * 它从异常处理上下文中提取配置参数，并传递给底层配置处理函数。
  * 
- * @param operationBase 操作基础对象（未使用）
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * 功能详情：
+ * - 从异常处理上下文中提取配置数据指针
+ * - 获取配置参数和操作标志
+ * - 调用系统配置处理函数A0执行实际的配置操作
+ * - 使用系统清理标志作为配置操作的终止标志
+ * 
+ * @param operationBase 操作基础对象（当前未使用，保留为后续扩展）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A，用于控制配置操作的类型
+ * @param operationFlagB 操作标志B，用于传递额外的操作参数
  * 
  * @note 原始函数名：Unwind_18090a2d0
+ * @note 这是一个异常展开（unwind）处理函数，用于系统配置的清理和重置
+ * @warning 调用者需要确保dataBuffer参数的有效性
+ * @see ProcessSystemConfigurationA0, ExceptionHandlerContextOffset60, SystemCleanupFlagAlternative
  */
 void ProcessSystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -90029,9 +90042,25 @@ void ProcessSystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,Da
 /**
  * @brief 互斥锁销毁函数
  * 
- * 该函数销毁互斥锁资源，释放锁占用的内存。
+ * 该函数销毁互斥锁资源，释放锁占用的内存和系统资源。
+ * 这是一个异常展开（unwind）处理函数，用于在异常处理过程中
+ * 安全地销毁互斥锁，避免资源泄漏。
+ * 
+ * 功能详情：
+ * - 调用系统互斥锁销毁函数
+ * - 释放互斥锁占用的内存资源
+ * - 确保锁状态正确重置
+ * - 防止资源泄漏和死锁
+ * 
+ * 安全特性：
+ * - 原地销毁操作，确保线程安全
+ * - 自动清理锁状态
+ * - 防止内存泄漏
  * 
  * @note 原始函数名：Unwind_18090a2f0
+ * @note 这是一个异常展开（unwind）处理函数，用于异常处理中的资源清理
+ * @warning 调用此函数时需要确保互斥锁未被其他线程持有
+ * @see _Mtx_destroy_in_situ, CleanupExceptionDataAndMutexA0, UpdateSystemStatusA0
  */
 void DestroyMutexLock(void)
 

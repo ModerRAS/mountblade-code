@@ -399018,16 +399018,16 @@ UIHandle * FUN_18089c22e(void)
   iterationCount = resultPointer1[1];
   eventCode = resultPointer1[2];
   processStatus = resultPointer1[3];
-  *(UIDword *)(basePointer + -0x19) = iterationCount0;
-  *(UIDword *)(basePointer + -0x15) = iterationCount;
-  *(UIDword *)(basePointer + -0x11) = eventCodeType;
-  *(UIDword *)(basePointer + -0xd) = processingStatus;
+  *(UIDword *)(uiContextBasePointer + -0x19) = iterationCounter;
+  *(UIDword *)(uiContextBasePointer + -0x15) = iterationCount;
+  *(UIDword *)(uiContextBasePointer + -0x11) = eventCodeType;
+  *(UIDword *)(uiContextBasePointer + -0xd) = processingStatus;
   eventProcessingCounter = 0;
   renderDataPointer = componentHandle;
   if (eventStatus < 0x6d) {
-    if (*(int *)(TargetHandle[1] + 0x18) == 0) {
-      result = *TargetHandle;
-      renderDataPointer = (UIHandle *)FUN_1808aed00(result,basePointer + -0x19,4);
+    if (*(int *)(uiTargetHandle[1] + 0x18) == 0) {
+      result = *uiTargetHandle;
+      renderDataPointer = (UIHandle *)FUN_1808aed00(result,uiContextBasePointer + -0x19,4);
       if ((int)renderDataPointer != 0) {
         return renderDataPointer;
       }
