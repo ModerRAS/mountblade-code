@@ -112695,9 +112695,9 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
           baseValuePointer = baseValuePointer3 + -2;
           baseValuePointer3 = baseValuePointer3 + 1;
           *temporaryFloatPointer = (vectorComponentX - resultFloatValue * *baseValuePointer) * transformCoeff1;
-          pTemporaryFloatValue = pTemporaryFloatValue + 1;
-          result1 = result1 - 1;
-        } while (result1 != 0);
+          temporaryFloatPointer = temporaryFloatPointer + 1;
+          resultCounter = resultCounter - 1;
+        } while (resultCounter != 0);
       }
       dataSource = dataSource + (longlong)param_6 * 4;
       resultPointer = resultPointer + 1;
@@ -205947,46 +205947,46 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
   UIHandle *EventIterator;
   UIHandle eventCodeType;
   UIHandle *BufferPointer;
-  UIDword StackBuffer8 [2];
-  UIDword StackBuffer10 [2];
-  UIDword BufferValidation [4];
-  UIHandle StackParameterA8;
-  uint LoopCounter;
-  UIHandle StackParameterB0;
-  uint8_t ProcessingCounter;
-  uint64_t MaxProcessingCount;
-  UIHandle StackParameterB8;
-  uint EventprocessingStatus;
-  uint64_t EventProcessingCounter;
+  UIDword UIStackBuffer8 [2];
+  UIDword UIStackBuffer10 [2];
+  UIDword UIBufferValidation [4];
+  UIHandle UIStackParameterA8;
+  uint UILoopCounter;
+  UIHandle UIStackParameterB0;
+  uint8_t UIProcessingCounter;
+  uint64_t UIMaxProcessingCount;
+  UIHandle UIStackParameterB8;
+  uint UIEventProcessingStatus;
+  uint64_t UIEventProcessingCounter;
   
-  LoopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
-  EventprocessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
+  UILoopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
+  UIEventProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f4) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f2) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f0) = 0;
   if ((*(code **)(uiContext + 0x358) == (UIFunctionPtr *)0x0) ||
      (eventCodeType = (**(code **)(uiContext + 0x358))(uiContext + 8), (int)eventCodeType == 0)) {
     EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
-    ProcessingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
+    UIProcessingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
     if (*(longlong *)(EventMemoryAllocation + 0x10f88) == 0) {
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (eventCodeType = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad08,&UNK_1807872a0,uiContext,
-                                (ulonglong)LoopCounter << 0x20,(ulonglong)ProcessingCounter << 8,
-                                (ulonglong)EventprocessingStatus << 0x20,EventMemoryAllocation,1), (int)eventCodeType != 0)) {
+                                (ulonglong)UILoopCounter << 0x20,(ulonglong)UIProcessingCounter << 8,
+                                (ulonglong)UIEventProcessingStatus << 0x20,EventMemoryAllocation,1), (int)eventCodeType != 0)) {
         return eventCodeType;
       }
     }
     else {
-      EventProcessingCounter = (ulonglong)EventprocessingStatus << 0x20;
-      MaxProcessingCount = CONCAT71(ProcessingCounter,1);
+      UIEventProcessingCounter = (ulonglong)UIEventProcessingStatus << 0x20;
+      UIMaxProcessingCount = CONCAT71(UIProcessingCounter,1);
       eventCodeType = FUN_180767c00(uiContext + 0x70,&UNK_18095ad08,FUN_1807863b0,uiContext,
-                            (ulonglong)LoopCounter << 0x20,MaxProcessingCount,EventProcessingCounter,EventMemoryAllocation,1);
+                            (ulonglong)UILoopCounter << 0x20,UIMaxProcessingCount,UIEventProcessingCounter,EventMemoryAllocation,1);
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (eventCodeType = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad20,&UNK_1807872a0,uiContext,1,
-                                MaxProcessingCount & 0xffffffffffffff00,EventProcessingCounter & 0xffffffff00000000,
+                                UIMaxProcessingCount & 0xffffffffffffff00,UIEventProcessingCounter & 0xffffffff00000000,
                                 *(UIHandle *)(uiContext + 0x48),1), (int)eventCodeType != 0)) {
         return eventCodeType;
       }
