@@ -120001,29 +120001,45 @@ void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置异常处理器和系统状态（第六组）
+ * 
+ * 该函数负责重置第六组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x1480偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910aa0
+ */
+void ResetExceptionHandlersAndSystemStateGroupSix(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionContextDataOffset1480) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionContextDataOffset1480))(exceptionHandlerContext + ExceptionContextDataOffset1470,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480))(exceptionContext + ExceptionContextDataOffset1470, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1448) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionContextDataOffset1450) != 0) {
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1448) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + ExceptionContextDataOffset1450) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1450) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1460) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1448) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1428) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionContextDataOffset1430) != 0) {
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1450) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffset1460) = 0;
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1448) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1428) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + ExceptionContextDataOffset1430) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1430) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1440) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionContextDataOffset1428) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1430) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffset1440) = 0;
+  *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1428) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
