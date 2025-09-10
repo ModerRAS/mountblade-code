@@ -215,24 +215,24 @@
 #define ExtendedExceptionHandlerSecondaryDataOffset 0xf8    // 扩展异常处理器次要数据偏移量
 
 // 异常上下文偏移量常量
-#define ExceptionHandlerContextOffset1e8 0x1e8
-#define ExceptionHandlerContextOffset1f0 0x1f0
-#define MemoryPointerOffset0 0x0
-#define ExceptionHandlerContextOffset168 0x168
-#define ExceptionHandlerContextOffset170 0x170
-#define FloatValueOffset0 0x0
-#define ExceptionHandlerContextOffset1a8 0x1a8
-#define ExceptionHandlerContextOffset1b0 0x1b0
-#define ExceptionHandlerContextOffset1c0 0x1c0
+#define ExceptionHandlerContextControlOffset 0x1e8
+#define ExceptionHandlerContextStatusOffset 0x1f0
+#define MemoryPointerStartOffset 0x0
+#define ExceptionHandlerContextDataOffset168 0x168
+#define ExceptionHandlerContextInfoOffset170 0x170
+#define FloatValueStartOffset 0x0
+#define ExceptionHandlerContextConfigOffset1a8 0x1a8
+#define ExceptionHandlerContextConfigOffset1b0 0x1b0
+#define ExceptionHandlerContextConfigOffset1c0 0x1c0
 
 // 默认异常处理器位置常量
-#define DefaultExceptionHandlerB_PositionPrimary_Offset 0x168
-#define DefaultExceptionHandlerB_PositionSecondary_Offset 0x1d8
-#define DefaultExceptionHandlerB_PositionTertiary_Offset 0x248
+#define DefaultExceptionHandlerB_PrimaryPositionOffset 0x168
+#define DefaultExceptionHandlerB_SecondaryPositionOffset 0x1d8
+#define DefaultExceptionHandlerB_TertiaryPositionOffset 0x248
 
 // 数据缓冲区偏移量常量
-#define DataBufferOffset178 0x178
-#define DataBufferOffset260 0x260
+#define DataBufferMainOffset 0x178
+#define DataBufferSecondaryOffset 0x260
 
 // 内存块大小常量
 #define MemoryBlockSizeD0 0xd0                              // 内存块大小D0
@@ -11154,6 +11154,26 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：分配系统数据
 #define AllocateSystemDataA0 FUN_1807703c0
 
+// 原始函数名：FUN_180907c80 - 内存资源释放函数A1
+// 功能：释放内存资源
+#define ReleaseMemoryResourceA1 FUN_180907c80
+
+// 原始函数名：FUN_180853000 - 内存边界验证函数
+// 功能：验证内存边界
+#define ValidateMemoryBoundary FUN_180853000
+
+// 原始函数名：FUN_180853001 - 数据字节验证函数
+// 功能：验证数据字节
+#define ValidateDataByte FUN_180853001
+
+// 原始函数名：FUN_180853002 - 安全内存清理函数
+// 功能：安全清理内存
+#define SecureClearMemory FUN_180853002
+
+// 原始函数名：FUN_180853003 - 加密数据完整性验证函数
+// 功能：验证加密数据完整性
+#define ValidateEncryptedDataIntegrity FUN_180853003
+
 // 系统缓冲区配置常量
 // 功能：定义系统缓冲区的配置地址
 #define SystemBufferConfiguration 0x180958180
@@ -11215,12 +11235,12 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define secondValidationValue secondaryFloatValidation    // 次级浮点验证值
 #define thirdValidationValue tertiaryFloatValidation    // 三级浮点验证值
 #define fourthValidationValue quaternaryFloatValidation    // 四级浮点验证值
-#define inputParameter0 validationParameter0    // 验证参数0
+#define inputParameter0 primaryValidationParameter    // 主验证参数
 #define inputParameter1 validationParameter1    // 验证参数1
 #define inputParameter2 validationParameter2    // 验证参数2
 #define inputParameter4 validationParameter4    // 验证参数4
-#define inputParameter6 validationParameter6    // 验证参数6
-#define inputParameter8 dataBufferSize    // 数据缓冲区大小
+#define inputParameter6 dataProcessingSize    // 数据处理大小
+#define inputParameter8 totalProcessedDataSize    // 总处理数据大小
 #define inputParameter9 validationParameter9    // 验证参数9
 #define exceptionDataBuffer exceptionBuffer2    // 异常缓冲区2
 #define exceptionBuffer3 exceptionBuffer3    // 异常缓冲区3
