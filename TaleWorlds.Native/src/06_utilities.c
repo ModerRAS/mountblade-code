@@ -30714,8 +30714,8 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   do {
     memoryRegionAddress = *(uint *)(*systemContext + dataBuffer * 8);
     memoryAllocationSize = (int)StackFrameContext;
-    if ((memoryRegionAddress & 0xffffff) != 0xffffff) {
-      dataBufferAddress = (uint64_t)(memoryRegionAddress & 0xffffff) + systemContext[4];
+    if ((memoryRegionAddress & DataValidationMask) != 0xffffff) {
+      dataBufferAddress = (uint64_t)(memoryRegionAddress & DataValidationMask) + systemContext[4];
       memoryOperationResult = ValidateSystemDataIntegrityB0(dataBufferAddress);
       if (memoryAllocationSize != 0) {
         dataBufferPointer = (ByteFlag *)((memoryOperationResult + -1) + dataBufferAddress);
