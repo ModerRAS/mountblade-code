@@ -112057,6 +112057,18 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
 
 
 
+/**
+ * @brief 清理异常资源链
+ * 
+ * 该函数负责清理异常处理过程中的资源链，包括内存资源指针和引用计数的管理。
+ * 函数会检查内存区域的有效性，并在引用计数为0时调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 函数使用偏移量0x140获取内存资源指针
+ * @note 如果引用计数为0，会调用HandleExceptionE0函数处理异常
+ */
 void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -112093,6 +112105,18 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理异常内存清理
+ * 
+ * 该函数负责处理异常相关的内存清理操作，管理内存资源指针和引用计数。
+ * 函数会验证内存区域的有效性，并在适当的时候调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 函数使用偏移量0x160获取内存资源指针
+ * @note 如果引用计数为0，会调用HandleExceptionE0函数处理异常
+ */
 void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -112101,7 +112125,7 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x160);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerPointerOffset160);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -112129,6 +112153,18 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理异常上下文和系统更新（偏移量2d0）
+ * 
+ * 该函数负责处理异常上下文并执行系统状态更新操作。
+ * 函数会遍历数据上下文，并在适当的时候终止系统执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 函数使用偏移量0x180和0x188获取数据上下文和异常上下文
+ * @note 如果数据上下文为0，会调用TerminateSystemExecutionAndCleanupResources函数
+ */
 void ProcessExceptionContextAndSystemUpdateAtOffset2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -112138,7 +112174,7 @@ void ProcessExceptionContextAndSystemUpdateAtOffset2d0(DataBuffer operationBase,
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset180);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset188);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x30) {
+  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + OperationBaseSecondaryOffset) {
     UpdateSystemStatusA3();
   }
   if (*dataContext == 0) {
@@ -112149,6 +112185,19 @@ void ProcessExceptionContextAndSystemUpdateAtOffset2d0(DataBuffer operationBase,
 
 
 
+/**
+ * @brief 完成异常资源处理
+ * 
+ * 该函数负责完成异常处理过程中的资源清理工作，包括内存资源指针的管理
+ * 和引用计数的处理。函数会验证内存区域的有效性，并在引用计数为0时
+ * 调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 函数使用偏移量0x1a0获取内存资源指针
+ * @note 如果引用计数为0，会调用HandleExceptionE0函数处理异常
+ */
 void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -112157,7 +112206,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x1a0);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerPointerOffsetQuaternary);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -112194,6 +112243,18 @@ void DestroyMutexInSituAtOffset310(void)
 
 
 
+/**
+ * @brief 处理异常上下文迭代（偏移量330）
+ * 
+ * 该函数负责处理异常上下文的迭代操作，遍历数据上下文中的异常处理器
+ * 并调用相应的处理函数。函数会在适当的时候终止系统执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 函数使用偏移量0x210和0x218获取数据上下文和异常上下文指针
+ * @note 如果数据上下文为0，会调用TerminateSystemExecutionAndCleanupResources函数
+ */
 void ProcessExceptionContextIterationAtOffset330(DataBuffer operationBase,int64_t dataBuffer)
 
 {
