@@ -38477,14 +38477,14 @@ uint64_t * ValidateSystemDataProcessing(void)
   *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffsetD) = memoryRegionBase;
   securityCheckResult = 0;
   exceptionBuffer3 = exceptionDataBuffer1;
-  if (statusCounter < 0x6d) {
+  if (statusCounter < StatusCounterMaximumValue) {
     if (*(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = *DestinationContext;
-      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x19,4);
+      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + StackFrameContextNegativeOffset19,4);
       if ((int)exceptionBuffer3 != 0) {
         return exceptionBuffer3;
       }
-      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x15,2);
+      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + StackFrameContextNegativeOffset15,2);
       if ((int)exceptionBuffer3 != 0) {
         return exceptionBuffer3;
       }

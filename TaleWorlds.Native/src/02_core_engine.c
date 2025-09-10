@@ -80596,7 +80596,7 @@ void ProcessSystemEventHandler(uint64_t ContextHandle,uint64_t *ContextHandleSiz
   ContextHandleTablePointer = *(uint64_t **)(*MemoryBlockIndex + 0x50);
   StringProcessingStatus = SystemCharacterStatusPointer;
   if (ContextHandleTablePointer == NULL) {
-LAB_18009a8ab:
+SystemValidationStart:
     StringProcessingStatus = SystemCharacterStatusPointer;
   }
   else {
