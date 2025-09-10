@@ -405285,8 +405285,14 @@ LAB_18089f45f:
 
 
 
- void FUN_18089f474(void)
-void FUN_18089f474(void)
+ /**
+ * UI系统状态检查函数
+ * 检查UI系统的当前状态，用于状态监控和调试
+ * 
+ * @return 无返回值
+ */
+void CheckUISystemStatus(void)
+void CheckUISystemStatus(void)
 
 {
   return;
