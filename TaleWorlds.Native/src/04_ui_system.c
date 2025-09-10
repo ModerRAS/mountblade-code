@@ -113486,7 +113486,7 @@ void ProcessUIEventStateUpdate(void)
   UIByte componentIndex [16];
   ulonglong stackParameter;
   
-  iterationCounter = unmodifiedEBX + 4;
+  iterationCount = unmodifiedEBX + 4;
   result = unmodifiedEBX + 1;
   do {
     if (0xf < unmodifiedEBX) break;
@@ -113500,43 +113500,43 @@ void ProcessUIEventStateUpdate(void)
       if ((int)loopCounter < 0) {
         loopCounter = (loopCounter - 1 | 0xfffffff0) + 1;
       }
-      acontextValue = ZEXT416(iterationCounter);
-      acomponentIndex = ZEXT416(result);
+      contextValue = ZEXT416(iterationCounter);
+      componentIndex = ZEXT416(result);
       bufferPtr = (UIHandle *)(TargetHandle + 0x10);
-      ptrLocalInt6 = (int *)&stack0x00000050;
+      dataPtr = (int *)&stack0x00000050;
       do {
         stringCompareIndex = stringCompareIndex + 0x10;
-        aeventStatus._0_4_ = (ptrLocalInt6[-8] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus._4_4_ = (ptrLocalInt6[-7] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus._8_4_ = (ptrLocalInt6[-6] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus._12_4_ = (ptrLocalInt6[-5] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus = pshuflw(aeventStatus,aeventStatus,0xd8);
-        aresult1 = pshufhw(in_XMM1,aeventStatus,0xd8);
-        bufferPtr[-2] = CONCAT44(aresult1._8_4_,aresult1._0_4_);
-        bufferValue._0_4_ = (ptrLocalInt6[-4] >> acontextValue) + 1 >> acomponentIndex;
-        bufferValue._4_4_ = (ptrLocalInt6[-3] >> acontextValue) + 1 >> acomponentIndex;
-        bufferValue._8_4_ = (ptrLocalInt6[-2] >> acontextValue) + 1 >> acomponentIndex;
-        bufferValue._12_4_ = (ptrLocalInt6[-1] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus = pshuflw(bufferValue,bufferValue,0xd8);
-        bufferValue = pshufhw(aresult1,aeventStatus,0xd8);
-        bufferPtr[-1] = CONCAT44(bufferValue._8_4_,bufferValue._0_4_);
-        aresult1._0_4_ = (*ptrLocalInt6 >> acontextValue) + 1 >> acomponentIndex;
-        aresult1._4_4_ = (ptrLocalInt6[1] >> acontextValue) + 1 >> acomponentIndex;
-        aresult1._8_4_ = (ptrLocalInt6[2] >> acontextValue) + 1 >> acomponentIndex;
-        aresult1._12_4_ = (ptrLocalInt6[3] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus = pshuflw(aresult1,aresult1,0xd8);
-        bufferValue = pshufhw(bufferValue,aeventStatus,0xd8);
-        *bufferPtr = CONCAT44(bufferValue._8_4_,bufferValue._0_4_);
-        adataPointer._0_4_ = (ptrLocalInt6[4] >> acontextValue) + 1 >> acomponentIndex;
-        adataPointer._4_4_ = (ptrLocalInt6[5] >> acontextValue) + 1 >> acomponentIndex;
-        adataPointer._8_4_ = (ptrLocalInt6[6] >> acontextValue) + 1 >> acomponentIndex;
-        adataPointer._12_4_ = (ptrLocalInt6[7] >> acontextValue) + 1 >> acomponentIndex;
-        aeventStatus = pshuflw(adataPointer,adataPointer,0xd8);
-        eventProcessingCounter = aeventStatus._0_8_;
-        in_XMM1 = pshufhw(bufferValue,aeventStatus,0xd8);
-        bufferPtr[1] = CONCAT44(in_XMM1._8_4_,in_XMM1._0_4_);
+        eventStatus._0_4_ = (dataPtr[-8] >> contextValue) + 1 >> componentIndex;
+        eventStatus._4_4_ = (dataPtr[-7] >> contextValue) + 1 >> componentIndex;
+        eventStatus._8_4_ = (dataPtr[-6] >> contextValue) + 1 >> componentIndex;
+        eventStatus._12_4_ = (dataPtr[-5] >> contextValue) + 1 >> componentIndex;
+        eventStatus = pshuflw(eventStatus,eventStatus,0xd8);
+        resultBuffer = pshufhw(resultBuffer,eventStatus,0xd8);
+        bufferPtr[-2] = CONCAT44(resultBuffer._8_4_,resultBuffer._0_4_);
+        dataBuffer._0_4_ = (dataPtr[-4] >> contextValue) + 1 >> componentIndex;
+        dataBuffer._4_4_ = (dataPtr[-3] >> contextValue) + 1 >> componentIndex;
+        dataBuffer._8_4_ = (dataPtr[-2] >> contextValue) + 1 >> componentIndex;
+        dataBuffer._12_4_ = (dataPtr[-1] >> contextValue) + 1 >> componentIndex;
+        eventStatus = pshuflw(dataBuffer,dataBuffer,0xd8);
+        dataBuffer = pshufhw(resultBuffer,eventStatus,0xd8);
+        bufferPtr[-1] = CONCAT44(dataBuffer._8_4_,dataBuffer._0_4_);
+        resultBuffer._0_4_ = (*dataPtr >> contextValue) + 1 >> componentIndex;
+        resultBuffer._4_4_ = (dataPtr[1] >> contextValue) + 1 >> componentIndex;
+        resultBuffer._8_4_ = (dataPtr[2] >> contextValue) + 1 >> componentIndex;
+        resultBuffer._12_4_ = (dataPtr[3] >> contextValue) + 1 >> componentIndex;
+        eventStatus = pshuflw(resultBuffer,resultBuffer,0xd8);
+        dataBuffer = pshufhw(dataBuffer,eventStatus,0xd8);
+        *bufferPtr = CONCAT44(dataBuffer._8_4_,dataBuffer._0_4_);
+        simdRegister1._0_4_ = (dataPtr[4] >> contextValue) + 1 >> componentIndex;
+        simdRegister1._4_4_ = (dataPtr[5] >> contextValue) + 1 >> componentIndex;
+        simdRegister1._8_4_ = (dataPtr[6] >> contextValue) + 1 >> componentIndex;
+        simdRegister1._12_4_ = (dataPtr[7] >> contextValue) + 1 >> componentIndex;
+        eventStatus = pshuflw(simdRegister1,simdRegister1,0xd8);
+        eventProcessingCounter = eventStatus._0_8_;
+        resultBuffer = pshufhw(dataBuffer,eventStatus,0xd8);
+        bufferPtr[1] = CONCAT44(resultBuffer._8_4_,resultBuffer._0_4_);
         bufferPtr = bufferPtr + 4;
-        ptrLocalInt6 = ptrLocalInt6 + 0x10;
+        dataPtr = dataPtr + 0x10;
       } while (stringCompareIndex < (int)(unmodifiedESI - loopCounter));
     }
     if (stringCompareIndex < CONCAT44(unmodified00000034,unmodifiedESI)) {
@@ -113547,7 +113547,7 @@ void ProcessUIEventStateUpdate(void)
       } while (stringCompareIndex < CONCAT44(unmodified00000034,unmodifiedESI));
     }
     unmodifiedEBX = unmodifiedEBX + 1;
-    uiValidationResult = FUN_180734160(eventProcessingCounter,unmodifiedESI);
+    uiValidationResult = ValidateUIComponentContextAndState(eventProcessingCounter,unmodifiedESI);
   } while (uiValidationResult == 0);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000100 ^ (ulonglong)&stack0x00000000);

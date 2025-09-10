@@ -4920,7 +4920,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
  * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfiguration
  */
-#define ProcessDataArrayWithValidation FUN_180057010
+#define ProcessDataArrayWithValidation ProcessDataArrayWithValidation
 
 /**
  * @brief 数据缓冲区初始化函数
