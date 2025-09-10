@@ -120773,7 +120773,26 @@ void FinalizeExceptionHandlerCleanup(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置异常处理器和系统状态（第六组）
+ * 
+ * 该函数负责重置第六组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x24b0偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910f40
+ * @note 这是一个异常处理和系统清理函数，处理0x24b0偏移的异常处理器
+ */
+#define ResetExceptionHandlersAtOffsetF40 Unwind_180910f40
+
+void ResetExceptionHandlersAtOffsetF40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
