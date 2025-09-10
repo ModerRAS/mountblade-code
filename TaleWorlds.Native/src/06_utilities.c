@@ -984,13 +984,13 @@
 #define MemoryAlignmentMaskValue 0xfffffffb       // 内存对齐掩码值
 
 // 异常上下文指针偏移量常量
-#define ExceptionContextPointerOffset88 0x88
-#define ExceptionContextPointerOffsetA0 0xa0
-#define ExceptionContextPointerOffsetB0 0xb0
-#define ExceptionContextPointerOffsetC0 0xc0
-#define ExceptionContextPointerOffsetD0 0xd0
-#define ExceptionContextPointerOffsetE0 0xe0
-#define ExceptionContextPointerOffsetF0 0xf0
+#define ExceptionContextPointerOffsetPrimary 0x88
+#define ExceptionContextPointerOffsetSecondary 0xa0
+#define ExceptionContextPointerOffsetTertiary 0xb0
+#define ExceptionContextPointerOffsetQuaternary 0xc0
+#define ExceptionContextPointerOffsetQuinary 0xd0
+#define ExceptionContextPointerOffsetSenary 0xe0
+#define ExceptionContextPointerOffsetSeptenary 0xf0
 #define ExceptionContextPointerOffset880 0x880
 #define ExceptionContextPointerOffset888 0x888
 #define ExceptionContextPointerOffsetA00 0xa00
