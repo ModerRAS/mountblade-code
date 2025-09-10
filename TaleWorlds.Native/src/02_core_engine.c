@@ -234921,7 +234921,7 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
   SystemStackFlag = 0xfffffffffffffffe;
   OperationResult = 0;
   ConversionFunctionAddress = 0;
-  FUN_1802759e0(Utf8SourcePointer,&CharacterTablePointer);
+  ProcessSystemConfigurationData(Utf8SourcePointer,&CharacterTablePointer);
   if (Utf16EndPointer == 0) {
     *ContextHandleSize = (uint64_t)CharacterTablePointer;
     CharacterTablePointer = (long long *)0x0;
