@@ -7263,7 +7263,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942440
  */
-#define SetDefaultExceptionHandler31 FUN_180942440
+#define SetDefaultExceptionHandler31 InitializeDefaultExceptionHandlerB1
 
 /**
  * @brief 设置默认异常处理器A32
@@ -7272,7 +7272,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942460
  */
-#define SetDefaultExceptionHandler32 FUN_180942460
+#define SetDefaultExceptionHandler32 InitializeDefaultExceptionHandlerB2
 
 /**
  * @brief 设置默认异常处理器A33
@@ -7281,7 +7281,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942480
  */
-#define SetDefaultExceptionHandler33 FUN_180942480
+#define SetDefaultExceptionHandler33 InitializeDefaultExceptionHandlerB3
 
 /**
  * @brief 设置默认异常处理器A34
@@ -7290,7 +7290,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809424a0
  */
-#define SetDefaultExceptionHandler34 FUN_1809424a0
+#define SetDefaultExceptionHandler34 InitializeDefaultExceptionHandlerB4
 
 // 系统处理函数宏定义 (E系列)
 
@@ -7665,22 +7665,42 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ReturnErrorCode ReturnSystemErrorCode
 
 /**
- * @brief 数据验证和标志处理函数
+ * @brief 验证数据并处理标志位
  * 
- * 该函数负责验证数据上下文中的标志位，执行哈希查找，并调用相应的回调函数
+ * 该函数负责验证数据上下文中的标志位，执行哈希查找操作，
+ * 并根据验证结果调用相应的回调函数进行后续处理。
+ * 
+ * @param dataContextPointer 数据上下文指针
+ * @param flagMask 标志位掩码
+ * @param callbackFunction 回调函数指针
+ * @return int 验证和处理结果：
+ *         - 0: 验证成功，处理完成
+ *         - 非0值: 验证失败或处理错误，具体错误代码
  * 
  * @note 原始函数名：FUN_180895c60
+ * @warning 回调函数必须在验证通过后才能执行
+ * @see ValidateSystemDataIntegrity, ProcessDataAndValidateIntegrity
  */
-#define ValidateAndProcessDataFlags FUN_180895c60
+#define ValidateAndProcessDataFlags ValidateDataAndProcessFlags
 
 /**
- * @brief 数据缓冲区处理函数
+ * @brief 处理数据缓冲区并验证完整性
  * 
- * 该函数负责处理数据缓冲区并进行验证，返回处理的总字节数
+ * 该函数负责处理数据缓冲区，包括数据读取、写入、转换等操作，
+ * 并对缓冲区数据的完整性进行验证，返回成功处理的字节数。
+ * 
+ * @param bufferPointer 缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param operationType 操作类型（读取/写入/转换）
+ * @return size_t 成功处理的字节数：
+ *         - 0: 处理失败
+ *         - >0: 成功处理的字节数
  * 
  * @note 原始函数名：FUN_1808947b0
+ * @warning 缓冲区大小必须经过验证，避免缓冲区溢出
+ * @see ValidateSystemDataIntegrity, ProcessDataAndValidateIntegrity
  */
-#define ProcessDataBufferWithValidation FUN_1808947b0
+#define ProcessDataBufferWithValidation ProcessDataBufferAndValidate
 
 /**
  * @brief 安全验证执行函数
