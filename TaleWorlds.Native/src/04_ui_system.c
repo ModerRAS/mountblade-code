@@ -115134,12 +115134,12 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
   if (*(int *)(uiBufferData + 0x11e0) == 2) {
     loopCounter = loopCounter + (loopCounter >> 1);
   }
-  FUN_180737100(astackUIntb8,targetBuffer,*(UIDword *)(uiBufferData + 0x121c));
+  ProcessUIDataWithWordSource(astackUIntb8,targetBuffer,*(UIDword *)(uiBufferData + 0x121c));
   if ((*(int *)(uiBufferData + 0x1214) == 1) && (*(char *)(uiContext + 0x12a7) < '\x04')) {
     stackIntd8 = *(UIDword *)(uiBufferData + 0x121c);
     IsEventProcessingActive = true;
     ProcessUIComponentOperation(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
-    FUN_180737100(astackUInt98,astackUInt78,*(UIDword *)(uiBufferData + 0x121c));
+    ProcessUIDataWithWordSource(astackUInt98,astackUInt78,*(UIDword *)(uiBufferData + 0x121c));
     processStatus = 0;
     result = *(uint *)(uiContext + 0x121c);
     eventProcessingCounter = 0;
@@ -115249,7 +115249,7 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
   stackIntc8 = (int)*(char *)(uiContext + 0x12a5);
   stackUIntd0 = *(UIDword *)(uiBufferData + 0x1230);
   stackIntd8 = loopCounter;
-  FUN_180737240(uiContext + 0x1290,targetBuffer,*(UIHandle *)(uiContext + 0x1258),astackUIntb8);
+  ProcessUIDataWithShortSource(uiContext + 0x1290,targetBuffer,*(UIHandle *)(uiContext + 0x1258),astackUIntb8);
   FUN_18072f4d0(dataSource + 0x20,targetBuffer,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec));
   if (!IsEventProcessingActive) {
