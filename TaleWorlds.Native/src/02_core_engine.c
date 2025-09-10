@@ -209256,11 +209256,12 @@ void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
   void *SystemContext;
   long long SearchStartIndex;
   uint64_t *MemoryAddressMaskPointer;
+  uint64_t *MemoryAddressMaskIterator;
   unsigned long long CalculatedCodePoint;
   
   PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x20);
-  for (pMemoryAddressMaskPointer = *(uint64_t **)(ContextHandle + 0x18); pMemoryAddressMaskPointer != PrimaryProcessingStatusFlag; pMemoryAddressMaskPointer = pMemoryAddressMaskPointer + 0xe) {
-    *pMemoryAddressMaskPointer = &ThreadLocalStorageTemplate;
+  for (MemoryAddressMaskIterator = *(uint64_t **)(ContextHandle + 0x18); MemoryAddressMaskIterator != PrimaryProcessingStatusFlag; MemoryAddressMaskIterator = MemoryAddressMaskIterator + 0xe) {
+    *MemoryAddressMaskIterator = &ThreadLocalStorageTemplate;
   }
   PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x18);
   if (PrimaryProcessingStatusFlag != NULL) {
