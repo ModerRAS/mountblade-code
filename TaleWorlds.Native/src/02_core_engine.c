@@ -200061,7 +200061,7 @@ void ProcessMultiByteCharacter(long long ContextHandle,long long OperationBuffer
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
   uint CalculatedCodePoint;
-  void *pCalculationFunctionAddress;
+  void *CalculationFunctionPointer;
   long long CoreEngineSignedValue78;
   uint StackProcessingVariable70;
   uint64_t StackProcessingValue;
@@ -200071,7 +200071,7 @@ void ProcessMultiByteCharacter(long long ContextHandle,long long OperationBuffer
   unsigned long long SystemStackFlag;
   
   MemoryAddressMaskPointer = 0;
-  pCalculationFunctionAddress = &SystemNullTemplate;
+  CalculationFunctionPointer = &SystemNullTemplate;
   StackProcessingValue = 0;
   CoreEngineSignedValue78 = 0;
   StackProcessingVariable70 = 0;
