@@ -121871,17 +121871,17 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
  * 
  * @note 原始函数名：FUN_1807389a0
  */
-UIHandle FUN_1807389a0(void)
+UIHandle ProcessUIContextHandleAllocation(void)
 
 {
   UIHandle result;
-  int unmodifiedEBX;
-  longlong uiTargetHandle;
+  int preservedRegisterEBX;
+  longlong allocatedHandle;
   
-  result = FUN_180741c20();
+  result = ValidateUIContextHandleAllocation();
   if ((int)result == 0) {
-    *(longlong *)((longlong)unmodifiedEBX * 8 + 0x160 + _DAT_180be12f0) = uiTargetHandle;
-    *(int *)(uiTargetHandle + 0x116b8) = unmodifiedEBX;
+    *(longlong *)((longlong)preservedRegisterEBX * 8 + 0x160 + _DAT_180be12f0) = allocatedHandle;
+    *(int *)(allocatedHandle + 0x116b8) = preservedRegisterEBX;
     return 0;
   }
   return result;
@@ -122807,50 +122807,50 @@ BufferProcessComplete:
 
 
  void FUN_1807391b5(void)
-void FUN_1807391b5(void)
+void ProcessUIBufferDataWithValidation(void)
 
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword preservedRegisterEBX;
+  UIDword preservedRegisterESI;
   
-  processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
+  processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,preservedRegisterEBX);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(preservedRegisterESI,1);
 }
 
 
 
 
  void FUN_18073922d(void)
-void FUN_18073922d(void)
+void ConditionalReleaseMemoryAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryResourceHandle;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (memoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
  void FUN_18073924f(void)
-void FUN_18073924f(void)
+void ReleaseMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -201263,25 +201263,35 @@ ProcessUIDataValidationAndConversion(longlong uiContext,int dataSource,longlong 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807845c0(longlong uiContext,int dataSource,float *targetBuffer,int bufferSize)
-void FUN_1807845c0(longlong uiContext,int dataSource,float *targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI系统数据缓冲区操作
+ * 
+ * 处理UI系统中的数据缓冲区操作，包括内存复制、数据验证和缓冲区管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ */
+void ProcessUIDataBufferOperation(longlong uiContext,int dataSource,float *targetBuffer,int bufferSize)
+void ProcessUIDataBufferOperation(longlong uiContext,int dataSource,float *targetBuffer,int bufferSize)
 
 {
   longlong *uiMemoryPointer;
   float transformCoeff1;
   longlong stringCompareIndex;
   longlong contextDataHandle;
-  int localValidationResult;
-  float LocalFloatValue6;
-  bool bVar7;
-  UIByte astackUIntf8 [32];
-  UIByte astackUIntd8 [160];
-  ulonglong stackUInt38;
+  int validationResult;
+  float localFloatValue;
+  bool hasError;
+  UIByte stackBufferF8 [32];
+  UIByte stackBufferD8 [160];
+  ulonglong stackChecksum;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUIntf8;
+  stackChecksum = XorEncryptionKey ^ (ulonglong)stackBufferF8;
   if (dataSource == 10) {
-    if ((bufferSize == 0x1d4) && (localValidationResult = FUN_180783090(uiContext,targetBuffer,astackUIntd8), localValidationResult == 0)) {
-      LocalFloatValue6 = *targetBuffer;
+    if ((bufferSize == 0x1d4) && (validationResult = FUN_180783090(uiContext,targetBuffer,stackBufferD8), validationResult == 0)) {
+      localFloatValue = *targetBuffer;
       if ((*(float *)(uiContext + 0x3d8) != LocalFloatValue6) ||
          (localValidationResult = memcmp(astackUIntd8,uiContext + 0x3dc,
                          (longlong)(int)*(float *)(uiContext + 0x3d8) * 0x14), localValidationResult != 0)) {

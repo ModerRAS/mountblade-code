@@ -23812,7 +23812,7 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
  * 
  * @return DataBuffer 系统状态码，0x4a表示参数错误，0x1e表示数据上下文空，0x1f表示状态异常，0x1c表示成功
  */
-DataBuffer QuerySystemStatusE0(void)
+DataBuffer QuerySystemStatusWithBasicValidation(void)
 
 {
   float inputValue;
@@ -23848,7 +23848,7 @@ DataBuffer QuerySystemStatusE0(void)
 
 
 
-DataBuffer InitializeSystemE0(void)
+DataBuffer InitializeSystemWithBasicValidation(void)
 
 {
   float inputValue;
@@ -23882,7 +23882,7 @@ DataBuffer InitializeSystemE0(void)
 
 
 
-DataBuffer ValidateParametersE0(DataWord parameterFlags)
+DataBuffer ValidateParametersWithRangeCheck(DataWord parameterFlags)
 
 {
   float floatValue;
@@ -23927,7 +23927,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
  * @param validationFlags 验证标志位，用于指定验证类型和范围
  * @return DataBuffer 验证结果状态码，0x1c表示验证成功
  */
-DataBuffer ValidateParametersE1(DataWord validationFlags)
+DataBuffer ValidateParametersWithSystemCheck(DataWord validationFlags)
 
 {
   float inputValue;
@@ -23960,7 +23960,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
  * 
  * @return DataBuffer 清理结果状态码，0x1c表示清理成功
  */
-DataBuffer CleanupSystemE0(void)
+DataBuffer CleanupSystemWithBasicValidation(void)
 
 {
   return ResourceInvalidErrorCode;
@@ -23984,7 +23984,7 @@ void UtilityNoOperationH(void)
 
 
 
-DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
+DataBuffer ProcessSystemDataWithContext(int64_t systemContext,int64_t dataBuffer)
 
 {
   float inputValue;
