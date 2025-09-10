@@ -209396,29 +209396,46 @@ void ProcessCharacterTablePointerAndSystemContextOperations(long long ContextHan
  */
 void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
 {
+  // 窗口和显示相关变量
   uint64_t *CharacterStatusBuffer;
-  uint32_t *PrimaryProcessingStatusFlag;
-  long long SearchStartIndex;
-  unsigned long long MemoryOffsetValue;
-  uint8_t SystemOperationBuffer [32];
   uint64_t WindowAreaWidth;
   uint64_t WindowAreaHeight;
   uint32_t WindowPositionX;
   uint32_t CursorPositionX;
   uint32_t WindowPositionY;
   uint32_t CursorPositionY;
-  uint64_t BufferOffset;
-  uint64_t SystemKeyPointer;
   uint64_t ConsoleWindowRect;
-  uint64_t SystemPriorityLevel;
-  uint64_t FunctionAddress;
   uint32_t MappedPointX;
   uint32_t MappedPointYHigh;
-  uint32_t ProcessingCounter;
   uint32_t MappedPointYLow;
+  
+  // 系统处理变量
+  uint32_t *PrimaryProcessingStatusFlag;
+  long long SearchStartIndex;
+  unsigned long long MemoryOffsetValue;
+  uint8_t SystemOperationBuffer [32];
+  uint64_t BufferOffset;
+  uint64_t SystemKeyPointer;
+  uint64_t SystemPriorityLevel;
+  uint64_t FunctionAddress;
+  uint32_t ProcessingCounter;
   unsigned long long EncodedBufferPointer;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
+  // 栈处理变量
+  uint64_t StackSecurityValidationParameter;
+  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingVariable70;
+  uint64_t StackProcessingValue;
+  uint64_t SystemDataValue1;
+  uint64_t StackProcessingUnsignedValue60;
+  uint64_t SystemDataValue2;
+  uint64_t SystemStackFlag;
+  uint64_t StackValidationFlag28;
+  uint64_t StackValidationValue24;
+  uint64_t StackProcessingValue1c;
+  
+  // 初始化栈变量
+  StackSecurityValidationParameter = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   StackProcessingValue78 = 0;
   StackProcessingVariable70 = 0;
   StackProcessingValue = 0;
@@ -209430,44 +209447,71 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
   SystemStackFlag = 0;
   SystemPriorityLevel = 0;
   FunctionAddress = 0;
+  
+  // 获取焦点窗口
   MemoryBlockIndex = GetFocus();
   StackProcessingValue = CONCAT31(StackProcessingValue._1_3_,*(long long *)(ContextHandle + 8) == MemoryBlockIndex);
+  
+  // 获取窗口位置
   MemoryBlockIndex = WindowFromPoint(CONCAT44(StackProcessingUnsignedValue60,SystemDataValue1));
   SystemDataValue2 = CONCAT31(SystemDataValue2._1_3_,MemoryBlockIndex == *(long long *)(ContextHandle + 8));
+  
+  // 获取窗口矩形
   GetWindowRect(*(long long *)(ContextHandle + 8),&BufferOffset);
   MemoryBlockIndex = GetConsoleWindow();
   if (MemoryBlockIndex != 0) {
     GetWindowRect(MemoryBlockIndex,&SystemStackFlag);
   }
+  
+  // 处理窗口点映射
   StackValidationFlag28 = (uint32_t)StackProcessingValue78;
-  uStack_24 = StackProcessingValue78.HighPart;
+  StackValidationValue24 = StackProcessingValue78.HighPart;
   ProcessingCounter = (uint32_t)StackProcessingVariable70;
-  uStack_1c = StackProcessingVariable70.HighPart;
+  StackProcessingValue1c = StackProcessingVariable70.HighPart;
   MapWindowPoints(*(void *)(ContextHandle + 8),0,&StackValidationFlag28,2);
-  FunctionAddress = CONCAT44(uStack_24,StackValidationFlag28);
+  
+  // 计算函数地址
+  FunctionAddress = CONCAT44(StackValidationValue24,StackValidationFlag28);
+  
+  // 获取客户区域和光标位置
   GetClientRect(*(void *)(ContextHandle + 8),&StackProcessingValue78);
   GetCursorPos(&SystemDataValue1);
+  
+  // 计算内存地址掩码
   MemoryAddressMaskPointer = (unsigned long long)(*(int *)(ContextHandle + 0x13c) - 1U & 1);
+  
+  // 更新字符状态缓冲区
   CharacterStatusBuffer = (void *)(ContextHandle + 0xac + MemoryAddressMaskPointer * 0x48);
   *CharacterStatusBuffer = StackProcessingValue78;
   CharacterStatusBuffer[1] = StackProcessingVariable70;
+  
+  // 更新字符位置缓冲区
   CharacterStatusBuffer = (void *)(ContextHandle + 0xbc + MemoryAddressMaskPointer * 0x48);
   *CharacterStatusBuffer = CONCAT44(SystemDataValue1,StackProcessingValue);
   CharacterStatusBuffer[1] = CONCAT44(SystemDataValue2,StackProcessingUnsignedValue60);
+  
+  // 更新缓冲区偏移量
   CharacterStatusBuffer = (void *)(ContextHandle + 0xcc + MemoryAddressMaskPointer * 0x48);
   *CharacterStatusBuffer = BufferOffset;
   CharacterStatusBuffer[1] = SystemKeyPointer;
+  
+  // 更新处理状态标志
   PrimaryProcessingStatusFlag = (uint32_t *)(ContextHandle + 0xdc + MemoryAddressMaskPointer * 0x48);
   *PrimaryProcessingStatusFlag = (uint32_t)SystemStackFlag;
   PrimaryProcessingStatusFlag[1] = SystemStackFlag.HighPart;
   PrimaryProcessingStatusFlag[2] = (uint32_t)SystemPriorityLevel;
   PrimaryProcessingStatusFlag[3] = SystemPriorityLevel.HighPart;
+  
+  // 更新函数地址
   *(void *)(ContextHandle + 0xec + MemoryAddressMaskPointer * 0x48) = FunctionAddress;
+  
+  // 锁定并更新上下文计数器
   LOCK();
   *(int *)(ContextHandle + 0x13c) = *(int *)(ContextHandle + 0x13c) + 1;
   UNLOCK();
-                    // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemOperationBuffer);
+  
+  // 执行核心引擎工具函数
+  CoreEngineExecuteUtilityFunction(StackSecurityValidationParameter ^ (unsigned long long)SystemOperationBuffer);
 }
 
 
