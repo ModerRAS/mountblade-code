@@ -209235,38 +209235,38 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long ContextHandle)
     ShowWindow(*(void *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset),WindowOperationHideMode);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 4:
-    SetFocus(*(void *)(*(long long *)(ContextHandle + 0x20) + 8));
+  case WindowOperationModeFocus:
+    SetFocus(*(void *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 5:
-    StackParameter1 = *(int *)(ContextHandle + 0x30);
-    StackParameter2 = *(uint32_t *)(ContextHandle + 0x34);
-    ClientToScreen(*(void *)(*(long long *)(ContextHandle + 0x20) + 8),&StackParameter1);
+  case WindowOperationModeSetCursor:
+    StackParameter1 = *(int *)(ContextHandle + WindowOperationParam1Offset);
+    StackParameter2 = *(uint32_t *)(ContextHandle + WindowOperationParam2Offset);
+    ClientToScreen(*(void *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset),&StackParameter1);
     SetCursorPos(StackParameter1,StackParameter2);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 6:
+  case WindowOperationModeMoveCursor:
     GetCursorPos(&StackParameter1);
-    StackParameter1 = StackParameter1 + *(int *)(ContextHandle + 0x30);
-    StackParameter2 = StackParameter2 + *(int *)(ContextHandle + 0x34);
+    StackParameter1 = StackParameter1 + *(int *)(ContextHandle + WindowOperationParam1Offset);
+    StackParameter2 = StackParameter2 + *(int *)(ContextHandle + WindowOperationParam2Offset);
     SetCursorPos();
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 7:
-    StackParameter1 = *(int *)(ContextHandle + 0x34);
-    StackParameter2 = *(int *)(ContextHandle + 0x38);
-    CoreEngineLoopCounter = *(int *)(ContextHandle + 0x3c);
-    StackParameter4 = *(int *)(ContextHandle + 0x40);
-    if (*(int *)(ContextHandle + 0x30) == 0) {
-      SystemDataRegistry = *(long long *)(*(long long *)(ContextHandle + 0x20) + 8);
+  case WindowOperationModeSetPosition:
+    StackParameter1 = *(int *)(ContextHandle + WindowOperationParam2Offset);
+    StackParameter2 = *(int *)(ContextHandle + WindowOperationParam3Offset);
+    CoreEngineLoopCounter = *(int *)(ContextHandle + WindowOperationParam4Offset);
+    StackParameter4 = *(int *)(ContextHandle + WindowOperationParam5Offset);
+    if (*(int *)(ContextHandle + WindowOperationParam1Offset) == WindowTypeDefault) {
+      SystemDataRegistry = *(long long *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset);
     }
     else {
-      if (*(int *)(ContextHandle + 0x30) != 1) break;
+      if (*(int *)(ContextHandle + WindowOperationParam1Offset) != WindowTypeConsole) break;
       SystemDataRegistry = GetConsoleWindow();
     }
     if (SystemDataRegistry != 0) {
-      FunctionAddress = 0x40;
+      FunctionAddress = SetWindowPosFunctionAddress;
       MemoryOperationStatus = CONCAT44(MemoryOperationStatus.HighPart,StackParameter4 - StackParameter2);
       CoreEngineSignedValue48 = CONCAT44(CoreEngineSignedValue48.HighPart,CoreEngineLoopCounter - StackParameter1);
       SetWindowPos(SystemDataRegistry,0);
@@ -209274,17 +209274,17 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long ContextHandle)
       CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
     }
     break;
-  case 8:
-    if (*(char *)(ContextHandle + 0x30) == '\0') {
+  case WindowOperationModeClipCursor:
+    if (*(char *)(ContextHandle + WindowOperationParam1Offset) == '\0') {
       InputDataLength = ClipCursor(0);
-      *(bool *)(ContextHandle + 0x30) = InputDataLength != 0;
+      *(bool *)(ContextHandle + WindowOperationParam1Offset) = InputDataLength != 0;
                     // WARNING: Subroutine does not return
       CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
     }
-    StackParameter4 = *(uint32_t *)(ContextHandle + 0x40);
-    StackParameter1 = *(int *)(ContextHandle + 0x34);
-    CoreEngineLoopCounter = *(uint32_t *)(ContextHandle + 0x3c);
-    StackParameter2 = *(uint32_t *)(ContextHandle + 0x38);
+    StackParameter4 = *(uint32_t *)(ContextHandle + WindowOperationParam5Offset);
+    StackParameter1 = *(int *)(ContextHandle + WindowOperationParam2Offset);
+    CoreEngineLoopCounter = *(uint32_t *)(ContextHandle + WindowOperationParam4Offset);
+    StackParameter2 = *(uint32_t *)(ContextHandle + WindowOperationParam3Offset);
     InputDataLength = ClipCursor(&StackParameter1);
     *(bool *)(ContextHandle + 0x30) = InputDataLength != 0;
                     // WARNING: Subroutine does not return
