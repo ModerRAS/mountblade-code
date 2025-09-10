@@ -6058,31 +6058,34 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SynchronizeSystemData FUN_18089a880
 
 /**
- * @brief 验证数据同步A0
+ * @brief 验证数据同步状态
  * 
- * 该函数负责验证数据同步的有效性，确保同步操作成功完成
+ * 该函数负责验证数据同步的有效性，确保同步操作成功完成，
+ * 包括同步结果检查、错误处理和状态报告。
  * 
  * @note 原始函数名：FUN_18089a9dd
  */
-#define ValidateDataSynchronizationA0 FUN_18089a9dd
+#define ValidateDataSynchronizationStatus FUN_18089a9dd
 
 /**
- * @brief 处理数据缓存A0
+ * @brief 管理数据缓存池
  * 
- * 该函数负责处理数据缓存，包括缓存的读取、写入和验证
+ * 该函数负责处理数据缓存，包括缓存的读取、写入和验证，
+ * 实现高效的数据缓存管理策略，优化系统性能。
  * 
  * @note 原始函数名：FUN_18089abe0
  */
-#define ProcessDataCacheA0 FUN_18089abe0
+#define ManageDataCachePool FUN_18089abe0
 
 /**
- * @brief 清理数据缓存A0
+ * @brief 清理数据缓存资源
  * 
- * 该函数负责清理数据缓存，释放缓存占用的内存
+ * 该函数负责清理数据缓存，释放缓存占用的内存和系统资源，
+ * 包括缓存数据清理、内存释放和资源回收操作。
  * 
  * @note 原始函数名：FUN_18089ac64
  */
-#define CleanupDataCacheA0 FUN_18089ac64
+#define CleanupDataCacheResources FUN_18089ac64
 
 /**
  * @brief 重置数据缓存A0

@@ -11454,7 +11454,7 @@ void* EngineConfigurationFileSystem;           // 引擎文件系统配置
 void* EngineConfigurationSecurity;              // 引擎安全配置
 void* EngineConfigurationDatabase;              // 引擎数据库配置
 void* EngineMemoryQuinary;                      // 引擎第五内存区域
-char EngineErrorValidationStatus;                      // 引擎错误状态标志
+char EngineSystemErrorValidationStatus;                      // 引擎错误状态标志
 void* EngineMemorySextenary;                     // 引擎第六内存区域
 void* EngineDataTableSextenaryBuffer;            // 引擎数据表第六缓冲区
 void* EngineNetworkPrimaryBuffer;               // 引擎网络主缓冲区
@@ -11888,7 +11888,7 @@ void* GameStatePrimaryBuffer;
 void* GameStateSecondaryBuffer;
 void* GameStateTertiaryBuffer;
 void* GameStateConfigData;
-char GameSystemLockOperationResultFlag;     // 游戏系统初始化状态标志
+char GameSystemInitializationStatusFlag;     // 游戏系统初始化状态标志
 void* GameStateSaveData;
 void* GameStateLoadData;
 void* GameStateSerializationBuffer;
@@ -11988,7 +11988,7 @@ void CoreEngineInitializeShaderSystem(void);
 void* ShaderProgramHandle;
 void* ShaderVertexSource;
 void* ShaderFragmentSource;
-char ShaderCompilationValidationStatus;           // 着色器编译状态标志
+char ShaderSystemCompilationStatusFlag;           // 着色器编译状态标志
 void* ShaderUniformTable;
 void* ShaderAttributeTable;
 
@@ -12702,8 +12702,8 @@ void* QueueMemoryAllocator;
 void* QueueSynchronizationManager;
 void* SystemMemoryBufferPrimary;
 void* SystemMemoryBufferSecondary;
-char SystemMemoryValidationStatus;
-char SystemValidationStatus;
+char SystemMemoryIntegrityValidationStatus;
+char SystemComponentValidationStatus;
 void* SystemMemoryBufferTertiary;
 void* SystemMemoryBufferQuaternary;
 void* SystemMemoryBufferQuinary;

@@ -34691,7 +34691,7 @@ void ActivateUIBufferState(void)
     *(longlong *)(allocatedMemory + 8 + *(longlong *)(contextHandle + 0x43e8)) = contextHandle;
     *(ulonglong *)(allocatedMemory + 0x10 + *(longlong *)(contextHandle + 0x43e8)) =
          *(longlong *)(contextHandle + 0x43e0) + eventCodeType * 0x12a0;
-    iterationCount = _beginthreadex(0,0,FUN_180670800);
+    iterationCount = _beginthreadex(0,0,UpdateUIComponentData);
     unmodifiedEBP = unmodifiedEBP + 1;
     *(UIHandle *)(*(longlong *)(contextHandle + 0x43f0) + eventCodeType * 8) = iterationCount;
   } while (unmodifiedEBP < *(uint *)(contextHandle + 0x438c));
@@ -104422,7 +104422,7 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
     uiCompareResult = *(int *)(componentData + 0x121c) + *(int *)(componentData + 0x11e8);
     componentContextPtr = (UIDword *)&stack0x00000050;
     do {
-      FUN_18072e4b0(piterationCounter,bufferSize,*componentContextPtr,uiCompareResult);
+      ProcessUICoefficientCalculation(piterationCounter,bufferSize,*componentContextPtr,uiCompareResult);
       componentContextPtr = componentContextPtr + 1;
       loopCounter = loopCounter + 1;
       uiCompareResult = *(int *)(componentData + 0x121c) + *(int *)(componentData + 0x11e8);
