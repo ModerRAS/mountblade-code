@@ -226010,7 +226010,23 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 
 
 
-88210(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188210(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 内存分配释放函数A
+/**
+ * @brief 释放内存块并进行安全验证
+ * 
+ * 该函数负责释放内存块，包括安全验证和边界检查。
+ * 主要功能包括：
+ * - 计算内存分配索引
+ * - 验证内存边界
+ * - 执行内存释放操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180188210
+ */
+void ReleaseMemoryBlockWithSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
   unsigned long long MemoryAllocationIndex;
@@ -226034,7 +226050,23 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 
 
 
-88270(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188270(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 内存分配释放函数B
+/**
+ * @brief 释放内存块并进行扩展安全验证
+ * 
+ * 该函数负责释放内存块，使用0x18乘数进行内存计算和验证。
+ * 主要功能包括：
+ * - 计算扩展内存分配索引
+ * - 验证内存边界安全性
+ * - 执行内存释放操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180188270
+ */
+void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
   
