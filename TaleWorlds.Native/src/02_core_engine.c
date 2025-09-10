@@ -200079,7 +200079,7 @@ void ProcessMultiByteCharacter(long long ContextHandle,long long OperationBuffer
     CalculatedCodePoint = *(uint *)(Utf8SourcePointer + 2);
     UnicodeCodePoint = (unsigned long long)CalculatedCodePoint;
     if (Utf8SourcePointer[1] != 0) {
-      CoreEngineProcessSystemEvent(&pCalculationFunctionAddress,UnicodeCodePoint);
+      CoreEngineProcessSystemEvent(&CalculationFunctionPointer,UnicodeCodePoint);
     }
     if (CalculatedCodePoint != 0) {
         memcpy(CoreEngineSignedValue78,Utf8SourcePointer[1],UnicodeCodePoint);
