@@ -5282,7 +5282,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存A2模块的初始化
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryPoolAndConfigureCache
  */
-#define InitializeSystemMemoryAndSetupA2 InitializeSystemMemoryAndSetupA2
+#define InitializeSystemMemoryAndSetupA2 FUN_18004c090
 
 /**
  * @brief 系统值计算函数
@@ -5301,7 +5301,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数用于系统监控和性能分析
  * @see GetSystemContextAndState
  */
-#define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
+#define CalculateSystemMetricsAndValues FUN_18062b420
 
 /**
  * @brief 系统上下文值获取函数
@@ -5320,7 +5320,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数用于系统监控和状态检查
  * @see CalculateSystemMetricsAndValues
  */
-#define GetsystemContextValueAndState GetSystemContextAndState
+#define GetSystemContextAndState FUN_1807d3e20
 
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80

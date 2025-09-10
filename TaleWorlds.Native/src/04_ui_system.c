@@ -400149,31 +400149,31 @@ ulonglong ProcessUIEventCodeType(longlong uiContext,longlong *dataSource)
       eventCodeResult = FUN_180769ed0(*allocatedMemory,bufferValidationData,1,4,0);
     }
 LAB_18089cd46:
-    if ((int)eventCodeType != 0) {
-      return eventCodeType;
+    if ((int)eventCodeResult != 0) {
+      return eventCodeResult;
     }
-    if (0x3ff < bufferValidation[0]) {
+    if (0x3ff < bufferValidationData[0]) {
       return 0xd;
     }
-    eventCodeType = FUN_1808af280(uiContext + 0x48);
-    if ((int)eventCodeType == 0) goto LAB_18089cd76;
+    eventCodeResult = FUN_1808af280(uiContext + 0x48);
+    if ((int)eventCodeResult == 0) goto LAB_18089cd76;
   }
   else {
-    eventCodeType = 0x1c;
+    eventCodeResult = 0x1c;
   }
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if ((int)eventCodeResult != 0) {
+    return eventCodeResult;
   }
 LAB_18089cd76:
-  sourceDataInt = 0;
-  if (0 < (int)bufferValidation[0]) {
+  dataValidationInt = 0;
+  if (0 < (int)bufferValidationData[0]) {
     do {
-      eventCodeType = FUN_1808acb90(uiContext,dataSource,sourceDataInt);
-      if ((int)eventCodeType != 0) {
-        return eventCodeType;
+      eventCodeResult = FUN_1808acb90(uiContext,dataSource,dataValidationInt);
+      if ((int)eventCodeResult != 0) {
+        return eventCodeResult;
       }
-      sourceDataInt = sourceDataInt + 1;
-    } while (sourceDataInt < (int)bufferValidation[0]);
+      dataValidationInt = dataValidationInt + 1;
+    } while (dataValidationInt < (int)bufferValidationData[0]);
   }
   if (*(uint *)(dataSource + 8) < 0x6e) {
     iterationCount = 0;
