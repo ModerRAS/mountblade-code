@@ -260390,15 +260390,16 @@ SkipContextValidation:
 
 uint64_t FUN_180213bb0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  int LockResult;
-  uint MemoryAllocationIndex;
-  uint64_t UnicodeCodePoint;
-  uint32_t *MemoryAddressMaskPointer;
-  uint64_t SystemRegisterFlag;
-  void *EncodingBuffer;
-  uint32_t *BufferOffset;
-  uint SystemKeyPointer;
-  uint64_t SystemStackOffset48;
+  // 变量语义化定义
+  int LockResult;                                          // 锁操作结果
+  uint MemoryAllocationIndex;                              // 内存分配索引
+  uint64_t UnicodeCodePoint;                               // Unicode代码点
+  uint32_t *MemoryAddressMaskPointer;                      // 内存地址掩码指针
+  uint64_t SystemRegisterFlag;                             // 系统寄存器标志
+  void *EncodingBuffer;                                    // 编码缓冲区
+  uint32_t *BufferOffset;                                  // 缓冲区偏移量
+  uint SystemKeyPointer;                                   // 系统密钥指针
+  uint64_t SystemStackOffset48;                            // 系统栈偏移量48
   
   if (*(char *)(ContextHandle + 0x210) != '\0') {
     return 0;
@@ -260476,39 +260477,56 @@ LAB_180213d73:
 
 
 
-13e10(long long ContextHandle,uint64_t OperationBufferSizevoid FUN_180213e10(long long ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 处理核心引擎系统事件和内存分配
+ * 
+ * 该函数负责处理核心引擎的系统事件，包括内存分配、线程同步、
+ * 字符串处理和系统配置管理。它会执行以下操作：
+ * 1. 获取字符表指针并进行线程锁定
+ * 2. 执行内存分配和系统事件初始化
+ * 3. 处理字符串状态和系统配置
+ * 4. 管理临时缓冲区和数据队列
+ * 
+ * @param ContextHandle 系统上下文句柄，包含系统状态和配置信息
+ * @param OperationBufferSize 操作缓冲区大小，用于内存分配
+ * 
+ * @note 原始函数名：FUN_180213e10
+ * @note 该函数包含复杂的内存管理和线程同步操作
+ */
+void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
-  int LockOperationResult;
-  uint32_t UnicodeCodePoint;
-  uint64_t MemoryAddressMaskPointer;
-  long long AllocatedMemorySize;
-  void *CurrentNode;
-  void *StringProcessingStatus;
-  void *NextNode;
-  uint64_t *TemporaryBuffer;
-  uint8_t aSystemValue2b8 [32];
-  uint64_t uStack_298;
-  void *SystemConfigHandle;
-  void *SystemCharacterStatusBufferPointer;
-  uint32_t StackValidationFlag278;
-  uint64_t uStack_270;
-  long long lStack_268;
-  void *aDataBufferPointer [68];
-  unsigned long long FunctionAddress;
+  // 变量语义化定义
+  long long PrimaryOperationResult;                       // 主要操作结果
+  int LockOperationResult;                                 // 锁操作结果
+  uint32_t UnicodeCodePoint;                               // Unicode代码点
+  uint64_t *MemoryAllocationResultPointer;          // 内存分配结果指针
+  long long AllocatedMemorySize;                    // 已分配内存大小
+  void *CurrentNode;                                // 当前节点指针
+  void *StringProcessingStatus;                     // 字符串处理状态
+  void *NextNode;                                   // 下一个节点指针
+  uint64_t *TemporaryBuffer;                        // 临时缓冲区指针
+  uint8_t SystemSecurityValidationBuffer [32];       // 系统安全验证缓冲区
+  uint64_t SystemProcessingCounter;                 // 系统处理计数器
+  void *SystemConfigHandle;                         // 系统配置句柄
+  void *SystemCharacterStatusBufferPointer;        // 系统字符状态缓冲区指针
+  uint32_t SystemStackValidationFlag;                // 系统栈验证标志
+  uint64_t SystemStackValidationParameter;          // 系统栈验证参数
+  long long SystemLoopCounter;                       // 系统循环计数器
+  void *DataBufferPointerArray [68];                 // 数据缓冲区指针数组
+  unsigned long long EncodedFunctionAddress;        // 编码后的函数地址
   
-  uStack_270 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemValue2b8;
+  SystemStackValidationParameter = 0xfffffffffffffffe;
+  EncodedFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
   CharacterTablePointer = ContextHandle + 0x318;
-  lStack_268 = LoopCounter;
+  SystemLoopCounter = LoopCounter;
   LockOperationResult = _Mtx_lock(CharacterTablePointer);
   if (LockOperationResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockOperationResult);
   }
-  MemoryAddressMaskPointer = ProcessMemoryAllocation(aDataBufferPointer,OperationBufferSize);
-  CoreEngineFinalizeSystemEvent(&SystemConfigHandle,MemoryAddressMaskPointer);
-  aDataBufferPointer[0] = &ThreadLocalStorageTemplate;
-  uStack_298 = 0;
+  MemoryAllocationResultPointer = ProcessMemoryAllocation(DataBufferPointerArray,OperationBufferSize);
+  CoreEngineFinalizeSystemEvent(&SystemConfigHandle,MemoryAllocationResultPointer);
+  DataBufferPointerArray[0] = &ThreadLocalStorageTemplate;
+  SystemProcessingCounter = 0;
   StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemCharacterStatusBufferPointer != NULL) {
     StringProcessingStatus = SystemCharacterStatusBufferPointer;
@@ -293680,6 +293698,40 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
 // 原始函数名：FUN_180187c00 - UTF-8数据同步函数
 #define SynchronizeUtf8Data FUN_180187c00
+
+/**
+ * @brief 处理系统编码缓冲区和内存分配
+ * 
+ * 该函数负责处理系统编码缓冲区的管理和内存分配操作，包括：
+ * - 处理上下文句柄的编码转换
+ * - 管理操作缓冲区的大小和分配
+ * - 处理系统锁机制和线程安全
+ * - 管理内存池的分配和释放
+ * 
+ * @param ContextHandle 上下文句柄，用于标识编码操作的上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定缓冲区的容量
+ * @return uint64_t 返回操作结果状态码
+ * 
+ * @note 原始函数名：FUN_180213bb0
+ */
+#define ProcessSystemEncodingBufferAndMemoryAllocation FUN_180213bb0
+
+/**
+ * @brief 处理系统编码和内存操作
+ * 
+ * 该函数负责处理系统编码转换和内存管理操作，包括：
+ * - 处理上下文句柄的编码转换
+ * - 管理操作缓冲区的分配和使用
+ * - 处理系统锁和线程同步
+ * - 执行编码验证和错误处理
+ * 
+ * @param ContextHandle 上下文句柄，用于标识编码操作的上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定缓冲区的容量
+ * @return uint64_t 返回操作结果状态码
+ * 
+ * @note 原始函数名：FUN_180213e10
+ */
+#define ProcessSystemEncodingAndMemoryOperations FUN_180213e10
 
 /**
  * @brief 核心引擎系统状态监控函数
