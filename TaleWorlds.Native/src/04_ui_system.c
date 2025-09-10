@@ -119967,8 +119967,18 @@ void FUN_180736e4a(int uiContext,int dataSource,longlong targetBuffer,int buffer
 
 
 
- void FUN_1807370ea(void)
-void FUN_1807370ea(void)
+ /**
+ * @brief UI系统空返回函数B
+ * 
+ * 该函数是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807370ea
+ * @note 这是一个简单的返回函数，不执行任何操作
+ */
+#define UIReturnEmptyFunctionB FUN_1807370ea
+void UIReturnEmptyFunctionB(void)
 
 {
   return;
