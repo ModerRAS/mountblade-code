@@ -140231,6 +140231,12 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统数据验证函数A0
  * 
  * 验证系统数据的完整性和有效性，确保数据符合系统要求
+ * 执行数据格式检查、边界验证和完整性校验
+ * 
+ * @param DataBuffer 数据缓冲区指针
+ * @param DataSize 数据大小
+ * @param ValidationFlags 验证标志位
+ * @return int 验证结果状态码
  * 
  * @note 原始函数名：FUN_180044a30
  */
