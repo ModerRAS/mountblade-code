@@ -225144,6 +225144,20 @@ void FreeSystemContextMemory(uint64_t *ContextHandle)
 
 
 
+/**
+ * @brief 处理上下文句柄和内存池管理
+ * 
+ * 该函数负责处理上下文句柄的内存池管理操作，包括内存分配、释放和验证。
+ * 主要功能包括：
+ * - 管理上下文句柄的内存分配
+ * - 处理内存池索引和边界检查
+ * - 执行内存安全验证操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识要处理的内存对象
+ * @param ContextHandleSize 上下文句柄大小指针，用于管理内存大小
+ * 
+ * @note 原始函数名：FUN_1801881a0
+ */
 void ProcessContextHandleMemoryPoolManagement(long long ContextHandle, long long *ContextHandleSize)
 {
   long long *MemoryContextHandle;
