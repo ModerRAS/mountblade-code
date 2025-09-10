@@ -9444,7 +9444,7 @@ ExceptionDataTable* ExceptionDataTableAddressPtr;
 
 // 数据缓冲区A0
 // 功能：存储数据缓冲区信息
-#define DataBufferA0 DataBufferA0
+#define DataBufferA0 FUN_180899d90
 
 // 数据缓冲区A1
 // 功能：存储数据缓冲区信息
@@ -11344,7 +11344,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：ProcessDataBufferA0
  */
-#define ProcessDataBufferA0 ProcessDataBufferA0
+#define ProcessDataBufferA0 FUN_1808998a0
 
 /**
  * @brief 内存地址计算函数
@@ -11362,7 +11362,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：ValidateDataA0
  */
-#define ValidateDataA0 ValidateDataA0
+#define ValidateDataA0 FUN_180899740
 
 /**
  * @brief 资源清理函数A0
