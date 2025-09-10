@@ -230,7 +230,7 @@ typedef enum {
 // 新增的FUN_函数语义化定义
 #define ProcessUINumericDataCalculation FUN_18072ab70     // UI数值数据处理计算
 #define ProcessUIParameterValidation FUN_18072ad20         // UI参数验证处理
-#define ProcessUIContextDataTransformation FUN_180734467  // UI上下文数据转换处理
+#define ProcessUIContextDataTransformationV1 FUN_180734467  // UI上下文数据转换处理版本1
 #define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
 #define ProcessUIDataSortingAndInsertion FUN_180734a30   // UI数据排序和插入处理
 #define ProcessUIDataValidationAndBufferManagement FUN_180734dc1 // UI数据验证和缓冲区管理
@@ -300,7 +300,7 @@ typedef enum {
 #define ReleaseUIResources FUN_180736b7a                     // 释放UI资源
 #define CleanupUIBuffer FUN_180736c49                        // 清理UI缓冲区
 #define FreeUITemporaryMemory FUN_180736d59                  // 释放UI临时内存
-#define ProcessUIDataWithByteParameters FUN_180736dc0       // 处理UI数据与Byte参数
+#define ProcessUIContextDataTransformation FUN_180736dc0     // 处理UI上下文数据转换和缓冲区操作
 #define ProcessUIDataWithIntSource FUN_180736e4a             // 处理UI数据与Int源
 #define AllocateUITemporaryMemory FUN_1807370ea             // 分配UI临时内存
 #define ProcessUIDataWithWordSource FUN_180737100            // 处理UI数据与Word源

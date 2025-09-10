@@ -71606,7 +71606,7 @@ void* NormalizeAudioData(void)
         audioCoefficientArray.HighWord = (float)audioInverseCoeffArray.HighWord;
         audioCoefficientArray.LowPart = (float)audioInverseCoeffArray.LowPart;
         audioCoefficientArray.MidWord = (float)audioInverseCoeffArray.MidWord;
-        audioCoefficientArray._12_4_ = (float)audioInverseCoeffArray.HighWord2;
+        audioCoefficientArray.FilterCoefficient = (float)audioInverseCoeffArray.HighWord2;
         audioInverseCoeffArray = rcpps(audioInverseCoeffArray,audioCoefficientArray);
         audioNormalizedValue = 0.0;
         audioWeightedSum2 = 0.0;
@@ -71630,7 +71630,7 @@ void* NormalizeAudioData(void)
         audioFilterCoeff1 = (audioFilterCoeff1 + audioFilterCoeff1) - audioFilterCoeff1 * audioFilterCoeff1 * audioCoefficientArray.HighWord;
         audioFilterCoeff2 = (audioFilterCoeff2 + audioFilterCoeff2) - audioFilterCoeff2 * audioFilterCoeff2 * audioCoefficientArray.LowPart;
         audioFilterCoeff3 = (audioFilterCoeff3 + audioFilterCoeff3) - audioFilterCoeff3 * audioFilterCoeff3 * audioCoefficientArray.MidWord;
-        audioFilterCoeff4 = (audioFilterCoeff4 + audioFilterCoeff4) - audioFilterCoeff4 * audioFilterCoeff4 * audioCoefficientArray._12_4_;
+        audioFilterCoeff4 = (audioFilterCoeff4 + audioFilterCoeff4) - audioFilterCoeff4 * audioFilterCoeff4 * audioCoefficientArray.FilterCoefficient;
         audioBufferPointer = audioInputData;
         audioProcessingIndex = audioProcessingIndex;
         do {
@@ -71815,22 +71815,22 @@ void* ProcessAudioSignal(void)
       if ((int)audioProcessingFlag9 < 0) {
         audioProcessingFlag9 = (audioProcessingFlag9 - 1 | 0xfffffff8) + 1;
       }
-      audioCoefficientArray._0_4_ = audioFilterCoeffA + SystemResourceCounterDecrement;
+      audioCoefficientArray.PrimaryCoefficient = audioFilterCoeffA + SystemResourceCounterDecrement;
       audioCoefficientArray.LowPart = audioFilterCoeffB + SystemResourceCounterDecrement;
-      audioCoefficientArray._8_4_ = audioFilterCoeffC + SystemResourceCounterDecrement;
-      audioCoefficientArray._12_4_ = audioFilterCoeffD + SystemResourceCounterDecrement;
-      audioCoefficientSource._0_4_ = (float)audioCoefficientArray._0_4_;
+      audioCoefficientArray.SecondaryCoefficient = audioFilterCoeffC + SystemResourceCounterDecrement;
+      audioCoefficientArray.TertiaryCoefficient = audioFilterCoeffD + SystemResourceCounterDecrement;
+      audioCoefficientSource.PrimaryCoefficient = (float)audioCoefficientArray.PrimaryCoefficient;
       audioCoefficientSource.LowPart = (float)audioCoefficientArray.LowPart;
-      audioCoefficientSource._8_4_ = (float)audioCoefficientArray._8_4_;
-      audioCoefficientSource._12_4_ = (float)audioCoefficientArray._12_4_;
+      audioCoefficientSource.SecondaryCoefficient = (float)audioCoefficientArray.SecondaryCoefficient;
+      audioCoefficientSource.TertiaryCoefficient = (float)audioCoefficientArray.TertiaryCoefficient;
       audioCoefficientArray = rcpps(audioCoefficientArray,audioCoefficientSource);
       audioSignal25 = 0.0;
       audioSignal29 = 0.0;
       audioSignal31 = 0.0;
       audioSignal18 = 0.0;
-      audioSignal19 = audioCoefficientArray._0_4_;
+      audioSignal19 = audioCoefficientArray.PrimaryCoefficient;
       audioSignal21 = audioCoefficientArray.LowPart;
-      audioSignal22 = audioCoefficientArray._8_4_;
+      audioSignal22 = audioCoefficientArray.SecondaryCoefficient;
       audioSignal23 = audioCoefficientArray._12_4_;
       audioSignal30 = 0.0;
       audioSignal32 = 0.0;
