@@ -31650,7 +31650,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
                ) goto BufferValidationCheckpoint;
           }
           if (resourceIterator == resourceList) break;
-          contextPointer = (int64_t *)(*resourceIterator + -8);
+          contextPointer = (int64_t *)(*resourceIterator + StackFrameNegativeOffset8);
           if (*resourceIterator == 0) {
             contextPointer = nullPointer;
           }
