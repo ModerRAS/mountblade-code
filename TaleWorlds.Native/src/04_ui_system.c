@@ -123827,13 +123827,23 @@ void ProcessUIDataBufferValidationAndCleanup(void)
 
 
  void FUN_180739a2a(void)
-void FUN_180739a2a(void)
+/**
+ * 执行UI渲染任务和密钥验证
+ * 
+ * 该函数负责执行UI系统中的渲染任务和密钥验证操作，包括：
+ * - 渲染参数验证
+ * - 密钥解密处理
+ * - 渲染任务执行
+ * 
+ * @note 原始函数名：FUN_180739a2a
+ */
+void ExecuteUIRenderTaskWithKeyValidation(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderParameter;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderParameter ^ (ulonglong)&SystemStackBuffer);
 }
 
 

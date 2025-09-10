@@ -30766,7 +30766,7 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void)
   long long StackBaseAddressPointer;
   long long PatternIndexPointer;
   long long *DestinationPointer;
-  long long ArraySize;
+  long long DataArraySize;
   
   if (ArraySize == 0) {
     BufferStatus = 0;
