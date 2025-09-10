@@ -108998,8 +108998,21 @@ void ExecuteUIRenderTaskWrapperA(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,uint resultPointer,
-void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,uint resultPointer,
+ /**
+ * @brief UI数据处理和变换处理器
+ * 
+ * 处理UI系统中的数据变换和浮点数运算，包括矩阵变换和数据缓冲区处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 附加参数
+ * 
+ * @note 原始函数名：FUN_18072bbd0
+ */
+void ProcessUIDataTransform(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,uint resultPointer,
                   int param_6)
 
 {
