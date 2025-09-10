@@ -7598,15 +7598,71 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @see ValidateSystemDataIntegrity, ProcessDataWithIndex
  */
 #define ProcessDataWithValidation ProcessDataAndValidateIntegrity
-#define ProcessDataWithIndex FUN_180898bc0
-// 系统状态查询函数
-#define QuerySystemStatusWithValidation FUN_180898c86
+/**
+ * @brief 根据索引处理数据
+ * 
+ * 该函数负责根据指定的索引处理数据，支持数组或列表形式的批量数据处理。
+ * 提供高效的数据访问和处理能力。
+ * 
+ * @param dataPointer 数据指针
+ * @param dataIndex 数据索引
+ * @param operationType 操作类型
+ * @return int 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 非0值: 处理失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180898bc0
+ * @see ProcessDataAndValidateIntegrity
+ */
+#define ProcessDataWithIndex ProcessDataByIndex
 
-// 数据处理函数
-#define ProcessDataWithOutput FUN_180898d31
+/**
+ * @brief 查询系统状态并验证结果
+ * 
+ * 该函数负责查询当前系统状态，并对查询结果进行验证。
+ * 确保返回的状态信息准确可靠。
+ * 
+ * @param statusQueryType 状态查询类型
+ * @return int 系统状态码：
+ *         - 0: 系统正常运行
+ *         - 非0值: 系统异常状态码
+ * 
+ * @note 原始函数名：FUN_180898c86
+ * @see ValidateSystemDataIntegrity
+ */
+#define QuerySystemStatusWithValidation QuerySystemStatusAndValidate
 
-// 错误码返回函数
-#define ReturnErrorCode FUN_180895345
+/**
+ * @brief 处理数据并输出结果
+ * 
+ * 该函数负责处理输入数据并生成输出结果，支持多种数据格式转换。
+ * 
+ * @param inputDataPointer 输入数据指针
+ * @param outputDataPointer 输出数据指针
+ * @param processingFlags 处理标志位
+ * @return int 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 非0值: 处理失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180898d31
+ * @see ProcessDataAndValidateIntegrity
+ */
+#define ProcessDataWithOutput ProcessDataAndGenerateOutput
+
+/**
+ * @brief 返回错误代码
+ * 
+ * 该函数负责根据错误类型返回相应的错误代码，提供统一的错误处理机制。
+ * 
+ * @param errorType 错误类型
+ * @return int 错误代码：
+ *         - 0: 无错误
+ *         - 非0值: 具体错误代码
+ * 
+ * @note 原始函数名：FUN_180895345
+ * @see ValidateSystemDataIntegrity
+ */
+#define ReturnErrorCode ReturnSystemErrorCode
 
 /**
  * @brief 数据验证和标志处理函数

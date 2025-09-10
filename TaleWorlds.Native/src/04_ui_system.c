@@ -4824,8 +4824,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask10 _DAT_1809473d0
 #define UIVectorMultiplyMask11 _DAT_1809473e0
 #define UIVectorMultiplyMask12 _DAT_1809473f0
- _DAT_180947400 - UI向量乘法掩码13
-#define UIVectorMultiplyMask13 _DAT_180947400
+ #define UIVectorMultiplyMask13 _DAT_180947400
  _DAT_180947410 - UI向量乘法掩码14
 #define UIVectorMultiplyMask14 _DAT_180947410
  _DAT_180947420 - UI向量乘法掩码15
@@ -114735,8 +114734,8 @@ LAB_1807309fc:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180730e60(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-void FUN_180730e60(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ void ProcessUIHandleTransfer(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+void ProcessUIHandleTransfer(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   UIByte astackUIntc8 [8];
@@ -114760,8 +114759,8 @@ void FUN_180730e60(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807319b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
-void FUN_1807319b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
+ void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
+void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
 {
   int maxIterations;
@@ -114787,9 +114786,9 @@ void FUN_1807319b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 
  void FUN_1807326d0(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
-void FUN_1807326d0(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
-                  UIDword *resultPointer,longlong param_6,longlong param_7,int param_8,int param_9,
-                  short uiContext0,longlong uiContext1,longlong uiContext2,int uiContext3,int uiContext4)
+void ProcessUIComplexDataTransfer(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
+                                    UIDword *resultPointer,longlong param_6,longlong param_7,int param_8,int param_9,
+                                    short uiContext0,longlong uiContext1,longlong uiContext2,int uiContext3,int uiContext4)
 
 {
   short sVar1;
@@ -115093,8 +115092,8 @@ LAB_180732998:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180733080(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-void FUN_180733080(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   uint result;
