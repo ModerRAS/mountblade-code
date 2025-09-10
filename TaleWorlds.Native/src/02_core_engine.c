@@ -221575,7 +221575,14 @@ void ProcessSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, uint6
 
 
 
-80ad0(voidvoid FUN_180180ad0(void
+/**
+ * @brief 终止系统运行
+ * 
+ * 该函数负责安全地终止系统运行，释放所有资源。
+ * 
+ * @note 原始函数名：FUN_180180ad0
+ */
+void TerminateSystemExecution(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -221992,7 +221999,14 @@ LAB_18018222c:
 
 
 
-82280(voidvoid FUN_180182280(void
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数负责终止系统进程，停止所有运行中的任务。
+ * 
+ * @note 原始函数名：FUN_180182280
+ */
+void TerminateSystemProcess(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
