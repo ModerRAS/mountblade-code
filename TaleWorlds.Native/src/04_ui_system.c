@@ -4940,10 +4940,10 @@ void* UIGestureCoordinates;
 #define UIRenderData880 (void*)0x180957880
 #define UIRenderData7B0 (void*)0x1809577b0
 #define UIRenderData8D0 (void*)0x1809578d0
-#define UIRenderData7F0 UNK_1809577f0
-#define UIRenderData758 UNK_180957758
-#define UIRenderData620 UNK_180957620
-#define UIRenderData6E0 UNK_1809576e0
+#define UIRenderData7F0 (void*)0x1809577f0
+#define UIRenderData758 (void*)0x180957758
+#define UIRenderData620 (void*)0x180957620
+#define UIRenderData6E0 (void*)0x1809576e0
 #define UIRenderData5C8 UNK_1809575c8
 #define UIRenderData680 UNK_180957680
 #define UIRenderData770 UNK_180957770
