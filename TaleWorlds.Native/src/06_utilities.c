@@ -31377,7 +31377,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
   float floatValidationDataBuffer [2];
   int64_t contextProcessingBuffer [2];
   ByteFlag dataStackBuffer [8];
-  DataBuffer validationStackBuffer2e8 [2];
+  DataBuffer validationStackBuffer [2];
   uint8_t *dataPointerStackBuffer;
   DataWord validationStackData;
   float floatStackValue;
