@@ -1279,6 +1279,10 @@
 #define StackFrameContextNegativeOffset5c -0x5c
 #define StackFrameContextNegativeOffset58 -0x58
 #define StackFrameContextNegativeOffset54 -0x54
+#define StackFrameContextNegativeOffset19 -0x19
+#define StackFrameContextNegativeOffset15 -0x15
+#define StackFrameContextNegativeOffset11 -0x11
+#define StackFrameContextNegativeOffsetD -0xd
 #define StackFrameContextNegativeOffset10 -0x10
 #define SystemStatusCheckOffset24 0x24
 #define SystemStatusCheckOffset48 0x48

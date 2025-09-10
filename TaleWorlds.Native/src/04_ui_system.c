@@ -124124,8 +124124,24 @@ CleanupUIDataResources:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739bad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_180739bad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief UI系统数据处理函数
+ * 
+ * 该函数负责处理UI系统中的数据传输和验证操作，包括：
+ * - 处理UI上下文数据
+ * - 验证数据源和目标缓冲区
+ * - 执行数据缓冲区复制操作
+ * - 管理UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源句柄，提供处理所需的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180739bad
+ * @see ProcessUIContextData, ValidateUIBufferData, CopyUIDataBuffer, ExecuteUIContextDataOperation, ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void ProcessUIDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
@@ -124133,34 +124149,34 @@ void FUN_180739bad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   int uiCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong memoryTrackingFlag;
+  UIHandle contextParam;
+  ulonglong encryptionKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  memoryTrackingFlag = 0;
+  processingResult = ProcessUIContextData(uiContext,&contextParam,&memoryTrackingFlag);
   if (processingResult == 0) {
-    processingResult = FUN_180746390(stackParam00000038,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180739c7d;
+    processingResult = TransferUIData(contextParam,dataSource,targetBuffer);
+    if (processingResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b800(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiValidationResult = InitializeUIBuffer(&stack0x00000040,0x100,dataSource);
+    uiCompareResult = ValidateUIBufferData(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextMemoryAllocator,&stack0x00000040);
   }
-FUN_180739c7d:
-  if (lStack0000000000000030 != 0) {
+CleanupAndExit:
+  if (memoryTrackingFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
