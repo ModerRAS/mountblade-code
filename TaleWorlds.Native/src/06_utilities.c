@@ -6143,7 +6143,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ace4
  */
-#define ResetDataCacheState FUN_18089ace4
+#define ResetDataCacheState ResetDataCachePoolState
 
 /**
  * @brief 执行高级数据验证
