@@ -58,6 +58,7 @@
 #define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
 #define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
 #define StackBufferFloatDataOffset 4                          // 栈缓冲区浮点数据偏移量 - 用于存储栈缓冲区中的浮点数据
+#define DataBufferParameterDataOffset 4                       // 数据缓冲区参数数据偏移量 - 用于存储数据缓冲区中的参数数据
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -26011,7 +26012,7 @@ MemoryDataCopyLabel:
     else {
       if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryDataCopyLabel;
       DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + SystemDataParameterOffset20);
-      arrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
+      arrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + DataBufferParameterDataOffset);
       if (arrayProcessingIndex != 0) goto ValidationSuccessLabel;
       arrayProcessingIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
       if ((arrayProcessingIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
