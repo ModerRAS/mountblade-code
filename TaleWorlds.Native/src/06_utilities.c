@@ -16460,6 +16460,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   uint64_t resourceOperationStatus;
   int resourceCleanupStatusCode;
   int64_t resourceDataBuffer [2];
+  int resourceReferenceCount;
   
   resourceOperationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),resourceDataBuffer);
   resourceContextPointer = resourceDataBuffer[0];
@@ -17596,8 +17597,10 @@ DataBuffer ValidateUtilitySystemState(void)
   uint64_t parameterAccumulator;
   int *dataOperationContext;
   int64_t localDataStorage;
+  int memoryRegionBase;
   
   iterationCounter = 0;
+  systemInputParameter = 0;
   adjustedParameterValue = systemInputParameter - 8;
   if (parameterAccumulator == 0) {
     systemMemoryContext = dataAddressContext;
@@ -46867,7 +46870,7 @@ void ExceptionResourceCleanupA0(DataBuffer exceptionContext,int64_t resourceMana
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(resourceManager + DataProcessingOffset70) + ResourceManagementOffset80);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
-    ProcessResourceCleanup(*(int64_t *)(resourceManager + 0x70) + 0x70,*memoryResourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
+    ProcessResourceCleanup(*(int64_t *)(resourceManager + ExceptionCallbackOffset70) + ExceptionCallbackOffset70,*memoryResourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
     ReleaseResourceReference(memoryResourcePointer);
       TerminateResource(memoryResourcePointer);
   }
