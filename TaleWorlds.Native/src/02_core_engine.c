@@ -225116,18 +225116,18 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
  */
 void ProcessSystemMemoryBufferAndUtfConversion(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *ContextHandle;
-  long long BufferStatus;
+  long long *SystemContextPointer;
+  long long MemoryBufferStatus;
   
-  ContextHandle = (long long *)(ContextHandle + 0x20);
-  BufferStatus = *ContextHandle;
-  ProcessSystemMemoryEx2(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  *(long long *)(*ContextHandle + 8) = BufferStatus;
-  *(long long *)*ContextHandle = BufferStatus;
-  *(long long *)(*ContextHandle + 0x10) = BufferStatus;
-  *(void *)(ContextHandle + 0x28) = 0;
-  free(*ContextHandle,0x60);
-  ProcessSystemStackData(ContextHandle);
+  SystemContextPointer = (long long *)(ContextHandle + 0x20);
+  MemoryBufferStatus = *SystemContextPointer;
+  ProcessSystemMemoryEx2(SystemContextPointer,*(void *)(MemoryBufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  *(long long *)(*SystemContextPointer + 8) = MemoryBufferStatus;
+  *(long long *)*SystemContextPointer = MemoryBufferStatus;
+  *(long long *)(*SystemContextPointer + 0x10) = MemoryBufferStatus;
+  *(void *)(SystemContextPointer + 0x28) = 0;
+  free(*SystemContextPointer,0x60);
+  ProcessSystemStackData(SystemContextPointer);
   return;
 }
 
