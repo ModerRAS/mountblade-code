@@ -228311,7 +228311,7 @@ LAB_18018a3ee:
     }
     else if (MemoryComparisonResult < 0) goto LAB_18018a53f;
 LAB_18018a57c:
-    pMemoryAddressMaskPointer = (void *)FUN_18018ac60(ContextHandle,aFunctionAddress,0,Utf16EndPointer,AdditionalParameter1);
+    pMemoryAddressMaskPointer = (void *)ProcessUtf8CharacterEncodingAndData(ContextHandle,aFunctionAddress,0,Utf16EndPointer,AdditionalParameter1);
     *ContextHandleSize = *pMemoryAddressMaskPointer;
     return OperationBufferSize;
   }
