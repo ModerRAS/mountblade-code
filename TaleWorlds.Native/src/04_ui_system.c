@@ -207,6 +207,9 @@ typedef enum {
 #define ValidateUIFloatParameter FUN_180721f12               // 验证UI浮点参数
 #define ProcessUIFloatData FUN_180721f4c                     // 处理UI浮点数据
 #define ProcessUIDoubleParameter FUN_180721fa6               // 处理UI双精度参数
+#define CalculateUIContextLogarithmicValue FUN_180776010      // 计算UI上下文对数值
+#define ClearUISystemMemory FUN_180776090                    // 清理UI系统内存
+#define ProcessUIVectorTransformationAndInterpolation FUN_1807762e0 // 处理UI向量变换和插值
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
 #define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
 #define ProcessUIComponentTransform FUN_1807226f0           // 处理UI组件变换
@@ -187233,7 +187236,7 @@ ProcessUIStateUpdate(longlong *uiContext,UIHandle dataSource,UIHandle targetBuff
         (loopCounter = FUN_180776880(componentIndex,*(UIDword *)(componentIndex + 0x250)), (int)loopCounter == 0)) &&
        (loopCounter = FUN_1807769b0(componentIndex), sourceDataInt = resultPointer, (int)loopCounter == 0)))) &&
      ((resultPointer = sourceDataInt, resultPointer = (UIDword *)(componentIndex + 0x254), loopCounter == 0 ||
-      (loopCounter = FUN_1807762e0(componentIndex,&uStackX_8,&dataSourceParameter,*(UIHandle *)(componentIndex + 0x238),componentIndex + 600
+      (loopCounter = ProcessUIVectorTransformationAndInterpolation(componentIndex,&uStackX_8,&dataSourceParameter,*(UIHandle *)(componentIndex + 0x238),componentIndex + 600
                              ,resultPointer,CONCAT44(iterationCounter,*(UIDword *)(componentIndex + 0x24c)),
                              *(UIDword *)(componentIndex + 0x230),*(UIDword *)(componentIndex + 0x228),
                              *(UIDword *)(componentIndex + 0x220),&resultPointer,*(UIDword *)(componentIndex + 0x26c),
@@ -187281,7 +187284,7 @@ UIHandle FUN_180775691(void)
     iStack0000000000000058 = *(UIDword *)(contextHandle + 0x26c);
     StackData3 = *(UIDword *)(contextHandle + 0x230);
     pStackData1 = (UIDword *)(contextHandle + 0x254);
-    result = FUN_1807762e0(StackData3,&stack0x000000a0,&stack0x000000a8,
+    result = ProcessUIVectorTransformationAndInterpolation(StackData3,&stack0x000000a0,&stack0x000000a8,
                           *(UIHandle *)(contextHandle + 0x238),contextHandle + 600);
     basePointer = maxAllocations;
     preservedRegister15 = stackParam000000a8;
@@ -187911,8 +187914,30 @@ void ClearUISystemMemory(void)
 
 
 
+/**
+ * @brief UI向量变换和插值处理器
+ * 
+ * 该函数处理UI系统中的向量变换和插值计算，用于UI动画和变换效果。
+ * 支持多维向量的插值运算和变换计算，包含复杂的数学处理逻辑。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 源数据缓冲区指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 处理参数6
+ * @param param_7 迭代计数参数
+ * @param param_8 变换系数8
+ * @param param_9 变换系数9
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * @param uiContext2 UI上下文参数2
+ * @param uiContext3 UI上下文参数3
+ * @param uiContext4 UI上下文参数4
+ * @return UIHandle 处理结果句柄
+ */
 UIHandle
-FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,longlong bufferSize,int *resultPointer
+ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,longlong bufferSize,int *resultPointer
              ,int *param_6,uint param_7,float param_8,float param_9,float uiContext0,int *uiContext1,
              int uiContext2,uint *uiContext3,int *uiContext4)
 
