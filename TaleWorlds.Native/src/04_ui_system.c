@@ -270465,20 +270465,20 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
   UIByte zmmRegister9 [64];
   UIByte processingStatusVector7 [64];
   
-  TransformCoefficient15 = (float *)(*(longlong *)(uiBufferData + 0x10) + (longlong)resultPointer * 4);
-  pTransformCoefficient23 = (float *)(*(longlong *)(uiBufferData + 8) + (longlong)param_6 * 4);
-  if (param_7 == 1) {
-    func_0x00018082d150(dataSource,targetBuffer,bufferSize,TransformCoefficient15,pTransformCoefficient23,param_8,param_9,uiContext0,uiContext1);
+  sourceDataPtr = (float *)(*(longlong *)(uiBufferData + 0x10) + (longlong)resultPointer * 4);
+  transformMatrixPtr = (float *)(*(longlong *)(uiBufferData + 8) + (longlong)transformMode * 4);
+  if (vectorSize == 1) {
+    func_0x00018082d150(dataSource,targetBuffer,bufferSize,sourceDataPtr,transformMatrixPtr,operationMask,alignmentFlags,uiContext0,uiContext1);
     return;
   }
-  if (param_7 == 2) {
-    FUN_18082d350(dataSource,targetBuffer,bufferSize,TransformCoefficient15,TransformCoefficient15 + 0x200,pTransformCoefficient23,pTransformCoefficient23 + 0x400,param_8,
-                  param_9,uiContext0,uiContext1);
+  if (vectorSize == 2) {
+    FUN_18082d350(dataSource,targetBuffer,bufferSize,sourceDataPtr,sourceDataPtr + 0x200,transformMatrixPtr,transformMatrixPtr + 0x400,operationMask,
+                  alignmentFlags,uiContext0,uiContext1);
     return;
   }
-  if (((param_7 & 3) == 0) && ((((byte)pTransformCoefficient23 | (byte)TransformCoefficient15) & 0x1f) == 0)) {
-    uiValidationResult2 = (int)param_8 >> 3;
-    uiValidationResult9 = (int)param_7 >> 2;
+  if (((vectorSize & 3) == 0) && ((((byte)transformMatrixPtr | (byte)sourceDataPtr) & 0x1f) == 0)) {
+    vectorProcessingCount = (int)operationMask >> 3;
+    vectorLoopCount = (int)vectorSize >> 2;
     if (uiValidationResult2 != 0) {
       do {
         TransformCoefficient15 = TransformCoefficient15 + -8;

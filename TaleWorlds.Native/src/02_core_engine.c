@@ -225483,19 +225483,19 @@ void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long Op
         do {
           MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
         } while (*(char *)(*(long long *)(OperationBufferSize + CalculatedCodePoint * 8) + MemoryBoundaryEnd) != '\0');
-        ReallocateContextHandle(&StackProcessingVariableBuffer);
-        ppMemoryAddressMaskPointer = ppSystemOperation90;
-        if (pSystemEventPointer == ppSystemOperation90) {
-          ProcessSystemMemoryValidationEx(&ppSystemOperationFlag98,ppSystemOperation90,&StackProcessingVariableBuffer);
+        ReallocateContextHandle(&ProcessingVariableBuffer);
+        MemoryAddressMaskPointer = SystemOperationPointer;
+        if (SystemEventPointer == SystemOperationPointer) {
+          ProcessSystemMemoryValidationEx(&SystemOperationFlagPointer,SystemOperationPointer,&ProcessingVariableBuffer);
         }
         else {
-          ppCalculationFunctionAddress = ppSystemOperation90;
-          ProcessSystemMemoryAllocationEx(ppSystemOperation90,&StackProcessingVariableBuffer);
-          *(uint32_t *)(ppMemoryAddressMaskPointer + 4) = (uint32_t)SystemKeyPointer;
-          *(uint32_t *)((long long)ppMemoryAddressMaskPointer + 0x24) = SystemKeyPointer.HighPart;
-          ppSystemOperation90 = ppSystemOperation90 + 5;
+          CalculationFunctionAddressPointer = SystemOperationPointer;
+          ProcessSystemMemoryAllocationEx(SystemOperationPointer,&ProcessingVariableBuffer);
+          *(uint32_t *)(MemoryAddressMaskPointer + 4) = (uint32_t)SystemKey;
+          *(uint32_t *)((long long)MemoryAddressMaskPointer + 0x24) = SystemKey.HighPart;
+          SystemOperationPointer = SystemOperationPointer + 5;
         }
-        ProcessSystemStackData(&StackProcessingVariableBuffer);
+        ProcessSystemStackData(&ProcessingVariableBuffer);
         CalculatedCodePoint = CalculatedCodePoint + 1;
       } while (CalculatedCodePoint < Utf8SourcePointer);
     }
