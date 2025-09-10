@@ -150013,16 +150013,26 @@ UIHandle FUN_180755070(longlong *uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807550a5(void)
-void FUN_1807550a5(void)
+ /**
+ * @brief 初始化UI资源管理器和内存分配器
+ * 
+ * 该函数负责初始化UI系统的资源管理器和内存分配器，包括：
+ * - 设置内存分配链表
+ * - 初始化字符串比较索引
+ * - 配置颜色缓冲区
+ * - 设置UI上下文状态
+ * 
+ * @note 原始函数名：FUN_1807550a5
+ */
+void InitializeUIResourceManagerAndMemoryAllocator(void)
 
 {
-  longlong *pallocatedMemory;
+  longlong *allocatedMemoryPointer;
   longlong *colorBufferPointer;
   longlong stringCompareIndex;
-  longlong TargetHandle;
-  longlong *register10;
-  longlong *RegisterPointer;
+  longlong targetHandle;
+  longlong *resourceListPointer;
+  longlong *endResourcePointer;
   
   if (register10 != RegisterPointer) {
     do {
