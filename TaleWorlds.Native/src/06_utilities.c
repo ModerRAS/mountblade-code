@@ -4812,7 +4812,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 上下文验证失败可能导致系统行为异常
  * @see ValidateSystemParametersAndConfiguration, ProcessSystemDataA0
  */
-#define ValidateSystemContextA0 ValidateSystemContextA0
+#define ValidateSystemContextA0 FUN_180090b80
 
 /**
  * @brief 数据数组处理函数A0
@@ -10035,19 +10035,19 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：查找内存并返回查找结果
 #define FindInMemoryA0 FindInMemoryWithPatternMatching
 // 功能：执行栈安全检查和数据验证
-#define ExecuteSecurityCheck FUN_1808fc050
+#define ExecuteSecurityCheck ExecuteStackSecurityValidation
 
 // 原始函数名：FUN_1808997f0 - 数据指针处理函数A0
 // 功能：处理数据指针并执行验证操作
-#define ProcessDataPointer FUN_1808997f0
+#define ProcessDataPointer ProcessDataPointerWithValidation
 
 // 原始函数名：FUN_180899816 - 系统状态获取函数A2
 // 功能：获取系统状态并返回状态码
-#define GetSystemStatusA2 FUN_180899816
+#define GetSystemStatusA2 GetSystemStatusWithFlags
 
 // 原始函数名：FUN_1808998a0 - 数据处理函数A3
 // 功能：处理数据并执行相关操作
-#define ProcessDataA3 FUN_1808998a0
+#define ProcessDataA3 ProcessDataWithValidation
 
 // 原始函数名：FUN_180899d90 - 数据验证函数A3
 // 功能：验证数据并返回验证结果
