@@ -123459,30 +123459,30 @@ void FUN_180739640(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   ulonglong UIEncryptionKey;             // UI加密密钥 - 用于数据加密和解密操作
   
   UIEncryptionKey = XorEncryptionKey ^ (ulonglong)UIDataEncryptionBuffer;
-  stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
+  UIMemoryResourceHandle = 0;
+  processingResult = FUN_180749e60(uiContext,&UITemporaryHandle,&UIMemoryResourceHandle);
   if (processingResult == 0) {
-    processingResult = func_0x0001807460a0(stackUInt150,dataSource,targetBuffer,bufferSize);
+    processingResult = func_0x0001807460a0(UITemporaryHandle,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto FUN_180739773;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bac0(stackArray148,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiValidationResult = FUN_18074bac0(UIProcessingBuffer,0x100,dataSource);
+    uiCompareResult = FUN_18074b880(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bac0(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = FUN_18074bac0(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bac0(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    pstackUInt168 = stackArray148;
+    uiCompareResult = FUN_18074b880(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    FUN_18074bac0(UIProcessingBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+    UIDataBufferPointer = UIProcessingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextHandleData320);
   }
 FUN_180739773:
-  if (stackLong158 != 0) {
+  if (UIMemoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(UIEncryptionKey ^ (ulonglong)UIDataEncryptionBuffer);
 }
 
 
