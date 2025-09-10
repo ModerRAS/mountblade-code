@@ -123819,7 +123819,7 @@ void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
     FUN_18074b930(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957128);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextFontRenderer);
   }
 LAB_18073a35a:
   if (RenderContextSize != 0) {
@@ -123861,7 +123861,7 @@ void FUN_18073a390(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957278);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager);
   }
 FUN_18073a47d:
   if (stackLong148 != 0) {
@@ -123905,7 +123905,7 @@ void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     FUN_18074b930(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957278,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager,&stack0x00000040);
   }
 FUN_18073a47d:
   if (lStack0000000000000030 != 0) {
@@ -123993,7 +123993,7 @@ void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957110);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextComponentFactory);
   }
 LAB_18073a55a:
   if (RenderContextSize != 0) {
