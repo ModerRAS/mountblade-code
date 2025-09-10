@@ -60731,7 +60731,7 @@ void SetupExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa8);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferOffsetA8);
   *exceptionDataBuffer = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -101507,7 +101507,7 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x370);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -103899,7 +103899,7 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x370);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -103951,7 +103951,7 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x370);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
