@@ -210000,21 +210000,21 @@ void ValidateSystemCharacterData(long long ContextHandle, uint64_t OperationBuff
     break;
   case 0x101:
   case 0x105:
-    uStack_860 = 0;
-    uStack_868 = 5;
-    cStack_864 = OperationStatus + -0x80;
+    StackValidationFlag = 0;
+    StackOperationSize = 5;
+    StackOperationStatus = OperationStatus + -0x80;
     if ((AdditionalParameter1 & 0x1000000) == 0) {
-      cStack_864 = OperationStatus;
+      StackOperationStatus = OperationStatus;
     }
     goto LAB_1801732b6;
   case 0x102:
-    iStack_890 = 6;
-    StackValidationDatac = (uint32_t)Utf16EndPointer;
+    StackIterationCount = 6;
+    StackValidationData = (uint32_t)Utf16EndPointer;
     goto LAB_1801732b6;
   case 0x109:
     if (Utf16EndPointer == 0xffff) goto LAB_1801732ce;
-    iStack_898 = 6;
-    uStack_894 = (int)AdditionalParameter1;
+    StackProcessingIndex = 6;
+    StackProcessingValue = (int)AdditionalParameter1;
 LAB_1801732b6:
     ProcessMemoryAllocationHandler();
     break;
@@ -210025,7 +210025,7 @@ LAB_1801732b6:
     else if ((Utf16EndPointer == 0xf140) || (Utf16EndPointer == 0xf170)) goto LAB_1801732ce;
   }
 LAB_1801732bb:
-  DefWindowProcW(OperationBufferSize,StackValidationData8,Utf16EndPointer,AdditionalParameter1);
+  DefWindowProcW(OperationBufferSize,StackValidationParameter,Utf16EndPointer,AdditionalParameter1);
 LAB_1801732ce:
     CoreEngineExecuteUtilityFunction(BufferOffset ^ (unsigned long long)auStack_8d8);
 }
