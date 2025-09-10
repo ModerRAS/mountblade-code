@@ -210063,10 +210063,10 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   SystemMemoryMask = GetMessageTime();
   UnicodeCodePoint = *(void *)(DataPatternIndex + 0xa4);
   ClientToScreen();
-  SystemStackUnsigned60 = PrimaryDataStorage;
+  StackDataRegister = PrimaryDataStorage;
   *(unsigned long long *)(DataPatternIndex + 0xa4) = CONCAT44(PrimaryDataStorage,SystemParameter);
   ClientToScreen();
-  *(uint32_t *)(SystemStackPointer + 0x164) = SystemStackUnsigned60;
+  *(uint32_t *)(SystemStackPointer + 0x164) = StackDataRegister;
   *(uint32_t *)(SystemStackPointer + 0x168) = SystemMemoryMask;
   *(uint32_t *)(SystemStackPointer + 0x160) = SystemParameter;
   *(void *)(SystemStackPointer + 0x170) = 0;

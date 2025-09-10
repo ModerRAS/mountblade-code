@@ -123425,21 +123425,40 @@ void FUN_180739619(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739640(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 处理带有加密和验证的UI数据转换
+ * 
+ * 该函数负责处理UI系统中的数据转换操作，包括：
+ * - 数据加密和解密处理
+ * - UI资源管理和验证
+ * - 缓冲区数据处理和验证
+ * - 内存资源的分配和释放
+ * 
+ * 函数使用XOR加密算法来保护敏感数据，确保UI系统的安全性。
+ * 在处理过程中会验证数据的有效性，并在处理完成后清理资源。
+ * 
+ * @param uiContext UI上下文句柄，用于标识当前的UI操作环境
+ * @param dataSource 数据源句柄，指向要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，指定处理的数据量
+ * 
+ * @note 该函数包含资源管理逻辑，会自动处理内存分配和释放
+ * @warning 函数可能不会返回（包含不返回的子函数调用）
+ */
 void FUN_180739640(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong stackLong158;
-  UIHandle stackUInt150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  int processingResult;              // 处理结果状态码
+  int uiValidationResult;            // UI验证结果
+  int uiCompareResult;              // UI比较结果
+  UIByte UIDataEncryptionBuffer [32];    // UI数据加密缓冲区 - 用于存储加密处理的数据
+  UIByte *UIDataBufferPointer;          // UI数据缓冲区指针 - 指向当前处理的数据位置
+  longlong UIMemoryResourceHandle;       // UI内存资源句柄 - 用于管理UI内存资源
+  UIHandle UITemporaryHandle;            // UI临时句柄 - 用于存储临时UI对象
+  UIByte UIProcessingBuffer [256];       // UI处理缓冲区 - 用于存储UI处理过程中的数据
+  ulonglong UIEncryptionKey;             // UI加密密钥 - 用于数据加密和解密操作
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
+  UIEncryptionKey = XorEncryptionKey ^ (ulonglong)UIDataEncryptionBuffer;
   stackLong158 = 0;
   processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
   if (processingResult == 0) {
