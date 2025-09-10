@@ -20612,7 +20612,7 @@ void ResetUtilitySystemToInitialState(void)
   int64_t adjustedSystemParameter;
   uint operationFlags;
   int64_t systemContext;
-  int64_t temporaryRegister;
+  int64_t TemporarySystemRegister;
   DataBuffer systemConfigurationData;
   
   memoryBufferPointer = 0;
