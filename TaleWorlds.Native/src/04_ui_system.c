@@ -232,6 +232,7 @@ typedef enum {
 #define ProcessUIParameterValidation FUN_18072ad20         // UI参数验证处理
 #define ProcessUIContextDataTransformation FUN_180734467  // UI上下文数据转换处理
 #define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
+#define ProcessUIDataSortingAndInsertion FUN_180734a30   // UI数据排序和插入处理
 #define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
 #define InitializeUISystemMemoryAndEventValidation FUN_18072c44d // UI系统内存和事件验证初始化

@@ -120054,6 +120054,21 @@ void ResetExceptionContextAndConfigureHandlers(DataBuffer operationBase,int64_t 
 
 
 
+/**
+ * @brief 初始化异常处理器A7
+ * 
+ * 该函数负责初始化异常处理器A7，设置临时和默认异常处理器。
+ * 首先检查并调用现有的异常处理器，然后设置A7处理器的临时和默认处理器。
+ * 如果处理器状态不为零，则终止系统执行并清理资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给异常处理器）
+ * 
+ * @note 原始函数名：Unwind_1809107b0
+ * @note 这是一个异常处理器初始化函数，用于设置A7系列异常处理器
+ */
 void InitializeExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
