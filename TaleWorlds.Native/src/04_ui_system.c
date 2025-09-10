@@ -103625,7 +103625,7 @@ void ProcessUIAnimationUpdate(void)
   }
   sourceDataInt = *(int *)(componentData + 0x11dc);
   processingResult = (*(int *)(componentData + 0x11f8) + sourceDataInt * -3) / 2;
-  FUN_18072b830(preservedRegister13[0xaf] * 0.01,stackParam00000038,1,processingResult);
+  ProcessUIRenderingParameters(preservedRegister13[0xaf] * 0.01,stackParam00000038,1,processingResult);
                      WARNING: Subroutine does not return
   memcpy(&stack0x00000130 + (longlong)processingResult * 4,stackParam00000038 + (longlong)processingResult * 4,
          (longlong)(sourceDataInt * 3) << 2);
