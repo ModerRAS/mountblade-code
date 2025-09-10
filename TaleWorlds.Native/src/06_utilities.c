@@ -62745,7 +62745,7 @@ void ExecuteDataBufferCleanupCallback(DataBuffer operationBase,int64_t dataBuffe
  * 
  * @note 原始函数名：Unwind_180904e40
  */
-void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataBufferWithMutexHandling(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
