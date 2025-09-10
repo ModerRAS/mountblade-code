@@ -28620,7 +28620,7 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
     if (operationStatus == 0) {
       exceptionContextPointer = &DataValidationFlagTable;
       ValidationFlagA = 0;
-      ValidationOffsetA = 0;
+      ValidationOffset = 0;
       ValidationDataA = operationFlagA;
       InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),0x200);
       DataFlagsPointer = exceptionContextPointer;
