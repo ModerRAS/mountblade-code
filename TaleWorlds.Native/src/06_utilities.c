@@ -140004,11 +140004,71 @@ uint8_t SystemExceptionHandlerStateTable;
 #define HandleSystemExceptionDE0 Unwind_180909de0
 #define ProcessSystemCleanupF20 Unwind_180909f20
 
-// 系统资源计数器管理函数
+/**
+ * @brief 系统资源计数器递减和函数执行器A0
+ * 
+ * 递减系统资源计数器，并在计数器达到特定值时执行相应函数。
+ * 用于资源生命周期管理和自动清理操作。
+ * 
+ * @param resourcePointer 资源指针
+ * @param decrementAmount 递减数量
+ * @param threshold 触发阈值
+ * @param callbackFunction 回调函数指针
+ * @return int 操作状态码
+ */
 #define DecrementSystemResourceCounterAndExecuteFunctionA0 Unwind_18090ca50
+
+/**
+ * @brief 系统资源计数器递减和函数执行器A1
+ * 
+ * 递减系统资源计数器，并在计数器达到特定值时执行相应函数。
+ * 用于资源生命周期管理和自动清理操作。
+ * 
+ * @param resourcePointer 资源指针
+ * @param decrementAmount 递减数量
+ * @param threshold 触发阈值
+ * @param callbackFunction 回调函数指针
+ * @return int 操作状态码
+ */
 #define DecrementSystemResourceCounterAndExecuteFunctionA1 Unwind_18090ca60
+
+/**
+ * @brief 系统资源清理和验证处理器
+ * 
+ * 执行系统资源的清理操作，并验证清理结果的有效性。
+ * 确保资源被正确释放且系统状态保持一致。
+ * 
+ * @param resourceHandle 资源句柄
+ * @param cleanupFlags 清理标志位
+ * @param validationMode 验证模式
+ * @return int 清理和验证结果状态码
+ */
 #define ProcessSystemResourceCleanupAndValidation Unwind_18090ca70
+
+/**
+ * @brief 在偏移量540设置默认异常处理器
+ * 
+ * 在系统异常处理表的指定偏移量位置设置默认异常处理器。
+ * 用于配置系统的默认异常处理行为。
+ * 
+ * @param handlerFunction 异常处理函数指针
+ * @param exceptionType 异常类型
+ * @return int 设置结果状态码
+ */
 #define SetDefaultExceptionHandlerAtOffset540 Unwind_18090ca80
+
+/**
+ * @brief 系统资源计数器递减和函数执行器A2
+ * 
+ * 递减系统资源计数器，并在计数器达到特定值时执行相应函数。
+ * 用于资源生命周期管理和自动清理操作。
+ * 
+ * @param resourcePointer 资源指针
+ * @param decrementAmount 递减数量
+ * @param threshold 触发阈值
+ * @param callbackFunction 回调函数指针
+ * @return int 操作状态码
+ */
 #define DecrementSystemResourceCounterAndExecuteFunctionA2 Unwind_18090ca90
 
 // 异常处理器设置函数系列
