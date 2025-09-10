@@ -1743,6 +1743,12 @@
 #define ResourceManagerPointerOffset 0x1a0               // 资源管理器指针偏移量
 #define ResourceEntrySizeMultiplier 8                    // 资源条目大小乘数
 
+// 资源管理器数组索引常量
+#define ResourceManagerBufferIndexA0 4                     // 资源管理器缓冲区索引A0
+#define ResourceManagerBufferIndexA1 4                     // 资源管理器缓冲区索引A1
+#define ResourceManagerStatusIndex5 5                     // 资源管理器状态索引5
+#define ResourceManagerCleanupIndex7 7                    // 资源管理器清理索引7
+
 // 异常处理上下文偏移量常量
 #define ExceptionHandlerContextDataOffset 0x6d8         // 异常处理上下文数据偏移量
 
