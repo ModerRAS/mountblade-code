@@ -36864,7 +36864,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
-    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + ExceptionCallbackOffset68,4);
     calculatedFloatValue = normalizedFloatValue;
   }
   if (securityCheckResult != 0) {
@@ -37120,7 +37120,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
-    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + ExceptionCallbackOffset68,4);
     calculatedFloatValue = normalizedFloatValue;
   }
   if (securityCheckResult != 0) {
@@ -37362,7 +37362,7 @@ ValidationLabelC:
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) &&
      (securityValidationPassed = *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == securityCheckResult, securityCheckResult = contextPointerD, securityValidationPassed)) {
-    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*DestinationContext,systemContext + ExceptionCallbackOffset68,4);
     calculatedResultValue = calculatedFloatValue;
   }
   if (securityCheckResult != 0) {
