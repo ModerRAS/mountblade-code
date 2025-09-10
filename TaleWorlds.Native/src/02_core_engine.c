@@ -282053,56 +282053,58 @@ LAB_1802260bd:
 
 
 
-long long FUN_180226240(long long ContextHandle
+// 系统错误消息格式化处理器
+#define FormatSystemErrorMessage FUN_180226240
+long long FormatSystemErrorMessage(long long ContextHandle
 {
-  long long *ContextHandle;
-  long long BufferStatus;
+  long long *ContextPointer;
+  long long MessageBufferStatus;
   ushort UnicodeCodePoint;
-  unsigned long long MemoryOffsetValue;
-  void *SecondaryProcessingStatusFlag;
-  uint SystemChecksum;
-  unsigned long long CalculatedCodePoint;
+  unsigned long long StringLength;
+  void *StatusFlagPointer;
+  uint ErrorCode;
+  unsigned long long CharacterIndex;
   
-  ContextHandle = (long long *)(ContextHandle + 0x18);
-  if (*ContextHandle == 0) {
-    FormatMessageA(0x1300,0,*(uint32_t *)(ContextHandle + 8),0x400,ContextHandle,0,0);
-    BufferStatus = *ContextHandle;
-    if (BufferStatus != 0) {
-      MemoryAddressMaskPointer = 0xffffffffffffffff;
+  ContextPointer = (long long *)(ContextHandle + 0x18);
+  if (*ContextPointer == 0) {
+    FormatMessageA(0x1300,0,*(uint32_t *)(ContextPointer + 8),0x400,ContextPointer,0,0);
+    MessageBufferStatus = *ContextPointer;
+    if (MessageBufferStatus != 0) {
+      StringLength = 0xffffffffffffffff;
       do {
-        CalculatedCodePoint = MemoryAddressMaskPointer;
-        MemoryAddressMaskPointer = CalculatedCodePoint + 1;
-      } while (*(char *)(BufferStatus + MemoryAddressMaskPointer) != '\0');
-      if (MemoryAddressMaskPointer < 2) {
-        return BufferStatus;
+        CharacterIndex = StringLength;
+        StringLength = CharacterIndex + 1;
+      } while (*(char *)(MessageBufferStatus + StringLength) != '\0');
+      if (StringLength < 2) {
+        return MessageBufferStatus;
       }
-      if (*(char *)(BufferStatus + -1 + MemoryAddressMaskPointer) != '\n') {
-        return BufferStatus;
+      if (*(char *)(MessageBufferStatus + -1 + StringLength) != '\n') {
+        return MessageBufferStatus;
       }
-      *(uint8_t *)(BufferStatus + -1 + MemoryAddressMaskPointer) = 0;
-      BufferStatus = *ContextHandle;
-      if (*(char *)((CalculatedCodePoint - 1) + BufferStatus) != '\r') {
-        return BufferStatus;
+      *(uint8_t *)(MessageBufferStatus + -1 + StringLength) = 0;
+      MessageBufferStatus = *ContextPointer;
+      if (*(char *)((CharacterIndex - 1) + MessageBufferStatus) != '\r') {
+        return MessageBufferStatus;
       }
-      *(uint8_t *)((CalculatedCodePoint - 1) + BufferStatus) = 0;
-      return *ContextHandle;
+      *(uint8_t *)((CharacterIndex - 1) + MessageBufferStatus) = 0;
+      return *ContextPointer;
     }
-    BufferStatus = LocalAlloc(0,0x20);
-    *ContextHandle = BufferStatus;
-    if (BufferStatus == 0) {
+    MessageBufferStatus = LocalAlloc(0,0x20);
+    *ContextPointer = MessageBufferStatus;
+    if (MessageBufferStatus == 0) {
       return 0;
     }
-    SystemChecksum = *(uint *)(ContextHandle + 8);
-    if ((SystemChecksum + 0x7ffbfe00 < 0xfe00) && (UnicodeCodePoint = (short)SystemChecksum - 0x200, UnicodeCodePoint != 0)) {
-      SystemChecksum = (uint)UnicodeCodePoint;
-      SecondaryProcessingStatusFlag = &SystemStatusFlag13620;
+    ErrorCode = *(uint *)(ContextPointer + 8);
+    if ((ErrorCode + 0x7ffbfe00 < 0xfe00) && (UnicodeCodePoint = (short)ErrorCode - 0x200, UnicodeCodePoint != 0)) {
+      ErrorCode = (uint)UnicodeCodePoint;
+      StatusFlagPointer = &SystemStatusFlag13620;
     }
     else {
-      SecondaryProcessingStatusFlag = &SystemStatusFlag13608;
+      StatusFlagPointer = &SystemStatusFlag13608;
     }
-    FUN_1800634b0(BufferStatus,0x20,SecondaryProcessingStatusFlag,SystemChecksum);
+    FUN_1800634b0(MessageBufferStatus,0x20,StatusFlagPointer,ErrorCode);
   }
-  return *ContextHandle;
+  return *ContextPointer;
 }
 
 
