@@ -50042,6 +50042,24 @@ void ResetResourcePointerAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理异常表并管理内存资源
+ * 
+ * 该函数负责清理系统异常表并执行内存资源管理操作。它会：
+ * 1. 获取内存资源指针
+ * 2. 验证内存区域的有效性
+ * 3. 计算内存块偏移量
+ * 4. 检查内存异常状态
+ * 5. 管理资源引用计数
+ * 6. 执行必要的内存清理操作
+ * 
+ * @param operationBase 操作基地址，用于定位相关数据结构
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的上下文信息
+ * 
+ * @note 该函数是内存管理系统的重要组成部分，确保异常表正确清理
+ * @warning 函数会检查内存异常状态，确保内存操作的安全性
+ * @see ExceptionList, MemoryRegionMask, MemoryBaseOffset, MemoryBlockMultiplier
+ */
 void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
