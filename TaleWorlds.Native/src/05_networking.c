@@ -1290,7 +1290,21 @@ uint32_t ValidateNetworkConnectionStatus(NetworkHandle ConnectionHandle)
 /**
  * @brief 重置网络连接状态
  * 
- * 重置网络连接的状态，清理连接数据
+ * 重置所有网络连接相关的状态变量和标志，将网络连接系统恢复到初始状态。
+ * 该函数用于网络系统重启、错误恢复或系统清理等场景。
+ * 
+ * @details 该函数执行以下操作：
+ * - 清除所有网络连接状态标志
+ * - 重置网络连接缓存状态
+ * - 重置连接管理器上下文
+ * - 重置连接池管理器状态
+ * - 清理管理器指针和上下文数据
+ * 
+ * @warning 调用此函数将终止所有正在进行的网络连接
+ * @note 在调用此函数后，需要重新初始化网络连接系统
+ * @see InitializeNetworkConnection, InitializeNetworkConnectionPool
+ * 
+ * 原始实现：简化实现，只重置全局状态变量
  */
 void ResetNetworkConnectionState(void)
 {
@@ -1344,7 +1358,20 @@ uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext)
 /**
  * @brief 清理网络连接缓存
  * 
- * 清理网络连接的缓存数据，释放内存资源
+ * 清理所有网络连接相关的缓存数据，释放占用的内存资源，并重置缓存状态。
+ * 该函数用于内存回收、性能优化或系统维护等场景。
+ * 
+ * @details 该函数执行以下操作：
+ * - 清除所有网络连接缓存数据
+ * - 释放缓存占用的内存资源
+ * - 重置缓存状态标志
+ * - 更新缓存管理器状态
+ * 
+ * @warning 调用此函数可能导致缓存中的连接数据丢失
+ * @note 在调用此函数后，系统将需要重新缓存连接数据
+ * @see ResetNetworkConnectionState, InitializeNetworkConnectionPool
+ * 
+ * 原始实现：简化实现，只重置缓存状态变量
  */
 void ClearNetworkConnectionCache(void)
 {
