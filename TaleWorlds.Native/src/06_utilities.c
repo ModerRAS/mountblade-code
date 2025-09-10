@@ -56635,7 +56635,7 @@ void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,Da
  * 
  * @note 原始函数名：Unwind_180903d10
  */
-void HandleExceptionWithFlagsE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsPrimary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -56696,7 +56696,7 @@ void HandleExceptionWithFlagsE1(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180903d30
  */
-void HandleExceptionWithFlagsE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsSecondary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -56757,7 +56757,7 @@ void HandleExceptionWithFlagsE2(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180903d50
  */
-void HandleExceptionWithFlagsE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsTertiary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -56818,7 +56818,7 @@ void HandleExceptionWithFlagsE3(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180903d70
  */
-void HandleExceptionWithFlagsE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsQuaternary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
