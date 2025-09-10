@@ -100944,26 +100944,50 @@ void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
 
 
 
-UIWord FUN_1807234d0(UIWord *uiContext,longlong dataSource,short *targetBuffer,int bufferSize,int resultPointer,
-             int param_6,int param_7)
+/**
+ * @brief 处理UI组件数据变换计算
+ * 
+ * 该函数根据不同的缓冲区大小执行不同的UI数据变换计算：
+ * - 0x12 (18字节): 执行18字节缓冲区的UI数据变换计算
+ * - 0x18 (24字节): 执行24字节缓冲区的UI数据变换计算  
+ * - 0x24 (36字节): 执行36字节缓冲区的UI数据变换计算
+ * 
+ * 每种模式都执行相应的矩阵运算和数据变换，用于UI组件的坐标变换、
+ * 颜色混合或其他图形处理操作。
+ * 
+ * @param uiContext UI上下文指针，用于存储计算结果
+ * @param dataSource 数据源指针，包含输入数据
+ * @param targetBuffer 目标缓冲区指针，包含变换参数
+ * @param bufferSize 缓冲区大小，决定计算模式
+ * @param resultPointer 结果指针，用于计算过程
+ * @param param_6 参数6：迭代次数
+ * @param param_7 参数7：步进值
+ * 
+ * @return UIWord 返回处理后的UI上下文指针
+ * 
+ * @note 原始函数名：FUN_1807234d0
+ * @note 该函数主要用于UI组件的变换计算和数据处理
+ */
+UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource, short *targetBuffer, int bufferSize, int resultPointer,
+                                        int iterationCount, int stepValue)
 
 {
-  short *psVar1;
+  short *componentDataPointer;
   longlong componentIndex;
-  int *puiCompareResult;
+  int *transformMatrixPointer;
   int sourceDataInt;
-  UIWord loopCounter;
-  int loopCounter;
+  UIWord calculatedResult;
+  int innerLoopCounter;
   
   if (bufferSize == 0x12) {
-    temporaryInt4 = 0;
-    if (0 < param_6) {
+    sourceDataInt = 0;
+    if (0 < iterationCount) {
       do {
-        compareResultPointer = (int *)(((longlong)temporaryInt4 >> 0x10) * 4 + dataSource);
-        innerLoopCounter = (int)((ulonglong)(ushort)temporaryInt4 * (longlong)(short)resultPointer >> 0x10);
-        shortPointer1 = targetBuffer + innerLoopCounter * 9;
+        transformMatrixPointer = (int *)(((longlong)sourceDataInt >> 0x10) * 4 + dataSource);
+        innerLoopCounter = (int)((ulonglong)(ushort)sourceDataInt * (longlong)(short)resultPointer >> 0x10);
+        componentDataPointer = targetBuffer + innerLoopCounter * 9;
         componentIndex = (longlong)((resultPointer - innerLoopCounter) * 9);
-        innerLoopCounter = ((int)((ulonglong)((longlong)compareResultPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
+        calculatedResult = ((int)((ulonglong)((longlong)transformMatrixPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
                  + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)compareResultPointer[10]) >> 0x10)
                    + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)compareResultPointer[0xc]) >>
                           0x10) +
