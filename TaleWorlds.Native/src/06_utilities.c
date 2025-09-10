@@ -16693,7 +16693,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
       contextDataContext = baseValidationContext;
       componentDataContext = baseValidationContext;
       componentInfoContext = baseValidationContext;
-      if (resourceInfoContext != (int64_t *)0x0) {
+      if (resourceInfoContext != (int64_t *)NullPointer) {
         contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
@@ -16711,7 +16711,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
           return ResourceInvalidErrorCode;
         }
         resourceInfoContext = contextDataContext + RESOURCE_DATA_OFFSET;
-        if (contextDataContext == (int64_t *)0x0) {
+        if (contextDataContext == (int64_t *)NullPointer) {
           resourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
         *(int64_t *)(moduleDataContext[4] + systemContextOffset + (int64_t)componentDataContext) = *resourceInfoContext;
@@ -16721,7 +16721,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
           resourceInfoContext = baseValidationContext;
         }
         contextDataContext = baseValidationContext;
-        if (resourceInfoContext != (int64_t *)0x0) {
+        if (resourceInfoContext != (int64_t *)NullPointer) {
           contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
         componentDataContext = componentDataContext + COMPONENT_DATA_OFFSET;
@@ -19731,7 +19731,7 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPo
           previousNodePointer = currentNodePointer;
         }
         nextNodePointer = currentNodePointer;
-        if (previousNodePointer != (int64_t *)0x0) {
+        if (previousNodePointer != (int64_t *)NullPointer) {
           nextNodePointer = previousNodePointer + 1;
         }
       }
