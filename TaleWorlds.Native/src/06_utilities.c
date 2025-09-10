@@ -29103,9 +29103,9 @@ void ProcessDataTypes(void)
   DataBuffer *systemInputAccumulator;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
   int64_t ExceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
   DataBuffer SystemDataBuffer6;          // 系统数据缓冲区6 - 第六个系统数据缓冲区
-  DataBuffer systemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
+  DataBuffer SystemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
   uint8_t *exceptionDataBuffer8;        // 异常数据缓冲区8 - 第八个异常数据缓冲区
-  float calculationResult19;             // 计算结果19 - 第19个计算结果
+  float CalculationResult19;             // 计算结果19 - 第19个计算结果
   uint64_t operationResult0;             // 操作结果0 - 第0个操作结果
   float *poutputValue21;                 // 输出值21指针 - 指向第21个输出值的指针
   DataBuffer *StackFrameContext;         // 栈帧上下文 - 栈帧的上下文信息
