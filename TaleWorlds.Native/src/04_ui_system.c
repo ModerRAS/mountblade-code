@@ -121118,7 +121118,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
                      WARNING: Subroutine does not return
       FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),contextHandleHandle,&UIContextHandleData080,0xa3,1);
     }
-    creationResult = FUN_180741c20();
+    creationResult = ManageUIState();
     if ((int)creationResult == 0) {
       *(ulonglong *)((longlong)(int)validationIndex * 8 + 0x160 + _DAT_180be12f0) = contextHandleHandle;
       *(uint *)(contextHandleHandle + 0x116b8) = validationIndex;
