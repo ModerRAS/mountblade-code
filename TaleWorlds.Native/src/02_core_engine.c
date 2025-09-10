@@ -100230,13 +100230,18 @@ SystemContextProcessingLabel:
       *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
     }
   }
-  if (RenderCharacterStatusBuffer != (char *)0x0) {
-    *StackProcessingParameter3 = OperationStatus;
+  
+  // 检查字符状态缓冲区的有效性
+  if (CharacterStatusBuffer != (char *)0x0) {
+    *StackProcessingParameter3 = MemoryValidationStatus;
   }
-  if (RenderResultBuffer != (uint8_t *)0x0) {
-    *StackProcessingParameter6 = OperationResult;
+  
+  // 检查结果缓冲区的有效性
+  if (ResultBuffer != (uint8_t *)0x0) {
+    *StackProcessingParameter6 = OperationResultCode;
   }
-  return CharacterStatus2;
+  
+  return CharacterValidationStatus;
 }
 
 

@@ -50048,51 +50048,87 @@ void CleanupThreadResource(DataBuffer operationBase, int64_t dataBuffer)
  * @note 原始函数名可能是类似Unwind_开头的函数
  * @warning 该函数会销毁线程同步对象，需要确保线程已正确终止
  */
-void CleanupSystemThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void CleanupSystemThreadContext(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
-  char characterProcessingFlag;
-  DataBuffer validationStatus;
-  
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
-  validationStatus = SystemCleanupFlagAlternative;
-  *exceptionDataBuffer = &ExceptionDataTable7;
-  characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  while (characterProcessingFlag != '\0') {
-    characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
-  }
-  if (exceptionDataBuffer[1] == 0) {
-    exceptionDataBuffer[1] = 0;
-    _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
-    _Mtx_destroy_in_situ();
-    UpdateSystemStatusA0();
-    if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
-      *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset) = 0;
-      *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
+    DataBuffer *exceptionDataBuffer;          // 异常数据缓冲区指针
+    char characterProcessingFlag;              // 字符处理标志
+    DataBuffer validationStatus;               // 验证状态
+    
+    // 获取异常数据缓冲区指针
+    exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
+    validationStatus = SystemCleanupFlagAlternative;
+    
+    // 设置异常数据表
+    *exceptionDataBuffer = &ExceptionDataTable7;
+    
+    // 处理字符数据
+    characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer, 1, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+    while (characterProcessingFlag != '\0') {
+        characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer, 1, operationFlagA, operationFlagB, validationStatus);
     }
-    exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
-    return;
-  }
-  if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
-      TerminateSystemExecutionAndCleanupResources();
-  }
+    
+    // 检查异常数据缓冲区状态
+    if (exceptionDataBuffer[1] == 0) {
+        exceptionDataBuffer[1] = 0;
+        
+        // 销毁线程同步对象
+        _Mtx_destroy_in_situ();
+        _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
+        _Mtx_destroy_in_situ();
+        
+        // 更新系统状态
+        UpdateSystemStatusA0();
+        
+        // 重置异常处理器
+        if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
+            *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset) = 0;
+            *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
+        }
+        
+        // 设置默认异常处理器
+        exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
+        return;
+    }
+    
+    // 检查系统终止条件
+    if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
+        TerminateSystemExecutionAndCleanupResources();
+    }
+    
+    // 终止系统执行
     terminate();
 }
 
 
 
-void CleanupSyncObject(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理同步对象
+ * 
+ * 该函数负责清理同步对象资源，包括：
+ * - 获取清理函数指针
+ * - 调用清理函数进行资源释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含同步对象信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给清理函数
+ * 
+ * @note 原始函数名：Unwind_180906070
+ * @warning 该函数会调用清理函数，需要确保清理函数的有效性
+ */
+void CleanupSyncObject(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  FunctionPointer *cleanupFunction;
-  
-  cleanupFunction = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
-  if (cleanupFunction != (FunctionPointer *)0x0) {
-    (*cleanupFunction)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60),0,0,operationFlagB,SystemCleanupFlagAlternative);
-  }
-  return;
+    FunctionPointer *cleanupFunction;     // 清理函数指针
+    
+    // 获取清理函数指针
+    cleanupFunction = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
+    
+    // 如果清理函数有效，则调用清理函数
+    if (cleanupFunction != (FunctionPointer *)0x0) {
+        (*cleanupFunction)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
+    }
+    
+    return;
 }
 
 
