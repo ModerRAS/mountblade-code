@@ -126,6 +126,9 @@
 // 字符验证常量
 #define CharacterValidationOffset 0x57                           // 字符验证偏移量
 
+// 系统数据大小常量
+#define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误
@@ -36812,7 +36815,7 @@ ValidateDataWithDirectAllocation:
           ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
-      if (0x34 < *(uint *)(registerContext + 8)) {
+      if (SystemDataSizeThreshold < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
@@ -36965,7 +36968,7 @@ DataProcessSectionA:
           ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
-      if (0x34 < *(uint *)(registerContext + 8)) {
+      if (SystemDataSizeThreshold < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
@@ -37114,7 +37117,7 @@ DataProcessLabelA:
           ((operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetB4,4), (int)operationResult == 0 &&
            (operationResult = ValidateDataIntegrityA1(systemContext + systemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
-      if (0x34 < *(uint *)(registerContext + 8)) {
+      if (SystemDataSizeThreshold < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
