@@ -93,6 +93,14 @@
 #define ExceptionHandlerFunctionOffsetFb0 0xfb0          // 异常处理器函数偏移量Fb0 - 用于异常处理器函数指针
 #define ExceptionHandlerParameterOffsetFa0 0xfa0         // 异常处理器参数偏移量Fa0 - 用于异常处理器参数存储
 #define ExceptionHandlerParameterOffset4000 4000         // 异常处理器参数偏移量4000 - 用于异常处理器参数存储
+#define ExceptionHandlerFunctionOffset1020 0x1020        // 异常处理器函数偏移量1020 - 用于异常处理器函数指针
+#define ExceptionHandlerParameterOffset1010 0x1010       // 异常处理器参数偏移量1010 - 用于异常处理器参数存储
+#define ExceptionHandlerCleanupOffsetFe8 0xfe8          // 异常处理器清理偏移量Fe8 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetFf0 0xff0           // 异常处理器状态偏移量Ff0 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffset1000 0x1000             // 异常处理器数据偏移量1000 - 用于异常处理器数据存储
+#define ExceptionHandlerCleanupOffsetFc8 0xfc8          // 异常处理器清理偏移量Fc8 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetFd0 0xfd0           // 异常处理器状态偏移量Fd0 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffsetFe0 0xfe0               // 异常处理器数据偏移量Fe0 - 用于异常处理器数据存储
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -120013,23 +120021,23 @@ void CleanupExceptionMemoryBlocksA61(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xf40) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xf40))(exceptionHandlerContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionOffsetF40) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionOffsetF40))(exceptionHandlerContext + ExceptionHandlerParameterOffsetF30,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xf10) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetF08) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStatusOffsetF10) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xf10) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xf20) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xee8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xef0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStatusOffsetF10) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerDataOffsetF20) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetF08) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetEe8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStatusOffsetEf0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xef0) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xf00) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xee8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStatusOffsetEf0) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerDataOffsetF00) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetEe8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -138411,13 +138419,36 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
  * 该函数管理系统内存缓冲区的分配、验证和释放操作，
  * 确保内存使用的安全性和效率。
  * 
+ * 功能详情：
+ * - 参数验证：检查缓冲区大小是否在安全范围内
+ * - 内存分配：根据标志位分配系统内存
+ * - 边界验证：验证内存边界的安全性
+ * - 数据处理：执行内存缓冲区的数据处理操作
+ * - 资源清理：根据需要释放内存资源
+ * 
+ * 安全特性：
+ * - 输入参数验证
+ * - 内存边界检查
+ * - 错误状态处理
+ * - 资源自动清理
+ * 
  * @param MemoryBufferPointer 内存缓冲区指针
- * @param BufferSize 缓冲区大小
- * @param OperationFlags 操作标志位
- * @return int 操作结果状态码
+ * @param BufferSize 缓冲区大小（必须大于0且小于MaxSafeBufferSize）
+ * @param OperationFlags 操作标志位：
+ *        - 0x1: 内存分配模式
+ *        - 0x2: 内存数据处理模式
+ *        - 0x4: 内存释放模式
+ * @return int 操作结果状态码：
+ *        - 0: 操作成功
+ *        - -1: 无效缓冲区大小
+ *        - -2: 内存分配失败
+ *        - -3: 内存验证失败
+ *        - -4: 内存处理失败
  * 
  * @note 这是美化示例，展示了如何将逆向工程的代码转换为语义化的代码
  * @note 原始函数名：FUN_180123456
+ * @warning 调用者需要确保参数的有效性
+ * @see AllocateSystemMemoryA0, ValidateMemoryBoundary, ProcessMemoryBufferWithValidation
  */
 int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uint32_t OperationFlags)
 {
