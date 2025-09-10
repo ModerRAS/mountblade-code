@@ -72836,8 +72836,8 @@ void HandleExceptionDuringUnwindProcess(DataBuffer ExceptionContext, int64_t Han
 void UnwindExceptionHandlerA1(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(HandlerContext + 0x68) != (code *)0x0) {
-    (**(FunctionPointer**)(HandlerContext + 0x68))(HandlerContext + 0x58, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(HandlerContext + ExceptionCallbackOffset68) != (code *)0x0) {
+    (**(FunctionPointer**)(HandlerContext + ExceptionCallbackOffset68))(HandlerContext + 0x58, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }

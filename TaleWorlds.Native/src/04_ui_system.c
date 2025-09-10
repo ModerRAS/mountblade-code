@@ -148801,7 +148801,7 @@ int ValidateUIContext(longlong *uiContext,longlong *dataSource,char targetBuffer
 LAB_1807530cb:
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,2);
+    ProcessUISystemCleanup(componentHandle,2);
   }
   return sourceDataInt;
 }
@@ -148871,7 +148871,7 @@ int FUN_180752f3d(longlong uiContext)
 LAB_1807530cb:
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,2);
+    ProcessUISystemCleanup(componentHandle,2);
   }
   return sourceDataInt;
 }
@@ -154874,7 +154874,7 @@ ulonglong FUN_1807594d0(ulonglong uiContext,ulonglong dataSource,int targetBuffe
 LAB_1807595e2:
         if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-          ProcessUISystemCleanup(componentIndex,1);
+          ProcessUISystemCleanup(componentHandle,1);
         }
       }
     } while ((processingResult4 != 9) &&
@@ -154943,7 +154943,7 @@ LAB_1807595e2:
 LAB_180759812:
     if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-      ProcessUISystemCleanup(componentIndex,1);
+      ProcessUISystemCleanup(componentHandle,1);
     }
   }
   if ((int)loopCounter != 0) {
@@ -155070,7 +155070,7 @@ LAB_180759661:
 LAB_180759a33:
           if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-            ProcessUISystemCleanup(componentIndex,1);
+            ProcessUISystemCleanup(componentHandle,1);
           }
         }
       } while ((processingResult4 != 9) && (processingResult6 = processingResult6 + 1, processingResult6 < bufferSize));
@@ -155192,7 +155192,7 @@ LAB_180759a33:
 LAB_180759d46:
             if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-              ProcessUISystemCleanup(componentIndex,1);
+              ProcessUISystemCleanup(componentHandle,1);
             }
           }
           if ((result7 != 0) && (result7 != 9)) {
@@ -160279,11 +160279,11 @@ LAB_18075e20f:
           if (resultPointer != '\0') {
             if ((componentIndex != 0) && (bVar4)) {
                      WARNING: Subroutine does not return
-              ProcessUISystemCleanup(componentIndex,3);
+              ProcessUISystemCleanup(componentHandle,3);
             }
             if ((componentIndex != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
-              ProcessUISystemCleanup(componentIndex,1);
+              ProcessUISystemCleanup(componentHandle,1);
             }
           }
           goto LAB_18075dffb;
@@ -160296,11 +160296,11 @@ LAB_18075dfe8:
 LAB_18075dffb:
   if ((bVar4) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,3);
+    ProcessUISystemCleanup(componentHandle,3);
   }
   if ((IsValidationComplete) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,1);
+    ProcessUISystemCleanup(componentHandle,1);
   }
   return bufferValue;
 }
@@ -160729,7 +160729,7 @@ ulonglong FUN_18075e059(void)
 LAB_18075e172:
           if (!isCharacterMatch0) {
                      WARNING: Subroutine does not return
-            ProcessUISystemCleanup(componentIndex,1);
+            ProcessUISystemCleanup(componentHandle,1);
           }
         }
         if (loopCounter != 0) goto LAB_18075dfe8;
@@ -173874,7 +173874,7 @@ UIHandle FUN_18076af64(void)
       }
       if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-        ProcessUISystemCleanup(componentIndex,8);
+        ProcessUISystemCleanup(componentHandle,8);
       }
     }
     else {
@@ -173886,7 +173886,7 @@ UIHandle FUN_18076af64(void)
       *resultPointer = *resultPointer & 0xffffbfff;
       if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-        ProcessUISystemCleanup(componentIndex,8);
+        ProcessUISystemCleanup(componentHandle,8);
       }
     }
   }
@@ -180295,7 +180295,7 @@ UIDword FUN_18076e620(longlong uiContext,uint *dataSource,longlong targetBuffer,
   }
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,5);
+    ProcessUISystemCleanup(componentHandle,5);
   }
   return maxProcessingCount;
 }
@@ -180423,7 +180423,7 @@ LAB_18076e8e3:
   *(UIDword *)(uiBufferData + 0x2a4) = eventProcessingCounter;
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,5);
+    ProcessUISystemCleanup(componentHandle,5);
   }
   return 0;
 }
@@ -180727,7 +180727,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
 LAB_18076f24a:
   if ((bVar6) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,5);
+    ProcessUISystemCleanup(componentHandle,5);
   }
   return localInt7;
 }
@@ -181114,7 +181114,7 @@ int FUN_18076f660(longlong uiContext)
 LAB_18076f928:
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,5);
+    ProcessUISystemCleanup(componentHandle,5);
   }
   return localInt8;
 }
@@ -184715,7 +184715,7 @@ UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
         *pcontextDataHandle = (longlong)pcontextDataHandle;
         if ((ProcessingFlag) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-          ProcessUISystemCleanup(componentIndex,3);
+          ProcessUISystemCleanup(componentHandle,3);
         }
       }
       processingResult = (int)componentData[3];
@@ -199453,7 +199453,7 @@ UIHandle FUN_180782b42(void)
   **(longlong **)(contextHandle + 0x378) = (longlong)uiMemoryPointer;
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,6);
+    ProcessUISystemCleanup(componentHandle,6);
   }
   return 0;
 }
@@ -199565,7 +199565,7 @@ UIHandle FUN_180782d38(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
   **(longlong **)(contextHandle + 0x378) = (longlong)uiMemoryPointer;
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,6);
+    ProcessUISystemCleanup(componentHandle,6);
   }
   return 0;
 }
@@ -200148,7 +200148,7 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
     *uiMemoryPointer = (longlong)uiMemoryPointer;
     if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-      ProcessUISystemCleanup(componentIndex,6);
+      ProcessUISystemCleanup(componentHandle,6);
     }
     *(UIByte *)(uiContext + 0x220) = 0;
   }
@@ -200160,21 +200160,34 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180783660(longlong uiContext)
-void FUN_180783660(longlong uiContext)
+/**
+ * @brief 处理UI组件初始化和验证
+ * 
+ * 该函数处理UI组件的初始化和验证过程，包括：
+ * - UI上下文验证和初始化
+ * - 组件状态管理和同步
+ * - 字符串比较和数据处理
+ * - 加密和解密操作
+ * - 资源管理和清理
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名：FUN_180783660
+ */
+void ProcessUIComponentInitializationAndValidation(longlong uiContext)
 
 {
-  int *pprocessingResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  ulonglong processingStatus;
-  uint loopCounter;
-  ulonglong maxProcessingCount;
-  UIByte astackUInt218 [36];
-  UIByte astackUInt1f4 [476];
-  ulonglong stackUInt18;
+  int *uiProcessingResultPtr;
+  int uiValidationStatus;
+  longlong uiStringComparePtr;
+  ulonglong uiProcessingState;
+  uint uiLoopCounter;
+  ulonglong uiMaxProcessingCount;
+  UIByte uiEncryptionBuffer [36];
+  UIByte uiProcessingBuffer [476];
+  ulonglong uiXorKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt218;
+  uiXorKey = XorEncryptionKey ^ (ulonglong)uiEncryptionBuffer;
   uiValidationResult = FUN_18078a0c0(*(longlong *)(uiBufferData + 0xa8) + 0x720,uiContext + 0x218,1);
   if (uiValidationResult == 0) {
     FUN_180765990(*(UIHandle *)(uiContext + 0x218),1);
@@ -200756,7 +200769,7 @@ UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, floa
   **(longlong **)(uiContext + 0x378) = (longlong)uiMemoryPointer;
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,6);
+    ProcessUISystemCleanup(componentHandle,6);
   }
   return 0;
 }
@@ -200788,7 +200801,7 @@ UIHandle FUN_180784a05(void)
   **(longlong **)(contextHandle + 0x378) = (longlong)uiMemoryPointer;
   if ((componentHandle != 0) && (componentHandle != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,6);
+    ProcessUISystemCleanup(componentHandle,6);
   }
   return 0;
 }
@@ -203591,7 +203604,7 @@ ulonglong FUN_1807870ec(void)
   }
   if ((*(char *)(basePointer + -0x2c) != '\0') && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,*(UIDword *)(basePointer + -0x30));
+    ProcessUISystemCleanup(componentHandle,*(UIDword *)(basePointer + -0x30));
   }
   return eventProcessingCounter;
 }
@@ -208307,7 +208320,7 @@ int FUN_18078a340(longlong *uiContext,ulonglong dataSource,char targetBuffer)
 LAB_18078a3ed:
   if ((bVar4) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(componentIndex,localInt9);
+    ProcessUISystemCleanup(componentHandle,localInt9);
   }
   return localInt5;
 }
