@@ -72057,10 +72057,10 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   MatrixElement25 = 0.0;
   MatrixElement26 = 0.0;
   MatrixElement27 = 0.0;
-  MagnitudeSquared = (MagnitudeSquared + MagnitudeSquared) - MagnitudeSquared * MagnitudeSquared * aSystemInitializationStatusFlags._0_4_;
+  MagnitudeSquared = (MagnitudeSquared + MagnitudeSquared) - MagnitudeSquared * MagnitudeSquared * aSystemInitializationStatusFlags.PrimaryCoefficient;
   ResultValue2 = (ResultValue2 + ResultValue2) - ResultValue2 * ResultValue2 * aSystemInitializationStatusFlags.LowPart;
-  MatrixValue1 = (MatrixValue1 + MatrixValue1) - MatrixValue1 * MatrixValue1 * aSystemInitializationStatusFlags._8_4_;
-  MatrixValue2 = (MatrixValue2 + MatrixValue2) - MatrixValue2 * MatrixValue2 * aSystemInitializationStatusFlags._12_4_;
+  MatrixValue1 = (MatrixValue1 + MatrixValue1) - MatrixValue1 * MatrixValue1 * aSystemInitializationStatusFlags.SecondaryCoefficient;
+  MatrixValue2 = (MatrixValue2 + MatrixValue2) - MatrixValue2 * MatrixValue2 * aSystemInitializationStatusFlags.TertiaryCoefficient;
   pScalingFactor = systemDataIndexPtr;
   do {
     SystemOperationResult = SystemResourceManager;
