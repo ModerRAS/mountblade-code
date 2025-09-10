@@ -416,6 +416,7 @@
 
 // 异常列表偏移量常量
 #define ExceptionListStartOffset 0x10                          // 异常列表起始偏移量
+#define ExtendedHandlerContextOffset530 0x530                    // 扩展异常上下文偏移量530
 #define ExceptionHandlerPointerOffset530 0x530                  // 异常处理器指针偏移量530
 #define ExceptionHandlerPointerOffset550 0x550                  // 异常处理器指针偏移量550
 #define SystemCleanupFlagAlternative 0x4                        // 系统清理标志备选值
@@ -54643,7 +54644,7 @@ void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   *(DataWord *)(extendedHandlerContext + 0x560) = 0;
   *(DataBuffer *)(extendedHandlerContext + 0x548) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(extendedHandlerContext + 0x528) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(extendedHandlerContext + 0x530) != 0) {
+  if (*(int64_t *)(extendedHandlerContext + ExtendedHandlerContextOffset530) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(extendedHandlerContext + 0x530) = 0;
