@@ -118768,8 +118768,23 @@ void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulongl
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073619d(UIHandle uiContext,uint dataSource,ulonglong targetBuffer)
-void FUN_18073619d(UIHandle uiContext,uint dataSource,ulonglong targetBuffer)
+ /**
+ * @brief 处理UI事件编码转换和数据解码
+ * 
+ * 该函数负责处理UI系统中的事件编码转换，包括：
+ * - 事件代码的类型识别和转换
+ * - 处理状态的数据编码和解码
+ * - 缓冲区数据的批量处理
+ * - 事件数据的偏移计算和验证
+ * 
+ * @param uiContext UI上下文句柄，用于访问UI系统状态
+ * @param dataSource 数据源标识，指定要处理的数据类型
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * 
+ * @note 该函数包含SIMD指令优化，用于高效处理批量数据转换
+ * @note 内部使用pmovsxwd、pmulld等指令进行向量运算
+ */
+void ProcessUIEventEncodingConversion(UIHandle uiContext,uint dataSource,ulonglong targetBuffer)
 
 {
   UIHandle *resultPointer;
