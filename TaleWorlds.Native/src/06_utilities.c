@@ -12929,19 +12929,54 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define ProcessMemoryOperationA5 ProcessMemoryOperationA5
 
 /**
- * @brief 初始化工具模块
+ * @brief 初始化系统工具模块
  * 
- * 初始化系统工具模块，设置初始配置参数和资源指针。该函数负责：
- * 1. 初始化系统工具模块的内存结构
- * 2. 设置初始配置参数
- * 3. 初始化资源指针和内存管理器
- * 4. 配置异常处理机制
- * 5. 验证系统状态
+ * 该函数是TaleWorlds引擎工具模块的核心初始化函数，负责按顺序初始化所有
+ * 必要的子系统和服务。它采用分阶段初始化策略，确保每个阶段成功完成后
+ * 才进入下一阶段，如果任何阶段失败，函数会立即终止并设置相应的错误状态。
  * 
- * @note 原始函数名：InitializeUtilityModule
- * @warning 此函数必须在系统启动时调用，以确保工具模块正常工作
+ * 初始化阶段详细说明：
  * 
- * @see ProcessResourceCleanup, ValidateSystemParameters
+ * 阶段1 - 内存结构初始化：
+ *   - 分配和初始化系统内存管理所需的数据结构
+ *   - 设置内存池和堆管理器
+ *   - 初始化内存分配表和跟踪系统
+ * 
+ * 阶段2 - 系统参数配置：
+ *   - 加载系统配置参数
+ *   - 设置资源分配策略
+ *   - 配置性能优化参数
+ * 
+ * 阶段3 - 内存管理器初始化：
+ *   - 启动垃圾回收机制
+ *   - 初始化内存池管理器
+ *   - 设置内存分配策略
+ * 
+ * 阶段4 - 异常处理配置：
+ *   - 设置异常处理回调
+ *   - 初始化错误恢复机制
+ *   - 配置系统监控和诊断功能
+ * 
+ * 阶段5 - 系统状态验证：
+ *   - 验证所有子系统的完整性
+ *   - 检查系统资源分配状态
+ *   - 确认系统处于可用状态
+ * 
+ * @return void 无返回值，初始化结果通过全局状态变量UtilitySystemInitializationStatus反映
+ * 
+ * 可能的错误状态：
+ *   - SystemMemoryStructureInitFailed: 内存结构初始化失败
+ *   - SystemConfigurationFailed: 系统配置失败
+ *   - SystemMemoryManagerInitFailed: 内存管理器初始化失败
+ *   - SystemExceptionHandlerInitFailed: 异常处理器初始化失败
+ *   - SystemStateValidationFailed: 系统状态验证失败
+ *   - SystemInitializationSuccess: 初始化成功
+ * 
+ * @note 此函数必须在系统启动过程的早期阶段调用，通常在核心引擎初始化之后
+ * @warning 函数执行失败时，系统可能处于不稳定状态，建议重启系统
+ * 
+ * @see UtilitySystemInitializationStatus, InitializeSystemMemoryStructure, 
+ *      ConfigureSystemParameters, InitializeMemoryManager, ConfigureExceptionHandler
  */
 void InitializeUtilityModule(void)
 {

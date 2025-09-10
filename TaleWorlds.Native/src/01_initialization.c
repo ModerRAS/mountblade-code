@@ -72031,11 +72031,11 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   SystemAudioContext.PrimaryCoefficient = AudioInterpolationCoeff1 + SystemResourceCounterDecrement;
   SystemAudioContext.LowPart = AudioInterpolationCoeff2 + SystemResourceCounterDecrement;
   SystemAudioContext.SecondaryCoefficient = AudioInterpolationCoeff3 + SystemResourceCounterDecrement;
-  SystemAudioContext._12_4_ = AudioInterpolationCoeff4 + SystemResourceCounterDecrement;
-  SystemAudioStatusFlags._0_4_ = (float)SystemAudioContext._0_4_;
+  SystemAudioContext.TertiaryCoefficient = AudioInterpolationCoeff4 + SystemResourceCounterDecrement;
+  SystemAudioStatusFlags.PrimaryCoefficient = (float)SystemAudioContext.PrimaryCoefficient;
   SystemAudioStatusFlags.LowPart = (float)SystemAudioContext.LowPart;
-  SystemAudioStatusFlags._8_4_ = (float)SystemAudioContext._8_4_;
-  SystemAudioStatusFlags._12_4_ = (float)SystemAudioContext._12_4_;
+  SystemAudioStatusFlags.SecondaryCoefficient = (float)SystemAudioContext.SecondaryCoefficient;
+  SystemAudioStatusFlags.TertiaryCoefficient = (float)SystemAudioContext.TertiaryCoefficient;
   SystemAudioContext = rcpps(SystemAudioContext,SystemAudioStatusFlags);
   MatrixElement24 = 0.0;
   MatrixElement28 = 0.0;
