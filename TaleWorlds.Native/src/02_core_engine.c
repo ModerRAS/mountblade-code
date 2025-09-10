@@ -95703,7 +95703,7 @@ LAB_1801080f5:
   uint32_t MemoryPoolIndex;
   void *SystemEventTemplatePointer;
   uint MemoryAddressMaskPointer;
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   uint32_t aSystemProcessFlagB [2];
   uint32_t aOperationStatus [2];
   uint ErrorCode;
@@ -95723,7 +95723,7 @@ LAB_1801080f5:
   unsigned long long ProcessingFlags;
   
   SystemFlagE = 0xfffffffffffffffe;
-  ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   ErrorCode = 0;
   aOperationStatus[0] = 0;
   MemoryPoolIndex = 0;
@@ -95855,7 +95855,7 @@ LAB_180109ba3:
   }
   CheckSystemStatus(ContextHandle);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(ProcessingFlags ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(ProcessingFlags ^ (unsigned long long)ArrayStack118);
 }
 
 
@@ -202063,7 +202063,7 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t ContextHandle, uin
   uint8_t *SystemPointerValue170;
   uint32_t DataContentStatus;
   uint8_t aSystemUnsignedValue160 [72];
-  uint8_t auStack_118 [176];
+  uint8_t ArrayStack118 [176];
   uint8_t aStackProcessingValue [48];
   unsigned long long FunctionAddress;
   
@@ -202114,8 +202114,8 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t ContextHandle, uin
     else {
       SystemUnsignedValue180 = false;
     }
-    ProcessSystemStackDataAndCleanup(auStack_118);
-    ProcessSystemMemoryValidation(auStack_118);
+    ProcessSystemStackDataAndCleanup(ArrayStack118);
+    ProcessSystemMemoryValidation(ArrayStack118);
     DataContentPointer = &SystemValidationStatus;
     SystemPointerValue170 = aSystemUnsignedValue160;
     aSystemUnsignedValue160[0] = 0;
@@ -202125,7 +202125,7 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t ContextHandle, uin
       pMemoryAddressMaskPointer = puStack_360;
     }
     strcpy_s(aSystemUnsignedValue160,0x40,pMemoryAddressMaskPointer);
-    ProcessSystemDataExtractionAndPointerManagement(auStack_118,&DataContentPointer,&SystemCharacterStatusBufferPointer);
+    ProcessSystemDataExtractionAndPointerManagement(ArrayStack118,&DataContentPointer,&SystemCharacterStatusBufferPointer);
     DataContentPointer = &ThreadLocalStorageTemplate;
     *ContextHandleSize = &ThreadLocalStorageTemplate;
     OperationBufferSize[1] = 0;
@@ -202158,11 +202158,11 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t ContextHandle, uin
     uStack_2e8 = 0;
     uStack_2e0 = 0;
     SystemStateFlag = 0;
-    ProcessSystemStatusValidationAndMemoryManagement(auStack_118,&uStack_328);
+    ProcessSystemStatusValidationAndMemoryManagement(ArrayStack118,&uStack_328);
     ExecuteSystemMemoryCleanupAndResourceRelease(&uStack_328);
     ppuStack_3b8 = (void **)aStackProcessingValue;
     ProcessSystemStackDataAndCleanupOperations(aStackProcessingValue);
-    ExecuteSystemMemoryCleanupAndResourceRelease(auStack_118);
+    ExecuteSystemMemoryCleanupAndResourceRelease(ArrayStack118);
     SystemPointerBuffer1d8 = &ThreadLocalStorageTemplate;
     puStack_230 = &ThreadLocalStorageTemplate;
     ppuStack_3b8 = &SystemCharacterStatusBufferPointer;
@@ -218997,7 +218997,7 @@ void ManageSystemStringProcessingState(long long ContextHandle)
  */
 void ProcessSystemFlagsAndContextValidation(uint64_t ContextHandle)
 {
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   uint32_t SystemProcessFlagB;
   uint64_t OperationStatus;
   void **appErrorCode [2];
@@ -219010,7 +219010,7 @@ void ProcessSystemFlagsAndContextValidation(uint64_t ContextHandle)
   unsigned long long uStack_18;
   
   OperationStatus = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  uStack_18 = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   SystemProcessFlagB = 0;
   pSystemCleanupFlagF = &SystemValidationStatus;
   pSystemCleanupFlagG = aCoreEngineValueC0;
@@ -219026,7 +219026,7 @@ void ProcessSystemFlagsAndContextValidation(uint64_t ContextHandle)
   aCoreEnginePointerBuffer78[0] = &ThreadLocalStorageTemplate;
   pSystemCleanupFlagF = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)ArrayStack118);
 }
 
 
@@ -219936,7 +219936,7 @@ void ProcessUtf8EncodingConversion(uint64_t ContextHandle,uint64_t OperationBuff
  */
 void ProcessSystemFlagsAndStatusManagement(uint64_t ContextHandle)
 {
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   uint32_t SystemProcessFlagB;
   uint64_t OperationStatus;
   void **appErrorCode [2];
@@ -219949,7 +219949,7 @@ void ProcessSystemFlagsAndStatusManagement(uint64_t ContextHandle)
   unsigned long long uStack_18;
   
   OperationStatus = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  uStack_18 = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   SystemProcessFlagB = 0;
   pSystemCleanupFlagF = &SystemValidationStatus;
   pSystemCleanupFlagG = aCoreEngineValueC0;
@@ -219965,7 +219965,7 @@ void ProcessSystemFlagsAndStatusManagement(uint64_t ContextHandle)
   aCoreEnginePointerBuffer78[0] = &ThreadLocalStorageTemplate;
   pSystemCleanupFlagF = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)ArrayStack118);
 }
 
 
@@ -224372,7 +224372,7 @@ void ProcessLongIntegerContextHandle(long long ContextHandle, long long *Context
   void *CurrentNode;
   uint32_t *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   uint32_t SystemProcessFlagB;
   long long lStack_f0;
   uint32_t *pErrorCode;
@@ -224391,7 +224391,7 @@ void ProcessLongIntegerContextHandle(long long ContextHandle, long long *Context
   unsigned long long SystemStackFlag;
   
   MemoryOffsetValue = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   StringProcessingStatus = (uint32_t *)0x0;
   SystemProcessFlagB = 0;
   lStack_f0 = 0;
@@ -224481,7 +224481,7 @@ LAB_1801859b0:
     Utf8SourcePointer[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)ArrayStack118);
 }
 
 
@@ -230420,7 +230420,7 @@ long long * ProcessSystemContextAndCharacterData(long long *ContextHandle,uint64
       ContextHandle[4] = ContextHandle[4] + -1;
       GetNextMemoryBlockIndex(SystemContextRegister);
       ProcessingStatusFlag = ProcessSystemEventAndCharacterEncoding(MemoryPoolBlockSizePointer,ContextHandle);
-      FUN_180058830(ProcessingStatusFlag,MemoryPoolBlockSizePointer);
+      ProcessSystemStatus(ProcessingStatusFlag,MemoryPoolBlockSizePointer);
     }
     *ContextHandleSize = &SystemNullTemplate;
     if (OperationBufferSize[1] != 0) {
@@ -230680,7 +230680,7 @@ LAB_18018c80b:
         }
         if (SystemCharacterStatusBuffer == CharacterStatusBuffer) {
 LAB_18018c849:
-          SystemCharacterStatusBuffer = (void *)FUN_1800c2ab0(CharacterStatusBuffer,auStackX_20);
+          SystemCharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(CharacterStatusBuffer,auStackX_20);
           SystemCharacterStatusBuffer = (void *)*SystemCharacterStatusBuffer;
         }
         else if (*(int *)(SystemCharacterStatusBuffer + 6) != 0) {
@@ -230820,7 +230820,7 @@ LAB_18018c6bb:
         }
         if (TemporaryBuffer == CharacterStatusBuffer) {
 LAB_18018c6f9:
-          TemporaryBuffer = (void *)FUN_1800c2ab0(CharacterStatusBuffer,&SystemRegisterFlag,MemoryAllocationOffset,TemporaryBuffer,&EncodingBuffer);
+          TemporaryBuffer = (void *)ProcessCharacterStatusBuffer(CharacterStatusBuffer,&SystemRegisterFlag,MemoryAllocationOffset,TemporaryBuffer,&EncodingBuffer);
           TemporaryBuffer = (void *)*TemporaryBuffer;
         }
         else if (*(int *)(TemporaryBuffer + 6) != 0) {
@@ -262114,7 +262114,7 @@ LAB_180214378:
   uint64_t SystemStackOffset138;
   uint32_t TemporaryFlag;
   uint64_t BufferInitializationFlag;
-  uint8_t auStack_118 [224];
+  uint8_t ArrayStack118 [224];
   unsigned long long FunctionAddress;
   
   BufferInitializationFlag = 0xfffffffffffffffe;
@@ -262159,7 +262159,7 @@ LAB_180214378:
     else if (*(char *)((long long)ContextHandle + 0x401) != '\0') {
       *(uint8_t *)((long long)ContextHandle + 0x401) = 0;
                     // WARNING: Subroutine does not return
-      memset(auStack_118,0,0xd8);
+      memset(ArrayStack118,0,0xd8);
     }
   }
   if ((void *)*ContextHandle == &SystemContextSecondary) {
@@ -264994,7 +264994,7 @@ LAB_180216e0c:
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  uint8_t auStack_118 [224];
+  uint8_t ArrayStack118 [224];
   
   Utf16Char = MemoryAllocate(MemoryPoolManager,0xb8,8,3);
   BufferStatus = FUN_180211930(Utf16Char);
@@ -265004,7 +265004,7 @@ LAB_180216e0c:
   *(uint32_t *)(BufferStatus + 0x6c) = 0;
   *(uint32_t *)(ContextHandle + 0x480) = 0;
                     // WARNING: Subroutine does not return
-  memset(auStack_118,0,0xe0);
+  memset(ArrayStack118,0,0xe0);
 }
 
 
@@ -265019,7 +265019,7 @@ LAB_180216e0c:
   uint8_t *memoryAllocationBuffer;
   long long lStack_128;
   uint64_t DataProcessingFlags;
-  uint8_t auStack_118 [232];
+  uint8_t ArrayStack118 [232];
   uint64_t ProcessingFlags;
   unsigned long long uStack_18;
   
@@ -265037,8 +265037,8 @@ LAB_180216e0c:
   LockOperationResult = FUN_180754f10(LoopCounter,&DataProcessingFlags,&lStack_128);
   if (((LockOperationResult != 0) || (LockOperationResult = ValidateSystemDataProcessingFlags(DataProcessingFlags), LockOperationResult != 0)) &&
      ((*(byte *)(SystemCharacterStatusBufferPointerB + 0x10) & 0x80) != 0)) {
-    memoryAllocationBuffer = auStack_118;
-    auStack_118[0] = 0;
+    memoryAllocationBuffer = ArrayStack118;
+    ArrayStack118[0] = 0;
                     // WARNING: Subroutine does not return
     FUN_180749ef0(LockOperationResult,3,LoopCounter,&SystemStringProcessingBuffer);
   }
@@ -283623,7 +283623,7 @@ LAB_180227e59:
 
  void CoreEngineProcessNetworkConnection(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointervoid CoreEngineProcessNetworkConnection(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer
 {
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   void **ppSystemProcessFlagB;
   uint64_t OperationStatus;
   uint32_t ErrorCode;
@@ -283651,7 +283651,7 @@ LAB_180227e59:
   unsigned long long uStack_18;
   
   OperationStatus = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  uStack_18 = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   SystemMemoryPointer = &SystemValidationStatus;
   pMemoryOffsetValue = aCoreEngineValueA8;
   SystemStackRegisterBuffer = 0;
@@ -283684,7 +283684,7 @@ LAB_180227e59:
   ppSystemProcessFlagB = &SystemMemoryPointer;
   SystemMemoryPointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)ArrayStack118);
 }
 
 
@@ -288879,7 +288879,7 @@ long long ProcessSystemMemoryAllocation(long long ContextHandle,uint64_t Operati
   long long BufferIndex;
   uint64_t *ProcessingStatusPointer;
   uint32_t VectorRegisterDa;
-  uint8_t auStack_118 [32];
+  uint8_t ArrayStack118 [32];
   long long *PreviousContextPointer;
   uint64_t OperationStatus;
   uint64_t ErrorCode;
@@ -288896,7 +288896,7 @@ long long ProcessSystemMemoryAllocation(long long ContextHandle,uint64_t Operati
   unsigned long long SystemStackFlag;
   
   MemoryOffsetValue = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_118;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)ArrayStack118;
   EncodingConversionResult = FUN_180255f80(*(void *)(ContextHandle + 0xa8),&SystemUnknownProcessingStatusFlagP,Utf8SourcePointer + 0x20);
   if (EncodingConversionResult == 0) {
     PreviousContextPointer = *(long long **)(ContextHandle + 0x1e0);
@@ -289109,7 +289109,7 @@ LAB_18022e4c7:
   FUN_18022d860(ContextHandle);
   FUN_18022ce40(ContextHandle);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)auStack_118);
+  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)ArrayStack118);
 }
 
 
