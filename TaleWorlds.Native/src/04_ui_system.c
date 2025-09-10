@@ -101066,9 +101066,9 @@ UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource,
           loopCounter = 0x7fff;
         }
         *uiContext = loopCounter;
-        sourceDataInt = sourceDataInt + param_7;
+        sourceDataInt = sourceDataInt + stepValue;
         uiContext = uiContext + 1;
-      } while (sourceDataInt < param_6);
+      } while (sourceDataInt < iterationCount);
       return uiContext;
     }
   }
@@ -101121,9 +101121,9 @@ UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource,
         loopCounter = 0x7fff;
       }
       *uiContext = loopCounter;
-      sourceDataInt = sourceDataInt + param_7;
+      sourceDataInt = sourceDataInt + stepValue;
       uiContext = uiContext + 1;
-    } while (sourceDataInt < param_6);
+    } while (sourceDataInt < iterationCount);
     return uiContext;
   }
   return uiContext;
@@ -110404,8 +110404,15 @@ void FUN_18072d250(void)
 
 
 
- void FUN_18072d260(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_18072d260(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI数据变换和矩阵运算
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源数组
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @note 原始函数名：FUN_18072d260 - UI数据变换处理器
+ */
+void ProcessUIDataTransformAndMatrixOperation(longlong uiContext, float *dataSource, longlong targetBuffer, int bufferSize)
 
 {
   float *BaseValuePointer;
@@ -145589,24 +145596,47 @@ UIHandle FUN_180750bc0(longlong uiContext,int dataSource,UIHandle *targetBuffer)
 
 
 
-UIHandle
-FUN_180750bf2(longlong uiContext,UIHandle dataSource,UIHandle *targetBuffer,UIHandle bufferSize,
-             UIHandle resultPointer,longlong param_6,UIHandle param_7,UIHandle param_8,
-             UIHandle param_9,ulonglong uiContext0,UIHandle uiContext1,UIHandle uiContext2)
+/**
+ * @brief 处理UI上下文数据传输和组件状态管理
+ * 
+ * 该函数负责处理UI上下文中的数据传输，包括：
+ * - 验证和处理UI组件状态
+ * - 管理UI上下文的生命周期
+ * - 处理组件间的数据传递
+ * - 执行必要的锁定和解锁操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6 - 上下文标志
+ * @param param_7 参数7 - 上下文数据
+ * @param param_8 参数8 - 上下文扩展数据
+ * @param param_9 参数9 - 上下文配置
+ * @param uiContext0 上下文实例0
+ * @param uiContext1 上下文实例1
+ * @param uiContext2 上下文实例2
+ * @return UIStatus 处理状态，0表示成功，非0表示错误
+ */
+UIStatus
+ProcessUIContextDataTransfer(longlong uiContext, UIHandle dataSource, UIHandle *targetBuffer, UIHandle bufferSize,
+                            UIHandle resultPointer, longlong param_6, UIHandle param_7, UIHandle param_8,
+                            UIHandle param_9, ulonglong uiContext0, UIHandle uiContext1, UIHandle uiContext2)
 
 {
-  uint *ptrResult;
+  uint *resultPointer;
   longlong componentIndex;
   longlong stringCompareIndex;
-  uint ProcessingStatus;
-  int localInt5;
-  longlong registerAX;
+  uint processingStatus;
+  int contextState;
+  longlong contextRegister;
   UIHandle maxProcessingCount;
-  ulonglong BasePointer;
-  UIHandle SourceHandle;
-  longlong *plocalLong7;
+  ulonglong basePointer;
+  UIHandle sourceHandle;
+  longlong *componentData;
   UIHandle preservedRegister12;
-  longlong EventHandle;
+  longlong eventHandle;
   UIHandle *preservedRegister15;
   
   *(UIHandle *)(registerAX + 0x10) = SourceHandle;
