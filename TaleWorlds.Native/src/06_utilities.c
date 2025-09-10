@@ -112262,8 +112262,8 @@ void ProcessExceptionContextIterationAtOffset330(DataBuffer operationBase,int64_
   int64_t *dataContext;
   int64_t *memoryBlockOffset;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x210);
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x218);
+  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + MemoryResourcePointerOffsetQuinary);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffset218);
   for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
     if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
       (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
