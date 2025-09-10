@@ -30191,12 +30191,12 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               SystemConfigurationDataWordJ = *(DataWord *)(dataContext + DataOperationOffset48);
               SystemConfigurationDataWordK = *(DataWord *)(dataContext + DataOperationOffset4c);
               SystemConfigurationDataWordL = *(DataWord *)(dataContext + DataOperationOffset50);
-              SystemConfigurationData54 = *(DataWord *)(dataContext + DataOperationOffset54);
+              SystemConfigurationDataPrimary = *(DataWord *)(dataContext + DataOperationOffset54);
               // 初始化安全检查和重置数据
               StackPointerBufferD = &SystemSecurityCheckReference;
               SystemResetDataWordH = 0;
               // 获取系统上下文偏移数据
-              SystemConfigurationData58 = *(DataWord *)(dataContext + DataOperationOffset58);
+              SystemConfigurationDataSecondary = *(DataWord *)(dataContext + DataOperationOffset58);
               SystemConfigurationData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
               SystemConfigurationData60 = *(DataWord *)(dataContext + DataOperationOffset60);
               // 获取系统安全验证数据
@@ -30419,11 +30419,11 @@ void ProcessDataTypes(void)
         operationResult3 = (uint64_t)(uint)dataPointerD;
         operationResult0 = (uint64_t)(uint)dataPointerD;
         do {
-          exceptionContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
+          ExceptionContext = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
           dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionContext5);
           memoryRegionOffset = *(int64_t *)(operationResult0 + 8 + exceptionContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
-          memoryResourcePointer2 = StackPointerRegisterA;
+          MemoryResourcePointer = StackPointerRegisterA;
           if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryRegionOffset + SystemParameterValidationOffset28))) {
             operationResult4 = *(DataWord *)(operationResult0 + 4 + exceptionContext5);
             StackFrameContext[-4] = &SystemMemoryInitializationReference;
@@ -30431,7 +30431,7 @@ void ProcessDataTypes(void)
             memoryRegionBase = (DataBuffer *)*StackPointerRegisterA;
             *(DataWord *)(StackFrameContext + -1) = operationResult4;
             *(DataWord *)(StackFrameContext + -3) = 0;
-            exceptionContext5 = (*(code *)*memoryRegionBase)(StackPointerRegisterA);
+            ExceptionContext = (*(code *)*memoryRegionBase)(StackPointerRegisterA);
             *StackFrameContext = *(DataBuffer *)(*(int64_t *)(exceptionContext5 + systemContextPointerOffset90) + operationResult3 * 8);
             *(ByteFlag *)((int64_t)StackFrameContext + -4) = 0;
             if (*(int *)(dataContext + DataContextOffset58) < 1) {
@@ -30665,7 +30665,7 @@ SystemDataValidationCheckpoint:
     operationResult0 = (uint64_t)(uint)dataPointerD;
     StackLoopCounter = systemInputAccumulator;
     do {
-      exceptionContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
+      ExceptionContext = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
       dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionContext5);
       memoryRegionOffset = *(int64_t *)(operationResult0 + 8 + exceptionContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);

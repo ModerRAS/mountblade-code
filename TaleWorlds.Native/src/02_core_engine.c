@@ -248610,36 +248610,36 @@ uint64_t * ProcessUtf8ToUtf16EncodingAndMemoryAllocation(uint64_t *ContextHandle
   CharacterStatusBuffer = OperationBufferSize + ((long long)Utf8SourcePointer - (long long)OperationBufferSize >> SystemEventContextShiftCount) * 2;
   SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - (long long)OperationBufferSize) >> 4;
   if (SystemDataTablePointer < 0x29) {
-    ProcessSystemBufferOperation(OperationBufferSize,CharacterStatusBuffer,Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize, CharacterStatusBuffer, Utf8SourcePointer + -2);
   }
   else {
-    LoopIndex = SystemDataTablePointer + 1 >> 3;
-    SystemDataTablePointer = LoopIndex * 0x10;
-    ProcessSystemBufferOperation(OperationBufferSize,OperationBufferSize + LoopIndex * 2,OperationBufferSize + LoopIndex * 4);
-    ProcessSystemBufferOperation((long long)CharacterStatusBuffer - SystemDataTablePointer,CharacterStatusBuffer,SystemDataTablePointer + (long long)CharacterStatusBuffer);
+    CharacterLoopIndex = SystemDataTablePointer + 1 >> 3;
+    SystemDataTablePointer = CharacterLoopIndex * 0x10;
+    ProcessSystemBufferOperation(OperationBufferSize, OperationBufferSize + CharacterLoopIndex * 2, OperationBufferSize + CharacterLoopIndex * 4);
+    ProcessSystemBufferOperation((long long)CharacterStatusBuffer - SystemDataTablePointer, CharacterStatusBuffer, SystemDataTablePointer + (long long)CharacterStatusBuffer);
     SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - SystemDataTablePointer);
-    ProcessSystemBufferOperation(Utf8SourcePointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8SourcePointer + -2);
-    ProcessSystemBufferOperation(OperationBufferSize + LoopIndex * 2,CharacterStatusBuffer,SystemDataTablePointer);
+    ProcessSystemBufferOperation(Utf8SourcePointer + CharacterLoopIndex * -4 + -2, SystemDataTablePointer, Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize + CharacterLoopIndex * 2, CharacterStatusBuffer, SystemDataTablePointer);
   }
   StringProcessingStatus = CharacterStatusBuffer + 2;
   if (OperationBufferSize < CharacterStatusBuffer) {
     while( true ) {
       IntegerValue = *(int *)(CharacterStatusBuffer + -1);
-      LockOperationResult = *(int *)(CharacterStatusBuffer + 1);
-      if (IntegerValue == LockOperationResult) {
-        LowByte = *(int *)((long long)CharacterStatusBuffer + -4) < *(int *)((long long)CharacterStatusBuffer + 0xc);
+      LockOperationStatus = *(int *)(CharacterStatusBuffer + 1);
+      if (IntegerValue == LockOperationStatus) {
+        IsHighByteSet = *(int *)((long long)CharacterStatusBuffer + -4) < *(int *)((long long)CharacterStatusBuffer + 0xc);
       }
       else {
-        LowByte = LockOperationResult < IntegerValue;
+        IsHighByteSet = LockOperationStatus < IntegerValue;
       }
-      if (LowByte) break;
-      if (LockOperationResult == IntegerValue) {
-        LowByte = *(int *)((long long)CharacterStatusBuffer + 0xc) < *(int *)((long long)CharacterStatusBuffer + -4);
+      if (IsHighByteSet) break;
+      if (LockOperationStatus == IntegerValue) {
+        IsHighByteSet = *(int *)((long long)CharacterStatusBuffer + 0xc) < *(int *)((long long)CharacterStatusBuffer + -4);
       }
       else {
-        LowByte = IntegerValue < LockOperationResult;
+        IsHighByteSet = IntegerValue < LockOperationStatus;
       }
-      if ((LowByte) || (CharacterStatusBuffer = CharacterStatusBuffer + -2, CharacterStatusBuffer <= OperationBufferSize)) break;
+      if ((IsHighByteSet) || (CharacterStatusBuffer = CharacterStatusBuffer + -2, CharacterStatusBuffer <= OperationBufferSize)) break;
     }
   }
   StringProcessingStatus = StringProcessingStatus;
