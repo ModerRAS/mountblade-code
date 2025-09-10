@@ -29120,8 +29120,8 @@ void ProcessDataTypes(void)
   DataWord CalculatedFloatValue;          // 计算的浮点值 - 用于存储计算的浮点数值
   DataWord NormalizedFloatValue;          // 标准化的浮点值 - 标准化后的浮点数值
   DataWord InterpolatedFloatValue;         // 插值的浮点值 - 插值计算后的浮点数值
-  float floatValidationValue;             // 浮点验证值 - 用于验证浮点数据
-  DataWord accumulatedFloatValue;         // 累积的浮点值 - 累积计算后的浮点数值
+  float FloatValidationValue;             // 浮点验证值 - 用于验证浮点数据
+  DataWord AccumulatedFloatValue;         // 累积的浮点值 - 累积计算后的浮点数值
   DataWord processedFloatValue;            // 处理后的浮点值 - 处理后的浮点数值
   DataWord transformedFloatValue;          // 变换后的浮点值 - 经过变换的浮点数值
   DataWord secondaryFloatResultA;          // 次要浮点结果A - 第二个浮点计算结果
@@ -29633,10 +29633,10 @@ void ProcessFloatingPointData(float inputValue)
   float contextValue;
   DataWord contextFlags;
   float stackInputValue;
-  float systemContextBuffer40;
-  float systemContextBuffer44;
+  float SystemContextBuffer40;
+  float SystemContextBuffer44;
   float secondaryInputValue;
-  float validationFloatValue;    // 验证浮点数值
+  float ValidationFloatValue;    // 验证浮点数值
   float arrayIterationCounter;   // 数组迭代计数器
   float *floatDataArrayPointer;  // 浮点数据数组指针
   
