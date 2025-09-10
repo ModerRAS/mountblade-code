@@ -399830,7 +399830,7 @@ LAB_18089cbf6:
             if ((int)eventCodeType != 0) {
               return eventCodeType;
             }
-            eventCode = FUN_1808de0e0(dataSource,bufferValidation);
+            eventCode = ValidateUIDataBufferIntegrityAndSecurity(dataSource,bufferValidation);
             if ((int)eventCodeType != 0) {
               return eventCodeType;
             }
