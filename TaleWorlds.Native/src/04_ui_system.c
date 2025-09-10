@@ -116715,8 +116715,7 @@ void ProcessUITextEncodingAndEventGeneration(UIHandle uiContext, UIHandle dataSo
 
 
 
- void FUN_180734467(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,int bufferSize)
-/**
+ /**
  * @brief 处理UI上下文数据转换和迭代操作
  * 
  * 该函数负责处理UI上下文中的数据转换操作，包括：
@@ -116760,14 +116759,13 @@ void ProcessUIContextDataTransformation(UIHandle uiContext, UIHandle dataSource,
     else {
       iterationCount = 0x7fff;
     }
-    *(UIWord *)(contextDataHandle + (longlong)targetBuffer) = iterationCount;
+    *(UIWord *)(contextDataOffset + (longlong)targetBuffer) = iterationCount;
     bufferSize = bufferSize + 1;
     targetBuffer = targetBuffer + 1;
-    dataRegisterPtr = dataRegisterPtr + 1;
-  } while (bufferSize < *(short *)(componentData + 2));
-  FUN_1807376c0();
-                     WARNING: Subroutine does not return
+    dataPointer = dataPointer + 1;
+  } while (bufferSize < *(short *)(componentDataPtr + 2));
   ExecuteUIRenderTask(stackParameter ^ (ulonglong)&stack0x00000000);
+                     // WARNING: Subroutine does not return
 }
 
 
