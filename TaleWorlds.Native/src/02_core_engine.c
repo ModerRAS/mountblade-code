@@ -77459,12 +77459,26 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
  * @note 每个8位颜色分量被转换为0.0-1.0范围的浮点数（乘以0.003921569，即1/255）
  * @note 存储位置：+0x238=红色，+0x23c=绿色，+0x240=蓝色，+0x244=透明度
  */
-void ConvertArgbToFloatColorComponents(long long ColorDataStructure, uint ArgbColorValue
+ * 
+ * 该函数将32位ARGB颜色值分解为RGBA四个浮点型颜色分量：
+ * - 提取红色分量并转换为浮点值
+ * - 提取绿色分量并转换为浮点值
+ * - 提取蓝色分量并转换为浮点值
+ * - 提取alpha分量并转换为浮点值
+ * 
+ * @param colorDataStructure 颜色数据结构指针，用于存储转换后的浮点颜色分量
+ * @param argbColorValue 32位ARGB颜色值（格式：AARRGGBB）
+ * 
+ * @note 每个颜色分量的转换范围：0.0f - 1.0f
+ * @note 转换因子：0.003921569 (1.0/255.0)
+ * @note 分量存储偏移量：Red(0x238), Green(0x23c), Blue(0x240), Alpha(0x244)
+ */
+void ConvertArgbToFloatColorComponents(long long colorDataStructure, uint argbColorValue)
 {
-  *(float *)(ColorDataStructure + 0x238) = (float)(ArgbColorValue >> 0x10 & 0xff) * 0.003921569;
-  *(float *)(ColorDataStructure + 0x23c) = (float)(ArgbColorValue >> 8 & 0xff) * 0.003921569;
-  *(float *)(ColorDataStructure + 0x240) = (float)(ArgbColorValue & 0xff) * 0.003921569;
-  *(float *)(ColorDataStructure + 0x244) = (float)(ArgbColorValue >> 0x18) * 0.003921569;
+  *(float *)(colorDataStructure + 0x238) = (float)(argbColorValue >> 0x10 & 0xff) * 0.003921569;
+  *(float *)(colorDataStructure + 0x23c) = (float)(argbColorValue >> 8 & 0xff) * 0.003921569;
+  *(float *)(colorDataStructure + 0x240) = (float)(argbColorValue & 0xff) * 0.003921569;
+  *(float *)(colorDataStructure + 0x244) = (float)(argbColorValue >> 0x18) * 0.003921569;
   return;
 }
 
