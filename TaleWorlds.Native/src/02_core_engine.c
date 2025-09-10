@@ -23,7 +23,7 @@
 #define ClearIosState ClearIoStreamState
 #define GetIstreamLine GetInputStreamLine
 #define DestroyBasicIostreamFinal DestroyInputOutputStreamObjectFinal
-#define InitializeBasicIostream __0__basic_iostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__Z
+#define InitializeBasicIostream InitializeInputOutputStreamObject
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
