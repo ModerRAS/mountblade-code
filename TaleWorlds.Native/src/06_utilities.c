@@ -1172,6 +1172,10 @@
 #define ExceptionHandlingOffset70 0x70
 #define ExceptionHandlingOffset78 0x78
 
+// 目标上下文偏移量常量
+#define DestinationContextDataOffset60 0x60
+#define DestinationContextValidationOffset100 100
+
 // 系统数据结构偏移量常量
 #define SystemDataSizeOffset48 0x48
 #define SystemDataPointerOffset40 0x40
@@ -34362,8 +34366,8 @@ DataBuffer CleanupDataResourcesA0(void)
     }
     exceptionContext = *registerContext;
     stackBuffer = StackFrameContext;
-    validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x60,4);
-    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 100,2), (int)validationStatus == 0)) &&
+    validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextDataOffset60,4);
+    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextValidationOffset100,2), (int)validationStatus == 0)) &&
        (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextProcessorExtendedOffset,2), (int)validationStatus == 0)) {
       validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextProcessorSecondaryOffset,8);
     }

@@ -224307,7 +224307,14 @@ LAB_1801859b0:
 
 
 
-85a90(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180185a90(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理优化双指针编码
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessOptimizedDualPointerEncoding(long long ContextHandle, uint64_t *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
@@ -224382,7 +224389,13 @@ LAB_180185b78:
 
 
 
-85c00(int ContextHandle,uint16_t *ContextHandleSize,long long *Utf8SourcePointervoid FUN_180185c00(int ContextHandle,uint16_t *ContextHandleSize,long long *Utf8SourcePointer
+/**
+ * 处理短整型上下文句柄
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ */
+void ProcessShortIntegerContextHandle(int ContextHandle, uint16_t *ContextHandleSize, long long *Utf8SourcePointer)
 {
   code *ValidationStatus;
   long long *BufferAllocationStatus;
