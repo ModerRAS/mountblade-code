@@ -111879,16 +111879,16 @@ void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64
   int64_t MemoryBlock2;
   int64_t MemoryBlock3;
   int64_t MemoryBlock4;
-  int unmodifiedEBX;
-  longlong TargetHandle;
-  longlong allocatedMemory5;
-  longlong register10;
-  longlong RegisterPointer;
-  float in_XMM2_Da;
-  float baseValue6;
-  float finalResult;
-  float in_XMM3_Dc;
-  float in_XMM3_Dd;
+  int UnmodifiedEBX;
+  int64_t TargetHandle;
+  int64_t MemoryBlock5;
+  int64_t Register10;
+  int64_t RegisterPointer;
+  float XMM2RegisterValue;
+  float BaseValue6;
+  float FinalResult;
+  float XMM3RegisterValueC;
+  float XMM3RegisterValueD;
   
   finalResult = (float)((ulonglong)bufferSize >> 0x20);
   baseValue6 = (float)bufferSize;
