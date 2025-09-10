@@ -175353,6 +175353,21 @@ void FUN_18076b867(void)
 
 
 
+/**
+ * @brief 处理UI数据缓冲区操作
+ * 
+ * 该函数执行UI数据缓冲区的各种操作，包括格式化字符串输出和数据缓冲区管理。
+ * 它使用标准库的vsprintf函数来格式化输出到UI上下文缓冲区，并处理各种边界情况。
+ * 
+ * @param uiContext UI上下文指针，用于存储格式化后的数据
+ * @param dataSource 数据源大小，控制缓冲区操作的范围
+ * @param targetBuffer 目标缓冲区句柄，用于数据处理
+ * @param bufferSize 缓冲区大小参数，用于防止缓冲区溢出
+ * @return ulonglong 返回处理后的状态或结果
+ * 
+ * @note 原始函数名：FUN_18076b930
+ * @note 该函数是UI系统中核心的数据缓冲区处理函数，支持格式化输出
+ */
 ulonglong FUN_18076b930(UIByte *uiContext,ulonglong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {

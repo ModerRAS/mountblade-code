@@ -31372,13 +31372,13 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
   uint64_t stackGuardValue;
   int64_t *contextProcessingArray [2];
   int64_t memoryAddressOffset;
-  int64_t *pointerStackBuffer318;
-  DataBuffer resourceStackBuffer310;
-  float floatValidationDataBuffer8 [2];
+  int64_t *pointerStackBuffer;
+  DataBuffer resourceStackBuffer;
+  float floatValidationDataBuffer [2];
   int64_t contextProcessingBuffer [2];
   ByteFlag dataStackBuffer2f0 [8];
   DataBuffer validationStackBuffer2e8 [2];
-  uint8_t *pointerStackBuffer;
+  uint8_t *dataPointerStackBuffer;
   DataWord validationStackData;
   float floatStackValue;
   uint calculatedResultStackValue;

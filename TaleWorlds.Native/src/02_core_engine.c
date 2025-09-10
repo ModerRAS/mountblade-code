@@ -228690,7 +228690,23 @@ void ProcessSystemMemoryBlockAndFloatingPointCalculations(long long ContextHandl
 
 
 
-8b740(long long ContextHandlevoid FUN_18018b740(long long ContextHandle
+/**
+ * @brief 初始化系统缓冲区和事件处理
+ * 
+ * 该函数负责初始化系统缓冲区和事件处理，主要功能包括：
+ * - 分配内存并设置缓冲区状态
+ * - 配置数据节点模板和系统内存边界
+ * - 处理线程本地存储和系统配置
+ * - 执行系统事件模板处理
+ * - 设置浮点数值常量
+ * - 管理缓冲区状态和内存边界
+ * 
+ * @param ContextHandle 上下文句柄，用于系统资源管理
+ * 
+ * @note 原始函数名：FUN_18018b740
+ */
+#define InitializeSystemBufferAndEventHandling FUN_18018b740
+void InitializeSystemBufferAndEventHandling(long long ContextHandle)
 {
   long long *ContextHandle;
   long long *BufferAllocationStatus;
