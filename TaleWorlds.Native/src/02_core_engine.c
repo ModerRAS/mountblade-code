@@ -106178,7 +106178,7 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
   char *pcStack_148;
   uint64_t SystemStatusValue;
   char SystemParameterValidationFlag;
-  char acStack_137 [3];
+  char aCharStackValue137 [3];
   float fStack_134;
   float fStack_130;
   float fStack_128;
@@ -106270,7 +106270,7 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
     ValidationStatus0 = ValidateSystemData(&FloatStackValue108,MatchCounter,&SystemProcessFlagB);
     if (ValidationStatus0 != '\0') {
       pfStack_158 = (float *)((unsigned long long)pfStack_158 & 0xffffffff00000000);
-      acStack_137[0] = ProcessSystemParameters(&SystemProcessFlagB,MatchCounter,&SystemParameterValidationFlag,acStack_137);
+      aCharStackValue137[0] = ProcessSystemParameters(&SystemProcessFlagB,MatchCounter,&SystemParameterValidationFlag,aCharStackValue137);
       ProcessingStatusFlag = OperationStatus;
       MemoryAllocationHandle = SystemProcessFlagB;
       if ((*(int *)(AllocatedMemorySize + 0x1bc0) < *(int *)(AllocatedMemorySize + 0x1bb0)) &&
@@ -106367,7 +106367,7 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
         ProcessSystemConfigurationAndStack(CONCAT44(FloatOffsetValue + *(float *)(AllocatedMemorySize + 0x1660),
                                ContextSecondaryFloat5 + *(float *)(AllocatedMemorySize + 0x1674)),pcStack_e8,0,1);
       }
-      if ((acStack_137[0] == '\0') && (*(int *)(AllocatedMemorySize + 0x1ca4) != MatchCounter)) {
+      if ((aCharStackValue137[0] == '\0') && (*(int *)(AllocatedMemorySize + 0x1ca4) != MatchCounter)) {
         if (!LowByte) goto LAB_180112f8f;
       }
       else if (!LowByte) {
@@ -119627,14 +119627,14 @@ unsigned long long ProcessSystemDataStructureHandler(int *ContextHandle,char *Co
     BufferValidationStatus = SystemConfigurationHandle;
   }
   else {
-    cStack_137 = '\0';
+    CharStackValue137 = '\0';
   }
   PrimaryScalingFactor = FilterInputValue4 - ScalingFactor;
   SecondaryScalingFactor = FilterInputValue5 - MatrixTransformMultiplier1;
   ProcessSystemBuffer(&PrimaryScalingFactor,*(uint32_t *)(MemoryPoolBlockSize + 0x1660));
   ValidationStatus0 = ValidateSystemData(&fStack_130,ProcessedCharacter,0);
   if (ValidationStatus0 == '\0') {
-    if (cStack_137 != '\0') {
+    if (CharStackValue137 != '\0') {
       CleanupSystemData();
     }
     *(uint32_t *)(uStack_118 + 0x100) = CalculatedCodePoint;
@@ -119836,7 +119836,7 @@ LAB_18011cbeb:
       ContextHandle[6] = *PrimaryProcessingStatusFlag5;
     }
   }
-  if (cStack_137 != '\0') {
+  if (CharStackValue137 != '\0') {
     CleanupSystemData();
   }
   *(uint32_t *)(Utf16ConversionContext + 0x100) = CalculatedCodePoint;
