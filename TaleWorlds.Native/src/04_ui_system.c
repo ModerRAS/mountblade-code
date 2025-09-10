@@ -120082,8 +120082,7 @@ void UIReturnEmptyFunctionB(void)
 
 
 
- void FUN_180737100(UIWord *uiContext,short *dataSource,int targetBuffer)
-/**
+ /**
  * @brief 计算UI数据范围和缩放值
  * 
  * 该函数根据输入的数据源范围计算相应的缩放值和范围映射。
@@ -120099,20 +120098,14 @@ void CalculateUIDataRangeAndScale(UIWord *uiContext,short *dataSource,int target
 
 {
   short *dataIterator;
-  longlong rangeStep;
+  longlong componentIndex;
   UIWord scaledValue;
   int sourceDataInt;
-  int localInt5;
+  int rangeValue;
   longlong contextDataHandle;
   int accumulatedValue;
   longlong contextOffset;
-  short *psVar9;
-  int sourceDataInt;
-  int localInt5;
-  longlong contextDataHandle;
-  int localInt7;
-  longlong contextOffset;
-  short *psVar9;
+  short *rangeDataPtr;
   
   localInt7 = (int)*dataSource;
   localInt5 = 1;
@@ -120180,26 +120173,33 @@ void CalculateUIDataRangeAndScale(UIWord *uiContext,short *dataSource,int target
 
 
 
- void FUN_180737176(void)
-void FUN_180737176(void)
+ /**
+ * @brief 处理UI组件数据缩放和验证
+ * 
+ * 该函数对UI组件数据进行缩放处理和验证，确保数据在有效范围内。
+ * 主要用于UI组件的尺寸调整和数据规范化处理。
+ * 
+ * @note 原始函数名：FUN_180737176
+ */
+void ProcessUIComponentDataScalingAndValidation(void)
 
 {
-  short *psVar1;
+  short *dataIterator;
   int uiValidationResult;
   int uiCompareResult;
   uint processingStatus;
   UIWord loopCounter;
   longlong uiContextBasePointer;
   longlong componentData;
-  int loopCounter;
+  int processedCount;
   longlong uiTargetHandle;
-  uint register9D;
-  longlong localLong7;
+  uint maxScaleValue;
+  longlong iterationCounter;
   short *pContextSecondValue;
   int eventHandle;
   longlong preservedRegister15;
   
-  localLong7 = (uiContextBasePointer - 2U >> 1) + 1;
+  iterationCounter = (uiContextBasePointer - 2U >> 1) + 1;
   pContextSecondValue = (short *)(componentData + 4);
   do {
     loopCounter = (int)uiTargetHandle;

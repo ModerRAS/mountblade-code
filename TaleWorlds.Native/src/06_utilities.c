@@ -15873,7 +15873,7 @@ uint8_t SystemMemoryManagementBlockControlFlags;
 // 全局系统数据指针
 int64_t GlobalSystemDataPointer;
 // 系统健康状态指示器
-uint SystemHealthStatusIndicator;             // 系统健康状态指示器
+uint32_t SystemHealthStatusIndicator;         // 系统健康状态指示器
 // 系统性能指标主值
 double SystemPerformanceMetricPrimary;        // 系统性能指标主值
 // 系统性能指标次值
