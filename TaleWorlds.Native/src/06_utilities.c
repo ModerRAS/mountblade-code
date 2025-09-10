@@ -131452,13 +131452,13 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
     return;
   }
   CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  resourceManager[4] = &SystemResourceBufferA0;
-  if (resourceManager[5] != 0) {
+  resourceManager[ResourceManagerBufferIndexA0] = &SystemResourceBufferA0;
+  if (resourceManager[ResourceManagerStatusIndex5] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  resourceManager[5] = 0;
-  *(DataWord *)(resourceManager + 7) = 0;
-  resourceManager[4] = &SystemResourceBufferA1;
+  resourceManager[ResourceManagerStatusIndex5] = 0;
+  *(DataWord *)(resourceManager + ResourceManagerCleanupIndex7) = 0;
+  resourceManager[ResourceManagerBufferIndexA1] = &SystemResourceBufferA1;
     TerminateSystemE0(resourceManager);
 }
 

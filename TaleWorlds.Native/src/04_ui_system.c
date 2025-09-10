@@ -230,6 +230,10 @@ typedef enum {
 #define ProcessUINavigationSystem FUN_180733080          // UI导航系统处理
 #define ProcessUITextProcessing FUN_18072f890           // UI文本处理函数
 #define ProcessUIResourceValidation FUN_180734390       // UI资源验证处理
+#define ProcessUIDataTransformation FUN_18072b930        // UI数据变换处理
+#define ProcessUIComponentRendering FUN_18072bbd0       // UI组件渲染处理
+#define ProcessUIEventHandling FUN_18072d1d8             // UI事件处理函数
+#define ProcessUIStateManagement FUN_18072d226           // UI状态管理函数
 
 // 额外的UNK变量定义
 #define UNK_18095ad08 UIEventDataProcessorA8            // UI事件数据处理器A8
@@ -187844,7 +187848,16 @@ void FUN_180775ee7(UIHandle uiContext,UIHandle dataSource)
 
 
 
-float FUN_180776010(longlong uiContext)
+/**
+ * @brief UI上下文对数计算器
+ * 
+ * 该函数计算UI上下文中指定值的对数变换，用于UI动画和过渡效果的数学计算。
+ * 根据输入值的不同范围进行不同的数学处理，支持对数运算和线性运算。
+ * 
+ * @param uiContext UI上下文句柄，包含计算所需的参数
+ * @return float 计算结果，用于UI动画和过渡效果
+ */
+float CalculateUIContextLogarithmicValue(longlong uiContext)
 
 {
   float baseValue;
