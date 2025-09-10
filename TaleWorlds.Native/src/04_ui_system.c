@@ -116087,53 +116087,53 @@ int ProcessUIComponentEventStatus(int *uiContext,int dataSource)
       processedCount = eventStatus << ((byte)calculationResult2 & 0x1f);
       calculatedOffset = 0x1fffffff / (longlong)(processedCount >> 0x10);
       calculationResult1 = (int)calculatedOffset;
-      ProcessingResult1 = (int)((ulonglong)
+      calculationResult1 = (int)((ulonglong)
                      ((longlong)
-                      ((int)((ulonglong)((longlong)processedCount * (longlong)(short)localLong7) >> 0x10) * -8)                      (longlong)ProcessingResult1) >> 0x10) + ProcessingResult1 * 0x10000;
-      ProcessingResult2 = (0x1f - ProcessingResult2) - uiCompareResult;
-      if (ProcessingResult2 < 1) {
-        IsEventProcessingActive = -(byte)ProcessingResult2;
-        processedCount = -0x80000000 >> (IsEventProcessingActive & 0x1f);
-        ProcessingResult2 = 0x7fffffff >> (IsEventProcessingActive & 0x1f);
-        if (ProcessingResult2 < processedCount) {
+                      ((int)((ulonglong)((longlong)processedCount * (longlong)(short)calculatedOffset) >> 0x10) * -8)                      (longlong)calculationResult1) >> 0x10) + calculationResult1 * 0x10000;
+      calculationResult2 = (0x1f - calculationResult2) - uiComparisonResult;
+      if (calculationResult2 < 1) {
+        isEventProcessingActive = -(byte)calculationResult2;
+        processedCount = -0x80000000 >> (isEventProcessingActive & 0x1f);
+        calculationResult2 = 0x7fffffff >> (isEventProcessingActive & 0x1f);
+        if (calculationResult2 < processedCount) {
           loopCounter = processedCount;
-          if (processedCount < ProcessingResult1) {
+          if (processedCount < calculationResult1) {
 LAB_180733ebd:
-            ProcessingResult1 = loopCounter << (IsEventProcessingActive & 0x1f);
+            calculationResult1 = loopCounter << (isEventProcessingActive & 0x1f);
           }
           else {
-            if (ProcessingResult1 < ProcessingResult2) {
-              ProcessingResult1 = ProcessingResult2;
+            if (calculationResult1 < calculationResult2) {
+              calculationResult1 = calculationResult2;
             }
-            ProcessingResult1 = ProcessingResult1 << (IsEventProcessingActive & 0x1f);
+            calculationResult1 = calculationResult1 << (isEventProcessingActive & 0x1f);
           }
         }
         else {
-          if (ProcessingResult1 <= ProcessingResult2) {
-            loopCounter = ProcessingResult1;
-            if (ProcessingResult1 < processedCount) {
+          if (calculationResult1 <= calculationResult2) {
+            loopCounter = calculationResult1;
+            if (calculationResult1 < processedCount) {
               loopCounter = processedCount;
             }
             goto LAB_180733ebd;
           }
-          ProcessingResult1 = ProcessingResult2 << (IsEventProcessingActive & 0x1f);
+          calculationResult1 = calculationResult2 << (isEventProcessingActive & 0x1f);
         }
       }
-      else if (ProcessingResult2 < 0x20) {
-        ProcessingResult1 = ProcessingResult1 >> ((byte)ProcessingResult2 & 0x1f);
+      else if (calculationResult2 < 0x20) {
+        calculationResult1 = calculationResult1 >> ((byte)calculationResult2 & 0x1f);
       }
       else {
-        ProcessingResult1 = 0;
+        calculationResult1 = 0;
       }
-      localLong7 = 0;
-      if (0 < iStackX_18 >> 1) {
-        ptrLocal8 = componentHandle;
+      calculatedOffset = 0;
+      if (0 < stackVar18 >> 1) {
+        componentHandlePtr = currentComponent;
         do {
           ptrLocal8 = ptrLocal8 + -1;
           eventStatus = *ptrLocal8;
           result = uiContext[localLong7];
-          processStatus = (uint)(((int)eventStatus * allocatedMemory4 >> 0x1e) + 1 >> 1);
-          ProcessingResult2 = result - processingStatus;
+          processingStatus = (uint)(((int)eventStatus * memoryAllocation >> 0x1e) + 1 >> 1);
+          calculationResult2 = validationResult - processingStatus;
           if (uiCompareResult == 1) {
             if (ProcessingResult2 < 0) {
               if ((int)(processingStatus & ~result) < 0) {
@@ -191818,14 +191818,16 @@ undefined UIResourceDataTable1744;
 #define DAT_180c10a70 UIResourcePointerA70
 #define DAT_180c11744 UIDataTable11744
 
- undefined FUN_18079cd20;
-undefined FUN_18079cd20;
+ // UI系统配置数据处理函数
+#define FUN_18079cd20 ProcessUIConfigDataEx
+void ProcessUIConfigDataEx;
 undefined UIConfigDataTable3650;
 undefined UIResourceDataTable1730;
 undefined UIConfigDataTable3658;
 
- undefined FUN_18079cda0;
-undefined FUN_18079cda0;
+// UI系统资源管理函数
+#define FUN_18079cda0 ManageUIResourceDataEx
+void ManageUIResourceDataEx;
 undefined DAT_180be3660;
 undefined DAT_180c11748;
 undefined DAT_180be36c0;
@@ -192193,11 +192195,13 @@ undefined UNK_18097fa50;
 undefined UNK_18097fb88;
 undefined UNK_18097fba8;
 
- undefined FUN_18081c0c0;
-undefined FUN_18081c0c0;
+ // UI系统布局处理函数
+#define FUN_18081c0c0 ProcessUILayoutDataEx
+void ProcessUILayoutDataEx;
 
- undefined FUN_18081bc60;
-undefined FUN_18081bc60;
+// UI系统事件处理函数
+#define FUN_18081bc60 HandleUIEventSystemEx
+void HandleUIEventSystemEx;
 undefined UNK_18097fb10;
 undefined DAT_180d4ab70;
 undefined DAT_180d4ab68;
@@ -192478,8 +192482,9 @@ undefined UNK_180984ca0;
 undefined UNK_180984cb0;
 undefined UNK_180984cc0;
 
- undefined FUN_1808632b0;
-undefined FUN_1808632b0;
+ // UI系统渲染处理函数
+#define FUN_1808632b0 ProcessUIRenderDataEx
+void ProcessUIRenderDataEx;
 undefined UNK_1808633a0;
 undefined UNK_180863400;
 undefined UNK_180984d50;
@@ -192508,44 +192513,56 @@ undefined DAT_180c4eaf0;
 undefined UNK_180985738;
 undefined UNK_180985c10;
 
- undefined FUN_180873f80;
-undefined FUN_180873f80;
+// UI系统输入处理函数
+#define FUN_180873f80 ProcessUIInputDataEx
+void ProcessUIInputDataEx;
 undefined UNK_180985f58;
 
- undefined FUN_1808793e0;
-undefined FUN_1808793e0;
+// UI系统状态管理函数
+#define FUN_1808793e0 ManageUIStateSystemEx
+void ManageUIStateSystemEx;
 
- undefined FUN_1808777c0;
-undefined FUN_1808777c0;
- UI系统网格视图管理器
-undefined *UIGridViewManager;
+// UI系统网格视图管理函数
+#define FUN_1808777c0 InitializeUIGridViewEx
+void InitializeUIGridViewEx;
+// UI系统网格视图管理器
+void *UIGridViewManager;
 
- undefined FUN_180877810;
-undefined FUN_180877810;
+// UI系统网格配置函数
+#define FUN_180877810 ConfigureUIGridViewEx
+void ConfigureUIGridViewEx;
 
- undefined FUN_180877f00;
-undefined FUN_180877f00;
+ // UI系统网格更新函数
+#define FUN_180877f00 UpdateUIGridViewEx
+void UpdateUIGridViewEx;
 
- undefined FUN_1808780d0;
-undefined FUN_1808780d0;
+// UI系统网格渲染函数
+#define FUN_1808780d0 RenderUIGridViewEx
+void RenderUIGridViewEx;
 
- undefined FUN_1808794d0;
-undefined FUN_1808794d0;
+// UI系统网格验证函数
+#define FUN_1808794d0 ValidateUIGridViewEx
+void ValidateUIGridViewEx;
 
- undefined FUN_180879510;
-undefined FUN_180879510;
+// UI系统网格数据管理函数
+#define FUN_180879510 ManageUIGridDataEx
+void ManageUIGridDataEx;
 
- undefined FUN_180876d70;
-undefined FUN_180876d70;
+// UI系统组件初始化函数
+#define FUN_180876d70 InitializeUIComponentEx
+void InitializeUIComponentEx;
 
- undefined FUN_180876d90;
-undefined FUN_180876d90;
+// UI系统组件配置函数
+#define FUN_180876d90 ConfigureUIComponentEx
+void ConfigureUIComponentEx;
 
- undefined FUN_180876eb0;
-undefined FUN_180876eb0;
+// UI系统组件渲染函数
+#define FUN_180876eb0 RenderUIComponentEx
+void RenderUIComponentEx;
 
- undefined FUN_180876fb0;
-undefined FUN_180876fb0;
+// UI系统组件状态管理函数
+#define FUN_180876fb0 ManageUIComponentStateEx
+void ManageUIComponentStateEx;
 undefined UIUnknownSystemData;
 undefined UIUnknownDataPointer;
 undefined UIUnknownDataArray1;
