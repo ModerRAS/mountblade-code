@@ -200,6 +200,7 @@ typedef enum {
 // UI系统全局数据
 #define _DAT_180c0c6e8 GlobalUIComponentInstanceE8        // 全局UI组件实例E8
 #define _DAT_180be12f0 GlobalUIResourceManagerF0         // 全局UI资源管理器F0
+#define _DAT_180c0c218 UIResourceReferenceCounter        // UI资源引用计数器 - 用于跟踪UI资源的引用计数
 #define UIContextHandleTable180954878 UIContextHandleTable878  // UI上下文句柄表878
 #define UIComponentTypeTable1809535e0 UIComponentTypeTable5E0  // UI组件类型表5E0
 
