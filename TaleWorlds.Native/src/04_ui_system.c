@@ -122020,14 +122020,20 @@ void CleanupUIResourcesAndExecuteRenderTask(void)
 
 
  void FUN_180738d67(void)
-void FUN_180738d67(void)
+/**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI系统占用的内存资源，并在资源释放后执行渲染任务。
+ * 这是一个关键的清理函数，确保在UI组件销毁时正确释放资源。
+ */
+void ReleaseUIResourcesAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
