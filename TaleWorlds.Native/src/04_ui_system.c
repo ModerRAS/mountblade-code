@@ -31313,9 +31313,9 @@ void InitializeCPUFunctionPointers(void)
     LOCK();
     processingResult = _UIThreadLockReferenceCount + -1;
     UNLOCK();
-    UIBoolVar4 = _UIThreadLockReferenceCount == 1;
+    isThreadLockReferenceCountOne = _UIThreadLockReferenceCount == 1;
     _UIThreadLockReferenceCount = processingResult;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       DeleteCriticalSection(_UIThreadLockCriticalSection);
       free(_UIThreadLockCriticalSection);
       _UIThreadLockCriticalSection = 0;
