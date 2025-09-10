@@ -25843,64 +25843,64 @@ ExecuteSecurityValidation:
 void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle,int *resultStatus)
 
 {
-  int64_t dataOffset;
-  char dataType;
-  int validationResult;
-  int itemCount;
-  int64_t dataPointer;
-  int64_t arrayIndex;
-  DataBuffer processData;
-  int64_t systemDataBuffer;
-  int currentIndex;
-  DataWord processFlags;
-  int64_t stackPointer;
+  int64_t dataProcessingOffset;
+  char recordDataType;
+  int dataValidationResult;
+  int processedItemCount;
+  int64_t dataBufferPointer;
+  int64_t arrayProcessingIndex;
+  DataBuffer processDataBuffer;
+  int64_t systemContextBuffer;
+  int currentRecordIndex;
+  DataWord processingFlags;
+  int64_t stackFramePointer;
   int64_t dataIterator;
-  char typeCheck;
-  ByteFlag *dataBuffer;
+  char dataTypeValidation;
+  ByteFlag *dataProcessingBuffer;
   int64_t allocatedMemoryBlock;
-  float floatValue;
-  float normalizedValue;
-  DataBuffer additionalData;
-  int *statusPointer;
+  float sourceFloatValue;
+  float normalizedFloatValue;
+  DataBuffer additionalDataBuffer;
+  int *statusResultPointer;
   
-  arrayIndex = CONCAT44(processFlags,currentIndex) + CONCAT44(processFlags,currentIndex) * 2;
-  allocatedMemoryBlock = (int64_t)*(int *)(dataPointer + arrayIndex * 4) + *(int64_t *)(systemContext + systemContextOffset);
-  dataType = *(char *)(dataPointer + 8 + arrayIndex * 4);
-  *(int64_t *)(stackPointer + StackFrameContextNegativeOffset80) = arrayIndex;
-  if (dataType == typeCheck) {
-    itemCount = *(int *)(systemContext + systemContextOffsetB0);
-    if (currentIndex < itemCount) {
-      *(int *)(systemContext + systemContextOffsetAc) = currentIndex + 1;
+  arrayProcessingIndex = CONCAT44(processingFlags,currentRecordIndex) + CONCAT44(processingFlags,currentRecordIndex) * 2;
+  allocatedMemoryBlock = (int64_t)*(int *)(dataBufferPointer + arrayProcessingIndex * 4) + *(int64_t *)(systemContext + systemContextOffset);
+  recordDataType = *(char *)(dataBufferPointer + 8 + arrayProcessingIndex * 4);
+  *(int64_t *)(stackFramePointer + StackFrameContextNegativeOffset80) = arrayProcessingIndex;
+  if (recordDataType == dataTypeValidation) {
+    processedItemCount = *(int *)(systemContext + systemContextOffsetB0);
+    if (currentRecordIndex < processedItemCount) {
+      *(int *)(systemContext + systemContextOffsetAc) = currentRecordIndex + 1;
       goto ValidationSuccessLabel;
     }
-    floatValue = *(float *)(allocatedMemoryBlock + SystemDataSecondaryOffset18);
-    normalizedValue = floatValue;
-    if (itemCount != -1) {
-      normalizedValue = *(float *)(systemContext + systemContextOffsetB4);
-      itemCount = -1;
+    sourceFloatValue = *(float *)(allocatedMemoryBlock + SystemDataSecondaryOffset18);
+    normalizedFloatValue = sourceFloatValue;
+    if (processedItemCount != -1) {
+      normalizedFloatValue = *(float *)(systemContext + systemContextOffsetB4);
+      processedItemCount = -1;
       *(DataWord *)(systemContext + systemContextOffsetB0) = SystemCleanupFlag;
       *(DataWord *)(systemContext + systemContextOffsetB4) = NegativeZeroFloat;
     }
-    *(float *)(systemContext + systemContextOffsetA8) = floatValue;
-    arrayIndex = 0;
-    floatValue = (float)*(uint *)(systemContext + systemContextOffset68) * floatValue;
-    if ((9.223372e+18 <= floatValue) && (floatValue = floatValue - 9.223372e+18, floatValue < 9.223372e+18)) {
-      arrayIndex = InvalidMemoryOffset;
+    *(float *)(systemContext + systemContextOffsetA8) = sourceFloatValue;
+    arrayProcessingIndex = 0;
+    sourceFloatValue = (float)*(uint *)(systemContext + systemContextOffset68) * sourceFloatValue;
+    if ((9.223372e+18 <= sourceFloatValue) && (sourceFloatValue = sourceFloatValue - 9.223372e+18, sourceFloatValue < 9.223372e+18)) {
+      arrayProcessingIndex = InvalidMemoryOffset;
     }
-    dataOffset = *(int64_t *)(systemContext + systemContextOffsetA0);
-    systemDataBuffer = *(int64_t *)(systemContext + SystemManagementOffset98);
-    if (systemDataBuffer == 0) {
-      normalizedValue = (float)*(uint *)(systemContext + systemContextOffset68) * normalizedValue;
-      systemDataBuffer = 0;
-      if ((9.223372e+18 <= normalizedValue) && (normalizedValue = normalizedValue - 9.223372e+18, normalizedValue < 9.223372e+18)) {
-        systemDataBuffer = InvalidMemoryOffset;
+    dataProcessingOffset = *(int64_t *)(systemContext + systemContextOffsetA0);
+    systemContextBuffer = *(int64_t *)(systemContext + SystemManagementOffset98);
+    if (systemContextBuffer == 0) {
+      normalizedFloatValue = (float)*(uint *)(systemContext + systemContextOffset68) * normalizedFloatValue;
+      systemContextBuffer = 0;
+      if ((9.223372e+18 <= normalizedFloatValue) && (normalizedFloatValue = normalizedFloatValue - 9.223372e+18, normalizedFloatValue < 9.223372e+18)) {
+        systemContextBuffer = InvalidMemoryOffset;
       }
-      systemDataBuffer = dataOffset - ((int64_t)normalizedValue + systemDataBuffer);
-      *(int64_t *)(dataIterator + SystemManagementOffset98) = systemDataBuffer;
+      systemContextBuffer = dataProcessingOffset - ((int64_t)normalizedFloatValue + systemContextBuffer);
+      *(int64_t *)(dataIterator + SystemManagementOffset98) = systemContextBuffer;
     }
-    dataType = (int64_t)floatValue + arrayIndex < dataOffset - systemDataBuffer;
+    recordDataType = (int64_t)sourceFloatValue + arrayProcessingIndex < dataProcessingOffset - systemContextBuffer;
     if ((*(SystemByteType *)(dataIterator + DataIteratorStatusOffset6C) & 2) != 0) {
-      dataType = typeCheck;
+      recordDataType = dataTypeValidation;
     }
     if (*(int64_t *)(DestinationContext + DestinationContextDataOffsetC0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
@@ -25912,7 +25912,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     }
     if ((((characterFlag != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
         ((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
+       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (arrayProcessingIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryDataCopyLabel:
         memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + systemContextOffset));
@@ -25922,7 +25922,7 @@ MemoryDataCopyLabel:
     if (characterFlag == '\x06') {
       characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseControlOffset));
       if (characterFlag == '\0') goto MemoryDataCopyLabel;
-      *dataPointer = 0;
+      *dataBufferPointer = 0;
       goto ValidationSuccessLabel;
     }
     if (characterFlag == '\a') {
@@ -25930,7 +25930,7 @@ MemoryDataCopyLabel:
       if (characterFlag == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(DestinationContext + DestinationContextOffset58) + systemContextPointerOffset90) + SystemValidationOffset790) +
                     systemContextValidationOffset1C8) != 0) {
-          *dataPointer = 0;
+          *dataBufferPointer = 0;
           goto ValidationSuccessLabel;
         }
         goto MemoryDataCopyLabel;
@@ -25939,14 +25939,14 @@ MemoryDataCopyLabel:
     else {
       if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryDataCopyLabel;
       DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + SystemDataParameterOffset20);
-      arrayIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
-      if (arrayIndex != 0) goto ValidationSuccessLabel;
-      arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
-      if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
+      arrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
+      if (arrayProcessingIndex != 0) goto ValidationSuccessLabel;
+      arrayProcessingIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
+      if ((arrayProcessingIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
       goto MemoryDataCopyLabel;
     }
   }
-  *dataPointer = 0;
+  *dataBufferPointer = 0;
 DataValidationLabel:
     ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + SecurityContextValidationOffset5F0) ^ (uint64_t)&securityBuffer);
 }
