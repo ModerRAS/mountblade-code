@@ -138066,6 +138066,8 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ProcessSystemConfigurationA0 Unwind_180907dc0
 #define CleanupSystemConfigurationA0 Unwind_180907dd0
 #define ResetSystemConfigurationPointersA0 Unwind_180907e00
+#define ResetExceptionHandlerStateWithCleanup Unwind_180911440
+#define ProcessExceptionCleanupWithCallbackExecution Unwind_180911460
 #define InitializeSystemResourcesA0 Unwind_180907e30
 #define SetupSystemResourcesA0 Unwind_180907e40
 
