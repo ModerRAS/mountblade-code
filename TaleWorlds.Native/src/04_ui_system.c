@@ -119997,7 +119997,7 @@ void FUN_180737240(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,UI
   psStack_108 = targetBuffer;
   stackUInt100 = dataSource;
   stackUInte8 = uiContext;
-  FUN_1807376c0(dataSource,*(UIHandle *)(targetBuffer + 0x20),(int)targetBuffer[1]);
+  ProcessUIDataWithShortParameters(dataSource,*(UIHandle *)(targetBuffer + 0x20),(int)targetBuffer[1]);
   result = (longlong)*targetBuffer * 4 + 0xf;
   if (result <= (ulonglong)((longlong)*targetBuffer * 4)) {
     result = 0xffffffffffffff0;
