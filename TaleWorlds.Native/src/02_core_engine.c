@@ -238812,7 +238812,15 @@ uint64_t * FUN_180196bd0(uint64_t *ContextHandle
 
 
 
-96c10(uint64_t ContextHandlevoid FUN_180196c10(uint64_t ContextHandle
+/**
+ * @brief 初始化系统内存块A0
+ * 
+ * 初始化指定上下文的系统内存块，用于内存管理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return void 无返回值
+ */
+void InitializeSystemMemoryBlockA0(uint64_t ContextHandle)
 {
   InitializeSystemMemoryBlock(ContextHandle,0x2408,1,FUN_1801b99e0,0xfffffffffffffffe);
   return;
@@ -238821,7 +238829,15 @@ uint64_t * FUN_180196bd0(uint64_t *ContextHandle
 
 
 
-96c40(long long ContextHandlevoid FUN_180196c40(long long ContextHandle
+/**
+ * @brief 清理系统资源A0
+ * 
+ * 清理系统资源，包括事件处理、内存块销毁和回调函数清理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return void 无返回值
+ */
+void CleanupSystemResourcesA0(long long ContextHandle)
 {
   if (*(long long *)(ContextHandle + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
@@ -238848,7 +238864,15 @@ uint64_t * FUN_180196bd0(uint64_t *ContextHandle
 
 
 
-96cf0(long long ContextHandlevoid FUN_180196cf0(long long ContextHandle
+/**
+ * @brief 初始化系统内存块A1
+ * 
+ * 初始化指定上下文的系统内存块，使用特定参数配置
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return void 无返回值
+ */
+void InitializeSystemMemoryBlockA1(long long ContextHandle)
 {
   InitializeSystemMemoryBlock(ContextHandle + 8,0x20,0x20,FUN_18004a130,0xfffffffffffffffe);
   return;
@@ -238857,7 +238881,15 @@ uint64_t * FUN_180196bd0(uint64_t *ContextHandle
 
 
 
-96d20(long long ContextHandlevoid FUN_180196d20(long long ContextHandle
+/**
+ * @brief 初始化线程本地存储A0
+ * 
+ * 初始化线程本地存储，包括设置系统空模板和线程本地存储模板
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return void 无返回值
+ */
+void InitializeThreadLocalStorageA0(long long ContextHandle)
 {
   *(void *)(ContextHandle + 0x48) = &SystemNullTemplate;
   if (*(long long *)(ContextHandle + 0x50) != 0) {
