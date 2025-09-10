@@ -225475,10 +225475,10 @@ void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long Op
     SystemEventPointer = (void **)0x0;
     if (Utf8SourcePointer != 0) {
       do {
-        StackProcessingUnsignedValue60 = 0;
-        BufferOffset = 0xf;
-        StackProcessingVariableBuffer = (void *)((unsigned long long)StackProcessingVariableBuffer & 0xffffffffffffff00);
-        SystemKeyPointer = 0;
+        UnsignedProcessingValue = 0;
+        DataOffset = 0xf;
+        ProcessingVariableBuffer = (void *)((unsigned long long)ProcessingVariableBuffer & 0xffffffffffffff00);
+        SystemKey = 0;
         MemoryBoundaryEnd = -1;
         do {
           MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
