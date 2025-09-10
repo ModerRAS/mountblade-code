@@ -12911,7 +12911,13 @@ uint32_t UtilitySecurityPointerResetConfig;
 void ResetSystemResourceManagerPointers(void);
 
 /**
- * @brief 工具重置指针值
+ * @brief 工具系统重置配置值
+ * 
+ * 用于存储工具系统不同组件的重置配置值：
+ * - UtilityPrimaryResetValue: 主要重置配置值
+ * - UtilitySecondaryResetValue: 次要重置配置值  
+ * - UtilityTertiaryResetValue: 第三重置配置值
+ * - UtilityQuaternaryResetValue: 第四重置配置值
  */
 uint32_t UtilityPrimaryResetValue;
 uint32_t UtilitySecondaryResetValue;
