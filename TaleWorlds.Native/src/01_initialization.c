@@ -36011,9 +36011,9 @@ void AllocateSystemResource(void* *resourceManagerPointer)
  * @note 这是系统初始化过程中的关键函数，确保线程管理系统的正常运行
  */
 void InitializeSystemThreadStructure(void)
-
 {
   long long threadObjectHandle;
+  long long resourceDataIndex;
   
   threadObjectHandle = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x1ae8,10);
   if (threadObjectHandle == 0) {
@@ -36034,7 +36034,8 @@ void InitializeSystemThreadStructure(void)
   *(uint32_t *)(threadObjectHandle + 0x3c0) = 0;
   *(void* *)(threadObjectHandle + 0x3c8) = 0;
   *(uint16_t *)(threadObjectHandle + 0x3d0) = 0x100;
-  *(void* *)(ResourceDataIndex + 0x4d8) = 0;
+  resourceDataIndex = ResourceDataIndex;
+  *(void* *)(resourceDataIndex + 0x4d8) = 0;  // 资源数据指针A
   *(void* *)(ResourceDataIndex + 0x4e0) = 0;
   *(uint32_t *)(ResourceDataIndex + 0x508) = 0;
   *(void* *)(ResourceDataIndex + 0x510) = 0;
