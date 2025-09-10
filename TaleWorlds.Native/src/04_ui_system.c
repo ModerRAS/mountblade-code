@@ -104308,7 +104308,7 @@ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle ta
     sourceDataInt = *(int *)(uiBufferData + 0x121c) + *(int *)(uiBufferData + 0x11e8);
     TransformCoefficient1 = afStack_858;
     do {
-      FUN_18072e4b0(piterationCounter,bufferSize,*TransformCoefficient1,sourceDataInt);
+      ProcessUIIterationData(piterationCounter,bufferSize,*TransformCoefficient1,sourceDataInt);
       TransformCoefficient1 = TransformCoefficient1 + 1;
       loopCounter = loopCounter + 1;
       sourceDataInt = *(int *)(uiBufferData + 0x121c) + *(int *)(uiBufferData + 0x11e8);
@@ -104363,13 +104363,13 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
     } while (processingStatus != 0);
   }
   if (*(char *)(componentData + 0x12a5) == '\x02') {
-    FUN_18072e9a0(&stack0x000000b0,&stack0x00000060,targetBuffer,dataSource + 0xe4,
+    ProcessUIComponentData(&stack0x000000b0,&stack0x00000060,targetBuffer,dataSource + 0xe4,
                   *(UIDword *)(componentData + 0x11e8));
-    eventProcessingCounter = FUN_1807270a0(dataSource + 0x90,componentData + 0x128c,componentData + 0x12a8,componentData + 0x122c,
+    eventProcessingCounter = ProcessUIContextData(dataSource + 0x90,componentData + 0x128c,componentData + 0x12a8,componentData + 0x122c,
                           (float *)(dataSource + 0x2c4));
     func_0x00018072e6b0(eventProcessingCounter,dataSource,stackParam000008d0);
     piterationCounter = &stack0x00000050;
-    eventProcessingCounter = FUN_18072eb00(&stack0x00000240,bufferSize + (longlong)*(int *)(componentData + 0x121c) * -4,
+    eventProcessingCounter = ProcessUIBufferAllocation(&stack0x00000240,bufferSize + (longlong)*(int *)(componentData + 0x121c) * -4,
                           dataSource + 0x90,dataSource + 0xe4,piterationCounter);
     result1 = (UIDword)((ulonglong)piterationCounter >> 0x20);
     if (*(int *)(componentData + 0x1234) == 0) {
@@ -104380,8 +104380,8 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
     else {
       baseValue0 = 0.01;
     }
-    eventProcessingCounter = FUN_18072e720(eventProcessingCounter,&stack0x00000840,&stack0x00000240,baseValue0);
-    FUN_180726fd0(eventProcessingCounter,dataSource + 0x10,&stack0x00000840,componentData + 0x1190);
+    eventProcessingCounter = ProcessUIEventUpdate(eventProcessingCounter,&stack0x00000840,&stack0x00000240,baseValue0);
+    ProcessUIDataTransfer(eventProcessingCounter,dataSource + 0x10,&stack0x00000840,componentData + 0x1190);
     FUN_18072ec50(dataSource + 0x2c8,&stack0x00000240,dataSource + 0x10,dataSource,
                   CONCAT44(result1,*(UIDword *)(componentData + 0x11e8)));
     *(UIDword *)(componentData + 0x1190) = stackParam00000840;

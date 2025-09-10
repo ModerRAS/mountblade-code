@@ -226087,7 +226087,23 @@ void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,lon
 
 
 
-882c0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_1801882c0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 内存分配释放函数C
+/**
+ * @brief 释放内存块并进行高级安全验证
+ * 
+ * 该函数负责释放内存块，使用0x28乘数进行内存计算和验证。
+ * 主要功能包括：
+ * - 计算高级内存分配索引
+ * - 验证内存边界和安全性
+ * - 执行内存释放操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801882c0
+ */
+void ReleaseMemoryBlockWithAdvancedSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
   
@@ -226108,7 +226124,23 @@ void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,lon
 
 
 
-88310(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188310(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 系统栈数据处理函数A
+/**
+ * @brief 处理系统栈数据（0x28步长）
+ * 
+ * 该函数负责处理系统栈数据，使用0x28步长进行迭代处理。
+ * 主要功能包括：
+ * - 遍历系统栈数据
+ * - 执行栈数据处理操作
+ * - 管理数据迭代过程
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180188310
+ */
+void ProcessSystemStackDataWith28Step(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   if (OperationBufferSize != Utf8SourcePointer) {
     do {
@@ -226122,7 +226154,23 @@ void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,lon
 
 
 
-88360(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188360(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 系统栈数据处理函数B
+/**
+ * @brief 处理系统栈数据（0x40步长）
+ * 
+ * 该函数负责处理系统栈数据，使用0x40步长进行迭代处理。
+ * 主要功能包括：
+ * - 遍历系统栈数据
+ * - 执行字符表和索引操作
+ * - 管理数据迭代过程
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180188360
+ */
+void ProcessSystemStackDataWith40Step(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   if (OperationBufferSize != Utf8SourcePointer) {
     do {
