@@ -20002,6 +20002,17 @@ void UtilityErrorHandlerF(void)
 // 
 // 返回值:
 //   无
+/**
+ * @brief 工具系统错误处理器G
+ * 
+ * 处理工具系统中的错误情况，执行资源释放操作。
+ * 该函数作为错误处理回调，确保系统在出现错误时能够正确清理资源。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：UtilityErrorHandlerG
+ * @warning 该函数内部包含不返回的子程序调用
+ */
 void UtilityErrorHandlerG(void)
 
 {
