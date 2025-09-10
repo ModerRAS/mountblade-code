@@ -399010,7 +399010,7 @@ UIHandle * ProcessUISystemEvents(void)
   longlong uiAllocatedMemory;
   longlong uiContextBasePointer;
   longlong uiComponentData;
-  UIHandle *uiuiTargetHandle;
+  UIHandle *uiTargetHandle;
   longlong allocatedMemoryBlock;
   int processingResult;
   UIDword extraout_XMM0_Da;
