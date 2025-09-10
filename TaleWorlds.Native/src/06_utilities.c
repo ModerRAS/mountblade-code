@@ -33244,32 +33244,32 @@ void ProcessSystemDataWithValidation(int64_t systemContext, int *ParameterArray)
 {
   char *sourceCharacterPointer;
   code *validationFlag;
-  char validationResult;
+  char validationStatus;
   DataWord InputAccumulator;
-  ByteTriple dataFlags;
-  int LoopCounter;
+  ByteTriple dataProcessingFlags;
+  int iterationCounter;
   DataWord AddressRegister;
   uint StackFrameRegister;
   char carryFlag;
   int *stackIntegerPointer;
   DataWord memoryRegionBase;
   
-  dataFlags = (ByteTriple)((uint)InputAccumulator >> 8);
-  validationResult = (char)InputAccumulator + -0x57 + carryFlag;
-  memoryRegionBase = CONCAT31(dataFlags,validationResult);
+  dataProcessingFlags = (ByteTriple)((uint)InputAccumulator >> 8);
+  validationStatus = (char)InputAccumulator + -0x57 + carryFlag;
+  memoryRegionBase = CONCAT31(dataProcessingFlags,validationStatus);
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
   *(uint *)(operationBase + MemoryOperationMask) = *(uint *)(operationBase + MemoryOperationMask) & StackFrameRegister;
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
   StackIntegerPointerD = dataBuffer;
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
   *(char *)CONCAT44(AddressRegister,memoryRegionBase) =
-       *(char *)CONCAT44(AddressRegister,memoryRegionBase) + validationResult;
+       *(char *)CONCAT44(AddressRegister,memoryRegionBase) + validationStatus;
   *(char *)CONCAT44(AddressRegister,memoryRegionBase) =
-       *(char *)CONCAT44(AddressRegister,memoryRegionBase) + validationResult;
-  LoopCounter = CONCAT31(dataFlags,validationResult + '\x18');
-  *dataBuffer = *dataBuffer + LoopCounter;
-  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(AddressRegister,LoopCounter));
-  *exceptionHandlerCallback = *sourceCharacterPointer + validationResult + '\x18';
+       *(char *)CONCAT44(AddressRegister,memoryRegionBase) + validationStatus;
+  iterationCounter = CONCAT31(dataProcessingFlags,validationStatus + '\x18');
+  *dataBuffer = *dataBuffer + iterationCounter;
+  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(AddressRegister,iterationCounter));
+  *exceptionHandlerCallback = *sourceCharacterPointer + validationStatus + '\x18';
   validationFlag = (code *)swi(3);
   (*validationFlag)();
   return;
