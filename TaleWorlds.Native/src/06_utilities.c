@@ -50002,48 +50002,84 @@ void CleanupDataResourceA(DataBuffer operationBase, int64_t dataBuffer, DataBuff
 
 
 
-void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常数据处理器A0
+ * 
+ * 该函数负责处理异常数据，通过异常处理上下文获取异常数据缓冲区，
+ * 然后调用系统资源处理函数进行处理，最后释放相关资源。
+ * 
+ * @param OperationBase 操作基础数据
+ * @param DataBuffer 数据缓冲区
+ * @param OperationFlagA 操作标志A
+ * @param OperationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ExceptionDataProcessorA0
+ */
+void ProcessExceptionDataA0(DataBuffer OperationBase, int64_t DataBuffer, DataBuffer OperationFlagA, DataBuffer OperationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *ExceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x978);
-  if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-    ReleaseSystemResourcesA1(exceptionDataBuffer);
-      TerminateSystemE0(exceptionDataBuffer);
+  ExceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(DataBuffer + ExceptionHandlerContextOffset40) + 0x978);
+  if (ExceptionDataBuffer != (DataBuffer *)0x0) {
+    ProcessSystemResourcesA0(*(int64_t *)(DataBuffer + ExceptionHandlerContextOffset40) + 0x968, *ExceptionDataBuffer, OperationFlagA, OperationFlagB, SystemCleanupFlagAlternative);
+    ReleaseSystemResourcesA1(ExceptionDataBuffer);
+    TerminateSystemE0(ExceptionDataBuffer);
   }
   return;
 }
 
 
 
-void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常数据处理器A1
+ * 
+ * 该函数负责处理异常数据，通过数据缓冲区偏移量获取异常数据缓冲区，
+ * 然后调用系统资源处理函数进行处理，最后释放相关资源。
+ * 
+ * @param OperationBase 操作基础数据
+ * @param DataBuffer 数据缓冲区
+ * @param OperationFlagA 操作标志A
+ * @param OperationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ExceptionDataProcessorA1
+ */
+void ProcessExceptionDataA1(DataBuffer OperationBase, int64_t DataBuffer, DataBuffer OperationFlagA, DataBuffer OperationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *ExceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
-  if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + DataBufferOffset48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-    ReleaseSystemResourcesA1(exceptionDataBuffer);
-      TerminateSystemE0(exceptionDataBuffer);
+  ExceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(DataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
+  if (ExceptionDataBuffer != (DataBuffer *)0x0) {
+    ProcessSystemResourcesA0(*(int64_t *)(DataBuffer + DataBufferOffset48), *ExceptionDataBuffer, OperationFlagA, OperationFlagB, SystemCleanupFlagAlternative);
+    ReleaseSystemResourcesA1(ExceptionDataBuffer);
+    TerminateSystemE0(ExceptionDataBuffer);
   }
   return;
 }
 
 
 
-void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常数据处理器A2
+ * 
+ * 该函数负责处理异常数据，通过数据缓冲区偏移量获取异常数据缓冲区，
+ * 然后调用系统资源处理函数进行处理，最后释放相关资源。
+ * 
+ * @param OperationBase 操作基础数据
+ * @param DataBuffer 数据缓冲区
+ * @param OperationFlagA 操作标志A
+ * @param OperationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ExceptionDataProcessorA2
+ */
+void ProcessExceptionDataA2(DataBuffer OperationBase, int64_t DataBuffer, DataBuffer OperationFlagA, DataBuffer OperationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *ExceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
-  if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + DataBufferOffset48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-    ReleaseSystemResourcesA1(exceptionDataBuffer);
-      TerminateSystemE0(exceptionDataBuffer);
+  ExceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(DataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
+  if (ExceptionDataBuffer != (DataBuffer *)0x0) {
+    ProcessSystemResourcesA0(*(int64_t *)(DataBuffer + DataBufferOffset48), *ExceptionDataBuffer, OperationFlagA, OperationFlagB, SystemCleanupFlagAlternative);
+    ReleaseSystemResourcesA1(ExceptionDataBuffer);
+    TerminateSystemE0(ExceptionDataBuffer);
   }
   return;
 }
