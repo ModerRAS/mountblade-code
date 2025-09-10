@@ -268431,7 +268431,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t ContextHandle,uint64_t *Conte
   else {
     ProcessOperationBufferSizeAndCoreEngineValue(OperationBufferSize,&CoreEngineValue148);
   }
-  UnicodeCodePoint = FUN_1800aded0(AdditionalParameter2);
+  UnicodeCodePoint = ProcessSystemUnicodeData(AdditionalParameter2);
   (**(code **)(CoreEngineValue148 + 0x10))(&CoreEngineValue148,UnicodeCodePoint);
   (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
   SystemChecksum = OperationBufferSize[1];
@@ -279527,7 +279527,7 @@ void ProcessVectorRegisterOperation(uint64_t ContextHandle,uint64_t OperationBuf
   MemoryOffsetValue = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemProcessFlagB;
   CoreEngineFinalizeSystemEvent(&pSystemCleanupFlagF);
-  FUN_1800b2a30();
+  ProcessSystemDataEx();
   pSystemCleanupFlagF = &SystemNullTemplate;
   if (SystemTemporaryValueD0 != 0) {
       ProcessSystemEventHandling();
