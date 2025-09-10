@@ -123625,7 +123625,7 @@ void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
     FUN_18074b930(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957170);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutCalculator);
   }
 LAB_180739f5a:
   if (RenderContextSize != 0) {
@@ -123679,7 +123679,7 @@ void FUN_180739f90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     FUN_1807389f0(astackUInt158,0x100,dataSource,targetBuffer);
     pstackUInt1a8 = astackUInt158;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,stackUInt168,&UNK_180957140);
+    ExecuteUIContextDataOperation(processingResult,1,stackUInt168,&UIContextInputProcessor);
   }
 LAB_18073a089:
   if (stackLong178 != 0) {
@@ -123721,7 +123721,7 @@ void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
     FUN_18074bdb0(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957428);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStyleManager);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -123785,7 +123785,7 @@ void FUN_18073a200(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809574f0);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextThemeHandler);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
