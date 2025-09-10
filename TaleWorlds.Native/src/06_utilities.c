@@ -20022,16 +20022,20 @@ void UtilityErrorHandlerG(void)
 
 
 
-// 函数: void UtilityNoOperationE(void)
-// 
-// 空操作函数
-// 用作占位符或桩函数，不执行任何操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 工具系统空操作函数E
+ * 
+ * 空操作函数，用作占位符或桩函数，不执行任何操作。
+ * 该函数主要用于：
+ * - 作为函数指针的默认值
+ * - 在条件编译中作为占位符
+ * - 提供统一的函数接口
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：UtilityNoOperationE
+ * @warning 该函数直接返回，不执行任何操作
+ */
 void UtilityNoOperationE(void)
 
 {
