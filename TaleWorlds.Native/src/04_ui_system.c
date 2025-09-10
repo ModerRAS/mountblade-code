@@ -200011,17 +200011,32 @@ joined_r0x000180783279:
 
 
 
-UIHandle FUN_1807833e0(longlong uiContext,int dataSource,longlong targetBuffer)
+/**
+ * @brief 处理UI事件处理和状态管理
+ * 
+ * 该函数处理UI系统中的事件处理和状态管理，包括：
+ * - 数据源类型1：UI组件状态更新和验证
+ * - 数据源类型2：UI目标缓冲区处理
+ * - 数据源类型0x40：UI事件队列处理和内存管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源类型 (1=状态更新, 2=缓冲区处理, 0x40=事件队列)
+ * @param targetBuffer 目标缓冲区指针
+ * @return UIHandle 处理结果句柄，0表示成功
+ * 
+ * @note 原始函数名：FUN_1807833e0
+ */
+UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSource, longlong targetBuffer)
 
 {
-  longlong *pallocatedMemory;
-  longlong componentIndex;
-  UIDword eventCodeType;
-  UIDword processingStatus;
-  UIDword loopCounter;
-  int loopCounter;
-  UIHandle iterationCounter;
-  UIByte *puStackX_20;
+  longlong *uiMemoryPointer;
+  longlong componentHandle;
+  UIDword eventCode;
+  UIDword processStatus;
+  UIDword eventLoopCounter;
+  int uiLoopCounter;
+  UIHandle resultHandle;
+  UIByte *eventDataBuffer;
   
   if (dataSource == 1) {
     if (*(short *)(uiContext + 0x118) != 0) {
