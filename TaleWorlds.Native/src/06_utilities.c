@@ -9577,6 +9577,45 @@ uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 
 // 系统清理标志常量
 #define SystemCleanupFlagAlternative 0x80000000              // 系统清理标志替代值
+
+// 额外的数据缓冲区偏移量常量
+#define DataBufferOffset88 0x88                              // 数据缓冲区偏移量88
+#define DataBufferOffsetB0 0xb0                              // 数据缓冲区偏移量B0
+#define DataBufferOffsetB8 0xb8                              // 数据缓冲区偏移量B8
+#define DataBufferOffsetD8 0xd8                              // 数据缓冲区偏移量D8
+#define DataBufferOffsetE8 0xe8                              // 数据缓冲区偏移量E8
+#define DataBufferOffset128 0x128                            // 数据缓冲区偏移量128
+#define DataBufferOffset130 0x130                            // 数据缓冲区偏移量130
+#define DataBufferOffset140 0x140                            // 数据缓冲区偏移量140
+#define DataBufferOffset150 0x150                            // 数据缓冲区偏移量150
+#define DataBufferOffset178 0x178                            // 数据缓冲区偏移量178
+#define DataBufferOffset1d0 0x1d0                            // 数据缓冲区偏移量1d0
+#define DataBufferOffset1e0 0x1e0                            // 数据缓冲区偏移量1e0
+#define DataBufferOffset250 0x250                            // 数据缓冲区偏移量250
+#define DataBufferOffset260 0x260                            // 数据缓冲区偏移量260
+#define DataBufferOffset270 0x270                            // 数据缓冲区偏移量270
+#define DataBufferOffset290 0x290                            // 数据缓冲区偏移量290
+#define DataBufferOffset2a0 0x2a0                            // 数据缓冲区偏移量2a0
+#define DataBufferOffset2b0 0x2b0                            // 数据缓冲区偏移量2b0
+#define DataBufferOffset2f0 0x2f0                            // 数据缓冲区偏移量2f0
+#define DataBufferOffset2f8 0x2f8                            // 数据缓冲区偏移量2f8
+#define DataBufferOffset360 0x360                            // 数据缓冲区偏移量360
+#define DataBufferOffset390 0x390                            // 数据缓冲区偏移量390
+#define DataBufferOffset410 0x410                            // 数据缓冲区偏移量410
+#define DataBufferOffset470 0x470                            // 数据缓冲区偏移量470
+#define DataBufferOffset4b0 0x4b0                            // 数据缓冲区偏移量4b0
+#define DataBufferOffset540 0x540                            // 数据缓冲区偏移量540
+#define DataBufferOffset570 0x570                            // 数据缓冲区偏移量570
+#define DataBufferOffset5d0 0x5d0                            // 数据缓冲区偏移量5d0
+#define DataBufferOffset610 0x610                            // 数据缓冲区偏移量610
+#define DataBufferOffset6b0 0x6b0                            // 数据缓冲区偏移量6b0
+#define DataBufferOffset6c0 0x6c0                            // 数据缓冲区偏移量6c0
+#define DataBufferOffset720 0x720                            // 数据缓冲区偏移量720
+#define DataBufferOffset750 0x750                            // 数据缓冲区偏移量750
+#define DataBufferOffset7e0 0x7e0                            // 数据缓冲区偏移量7e0
+#define DataBufferOffset7f0 0x7f0                            // 数据缓冲区偏移量7f0
+#define DataBufferOffset890 0x890                            // 数据缓冲区偏移量890
+#define DataBufferOffset930 0x930                            // 数据缓冲区偏移量930
 #define ExceptionHandlerContextOffset708 0x708            // 异常处理上下文偏移量708
 #define ExceptionHandlerContextOffset710 0x710            // 异常处理上下文偏移量710
 #define ExceptionHandlerContextOffset720 0x720            // 异常处理上下文偏移量720
@@ -61998,11 +62037,11 @@ void CleanupResourceAtOffset180(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffsetD0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0xd0) = 0;
-  *(DataWord *)(dataBuffer + 0xe0) = 0;
+  *(DataBuffer *)(dataBuffer + DataBufferOffsetD0) = 0;
+  *(DataWord *)(dataBuffer + DataBufferOffsetE0) = 0;
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -110620,11 +110659,11 @@ void ProcessExceptionHandlerContextAtOffsetF8AndCleanup(DataBuffer operationBase
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xf8) + SystemFloatDataOffset38))();
   }
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffsetD0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0xd0) = 0;
-  *(DataWord *)(dataBuffer + 0xe0) = 0;
+  *(DataBuffer *)(dataBuffer + DataBufferOffsetD0) = 0;
+  *(DataWord *)(dataBuffer + DataBufferOffsetE0) = 0;
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemDefaultExceptionHandlerB;
   if (*(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffsetC0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffsetC0) + SystemFloatDataOffset38))();
@@ -110713,13 +110752,13 @@ void SetupTemporaryExceptionHandlerAndCleanupSystem(DataBuffer operationBase, in
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemTemporaryExceptionHandler;
   
   // 检查系统终止标志，如果存在则调用系统终止函数
-  if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffsetD0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   
   // 清理系统状态标志
   *(int64_t *)(dataBuffer + 0xd0) = 0;
-  *(DataWord *)(dataBuffer + 0xe0) = 0;
+  *(DataWord *)(dataBuffer + DataBufferOffsetE0) = 0;
   
   // 恢复默认异常处理器
   *(DataBuffer *)(dataBuffer + SystemDataBufferOffset200) = &SystemDefaultExceptionHandlerB;

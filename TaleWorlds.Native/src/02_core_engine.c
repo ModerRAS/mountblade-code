@@ -231372,7 +231372,7 @@ LAB_18018d08e:
       SystemValidationFunction3 = SystemValidationFunction3 + 0x348;
     } while ((unsigned long long)(long long)(int)MemoryAllocationCounter < (unsigned long long)(CharacterTablePointer - MemoryBlockIndex));
   }
-  FUN_180190630(ContextHandle + 0x3a0,aFunctionAddress8);
+  ProcessSystemCharacterEncodingAndMemoryAllocation(ContextHandle + 0x3a0,aFunctionAddress8);
   ProcessCharacterInitializeSystem(aFunctionAddress8);
   return;
 }
