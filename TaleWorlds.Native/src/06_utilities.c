@@ -26520,9 +26520,9 @@ CleanupContextAndExit:
  (ram,SYSTEM_DEBUG_ADDRESS_004)
  (ram,SYSTEM_DEBUG_ADDRESS_005)
  (ram,SYSTEM_DEBUG_ADDRESS_006)
- (ram,0x000180895fb1)
- (ram,0x000180895fc0)
- (ram,0x000180896027)
+ (ram,SYSTEM_DEBUG_ADDRESS_007)
+ (ram,SYSTEM_DEBUG_ADDRESS_008)
+ (ram,SYSTEM_DEBUG_ADDRESS_009)
 
 // 函数: uint CleanupAndValidateDataStructure(int64_t *operationBase)
 // 
