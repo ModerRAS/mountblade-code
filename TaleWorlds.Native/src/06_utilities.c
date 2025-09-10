@@ -34004,7 +34004,7 @@ DataBuffer ResetDataCacheA0(void)
       return 0xd;
     }
   }
-  else if ((InputAccumulator == 0x12) && (*(uint *)(registerContext + systemContextDataOffset40) < ExceptionHandlerContextOffset40)) {
+  else if ((InputAccumulator == InputValidationValue) && (*(uint *)(registerContext + systemContextDataOffset40) < ExceptionHandlerContextOffset40)) {
     operationResult = QuerySystemDataA2();
     if ((int)operationResult != 0) {
       return operationResult;
@@ -35339,7 +35339,7 @@ DataProcessLabelA:
           }
           if ((int)dataFlags == 0) {
             dataFlags = operationResult;
-            if (0x4f < *(uint *)(dataBuffer + 8)) {
+            if (MaximumBufferSize < *(uint *)(dataBuffer + 8)) {
               if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
                 validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffsetAC,4);
                 dataFlags = (uint64_t)validationStatus;
@@ -43099,7 +43099,7 @@ void ConfigureSystemOptionsC1(void)
       goto ProcessCheckpointValidationCase;
     }
   }
-  else if ((InputAccumulator == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
+  else if ((InputAccumulator == InputValidationValue) && (*(uint *)(registerContext + 8) < 0x40)) {
     inputParameter = ExecuteDataBufferOperation();
     if (inputParameter != 0) {
       return;
