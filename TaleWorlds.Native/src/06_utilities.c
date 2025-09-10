@@ -18948,7 +18948,7 @@ DataBuffer ValidateUtilitySystemState(void)
   int *systemOperationPointer;
   int64_t systemBasePointer;
   DataWord *dataValidationContext;
-  uint systemHealthStatusIndicator;
+  uint32_t systemHealthStatusIndicator;
   uint64_t adjustedParameterValue;
   int64_t systemDataProcessingBuffer;
   uint64_t iterationCounter;
@@ -20121,8 +20121,8 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint floatProcessingFlags;
-  uint systemOperationStatusCode;
+  uint32_t floatProcessingFlags;
+  uint32_t systemOperationStatusCode;
   uint64_t floatValidationResult;
   DataBuffer *floatDataArrayPointer;
   DataBuffer *floatDataIterator;
@@ -20130,10 +20130,10 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   float floatProcessingValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
-  uint floatDataProcessingFlags;
-  uint floatProcessingFlagBitShift;
+  uint32_t floatDataProcessingFlags;
+  uint32_t floatProcessingFlagBitShift;
   DataBuffer vectorRegister;
-  uint floatValidationMaskResult;
+  uint32_t floatValidationMaskResult;
   
   floatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
   if ((int)floatValidationResult != 0) {
@@ -22216,7 +22216,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 
 {
   DataBuffer Result;
-  uint ValidationData;
+  uint32_t ValidationData;
   DataWord TemporaryValidationValue;
   
   ValidationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
@@ -22283,7 +22283,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   int bufferCapacity;
   int64_t newBuffer;
   int64_t bufferPtr;
-  uint currentSize;
+  uint32_t currentSize;
   int64_t eventHandle;
   int64_t queueInfo;
   int queueStatusValidation;
