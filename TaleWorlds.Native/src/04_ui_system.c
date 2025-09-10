@@ -627,6 +627,10 @@ typedef enum {
 
 // UI系统函数宏定义 - 变换数据处理
 #define FUN_18072e5f4 ProcessUITransformDataScaling
+#define FUN_18072e9ce ProcessUIComponentBatchTransform
+#define FUN_18072eaed ClearUIComponentState
+#define FUN_18072eb00 ProcessUIBufferAllocationInternal
+#define FUN_18072f881 InitializeUISystemState
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -113409,8 +113413,15 @@ void FUN_18072f7ec(longlong uiContext,UIHandle dataSource,int targetBuffer)
 
 
 
- void FUN_18072f881(void)
-void FUN_18072f881(void)
+ /**
+ * @brief 初始化UI系统状态
+ * 
+ * 该函数负责初始化UI系统的基本状态，确保系统处于正确的初始状态。
+ * 这是一个简单的初始化函数，为后续的UI操作做准备。
+ * 
+ * @note 原始函数名：FUN_18072f881
+ */
+void InitializeUISystemState(void)
 
 {
   return;

@@ -240083,26 +240083,55 @@ LAB_180198827:
 
 
 
-long long * FUN_180198890(uint64_t ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer
+/**
+ * @brief 初始化系统上下文句柄和缓冲区
+ * 
+ * 该函数负责初始化系统上下文句柄和相关缓冲区，包括：
+ * - 分配内存池和缓冲区
+ * - 初始化字符数据转换
+ * - 设置性能计数器
+ * - 配置系统事件模板
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作的上下文
+ * @param ContextHandleSize 上下文大小指针，用于存储上下文的大小信息
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @return long long* 返回操作缓冲区的指针
+ * 
+ * @note 原始函数名：FUN_180198890
+ */
+long long * InitializeSystemContextAndBuffer(uint64_t ContextHandle, long long *ContextHandleSize, uint8_t Utf8SourcePointer)
 {
-  uint64_t Utf16Char;
+  uint64_t AllocatedMemoryHandle;
   long long *BufferAllocationStatus;
   long long *PerformanceCounterPointer;
   
-  Utf16Char = MemoryAllocate(MemoryPoolManager,0x2f0,0x10,0xd);
-  BufferAllocationStatus = (long long *)FUN_1802e6b00(Utf16Char,Utf8SourcePointer);
+  // 从内存池分配内存
+  AllocatedMemoryHandle = MemoryAllocate(MemoryPoolManager, 0x2f0, 0x10, 0xd);
+  
+  // 初始化字符数据转换
+  BufferAllocationStatus = (long long *)ProcessCharacterDataConversion(AllocatedMemoryHandle, Utf8SourcePointer);
   *ContextHandleSize = (long long)BufferAllocationStatus;
+  
+  // 如果缓冲区分配成功，执行初始化操作
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
   }
+  
+  // 如果上下文大小为0，初始化系统事件模板
   if (*ContextHandleSize == 0) {
-    FUN_180626ee0(&SystemEventTemplateSecondary);
+    InitializeSystemEventTemplateSecondary(&SystemEventTemplateSecondary);
   }
+  
+  // 设置性能计数器
   PerformanceCounterPointer = (long long *)*ContextHandleSize;
   if (PerformanceCounterPointer != (long long *)0x0) {
     (**(code **)(*PerformanceCounterPointer + 0x28))();
   }
-  FUN_180198b90(ContextHandle,&PerformanceCounterPointer,1,1,0,1,0);
+  
+  // 执行系统配置
+  ConfigureSystemContextParameters(ContextHandle, &PerformanceCounterPointer, 1, 1, 0, 1, 0);
+  
   return OperationBufferSize;
 }
 
