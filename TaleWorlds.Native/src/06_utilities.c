@@ -30079,18 +30079,17 @@ MemoryCheckpoint:
 void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 
 {
-  int inputParameter;
-  int operationResult;
+  int inputParameterCount;
+  int validationResult;
   int operationStatus;
   int arrayIndex;
-  uint operationResult;
   int iterationCount;
   
-  operationResult = ValidateSystemDataIntegrityB0(ValidationBuffer);
-  inputParameter = *(int *)(DataBlockContext + DataBlockContextOffset30);
-  operationResult = (int)*(uint *)(DataBlockContext + SystemDataValidationOffset34) >> 0x1f;
-  operationStatus = (*(uint *)(DataBlockContext + SystemDataValidationOffset34) ^ operationResult) - operationResult;
-  iterationCount = inputParameter + operationResult;
+  validationResult = ValidateSystemDataIntegrityB0(ValidationBuffer);
+  inputParameterCount = *(int *)(DataBlockContext + DataBlockContextOffset30);
+  validationStatus = (int)*(uint *)(DataBlockContext + SystemDataValidationOffset34) >> 0x1f;
+  operationStatus = (*(uint *)(DataBlockContext + SystemDataValidationOffset34) ^ validationStatus) - validationStatus;
+  iterationCount = inputParameterCount + validationStatus;
   if (operationStatus < iterationCount) {
     arrayIndex = (int)((float)operationStatus * 1.5);
     operationStatus = iterationCount;
@@ -30105,17 +30104,17 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
       return;
     }
   }
-  operationResult = (int)*(uint *)(operationBase + SystemDataValidationOffset34) >> 0x1f;
-  if (((int)((*(uint *)(operationBase + SystemDataValidationOffset34) ^ operationResult) - operationResult) < iterationCount) &&
-     (operationStatus = ValidateSystemMemoryA0(operationBase + SystemParameterValidationOffset28,iterationCount), operationStatus != 0)) {
+  validationStatus = (int)*(uint *)(DataBlockContext + SystemDataValidationOffset34) >> 0x1f;
+  if (((int)((*(uint *)(DataBlockContext + SystemDataValidationOffset34) ^ validationStatus) - validationStatus) < iterationCount) &&
+     (operationStatus = ValidateSystemMemoryA0(DataBlockContext + SystemParameterValidationOffset28,iterationCount), operationStatus != 0)) {
     return;
   }
-  operationStatus = *(int *)(operationBase + OperationStatusOffset30);
+  operationStatus = *(int *)(DataBlockContext + OperationStatusOffset30);
   if (iterationCount <= operationStatus) {
-    *(int *)(operationBase + OperationStatusOffset30) = iterationCount;
-      memcpy((int64_t)inputParameter + *(int64_t *)(operationBase + SystemParameterValidationOffset28),dataBuffer,(int64_t)operationResult);
+    *(int *)(DataBlockContext + OperationStatusOffset30) = iterationCount;
+      memcpy((int64_t)inputParameterCount + *(int64_t *)(DataBlockContext + SystemParameterValidationOffset28),ValidationBuffer,(int64_t)validationResult);
   }
-    memset((int64_t)operationStatus + *(int64_t *)(operationBase + SystemParameterValidationOffset28),0,(int64_t)(iterationCount - operationStatus));
+    memset((int64_t)operationStatus + *(int64_t *)(DataBlockContext + SystemParameterValidationOffset28),0,(int64_t)(iterationCount - operationStatus));
 }
 
 
@@ -30136,21 +30135,21 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 DataBuffer ProcessDataA0(int64_t *DataPointer,int ProcessingFlags)
 
 {
-  int inputParameter;
+  int currentBufferSize;
   DataBuffer operationResult;
   uint validationStatus;
   
-  validationStatus = (int)*(uint *)((int64_t)operationBase + DataBufferOffsetC) >> 0x1f;
-  if (((int)((*(uint *)((int64_t)operationBase + DataBufferOffsetC) ^ validationStatus) - validationStatus) < dataBuffer) &&
-     (operationResult = ValidateSystemMemoryA0(operationBase,dataBuffer), (int)operationResult != 0)) {
+  validationStatus = (int)*(uint *)((int64_t)DataPointer + DataBufferOffsetC) >> 0x1f;
+  if (((int)((*(uint *)((int64_t)DataPointer + DataBufferOffsetC) ^ validationStatus) - validationStatus) < ProcessingFlags) &&
+     (operationResult = ValidateSystemMemoryA0(DataPointer,ProcessingFlags), (int)operationResult != 0)) {
     return operationResult;
   }
-  inputParameter = (int)operationBase[1];
-  if (dataBuffer <= inputParameter) {
-    *(int *)(operationBase + 1) = dataBuffer;
+  currentBufferSize = (int)DataPointer[1];
+  if (ProcessingFlags <= currentBufferSize) {
+    *(int *)(DataPointer + 1) = ProcessingFlags;
     return 0;
   }
-    memset((int64_t)inputParameter + *operationBase,0,(int64_t)(dataBuffer - inputParameter));
+    memset((int64_t)currentBufferSize + *DataPointer,0,(int64_t)(ProcessingFlags - currentBufferSize));
 }
 
 
@@ -30181,22 +30180,22 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   DataWord SystemResetFlagLocal3;
   uint64_t securityCheckValue;
   
-  *(ByteFlag *)(operationBase + 4) = 1;
-  operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + RegisterContextDataOffset),&validationStackBuffer);
+  *(ByteFlag *)(DataDescriptor + 4) = 1;
+  operationResult = InitializeDataStructureA0(*(DataBuffer *)(DataDescriptor[1] + RegisterContextDataOffset),&validationStackBuffer);
   if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(validationStackBuffer,temporaryStackArray,0), (int)operationResult == 0)) &&
-     (operationResult = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset))(operationBase), (int)operationResult == 0)) {
-    validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + SystemParameterOffset1C);
-    exceptionContext = operationBase[2];
-    memoryRegionBase = validationStatus - exceptionHandlerContext;
-    if (((dataBuffer != '\0') || (exceptionContext == 0)) || (47999 < memoryRegionBase)) {
-      operationBase[2] = validationStatus;
+     (operationResult = (**(FunctionPointer**)(*DataDescriptor + ExceptionHandlerCallbackOffset))(DataDescriptor), (int)operationResult == 0)) {
+    validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)DataDescriptor + SystemParameterOffset1C);
+    exceptionContext = DataDescriptor[2];
+    memoryRegionBase = validationStatus - exceptionContext;
+    if (((ValidationType != '\0') || (exceptionContext == 0)) || (47999 < memoryRegionBase)) {
+      DataDescriptor[2] = validationStatus;
       SystemResetFlagLocal3 = 0;
       securityCheckValue = 0;
-      if (exceptionHandlerContext != 0) {
+      if (exceptionContext != 0) {
         securityCheckValue = memoryRegionBase;
       }
       SecurityValidationPointer = &SystemValidationTable;
-      operationResult = ValidateDataIntegrityA0(operationBase,&SecurityValidationPointer);
+      operationResult = ValidateDataIntegrityA0(DataDescriptor,&SecurityValidationPointer);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -31007,17 +31006,17 @@ DataBuffer ReturnFixedStatusCodeA0(void)
  * 
  * @note 原始函数名：FUN_180898d5e
  */
-DataBuffer ValidateDataBlockStatusA0(int64_t *operationBase,DataWord *dataBuffer)
+DataBuffer ValidateDataBlockStatusA0(int64_t *DataOperationContext,DataWord *dataBuffer)
 
 {
   DataBuffer validationResult;
   DataWord parameterBuffer [8];
   
-  if (*(int *)(operationBase[1] + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(DataOperationContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
-  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
+  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*DataOperationContext + OperationBaseOffset8))(*(DataBuffer **)(*DataOperationContext + OperationBaseOffset8),parameterBuffer,4);
   return validationResult;
 }
 
