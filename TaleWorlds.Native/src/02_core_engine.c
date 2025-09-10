@@ -222245,7 +222245,19 @@ void ProcessSystemDataNodeAndCharacterLimit(void)
 
 
 
-8368d(voidvoid FUN_18018368d(void
+/**
+ * @brief 处理系统字符表和指针管理
+ * 
+ * 该函数负责处理系统字符表和指针管理，主要功能包括：
+ * - 管理字符表指针和系统数据节点
+ * - 处理寄存器值和字符限制计算
+ * - 更新系统状态和指针引用
+ * - 执行字符表相关的管理操作
+ * 
+ * @note 原始函数名：FUN_18018368d
+ */
+#define ProcessSystemCharacterTableAndPointerManagement FUN_18018368d
+void ProcessSystemCharacterTableAndPointerManagement(void)
 {
   long long MainCalculationResult;
   long long SystemDataNode;
