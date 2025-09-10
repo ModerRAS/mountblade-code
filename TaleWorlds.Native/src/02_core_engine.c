@@ -225336,36 +225336,36 @@ void FUN_180186a90(long long ContextHandle)
  * @param AdditionalParameter3 额外参数3
  */
 void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer,uint32_t Utf16EndPointer,
-                  uint32_t AdditionalParameter1
+                  uint32_t AdditionalParameter1)
 {
-  long long *ContextHandle;
-  long long BufferStatus;
+  long long *SystemContextPointer;
+  long long SystemBufferStatus;
   void *SystemEventTemplatePointer;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
-  uint8_t aProcessingCounter [32];
-  uint64_t ErrorCode;
-  uint64_t *pSystemFlagE;
-  uint64_t *pSystemCleanupFlagF;
-  void **ppSystemCleanupFlagG;
-  void *SystemCharacterStatusBufferPointer;
-  long long StackMemoryBufferC0;
-  void **ppSystemOperation90;
-  uint8_t StackValidationData [16];
-  uint64_t StackProcessingValue78;
-  uint64_t StackProcessingVariable70;
-  uint8_t aStackProcessingValue [16];
-  uint64_t BufferOffset;
-  uint64_t SystemKeyPointer;
+  uint8_t ProcessingCounter [32];
+  uint64_t SystemErrorCode;
+  uint64_t *SystemFlagPointer;
+  uint64_t *SystemCleanupFlagPointer;
+  void **SystemCleanupFlagDoublePointer;
+  void *CharacterStatusBufferPointer;
+  long long StackMemoryBuffer;
+  void **SystemOperationPointer;
+  uint8_t ValidationData [16];
+  uint64_t ProcessingValue;
+  uint64_t ProcessingVariable;
+  uint8_t StackValue [16];
+  uint64_t DataOffset;
+  uint64_t SystemKey;
   uint32_t SystemStackFlag;
-  uint32_t uStack_44;
-  unsigned long long FunctionAddress;
+  uint32_t StackParameter;
+  unsigned long long UtilityFunctionAddress;
   
-  BufferStatus = SystemBufferStatusA;
-  ErrorCode = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aProcessingCounter;
-  pSystemFlagE = OperationBufferSize;
-  pSystemCleanupFlagF = Utf8SourcePointer;
+  SystemBufferStatus = SystemBufferStatusA;
+  SystemErrorCode = 0xfffffffffffffffe;
+  UtilityFunctionAddress = EncodingDecodingKey ^ (unsigned long long)ProcessingCounter;
+  SystemFlagPointer = OperationBufferSize;
+  SystemCleanupFlagPointer = Utf8SourcePointer;
   if (*(long long *)(SystemBufferStatusA + 8) == 0) {
     *ContextHandleSize = &SystemNullTemplate;
     if (OperationBufferSize[1] != 0) {
@@ -225384,13 +225384,13 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
     *(uint32_t *)(Utf8SourcePointer + 3) = 0;
   }
   else {
-    StackProcessingValue78 = 0;
-    StackProcessingVariable70 = 0xf;
-    StackValidationData[0] = 0;
-    BufferOffset = 0;
-    SystemKeyPointer = 0xf;
-    aStackProcessingValue[0] = 0;
-    uStack_44 = AdditionalParameter1;
+    ProcessingValue = 0;
+    ProcessingVariable = 0xf;
+    ValidationData[0] = 0;
+    DataOffset = 0;
+    SystemKey = 0xf;
+    StackValue[0] = 0;
+    StackParameter = AdditionalParameter1;
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
     if ((void *)Utf8SourcePointer[1] != NULL) {
       SystemEventTemplatePointer = (void *)Utf8SourcePointer[1];
@@ -225409,15 +225409,15 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
     do {
       SystemDataRegistry = SystemDataRegistry + 1;
     } while (SystemEventTemplatePointer[SystemDataRegistry] != '\0');
-    ReallocateContextHandle(aStackProcessingValue,SystemEventTemplatePointer,SystemDataRegistry);
-    ContextHandle = *(long long **)(BufferStatus + 8);
-    ppSystemCleanupFlagG = &SystemCharacterStatusBufferPointer;
-    SystemCharacterStatusBufferPointer = &SystemBufferQuinary;
-    lStack_c0 = BufferStatus;
-    ppSystemOperation90 = &SystemCharacterStatusBufferPointer;
-    (**(code **)(*ContextHandle + 0x30))(ContextHandle,StackValidationData,&SystemCharacterStatusBufferPointer,0);
-    ProcessSystemStackData(aStackProcessingValue);
-    ProcessSystemStackData(StackValidationData);
+    ReallocateContextHandle(StackValue,SystemEventTemplatePointer,SystemDataRegistry);
+    SystemContextPointer = *(long long **)(SystemBufferStatus + 8);
+    SystemCleanupFlagDoublePointer = &CharacterStatusBufferPointer;
+    CharacterStatusBufferPointer = &SystemBufferQuinary;
+    StackMemoryBuffer = SystemBufferStatus;
+    SystemOperationPointer = &CharacterStatusBufferPointer;
+    (**(code **)(*SystemContextPointer + 0x30))(SystemContextPointer,ValidationData,&CharacterStatusBufferPointer,0);
+    ProcessSystemStackData(StackValue);
+    ProcessSystemStackData(ValidationData);
     *ContextHandleSize = &SystemNullTemplate;
     if (OperationBufferSize[1] != 0) {
                     // WARNING: Subroutine does not return

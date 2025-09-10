@@ -405427,33 +405427,59 @@ void ValidateUIDataSource(longlong uiContext,UIHandle dataSource)
 UIHandle ValidateAndProcessUIDataSource(longlong uiContext,UIHandle *dataSource)
 
 {
-  UIHandle result;
-  UIByte astackUInt28 [32];
+  UIHandle validationResult;
+  UIByte validationBuffer [32];
   
-  result = FUN_1808ddd30(dataSource,astackUInt28,0,0x56525543,0);
-  if ((int)result == 0) {
+  // 执行数据源验证
+  validationResult = ValidateDataSourceSignature(dataSource, validationBuffer, 0, 0x56525543, 0);
+  if ((int)validationResult == 0) {
+    // 检查数据源配置状态
     if (*(int *)(dataSource[1] + 0x18) != 0) {
-      return 0x1c;
+      return 0x1c; // 数据源配置错误
     }
-    result = FUN_180899ef0(*dataSource,uiContext + 0x10);
-    if ((int)result == 0) {
+    // 验证数据源上下文
+    validationResult = ValidateDataSourceContext(*dataSource, uiContext + 0x10);
+    if ((int)validationResult == 0) {
+      // 再次检查数据源配置状态
       if (*(int *)(dataSource[1] + 0x18) != 0) {
-        return 0x1c;
+        return 0x1c; // 数据源配置错误
       }
-      result = FUN_180899ef0(*dataSource,uiContext + 0x20);
-      if (((int)result == 0) && (result = FUN_1808a4fb0(dataSource,uiContext + 0x30,1,0), (int)result == 0))
+      // 验证数据源安全属性
+      validationResult = ValidateDataSourceSecurity(*dataSource, uiContext + 0x20);
+      if (((int)validationResult == 0) && (validationResult = ProcessDataSourceSecurityCheck(dataSource, uiContext + 0x30, 1, 0), (int)validationResult == 0))
       {
-                     WARNING: Subroutine does not return
-        FUN_1808de000(dataSource,astackUInt28);
+        // 安全验证失败，执行错误处理
+        HandleDataSourceValidationError(dataSource, validationBuffer);
       }
     }
   }
-  return result;
+  return validationResult;
 }
 
 
 
-UIHandle FUN_18089fc50(longlong uiContext,UIHandle *dataSource)
+/**
+ * @brief UI数据源安全验证器
+ * 
+ * 该函数负责执行UI系统数据源的深度安全验证。
+ * 主要功能：
+ * 1. 执行数据源的双重签名验证
+ * 2. 验证数据源的完整性和安全性
+ * 3. 检查数据源的配置和权限
+ * 4. 处理验证失败的情况
+ * 
+ * @param uiContext UI上下文指针，包含安全验证的状态信息
+ * @param dataSource 数据源句柄指针，指向待验证的数据源
+ * @return UIHandle 验证结果句柄：
+ *         - 0: 验证成功
+ *         - 0x1c: 数据源配置错误
+ *         - 其他: 验证失败的具体错误码
+ * 
+ * @note 原始函数名：FUN_18089fc50
+ * @warning 该函数涉及深度安全验证，需要注意数据保护
+ * @see ValidateAndProcessUIDataSource, ValidateDataSourceSecurity
+ */
+UIHandle ValidateUIDataSourceSecurity(longlong uiContext,UIHandle *dataSource)
 
 {
   UIHandle result;
