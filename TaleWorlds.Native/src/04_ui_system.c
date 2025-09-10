@@ -411,6 +411,11 @@ typedef enum {
 // UI系统变换栈变量语义化定义
 #define astackUIntf8 UITransformFactorStackF8
 #define astackUInt48 UIAnimationStateStack48
+#define astackUInta8 UIComponentStackA8
+#define astackUInt6a8 UIDataBufferStack6A8
+#define astackUInt728 UIRenderBufferStack728
+#define stack0x000000b0 UIStackDataBufferB0
+#define stack0x000006b0 UIStackRenderBuffer6B0
 #define afStack_6260 UIAnimationSpeedStack6260               // UI动画速度栈6260 - 存储UI动画速度的栈变量
 #define astackUInt178 UILayoutParameterStack178
 
@@ -20380,19 +20385,19 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
   UIByte astackUInt1c8 [32];
   UIDword stackUInt1a8;
   UIByte stackUInt1a0;
-  float fStack_198;
-  float fStack_194;
-  longlong stackLong190;
-  longlong stackLong188;
-  char *pcStack_180;
+  float collisionScaleFactor;
+  float collisionDistance;
+  longlong targetBufferHandle;
+  longlong dataSourceHandle;
+  char *collisionDataPointer;
   UIHandle stackUInt178;
-  float fStack_170;
-  float fStack_16c;
-  float fStack_168;
+  float scaleFactorX;
+  float scaleFactorY;
+  float transformFactorA;
   longlong stackLong160;
   longlong stackLong158;
   longlong stackLong150;
-  char *pcStack_148;
+  char *transformDataPointer;
   longlong stackLong140;
   UIByte *pstackUInt138;
   float afStack_130 [15];
@@ -112293,7 +112298,7 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
     do {
       stackUInt738 = *(UIDword *)(uiBufferData + 0x121c);
       ProcessUIComponentOperation(astackUInta8,uiContext + 0x1190,dataSource,sourceDataInt);
-      FUN_180726a70(astackUInt728,astackUInta8,*(UIDword *)(uiBufferData + 0x121c),
+      ProcessUIDataUnpackingAndConversion(astackUInt728,astackUInta8,*(UIDword *)(uiBufferData + 0x121c),
                     *(UIDword *)(uiBufferData + 0x13ec));
       stackUInt738 = *(UIDword *)(uiBufferData + 0x121c);
       ProcessUIDataWithParameters(astackUInt6a8,astackUInt728,targetBuffer,localInt5 * 2);
@@ -112397,7 +112402,7 @@ void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer
     do {
       dataPointer = *(UIDword *)(targetHandle + 0x121c);
       ProcessUIComponentOperation(&stack0x000006b0,targetHandle + 0x1190);
-      FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(targetHandle + 0x121c),
+      ProcessUIDataUnpackingAndConversion(&stack0x00000030,&stack0x000006b0,*(UIDword *)(targetHandle + 0x121c),
                     *(UIDword *)(targetHandle + 0x13ec),dataPointer);
       ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataValue * 2,
                     *(UIDword *)(targetHandle + 0x121c));
@@ -115834,8 +115839,30 @@ void ProcessUIEventCodeType(void)
 
 
 
- void FUN_180733b18(void)
-void FUN_180733b18(void)
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个UI系统的空操作函数，用于：
+ * - 提供默认的空操作实现
+ * - 保持系统稳定性
+ * - 作为默认的处理路径
+ * 
+ * @note 原始函数名：FUN_180733b18
+ * @note 这是一个简化实现，仅返回空操作
+ */
+void UIFunctionEmptyOperation(void)
+/**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个UI系统的空操作函数，用于：
+ * - 提供默认的空操作实现
+ * - 保持系统稳定性
+ * - 作为默认的处理路径
+ * 
+ * @note 原始函数名：FUN_180733b18
+ * @note 这是一个简化实现，仅返回空操作
+ */
+void UIFunctionEmptyOperation(void)
 
 {
   return;
@@ -116478,8 +116505,40 @@ void ProcessUIDataAndValidation(short uiContext,char dataSource,int *targetBuffe
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
-void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI字符数据与缓冲区转换
+ * 
+ * 该函数负责处理UI字符数据与缓冲区的转换操作，包括：
+ * - 字符数据的加密和解密处理
+ * - 缓冲区数据的操作和处理
+ * - 字符匹配和比较操作
+ * - 数据索引和迭代处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源字符指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180734390
+ * @note 涉及XOR加密操作和字符数据处理
+ */
+void ProcessUICharacterDataConversion(longlong uiContext, char *dataSource, longlong targetBuffer)
+/**
+ * @brief 处理UI字符数据与缓冲区转换
+ * 
+ * 该函数负责处理UI字符数据与缓冲区的转换操作，包括：
+ * - 字符数据的加密和解密处理
+ * - 缓冲区数据的操作和处理
+ * - 字符匹配和比较操作
+ * - 数据索引和迭代处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源字符指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180734390
+ * @note 涉及XOR加密操作和字符数据处理
+ */
+void ProcessUICharacterDataConversion(longlong uiContext, char *dataSource, longlong targetBuffer)
 
 {
   short sVar1;
@@ -116561,99 +116620,130 @@ void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
 
 
 
- void FUN_1807343b8(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
-void FUN_1807343b8(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
+ /**
+ * @brief UI文本编码处理和事件生成函数
+ * 
+ * 该函数负责处理UI文本数据的编码转换和事件码生成，主要功能包括：
+ * - 文本数据的编码转换和处理
+ * - 基于字符数据生成事件码
+ * - 处理字符匹配和数据转换
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1807343b8
+ */
+void ProcessUITextEncodingAndEventGeneration(UIHandle uiContext, UIHandle dataSource, longlong targetBuffer)
 
 {
-  short sVar1;
-  short sVar2;
-  UIWord eventCodeType;
-  int sourceDataInt;
-  int localInt5;
+  short bufferLength;
+  short scaleFactor;
+  UIWord eventCode;
+  int encodedValue;
+  int calculationResult;
   longlong contextDataHandle;
-  char *TargetHandle;
-  longlong localLong7;
-  short *pContextSecondValue;
-  int localInt9;
-  char *plocalChar10;
-  byte *pisCharacterMatch1;
+  char *sourceTextPtr;
+  longlong charIndex;
+  short *contextDataPtr;
+  int iterationCounter;
+  char *currentCharPtr;
+  byte *characterMatchPtr;
   longlong eventHandle;
-  byte abStackX_1f [9];
-  ulonglong stackParam00000070;
+  byte processingBuffer [9];
+  ulonglong renderParameter;
   
-  ProcessUIBufferDataOperation(&stack0x00000050,abStackX_1f + 1);
-  sVar1 = *(short *)(targetBuffer + 2);
+  ProcessUIBufferDataOperation(&stack0x00000050, processingBuffer + 1);
+  bufferLength = *(short *)(targetBuffer + 2);
   uiElementIndex = 0;
-  localInt9 = sVar1 + -1;
-  localLong7 = (longlong)localInt9;
-  if (-1 < localInt9) {
-    sVar2 = *(short *)(targetBuffer + 4);
-    plocalChar10 = TargetHandle + localLong7 + 1;
+  iterationCounter = bufferLength + -1;
+  charIndex = (longlong)iterationCounter;
+  if (-1 < iterationCounter) {
+    scaleFactor = *(short *)(targetBuffer + 4);
+    currentCharPtr = sourceTextPtr + charIndex + 1;
     do {
-      pisCharacterMatch1 = (byte *)(plocalChar10 + (longlong)(abStackX_1f + -(longlong)TargetHandle));
-      sourceDataInt = *plocalChar10 * 0x400;
-      localInt9 = (int)*plocalChar10 << 10;
-      if (localInt9 < 1) {
-        if (localInt9 < 0) {
-          sourceDataInt = sourceDataInt + 0x66;
+      characterMatchPtr = (byte *)(currentCharPtr + (longlong)(processingBuffer + -(longlong)sourceTextPtr));
+      encodedValue = *currentCharPtr * 0x400;
+      iterationCounter = (int)*currentCharPtr << 10;
+      if (iterationCounter < 1) {
+        if (iterationCounter < 0) {
+          encodedValue = encodedValue + 0x66;
         }
       }
       else {
-        sourceDataInt = sourceDataInt + -0x66;
+        encodedValue = encodedValue + -0x66;
       }
-      plocalChar10 = plocalChar10 + -1;
-      localInt5 = (int)((ulonglong)((longlong)sourceDataInt * (longlong)sVar2) >> 0x10) +
-              ((int)((uint)*pisCharacterMatch1 * (int)(short)localInt5) >> 8);
-      *(short *)(&stack0x00000030 + localLong7 * 2) = (short)localInt5;
-      localLong7 = localLong7 + -1;
-    } while (-1 < localLong7);
+      currentCharPtr = currentCharPtr + -1;
+      calculationResult = (int)((ulonglong)((longlong)encodedValue * (longlong)scaleFactor) >> 0x10) +
+              ((int)((uint)*characterMatchPtr * (int)(short)calculationResult) >> 8);
+      *(short *)(&stack0x00000030 + charIndex * 2) = (short)calculationResult;
+      charIndex = charIndex + -1;
+    } while (-1 < charIndex);
   }
-  localInt9 = 0;
-  localLong7 = (longlong)((int)*TargetHandle * (int)sVar1);
-  pisCharacterMatch1 = (byte *)(*(longlong *)(targetBuffer + 8) + localLong7);
-  pContextSecondValue = (short *)(*(longlong *)(targetBuffer + 0x10) + localLong7 * 2);
-  if (0 < sVar1) {
-    localLong7 = -(longlong)pContextSecondValue;
-    contextDataHandle = eventHandle - (longlong)pContextSecondValue;
+  iterationCounter = 0;
+  charIndex = (longlong)((int)*sourceTextPtr * (int)bufferLength);
+  characterMatchPtr = (byte *)(*(longlong *)(targetBuffer + 8) + charIndex);
+  contextDataPtr = (short *)(*(longlong *)(targetBuffer + 0x10) + charIndex * 2);
+  if (0 < bufferLength) {
+    charIndex = -(longlong)contextDataPtr;
+    contextDataHandle = eventHandle - (longlong)contextDataPtr;
     do {
-      localInt5 = ((int)*(short *)(&stack0x00000030 + localLong7 + (longlong)pContextSecondValue) << 0xe) / (int)*pContextSecondValue +
-              (uint)*pisCharacterMatch1 * 0x80;
-      if (localInt5 < 0x8000) {
-        eventCode = (UIWord)localInt5;
-        if (localInt5 < 0) {
+      calculationResult = ((int)*(short *)(&stack0x00000030 + charIndex + (longlong)contextDataPtr) << 0xe) / (int)*contextDataPtr +
+              (uint)*characterMatchPtr * 0x80;
+      if (calculationResult < 0x8000) {
+        eventCode = (UIWord)calculationResult;
+        if (calculationResult < 0) {
           eventCode = 0;
         }
       }
       else {
         eventCode = 0x7fff;
       }
-      *(UIWord *)(contextDataHandle + (longlong)pContextSecondValue) = eventCodeType;
-      localInt9 = localInt9 + 1;
-      pContextSecondValue = pContextSecondValue + 1;
-      pisCharacterMatch1 = pisCharacterMatch1 + 1;
-    } while (localInt9 < *(short *)(targetBuffer + 2));
+      *(UIWord *)(contextDataHandle + (longlong)contextDataPtr) = eventCode;
+      iterationCounter = iterationCounter + 1;
+      contextDataPtr = contextDataPtr + 1;
+      characterMatchPtr = characterMatchPtr + 1;
+    } while (iterationCounter < *(short *)(targetBuffer + 2));
   }
   FUN_1807376c0();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000070 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
  void FUN_180734467(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,int bufferSize)
-void FUN_180734467(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,int bufferSize)
+/**
+ * @brief 处理UI上下文数据转换和迭代操作
+ * 
+ * 该函数负责处理UI上下文中的数据转换操作，包括：
+ * - 数据缓冲区迭代处理
+ * - 数值范围验证和限制
+ * - 上下文数据句柄管理
+ * - 循环计数和迭代控制
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统上下文
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区指针，存储处理后的数据
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_180734467
+ * @warning 该函数包含不返回的子程序调用，调用时需注意程序流程控制
+ */
+void ProcessUIContextDataTransformation(UIHandle uiContext, UIHandle dataSource, short *targetBuffer, int bufferSize)
 
 {
-  longlong allocatedMemory;
+  longlong memoryOffset;
   UIWord iterationCount;
-  int uiCompareResult;
-  longlong contextDataHandle;
-  longlong componentData;
-  byte *register10;
+  int comparisonResult;
+  longlong contextDataOffset;
+  longlong componentDataPtr;
+  byte *dataPointer;
   longlong eventHandle;
-  UIWord preservedRegister15W;
-  ulonglong stackParam00000070;
+  UIWord preservedRegisterValue;
+  ulonglong stackParameter;
   
   allocatedMemory = -(longlong)targetBuffer;
   contextDataHandle = eventHandle - (longlong)targetBuffer;
