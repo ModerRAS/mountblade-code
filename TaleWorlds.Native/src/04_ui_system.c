@@ -4830,8 +4830,7 @@ void* UIGestureCoordinates;
  #define UIVectorMultiplyMask16 _DAT_180947430
  #define UIVectorMultiplyMask17 _DAT_180947440
  #define UIVectorMultiplyMask18 _DAT_180947450
- _DAT_180947460 - UI向量乘法掩码19
-#define UIVectorMultiplyMask19 _DAT_180947460
+ #define UIVectorMultiplyMask19 _DAT_180947460
  #define UIVectorMultiplyMask20 _DAT_180947470
 #define UIVectorMultiplyMask21 _DAT_180947480
  #define UIVectorMultiplyMask22 _DAT_180947490
@@ -4845,6 +4844,9 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask30 _DAT_180947510
  #define UIVectorMultiplyMask31 _DAT_180947520
 #define UIComponentIndexVector _DAT_180947040       // UI组件索引向量 - 存储UI组件的索引信息
+#define UIEventCounterVector _DAT_180947060          // UI事件计数器向量 - 存储UI事件计数信息
+#define UIEventStatusVector _DAT_180947080            // UI事件状态向量 - 存储UI事件状态信息
+#define UIProcessingCounterVector _DAT_1809470c0      // UI处理计数器向量 - 存储UI处理计数信息
 #define UIVectorAdditionConstant UIVectorAdditionConstant
 #define UIRenderingConstant2 _DAT_1809480a0
 #define UIRenderingConstant3 _DAT_1809480b0

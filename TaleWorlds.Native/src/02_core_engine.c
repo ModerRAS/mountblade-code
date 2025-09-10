@@ -261719,14 +261719,14 @@ uint64_t ProcessUnicodeEncodingAndMemoryAllocation(long long ContextHandle, uint
 {
   // 变量语义化定义
   int LockResult;                                          // 锁操作结果
-  uint MemoryPoolIndex;                              // 内存分配索引
+  uint32_t MemoryPoolIndex;                              // 内存分配索引
   uint64_t UnicodeCodePoint;                               // Unicode代码点
   uint32_t *MemoryAddressMaskPointer;                      // 内存地址掩码指针
   uint64_t SystemRegisterFlag;                             // 系统寄存器标志
   void *EncodingBuffer;                                    // 编码缓冲区
   uint32_t *BufferOffset;                                  // 缓冲区偏移量
-  uint SystemKeyPointer;                                   // 系统密钥指针
-  uint64_t SystemStackOffset48;                            // 系统栈偏移量48
+  uint32_t SystemKeyPointer;                                   // 系统密钥指针
+  uint64_t SystemStackFlag;                            // 系统栈标志
   
   if (*(char *)(ContextHandle + 0x210) != '\0') {
     return 0;
@@ -261735,7 +261735,7 @@ uint64_t ProcessUnicodeEncodingAndMemoryAllocation(long long ContextHandle, uint
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213d73;
+  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto EncodingCompleteLabel;
   EncodingBuffer = &SystemNullTemplate;
   SystemStackFlag = 0;
   BufferOffset = (uint32_t *)0x0;
@@ -261752,7 +261752,7 @@ uint64_t ProcessUnicodeEncodingAndMemoryAllocation(long long ContextHandle, uint
   SystemKeyPointer = 0x15;
   SystemStackFlag.LowPart = MemoryPoolIndex;
   ProcessSystemCharacterStatusUpdate(&EncodingBuffer,OperationBufferSize);
-  IntegerValue = SystemKeyPointer + 1;
+  uint32_t EncodedDataLength = SystemKeyPointer + 1;
   if (LockResult != 0) {
     MemoryPoolIndex = SystemKeyPointer + 2;
     if (BufferOffset == (uint32_t *)0x0) {
@@ -261763,18 +261763,18 @@ uint64_t ProcessUnicodeEncodingAndMemoryAllocation(long long ContextHandle, uint
       *(uint8_t *)BufferOffset = 0;
     }
     else {
-      if (MemoryPoolIndex <= (uint)SystemStackFlag) goto LAB_180213d0d;
+      if (MemoryPoolIndex <= (uint)SystemStackFlag) goto MemoryPoolAllocationLabel;
       BufferOffset = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,BufferOffset,MemoryPoolIndex,0x10,0x13);
     }
     SystemStackFlag.LowPart = GetMemoryAllocationInfo(BufferOffset);
   }
-LAB_180213d0d:
+MemoryPoolAllocationLabel:
   *(uint16_t *)((unsigned long long)SystemKeyPointer + (long long)BufferOffset) = 10;
   pMemoryAddressMaskPointer = (uint32_t *)&CoreEngineDataTemplate;
   if (BufferOffset != (uint32_t *)0x0) {
     pMemoryAddressMaskPointer = BufferOffset;
   }
-  SystemKeyPointer = IntegerValue;
+  SystemKeyPointer = EncodedDataLength;
   ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,pMemoryAddressMaskPointer);
   EncodingBuffer = &SystemNullTemplate;
   if (BufferOffset != (uint32_t *)0x0) {
@@ -261784,10 +261784,10 @@ LAB_180213d0d:
   BufferOffset = (uint32_t *)0x0;
   SystemStackFlag = (unsigned long long)SystemStackFlag.HighPart << 0x20;
   EncodingBuffer = &ThreadLocalStorageTemplate;
-LAB_180213d73:
+EncodingCompleteLabel:
   UnicodeCodePoint = FUN_180213700(ContextHandle,OperationBufferSize,0);
-  IntegerValue = FUN_180840490(UnicodeCodePoint,&SystemRegisterFlag);
-  ProcessCoreEngineDataAndTemplate(IntegerValue,&CoreEngineDataTemplate);
+  uint32_t ValidationResult = FUN_180840490(UnicodeCodePoint,&SystemRegisterFlag);
+  ProcessCoreEngineDataAndTemplate(ValidationResult,&CoreEngineDataTemplate);
   UnicodeCodePoint = SystemRegisterFlag;
   if (LockResult != 0) {
     ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemConfigurationTemplateSecondary,SystemRegisterFlag);
