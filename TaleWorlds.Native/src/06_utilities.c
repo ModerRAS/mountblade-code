@@ -147,6 +147,9 @@
 
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
+#define SystemDataBufferMinimumSize 0x70                         // 系统数据缓冲区最小尺寸
+#define SystemDataSizeOffset 8                                   // 系统数据大小偏移量
+#define SystemDataBufferArrayIndex 1                             // 系统数据缓冲区数组索引
 
 // 系统内存管理常量
 #define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48
