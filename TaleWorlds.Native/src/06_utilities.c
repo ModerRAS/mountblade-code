@@ -93814,7 +93814,7 @@ void ProcesssystemContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 操作基址（DataBuffer类型）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
  * 
- * 原始函数名：Unwind_18090b090
+ * @note 原始函数名：Unwind_18090b090 - 异常内存资源清理和回调处理函数
  */
 void CleanupExceptionMemoryResourcesAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
@@ -139838,6 +139838,47 @@ uint8_t SystemExceptionHandlerStateTable;
  * @warning 数据验证处理必须在适当的上下文中进行
  */
 #define ProcessSystemDataValidation Unwind_18090e770
+
+// 异常处理清理函数系列 - 用于处理不同偏移量的异常清理操作
+#define CleanupExceptionContextAtOffset640 Unwind_180911640
+#define CleanupExceptionContextAtOffset660 Unwind_180911660
+#define CleanupExceptionContextAtOffset680 Unwind_180911680
+#define CleanupExceptionContextAtOffset760 Unwind_180911760
+#define CleanupExceptionContextAtOffset800 Unwind_180911800
+#define CleanupExceptionContextAtOffsetA70 Unwind_180911a70
+#define CleanupExceptionContextAtOffsetA80 Unwind_180911a80
+#define CleanupExceptionContextAtOffsetC30 Unwind_180911c30
+#define CleanupExceptionContextAtOffsetC40 Unwind_180911c40
+#define CleanupExceptionContextAtOffsetC60 Unwind_180911c60
+#define CleanupExceptionContextAtOffsetC80 Unwind_180911c80
+#define CleanupExceptionContextAtOffsetCA0 Unwind_180911ca0
+#define CleanupExceptionContextAtOffsetCC0 Unwind_180911cc0
+#define CleanupExceptionContextAtOffsetCE0 Unwind_180911ce0
+#define CleanupExceptionContextAtOffsetD00 Unwind_180911d00
+#define CleanupExceptionContextAtOffsetD20 Unwind_180911d20
+#define CleanupExceptionContextAtOffsetD40 Unwind_180911d40
+#define CleanupExceptionContextAtOffsetD60 Unwind_180911d60
+#define CleanupExceptionContextAtOffsetD80 Unwind_180911d80
+#define CleanupExceptionContextAtOffsetDA0 Unwind_180911da0
+#define CleanupExceptionContextAtOffsetDC0 Unwind_180911dc0
+#define CleanupExceptionContextAtOffsetDE0 Unwind_180911de0
+#define CleanupExceptionContextAtOffsetE00 Unwind_180911e00
+#define CleanupExceptionContextAtOffsetE20 Unwind_180911e20
+#define CleanupExceptionContextAtOffsetE40 Unwind_180911e40
+#define CleanupExceptionContextAtOffsetE60 Unwind_180911e60
+#define CleanupExceptionContextAtOffsetE80 Unwind_180911e80
+#define CleanupExceptionContextAtOffsetEA0 Unwind_180911ea0
+#define CleanupExceptionContextAtOffsetEC0 Unwind_180911ec0
+#define CleanupExceptionContextAtOffsetEE0 Unwind_180911ee0
+#define CleanupExceptionContextAtOffsetF00 Unwind_180911f00
+#define CleanupExceptionContextAtOffsetF20 Unwind_180911f20
+#define CleanupExceptionContextAtOffsetF40 Unwind_180911f40
+#define CleanupExceptionContextAtOffsetF60 Unwind_180911f60
+#define CleanupExceptionContextAtOffsetF80 Unwind_180911f80
+#define CleanupExceptionContextAtOffsetFA0 Unwind_180911fa0
+#define CleanupExceptionContextAtOffsetFC0 Unwind_180911fc0
+#define CleanupExceptionContextAtOffsetFE0 Unwind_180911fe0
+#define CleanupExceptionContextAtOffset1000 Unwind_180912000
 
 /**
  * @brief 验证中间结果浮点数A
