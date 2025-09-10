@@ -229097,7 +229097,7 @@ ProcessContextHandleWithMemoryBoundaryValidation(long long *ContextHandle,uint64
     }
   }
   if (*(int *)((long long)PrimaryProcessingStatusFlag + 0x1c) < *Utf16EndPointer) {
-    CharacterStatusBuffer = (void *)FUN_18018af30(ContextHandle,SystemRegisterFlagBuffer);
+    CharacterStatusBuffer = (void *)ProcessUtf8CharacterEncodingAndValidation(ContextHandle,SystemRegisterFlagBuffer);
     *ContextHandleSize = *CharacterStatusBuffer;
     *(uint8_t *)(OperationBufferSize + 1) = 1;
   }
