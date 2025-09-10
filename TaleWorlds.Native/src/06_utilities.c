@@ -7868,7 +7868,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808920e0
  * @note 这是系统操作安全性的重要保障
  */
-#define ValidateAndExecuteOperation FUN_1808920e0
+// 验证并执行操作函数
+#define ValidateAndExecuteOperation ValidateAndExecuteOperation
 
 /**
  * @brief 双重验证并执行操作函数
@@ -7880,7 +7881,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180892120
  * @note 这是系统操作安全性的双重保障
  */
-#define DoubleValidateAndExecuteOperation FUN_180892120
+// 双重验证并执行操作函数
+#define DoubleValidateAndExecuteOperation DoubleValidateAndExecuteOperation
 
 /**
  * @brief 浮点数验证和处理函数
@@ -7893,7 +7895,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808924f0
  * @note 这是浮点数数据安全处理的关键函数
  */
-#define ValidateAndProcessFloatingPointData FUN_1808924f0
+// 浮点数验证和处理函数
+#define ValidateAndProcessFloatingPointData ValidateAndProcessFloatingPointData
 
 /**
  * @brief 浮点数据处理函数
@@ -7904,7 +7907,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180897859
  * @note 这是浮点数数据计算和处理的核心函数
  */
-#define ProcessFloatingPointData FUN_180897859
+// 浮点数据处理函数
+#define ProcessFloatingPointData ProcessFloatingPointData
 
 /**
  * @brief 数据解密函数
@@ -7915,7 +7919,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1809424c0
  * @note 用于恢复加密后的系统数据
  */
-#define DecryptUtilityData FUN_1809424c0
+// 数据解密函数
+#define DecryptUtilityData DecryptUtilityData
 
 /**
  * @brief 系统状态重置函数
@@ -7926,7 +7931,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180942520
  * @note 这是系统状态管理的重要函数
  */
-#define ResetUtilitySystemState FUN_180942520
+// 系统状态重置函数
+#define ResetUtilitySystemState ResetUtilitySystemState
 
 /**
  * @brief 重置工具系统状态
