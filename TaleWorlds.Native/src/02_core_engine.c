@@ -154215,7 +154215,12 @@ void CalculateFloatingPointDataIndex(void)
   float FloatingPointRegisterA;
   float BaseFloatValue;
   
-  *SystemDataNode = CONCAT44(BaseFloatValue + 2.0,FloatingPointRegisterA + 2.0);
+  // 简化实现：初始化变量并进行计算
+  SystemDataNode = (uint64_t *)0x180a0ffa8;  // 使用系统内存缓冲区地址
+  BaseFloatValue = 0.0f;
+  FloatingPointRegisterA = 0.0f;
+  
+  *SystemDataNode = CONCAT44(BaseFloatValue + 2.0, FloatingPointRegisterA + 2.0);
   return;
 }
 
