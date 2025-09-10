@@ -225428,7 +225428,21 @@ void ProcessCharacterTableBoundaryValidation8Byte(uint64_t ContextHandle, long l
 
 
 
-88440(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188440(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符表指针和内存边界验证（4字节操作）
+ * 
+ * 该函数负责处理字符表指针和内存边界验证，主要功能包括：
+ * - 验证字符表指针的有效性
+ * - 处理4字节操作的边界检查
+ * - 执行内存分配和释放操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180188440
+ */
+void ProcessCharacterTableBoundaryValidation4Byte(uint64_t ContextHandle, long long OperationBufferSize, long long Utf8SourcePointer)
 {
   long long MainCalculationResult;
   
@@ -225436,11 +225450,9 @@ void ProcessCharacterTableBoundaryValidation8Byte(uint64_t ContextHandle, long l
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 4)) {
     CharacterTablePointer = *(long long *)(OperationBufferSize + -8);
     if (0x1f < (OperationBufferSize - CharacterTablePointer) - 8U) {
-        _invalid_parameter_noinfo_noreturn(LoopCounter,Utf8SourcePointer * 4 + 0x27);
+        _invalid_parameter_noinfo_noreturn(LoopCounter, Utf8SourcePointer * 4 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
   free(CharacterTablePointer);
   return;
 }
@@ -226722,10 +226734,22 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
 
 
 
-89d00(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180189d00(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 释放内存块（16字节）
+ * 
+ * 该函数负责释放16字节的内存块，根据操作缓冲区大小决定是否执行释放操作。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小，决定是否执行释放
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180189d00
+ */
+void ReleaseMemoryBlock16Bytes(uint64_t ContextHandle, char OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   if (OperationBufferSize != '\0') {
-    free(ContextHandle,0x10,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    free(ContextHandle, 0x10, Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
   }
   return;
 }
