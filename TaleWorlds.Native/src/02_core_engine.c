@@ -68576,12 +68576,12 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   uint64_t *DataBufferPointer;
   uint32_t BufferValidationStatus;
   long long OperationBufferSizeValue;
-  long long lStack_240;
+  long long Utf8ConversionValue;
   uint8_t SystemUintBuffer238 [16];
   code *pcStack_228;
   code *pcStack_220;
-  uint32_t uStack_218;
-  long long lStack_210;
+  uint32_t BufferValidationCode;
+  long long MemoryAlignmentOffset;
   uint64_t CoreEngineUnsignedValue208;
   void *DataStatusPointer;
   uint8_t *StackDataPointer1f0;
