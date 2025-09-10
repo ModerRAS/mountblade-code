@@ -17622,8 +17622,8 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
       memoryRegionIterator = memoryRegionIterator + 1;
       if ((*(int64_t *)(memoryRegionBlock + MemoryRegionDataBaseOffset) == *(int64_t *)(MemoryRegionBuffer[0] + MemoryRegionDataReferenceOffset)) &&
          (memoryRegionBlock = *(int64_t *)(memoryRegionBlock + MemoryRegionPointerFieldOffset), memoryRegionBlock != 0)) {
-        memoryFlagPtr = (uint *)(memoryRegionBlock + SystemStateFlagsExtendedOffset);
-        *memoryFlagPtr = *memoryFlagPtr | 4;
+        systemStateFlagsPtr = (uint *)(memoryRegionBlock + SystemStateFlagsExtendedOffset);
+        *systemStateFlagsPtr = *systemStateFlagsPtr | SystemStateUpdateFlag;
       }
     }
     memoryUpdateStatus = 0;
