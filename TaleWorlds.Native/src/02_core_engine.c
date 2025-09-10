@@ -4652,7 +4652,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 新增的FUN_函数语义化宏定义
 #define ProcessSystemMemoryValidation FUN_18018a1c0              // 处理系统内存验证
-#define ProcessCharacterEncodingWithValidation FUN_1801884d0     // 处理带验证的字符编码
+#define ProcessCharacterEncodingWithValidation RecursiveProcessSystemContextAndMemoryAllocation     // 处理带验证的字符编码
 #define ProcessSystemMemoryBlockAllocation FUN_180067110          // 处理系统内存块分配
 #define ProcessSystemCharacterStatusUpdate FUN_1801899b0         // 处理系统字符状态更新
 #define ProcessSystemCharacterStatus ExecuteSystemValidationAndExceptionHandling              // 处理系统字符状态
@@ -13824,9 +13824,9 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @param Utf16EndPointer - UTF16结束指针
  * @param UnicodeCodePoint - Unicode码点
  * 
- * @note 原始函数名：FUN_1801884d0
+ * @note 原始函数名：RecursiveProcessSystemContextAndMemoryAllocation
  */
-#define AllocateSystemMemoryEx FUN_1801884d0
+#define AllocateSystemMemoryEx RecursiveProcessSystemContextAndMemoryAllocation
 
 /**
  * @brief 系统内存处理函数
@@ -14019,9 +14019,9 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @param CoreEngineSignedValue70 - 引擎签名值70
  * @param Parameter - 参数
  * 
- * @note 原始函数名：FUN_1801884d0
+ * @note 原始函数名：RecursiveProcessSystemContextAndMemoryAllocation
  */
-#define ProcessSystemMemoryEx2 FUN_1801884d0
+#define ProcessSystemMemoryEx2 RecursiveProcessSystemContextAndMemoryAllocation
 
 /**
  * @brief 系统栈处理函数
@@ -226480,7 +226480,23 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 
 
-884d0(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801884d0(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 递归处理系统上下文数据和内存分配
+ * 
+ * 该函数递归地处理系统上下文数据和内存分配操作，主要功能包括：
+ * - 验证内存分配状态
+ * - 递归处理上下文数据
+ * - 管理内存缓冲区的生命周期
+ * - 执行系统栈数据处理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：RecursiveProcessSystemContextAndMemoryAllocation
+ * @warning 此函数包含递归调用，需要谨慎处理
+ */
+void RecursiveProcessSystemContextAndMemoryAllocation(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   char ValidationStatus;
   long long *BufferAllocationStatus;
@@ -226489,7 +226505,7 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
   UnicodeCodePoint = 0xfffffffffffffffe;
   ValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
   while (ValidationStatus == '\0') {
-    FUN_1801884d0(ContextHandle,OperationBufferSize[2],Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint);
+    RecursiveProcessSystemContextAndMemoryAllocation(ContextHandle,OperationBufferSize[2],Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint);
     BufferAllocationStatus = (long long *)*ContextHandleSize;
     ProcessSystemStackData(OperationBufferSize + 8);
     ProcessSystemStackData(OperationBufferSize + 4);
