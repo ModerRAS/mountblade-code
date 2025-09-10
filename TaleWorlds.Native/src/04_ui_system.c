@@ -118830,66 +118830,66 @@ void ProcessUIEventEncodingConversion(UIHandle uiContext,uint dataSource,ulonglo
       simdResult9 = ZEXT416(2);
       iterationPointer = (UIHandle *)(baseRegister + 8);
       do {
-        eventCode = piterationCounter[-1];
-        unmodifiedEBX = unmodifiedEBX + 8;
-        processStatus = *(UIHandle *)((targetBuffer - register10) + -8 + (longlong)piterationCounter);
-        resultPointer = piterationCounter + 2;
-        aresult1._0_2_ = (short)processingStatus - (short)eventCodeType;
-        BufferCapacityValue = (short)((ulonglong)eventCodeType >> 0x10);
-        aresult1._2_2_ = (short)((ulonglong)processingStatus >> 0x10) - BufferCapacityValue;
-        sVar16 = (short)((ulonglong)eventCodeType >> 0x20);
-        aresult1._4_2_ = (short)((ulonglong)processingStatus >> 0x20) - sVar16;
-        sVar17 = (short)((ulonglong)eventCodeType >> 0x30);
-        aresult1._6_2_ = (short)((ulonglong)processingStatus >> 0x30) - sVar17;
-        aresult1._8_8_ = 0;
-        bufferValue = pmovsxwd(in_XMM1,aresult1);
-        bufferValue = pmulld(bufferValue,aresult8);
-        acontextValue._0_4_ = bufferValue._0_4_ >> aresult9;
-        acontextValue._4_4_ = bufferValue._4_4_ >> aresult9;
-        acontextValue._8_4_ = bufferValue._8_4_ >> aresult9;
-        acontextValue._12_4_ = bufferValue._12_4_ >> aresult9;
-        aresult1 = pshuflw(aresult1,acontextValue,0xd8);
-        aresult1 = pshufhw(acontextValue,aresult1,0xd8);
-        processStatus = *(UIHandle *)((targetBuffer - register10) + -0x10 + (longlong)resultPointer);
-        loopCounter = *piterationCounter;
-        *(ulonglong *)((RegisterPointer - register10) + -0x18 + (longlong)resultPointer) =
-             CONCAT26(aresult1._10_2_ + sVar17,
-                      CONCAT24(aresult1._8_2_ + sVar16,
-                               CONCAT22(aresult1._2_2_ + BufferCapacityValue,aresult1._0_2_ + (short)eventCodeType)));
+        eventCodeType = iterationPointer[-1];
+        processedDataCount = processedDataCount + 8;
+        processingStatus = *(UIHandle *)((targetBuffer - baseRegister) + -8 + (longlong)iterationPointer);
+        resultPointer = iterationPointer + 2;
+        simdResult1._0_2_ = (short)processingStatus - (short)eventCodeType;
+        bufferCapacity = (short)((ulonglong)eventCodeType >> 0x10);
+        simdResult1._2_2_ = (short)((ulonglong)processingStatus >> 0x10) - bufferCapacity;
+        tempValue16 = (short)((ulonglong)eventCodeType >> 0x20);
+        simdResult1._4_2_ = (short)((ulonglong)processingStatus >> 0x20) - tempValue16;
+        tempValue17 = (short)((ulonglong)eventCodeType >> 0x30);
+        simdResult1._6_2_ = (short)((ulonglong)processingStatus >> 0x30) - tempValue17;
+        simdResult1._8_8_ = 0;
+        bufferValue = pmovsxwd(simdInput1,simdResult1);
+        bufferValue = pmulld(bufferValue,simdResult8);
+        contextValue._0_4_ = bufferValue._0_4_ >> simdResult9;
+        contextValue._4_4_ = bufferValue._4_4_ >> simdResult9;
+        contextValue._8_4_ = bufferValue._8_4_ >> simdResult9;
+        contextValue._12_4_ = bufferValue._12_4_ >> simdResult9;
+        simdResult1 = pshuflw(simdResult1,contextValue,0xd8);
+        simdResult1 = pshufhw(contextValue,simdResult1,0xd8);
+        processingStatus = *(UIHandle *)((targetBuffer - baseRegister) + -0x10 + (longlong)resultPointer);
+        loopCounter = *iterationPointer;
+        *(ulonglong *)((registerPointer - baseRegister) + -0x18 + (longlong)resultPointer) =
+             CONCAT26(simdResult1._10_2_ + tempValue17,
+                      CONCAT24(simdResult1._8_2_ + tempValue16,
+                               CONCAT22(simdResult1._2_2_ + bufferCapacity,simdResult1._0_2_ + (short)eventCodeType)));
         bufferValue._0_2_ = (short)processingStatus - (short)loopCounter;
-        BufferCapacityValue = (short)((ulonglong)loopCounter >> 0x10);
-        bufferValue._2_2_ = (short)((ulonglong)processingStatus >> 0x10) - BufferCapacityValue;
-        sVar16 = (short)((ulonglong)loopCounter >> 0x20);
-        bufferValue._4_2_ = (short)((ulonglong)processingStatus >> 0x20) - sVar16;
-        sVar17 = (short)((ulonglong)loopCounter >> 0x30);
-        bufferValue._6_2_ = (short)((ulonglong)processingStatus >> 0x30) - sVar17;
+        bufferCapacity = (short)((ulonglong)loopCounter >> 0x10);
+        bufferValue._2_2_ = (short)((ulonglong)processingStatus >> 0x10) - bufferCapacity;
+        tempValue16 = (short)((ulonglong)loopCounter >> 0x20);
+        bufferValue._4_2_ = (short)((ulonglong)processingStatus >> 0x20) - tempValue16;
+        tempValue17 = (short)((ulonglong)loopCounter >> 0x30);
+        bufferValue._6_2_ = (short)((ulonglong)processingStatus >> 0x30) - tempValue17;
         bufferValue._8_8_ = 0;
-        aresult1 = pmovsxwd(aresult1,bufferValue);
-        aresult1 = pmulld(aresult1,aresult8);
-        acomponentIndex._0_4_ = aresult1._0_4_ >> aresult9;
-        acomponentIndex._4_4_ = aresult1._4_4_ >> aresult9;
-        acomponentIndex._8_4_ = aresult1._8_4_ >> aresult9;
-        acomponentIndex._12_4_ = aresult1._12_4_ >> aresult9;
-        aresult1 = pshuflw(bufferValue,acomponentIndex,0xd8);
-        in_XMM1 = pshufhw(acomponentIndex,aresult1,0xd8);
-        *(ulonglong *)((RegisterPointer - register10) + -0x10 + (longlong)resultPointer) =
-             CONCAT26(in_XMM1._10_2_ + sVar17,
-                      CONCAT24(in_XMM1._8_2_ + sVar16,
-                               CONCAT22(in_XMM1._2_2_ + BufferCapacityValue,in_XMM1._0_2_ + (short)loopCounter)));
-        piterationCounter = resultPointer;
-      } while (unmodifiedEBX < (int)(dataSource - maxProcessingCount));
+        simdResult1 = pmovsxwd(simdResult1,bufferValue);
+        simdResult1 = pmulld(simdResult1,simdResult8);
+        componentIndex._0_4_ = simdResult1._0_4_ >> simdResult9;
+        componentIndex._4_4_ = simdResult1._4_4_ >> simdResult9;
+        componentIndex._8_4_ = simdResult1._8_4_ >> simdResult9;
+        componentIndex._12_4_ = simdResult1._12_4_ >> simdResult9;
+        simdResult1 = pshuflw(bufferValue,componentIndex,0xd8);
+        simdInput1 = pshufhw(componentIndex,simdResult1,0xd8);
+        *(ulonglong *)((registerPointer - baseRegister) + -0x10 + (longlong)resultPointer) =
+             CONCAT26(simdInput1._10_2_ + tempValue17,
+                      CONCAT24(simdInput1._8_2_ + tempValue16,
+                               CONCAT22(simdInput1._2_2_ + bufferCapacity,simdInput1._0_2_ + (short)loopCounter)));
+        iterationPointer = resultPointer;
+      } while (processedDataCount < (int)(dataSource - maxProcessingCount));
     }
   }
-  if (unmodifiedEBX < (int)dataSource) {
-    dataPointer = (ulonglong)(dataSource - unmodifiedEBX);
-    pContextSecondValue = (short *)(targetBuffer + (longlong)unmodifiedEBX * 2);
+  if (processedDataCount < (int)dataSource) {
+    dataPointer = (ulonglong)(dataSource - processedDataCount);
+    contextSecondaryPointer = (short *)(targetBuffer + (longlong)processedDataCount * 2);
     do {
-      BufferCapacityValue = *pContextSecondValue;
-      psVar2 = (short *)((register10 - targetBuffer) + (longlong)pContextSecondValue);
-      pContextSecondValue = pContextSecondValue + 1;
-      *(short *)((RegisterPointer - targetBuffer) + -2 + (longlong)pContextSecondValue) =
-           (short)((int)(short)(BufferCapacityValue - *psVar2) * (int)unmodifiedSI >> 2) +
-           *(short *)((register10 - targetBuffer) + -2 + (longlong)pContextSecondValue);
+      bufferCapacity = *contextSecondaryPointer;
+      secondaryPointer = (short *)((baseRegister - targetBuffer) + (longlong)contextSecondaryPointer);
+      contextSecondaryPointer = contextSecondaryPointer + 1;
+      *(short *)((registerPointer - targetBuffer) + -2 + (longlong)contextSecondaryPointer) =
+           (short)((int)(short)(bufferCapacity - *secondaryPointer) * (int)scaleFactor >> 2) +
+           *(short *)((baseRegister - targetBuffer) + -2 + (longlong)contextSecondaryPointer);
       dataPointer = dataPointer - 1;
     } while (dataPointer != 0);
   }
