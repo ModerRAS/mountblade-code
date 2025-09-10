@@ -15741,72 +15741,105 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 /**
  * @brief 初始化系统模块
  * 
- * 根据提供的模块配置和数据初始化系统模块。该函数负责设置模块的上下文环境，
- * 验证资源配置，并建立必要的组件连接。初始化过程包括数据验证、资源分配
- * 和组件初始化等步骤。
+ * 该函数是系统初始化的核心函数，负责根据提供的模块配置和数据初始化系统模块。
+ * 它执行复杂的初始化流程，包括系统配置验证、资源分配、组件注册和上下文建立。
  * 
- * 该函数执行以下主要操作：
- * 1. 查询和检索系统配置数据
- * 2. 验证模块配置的有效性
- * 3. 处理游戏消息和事件
- * 4. 验证系统操作上下文
- * 5. 设置异常处理器和资源信息
- * 6. 遍历和配置组件数据
- * 7. 初始化系统组件并建立连接关系
+ * 函数执行详细流程：
+ * 1. **系统配置查询阶段**：
+ *    - 查询系统配置数据（MODULE_CONFIG_OFFSET_1）
+ *    - 验证配置数据的有效性
+ *    - 查询第二阶段的系统配置数据（MODULE_CONFIG_OFFSET_2）
+ * 
+ * 2. **消息处理阶段**：
+ *    - 处理游戏消息和事件（ProcessGameMessage）
+ *    - 验证消息处理状态
+ *    - 在消息处理失败时清理系统数据结构
+ * 
+ * 3. **系统上下文验证阶段**：
+ *    - 检查系统操作上下文的有效性
+ *    - 验证系统状态标志位
+ *    - 在验证失败时返回相应的错误代码
+ * 
+ * 4. **组件注册和配置阶段**：
+ *    - 设置异常处理器和资源信息上下文
+ *    - 建立组件间的连接关系
+ *    - 执行系统数据处理（ExecuteSystemDataProcessing）
+ *    - 初始化系统组件（InitializeSystemComponent）
+ * 
+ * 5. **资源管理阶段**：
+ *    - 动态调整组件列表容量
+ *    - 管理资源引用计数
+ *    - 在特定条件下执行资源分配操作
  * 
  * @param moduleConfig 模块配置指针，包含模块的配置参数和初始化信息
- * @param moduleData 模块数据指针，包含模块运行时所需的数据结构
+ * @param moduleDataParam 模块数据指针，包含模块运行时所需的数据结构
  * @return uint64_t 初始化结果状态码：
  *         - 0: 初始化成功
  *         - 0x1c: 模块数据验证失败
+ *         - ResourceInvalidErrorCode: 资源无效错误
  *         - 其他值: 具体的错误代码
  * 
  * @note 该函数会修改模块数据结构，并在成功时建立组件间的连接关系
  * @warning 初始化失败时可能需要清理已分配的资源
- * @see QueryAndRetrieveSystemDataA0, ProcessGameMessage, ValidateSystemOperationContextA0, InitializeSystemComponent
+ * @warning 函数包含复杂的内存管理和资源分配逻辑
+ * @warning 使用了多层嵌套的条件判断和循环结构
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ProcessGameMessage, ValidateSystemOperationContextA0, InitializeSystemComponent, ExecuteSystemDataProcessing, CleanupSystemDataStructures
  * 
  * @since 系统版本 1.0
  * @security_level 高
+ * @complexity 高
+ * 
+ * @performance 该函数涉及多次系统调用和内存分配，可能影响系统启动性能
+ * @memory_usage 中等，会分配多个上下文和数据结构
+ * @thread_safety 该函数不是线程安全的，应该在系统初始化阶段单线程调用
  */
-uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
+uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
 
 {
-  int64_t *exceptionHandler;                  // 异常处理器指针
-  int64_t *componentData;                     // 组件数据指针
-  int64_t *componentInfo;                     // 组件信息指针
+  int64_t *exceptionHandlerPointer;           // 异常处理器指针
+  int64_t *componentDataContext;              // 组件数据上下文指针
+  int64_t *componentInfoContext;              // 组件信息上下文指针
   int32_t initializationStatus;               // 初始化状态码
   uint32_t messageProcessingStatus;           // 消息处理状态
   uint64_t moduleOperationResult;             // 模块操作结果
-  int64_t *resourceInfo;                      // 资源信息指针
-  int64_t *contextData;                       // 上下文数据指针
-  int64_t *moduleData;                        // 模块数据指针
+  int64_t *resourceInfoContext;               // 资源信息上下文指针
+  int64_t *contextDataContext;                // 上下文数据指针
+  int64_t *moduleDataContext;                 // 模块数据上下文指针
   int64_t *validationContext;                  // 验证上下文指针
-  int64_t systemStackContext;                       // 系统栈上下文
-  int64_t temporarySystemStackContext;                   // 临时系统栈上下文
+  int64_t systemStackContext;                  // 系统栈上下文
+  int64_t temporarySystemStackContext;        // 临时系统栈上下文
+  int64_t stackMemoryContext;                 // 栈内存上下文
+  int64_t *baseValidationContext;              // 基础验证上下文指针
+  int64_t *exceptionContextPointer;           // 异常上下文指针
+  uint64_t systemModuleOperationResult;        // 系统模块操作结果
+  int32_t moduleInitializationStatus;          // 模块初始化状态
+  uint32_t gameMessageProcessingStatus;        // 游戏消息处理状态
   
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporarySystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
   if (initializationStatus == 0) {
     validationContext = (int64_t *)0x0;
-    moduleData = validationContext;
+    moduleDataContext = validationContext;
+    baseValidationContext = (int64_t *)0x0;
     if (temporarySystemStackContext != 0) {
       moduleDataContext = (int64_t *)(temporarySystemStackContext + -8);
     }
     systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporarySystemStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
-      StackMemoryContext = 0;
-      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_DATA_OFFSET_3,
-                            &StackMemoryContext);
+      stackMemoryContext = 0;
+      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleDataParam + MODULE_DATA_OFFSET_1),*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_DATA_OFFSET_3,
+                            &stackMemoryContext);
       if (gameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(moduleDataContext);
         return (uint64_t)gameMessageProcessingStatus;
       }
       if (((*(uint32_t *)(*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemModuleOperationResult = ValidateSystemOperationContextA0(StackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(stackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
-      exceptionContextPointer = (int64_t *)(StackMemoryContext + MODULE_CONTEXT_OFFSET);
+      exceptionContextPointer = (int64_t *)(stackMemoryContext + MODULE_CONTEXT_OFFSET);
       resourceInfoContext = (int64_t *)(*exceptionContextPointer + MODULE_RESOURCE_OFFSET);
       if (*exceptionContextPointer == 0) {
         resourceInfoContext = baseValidationContext;
@@ -15819,10 +15852,10 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       }
       while( true ) {
         if (contextDataContext == exceptionContextPointer) {
-          *(int64_t **)(StackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
-          ExecuteSystemDataProcessing(StackMemoryContext,moduleDataContext);
-          moduleDataContext[2] = StackMemoryContext;
-          systemModuleOperationResult = InitializeSystemComponent(StackMemoryContext);
+          *(int64_t **)(stackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
+          ExecuteSystemDataProcessing(stackMemoryContext,moduleDataContext);
+          moduleDataContext[2] = stackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(stackMemoryContext);
           if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
@@ -15851,7 +15884,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       return ResourceInvalidErrorCode;
     }
   }
-  if (ModuleInitializationStatus == ModuleResourceAllocationStatus) {
+  if (moduleInitializationStatus == ModuleResourceAllocationStatus) {
     return 0;
   }
   return systemModuleOperationResult;
