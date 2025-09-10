@@ -225327,13 +225327,16 @@ void FUN_180186a90(long long ContextHandle)
  * 该函数负责对系统字符数据进行编码操作，将字符数据转换为特定格式。
  * 用于数据存储和传输过程中的字符编码处理。
  * 
- * @param ContextHandle 字符编码
- * @param OperationBufferSize 字符编码大小指针
- * @param Utf8SourcePointer UTF8输入指针
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF8源数据指针
  * @param Utf16EndPointer UTF16结束指针
  * @param AdditionalParameter1 额外参数1
- * @param AdditionalParameter2 额外参数2
- * @param AdditionalParameter3 额外参数3
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：EncodeSystemCharacterData
+ * @warning 该函数包含不返回的子程序调用
  */
 void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer,uint32_t Utf16EndPointer,
                   uint32_t AdditionalParameter1)
@@ -225499,36 +225502,36 @@ void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long Op
         CalculatedCodePoint = CalculatedCodePoint + 1;
       } while (CalculatedCodePoint < Utf8SourcePointer);
     }
-    ContextHandle = *(long long **)(BufferStatus + 8);
-    ppCalculationFunctionAddress = &StackProcessingVariableBuffer;
-    StackProcessingVariableBuffer = &SystemBufferSenary;
-    lStack_68 = BufferStatus;
-    ppFunctionAddress = &StackProcessingVariableBuffer;
-    (**(code **)(*ContextHandle + 0x38))(ContextHandle,&ppSystemOperationFlag98,&StackProcessingVariableBuffer,0);
-    pSystemEventTemplatePointer = ppSystemOperation90;
-    ppMemoryAddressMaskPointer = ppSystemOperationFlag98;
-    if (ppSystemOperationFlag98 != (void **)0x0) {
-      for (; ppCalculationFunctionAddress = ppMemoryAddressMaskPointer, ppMemoryAddressMaskPointer != pSystemEventTemplatePointer; ppMemoryAddressMaskPointer = ppMemoryAddressMaskPointer + 5) {
-        ProcessSystemStackData(ppMemoryAddressMaskPointer);
+    SystemContextPointer = *(long long **)(SystemBufferStatus + 8);
+    CalculationFunctionAddressPointer = &ProcessingVariableBuffer;
+    ProcessingVariableBuffer = &SystemBufferSenary;
+    StackMemoryBuffer = SystemBufferStatus;
+    FunctionAddressPointer = &ProcessingVariableBuffer;
+    (**(code **)(*SystemContextPointer + 0x38))(SystemContextPointer,&SystemOperationFlagPointer,&ProcessingVariableBuffer,0);
+    SystemEventTemplateDoublePointer = SystemOperationPointer;
+    MemoryAddressMaskPointer = SystemOperationFlagPointer;
+    if (SystemOperationFlagPointer != (void **)0x0) {
+      for (; CalculationFunctionAddressPointer = MemoryAddressMaskPointer, MemoryAddressMaskPointer != SystemEventTemplateDoublePointer; MemoryAddressMaskPointer = MemoryAddressMaskPointer + 5) {
+        ProcessSystemStackData(MemoryAddressMaskPointer);
       }
-      CalculatedCodePoint = (((long long)pSystemEventPointer - (long long)ppSystemOperationFlag98) / 0x28) * 0x28;
-      ppMemoryAddressMaskPointer = ppSystemOperationFlag98;
+      CalculatedCodePoint = (((long long)SystemEventPointer - (long long)SystemOperationFlagPointer) / 0x28) * 0x28;
+      MemoryAddressMaskPointer = SystemOperationFlagPointer;
       if (0xfff < CalculatedCodePoint) {
         CalculatedCodePoint = CalculatedCodePoint + 0x27;
-        ppMemoryAddressMaskPointer = (void **)ppSystemOperationFlag98[-1];
-        if (0x1f < (unsigned long long)((long long)ppSystemOperationFlag98 + (-8 - (long long)ppMemoryAddressMaskPointer))) {
+        MemoryAddressMaskPointer = (void **)SystemOperationFlagPointer[-1];
+        if (0x1f < (unsigned long long)((long long)SystemOperationFlagPointer + (-8 - (long long)MemoryAddressMaskPointer))) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
       }
-      free(ppMemoryAddressMaskPointer,CalculatedCodePoint);
-      ppSystemOperationFlag98 = (void **)0x0;
-      ppSystemOperation90 = (void **)0x0;
-      pSystemEventPointer = (void **)0x0;
+      free(MemoryAddressMaskPointer,CalculatedCodePoint);
+      SystemOperationFlagPointer = (void **)0x0;
+      SystemOperationPointer = (void **)0x0;
+      SystemEventPointer = (void **)0x0;
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(ProcessingFlags ^ (unsigned long long)aMemoryOffsetValue);
+  CoreEngineExecuteUtilityFunction(SystemProcessingFlags ^ (unsigned long long)MemoryOffsetValue);
 }
 
 
