@@ -288806,34 +288806,63 @@ LAB_18022f178:
 
 
 
-long long * FUN_18022f240(uint64_t *ContextHandle,unsigned long long OperationBufferSize
+/**
+ * @brief 查找系统事件模板并处理资源
+ * 
+ * 该函数负责在系统事件模板链表中查找符合大小条件的模板，
+ * 并处理相关的资源管理和清理操作。
+ * 
+ * 主要功能包括：
+ * - 遍历事件模板链表
+ * - 根据操作大小筛选合适的模板
+ * - 处理相关的系统资源
+ * - 返回找到的模板或默认资源
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @return 返回找到的事件模板指针或资源句柄
+ * 
+ * @note 原始函数名：FUN_18022f240
+ */
+long long * FindSystemEventTemplateAndProcessResources(uint64_t *ContextHandle,unsigned long long OperationBufferSize
 {
-  long long *ContextHandle;
-  void *SystemContext;
-  uint64_t *SystemEventTemplatePointer;
+  long long *ResourceHandle;
+  void *EventTemplateIterator;
+  uint64_t *MatchingTemplatePointer;
   
-  PrimaryProcessingStatusFlag = (void *)ContextHandle[2];
-  SystemEventTemplatePointer = ContextHandle;
-  if (PrimaryProcessingStatusFlag != NULL) {
+  // 初始化事件模板遍历器
+  EventTemplateIterator = (void *)ContextHandle[2];
+  MatchingTemplatePointer = ContextHandle;
+  
+  // 遍历事件模板链表
+  if (EventTemplateIterator != NULL) {
     do {
-      if ((unsigned long long)PrimaryProcessingStatusFlag[4] < OperationBufferSize) {
-        PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
+      // 根据操作大小决定遍历方向
+      if ((unsigned long long)EventTemplateIterator[4] < OperationBufferSize) {
+        EventTemplateIterator = (void *)*EventTemplateIterator;
       }
       else {
-        SystemEventTemplatePointer = PrimaryProcessingStatusFlag;
-        PrimaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
+        MatchingTemplatePointer = EventTemplateIterator;
+        EventTemplateIterator = (void *)EventTemplateIterator[1];
       }
-    } while (PrimaryProcessingStatusFlag != NULL);
-    if ((SystemEventTemplatePointer != ContextHandle) && ((unsigned long long)SystemEventTemplatePointer[4] <= OperationBufferSize)) {
-      return (long long *)SystemEventTemplatePointer[5];
+    } while (EventTemplateIterator != NULL);
+    
+    // 检查是否找到匹配的模板
+    if ((MatchingTemplatePointer != ContextHandle) && ((unsigned long long)MatchingTemplatePointer[4] <= OperationBufferSize)) {
+      return (long long *)MatchingTemplatePointer[5];
     }
   }
-  ContextHandle = *(long long **)(OperationBufferSize + 0x210);
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
-    (**(code **)(*ContextHandle + 0x38))(ContextHandle);
+  
+  // 处理系统资源管理
+  ResourceHandle = *(long long **)(OperationBufferSize + 0x210);
+  if (ResourceHandle != (long long *)0x0) {
+    // 调用资源处理函数
+    (**(code **)(*ResourceHandle + 0x28))(ResourceHandle);
+    (**(code **)(*ResourceHandle + 0x38))(ResourceHandle);
   }
-  return ContextHandle;
+  
+  return ResourceHandle;
 }
 
 
