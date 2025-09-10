@@ -77,16 +77,16 @@
 #define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
 #define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
 #define SystemResourceFlagOffset 0x352f                       // 系统资源标志偏移量 - 用于设置资源标志的偏移量
+// === 异常处理常量 ===
 #define ExceptionDataBufferOffset 0x210                     // 异常数据缓冲区偏移量 - 异常处理数据的存储位置
 #define ExceptionDataBufferOffset2F0 0x2f0                   // 异常数据缓冲区偏移量2F0 - 用于内存资源引用计数管理
-#define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
-#define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
 #define ExceptionHandlerContextOffset 0x1800                 // 异常处理上下文偏移量 - 异常处理上下文的存储位置
 #define ExceptionHandlerParameterOffset 0x17f0              // 异常处理参数偏移量 - 异常处理参数的存储位置
-// 系统互斥锁管理常量
+// === 系统互斥锁管理常量 ===
 #define SystemMutexCleanupPrimaryAddress 0x180c919f0            // 系统互斥锁清理主地址 - 系统互斥锁清理函数的主基地址
 #define SystemMutexCleanupSecondaryAddress 0x180c919f1          // 系统互斥锁清理辅助地址 - 系统互斥锁清理函数的辅助基地址
-// 系统异常初始化器常量
+
+// === 系统异常初始化器常量 ===
 #define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
 #define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
 

@@ -120391,54 +120391,54 @@ void ProcessUIComponentEventAndDataValidation(short *uiContext,short *dataSource
   UIByte iterationBuffer7 [16];
   UIWord iterationCount8;
   
-  componentIndex0 = (longlong)(int)targetBuffer;
+  componentBaseIndex = (longlong)(int)targetBuffer;
   uiValidationResult1 = 0;
   do {
-    AllocatedMemoryBlock1 = 1;
+    memoryBlockIndex = 1;
     eventProcessingCounter = 0;
     processedCount = (int)*uiContext - (int)*dataSource;
-    allocatedMemory6 = 0;
-    result8 = 1;
-    result9 = eventProcessingCounter;
+    memoryBlockCounter = 0;
+    validationResult1 = 1;
+    validationResult2 = eventProcessingCounter;
     if (0 < (int)(targetBuffer - 1)) {
       do {
-        loopCounter = ((int)uiContext[AllocatedMemoryBlock1] - (int)dataSource[AllocatedMemoryBlock1]) - (int)uiContext[AllocatedMemoryBlock1 + -1];
-        result9 = result8;
-        eventDataIndex = AllocatedMemoryBlock1;
+        loopCounter = ((int)uiContext[memoryBlockIndex] - (int)dataSource[memoryBlockIndex]) - (int)uiContext[memoryBlockIndex + -1];
+        validationResult2 = validationResult1;
+        eventDataIndex = memoryBlockIndex;
         if (processedCount <= loopCounter) {
-          result9 = eventProcessingCounter;
-          eventDataIndex = allocatedMemory6;
+          validationResult2 = eventProcessingCounter;
+          eventDataIndex = memoryBlockCounter;
           loopCounter = processedCount;
         }
         processedCount = loopCounter;
-        allocatedMemory6 = eventDataIndex;
-        result8 = result8 + 1;
-        AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + 1;
-        eventProcessingCounter = result9;
-      } while ((int)result8 <= (int)(targetBuffer - 1));
+        memoryBlockCounter = eventDataIndex;
+        validationResult1 = validationResult1 + 1;
+        memoryBlockIndex = memoryBlockIndex + 1;
+        eventProcessingCounter = validationResult2;
+      } while ((int)validationResult1 <= (int)(targetBuffer - 1));
     }
     loopCounter = 0x8000;
-    localInt7 = (0x8000 - uiContext[componentIndex0 + -1]) - (int)dataSource[componentIndex0];
-    if (localInt7 < processedCount) {
-      allocatedMemory6 = componentIndex0;
-      processedCount = localInt7;
-      result9 = targetBuffer;
+    validationFlag = (0x8000 - uiContext[componentBaseIndex + -1]) - (int)dataSource[componentBaseIndex];
+    if (validationFlag < processedCount) {
+      memoryBlockCounter = componentBaseIndex;
+      processedCount = validationFlag;
+      validationResult2 = targetBuffer;
     }
     if (-1 < processedCount) {
       return;
     }
-    if (result9 == 0) {
+    if (validationResult2 == 0) {
       *uiContext = *dataSource;
     }
-    else if (result9 == targetBuffer) {
-      uiContext[componentIndex0 + -1] = -0x8000 - dataSource[componentIndex0];
+    else if (validationResult2 == targetBuffer) {
+      uiContext[componentBaseIndex + -1] = -0x8000 - dataSource[componentBaseIndex];
     }
     else {
       processedCount = 0;
-      AllocatedMemoryBlock1 = 0;
-      if ((0 < (int)result9) && (7 < result9)) {
+      memoryBlockIndex = 0;
+      if ((0 < (int)validationResult2) && (7 < validationResult2)) {
         processedCount = 0;
-        uiValidationResult9 = 0;
+        uiValidationResult2 = 0;
         uiCompareResult1 = 0;
         uiCompareResult3 = 0;
         localInt7 = 0;
