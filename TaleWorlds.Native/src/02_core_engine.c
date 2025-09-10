@@ -233840,7 +233840,7 @@ LAB_180190d41:
       *(int *)((long long)StringProcessingStatus + -4) = (int)((unsigned long long)MemoryPoolIndex >> 0x20);
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180190c90(SecondaryProcessingStatusFlag,OperationBufferSize,Utf8SourcePointer);
+    ProcessSystemCharacterEncodingAndDataValidation(SecondaryProcessingStatusFlag,OperationBufferSize,Utf8SourcePointer);
     MemoryAddressMaskPointer = (long long)SecondaryProcessingStatusFlag - (long long)ContextHandle;
     OperationBufferSize = SecondaryProcessingStatusFlag;
   } while( true );
@@ -234015,7 +234015,7 @@ LAB_180190d41:
       *(int *)((long long)StringProcessingStatus + -4) = (int)((unsigned long long)MemoryPoolIndex >> 0x20);
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180190c90(SecondaryProcessingStatusFlag,OperationBufferSize,Utf8SourcePointer);
+    ProcessSystemCharacterEncodingAndDataValidation(SecondaryProcessingStatusFlag,OperationBufferSize,Utf8SourcePointer);
     MemoryAddressMaskPointer = (long long)SecondaryProcessingStatusFlag - (long long)ContextHandle;
     OperationBufferSize = SecondaryProcessingStatusFlag;
   } while( true );
@@ -234099,7 +234099,7 @@ LAB_180190d41:
       *(int *)((long long)SecondaryProcessingStatusFlag + -4) = (int)((unsigned long long)MemoryPoolIndex >> 0x20);
     }
     NullPointerValue = NullPointerValue + -1;
-    FUN_180190c90(StringProcessingStatus,StackFrameAddressPointer,NullPointerValue);
+    ProcessSystemCharacterEncodingAndDataValidation(StringProcessingStatus,StackFrameAddressPointer,NullPointerValue);
     StackFrameAddressPointer = StringProcessingStatus;
   } while (0xe0 < (long long)((long long)StringProcessingStatus - (long long)CharacterLimit & 0xfffffffffffffff8U));
   if (NullPointerValue != 0) {
