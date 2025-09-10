@@ -238,13 +238,23 @@
 #define ExceptionHandlerStatusOffset1040 0x1040           // 异常处理器状态偏移量1040 - 用于异常处理器状态检查
 #define ExceptionHandlerDataOffset1050 0x1050             // 异常处理器数据偏移量1050 - 用于异常处理器数据存储
 
+// =============================================================================
 // 异常处理资源管理常量
+// =============================================================================
+// 这些常量定义了异常处理系统的资源管理和内存操作参数
+// 用于异常状态跟踪、资源清理和内存管理操作
+
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
 #define ExceptionHandlerCleanupOffset88 0x58                   // 异常处理器清理偏移量88 - 用于异常处理器清理操作
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
 #define MemoryManagementFlagMask 0xff000000                   // 内存管理标志掩码 - 内存管理操作的标志掩码
 
+// =============================================================================
 // 内存资源偏移量常量
+// =============================================================================
+// 这些常量定义了内存资源管理和数据结构操作的偏移量
+// 用于内存分配、数据结构操作和资源管理
+
 #define MemoryResourcePointerOffsetSecondary 0x120          // 内存资源指针辅助偏移量 - 内存资源指针的辅助位置
 #define DataStructureElementSize 0xc                         // 数据结构元素大小 - 数据结构元素的大小
 #define DataStructureTableElementSize 0x10                   // 数据结构表元素大小 - 数据结构表元素的大小
