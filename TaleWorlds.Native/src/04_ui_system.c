@@ -5767,6 +5767,12 @@ void* UIGestureCoordinates;
  */
 #define CalculateImageWeightedAbsoluteDifference FUN_18072df00
 
+// UI系统数据缓冲区处理函数
+#define ProcessUIDataBuffer8Bytes FUN_18072e160             // 处理8字节UI数据缓冲区
+#define ProcessUIDataBuffer10Bytes FUN_18072d260            // 处理10字节UI数据缓冲区  
+#define ProcessUIDataBuffer12Bytes FUN_18072d5e0            // 处理12字节UI数据缓冲区
+#define ProcessUIDataBuffer16Bytes FUN_18072d9e0            // 处理16字节UI数据缓冲区
+
 // UI系统组件操作函数
 
 /**
