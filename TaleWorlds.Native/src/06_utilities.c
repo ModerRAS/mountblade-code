@@ -137010,7 +137010,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈无符号整型联合体B
 // 功能：存储无符号整型联合体的栈数据
-#define StackUnsignedIntegerUnionB auStack_238
+#define StackUnsignedIntegerUnionB StackDataBufferB
 
 // 栈数据字数组V
 // 功能：存储数据字数组的栈变量
