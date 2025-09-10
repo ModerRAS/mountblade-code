@@ -242258,30 +242258,43 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
 
 
 
-long long * FUN_18019cf00(long long *ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 批量处理缓冲区清理和复制操作
+ * 
+ * 该函数用于处理多个缓冲区的清理和状态重置操作，包括：
+ * - 对11个缓冲区进行状态检查和清理
+ * - 调用缓冲区的清理函数（偏移量0x28）
+ * - 处理缓冲区分配状态的清理（偏移量0x38）
+ * - 复制剩余的操作缓冲区数据
+ * 
+ * @param ContextHandle 上下文句柄指针，用于管理缓冲区状态
+ * @param ContextHandleSize 上下文大小指针，用于缓冲区大小管理
+ * @return 返回处理后的上下文句柄指针
+ */
+long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long *ContextHandleSize
 {
-  long long *ContextHandle;
-  long long *BufferAllocationState;
+  long long *CurrentContextHandle;
+  long long *BufferCleanupState;
   
-  ContextHandle = (long long *)*ContextHandleSize;
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
+  CurrentContextHandle = (long long *)*ContextHandleSize;
+  if (CurrentContextHandle != (long long *)0x0) {
+    (**(code **)(*CurrentContextHandle + 0x28))(CurrentContextHandle);
   }
-  BufferAllocationState = (long long *)*ContextHandle;
-  *ContextHandle = (long long)ContextHandle;
-  if (BufferAllocationState != (long long *)0x0) {
-    (**(code **)(*BufferAllocationState + 0x38))();
+  BufferCleanupState = (long long *)*ContextHandle;
+  *ContextHandle = (long long)CurrentContextHandle;
+  if (BufferCleanupState != (long long *)0x0) {
+    (**(code **)(*BufferCleanupState + 0x38))();
   }
-  ContextHandle = (long long *)OperationBufferSize[1];
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
+  CurrentContextHandle = (long long *)OperationBufferSize[1];
+  if (CurrentContextHandle != (long long *)0x0) {
+    (**(code **)(*CurrentContextHandle + 0x28))(CurrentContextHandle);
   }
-  BufferAllocationState = (long long *)ContextHandle[1];
-  ContextHandle[1] = (long long)ContextHandle;
-  if (BufferAllocationState != (long long *)0x0) {
-    (**(code **)(*BufferAllocationState + 0x38))();
+  BufferCleanupState = (long long *)CurrentContextHandle[1];
+  CurrentContextHandle[1] = (long long)CurrentContextHandle;
+  if (BufferCleanupState != (long long *)0x0) {
+    (**(code **)(*BufferCleanupState + 0x38))();
   }
-  ContextHandle = (long long *)OperationBufferSize[2];
+  CurrentContextHandle = (long long *)OperationBufferSize[2];
   if (ContextHandle != (long long *)0x0) {
     (**(code **)(*ContextHandle + 0x28))(ContextHandle);
   }
