@@ -6197,31 +6197,34 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define VerifyDataConsistency FUN_18089d490
 
 /**
- * @brief 执行系统检查A1
+ * @brief 验证系统组件
  * 
- * 该函数负责执行系统检查，验证系统的各个组件是否正常工作
+ * 该函数负责执行系统检查，验证系统的各个组件是否正常工作，
+ * 包括硬件组件、软件模块和系统服务的状态验证。
  * 
  * @note 原始函数名：FUN_18089df40
  */
-#define ExecuteSystemComponentCheck FUN_18089df40
+#define ValidateSystemComponents FUN_18089df40
 
 /**
- * @brief 返回固定状态码A1
+ * @brief 返回标准状态码
  * 
- * 该函数返回固定的状态码，用于状态检查
+ * 该函数返回标准的系统状态码，用于状态检查和错误处理，
+ * 提供统一的系统状态反馈机制。
  * 
  * @note 原始函数名：FUN_18089dfc1
  */
-#define ReturnFixedStatusCodeA1 FUN_18089dfc1
+#define ReturnStandardStatusCode FUN_18089dfc1
 
 /**
- * @brief 验证系统状态A0
+ * @brief 验证系统就绪状态
  * 
- * 该函数负责验证系统状态，确保系统处于正常工作状态
+ * 该函数负责验证系统状态，确保系统处于正常工作状态，
+ * 包括系统资源检查、服务状态验证和运行环境确认。
  * 
  * @note 原始函数名：FUN_18089dfe4
  */
-#define ValidateSystemStatusA0 FUN_18089dfe4
+#define ValidateSystemReadiness FUN_18089dfe4
 
 /**
  * @brief 执行数据同步A1
