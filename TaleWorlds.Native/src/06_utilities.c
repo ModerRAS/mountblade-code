@@ -5297,7 +5297,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180046860
  * @see InitializeSystemComponents, ValidateSystemContextA0
  */
-#define InitializeSystemMemoryPoolA0 FUN_180046860
+#define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolA0
 
 /**
  * @brief 初始化系统内存池并配置缓存
@@ -5319,7 +5319,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存池初始化和缓存配置
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryAndSetupA2
  */
-#define InitializeSystemMemoryPoolAndConfigureCache FUN_18004c030
+#define InitializeSystemMemoryPoolAndConfigureCache InitializeSystemMemoryPoolAndConfigureCache
 
 /**
  * @brief 初始化系统内存并设置A2
@@ -5341,7 +5341,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存A2模块的初始化
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryPoolAndConfigureCache
  */
-#define InitializeSystemMemoryAndSetupA2 FUN_18004c090
+#define InitializeSystemMemoryAndSetupA2 InitializeSystemMemoryAndSetupA2
 
 /**
  * @brief 系统值计算函数
@@ -21058,44 +21058,46 @@ void ResetUtilitySystemToInitialState(void)
   uint operationFlags;
   int64_t systemContext;
   int64_t TemporarySystemRegister;
-  DataBuffer systemConfigurationData;
+  DataBuffer systemContextBuffer;
+  int systemInitializationStatus;
+  int64_t systemResourcePointer;
   
-  memoryBufferPointer = 0;
+  systemResourcePointer = 0;
   adjustedSystemParameter = systemParameter + 8;
   if (systemParameter == 0) {
-    adjustedSystemParameter = memoryBufferPointer;
+    adjustedSystemParameter = systemResourcePointer;
   }
-  resourceValidationStatus = ValidateAndProcessSystemResourceA0(adjustedSystemParameter);
-  if (resourceValidationStatus != 0) {
+  systemInitializationStatus = ValidateAndProcessSystemResourceA0(adjustedSystemParameter);
+  if (systemInitializationStatus != 0) {
     return;
   }
   operationFlags = (int)*(uint *)(registerContext + RegisterContextOperationFlagsOffset) >> 0x1f;
   memoryAllocationResult = (*(uint *)(registerContext + RegisterContextOperationFlagsOffset) ^ operationFlags) - operationFlags;
-  resourceValidationStatus = *(int *)(registerContext + RegisterContextValidationStatusOffset) + ValidationIncrementStep;
-  if (memoryAllocationResult < resourceValidationStatus) {
+  systemInitializationStatus = *(int *)(registerContext + RegisterContextValidationStatusOffset) + ValidationIncrementStep;
+  if (memoryAllocationResult < systemInitializationStatus) {
     memoryAllocationResult = (int)((float)memoryAllocationResult * ComponentCapacityGrowthFactor);
-    if (resourceValidationStatus <= memoryAllocationResult) {
-      resourceValidationStatus = memoryAllocationResult;
+    if (systemInitializationStatus <= memoryAllocationResult) {
+      systemInitializationStatus = memoryAllocationResult;
     }
-    if (resourceValidationStatus < 8) {
-      resourceValidationStatus = 8;
+    if (systemInitializationStatus < 8) {
+      systemInitializationStatus = 8;
     }
-    if (resourceValidationStatus < *(int *)(registerContext + RegisterContextValidationStatusOffset)) goto ErrorHandlingLabel;
-    if (resourceValidationStatus != 0) {
-      if (MaximumMemoryBufferSize < resourceValidationStatus * 8 - 1U) goto ErrorHandlingLabel;
-      memoryBufferPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),resourceValidationStatus * 8,&SystemMemoryPoolB,MemoryAllocationFlagsF4,MemoryAllocationFlags0)
+    if (systemInitializationStatus < *(int *)(registerContext + RegisterContextValidationStatusOffset)) goto ErrorHandlingLabel;
+    if (systemInitializationStatus != 0) {
+      if (MaximumMemoryBufferSize < systemInitializationStatus * 8 - 1U) goto ErrorHandlingLabel;
+      systemResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),systemInitializationStatus * 8,&SystemMemoryPoolB,MemoryAllocationFlagsF4,MemoryAllocationFlags0)
       ;
-      if (memoryBufferPointer == 0) goto ErrorHandlingLabel;
+      if (systemResourcePointer == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + RegisterContextValidationStatusOffset) != 0) {
-          memcpy(memoryBufferPointer,*(DataBuffer *)(registerContext + RegisterContextMemoryPointerOffset),(int64_t)*(int *)(registerContext + RegisterContextValidationStatusOffset) << BitShiftForMemoryCalculation);
+          memcpy(systemResourcePointer,*(DataBuffer *)(registerContext + RegisterContextMemoryPointerOffset),(int64_t)*(int *)(registerContext + RegisterContextValidationStatusOffset) << BitShiftForMemoryCalculation);
       }
     }
     if ((0 < *(int *)(registerContext + RegisterContextOperationFlagsOffset)) && (*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset),
                     &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
-    *(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) = memoryBlockOffset;
-    *(int *)(registerContext + RegisterContextOperationFlagsOffset) = validationCount;
+    *(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) = systemResourcePointer;
+    *(int *)(registerContext + RegisterContextOperationFlagsOffset) = systemInitializationStatus;
   }
   *(DataBuffer *)(*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) + (int64_t)*(int *)(registerContext + RegisterContextValidationStatusOffset) * 8) =
        dataSize;
