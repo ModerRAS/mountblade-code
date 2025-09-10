@@ -217,6 +217,8 @@ typedef enum {
 #define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
 #define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
+#define InitializeUISystemMemoryAndEventValidation FUN_18072c44d // UI系统内存和事件验证初始化
+#define ProcessUIComponentTransformCoefficients FUN_18072cc1b    // UI组件变换系数和字符数据处理
 #define ProcessUIContextInitialization FUN_1807270a0     // UI上下文初始化
 #define ProcessUIEventBufferManagement FUN_18072eb00     // UI事件缓冲区管理
 #define ProcessUIGraphicsParameters FUN_18072e720        // UI图形参数处理
@@ -229,6 +231,24 @@ typedef enum {
 #define ProcessUITextProcessing FUN_18072f890           // UI文本处理函数
 
 // 额外的UNK变量定义
+#define UNK_18095ad08 UIEventDataProcessorA8            // UI事件数据处理器A8
+#define UNK_1807872a0 UIEventCallbackHandler2A0          // UI事件回调处理器2A0
+#define UNK_18095ad20 UIEventDataProcessorA20           // UI事件数据处理器A20
+#define UNK_1807863b0 UIEventCleanupHandler3B0          // UI事件清理处理器3B0
+
+// UI系统全局变量语义化定义
+#define uiBufferData GlobalUIBufferData                  // UI缓冲区数据全局变量
+#define uiContext GlobalUIContext                        // UI上下文全局变量
+
+// UI系统栈参数语义化定义
+#define stackParamffffffffffffffa8 SystemStackParameterA8  // 系统栈参数A8
+#define stackParamffffffffffffffb8 SystemStackParameterB8  // 系统栈参数B8
+#define stackParamffffffffffffffb0 SystemStackParameterB0  // 系统栈参数B0
+
+// UI系统变换参数语义化定义
+#define transformParameterArray UITransformParameterArray     // UI变换参数数组
+#define auStackX_8 UIStackTransformBuffer8                  // UI栈变换缓冲区8
+#define auStackX_10 UIStackTransformBuffer10                // UI栈变换缓冲区10
 
 // UI系统函数补充定义
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
@@ -109334,7 +109354,17 @@ void ExecuteUIRenderTaskWrapperC(void)
 
 
 
- void FUN_18072c44d(void)
+ /**
+ * @brief 初始化UI系统内存和事件验证
+ * 
+ * 初始化UI系统的内存布局和事件验证机制：
+ * - 内存区域清零和初始化
+ * - 事件验证状态设置
+ * - 系统基础结构准备
+ * 
+ * @note 原始函数名：FUN_18072c44d
+ * @warning 此函数不返回，直接调用memset进行内存初始化
+ */
 void FUN_18072c44d(void)
 
 {
@@ -109795,7 +109825,18 @@ FinalizeLayoutOptimization:
 
 
 
- void FUN_18072cc1b(void)
+ /**
+ * @brief 处理UI组件变换系数和字符数据
+ * 
+ * 处理UI组件的变换系数计算和字符数据处理：
+ * - 变换系数计算和应用
+ * - 字符数据处理和转换
+ * - 组件数据迭代和更新
+ * - 上下文管理和状态维护
+ * 
+ * @note 原始函数名：FUN_18072cc1b
+ * @details 涉及复杂的浮点数计算和字符数据处理
+ */
 void FUN_18072cc1b(void)
 
 {
