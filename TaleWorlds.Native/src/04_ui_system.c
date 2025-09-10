@@ -4847,6 +4847,7 @@ void* UIGestureCoordinates;
 #define UIEventCounterVector _DAT_180947060          // UI事件计数器向量 - 存储UI事件计数信息
 #define UIEventStatusVector _DAT_180947080            // UI事件状态向量 - 存储UI事件状态信息
 #define UIProcessingCounterVector _DAT_1809470c0      // UI处理计数器向量 - 存储UI处理计数信息
+#define UITotalResultVector _DAT_1809470a0              // UI总结果向量 - 存储UI处理的总结果信息
 #define UIVectorAdditionConstant UIVectorAdditionConstant
 #define UIRenderingConstant2 _DAT_1809480a0
 #define UIRenderingConstant3 _DAT_1809480b0
@@ -43745,7 +43746,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   aTotalResult._0_16_ = aiterationCount;
   aiterationCounter = vpshufb_avx2(aTotalResult,UIEventStatusVector);
   aeventProcessingCounter = vpshufb_avx2(aTotalResult,UIProcessingCounterVector);
-  aeventStatus = vpshufb_avx2(aTotalResult,_DAT_180947060);
+  aeventStatus = vpshufb_avx2(aTotalResult,UIEventCounterVector);
   aTotalResult = vpshufb_avx2(aTotalResult,_DAT_1809470a0);
   aiterationCount7._0_16_ = ZEXT116(0) * aiterationCount2 + ZEXT116(1) * *uiContext;
   aiterationCount7._16_16_ = ZEXT116(1) * aiterationCount2;
