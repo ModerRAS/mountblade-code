@@ -15864,7 +15864,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     DataProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能处理
-    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(systemContextArray[0] + systemContextOffset),
+    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(systemContextArray[PrimarySystemContextIndex] + systemContextOffset),
                           &DataProcessingBuffer);
     
     // 处理执行结果
