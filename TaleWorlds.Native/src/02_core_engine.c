@@ -797,6 +797,22 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 新增栈变量语义化宏定义
 #define StackFloatValue30 fStack0000000000000030             // 栈浮点值30
 #define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
+
+// InitializeCoreEngineDataStructure函数变量语义化宏定义
+#define LockResult SystemLockResult                          // 锁结果
+#define MemoryAllocationIndex CoreEngineMemoryAllocationIndex  // 内存分配索引
+#define MemoryBlockIndex CoreEngineMemoryBlockIndex           // 内存块索引
+#define SystemDataRegistry CoreEngineSystemDataRegistry       // 系统数据注册表
+#define MemoryOffsetValue CoreEngineMemoryOffsetValue         // 内存偏移值
+#define SecondaryMemoryPoolPointer CoreEngineSecondaryMemoryPoolPointer // 次要内存池指针
+#define PrimaryMemoryPoolPointer CoreEnginePrimaryMemoryPoolPointer   // 主要内存池指针
+#define CoreEngineUnsignedValueA0 CoreEngineSystemStatusFlag  // 核心引擎系统状态标志
+#define SystemOperationFlagPointer CoreEngineOperationFlagPointer // 系统操作标志指针
+#define SystemOperationBuffer CoreEngineOperationBuffer       // 系统操作缓冲区
+#define StackValidationData CoreEngineStackValidationData      // 核心引擎栈验证数据
+#define SystemStackBuffer CoreEngineSystemStackBuffer         // 核心引擎系统栈缓冲区
+#define FunctionAddress CoreEngineFunctionAddress             // 核心引擎函数地址
+#define IntegerValue CoreEngineIntegerValue                   // 核心引擎整数值
 #define StackFloatValue48 fStack0000000000000048             // 栈浮点值48
 #define StackFloatValue58 fStack0000000000000058             // 栈浮点值58
 #define StackFloatValue7c fStack000000000000007c             // 栈浮点值7c
@@ -199971,7 +199987,26 @@ ProcessInputBuffer(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t
 
 
 
-uint64_t * ProcessCharacterEncodingAndStatusValidation(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer
+/**
+ * 处理字符编码和状态验证
+ * 原始函数名: ProcessCharacterEncodingAndStatusValidation
+ * 
+ * 该函数负责处理系统的字符编码转换和状态验证，包括：
+ * - UTF-8到UTF-16的字符编码转换
+ * - 系统状态验证和错误处理
+ * - 内存管理和缓冲区操作
+ * - 系统事件处理和资源清理
+ * 
+ * @param SystemContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 返回操作结果缓冲区指针
+ * 
+ * @note 这是核心引擎的字符处理函数，涉及复杂的内存管理和状态验证
+ * @warning 函数包含多处不返回的子程序调用，需要谨慎处理
+ */
+uint64_t *
+ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer)
 {
   int LockResult;
   double TimeDifferenceInSeconds;
