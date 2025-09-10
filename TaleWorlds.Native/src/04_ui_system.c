@@ -112738,46 +112738,46 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
   float *transformMatrixPointer;
   float processedValueX;
   
-  allocatedMemory = (longlong)param_7;
-  if (0 < allocatedMemory) {
-    bufferPointer = (float *)(targetBuffer + 8);
-    bufferValue = param_8 + param_6;
+  iterationCount = (longlong)param_7;
+  if (0 < iterationCount) {
+    transformBufferPointer = (float *)(targetBuffer + 8);
+    processingStride = param_8 + param_6;
     bufferSize = bufferSize - (longlong)resultPointer;
     do {
-      transformCoeff1 = *resultPointer;
-      transformCoeff2 = bufferPointer[-2];
-      transformCoeff3 = bufferPointer[-1];
-      transformCoeff4 = *bufferPointer;
-      localFloatValue6 = bufferPointer[1];
-      resultFloatValue = bufferPointer[2];
-      baseValuePointer3 = (float *)(dataSource + (longlong)*(int *)((longlong)resultPointer + bufferSize) * -4);
-      if (0 < (int)bufferValue) {
-        resultCounter = (ulonglong)bufferValue;
-        temporaryFloatPointer = uiContext;
+      scaleCoeff1 = *resultPointer;
+      scaleCoeff2 = transformBufferPointer[-2];
+      scaleCoeff3 = transformBufferPointer[-1];
+      scaleCoeff4 = *transformBufferPointer;
+      offsetCoeff6 = transformBufferPointer[1];
+      finalResultValue = transformBufferPointer[2];
+      transformMatrixPointer = (float *)(dataSource + (longlong)*(int *)((longlong)resultPointer + bufferSize) * -4);
+      if (0 < (int)processingStride) {
+        pixelCounter = (ulonglong)processingStride;
+        tempResultPointer = uiContext;
         do {
-          vectorComponentX = *(float *)((dataSource - (longlong)uiContext) + (longlong)temporaryFloatPointer);
-          *temporaryFloatPointer = vectorComponentX;
-          vectorComponentX = vectorComponentX - transformCoeff2 * baseValuePointer3[2];
-          *temporaryFloatPointer = vectorComponentX;
-          vectorComponentX = vectorComponentX - transformCoeff3 * baseValuePointer3[1];
-          *temporaryFloatPointer = vectorComponentX;
-          vectorComponentX = vectorComponentX - transformCoeff4 * *baseValuePointer3;
-          *temporaryFloatPointer = vectorComponentX;
-          vectorComponentX = vectorComponentX - localFloatValue6 * baseValuePointer3[-1];
-          *temporaryFloatPointer = vectorComponentX;
-          baseValuePointer = baseValuePointer3 + -2;
-          baseValuePointer3 = baseValuePointer3 + 1;
-          *temporaryFloatPointer = (vectorComponentX - resultFloatValue * *baseValuePointer) * transformCoeff1;
-          temporaryFloatPointer = temporaryFloatPointer + 1;
-          resultCounter = resultCounter - 1;
-        } while (resultCounter != 0);
+          processedValueX = *(float *)((dataSource - (longlong)uiContext) + (longlong)tempResultPointer);
+          *tempResultPointer = processedValueX;
+          processedValueX = processedValueX - scaleCoeff2 * transformMatrixPointer[2];
+          *tempResultPointer = processedValueX;
+          processedValueX = processedValueX - scaleCoeff3 * transformMatrixPointer[1];
+          *tempResultPointer = processedValueX;
+          processedValueX = processedValueX - scaleCoeff4 * *transformMatrixPointer;
+          *tempResultPointer = processedValueX;
+          processedValueX = processedValueX - offsetCoeff6 * transformMatrixPointer[-1];
+          *tempResultPointer = processedValueX;
+          matrixBasePointer = transformMatrixPointer + -2;
+          transformMatrixPointer = transformMatrixPointer + 1;
+          *tempResultPointer = (processedValueX - finalResultValue * *matrixBasePointer) * scaleCoeff1;
+          tempResultPointer = tempResultPointer + 1;
+          pixelCounter = pixelCounter - 1;
+        } while (pixelCounter != 0);
       }
       dataSource = dataSource + (longlong)param_6 * 4;
       resultPointer = resultPointer + 1;
-      bufferPointer = bufferPointer + 5;
-      uiContext = uiContext + (int)bufferValue;
-      allocatedMemory = allocatedMemory + -1;
-    } while (allocatedMemory != 0);
+      transformBufferPointer = transformBufferPointer + 5;
+      uiContext = uiContext + (int)processingStride;
+      iterationCount = iterationCount + -1;
+    } while (iterationCount != 0);
   }
   return;
 }
