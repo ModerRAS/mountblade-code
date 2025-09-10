@@ -5018,8 +5018,8 @@ void* UIGestureCoordinates;
 #define UIRenderData680 (void*)0x180957680
 #define UIRenderData770 (void*)0x180957770
 #define UIRenderData8B0 (void*)0x1809578b0
-#define UIRenderData858 UNK_180957858
-#define UIRenderData8F0 UNK_1809578f0
+#define UIRenderData858 (void*)0x180957858
+#define UIRenderData8F0 (void*)0x1809578f0
 #define UIRenderData910 UNK_180957910
 #define UIRenderData7D0 UNK_1809577d0
 #define UIRenderData830 UNK_180957830
