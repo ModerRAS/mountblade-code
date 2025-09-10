@@ -191661,6 +191661,15 @@ undefined UIResourceCleanupHandler;
 #define UNK_18095b4b8 UIStatusFlagB4b8
 #define UNK_18095b4c0 UIStatusFlagB4c0
 #define UNK_18095b4d0 UIStatusFlagB4d0
+
+// CleanupUIAnimationStateAndExecuteRenderTask函数变量语义化定义
+#define astackUInt198 EncryptionBuffer198            // 加密缓冲区198字节
+#define pstackUInt178 ResultBufferPointer178         // 结果缓冲区指针178
+#define stackUInt170 ParameterBuffer170             // 参数缓冲区170
+#define AnimationStateValue UIAnimationState         // UI动画状态值
+#define stackUInt160 ContextBuffer160                // 上下文缓冲区160
+#define astackUInt158 ValidationBuffer158           // 验证缓冲区158字节
+#define stackUInt58 XorEncryptedKey58               // XOR加密密钥58
 // UI系统渲染状态变量语义化定义
 #define UNK_18095b4dc UIRenderFlagB4dc
 #define UNK_18095b4e4 UIRenderFlagB4e4
