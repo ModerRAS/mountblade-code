@@ -14023,8 +14023,8 @@ uint8_t SystemDataBufferSeptenary;
 uint8_t SystemDataBufferOctonary;
 
 // 函数: uint8_t InitializeUtilitySystemControl;
-#define InitializeUtilitySystemControl FUN_180942660
-void* InitializeUtilitySystemControl;
+#define InitializeUtilitySystemControl InitializeUtilitySystemControlFunction
+void* InitializeUtilitySystemControlFunction;
 void* SystemDataBufferConfig;
 uint8_t SystemStatusFlagPrimary;
 void* SystemDataBufferState;
@@ -14037,8 +14037,8 @@ uint64_t UtilitySystemControlPointerConfig;
 void* SystemDataBufferExceptionHandlers[ExceptionHandlerPointerArraySize];  // 异常处理器指针数组（00x, 08x, 10x, 18x偏移量）
 
 // 函数: void* ConfigureUtilitySystemBuffers;
-#define ConfigureUtilitySystemBuffers FUN_180942750
-void* ConfigureUtilitySystemBuffers;
+#define ConfigureUtilitySystemBuffers ConfigureUtilitySystemBuffersFunction
+void* ConfigureUtilitySystemBuffersFunction;
 // 系统数据缓冲区配置指针
 void* SystemDataBufferConfigPrimary;     // 主配置缓冲区（AEE0）
 void* SystemDataBufferConfigSecondary;   // 次要配置缓冲区（AEE8）
@@ -14048,8 +14048,8 @@ void* UtilitySystemMemoryDataTertiary;
 void* UtilitySystemMemoryDataQuaternary;
 
 // 函数: void* SetupUtilitySystemMemory;
-#define SetupUtilitySystemMemory FUN_180942790
-void* SetupUtilitySystemMemory;
+#define SetupUtilitySystemMemory SetupUtilitySystemMemoryFunction
+void* SetupUtilitySystemMemoryFunction;
 // 内存池指针数组大小常量
 #define MemoryPoolPointerArraySize 4
 
@@ -14057,8 +14057,8 @@ void* SetupUtilitySystemMemory;
 void* SystemDataBufferMemoryPool[MemoryPoolPointerArraySize];      // 内存池指针数组（AEF0, AEF8, AF00, AF08）
 
 // 函数: void* ProcessUtilitySystemConfiguration;
-#define ProcessUtilitySystemConfiguration FUN_1809427d0
-void* ProcessUtilitySystemConfiguration;
+#define ProcessUtilitySystemConfiguration ProcessUtilitySystemConfigurationFunction
+void* ProcessUtilitySystemConfigurationFunction;
 void* UtilitySystemValidationPointerExceptionContext;
 void* SystemDataBufferValidationPrimaryContext;
 void* SystemDataBufferValidationSecondaryContext;
