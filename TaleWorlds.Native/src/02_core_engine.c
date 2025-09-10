@@ -93198,7 +93198,7 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCo
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
   ConfigureRenderStats(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x1078) = 0;
-  CopySystemDataStructure(ContextHandle + SystemMemoryFunctionOffset1080,RenderConfigurationData);
+  CopySystemDataStructure(ContextHandle + RenderStatsBufferOffset,RenderConfigurationData);
   if (RenderCompletionCallback != (code *)0x0) {
     (*RenderCompletionCallback)(RenderConfigurationData,0,0);
   }
@@ -95568,8 +95568,8 @@ LAB_18010a4a0:
     if (SystemContextValidationFlag == '\0') {
       if (CoreEngineThreadStatus == '\0') {
         StringProcessingStatus = &CoreEngineDataTemplate;
-        if (*(void **)(ContextHandle + SystemMemoryFunctionOffset1080) != NULL) {
-          StringProcessingStatus = *(void **)(ContextHandle + SystemMemoryFunctionOffset1080);
+        if (*(void **)(ContextHandle + RenderStatsBufferOffset) != NULL) {
+          StringProcessingStatus = *(void **)(ContextHandle + RenderStatsBufferOffset);
         }
         InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
@@ -95587,8 +95587,8 @@ LAB_18010a4a0:
     if (SystemContextValidationFlag == '\0') {
       if (CoreEngineThreadStatus == '\0') {
         StringProcessingStatus = &CoreEngineDataTemplate;
-        if (*(void **)(ContextHandle + SystemMemoryFunctionOffset1080) != NULL) {
-          StringProcessingStatus = *(void **)(ContextHandle + SystemMemoryFunctionOffset1080);
+        if (*(void **)(ContextHandle + RenderStatsBufferOffset) != NULL) {
+          StringProcessingStatus = *(void **)(ContextHandle + RenderStatsBufferOffset);
         }
         InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
