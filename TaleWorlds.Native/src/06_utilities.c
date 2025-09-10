@@ -44550,9 +44550,9 @@ void ExceptionUnwindHandlerA17(void)
 {
   SystemByteType exceptionEncryptionShiftBits;
   
-  EnterCriticalSection(ExceptionCriticalSection);
+  EnterExceptionCriticalSection(ExceptionCriticalSection);
   ExceptionStatusFlagA0 = 0;
-  LeaveCriticalSection(ExceptionCriticalSection);
+  LeaveExceptionCriticalSection(ExceptionCriticalSection);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -44596,9 +44596,9 @@ void ResetExceptionStatusAndProcessEvent(void)
 {
   SystemByteType exceptionStatusEncryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA1 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -70648,9 +70648,9 @@ void ResetSystemEventState(void)
 {
   SystemByteType systemEventEncryptionShiftBits;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA2 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -73098,9 +73098,9 @@ void ResetSystemStatusFlag(void)
 {
   SystemByteType encryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   SystemStatusFlag = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -78239,9 +78239,9 @@ void ResetSystemStatusFlags(void)
 {
   SystemByteType encryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA3 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -82040,9 +82040,9 @@ void ResetExceptionStatusAndTriggerEvent(void)
 {
   SystemByteType encryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA4 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -89469,9 +89469,9 @@ void ResetExceptionStatusFlags(void)
 {
   SystemByteType encryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA5 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
@@ -128285,9 +128285,9 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
 {
   SystemByteType encryptionShiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionAddress);
+  EnterExceptionCriticalSection(ExceptionCriticalSectionAddress);
   SystemCriticalSectionFlag = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionAddress);
+  LeaveExceptionCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetSystemEventHandle();
                           ResetExceptionEventHandle(ExceptionEventHandle);
