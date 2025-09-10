@@ -5260,7 +5260,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存池初始化和缓存配置
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryAndSetupA2
  */
-#define InitializeSystemMemoryPoolAndConfigureCache InitializeSystemMemoryPoolAndConfigureCache
+#define InitializeSystemMemoryPoolAndConfigureCache FUN_18004c030
 
 /**
  * @brief 初始化系统内存并设置A2

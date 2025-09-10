@@ -400124,29 +400124,29 @@ ulonglong ProcessUIEventCodeType(longlong uiContext,longlong *dataSource)
   UIByte eventValidationBuffer [32];
   
   eventCodeResult = FUN_1808ddc20(dataSource,eventValidationBuffer,0,0x46454d50);
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if ((int)eventCodeResult != 0) {
+    return eventCodeResult;
   }
-  bufferValidation[0] = *(uint *)(uiContext + 0x50);
-  iterationCount = 0x1c;
+  bufferValidationData[0] = *(uint *)(uiContext + 0x50);
+  validationIterations = 0x1c;
   if (*(int *)(dataSource[1] + 0x18) == 0) {
-    pallocatedMemory = (longlong *)*dataSource;
-    if (*pallocatedMemory == 0) {
-      eventCodeType = 0x1c;
+    allocatedMemory = (longlong *)*dataSource;
+    if (*allocatedMemory == 0) {
+      eventCodeResult = 0x1c;
     }
     else {
-      if (pallocatedMemory[2] != 0) {
-        stackBuffer[0] = 0;
-        eventCodeType = func_0x00018076a7d0(*pallocatedMemory,stackBuffer);
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+      if (allocatedMemory[2] != 0) {
+        stackBufferData[0] = 0;
+        eventCodeResult = func_0x00018076a7d0(*allocatedMemory,stackBufferData);
+        if ((int)eventCodeResult != 0) {
+          return eventCodeResult;
         }
-        if ((ulonglong)pallocatedMemory[2] < (ulonglong)stackBuffer[0] + 4) {
-          eventCodeType = 0x11;
+        if ((ulonglong)allocatedMemory[2] < (ulonglong)stackBufferData[0] + 4) {
+          eventCodeResult = 0x11;
           goto LAB_18089cd46;
         }
       }
-      eventCodeType = FUN_180769ed0(*pallocatedMemory,bufferValidation,1,4,0);
+      eventCodeResult = FUN_180769ed0(*allocatedMemory,bufferValidationData,1,4,0);
     }
 LAB_18089cd46:
     if ((int)eventCodeType != 0) {
