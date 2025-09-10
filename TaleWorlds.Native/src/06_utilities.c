@@ -5037,10 +5037,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc914
  */
-#define FUN_1808fc914 ValidateSystemDataAndParameters
 
 // 系统状态验证器 - 验证系统状态的正确性
-#define FUN_1808fc074 ValidateSystemStateAndResources
 
 // 内存访问处理器 - 处理内存访问操作
 #define FUN_1803f33b0 ProcessMemoryAccessOperations
