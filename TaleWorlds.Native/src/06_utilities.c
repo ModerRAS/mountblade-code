@@ -9733,19 +9733,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源和状态
-#define CleanupSystemResourcesA0 CleanupSystemResources
+#define CleanupSystemResourcesA0 FUN_180899790
 
 // 原始函数名：FUN_180899799 - 系统重置函数A0
 // 功能：重置系统状态和配置
-#define ResetSystemStateA0 ResetSystemState
+#define ResetSystemStateA0 FUN_180899799
 
 // 原始函数名：FUN_1808997b0 - 数据同步函数A0
 // 功能：同步数据状态
-#define SynchronizeDataA0 SynchronizeData
+#define SynchronizeDataA0 FUN_1808997b0
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存资源
-#define ManageMemoryA0 ManageMemory
+#define ManageMemoryA0 FUN_180899891
 
 /**
  * @brief 系统状态设置函数A0
