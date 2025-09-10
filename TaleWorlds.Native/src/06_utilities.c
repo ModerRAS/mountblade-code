@@ -7780,7 +7780,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1809424a0
  * @note 用于保护系统数据的机密性
  */
-#define EncryptUtilityData FUN_1809424a0
+#define EncryptUtilityData EncryptUtilityDataWithSecurityCheck
 
 /**
  * @brief 系统数据验证和状态查询函数
