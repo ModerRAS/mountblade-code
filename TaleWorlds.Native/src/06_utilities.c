@@ -11900,13 +11900,13 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackDataBufferPrimary TemporaryDataBufferA    // 栈数据缓冲区主变量
 #define StackDataBufferSecondary TemporaryDataBufferB    // 栈数据缓冲区次变量
 #define StackDataBufferTertiary TemporaryDataBufferC    // 栈数据缓冲区第三变量
-#define StackDataBufferQuaternary StackDataBufferD    // 栈数据缓冲区第四变量
-#define StackDataBufferQuinary StackDataBufferE    // 栈数据缓冲区第五变量
-#define StackDataBufferSenary StackDataBufferF    // 栈数据缓冲区第六变量
-#define StackDataBufferSeptenary StackDataBufferG    // 栈数据缓冲区第七变量
+#define StackDataBufferQuaternary TemporaryMemoryAllocationBuffer    // 栈数据缓冲区第四变量
+#define StackDataBufferQuinary TemporaryDataBufferE    // 栈数据缓冲区第五变量
+#define StackDataBufferSenary TemporaryDataBufferF    // 栈数据缓冲区第六变量
+#define StackDataBufferSeptenary TemporaryDataBufferG    // 栈数据缓冲区第七变量
 
 // 系统数据管理变量语义化定义
-#define StackDataBufferD TemporaryMemoryAllocationBuffer    // 临时内存分配缓冲区
+#define TemporaryMemoryAllocationBuffer TemporaryMemoryAllocationBuffer    // 临时内存分配缓冲区
 #define SystemContextBuffer50 SystemValidationContextBuffer    // 系统验证上下文缓冲区
 #define SystemOperationCount SystemOperationProcessingCounter    // 系统操作处理计数器
 
@@ -32637,7 +32637,7 @@ DataBuffer ExecuteDataCleanupA0(void)
   if ((systemContext & 0x10) != 0) {
     operationResult = *(int *)(DestinationContext + ContextDataOffset260);
     validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                      (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,4,systemInputRegisterR9,operationResult);
+                      (*(DataBuffer **)(registerContext + 8),&TemporaryDataBufferE,4,systemInputRegisterR9,operationResult);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -32650,7 +32650,7 @@ DataBuffer ExecuteDataCleanupA0(void)
           return validationStatus;
         }
         validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                          (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,1,systemInputRegisterR9,dataValidationFlag != 0);
+                          (*(DataBuffer **)(registerContext + 8),&TemporaryDataBufferE,1,systemInputRegisterR9,dataValidationFlag != 0);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -40423,7 +40423,7 @@ uint64_t ProcessSystemValidation(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  StackDataBufferD = 0;
+  TemporaryMemoryAllocationBuffer = 0;
   memoryRegionBase = TemporaryDataBufferC & 1;
   dataFlags = TemporaryDataBufferC >> 1;
   operationResult = validationOutcome;
@@ -40443,7 +40443,7 @@ uint64_t ProcessSystemValidation(void)
       }
       operationResult = (int)operationResult + 1;
       operationResult = (uint64_t)operationResult;
-      StackDataBufferD = StackDataBufferD & -memoryRegionBase;
+      TemporaryMemoryAllocationBuffer = TemporaryMemoryAllocationBuffer & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
@@ -40462,12 +40462,12 @@ uint64_t ProcessSystemValidation(void)
   }
   else {
     if (exceptionContextPointer[2] != 0) {
-      StackDataBufferD = 0;
+      TemporaryMemoryAllocationBuffer = 0;
       operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)StackDataBufferD + 4) {
+      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)TemporaryMemoryAllocationBuffer + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationComplete3;
       }
@@ -40529,7 +40529,7 @@ uint64_t ValidateSystemIntegrity(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  StackDataBufferD = 0;
+  TemporaryMemoryAllocationBuffer = 0;
   memoryRegionBase = TemporaryDataBufferC & 1;
   dataFlags = TemporaryDataBufferC >> 1;
   operationResult = validationOutcome;
@@ -40549,7 +40549,7 @@ uint64_t ValidateSystemIntegrity(void)
       }
       operationResult = (int)operationResult + 1;
       operationResult = (uint64_t)operationResult;
-      StackDataBufferD = StackDataBufferD & -memoryRegionBase;
+      TemporaryMemoryAllocationBuffer = TemporaryMemoryAllocationBuffer & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
@@ -40568,12 +40568,12 @@ uint64_t ValidateSystemIntegrity(void)
   }
   else {
     if (exceptionContextPointer[2] != 0) {
-      StackDataBufferD = 0;
+      TemporaryMemoryAllocationBuffer = 0;
       operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)StackDataBufferD + 4) {
+      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)TemporaryMemoryAllocationBuffer + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationComplete3;
       }
@@ -40624,7 +40624,7 @@ uint64_t ProcessSystemBuffer(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  StackDataBufferD = 0;
+  TemporaryMemoryAllocationBuffer = 0;
   memoryRegionBase = systemOperationFlags & 1;
   dataFlags = threadLocalStorageFlag >> 1;
   operationResult = validationOutcome;
@@ -40644,7 +40644,7 @@ uint64_t ProcessSystemBuffer(void)
       }
       operationResult = (int)operationResult + 1;
       operationResult = (uint64_t)operationResult;
-      StackDataBufferD = StackDataBufferD & -memoryRegionBase;
+      TemporaryMemoryAllocationBuffer = TemporaryMemoryAllocationBuffer & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
@@ -40663,12 +40663,12 @@ uint64_t ProcessSystemBuffer(void)
   }
   else {
     if (exceptionContextPointer[2] != 0) {
-      StackDataBufferD = 0;
+      TemporaryMemoryAllocationBuffer = 0;
       operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)StackDataBufferD + 4) {
+      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)TemporaryMemoryAllocationBuffer + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationComplete3;
       }
@@ -42364,115 +42364,115 @@ DataBuffer ReturnFixedStatusCodeA3(void)
       if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
         switch(*(DataWord *)(systemContext + ContextOperationOffset60)) {
         default:
-          StackDataBufferD = 0;
+          TemporaryMemoryAllocationBuffer = 0;
           break;
         case 1:
-          StackDataBufferD = 1;
+          TemporaryMemoryAllocationBuffer = 1;
           break;
         case 2:
-          StackDataBufferD = 2;
+          TemporaryMemoryAllocationBuffer = 2;
           break;
         case 3:
-          StackDataBufferD = 3;
+          TemporaryMemoryAllocationBuffer = 3;
           break;
         case 4:
-          StackDataBufferD = 4;
+          TemporaryMemoryAllocationBuffer = 4;
           break;
         case 5:
-          StackDataBufferD = 5;
+          TemporaryMemoryAllocationBuffer = 5;
           break;
         case 6:
-          StackDataBufferD = 6;
+          TemporaryMemoryAllocationBuffer = 6;
           break;
         case 7:
-          StackDataBufferD = 7;
+          TemporaryMemoryAllocationBuffer = 7;
           break;
         case 8:
-          StackDataBufferD = 8;
+          TemporaryMemoryAllocationBuffer = 8;
           break;
         case 9:
-          StackDataBufferD = 9;
+          TemporaryMemoryAllocationBuffer = 9;
           break;
         case 10:
-          StackDataBufferD = 10;
+          TemporaryMemoryAllocationBuffer = 10;
           break;
         case 0xb:
-          StackDataBufferD = 0xb;
+          TemporaryMemoryAllocationBuffer = 0xb;
           break;
         case 0xc:
-          StackDataBufferD = 0xc;
+          TemporaryMemoryAllocationBuffer = 0xc;
           break;
         case 0xd:
-          StackDataBufferD = 0xd;
+          TemporaryMemoryAllocationBuffer = 0xd;
           break;
         case 0xe:
-          StackDataBufferD = 0xe;
+          TemporaryMemoryAllocationBuffer = 0xe;
           break;
         case 0xf:
-          StackDataBufferD = 0xf;
+          TemporaryMemoryAllocationBuffer = 0xf;
           break;
         case 0x10:
-          StackDataBufferD = 0x10;
+          TemporaryMemoryAllocationBuffer = 0x10;
           break;
         case 0x11:
-          StackDataBufferD = 0x11;
+          TemporaryMemoryAllocationBuffer = 0x11;
           break;
         case 0x12:
-          StackDataBufferD = 0x12;
+          TemporaryMemoryAllocationBuffer = 0x12;
           break;
         case 0x13:
-          StackDataBufferD = 0x13;
+          TemporaryMemoryAllocationBuffer = 0x13;
           break;
         case 0x14:
-          StackDataBufferD = 0x14;
+          TemporaryMemoryAllocationBuffer = 0x14;
           break;
         case 0x15:
-          StackDataBufferD = 0x15;
+          TemporaryMemoryAllocationBuffer = 0x15;
           break;
         case 0x16:
-          StackDataBufferD = 0x16;
+          TemporaryMemoryAllocationBuffer = 0x16;
           break;
         case 0x17:
-          StackDataBufferD = 0x17;
+          TemporaryMemoryAllocationBuffer = 0x17;
           break;
         case 0x18:
-          StackDataBufferD = 0x18;
+          TemporaryMemoryAllocationBuffer = 0x18;
           break;
         case 0x19:
-          StackDataBufferD = 0x19;
+          TemporaryMemoryAllocationBuffer = 0x19;
           break;
         case 0x1a:
-          StackDataBufferD = 0x1a;
+          TemporaryMemoryAllocationBuffer = 0x1a;
           break;
         case 0x1b:
-          StackDataBufferD = 0x1b;
+          TemporaryMemoryAllocationBuffer = 0x1b;
           break;
         case 0x1c:
-          StackDataBufferD = 0x1c;
+          TemporaryMemoryAllocationBuffer = 0x1c;
           break;
         case 0x1d:
-          StackDataBufferD = 0x1d;
+          TemporaryMemoryAllocationBuffer = 0x1d;
           break;
         case 0x1e:
-          StackDataBufferD = 0x1e;
+          TemporaryMemoryAllocationBuffer = 0x1e;
           break;
         case 0x1f:
-          StackDataBufferD = 0x1f;
+          TemporaryMemoryAllocationBuffer = 0x1f;
           break;
         case 0x20:
-          StackDataBufferD = 0x20;
+          TemporaryMemoryAllocationBuffer = 0x20;
           break;
         case 0x21:
-          StackDataBufferD = 0x21;
+          TemporaryMemoryAllocationBuffer = 0x21;
           break;
         case 0x22:
-          StackDataBufferD = 0x22;
+          TemporaryMemoryAllocationBuffer = 0x22;
           break;
         case 0x23:
-          StackDataBufferD = 0x23;
+          TemporaryMemoryAllocationBuffer = 0x23;
           break;
         case 0x24:
-          StackDataBufferD = 0x24;
+          TemporaryMemoryAllocationBuffer = 0x24;
         }
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                           (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,4);
@@ -42521,7 +42521,7 @@ void ConfigureSystemOptionsC1(void)
     }
     inputParameter = StackFrameRegister;
     if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      StackDataBufferD = 6;
+      TemporaryMemoryAllocationBuffer = 6;
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                         (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,4);
     }
@@ -42540,7 +42540,7 @@ void ConfigureSystemOptionsC1(void)
       StackFrameRegister = 0;
     }
     else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      systemStackDataBufferD = CONCAT31(systemStackDataBufferD._1_3_,*(ByteFlag *)(systemContext + 0x5c));
+      systemTemporaryMemoryAllocationBuffer = CONCAT31(systemTemporaryMemoryAllocationBuffer._1_3_,*(ByteFlag *)(systemContext + 0x5c));
       StackFrameRegister = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                             (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
@@ -42631,7 +42631,7 @@ uint64_t QuerySystemStatus(void)
   uint64_t OperationResult;
   DataBuffer *RegisterContext;
   int64_t SystemStackFramePointer;
-  char StackDataBufferE;
+  char TemporaryDataBufferE;
   
   OperationResult = ExecuteDataBufferOperation();
   if ((int)OperationResult == 0) {
@@ -42639,7 +42639,7 @@ uint64_t QuerySystemStatus(void)
       SystemDataBuffer = ProcessDataPointer(*RegisterContext, StackFrameContext + ExceptionHandlerCallbackOffset);
       OperationResult = (uint64_t)SystemDataBuffer;
       if ((SystemDataBuffer == 0) &&
-         ((StackDataBufferE == '\0' || (OperationResult = ValidateDataSecurityContext(StackFrameContext + 0x48), (int)OperationResult == 0)))
+         ((TemporaryDataBufferE == '\0' || (OperationResult = ValidateDataSecurityContext(StackFrameContext + 0x48), (int)OperationResult == 0)))
          ) {
           ExecuteSystemCleanupRoutine();
       }
@@ -42821,7 +42821,7 @@ uint64_t ValidatesystemContextAndProcessData(void)
   DataWord ValidationDataBuffer;
   BytePair FirstBytePair;
   BytePair SecondBytePair;
-  BytePair StackDataBufferF;
+  BytePair TemporaryDataBufferF;
   BytePair StackDataBufferG;
   
   if (*(uint *)(systemInputAccumulator + SystemDataSecondaryOffset18) != registerContextValue) {
@@ -42845,7 +42845,7 @@ uint64_t ValidatesystemContextAndProcessData(void)
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                           (*(DataBuffer **)(exceptionHandlerContext + 8),&ValidationDataBuffer,4);
         if (operationResult == 0) {
-          StackDataBufferF = FirstBytePair;
+          TemporaryDataBufferF = FirstBytePair;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                             (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
           if (operationResult == 0) {
@@ -42854,7 +42854,7 @@ uint64_t ValidatesystemContextAndProcessData(void)
                               (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
             if (operationResult == 0) {
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                                (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
+                                (*(DataBuffer **)(exceptionHandlerContext + 8),&TemporaryMemoryAllocationBuffer,8);
             }
           }
         }
@@ -42901,7 +42901,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
   DataWord ValidationDataBuffer;
   BytePair FirstBytePair;
   BytePair SecondBytePair;
-  BytePair StackDataBufferF;
+  BytePair TemporaryDataBufferF;
   BytePair StackDataBufferG;
   
   operationResult = ProcessDataPointer(*DestinationContext,StackFrameContext + ArrayDataOffset);
@@ -42916,7 +42916,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                         (*(DataBuffer **)(exceptionHandlerContext + 8),&ValidationDataBuffer,4);
       if (operationResult == 0) {
-        StackDataBufferF = FirstBytePair;
+        TemporaryDataBufferF = FirstBytePair;
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                           (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
         if (operationResult == 0) {
@@ -42925,7 +42925,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
                             (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
           if (operationResult == 0) {
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                              (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
+                              (*(DataBuffer **)(exceptionHandlerContext + 8),&TemporaryMemoryAllocationBuffer,8);
           }
         }
       }
@@ -42968,13 +42968,13 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
   int64_t systemStackPointer;
   int64_t *DestinationContext;
   DataBuffer operationResult;
-  BytePair StackDataBufferF;
+  BytePair TemporaryDataBufferF;
   BytePair StackDataBufferG;
   
   exceptionContext = *DestinationContext;
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))();
   if (operationResult == 0) {
-    StackDataBufferF = operationResult._4_2_;
+    TemporaryDataBufferF = operationResult._4_2_;
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                       (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
     if (operationResult == 0) {
@@ -42983,7 +42983,7 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
                         (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
       if (operationResult == 0) {
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                          (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
+                          (*(DataBuffer **)(exceptionHandlerContext + 8),&TemporaryMemoryAllocationBuffer,8);
       }
     }
   }
@@ -43621,7 +43621,7 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
   }
   memoryRegion = (uint64_t)exceptionHandler & MemoryRegionMask;
   if (memoryRegion != 0) {
-    handlerAddress = memoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandler - memoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
+    handlerAddress = memoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandler - memoryRegion >> MemoryBlockShift) * ExceptionMemoryBlockMultiplier;
     handlerAddress = handlerAddress - (uint64_t)*(uint *)(handlerAddress + ExceptionHandlerPointerOffset4);
     if ((*(void ***)(memoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(handlerAddress + ExceptionHandlerPointerOffsetE) == '\0')) {
       *exceptionHandler = *(DataBuffer *)(handlerAddress + ExceptionHandlerPointerOffset20);
@@ -133217,15 +133217,15 @@ uint8_t SystemExceptionHandlerStateTable;
 // 栈变量宏定义 - 美化stack0x变量
 // 栈数据缓冲区D
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferD StackDataBufferD
+#define TemporaryMemoryAllocationBuffer TemporaryMemoryAllocationBuffer
 
 // 栈数据缓冲区E
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferE StackDataBufferE
+#define TemporaryDataBufferE TemporaryDataBufferE
 
 // 栈数据缓冲区F
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferF SystemStackInputParameterA
+#define TemporaryDataBufferF SystemStackInputParameterA
 
 // 栈数据缓冲区G
 // 功能：存储数据缓冲区的栈变量
