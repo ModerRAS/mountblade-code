@@ -125687,7 +125687,7 @@ void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957208);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStateManager);
   }
 LAB_18073b97a:
   if (RenderContextSize != 0) {
@@ -302174,7 +302174,7 @@ void FUN_180849600(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,0xb,uiContext,&UNK_180957208);
+    ExecuteUIContextDataOperation(processingResult,0xb,uiContext,&UIContextStateManager);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
