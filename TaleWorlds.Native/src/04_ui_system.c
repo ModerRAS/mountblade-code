@@ -200138,10 +200138,10 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
     *(UIDword *)(eventDataBuffer + 0x100) = *(UIDword *)(uiBufferData + 0x478);
     func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),eventDataBuffer,1);
     componentHandle = *(longlong *)(uiBufferData + 0xa8);
-    if (componentIndex != 0) {
-      func_0x000180743c20(componentIndex,6);
+    if (componentHandle != 0) {
+      func_0x000180743c20(componentHandle,6);
     }
-    pallocatedMemory = (longlong *)(uiContext + 0x370);
+    uiMemoryPointer = (longlong *)(uiContext + 0x370);
     **(longlong **)(uiContext + 0x378) = *pallocatedMemory;
     *(UIHandle *)(*pallocatedMemory + 8) = *(UIHandle *)(uiContext + 0x378);
     *(longlong **)(uiContext + 0x378) = pallocatedMemory;
@@ -200505,7 +200505,7 @@ void FUN_1807845c0(longlong uiContext,int dataSource,float *targetBuffer,int buf
       if ((*(char *)(uiContext + 0x238) == '\0') &&
          ((LocalFloatValue6 != *(float *)(uiContext + 0x3b8) || (transformCoeff1 != *(float *)(uiContext + 0x3bc))))) {
         *(float *)(uiContext + 0x3b8) = LocalFloatValue6;
-        pallocatedMemory = (longlong *)(uiContext + 0x370);
+        uiMemoryPointer = (longlong *)(uiContext + 0x370);
         *(float *)(uiContext + 0x3bc) = transformCoeff1;
         *(UIByte *)(uiContext + 0x220) = 1;
         **(longlong **)(uiContext + 0x378) = *pallocatedMemory;
@@ -200744,7 +200744,7 @@ UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, floa
     func_0x000180743c20(componentIndex,6);
   }
   *(UIByte *)(uiContext + 0x220) = 1;
-  pallocatedMemory = (longlong *)(uiContext + 0x370);
+  uiMemoryPointer = (longlong *)(uiContext + 0x370);
   **(longlong **)(uiContext + 0x378) = *pallocatedMemory;
   *(UIHandle *)(*pallocatedMemory + 8) = *(UIHandle *)(uiContext + 0x378);
   *(longlong **)(uiContext + 0x378) = pallocatedMemory;
@@ -263925,16 +263925,40 @@ LAB_18082566e:
 
 
 
-int FUN_1808256a0(UIHandle uiContext,UIHandle dataSource,ulonglong *targetBuffer,longlong bufferSize,
+/**
+ * @brief 解码64位UI事件编码
+ * 
+ * 从数据源中解码64位UI事件编码，支持大整数编码格式
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针（64位）
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return int 解码结果状态码
+ * 
+ * @details 实现细节：
+ * - 读取数据源中的字节
+ * - 处理64位可变长度编码
+ * - 支持大整数解码
+ * - 验证编码格式有效性
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 处理更多编码格式
+ * - 支持任意精度整数
+ * - 优化内存访问模式
+ * - 添加错误恢复机制
+ */
+static int DecodeUIEventEncoding64Bit(UIHandle uiContext, UIHandle dataSource, ulonglong *targetBuffer, longlong bufferSize,
                  uint *resultPointer)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  ulonglong eventCodeType;
-  uint astackUInt28 [4];
+  int decodeResult;
+  int validationStatus;
+  ulonglong eventCode;
+  uint tempBuffer [4];
   
-  processingResult = FUN_180824d50(uiContext,dataSource,astackUInt28,8);
+  decodeResult = FUN_180824d50(uiContext, dataSource, tempBuffer, 8);
   if (processingResult == 0) {
 LAB_1808257fe:
     uiValidationResult = 0;

@@ -46625,9 +46625,9 @@ void HandleExceptionRecoveryF0(DataBuffer context, int64_t exceptionData, DataBu
 {
   DataBuffer *pExceptionHandler;
   
-  pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + 0x70) + ExceptionHandlerCallbackOffset);
+  pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + ExceptionCallbackOffset70) + ExceptionHandlerCallbackOffset);
   if (pExceptionHandler != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + ExceptionCallbackOffset70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagAlternative);
       TerminateSystemE0(pExceptionHandler);
   }
   return;
@@ -59612,7 +59612,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
 void CleanupExceptionResourceReferenceCount940(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x68));
+  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionCallbackOffset68));
   return;
 }
 
@@ -60022,7 +60022,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 void CloseHandleOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x68));
+  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionCallbackOffset68));
   return;
 }
 
@@ -60042,7 +60042,7 @@ void CloseHandleOnException(DataBuffer operationBase,int64_t dataBuffer)
 void CloseHandleOffset70OnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x70));
+  CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionCallbackOffset70));
   return;
 }
 
