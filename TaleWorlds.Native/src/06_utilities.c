@@ -552,6 +552,7 @@
 #define DataBufferOffsetPrimary 0x44
 #define DataBufferOffsetSecondary 0x54
 #define DataBufferOffsetTertiary 0x60
+#define DataBufferOffset14 0x14                            // 数据缓冲区偏移量14 - 用于浮点数计算操作
 #define DataBufferOffset88 0x88
 #define DataBufferOffsetA8 0xa8
 #define DataBufferOffsetB0 0xb0
