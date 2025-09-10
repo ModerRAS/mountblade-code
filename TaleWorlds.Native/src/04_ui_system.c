@@ -119854,10 +119854,28 @@ void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,
 
 
 
- void FUN_180736dc0(UIByte *uiContext,int *dataSource,int *targetBuffer,uint *bufferSize,int *resultPointer,
-void FUN_180736dc0(UIByte *uiContext,int *dataSource,int *targetBuffer,uint *bufferSize,int *resultPointer,
-                  int *param_6,longlong param_7,longlong param_8,byte *param_9,short uiContext0,
-                  int uiContext1,int uiContext2)
+ /**
+ * @brief 处理UI上下文数据转换和缓冲区操作
+ * 
+ * 该函数负责处理UI上下文数据，包括数据源到目标缓冲区的转换，
+ * 字符匹配处理，以及复杂的数据计算和验证。
+ * 
+ * @param uiContext UI上下文字节数组指针
+ * @param dataSource 数据源整数数组指针
+ * @param targetBuffer 目标缓冲区整数数组指针
+ * @param bufferSize 缓冲区大小无符号整数指针
+ * @param resultPointer 结果指针数组
+ * @param param_6 参数6，包含循环计数器和处理结果
+ * @param param_7 参数7，用于字符处理的偏移量
+ * @param param_8 参数8，用于字符处理的长度计算
+ * @param param_9 参数9，字符数组指针
+ * @param uiContext0 UI上下文0，短整型参数
+ * @param uiContext1 UI上下文1，整型参数
+ * @param uiContext2 UI上下文2，整型参数
+ */
+void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *targetBuffer,uint *bufferSize,int *resultPointer,
+                                        int *param_6,longlong param_7,longlong param_8,byte *param_9,short uiContext0,
+                                        int uiContext1,int uiContext2)
 
 {
   byte isCharacterMatch;
@@ -120008,36 +120026,36 @@ void ProcessUIContextDataTransform(int uiContext,int dataSource,longlong targetB
                            ((longlong)
                             ((int)charValue4 * resultPointer[6] +
                             bufferSize + (int)charValue5 * resultPointer[7] * 2 +
-                            (int)localChar3 * stackParam000000b0[9] * 2 +
-                            (int)localChar2 * stackParam000000b0[8] * 2) * (longlong)localChar4) >> 0x10) +
+                            (int)charValue3 * resultPointer[9] * 2 +
+                            (int)charValue2 * resultPointer[8] * 2) * (longlong)charValue4) >> 0x10) +
                      (int)((ulonglong)
                            ((longlong)
-                            ((int)localChar5 * stackParam000000b0[0xc] +
-                            bufferSize * 2 + (int)localChar2 * stackParam000000b0[0xd] * 2 +
-                            (int)localChar3 * stackParam000000b0[0xe] * 2) * (longlong)localChar5) >> 0x10) +
+                            ((int)charValue5 * resultPointer[0xc] +
+                            bufferSize * 2 + (int)charValue2 * resultPointer[0xd] * 2 +
+                            (int)charValue3 * resultPointer[0xe] * 2) * (longlong)charValue5) >> 0x10) +
                      0x8021 + (int)((ulonglong)
                                     ((longlong)
-                                     (stackParam000000b0[0x12] * (int)localChar2 + iStack0000000000000028
-                                     + (int)localChar3 * stackParam000000b0[0x13] * 2) * (longlong)localChar2)
+                                     (resultPointer[0x12] * (int)charValue2 + contextDoubled
+                                     + (int)charValue3 * resultPointer[0x13] * 2) * (longlong)charValue2)
                                    >> 0x10);
-    if (-1 < localInt8) {
-      if (localInt7 < 1) {
-        localInt7 = 0;
+    if (-1 < result2) {
+      if (result1 < 1) {
+        result1 = 0;
       }
-      localInt8 = localInt7 * 0x800 + localInt8;
-      sVar6 = GetUIProcessingValue(localInt8);
-      localInt7 = (int)(short)(sVar6 + -0x780) * (int)stackParam000000d8 + (uint)*stackParam000000d0 * 4;
-      if (localInt7 <= *maxAllocations) {
-        *maxAllocations = localInt7;
-        *stackParam00000098 = localInt8;
-        *stackParam00000090 = (char)stackParam000000b8;
-        *stackParam000000a8 = (uint)isCharacterMatch;
+      result2 = result1 * 0x800 + result2;
+      transformValue = GetUIProcessingValue(result2);
+      result1 = (int)(short)(transformValue + -0x780) * (int)paramD8 + (uint)*dataBuffer * 4;
+      if (result1 <= *maxAllocations) {
+        *maxAllocations = result1;
+        *intParam = result2;
+        *byteParam = (char)paramB8;
+        *uintParam = (uint)characterMatch;
       }
     }
-    stackParam000000b8 = stackParam000000b8 + 1;
-    pcStack0000000000000038 = pcStack0000000000000038 + 5;
-    stackParam000000d0 = stackParam000000d0 + 1;
-  } while (stackParam000000b8 < stackParam000000e8);
+    paramB8 = paramB8 + 1;
+    charPointer = charPointer + 5;
+    dataBuffer = dataBuffer + 1;
+  } while (paramB8 < paramE8);
   return;
 }
 
@@ -406210,6 +406228,17 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define colorChannel3 UITertiaryColorVector        // UI第三级颜色向量：用于存储第三个颜色通道的向量数据
 #define colorChannel4 UIQuaternaryColorVector      // UI第四级颜色向量：用于存储第四个颜色通道的向量数据
 #define primaryColorChannel UIPrimaryColorVector  // UI主颜色向量：用于存储主要颜色通道的向量数据
+
+// 新增UI系统核心函数定义
+#define FUN_18074b880 ValidateUIBufferDataOperation     // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
+#define FUN_180741e10 InitializeUIComponentAndResources  // 初始化UI组件和资源 - 初始化UI系统组件和相关资源
+#define FUN_180744cc0 ProcessUIRenderPipelineOperation   // 处理UI渲染管道操作 - 执行UI渲染管道的各个阶段
+#define FUN_18088c790 ExecuteUIEventDispatch            // 执行UI事件调度 - 分发和处理UI系统事件
+#define FUN_180742050 ManageUIMemoryPoolAllocation      // 管理UI内存池分配 - 管理UI系统的内存池分配操作
+#define FUN_18084b240 ProcessUIAnimationStateUpdate      // 处理UI动画状态更新 - 更新UI组件的动画状态
+#define FUN_1807c41d0 CalculateUILayoutMetrics          // 计算UI布局度量 - 计算UI组件的布局度量信息
+#define FUN_18082d7f0 RenderUIComponentToBuffer         // 渲染UI组件到缓冲区 - 将UI组件渲染到指定的缓冲区
+#define FUN_18076b390 ProcessUIInputEventValidation     // 处理UI输入事件验证 - 验证和处理用户输入事件
 
 
 
