@@ -27881,8 +27881,8 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   double DoublePrecisionValue;
   uint MemoryAddressMaskPointer;
   uint64_t *memoryProcessingStatusFlag;
-  long long PrimaryOperationResult;
-  long long SecondaryOperationResult;
+  long long MainCalculationResult;
+  long long SecondaryCalculationResult;
   uint32_t *stringProcessingStatusFlag;
   void *TemporaryBuffer;
   unsigned long long Utf16Char;
@@ -30302,7 +30302,7 @@ void CoreEngineExecuteDataCopyAndMemoryAllocation(long long targetBuffer
  */
 void CoreEngineAllocateMemoryAndCopyDataBlock(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long StackBaseAddressPointer;
   long long PatternIndexPointer;
@@ -30349,7 +30349,7 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void)
  */
 void CoreEngineProcessDataBlockShift(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long StackFrameAddressPointer;
@@ -30669,7 +30669,7 @@ void CoreEngineProcessConfigurationBatchData(void* SystemConfigPointer, void* Ch
  */
 uint64_t CoreEngineProcessModuleConfiguration(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   int MemoryMatchResult;
   uint64_t *MemoryAddressMaskPointer;
@@ -31163,7 +31163,7 @@ void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *Syst
  */
 void CoreEngineProcessSystemCommand(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferAllocationStatus;
   uint32_t AllocatedMemorySize;
   int SystemOperationCode;
@@ -32160,7 +32160,7 @@ void CoreEngineInitializeSystemConfiguration(void
  */
 void CoreEngineProcessSystemDataNodeQueue(long long *DataNodeQueue
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -32218,7 +32218,7 @@ void CoreEngineInitializeDataStructureAndProcessEvent(long long DataStructure, u
  */
 void CoreEngineCleanupThreadLocalStorageData(long long ThreadLocalStorage
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -32352,7 +32352,7 @@ void CoreEngineInitializeDataStructureAndProcessEventSimple(long long DataStruct
  */
 void CoreEngineCleanupThreadLocalStorageDataDuplicate(long long ThreadLocalStorage
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -33476,7 +33476,7 @@ void CoreEngineExecuteSystemEventProcessing(long long *EventContext,uint64_t Eve
  */
 void CoreEngineProcessDynamicArrayInsert(long long *DynamicArray,uint32_t *NewElement
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   uint32_t *SystemEventTemplatePointer;
   uint32_t *MemoryAddressMaskPointer;
@@ -33831,7 +33831,7 @@ void CoreEngineCalculateDataStructureOffset(uint64_t DataStructure,long long Bas
  */
 void CoreEngineProcessDataCleanup(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -36429,7 +36429,7 @@ void CoreEngineResetSystemObjectAndProcessEvent(uint64_t *ContextHandle)
  */
 void ProcessSystemDataBlocks(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -37926,7 +37926,7 @@ void CoreEngineClearBufferFlag(void *bufferFlag
  */
 void CoreEngineProcessStringOperation(void *stringBuffer, void *searchString, void *replaceString
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   uint8_t SystemOperationBuffer [32];
@@ -38942,7 +38942,7 @@ SystemEventProcessing: // 原始标签：LAB_1800607cc
  */
 uint64_t ProcessCharacterDataConversion(long long ContextHandle,char OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint64_t MemoryAddressMaskPointer;
@@ -39177,7 +39177,7 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
  */
 long long * SwapDataStructuresWithBufferManagement(long long *ContextHandle,long long *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   
   CharacterTablePointer = *ContextHandleSize;
@@ -42734,7 +42734,7 @@ SystemUtilityExecution: // 原始标签：LAB_180066971，SystemUtilityExecution
 void ValidateSystemCoreConfiguration(uint64_t SystemContext,uint64_t ConfigurationData,char ValidationFlag,uint64_t Utf8SourcePointer,
                                    uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   int MemoryMatchResult;
   uint32_t ValidationResult;
@@ -42873,7 +42873,7 @@ void SystemEmptyFunction(void
  */
 void ProcessSystemDataStructureTransfer(long long *SystemContext,long long ContextSize,uint64_t DataBufferPointer,uint64_t DataEndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemRootNode;
   long long SearchStartIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -43886,7 +43886,7 @@ uint64_t ProcessDataValidation(long long ContextHandle,long long OperationBuffer
  */
 long long CalculateAllocatedMemorySize(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   code *SystemValidationFunction;
   void *SystemEventTemplatePointer;
   
@@ -44096,7 +44096,7 @@ long long *
 AllocateAndInitializeMemoryBlockIndex(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
              unsigned long long AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   uint64_t MemoryAddressMaskPointer;
@@ -44672,7 +44672,7 @@ void InitializeByteData(uint8_t *ContextHandle
  */
 void InitializeCoreDataStructure(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   uint8_t StackProcessingVariable [32];
@@ -44721,7 +44721,7 @@ void InitializeCoreDataStructure(long long ContextHandle,long long OperationBuff
  */
 void CopyCoreDataStructure(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if (OperationBufferSize == 0) {
     *(uint32_t *)(ContextHandle + 0x10) = 0;
@@ -50628,7 +50628,7 @@ void UpdateTargetDataContext(long long ContextHandle,long long *ContextHandleSiz
  * @return 计算得到的内存分配容量
  */
 long long CalculateDataStructureCapacity(long long ContextHandle{
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   byte MemoryValidationStatus;
   
@@ -53981,7 +53981,7 @@ void ProcessSystemRenderParametersAndStatus(void
  */
 void ProcessContextHandleMemoryManagement(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -54096,7 +54096,7 @@ CharacterVariableSet:
  */
 void InitializeContextHandleMemoryManagement(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -54214,7 +54214,7 @@ CharacterVariableSet:
  */
 void ProcessFloatDataStructureAndParameterCalculationWithFloats(float ContextHandle, float OperationBufferSize, float Utf8SourcePointer, float Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -54325,7 +54325,7 @@ CharacterVariableSet:
  */
 void ProcessDataContextManagementAndFloatValidation(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -55235,7 +55235,7 @@ void SerializeDataStructure(uint32_t *ContextHandle,long long *ContextHandleSize
  */
 void ConfigureDataStructureStatus(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   byte SystemValidationStatus;
   
@@ -58337,7 +58337,7 @@ LoopContinuation:
  */
 void ProcessDataStructureValidation(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   void **pSystemEventTemplatePointer;
   long long *EngineContext;
@@ -58962,7 +58962,7 @@ void ProcessDataStructureConfiguration(int *ContextHandle,long long OperationBuf
 
  void ProcessIntegerDataConversion(int *ContextHandle,long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint32_t *SystemEventTemplatePointer;
   int *pEncodingValidationResult;
@@ -59020,7 +59020,7 @@ void ProcessDataStructureConfiguration(int *ContextHandle,long long OperationBuf
 
  void ValidateIntegerDataStructure(uint32_t *ContextHandlevoid ValidateIntegerDataStructure(uint32_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long *SystemContext;
   uint RegisterEBPValue;
@@ -59111,7 +59111,7 @@ long long* ProcessSystemDataStructureTransfer(long long* ContextHandle, long lon
 
  void ProcessDataStructureHandle(long long *ContextHandlevoid ProcessDataStructureHandle(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -59204,7 +59204,7 @@ long long* ProcessSystemDataStructureTransfer(long long* ContextHandle, long lon
 
  void ProcessDataStructureWithSource(long long *ContextHandle,unsigned long long OperationBufferSizevoid ProcessDataStructureWithSource(long long *ContextHandle,unsigned long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -59279,7 +59279,7 @@ long long* ProcessSystemDataStructureTransfer(long long* ContextHandle, long lon
  */
 void AllocateAndInitializeSystemDataStructure(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long StackFrameAddressPointer;
   unsigned long long MemoryAllocationIndex;
@@ -59440,7 +59440,7 @@ void InitializeContextHandle(int *ContextHandle,uint64_t *ContextHandleSize
  */
 void AllocateSystemMemoryBuffer(long long *ContextHandle,unsigned long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -59518,7 +59518,7 @@ void AllocateSystemMemoryBuffer(long long *ContextHandle,unsigned long long Oper
 void CopySystemDataStructure(long long ContextHandle,unsigned long long OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
 {
   long long ProcessingResult;
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
@@ -61047,7 +61047,7 @@ void CleanCoreEngineDataStructure(long long *ContextHandle,long long *ContextHan
  */
 uint64_t * AllocateSystemMemoryBlock(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61138,7 +61138,7 @@ void CopyDataStructureMemory(long long ContextHandle, long long OperationBufferS
  */
 uint64_t * AllocateDataNodeStructure(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61207,7 +61207,7 @@ uint64_t * AllocateDataNodeStructure(long long ContextHandle,uint64_t *ContextHa
  */
 uint64_t * InitializeMemoryPoolManager(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61705,7 +61705,7 @@ void ProcessContextHandleReference(unsigned long long *ContextHandle
  */
 uint64_t * InitializeSecondaryMemoryPoolManager(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61774,7 +61774,7 @@ uint64_t * InitializeSecondaryMemoryPoolManager(long long ContextHandle,uint64_t
  */
 uint64_t * InitializeTertiaryMemoryPoolManager(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61840,7 +61840,7 @@ uint64_t * InitializeTertiaryMemoryPoolManager(long long ContextHandle,uint64_t 
  */
 uint64_t * AllocateSystemMemoryBlockWithQuaternaryManager(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61906,7 +61906,7 @@ uint64_t * AllocateSystemMemoryBlockWithQuaternaryManager(long long ContextHandl
  */
 uint64_t * AllocateSystemMemoryBlockWithQuinaryManager(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   uint32_t MemoryAddressMaskPointer;
@@ -61993,7 +61993,7 @@ void InitializeSystemMemoryAllocator(long long ContextHandle, long long Operatio
  */
 uint64_t ValidateMemoryDataStructureStatus(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if ((*(byte *)(ContextHandle + 0xfd) & 0x20) == 0) {
     ContextHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
@@ -65282,7 +65282,7 @@ uint64_t * InitializeDataStructureArray(uint64_t *ContextHandle
  */
 void BufferAllocationStatusHandler(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -65470,7 +65470,7 @@ uint64_t SearchSystemEventTemplate(long long ContextHandle, long long *ContextHa
  */
 uint64_t ProcessSystemDataStructure(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long DataStructureOffset;
   
   ProcessSystemDataTransferA(ContextHandle + 0x78,&SecondaryDataBuffer);
@@ -67702,7 +67702,7 @@ MemoryAllocationIndexClear:
  */
 void ProcessSystemEventTemplate(uint64_t ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   void *SystemEventTemplatePointer;
   void *pSystemPriorityLevel;
@@ -69637,7 +69637,7 @@ InitializeSystemDataStructure(void/**
  */
 void InitializeSystemDataStructure(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = AllocateSystemMemory(0x58);
   *(long long *)CharacterTablePointer = LoopCounter;
@@ -69741,7 +69741,7 @@ uint64_t * InitializeSystemDataStructureTemplate(uint64_t *ContextHandle,long lo
  */
 void CleanupSystemMemoryBuffer(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -70467,7 +70467,7 @@ dbb0(long long *ContextHandle,unsigned long long OperationBufferSize/**
  */
 void CleanupContextHandleMemory(long long *ContextHandle,unsigned long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -70531,7 +70531,7 @@ dbfb(void/**
 void InitializeSystemMemoryPool(void
 {
   long long ProcessingResult;
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long StackFrameAddressPointer;
   unsigned long long MemoryAllocationIndex;
@@ -70743,7 +70743,7 @@ SystemDataProcessingLabel:
 void ProcessSystemMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,char Utf16EndPointer,
                   uint32_t *AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -72626,7 +72626,7 @@ SystemMemoryCleanupLabel:
  */
 void ProcessEventTemplateData(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   long long RegisterR12Value;
@@ -72667,7 +72667,7 @@ void ProcessEventTemplateData(void
  */
 void ProcessSystemEventTemplateData(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   long long CharacterLimit;
@@ -74315,7 +74315,7 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
  */
 void InitializeDataStructureConfiguration(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   uint64_t MemoryAddressMaskPointer;
@@ -76519,7 +76519,7 @@ long long * GetContextHandle(uint64_t ContextHandle,long long *ContextHandleSize
  */
 void ProcessSystemEventData(uint64_t targetDataStructure, int eventData, int reservedParameter
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   code *pOperationStatus;
@@ -76584,7 +76584,7 @@ void ProcessSystemEventData(uint64_t targetDataStructure, int eventData, int res
  */
 void InitializeSystemMemoryPool(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -77239,7 +77239,7 @@ float * ExecuteFloatMatrixMultiplication(float *ContextHandle,float *ContextHand
  */
 void ProcessSystemStringConfiguration(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *PrimaryProcessingStatusFlag;
   uint8_t aCoreEngineValueA8 [32];
   uint64_t StackValidationData;
@@ -77289,7 +77289,7 @@ void ProcessSystemStringConfiguration(long long ContextHandle,long long Operatio
  */
 long long InitializeSystemDataStructureMemory(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   BufferStatus = 6;
@@ -79220,7 +79220,7 @@ LAB_180098960:
  */
 void InitializeSystemDataBuffer(uint8_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint8_t *PrimaryProcessingStatusFlag;
   unsigned long long UnicodeCodePoint;
   uint64_t MemoryAddressMaskPointer;
@@ -79277,7 +79277,7 @@ void InitializeSystemDataBuffer(uint8_t *ContextHandle
  */
 void AllocateSystemMemoryBlock(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long SearchStartIndex;
   uint MemoryAddressMaskPointer;
@@ -79590,7 +79590,7 @@ void InitializeCoreEngineDataStructure(long long *ContextHandle,int OperationBuf
  */
 void ProcessSystemMemoryAllocation(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint64_t MemoryAddressMaskPointer;
@@ -79793,7 +79793,7 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
   uint32_t SystemQuaternaryStatusCode;
   uint32_t SecondaryOperationResult;
   uint32_t TertiaryOperationResult;
-  uint32_t PrimaryOperationResult;
+  uint32_t MainCalculationResult;
   
   // 循环和上下文变量
   long long StructureCopyLoopCounter;
@@ -80888,7 +80888,7 @@ LAB_18009ac35:
  */
 long long InitializeSystemDataStructure(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   *(void *)(ContextHandle + 0x18) = 0;
   *(uint32_t *)(ContextHandle + 0x28) = 3;
@@ -80963,7 +80963,7 @@ long long InitializeSystemDataStructure(long long ContextHandle,uint64_t Operati
  */
 float CalculateSystemAverageValue(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -81259,7 +81259,7 @@ b10b(long long ContextHandle/**
  */
 void ProcessSystemMemoryBlock(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
@@ -81336,7 +81336,7 @@ b13a(void/**
  */
 void SystemMemoryAllocator(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long *SystemContext;
   long long StackFrameAddressPointer;
@@ -81382,7 +81382,7 @@ b19b(long long ContextHandle/**
  */
 void AdjustSystemMemoryBlock(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long SystemContext;
@@ -83554,7 +83554,7 @@ void CoreEngineSystemDataAllocator(void
  */
 void InitializeThreadLocalStorageData(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PatternIndex;
   long long SystemDataNode;
   
@@ -83581,7 +83581,7 @@ void InitializeThreadLocalStorageData(void)
 void InitializeThreadLocalStorageDataEx(void)
 
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PatternIndex;
   long long SystemDataNode;
   
@@ -84382,7 +84382,7 @@ d0a0(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePo
  */
 void ProcessSystemDataStructureAllocation(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,char Utf16EndPointer,int *AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   
   if (((Utf16EndPointer == '\0') && (Utf8SourcePointer != ContextHandle)) && (*(int *)(Utf8SourcePointer + 0x20) <= *AdditionalParameter1)) {
@@ -87389,7 +87389,7 @@ LAB_18009e4bf:
 void ProcessSystemDataStructureAdvancedSortAndMatch(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
                   long long *AdditionalParameter1,long long AdditionalParameter2
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   byte SystemHighByte;
   bool IsHighByteSet;
   long long SystemDataRegistry;
@@ -88561,7 +88561,7 @@ long long ProcessDataStreamReadOperation(long long ContextHandle,uint64_t Operat
  */
 long long ProcessDataStreamWriteOperation(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   
   if (*(long long *)(ContextHandle + 0x68) != 0) {
@@ -89529,7 +89529,7 @@ void InitializeRenderingSystemDataStructure(uint64_t *ContextHandle,uint64_t Ope
  */
 void InitializeCoreEngineSystemConfiguration(uint64_t ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -90398,7 +90398,7 @@ void CoreEngineNoOperation(void
  */
 void ProcessCoreEngineDataStructureInitialization(uint64_t ContextHandle,char OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   void *SystemEventTemplatePointer;
   unsigned long long MemoryOffsetValue;
@@ -91925,7 +91925,7 @@ SystemFloatValueCheckComplete: // 原始标签：LAB_180103c39
  */
 void InitializeSystemCoreStateValidation(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   long long *SystemContext;
   int LockOperationResult;
@@ -92116,7 +92116,7 @@ SystemFloatValueCheckComplete: // 原始标签：LAB_180103c39
  * @param OperationBufferSize 源数据结构类型 (1=基础模式, 3=高级模式, 4=标准模式, 7=扩展模式 */
 void InitializeSystemGraphicsParameters(uint64_t ContextHandle, int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long GraphicsContextHandle;
   char OperationStatus;
   uint MemoryAddressMaskPointer;
@@ -95702,7 +95702,7 @@ LAB_180109ba3:
 
 9d30(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessCoreEngineSystemData(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   uint32_t *SystemEventTemplatePointer;
   uint8_t *MemoryAddressMaskPointer;
@@ -96714,7 +96714,7 @@ LAB_18010b692:
 
 b7d0(long long ContextHandle,long long OperationBufferSizevoid ProcessSystemMemoryAllocation(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -99731,7 +99731,7 @@ void ProcessFloatingPointDataAndValidate(void
 // 原始函数名：FUN_18010ebc0 - 系统数据清理和重置函数
 void CleanupSystemDataAndReset(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   unsigned long long UnicodeCodePoint;
   unsigned long long SystemContext;
@@ -99793,7 +99793,7 @@ void CleanupSystemDataAndReset(void
 // 原始函数名：FUN_18010ec09 - 系统状态检查和验证函数
 void CheckSystemStatusAndValidate(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   long long StackFrameAddressPointer;
   long long PatternMatchStatus;
@@ -99895,7 +99895,7 @@ void ProcessSystemEventAndNotify(void
 
 f040(uint64_t ContextHandle,uint64_t OperationBufferSizevoid ProcessDataStructureAndStack(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   
@@ -99929,7 +99929,7 @@ f040(uint64_t ContextHandle,uint64_t OperationBufferSizevoid ProcessDataStructur
  */
 uint64_t ValidateMemoryAllocation(uint64_t ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SystemContext;
   long long LoopCounter;
@@ -100035,7 +100035,7 @@ void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBuf
  */
 unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *ContextHandle,int OperationBufferSize,char *Utf8SourcePointer,uint8_t *Utf16EndPointer,uint AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationQwordIndex;
   uint UnicodeCodePoint;
   bool IsMemoryOperationValid;
@@ -104524,7 +104524,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *ContextHandle, 
 
 void ProcessStackProcessingConfigurationFlag(float ContextHandle,uint64_t *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   char OperationStatus;
@@ -104704,7 +104704,7 @@ void ProcessStackProcessingConfigurationFlag(float ContextHandle,uint64_t *Conte
  */
 void ProcessSystemCoreDataAndFloatOperations(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   uint32_t UnicodeCodePoint;
   float *FloatVectorPointer;
@@ -107903,7 +107903,7 @@ void ConfigureFloatDataShader(void
 void FormatDataStructureToString(float *ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,float *AdditionalParameter1,
                   char *AdditionalParameter2
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char FormatCharacter;
   int MemoryMatchResult;
   char *FormatPointer;
@@ -109253,7 +109253,7 @@ ProcessSystemDataStructureConfiguration_ExitPoint:
 // 系统数据内存移动和复制函数
 void ProcessSystemDataMemoryMoveAndCopy(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long PatternMatchStatus;
   int RegisterValueEDI;
@@ -114405,7 +114405,7 @@ void InitializeSystemContextAndMemoryAllocation(void
  */
 unsigned long long ProcessSystemContextWithBufferValidation(uint64_t ContextHandle,uint32_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -114450,7 +114450,7 @@ unsigned long long ProcessSystemContextWithBufferValidation(uint64_t ContextHand
 // 系统资源清理器 - 清理系统资源
 void SystemResourceCleaner(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   int EncodingValidationResult;
@@ -117270,7 +117270,7 @@ ae54(voidvoid InitializeIntegerDataShader(void
  */
 uint64_t ProcessDataStructureAllocation(int *ContextHandle,uint64_t *ContextHandleSize,uint Utf8SourcePointer,long long Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long SearchStartIndex;
   int ComparisonResult;
@@ -118457,7 +118457,7 @@ void ValidateIntegerDataShader(long long ContextHandle,byte *ContextHandleSize)
 
 bb4f(voidvoid FinalizeIntegerDataShader(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   
   CharacterTablePointer = SystemConfigurationHandle;
@@ -118597,7 +118597,7 @@ void ProcessIntegerDataTexture(int *ContextHandle,int OperationBufferSize)
  */
 int * ProcessContextHandle(int *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   uint32_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointerPointer;
@@ -118779,7 +118779,7 @@ int * ProcessContextHandle(int *ContextHandle
  */
 unsigned long long ProcessSystemContextWithIntPointer(int *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   uint32_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointerPointer;
@@ -119020,7 +119020,7 @@ unsigned long long ProcessFloatDataComparisonAndConfiguration(float ContextHandl
 
 unsigned long long ProcessSystemContextWithUint64Parameters(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -119065,7 +119065,7 @@ unsigned long long ProcessSystemContextWithUint64Parameters(uint64_t ContextHand
  */
 unsigned long long ProcessSystemContextWithDualUint64Parameters(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   int RegisterEBPValue;
   int *PatternIndex;
@@ -121400,7 +121400,7 @@ void CoreEngineInitializePhysics(void)
 
 void CoreEngineCopyAndInitializeData(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 8);
   if (CharacterTablePointer != 0) {
@@ -123676,7 +123676,7 @@ uint64_t * GetAllocatedMemorySize(uint64_t *ContextHandle,uint64_t OperationBuff
 
 fab0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessRenderPipeline(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -123880,15 +123880,15 @@ void InitializeStringEncodingContext(long long ContextHandle,uint64_t OperationB
 
 void ProcessStringEncodingConversionA(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
-  PrimaryOperationResult = *(long long *)(ContextHandle + 0x1530);
-  if (PrimaryOperationResult != 0) {
+  MainCalculationResult = *(long long *)(ContextHandle + 0x1530);
+  if (MainCalculationResult != 0) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(PrimaryOperationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(MainCalculationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   }
   return;
 }
@@ -123899,23 +123899,23 @@ void ProcessStringEncodingConversionA(long long ContextHandle,uint64_t Operation
 
 void ProcessStringEncodingConversionB(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
-  PrimaryOperationResult = *(long long *)(ContextHandle + 0xe0);
-  if (PrimaryOperationResult != 0) {
+  MainCalculationResult = *(long long *)(ContextHandle + 0xe0);
+  if (MainCalculationResult != 0) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(PrimaryOperationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(MainCalculationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   }
-  PrimaryOperationResult = *(long long *)(ContextHandle + 200);
-  if (PrimaryOperationResult != 0) {
+  MainCalculationResult = *(long long *)(ContextHandle + 200);
+  if (MainCalculationResult != 0) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(PrimaryOperationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(MainCalculationResult,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   }
   return;
 }
@@ -123938,7 +123938,7 @@ void ProcessStringEncodingConversionB(long long ContextHandle,uint64_t Operation
  */
 void ProcessSystemMemoryPoolInitializationAndCharacterValidation(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 8);
   if (CharacterTablePointer != 0) {
@@ -123969,7 +123969,7 @@ void ProcessSystemMemoryPoolInitializationAndCharacterValidation(long long Conte
  */
 void ProcessMultipleSystemMemoryPoolInitializationAndCharacterValidation(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x30);
   if (CharacterTablePointer != 0) {
@@ -124095,7 +124095,7 @@ uint64_t * InitializeSystemContextStructure(uint64_t *ContextHandle
  */
 void CleanupSystemContextMemory(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   uint64_t MemoryAddressMaskPointer;
@@ -124141,7 +124141,7 @@ void CleanupSystemContextMemory(long long ContextHandle, uint64_t OperationBuffe
  */
 void InitializeSystemComponents(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   
@@ -124175,7 +124175,7 @@ void InitializeSystemComponents(long long ContextHandle)
  */
 void ProcessStringOperationHandler(long long ContextHandle, unsigned long long *ContextHandleSize, long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
@@ -124288,7 +124288,7 @@ uint ValidateSystemDataAndProcessOperation(byte *ContextHandle,long long Operati
 void ConvertUtf8ToUtf16Character(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer
 {
   // 数据处理相关变量
-  long long PrimaryOperationResult;              // 主要数据大小
+  long long MainCalculationResult;              // 主要数据大小
   int LockOperationResult;                // 字符字节计数
   int MemoryMatchResult;                 // 内存匹配结果
   long long SystemDataRegistry;        // 数据结构计数器
@@ -126828,7 +126828,7 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t ContextHandle, float *Con
 void ProcessSystemDataTransfer(uint64_t ContextHandle,uint64_t OperationBufferSize,char *Utf8SourcePointer,char *Utf16EndPointer,
                   uint64_t AdditionalParameter1,uint64_t AdditionalParameter2,uint64_t AdditionalParameter3
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char *SystemValidationFunction;
   char *FunctionPointer;
   
@@ -126857,7 +126857,7 @@ void ProcessSystemDataTransfer(uint64_t ContextHandle,uint64_t OperationBufferSi
 
 2906(voidvoid ProcessSystemConfigurationValidation(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = SystemConfigurationHandle;
   ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8));
@@ -127061,7 +127061,7 @@ void ProcessSystemDataConcatenation(uint64_t ContextHandle,uint64_t OperationBuf
 
 2e80(uint64_t ContextHandlevoid ProcessContextHandleAndMemory(uint64_t ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   long long SearchStartIndex;
   uint64_t SystemStackOffset28;
@@ -127092,7 +127092,7 @@ void ProcessSystemDataConcatenation(uint64_t ContextHandle,uint64_t OperationBuf
 
 2f40(uint64_t ContextHandle,uint32_t OperationBufferSize,float Utf8SourcePointervoid ProcessSystemFloatCalculation(uint64_t ContextHandle,uint32_t OperationBufferSize,float Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
@@ -128107,7 +128107,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 
 3960(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16LongCharacterEncoding(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0xf0);
   if (CharacterTablePointer != 0) {
@@ -128158,7 +128158,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 
 3a60(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16PointerCharacterEncoding(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   uint64_t MemoryAddressMaskPointer;
@@ -128262,7 +128262,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 
 3bc0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16ExtendedCharacterEncoding(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x38);
   if (CharacterTablePointer != 0) {
@@ -128281,7 +128281,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 
 3c00(long long ContextHandle,uint64_t OperationBufferSizevoid ProcessContextHandleSystemCalculation(long long ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   
   LockOperationResult = ValidateSystemDataAndProcessOperation(OperationBufferSize,0,
@@ -128348,7 +128348,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 
 unsigned long long ValidateSystemData(float *ContextHandle,int OperationBufferSize,float *Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   uint64_t MemoryAddressMaskPointer;
@@ -128468,7 +128468,7 @@ LAB_180124389:
  */
 uint64_t ValidateSystemConfigurationStatus(long long ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   long long SearchStartIndex;
   
@@ -128646,7 +128646,7 @@ ExecuteMemoryAllocationAndDataProcessing(uint64_t *ContextHandle,uint64_t Operat
  */
 long long ProcessSystemMemoryBufferCommands(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t SystemRegisterFlag;
   long long MemoryAccessResult;
   uint64_t *ConfigurationFlagPointer;
@@ -128677,7 +128677,7 @@ long long ProcessSystemMemoryBufferCommands(uint64_t ContextHandle,uint64_t Oper
 
 uint64_t ExecuteMemoryBufferCommands(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint8_t SystemRegisterFlagBuffer [8];
   long long lStackX_10;
@@ -128884,7 +128884,7 @@ uint64_t ExecuteMemoryBufferCommands(long long ContextHandle,uint64_t OperationB
 
 4b90(voidvoid InitializeSystemDataAndMemory(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -129176,7 +129176,7 @@ LAB_180124eff:
 
 5180(voidvoid ProcessSystemDataStructures(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -130262,7 +130262,7 @@ LAB_180125a82:
 
 606a(voidvoid ExecuteSystemCleanupOperation(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   int *StackFrameAddressPointer;
   uint MemoryAllocationIndex;
@@ -130415,7 +130415,7 @@ LAB_180125a82:
 
 6380(char *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessCharacterStringEncoding(char *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char *SystemValidationFunction;
   long long SearchStartIndex;
   uint MemoryAddressMaskPointer;
@@ -131109,7 +131109,7 @@ void ProcessCharacterEncodingValidation(int *ContextHandle, int *ContextHandleSi
  */
 void ProcessCharacterEncodingDataBlock(long long ContextHandle, int OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   
@@ -131144,7 +131144,7 @@ void ProcessCharacterEncodingDataBlock(long long ContextHandle, int OperationBuf
  */
 void ProcessCharacterEncodingBatch(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint InputDataLength;
   uint32_t RegisterEBPValue;
   long long PatternMatchStatus;
@@ -133717,7 +133717,7 @@ void SystemMemoryReferenceCountManager(void)
 #define ProcessSystemMemoryAllocation FUN_180127733
 void ProcessSystemMemoryAllocation(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   int MemoryMatchResult;
   long long SystemContext;
@@ -134745,7 +134745,7 @@ LAB_180127fd0:
  */
 void ProcessCharacterTableDataFiltering(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   long long BufferStatus;
   long long SearchStartIndex;
@@ -134911,7 +134911,7 @@ void ProcessSystemRegister(void)
 
 unsigned long long ValidateAndProcessSystemFlags(uint64_t *ContextHandle,uint64_t *ContextHandleSize,char Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   float *ProcessingResult;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
@@ -135738,7 +135738,7 @@ LAB_180128faf:
 
 uint64_t * ManageSystemMemoryPointers(uint64_t *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long SearchStartIndex;
   float MatrixTransformMultiplier1;
@@ -151381,7 +151381,7 @@ void InitializeSystemFloatProcessor(void)
 
 void ProcessSystemDataDeallocation(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int in_EAX;
   long long SystemContext;
   long long PatternMatchStatus;
@@ -151421,7 +151421,7 @@ void ProcessSystemDataDeallocation(void)
 
 void ProcessSystemCharacterTableUpdate(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x28);
@@ -151445,7 +151445,7 @@ void ProcessSystemCharacterTableUpdate(long long ContextHandle)
 
 d230(long long ContextHandlevoid ProcessSystemDataEx2(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   int EncodingValidationResult;
@@ -151477,7 +151477,7 @@ d230(long long ContextHandlevoid ProcessSystemDataEx2(long long ContextHandle
 
 d2e0(long long ContextHandlevoid ValidateSystemDataTablePointer(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -151962,7 +151962,7 @@ void EmptyOperation(void)
  */
 void SetCharacterEncodingInputBuffer(int ContextHandle, uint64_t *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   int iStack_18;
@@ -152000,7 +152000,7 @@ void SetCharacterEncodingInputBuffer(int ContextHandle, uint64_t *ContextHandleS
  */
 void ProcessUtf8ToUtf16CharacterConversion(uint32_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   unsigned long long MemoryAllocationIndex;
   uint64_t *PatternIndex;
@@ -152395,7 +152395,7 @@ void HandleSystemError(void)
 
 e1b0(uint64_t ContextHandlevoid CleanupSystemResources(uint64_t ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   int MemoryMatchResult;
   int EncodingValidationResult;
@@ -152533,7 +152533,7 @@ void ProcessSystemIteration(int ContextHandle)
  */
 void ProcessSystemDataValidation(uint64_t ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   
   CharacterTablePointer = SystemConfigurationHandle;
@@ -152562,7 +152562,7 @@ void ProcessSystemDataValidation(uint64_t ContextHandle)
  */
 void ProcessSystemSecondaryEventHandle(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -152820,7 +152820,7 @@ LAB_18012e732:
  */
 void ProcessSystemFloatingPointOperations(uint32_t ContextHandle, float OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   char OperationStatus;
   int EncodingValidationResult;
@@ -153665,7 +153665,7 @@ void EmptyOperation(void)
 
 void ProcessUtf8CharacterEncoding(int ContextHandle,char OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -153719,7 +153719,7 @@ void ProcessUtf8CharacterEncoding(int ContextHandle,char OperationBufferSize)
 
 void ProcessUnicodeCharacterEncoding(uint ContextHandle,uint OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   void *SystemEventTemplatePointer;
   unsigned long long MemoryOffsetValue;
@@ -153781,7 +153781,7 @@ void ProcessUnicodeCharacterEncoding(uint ContextHandle,uint OperationBufferSize
  */
 long long InitializeSystemCoreComponents(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   int MemoryMatchResult;
   uint8_t SystemStackFlagArray [32];
@@ -154201,7 +154201,7 @@ LAB_18012f4b4:
  */
 float * ProcessUtf8CharacterEncoding(float *ContextHandle, long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   float HorizontalAdjustment;
@@ -154385,7 +154385,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *ContextHandle, long long Oper
 
 void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   long long StackFrameAddressPointer;
   long long SystemRegisterR10;
@@ -154844,7 +154844,7 @@ uint64_t ProcessContextHandleAndValidateSystemData(long long ContextHandle,uint3
  */
 long long ValidateSystemConfiguration(uint64_t ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -156518,7 +156518,7 @@ LAB_180130dd5:
  */
 unsigned long long ProcessContextHandleAndMatchCharacter(float *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
@@ -157793,7 +157793,7 @@ LAB_180131a76:
  */
 float * ProcessSystemFloatContext(float *ContextHandle,uint OperationBufferSize,uint Utf8SourcePointer,float Utf16EndPointer,float AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   float MatrixTransformMultiplier1;
@@ -160648,7 +160648,7 @@ LAB_1801335e1:
 
 uint64_t AllocateSystemMemoryBlock(int ContextHandle,int OperationBufferSize,int Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   
@@ -160688,7 +160688,7 @@ uint64_t AllocateSystemMemoryBlock(int ContextHandle,int OperationBufferSize,int
  */
 void ProcessCharacterEncoding680(int ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -160758,7 +160758,7 @@ LAB_180133764:
  */
 void ProcessUtf8Encoding6AC(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemContext;
@@ -163089,7 +163089,7 @@ LAB_180134065:
  */
 void ProcessSystemEventQueueFinalization(void
 {
-  long long EventPrimaryOperationResult;
+  long long EventMainCalculationResult;
   long long EventBufferAllocationStatus;
   long long EventMemoryOffset;
   long long EventSystemDataRegistry;
@@ -163161,7 +163161,7 @@ void ProcessSystemMemoryContext(long long ContextHandle,long long OperationBuffe
 
 34130(voidvoid InitializeSystemProcessing(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -163217,7 +163217,7 @@ void ProcessSystemMemoryContext(long long ContextHandle,long long OperationBuffe
 
 342e0(int ContextHandle,float OperationBufferSizevoid ProcessUtf8CharacterConversion(int ContextHandle,float OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   bool IsHighByteSet;
   long long SystemDataRegistry;
@@ -165475,7 +165475,7 @@ void ProcessSystemContextAndByteBufferAux(void)
  */
 void ValidateUtf8CharacterEncodingTablePointer(int ContextHandle,uint64_t OperationBufferSize,uint Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   
   int CharacterTableHandle = SystemConfigurationHandle;
@@ -165627,7 +165627,7 @@ long long AllocateSystemMemoryPool(uint64_t ContextHandle,uint64_t *ContextHandl
 
 long long GetSystemContext(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   float CalculatedFilterValue;
   
@@ -165672,7 +165672,7 @@ long long GetSystemContext(void
  */
 uint64_t * InitializeContextHandle(uint64_t *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   
   // 初始化UTF-8输入缓冲区的各个字段
@@ -165733,7 +165733,7 @@ uint64_t * InitializeContextHandle(uint64_t *ContextHandle)
 
 void ProcessSystemCharacterTableValidation(long long systemContext,uint64_t bufferSize,uint64_t sourceData,uint64_t endMarker)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   uint MemoryAddressMaskPointer;
@@ -166305,7 +166305,7 @@ void ProcessContextHandleConversion(void
 
 357e9(voidvoid ProcessContextHandleValidation(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -166367,7 +166367,7 @@ void ProcessContextHandleConversion(void
  */
 void ProcessSystemMemoryManagementAndBufferStatus(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -166900,7 +166900,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long ContextHandle,int Operat
 
 36440(long long ContextHandlevoid FinalizeCharacterProcessing(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -166928,7 +166928,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long ContextHandle,int Operat
 
 36457(voidvoid ResetCharacterEncoder(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   uint CharacterTablePointer;
   long long SystemDataNode;
@@ -167293,7 +167293,7 @@ uint32_t * InitializeUtf8ProcessingBuffer(uint32_t *ContextHandle,uint32_t Opera
 
 36ab0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FinalizeStringProcessing(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -167948,7 +167948,7 @@ void InitializeSystemMemoryPoolWithCharCode(uint64_t ContextHandle)
  */
 void ProcessCharacterBufferReset(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long CharacterLimit;
   
@@ -170419,7 +170419,7 @@ LAB_180138f93:
  * @note 支持多种计算模式，通过OperationBufferSize参数控制
  */
 unsigned long long CalculateBoundaryBoxCollision(float *ContextHandle, uint OperationBufferSize, float *Utf8SourcePointer, char Utf16EndPointer{
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   uint7 MemoryAddressMaskPointer;
   unsigned long long UnicodeCodePoint;
@@ -171900,7 +171900,7 @@ void ProcessSystemMemoryCleanup(void
  */
 void ProcessCharacterEncodingConversion(long long ContextHandle,int OperationBufferSize,int Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long StackValueX8;
   
@@ -172174,7 +172174,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
 
 long long TraverseContextHandles(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   while( true ) {
     if (*(long long *)(ContextHandle + 0x10) == 0) {
@@ -172201,7 +172201,7 @@ long long TraverseContextHandles(long long ContextHandle
  */
 long long ValidateCharacterOperationBufferSize(long long ContextHandle, uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   float ContextSecondaryFloat;
   float fStack_28;
   float fStack_24;
@@ -172260,7 +172260,7 @@ long long ValidateCharacterOperationBufferSize(long long ContextHandle, uint64_t
  */
 void ProcessCharacterEncodingBufferOperation(long long ContextHandle, int OperationBufferSize, uint Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   
@@ -173604,7 +173604,7 @@ void ProcessUtf8SystemFlush(void)
  */
 void ProcessUtf8CharacterProcessing(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemValidationResult;
   uint32_t SystemVectorRegister;
   long long SystemStackBuffer[4];
@@ -173670,7 +173670,7 @@ void ProcessUtf8CharacterProcessing(long long ContextHandle)
  */
 void InitializeUtf8SystemSynchronization(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   AllocateSystemMemoryPool();
   CharacterTablePointer = SystemConfigurationHandle;
@@ -173898,7 +173898,7 @@ LAB_18013bf0b:
 
 3bf40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ValidateSystemMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -173923,7 +173923,7 @@ LAB_18013bf0b:
 
 3bf60(int ContextHandle,uint32_t OperationBufferSizevoid ValidateStringOperation(int ContextHandle,uint32_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -174461,7 +174461,7 @@ void ValidateContextHandleRange(int ContextHandle)
  */
 void ResetSystemCharacterProcessingState(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int RegisterEBPValue;
   int CharacterTablePointer;
   long long BufferStatus;
@@ -174538,7 +174538,7 @@ void InitializeSystemCharacterProcessing(void)
 
 3c760(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid CleanupEventAndSystemMaintenance(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   uint64_t uStackX_10;
   uint64_t ReservedStackSpace;
@@ -174577,7 +174577,7 @@ void InitializeSystemCharacterProcessing(void)
  */
 void ContextHandleProcessorAndSystemContextManager(long long ContextHandle)
 {
-  SystemLong PrimaryOperationResult;
+  SystemLong MainCalculationResult;
   SystemLong ProcessingResult;
   SystemPointer SystemContext;
   SystemQword PatternIndex;
@@ -174648,7 +174648,7 @@ void FinalizeSystemBufferProcessing(void)
  */
 void ProcessSystemConfigurationAndTarget(long long ContextHandle, char* ContextHandleSize, char* Utf8SourcePointer)
 {
-  SystemLong PrimaryOperationResult;
+  SystemLong MainCalculationResult;
   SystemBool HighByte;
   SystemLong MemoryOffset;
   SystemInt EncodingValidationResult;
@@ -175609,7 +175609,7 @@ long long ProcessContextHandleData(long long *ContextHandle)
  */
 long long ExecuteCharacterTableProcessingLoop(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int *SystemContext;
   int RegisterEBPValue;
   unsigned long long PatternMatchStatus;
@@ -175653,7 +175653,7 @@ long long ExecuteCharacterTableProcessingLoop(void
  */
 long long GetCharacterTablePointerAndProcessData(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int *SystemContext;
   unsigned long long PatternMatchStatus;
   long long SystemDataNode;
@@ -177142,7 +177142,7 @@ void SystemContextManager(void)
  */
 void ProcessUtf8ToUtf16Conversion(uint64_t *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = ContextHandle[3];
   if (CharacterTablePointer != 0) {
@@ -178740,7 +178740,7 @@ void InitializeSystemContextRegister(void)
  */
 void ProcessUtf8ContextHandleConversion(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if (ContextHandle == 0) {
     return;
@@ -178774,7 +178774,7 @@ void ProcessUtf8ContextHandleConversion(long long ContextHandle)
 
 3ea00(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid CleanupSystemResourcesEx(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if (ContextHandle == 0) {
     return;
@@ -179194,7 +179194,7 @@ uint64_t *ProcessSystemEventHandling(long long ContextHandle,uint64_t *ContextHa
  */
 void ProcessCharacterEncodingDataConversion(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   uint32_t UnicodeCodePoint;
   uint64_t MemoryAddressMaskPointer;
@@ -182173,7 +182173,7 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *ContextHandle, uint64_t *Co
  */
 void ProcessContextHandleWithSecondarySystemValidation(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -182206,7 +182206,7 @@ void ProcessContextHandleWithSecondarySystemValidation(long long *ContextHandle)
  */
 void ProcessContextHandleWithQuaternaryValidation(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -182239,7 +182239,7 @@ void ProcessContextHandleWithQuaternaryValidation(long long *ContextHandle)
  */
 void ProcessContextHandleBufferResetAndValidation(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -182279,7 +182279,7 @@ void ProcessContextHandleBufferResetAndValidation(long long *ContextHandle)
  */
 void ProcessContextHandleBufferCompactResetAndValidation(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -182320,7 +182320,7 @@ void ProcessContextHandleBufferCompactResetAndValidation(long long *ContextHandl
 
 void ProcessContextHandleBufferResetAndValidation(uint64_t *ContextHandle,uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   void *pMemoryOffsetValue;
@@ -182385,7 +182385,7 @@ void ProcessContextHandleBufferResetAndValidation(uint64_t *ContextHandle,uint64
 
 long long * ProcessContextHandleMemoryAllocation(long long ContextHandle,long long *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   void *MemoryAddressMaskPointer;
@@ -182437,7 +182437,7 @@ long long * ProcessContextHandleMemoryAllocation(long long ContextHandle,long lo
 
 void ProcessContextHandleBufferCompactResetAndValidation(long long *ContextHandle,long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMaskPointer;
@@ -182541,7 +182541,7 @@ void ProcessContextHandleBufferCompactResetAndValidation(long long *ContextHandl
 
 void ProcessUtf8ToUtf16ConversionBuffered(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer,long long Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   long long BufferStatus;
   long long SearchStartIndex;
@@ -182621,7 +182621,7 @@ void ProcessUtf8ToUtf16ConversionBuffered(long long ContextHandle,long long *Con
 
 void CleanupSystemResources(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long PatternMatchStatus;
   long long *SystemDataNode;
@@ -184938,7 +184938,7 @@ uint64_t * ManageContextHandle(uint64_t *ContextHandle,uint64_t *ContextHandleSi
  */
 void CalculateAndUpdateMemoryPoolSize(uint64_t ContextHandle, long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -186022,7 +186022,7 @@ void ProcessContextHandleSystemBufferAndUtf8Source(uint64_t ContextHandle,uint64
  */
 long long * ProcessContextHandleAndSizeManagement(long long *ContextHandle,long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -186098,7 +186098,7 @@ long long * ProcessContextHandleAndSizeManagement(long long *ContextHandle,long 
  */
 void ProcessUtf8CharacterEncodingAndMemoryManagement(long long ContextHandle, long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
@@ -186171,7 +186171,7 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long ContextHandle, lo
  */
 void InitializeSystemDataNode(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   long long StackFrameAddressPointer;
   long long PatternMatchStatus;
@@ -186215,7 +186215,7 @@ void InitializeSystemDataNode(void)
  */
 void ProcessContextHandleDataStructure(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
@@ -186371,7 +186371,7 @@ void ProcessContextHandleMemoryAllocation(long long *ContextHandle, unsigned lon
  */
 void ProcessContextHandleSystemInitialization(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -186399,7 +186399,7 @@ void ProcessContextHandleSystemInitialization(long long *ContextHandle)
  */
 void ProcessCharacterBufferOperations(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -186427,7 +186427,7 @@ void ProcessCharacterBufferOperations(long long *ContextHandle)
  */
 void ProcessCharacterMemoryOperations(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -186462,7 +186462,7 @@ void ProcessCharacterMemoryOperations(long long *ContextHandle)
  */
 void ProcessCharacterSystemOperations(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -186557,7 +186557,7 @@ void CleanupCharacterSystemResources(long long *ContextHandle)
  */
 uint64_t * AllocateCharacterSystemMemory(uint64_t *ContextHandle, long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   uint8_t aSystemPriorityLevel [40];
   
@@ -186655,7 +186655,7 @@ void ProcessSystemBufferInitialization(long long *ContextHandle, unsigned long l
  */
 void ProcessCharacterEncodingConversion(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, long long Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   uint32_t *SystemEventTemplatePointer;
   long long PatternMatchStatus;
@@ -186870,7 +186870,7 @@ long long InitializeCharacterProcessingContext(long long ContextHandle,long long
  */
 void ExpandSystemBufferCapacity(long long *ContextHandle,unsigned long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   uint64_t *MemoryAddressMaskPointer;
@@ -186959,7 +186959,7 @@ void ExpandSystemBufferCapacity(long long *ContextHandle,unsigned long long Oper
  */
 void ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   long long BufferStatus;
   long long SearchStartIndex;
@@ -187029,7 +187029,7 @@ void ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t OperationBuffer
  */
 void InitializeSystemEventTemplate(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   long long SystemContext;
@@ -187068,7 +187068,7 @@ void InitializeSystemEventTemplate(void)
  */
 void ProcessCharacterWithAdvancedValidation(long long *ContextHandle,unsigned long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -187155,7 +187155,7 @@ void ProcessCharacterWithAdvancedValidation(long long *ContextHandle,unsigned lo
  */
 void AdjustOperationBufferSize(long long ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long ProcessingResult;
   long long BufferStatus;
   long long SearchStartIndex;
@@ -187224,7 +187224,7 @@ void AdjustOperationBufferSize(long long ContextHandle,long long OperationBuffer
  */
 void ResetSystemEventHandler(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   long long SystemContext;
@@ -187519,7 +187519,7 @@ void ProcessContextHandleWithUtf8Conversion(long long *ContextHandle,long long O
  */
 void ProcessSystemDataNodeCleanup(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long StackFrameAddressPointer;
@@ -187573,7 +187573,7 @@ void ProcessSystemDataNodeCleanup(void)
  */
 void ProcessContextHandleWithValidation(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -187717,7 +187717,7 @@ long long ProcessContextHandleSystemOperation(long long *ContextHandle,long long
  */
 long long ValidateUtf8DataStream(long long *ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if (Utf8SourcePointer == 3) {
     return 0x180bfffe0;
@@ -187771,7 +187771,7 @@ long long ValidateUtf8DataStream(long long *ContextHandle,long long *ContextHand
  */
 long long ProcessUtf8EncodingStream(long long *ContextHandle, long long *ContextHandleSize, int Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   if (Utf8SourcePointer == 3) {
     return 0x180c00020;
@@ -187824,7 +187824,7 @@ long long ProcessUtf8EncodingStream(long long *ContextHandle, long long *Context
  */
 #define ProcessSystemCharacterEncodingConversion FUN_18014f660
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *Utf16EndPointer;
   ProcessSystemMemoryAllocationIndex(*(void *                 (*(long long *)(CharacterTablePointer + 0x28) + 200 + (long long)*(int *)(CharacterTablePointer + 0x20) * 8),
@@ -187854,7 +187854,7 @@ long long ProcessUtf8EncodingStream(long long *ContextHandle, long long *Context
  */
 #define ProcessSystemDataBufferAllocation FUN_18014f6a0
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   code *FunctionPointer;
   
@@ -187925,7 +187925,7 @@ long long ProcessUtf8EncodingStream(long long *ContextHandle, long long *Context
  */
 #define ValidateSystemCharacterEncoding FUN_18014f810
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *Utf16EndPointer;
   ProcessCharacterTableDataOperation(*(void *)(*(long long *)(CharacterTablePointer + 0x20) + 0xc0),ContextHandle);
@@ -187953,7 +187953,7 @@ long long ProcessUtf8EncodingStream(long long *ContextHandle, long long *Context
  */
 #define AllocateSystemMemory FUN_18014f840
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   code *FunctionPointer;
   
@@ -188692,7 +188692,7 @@ void UtilityNoOperation(void)
  */
 long long * ProcessContextHandleBufferAllocationAndDataManagement(long long *ContextHandle,long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -188768,7 +188768,7 @@ long long * ProcessContextHandleBufferAllocationAndDataManagement(long long *Con
  */
 void ProcessContextHandleAndMemoryBuffer(long long ContextHandle, long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
@@ -188839,7 +188839,7 @@ void ProcessContextHandleAndMemoryBuffer(long long ContextHandle, long long *Con
  */
 void InitializeSystemDataNodeAndMemory(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   long long StackFrameAddressPointer;
   long long PatternMatchStatus;
@@ -188881,7 +188881,7 @@ void InitializeSystemDataNodeAndMemory(void)
  */
 void ProcessContextHandleAndUpdateContext(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
@@ -190481,7 +190481,7 @@ void InitializeSystemCharacterEncodingStructure(long long ContextHandle)
  */
 void ProcessCharacterEncodingPointerAndSystemState(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -190512,7 +190512,7 @@ void ProcessCharacterEncodingPointerAndSystemState(long long *ContextHandle)
  */
 void ProcessContextHandleTableIteration(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -190572,7 +190572,7 @@ void Process64BitCharacterEncodingPointer(uint64_t *ContextHandle)
  */
 void ProcessCharacterEncodingTableAndBufferStatus(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -190603,7 +190603,7 @@ void ProcessCharacterEncodingTableAndBufferStatus(long long *ContextHandle)
  */
 void ProcessContextHandleTableIterationSmallStep(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -190794,7 +190794,7 @@ void InitializeRenderingSystemComponents(uint64_t *ContextHandle,uint64_t Operat
  */
 uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, long long OperationBufferSize, long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   int MemoryMatchResult;
   void *MemoryAddressMaskPointer;
@@ -193893,7 +193893,7 @@ LAB_180158404:
 
 void ProcessSystemCharacterEncodingValidation(uint64_t ContextHandle,int OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   uint UnicodeCodePoint;
   int *pEncodingValidationResult;
@@ -194074,7 +194074,7 @@ LAB_180158962:
  */
 long long * ProcessCharacterEncodingAndMemoryValidation(long long ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   int MemoryMatchResult;
   int *EncodingValidationPointer;
@@ -194128,7 +194128,7 @@ LAB_180158a0c:
  */
 uint64_t ProcessCharacterTableMemoryAllocation(long long ContextHandle,int OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   int MemoryMatchResult;
   uint MemoryAddressMaskPointer;
@@ -194242,7 +194242,7 @@ LAB_180158cb6:
  */
 uint64_t ProcessSystemMemoryManagement(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -194298,7 +194298,7 @@ uint64_t ProcessSystemMemoryManagement(uint64_t ContextHandle,long long Operatio
 
 void ProcessSystemCharacterEncodingAndSizeManagement(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -194353,7 +194353,7 @@ void ProcessSystemCharacterEncodingAndSizeManagement(uint64_t ContextHandle,long
 
 void ProcessSystemCharacterEncodingAdvanced(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   char OperationStatus;
@@ -194530,7 +194530,7 @@ long long * ProcessUtf8ToUtf16CharacterEncoding(long long ContextHandle,long lon
 
 void ProcessContextHandleConversionAndBufferManagement(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -194621,7 +194621,7 @@ LAB_180159499:
 
 void ProcessCharacterEncodingConversionAndMemoryManagement(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   void *SystemValidationPointer;
   long long CoreEngineSignedValue48;
@@ -195211,7 +195211,7 @@ unsigned long long ConfigureSystemCharacterDataStructure(long long *ContextHandl
 void ProcessCharacterEncodingConversion(uint64_t ContextHandle,long long OperationBufferSize,int Utf8SourcePointer,uint64_t Utf16EndPointer,
                                        uint32_t *AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   long long SearchStartIndex;
   uint16_t MemoryAddressMaskPointer;
@@ -196346,7 +196346,7 @@ void ProcessSystemBufferCallback(uint64_t ContextHandle, long long OperationBuff
  */
 void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint8_t auStack_e18 [32];
   long long lStack_df8;
   uint8_t uStack_de8;
@@ -198738,7 +198738,7 @@ long long InitializeContextHandleDataStructureCopy(long long ContextHandle,uint3
 uint64_t *
 ProcessUtf8ToUtf16EncodingConverter(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,int *Utf16EndPointer,unsigned long long AdditionalParameter1)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   int *ValidationResultPointer;
   uint64_t MemoryAddressMaskPointer;
@@ -198805,7 +198805,7 @@ ProcessUtf8ToUtf16EncodingConverter(long long ContextHandle,uint64_t *ContextHan
 
 void ProcessCharacterEncodingAndBufferConversion(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   uint64_t UnicodeCodePoint;
   uint32_t *SystemContext;
@@ -198886,7 +198886,7 @@ void ProcessContextHandleAndSystemBufferConfiguration(uint64_t ContextHandle, ui
 
 void ProcessUnsignedContextHandleValidation(unsigned long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t StackFrameAddressPointer;
   long long SystemDataNode;
   long long RegisterR12Value;
@@ -198927,7 +198927,7 @@ void ProcessUnsignedContextHandleValidation(unsigned long long ContextHandle)
  */
 void InitializeSystemData(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemDataNode;
   long long RegisterR12Value;
   long long RegisterR13Value;
@@ -199262,7 +199262,7 @@ void ManageSystemMemory(void)
 uint64_t *
 ProcessUtf8ToUtf16ExtendedEncodingConverter(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,int *Utf16EndPointer,unsigned long long AdditionalParameter1)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   int *ValidationResultPointer;
   uint64_t MemoryAddressMaskPointer;
@@ -199340,7 +199340,7 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long ContextHandle,uint64_t *Co
  */
 void ConvertUtf8ToUtf16(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   uint64_t UnicodeCodePoint;
   uint32_t *SystemContext;
@@ -199424,7 +199424,7 @@ void ProcessContextHandleBuffer(uint64_t ContextHandle,uint64_t OperationBufferS
  */
 void ProcessUnicodeCharacter(unsigned long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t StackFrameAddressPointer;
   long long SystemDataNode;
   long long RegisterR12Value;
@@ -199465,7 +199465,7 @@ void ProcessUnicodeCharacter(unsigned long long ContextHandle)
  */
 void CleanupSystemBuffer(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemDataNode;
   long long RegisterR12Value;
   long long RegisterR13Value;
@@ -200659,7 +200659,7 @@ LAB_180162395:
 uint64_t *
 HandleOutputData(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   void *pFunctionAddress;
   long long lStack_30;
@@ -200892,7 +200892,7 @@ void InitializeSystemCharacterEncodingValidation(void)
 uint64_t *
 ProcessUtf8ToUtf16StringConverter(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -201356,7 +201356,7 @@ LAB_180166438:
 uint64_t *
 ProcessUtf8ToUtf16CharacterEncodingMain(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -202689,7 +202689,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t ContextHandle,uint64_t *C
 uint64_t *
 ProcessUtf8ToUtf16CharacterEncodingValidation(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   
   CharacterTablePointer = *Utf16EndPointer;
@@ -202737,7 +202737,7 @@ ProcessUtf8ToUtf16CharacterEncodingValidation(uint64_t ContextHandle,uint64_t *C
 uint64_t *
 ProcessUtf8ToUtf16CharacterEncodingEx(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint32_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointer;
@@ -202796,7 +202796,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx(uint64_t ContextHandle,uint64_t *ContextHa
 uint64_t *
 ProcessUtf8ToUtf16CharacterEncodingExtended2(uint64_t ContextHandle, uint64_t *ContextHandleSize, uint64_t Utf8SourcePointer, long long *Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   uint MemoryAddressMaskPointer;
@@ -204043,7 +204043,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *ContextHandle,uint64_t *Contex
  */
 void CleanupContextHandleBuffer(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;                            // 主要数据大小
+  long long MainCalculationResult;                            // 主要数据大小
   long long BufferStatus;                               // 缓冲区状态
   
   CharacterTablePointer = ContextHandle[1];
@@ -206039,7 +206039,7 @@ void InitializeSystemEncodingValidator(void)
 
 void ProcessOperationBufferSizeAndContextHandleOperations(long long ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -206189,7 +206189,7 @@ long long * InitializeSystemStringTemplateAndRenderConfig(long long *ContextHand
 
 void InitializeCharacterTablePointerAndSystemTemplate(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -206946,7 +206946,7 @@ uint64_t ProcessSystemContextWithBuffers(uint64_t ContextHandle,uint64_t Operati
  */
 uint64_t * InitializeSystemCharacterProcessing(uint64_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -207445,7 +207445,7 @@ uint64_t ProcessUtf8CharacterEncodingWithStatusBuffer(uint64_t ContextHandle,uin
  */
 uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   int MemoryMatchResult;
   void *MemoryAddressMaskPointer;
@@ -208145,7 +208145,7 @@ ReleaseUtf8EncodingData(uint64_t *ContextHandle,uint64_t OperationBufferSize,uin
 uint64_t *
 ManageUtf8EncodingContext(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t *Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *pStackValidationFlag28;
   long long lStack_20;
   
@@ -208768,7 +208768,7 @@ void InitializeContextHandleArrayAndThreadLocalStorage(uint64_t *ContextHandle)
  */
 void ProcessSystemEncodingAndBufferManagement(long long ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *PrimaryProcessingStatusFlag;
   uint8_t aCoreEngineValueA8 [32];
   uint64_t StackValidationData;
@@ -208929,7 +208929,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t ContextHandle,uint
 #define ProcessWindowMessageAndCharacterTableOperations FUN_180170da0
 void ProcessWindowMessageAndCharacterTableOperations(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = GetWindowLongPtrA(ContextHandle,0xffffffeb);
   if ((CharacterTablePointer == 0) || (SystemMemoryValidationStatus != '\0')) {
@@ -209369,7 +209369,7 @@ void LoadCursorResourceAndSetToDataNode(void)
 #define ProcessCharacterTablePointerAndSystemContextOperations FUN_180171101
 void ProcessCharacterTablePointerAndSystemContextOperations(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long SystemStackLong40;
   unsigned long long DataStorageValue;
@@ -209530,7 +209530,7 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
  */
 void ProcessContextHandleAndSize(long long ContextHandle,uint64_t *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   code *pOperationStatus;
@@ -210056,7 +210056,7 @@ void InitializeUtf8CharacterEncodingProcessingBuffer(long long ContextHandle,uin
  */
 int * ProcessSystemDataStructureAndContext(long long ContextHandle,int *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -211579,7 +211579,7 @@ void ProcessSystemCharacterBuffer(long long ContextHandle, int OperationBufferSi
  */
 void ProcessCharacterEncodingAndMemoryManagement(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   int MemoryMatchResult;
   uint MemoryAddressMaskPointer;
@@ -211929,7 +211929,7 @@ void ProcessCharacterEncodingAndCursorDisplay(uint64_t ContextHandle,char Operat
  */
 void ProcessCharacterEncodingAndWindowManagement(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   int MemoryMatchResult;
   uint MemoryAddressMaskPointer;
@@ -212678,7 +212678,7 @@ void ProcessContextHandleMemoryManagement(unsigned long long *ContextHandle)
  */
 void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   void *MemoryAddressMaskPointer;
@@ -212797,7 +212797,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
  */
 uint64_t ProcessContextHandleSystemCleanupAndResourceRelease(uint64_t ContextHandle, long long *ContextHandleSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -212854,7 +212854,7 @@ uint64_t ProcessContextHandleSystemCleanupAndResourceRelease(uint64_t ContextHan
  */
 void ProcessCharacterEncodingConversion(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   uint32_t UnicodeCodePoint;
   uint8_t *MemoryAddressMaskPointer;
@@ -212986,7 +212986,7 @@ InitializeSystemContextData(uint64_t *ContextHandle,unsigned long long Operation
  */
 void ProcessSystemDataAllocation(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint8_t SystemUintBuffer238 [32];
   uint8_t auStack_218 [512];
   unsigned long long uStack_18;
@@ -213018,7 +213018,7 @@ void ProcessSystemDataAllocation(uint64_t ContextHandle,long long OperationBuffe
  */
 void ProcessSystemDataValidation(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   uint8_t aDataContentStatus [32];
@@ -213064,7 +213064,7 @@ void ProcessSystemDataValidation(uint64_t ContextHandle,long long OperationBuffe
 
 void ExecuteSystemDataProcessing(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long SearchStartIndex;
   uint8_t aDataContentStatus [32];
@@ -215290,7 +215290,7 @@ LAB_1801780ed:
  */
 void ProcessContextHandleSizeAndUtf8SourceData(uint64_t ContextHandle, uint64_t *ContextHandleSize, int Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;                          // 主要数据大小
+  long long MainCalculationResult;                          // 主要数据大小
   long long BufferStatus;                             // 缓冲区状态
   uint64_t UnicodeCodePoint;                          // Unicode码点
   long long SystemDataRegistry;                        // 系统数据注册表
@@ -215462,7 +215462,7 @@ void ExecuteSystemCleanup(void)
  */
 void InitializeSystemProcessing(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   uint64_t *SystemEventTemplatePointer;
   uint64_t MemoryAddressMaskPointer;
@@ -216407,7 +216407,7 @@ Label_MemoryComparison_Handle:
  */
 void AllocateSystemDataNodeAndInitialize(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PatternIndex;
   long long SystemDataNode;
   
@@ -216432,7 +216432,7 @@ void AllocateSystemDataNodeAndInitialize(void)
  */
 void AllocateSystemDataNodeVariant1(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PatternIndex;
   long long SystemDataNode;
   
@@ -216457,7 +216457,7 @@ void AllocateSystemDataNodeVariant1(void)
  */
 void AllocateSystemDataNodeVariant2(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PatternIndex;
   long long SystemDataNode;
   
@@ -216508,7 +216508,7 @@ void SetSystemContextCharacterLimit(void)
 void ConvertSystemCharacterData(long long ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, uint64_t Utf16EndPointer,
                   unsigned long long *AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   
   if ((((char)Utf16EndPointer == '\0') && (Utf8SourcePointer != ContextHandle)) &&
@@ -216599,7 +216599,7 @@ LAB_180179d1f:
  */
 void AllocateSystemDataWithParameters(long long ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, char Utf16EndPointer, int *AdditionalParameter1)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   
   if (((Utf16EndPointer == '\0') && (Utf8SourcePointer != ContextHandle)) && (*(int *)(Utf8SourcePointer + 0x20) <= *AdditionalParameter1)) {
@@ -216986,7 +216986,7 @@ void ProcessUtf16EncodingAndSystemEvent(long long ContextHandle, uint64_t Operat
 // 处理系统循环操作并触发相关事件，管理系统的循环执行流程
 void ProcessSystemLoopAndTriggerEvent(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -217785,7 +217785,7 @@ long long * ProcessSystemBufferAllocationAndMemoryManagement(long long *ContextH
 #define ProcessContextHandleBufferAndDataManagement FUN_18017b240
 long long * ProcessContextHandleBufferAndDataManagement(long long *ContextHandle,long long *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -217867,7 +217867,7 @@ long long * ProcessContextHandleBufferAndDataManagement(long long *ContextHandle
 #define ProcessSystemDataAndMemoryBoundaryManagement FUN_18017b259
 void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long long *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
@@ -217944,7 +217944,7 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long l
 #define ProcessSystemDataNodeAndMemoryAllocation FUN_18017b28d
 void ProcessSystemDataNodeAndMemoryAllocation(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   long long StackFrameAddressPointer;
   long long PatternMatchStatus;
@@ -217992,7 +217992,7 @@ void ProcessSystemDataNodeAndMemoryAllocation(void)
 #define ProcessContextHandleAndSystemContextManagement FUN_18017b2ed
 void ProcessContextHandleAndSystemContextManagement(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
@@ -218107,7 +218107,7 @@ void ConvertUtf16ToUtf8MainProcessor(long long ContextHandle,uint64_t OperationB
 #define ProcessContextHandlePointerOperations FUN_18017b3a0
 void ProcessContextHandlePointerOperations(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -218564,7 +218564,7 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *ContextHandle,uin
  */
 void ManageSystemStringProcessingState(long long ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   char OperationStatus;
   long long SystemDataRegistry;
@@ -220492,7 +220492,7 @@ void ProcessSystemContextData(long long *ContextHandle)
  */
 void SystemDataProcessingFunction(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   code ****SystemFunctionPointerArray;
   code *FunctionPointer;
   code ******SystemOperationStatus;
@@ -221365,7 +221365,7 @@ ProcessMemoryAllocation:
  */
 void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;           // 主要操作结果
+  long long MainCalculationResult;           // 主要操作结果
   void *SystemContext;                     // 系统上下文
   uint32_t UnicodeCodePoint;                // Unicode码点
   uint64_t *MemoryAddressMaskPointer;       // 内存地址掩码指针
@@ -221701,7 +221701,7 @@ LAB_180181af9:
 
 float CalculateCharacterEncodingFloatValue(long long ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int *LockOperationResultPointer;
   
   if (OperationBufferSize < 0x200) {
@@ -222062,7 +222062,7 @@ uint64_t* ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t *ContextHa
 
 8352a(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18018352a(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
   uint64_t UnicodeCodePoint;
   uint32_t *SystemContext;
@@ -222115,7 +222115,7 @@ uint64_t* ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t *ContextHa
 
 8366a(voidvoid FUN_18018366a(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long ProcessingResult;
   uint64_t StackFrameAddressPointer;
   long long SystemDataNode;
@@ -222145,7 +222145,7 @@ uint64_t* ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t *ContextHa
 
 8368d(voidvoid FUN_18018368d(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemDataNode;
   long long RegisterR12Value;
   long long RegisterR13Value;
@@ -222750,7 +222750,7 @@ LAB_180184411:
 
 845b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801845b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -222784,7 +222784,7 @@ LAB_180184411:
 
 84660(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180184660(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *ContextHandle;
   AllocateSystemMemoryEx(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -224196,7 +224196,7 @@ LAB_180185b78:
 
 864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -224694,7 +224694,7 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
  */
 void InitializeCharacterTablePointer(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
@@ -225066,7 +225066,7 @@ LAB_18018764a:
 
 878a0(long long *ContextHandlevoid FUN_1801878a0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   ProcessSystemStackData(ContextHandle + 3);
@@ -225173,7 +225173,7 @@ void ProcessSystemContextHandleAndMemoryRelease(long long *ContextHandle,uint64_
  */
 void ProcessCharacterTablePointerAndMemoryRelease(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -225218,7 +225218,7 @@ void ProcessCharacterTablePointerAndMemoryRelease(long long *ContextHandle,uint6
  */
 void ProcessContextHandleAndUnicodeCalculation(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -225263,7 +225263,7 @@ void ProcessContextHandleAndUnicodeCalculation(long long *ContextHandle,uint64_t
  */
 void ProcessCharacterTableAndUnicodeAdvancedCalculation(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -225390,7 +225390,7 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
 #define ProcessCharacterTableAndDataInitialization FUN_180187cd0
 void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = *ContextHandle;
@@ -225432,7 +225432,7 @@ void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
  */
 void ProcessCharacterTableAndInitialization(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = *ContextHandle;
   ProcessCharacterDataAndValidation(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -225461,7 +225461,7 @@ void ProcessCharacterTableAndInitialization(long long *ContextHandle, uint64_t O
  */
 void ValidateAndCleanupCharacterTableMemory(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -225500,7 +225500,7 @@ void ValidateAndCleanupCharacterTableMemory(long long *ContextHandle, uint64_t O
  */
 void ProcessCharacterTableContextAndMemoryManagement(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -226083,7 +226083,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
  */
 void ReleaseMemoryBlockWithSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   
   MemoryAllocationIndex = Utf8SourcePointer * 0x10;
@@ -226123,7 +226123,7 @@ void ReleaseMemoryBlockWithSecurityValidation(uint64_t ContextHandle,long long O
  */
 void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = OperationBufferSize;
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 0x18)) {
@@ -226160,7 +226160,7 @@ void ReleaseMemoryBlockWithExtendedSecurityValidation(uint64_t ContextHandle,lon
  */
 void ReleaseMemoryBlockWithAdvancedSecurityValidation(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = OperationBufferSize;
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 0x28)) {
@@ -226257,7 +226257,7 @@ void ProcessSystemStackDataWith40Step(uint64_t ContextHandle,long long Operation
  */
 void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   
   MemoryAllocationIndex = Utf8SourcePointer * 0x40;
@@ -226281,7 +226281,7 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 883f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_1801883f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = OperationBufferSize;
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 8)) {
@@ -226302,7 +226302,7 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 88440(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180188440(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = OperationBufferSize;
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 4)) {
@@ -226323,7 +226323,7 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 88490(voidvoid FUN_180188490(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = ProcessSystemCharacterTable(0x60);
   *(long long *)CharacterTablePointer = LoopCounter;
@@ -226361,7 +226361,7 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 88560(voidvoid FUN_180188560(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = ProcessSystemCharacterTable(0x28);
   *(long long *)CharacterTablePointer = LoopCounter;
@@ -227246,7 +227246,7 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 8990f(long long *ContextHandle,long long *ContextHandleSizevoid FUN_18018990f(long long *ContextHandle,long long *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -227673,7 +227673,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
 
 8a010(long long *ContextHandlevoid FUN_18018a010(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -227688,7 +227688,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
 
 8a050(long long *ContextHandlevoid FUN_18018a050(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -227991,7 +227991,7 @@ LAB_18018a53f:
 
 8a610(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointervoid FUN_18018a610(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   CharacterTablePointer = GetCharacterTablePointer();
   *(uint16_t *)(CharacterTablePointer + 0x18) = 0;
@@ -228789,7 +228789,7 @@ ProcessContextHandleWithMemoryBoundaryValidation(long long *ContextHandle,uint64
  */
 long long InitializeCharacterEncodingBuffer(uint64_t ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -229049,7 +229049,7 @@ uint64_t * InitializeSystemProcessingStatus(uint64_t ContextHandle,long long Ope
 
 8b8c0(long long ContextHandlevoid FUN_18018b8c0(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -229499,7 +229499,7 @@ LAB_18018bee2:
  */
 long long * ProcessSystemContextAndCharacterData(long long *ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -234488,7 +234488,7 @@ LAB_180191cda:
 
 91d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180191d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -234528,7 +234528,7 @@ LAB_180191cda:
 
 91df0(long long ContextHandle,int OperationBufferSizevoid FUN_180191df0(long long ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   uint MemoryAddressMaskPointer;
@@ -235430,7 +235430,7 @@ void ExecuteSystemContextProcessing(void
 {
   long long SystemContext;
   long long PatternMatchStatus;
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long CharacterLimit;
   
   CharacterTablePointer = PatternIndex;
@@ -235641,7 +235641,7 @@ uint64_t * InitializeAndConfigureDataStructure(uint64_t *ContextHandle,unsigned 
  */
 uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,int Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -235699,7 +235699,7 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
 
 uint64_t * FUN_1801940f0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,int Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -235844,7 +235844,7 @@ uint64_t * FUN_1801940f0(long long ContextHandle,uint64_t *ContextHandleSize,lon
 
 94370(voidvoid FUN_180194370(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   unsigned long long MemoryOffsetValue;
@@ -236004,7 +236004,7 @@ LAB_1801945bb:
 
 946c0(long long *ContextHandlevoid FUN_1801946c0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -236122,7 +236122,7 @@ LAB_1801945bb:
 
 948b0(long long *ContextHandlevoid FUN_1801948b0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -236609,7 +236609,7 @@ uint64_t * FUN_1801950d0(long long ContextHandle
 
 95140(long long ContextHandle,uint64_t *ContextHandleSizevoid FUN_180195140(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   FUN_1801ba580(ContextHandle + 0x28);
   if (OperationBufferSize != NULL) {
@@ -236628,7 +236628,7 @@ uint64_t * FUN_1801950d0(long long ContextHandle
 
 9515a(voidvoid FUN_18019515a(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t *SystemContext;
   
   CharacterTablePointer = __RTCastToVoid();
@@ -236653,7 +236653,7 @@ uint64_t * FUN_1801950d0(long long ContextHandle
 
 95190(long long ContextHandle,uint64_t *ContextHandleSizevoid FUN_180195190(long long ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   FUN_1801ba580(ContextHandle + 0x48);
   if (OperationBufferSize != NULL) {
@@ -236672,7 +236672,7 @@ uint64_t * FUN_1801950d0(long long ContextHandle
 
 951aa(voidvoid FUN_1801951aa(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t *SystemContext;
   
   CharacterTablePointer = __RTCastToVoid();
@@ -236797,7 +236797,7 @@ uint64_t *InitializeContextHandleAndSystemBuffer(uint64_t *ContextHandle,unsigne
  */
 uint64_t FindAndCompareSystemDataNode(long long ContextHandle,int OperationBufferSize,int Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int *LockOperationResultPointer;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x40);
@@ -236851,7 +236851,7 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 95450(long long ContextHandlevoid FUN_180195450(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -237791,7 +237791,7 @@ uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long Op
 
 96af0(long long ContextHandlevoid FUN_180196af0(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -238135,7 +238135,7 @@ uint64_t * FUN_180196bd0(uint64_t *ContextHandle
 
 970a0(long long ContextHandlevoid FUN_1801970a0(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -238885,7 +238885,7 @@ LAB_18019797c:
 
 982b0(long long ContextHandle,long long OperationBufferSizevoid FUN_1801982b0(long long ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   int MemoryMatchResult;
   unsigned long long MemoryOffsetValue;
@@ -239231,7 +239231,7 @@ long long * FUN_180198890(uint64_t ContextHandle,long long *ContextHandleSize,ui
 void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
                                  uint32_t AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   uint UnicodeCodePoint;
   long long *EngineContext;
@@ -239722,7 +239722,7 @@ LAB_18019937e:
 
 long long * FUN_1801993a0(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,char Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   long long *plStack_30;
@@ -249050,7 +249050,7 @@ joined_r0x0001802045de:
 
 04463(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_180204463(uint64_t ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   int MemoryMatchResult;
   bool BooleanOperationFlag4;
@@ -250366,7 +250366,7 @@ void ProcessOperationBufferSizeAndMemoryBlockIndexManagement(void)
  */
 void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint8_t EncodingBufferArray [32];
   code *MemoryAllocationCallback;
   uint8_t SystemStackData;
@@ -251159,7 +251159,7 @@ uint64_t * FUN_1802064e0(long long ContextHandle,uint64_t *ContextHandleSize,uin
 
 06740(long long ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180206740(long long ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long SearchStartIndex;
   uint MemoryAddressMaskPointer;
@@ -251442,7 +251442,7 @@ LAB_180206c6d:
 void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long long OperationBufferSize,char *Utf8SourcePointer,long long Utf16EndPointer,
                   uint64_t AdditionalParameter1,long long AdditionalParameter2)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -251672,7 +251672,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
 void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer,
                                                  long long AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   long long *EngineContext;
@@ -253284,7 +253284,7 @@ LAB_180208d4a:
 
 08e16(long long *ContextHandlevoid FUN_180208e16(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -253841,7 +253841,7 @@ void SystemReservedEmptyFunction1(void)
  */
 void ProcessContextHandleDataValidationAndMemoryManagement(long long *ContextHandle)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -253900,7 +253900,7 @@ void ProcessContextHandleDataValidationAndMemoryManagement(long long *ContextHan
  */
 void ProcessEncodingValidationAndPatternMatching(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   long long StackFrameAddressPointer;
@@ -254320,7 +254320,7 @@ LAB_1802097bc:
 
 0975a(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointervoid FUN_18020975a(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
@@ -257680,7 +257680,7 @@ LAB_18020d911:
 void ValidateSystemMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer,
                                     int *AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t MemoryAllocationIndex;
   
   if ((((char)Utf16EndPointer == '\0') && (Utf8SourcePointer != ContextHandle)) && (*(int *)(Utf8SourcePointer + 0x20) <= *AdditionalParameter1)) {
@@ -257717,7 +257717,7 @@ void ValidateSystemMemoryAllocation(long long ContextHandle,uint64_t OperationBu
  */
 void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   unsigned long long UnicodeCodePoint;
   uint MemoryAddressMaskPointer;
@@ -257851,7 +257851,7 @@ long long FUN_18020dd10(long long *ContextHandle,long long *ContextHandleSize,in
 
 0ddf0(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_18020ddf0(uint64_t ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *PrimaryProcessingStatusFlag;
   uint8_t auStack_838 [32];
   uint8_t *puStack_818;
@@ -258022,7 +258022,7 @@ uint64_t ProcessSystemContextHandleAndManageMemory(uint64_t ContextHandle,unsign
 
 0e3b0(long long *ContextHandlevoid FUN_18020e3b0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -258067,7 +258067,7 @@ uint64_t ProcessSystemContextHandleAndManageMemory(uint64_t ContextHandle,unsign
 
 0e3d0(long long *ContextHandlevoid FUN_18020e3d0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -258112,7 +258112,7 @@ uint64_t ProcessSystemContextHandleAndManageMemory(uint64_t ContextHandle,unsign
 
 0e3f0(long long *ContextHandlevoid FUN_18020e3f0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -258467,7 +258467,7 @@ SystemCleanupLabel:
 
 uint64_t ProcessSystemLockOperationResult(long long ContextHandle,char OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   char OperationStatus;
   int EncodingValidationResult;
@@ -258943,7 +258943,7 @@ OperationCompleteLabel:
 
  void CleanupSystemResources(long long *ContextHandlevoid CleanupSystemResources(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -259918,7 +259918,7 @@ LAB_1801571ef:
 
 122c0(long long *ContextHandlevoid FUN_1802122c0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -259984,7 +259984,7 @@ LAB_1801571ef:
 
 12de0(long long ContextHandlevoid FUN_180212de0(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -260026,7 +260026,7 @@ LAB_1801571ef:
 
 12e00(long long *ContextHandlevoid FUN_180212e00(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -260045,7 +260045,7 @@ LAB_1801571ef:
 
 12e20(long long ContextHandlevoid FUN_180212e20(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -260647,7 +260647,7 @@ LAB_180213d73:
 void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize)
 {
   // 变量语义化定义
-  long long PrimaryOperationResult;                       // 主要操作结果
+  long long MainCalculationResult;                       // 主要操作结果
   int LockOperationResult;                                 // 锁操作结果
   uint32_t UnicodeCodePoint;                               // Unicode代码点
   uint64_t *MemoryAllocationResultPointer;          // 内存分配结果指针
@@ -260920,7 +260920,7 @@ LAB_18021428b:
  */
 bool ValidateUtf8CharacterEncodingAndBuffer(long long ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int *LockOperationResultPointer;
   long long SearchStartIndex;
   int ValidationResultArray [6];
@@ -261036,7 +261036,7 @@ LAB_180214378:
 
 147c0(uint64_t *ContextHandlevoid FUN_1802147c0(uint64_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   char OperationStatus;
   uint MemoryAddressMaskPointer;
@@ -261795,7 +261795,7 @@ uint32_t ProcessContextHandleAndReturnRegisterFlag(long long ContextHandle)
  */
 void ProcessUtf8ToUtf16Conversion(long long ContextHandle,int OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint MemoryAddressMaskPointer;
@@ -261927,7 +261927,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle,int OperationBufferSiz
  */
 float ProcessContextHandleAndOperationBufferSize(uint64_t ContextHandle,uint64_t OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int aiStackX_18 [4];
   
   CharacterTablePointer = FUN_180213700(ContextHandle,OperationBufferSize,0);
@@ -262756,7 +262756,7 @@ ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle,int Operatio
  */
 uint32_t ProcessCharacterTableConfigurationAndStatusCheck(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t StackProcessingConfigurationFlag [2];
   uint8_t StackProcessingBuffer [8];
   
@@ -262785,7 +262785,7 @@ uint32_t ProcessCharacterTableConfigurationAndStatusCheck(uint64_t ContextHandle
  */
 uint32_t ProcessCharacterTableValidationAndConfigurationFlag(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint32_t StackValidationConfigurationFlag [2];
   uint8_t StackValidationBuffer [8];
   
@@ -263933,7 +263933,7 @@ LAB_180216e0c:
 
 17300(long long *ContextHandlevoid FUN_180217300(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   int LockOperationResult;
   uint8_t auStack_158 [32];
   uint8_t *memoryAllocationBuffer;
@@ -263975,7 +263975,7 @@ LAB_180216e0c:
 
 17370(long long ContextHandlevoid FUN_180217370(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   uint8_t SystemRegisterFlagBuffer [8];
@@ -264013,7 +264013,7 @@ LAB_180216e0c:
 
 174c0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1802174c0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *BufferAllocationStatus;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x488);
@@ -264235,7 +264235,7 @@ LAB_180216e0c:
 
 17b00(long long *ContextHandle,unsigned long long OperationBufferSizevoid FUN_180217b00(long long *ContextHandle,unsigned long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointer;
@@ -264283,7 +264283,7 @@ LAB_180216e0c:
 
 17bb0(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointervoid FUN_180217bb0(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   
@@ -264542,7 +264542,7 @@ LAB_18021800d:
 
 18190(long long ContextHandlevoid FUN_180218190(long long ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -264602,7 +264602,7 @@ long long *
 ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
                                      unsigned long long AdditionalParameter1
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   
@@ -264629,7 +264629,7 @@ ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHa
 
 18550(long long *ContextHandlevoid FUN_180218550(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -264648,7 +264648,7 @@ ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHa
 
 185b0(long long *ContextHandlevoid FUN_1802185b0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -264854,7 +264854,7 @@ long long FUN_180218724(void
 
 uint64_t * FUN_180218739(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *SystemDataNode;
@@ -264898,7 +264898,7 @@ LAB_18021878d:
 
 187b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1802187b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -265024,7 +265024,7 @@ long long FUN_180218920(long long *ContextHandle,uint64_t *ContextHandleSize,uin
 
 long long FUN_180218a80(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint MemoryAllocationIndex;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -265537,7 +265537,7 @@ LAB_18021937f:
  */
 void SortAndOptimizeCharacterData(void)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   byte SystemHighByte;
   long long SearchStartIndex;
   byte *ValidationBytePointer;
@@ -265746,7 +265746,7 @@ LAB_18021963e:
 
 197a0(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_1802197a0(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -266128,7 +266128,7 @@ long long FUN_180219d98(long long ContextHandle,uint64_t OperationBufferSize,lon
 
 long long FUN_180219e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   long long SearchStartIndex;
   
@@ -266982,7 +266982,7 @@ code*** GetSystemDataStructureHandle(void
 
 1dbb0(voidvoid FUN_18021dbb0(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   int MemoryMatchResult;
   long long SystemDataRegistry;
@@ -267595,7 +267595,7 @@ LAB_18021e424:
 
 1e9a0(long long *ContextHandlevoid FUN_18021e9a0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -267634,7 +267634,7 @@ LAB_18021e424:
 
 1f430(long long *ContextHandlevoid FUN_18021f430(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -267766,7 +267766,7 @@ ProcessCharacterEncodingWithBufferValidation(uint64_t *ContextHandle,long long *
 uint64_t *
 InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   *ContextHandle = &SystemContextHandleTemplate;
   _Mtx_init_in_situ(ContextHandle + 4,2,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -280669,7 +280669,7 @@ CleanupContextHandleTableAndResources(uint64_t *ContextHandle,unsigned long long
 
 uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   
   PrimaryProcessingStatusFlag = ContextHandle + 0x17;
@@ -280795,7 +280795,7 @@ uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 
 267d0(long long *ContextHandlevoid FUN_1802267d0(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   void *SystemEventTemplatePointer;
   uint8_t SystemFlagBuffer [32];
@@ -280836,7 +280836,7 @@ uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 
 268c0(long long *ContextHandle,long long OperationBufferSizevoid FUN_1802268c0(long long *ContextHandle,long long OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   void *SystemContext;
   long long SearchStartIndex;
   uint64_t *MemoryAddressMaskPointer;
@@ -281618,7 +281618,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
 
 27670(long long *ContextHandlevoid FUN_180227670(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -283129,7 +283129,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
 
 28c0f(uint32_t *ContextHandlevoid FUN_180228c0f(uint32_t *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   int LockOperationResult;
   unsigned long long UnicodeCodePoint;
@@ -283170,7 +283170,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
 
 28c2c(voidvoid FUN_180228c2c(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long *SystemContext;
   int LockOperationResult;
   unsigned long long UnicodeCodePoint;
@@ -283769,7 +283769,7 @@ LAB_1802297eb:
 
 29820(uint64_t ContextHandle,char OperationBufferSize,long long *Utf8SourcePointervoid FUN_180229820(uint64_t ContextHandle,char OperationBufferSize,long long *Utf8SourcePointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   char *FunctionPointer;
   uint32_t *MemoryAddressMaskPointer;
@@ -283823,7 +283823,7 @@ LAB_1802297eb:
 
 29940(long long *ContextHandlevoid FUN_180229940(long long *ContextHandle
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   
   CharacterTablePointer = ContextHandle[1];
@@ -284678,7 +284678,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
 
 2a379(voidvoid FUN_18022a379(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long SystemContext;
   long long BufferStatus;
   long long StackFrameAddressPointer;
@@ -284724,7 +284724,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
 
 2a40f(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointervoid FUN_18022a40f(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint64_t MemoryAllocationIndex;
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
@@ -284984,7 +284984,7 @@ uint64_t * FUN_18022a5ca(uint64_t ContextHandle,uint64_t OperationBufferSize,lon
 
 uint64_t * FUN_18022a720(uint64_t *ContextHandle,uint64_t *ContextHandleSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   
@@ -285282,7 +285282,7 @@ long long FUN_18022ac3f(void
 
 2ac60(long long ContextHandle,float *ContextHandleSize,char Utf8SourcePointer,long long Utf16EndPointervoid FUN_18022ac60(long long ContextHandle,float *ContextHandleSize,char Utf8SourcePointer,long long Utf16EndPointer
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   char SystemCheckResult;
   uint8_t aUnicodeCodePoint [16];
   uint8_t aMemoryAddressMaskPointer [16];
@@ -285455,7 +285455,7 @@ long long FUN_18022ac3f(void
 
 2ae2d(voidvoid FUN_18022ae2d(void
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   uint8_t aMemoryAllocationIndex [16];
   uint8_t aUnicodeCodePoint [16];
   char in_AL;
@@ -286034,7 +286034,7 @@ void InitializeSystemMemoryCallbackConfiguration(long long ContextHandle)
 
 uint64_t FUN_18022bbe0(long long ContextHandle,int OperationBufferSize
 {
-  long long PrimaryOperationResult;
+  long long MainCalculationResult;
   
   ContextHandle = ContextHandle + (long long)OperationBufferSize * 8;
   CharacterTablePointer = *(long long *)(ContextHandle + 0x3c8);
