@@ -400094,40 +400094,40 @@ LAB_18089cad8:
 ulonglong ProcessUISystemEventStateManager(void)
 
 {
-  longlong *uiMemoryPointer;
-  longlong componentIndex;
-  uint64_t eventCodeType;
-  uint processingStatus;
-  ulonglong loopCounter;
-  ulonglong maxProcessingCount;
-  int localInt7;
-  longlong *contextHandle;
-  longlong basePointer;
-  UIDword unmodifiedESI;
-  uint eventProcessingCounter;
-  uint eventStatus;
-  ulonglong TargetHandle;
-  int processedCount;
-  longlong preservedRegister13;
-  int eventHandle;
-  int ProcessingResult1;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  float extraout_XMM0_Da_03;
-  float extraout_XMM0_Da_04;
-  float extraout_XMM0_Da_05;
-  float baseValue2;
-  float extraout_XMM0_Da_06;
-  UIDword extraout_XMM0_Da_07;
-  UIDword extraout_XMM0_Da_08;
-  UIDword contextValue;
-  float extraout_XMM0_Da_09;
+  longlong *uiMemoryPointer;              // UI内存指针
+  longlong componentIndex;                // 组件索引
+  uint64_t eventCodeType;                 // 事件代码类型
+  uint processingStatus;                  // 处理状态
+  ulonglong loopCounter;                  // 循环计数器
+  ulonglong maxProcessingCount;           // 最大处理计数
+  int validationFlag;                     // 验证标志
+  longlong *contextHandle;                 // 上下文句柄
+  longlong basePointer;                    // 基础指针
+  UIDword unmodifiedESI;                  // 未修改的ESI寄存器值
+  uint eventProcessingCounter;            // 事件处理计数器
+  uint eventStatus;                       // 事件状态
+  ulonglong targetHandle;                 // 目标句柄
+  int processedCount;                     // 已处理计数
+  longlong preservedRegister13;           // 保留的寄存器13值
+  int eventHandle;                        // 事件句柄
+  int processingResult;                    // 处理结果
+  float tempFloatValue;                   // 临时浮点值
+  float tempFloatValueA;                   // 临时浮点值A
+  float tempFloatValueB;                   // 临时浮点值B
+  float tempFloatValueC;                   // 临时浮点值C
+  float tempFloatValueD;                   // 临时浮点值D
+  float tempFloatValueE;                   // 临时浮点值E
+  float tempFloatValueF;                   // 临时浮点值F
+  float adjustedFloatValue;                // 调整后的浮点值
+  float tempFloatValueG;                   // 临时浮点值G
+  UIDword tempDwordValueA;                 // 临时双字值A
+  UIDword tempDwordValueB;                 // 临时双字值B
+  UIDword contextDataValue;                // 上下文数据值
+  float tempFloatValueH;                   // 临时浮点值H
   
   *(UIDword *)(preservedRegister13 + 0x30) = unmodifiedESI;
-  if ((int)TargetHandle != 0) {
-    return TargetHandle & 0xffffffff;
+  if ((int)targetHandle != 0) {
+    return targetHandle & 0xffffffff;
   }
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
@@ -400171,10 +400171,10 @@ ulonglong ProcessUISystemEventStateManager(void)
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
-  eventCode = (UIUndefined7)(TargetHandle >> 8);
-  localInt7 = 0;
-  baseValue2 = extraout_XMM0_Da;
-  ProcessingResult1 = localInt7;
+  eventCode = (UIUndefined7)(targetHandle >> 8);
+  validationFlag = 0;
+  adjustedFloatValue = tempFloatValue;
+  processingResult = validationFlag;
   processedCount = eventHandle;
   if (*(uint *)(contextHandle + 8) < 0x70) {
     if (*(int *)(contextHandle[1] + 0x18) == 0) {
