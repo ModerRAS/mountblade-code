@@ -6073,7 +6073,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a690
  */
-#define ProcessDataStreamEx FUN_18089a690
+#define ProcessDataStreamEx ProcessExtendedDataStream
 
 /**
  * @brief 验证数据流完整性
@@ -6083,7 +6083,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a6e8
  */
-#define ValidateDataStreamIntegrity FUN_18089a6e8
+#define ValidateDataStreamIntegrity ValidateDataStreamAndCheckIntegrity
 
 /**
  * @brief 转换数据流格式
@@ -6093,7 +6093,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a7e0
  */
-#define ConvertDataStreamFormat FUN_18089a7e0
+#define ConvertDataStreamFormat ConvertDataStreamFormatAndType
 
 /**
  * @brief 同步系统数据
@@ -6103,7 +6103,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a880
  */
-#define SynchronizeSystemData FUN_18089a880
+#define SynchronizeSystemData SynchronizeSystemDataAndState
 
 /**
  * @brief 验证数据同步状态
@@ -6113,7 +6113,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a9dd
  */
-#define ValidateDataSynchronizationStatus FUN_18089a9dd
+#define ValidateDataSynchronizationStatus CheckDataSynchronizationStatus
 
 /**
  * @brief 管理数据缓存池
@@ -10007,7 +10007,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180894b00 - 数据验证函数B0
 // 功能：验证数据并返回验证结果
-#define ValidateDataB0 FUN_180894b00
+#define ValidateDataB0 ValidateBinaryDataFormat
 
 // 原始函数名：FUN_180895360 - 数据处理函数C0
 // 功能：处理数据并执行相关操作
