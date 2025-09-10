@@ -2210,6 +2210,22 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemGraphicsFinalization FUN_180383570      // 处理系统图形最终化
 #define ProcessSystemStateFinalization FUN_1801ba340         // 处理系统状态最终化
 
+// 系统数学和计算函数
+#define ProcessSystemMathCalculation FUN_1801c2560           // 处理系统数学计算
+#define ProcessSystemFloatCalculation FUN_1801c24a0           // 处理系统浮点计算
+#define ProcessSystemDataCalculation FUN_1801983b0            // 处理系统数据计算
+#define ProcessSystemMathOperation FUN_1801b32d0              // 处理系统数学操作
+#define ProcessSystemDataOperation FUN_1803a00c0              // 处理系统数据操作
+#define ProcessSystemMemoryOperation FUN_180398550             // 处理系统内存操作
+#define ProcessSystemEncodingOperation FUN_1802eaec0           // 处理系统编码操作
+#define ProcessSystemLockOperation FUN_1802ed990               // 处理系统锁定操作
+#define ProcessSystemValidationOperation FUN_1802eee20         // 处理系统验证操作
+#define ProcessSystemMemoryValidationOperation FUN_1802f2240   // 处理系统内存验证操作
+#define ProcessSystemDataProcessing FUN_1801a9dd0              // 处理系统数据处理
+#define ProcessSystemEventOperation FUN_1801993a0              // 处理系统事件操作
+#define ProcessSystemMemoryProcessing FUN_18019eb80             // 处理系统内存处理
+#define ProcessSystemContextProcessing FUN_1801a0860           // 处理系统上下文处理
+
 #define ProcessSystemMemoryManagement FUN_18015c0a0
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
@@ -67146,7 +67162,7 @@ void InitializeSystemStatusAndMemory(void
   void *SystemProcessingStatusFlag [5];
   void *CoreEnginePointerBuffer158;
   void *CharacterDataBuffer;
-  int iStack_148;
+  int StackIndexValue;
   unsigned long long FunctionAddress;
   
   SystemValue1c8 = 0xfffffffffffffffe;

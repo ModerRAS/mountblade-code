@@ -123628,17 +123628,30 @@ void HandleUIResourceRelease(void)
 
 
 
- void FUN_180739773(void)
-
+ /**
+ * @brief 处理UI数据传输操作
+ * 
+ * 该函数负责处理UI系统中的数据传输操作，包括：
+ * - 检查内存资源标志并执行必要的资源释放
+ * - 执行渲染任务以完成数据传输
+ * - 确保数据传输过程的安全性和完整性
+ * 
+ * 该函数是UI数据传输流程的重要组成部分，确保数据能够正确地在不同组件间传输。
+ * 
+ * @note 原始函数名：FUN_180739773
+ */
+void ProcessUIDataTransfer(void)
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryResourceFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  // 检查是否需要释放内存资源
+  if (memoryResourceFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  
+  // 执行渲染任务完成数据传输
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&UIStackBuffer00);
 }
 
 
