@@ -4526,35 +4526,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ConvertDataType ConvertDataTypeB0
 
 /**
- * @brief 系统内存管理函数
+ * @brief 系统内存管理器
  * 
- * 管理系统内存资源，包括内存分配、释放和优化。
- * 会监控内存使用情况，并在必要时进行内存整理操作。
+ * 管理系统内存的分配、释放和优化操作
+ * 包括内存池管理、碎片整理和性能监控
  * 
- * @param operation 操作类型（分配/释放/优化）
- * @param size 内存大小（字节）
- * @param alignment 内存对齐要求
- * @return 操作结果，成功返回内存指针，失败返回NULL
+ * @param memoryOperation 内存操作类型
+ * @param memorySize 内存大小
+ * @param alignment 对齐要求
+ * @return 内存指针或NULL
  * 
  * @note 原始函数名：FUN_18013ea00
  */
-#define ManageSystemMemory ManageSystemMemoryA0
-
-/**
- * @brief 系统内存管理函数
- * 
- * 该函数负责管理系统内存和资源，包括内存分配、释放和优化操作。
- * 确保系统内存被有效利用，避免内存泄漏。
- * 
- * @param operation 操作类型（分配/释放/优化）
- * @param size 内存大小（字节）
- * @param alignment 内存对齐要求
- * @return 操作结果，成功返回内存指针，失败返回NULL
- * 
- * @note 原始函数名：FUN_18013ea00
- * 功能：管理系统内存和资源
- */
-#define ManageSystemMemory ControlSystemMemoryAndResources
+#define ManageSystemMemory ManageSystemMemoryB0
 
 // 数据操作函数系列 - 内存读写操作
 // 功能：执行数据缓冲区的读写操作，支持不同大小的数据块
@@ -5838,33 +5822,45 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 数据处理函数宏定义 (D系列)
 
 /**
- * @brief 更新系统状态
+ * @brief 系统状态更新器
  * 
- * 该函数负责更新系统的状态信息，包括处理状态标志、
- * 执行状态转换和更新系统配置参数
+ * 更新系统状态信息，包括状态标志处理、状态转换和配置参数更新
+ * 
+ * @param statusPointer 状态指针
+ * @param updateFlags 更新标志
+ * @return 更新结果状态码
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatusWithValidation UpdateSystemStatusWithValidation
+#define UpdateSystemStatus UpdateSystemStatusB0
 
 /**
- * @brief 带安全检查的数据块处理
+ * @brief 安全数据块处理器
  * 
- * 该函数负责处理数据块并进行安全验证，确保数据处理的
- * 安全性和完整性
+ * 处理数据块并进行安全验证，确保数据处理的安全性和完整性
+ * 
+ * @param dataBlockPointer 数据块指针
+ * @param blockSize 数据块大小
+ * @param securityFlags 安全标志
+ * @return 处理结果状态码
  * 
  * @note 原始函数名：FUN_180897d20
  */
-#define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
+#define ProcessDataBlockWithSecurity ProcessDataBlockSecurityB0
 
 /**
- * @brief 验证和处理数据
+ * @brief 数据验证和处理器
  * 
- * 该函数负责验证输入数据的有效性，并执行相应的处理操作
+ * 验证输入数据的有效性并执行相应的处理操作
+ * 
+ * @param inputDataPointer 输入数据指针
+ * @param dataSize 数据大小
+ * @param processingFlags 处理标志
+ * @return 处理结果状态码
  * 
  * @note 原始函数名：FUN_180899040
  */
-#define ValidateAndProcessDataA2 ValidateAndProcessDataA2
+#define ValidateAndProcessData ValidateAndProcessDataB0
 
 /**
  * @brief 处理数据块
@@ -7240,7 +7236,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892990
  */
-#define ProcessSystemData0 FUN_180892990
+#define ProcessSystemData0 ProcessSystemData0
 
 /**
  * @brief 验证和处理浮点数A2
@@ -7249,7 +7245,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892ac0
  */
-#define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
+#define ValidateAndProcessFloatingPointNumberA2 ValidateAndProcessFloatingPointNumberA2
 
 /**
  * @brief 处理复杂数据结构A0
@@ -9162,7 +9158,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180892ac0 - 浮点数验证和处理函数A2
 // 功能：验证浮点数数据的有效性，处理数据范围检查和更新操作
-#define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
+#define ValidateAndProcessFloatingPointNumberA2 ValidateAndProcessFloatingPointNumberA2
 
 // 原始函数名：FUN_180892bd0 - 复杂数据处理函数A0
 // 功能：处理复杂数据结构，执行多层验证和更新操作
