@@ -1,5 +1,26 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @file 06_utilities.c
+ * @brief Mount & Blade: Native API - 工具函数和系统服务模块
+ * 
+ * 本文件实现了游戏系统的核心工具函数和服务，包括：
+ * - 内存管理和分配操作
+ * - 数据验证和安全检查
+ * - 系统初始化和清理
+ * - 异常处理和错误管理
+ * - 资源管理和生命周期控制
+ * - 线程本地存储和同步
+ * - 系统配置和参数验证
+ * 
+ * 该模块为游戏提供底层系统服务支持，确保系统的稳定性和可靠性。
+ * 所有函数都经过安全验证和错误处理，适合在高性能游戏环境中使用。
+ * 
+ * @author Ghidra逆向工程 + 语义化美化
+ * @version 2.0
+ * @date 2025-09-10
+ */
+
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10                         // 组件句柄偏移量
 #define SystemContextOffset 0x8                           // 系统上下文偏移量
