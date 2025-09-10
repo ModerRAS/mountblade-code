@@ -16466,6 +16466,24 @@ void ProcessResourceCleanup(void)
  * @since 系统版本 1.0
  * @security_level 高
  */
+/**
+ * @brief 执行系统关闭操作
+ * 
+ * 该函数负责执行系统的安全关闭操作，确保在系统关闭时所有的资源都被正确释放，
+ * 并且执行必要的安全检查以防止数据丢失或系统损坏。
+ * 
+ * 功能说明：
+ * 1. 初始化安全上下文和缓冲区
+ * 2. 执行安全检查，使用XOR操作提供基本的安全保护
+ * 3. 确保系统在关闭过程中的安全性
+ * 
+ * @note 此函数是系统关闭流程的一部分，应该在系统关闭时调用
+ * @warning 函数执行过程中会进行安全检查，确保系统关闭的安全性
+ * 
+ * @see ExecuteSecurityCheck
+ * 
+ * @return void 无返回值
+ */
 void ExecuteSystemShutdown(void)
 {
   uint64_t securityContext;              // 安全上下文参数
