@@ -270492,28 +270492,28 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
   if (((vectorSize & 3) == 0) && ((((byte)transformMatrixPtr | (byte)sourceDataPtr) & 0x1f) == 0)) {
     vectorProcessingCount = (int)operationMask >> 3;
     vectorLoopCount = (int)vectorSize >> 2;
-    if (uiValidationResult2 != 0) {
+    if (vectorProcessingCount != 0) {
       do {
-        TransformCoefficient15 = TransformCoefficient15 + -8;
-        if (uiValidationResult9 != 0) {
-          uiCompareResult0 = 0x400;
-          uiCompareResult5 = 0;
-          uiValidationResult8 = uiValidationResult9;
+        sourceDataPtr = sourceDataPtr + -8;
+        if (vectorLoopCount != 0) {
+          vectorOffset1 = 0x400;
+          vectorOffset2 = 0;
+          alignmentCheckResult = vectorLoopCount;
           do {
-            componentIndex3 = (longlong)uiCompareResult0;
-            aprocessStatus = vshufps_avx(*(UIByte (*) [32])(TransformCoefficient15 + (uiCompareResult0 + -0x400)),
-                                 *(UIByte (*) [32])(TransformCoefficient15 + (uiCompareResult0 + -0x200)),0x44);
-            aloopCounter = vshufps_avx(*(UIByte (*) [32])(TransformCoefficient15 + (uiCompareResult0 + -0x400)),
-                                 *(UIByte (*) [32])(TransformCoefficient15 + (uiCompareResult0 + -0x200)),0xee);
-            in_ZMM4 = ZEXT3264(aloopCounter);
-            uiCompareResult4 = uiCompareResult0 + 0x200;
-            uiCompareResult0 = uiCompareResult0 + 0x800;
-            maxProcessingCount = vshufps_avx(*(UIByte (*) [32])(TransformCoefficient15 + componentIndex3),
-                                 *(UIByte (*) [32])(TransformCoefficient15 + uiCompareResult4),0x44);
-            aiterationCounter = vshufps_avx(*(UIByte (*) [32])(TransformCoefficient15 + componentIndex3),
-                                 *(UIByte (*) [32])(TransformCoefficient15 + uiCompareResult4),0xee);
-            aeventProcessingCounter = vshufps_avx(aprocessingStatus,maxProcessingCount,0x88);
-            in_ZMM6 = ZEXT3264(aeventProcessingCounter);
+            componentOffset = (longlong)vectorOffset1;
+            processingStatusVector = vshufps_avx(*(UIByte (*) [32])(sourceDataPtr + (vectorOffset1 + -0x400)),
+                                 *(UIByte (*) [32])(sourceDataPtr + (vectorOffset1 + -0x200)),0x44);
+            loopCounterVector = vshufps_avx(*(UIByte (*) [32])(sourceDataPtr + (vectorOffset1 + -0x400)),
+                                 *(UIByte (*) [32])(sourceDataPtr + (vectorOffset1 + -0x200)),0xee);
+            zmmRegister4 = ZEXT3264(loopCounterVector);
+            vectorOffset1 = vectorOffset1 + 0x200;
+            vectorOffset1 = vectorOffset1 + 0x800;
+            maxProcessingCountVector = vshufps_avx(*(UIByte (*) [32])(sourceDataPtr + componentOffset),
+                                 *(UIByte (*) [32])(sourceDataPtr + vectorOffset1),0x44);
+            iterationCounterVector = vshufps_avx(*(UIByte (*) [32])(sourceDataPtr + componentOffset),
+                                 *(UIByte (*) [32])(sourceDataPtr + vectorOffset1),0xee);
+            eventProcessingCounterVector = vshufps_avx(processingStatusVector,maxProcessingCountVector,0x88);
+            zmmRegister6 = ZEXT3264(eventProcessingCounterVector);
             aprocessStatus = vshufps_avx(aprocessingStatus,maxProcessingCount,0xdd);
             maxProcessingCount = vshufps_avx(aloopCounter,aiterationCounter,0xdd);
             *(UIByte (*) [16])(dataSource + uiCompareResult5) = maxProcessingCount._16_16_;
