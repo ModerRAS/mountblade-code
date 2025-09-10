@@ -37843,7 +37843,7 @@ ValidationLabelB:
         exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameContextOffsetNegative29);
       }
     }
-    statusCounter = *(uint *)(StackFrameContext + -0x1d);
+    statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -37853,8 +37853,8 @@ ValidationLabelB:
       if ((0 < (int)statusCounter) && (exceptionBuffer3 != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionBuffer3,&SystemMemoryPoolB,0x100,1);
       }
-      *(DataBuffer *)(StackFrameContext + -0x29) = 0;
-      *(DataWord *)(StackFrameContext + -0x1d) = 0;
+      *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+      *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative1D) = 0;
       exceptionBuffer3 = exceptionDataBuffer1;
       statusCounter = securityCheckResult;
     }

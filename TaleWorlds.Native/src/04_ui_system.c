@@ -399076,11 +399076,11 @@ LAB_18089c40a:
         }
         if ((0 < (int)eventStatus) && (*(longlong *)(uiContextBasePointer + -0x29) != 0)) {
                      WARNING: Subroutine does not return
-          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(basePointer + -0x29),
+          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(uiContextBasePointer + -0x29),
                         &UIResourceBuffer180957f70,0x100,1);
         }
-        *(UIHandle *)(basePointer + -0x29) = 0;
-        *(UIDword *)(basePointer + -0x1d) = 0;
+        *(UIHandle *)(uiContextBasePointer + -0x29) = 0;
+        *(UIDword *)(uiContextBasePointer + -0x1d) = 0;
         eventStatus = eventProcessingCounter;
       }
       else {
