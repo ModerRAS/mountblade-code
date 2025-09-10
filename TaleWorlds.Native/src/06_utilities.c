@@ -7833,7 +7833,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089de72
  * @note 用于系统健康状态监控和数据验证
  */
-#define ValidateSystemDataAndReturnStatus FUN_18089de72
+// 系统数据验证和状态返回函数
+#define ValidateSystemDataAndReturnStatus ValidateSystemDataAndReturnStatus
 
 /**
  * @brief 系统安全检查和验证函数
