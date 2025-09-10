@@ -116129,9 +116129,9 @@ LAB_180733ebd:
       if (0 < stackVar18 >> 1) {
         componentHandlePtr = currentComponent;
         do {
-          ptrLocal8 = ptrLocal8 + -1;
-          eventStatus = *ptrLocal8;
-          result = uiContext[localLong7];
+          componentHandlePtr = componentHandlePtr + -1;
+          eventStatus = *componentHandlePtr;
+          validationResult = uiContext[calculatedOffset];
           processingStatus = (uint)(((int)eventStatus * memoryAllocation >> 0x1e) + 1 >> 1);
           calculationResult2 = validationResult - processingStatus;
           if (uiCompareResult == 1) {

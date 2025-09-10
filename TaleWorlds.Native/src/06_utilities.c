@@ -98,6 +98,7 @@
 #define ExceptionHandlerFunctionOffsetFb0 0xfb0          // 异常处理器函数偏移量Fb0 - 用于异常处理器函数指针
 #define ExceptionHandlerParameterOffsetFa0 0xfa0         // 异常处理器参数偏移量Fa0 - 用于异常处理器参数存储
 #define ExceptionHandlerParameterOffset4000 4000         // 异常处理器参数偏移量4000 - 用于异常处理器参数存储
+#define ExceptionContextSecondaryCleanupOffset 0xf0            // 异常上下文辅助清理偏移量 - 用于辅助异常上下文的清理操作
 #define ExceptionHandlerFunctionOffset1020 0x1020        // 异常处理器函数偏移量1020 - 用于异常处理器函数指针
 #define ExceptionHandlerParameterOffset1010 0x1010       // 异常处理器参数偏移量1010 - 用于异常处理器参数存储
 #define ExceptionHandlerCleanupOffsetFe8 0xfe8          // 异常处理器清理偏移量Fe8 - 用于异常处理器清理操作
@@ -216,6 +217,7 @@
 #define ExceptionHandlerContextOffset5e0 0x5e0
 #define ExceptionHandlerContextOffset5e8 0x5e8
 #define ExceptionHandlerContextOffset5f8 0x5f8
+#define ExceptionHandlerContextSystemDataOffset30 0x30         // 异常上下文系统数据偏移量30 - 用于系统数据处理的偏移量
 #define ExceptionHandlerContextOffset600 0x600
 #define ExceptionHandlerContextOffset610 0x610
 
@@ -28036,10 +28038,10 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   int operationStatus;
   int arrayIndex;
   int LoopCounter;
-  uint8_t **ppdataFlags;
+  uint8_t **DataFlagsPointer;
   int allocatedMemoryBlock;
   ByteFlag PrimaryEncryptionKeyBuffer [32];
-  DataWord systemConfigurationData;
+  DataWord SystemConfigurationData;
   float rgbColorData [3];
   uint8_t *securityValidationContext;
   int cleanupStepIndex;
@@ -28081,15 +28083,15 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
       ValidationOffsetA = 0;
       ValidationDataA = operationFlagA;
       InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),0x200);
-      ppdataFlags = exceptionContextPointer;
+      DataFlagsPointer = exceptionContextPointer;
 SecurityValidationLabel:
-      operationStatus = ValidateDataIntegrityA0(operationBase,ppdataFlags);
+      operationStatus = ValidateDataIntegrityA0(operationBase,DataFlagsPointer);
     }
     else {
       cleanupStepIndex = 0;
       if (1 < operationStatus - 1U) {
         securityValidationContext = &DataProcessingStatusTable;
-        ppdataFlags = securityValidationContext;
+        DataFlagsPointer = securityValidationContext;
         memoryOperationBufferH = 0;
         MemoryBufferA = 0;
         SecondaryMemoryOperationBuffer = 0;
@@ -28866,10 +28868,10 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
   DataWord SystemDataValidationWord;
   DataWord SystemOperationResultWord;
   DataWord SystemConfigurationDataWordL;
-  DataWord systemConfigurationDataPrimary;
-  DataWord systemConfigurationDataSecondary;
-  DataWord systemConfigurationDataTertiary;
-  DataWord systemConfigurationDataQuaternary;
+  DataWord SystemConfigurationDataPrimary;
+  DataWord SystemConfigurationDataSecondary;
+  DataWord SystemConfigurationDataTertiary;
+  DataWord SystemConfigurationDataQuaternary;
   DataWord SecurityValidationResultA;
   uint8_t *SecurityValidationTempBuffer;
   DataWord SecurityCheckResult;
@@ -28974,14 +28976,14 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
               SystemConfigurationDataWordJ = *(DataWord *)(dataContext + DataOperationOffset48);
               SystemConfigurationDataWordK = *(DataWord *)(dataContext + DataOperationOffset4c);
               SystemConfigurationDataWordL = *(DataWord *)(dataContext + DataOperationOffset50);
-              systemConfigurationData54 = *(DataWord *)(dataContext + DataOperationOffset54);
+              SystemConfigurationData54 = *(DataWord *)(dataContext + DataOperationOffset54);
               // 初始化安全检查和重置数据
               StackPointerBufferD = &SystemSecurityCheckReference;
               SystemResetDataWordH = 0;
               // 获取系统上下文偏移数据
-              systemConfigurationData58 = *(DataWord *)(dataContext + DataOperationOffset58);
-              systemConfigurationData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
-              systemConfigurationData60 = *(DataWord *)(dataContext + DataOperationOffset60);
+              SystemConfigurationData58 = *(DataWord *)(dataContext + DataOperationOffset58);
+              SystemConfigurationData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
+              SystemConfigurationData60 = *(DataWord *)(dataContext + DataOperationOffset60);
               // 获取系统安全验证数据
               SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
               SystemStackDataWordI = StackDataWordA;
@@ -110033,8 +110035,8 @@ void ProcessExceptionDataBufferAndContextCleanup(DataBuffer operationBase,int64_
   *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset100) = 0;
   *(DataWord *)(dataBuffer + ExceptionHandlerContextOffset110) = 0;
   *(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetF8) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(dataBuffer + 0xf0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xf0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + ExceptionContextSecondaryCleanupOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionContextSecondaryCleanupOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
