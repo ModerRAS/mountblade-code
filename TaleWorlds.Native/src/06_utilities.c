@@ -46101,14 +46101,24 @@ void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常恢复函数B1
  * 
- * 该函数负责执行异常恢复操作，处理系统异常状态
- * 在异常上下文的0x78偏移处设置默认异常处理器B的指针
- * 并清理相关的异常状态标志
+ * 该函数负责执行异常恢复操作，处理系统异常状态并恢复异常处理器。
+ * 这是一个关键的异常处理函数，确保系统在异常发生后能够恢复正常运行状态。
  * 
- * @param operationBase 异常上下文指针
- * @param dataBuffer 资源管理器指针
+ * 功能说明：
+ * 1. 首先设置临时异常处理器到指定位置（0x78偏移处）
+ * 2. 检查异常恢复状态，如果存在未处理的异常则终止系统执行
+ * 3. 清理异常状态标志，重置相关内存区域
+ * 4. 最后设置默认异常处理器B，确保系统能够正常处理后续异常
+ * 
+ * 异常恢复流程：
+ * - 临时异常处理器 → 状态检查 → 清理标志 → 默认处理器设置
+ * 
+ * @param operationBase 异常上下文指针，包含异常处理的上下文信息
+ * @param dataBuffer 资源管理器指针，用于访问和管理异常处理资源
  * 
  * @note 原始函数名：Unwind_180902450
+ * @warning 此函数涉及系统核心异常处理机制，修改时需要谨慎
+ * @see TerminateSystemExecutionAndCleanupResources, SystemDefaultExceptionHandlerB
  */
 void ExceptionRecoveryHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -83031,40 +83041,57 @@ void ResetSystemOperationsB0(DataBuffer operationBase, int64_t dataBuffer)
  * 
  * @param operationBase 操作基础数据
  * @param dataBuffer 数据缓冲区指针
+ * 
  * @note 原始函数名：UpdateSystemConfigurationB0
+ * @note 这是一个系统配置和内存管理函数，用于动态更新系统配置
  */
-void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
-
+void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
-  uint64_t memoryRegionBase;
-  
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffsetA0);
-  if (memoryResourcePointer == (DataBuffer *)0x0) {
-    return;
-  }
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
-  if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
-      if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+    int *resourceReferenceCount;          // 资源引用计数指针
+    DataBuffer *memoryResourcePointer;     // 内存资源指针
+    int64_t memoryBlockOffset;            // 内存块偏移量
+    uint64_t memoryRegionBase;            // 内存区域基地址
+    
+    // 获取内存资源指针
+    memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffsetA0);
+    if (memoryResourcePointer == (DataBuffer *)0x0) {
         return;
-      }
     }
-    else {
-      ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+    
+    // 计算内存区域基地址
+    memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
+    if (memoryRegionBase != 0) {
+        // 计算内存块偏移量
+        memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + 
+                          ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+        memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+        
+        // 检查内存块状态并处理引用计数
+        if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && 
+            (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+            // 更新内存资源指针
+            *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
+            *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+            
+            // 递减引用计数
+            resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+            *resourceReferenceCount = *resourceReferenceCount + -1;
+            if (*resourceReferenceCount == 0) {
+                HandleExceptionE0();
+                return;
+            }
+        }
+        else {
+            // 执行内存管理操作
+            ManageMemory(memoryRegionBase, 
+                       SetBitFlag(MemoryManagementFlagMask, 
+                                 *(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
+                       memoryResourcePointer, 
+                       memoryRegionBase, 
+                       SystemCleanupFlagAlternative);
+        }
     }
-  }
-  return;
+    return;
 }
 
 
