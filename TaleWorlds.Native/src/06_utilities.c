@@ -7038,7 +7038,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809421c0
  */
-#define SetDefaultExceptionHandlerA11 FUN_1809421c0
+#define SetDefaultExceptionHandlerA11 SetDefaultExceptionHandlerA11
 
 /**
  * @brief 设置默认异常处理器A12
@@ -7047,7 +7047,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809421e0
  */
-#define SetDefaultExceptionHandlerA12 FUN_1809421e0
+#define SetDefaultExceptionHandlerA12 SetDefaultExceptionHandlerA12
 
 /**
  * @brief 设置默认异常处理器A13
@@ -7056,7 +7056,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942200
  */
-#define SetDefaultExceptionHandlerA13 FUN_180942200
+#define SetDefaultExceptionHandlerA13 SetDefaultExceptionHandlerA13
 
 /**
  * @brief 设置默认异常处理器A14
@@ -7065,7 +7065,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942220
  */
-#define SetDefaultExceptionHandlerA14 FUN_180942220
+#define SetDefaultExceptionHandlerA14 SetDefaultExceptionHandlerA14
 
 /**
  * @brief 设置默认异常处理器A15
@@ -7074,7 +7074,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942240
  */
-#define SetDefaultExceptionHandlerA15 FUN_180942240
+#define SetDefaultExceptionHandlerA15 SetDefaultExceptionHandlerA15
 
 /**
  * @brief 设置默认异常处理器A16
@@ -7083,7 +7083,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942260
  */
-#define SetDefaultExceptionHandlerA16 FUN_180942260
+#define SetDefaultExceptionHandlerA16 SetDefaultExceptionHandlerA16
 
 /**
  * @brief 设置默认异常处理器A17
@@ -7092,7 +7092,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942280
  */
-#define SetDefaultExceptionHandlerA17 FUN_180942280
+#define SetDefaultExceptionHandlerA17 SetDefaultExceptionHandlerA17
 
 /**
  * @brief 设置默认异常处理器A18
@@ -7101,7 +7101,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809422a0
  */
-#define SetDefaultExceptionHandlerA18 FUN_1809422a0
+#define SetDefaultExceptionHandlerA18 SetDefaultExceptionHandlerA18
 
 /**
  * @brief 设置默认异常处理器A19
@@ -7110,7 +7110,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809422c0
  */
-#define SetDefaultExceptionHandlerA19 FUN_1809422c0
+#define SetDefaultExceptionHandlerA19 SetDefaultExceptionHandlerA19
 
 /**
  * @brief 设置默认异常处理器A20

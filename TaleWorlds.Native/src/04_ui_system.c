@@ -838,7 +838,7 @@ typedef enum {
 // UI系统额外函数美化定义
 #define FUN_18089e811 UIEmptyOperationFunction                      // UI空操作函数 - 执行空操作的函数
 #define FUN_1808ddc20 ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式 - 验证UI数据的签名和格式
-#define FUN_1808aed00 ValidateUIEventDataAndStructure              // 验证UI事件数据和结构 - 验证UI事件的数据和结构
+#define FUN_1807395df CleanupUIAnimationStateAndExecuteRenderTask    // 清理UI动画状态并执行渲染任务 - 在动画状态非零时释放UI内存资源，然后执行渲染任务
 #define FUN_180899360 ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
 #define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
@@ -122285,7 +122285,7 @@ void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
     processingResult = func_0x000180745fd0(stackUInt160,dataSource,targetBuffer,bufferSize);
-    if (processingResult == 0) goto FUN_1807395df;
+    if (processingResult == 0) goto CleanupUIAnimationStateAndExecuteRenderTask;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074b7d0(astackUInt158,0x100,dataSource);
@@ -122307,7 +122307,7 @@ void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
                      WARNING: Subroutine does not return
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957378);
   }
-FUN_1807395df:
+CleanupUIAnimationStateAndExecuteRenderTask:
   if (AnimationStateValue != 0) {
     ReleaseUIMemoryResource();
   }
