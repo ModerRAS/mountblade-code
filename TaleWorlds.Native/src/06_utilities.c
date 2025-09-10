@@ -9709,7 +9709,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180897d20 - 数据块安全处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
-#define ProcessDataBlockWithSecurityCheckA0 ProcessDataBlockWithSecurityCheck
+#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构并执行相关操作
@@ -129762,8 +129762,17 @@ void ConditionalExecuteFunctionA0(DataBuffer operationBase,int64_t dataBuffer)
 
 // 函数: void ExecuteCallbackFunction(DataBuffer *callbackContext)
 // 功能：执行回调函数，传递回调上下文中的参数
-// 参数：callbackContext-回调函数的上下文指针
-// 返回值：无
+/**
+ * @brief 执行回调函数
+ * 
+ * 该函数负责执行系统回调函数，通过回调上下文传递参数。
+ * 它会从回调上下文中提取数据并调用相应的系统回调函数。
+ * 
+ * @param callbackContext 回调函数的上下文指针，包含回调所需的参数和数据
+ * @return 无返回值
+ * 
+ * @note 这是系统回调机制的核心函数，用于处理异步事件和通知
+ */
 void ExecuteCallbackFunction(DataBuffer *callbackContext)
 
 {
