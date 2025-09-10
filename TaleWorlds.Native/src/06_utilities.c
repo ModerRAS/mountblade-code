@@ -15052,9 +15052,9 @@ uint8_t ExceptionHandlerDataL;
 uint8_t ExceptionHandlerDataM;
 uint8_t ExceptionHandlerDataN;
 uint8_t ExceptionHandlerDataO;
-uint8_t ExceptionHandlerDataP;
-uint8_t ExceptionHandlerDataQ;
-uint8_t ExceptionHandlerDataR;
+uint8_t ExceptionHandlerDataPrimary;           // 异常处理器数据Primary - 主要异常处理数据
+uint8_t ExceptionHandlerDataSecondary;         // 异常处理器数据Secondary - 次要异常处理数据  
+uint8_t ExceptionHandlerDataTertiary;          // 异常处理器数据Tertiary - 第三异常处理数据
 // 系统安全验证标志位A0 - 用于验证系统安全状态
 uint8_t SystemSecurityValidationFlagA0;     // 系统安全验证标志A0
 uint8_t SystemSecurityValidationFlagA1;     // 系统安全验证标志A1
