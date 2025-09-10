@@ -21735,22 +21735,22 @@ void ConfigureUIRendererSettings(longlong uiContext)
   ulonglong iterationCount;
   uint eventCodeType;
   UIDword loopCounter;
-  UIByte astackUInt98 [32];
-  undefined *apstackUInt78 [10];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer98 [32];
+  UIBytePointer *encryptionKeyArray78 [10];
+  ulonglong encryptedValue28;
   ulonglong processingStatus;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt98;
-  apstackUInt78[0] = &EncryptionKey_FirstByte;
-  apstackUInt78[1] = &EncryptionKey_SecondByte;
-  apstackUInt78[2] = &EncryptionKey_ThirdByte;
-  apstackUInt78[3] = &EncryptionKey_FourthByte;
-  apstackUInt78[4] = &EncryptionKey_FifthByte;
-  apstackUInt78[5] = &EncryptionKey_SixthByte;
-  apstackUInt78[6] = &EncryptionKey_SeventhByte;
-  apstackUInt78[7] = &EncryptionKey_EighthByte;
-  apstackUInt78[8] = &EncryptionKey_NinthByte;
-  apstackUInt78[9] = &EncryptionKey_TenthByte;
+  encryptedValue28 = XorEncryptionKey ^ (ulonglong)encryptionBuffer98;
+  encryptionKeyArray78[0] = &EncryptionKey_FirstByte;
+  encryptionKeyArray78[1] = &EncryptionKey_SecondByte;
+  encryptionKeyArray78[2] = &EncryptionKey_ThirdByte;
+  encryptionKeyArray78[3] = &EncryptionKey_FourthByte;
+  encryptionKeyArray78[4] = &EncryptionKey_FifthByte;
+  encryptionKeyArray78[5] = &EncryptionKey_SixthByte;
+  encryptionKeyArray78[6] = &EncryptionKey_SeventhByte;
+  encryptionKeyArray78[7] = &EncryptionKey_EighthByte;
+  encryptionKeyArray78[8] = &EncryptionKey_NinthByte;
+  encryptionKeyArray78[9] = &EncryptionKey_TenthByte;
   uiMemoryPointer = (longlong *)(**(code **)(*g_uiSystemInterface + 0x70))(g_uiSystemInterface,&UIInterfaceTableA);
   uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x28))(uiMemoryPointer,*(UIDword *)(uiBufferData + 0x38));
   (**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,&g_uiInterfaceDefaultData);
@@ -21764,20 +21764,20 @@ void ConfigureUIRendererSettings(longlong uiContext)
   uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x28))(uiMemoryPointer,*(UIDword *)(uiBufferData + 0x44));
   (**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,&g_uiInterfaceDefaultData);
   iterationCount = 0;
-  processStatus = iterationCount;
+  processingStatus = iterationCount;
   if (0 < *(int *)(uiBufferData + 0x60)) {
     do {
       uiMemoryPointer = (longlong *)(**(code **)(*g_uiSystemInterface + 0x70))(g_uiSystemInterface,&UIInterfaceTableD);
       uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x28))(uiMemoryPointer,*(UIDword *)(uiBufferData + 4));
       (**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,&g_uiInterfaceDefaultData);
       eventCode = (int)processingStatus + 1;
-      processStatus = (ulonglong)eventCodeType;
+      processingStatus = (ulonglong)eventCodeType;
     } while ((int)eventCodeType < *(int *)(uiBufferData + 0x60));
   }
   do {
     if (0.0 < *(float *)(uiContext + 0x6150 + iterationCount * 4)) {
       uiMemoryPointer = (longlong *)(**(code **)(*g_uiSystemInterface + 0x70))(g_uiSystemInterface,&UIInterfaceTableE);
-      uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,apstackUInt78[iterationCount]);
+      uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,encryptionKeyArray78[iterationCount]);
       uiMemoryPointer = (longlong *)(**(code **)(*uiMemoryPointer + 0x70))(uiMemoryPointer,&UIInterfaceTableF);
       if (iterationCount == 0) {
         eventLoopCounter = *(UIDword *)(uiBufferData + 0x3c);

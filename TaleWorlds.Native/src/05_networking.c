@@ -697,7 +697,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkClientPortAny 0x0000                          // 任意客户端端口
 #define NetworkSocketStandardSize 0x100                       // 套接字标准结构大小（256字节）
 #define NetworkSocketCompactSize 0x40                        // 套接字紧凑结构大小（64字节）
-#define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
 #define NetworkConnectionNotFound 0xFFFFFFFF                     // 网络连接未找到
 
 // 网络连接状态常量
