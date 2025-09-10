@@ -38935,14 +38935,22 @@ ValidationLabelD:
 /**
  * @brief 执行系统验证和数据处理操作
  * 
- * 该函数负责执行系统级的验证和数据处理操作，包括安全检查、内存管理、
- * 数据验证和系统资源清理等功能。函数根据不同的输入参数执行相应的
- * 处理路径，确保系统操作的安全性和稳定性。
+ * 该函数负责执行系统级的验证和数据处理操作，包括：
+ * - 安全检查和验证：执行系统级的安全检查，确保数据完整性
+ * - 内存管理：管理内存分配、释放和验证操作
+ * - 数据验证：验证输入数据的有效性和一致性
+ * - 系统资源清理：清理和释放系统资源，防止内存泄漏
+ * - 异常处理：处理系统运行时异常，确保系统稳定性
  * 
- * @param systemContext 系统上下文指针，包含系统状态和配置信息
- * @return uint64_t 返回操作状态码，0表示成功，非0表示错误码
+ * 函数根据不同的输入参数执行相应的处理路径，包含多个条件分支和循环结构，
+ * 用于处理各种系统状态和异常情况。
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态、配置信息和内存管理数据
+ * @return uint64_t 返回操作状态码，0表示成功，非0表示特定的错误码
  * 
  * @note 原始函数名: FUN_18089c2d8
+ * @warning 该函数包含复杂的内存操作和异常处理逻辑，需要谨慎调用
+ * @see ValidateDataProcessingA0, ProcessSystemStatusA0, ReleaseSystemMemoryA0
  */
 uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
 
