@@ -118788,47 +118788,47 @@ void ProcessUIEventEncodingConversion(UIHandle uiContext,uint dataSource,ulonglo
 
 {
   UIHandle *resultPointer;
-  short *psVar2;
+  short *secondaryPointer;
   UIHandle eventCodeType;
   UIHandle processingStatus;
   UIHandle loopCounter;
   uint maxProcessingCount;
-  UIHandle *piterationCounter;
-  short *pContextSecondValue;
-  longlong CharacterDataOffset;
-  int unmodifiedEBX;
-  short unmodifiedSI;
+  UIHandle *iterationPointer;
+  short *contextSecondaryPointer;
+  longlong characterDataOffset;
+  int processedDataCount;
+  short scaleFactor;
   ulonglong dataPointer;
-  ulonglong register10;
-  ulonglong RegisterPointer;
-  UIByte aresult1 [16];
-  UIByte in_XMM1 [16];
+  ulonglong baseRegister;
+  ulonglong registerPointer;
+  UIByte simdResult1 [16];
+  UIByte simdInput1 [16];
   UIByte bufferValue [16];
-  UIByte acontextValue [16];
-  UIByte acomponentIndex [16];
-  short BufferCapacityValue;
-  short sVar16;
-  short sVar17;
-  UIByte in_XMM4 [16];
-  UIByte aresult8 [16];
-  UIByte aresult9 [16];
+  UIByte contextValue [16];
+  UIByte componentIndex [16];
+  short bufferCapacity;
+  short tempValue16;
+  short tempValue17;
+  UIByte simdInput4 [16];
+  UIByte simdResult8 [16];
+  UIByte simdResult9 [16];
   
   if ((7 < dataSource) && (1 < SystemStatusFlag)) {
-    CharacterDataOffset = (longlong)(int)(dataSource - 1);
-    dataPointer = RegisterPointer + CharacterDataOffset * 2;
-    if (((register10 + CharacterDataOffset * 2 < RegisterPointer) || (dataPointer < register10)) &&
-       ((targetBuffer + CharacterDataOffset * 2 < RegisterPointer || (dataPointer < targetBuffer)))) {
+    characterDataOffset = (longlong)(int)(dataSource - 1);
+    dataPointer = registerPointer + characterDataOffset * 2;
+    if (((baseRegister + characterDataOffset * 2 < registerPointer) || (dataPointer < baseRegister)) &&
+       ((targetBuffer + characterDataOffset * 2 < registerPointer || (dataPointer < targetBuffer)))) {
       maxProcessingCount = dataSource & 0x80000007;
       if ((int)maxProcessingCount < 0) {
         maxProcessingCount = (maxProcessingCount - 1 | 0xfffffff8) + 1;
       }
-      aresult8._0_4_ = CONCAT22(unmodifiedSI,unmodifiedSI);
-      aresult8._4_4_ = aresult8._0_4_;
-      aresult8._8_4_ = aresult8._0_4_;
-      aresult8._12_4_ = aresult8._0_4_;
-      aresult8 = pmovsxwd(in_XMM4,aresult8);
-      aresult9 = ZEXT416(2);
-      piterationCounter = (UIHandle *)(register10 + 8);
+      simdResult8._0_4_ = CONCAT22(scaleFactor,scaleFactor);
+      simdResult8._4_4_ = simdResult8._0_4_;
+      simdResult8._8_4_ = simdResult8._0_4_;
+      simdResult8._12_4_ = simdResult8._0_4_;
+      simdResult8 = pmovsxwd(simdInput4,simdResult8);
+      simdResult9 = ZEXT416(2);
+      iterationPointer = (UIHandle *)(baseRegister + 8);
       do {
         eventCode = piterationCounter[-1];
         unmodifiedEBX = unmodifiedEBX + 8;
