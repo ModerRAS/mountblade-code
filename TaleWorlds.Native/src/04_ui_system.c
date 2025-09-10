@@ -192898,6 +192898,18 @@ undefined UIResourceCleanupHandler;
 #define UNK_18095af28 UIStatusFlagAf28
 #define UNK_18095af38 UIStatusFlagAf38
 #define UNK_18095afe8 UIStatusFlagAfe8
+
+// UI系统数据缓冲区变量语义化定义
+#define UNK_180958c10 UIDataBufferC10                      // UI数据缓冲区C10 - 用于存储UI系统的主要数据
+#define UNK_1809589a0 UIDataBuffer9A0                      // UI数据缓冲区9A0 - 用于存储UI系统的辅助数据
+#define UNK_18095ae30 UIDataBufferE30                      // UI数据缓冲区E30 - 用于存储UI系统的扩展数据
+#define UNK_180986190 UIProcessingBuffer190                 // UI处理缓冲区190 - 用于UI数据处理过程中的临时存储
+#define UNK_1809842e0 UIProcessingBuffer2E0                 // UI处理缓冲区2E0 - 用于UI数据处理过程中的临时存储
+#define UNK_18095aaa0 UIAnimationBufferAA0                   // UI动画缓冲区AA0 - 用于存储UI动画相关数据
+#define UNK_180959140 UILayoutBuffer140                     // UI布局缓冲区140 - 用于存储UI布局相关数据
+#define UNK_180986258 UIValidationBuffer258                 // UI验证缓冲区258 - 用于存储UI验证相关数据
+#define UNK_1809843d0 UIProcessingBuffer3D0                 // UI处理缓冲区3D0 - 用于UI数据处理过程中的临时存储
+#define UNK_180984358 UIProcessingBuffer358                 // UI处理缓冲区358 - 用于UI数据处理过程中的临时存储
 #define UIContextResourceManager430 UIStatusFlagB430
 #define UNK_18095af48 UIStatusFlagAf48
 #define UNK_18095b038 UIStatusFlagB038
