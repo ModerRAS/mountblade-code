@@ -2170,6 +2170,27 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define InitializeSystemThreading FUN_1801b6020           // 初始化系统线程
 #define InitializeSystemMemoryPool FUN_180275090           // 初始化系统内存池
 
+// 系统事件处理函数
+#define ProcessSystemEventHandling FUN_1802356b0          // 处理系统事件处理
+#define ProcessSystemMemoryRelease FUN_180275cf0           // 处理系统内存释放
+#define InitializeSystemEvent FUN_1801b8450              // 初始化系统事件
+#define ProcessSystemEvent FUN_1801afbc0                  // 处理系统事件
+#define ProcessSystemEventQueue FUN_1801af7a0              // 处理系统事件队列
+#define ProcessSystemEventFinalization FUN_180197a20      // 处理系统事件最终化
+
+// 系统资源管理函数
+#define ProcessSystemResourceAllocation FUN_180397d70     // 处理系统资源分配
+#define ProcessSystemMemoryDeallocateEx FUN_1802fddb0     // 处理系统内存释放扩展
+#define ProcessSystemMemoryCleanupEx FUN_1802fe7c0        // 处理系统内存清理扩展
+#define ProcessSystemEventCleanup FUN_1802eeba0           // 处理系统事件清理
+#define ProcessSystemDataCleanup FUN_1802fa820            // 处理系统数据清理
+#define ProcessSystemBufferCleanup FUN_1802ebcb0           // 处理系统缓冲区清理
+#define ProcessSystemThreadCleanup FUN_1803005b0           // 处理系统线程清理
+#define ProcessSystemMemoryValidation FUN_1802fca80       // 处理系统内存验证
+#define ProcessSystemEventValidation FUN_1802f9710        // 处理系统事件验证
+#define ProcessSystemDataRelease FUN_1802e7e20            // 处理系统数据释放
+#define ProcessSystemBufferRelease FUN_18063ad30          // 处理系统缓冲区释放
+
 #define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展

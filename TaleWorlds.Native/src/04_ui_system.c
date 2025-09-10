@@ -123590,7 +123590,6 @@ CleanupAndRender:
 
 
  void FUN_1807396c5(void)
-void FUN_1807396c5(void)
 
 {
   int processingResult;
@@ -123612,7 +123611,6 @@ void FUN_1807396c5(void)
 
 
  void FUN_180739773(void)
-void FUN_180739773(void)
 
 {
   longlong stackParam00000030;
