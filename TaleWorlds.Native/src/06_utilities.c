@@ -62703,7 +62703,7 @@ void SetDefaultExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Unwind_180904e20
  */
-void SetDefaultExceptionHandlerE8(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerToOffsetE8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextE8) = &SystemDefaultExceptionHandlerB;
