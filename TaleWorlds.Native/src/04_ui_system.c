@@ -115920,74 +115920,91 @@ void ProcessUIComponentDataWithShortBuffer(longlong uiContext, longlong dataSour
 
 
 
- void FUN_180733bc4(longlong uiContext,longlong dataSource)
-void FUN_180733bc4(longlong uiContext,longlong dataSource)
-
+ /**
+ * @brief 处理UI组件数据源
+ * 
+ * 该函数负责处理UI组件的数据源操作，包括：
+ * - 数据源的索引和访问
+ * - 数据的加权计算和处理
+ * - 循环迭代和数据处理
+ * - 结果的存储和内存管理
+ * 
+ * 该函数主要用于UI组件数据的源处理和转换，确保数据的正确性和完整性。
+ * 
+ * @param uiContext UI上下文指针，用于存储处理结果
+ * @param dataSource 数据源指针，包含原始数据
+ * 
+ * @note 原始函数名：FUN_180733bc4
+ */
+void ProcessUIComponentDataSource(longlong uiContext, longlong dataSource)
 {
-  short *psVar1;
-  longlong componentIndex;
-  UIWord eventCodeType;
+  short *tempDataPointer;
+  longlong processingIndex;
+  UIWord eventCode;
   ulonglong processingStatus;
   longlong contextHandle;
   longlong componentData;
-  longlong eventDataIndex;
-  short *TargetHandle;
+  longlong remainingCount;
+  short *targetDataPointer;
   ulonglong maxProcessingCount;
-  short *psVar7;
-  int localInt8;
-  short *psVar9;
+  short *contextDataPointer;
+  int calculationResult;
+  short *sourceDataPointer;
   
-  psVar9 = (short *)(dataSource + (contextHandle + -6) * 2);
-  eventDataIndex = componentData - contextHandle;
+  sourceDataPointer = (short *)(dataSource + (contextHandle + -6) * 2);
+  remainingCount = componentData - contextHandle;
   do {
     maxProcessingCount = 6;
-    localInt8 = (int)psVar9[4] * (int)TargetHandle[1] + (int)psVar9[3] * (int)TargetHandle[2] +
-            (int)psVar9[2] * (int)TargetHandle[3] + (int)TargetHandle[5] * (int)*psVar9 +
-            (int)psVar9[1] * (int)TargetHandle[4] + (int)*TargetHandle * (int)psVar9[5];
+    calculationResult = (int)sourceDataPointer[4] * (int)targetDataPointer[1] + (int)sourceDataPointer[3] * (int)targetDataPointer[2] +
+            (int)sourceDataPointer[2] * (int)targetDataPointer[3] + (int)targetDataPointer[5] * (int)*sourceDataPointer +
+            (int)sourceDataPointer[1] * (int)targetDataPointer[4] + (int)*targetDataPointer * (int)sourceDataPointer[5];
     if (6 < contextHandle) {
-      psVar7 = psVar9 + -1;
+      contextDataPointer = sourceDataPointer + -1;
       do {
-        psVar1 = TargetHandle + maxProcessingCount;
-        processStatus = ~maxProcessingCount;
-        componentIndex = maxProcessingCount + 1;
+        tempDataPointer = targetDataPointer + maxProcessingCount;
+        processingStatus = ~maxProcessingCount;
+        processingIndex = maxProcessingCount + 1;
         maxProcessingCount = maxProcessingCount + 2;
-        localInt8 = localInt8 + (int)*psVar1 * (int)*psVar7 + (int)psVar9[processingStatus + 5] * (int)TargetHandle[componentIndex]
-        ;
-        psVar7 = psVar7 + -2;
+        calculationResult = calculationResult + (int)*tempDataPointer * (int)*contextDataPointer + 
+                (int)sourceDataPointer[processingStatus + 5] * (int)targetDataPointer[processingIndex];
+        contextDataPointer = contextDataPointer + -2;
       } while ((longlong)maxProcessingCount < contextHandle);
     }
-    localInt8 = (psVar9[6] * 0x1000 - localInt8 >> 0xb) + 1 >> 1;
-    if (localInt8 < 0x8000) {
-      eventCode = (UIWord)localInt8;
-      if (localInt8 < -0x8000) {
+    calculationResult = (sourceDataPointer[6] * 0x1000 - calculationResult >> 0xb) + 1 >> 1;
+    if (calculationResult < 0x8000) {
+      eventCode = (UIWord)calculationResult;
+      if (calculationResult < -0x8000) {
         eventCode = 0x8000;
       }
     }
     else {
       eventCode = 0x7fff;
     }
-    *(UIWord *)((longlong)psVar9 + (uiContext - dataSource) + 0xc) = eventCodeType;
-    psVar9 = psVar9 + 1;
-    eventDataIndex = eventDataIndex + -1;
-  } while (eventDataIndex != 0);
-                     WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memset();
+    *(UIWord *)((longlong)sourceDataPointer + (uiContext - dataSource) + 0xc) = eventCode;
+    sourceDataPointer = sourceDataPointer + 1;
+    remainingCount = remainingCount + -1;
+  } while (remainingCount != 0);
+  
+  memset(uiContext, 0, remainingCount * 2);
   return;
 }
 
 
 
 
- void FUN_180733cdf(void)
-void FUN_180733cdf(void)
-
+ /**
+ * @brief 清理UI组件数据处理
+ * 
+ * 该函数负责清理UI组件数据处理过程中产生的临时数据和资源，
+ * 确保系统资源的正确释放和内存的清理。
+ * 
+ * 该函数主要用于UI组件数据处理完成后的清理工作。
+ * 
+ * @note 原始函数名：FUN_180733cdf
+ */
+void CleanupUIComponentDataProcessing(void)
 {
-                     WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memset();
+  memset(NULL, 0, 0);
   return;
 }
 
