@@ -115,6 +115,9 @@
 #define SystemDataParameterOffset58 0x58                       // 系统数据参数偏移量58
 #define SystemDataParameterOffset30 0x30                       // 系统数据参数偏移量30
 
+// 系统数据块大小常量
+#define SystemDataElementSize 0x30                             // 系统数据块元素大小
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误
@@ -34283,7 +34286,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   iterationCount = 0;
   if (0 < *(int *)(destinationContext + DestinationContextOffset1A0)) {
     do {
-      calculatedIndex = (int64_t)iterationCount * 0x30 + destinationContext;
+      calculatedIndex = (int64_t)iterationCount * SystemDataElementSize + destinationContext;
       operationStatus = ValidateAndExecuteOperationsA1(operationBase,calculatedIndex + ExceptionHandlerCallbackOffset);
       if (operationStatus != 0) {
         return;
