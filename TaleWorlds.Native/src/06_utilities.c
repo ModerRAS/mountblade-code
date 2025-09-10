@@ -5908,7 +5908,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存池初始化和缓存配置
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryAndSetupA2
  */
-#define InitializeSystemMemoryPoolAndConfigureCache InitializeSystemMemoryPoolAndConfigureCache
+#define InitializeSystemMemoryPoolAndConfigureCache FUN_18004c030
 
 /**
  * @brief 初始化系统内存并设置A2
@@ -5930,7 +5930,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数负责系统内存A2模块的初始化
  * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryPoolAndConfigureCache
  */
-#define InitializeSystemMemoryAndSetupA2 InitializeSystemMemoryAndSetupA2
+#define InitializeSystemMemoryAndSetupA2 FUN_18004c090
 
 /**
  * @brief 系统值计算函数
@@ -11885,8 +11885,10 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * @param bufferSize 缓冲区大小
  * @param initializationFlags 初始化标志
  * @return 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_1800a1b50
  */
-#define InitializeSystemBuffer InitializeSystemBuffer
+#define InitializeSystemBuffer FUN_1800a1b50
 
 /**
  * @brief 验证系统数据完整性
@@ -13196,7 +13198,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
  * 
  * @note 原始函数名：FUN_180296b70
  */
-#define InitializeSystemB0 InitializeSystemModuleB0
+#define InitializeSystemB0 FUN_180296b70
 
 /**
  * @brief 重置系统B0
