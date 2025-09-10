@@ -146858,7 +146858,7 @@ ulonglong FUN_180751310(longlong *uiContext,int dataSource,int targetBuffer,uint
   int aiStackX_8 [2];
   int aiStackX_10 [2];
   int aiStackX_18 [2];
-  uint *puStackX_20;
+  uint *eventDataBuffer;
   longlong *pallocatedMemory0;
   UIDword result1;
   longlong stackLong90;
@@ -146958,7 +146958,7 @@ LAB_180751529:
       eventStatus = eventStatus - localInt5;
     } while ((int)eventCodeType != 0x10);
     if (puStackX_20 != (uint *)0x0) {
-      *puStackX_20 = maxProcessingCount / iterationCounter;
+      *eventDataBuffer = maxProcessingCount / iterationCounter;
     }
   }
   return eventCodeType;
@@ -149317,7 +149317,7 @@ void FUN_180753880(longlong *uiContext,char dataSource)
   ulonglong eventStatus;
   int aiStackX_10 [2];
   UIHandle bufferValidation;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   longlong stackLong48;
   ulonglong stackUInt40;
   longlong astackLong38 [4];
@@ -149374,7 +149374,7 @@ void FUN_180753880(longlong *uiContext,char dataSource)
     if (0 < aiStackX_10[0]) {
       do {
         sourceDataInt = (int)eventProcessingCounter;
-        FUN_18075ef40(bufferValidation,eventProcessingCounter,&stackLong48,&puStackX_20,0,1);
+        FUN_18075ef40(bufferValidation,eventProcessingCounter,&stackLong48,&eventDataBuffer,0,1);
         func_0x000180763610(puStackX_20,&stackUInt40);
         if (stackUInt40 == ((longlong)*(short *)((longlong)uiContext + 0x1fc) | 0xfeed0000U)) {
           FUN_18075dbf0(stackLong48,bufferValidation,puStackX_20,4);
@@ -159565,7 +159565,7 @@ UIHandle FUN_18075d600(longlong uiContext,char dataSource,char targetBuffer)
   longlong *peventDataIndex;
   UIHandle *ptrLocal6;
   int localInt7;
-  UIByte *puStackX_20;
+  UIByte *eventDataBuffer;
   
   if ((dataSource != '\0') || (targetBuffer != '\0')) {
     if ((*(uint *)(uiContext + 100) >> 8 & 1) != 0) {
@@ -159623,14 +159623,14 @@ UIHandle FUN_18075d600(longlong uiContext,char dataSource,char targetBuffer)
       }
       return 0;
     }
-    processingStatus = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x18,1);
+    processingStatus = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&eventDataBuffer,0x18,1);
     if ((int)processingStatus != 0) {
       return processingStatus;
     }
     LOCK();
     *(uint *)(uiContext + 100) = *(uint *)(uiContext + 100) | 0x1000;
     UNLOCK();
-    *puStackX_20 = 5;
+    *eventDataBuffer = 5;
     *(longlong *)(puStackX_20 + 8) = uiContext;
     puStackX_20[0x10] = dataSource;
     puStackX_20[0x11] = targetBuffer;
@@ -166411,15 +166411,15 @@ UIHandle FUN_180762070(longlong uiContext,byte dataSource,UIByte targetBuffer)
 
 {
   UIHandle result;
-  UIByte *puStackX_20;
+  UIByte *eventDataBuffer;
   
   if (((byte)(*(uint *)(uiContext + 100) >> 7) & 1) != dataSource) {
     if ((*(uint *)(uiContext + 100) >> 8 & 1) == 0) {
-      result = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x18,targetBuffer);
+      result = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&eventDataBuffer,0x18,targetBuffer);
       if ((int)result != 0) {
         return result;
       }
-      *puStackX_20 = 0xe;
+      *eventDataBuffer = 0xe;
       puStackX_20[0x10] = dataSource;
       *(longlong *)(puStackX_20 + 8) = uiContext;
       result = func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),puStackX_20,targetBuffer);
@@ -167038,7 +167038,7 @@ UIHandle FUN_180762b60(longlong uiContext,float dataSource,char targetBuffer)
   int uiValidationResult;
   UIHandle eventCodeType;
   char localChar4;
-  UIByte *puStackX_20;
+  UIByte *eventDataBuffer;
   
   if ((dataSource < 0.0) || (256.0 < dataSource)) {
     return 0x1f;
@@ -167056,11 +167056,11 @@ UIHandle FUN_180762b60(longlong uiContext,float dataSource,char targetBuffer)
     }
   }
   else {
-    eventCodeType = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x10,1);
+    eventCodeType = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&eventDataBuffer,0x10,1);
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
-    *puStackX_20 = 0x13;
+    *eventDataBuffer = 0x13;
     *(longlong *)(puStackX_20 + 8) = uiContext;
     *(float *)(puStackX_20 + 4) = dataSource;
     eventCodeType = func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),puStackX_20,1);
@@ -168732,7 +168732,7 @@ UIHandle FUN_180766380(longlong *uiContext,float dataSource,char targetBuffer)
 
 {
   UIHandle result;
-  UIByte *puStackX_20;
+  UIByte *eventDataBuffer;
   
   if (targetBuffer == '\0') {
     if (uiContext[8] != 0) {
@@ -168763,11 +168763,11 @@ UIHandle FUN_180766380(longlong *uiContext,float dataSource,char targetBuffer)
     *(short *)(uiContext + 0x13) = (short)uiContext[0x13];
     *(UIWord *)((longlong)uiContext + 0x9a) = *(UIWord *)((longlong)uiContext + 0x9a);
     uiContext[0x14] = 0;
-    result = FUN_180743700(*uiContext,&puStackX_20,0x18,1);
+    result = FUN_180743700(*uiContext,&eventDataBuffer,0x18,1);
     if ((int)result != 0) {
       return result;
     }
-    *puStackX_20 = 0xb;
+    *eventDataBuffer = 0xb;
     *(longlong **)(puStackX_20 + 8) = uiContext;
     *(float *)(puStackX_20 + 0x10) = dataSource;
     result = func_0x000180743b40(*uiContext,puStackX_20,1);
@@ -200076,11 +200076,11 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
     }
   }
   else if ((dataSource == 0x40) && (*(char *)(uiContext + 0x220) != '\0')) {
-    resultHandle = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x104,1);
+    resultHandle = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&eventDataBuffer,0x104,1);
     if ((int)iterationCounter != 0) {
       return iterationCounter;
     }
-    *puStackX_20 = 7;
+    *eventDataBuffer = 7;
     *(longlong *)(puStackX_20 + 8) = uiContext;
     iterationCounter = *(UIHandle *)(uiContext + 0x390);
     *(UIHandle *)(puStackX_20 + 0x10) = *(UIHandle *)(uiContext + 0x388);
@@ -295014,16 +295014,16 @@ void FUN_1808401c0(UIHandle uiContext)
   int processingResult;
   int uiValidationResult;
   longlong alStackX_10 [2];
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   
   alStackX_10[1] = 0;
   processingResult = func_0x00018088c590(uiContext,alStackX_10);
   if ((((processingResult != 0) ||
        (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
         (uiValidationResult = FUN_18088c740(alStackX_10 + 1), uiValidationResult == 0)))) && (processingResult == 0)) &&
-     (processingResult = FUN_18088dec0(*(UIHandle *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), processingResult == 0))
+     (processingResult = FUN_18088dec0(*(UIHandle *)(alStackX_10[0] + 0x98),&eventDataBuffer,0x18), processingResult == 0))
   {
-    *puStackX_20 = &UNK_180982dc0;
+    *eventDataBuffer = &UNK_180982dc0;
     *(UIDword *)(puStackX_20 + 1) = 0x18;
     *(int *)(puStackX_20 + 2) = (int)uiContext;
     func_0x00018088e0d0(*(UIHandle *)(alStackX_10[0] + 0x98));
@@ -302481,7 +302481,7 @@ ulonglong FUN_18084afc0(UIHandle uiContext)
   int uiValidationResult;
   ulonglong eventCodeType;
   longlong alStackX_10 [2];
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   
   result = func_0x00018088c590(uiContext,alStackX_10);
   if ((result == 0) && ((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) == 0)) {
@@ -302496,9 +302496,9 @@ ulonglong FUN_18084afc0(UIHandle uiContext)
       alStackX_10[1] = 0;
       uiValidationResult = FUN_18088c740(alStackX_10 + 1);
       if (uiValidationResult == 0) {
-        uiValidationResult = FUN_18088dec0(*(UIHandle *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
+        uiValidationResult = FUN_18088dec0(*(UIHandle *)(alStackX_10[0] + 0x98),&eventDataBuffer,0x10);
         if (uiValidationResult == 0) {
-          *puStackX_20 = &UNK_180982ab0;
+          *eventDataBuffer = &UNK_180982ab0;
           *(UIDword *)(puStackX_20 + 1) = 0x10;
           uiValidationResult = func_0x00018088e0d0(*(UIHandle *)(alStackX_10[0] + 0x98));
           if (uiValidationResult == 0) {
@@ -340361,7 +340361,7 @@ void FUN_180869b4f(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -340431,7 +340431,7 @@ void FUN_180869b6c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -340616,7 +340616,7 @@ void FUN_180869d52(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -340686,7 +340686,7 @@ void FUN_180869d6f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -340871,7 +340871,7 @@ void FUN_180869f52(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -340941,7 +340941,7 @@ void FUN_180869f6f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -341126,7 +341126,7 @@ void FUN_18086a14f(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -341196,7 +341196,7 @@ void FUN_18086a16c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -341381,7 +341381,7 @@ void FUN_18086a34f(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -341451,7 +341451,7 @@ void FUN_18086a36c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -341636,7 +341636,7 @@ void FUN_18086a552(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -341706,7 +341706,7 @@ void FUN_18086a56f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -341891,7 +341891,7 @@ void FUN_18086a752(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -341961,7 +341961,7 @@ void FUN_18086a76f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -342146,7 +342146,7 @@ void FUN_18086a94f(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -342216,7 +342216,7 @@ void FUN_18086a96c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -342401,7 +342401,7 @@ void FUN_18086ab52(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -342471,7 +342471,7 @@ void FUN_18086ab6c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -342656,7 +342656,7 @@ void FUN_18086ad32(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -342726,7 +342726,7 @@ void FUN_18086ad4c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -342911,7 +342911,7 @@ void FUN_18086af12(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -342981,7 +342981,7 @@ void FUN_18086af2f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -343166,7 +343166,7 @@ void FUN_18086b10f(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -343236,7 +343236,7 @@ void FUN_18086b12c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -343421,7 +343421,7 @@ void FUN_18086b312(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -343491,7 +343491,7 @@ void FUN_18086b32c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -343676,7 +343676,7 @@ void FUN_18086b4ef(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -343746,7 +343746,7 @@ void FUN_18086b50c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -343931,7 +343931,7 @@ void FUN_18086b6f2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -344001,7 +344001,7 @@ void FUN_18086b70f(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -344186,7 +344186,7 @@ void FUN_18086b8f2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -344256,7 +344256,7 @@ void FUN_18086b90c(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -344441,7 +344441,7 @@ void FUN_18086bacf(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -344511,7 +344511,7 @@ void FUN_18086baec(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -344696,7 +344696,7 @@ void FUN_18086bccf(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -344766,7 +344766,7 @@ void FUN_18086bcec(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -344951,7 +344951,7 @@ void FUN_18086bed2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -345021,7 +345021,7 @@ void FUN_18086beef(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -345206,7 +345206,7 @@ void FUN_18086c0d2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -345276,7 +345276,7 @@ void FUN_18086c0ef(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -345461,7 +345461,7 @@ void FUN_18086c2d2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -345531,7 +345531,7 @@ void FUN_18086c2ec(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -345716,7 +345716,7 @@ void FUN_18086c4b2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -345786,7 +345786,7 @@ void FUN_18086c4cf(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -345971,7 +345971,7 @@ void FUN_18086c6b2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -346041,7 +346041,7 @@ void FUN_18086c6cf(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -346226,7 +346226,7 @@ void FUN_18086c8b2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -346296,7 +346296,7 @@ void FUN_18086c8cf(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -346481,7 +346481,7 @@ void FUN_18086cab2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -346551,7 +346551,7 @@ void FUN_18086cacf(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -346736,7 +346736,7 @@ void FUN_18086ccaf(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -346806,7 +346806,7 @@ void FUN_18086cccc(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -346991,7 +346991,7 @@ void FUN_18086ceaf(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -347061,7 +347061,7 @@ void FUN_18086cecc(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -347246,7 +347246,7 @@ void FUN_18086d0b2(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -347316,7 +347316,7 @@ void FUN_18086d0cf(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
@@ -347501,7 +347501,7 @@ void FUN_18086d2af(void)
   int localInt5;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   sourceDataInt = 0;
@@ -347571,7 +347571,7 @@ void FUN_18086d2cc(void)
   int allocationFlags;
   UIHandle *eventHandle;
   longlong contextDataHandle;
-  UIHandle *puStackX_20;
+  UIHandle *eventDataBuffer;
   ulonglong stackParam00000050;
   
   contextDataHandle = 0;
