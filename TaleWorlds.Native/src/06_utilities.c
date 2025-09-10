@@ -85,6 +85,9 @@
 #define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败
 #define SystemStateValidationFailed 0x5                          // 系统状态验证失败
 
+// 资源管理常量
+#define ResourceReferenceDecrement -1                             // 资源引用计数递减值
+
 // 浮点数数据偏移量常量
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
 #define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
@@ -50022,7 +50025,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(contextOffset + systemContextPointerOffset90) + 0x48);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(contextOffset + systemContextPointerOffset90) + MemoryResourcePointerTableOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
