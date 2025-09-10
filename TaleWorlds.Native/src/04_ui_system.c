@@ -192125,7 +192125,7 @@ undefined UIResourceCleanupHandler;
 // UI系统资源管理变量语义化定义
 #define UNK_18095b580 UIResourcePointerB580
 #define UNK_18095b6b8 UIResourcePointerB6b8
-#define UNK_18095b780 UIResourcePointerB780
+#define UIContextResourceManager780 UIResourcePointerB780
 #define UNK_18095b5f8 UIResourcePointerB5f8
 #define UNK_18095b638 UIResourcePointerB638
 #define UNK_18095b678 UIResourcePointerB678
@@ -192875,7 +192875,7 @@ undefined DAT_180c4eaa8;
 undefined UNK_180984dd0;
 undefined UNK_180984e88;
 undefined UNK_180984eb0;
-undefined UNK_180984ef0;
+undefined UIContextDataValidatorEF0;
 undefined UNK_1809874b0;
 undefined DAT_180bef7b8;
 undefined UNK_180985010;
@@ -215607,7 +215607,7 @@ UIHandle FUN_1807906f0(longlong uiContext)
   contextDataHandle = FUN_180791040();
   eventProcessingCounter = 0;
   componentContextPtr = (UIHandle *)
-           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_18095b780,0x24c,0,0,1);
+           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x40,&UIContextResourceManager780,0x24c,0,0,1);
   if (componentContextPtr == (UIHandle *)0x0) {
     maxProcessingCount = 0x26;
   }
@@ -215792,7 +215792,7 @@ void FUN_1807908c0(longlong uiContext)
     (**(code **)(*pstringCompareIndex + 0x20))(pstringCompareIndex);
   }
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiMemoryPointer,&UNK_18095b780,0x27f,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiMemoryPointer,&UIContextResourceManager780,0x27f,1);
 }
 
 
@@ -216315,7 +216315,7 @@ void FUN_180790ee0(longlong *uiContext)
                       (longlong)(sourceDataInt * *(int *)((longlong)uiContext + 0x1c) + localInt5) * 8);
             (**(code **)(*colorBufferPointer + 0x38))(colorBufferPointer,0);
                      WARNING: Subroutine does not return
-            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UNK_18095b780,0x165,1);
+            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UIContextResourceManager780,0x165,1);
           }
           uiElementIndex = uiElementIndex + 1;
         } while (localInt5 < processingResult);
@@ -216325,7 +216325,7 @@ void FUN_180790ee0(longlong *uiContext)
     stringCompareIndex = uiContext[7];
   }
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stringCompareIndex,&UNK_18095b780,0x16a,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stringCompareIndex,&UIContextResourceManager780,0x16a,1);
 }
 
 
@@ -216359,7 +216359,7 @@ void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
                       (longlong)(uiCompareResult * *(int *)(componentData + 0x1c) + sourceDataInt) * 8);
             (**(code **)(*colorBufferPointer + 0x38))(colorBufferPointer,0);
                      WARNING: Subroutine does not return
-            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UNK_18095b780,0x165,1);
+            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UIContextResourceManager780,0x165,1);
           }
           sourceDataInt = sourceDataInt + 1;
         } while (sourceDataInt < processingResult);
@@ -216369,7 +216369,7 @@ void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
     dataSource = *(UIHandle *)(componentData + 0x38);
   }
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),dataSource,&UNK_18095b780,0x16a,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),dataSource,&UIContextResourceManager780,0x16a,1);
 }
 
 
@@ -216401,7 +216401,7 @@ void FUN_180790f06(void)
                     (longlong)(unmodifiedEBP * *(int *)(componentData + 0x1c) + uiCompareResult) * 8);
           (**(code **)(*colorBufferPointer + 0x38))(colorBufferPointer,0);
                      WARNING: Subroutine does not return
-          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UNK_18095b780,0x165,1);
+          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UIContextResourceManager780,0x165,1);
         }
         uiCompareResult = uiCompareResult + 1;
       } while (uiCompareResult < processingResult);
@@ -216410,7 +216410,7 @@ void FUN_180790f06(void)
   } while (unmodifiedEBP < *(int *)(componentData + 0x18));
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(UIHandle *)(componentData + 0x38),
-                &UNK_18095b780,0x16a,1);
+                &UIContextResourceManager780,0x16a,1);
 }
 
 
@@ -216423,7 +216423,7 @@ void FUN_180790fa7(UIHandle uiContext,UIHandle dataSource)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),dataSource,&UNK_18095b780,0x16a,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),dataSource,&UIContextResourceManager780,0x16a,1);
 }
 
 
@@ -216452,7 +216452,7 @@ UIHandle FUN_180790ff0(longlong uiContext)
 {
   if (*(longlong *)(uiBufferData + 0x40) != 0) {
     FUN_180741df0(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(uiBufferData + 0x40),
-                  &UNK_18095b780,0x9b);
+                  &UIContextResourceManager780,0x9b);
     *(UIHandle *)(uiContext + 0x40) = 0;
   }
   return 0;
@@ -216576,7 +216576,7 @@ LAB_1807912bc:
     stackInte8 = 0;
     stackInt98 = uiValidationResult;
     eventDataIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(int *)(uiBufferData + 3) * bufferValue * 8
-                          ,&UNK_18095b780,0x11f);
+                          ,&UIContextResourceManager780,0x11f);
     uiContext[7] = eventDataIndex;
     if ((eventDataIndex != 0) && (ptrLocal8 = uiResultPointer, 0 < *(int *)(uiBufferData + 3))) {
       do {
@@ -216595,7 +216595,7 @@ LAB_1807912bc:
             if ((uiValidationResult == 0) || (processingStatusPointer[2] == 0)) {
               stackInte8 = 0;
               ptrLocal6 = (UIHandle *)
-                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UNK_18095b780,
+                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UIContextResourceManager780,
                                      0x12d);
               if (ptrLocal6 != (UIHandle *)0x0) {
                 *ptrLocal6 = &UNK_18095b638;
@@ -216605,7 +216605,7 @@ LAB_1807912bc:
             else {
               stackInte8 = 0;
               ptrLocal6 = (UIHandle *)
-                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UNK_18095b780,
+                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UIContextResourceManager780,
                                      0x132);
               if (ptrLocal6 != (UIHandle *)0x0) {
                 ptrLocal8 = ptrLocal6 + 0x12;
@@ -216762,7 +216762,7 @@ void FUN_180791277(int uiContext)
       *(uint *)((longlong)contextHandle + 0x1c) = bufferValue;
     } while (((int)bufferValue < 4) && (piterationCounter = (UIHandle *)(ulonglong)bufferValue, 0 < unmodifiedESI));
     eventDataIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                          *(int *)(contextHandle + 3) * bufferValue * 8,&UNK_18095b780,0x11f,0);
+                          *(int *)(contextHandle + 3) * bufferValue * 8,&UIContextResourceManager780,0x11f,0);
     contextHandle[7] = eventDataIndex;
     if ((eventDataIndex != 0) && (piterationCounter = componentTransformData, 0 < *(int *)(contextHandle + 3))) {
       do {
@@ -216781,7 +216781,7 @@ void FUN_180791277(int uiContext)
             piterationCounter = componentTransformData;
             if ((ProcessingResult1 == 0) || (pProcessingResult5[2] == 0)) {
               ptrLocal6 = (UIHandle *)
-                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UNK_18095b780,
+                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UIContextResourceManager780,
                                      0x12d,0);
               if (ptrLocal6 != (UIHandle *)0x0) {
                 *ptrLocal6 = &UNK_18095b638;
@@ -216790,7 +216790,7 @@ void FUN_180791277(int uiContext)
             }
             else {
               ptrLocal6 = (UIHandle *)
-                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UNK_18095b780,
+                       FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UIContextResourceManager780,
                                      0x132,0);
               if (ptrLocal6 != (UIHandle *)0x0) {
                 piterationCounter = ptrLocal6 + 0x12;
@@ -216941,7 +216941,7 @@ void FUN_180791615(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBuffer
       ptrLocal6 = uiTargetHandle;
       if ((localInt9 == 0) || (eventHandle[2] == 0)) {
         componentContextPtr = (UIHandle *)
-                 FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UNK_18095b780,0x12d);
+                 FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UIContextResourceManager780,0x12d);
         if (componentContextPtr != (UIHandle *)0x0) {
           *componentContextPtr = &UNK_18095b638;
           ptrLocal6 = componentContextPtr;
@@ -216949,7 +216949,7 @@ void FUN_180791615(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBuffer
       }
       else {
         componentContextPtr = (UIHandle *)
-                 FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UNK_18095b780,0x132);
+                 FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0xb0,&UIContextResourceManager780,0x132);
         if (componentContextPtr != (UIHandle *)0x0) {
           ptrLocal6 = componentContextPtr + 0x12;
           *componentContextPtr = &UNK_18095b678;
@@ -217022,7 +217022,7 @@ FUN_1807916e0(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle b
   *(int *)(uiBufferData + 0x18) = param_6;
   *(int *)(uiBufferData + 0x20) = resultPointer + param_6;
   *(int *)(uiBufferData + 0x24) = targetBuffer * 2;
-  allocatedMemory = FUN_180741d80(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),targetBuffer * 4,0x10,&UNK_18095b780,0x87
+  allocatedMemory = FUN_180741d80(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),targetBuffer * 4,0x10,&UIContextResourceManager780,0x87
                         ,0);
   *(longlong *)(uiBufferData + 0x40) = allocatedMemory;
   iterationCount = 0;
@@ -232642,7 +232642,7 @@ UIHandle FUN_180801ce0(longlong uiContext)
   }
   if (*pcontextDataHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UNK_18097ec60,0x1f0,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UIContextDataProcessorC60,0x1f0,1);
   }
   pcontextDataHandle = (longlong *)(uiContext + 0x438);
   if (uiContext == 0) {
@@ -232650,7 +232650,7 @@ UIHandle FUN_180801ce0(longlong uiContext)
   }
   if (*pcontextDataHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UNK_18097ec60,0x1f1,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UIContextDataProcessorC60,0x1f1,1);
   }
   pcontextDataHandle = (longlong *)(uiContext + 0x440);
   if (uiContext == 0) {
@@ -232677,13 +232677,13 @@ UIHandle FUN_180801ce0(longlong uiContext)
         return 0;
       }
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UNK_18097ec60,500,1);
+      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UIContextDataProcessorC60,500,1);
     }
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UNK_18097ec60,499,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UIContextDataProcessorC60,499,1);
   }
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UNK_18097ec60,0x1f2,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pcontextDataHandle,&UIContextDataProcessorC60,0x1f2,1);
 }
 
 
@@ -232719,7 +232719,7 @@ void FUN_180801ef0(longlong uiContext)
     stackUInt288 = stackUInt288 + 1;
     if (astackInt284[0] != 0) {
       componentIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),astackInt284[0] * 0x3c,
-                            &UNK_18097ec60,0x6f,(ulonglong)pcontextDataHandle & 0xffffffff00000000);
+                            &UIContextDataProcessorC60,0x6f,(ulonglong)pcontextDataHandle & 0xffffffff00000000);
       *(longlong *)(uiBufferData + 0x438) = componentIndex;
       if (componentIndex == 0) goto LAB_180802354;
     }
@@ -232986,17 +232986,17 @@ void FUN_1808025c0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *
           pstackIntf8 = (int *)((ulonglong)pstackIntf8 & 0xffffffff00000000);
           *(bool *)(uiContext + 0x460) = localInt7 == 0;
           allocatedMemory2 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult8 * 0x18,
-                                 &UNK_18097ec60,400);
+                                 &UIContextDataProcessorC60,400);
           *(longlong *)(uiBufferData + 0x440) = allocatedMemory2;
           if (allocatedMemory2 != 0) {
             pstackIntf8 = (int *)((ulonglong)pstackIntf8 & 0xffffffff00000000);
             allocatedMemory2 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult8 * 0x34,
-                                   &UNK_18097ec60,0x196);
+                                   &UIContextDataProcessorC60,0x196);
             *(longlong *)(uiBufferData + 0x448) = allocatedMemory2;
             if (allocatedMemory2 != 0) {
               pstackIntf8 = (int *)((ulonglong)pstackIntf8 & 0xffffffff00000000);
               allocatedMemory2 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                                     *param_6 * *(int *)(uiBufferData + 0x470) * 4,&UNK_18097ec60,0x19d);
+                                     *param_6 * *(int *)(uiBufferData + 0x470) * 4,&UIContextDataProcessorC60,0x19d);
               *(longlong *)(uiBufferData + 0x458) = allocatedMemory2;
               if (allocatedMemory2 != 0) {
                 allocatedMemory2 = *uiMemoryPointer;
@@ -233034,7 +233034,7 @@ void FUN_1808025c0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *
                 if (localInt7 == 0) {
                   pstackIntf8 = (int *)((ulonglong)pstackIntf8 & 0xffffffff00000000);
                   dataPointer = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult8 * 8,
-                                         &UNK_18097ec60,0x1b9);
+                                         &UIContextDataProcessorC60,0x1b9);
                   *(UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x11630) = dataPointer;
                   if (*(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x11630) != 0) {
                     *(UIDword *)(*(longlong *)(uiBufferData + 0x48) + 0x11628) = 0;
@@ -233244,17 +233244,17 @@ void FUN_180802653(void)
         localInt7 = (**(code **)(*(longlong *)*piterationCount + 0xb8))();
         eventStatus = (ulonglong)shaderHandle & 0xffffffff00000000;
         *(bool *)(contextHandle + 0x460) = localInt7 == 0;
-        AllocatedMemoryBlock1 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult6 * 0x18,&UNK_18097ec60,
+        AllocatedMemoryBlock1 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult6 * 0x18,&UIContextDataProcessorC60,
                                400,eventStatus);
         *(longlong *)(contextHandle + 0x440) = AllocatedMemoryBlock1;
         if (AllocatedMemoryBlock1 != 0) {
           eventStatus = eventStatus & 0xffffffff00000000;
           AllocatedMemoryBlock1 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult6 * 0x34,
-                                 &UNK_18097ec60,0x196,eventStatus);
+                                 &UIContextDataProcessorC60,0x196,eventStatus);
           *(longlong *)(contextHandle + 0x448) = AllocatedMemoryBlock1;
           if (AllocatedMemoryBlock1 != 0) {
             AllocatedMemoryBlock1 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                                   *preservedRegister15 * *(int *)(contextHandle + 0x470) * 4,&UNK_18097ec60,0x19d
+                                   *preservedRegister15 * *(int *)(contextHandle + 0x470) * 4,&UIContextDataProcessorC60,0x19d
                                    ,eventStatus & 0xffffffff00000000);
             *(longlong *)(contextHandle + 0x458) = AllocatedMemoryBlock1;
             if (AllocatedMemoryBlock1 != 0) {
@@ -233292,7 +233292,7 @@ void FUN_180802653(void)
                                  *(UIDword *)(contextHandle + 0x470),shaderHandle);
               if (localInt7 == 0) {
                 dataPointer = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),processingResult6 * 8,
-                                       &UNK_18097ec60,0x1b9,(ulonglong)shaderHandle & 0xffffffff00000000)
+                                       &UIContextDataProcessorC60,0x1b9,(ulonglong)shaderHandle & 0xffffffff00000000)
                 ;
                 *(UIHandle *)(*(longlong *)(contextHandle + 0x48) + 0x11630) = dataPointer;
                 if (*(longlong *)(*(longlong *)(contextHandle + 0x48) + 0x11630) != 0) {
@@ -233448,17 +233448,17 @@ void FUN_1808027ec(void)
     loopCounter = (**(code **)(*(longlong *)*preservedRegister13 + 0xb8))();
     eventStatus = (ulonglong)renderDataPointer & 0xffffffff00000000;
     *(bool *)(contextHandle + 0x460) = loopCounter == 0;
-    contextOffset = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 0x18,&UNK_18097ec60,400,
+    contextOffset = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 0x18,&UIContextDataProcessorC60,400,
                           eventStatus);
     *(longlong *)(contextHandle + 0x440) = contextOffset;
     if (contextOffset != 0) {
       eventStatus = eventStatus & 0xffffffff00000000;
-      contextOffset = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 0x34,&UNK_18097ec60,
+      contextOffset = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 0x34,&UIContextDataProcessorC60,
                             0x196,eventStatus);
       *(longlong *)(contextHandle + 0x448) = contextOffset;
       if (contextOffset != 0) {
         contextOffset = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                              *preservedRegister15 * *(int *)(contextHandle + 0x470) * 4,&UNK_18097ec60,0x19d,
+                              *preservedRegister15 * *(int *)(contextHandle + 0x470) * 4,&UIContextDataProcessorC60,0x19d,
                               eventStatus & 0xffffffff00000000);
         *(longlong *)(contextHandle + 0x458) = contextOffset;
         if (contextOffset != 0) {
@@ -233496,7 +233496,7 @@ void FUN_1808027ec(void)
                             (colorBufferPointer,*(UIHandle *)(contextHandle + 0x440),ProcessingResult5,
                              *(UIDword *)(contextHandle + 0x470),resultPointer7);
           if (loopCounter == 0) {
-            dataPointer = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 8,&UNK_18097ec60
+            dataPointer = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingResult5 * 8,&UIContextDataProcessorC60
                                    ,0x1b9,(ulonglong)resultPointer7 & 0xffffffff00000000);
             *(UIHandle *)(*(longlong *)(contextHandle + 0x48) + 0x11630) = dataPointer;
             if (*(longlong *)(*(longlong *)(contextHandle + 0x48) + 0x11630) != 0) {
@@ -233706,7 +233706,7 @@ UIHandle FUN_180802e50(longlong uiContext,longlong dataSource)
   processingResult = *puiCompareResult;
   *(int *)(dataSource + 0x24) = processingResult * 2;
   contextDataHandle = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                        uiValidationResult * (int)(((ulonglong)(uint)(processingResult * 2) << 5) >> 3),&UNK_18097ec60,0x2dc
+                        uiValidationResult * (int)(((ulonglong)(uint)(processingResult * 2) << 5) >> 3),&UIContextDataProcessorC60,0x2dc
                         ,0);
   peventDataIndex = (longlong *)(uiContext + 0x4b0);
   if (uiContext == 0) {
@@ -233768,7 +233768,7 @@ UIHandle FUN_180802ea1(longlong *uiContext)
   processingResult = *puiCompareResult;
   *(int *)(componentData + 0x24) = processingResult * 2;
   contextDataHandle = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                        uiValidationResult * (int)(((ulonglong)(uint)(processingResult * 2) << 5) >> 3),&UNK_18097ec60,0x2dc
+                        uiValidationResult * (int)(((ulonglong)(uint)(processingResult * 2) << 5) >> 3),&UIContextDataProcessorC60,0x2dc
                         ,0);
   peventDataIndex = (longlong *)(contextHandle + 0x4b0);
   if (contextHandle == 0) {
@@ -233823,7 +233823,7 @@ UIDword FUN_180802ecf(void)
   *(int *)(componentData + 0x24) = processingResult * 2;
   stringCompareIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
                         stackParam00000050 * (int)(((ulonglong)(uint)(processingResult * 2) << 5) >> 3),
-                        &UNK_18097ec60,0x2dc);
+                        &UIContextDataProcessorC60,0x2dc);
   pcontextDataHandle = (longlong *)(contextHandle + 0x4b0);
   if (contextHandle == 0) {
     pcontextDataHandle = (longlong *)0x4b8;
@@ -326782,7 +326782,7 @@ void FUN_18085dff0(UIHandle *uiContext)
     peventDataIndex[1] = (longlong)peventDataIndex;
     *peventDataIndex = (longlong)peventDataIndex;
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UNK_180984ef0,0x40e,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),peventDataIndex,&UIContextDataValidatorEF0,0x40e,1);
   }
   pCharacterDataOffset = (longlong *)uiContext[0x9a];
   if ((pCharacterDataOffset < (longlong *)uiContext[0x9a]) ||
@@ -326840,7 +326840,7 @@ void FUN_18085dff0(UIHandle *uiContext)
     }
     (**(code **)(*pCharacterDataOffset + 0x28))(pCharacterDataOffset,0);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pCharacterDataOffset,&UNK_180984ef0,0x418,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pCharacterDataOffset,&UIContextDataValidatorEF0,0x418,1);
   }
   componentIndex = *pCharacterDataOffset;
   eventProcessingCounter = *(uint *)(componentIndex + 0x14);
@@ -326877,7 +326877,7 @@ void FUN_18085dff0(UIHandle *uiContext)
   }
 LAB_18085e1d5:
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UNK_180984ef0,0x413,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UIContextDataValidatorEF0,0x413,1);
 }
 
 
@@ -326945,7 +326945,7 @@ void FUN_18085e003(UIHandle *uiContext)
     pcontextDataHandle[1] = (longlong)pcontextDataHandle;
     *pcontextDataHandle = (longlong)pcontextDataHandle;
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UNK_180984ef0,0x40e,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextDataHandle,&UIContextDataValidatorEF0,0x40e,1);
   }
   pcontextOffset = (longlong *)uiContext[0x9a];
   if ((pcontextOffset < (longlong *)uiContext[0x9a]) ||
@@ -327003,7 +327003,7 @@ void FUN_18085e003(UIHandle *uiContext)
     }
     (**(code **)(*pcontextOffset + 0x28))(pcontextOffset,0);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextOffset,&UNK_180984ef0,0x418,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pcontextOffset,&UIContextDataValidatorEF0,0x418,1);
   }
   allocatedMemory = *pcontextOffset;
   iterationCounter = *(uint *)(allocatedMemory + 0x14);
@@ -327040,7 +327040,7 @@ void FUN_18085e003(UIHandle *uiContext)
   }
 LAB_18085e1d5:
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UNK_180984ef0,0x413,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UIContextDataValidatorEF0,0x413,1);
 }
 
 
@@ -327119,7 +327119,7 @@ void FUN_18085e112(void)
     }
     (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer,0);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UNK_180984ef0,0x418,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UIContextDataValidatorEF0,0x418,1);
   }
   allocatedMemory = *eventHandle;
   maxProcessingCount = *(uint *)(allocatedMemory + 0x14);
@@ -327157,7 +327157,7 @@ void FUN_18085e112(void)
   }
 LAB_18085e1d5:
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UNK_180984ef0,0x413,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UIContextDataValidatorEF0,0x413,1);
 }
 
 
@@ -329507,7 +329507,7 @@ void FUN_180860480(longlong uiContext,UIHandle dataSource,UIHandle *targetBuffer
     stackUInt70 = 0;
     stackUInt78 = 0;
     colorBufferPointer = (longlong *)
-             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x30,&UNK_180984ef0,0x705);
+             FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x30,&UIContextDataValidatorEF0,0x705);
     if (colorBufferPointer == (longlong *)0x0) goto LAB_1808605b0;
     *colorBufferPointer = (longlong)colorBufferPointer;
     colorBufferPointer[1] = (longlong)colorBufferPointer;
@@ -329851,7 +329851,7 @@ LAB_180860af6:
                       colorBufferPointer1[1] = (longlong)colorBufferPointer1;
                       *colorBufferPointer1 = (longlong)colorBufferPointer1;
                      WARNING: Subroutine does not return
-                      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer1,&UNK_180984ef0,
+                      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer1,&UIContextDataValidatorEF0,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -330288,7 +330288,7 @@ joined_r0x000180861496:
                         colorBufferPointer1[1] = (longlong)colorBufferPointer1;
                         *colorBufferPointer1 = (longlong)colorBufferPointer1;
                      WARNING: Subroutine does not return
-                        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer1,&UNK_180984ef0
+                        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer1,&UIContextDataValidatorEF0
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;
@@ -330538,7 +330538,7 @@ LAB_180860af6:
                     colorBufferPointer0[1] = (longlong)colorBufferPointer0;
                     *colorBufferPointer0 = (longlong)colorBufferPointer0;
                      WARNING: Subroutine does not return
-                    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer0,&UNK_180984ef0,
+                    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer0,&UIContextDataValidatorEF0,
                                   0xa2c,1);
                   }
                   goto LAB_180861693;
@@ -330968,7 +330968,7 @@ joined_r0x000180861496:
                       colorBufferPointer0[1] = (longlong)colorBufferPointer0;
                       *colorBufferPointer0 = (longlong)colorBufferPointer0;
                      WARNING: Subroutine does not return
-                      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer0,&UNK_180984ef0,
+                      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer0,&UIContextDataValidatorEF0,
                                     0xadc,1);
                     }
                     goto LAB_180861693;
@@ -331114,7 +331114,7 @@ LAB_18086154d:
     uiMemoryPointer0[1] = (longlong)uiMemoryPointer0;
     *uiMemoryPointer0 = (longlong)uiMemoryPointer0;
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiMemoryPointer0,&UNK_180984ef0,0xadc,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiMemoryPointer0,&UIContextDataValidatorEF0,0xadc,1);
   }
 LAB_180861693:
                      WARNING: Subroutine does not return
@@ -332438,7 +332438,7 @@ void FUN_180862080(longlong uiContext,longlong *dataSource,UIHandle targetBuffer
   stackUInt148 = 0;
   uiMemoryPointer0 = (longlong *)0x0;
   componentData = (longlong *)
-           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x30,&UNK_180984ef0,0x705);
+           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x30,&UIContextDataValidatorEF0,0x705);
   if (componentData == (longlong *)0x0) goto FUN_18086247a;
   *componentData = (longlong)componentData;
   componentData[1] = (longlong)componentData;
@@ -332473,7 +332473,7 @@ LAB_180862261:
         (**(code **)(*(longlong *)componentData[2] + 0x30))((longlong *)componentData[2],&stackLongd0);
         ProcessingResult2 = FUN_1808caa20(uiContext + 0x378 + (ulonglong)(~(iterationCount >> 1) & 1) * 0x80,&stackLongd0);
         if (ProcessingResult2 == 0) {
-          FUN_18085d7f0(componentData,&UNK_180984ef0,0x7a5);
+          FUN_18085d7f0(componentData,&UIContextDataValidatorEF0,0x7a5);
         }
         goto FUN_18086247a;
       }
@@ -332989,7 +332989,7 @@ void FUN_1808629a0(longlong uiContext,UIHandle dataSource,char targetBuffer)
         pstringCompareIndex[1] = (longlong)pstringCompareIndex;
         *pstringCompareIndex = (longlong)pstringCompareIndex;
                      WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pstringCompareIndex,&UNK_180984ef0,0x8a4);
+        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pstringCompareIndex,&UIContextDataValidatorEF0,0x8a4);
       }
     }
     else if (targetBuffer != '\0') {

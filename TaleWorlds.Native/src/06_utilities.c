@@ -118,6 +118,14 @@
 // 系统数据块大小常量
 #define SystemDataElementSize 0x30                             // 系统数据块元素大小
 
+// 位操作掩码常量
+#define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000
+#define BitOperationValue4000 0x4000                            // 位操作值4000
+#define BitOperationMask7fff 0x7fff                              // 位操作掩码7fff
+
+// 字符验证常量
+#define CharacterValidationOffset 0x57                           // 字符验证偏移量
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误
@@ -34802,7 +34810,7 @@ DataBuffer ProcessDataConversionPrimary(int64_t operationBase,DataBuffer *dataBu
   }
   else {
     conversionResult = 4;
-    stackDataBuffer[0] = (operationResult & 0xffffc000 | 0x4000) * 2 | operationResult & 0x7fff;
+    stackDataBuffer[0] = (operationResult & BitOperationMaskC000 | BitOperationValue4000) * 2 | operationResult & BitOperationMask7fff;
   }
   conversionResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,conversionResult);
@@ -35067,7 +35075,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext, int *ParameterArray)
   DataWord memoryRegionBase;
   
   dataProcessingFlags = (ByteTriple)((uint)InputAccumulator >> 8);
-  validationStatus = (char)InputAccumulator + -0x57 + carryFlag;
+  validationStatus = (char)InputAccumulator + -CharacterValidationOffset + carryFlag;
   memoryRegionBase = CONCAT31(dataProcessingFlags,validationStatus);
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
   *(uint *)(operationBase + MemoryOperationMask) = *(uint *)(operationBase + MemoryOperationMask) & StackFrameRegister;
