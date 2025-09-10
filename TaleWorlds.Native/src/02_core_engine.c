@@ -242826,7 +242826,7 @@ long long * FUN_18019eb80(long long ContextHandle,long long *ContextHandleSize
           if (ContextHandle1 != (long long *)0x0) {
             (**(code **)(*ContextHandle1 + 0x28))(ContextHandle1);
           }
-          FUN_1800763c0(ContextHandle1,&pSystemStackPointer2e0);
+          ProcessSystemContextHandleEx(ContextHandle1,&pSystemStackPointer2e0);
           if (ContextHandle1 != (long long *)0x0) {
             (**(code **)(*ContextHandle1 + 0x38))(ContextHandle1);
           }
@@ -243000,7 +243000,7 @@ long long * FUN_18019eb80(long long ContextHandle,long long *ContextHandleSize
             if (ContextHandle1 != (long long *)0x0) {
               (**(code **)(*ContextHandle1 + 0x28))(ContextHandle1);
             }
-            FUN_1800763c0(ContextHandle1,&pSystemStackOffset2d8);
+            ProcessSystemContextHandleEx(ContextHandle1,&pSystemStackOffset2d8);
             if (ContextHandle1 != (long long *)0x0) {
               (**(code **)(*ContextHandle1 + 0x38))(ContextHandle1);
             }
