@@ -120612,8 +120612,8 @@ void InitializeUIDataBufferAndSort(longlong uiContext,longlong dataSource,int ta
   longlong searchStartIndex;
   int processingValue;
   
-  eventProcessingCounter = 0;
-  localLong7 = (longlong)(int)bufferSize;
+  processedItemCount = 0;
+  bufferSizeLong = (longlong)(int)bufferSize;
   if (0 < (int)bufferSize) {
     eventStatus = eventProcessingCounter;
     if (0xf < bufferSize) {
