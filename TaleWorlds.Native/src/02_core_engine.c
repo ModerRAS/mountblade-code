@@ -125,6 +125,14 @@
 #define ProcessSystemBufferStatus FUN_18018be60                   // 处理系统缓冲区状态
 #define ValidateInputDataLength FUN_180639de0                      // 验证输入数据长度
 #define ProcessMemoryPoolBlockSize FUN_180058830                    // 处理内存池块大小
+#define ProcessSystemCharacterEncodingValidationEx FUN_1800c4720  // 处理系统字符编码验证扩展
+#define ProcessSystemCharacterEncodingAndStatusManagementEx FUN_180190ae0 // 处理系统字符编码和状态管理扩展
+#define ProcessSystemDataTemplateInitialization FUN_1800e7d00    // 处理系统数据模板初始化
+#define ProcessSystemEventTemplatePrimary FUN_1801b99e0            // 处理系统事件模板主函数
+#define ProcessSystemMemoryBlockInitialization FUN_18004a130       // 处理系统内存块初始化
+#define ProcessSystemCharacterEncodingSecondary FUN_180207e00      // 处理系统字符编码次函数
+#define ProcessSystemEncodingDataSecondary FUN_180211f70          // 处理系统编码数据次函数
+#define ProcessSystemMemoryManagement FUN_180738730              // 处理系统内存管理
 
 /**
  * @brief 配置核心引擎指针
