@@ -4944,10 +4944,10 @@ void* UIGestureCoordinates;
 #define UIRenderData758 (void*)0x180957758
 #define UIRenderData620 (void*)0x180957620
 #define UIRenderData6E0 (void*)0x1809576e0
-#define UIRenderData5C8 UNK_1809575c8
-#define UIRenderData680 UNK_180957680
-#define UIRenderData770 UNK_180957770
-#define UIRenderData8B0 UNK_1809578b0
+#define UIRenderData5C8 (void*)0x1809575c8
+#define UIRenderData680 (void*)0x180957680
+#define UIRenderData770 (void*)0x180957770
+#define UIRenderData8B0 (void*)0x1809578b0
 #define UIRenderData858 UNK_180957858
 #define UIRenderData8F0 UNK_1809578f0
 #define UIRenderData910 UNK_180957910
@@ -111129,8 +111129,27 @@ void ProcessUIMatrixTransformationAdvanced(float *uiContext,float *dataSource)
 
 
 
- void FUN_18072dde7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18072dde7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIBufferDataWithMatrixOperation(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+/**
+ * @brief 处理UI缓冲区数据和矩阵运算
+ * 
+ * 该函数负责处理UI缓冲区数据，包括矩阵运算和数据验证。
+ * 主要功能：
+ * 1. 验证缓冲区大小和数据边界
+ * 2. 执行矩阵运算和向量变换
+ * 3. 更新目标缓冲区中的计算结果
+ * 4. 处理UI组件的变换数据
+ * 
+ * @param uiContext UI上下文句柄，包含组件的状态信息
+ * @param dataSource 数据源指针，包含矩阵运算的原始数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储计算结果
+ * @param bufferSize 缓冲区大小，用于数据边界验证
+ * 
+ * @note 原始函数名：FUN_18072dde7
+ * @warning 该函数涉及大量的浮点数运算，需要注意数值精度
+ * @see ProcessUIBufferDataWithValidation, ProcessUIMatrixTransformationAdvanced
+ */
+void ProcessUIBufferDataWithMatrixOperation(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float *BaseValuePointer;
@@ -111160,8 +111179,27 @@ void FUN_18072dde7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,lo
 
 
 
- void FUN_18072df00(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_18072df00(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+ void ProcessUIContextDataWithExtendedTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+/**
+ * @brief 处理UI上下文数据和扩展变换
+ * 
+ * 该函数负责处理UI上下文数据，包括扩展的矩阵变换和复杂的数据运算。
+ * 主要功能：
+ * 1. 验证数据大小和边界条件
+ * 2. 执行扩展的矩阵变换计算
+ * 3. 处理UI组件的复杂变换数据
+ * 4. 更新目标缓冲区中的计算结果
+ * 
+ * @param uiContext UI上下文指针，包含组件的变换信息
+ * @param dataSource 数据源指针，包含变换计算的原始数据
+ * @param targetBuffer 目标缓冲区指针，用于存储计算结果
+ * @param bufferSize 缓冲区大小，用于数据边界验证
+ * 
+ * @note 原始函数名：FUN_18072df00
+ * @warning 该函数涉及大量的浮点数运算，需要注意数值精度
+ * @see ProcessUIContextDataWithMatrixTransform, ProcessUIMatrixTransformationAdvanced
+ */
+void ProcessUIContextDataWithExtendedTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
 
 {
   float *BaseValuePointer;
@@ -111218,8 +111256,25 @@ void FUN_18072df00(longlong uiContext,float *dataSource,longlong targetBuffer,in
 
 
 
- void FUN_18072df29(float *uiContext,float *dataSource)
-void FUN_18072df29(float *uiContext,float *dataSource)
+ void ProcessUIComponentTransformOptimized(float *uiContext,float *dataSource)
+/**
+ * @brief 处理UI组件变换（优化版本）
+ * 
+ * 该函数负责处理UI组件的优化变换计算，包括高效的矩阵运算和数据处理。
+ * 主要功能：
+ * 1. 执行优化的3x3矩阵变换计算
+ * 2. 处理UI组件的位置、旋转和缩放数据
+ * 3. 计算变换后的顶点坐标
+ * 4. 更新UI上下文中的变换数据
+ * 
+ * @param uiContext UI上下文指针，包含组件的变换信息
+ * @param dataSource 数据源指针，包含变换计算的原始数据
+ * 
+ * @note 原始函数名：FUN_18072df29
+ * @warning 该函数涉及大量的浮点数运算，需要注意数值精度
+ * @see ProcessUIComponentDataCalculation, ProcessUIMatrixTransformationAdvanced
+ */
+void ProcessUIComponentTransformOptimized(float *uiContext,float *dataSource)
 
 {
   float *BaseValuePointer;
