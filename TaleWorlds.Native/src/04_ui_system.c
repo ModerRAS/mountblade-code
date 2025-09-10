@@ -33398,7 +33398,7 @@ LAB_18066fdc2:
               *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 7) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 7);
             }
-            iterationCount3 = (uint)bVar4;
+            iterationCount3 = (uint)TargetBufferFlag;
             componentIndex0 = uiContext + 0x1ed0;
             if (iterationCount3 != 0) {
               if (*(int *)(uiBufferData + 0x1ec0) == 0) {
@@ -34232,7 +34232,7 @@ LAB_18066fdc2:
              (*(longlong *)(*(longlong *)(uiContext + 0x43d8) + lStack0000000000000030 * 8) + 7) =
                  *(UIByte *)(*(longlong *)(contextHandle + 0xeb8) + 7 + allocatedMemory6 * 7);
           }
-          iterationCount1 = (uint)bVar4;
+          iterationCount1 = (uint)TargetBufferFlag;
           allocatedMemory6 = TargetHandle + 0x1ed0;
           if (iterationCount1 != 0) {
             if (*(int *)(TargetHandle + 0x1ec0) == 0) {
@@ -43900,23 +43900,23 @@ void ProcessColorDataRGB(UIByte *outputBuffer,longlong stride,byte *colorData1,b
   eventStatus = (UIByte)((int)(IsEventProcessingActive + 1 + (uint)ProcessingFlag) >> 1);
   uiContext[dataSource * 2 + 2] = eventStatus;
   uiContext[1] = eventStatus;
-  eventStatus = (UIByte)((int)(ProcessingFlag + 1 + (uint)bVar4) >> 1);
+  eventStatus = (UIByte)((int)(ProcessingFlag + 1 + (uint)TargetBufferFlag) >> 1);
   uiContext[dataSource * 2 + 3] = eventStatus;
   uiContext[2] = eventStatus;
-  uiContext[3] = (char)((int)(bVar4 + 1 + (uint)EventprocessingStatus) >> 1);
+  uiContext[3] = (char)((int)(TargetBufferFlag + 1 + (uint)EventprocessingStatus) >> 1);
   resultPointer = uiContext + dataSource * 3;
-  *resultPointer = (char)((int)((uint)bVar7 + (bVar6 + 1) * 2 + (uint)IsValidationComplete) >> 2);
-  uiContext[dataSource * 2] = (char)((int)(dataPointer + (IsValidationComplete + 1) * 2 + (uint)bVar6) >> 2);
+  *resultPointer = (char)((int)((uint)BufferSizeStatus + (BufferSizeFlag + 1) * 2 + (uint)IsValidationComplete) >> 2);
+  uiContext[dataSource * 2] = (char)((int)(dataPointer + (IsValidationComplete + 1) * 2 + (uint)BufferSizeFlag) >> 2);
   eventStatus = (UIByte)((int)((uint)IsEventProcessingActive + dataPointer * 2 + IsValidationComplete + 2) >> 2);
   resultPointer[1] = eventStatus;
   uiContext[dataSource] = eventStatus;
   eventStatus = (UIByte)((int)((uint)ProcessingFlag + (IsEventProcessingActive + 1) * 2 + dataPointer) >> 2);
   resultPointer[2] = eventStatus;
   uiContext[dataSource + 1] = eventStatus;
-  eventStatus = (UIByte)((int)((uint)ProcessingFlag * 2 + (uint)bVar4 + IsEventProcessingActive + 2) >> 2);
+  eventStatus = (UIByte)((int)((uint)ProcessingFlag * 2 + (uint)TargetBufferFlag + IsEventProcessingActive + 2) >> 2);
   resultPointer[3] = eventStatus;
   uiContext[dataSource + 2] = eventStatus;
-  uiContext[dataSource + 3] = (char)((int)((uint)EventprocessingStatus + (uint)bVar4 * 2 + ProcessingFlag + 2) >> 2);
+  uiContext[dataSource + 3] = (char)((int)((uint)EventprocessingStatus + (uint)TargetBufferFlag * 2 + ProcessingFlag + 2) >> 2);
   return;
 }
 
@@ -44512,7 +44512,7 @@ void OperateUIBufferInternal(longlong uiContext,longlong dataSource,longlong tar
     TargetBufferFlag = *CharacterDataPointer;
     CharacterDataPointer = CharacterDataPointer + 1;
     CharacterDataPointer[(uiContext - targetBuffer) + -3] =
-         (byte)((int)((uint)*pIsEventProcessingActive + (*pisCharacterMatch + 1) * 2 + (uint)bVar4) >> 2);
+         (byte)((int)((uint)*pIsEventProcessingActive + (*pisCharacterMatch + 1) * 2 + (uint)TargetBufferFlag) >> 2);
     contextDataHandle = contextDataHandle + -1;
   } while (contextDataHandle != 0);
   *(UIByte *)(uiContext + 0xf) = eventCodeType;
@@ -44543,7 +44543,7 @@ void ProcessUIRenderPipelineInternal(longlong uiContext,longlong dataSource,long
     TargetBufferFlag = *CharacterDataPointer;
     CharacterDataPointer = CharacterDataPointer + 1;
     CharacterDataPointer[(uiContext - targetBuffer) + -3] =
-         (byte)((int)((uint)*pIsEventProcessingActive + (*pisCharacterMatch + 1) * 2 + (uint)bVar4) >> 2);
+         (byte)((int)((uint)*pIsEventProcessingActive + (*pisCharacterMatch + 1) * 2 + (uint)TargetBufferFlag) >> 2);
     contextDataHandle = contextDataHandle + -1;
   } while (contextDataHandle != 0);
   *(UIByte *)(uiContext + 0x1f) = eventCodeType;
@@ -44576,7 +44576,7 @@ void ManageUIMemoryInternal(UIByte *uiContext,longlong dataSource,byte *targetBu
   IsValidationComplete = targetBuffer[2];
   BufferSizeFlag = targetBuffer[7];
   *uiContext = (char)((int)((uint)*targetBuffer + (uint)IsValidationComplete + (bVar4 + 1) * 2) >> 2);
-  iterationCounter = (UIByte)((int)(eventProcessingCounter + (IsValidationComplete + 1) * 2 + (uint)bVar4) >> 2);
+  iterationCounter = (UIByte)((int)(eventProcessingCounter + (IsValidationComplete + 1) * 2 + (uint)TargetBufferFlag) >> 2);
   uiContext[dataSource] = iterationCounter;
   uiContext[1] = iterationCounter;
   iterationCounter = (UIByte)((int)((uint)IsEventProcessingActive + (eventProcessingCounter + 1) * 2 + (uint)IsValidationComplete) >> 2);
@@ -44593,7 +44593,7 @@ void ManageUIMemoryInternal(UIByte *uiContext,longlong dataSource,byte *targetBu
   resultPointer[1] = iterationCounter;
   uiContext[dataSource * 2 + 2] = iterationCounter;
   uiContext[dataSource + 3] = iterationCounter;
-  iterationCounter = (UIByte)((int)((uint)bVar6 + (uint)ProcessingFlag * 2 + eventStatus + 2) >> 2);
+  iterationCounter = (UIByte)((int)((uint)BufferSizeFlag + (uint)ProcessingFlag * 2 + eventStatus + 2) >> 2);
   resultPointer[2] = iterationCounter;
   uiContext[dataSource * 2 + 3] = iterationCounter;
   resultPointer[3] = bVar6;
@@ -44628,11 +44628,11 @@ void ProcessUIColorConversion(UIByte *uiContext,longlong dataSource,byte *target
   IsValidationComplete = targetBuffer[7];
   BufferSizeFlag = targetBuffer[1];
   BufferSizeStatus = targetBuffer[2];
-  *uiContext = (char)((int)((uint)*targetBuffer + (uint)bVar7 + (bVar6 + 1) * 2) >> 2);
-  eventProcessingCounter = (UIByte)((int)(eventStatus + (bVar7 + 1) * 2 + (uint)bVar6) >> 2);
+  *uiContext = (char)((int)((uint)*targetBuffer + (uint)BufferSizeStatus + (bVar6 + 1) * 2) >> 2);
+  eventProcessingCounter = (UIByte)((int)(eventStatus + (bVar7 + 1) * 2 + (uint)BufferSizeFlag) >> 2);
   uiContext[dataSource] = eventProcessingCounter;
   uiContext[1] = eventProcessingCounter;
-  eventProcessingCounter = (UIByte)((int)((uint)IsEventProcessingActive + (eventStatus + 1) * 2 + (uint)bVar7) >> 2);
+  eventProcessingCounter = (UIByte)((int)((uint)IsEventProcessingActive + (eventStatus + 1) * 2 + (uint)BufferSizeStatus) >> 2);
   uiContext[dataSource * 2] = eventProcessingCounter;
   uiContext[dataSource + 1] = eventProcessingCounter;
   resultPointer = uiContext + dataSource * 3;
@@ -44642,14 +44642,14 @@ void ProcessUIColorConversion(UIByte *uiContext,longlong dataSource,byte *target
   uiContext[dataSource * 2 + 1] = eventProcessingCounter;
   uiContext[dataSource + 2] = eventProcessingCounter;
   uiContext[3] = eventProcessingCounter;
-  eventProcessingCounter = (UIByte)((int)((uint)bVar4 + (uint)ProcessingFlag * 2 + IsEventProcessingActive + 2) >> 2);
+  eventProcessingCounter = (UIByte)((int)((uint)TargetBufferFlag + (uint)ProcessingFlag * 2 + IsEventProcessingActive + 2) >> 2);
   resultPointer[1] = eventProcessingCounter;
   uiContext[dataSource * 2 + 2] = eventProcessingCounter;
   uiContext[dataSource + 3] = eventProcessingCounter;
-  eventProcessingCounter = (UIByte)((int)((uint)IsValidationComplete + (uint)bVar4 * 2 + ProcessingFlag + 2) >> 2);
+  eventProcessingCounter = (UIByte)((int)((uint)IsValidationComplete + (uint)TargetBufferFlag * 2 + ProcessingFlag + 2) >> 2);
   resultPointer[2] = eventProcessingCounter;
   uiContext[dataSource * 2 + 3] = eventProcessingCounter;
-  resultPointer[3] = (char)((int)((uint)bVar4 + (uint)IsValidationComplete * 2 + IsValidationComplete + 2) >> 2);
+  resultPointer[3] = (char)((int)((uint)TargetBufferFlag + (uint)IsValidationComplete * 2 + IsValidationComplete + 2) >> 2);
   return;
 }
 
@@ -44877,19 +44877,19 @@ void ProcessUIInputData(UIByte *uiContext,longlong dataSource,byte *targetBuffer
   dataPointer = (UIByte)((int)(IsEventProcessingActive + 1 + (uint)ProcessingFlag) >> 1);
   uiContext[dataSource * 2 + 1] = dataPointer;
   uiContext[2] = dataPointer;
-  dataPointer = (UIByte)((int)(ProcessingFlag + 1 + (uint)bVar4) >> 1);
+  dataPointer = (UIByte)((int)(ProcessingFlag + 1 + (uint)TargetBufferFlag) >> 1);
   uiContext[dataSource * 2 + 2] = dataPointer;
   uiContext[3] = dataPointer;
-  uiContext[dataSource * 2 + 3] = (char)((int)((uint)EventprocessingStatus + (bVar6 + 1) * 2 + (uint)bVar4) >> 2);
-  uiContext[dataSource] = (char)((int)((uint)IsEventProcessingActive + (IsValidationComplete + 1) * 2 + (uint)bVar7) >> 2);
+  uiContext[dataSource * 2 + 3] = (char)((int)((uint)EventprocessingStatus + (bVar6 + 1) * 2 + (uint)TargetBufferFlag) >> 2);
+  uiContext[dataSource] = (char)((int)((uint)IsEventProcessingActive + (IsValidationComplete + 1) * 2 + (uint)BufferSizeStatus) >> 2);
   resultPointer = uiContext + dataSource * 3;
   dataPointer = (UIByte)((int)((uint)IsEventProcessingActive * 2 + 2 + (uint)ProcessingFlag + (uint)IsValidationComplete) >> 2);
   *resultPointer = dataPointer;
   uiContext[dataSource + 1] = dataPointer;
-  dataPointer = (UIByte)((int)((uint)bVar4 + (uint)ProcessingFlag * 2 + IsEventProcessingActive + 2) >> 2);
+  dataPointer = (UIByte)((int)((uint)TargetBufferFlag + (uint)ProcessingFlag * 2 + IsEventProcessingActive + 2) >> 2);
   resultPointer[1] = dataPointer;
   uiContext[dataSource + 2] = dataPointer;
-  dataPointer = (UIByte)((int)((uint)bVar6 + (uint)bVar4 * 2 + ProcessingFlag + 2) >> 2);
+  dataPointer = (UIByte)((int)((uint)BufferSizeFlag + (uint)TargetBufferFlag * 2 + ProcessingFlag + 2) >> 2);
   resultPointer[2] = dataPointer;
   uiContext[dataSource + 3] = dataPointer;
   resultPointer[3] = (char)((int)((uint)bVar9 + (uint)EventprocessingStatus * 2 + bVar6 + 2) >> 2);
@@ -45010,7 +45010,7 @@ void ProcessUIFocusData(UIDword *uiContext,longlong dataSource,byte *targetBuffe
   *(char *)((longlong)uiContext + 1) = (char)((int)(loopCounter + (ProcessingFlag + 1) * 2 + (uint)IsEventProcessingActive) >> 2);
   *(char *)((longlong)uiContext + 2) = (char)((int)((uint)isCharacterMatch + (loopCounter + 1) * 2 + (uint)ProcessingFlag) >> 2)
   ;
-  *(char *)((longlong)uiContext + 3) = (char)((int)((uint)bVar4 + (uint)isCharacterMatch * 2 + loopCounter + 2) >> 2);
+  *(char *)((longlong)uiContext + 3) = (char)((int)((uint)TargetBufferFlag + (uint)isCharacterMatch * 2 + loopCounter + 2) >> 2);
   *(UIDword *)((longlong)uiContext + dataSource) = *uiContext;
   *(UIDword *)((longlong)uiContext + dataSource * 2) = *uiContext;
   *(UIDword *)((longlong)uiContext + dataSource * 3) = *uiContext;
@@ -68399,7 +68399,7 @@ uint ProcessUIDataValidation(longlong uiContext,uint dataSource,UIDword *targetB
       }
       isCharacterMatch = (&g_uiStateTable)[loopCounter];
       *(int *)(uiBufferData + 0x18) = *(int *)(uiBufferData + 0x18) - (uint)isCharacterMatch;
-      maxProcessingCount = maxProcessingCount | (uint)bVar7 << ((byte)uiValidationResult & 0x1f);
+      maxProcessingCount = maxProcessingCount | (uint)BufferSizeStatus << ((byte)uiValidationResult & 0x1f);
       *(ulonglong *)(uiContext + 0x10) = processingStatus << (isCharacterMatch & 0x3f);
       uiValidationResult = uiValidationResult + -1;
       *(uint *)(uiContext + 0x1c) = loopCounter << (isCharacterMatch & 0x1f);
@@ -73567,7 +73567,7 @@ int DecodeUICharacterData(longlong uiContext, longlong dataSource)
     *(int *)(uiBufferData + 0x18) = *(int *)(uiBufferData + 0x18) - (uint)isCharacterMatch;
     *(ulonglong *)(uiContext + 0x10) = processingStatus << (isCharacterMatch & 0x3f);
     *(uint *)(uiContext + 0x1c) = loopCounter << (isCharacterMatch & 0x1f);
-    localChar2 = (&UICharMappingTable)[(longlong)(int)(uint)bVar6 + (longlong)localChar2];
+    localChar2 = (&UICharMappingTable)[(longlong)(int)(uint)BufferSizeFlag + (longlong)localChar2];
   } while ('\0' < localChar2);
   return -(int)localChar2;
 }
@@ -73748,7 +73748,7 @@ void InitializeUISystem(void)
     *(int *)(uiBufferData + 0x18) = *(int *)(uiBufferData + 0x18) - (uint)isCharacterMatch;
     *(ulonglong *)(uiContext + 0x10) = processingStatus << (isCharacterMatch & 0x3f);
     *(uint *)(uiContext + 0x1c) = loopCounter << (isCharacterMatch & 0x1f);
-    localChar2 = (&g_uiCharacterMappingTable)[(longlong)(int)(uint)bVar6 + (longlong)localChar2];
+    localChar2 = (&g_uiCharacterMappingTable)[(longlong)(int)(uint)BufferSizeFlag + (longlong)localChar2];
   } while ('\0' < localChar2);
   return -(int)localChar2;
 }
@@ -244006,7 +244006,7 @@ void FUN_18080e9f0(longlong uiContext,float *dataSource,int *targetBuffer,longlo
             *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
             isCharacterMatch2 = (byte)processingResult9;
             processingResult9 = processingResult9 + -8;
-            TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+            TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
             iterationCount1 = iterationCount1 - 1;
           } while (iterationCount1 != 0);
         }
@@ -244050,7 +244050,7 @@ LAB_18080edbc:
                 *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
                 isCharacterMatch2 = (byte)processingResult9;
                 processingResult9 = processingResult9 + -8;
-                TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+                TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
                 iterationCount1 = iterationCount1 - 1;
               } while (iterationCount1 != 0);
               transformCoeff18 = *pfStack_98;
@@ -244085,7 +244085,7 @@ LAB_18080edbc:
               *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
               isCharacterMatch2 = (byte)processingResult9;
               processingResult9 = processingResult9 + -8;
-              TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+              TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
               iterationCount1 = iterationCount1 - 1;
             } while (iterationCount1 != 0);
             transformCoeff18 = *pfStack_98;
@@ -244138,7 +244138,7 @@ LAB_18080edbc:
           *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
           isCharacterMatch2 = (byte)processingResult9;
           processingResult9 = processingResult9 + -8;
-          TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+          TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
           iterationCount1 = iterationCount1 - 1;
         } while (iterationCount1 != 0);
       }
@@ -244276,7 +244276,7 @@ LAB_18080f117:
             *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
             isCharacterMatch2 = (byte)processingResult9;
             processingResult9 = processingResult9 + -8;
-            TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+            TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
             iterationCount1 = iterationCount1 - 1;
           } while (iterationCount1 != 0);
         }
@@ -244318,7 +244318,7 @@ LAB_18080f3eb:
                 *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
                 isCharacterMatch2 = (byte)processingResult9;
                 processingResult9 = processingResult9 + -8;
-                TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+                TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
                 iterationCount1 = iterationCount1 - 1;
               } while (iterationCount1 != 0);
               uiValidationResult6 = *puiValidationResult5;
@@ -244352,7 +244352,7 @@ LAB_18080f3eb:
               *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
               isCharacterMatch2 = (byte)processingResult9;
               processingResult9 = processingResult9 + -8;
-              TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+              TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
               iterationCount1 = iterationCount1 - 1;
             } while (iterationCount1 != 0);
             processingResult9 = *puiValidationResult5;
@@ -244402,7 +244402,7 @@ LAB_18080f3eb:
           *(byte **)(*(longlong *)(stackLonga0 + 0x178) + 0x48b0) = pbVar6 + 1;
           isCharacterMatch2 = (byte)uiValidationResult2;
           uiValidationResult2 = uiValidationResult2 + -8;
-          TotalResult = TotalResult | (uint)bVar4 << (isCharacterMatch2 & 0x1f);
+          TotalResult = TotalResult | (uint)TargetBufferFlag << (isCharacterMatch2 & 0x1f);
           iterationCount1 = iterationCount1 - 1;
         } while (iterationCount1 != 0);
       }
@@ -290608,10 +290608,10 @@ void FUN_18083b5a0(UIByte (*uiContext) [64],UIByte (*dataSource) [64],int target
     *(uint *)*dataSource = (uint)isCharacterMatch * aiterationCount6._0_4_ | !isCharacterMatch * aiterationCount5._0_4_;
     *(uint *)(*dataSource + 4) = (uint)IsEventProcessingActive * aiterationCount6._4_4_ | !IsEventProcessingActive * aiterationCount5._4_4_;
     *(uint *)(*dataSource + 8) = (uint)ProcessingFlag * aiterationCount6._8_4_ | !ProcessingFlag * aiterationCount5._8_4_;
-    *(uint *)(*dataSource + 0xc) = (uint)bVar4 * aiterationCount6._12_4_ | !bVar4 * aiterationCount5._12_4_;
+    *(uint *)(*dataSource + 0xc) = (uint)TargetBufferFlag * aiterationCount6._12_4_ | !bVar4 * aiterationCount5._12_4_;
     *(uint *)(*dataSource + 0x10) = (uint)IsValidationComplete * aiterationCount6._16_4_ | !IsValidationComplete * aiterationCount5._16_4_;
-    *(uint *)(*dataSource + 0x14) = (uint)bVar6 * aiterationCount6._20_4_ | !bVar6 * aiterationCount5._20_4_;
-    *(uint *)(*dataSource + 0x18) = (uint)bVar7 * aiterationCount6._24_4_ | !bVar7 * aiterationCount5._24_4_;
+    *(uint *)(*dataSource + 0x14) = (uint)BufferSizeFlag * aiterationCount6._20_4_ | !bVar6 * aiterationCount5._20_4_;
+    *(uint *)(*dataSource + 0x18) = (uint)BufferSizeStatus * aiterationCount6._24_4_ | !bVar7 * aiterationCount5._24_4_;
     *(uint *)(*dataSource + 0x1c) = (uint)EventprocessingStatus * aiterationCount6._28_4_ | !EventprocessingStatus * aiterationCount5._28_4_;
     *(uint *)(*dataSource + 0x20) =
          (uint)(bVar9 & 1) * aiterationCount6._32_4_ | !(bool)(bVar9 & 1) * aiterationCount5._32_4_;
@@ -290642,10 +290642,10 @@ void FUN_18083b5a0(UIByte (*uiContext) [64],UIByte (*dataSource) [64],int target
     *(uint *)*uiContext = (uint)isCharacterMatch * aiterationCount7._0_4_ | !isCharacterMatch * aiterationCount4._0_4_;
     *(uint *)(*uiContext + 4) = (uint)IsEventProcessingActive * aiterationCount7._4_4_ | !IsEventProcessingActive * aiterationCount4._4_4_;
     *(uint *)(*uiContext + 8) = (uint)ProcessingFlag * aiterationCount7._8_4_ | !ProcessingFlag * aiterationCount4._8_4_;
-    *(uint *)(*uiContext + 0xc) = (uint)bVar4 * aiterationCount7._12_4_ | !bVar4 * aiterationCount4._12_4_;
+    *(uint *)(*uiContext + 0xc) = (uint)TargetBufferFlag * aiterationCount7._12_4_ | !bVar4 * aiterationCount4._12_4_;
     *(uint *)(*uiContext + 0x10) = (uint)IsValidationComplete * aiterationCount7._16_4_ | !IsValidationComplete * aiterationCount4._16_4_;
-    *(uint *)(*uiContext + 0x14) = (uint)bVar6 * aiterationCount7._20_4_ | !bVar6 * aiterationCount4._20_4_;
-    *(uint *)(*uiContext + 0x18) = (uint)bVar7 * aiterationCount7._24_4_ | !bVar7 * aiterationCount4._24_4_;
+    *(uint *)(*uiContext + 0x14) = (uint)BufferSizeFlag * aiterationCount7._20_4_ | !bVar6 * aiterationCount4._20_4_;
+    *(uint *)(*uiContext + 0x18) = (uint)BufferSizeStatus * aiterationCount7._24_4_ | !bVar7 * aiterationCount4._24_4_;
     *(uint *)(*uiContext + 0x1c) = (uint)EventprocessingStatus * aiterationCount7._28_4_ | !EventprocessingStatus * aiterationCount4._28_4_;
     *(uint *)(*uiContext + 0x20) =
          (uint)(bVar9 & 1) * aiterationCount7._32_4_ | !(bool)(bVar9 & 1) * aiterationCount4._32_4_;
@@ -300148,7 +300148,7 @@ LAB_180847bfb:
       BufferSizeFlag = 1;
     }
     *(uint *)(*(longlong *)(uiBufferData + 0xd0) + 4) =
-         ((uint)bVar6 << 2 | *(uint *)(*(longlong *)(uiBufferData + 0xd0) + 4)) & ~((uint)IsEventProcessingActive << 2) | 8
+         ((uint)BufferSizeFlag << 2 | *(uint *)(*(longlong *)(uiBufferData + 0xd0) + 4)) & ~((uint)IsEventProcessingActive << 2) | 8
     ;
     contextDataHandle = *(longlong *)(uiBufferData + 0xd0);
   }
@@ -303283,11 +303283,11 @@ void FUN_18084b990(longlong *uiContext,longlong dataSource,longlong *targetBuffe
 LAB_18084bb6f:
         stackUInt60 = (uint)IsEventProcessingActive;
         stackUInt68 = (uint)ProcessingFlag;
-        stackUInt70 = (uint)bVar4;
+        stackUInt70 = (uint)TargetBufferFlag;
         stackUInt78 = (uint)IsValidationComplete;
         stackUInt80 = (uint)isCharacterMatch;
-        stackUInt88 = (uint)bVar6;
-        stackUInt90 = (uint)bVar7;
+        stackUInt88 = (uint)BufferSizeFlag;
+        stackUInt90 = (uint)BufferSizeStatus;
         stackUInta8 = (uint)dataPointer;
         stackUInta0 = (uint)eventStatus;
         stackUInt98 = (uint)EventprocessingStatus;
@@ -323306,7 +323306,7 @@ LAB_1808580a0:
           iterationCounter = iterationCount0;
           TargetBufferFlag = IsEventProcessingActive3;
         }
-        stackUInt168 = (uint)bVar4;
+        stackUInt168 = (uint)TargetBufferFlag;
       }
       else {
         if ((*(byte *)(uiContext + 0x128) & 4) == 0) {
@@ -332167,7 +332167,7 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
       if (sourceDataInt != 0) goto LAB_18086246a;
       contextDataHandle = *(longlong *)(basePointer + -0x80);
       *(uint *)(TargetHandle + 0x1c) =
-           ~((bVar7 ^ 1) << 8) & ((uint)bVar7 << 8 | *(uint *)(TargetHandle + 0x1c));
+           ~((bVar7 ^ 1) << 8) & ((uint)BufferSizeStatus << 8 | *(uint *)(TargetHandle + 0x1c));
     }
     if (((result >> 3 & 1) != 0) && (sourceDataInt = FUN_180863930(contextDataHandle), sourceDataInt == 0)) {
       *(uint *)(TargetHandle + 0x1c) = *(uint *)(TargetHandle + 0x1c) | 0x200;
@@ -334425,7 +334425,7 @@ int FUN_180864040(longlong uiContext)
 LAB_1808640fb:
     TargetBufferFlag = (byte)(*(uint *)(uiContext + 0x2d8) >> 0xb) & 1;
     *(uint *)(uiContext + 0x2d8) =
-         ((uint)bVar4 << 10 | *(uint *)(uiContext + 0x2d8)) & ~((bVar4 ^ 1) << 10) & 0xffffb7ff;
+         ((uint)TargetBufferFlag << 10 | *(uint *)(uiContext + 0x2d8)) & ~((bVar4 ^ 1) << 10) & 0xffffb7ff;
     loopCounter = FUN_180865550(uiContext,0);
     if ((loopCounter != 0) || (loopCounter = FUN_180863b80(uiContext), loopCounter != 0)) goto LAB_180864627;
     if ((*(uint *)(uiContext + 0x2d8) >> 1 & 1) != 0) {

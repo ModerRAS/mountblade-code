@@ -19038,67 +19038,72 @@ void ProcessUtilitySystemOperation(int64_t operationParams,uint64_t systemContex
 }
  (ram,TertiaryExceptionHandlerAddress)
 
-// 函数: DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
-// 
-// 浮点数据资源处理函数
-// 处理包含浮点数据的资源，进行数据验证和转换操作
-// 
-// 参数:
-//   resourceHandle - 资源句柄
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
+/**
+ * @brief 处理浮点数据资源
+ * 
+ * 该函数处理包含浮点数据的资源，进行数据验证和转换操作。
+ * 函数会验证浮点数据的有效性，执行必要的转换，并更新相关状态。
+ * 
+ * @param resourceHandle 资源句柄，指向要处理的浮点数据资源
+ * 
+ * @return DataBuffer 操作结果
+ *         - 成功时返回0
+ *         - 失败时返回错误代码
+ * 
+ * @note 该函数会修改资源中的浮点数据
+ * @note 原始函数名：FUN_1808958e8
+ */
 DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint floatProcessingFlags;
-  uint systemOperationStatus;
-  uint64_t floatValidationResult;
-  DataBuffer *floatDataArrayPointer;
-  DataBuffer *floatDataIterator;
-  int floatIntegerConversionResult;
-  float floatProcessingValue;
-  ByteFlag vectorRegisterData [16];
-  int64_t stackTempValue;
-  uint floatDataProcessingFlags;
-  uint floatProcessingFlagBitShift;
-  DataBuffer vectorRegister;
-  uint floatValidationMaskResult;
+  uint FloatProcessingFlags;
+  uint SystemOperationStatus;
+  uint64_t FloatValidationResult;
+  DataBuffer *FloatDataArrayPointer;
+  DataBuffer *FloatDataIterator;
+  int FloatIntegerConversionResult;
+  float FloatProcessingValue;
+  ByteFlag VectorRegisterData [16];
+  int64_t StackTempValue;
+  uint FloatDataProcessingFlags;
+  uint FloatProcessingFlagBitShift;
+  DataBuffer VectorRegister;
+  uint FloatValidationMaskResult;
   
-  floatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
-  if ((int)floatValidationResult != 0) {
-    return floatValidationResult;
+  FloatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&StackTempValue);
+  if ((int)FloatValidationResult != 0) {
+    return FloatValidationResult;
   }
-  dataContextPointer = *(int64_t *)(stackTempValue + systemContextOffset);
+  dataContextPointer = *(int64_t *)(StackTempValue + systemContextOffset);
   if (dataContextPointer != 0) {
-    floatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
-    for (floatDataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
-        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= floatDataIterator &&
-        (floatDataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); floatDataIterator = floatDataIterator + 1) {
-      floatValidationResult = ProcessFloatingPointDataValidationA0(*floatDataIterator,floatProcessingValue,0);
-      if ((int)floatValidationResult != 0) {
-        return floatValidationResult;
+    FloatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
+    for (FloatDataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
+        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= FloatDataIterator &&
+        (FloatDataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); FloatDataIterator = FloatDataIterator + 1) {
+      FloatValidationResult = ProcessFloatingPointDataValidationA0(*FloatDataIterator,FloatProcessingValue,0);
+      if ((int)FloatValidationResult != 0) {
+        return FloatValidationResult;
       }
     }
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
-      floatDataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
-      floatProcessingFlagBitShift = floatDataProcessingFlags >> ProcessingFlagsShift;
-      if ((floatProcessingFlagBitShift & 1) == 0) {
-        if ((((floatDataProcessingFlags >> 3 & 1) != 0) && (floatIntegerConversionResult = (int)floatProcessingValue, floatIntegerConversionResult != IntegerMinValue)) &&
-           ((float)floatIntegerConversionResult != floatProcessingValue)) {
-          vectorRegister.xComponent = floatProcessingValue;
-          vectorRegister.yComponent = floatProcessingValue;
-          vectorRegister.zComponent = 0;
-          floatValidationMaskResult = movmskps(floatProcessingFlagBitShift,vectorRegister);
-          floatProcessingValue = (float)(int)(floatIntegerConversionResult - (floatValidationMaskResult & 1));
+      FloatDataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      FloatProcessingFlagBitShift = FloatDataProcessingFlags >> ProcessingFlagsShift;
+      if ((FloatProcessingFlagBitShift & 1) == 0) {
+        if ((((FloatDataProcessingFlags >> 3 & 1) != 0) && (FloatIntegerConversionResult = (int)FloatProcessingValue, FloatIntegerConversionResult != IntegerMinValue)) &&
+           ((float)FloatIntegerConversionResult != FloatProcessingValue)) {
+          VectorRegister.xComponent = FloatProcessingValue;
+          VectorRegister.yComponent = FloatProcessingValue;
+          VectorRegister.zComponent = 0;
+          FloatValidationMaskResult = movmskps(FloatProcessingFlagBitShift,VectorRegister);
+          FloatProcessingValue = (float)(int)(FloatIntegerConversionResult - (FloatValidationMaskResult & 1));
         }
-        floatProcessingValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatProcessingValue);
+        FloatProcessingValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),FloatProcessingValue);
         if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
             ((*(uint *)(*(int64_t *)(dataContextPointer + DataContextOffset) + VectorComponentOffset34) >> 1 & 1) == 0)) &&
-           (floatProcessingValue != *(float *)(dataContextPointer + DataValidationOffset))) {
-          *(float *)(dataContextPointer + DataValidationOffset) = floatProcessingValue;
+           (FloatProcessingValue != *(float *)(dataContextPointer + DataValidationOffset))) {
+          *(float *)(dataContextPointer + DataValidationOffset) = FloatProcessingValue;
           UpdateValidationContextA0(dataContextPointer);
           *(ByteFlag *)(dataContextPointer + ValidationFlagOffset) = 0;
         }
@@ -21116,8 +21121,8 @@ void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemConte
 DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 
 {
-  DataBuffer result;
-  uint validationData;
+  DataBuffer Result;
+  uint ValidationData;
   DataWord TemporaryValidationValue;
   
   validationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
@@ -129363,8 +129368,8 @@ void ExecuteCallbackFunction(DataBuffer *callbackContext)
 void InitializeUtilityModule(void)
 
 {
-  int64_t systemValidationContext;
-  int64_t systemDataContext;
+  int64_t memoryEndAddress;
+  int64_t currentMemoryAddress;
   
   GlobalExceptionHandlerPointer = &SystemTemporaryExceptionHandler;
   if (SystemInitializationFlag != 0) {
@@ -129375,9 +129380,9 @@ void InitializeUtilityModule(void)
   GlobalExceptionHandlerPointer = &DefaultExceptionHandler;
   if (SystemMemoryManager == 0) {
     InitializeSystemMemory();
-    systemValidationContext = SystemMemoryEndAddress;
-    for (systemDataContext = SystemMemoryStartAddress; systemDataContext != systemValidationContext; systemDataContext = systemDataContext + 0x100) {
-      InitializeMemoryRegion(systemDataContext);
+    memoryEndAddress = SystemMemoryEndAddress;
+    for (currentMemoryAddress = SystemMemoryStartAddress; currentMemoryAddress != memoryEndAddress; currentMemoryAddress = currentMemoryAddress + 0x100) {
+      InitializeMemoryRegion(currentMemoryAddress);
     }
     if (SystemMemoryStartAddress == 0) {
       return;
