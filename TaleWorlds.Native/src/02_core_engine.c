@@ -233369,7 +233369,7 @@ joined_r0x0001801906da:
     for (BufferStatus = SystemDataTablePointer; BufferStatus != 0; BufferStatus = BufferStatus >> 1) {
       ValidationResult = ValidationResult + 1;
     }
-    FUN_180190e30(ContextHandle,OperationBufferSize,(long long)(ValidationResult + -1) * 2,Utf8SourcePointer,0xfffffffffffffffe);
+    ProcessSystemCharacterEncodingAndBufferOperations(ContextHandle,OperationBufferSize,(long long)(ValidationResult + -1) * 2,Utf8SourcePointer,0xfffffffffffffffe);
     if (SystemDataTablePointer < 0x1d) {
       ProcessSystemCharacterEncodingAndStatusManagementEx(ContextHandle,OperationBufferSize);
     }
