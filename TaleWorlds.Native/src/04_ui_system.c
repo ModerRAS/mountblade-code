@@ -109400,7 +109400,7 @@ void ExecuteUIRenderTaskWrapperC(void)
  * @note 原始函数名：FUN_18072c44d
  * @warning 此函数不返回，直接调用memset进行内存初始化
  */
-void FUN_18072c44d(void)
+void InitializeUIEventValidationAndMemoryManagement(void)
 
 {
   longlong basePointer;
