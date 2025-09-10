@@ -39931,10 +39931,10 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
   UIDword bufferValidationFlag;
   UIDword uStackX_1c;
   ulonglong uStackX_20;
-  longlong stackParam00000090;
-  uint stackParam00000098;
+  longlong UIStackParameter90;
+  uint UIStackParameter98;
   int maxAllocations;
-  int stackParam000000a8;
+  int UIStackParameterA8;
   UIByte aeventCodeType7 [16];
   UIByte aeventCodeType8 [16];
   UIByte aprocessingStatus3 [16];
@@ -114442,8 +114442,22 @@ LAB_180730534:
 
 
 
- void FUN_1807306f5(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
-void FUN_1807306f5(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI上下文数据缓冲区操作
+ * 
+ * 该函数负责处理UI上下文数据缓冲区的操作，包括：
+ * - 缓冲区数据读取和处理
+ * - 数据指针管理和更新
+ * - 多级缓冲区操作
+ * - 数据索引和计数管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区索引
+ * 
+ * @note 原始函数名：FUN_1807306f5
+ */
+void ProcessUIContextDataBufferOperations(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
 
 {
   UIHandle *resultPointer;
