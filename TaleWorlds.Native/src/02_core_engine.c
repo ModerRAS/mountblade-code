@@ -236503,33 +236503,33 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
  */
 uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *ContextHandleSize, long long *Utf8SourcePointer, int Utf16EndPointer)
 {
-  long long MainCalculationResult;
+  long long ConversionResult;
   void *SystemContext;
   int MemoryComparisonResult;
-  long long SystemDataRegistry;
+  long long CharacterDataRegistry;
   long long *AllocatedMemorySizePointer;
   unsigned long long OperationResult;
   uint SystemChecksum;
   unsigned long long ProcessingStatusFlag;
-  long long *plStack_88;
-  uint32_t CalculationFunctionAddress;
-  long long *pCoreEngineSignedValue78;
-  long long *CoreEngineSignedValue70;
+  long long *CharacterTablePointer;
+  uint32_t ConversionFunctionAddress;
+  long long *EncodedDataPointer78;
+  long long *EncodedDataPointer70;
   long long *SystemMemoryPointer68;
-  int iStack_60;
-  long long *pSystemStackRegisterValue58;
+  int ConversionFlags60;
+  long long *SystemStackRegisterPointer58;
   uint64_t SystemKeyPointer;
   uint64_t SystemStackOffset48;
   long long MemoryOperationStatus;
   
   SystemStackFlag = 0xfffffffffffffffe;
   OperationResult = 0;
-  CalculationFunctionAddress = 0;
-  FUN_1802759e0(Utf8SourcePointer,&plStack_88);
+  ConversionFunctionAddress = 0;
+  FUN_1802759e0(Utf8SourcePointer,&CharacterTablePointer);
   if (Utf16EndPointer == 0) {
-    *ContextHandleSize = plStack_88;
-    plStack_88 = (long long *)0x0;
-    CalculationFunctionAddress = 1;
+    *ContextHandleSize = (uint64_t)CharacterTablePointer;
+    CharacterTablePointer = (long long *)0x0;
+    ConversionFunctionAddress = 1;
   }
   else {
     MemoryOperationStatus = ContextHandle;
