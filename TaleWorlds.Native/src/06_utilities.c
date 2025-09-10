@@ -41002,102 +41002,102 @@ ValidationCompleteHandler2:
 uint64_t ProcessSystemValidation(void)
 
 {
-  int64_t *exceptionContextPointer;
-  int64_t systemInputAccumulator;
-  uint64_t operationResult;
-  uint64_t validationStatus;
-  int64_t *registerContext;
-  uint memoryRegionBase;
-  int64_t systemContext;
-  uint operationResult;
-  uint dataFlags;
-  uint64_t validationOutcome;
-  unsigned int stackSystemFlag;
-  unsigned int stackSystemStatus;
+  int64_t *exceptionHandlerContext;
+  int64_t systemDataAccumulator;
+  uint64_t validationResult;
+  uint64_t systemValidationStatus;
+  int64_t *cpuRegisterContext;
+  uint memoryAllocationBase;
+  int64_t systemExecutionContext;
+  uint operationResultCode;
+  uint processingFlags;
+  uint64_t validationResultCode;
+  unsigned int systemStackFlag;
+  unsigned int systemStackStatus;
   
-  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemDataAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = OperateDataO0(*registerContext,systemContext + 0x44,4);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  validationResult = OperateDataO0(*cpuRegisterContext,systemExecutionContext + 0x44,4);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  validationOutcome = 0;
+  validationResultCode = 0;
   TemporaryDataBufferC = 0;
-  operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  validationResult = ExecuteDataValidationOperation(*cpuRegisterContext,&StackDataBufferT);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   TemporaryMemoryAllocationBuffer = 0;
-  memoryRegionBase = TemporaryDataBufferC & 1;
-  dataFlags = TemporaryDataBufferC >> 1;
-  operationResult = validationOutcome;
-  if (dataFlags != 0) {
+  memoryAllocationBase = TemporaryDataBufferC & 1;
+  processingFlags = TemporaryDataBufferC >> 1;
+  validationResult = validationResultCode;
+  if (processingFlags != 0) {
     do {
-      validationStatus = ExecuteSystemInitializationOperation();
-      if ((int)validationStatus != 0) {
-        return validationStatus;
+      systemValidationStatus = ExecuteSystemInitializationOperation();
+      if ((int)systemValidationStatus != 0) {
+        return systemValidationStatus;
       }
-      validationStatus = ProcessDataWithValidationA1();
-      if ((int)validationStatus != 0) {
-        return validationStatus;
+      systemValidationStatus = ProcessDataWithValidationA1();
+      if ((int)systemValidationStatus != 0) {
+        return systemValidationStatus;
       }
-      validationStatus = ExecuteSystemCleanupOperation();
-      if ((int)validationStatus != 0) {
-        return validationStatus;
+      systemValidationStatus = ExecuteSystemCleanupOperation();
+      if ((int)systemValidationStatus != 0) {
+        return systemValidationStatus;
       }
-      operationResult = (int)operationResult + 1;
-      operationResult = (uint64_t)operationResult;
-      TemporaryMemoryAllocationBuffer = TemporaryMemoryAllocationBuffer & -memoryRegionBase;
-    } while ((int)operationResult < (int)dataFlags);
+      validationResult = (int)validationResult + 1;
+      validationResult = (uint64_t)validationResult;
+      TemporaryMemoryAllocationBuffer = TemporaryMemoryAllocationBuffer & -memoryAllocationBase;
+    } while ((int)validationResult < (int)processingFlags);
   }
-  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
+  if (*(int *)(cpuRegisterContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryRegionBase = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
-  if (memoryRegionBase != 0) {
-    return (uint64_t)memoryRegionBase;
+  memoryAllocationBase = GetMemoryAddressA0(*cpuRegisterContext,systemExecutionContext + 0x48);
+  if (memoryAllocationBase != 0) {
+    return (uint64_t)memoryAllocationBase;
   }
-  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
+  if (*(int *)(cpuRegisterContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  exceptionContextPointer = (int64_t *)*registerContext;
-  if (*exceptionContextPointer == 0) {
-    operationResult = ValidationErrorCode;
+  exceptionHandlerContext = (int64_t *)*cpuRegisterContext;
+  if (*exceptionHandlerContext == 0) {
+    validationResult = ValidationErrorCode;
   }
   else {
-    if (exceptionContextPointer[2] != 0) {
+    if (exceptionHandlerContext[2] != 0) {
       TemporaryMemoryAllocationBuffer = 0;
-      operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferU);
-      if ((int)operationResult != 0) {
-        return operationResult;
+      validationResult = AllocateMemory(*exceptionHandlerContext,&StackDataBufferU);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
-      if ((uint64_t)exceptionContextPointer[2] < (uint64_t)TemporaryMemoryAllocationBuffer + 4) {
-        operationResult = 0x11;
+      if ((uint64_t)exceptionHandlerContext[2] < (uint64_t)TemporaryMemoryAllocationBuffer + 4) {
+        validationResult = 0x11;
         goto ProcessCheckpointValidationComplete3;
       }
     }
-    operationResult = ValidateDataAndReturnStatusO3(*exceptionContextPointer,&StackDataBufferT,1,4,0);
+    validationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContext,&StackDataBufferT,1,4,0);
   }
 ValidationCompleteHandler2:
-  if ((int)operationResult == 0) {
-    *(uint *)(systemContext + 0x4c) = TemporaryDataBufferC;
-    operationResult = 0xd;
+  if ((int)validationResult == 0) {
+    *(uint *)(systemExecutionContext + 0x4c) = TemporaryDataBufferC;
+    validationResult = 0xd;
     if (TemporaryDataBufferC < 7) {
-      operationResult = validationOutcome;
+      validationResult = validationResultCode;
     }
-    if ((int)operationResult == 0) {
-      operationResult = validationOutcome;
-      if ((0x32 < *(uint *)(registerContext + 8)) && (operationResult = ValidationErrorCode, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) {
-        memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x40);
-        operationResult = (uint64_t)memoryRegionBase;
+    if ((int)validationResult == 0) {
+      validationResult = validationResultCode;
+      if ((0x32 < *(uint *)(cpuRegisterContext + 8)) && (validationResult = ValidationErrorCode, *(int *)(cpuRegisterContext[1] + SystemDataSecondaryOffset18) == 0)) {
+        memoryAllocationBase = ValidateDataWithSecurityCheckA2(*cpuRegisterContext,systemExecutionContext + 0x40);
+        validationResult = (uint64_t)memoryAllocationBase;
       }
-      if ((int)operationResult == 0) {
+      if ((int)validationResult == 0) {
           CleanupSystemResourcesA0();
       }
     }
   }
-  return operationResult;
+  return validationResult;
 }
 
 

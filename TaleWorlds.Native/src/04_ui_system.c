@@ -39926,8 +39926,8 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
   UIByte processingStatusBuffer4 [16];
   UIByte processingStatusBuffer5 [16];
   longlong returnAddress;
-  UIDword stackVariable10;
-  UIDword stackVariable14;
+  UIDword UIStackOffset10;
+  UIDword UIStackOffset14;
   UIDword bufferValidationFlag;
   UIDword uStackX_1c;
   ulonglong uStackX_20;
@@ -110290,9 +110290,9 @@ void ProcessUITransformCoefficientsAndOptimization(void)
       if (localInt8 + 2 < stackParam00000068) {
         localInt7 = localInt8 + 2;
       }
-      FUN_18072b930(basePointer + 0xae0,*(UIHandle *)(basePointer + -0x60),processingResult6,
+      ProcessUIDataTransformation(basePointer + 0xae0,*(UIHandle *)(basePointer + -0x60),processingResult6,
                     iStack0000000000000054,processingResult8);
-      FUN_18072bbd0(basePointer + 0x1d00,*(UIHandle *)(basePointer + -0x60),processingResult6,
+      ProcessUIComponentRendering(basePointer + 0x1d00,*(UIHandle *)(basePointer + -0x60),processingResult6,
                     iStack0000000000000054,processingResult8);
       transformCoeff17 = (float)localInt8;
       if (processingResult8 == 4) {
@@ -111683,7 +111683,7 @@ void ProcessUIDataWithParameters(UIHandle uiContext)
   
   allocatedMemory = (longlong)stackParam00000028;
   if (stackParam00000028 == 6) {
-    allocatedMemory = FUN_18072df00();
+    allocatedMemory = CalculateImageWeightedAbsoluteDifference();
   }
   else if (stackParam00000028 == 8) {
     allocatedMemory = ProcessUIDataBuffer8Bytes();
@@ -309522,8 +309522,8 @@ void FUN_18084fcba(void)
   uint componentData2;
   longlong *contextDataHandlePtr;
   int *indexPtr;
-  longlong tempVar1;
-  longlong tempVar2;
+  longlong UITemporaryValue1;
+  longlong UITemporaryValue2;
   longlong memoryPtr;
   int operationStatus1;
   int operationStatus2;
@@ -309536,15 +309536,15 @@ void FUN_18084fcba(void)
   uint stackData2;
   uint stackData3;
   uint stackData4;
-  UIHandle stackVar1;
-  int stackIndex1;
-  UIDword stackVar2;
-  int stackIndex2;
-  UIDword stackVar3;
-  UIDword stackVar4;
-  int stackIndex3;
-  UIDword stackVar5;
-  UIHandle stackVar6;
+  UIHandle UIStackHandle1;
+  int UIStackIndex1;
+  UIDword UIStackData2;
+  int UIStackIndex2;
+  UIDword UIStackData3;
+  UIDword UIStackData4;
+  int UIStackIndex3;
+  UIDword UIStackData5;
+  UIHandle UIStackHandle6;
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
@@ -393954,8 +393954,21 @@ LAB_180899546:
 
 
 
- void FUN_1808995c0(longlong *uiContext,UIDword *dataSource)
-void FUN_1808995c0(longlong *uiContext,UIDword *dataSource)
+ /**
+ * @brief 验证UI组件数据安全性
+ * 
+ * 该函数负责验证UI组件数据的安全性，包括：
+ * - 上下文有效性检查
+ * - 数据完整性验证
+ * - 缓冲区边界检查
+ * - 安全权限验证
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针，用于存储验证结果
+ * 
+ * @note 原始函数名：FUN_1808995c0
+ */
+void ValidateUIRecomponentDataWithSecurity(longlong *uiContext,UIDword *dataSource)
 
 {
   int processingResult;
@@ -405518,18 +405531,18 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统组件状态更新函数
 #define FUN_1808995c0 ValidateUIRecomponentDataWithSecurity
 // UI系统验证错误处理和恢复函数
-#define FUN_1808ddf80 HandleUIValidationErrorAndRecovery
-#define FUN_18089e230 ProcessUIStringDataValidation
+#define HandleUIValidationErrorAndRecovery FUN_1808ddf80
+#define ProcessUIStringDataValidation FUN_18089e230
 // UI系统事件数据和结构验证函数
-#define FUN_1808aed00 ValidateUIEventDataAndStructure
-#define FUN_1808afe30 ProcessUIComponentMetrics
-#define FUN_1808dde10 ProcessUIComponentTransform
-#define FUN_1808a8120 ProcessUIComponentLayout
-#define FUN_1808a7c90 ProcessUIComponentValidation
-#define FUN_1808de000 ProcessUIStringCleanup
-#define FUN_18089f112 ProcessUIStatusCodeReturn
-#define FUN_180769ed0 ProcessUIColorValidation
-#define func_0x00018076a7d0 ProcessUIColorBuffer
+#define ValidateUIEventDataAndStructure FUN_1808aed00
+#define ProcessUIComponentMetrics FUN_1808afe30
+#define ProcessUIComponentTransform FUN_1808dde10
+#define ProcessUIComponentLayout FUN_1808a8120
+#define ProcessUIComponentValidation FUN_1808a7c90
+#define ProcessUIStringCleanup FUN_1808de000
+#define ProcessUIStatusCodeReturn FUN_18089f112
+#define ProcessUIColorValidation FUN_180769ed0
+#define ProcessUIColorBuffer func_0x00018076a7d0
 
 // 注意：以下寄存器变量已经在文件前面定义过了，这里删除重复定义
 // UI系统寄存器变量美化
