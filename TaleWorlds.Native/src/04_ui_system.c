@@ -111811,32 +111811,32 @@ void ProcessUIDataBufferTransformation(int64_t UiContext, int64_t DataSource, fl
       } while (DataOffset < (int)(BufferSize - AlignmentValue));
     }
   }
-  AllocatedMemoryBlock1 = (longlong)ProcessingResult5;
-  if (AllocatedMemoryBlock1 < allocatedMemory6) {
-    if (3 < allocatedMemory6 - AllocatedMemoryBlock1) {
-      AllocatedMemoryBlock8 = AllocatedMemoryBlock1 * 4;
-      allocatedMemory4 = dataSource - uiContext;
-      allocatedMemory7 = ((allocatedMemory6 - AllocatedMemoryBlock1) - 4U >> 2) + 1;
-      AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + allocatedMemory7 * 4;
-      BaseValuePointer2 = (float *)(uiContext + 4 + AllocatedMemoryBlock8);
+  DataOffset = (int64_t)ProcessedBytes;
+  if (DataOffset < TargetBufferSize) {
+    if (3 < TargetBufferSize - DataOffset) {
+      MemoryDifference = DataOffset * 4;
+      SourceDataOffset = DataSource - UiContext;
+      LoopCounter = ((TargetBufferSize - DataOffset) - 4U >> 2) + 1;
+      DataOffset = DataOffset + LoopCounter * 4;
+      DestinationPointer = (float *)(UiContext + 4 + MemoryDifference);
       do {
-        BaseValuePointer = BaseValuePointer2 + 4;
-        BaseValuePointer2[-1] = targetBuffer * *(float *)(allocatedMemory4 + -0x14 + (longlong)BaseValuePointer);
-        *BaseValuePointer2 = targetBuffer * *(float *)(allocatedMemory4 + -0x10 + (longlong)BaseValuePointer);
-        BaseValuePointer2[1] = targetBuffer * *(float *)(allocatedMemory4 + -0xc + (longlong)BaseValuePointer);
-        BaseValuePointer2[2] = targetBuffer * *(float *)(allocatedMemory4 + -8 + (longlong)BaseValuePointer);
-        allocatedMemory7 = allocatedMemory7 + -1;
-        BaseValuePointer2 = BaseValuePointer;
-      } while (allocatedMemory7 != 0);
+        BaseValuePointer = DestinationPointer + 4;
+        DestinationPointer[-1] = TargetBuffer * *(float *)(SourceDataOffset + -0x14 + (int64_t)BaseValuePointer);
+        *DestinationPointer = TargetBuffer * *(float *)(SourceDataOffset + -0x10 + (int64_t)BaseValuePointer);
+        DestinationPointer[1] = TargetBuffer * *(float *)(SourceDataOffset + -0xc + (int64_t)BaseValuePointer);
+        DestinationPointer[2] = TargetBuffer * *(float *)(SourceDataOffset + -8 + (int64_t)BaseValuePointer);
+        LoopCounter = LoopCounter + -1;
+        DestinationPointer = BaseValuePointer;
+      } while (LoopCounter != 0);
     }
-    if (AllocatedMemoryBlock1 < allocatedMemory6) {
-      allocatedMemory6 = allocatedMemory6 - AllocatedMemoryBlock1;
-      BaseValuePointer2 = (float *)(uiContext + AllocatedMemoryBlock1 * 4);
+    if (DataOffset < TargetBufferSize) {
+      TargetBufferSize = TargetBufferSize - DataOffset;
+      DestinationPointer = (float *)(UiContext + DataOffset * 4);
       do {
-        *BaseValuePointer2 = targetBuffer * *(float *)((dataSource - uiContext) + -4 + (longlong)(BaseValuePointer2 + 1));
-        allocatedMemory6 = allocatedMemory6 + -1;
-        BaseValuePointer2 = BaseValuePointer2 + 1;
-      } while (allocatedMemory6 != 0);
+        *DestinationPointer = TargetBuffer * *(float *)((DataSource - UiContext) + -4 + (int64_t)(DestinationPointer + 1));
+        TargetBufferSize = TargetBufferSize + -1;
+        DestinationPointer = DestinationPointer + 1;
+      } while (TargetBufferSize != 0);
     }
   }
   return;
