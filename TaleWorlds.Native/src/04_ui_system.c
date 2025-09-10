@@ -400442,7 +400442,7 @@ LAB_18089cad8:
         if ((int)maxProcessingCount != 0) {
           return maxProcessingCount;
         }
-        maxProcessingCount = FUN_1808de0e0(contextValue,uiContextBasePointer + 0x77);
+        maxProcessingCount = ValidateUIDataBufferIntegrityAndSecurity(contextValue,uiContextBasePointer + 0x77);
         if ((int)maxProcessingCount != 0) {
           return maxProcessingCount;
         }
@@ -400711,7 +400711,7 @@ LAB_18089cad8:
         if ((int)maxProcessingCount != 0) {
           return maxProcessingCount;
         }
-        maxProcessingCount = FUN_1808de0e0(contextValue,uiContextBasePointer + 0x77);
+        maxProcessingCount = ValidateUIDataBufferIntegrityAndSecurity(contextValue,uiContextBasePointer + 0x77);
         if ((int)maxProcessingCount != 0) {
           return maxProcessingCount;
         }
@@ -400916,7 +400916,7 @@ LAB_18089cbf6:
             if ((int)loopCounter != 0) {
               return loopCounter;
             }
-            loopCounter = FUN_1808de0e0(componentIndex,uiContextBasePointer + 0x77);
+            loopCounter = ValidateUIDataBufferIntegrityAndSecurity(componentIndex,uiContextBasePointer + 0x77);
             if ((int)loopCounter != 0) {
               return loopCounter;
             }
@@ -402014,7 +402014,7 @@ UIHandle ValidateUISystemData(longlong uiContext, UIHandle *dataSource)
       }
       validationResult = ValidateUIEventDataStructureAndIntegrity(*dataSource,uiContext + 0xc,4);
       if ((int)validationResult == 0) {
-        validationResult = FUN_1808de0e0(dataSource,0);
+        validationResult = ValidateUIDataBufferIntegrityAndSecurity(dataSource,0);
       }
     }
   }
@@ -402848,7 +402848,7 @@ ulonglong ProcessUIStringDataValidationAndFormat(longlong uiContext,longlong *da
       if ((int)iterationCount != 0) {
         return iterationCount;
       }
-      iterationCount = FUN_1808de0e0(dataSource,bufferValidation);
+      iterationCount = ValidateUIDataBufferIntegrityAndSecurity(dataSource,bufferValidation);
       if ((int)iterationCount != 0) {
         return iterationCount;
       }
@@ -402953,7 +402953,7 @@ ulonglong FUN_18089e297(void)
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
-      eventCode = FUN_1808de0e0();
+      eventCode = ValidateUIDataBufferIntegrityAndSecurity();
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
@@ -403053,7 +403053,7 @@ ulonglong FUN_18089e2be(void)
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
-      eventCode = FUN_1808de0e0();
+      eventCode = ValidateUIDataBufferIntegrityAndSecurity();
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
@@ -403149,7 +403149,7 @@ ulonglong FUN_18089e2e8(void)
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
-      eventCode = FUN_1808de0e0();
+      eventCode = ValidateUIDataBufferIntegrityAndSecurity();
       if ((int)eventCodeType != 0) {
         return eventCodeType;
       }
