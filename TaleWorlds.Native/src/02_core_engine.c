@@ -181540,6 +181540,24 @@ uint64_t *
  * 
  * @note 原始函数名：FUN_18014a2d0
  */
+/**
+ * @brief UTF-16到UTF-8转换器初始化函数
+ * 
+ * 该函数负责初始化UTF-16到UTF-8的转换器，设置转换所需的上下文和缓冲区。
+ * 主要功能包括：
+ * - 初始化转换器上下文
+ * - 设置UTF-16字符初始值
+ * - 准备转换环境
+ * 
+ * @param ContextHandle 转换器上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换结果指针
+ * 
+ * @note 原始函数名：可能是未美化的FUN_函数
+ * @warning 确保传入的指针参数有效
+ */
 uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *ContextHandle,unsigned long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
