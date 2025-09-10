@@ -112144,7 +112144,20 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
  void FUN_18072e943(void)
-void FUN_18072e943(void)
+/**
+ * @brief 重置UI渲染状态
+ * 
+ * 该函数负责重置UI渲染系统的状态，确保渲染环境处于正确的初始状态。
+ * 主要功能：
+ * 1. 检查UI渲染状态标志
+ * 2. 执行UI渲染操作（如果需要）
+ * 3. 调用核心渲染任务处理器
+ * 
+ * @note 原始函数名：FUN_18072e943
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask, ExecuteUIRenderingOperation
+ */
+void ResetUIRenderState(void)
 
 {
   longlong TargetHandle;
@@ -112161,7 +112174,20 @@ void FUN_18072e943(void)
 
 
  void FUN_18072e96d(void)
-void FUN_18072e96d(void)
+/**
+ * @brief 清理UI渲染缓存
+ * 
+ * 该函数负责清理UI渲染系统的缓存数据，释放内存资源。
+ * 主要功能：
+ * 1. 执行UI渲染操作
+ * 2. 调用核心渲染任务处理器
+ * 3. 清理渲染缓存数据
+ * 
+ * @note 原始函数名：FUN_18072e96d
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask, ExecuteUIRenderingOperation
+ */
+void ClearUIRenderCache(void)
 
 {
   ulonglong stackParam000006d0;
