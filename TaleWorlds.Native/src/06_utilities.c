@@ -51172,10 +51172,10 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180902ee0
  */
-void SetDefaultExceptionHandlerBAtOffset438(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerBAtResourceCleanupOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x438) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ResourceCleanupOffset438) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
