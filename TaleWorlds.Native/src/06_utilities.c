@@ -1764,7 +1764,6 @@
 #define MemoryResourcePointerOffset1D0 0x1d0                  // 内存资源指针偏移量1D0
 #define MemoryResourcePointerOffset1F0 0x1f0                  // 内存资源指针偏移量1F0
 #define MemoryResourcePointerOffset210 0x210                  // 内存资源指针偏移量210
-#define MemoryPointerTableOffset70 0x70                      // 内存指针表偏移量70
 
 // 异常处理器配置偏移量常量
 #define ExceptionHandlerCleanupOffset390 0x390               // 异常处理器清理偏移量390
@@ -2416,7 +2415,6 @@
 #define SystemDataOffset40 0x40
 #define MemoryOperationResultMask 0x1f
 #define MemoryBlockSize 0x100
-#define SystemCleanupFlagAlternative 0xffffffe0
 #define MemoryAllocationBlockSize 0x20
 #define SystemMemoryBoundary 0x8000000000000000
 #define MemoryAddressCalculationMultiplier 8
@@ -2439,7 +2437,6 @@
 #define ResourceQueuePointerOffset 0x3538
 
 // 内存管理和资源清理常量
-#define MemoryRegionMask 0xffc00000
 #define MemoryResourceBaseOffset 0x80
 #define MemoryResourceMultiplier 0x50
 #define ExceptionListOffset 0x70
@@ -3222,7 +3219,6 @@
 #define ZeroValue 0x00000000                    // 零值常量
 #define AllBitsSet 0xffffffff                    // 全部位设置常量
 #define AllocationAlignmentMask 0xfffffff0       // 分配对齐掩码
-#define MemoryRegionMask 0xffc00000              // 内存区域掩码
 #define MemoryAlignmentPadding 0xf               // 内存对齐填充值
 #define EncryptionKeyOffset 0x20                  // 加密密钥偏移量
 #define ExceptionHandlerContextOffset 0x48         // 异常处理上下文偏移量

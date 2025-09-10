@@ -6237,7 +6237,8 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ConfigureSystemContextHandle FUN_180049550                // 配置系统上下文句柄
 #define ProcessSystemCleanupFlag FUN_18005d580                    // 处理系统清理标志
 #define ProcessSystemDataTemplate FUN_1800e7c40                   // 处理系统数据模板
-#define ProcessSystemDataTemplateInitialization FUN_1800e7d00     // 处理系统数据模板初始化
+#define ProcessSystemDataTemplateInitialization FUN_1800e7d00     // 处理系统数据模板�化
+#define ProcessSystemStackData FUN_1800b87c0                     // 处理系统栈数据
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
