@@ -279643,7 +279643,7 @@ LAB_1802260bd:
   AllocatedMemorySize = *ContextHandle;
   if (AllocatedMemorySize != SystemDataTablePointer) {
     do {
-      FUN_1800adb30(AllocatedMemorySize);
+      ProcessSystemDataValidationEx(AllocatedMemorySize);
       AllocatedMemorySize = AllocatedMemorySize + 0x78;
     } while (AllocatedMemorySize != SystemDataTablePointer);
     AllocatedMemorySize = *ContextHandle;
