@@ -39031,9 +39031,9 @@ ValidationLabelB:
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer **)(StackFrameContext + -0x29) = registerR12Value;
+        *(DataBuffer **)(StackFrameContext + -0x29) = registerValueR12;
         *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
-        exceptionDataBufferD = registerR12Value;
+        exceptionDataBufferD = registerValueR12;
         statusCounter = securityCheckResult;
       }
       else {
@@ -39052,7 +39052,7 @@ ValidationLabelB:
             *(DataWord *)(exceptionContextF + -0x10) = systemDataBuffer;
             *(DataWord *)(exceptionContextF + -0xc) = operationResult;
             *(DataWord *)(exceptionContextF + -8) = validationStatus;
-            *(DataBuffer **)(exceptionContextF + -4) = registerR12Value;
+            *(DataBuffer **)(exceptionContextF + -4) = registerValueR12;
             exceptionContextG = exceptionContextG + -1;
             exceptionContextF = exceptionContextF + SystemDataSecondaryOffset18;
           } while (exceptionContextG != 0);
