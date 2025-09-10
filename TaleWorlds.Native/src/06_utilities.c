@@ -48618,6 +48618,21 @@ void ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddress)
 
 
 
+/**
+ * @brief 清理内存资源
+ * 
+ * 该函数负责清理内存资源，管理引用计数和内存释放：
+ * - 从数据缓冲区中获取内存资源指针
+ * - 验证内存区域的有效性
+ * - 管理引用计数，必要时执行清理操作
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ * @warning 该函数直接操作内存，需要确保输入参数的有效性
+ */
 void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -48690,6 +48705,20 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理线程资源
+ * 
+ * 该函数负责清理线程相关的资源，包括：
+ * - 设置异常数据表
+ * - 销毁互斥锁和条件变量
+ * - 重置异常处理表
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含线程资源信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ * @warning 该函数会直接销毁线程同步对象，需要确保线程已正确终止
+ */
 void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -48707,6 +48736,24 @@ void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理线程上下文
+ * 
+ * 该函数负责清理线程上下文，包括：
+ * - 设置异常数据表
+ * - 处理字符数据
+ * - 销毁线程同步对象
+ * - 更新系统状态
+ * - 重置异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含线程上下文信息
+ * @param operationFlagA 操作标志A，用于字符数据处理
+ * @param operationFlagB 操作标志B，用于字符数据处理
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ * @warning 该函数会销毁线程同步对象，需要确保线程已正确终止
+ */
 void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {

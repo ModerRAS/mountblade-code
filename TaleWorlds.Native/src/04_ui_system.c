@@ -111353,8 +111353,8 @@ void ProcessUIBufferDataWithSimpleTransform(UIHandle uiContext,float *dataSource
 
 
 
- void FUN_18072e160(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_18072e160(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+ void ProcessUIContextDataWithSimpleTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+void ProcessUIContextDataWithSimpleTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
 
 {
   float *BaseValuePointer;
@@ -111416,57 +111416,69 @@ void FUN_18072e160(longlong uiContext,float *dataSource,longlong targetBuffer,in
 
 
 
- void FUN_18072e189(float *uiContext,float *dataSource)
-void FUN_18072e189(float *uiContext,float *dataSource)
+ /**
+ * @brief 使用矩阵变换处理UI数据
+ * 
+ * 该函数通过矩阵变换处理UI上下文数据，执行复杂的数学运算来转换UI元素的位置和属性。
+ * 主要用于UI布局计算、动画变换和坐标转换。
+ * 
+ * @param uiContext UI上下文数据指针，包含需要变换的UI元素信息
+ * @param dataSource 数据源指针，包含变换矩阵或参数数据
+ * 
+ * @note 原始函数名：FUN_18072e189
+ * @note 该函数执行8x8矩阵变换运算，用于高级UI渲染和布局计算
+ */
+void TransformUIDataWithMatrix(float *uiContext,float *dataSource)
+void TransformUIDataWithMatrix(float *uiContext,float *dataSource)
 
 {
-  float *BaseValuePointer;
-  longlong contextHandle;
-  longlong componentIndex;
-  longlong stringCompareIndex;
-  longlong register10;
-  longlong contextDataHandle;
-  longlong RegisterPointer;
+  float *matrixDataPointer;
+  longlong baseContextHandle;
+  longlong dataIndex;
+  longlong transformIterations;
+  longlong maxDataSize;
+  longlong processedDataCount;
+  longlong targetBufferPointer;
   
-  componentIndex = RegisterPointer - contextHandle;
-  stringCompareIndex = (register10 - 0xcU >> 2) + 1;
-  contextDataHandle = stringCompareIndex * 4 + 8;
+  dataIndex = targetBufferPointer - baseContextHandle;
+  transformIterations = (maxDataSize - 12U >> 2) + 1;
+  processedDataCount = transformIterations * 4 + 8;
   do {
-    *(float *)(componentIndex + 0xc + (longlong)uiContext) =
+    *(float *)(dataIndex + 12 + (longlong)uiContext) =
          uiContext[3] -
          (*dataSource * uiContext[2] + uiContext[1] * dataSource[1] + *uiContext * dataSource[2] +
           dataSource[3] * uiContext[-1] + dataSource[4] * uiContext[-2] + dataSource[5] * uiContext[-3] +
           dataSource[6] * uiContext[-4] + uiContext[-5] * dataSource[7]);
-    *(float *)(componentIndex + 0x10 + (longlong)uiContext) =
+    *(float *)(dataIndex + 16 + (longlong)uiContext) =
          uiContext[4] -
          (*dataSource * uiContext[3] + uiContext[2] * dataSource[1] + dataSource[2] * uiContext[1] +
           *uiContext * dataSource[3] + dataSource[4] * uiContext[-1] + dataSource[5] * uiContext[-2] +
           dataSource[6] * uiContext[-3] + dataSource[7] * uiContext[-4]);
-    *(float *)(componentIndex + 0x14 + (longlong)uiContext) =
+    *(float *)(dataIndex + 20 + (longlong)uiContext) =
          uiContext[5] -
          (*dataSource * uiContext[4] + uiContext[3] * dataSource[1] + dataSource[2] * uiContext[2] +
           dataSource[3] * uiContext[1] + *uiContext * dataSource[4] + dataSource[5] * uiContext[-1] +
           dataSource[6] * uiContext[-2] + dataSource[7] * uiContext[-3]);
-    *(float *)(componentIndex + 0x18 + (longlong)uiContext) =
+    *(float *)(dataIndex + 24 + (longlong)uiContext) =
          uiContext[6] -
          (*dataSource * uiContext[5] + uiContext[4] * dataSource[1] + dataSource[2] * uiContext[3] +
           dataSource[3] * uiContext[2] + dataSource[4] * uiContext[1] + *uiContext * dataSource[5] +
           dataSource[6] * uiContext[-1] + dataSource[7] * uiContext[-2]);
     uiContext = uiContext + 4;
-    stringCompareIndex = stringCompareIndex + -1;
-  } while (stringCompareIndex != 0);
-  if (contextDataHandle < register10) {
-    BaseValuePointer = (float *)(contextHandle + -0xc + contextDataHandle * 4);
-    contextDataHandle = register10 - contextDataHandle;
+    transformIterations = transformIterations - 1;
+  } while (transformIterations != 0);
+  if (processedDataCount < maxDataSize) {
+    matrixDataPointer = (float *)(baseContextHandle - 12 + processedDataCount * 4);
+    processedDataCount = maxDataSize - processedDataCount;
     do {
-      *(float *)((RegisterPointer - contextHandle) + 0xc + (longlong)BaseValuePointer) =
-           BaseValuePointer[3] -
-           (BaseValuePointer[2] * *dataSource + BaseValuePointer[1] * dataSource[1] + *BaseValuePointer * dataSource[2] +
-            BaseValuePointer[-1] * dataSource[3] + BaseValuePointer[-2] * dataSource[4] + BaseValuePointer[-3] * dataSource[5] +
-            BaseValuePointer[-4] * dataSource[6] + BaseValuePointer[-5] * dataSource[7]);
-      BaseValuePointer = BaseValuePointer + 1;
-      contextDataHandle = contextDataHandle + -1;
-    } while (contextDataHandle != 0);
+      *(float *)((targetBufferPointer - baseContextHandle) + 12 + (longlong)matrixDataPointer) =
+           matrixDataPointer[3] -
+           (matrixDataPointer[2] * *dataSource + matrixDataPointer[1] * dataSource[1] + *matrixDataPointer * dataSource[2] +
+            matrixDataPointer[-1] * dataSource[3] + matrixDataPointer[-2] * dataSource[4] + matrixDataPointer[-3] * dataSource[5] +
+            matrixDataPointer[-4] * dataSource[6] + matrixDataPointer[-5] * dataSource[7]);
+      matrixDataPointer = matrixDataPointer + 1;
+      processedDataCount = processedDataCount - 1;
+    } while (processedDataCount != 0);
   }
   return;
 }

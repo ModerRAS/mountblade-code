@@ -206107,16 +206107,17 @@ void ProcessSystemConfigurationAndStringMatching(void)
   unsigned long long UnicodeCodeValue;
   uint64_t SystemRegisterValue;
   unsigned long long UnicodeContextHandle;
-  uint32_t SystemStackBuffer20 [2];
+  uint32_t SystemStackBuffer [2];
+  uint32_t SystemValidationStackBuffer;
   
   UnicodeContextHandle = UnicodeCodeValue;
   do {
     StringLength = *(int *)(PatternIndex + SystemStringLengthOffset);
     if (StringLength == ProcessingIndex) {
-      SystemStackBuffer20[0] = SystemMatrixTransformOperation;
-      ProcessSystemConfiguration(SystemConfigurationContext + SystemMatrixTransformOffset1, SystemStackBuffer20);
-      *(void *)(SystemConfigurationContext + SystemMatrixTransformOffset2) = SystemMatrixTransformValue1;
-      *(void *)(SystemConfigurationContext + SystemMatrixTransformOffset3) = SystemMatrixTransformValue2;
+      SystemStackBuffer[0] = MatrixTransformOperation;
+      ProcessSystemConfiguration(SystemConfigurationContext + MatrixTransformOffset1, SystemStackBuffer);
+      *(void *)(SystemConfigurationContext + MatrixTransformOffset2) = MatrixTransformValue1;
+      *(void *)(SystemConfigurationContext + MatrixTransformOffset3) = MatrixTransformValue2;
     }
     ProcessDataMatchingOperation(ProcessingIndex);
     StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + SystemStringDataOffset) + SystemStringPointerOffset + UnicodeContextHandle);
@@ -206124,7 +206125,7 @@ void ProcessSystemConfigurationAndStringMatching(void)
     if (StringProcessingStatus != NULL) {
       SystemCharacterStatusPointer = StringProcessingStatus;
     }
-    ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &stack0x00000090);
+    ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &SystemValidationStackBuffer);
     if (ValidationStatus != '\0') {
       *(int *)(PatternIndex + 0x68) = ProcessingIndex;
     }
@@ -206145,8 +206146,8 @@ void ProcessSystemConfigurationAndStringMatching(void)
              (float)(int)((MatrixTransformMultiplier - CalculatedDistance) + MatrixTransformMultiplier1 * 0.5 + *(float *)(StringOffset + 0x90));
         *(char *)(PatternIndex + 0x70) = (char)UnicodeCodeValue;
       }
-      PrimaryProcessingStatusFlag = (void *               (*(long long *)(SystemContext + 0x1b88) + -0x10 +
-               (long long)*(int *)(SystemContext + 0x1b80) * 0x14);
+      PrimaryProcessingStatusFlag = (void *)(*(long long *)(SystemContext + SystemProcessingStatusOffset1) + 
+               (long long)*(int *)(SystemContext + SystemProcessingStatusOffset2) * SystemProcessingStatusMultiplier);
       MemoryPoolIndex = PrimaryProcessingStatusFlag[1];
       SystemEventTemplatePointer = (void *               (SystemContext + 0x16c8 +
                (long long               *(int *)(*(long long *)(SystemContext + 0x1b88) + -0x14 +
