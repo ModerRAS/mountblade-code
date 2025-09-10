@@ -30498,6 +30498,28 @@ void ProcessSecureData(int64_t *contextPointer, DataBuffer dataSource, DataBuffe
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构A0的有效性
 #define ValidateDataStructureA0 FUN_180897d90
+
+/**
+ * @brief 验证数据结构A0的有效性
+ * 
+ * 该函数负责验证数据结构的完整性和有效性，通过以下步骤：
+ * 1. 初始化数据处理上下文和安全检查参数
+ * 2. 验证数据完整性并获取异常处理上下文
+ * 3. 处理多个数据块配置，验证各种数据格式
+ * 4. 执行安全检查和验证操作
+ * 5. 返回验证结果或错误代码
+ * 
+ * @param DataStructurePointer 数据结构指针，指向要验证的数据结构
+ * 
+ * @return DataBuffer 返回验证结果
+ *         - 成功时返回0
+ *         - 失败时返回相应的错误代码
+ * 
+ * @note 该函数处理多个数据块配置，包括数据验证、安全检查和异常处理
+ * @warning 函数中包含复杂的内存操作和异常处理逻辑
+ * 
+ * @see ValidateDataIntegrityA0, ProcessDataBlockWithConfigurationA0
+ */
 DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
 
 {
@@ -30505,7 +30527,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   DataBuffer operationResult;
   int64_t memoryRegionOffset;
   DataWord memoryRegionBase;
-  DataWord operationResult;
+  DataWord processingStatus;
   DataWord dataFlags;
   DataWord validationOutcome;
   DataWord securityCheckResult;
