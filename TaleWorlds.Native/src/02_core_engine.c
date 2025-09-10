@@ -14853,6 +14853,18 @@ void CoreEngineInitializeNetworkConnectionPool(void) {
  * @note 此函数在网络系统初始化时调用
  * @warning 消息队列初始化失败可能导致网络消息丢失
  */
+/**
+ * @brief 初始化核心引擎网络消息队列
+ * 
+ * 该函数负责初始化核心引擎的网络消息队列系统，设置消息的发送和接收队列。
+ * 主要功能包括：
+ * - 初始化网络消息队列节点
+ * - 设置消息处理回调函数
+ * - 配置消息队列的内存管理
+ * - 建立消息路由和分发机制
+ * 
+ * @note 原始实现：简化实现，只进行基本的网络消息队列初始化
+ */
 void CoreEngineInitializeNetworkMessageQueue(void)
 {
   char IsNodeInitialized;
@@ -14906,6 +14918,18 @@ void CoreEngineInitializeNetworkMessageQueue(void)
  * 
  * 该函数负责初始化和管理网络事件处理器，用于处理各种网络事件。
  * 包括事件的注册、触发、分发和处理机制。
+ */
+/**
+ * @brief 初始化核心引擎网络事件处理器
+ * 
+ * 该函数负责初始化核心引擎的网络事件处理器，设置网络事件的监听和处理机制。
+ * 主要功能包括：
+ * - 初始化网络事件处理节点
+ * - 设置事件监听和回调函数
+ * - 配置事件队列的内存管理
+ * - 建立事件分发和处理机制
+ * 
+ * @note 原始实现：简化实现，只进行基本的网络事件处理器初始化
  */
 void CoreEngineInitializeNetworkEventHandler(void)
 {
