@@ -22215,6 +22215,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   uint currentSize;
   int64_t eventHandle;
   int64_t queueInfo;
+  int queueStatusValidation;
   
   eventStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + ExceptionHandlerCallbackOffset),&queueInfo);
   if (((eventStatus != 0) || (eventStatus = InitializeSystemEventA0(&eventHandle), eventStatus != 0)) ||
@@ -22232,7 +22233,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   }
   currentSize = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> BitShift31Bits;
   capacity = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ currentSize) - currentSize;
-  status = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
+  queueNewSize = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
   if (capacity < status) {
     capacity = (int)((float)capacity * 1.5);
     if (status <= capacity) {

@@ -119956,58 +119956,58 @@ void ProcessUIContextDataTransform(int uiContext,int dataSource,longlong targetB
 void ProcessUIContextDataTransform(int uiContext,int dataSource,longlong targetBuffer,int bufferSize)
 
 {
-  byte isCharacterMatch;
-  char localChar2;
-  char localChar3;
-  char localChar4;
-  char localChar5;
-  short sVar6;
+  byte characterMatch;
+  char charValue2;
+  char charValue3;
+  char charValue4;
+  char charValue5;
+  short transformValue;
   int bufferSize;
-  int localInt7;
-  int localInt8;
-  int register10D;
-  int iStack0000000000000028;
-  int iStack000000000000002c;
-  int iStack0000000000000030;
-  char *pcStack0000000000000038;
-  UIByte *stackParam00000090;
-  int *stackParam00000098;
+  int result1;
+  int result2;
+  int registerValue;
+  int contextDoubled;
+  int sourceDoubled;
+  int registerDoubled;
+  char *charPointer;
+  UIByte *byteParam;
+  int *intParam;
   int *maxAllocations;
-  uint *stackParam000000a8;
-  int *stackParam000000b0;
-  int stackParam000000b8;
-  longlong maxIterations;
-  longlong lStack00000000000000c8;
-  byte *stackParam000000d0;
-  short stackParam000000d8;
-  int stackParam000000e0;
-  int stackParam000000e8;
+  uint *uintParam;
+  int *resultPointer;
+  int paramB8;
+  longlong iterationLimit;
+  longlong dataOffset;
+  byte *dataBuffer;
+  short paramD8;
+  int paramE0;
+  int paramE8;
   
-  iStack0000000000000030 = register10D * 2;
-  iStack0000000000000028 = uiContext * 2;
-  iStack000000000000002c = dataSource * 2;
-  pcStack0000000000000038 = (char *)(maxIterations + 3);
-  lStack00000000000000c8 = targetBuffer - (longlong)stackParam000000d0;
+  registerDoubled = registerValue * 2;
+  contextDoubled = uiContext * 2;
+  sourceDoubled = dataSource * 2;
+  charPointer = (char *)(iterationLimit + 3);
+  dataOffset = targetBuffer - (longlong)dataBuffer;
   do {
-    isCharacterMatch = stackParam000000d0[lStack00000000000000c8];
-    localChar2 = *pcStack0000000000000038;
-    localChar3 = pcStack0000000000000038[1];
-    localChar4 = pcStack0000000000000038[-2];
-    localChar5 = pcStack0000000000000038[-1];
-    localInt7 = (uint)isCharacterMatch - stackParam000000e0;
-    localInt8 = (int)((ulonglong)
-                  ((longlong)localChar3                   (longlong)((int)localChar3 * stackParam000000b0[0x18] + iStack000000000000002c)) >> 0x10
+    characterMatch = dataBuffer[dataOffset];
+    charValue2 = *charPointer;
+    charValue3 = charPointer[1];
+    charValue4 = charPointer[-2];
+    charValue5 = charPointer[-1];
+    result1 = (uint)characterMatch - paramE0;
+    result2 = (int)((ulonglong)
+                  ((longlong)charValue3                   (longlong)((int)charValue3 * resultPointer[0x18] + sourceDoubled)) >> 0x10
                  ) + (int)((ulonglong)
                            ((longlong)
-                            ((int)pcStack0000000000000038[-3] * *stackParam000000b0 +
-                            (int)localChar4 * stackParam000000b0[1] * 2 + iStack0000000000000030 +
-                            (int)localChar5 * stackParam000000b0[2] * 2 +
-                            (int)localChar3 * stackParam000000b0[4] * 2 +
-                            stackParam000000b0[3] * (int)localChar2 * 2)                            (longlong)pcStack0000000000000038[-3]) >> 0x10) +
+                            ((int)charPointer[-3] * *resultPointer +
+                            (int)charValue4 * resultPointer[1] * 2 + registerDoubled +
+                            (int)charValue5 * resultPointer[2] * 2 +
+                            (int)charValue3 * resultPointer[4] * 2 +
+                            resultPointer[3] * (int)charValue2 * 2)                            (longlong)charPointer[-3]) >> 0x10) +
                      (int)((ulonglong)
                            ((longlong)
-                            ((int)localChar4 * stackParam000000b0[6] +
-                            bufferSize + (int)localChar5 * stackParam000000b0[7] * 2 +
+                            ((int)charValue4 * resultPointer[6] +
+                            bufferSize + (int)charValue5 * resultPointer[7] * 2 +
                             (int)localChar3 * stackParam000000b0[9] * 2 +
                             (int)localChar2 * stackParam000000b0[8] * 2) * (longlong)localChar4) >> 0x10) +
                      (int)((ulonglong)

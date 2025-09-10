@@ -24711,7 +24711,14 @@ void** SetupDataBufferTemplates(void** dataBufferReference, uint64_t initializat
  * 该函数负责检查系统节点的状态，包括节点活动标志、资源哈希条目
  * 和系统加密密钥的验证。用于系统运行时的状态监控和管理。
  * 
- * @return 返回系统节点状态，true表示节点活跃，false表示节点非活跃
+ * @return bool 返回系统节点状态，true表示节点活跃，false表示节点非活跃
+ * 
+ * @note 该函数执行以下步骤：
+ * 1. 初始化系统字符串缓冲区
+ * 2. 处理系统字符串数据
+ * 3. 设置资源哈希条目
+ * 4. 验证系统字符串格式
+ * 5. 检查系统节点可用性
  */
 bool SystemNodeCheckStatus(void)
 
@@ -24719,23 +24726,23 @@ bool SystemNodeCheckStatus(void)
   char nodeActiveFlag;
   uint32_t* resourceHashEntryPointer;
   void** systemHashNodeData;
-  int SystemIndex;
+  int systemIndex;
   bool systemNodeStatus;
   void* systemEncryptionKey;
-  long long systemValidationResult;
+  int64_t systemValidationResult;
   void** stringBufferPointer;
   void** encryptionKeyPointer;
   uint stringOffsetValue;
   
   InitializeSystemStringBuffer(&stringBufferPointer);
-  systemIndex = stringOffsetValue + 0x11;
+  systemIndex = stringOffsetValue + SystemStringIndexOffset;
   ProcessSystemStringData(&stringBufferPointer, systemIndex);
   resourceHashEntryPointer = (uint32_t*)(encryptionKeyPointer + stringOffsetValue);
   *resourceHashEntryPointer = SystemStringIdentifierTemplate1;
   resourceHashEntryPointer[1] = SystemStringIdentifierTemplate2;
   resourceHashEntryPointer[2] = SystemStringIdentifierTemplate3;
   resourceHashEntryPointer[3] = SystemStringIdentifierTemplate4;
-  *(void**)(resourceHashEntryPointer + 4) = 0x74;
+  *(void**)(resourceHashEntryPointer + 4) = (void*)SystemEncryptionKeyOffset;
   systemEncryptionKey = 0;
   systemValidationResult = 0;
   systemHashNodeData = &SystemStringTemplate;
