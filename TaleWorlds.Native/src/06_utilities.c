@@ -28998,7 +28998,7 @@ ValidationFailedLabel:
  */
 #define ExecuteSecurityCheckAndTerminateA1 FUN_180897afe
 
-void ExecuteSecurityCheckAndTerminateA1(void)
+void ExecuteSecurityCheckAndTerminateVersion1(void)
 
 {
   int64_t systemStackPointer;
@@ -29028,7 +29028,7 @@ void ExecuteSecurityCheckAndTerminateA1(void)
  */
 #define ExecuteSecurityCheckAndTerminateA2 FUN_180897b0e
 
-void ExecuteSecurityCheckAndTerminateA2(void)
+void ExecuteSecurityCheckAndTerminateVersion2(void)
 
 {
   int64_t systemStackPointer;
@@ -29073,7 +29073,7 @@ void ExecuteSecurityCheckAndTerminateA2(void)
  * @warning 此函数在安全检查失败时会终止程序执行
  * @see ExecuteSecurityCheck, StackFrameContext, securityBuffer
  */
-void ExecuteSecurityCheckAndTerminateA3(void)
+void ExecuteSecurityCheckAndTerminateVersion3(void)
 
 {
   int64_t systemStackPointer;
@@ -29266,7 +29266,7 @@ OperationFailedLabel:
  * 
  * @see InitializeDataStructureA0, ExecuteSecurityCheck
  */
-void ProcessSecureDataA0(int64_t *contextPointer, DataBuffer dataSource, DataBuffer securityParam1, DataBuffer securityParam2)
+void ProcessSecureData(int64_t *contextPointer, DataBuffer dataSource, DataBuffer securityParam1, DataBuffer securityParam2)
 {
   DataBuffer encryptedSecurityParam1;                             // 加密后的安全参数1
   DataBuffer encryptedSecurityParam2;                             // 加密后的安全参数2
