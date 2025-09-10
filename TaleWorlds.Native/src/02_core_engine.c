@@ -67772,7 +67772,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
   uint64_t auStack_498 [2];
   code *pcStack_488;
   code *pcStack_480;
-  long long lStack_478;
+  long long SystemMemoryCounter;
   uint64_t *puStack_470;
   uint64_t *puStack_468;
   uint64_t uStack_460;
