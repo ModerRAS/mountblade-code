@@ -3463,11 +3463,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
 #define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
 #define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
-#define MODULE_CONFIG_OFFSET_1 0x10             // 模块配置偏移量1
-#define MODULE_CONFIG_OFFSET_2 0x18             // 模块配置偏移量2
-#define MODULE_DATA_OFFSET_1 0x8                // 模块数据偏移量1
-#define MODULE_DATA_OFFSET_2 0x90               // 模块数据偏移量2
-#define MODULE_DATA_OFFSET_3 0x10               // 模块数据偏移量3
 
 // 全局数据指针偏移量常量
 #define GlobalDataPointerA35ConfigOffset 0x10   // 全局数据指针A35配置偏移量
@@ -19743,17 +19738,30 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 
 
 
-// 函数: uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHandle)
-// 
-// 工具数据转换函数
-// 处理工具数据的转换操作，根据上下文句柄和操作句柄执行相应的数据转换
-// 
-// 参数:
-//   contextHandle - 上下文句柄，包含数据转换的上下文信息
-//   operationHandle - 操作句柄，指定要执行的转换操作
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
+/**
+ * @brief 工具数据转换函数
+ * 
+ * 处理工具数据的转换操作，根据上下文句柄和操作句柄执行相应的数据转换。
+ * 该函数负责初始化转换上下文，验证数据，执行转换操作，并在需要时清理资源。
+ * 
+ * 功能详情：
+ * - 初始化转换上下文并进行验证
+ * - 检查数据计数和资源描述符验证状态
+ * - 根据验证模式设置不同的操作参数
+ * - 执行数据转换操作
+ * - 处理转换结果和资源清理
+ * 
+ * @param contextHandle 上下文句柄，包含数据转换的上下文信息
+ * @param operationHandle 操作句柄，指定要执行的转换操作
+ * 
+ * @return uint64_t 转换操作结果：
+ *         - 0: 转换成功
+ *         - 非零: 转换失败或错误代码
+ * 
+ * @note 原始函数名：ProcessUtilityDataConversion
+ * @warning 确保传入的句柄参数有效，否则可能导致未定义行为
+ * @see InitializeConversionContext, ExecuteDataConversion, CleanupConversionResources
+ */
 uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHandle)
 
 {
@@ -19764,6 +19772,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   DataWord operationParams [2];
   int64_t contextData;
   int DataCount;
+  uint conversionStatus;
   
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + systemContextConversionOffset),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
@@ -24741,7 +24750,7 @@ DataBuffer ValidateAndProcessFloatingPointValue(int64_t dataContext,int64_t oper
  * @warning 数据同步操作需要确保线程安全和数据一致性
  * @see ProcessSystemDataTransferA0, GetOperationRangeDataA0, ValidateOperationRangeA0
  */
-uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
+uint64_t ProcessDataSynchronizationWithValidation(uint64_t systemHandle,uint64_t dataHandle)
 
 {
   float inputValue;              // 输入浮点数值
@@ -24769,9 +24778,9 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
       rangeMax = inputValue;
     }
     *(float *)(registerContext + SystemDataSecondaryOffset18) = rangeMax;
-    operationResult = ValidateOperationRangeA0(systemHandle + SystemOperationContextOffset60,stackBuffer,rangeMax);
+    operationResult = ValidateOperationRangePrimary(systemHandle + SystemOperationContextOffset60,stackBuffer,rangeMax);
     if ((int)operationResult == 0) {
-        CleanupSystemEventA0(*(DataBuffer *)(systemHandle + SystemManagementOffset98),systemHandle);
+        CleanupSystemEventPrimary(*(DataBuffer *)(systemHandle + SystemManagementOffset98),systemHandle);
     }
   }
   return operationResult;
