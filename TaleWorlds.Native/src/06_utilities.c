@@ -37839,8 +37839,8 @@ ValidationLabelB:
         calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + 0x14) + *(float *)(exceptionBuffer6 + 2);
         *(float *)((int64_t)exceptionBuffer3 + 0x14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionBuffer3 + 3) = 1;
-        inputParameter9 = *(int *)(StackFrameContext + -0x21);
-        exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
+        inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+        exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameContextOffsetNegative29);
       }
     }
     statusCounter = *(uint *)(StackFrameContext + -0x1d);
