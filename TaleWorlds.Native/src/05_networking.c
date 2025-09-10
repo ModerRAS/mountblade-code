@@ -648,7 +648,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkMonitorEnabled 0x01                                  // 监控器启用
 #define NetworkRoundTripTimeResetValue NetworkResetValue             // 往返时间重置
 // 网络系统状态常量
-#define NetworkBufferInitialized 0x01                                   // 缓冲区初始化标志
 #define NetworkIndexResetValue NetworkResetValue                       // 索引重置
 #define NetworkPacketIndexResetValue NetworkResetValue                // 数据包索引重置
 #define NetworkErrorRateResetValue NetworkResetValue                  // 错误率重置
