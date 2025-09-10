@@ -112270,10 +112270,10 @@ void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer
                                     ((longlong)*(int *)(targetHandle + 0x121c) + (longlong)sourceDataValue) * 4,
                                     sourceDataValue - *(int *)(targetHandle + 0x121c));
       tempDoubleValue7 = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,sourceDataValue - processingResult);
-      TransformCoefficient4 = SUB84(dVar7,0);
-      TemporaryFloatValue = (float)(dVar2 + dVar7);
-      if (LocalFloatValue9 <= TemporaryFloatValue) {
-        if (LocalFloatValue6 < TemporaryFloatValue) break;
+      transformCoefficient = SUB84(tempDoubleValue7,0);
+      temporaryFloatValue = (float)(tempDoubleValue + tempDoubleValue7);
+      if (localFloatValue9 <= temporaryFloatValue) {
+        if (localFloatValue6 < temporaryFloatValue) break;
       }
       else {
         *(char *)(TargetHandle + 0x12a7) = (char)uiCompareResult;
