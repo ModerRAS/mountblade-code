@@ -915,6 +915,8 @@ typedef enum {
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
 #define FUN_180759220 ProcessUIComponentRegistration              // UI组件注册处理函数 - 处理UI组件的注册和配置
 #define FUN_18071ace8 UIResetOperationFunction                     // UI重置操作函数 - 执行UI重置操作
+#define InitializeUIContextAndDataSource FUN_180738630           // 初始化UI上下文和数据源 - 处理UI系统的上下文和数据源初始化与验证
+#define ProcessUIBufferOperationChain FUN_1807389f0               // 处理UI缓冲区操作链 - 按顺序执行多个缓冲区操作
 #define FUN_180721810 ProcessUIDataTransformOperation              // 处理UI数据变换操作 - 处理UI数据的变换操作
 #define ExecuteUIContextDataOperation ExecuteUIContextDataOperation                // 执行UI上下文数据操作 - 执行UI上下文数据的操作
 #define FUN_180724090 ProcessUIWordDataTransfer                    // 处理UI字数据传输 - 处理UI字数据的传输
@@ -121605,7 +121607,25 @@ LAB_18073802b:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180738630(UIDword *uiContext,UIDword *dataSource,int targetBuffer)
+/**
+ * @brief 处理UI上下文和数据源的初始化与验证
+ * 
+ * 该函数负责初始化和验证UI系统的上下文和数据源。主要功能包括：
+ * - 遍历系统数据句柄表，查找可用的内存资源
+ * - 验证内存资源的状态和完整性
+ * - 初始化UI上下文和数据源的默认值
+ * - 管理内存资源的分配和释放
+ * 
+ * @param uiContext UI上下文指针，用于存储初始化后的UI上下文数据
+ * @param dataSource 数据源指针，用于存储初始化后的数据源信息
+ * @param targetBuffer 目标缓冲区参数，控制处理流程
+ * @return int 返回操作状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180738630
+ * @note 该函数在UI系统初始化过程中扮演关键角色
+ */
+#define InitializeUIContextAndDataSource FUN_180738630
+int InitializeUIContextAndDataSource(UIDword *uiContext,UIDword *dataSource,int targetBuffer)
 
 {
   longlong allocatedMemory;
@@ -121902,7 +121922,32 @@ UIHandle ProcessUIContextHandleAllocation(void)
 
 
 
-int FUN_1807389f0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+/**
+ * @brief 处理UI系统缓冲区操作链
+ * 
+ * 该函数负责处理UI系统的缓冲区操作链，按顺序执行多个缓冲区操作。
+ * 主要功能包括：
+ * - 获取处理结果的基准偏移量
+ * - 执行多个缓冲区操作，每个操作都有特定的目标缓冲区
+ * - 累积处理结果并返回总的操作状态
+ * - 处理各种UI句柄和缓冲区参数
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源参数，指定操作的数据源
+ * @param targetBuffer 目标缓冲区句柄，用于存储操作结果
+ * @param bufferSize 缓冲区大小句柄，指定操作的缓冲区大小
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 额外参数6，用于特定的缓冲区操作
+ * @param param_7 额外参数7，用于特定的缓冲区操作
+ * @param param_8 额外参数8，用于特定的缓冲区操作
+ * @param param_9 额外参数9，用于特定的缓冲区操作
+ * @return int 返回累积的处理结果，表示操作的总体状态
+ * 
+ * @note 原始函数名：FUN_1807389f0
+ * @note 该函数执行一系列复杂的缓冲区操作，是UI系统核心功能的一部分
+ */
+#define ProcessUIBufferOperationChain FUN_1807389f0
+int ProcessUIBufferOperationChain(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIDword resultPointer,UIHandle param_6,UIHandle param_7,UIHandle param_8,
                  UIHandle param_9)
 
