@@ -124477,7 +124477,7 @@ void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     pstackUInt148 = astackUInt128;
     astackUInt128[0] = 0;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957398);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStateManager);
   }
 LAB_18073aa6e:
   if (stackLong138 != 0) {
