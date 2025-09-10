@@ -294256,97 +294256,97 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint32_t monitoringInterval, uint32_t statusFlags)
 {
     // 系统状态变量
-    uint32_t MemoryUsageStatus;               // 内存使用状态
-    uint32_t CpuUsageRate;                     // CPU使用率
-    uint32_t NetworkConnectionStatus;          // 网络连接状态
-    uint32_t SystemThreadStatus;               // 系统线程状态
-    uint32_t ResourceAllocationStatus;         // 资源分配状态
-    uint32_t SystemErrorLogStatus;             // 系统错误日志状态
-    uint32_t OverallSystemHealth;               // 系统整体健康状态
+    uint32_t memoryUsageStatus;               // 内存使用状态
+    uint32_t cpuUsageRate;                     // CPU使用率
+    uint32_t networkConnectionStatus;          // 网络连接状态
+    uint32_t systemThreadStatus;               // 系统线程状态
+    uint32_t resourceAllocationStatus;         // 资源分配状态
+    uint32_t systemErrorLogStatus;             // 系统错误日志状态
+    uint32_t overallSystemHealth;               // 系统整体健康状态
     
     // 监控时间控制变量
-    uint64_t MonitoringStartTime;              // 监控开始时间
-    uint64_t MonitoringEndTime;                // 监控结束时间
-    uint32_t ElapsedMonitoringTime;            // 已用的监控时间
+    uint64_t monitoringStartTime;              // 监控开始时间
+    uint64_t monitoringEndTime;                // 监控结束时间
+    uint32_t elapsedMonitoringTime;            // 已用的监控时间
     
     // 监控结果变量
-    int MonitoringResultCode;                  // 监控结果代码
-    uint8_t SystemAlertFlags;                  // 系统报警标志
-    uint8_t CriticalAlertCount;                // 严重报警计数
+    int monitoringResultCode;                  // 监控结果代码
+    uint8_t systemAlertFlags;                  // 系统报警标志
+    uint8_t criticalAlertCount;                // 严重报警计数
     
     // 初始化监控变量
-    MemoryUsageStatus = 0;
-    CpuUsageRate = 0;
-    NetworkConnectionStatus = 0;
-    SystemThreadStatus = 0;
-    ResourceAllocationStatus = 0;
-    SystemErrorLogStatus = 0;
-    OverallSystemHealth = 0;
+    memoryUsageStatus = 0;
+    cpuUsageRate = 0;
+    networkConnectionStatus = 0;
+    systemThreadStatus = 0;
+    resourceAllocationStatus = 0;
+    systemErrorLogStatus = 0;
+    overallSystemHealth = 0;
     
-    MonitoringResultCode = 0;
-    SystemAlertFlags = 0;
-    CriticalAlertCount = 0;
+    monitoringResultCode = 0;
+    systemAlertFlags = 0;
+    criticalAlertCount = 0;
     
     // 获取监控开始时间
-    MonitoringStartTime = GetCurrentSystemTime();
+    monitoringStartTime = GetCurrentSystemTime();
     
     // 检查系统监控器有效性
-    if (SystemStatusMonitor == NULL) {
+    if (systemStatusMonitor == NULL) {
         return -1; // 无效的监控器指针
     }
     
     // 根据状态标志位执行相应的监控任务
-    if ((StatusFlags & 0x1) != 0) {
+    if ((statusFlags & 0x1) != 0) {
         // 监控内存使用状态
-        MemoryUsageStatus = CheckMemoryUsageStatus(SystemStatusMonitor);
-        if (MemoryUsageStatus != 0) {
-            SystemAlertFlags |= 0x1;
-            CriticalAlertCount++;
+        memoryUsageStatus = CheckMemoryUsageStatus(systemStatusMonitor);
+        if (memoryUsageStatus != 0) {
+            systemAlertFlags |= 0x1;
+            criticalAlertCount++;
         }
     }
     
-    if ((StatusFlags & 0x2) != 0) {
+    if ((statusFlags & 0x2) != 0) {
         // 监控CPU使用率
-        CpuUsageRate = GetCpuUsageRate(SystemStatusMonitor);
-        if (CpuUsageRate > 90) { // CPU使用率超过90%
-            SystemAlertFlags |= 0x2;
-            CriticalAlertCount++;
+        cpuUsageRate = GetCpuUsageRate(systemStatusMonitor);
+        if (cpuUsageRate > 90) { // CPU使用率超过90%
+            systemAlertFlags |= 0x2;
+            criticalAlertCount++;
         }
     }
     
-    if ((StatusFlags & 0x4) != 0) {
+    if ((statusFlags & 0x4) != 0) {
         // 监控网络连接状态
-        NetworkConnectionStatus = CheckNetworkConnectionStatus(SystemStatusMonitor);
-        if (NetworkConnectionStatus != 0) {
-            SystemAlertFlags |= 0x4;
-            CriticalAlertCount++;
+        networkConnectionStatus = CheckNetworkConnectionStatus(systemStatusMonitor);
+        if (networkConnectionStatus != 0) {
+            systemAlertFlags |= 0x4;
+            criticalAlertCount++;
         }
     }
     
-    if ((StatusFlags & 0x8) != 0) {
+    if ((statusFlags & 0x8) != 0) {
         // 监控系统线程状态
-        SystemThreadStatus = CheckSystemThreadStatus(SystemStatusMonitor);
-        if (SystemThreadStatus != 0) {
-            SystemAlertFlags |= 0x8;
-            CriticalAlertCount++;
+        systemThreadStatus = CheckSystemThreadStatus(systemStatusMonitor);
+        if (systemThreadStatus != 0) {
+            systemAlertFlags |= 0x8;
+            criticalAlertCount++;
         }
     }
     
-    if ((StatusFlags & 0x10) != 0) {
+    if ((statusFlags & 0x10) != 0) {
         // 监控资源分配状态
-        ResourceAllocationStatus = CheckResourceAllocationStatus(SystemStatusMonitor);
-        if (ResourceAllocationStatus != 0) {
-            SystemAlertFlags |= 0x10;
-            CriticalAlertCount++;
+        resourceAllocationStatus = CheckResourceAllocationStatus(systemStatusMonitor);
+        if (resourceAllocationStatus != 0) {
+            systemAlertFlags |= 0x10;
+            criticalAlertCount++;
         }
     }
     
-    if ((StatusFlags & 0x20) != 0) {
+    if ((statusFlags & 0x20) != 0) {
         // 监控系统错误日志状态
-        SystemErrorLogStatus = CheckSystemErrorLogStatus(SystemStatusMonitor);
-        if (SystemErrorLogStatus != 0) {
-            SystemAlertFlags |= 0x20;
-            CriticalAlertCount++;
+        systemErrorLogStatus = CheckSystemErrorLogStatus(systemStatusMonitor);
+        if (systemErrorLogStatus != 0) {
+            systemAlertFlags |= 0x20;
+            criticalAlertCount++;
         }
     }
     
