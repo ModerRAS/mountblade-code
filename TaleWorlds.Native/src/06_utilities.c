@@ -27884,7 +27884,7 @@ ProcessCompleteLabel:
  * @note 原始函数名：FUN_1808974f4
  * @warning 安全检查操作必须在适当的上下文中进行
  */
-void ExecuteSecurityCheckJumpA0(void)
+void ExecuteSecurityCheckJump(void)
 
 {
   int64_t systemStackPointer;
@@ -27922,7 +27922,7 @@ void ExecuteSecurityCheckJumpA0(void)
  */
 #define ProcessDataPointerOperationsA0 FUN_180897520
 
-void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer)
+void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
 
 {
   int64_t exceptionContext;
@@ -28013,7 +28013,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
  */
 #define ConvertAndValidateDataA0 FUN_1808975e0
 
-void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerContext)
+void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext)
 
 {
   float inputValue;
@@ -28315,7 +28315,7 @@ ProcessDataSecurityValidation:
  */
 #define ProcessDataTypesA0 FUN_180897644
 
-void ProcessDataTypesA0(void)
+void ProcessDataTypes(void)
 {
   float inputValue1;                     // 输入值1 - 用于存储输入的浮点数值
   int64_t dataContext;                   // 数据上下文 - 指向数据上下文的指针
@@ -28840,7 +28840,7 @@ ExecuteFloatingPointSecurityCheck:
  * @note 原始函数名：FUN_180892cc0
  * @see ProcessFloatingPointData, ExecuteSecurityCheckAndTerminate
  */
-void ProcessFloatingPointDataA0(float inputValue)
+void ProcessFloatingPointData(float inputValue)
 
 {
   float processedValue;
