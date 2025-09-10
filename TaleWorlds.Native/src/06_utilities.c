@@ -13056,6 +13056,24 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * @see UtilitySystemInitializationStatus, InitializeSystemMemoryStructure, 
  *      ConfigureSystemParameters, InitializeMemoryManager, ConfigureExceptionHandler
  */
+/**
+ * @brief 初始化工具模块
+ * 
+ * 初始化系统工具模块的各个组件，包括内存结构、资源配置、内存管理器和异常处理机制。
+ * 该函数按照预定的初始化顺序执行各个组件的初始化，确保系统的稳定性和可靠性。
+ * 
+ * 初始化步骤：
+ * 1. 初始化系统内存结构
+ * 2. 配置系统参数
+ * 3. 初始化内存管理器
+ * 4. 配置异常处理机制
+ * 5. 验证系统状态
+ * 
+ * @return void 无返回值，初始化结果通过UtilitySystemInitializationStatus全局变量获取
+ * 
+ * @note 原始函数名：InitializeUtilityModule
+ * @note 这是工具模块的核心初始化函数
+ */
 void InitializeUtilityModule(void)
 {
     // 系统初始化状态变量
