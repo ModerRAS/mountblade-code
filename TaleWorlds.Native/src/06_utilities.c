@@ -6153,7 +6153,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899d90
  */
-#define ExecuteAdvancedDataValidation FUN_180899d90
+#define ExecuteAdvancedDataValidation ExecuteAdvancedDataValidationRoutine
 
 /**
  * @brief 处理二进制数据流
@@ -6163,7 +6163,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a8b4
  */
-#define ProcessBinaryDataStream FUN_18089a8b4
+#define ProcessBinaryDataStream ProcessBinaryDataStreamWithConversion
 
 /**
  * @brief 执行数据完整性验证
