@@ -5941,7 +5941,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：ValidateDataStructureA1
  */
-#define ProcessDataBlockOperationA0 ProcessDataBlockOperationA0
+#define ProcessDataBlockOperationA0 FUN_18089923e
 
 /**
  * @brief 处理数据块操作A1
@@ -13991,7 +13991,7 @@ uint8_t UtilitySystemSecondaryStorageStatus;
  * @note 原始函数名: FUN_1809431a0
  * @return void* 初始化的线程本地存储指针
  */
-void* InitializeThreadLocalStorageA8(void);
+void* InitializeThreadLocalStorageWithIndex(void);
 uint32_t ThreadLocalStorageIndex;
 void *ThreadLocalStoragePointer;
 void* SystemMemoryControlFlag;
