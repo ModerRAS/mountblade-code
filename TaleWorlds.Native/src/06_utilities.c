@@ -6167,22 +6167,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateDataFormatSpecification FUN_18089d250
 
 /**
- * @brief 获取系统状态A2
+ * @brief 获取系统健康状态
  * 
- * 该函数负责获取系统的当前状态信息
+ * 该函数负责获取系统的当前状态信息，包括运行状态、性能指标
+ * 和错误信息，提供系统健康状况的全面评估。
  * 
  * @note 原始函数名：FUN_18089d281
  */
-#define GetSystemStatusA2 FUN_18089d281
+#define GetSystemHealthStatus FUN_18089d281
 
 /**
- * @brief 处理数据缓冲区A1
+ * @brief 管理数据缓冲池
  * 
- * 该函数负责处理数据缓冲区，包括缓冲区的管理和验证
+ * 该函数负责处理数据缓冲区，包括缓冲区的分配、管理和验证，
+ * 实现高效的缓冲池管理和内存优化策略。
  * 
  * @note 原始函数名：FUN_18089d484
  */
-#define ProcessDataBufferA1 FUN_18089d484
+#define ManageDataBufferPool FUN_18089d484
 
 /**
  * @brief 验证数据完整性A1

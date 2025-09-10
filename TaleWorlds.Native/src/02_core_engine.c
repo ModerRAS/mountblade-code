@@ -2303,7 +2303,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define NetworkConnectionPoolStatusFlag NetworkSystemConnectionPoolStatusFlag // 网络连接池状态标志
 #define AudioManagerStatusFlag AudioSystemManagerStatusFlag   // 音频管理器状态标志
 #define InputManagerStatusFlag InputSystemManagerStatusFlag   // 输入管理器状态标志
-#define PhysicsManagerNodeStatusFlag PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
+#define PhysicsManagerNodeStatusFlag PhysicsSystemManagerNodeStatusFlag // 物理管理器节点状态标志
 #define NetworkManagerStatusFlag NetworkManagerStatusFlag // 网络管理器状态标志
 #define SceneManagerStatusFlag SceneManagerStatusFlag   // 场景管理器状态标志
 #define CameraManagerStatusFlag CameraManagerStatusFlag   // 相机管理器状态标志
