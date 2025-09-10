@@ -148,6 +148,20 @@ typedef enum {
 #define UI_MAXIMUM_LENGTH 0xffffffffffffffff    // UI最大长度
 #define UI_STRING_LENGTH_MAX 0xffffffffffffffff // UI字符串最大长度
 
+// UI系统内存池常量
+#define UIContextSystemDataOffset 0x1a0         // UI系统上下文数据偏移量
+#define UIStandardPoolSize 0x127f8              // UI标准内存池大小
+#define UIPoolInitializationFlag 0x91           // UI内存池初始化标志
+#define UIComponentNameTableOffset 0x160         // UI组件名称表偏移量
+#define UIMaxComponentSlots 8                    // UI最大组件插槽数
+#define UIMaxComponentCountLimit 7               // UI最大组件数量限制
+#define UIContextHandleIndexOffset 0x116b8      // UI上下文句柄索引偏移量
+#define UICleanupFlag 0xa3                       // UI清理标志
+#define UIDefaultComponentSize 0x14              // UI默认组件大小（20字节）
+#define UIOperationSuccess 0                     // UI操作成功
+#define UIInitializationFailed 0x26              // UI初始化失败
+#define GlobalUIDataTable _DAT_180be12f0          // 全局UI数据表
+
 // UI系统上下文偏移量常量
 #define UI_CONTEXT_CLEANUP_HANDLER_OFFSET 0x368  // UI上下文清理处理器偏移量 - 存储UI清理函数指针的偏移量
 #define UI_CONTEXT_STATE_OFFSET 0x168             // UI上下文状态偏移量 - 存储UI上下文状态的偏移量
@@ -121962,15 +121976,19 @@ UIHandle AllocateAndSetUIContextHandle(void)
 
 
 
- 获取UI组件默认大小
+ /**
+ * @brief 获取UI组件默认大小
  * 
  * 该函数返回UI组件的默认大小值，用于初始化组件时的基准大小。
+ * 这个固定的默认大小值确保了UI组件的一致性和兼容性。
  * 
-  默认组件大小值（0x14 = 20字节）
-  原始函数名: FUN_1807389d7
- uint64_t GetUIDefaultComponentSize(void)
+ * @return uint64_t 默认组件大小值（0x14 = 20字节）
+ * 
+ * @note 原始函数名：FUN_1807389d7
+ */
+uint64_t GetUIDefaultComponentSize(void)
 {
-  return 0x14;
+  return UIDefaultComponentSize;
 }
 
 
@@ -122037,26 +122055,68 @@ int ProcessUIBufferOperationChain(longlong uiContext,int dataSource,UIHandle tar
 
 
 
-int FUN_180738b40(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDword bufferSize,
-                 UIHandle resultPointer,UIHandle param_6)
+/**
+ * @brief UI系统数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI系统的数据缓冲区操作，包括数据验证、缓冲区复制和内存管理。
+ * 主要功能包括：
+ * 1. 初始化数据处理过程
+ * 2. 执行数据验证和缓冲区控制
+ * 3. 处理目标缓冲区大小设置
+ * 4. 执行数据缓冲区复制操作
+ * 5. 返回累积的处理结果
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，指定操作的数据源
+ * @param targetBuffer 目标缓冲区句柄，用于存储操作结果
+ * @param bufferSize 缓冲区大小，指定操作的缓冲区大小
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 额外参数，用于特定的缓冲区操作
+ * @return int 累积的处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180738b40
+ */
+int ProcessUIDataBufferOperations(longlong uiContext, int dataSource, UIHandle targetBuffer, UIDword bufferSize,
+                                 UIHandle resultPointer, UIHandle param_6)
 
 {
-  int processingResult;
-  int uiValidationResult;
+  int cumulativeProcessingResult;              // 累积处理结果
+  int singleOperationResult;                    // 单次操作结果
   
-  processingResult = FUN_18074b880();
-  uiValidationResult = FUN_18074b880(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
-  processingResult = processingResult + uiValidationResult;
-  uiValidationResult = func_0x00018074b800(processingResult + uiContext,dataSource - processingResult,bufferSize);
-  processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
-  processingResult = processingResult + uiValidationResult;
-  uiValidationResult = CopyUIDataBuffer(processingResult + uiContext,dataSource - processingResult,resultPointer);
-  processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
-  processingResult = processingResult + uiValidationResult;
-  uiValidationResult = CopyUIDataBuffer(processingResult + uiContext,dataSource - processingResult,param_6);
-  return uiValidationResult + processingResult;
+  // 初始化处理过程
+  cumulativeProcessingResult = InitializeUIDataProcessing();
+  
+  // 执行第一次数据验证和缓冲区控制
+  singleOperationResult = ValidateAndControlUIBuffer(uiContext + cumulativeProcessingResult, 
+                                                    dataSource - cumulativeProcessingResult, &UIBufferControlData);
+  cumulativeProcessingResult = cumulativeProcessingResult + singleOperationResult;
+  
+  // 处理目标缓冲区大小
+  singleOperationResult = SetUITargetBufferSize(cumulativeProcessingResult + uiContext, 
+                                               dataSource - cumulativeProcessingResult, bufferSize);
+  cumulativeProcessingResult = cumulativeProcessingResult + singleOperationResult;
+  
+  // 执行第二次数据验证和缓冲区控制
+  singleOperationResult = ValidateAndControlUIBuffer(cumulativeProcessingResult + uiContext, 
+                                                    dataSource - cumulativeProcessingResult, &UIBufferControlData);
+  cumulativeProcessingResult = cumulativeProcessingResult + singleOperationResult;
+  
+  // 执行第一次数据缓冲区复制
+  singleOperationResult = CopyUIDataBuffer(cumulativeProcessingResult + uiContext, 
+                                          dataSource - cumulativeProcessingResult, resultPointer);
+  cumulativeProcessingResult = cumulativeProcessingResult + singleOperationResult;
+  
+  // 执行第三次数据验证和缓冲区控制
+  singleOperationResult = ValidateAndControlUIBuffer(cumulativeProcessingResult + uiContext, 
+                                                    dataSource - cumulativeProcessingResult, &UIBufferControlData);
+  cumulativeProcessingResult = cumulativeProcessingResult + singleOperationResult;
+  
+  // 执行第二次数据缓冲区复制
+  singleOperationResult = CopyUIDataBuffer(cumulativeProcessingResult + uiContext, 
+                                          dataSource - cumulativeProcessingResult, param_6);
+  
+  // 返回最终累积的处理结果
+  return singleOperationResult + cumulativeProcessingResult;
 }
 
 

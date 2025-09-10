@@ -29933,9 +29933,9 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
   DataBuffer TemporaryDataBufferV;
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorProcessingData;
-  DataWord StackDataWordA;              // 堆栈数据字A - 用于存储临时的堆栈数据
-  DataWord *StackPointerBufferC;        // 堆栈指针缓冲区C - 用于存储堆栈指针的缓冲区
-  int64_t StackLongIntegerA;             // 堆栈长整型A - 用于存储临时的长整型数据
+  DataWord TemporaryDataWord;              // 临时数据字 - 用于存储临时的数据处理结果
+  DataWord *ValidationBufferPointer;        // 验证缓冲区指针 - 用于存储数据验证的指针
+  int64_t ProcessingIterationCount;         // 处理迭代计数 - 用于控制数据处理循环的次数
   DataBuffer *TemporaryPointerBufferB;   // 临时指针缓冲区B - 用于存储临时的指针数据
   
   // 安全验证：计算颜色处理数据的加密值
@@ -29963,16 +29963,16 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
     if (iterationCount == 0) {
       // 初始化安全验证相关变量
       SystemSecurityValidationWord = 0;
-      StackPointerBufferC = &DataValidationErrorBase;
-      SystemConfigurationWord = StackDataWordA;
+      ValidationBufferPointer = &DataValidationErrorBase;
+      SystemConfigurationWord = TemporaryDataWord;
       SystemOperationStatusWord = SystemResourceValidationWord;
       // 验证数据完整性
-      iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
+      iterationCount = ValidateDataIntegrityA0(operationBase,&ValidationBufferPointer);
       if (iterationCount == 0) {
         // 获取堆栈长整数值并初始化缓冲区指针
-        StackLongIntegerA = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset28);
+        ProcessingIterationCount = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset28);
         dataProcessingBuffer = exceptionContext4;
-        if (0 < StackLongIntegerA) {
+        if (0 < ProcessingIterationCount) {
           // 开始数据处理循环
           do {
             // 获取数据指针和内存块偏移量
@@ -29987,7 +29987,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               // 执行安全验证数据操作
               SecurityValidationDataS = *(DataWord *)(exceptionContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
-              SecurityValidationResultB = StackDataWordA;
+              SecurityValidationResultB = TemporaryDataWord;
               SecurityCheckValue = 0;
               // 执行临时指针缓冲区操作
               dataPointer = (**(FunctionPointer**)*TemporaryPointerBufferB)(TemporaryPointerBufferB);
@@ -30009,7 +30009,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
             dataProcessingBuffer = dataProcessingBuffer + 1;
             exceptionContext4 = exceptionContext4 + SystemDataSecondaryOffset18;
             dataBuffer = ProcessingLongIntegerB;
-          } while (dataProcessingBuffer < StackLongIntegerA);
+          } while (dataProcessingBuffer < ProcessingIterationCount);
         }
         // 获取系统内存缓冲区并执行数据处理操作
         systemMemoryBuffer = *(DataBuffer *)(*(int64_t *)(operationBase + OperationBaseOffset8) + SystemContextDataOffset800);
@@ -30038,7 +30038,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               SystemConfigurationData60 = *(DataWord *)(dataContext + DataOperationOffset60);
               // 获取系统安全验证数据
               SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
-              SystemStackDataWordI = StackDataWordA;
+              SystemStackDataWordI = TemporaryDataWord;
               // 验证数据完整性
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -30051,7 +30051,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               // 处理浮点数验证错误
               SystemSystemInputFloatValueA = SystemSystemInputFloatValueC;
               SystemSystemStackPointerBufferI = &FloatingPointValidationErrorA;
-              SystemSystemTemporaryDataWordC = StackDataWordA;
+              SystemSystemTemporaryDataWordC = TemporaryDataWord;
               SystemSystemTemporaryDataWordB = 0;
               // 验证数据完整性
               iterationCount = ValidateDataIntegrityA0(operationBase,&SystemSystemStackPointerBufferI);
@@ -30064,7 +30064,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
                 // 处理浮点数验证错误B
                 SystemInputFloatValueA = StackFloatArrayA[0];
                 SystemStackPointerBufferI = &FloatingPointValidationErrorB;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 SystemTemporaryDataWordB = 0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -30076,7 +30076,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               do {
                 if (*floatValidationArrayPointer != 0.0) {
                   // 处理数据验证错误
-                  SystemTemporaryDataWordC = StackDataWordA;
+                  SystemTemporaryDataWordC = TemporaryDataWord;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &DataProcessingValidationError;
                   SystemInputFloatValueA = arrayIndexCounter;
@@ -30095,7 +30095,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
                 validationFloatValue = *(float *)(dataContext - FloatValidationDataAddress + (int64_t)floatValidationArrayPointer);
                 if (validationFloatValue != *floatValidationArrayPointer) {
                   // 处理系统状态验证错误
-                  SystemTemporaryDataWordC = StackDataWordA;
+                  SystemTemporaryDataWordC = TemporaryDataWord;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &SystemStatusValidationError;
                   SystemInputFloatValueA = validationIndexCounter;
@@ -30111,7 +30111,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               if ((float)(validationOutcome / 0x30) != 0.0) {
                 // 处理数据完整性验证错误A
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorA;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 SystemTemporaryDataWordB = 0;
                 SystemInputFloatValueA = (float)(validationOutcome / 0x30);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
@@ -30120,7 +30120,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               if ((*(uint *)(dataBuffer + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorB;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 FloatInputValueA = (float)CONCAT31(FloatInputValueA._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -30129,7 +30129,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               if (iterationCount != 2) {
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorC;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -30137,7 +30137,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               if (iterationCount == 4) {
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorD;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 SystemInputFloatValueA = 0.0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -30145,7 +30145,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
               if ((*(uint *)(dataBuffer + SystemDataProcessingFlagsOffset) >> 3 & 1) != 0) {
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorE;
-                SystemTemporaryDataWordC = StackDataWordA;
+                SystemTemporaryDataWordC = TemporaryDataWord;
                 ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
               }
             }
