@@ -193800,7 +193800,17 @@ undefined UNK_180986108;
 undefined UNK_18088d500;
 undefined UNK_180986170;
 
- undefined FUN_18088ea60;
+ /**
+ * @brief UI系统初始化器
+ * 
+ * 初始化用户界面系统，设置UI组件和事件处理器
+ * 管理UI系统的核心功能和状态
+ * 
+ * @note 初始化包括：组件创建、事件绑定、状态设置等
+ * @warning 初始化失败可能影响用户界面功能
+ * @see UI事件处理相关函数
+ */
+#define InitializeUISystem FUN_18088ea60
 undefined FUN_18088ea60;
 undefined UNK_180986218;
 undefined UNK_180986240;
