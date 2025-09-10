@@ -44515,7 +44515,7 @@ void ExceptionUnwindHandler3(DataBuffer exceptionContext, int64_t unwindContext)
   int64_t *exceptionHandlerChain;
   int64_t *exceptionHandler;
   
-  exceptionHandlerChain = *(int64_t **)(unwindContext + 0x48);
+  exceptionHandlerChain = *(int64_t **)(unwindContext + ExceptionCleanupOffset48);
   if (exceptionHandlerChain != (int64_t *)0x0) {
     exceptionHandler = (int64_t *)*exceptionHandlerChain;
     if (exceptionHandler != (int64_t *)0x0) {
