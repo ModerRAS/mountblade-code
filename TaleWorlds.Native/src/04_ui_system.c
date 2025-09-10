@@ -9972,6 +9972,12 @@ void ProcessUIUpdates(void)
   int *resultPointer;
   ulonglong stringPointer;
   ulonglong charIndex;
+  char *cacheSearchResult;
+  int parsedNumericValue;
+  char *unitSuffixPointer;
+  char unitConversionChar;
+  char *stringBuffer;
+  char **bufferPointer;
   
   stringLength = 0xffffffffffffffff;
   do {
@@ -123041,8 +123047,21 @@ void ValidateAndProcessUIBufferData(void)
 
 
 
- void FUN_18073922d(void)
-void ConditionalReleaseMemoryAndExecuteRender(void)
+ /**
+ * @brief 条件性UI内存释放和渲染执行器
+ * 
+ * 根据条件释放UI内存资源并执行渲染任务
+ * 该函数负责：
+ * - 检查内存资源句柄状态
+ * - 条件性释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073922d
+ */
+void ConditionalReleaseUIMemoryAndExecuteRender(void)
+void ConditionalReleaseUIMemoryAndExecuteRender(void)
 
 {
   longlong memoryResourceHandle;
