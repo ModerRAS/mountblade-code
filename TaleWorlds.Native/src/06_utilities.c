@@ -29101,8 +29101,8 @@ void ProcessDataTypes(void)
   int validationResult;                  // 验证结果整数值 - 存储验证的整型结果
   uint systemDataBufferSize;             // 系统数据缓冲区大小 - 系统数据缓冲区的大小
   DataBuffer *systemInputAccumulator;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
-  int64_t exceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
-  DataBuffer systemDataBuffer6;          // 系统数据缓冲区6 - 第六个系统数据缓冲区
+  int64_t ExceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
+  DataBuffer SystemDataBuffer6;          // 系统数据缓冲区6 - 第六个系统数据缓冲区
   DataBuffer systemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
   uint8_t *exceptionDataBuffer8;        // 异常数据缓冲区8 - 第八个异常数据缓冲区
   float calculationResult19;             // 计算结果19 - 第19个计算结果
