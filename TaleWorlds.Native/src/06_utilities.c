@@ -26435,7 +26435,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   }
   else {
     securityCheckResultPointer = (DataWord *)((int64_t)operationResult * AddressCalculationMultiplier + destinationContext[2]);
-    *(DataWord *)(destinationContext + 4) = securityCheckResultPointer[1];
+    *(DataWord *)(destinationContext + SecurityCheckResultDataOffset) = securityCheckResultPointer[1];
     securityCheckResultPointer[1] = SystemCleanupFlag;
     *securityCheckResultPointer = *contextDataPointer;
     *(DataBuffer *)(securityCheckResultPointer + 2) = *systemContext;
