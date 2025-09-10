@@ -4861,7 +4861,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
  * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfiguration
  */
-#define ProcessDataArrayWithValidation ProcessDataArrayWithValidation
+#define ProcessDataArrayWithValidation FUN_180057010
 
 /**
  * @brief 数据缓冲区初始化函数
@@ -4884,7 +4884,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
  * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
-#define InitializeSystemDataBuffer InitializeSystemDataBufferWithSecurity
+#define InitializeSystemDataBuffer FUN_1800a19c0
 
 /**
  * @brief 系统命令执行函数
@@ -4907,7 +4907,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
  * @see ProcessSystemOperations, ValidateSystemParametersAndConfiguration
  */
-#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
+#define ExecuteSystemCoreCommand FUN_18009fb60
 
 /**
  * @brief 系统操作处理函数
@@ -4930,7 +4930,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统操作可能影响系统整体性能和稳定性
  * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndStateFlags
  */
-#define ProcessSystemOperations ProcessSystemOperations
+#define ProcessSystemOperations FUN_1800ad6f0
 
 /**
  * @brief 验证和处理数据函数
@@ -4939,7 +4939,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800f74f0
  */
-#define ValidateAndProcessData ValidateAndProcessData
+#define ValidateAndProcessData FUN_1800f74f0
 
 /**
  * @brief 验证和执行操作函数A1
@@ -4948,7 +4948,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18005d560
  */
-#define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
+#define ValidateAndExecuteOperationsA1 FUN_18005d560
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
@@ -10305,7 +10305,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180853000 - 处理输入数据
 // 功能：处理用户输入数据
-#define ProcessInputData FUN_180853000
+#define ValidateMemoryBoundaryAndProcessInput FUN_180853000
 
 // 额外的Unwind_函数语义化宏定义
 // 原始函数名：Unwind_180908670 - 异常清理函数A6
@@ -10585,7 +10585,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180853000 - 处理输入数据
 // 功能：处理用户输入数据
-#define ProcessInputData FUN_180853000
+#define ValidateMemoryBoundaryAndProcessInput FUN_180853000
 
 // 原始函数名：FUN_180851490 - 执行游戏命令
 // 功能：执行游戏内部命令

@@ -112326,25 +112326,25 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
                   *(UIDword *)(TargetHandle + 0x13ec),eventProcessingCounter);
     ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030);
     processingResult = *(int *)(TargetHandle + 0x121c);
-    ScalingFactorValue = (double)CalculateUIMetricValue(&stack0x000000b0 +
-                                  ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)eventHandle)                                   4,eventHandle - *(int *)(TargetHandle + 0x121c));
-    TemporalDoubleValue = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,eventHandle - processingResult);
-    TransformCoefficient4 = (float)(ScalingFactorValue + TemporalDoubleValue);
-    if (ResultFloatValue <= TransformCoefficient4) {
-      if (TransformCoefficient2 < TransformCoefficient4) break;
+    scalingFactorValue = (double)CalculateUIMetricValue(&stack0x000000b0 +
+                                  ((longlong)*(int *)(targetHandle + 0x121c) + (longlong)eventHandle) * 4,eventHandle - *(int *)(targetHandle + 0x121c));
+    temporalDoubleValue = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,eventHandle - processingResult);
+    transformCoefficient4 = (float)(scalingFactorValue + temporalDoubleValue);
+    if (resultFloatValue <= transformCoefficient4) {
+      if (transformCoefficient2 < transformCoefficient4) break;
     }
     else {
-      *(char *)(TargetHandle + 0x12a7) = (char)uiValidationResult;
-      ResultFloatValue = TransformCoefficient4;
+      *(char *)(targetHandle + 0x12a7) = (char)uiValidationResult;
+      resultFloatValue = transformCoefficient4;
     }
     uiValidationResult = uiValidationResult + -1;
-    TransformCoefficient2 = TransformCoefficient4;
+    transformCoefficient2 = transformCoefficient4;
   } while (-1 < uiValidationResult);
-  if (*(char *)(TargetHandle + 0x12a7) == '\x04') {
-    ExecuteUIRenderingOperation(SUB84(TemporalDoubleValue,0),&stack0x00000070,*(UIDword *)(TargetHandle + 0x121c));
+  if (*(char *)(targetHandle + 0x12a7) == '\x04') {
+    ExecuteUIRenderingOperation(SUB84(temporalDoubleValue,0),&stack0x00000070,*(UIDword *)(targetHandle + 0x121c));
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam000006d0 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(stackParameter6d0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -400051,8 +400051,15 @@ LAB_18089cbf6:
 
 
 
- void FUN_18089cc29(void)
-void FUN_18089cc29(void)
+ /**
+ * @brief 空UI系统函数A
+ * 
+ * 这是一个空的UI系统函数，可能用于系统初始化或占位符。
+ * 
+ * @note 原始函数名：FUN_18089cc29
+ */
+void EmptyUISystemFunctionA(void)
+void EmptyUISystemFunctionA(void)
 
 {
   return;
@@ -400061,8 +400068,15 @@ void FUN_18089cc29(void)
 
 
 
- void FUN_18089cc31(void)
-void FUN_18089cc31(void)
+ /**
+ * @brief 空UI系统函数B
+ * 
+ * 这是一个空的UI系统函数，可能用于系统初始化或占位符。
+ * 
+ * @note 原始函数名：FUN_18089cc31
+ */
+void EmptyUISystemFunctionB(void)
+void EmptyUISystemFunctionB(void)
 
 {
   return;
@@ -400071,8 +400085,15 @@ void FUN_18089cc31(void)
 
 
 
- void FUN_18089cc41(void)
-void FUN_18089cc41(void)
+ /**
+ * @brief 空UI系统函数C
+ * 
+ * 这是一个空的UI系统函数，可能用于系统初始化或占位符。
+ * 
+ * @note 原始函数名：FUN_18089cc41
+ */
+void EmptyUISystemFunctionC(void)
+void EmptyUISystemFunctionC(void)
 
 {
   return;
@@ -400080,18 +400101,29 @@ void FUN_18089cc41(void)
 
 
 
-ulonglong FUN_18089cc80(longlong uiContext,longlong *dataSource)
+/**
+ * @brief 处理UI事件代码类型
+ * 
+ * 该函数负责处理UI事件代码类型的验证和处理，包括事件数据的验证和缓冲区管理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @return ulonglong 处理结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_18089cc80
+ */
+ulonglong ProcessUIEventCodeType(longlong uiContext,longlong *dataSource)
 
 {
-  longlong *pallocatedMemory;
-  uint iterationCount;
-  ulonglong eventCodeType;
-  int sourceDataInt;
-  uint bufferValidation [2];
-  uint stackBuffer [2];
-  UIByte astackUInt38 [32];
+  longlong *allocatedMemory;
+  uint validationIterations;
+  ulonglong eventCodeResult;
+  int dataValidationInt;
+  uint bufferValidationData [2];
+  uint stackBufferData [2];
+  UIByte eventValidationBuffer [32];
   
-  eventCodeType = FUN_1808ddc20(dataSource,astackUInt38,0,0x46454d50);
+  eventCodeResult = FUN_1808ddc20(dataSource,eventValidationBuffer,0,0x46454d50);
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
