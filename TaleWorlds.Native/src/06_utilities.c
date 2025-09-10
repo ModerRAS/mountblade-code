@@ -119812,15 +119812,11 @@ void InitializeExceptionHandlerA10(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-// 原始函数名：Unwind_1809109a0 - 异常处理器重置函数9a0
-#define ResetExceptionHandlersAtOffset9a0 Unwind_1809109a0
-
 /**
  * @brief 重置异常处理器和系统状态
  * 
  * 该函数负责重置异常处理器和系统状态，包括：
- * - 重置异常处理器指针
+ * - 重置异常处理器指针（0x1100偏移）
  * - 清理异常上下文状态
  * - 重置系统标志位
  * - 恢复默认异常处理器
@@ -119831,7 +119827,7 @@ void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_1809109a0
- * @note 这是一个异常处理和系统清理函数
+ * @note 这是一个异常处理和系统清理函数，处理0x1100偏移的异常处理器
  */
 void ResetExceptionHandlersAtOffset9a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
