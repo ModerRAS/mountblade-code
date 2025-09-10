@@ -5773,6 +5773,10 @@ void* UIGestureCoordinates;
 #define ProcessUIDataBuffer12Bytes FUN_18072d5e0            // 处理12字节UI数据缓冲区
 #define ProcessUIDataBuffer16Bytes FUN_18072d9e0            // 处理16字节UI数据缓冲区
 #define CalculateUIDataTransformValue FUN_180734d70          // 计算UI数据变换值
+#define ProcessUIComponentOperation FUN_180736180            // 处理UI组件操作
+#define ProcessUIDataWithParameters FUN_18072e450              // 处理带参数的UI数据
+#define ExecuteUIRenderingOperation FUN_180726a00               // 执行UI渲染操作
+#define ProcessUIComponentData FUN_180736450                    // 处理UI组件数据
 
 // UI系统组件操作函数
 
@@ -111369,8 +111373,8 @@ void FUN_18072e3a7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,lo
 
 
 
- void FUN_18072e450(UIHandle uiContext)
-void FUN_18072e450(UIHandle uiContext)
+ void ProcessUIDataWithParameters(UIHandle uiContext)
+void ProcessUIDataWithParameters(UIHandle uiContext)
 
 {
   longlong allocatedMemory;
@@ -111938,16 +111942,16 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
     stackUInt738 = 2;
     ResultFloatValue = (float)CalculateUIDataTransformValue(astackUInt728,targetBuffer + (longlong)(localInt5 * 2) * 4,bufferSize,localInt5);
     LocalFloatValue6 = LocalFloatValue6 - ResultFloatValue;
-    FUN_180726a00(dataSource,astackUInt728,*(UIDword *)(uiBufferData + 0x121c));
+    ExecuteUIRenderingOperation(dataSource,astackUInt728,*(UIDword *)(uiBufferData + 0x121c));
     sourceDataInt = 3;
     ResultFloatValue = 3.4028235e+38;
     do {
       stackUInt738 = *(UIDword *)(uiBufferData + 0x121c);
-      FUN_180736180(astackUInta8,uiContext + 0x1190,dataSource,sourceDataInt);
+      ProcessUIComponentOperation(astackUInta8,uiContext + 0x1190,dataSource,sourceDataInt);
       FUN_180726a70(astackUInt728,astackUInta8,*(UIDword *)(uiBufferData + 0x121c),
                     *(UIDword *)(uiBufferData + 0x13ec));
       stackUInt738 = *(UIDword *)(uiBufferData + 0x121c);
-      FUN_18072e450(astackUInt6a8,astackUInt728,targetBuffer,localInt5 * 2);
+      ProcessUIDataWithParameters(astackUInt6a8,astackUInt728,targetBuffer,localInt5 * 2);
       processingResult = *(int *)(uiBufferData + 0x121c);
       CalculationResultValue = (double)CalculateUIMetricValue(astackUInt6a8 +
                                     ((longlong)*(int *)(uiBufferData + 0x121c) + (longlong)localInt5) * 4,
@@ -111966,7 +111970,7 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
     } while (-1 < sourceDataInt);
   }
   if (*(char *)(uiContext + 0x12a7) == '\x04') {
-    FUN_180726a00(dataSource,astackUInt6e8,*(UIDword *)(uiBufferData + 0x121c));
+    ExecuteUIRenderingOperation(dataSource,astackUInt6e8,*(UIDword *)(uiBufferData + 0x121c));
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt88 ^ (ulonglong)astackUInt758);
@@ -112025,15 +112029,15 @@ void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDwo
     LocalFloatValue6 = (float)CalculateUIDataTransformValue(&stack0x00000030,targetBuffer + (longlong)(sourceDataInt * 2) * 4,bufferSize,sourceDataInt,
                                  2);
     LocalFloatValue9 = TransformCoefficient4 - LocalFloatValue6;
-    FUN_180726a00(LocalFloatValue6,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
+    ExecuteUIRenderingOperation(LocalFloatValue6,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
     uiCompareResult = 3;
     LocalFloatValue6 = 3.4028235e+38;
     do {
       dataPointer = *(UIDword *)(TargetHandle + 0x121c);
-      FUN_180736180(&stack0x000006b0,TargetHandle + 0x1190);
+      ProcessUIComponentOperation(&stack0x000006b0,TargetHandle + 0x1190);
       FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(TargetHandle + 0x121c),
                     *(UIDword *)(TargetHandle + 0x13ec),dataPointer);
-      FUN_18072e450(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataInt * 2,
+      ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataInt * 2,
                     *(UIDword *)(TargetHandle + 0x121c));
       processingResult = *(int *)(TargetHandle + 0x121c);
       dVar2 = (double)CalculateUIMetricValue(&stack0x000000b0 +
@@ -112054,7 +112058,7 @@ void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDwo
     } while (-1 < uiCompareResult);
   }
   if (*(char *)(TargetHandle + 0x12a7) == '\x04') {
-    FUN_180726a00(TransformCoefficient4,&stack0x00000070,*(UIDword *)(TargetHandle + 0x121c));
+    ExecuteUIRenderingOperation(TransformCoefficient4,&stack0x00000070,*(UIDword *)(TargetHandle + 0x121c));
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000006d0 ^ (ulonglong)&stack0x00000000);
@@ -112086,15 +112090,15 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   TransformCoefficient2 = (float)CalculateUIDataTransformValue(&stack0x00000030,preservedRegister15 + (longlong)(eventHandle * 2) * 4,targetBuffer,
                                eventHandle,2);
   ResultFloatValue = unmodifiedXMM8_Da - TransformCoefficient2;
-  FUN_180726a00(TransformCoefficient2,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
+  ExecuteUIRenderingOperation(TransformCoefficient2,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
   uiValidationResult = 3;
   TransformCoefficient2 = 3.4028235e+38;
   do {
     eventProcessingCounter = *(UIDword *)(TargetHandle + 0x121c);
-    FUN_180736180(&stack0x000006b0,TargetHandle + 0x1190);
+    ProcessUIComponentOperation(&stack0x000006b0,TargetHandle + 0x1190);
     FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(TargetHandle + 0x121c),
                   *(UIDword *)(TargetHandle + 0x13ec),eventProcessingCounter);
-    FUN_18072e450(&stack0x000000b0,&stack0x00000030);
+    ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030);
     processingResult = *(int *)(TargetHandle + 0x121c);
     ScalingFactorValue = (double)CalculateUIMetricValue(&stack0x000000b0 +
                                   ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)eventHandle)                                   4,eventHandle - *(int *)(TargetHandle + 0x121c));
@@ -112111,7 +112115,7 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
     TransformCoefficient2 = TransformCoefficient4;
   } while (-1 < uiValidationResult);
   if (*(char *)(TargetHandle + 0x12a7) == '\x04') {
-    FUN_180726a00(SUB84(TemporalDoubleValue,0),&stack0x00000070,*(UIDword *)(TargetHandle + 0x121c));
+    ExecuteUIRenderingOperation(SUB84(TemporalDoubleValue,0),&stack0x00000070,*(UIDword *)(TargetHandle + 0x121c));
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000006d0 ^ (ulonglong)&stack0x00000000);
@@ -112128,7 +112132,7 @@ void FUN_18072e943(void)
   ulonglong stackParam000006d0;
   
   if (*(char *)(TargetHandle + 0x12a7) == '\x04') {
-    FUN_180726a00();
+    ExecuteUIRenderingOperation();
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000006d0 ^ (ulonglong)&stack0x00000000);
@@ -112143,7 +112147,7 @@ void FUN_18072e96d(void)
 {
   ulonglong stackParam000006d0;
   
-  FUN_180726a00();
+  ExecuteUIRenderingOperation();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000006d0 ^ (ulonglong)&stack0x00000000);
 }
@@ -112182,7 +112186,7 @@ void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong t
     componentIndex = 0;
     do {
       allocatedMemory = targetBuffer + (longlong)(*(int *)(bufferSize + componentIndex * 4) + 2) * -4;
-      FUN_180736450(allocatedMemory,resultPointer,5,uiContext);
+      ProcessUIComponentData(allocatedMemory,resultPointer,5,uiContext);
       FUN_180736990(allocatedMemory,targetBuffer,resultPointer,5,dataSource);
       CalculationResultValue = (double)CalculateUIMetricValue(targetBuffer,resultPointer + 5);
       TransformCoefficient3 = (uiContext[0x18] + *uiContext) * 0.015 + 1.0;
@@ -112239,7 +112243,7 @@ void FUN_18072e9ce(void)
   *(UIDword *)(RegisterPointer + -0x4c) = unmodifiedXMM8_Dd;
   do {
     allocatedMemory = basePointer + (longlong)(*(int *)(contextRegister + componentIndex * 4) + 2) * -4;
-    FUN_180736450(allocatedMemory,stackParam000000b0,5,TargetHandle);
+    ProcessUIComponentData(allocatedMemory,stackParam000000b0,5,TargetHandle);
     FUN_180736990(allocatedMemory,basePointer,stackParam000000b0,5,preservedRegister15);
     CalculationResultValue = (double)CalculateUIMetricValue(basePointer,stackParam000000b0 + 5);
     TransformCoefficient3 = (TargetHandle[0x18] + *TargetHandle) * 0.015 + 1.0;
@@ -112480,7 +112484,7 @@ void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longl
   resultPointer = astackUInt358 + (longlong)param_7 * 4;
   uiCompareResult = (param_7 + resultPointer) * 2;
   stackLong368 = targetBuffer;
-  FUN_18072e450(astackUInt358,targetBuffer,dataSource,uiCompareResult);
+  ProcessUIDataWithParameters(astackUInt358,targetBuffer,dataSource,uiCompareResult);
   transformCoeff1 = *bufferSize;
   TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer,resultPointer);
   *uiContext = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
@@ -112489,7 +112493,7 @@ void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longl
   uiContext[1] = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
   if (param_6 == 4) {
     stackInt378 = param_7;
-    FUN_18072e450(astackUInt358,stackLong368 + 0x40,(longlong)uiCompareResult * 4 + dataSource,uiCompareResult);
+    ProcessUIDataWithParameters(astackUInt358,stackLong368 + 0x40,(longlong)uiCompareResult * 4 + dataSource,uiCompareResult);
     transformCoeff1 = bufferSize[2];
     TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer,resultPointer);
     uiContext[2] = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
@@ -114516,7 +114520,7 @@ void FUN_180733080(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
   if ((*(int *)(uiBufferData + 0x1214) == 1) && (*(char *)(uiContext + 0x12a7) < '\x04')) {
     stackIntd8 = *(UIDword *)(uiBufferData + 0x121c);
     IsEventProcessingActive = true;
-    FUN_180736180(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
+    ProcessUIComponentOperation(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
     FUN_180737100(astackUInt98,astackUInt78,*(UIDword *)(uiBufferData + 0x121c));
     processingStatus = 0;
     result = *(uint *)(uiContext + 0x121c);
@@ -114635,7 +114639,7 @@ void FUN_180733080(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
     memcpy(dataSource,dataSource + 0x20,(longlong)*(int *)(uiBufferData + 0x121c) * 2);
   }
   stackIntd8 = *(int *)(uiBufferData + 0x121c);
-  FUN_180736180(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
+  ProcessUIComponentOperation(astackUInt78,bufferSize,targetBuffer,(int)*(char *)(uiContext + 0x12a7));
   FUN_18072f4d0(dataSource,astackUInt78,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec));
                      WARNING: Subroutine does not return
@@ -114690,7 +114694,7 @@ void FUN_1807330b2(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
   FUN_180737100(&stack0x00000040,targetBuffer,*(UIDword *)(uiBufferData + 0x121c));
   if ((*(int *)(uiBufferData + 0x1214) == 1) && (*(char *)(uiContext + 0x12a7) < '\x04')) {
     IsEventProcessingActive = true;
-    FUN_180736180(&stack0x00000080);
+    ProcessUIComponentOperation(&stack0x00000080);
     FUN_180737100(&stack0x00000060,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c));
     processingStatus = 0;
     result = *(uint *)(uiContext + 0x121c);
@@ -114808,7 +114812,7 @@ void FUN_1807330b2(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
                      WARNING: Subroutine does not return
     memcpy(dataSource,dataSource + 0x20,(longlong)loopCounter * 2);
   }
-  FUN_180736180(&stack0x00000080);
+  ProcessUIComponentOperation(&stack0x00000080);
   FUN_18072f4d0(dataSource,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c),
                 *(UIDword *)(uiBufferData + 0x13ec),loopCounter);
                      WARNING: Subroutine does not return
@@ -114961,7 +114965,7 @@ void FUN_18073319f(ulonglong uiContext,longlong dataSource,longlong targetBuffer
                      WARNING: Subroutine does not return
     memcpy(iterationCount,basePointer + 0x20,(longlong)uiValidationResult1 * 2);
   }
-  iterationCount = FUN_180736180(&stack0x00000080);
+  iterationCount = ProcessUIComponentOperation(&stack0x00000080);
   FUN_18072f4d0(iterationCount,&stack0x00000080,*(UIDword *)(contextHandle + 0x121c),
                 *(UIDword *)(contextHandle + 0x13ec),uiValidationResult1);
                      WARNING: Subroutine does not return
@@ -115001,7 +115005,7 @@ void FUN_1807332e3(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
                      WARNING: Subroutine does not return
     memcpy();
   }
-  FUN_180736180(&stack0x00000080);
+  ProcessUIComponentOperation(&stack0x00000080);
   FUN_18072f4d0();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
@@ -115024,7 +115028,7 @@ void InitializeUIRenderTaskAndExecute(void)
 {
   ulonglong maxAllocations;
   
-  FUN_180736180(&stack0x00000080);
+  ProcessUIComponentOperation(&stack0x00000080);
   FUN_18072f4d0();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
@@ -117705,8 +117709,8 @@ void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180736180(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
-void FUN_180736180(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
+ void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
+void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
 
 {
   UIHandle *resultPointer;
@@ -117956,8 +117960,8 @@ void FUN_1807362fc(void)
 
 
 
- void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bufferSize)
-void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bufferSize)
+ void ProcessUIComponentData(longlong uiContext,int dataSource,uint targetBuffer,float *bufferSize)
+void ProcessUIComponentData(longlong uiContext,int dataSource,uint targetBuffer,float *bufferSize)
 
 {
   longlong allocatedMemory;

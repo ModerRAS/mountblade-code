@@ -192,7 +192,7 @@
 
 // 异常数据上下文偏移量常量
 #define ExceptionDataContextOffset 0x70                    // 异常数据上下文偏移量
-#define SystemStatusFlagOffsetD1 0xd1                       // 系统状态标志偏移量D1
+#define SystemStatusFlagOffsetSecondary 0xd1                       // 系统状态标志偏移量Secondary
 
 // 异常处理器槽位偏移量常量
 #define PrimaryExceptionHandlerSlotOffset 0x20               // 主异常处理器槽位偏移量
@@ -6803,7 +6803,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942120
  */
-#define SetDefaultExceptionHandlerA6 FUN_180942120
+#define SetDefaultExceptionHandlerA6 ConfigureDefaultExceptionHandlerA6
 
 /**
  * @brief 设置默认异常处理器A7
