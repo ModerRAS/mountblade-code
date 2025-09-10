@@ -124240,15 +124240,25 @@ void CleanupUIAndExecuteRender(void)
 
 
 
- void FUN_180739c9f(void)
-void FUN_180739c9f(void)
+ /**
+ * @brief UI系统内存释放和渲染任务执行函数
+ * 
+ * 该函数负责释放UI系统内存并执行渲染任务，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * - 处理加密密钥解密
+ * 
+ * @note 原始函数名：FUN_180739c9f
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptionKey;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 

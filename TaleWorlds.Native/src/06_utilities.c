@@ -1148,8 +1148,8 @@
 #define MemoryBlockSizeStep 0x50
 #define ExceptionHandlerContext5OffsetD0 0xd0
 #define OperationResult0Offset10 0x10
-#define DataContextOffset58 0x58
-#define DataContextOffset50 0x50
+#define DataContextOffsetExceptionHandlerContext 0x58
+#define DataContextOffsetPrimaryContext 0x50
 #define ContextPointerOffset40 0x40
 #define ContextPointerOffset48 0x48
 #define ContextPointerOffset50 0x50
@@ -31628,7 +31628,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
        (operationResult = ValidateResourceA0(dataContext,*(DataBuffer *)(dataContext[1] + CurrentResourceDataOffsetC0),0,1), operationResult == 0)) {
       currentResource = dataContext[1];
       resourceList = (int64_t *)(currentResource + CurrentResourceListOffset50);
-      contextPointer = (int64_t *)(*(int64_t *)(currentResource + CurrentResourceListOffset50) + -8);
+      contextPointer = (int64_t *)(*(int64_t *)(currentResource + CurrentResourceListOffset50) + StackFrameNegativeOffset8);
       if (*(int64_t *)(currentResource + CurrentResourceListOffset50) == 0) {
         contextPointer = nullPointer;
       }
