@@ -30728,7 +30728,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
 
 // 函数: DataWord ProcessSystemDataB(DataBuffer systemHandle,int operationIndex,DataWord *outputBuffer)
 // 功能：处理系统数据B，执行数据验证和转换操作
-// 参数：systemHandle-系统句柄，operationIndex-操作索引，outputBuffer-输出缓冲区
+// 参数：systemHandle - 系统句柄，operationIndex - 操作索引，outputBuffer - 输出缓冲区
 // 返回值：操作结果状态码
 // 原始函数名：FUN_180898b65 - 数据处理函数F0
 // 功能：处理输入数据并返回32位结果
