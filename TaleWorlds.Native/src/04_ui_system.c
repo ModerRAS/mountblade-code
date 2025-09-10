@@ -125649,7 +125649,7 @@ void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
     func_0x00018074b7d0(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957338);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextTransformManager);
   }
 LAB_18073b8a8:
   if (RenderContextSize != 0) {
