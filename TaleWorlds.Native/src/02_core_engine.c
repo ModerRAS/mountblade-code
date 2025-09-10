@@ -14985,6 +14985,18 @@ void CoreEngineInitializeNetworkEventHandler(void)
  * 该函数负责初始化和管理网络数据同步器，用于处理游戏中的数据同步。
  * 包括数据的发送、接收、验证和同步机制。
  */
+/**
+ * @brief 初始化核心引擎网络数据同步器
+ * 
+ * 该函数负责初始化核心引擎的网络数据同步器，设置网络数据的同步和一致性机制。
+ * 主要功能包括：
+ * - 初始化网络数据同步节点
+ * - 设置数据同步策略和算法
+ * - 配置同步操作的内存管理
+ * - 建立数据一致性和冲突解决机制
+ * 
+ * @note 原始实现：简化实现，只进行基本的网络数据同步器初始化
+ */
 void CoreEngineInitializeNetworkDataSynchronizer(void)
 {
   char NetworkSyncStatusFlag;
