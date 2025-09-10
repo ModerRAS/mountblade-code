@@ -288566,14 +288566,46 @@ long long ProcessCharacterStatusBufferAndDataNode(long long ContextHandle,uint64
 
 
 
-uint64_t FUN_18022ef9b(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 获取UTF-8源指针
+ * 
+ * 该函数用于获取UTF-8源指针，主要功能包括：
+ * - 直接返回UTF-8源指针
+ * - 作为函数调用的中间层
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作对象
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针，包含字符数据
+ * @return uint64_t 返回UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18022ef9b
+ */
+#define GetUtf8SourcePointer FUN_18022ef9b
+uint64_t GetUtf8SourcePointer(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer
 {
   return Utf8SourcePointer;
 }
 
 
 
-uint64_t * FUN_18022efb0(long long ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理Unicode码点和字符状态缓冲区
+ * 
+ * 该函数负责处理Unicode码点和字符状态缓冲区，主要功能包括：
+ * - 初始化Unicode码点和处理状态标志
+ * - 处理上下文句柄和UTF-8源指针的偏移计算
+ * - 执行字符状态缓冲区的管理操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作对象
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针，包含字符数据
+ * @param Utf16EndPointer UTF-16结束指针，用于编码转换
+ * @return uint64_t* 返回处理后的字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18022efb0
+ */
+#define ProcessUnicodeCodePointAndCharacterBuffer FUN_18022efb0
+uint64_t * ProcessUnicodeCodePointAndCharacterBuffer(long long ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   void *CharacterStatusBuffer;
   void *PrimaryProcessingStatusFlag;

@@ -128877,6 +128877,19 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 清理异常处理器并处理引用计数
+ * 
+ * 该函数清理异常处理器，减少引用计数，并在引用计数归零时处理异常。
+ * 这是一个关键的内存管理和异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911fe0
+ */
 void CleanupExceptionHandlerWithReferenceCount(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -130471,6 +130484,17 @@ void HandleExceptionContextAtOffset50VariantD(DataBuffer operationBase,int64_t d
 
 
 
+/**
+ * @brief 验证并检查异常处理器调用
+ * 
+ * 该函数执行异常处理器的安全检查和验证调用。
+ * 使用_guard_check_icall确保调用的安全性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180912550
+ */
 void ValidateAndCheckExceptionHandlerCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -130482,6 +130506,19 @@ void ValidateAndCheckExceptionHandlerCall(DataBuffer operationBase,int64_t dataB
 
 
 
+/**
+ * @brief 处理带验证的异常上下文
+ * 
+ * 该函数处理异常上下文，执行引用计数管理，并在必要时调用异常处理。
+ * 这是一个关键的异常处理函数，确保资源正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912580
+ */
 void ProcessExceptionContextWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -130775,6 +130812,19 @@ void ExecuteSecurityCheckCallProtection670(DataBuffer operationBase,int64_t data
 
 
 
+/**
+ * @brief 从内存指针清理异常上下文
+ * 
+ * 该函数从内存指针获取异常上下文，执行引用计数管理和异常处理。
+ * 确保异常处理器的正确清理和资源释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809126a0
+ */
 void CleanupExceptionContextFromMemoryPointer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -131145,7 +131195,7 @@ void InitializeExceptionHandler800(DataBuffer operationBase, int64_t dataBuffer,
 
 
 
-void Unwind_180912810(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionContextDataStructures(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
