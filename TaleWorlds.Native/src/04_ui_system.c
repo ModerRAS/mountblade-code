@@ -180,9 +180,9 @@ typedef enum {
 #define UIComponentInstanceE8 DAT_180c0c6e8               // UI组件实例E8 - 存储UI组件的实例指针
 #define UIComponentInterfaceID UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
 #define UIComponentInterfaceIID UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
-#define UIComponentParameterB20 UNK_180958b20             // UI组件参数B20 - UI组件的配置参数
-#define UIComponentDataF50 UNK_180956f50                  // UI组件数据F50 - 存储UI组件的动态数据
-#define UIComponentHandleF38 UNK_180956f38                // UI组件句柄F38 - UI组件的句柄标识符
+#define UIComponentParameterB20 (void*)0x180958b20             // UI组件参数B20 - UI组件的配置参数
+#define UIComponentDataF50 (void*)0x180956f50                  // UI组件数据F50 - 存储UI组件的动态数据
+#define UIComponentHandleF38 (void*)0x180956f38                // UI组件句柄F38 - UI组件的句柄标识符
 
 // UI系统全局数据
 #define _DAT_180c0c6e8 GlobalUIComponentInstanceE8        // 全局UI组件实例E8
@@ -239,10 +239,10 @@ typedef enum {
 #define ProcessUIStateManagement FUN_18072d226           // UI状态管理函数
 
 // 额外的UNK变量定义
-#define UNK_18095ad08 UIEventDataProcessorA8            // UI事件数据处理器A8
-#define UNK_1807872a0 UIEventCallbackHandler2A0          // UI事件回调处理器2A0
-#define UNK_18095ad20 UIEventDataProcessorA20           // UI事件数据处理器A20
-#define UNK_1807863b0 UIEventCleanupHandler3B0          // UI事件清理处理器3B0
+#define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
+#define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0
+#define UIEventDataProcessorA20 (void*)0x18095ad20           // UI事件数据处理器A20
+#define UIEventCleanupHandler3B0 (void*)0x1807863b0          // UI事件清理处理器3B0
 
 // UI系统全局变量语义化定义
 #define uiBufferData GlobalUIBufferData                  // UI缓冲区数据全局变量
