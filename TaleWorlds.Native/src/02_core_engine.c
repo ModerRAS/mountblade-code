@@ -237106,7 +237106,14 @@ float * ProcessContextHandleMatrixTransform(float *ContextHandle,float *ContextH
 
 
 
-94a50(long long *ContextHandle,uint8_t *ContextHandleSizevoid FUN_180194a50(long long *ContextHandle,uint8_t *ContextHandleSize
+/**
+ * @brief 处理系统上下文句柄大小
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * 该函数负责处理系统上下文句柄的大小操作。
+ */
+void FUN_180194a50(long long *ContextHandle, uint8_t *ContextHandleSize
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t *PrimaryProcessingStatusFlag;
@@ -237520,7 +237527,14 @@ uint64_t * ProcessContextHandle(long long ContextHandle)
 
 
 
-95140(long long ContextHandle,uint64_t *ContextHandleSizevoid FUN_180195140(long long ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 初始化系统数据结构
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * 该函数负责初始化系统数据结构。
+ */
+void FUN_180195140(long long ContextHandle, uint64_t *ContextHandleSize
 {
   long long MainCalculationResult;
   

@@ -70,34 +70,36 @@
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
 #define OperationFlagMask 0x10000000
-// === 线程本地存储常量 ===
-#define ThreadLocalStorageOffset 0x17c                        // 线程本地存储偏移量 - 线程本地存储的偏移位置
+// === 线程本地存储地址常量 ===
 #define ThreadLocalStoragePrimaryAddress 0x180c4f450            // 线程本地存储主地址 - 线程本地存储的主基地址
 #define ThreadLocalStorageSecondaryAddress 0x180c4f460         // 线程本地存储辅助地址 - 线程本地存储的辅助基地址
+#define ThreadLocalStorageBaseAddress 0x180c4f450              // 线程本地存储基础地址 - 线程本地存储的基础地址
 
-// === 资源管理常量 ===
-#define ResourceCleanupAlignment 0xfffffff0                  // 资源清理对齐值 - 资源清理操作的对齐值
-#define ResourceIteratorValidationOffset 0x141                 // 资源迭代器验证偏移量 - 资源迭代器验证的偏移位置
-#define ResourceIteratorNextOffset 0x138                     // 资源迭代器下一个偏移量 - 资源迭代器下一个元素的偏移位置
-#define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
-#define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
-#define SystemResourceFlagOffset 0x352f                       // 系统资源标志偏移量 - 用于设置资源标志的偏移量
-// === 异常处理常量 ===
-#define ExceptionDataBufferOffset 0x210                     // 异常数据缓冲区偏移量 - 异常处理数据的存储位置
-#define ExceptionDataBufferOffset2F0 0x2f0                   // 异常数据缓冲区偏移量2F0 - 用于内存资源引用计数管理
-#define ExceptionHandlerContextOffset 0x1800                 // 异常处理上下文偏移量 - 异常处理上下文的存储位置
-#define ExceptionHandlerParameterOffset 0x17f0              // 异常处理参数偏移量 - 异常处理参数的存储位置
-// === 系统互斥锁管理常量 ===
+// === 系统互斥锁地址常量 ===
 #define SystemMutexCleanupPrimaryAddress 0x180c919f0            // 系统互斥锁清理主地址 - 系统互斥锁清理函数的主基地址
 #define SystemMutexCleanupSecondaryAddress 0x180c919f1          // 系统互斥锁清理辅助地址 - 系统互斥锁清理函数的辅助基地址
+#define SystemMutexObjectAddress 0x180c91970                    // 系统互斥对象地址 - 系统互斥对象的存储地址
+#define SystemMutexObjectSecondaryAddress 0x180c91f70           // 系统互斥对象辅助地址 - 系统互斥对象的辅助存储地址
+#define SystemMutexCleanupAddressA 0x180c96690                  // 系统互斥锁清理地址A - 系统互斥锁清理的第一个地址
+#define SystemMutexCleanupAddressB 0x180c966f0                  // 系统互斥锁清理地址B - 系统互斥锁清理的第二个地址
+#define SystemMutexCleanupAddressC 0x180c96740                  // 系统互斥锁清理地址C - 系统互斥锁清理的第三个地址
 
-// === 系统异常初始化器常量 ===
+// === 系统异常初始化地址常量 ===
 #define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
 #define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
+#define SystemExceptionInitializerAddressA 0x180d49e70           // 系统异常初始化器地址A - 系统异常初始化器的第一个地址
+#define SystemExceptionInitializerAddressB 0x180d49f10           // 系统异常初始化器地址B - 系统异常初始化器的第二个地址
 
-// === 系统初始化错误码定义 ===
-#define SystemInitializationSuccess 0x0                         // 系统初始化成功
-#define SystemMemoryStructureInitFailed 0x1                     // 系统内存结构初始化失败
+// === 系统计算地址常量 ===
+#define SystemCalculationBaseAddress 0x180c919f0                // 系统计算基地址 - 系统计算功能的基础地址
+
+// === 浮点数验证地址常量 ===
+#define FloatValidationDataAddress 0x180985054                   // 浮点数验证数据地址 - 浮点数验证数据的存储地址
+
+// === 异常处理地址常量 ===
+#define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
+#define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
+#define ExceptionDataTable2Address 0x180a21690                   // 异常数据表2地址 - 异常处理数据表的第二个地址
 #define SystemConfigurationFailed 0x2                            // 系统配置失败
 #define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败
 #define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败
