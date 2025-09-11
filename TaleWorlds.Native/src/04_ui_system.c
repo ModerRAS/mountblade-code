@@ -637,6 +637,8 @@ typedef enum {
 #define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
 #define ProcessUIContextDataOperationAndInitialization FUN_180745946 // 处理UI上下文数据操作和初始化
 #define UIEmptyReturnFunction FUN_180745ce1                            // UI系统空返回函数
+#define CleanupUIContextStateAndMemoryManager FUN_180745cff            // 清理UI上下文状态和内存管理
+#define GetUIHandleConstantValue FUN_180745e75                          // 获取UI句柄常量值
 #define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
 #define ValidateUIContextAndExecuteRender FUN_18073a98b              // 验证UI上下文并执行渲染
 #define ReleaseUIResourceAndExecuteRender FUN_18073a9b5                // 释放UI资源并执行渲染
@@ -141353,32 +141355,59 @@ void UIEmptyReturnFunction(void)
 
 
  void FUN_180745cff(void)
-void FUN_180745cff(void)
+/**
+ * @brief 清理UI上下文状态和内存管理
+ * 
+ * 该函数负责清理UI上下文状态并管理相关内存资源。
+ * 主要功能包括：
+ * - 获取已分配的内存块
+ * - 清理UI上下文状态
+ * - 设置组件数据的内存引用
+ * - 配置上下文数据句柄
+ * - 执行内存分配处理
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180745cff
+ * @note 该函数执行UI系统资源的清理和内存管理操作
+ */
+void CleanupUIContextStateAndMemoryManager(void)
 
 {
-  longlong allocatedMemory;
-  UIHandle iterationCount;
-  longlong stringCompareIndex;
-  longlong componentData;
-  longlong *pcontextDataHandle;
+  longlong allocatedMemoryBlock;
+  UIHandle uiEventCounter;
+  longlong memoryReferenceIndex;
+  longlong uiComponentData;
+  longlong *contextDataPointer;
   
-  allocatedMemory = *(longlong *)(*(longlong *)(componentData + 0x108) + 0x10);
-  iterationCount = *(UIHandle *)(allocatedMemory + 0x168);
-  CleanupUIContextState(iterationCount);
-  *(longlong *)(*(longlong *)(componentData + 0x108) + 0x28) = componentData;
-  stringCompareIndex = *(longlong *)(componentData + 0x108);
-  pcontextDataHandle = (longlong *)(stringCompareIndex + 0x18);
-  *(UIHandle *)(stringCompareIndex + 0x20) = *(UIHandle *)(allocatedMemory + 0x158);
-  *pcontextDataHandle = allocatedMemory + 0x150;
-  *(longlong **)(allocatedMemory + 0x158) = pcontextDataHandle;
-  **(UIHandle **)(stringCompareIndex + 0x20) = pcontextDataHandle;
+  allocatedMemoryBlock = *(longlong *)(*(longlong *)(uiComponentData + 0x108) + 0x10);
+  uiEventCounter = *(UIHandle *)(allocatedMemoryBlock + 0x168);
+  CleanupUIContextState(uiEventCounter);
+  *(longlong *)(*(longlong *)(uiComponentData + 0x108) + 0x28) = uiComponentData;
+  memoryReferenceIndex = *(longlong *)(uiComponentData + 0x108);
+  contextDataPointer = (longlong *)(memoryReferenceIndex + 0x18);
+  *(UIHandle *)(memoryReferenceIndex + 0x20) = *(UIHandle *)(allocatedMemoryBlock + 0x158);
+  *contextDataPointer = allocatedMemoryBlock + 0x150;
+  *(longlong **)(allocatedMemoryBlock + 0x158) = contextDataPointer;
+  **(UIHandle **)(memoryReferenceIndex + 0x20) = contextDataPointer;
                      WARNING: Subroutine does not return
-  ProcessUIMemoryAllocation(iterationCount);
+  ProcessUIMemoryAllocation(uiEventCounter);
 }
 
 
 
-UIHandle FUN_180745e75(void)
+/**
+ * @brief 获取UI句柄常量值
+ * 
+ * 该函数返回一个固定的UI句柄常量值（0x1f = 31）。
+ * 这个常量可能用于UI系统的标识或索引操作。
+ * 
+ * @return UIHandle 返回固定的句柄值0x1f
+ * 
+ * @note 原始函数名：FUN_180745e75
+ * @note 0x1f = 31，可能是UI系统的特定标识符
+ */
+UIHandle GetUIHandleConstantValue(void)
 
 {
   return 0x1f;
