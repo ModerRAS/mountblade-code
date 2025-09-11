@@ -5348,7 +5348,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_180062300
  */
-#define ProcessSystemDataTransferAndValidation ProcessSystemDataTransferAndValidation
+#define FUN_180062300 ProcessSystemDataTransferAndValidation
 
 /**
  * @brief 系统操作和任务处理器
@@ -5358,7 +5358,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_180069530
  */
-#define ProcessSystemOperationsAndTasks ProcessSystemOperationsAndTasks
+#define FUN_180069530 ProcessSystemOperationsAndTasks
 
 /**
  * @brief 系统数据读写处理器
@@ -6675,11 +6675,11 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：Unwind_180904760 - 异常处理器回调执行函数
 // 功能：执行异常处理器的回调函数，传递相关参数和系统清理标志
-#define ExecuteExceptionHandlerCallback Unwind_180904760
+#define ExecuteExceptionHandlerCallback ExecuteExceptionHandlerWithCallback
 
 // 原始函数名：Unwind_180904770 - 异常处理器执行函数
 // 功能：执行异常处理器的回调函数，通过间接调用机制
-#define ExecuteExceptionHandler Unwind_180904770
+#define ExecuteExceptionHandler ExecuteExceptionHandlerWithIndirectCall
 
 // 原始函数名：Unwind_180904820 - 异常上下文重置函数偏移量0x20
 // 功能：重置异常上下文处理器状态（偏移量0x20），设置临时异常处理器并清理状态标志
