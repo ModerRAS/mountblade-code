@@ -4142,6 +4142,10 @@ typedef enum {
 #define fStack_f4 UITimeOffsetF4
 #define fStack_f8 UIFadeOutFactor
 
+// UI系统浮点数栈变量语义化定义
+#define fStack_180 UIAnimationSpeedFactor180                // UI动画速度因子180 - 用于控制UI动画播放速度的因子
+#define fStack_17c UITransformCoefficient17c               // UI变换系数17C - 用于UI元素变换计算的系数
+
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
@@ -125380,8 +125384,8 @@ FUN_18073a6c1:
 
 
 
- void FUN_18073a613(void)
-void FUN_18073a613(void)
+ void ProcessUIResourceCleanup(void)
+void ProcessUIResourceCleanup(void)
 
 {
   int operationResult;

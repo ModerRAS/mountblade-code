@@ -42,13 +42,13 @@
 
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
-#define FUN_18017b240 InitializeSystemContext                    // 初始化系统上下文
-#define FUN_18017b259 CleanupSystemContext                       // 清理系统上下文
-#define FUN_18017b28d ResetSystemMemoryManager                   // 重置系统内存管理器
-#define FUN_18017b2ed ReleaseSystemContext                       // 释放系统上下文
-#define FUN_18017b400 ProcessSystemMemoryOperation               // 处理系统内存操作
-#define FUN_18017b480 HandleSystemContextTransfer                // 处理系统上下文传输
-#define FUN_18017b6e0 ConvertUtf8ToUtf16Context                 // 转换UTF-8到UTF-16上下文
+#define InitializeSystemContext SetupSystemContext                 // 初始化系统上下文
+#define CleanupSystemContext ClearSystemContext                    // 清理系统上下文
+#define ResetSystemMemoryManager ReinitializeMemoryManager       // 重置系统内存管理器
+#define ReleaseSystemContext FreeSystemContext                   // 释放系统上下文
+#define ProcessSystemMemoryOperation ExecuteMemoryOperation       // 处理系统内存操作
+#define HandleSystemContextTransfer TransferSystemContext         // 处理系统上下文传输
+#define ConvertUtf8ToUtf16Context TransformUtf8ToUtf16Encoding       // 转换UTF-8到UTF-16上下文
 #define FUN_180186430 ProcessSystemOperationBuffer              // 处理系统操作缓冲区
 #define FUN_1801864e0 HandleSystemContextOperation              // 处理系统上下文操作
 #define FUN_1801865a0 FinalizeSystemContext                     // 完成系统上下文处理
