@@ -290061,7 +290061,23 @@ void ReleaseSystemResourcesEx(void)
 
 
 
-void FUN_18022ed22(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
+/**
+ * @brief 处理系统内存分配扩展
+ * 
+ * 该函数负责扩展的系统内存分配操作，主要功能包括：
+ * - 计算和处理Unicode码点
+ * - 管理内存池的分配和字符缓冲区
+ * - 处理系统数据注册表
+ * - 执行模式匹配和状态验证
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_18022ed22
+ */
+#define ProcessSystemMemoryAllocationEx FUN_18022ed22
+void ProcessSystemMemoryAllocationEx(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
