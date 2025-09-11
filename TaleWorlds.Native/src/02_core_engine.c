@@ -240084,7 +240084,7 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   CleanupSystemMemoryCache(ContextHandle + 0xc0fc);
   CleanupSystemBufferResources(ContextHandle + 0xc0e7);
   ExecuteSystemCleanupRoutine();
-  InitializeSystemMemoryBlock(ContextHandle + 0xc061,0x20,0x20,FUN_18004a130);
+  InitializeSystemMemoryBlock(ContextHandle + 0xc061,0x20,0x20,SetupSystemMemoryBlock);
   CleanupSystemCharacterData(ContextHandle + 0x1045);
   if ((long long *)ContextHandle[0x1043] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0x1043] + 0x38))();
