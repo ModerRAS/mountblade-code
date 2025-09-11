@@ -292887,17 +292887,26 @@ void InitializeCharacterTransformationData(long long *ContextHandle)
 /**
  * @brief 处理系统数据传输扩展
  * 
- * 该函数负责处理系统数据的扩展传输操作，主要功能包括：
- * - 管理Unicode码点的计算和验证
- * - 处理内存池的分配和释放
- * - 执行字符缓冲区的处理
- * - 管理系统数据注册表
+ * 该函数负责处理系统数据的扩展传输操作，是核心引擎中重要的数据处理函数。
+ * 主要功能包括：
+ * - Unicode码点的计算和验证
+ * - 内存池的动态分配和释放
+ * - 字符缓冲区的处理和管理
+ * - 系统数据注册表的维护
+ * - 上下文句柄的状态更新
  * 
- * @param ContextHandle 上下文句柄指针
- * @param OperationBufferSize 操作缓冲区大小
- * @param Utf8SourcePointer UTF-8源数据指针
+ * @param ContextHandle 上下文句柄指针，用于管理系统数据结构和状态
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的空间容量
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的字符数据
+ * 
+ * @return 无返回值，函数结果通过修改ContextHandle所指向的数据结构返回
  * 
  * @note 原始函数名：FUN_18022ec40
+ * @note 函数地址：0x18022ec40
+ * @note 这是一个关键的数据处理函数，涉及内存管理和字符编码转换
+ * 
+ * @warning 调用此函数时需要确保ContextHandle参数的有效性
+ * @warning 函数内部会进行内存分配操作，需要相应的内存释放
  */
 #define ProcessSystemDataTransferEx FUN_18022ec40
 void ProcessSystemDataTransferEx(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
