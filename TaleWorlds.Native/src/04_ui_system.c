@@ -134660,7 +134660,6 @@ event_handling_complete:
 
 
  void FUN_18073fb86(void)
-void FUN_18073fb86(void)
 
 {
   ulonglong renderTaskParameter;
