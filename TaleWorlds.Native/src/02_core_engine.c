@@ -54256,13 +54256,13 @@ unsigned long long ProcessSystemEventAndDataStructure(long long ContextHandle,ui
   float MatrixElementB;
   float MatrixElementC;
   float MatrixElementD;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   float MatrixElementG;
   float MatrixElementH;
-  float MatrixElementI;
-  float MatrixElementJ;
-  float MatrixElementK;
+  float MatrixElementMinX;
+  float MatrixElementMinY;
+  float MatrixElementMinZ;
   float MatrixElementL;
   float MatrixElementM;
   float MatrixElementN;
@@ -54527,16 +54527,16 @@ SystemBufferValidationError:
       float matrixTransformMultiplier1 = *(float *)(ContextHandle + 0x138);
       float matrixTransformMultiplier2 = *(float *)(ContextHandle + 0x140);
       CalculatedFilterValue = *(float *)(ContextHandle + 0x144);
-      MatrixElementE = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
-      MatrixElementF = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier * PrimaryFloatValue + matrixTransformMultiplier1 * SystemCoreScaleY;
+      MatrixElementMaxX = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
+      MatrixElementMaxY = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier * PrimaryFloatValue + matrixTransformMultiplier1 * SystemCoreScaleY;
       MatrixElementG = MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
       MatrixElementH = MatrixTransformMultiplier1 * SystemCoreScaleX + MatrixTransformMultiplier * SystemContextPrimaryFloat2 + matrixTransformMultiplier1 * ContextSecondaryFloat0;
       matrixTransformMultiplier1 = *(float *)(ContextHandle + 0x148);
       float matrixTransformMultiplier3 = *(float *)(ContextHandle + 0x154);
       float matrixTransformMultiplier4 = *(float *)(ContextHandle + 0x150);
-      MatrixElementI = FilterInputValue * SystemContextPrimaryFloat3 + matrixTransformMultiplier2 * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
-      MatrixElementJ = FilterInputValue * SystemContextPrimaryFloat4 + matrixTransformMultiplier2 * PrimaryFloatValue + matrixTransformMultiplier1 * SystemCoreScaleY;
-      MatrixElementK = FilterInputValue * SystemFloatValue + matrixTransformMultiplier2 * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
+      MatrixElementMinX = FilterInputValue * SystemContextPrimaryFloat3 + matrixTransformMultiplier2 * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
+      MatrixElementMinY = FilterInputValue * SystemContextPrimaryFloat4 + matrixTransformMultiplier2 * PrimaryFloatValue + matrixTransformMultiplier1 * SystemCoreScaleY;
+      MatrixElementMinZ = FilterInputValue * SystemFloatValue + matrixTransformMultiplier2 * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
       MatrixElementL = FilterInputValue * SystemCoreScaleX + matrixTransformMultiplier2 * SystemContextPrimaryFloat2 + matrixTransformMultiplier1 * ContextSecondaryFloat0;
       matrixTransformMultiplier1 = *(float *)(ContextHandle + 0x158);
       MatrixElementM = matrixTransformMultiplier3 * SystemContextPrimaryFloat3 + matrixTransformMultiplier4 * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue + Utf8SourcePointer[0xc];
@@ -55703,7 +55703,7 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Contex
   float MatrixElementB;
   float TransformScale;
   float MatrixElementD;
-  float MatrixElementE;
+  float MatrixElementMaxX;
   float CalculatedDistance;
   float VectorComponentG;
   float VectorComponentH;
@@ -58996,33 +58996,33 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
     if (*(int *)(StackOffset88 + 0x10) != 0) {
       do {
         pFloatOffsetValue = (float *)((long long)(int)ProcessingStatusFlag * 0x10 + *(long long *)(StackOffset88 + 0x18));
-        MatrixElementI = *pFloatOffsetValue;
-        if (*pSystemContextPrimaryFloat < MatrixElementI) {
-          MatrixElementI = *pSystemContextPrimaryFloat;
+        MatrixElementMinX = *pFloatOffsetValue;
+        if (*pSystemContextPrimaryFloat < MatrixElementMinX) {
+          MatrixElementMinX = *pSystemContextPrimaryFloat;
         }
-        MatrixElementJ = pFloatOffsetValue[1];
-        if (ContextHandle[0x9e] < MatrixElementJ) {
-          MatrixElementJ = ContextHandle[0x9e];
+        MatrixElementMinY = pFloatOffsetValue[1];
+        if (ContextHandle[0x9e] < MatrixElementMinY) {
+          MatrixElementMinY = ContextHandle[0x9e];
         }
-        MatrixElementK = pFloatOffsetValue[2];
-        if (ContextHandle[0x9f] < MatrixElementK) {
-          MatrixElementK = ContextHandle[0x9f];
+        MatrixElementMinZ = pFloatOffsetValue[2];
+        if (ContextHandle[0x9f] < MatrixElementMinZ) {
+          MatrixElementMinZ = ContextHandle[0x9f];
         }
-        *(unsigned long long *)pSystemContextPrimaryFloat = CONCAT44(MatrixElementJ,MatrixElementI);
-        *(unsigned long long *)(ContextHandle + 0x9f) = CONCAT44(StackProcessingUnsignedValue9c,MatrixElementK);
-        MatrixElementE = *pFloatOffsetValue;
-        if (MatrixElementE < ContextHandle[0xa1]) {
-          MatrixElementE = ContextHandle[0xa1];
+        *(unsigned long long *)pSystemContextPrimaryFloat = CONCAT44(MatrixElementMinY,MatrixElementMinX);
+        *(unsigned long long *)(ContextHandle + 0x9f) = CONCAT44(StackProcessingUnsignedValue9c,MatrixElementMinZ);
+        MatrixElementMaxX = *pFloatOffsetValue;
+        if (MatrixElementMaxX < ContextHandle[0xa1]) {
+          MatrixElementMaxX = ContextHandle[0xa1];
         }
-        MatrixElementF = pFloatOffsetValue[1];
-        if (MatrixElementF < ContextHandle[0xa2]) {
-          MatrixElementF = ContextHandle[0xa2];
+        MatrixElementMaxY = pFloatOffsetValue[1];
+        if (MatrixElementMaxY < ContextHandle[0xa2]) {
+          MatrixElementMaxY = ContextHandle[0xa2];
         }
         MatrixElementG = pFloatOffsetValue[2];
         if (MatrixElementG < ContextHandle[0xa3]) {
           MatrixElementG = ContextHandle[0xa3];
         }
-        *(unsigned long long *)(ContextHandle + 0xa1) = CONCAT44(MatrixElementF,MatrixElementE);
+        *(unsigned long long *)(ContextHandle + 0xa1) = CONCAT44(MatrixElementMaxY,MatrixElementMaxX);
         *(unsigned long long *)(ContextHandle + 0xa3) = CONCAT44(StackProcessingUnsignedValueac,StackFloatValueb0);
         ProcessingStatusFlag = ProcessingStatusFlag + 1;
       } while (ProcessingStatusFlag < *(uint *)(SystemValidationStatusPointer + 0x10));
@@ -105203,21 +105203,21 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long ContextHand
         SystemContextPrimaryFloat4 = 0.0;
       }
       SystemStatusCode = CONCAT44(MemoryPoolIndex,SystemContextPrimaryFloat4);
-      ProcessSystemDataConcatenation(CONCAT44(MatrixElementD,MatrixElementC),CONCAT44(MatrixElementF,MatrixElementE),ArraySize,1,SystemStatusCode);
+      ProcessSystemDataConcatenation(CONCAT44(MatrixElementD,MatrixElementC),CONCAT44(MatrixElementMaxY,MatrixElementMaxX),ArraySize,1,SystemStatusCode);
       if (0.0 < AdditionalParameter2[3]) {
         MatrixElementC = *AdditionalParameter2;
         MatrixElementD = AdditionalParameter2[1];
-        MatrixElementE = AdditionalParameter2[2];
-        MatrixElementF = AdditionalParameter2[3] * *(float *)(SystemConfigurationHandle + 0x1628);
+        MatrixElementMaxX = AdditionalParameter2[2];
+        MatrixElementMaxY = AdditionalParameter2[3] * *(float *)(SystemConfigurationHandle + 0x1628);
         MemoryPoolIndex = ValidateSystemData(&MatrixElementC);
-        ProcessSystemDataAndConfigure(*(void *)(MemoryBlockIndex + 0x2e8),&MatrixElementG,&MatrixElementI,MemoryPoolIndex,
+        ProcessSystemDataAndConfigure(*(void *)(MemoryBlockIndex + 0x2e8),&MatrixElementG,&MatrixElementMinX,MemoryPoolIndex,
                       SystemStatusCode & 0xffffffff00000000,0xf);
       }
       MemoryBlockIndex = *(long long *)(MemoryBlockIndex + 0x2e8);
       MatrixElementC = *AdditionalParameter3;
       MatrixElementD = AdditionalParameter3[1];
-      MatrixElementE = AdditionalParameter3[2];
-      MatrixElementF = AdditionalParameter3[3] * *(float *)(SystemConfigurationHandle + 0x1628);
+      MatrixElementMaxX = AdditionalParameter3[2];
+      MatrixElementMaxY = AdditionalParameter3[3] * *(float *)(SystemConfigurationHandle + 0x1628);
       ProcessedCharacter = ValidateSystemData(&MatrixElementC);
       if ((ProcessedCharacter & 0xff000000) != 0) {
         if ((*(int *)(MemoryBlockIndex + 0x70) == 0) ||
@@ -105230,7 +105230,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long ContextHand
           hasNodeComparisonResult = false;
         }
         ProcessSystemConfigurationAndDataOperation(MemoryBlockIndex,6,4);
-        ProcessSystemDataStructureAndContextOperation(MemoryBlockIndex,&MatrixElementG,&MatrixElementI,Utf8SourcePointer,Utf16EndPointer,ProcessedCharacter);
+        ProcessSystemDataStructureAndContextOperation(MemoryBlockIndex,&MatrixElementG,&MatrixElementMinX,Utf8SourcePointer,Utf16EndPointer,ProcessedCharacter);
         if (hasComparisonResult) {
           *(int *)(MemoryBlockIndex + 0x70) = *(int *)(MemoryBlockIndex + 0x70) + -1;
           ValidateSystemData(MemoryBlockIndex);
@@ -117221,12 +117221,12 @@ unsigned long long ProcessSystemContextWithFloatParameters(char *ContextHandle,c
   float MatrixElementB;
   float MatrixElementC;
   float MatrixElementD;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   uint32_t SystemStackRegisterBuffer;
   uint32_t StackProcessingUnsignedValueac;
   uint32_t CoreEngineValueA8;
-  float MatrixElementJ;
+  float MatrixElementMinY;
   
   SystemConfigurationIterator = SystemConfigurationHandle;
   MemoryPoolIndexAdditional = (uint32_t)((unsigned long long)SystemCodeParameter >> 0x20);
@@ -117278,17 +117278,17 @@ LAB_180119d01:
   if (Utf16EndPointer[1] == 0.0) {
     ContextSecondaryFloat1 = fStack_ec;
   }
-  MatrixElementE = *Utf16EndPointer;
+  MatrixElementMaxX = *Utf16EndPointer;
   if (*Utf16EndPointer == 0.0) {
-    MatrixElementE = ContextSecondaryFloat3;
+    MatrixElementMaxX = ContextSecondaryFloat3;
   }
   CalculatedFilterValue = *(float *)(CharacterTablePointer6 + 0x100);
   MatrixTransformElementB = *(float *)(CharacterTablePointer6 + 0x104) + *(float *)(CharacterTablePointer6 + 0x128);
-  MatrixElementE = FilterInputValue + MatrixElementE;
-  MatrixElementF = MatrixTransformElementB + ContextSecondaryFloat1;
-  fStack_f0 = MatrixElementE - FilterInputValue;
+  MatrixElementMaxX = FilterInputValue + MatrixElementMaxX;
+  MatrixElementMaxY = MatrixTransformElementB + ContextSecondaryFloat1;
+  fStack_f0 = MatrixElementMaxX - FilterInputValue;
   fStack_cc = fStack_ec;
-  fStack_ec = MatrixElementF - MatrixTransformElementB;
+  fStack_ec = MatrixElementMaxY - MatrixTransformElementB;
   fStack_d0 = ContextSecondaryFloat3;
   MatrixElementC = FilterInputValue;
   MatrixElementD = MatrixTransformElementB;
@@ -117399,7 +117399,7 @@ LAB_180119e1f:
   SystemStackRegisterBuffer = *PrimaryProcessingStatusFlag;
   StackProcessingUnsignedValueac = PrimaryProcessingStatusFlag[1];
   CoreEngineValueA8 = PrimaryProcessingStatusFlag[2];
-  MatrixElementJ = (float)PrimaryProcessingStatusFlag[3] * *(float *)(StringIndexCounter + 0x1628);
+  MatrixElementMinY = (float)PrimaryProcessingStatusFlag[3] * *(float *)(StringIndexCounter + 0x1628);
   MatrixElementB = fStack_dc;
   SystemCleanupFlagF = CONCAT44(fStack_e4,fStack_e8);
   ProcessingStatusFlag = ValidateSystemData(&SystemStackRegisterBuffer);
@@ -129028,8 +129028,8 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
   float fStackX_1c;
   float fStackX_20;
   float fStackX_24;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   float MatrixElementG;
   float MatrixElementH;
   
@@ -129043,17 +129043,17 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
     }
     ContextSecondaryFloat = *(float *)(AllocatedMemorySize + 0x228);
     CalculatedFilterValue = *(float *)(AllocatedMemorySize + 0x22c);
-    MatrixElementE = *ContextHandle;
-    MatrixElementF = ContextHandle[1];
+    MatrixElementMaxX = *ContextHandle;
+    MatrixElementMaxY = ContextHandle[1];
     MatrixElementG = ContextHandle[2];
     MatrixElementH = ContextHandle[3];
     SystemContextPrimaryFloat4 = ContextSecondaryFloat;
-    if (ContextSecondaryFloat <= MatrixElementE) {
-      SystemContextPrimaryFloat4 = MatrixElementE;
+    if (ContextSecondaryFloat <= MatrixElementMaxX) {
+      SystemContextPrimaryFloat4 = MatrixElementMaxX;
     }
     SystemContextPrimaryFloat2 = FilterInputValue;
-    if (FilterInputValue <= MatrixElementF) {
-      SystemContextPrimaryFloat2 = MatrixElementF;
+    if (FilterInputValue <= MatrixElementMaxY) {
+      SystemContextPrimaryFloat2 = MatrixElementMaxY;
     }
     MatrixTransformMultiplier1 = *(float *)(AllocatedMemorySize + 0x230);
     PrimaryFloatValue = MatrixTransformMultiplier1;
@@ -129084,11 +129084,11 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
         ProcessSystemEventEx(*(void *)(AllocatedMemorySize + 0x2e8),CONCAT44(SystemContextPrimaryFloat3,SystemContextPrimaryFloat4),CONCAT44(NormalizedParameterValue,SecondaryFloatValue),
                       0);
       }
-      MatrixElementE = *(float *)(SystemConfigurationHandle + 0x19a8);
-      MatrixElementF = *(float *)(SystemConfigurationHandle + 0x19ac);
+      MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19a8);
+      MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19ac);
       MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19b0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19b4) * *(float *)(SystemConfigurationHandle + 0x1628);
-      SystemChecksum = ValidateSystemData(&MatrixElementE);
+      SystemChecksum = ValidateSystemData(&MatrixElementMaxX);
       fStackX_18 = PrimaryFloatValue + 3.0;
       fStackX_1c = ProcessedFloatValue8 + 3.0;
       fStackX_24 = SystemContextPrimaryFloat2 - 3.0;
@@ -129105,11 +129105,11 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
     }
     if ((OperationBufferSize & 2) != 0) {
       long long AllocatedMemorySize = *(long long *)(AllocatedMemorySize + 0x2e8);
-      MatrixElementE = *(float *)(SystemConfigurationHandle + 0x19a8);
-      MatrixElementF = *(float *)(SystemConfigurationHandle + 0x19ac);
+      MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19a8);
+      MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19ac);
       MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19b0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19b4) * *(float *)(SystemConfigurationHandle + 0x1628);
-      SystemChecksum = ValidateSystemData(&MatrixElementE);
+      SystemChecksum = ValidateSystemData(&MatrixElementMaxX);
       if ((SystemChecksum & 0xff000000) != 0) {
         if ((*(byte *)(AllocatedMemorySize + 0x30) & 1) == 0) {
           fStackX_18 = SecondaryFloatValue - 0.49;
@@ -133095,13 +133095,13 @@ void ProcessSystemDataStructureAndMatrix(void)
   float MatrixElementB;
   float MatrixElementC;
   float MatrixElementD;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   float MatrixElementG;
   float MatrixElementH;
-  float MatrixElementI;
-  float MatrixElementJ;
-  float MatrixElementK;
+  float MatrixElementMinX;
+  float MatrixElementMinY;
+  float MatrixElementMinZ;
   float MatrixElementL;
   
   SystemDataRegistry = SystemConfigurationHandle;
@@ -133172,21 +133172,21 @@ LAB_180126e9d:
       LoopIndex = *(long long *)(MemoryAllocationIndex + 0x3a8);
       if (((*(byte *)(LoopIndex + 0x432) & 1) != 0) &&
          (BufferStatus = *(long long *)(MemoryAllocationIndex + 0x3a0), BufferStatus != LoopIndex)) {
-        MatrixElementI = *(float *)(LoopIndex + 0x40);
+        MatrixElementMinX = *(float *)(LoopIndex + 0x40);
         MatrixElementA = *(float *)(BufferStatus + 0x40);
         MatrixElementB = *(float *)(BufferStatus + 0x44);
-        MatrixElementE = *(float *)(SystemConfigurationHandle + 0x19c8);
-        MatrixElementF = *(float *)(SystemConfigurationHandle + 0x19cc);
+        MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19c8);
+        MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19cc);
         MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19d0);
         MatrixElementC = *(float *)(BufferStatus + 0x40) + *(float *)(BufferStatus + 0x48);
         MatrixElementD = *(float *)(BufferStatus + 0x44) + *(float *)(BufferStatus + 0x4c);
         MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19d4) *
                     *(float *)(SystemDataRegistry + 0x1dc8) * *(float *)(SystemConfigurationHandle + 0x1628);
-        MatrixElementJ = *(float *)(LoopIndex + 0x44);
-        MatrixElementL = MatrixElementJ + *(float *)(LoopIndex + 0x4c);
-        MatrixElementK = MatrixElementI + *(float *)(LoopIndex + 0x48);
-        CalculatedCodePoint = ValidateSystemData(&MatrixElementE);
-        ProcessSystemMatrixCalculation(SystemDataTablePointer,&MatrixElementA,&MatrixElementI,CalculatedCodePoint,*(uint32_t *)(SystemDataRegistry + 0x1634));
+        MatrixElementMinY = *(float *)(LoopIndex + 0x44);
+        MatrixElementL = MatrixElementMinY + *(float *)(LoopIndex + 0x4c);
+        MatrixElementMinZ = MatrixElementMinX + *(float *)(LoopIndex + 0x48);
+        CalculatedCodePoint = ValidateSystemData(&MatrixElementMaxX);
+        ProcessSystemMatrixCalculation(SystemDataTablePointer,&MatrixElementA,&MatrixElementMinX,CalculatedCodePoint,*(uint32_t *)(SystemDataRegistry + 0x1634));
       }
       SystemCoreScaleY = *(float *)(SystemDataRegistry + 0x19f8);
       LoopIndex = *(long long *)(MemoryAllocationIndex + 0x28);
@@ -133208,23 +133208,23 @@ LAB_180126e9d:
         ContextPrimaryFloat9 = SystemCoreScaleY + ContextPrimaryFloat9;
         SecondaryFloatValue = SystemCoreScaleY + SecondaryFloatValue;
       }
-      MatrixElementE = *(float *)(SystemConfigurationHandle + 0x19b8);
-      MatrixElementF = *(float *)(SystemConfigurationHandle + 0x19bc);
+      MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19b8);
+      MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19bc);
       MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19c0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19c4);
       SystemCoreScaleY = *(float *)(SystemDataRegistry + 0x1cf4) * *(float *)(SystemConfigurationHandle + 0x1628) * MatrixElementH;
-      if (0.0 <= MatrixElementE) {
-        ContextSecondaryFloat2 = MatrixElementE;
-        if (1.0 <= MatrixElementE) {
+      if (0.0 <= MatrixElementMaxX) {
+        ContextSecondaryFloat2 = MatrixElementMaxX;
+        if (1.0 <= MatrixElementMaxX) {
           ContextSecondaryFloat2 = 1.0;
         }
       }
       else {
         ContextSecondaryFloat2 = 0.0;
       }
-      if (0.0 <= MatrixElementF) {
-        SystemFloatValue = MatrixElementF;
-        if (1.0 <= MatrixElementF) {
+      if (0.0 <= MatrixElementMaxY) {
+        SystemFloatValue = MatrixElementMaxY;
+        if (1.0 <= MatrixElementMaxY) {
           SystemFloatValue = 1.0;
         }
       }
@@ -166459,12 +166459,12 @@ void HandleCharacterEncodingBufferExpansion(long long ContextHandle
   float MatrixElementB;
   float MatrixElementC;
   float MatrixElementD;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   uint32_t SystemStackRegisterBuffer;
   uint32_t StackProcessingUnsignedValueac;
   uint32_t CoreEngineValueA8;
-  float MatrixElementJ;
+  float MatrixElementMinY;
   
   StringOffset = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
@@ -166502,7 +166502,7 @@ void HandleCharacterEncodingBufferExpansion(long long ContextHandle
         SecondaryFloatValue = (*(float *)(MemoryPoolBlockSize + 0x18) - *(float *)(MemoryPoolBlockSize + 0x14)) *
                  *(float *)((long long)IntegerValue * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38)) +
                  *(float *)(MemoryPoolBlockSize + 0x14) + *(float *)(MemoryBlockIndex + 0x40);
-        MatrixElementE = SecondaryFloatValue + 4.0;
+        MatrixElementMaxX = SecondaryFloatValue + 4.0;
         MatrixElementC = SecondaryFloatValue - 4.0;
         if (*(int *)(SystemStringIndex + 0x1b2c) == ComputedResult) {
           *(int *)(SystemStringIndex + 0x1b34) = ComputedResult;
@@ -166512,10 +166512,10 @@ void HandleCharacterEncodingBufferExpansion(long long ContextHandle
         }
         MemoryPoolBlockSize = *(long long *)(SystemStringIndex + 0x1af8);
         MatrixElementD = ContextSecondaryFloat;
-        MatrixElementF = SystemCoreScaleX;
+        MatrixElementMaxY = SystemCoreScaleX;
         if (((((*(float *)(MemoryPoolBlockSize + 0x22c) <= SystemCoreScaleX && SystemCoreScaleX != *(float *)(MemoryPoolBlockSize + 0x22c)) &&
               (ContextSecondaryFloat < *(float *)(MemoryPoolBlockSize + 0x234))) &&
-             (*(float *)(MemoryPoolBlockSize + 0x228) <= MatrixElementE && MatrixElementE != *(float *)(MemoryPoolBlockSize + 0x228))) &&
+             (*(float *)(MemoryPoolBlockSize + 0x228) <= MatrixElementMaxX && MatrixElementMaxX != *(float *)(MemoryPoolBlockSize + 0x228))) &&
             (MatrixElementC < *(float *)(MemoryPoolBlockSize + 0x230))) ||
            (((ComputedResult != 0 && (ComputedResult == *(int *)(SystemStringIndex + 0x1b2c))) ||
             (*(char *)(SystemStringIndex + 0x2e38) != '\0')))) {
@@ -166539,7 +166539,7 @@ void HandleCharacterEncodingBufferExpansion(long long ContextHandle
           SystemStackRegisterBuffer = *CharacterStatusBuffer;
           StackCharacterValueAc = CharacterStatusBuffer[1];
           CoreEngineValueA8 = CharacterStatusBuffer[2];
-          MatrixElementJ = (float)CharacterStatusBuffer[3] * *(float *)(SystemStringIndex + 0x1628);
+          MatrixElementMinY = (float)CharacterStatusBuffer[3] * *(float *)(SystemStringIndex + 0x1628);
           fStackX_20 = (float)(int)SecondaryFloatValue;
           fStackX_24 = *(float *)(MemoryBlockIndex + 0x234);
           if (SystemCoreScaleX <= *(float *)(MemoryBlockIndex + 0x234)) {
@@ -169931,8 +169931,8 @@ void ProcessCharacterMemoryAllocation(long long ContextHandle, uint64_t Operatio
   uint32_t SystemCleanupFlagG;
   char cStack_c8;
   char cStack_c7;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   float MatrixElementG;
   float MatrixElementH;
   uint32_t *SystemEventDispatcher;
@@ -170122,10 +170122,10 @@ LAB_180137566:
         *(uint32_t *)(SystemStringIndex + 0x1c54) = ContextHandle[0x19];
         OperateBufferAndSetParameters(aStackProcessingValue78,0x14,(char*)SystemMemoryAllocationMask,*ContextHandle);
         SystemStringIndex = SystemConfigurationHandle;
-        MatrixElementE = 1.4013e-45;
-        MatrixElementF = *(float *)(SystemConfigurationHandle + 0x162c);
+        MatrixElementMaxX = 1.4013e-45;
+        MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x162c);
         MatrixElementG = *(float *)(SystemConfigurationHandle + 0x1630);
-        ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,&MatrixElementE);
+        ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,&MatrixElementMaxX);
         *(void *)(SystemStringIndex + 0x162c) = 0;
         InitializeSystemCharacterStatusBuffer(aStackProcessingValue78,0,0x20081139);
         SystemStringIndex = SystemConfigurationHandle;
@@ -170233,9 +170233,9 @@ LAB_180137a81:
              CONCAT22((short)(int)(ContextSecondaryFloat7 - (float)CharacterStatusBuffer8[0x11]),
                       (short)(int)(MatrixTransformElementA - (float)CharacterStatusBuffer8[0x10]));
         *(uint *)(SystemContextValue + 0x268) = CONCAT22(SystemPrimaryReturnCode,Utf16Character);
-        MatrixElementE = (float)CONCAT22((short)(int)(ContextSecondaryFloat7 - *(float *)(SystemContextValue + 0x44)),
+        MatrixElementMaxX = (float)CONCAT22((short)(int)(ContextSecondaryFloat7 - *(float *)(SystemContextValue + 0x44)),
                                     (short)(int)(MatrixTransformElementA - *(float *)(SystemContextValue + 0x40)));
-        *(float *)(SystemContextValue + 0x26c) = MatrixElementE;
+        *(float *)(SystemContextValue + 0x26c) = MatrixElementMaxX;
       }
     }
   }
@@ -170256,13 +170256,13 @@ LAB_180137c29:
       StackValidationData = *(uint32_t *)(SystemStringIndex + 0x1938);
       uStack_84 = *(uint32_t *)(SystemStringIndex + 0x193c);
       CalculationFunctionAddress = *(uint32_t *)(SystemStringIndex + 0x1940);
-      MatrixElementF = (float)ContextHandle[0xf] + (float)ContextHandle[0x11];
+      MatrixElementMaxY = (float)ContextHandle[0xf] + (float)ContextHandle[0x11];
       fStack_7c = *(float *)(SystemStringIndex + 0x1944) * *(float *)(SystemStringIndex + 0x1628);
-      MatrixElementE = (float)ContextHandle[0xe] + (float)ContextHandle[0x10];
+      MatrixElementMaxX = (float)ContextHandle[0xe] + (float)ContextHandle[0x10];
       ArraySize = ValidateSystemData(&StackValidationData);
       SystemCleanupFlagG = 0xf;
       SystemCleanupFlagF = 0;
-      ProcessSystemDataAndConfigure(*(void *)(CharacterStatusBuffer8 + 0xba),ContextHandle + 0xe,&MatrixElementE,ArraySize);
+      ProcessSystemDataAndConfigure(*(void *)(CharacterStatusBuffer8 + 0xba),ContextHandle + 0xe,&MatrixElementMaxX,ArraySize);
       SystemStringIndex = SystemConfigurationHandle;
     }
   }
@@ -170274,23 +170274,23 @@ LAB_180137c29:
     fStack_7c = *(float *)(SystemStringIndex + 0x16f4) * *(float *)(SystemStringIndex + 0x1628);
     if (hasMemoryBoundaryChanged) {
       SystemEventDispatcher = *(uint32_t **)(SystemConfigurationIterator + 0x38);
-      MatrixElementF = (float)ContextHandle[0xf];
-      MatrixElementE = (float)ContextHandle[0xe];
-      MatrixElementH = MatrixElementF + (float)ContextHandle[0x11];
-      MatrixElementG = MatrixElementE + (float)ContextHandle[0x10];
+      MatrixElementMaxY = (float)ContextHandle[0xf];
+      MatrixElementMaxX = (float)ContextHandle[0xe];
+      MatrixElementH = MatrixElementMaxY + (float)ContextHandle[0x11];
+      MatrixElementG = MatrixElementMaxX + (float)ContextHandle[0x10];
       CoreEngineUnsignedValueA0 = (uint32_t *                  CONCAT44(*(float *)(SystemConfigurationIterator + 0x3c) + *(float *)(SystemConfigurationIterator + 0x44),
                            *(float *)(SystemConfigurationIterator + 0x38) + *(float *)(SystemConfigurationIterator + 0x40));
       ArraySize = ValidateSystemData(&StackValidationData);
       SystemCleanupFlagF = 0;
-      ProcessSystemMatrixCalculation(*(void *)(CharacterStatusBuffer8 + 0xba),&MatrixElementE,&SystemEventDispatcher,ArraySize);
+      ProcessSystemMatrixCalculation(*(void *)(CharacterStatusBuffer8 + 0xba),&MatrixElementMaxX,&SystemEventDispatcher,ArraySize);
     }
     else {
-      MatrixElementE = (float)ContextHandle[0xe] + (float)ContextHandle[0x10];
-      MatrixElementF = (float)ContextHandle[0xf] + (float)ContextHandle[0x11];
+      MatrixElementMaxX = (float)ContextHandle[0xe] + (float)ContextHandle[0x10];
+      MatrixElementMaxY = (float)ContextHandle[0xf] + (float)ContextHandle[0x11];
       ArraySize = ValidateSystemData(&StackValidationData);
       SystemCleanupFlagG = 0xf;
       SystemCleanupFlagF = 0;
-      ProcessSystemDataAndConfigure(*(void *)(CharacterStatusBuffer8 + 0xba),ContextHandle + 0xe,&MatrixElementE,ArraySize);
+      ProcessSystemDataAndConfigure(*(void *)(CharacterStatusBuffer8 + 0xba),ContextHandle + 0xe,&MatrixElementMaxX,ArraySize);
     }
     CleanupSystemDataConfiguration(*(void *)(CharacterStatusBuffer8 + 0xba));
   }
@@ -173726,9 +173726,9 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
   float afStack_d0 [4];
   float MatrixElementC;
   float MatrixElementD;
-  float aMatrixElementE [4];
+  float aMatrixElementMaxX [4];
   uint32_t CoreEngineValueA8;
-  float MatrixElementJ;
+  float MatrixElementMinY;
   uint RenderConfigurationDataA0 [2];
   long long *SystemStackPointer;
   uint SystemOperationStatusMask [2];
@@ -173817,10 +173817,10 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
                 AllocatedMemorySize = *ContextHandle3;
                 MatrixElementC = *(float *)(AllocatedMemorySize + 0x38);
                 MatrixElementD = *(float *)(AllocatedMemorySize + 0x3c);
-                aMatrixElementE[0] = *(float *)(AllocatedMemorySize + 0x38) + *(float *)(AllocatedMemorySize + 0x40);
-                aMatrixElementE[1] = *(float *)(AllocatedMemorySize + 0x3c) + *(float *)(AllocatedMemorySize + 0x44);
-                if (aMatrixElementE[Utf16ConversionContext] - FilterInputValue <= SystemCoreScaleY) {
-                  SystemCoreScaleY = aMatrixElementE[Utf16ConversionContext] - FilterInputValue;
+                aMatrixElementMaxX[0] = *(float *)(AllocatedMemorySize + 0x38) + *(float *)(AllocatedMemorySize + 0x40);
+                aMatrixElementMaxX[1] = *(float *)(AllocatedMemorySize + 0x3c) + *(float *)(AllocatedMemorySize + 0x44);
+                if (aMatrixElementMaxX[Utf16ConversionContext] - FilterInputValue <= SystemCoreScaleY) {
+                  SystemCoreScaleY = aMatrixElementMaxX[Utf16ConversionContext] - FilterInputValue;
                 }
                 ContextHandle3 = ContextHandle3 + 1;
                 SystemStatusCode = SystemStatusCode - 1;
@@ -173907,11 +173907,11 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
           InitializeSystemMemoryBlock(RenderConfigurationDataA0,0x10,2,CopyAndInitializeSystemData);
         }
         else {
-          aMatrixElementE[2] = *(float *)(CharacterTablePointer6 + 0x1878);
-          aMatrixElementE[3] = *(float *)(CharacterTablePointer6 + 0x187c);
+          aMatrixElementMaxX[2] = *(float *)(CharacterTablePointer6 + 0x1878);
+          aMatrixElementMaxX[3] = *(float *)(CharacterTablePointer6 + 0x187c);
           CoreEngineValueA8 = *(uint32_t *)(CharacterTablePointer6 + 0x1880);
-          MatrixElementJ = *(float *)(CharacterTablePointer6 + 0x1884) * *(float *)(CharacterTablePointer6 + 0x1628);
-          MemoryPoolIndex = ValidateSystemData(aMatrixElementE + 2);
+          MatrixElementMinY = *(float *)(CharacterTablePointer6 + 0x1884) * *(float *)(CharacterTablePointer6 + 0x1628);
+          MemoryPoolIndex = ValidateSystemData(aMatrixElementMaxX + 2);
           FloatPointerValue = (float *)CONCAT44(MemoryAllocationOffset,*(uint32_t *)(CharacterTablePointer6 + 0x1664));
           ProcessSystemDataAndConfigure(*(void *)(*(long long *)(CharacterTablePointer6 + 0x1af8) + 0x2e8),afStack_e0,
                         &SystemCleanupFlagF,MemoryPoolIndex,FloatPointerValue,0xf);
@@ -184437,13 +184437,13 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   float MatrixElementA;
   float MatrixElementB;
   float MatrixElementC;
-  float MatrixElementE;
-  float MatrixElementF;
+  float MatrixElementMaxX;
+  float MatrixElementMaxY;
   float MatrixElementG;
   uint32_t StackProcessingUnsignedValueac;
-  float MatrixElementI;
-  float MatrixElementJ;
-  float MatrixElementK;
+  float MatrixElementMinX;
+  float MatrixElementMinY;
+  float MatrixElementMinZ;
   uint32_t uStack_9c;
   float MatrixElementM;
   float MatrixElementN;
@@ -184459,8 +184459,8 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   unsigned long long ProcessedCharacter;
   
   ArraySize = 0;
-  MatrixElementE = -3.4028235e+38;
-  MatrixElementF = -3.4028235e+38;
+  MatrixElementMaxX = -3.4028235e+38;
+  MatrixElementMaxY = -3.4028235e+38;
   MatrixElementG = -3.4028235e+38;
   uStack_7c = 0xff7fffff;
   AllocatedMemorySize = ContextHandle[8];
@@ -184475,9 +184475,9 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   LoopIndex = (ContextHandle[9] - AllocatedMemorySize) / 0x88 + SystemContextValue;
   ProcessingStatusFlag = ArraySize;
   ValidationResult = ArraySize;
-  MatrixElementI = MatrixElementE;
-  MatrixElementJ = MatrixElementF;
-  MatrixElementK = MatrixElementG;
+  MatrixElementMinX = MatrixElementMaxX;
+  MatrixElementMinY = MatrixElementMaxY;
+  MatrixElementMinZ = MatrixElementG;
   if (LoopIndex != SystemContextValue) {
     do {
       MemoryBoundaryEnd = *(long long *)(AllocatedMemorySize + 0x28 + ProcessingStatusFlag);
@@ -184486,37 +184486,37 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
         pFloatOffsetValue = (float *)(MemoryBoundaryEnd + 8);
         ProcessedCharacter = ArraySize;
         do {
-          MatrixElementI = pFloatOffsetValue[-2];
-          MatrixElementE = MatrixElementI;
-          if (fStack_d8 <= MatrixElementI) {
-            MatrixElementE = fStack_d8;
+          MatrixElementMinX = pFloatOffsetValue[-2];
+          MatrixElementMaxX = MatrixElementMinX;
+          if (fStack_d8 <= MatrixElementMinX) {
+            MatrixElementMaxX = fStack_d8;
           }
-          MatrixElementJ = pFloatOffsetValue[-1];
-          MatrixElementF = MatrixElementJ;
-          if (fStack_d4 <= MatrixElementJ) {
-            MatrixElementF = fStack_d4;
+          MatrixElementMinY = pFloatOffsetValue[-1];
+          MatrixElementMaxY = MatrixElementMinY;
+          if (fStack_d4 <= MatrixElementMinY) {
+            MatrixElementMaxY = fStack_d4;
           }
-          MatrixElementK = *pFloatOffsetValue;
-          MatrixElementG = MatrixElementK;
-          if (fStack_d0 <= MatrixElementK) {
+          MatrixElementMinZ = *pFloatOffsetValue;
+          MatrixElementG = MatrixElementMinZ;
+          if (fStack_d0 <= MatrixElementMinZ) {
             MatrixElementG = fStack_d0;
           }
-          fStack_d8 = MatrixElementE;
-          fStack_d4 = MatrixElementF;
+          fStack_d8 = MatrixElementMaxX;
+          fStack_d4 = MatrixElementMaxY;
           fStack_d0 = MatrixElementG;
           uStack_cc = StackCharacterValueAc;
-          if (MatrixElementI <= MatrixElementA) {
-            MatrixElementI = MatrixElementA;
+          if (MatrixElementMinX <= MatrixElementA) {
+            MatrixElementMinX = MatrixElementA;
           }
-          if (MatrixElementJ <= MatrixElementB) {
-            MatrixElementJ = MatrixElementB;
+          if (MatrixElementMinY <= MatrixElementB) {
+            MatrixElementMinY = MatrixElementB;
           }
-          if (MatrixElementK <= MatrixElementC) {
-            MatrixElementK = MatrixElementC;
+          if (MatrixElementMinZ <= MatrixElementC) {
+            MatrixElementMinZ = MatrixElementC;
           }
-          MatrixElementA = MatrixElementI;
-          MatrixElementB = MatrixElementJ;
-          MatrixElementC = MatrixElementK;
+          MatrixElementA = MatrixElementMinX;
+          MatrixElementB = MatrixElementMinY;
+          MatrixElementC = MatrixElementMinZ;
           MemoryPoolIndex = (int)ProcessedCharacter + 1;
           ProcessedCharacter = (unsigned long long)MemoryPoolIndex;
           pFloatOffsetValue = pFloatOffsetValue + 4;
@@ -184526,9 +184526,9 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       MemoryPoolIndex = (int)ValidationResult + 1;
       ProcessingStatusFlag = ProcessingStatusFlag + 0x88;
       ValidationResult = (unsigned long long)MemoryPoolIndex;
-      MatrixElementE = MatrixElementI;
-      MatrixElementF = MatrixElementJ;
-      MatrixElementG = MatrixElementK;
+      MatrixElementMaxX = MatrixElementMinX;
+      MatrixElementMaxY = MatrixElementMinY;
+      MatrixElementG = MatrixElementMinZ;
     } while ((unsigned long long)(long long)(int)MemoryPoolIndex < (unsigned long long)(LoopIndex - SystemContextValue));
   }
   pFloatOffsetValue = (float *)*ContextHandle;
@@ -184538,63 +184538,63 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   if (SystemContextValue != AllocatedMemorySize) {
     do {
       SystemContextPrimaryFloat = *pFloatOffsetValue;
-      MatrixElementE = pFloatOffsetValue[1];
+      MatrixElementMaxX = pFloatOffsetValue[1];
       ContextSecondaryFloat = pFloatOffsetValue[5];
       MatrixElementG = pFloatOffsetValue[3];
-      MatrixElementI = MatrixElementE;
-      if (ContextSecondaryFloat <= MatrixElementE) {
-        MatrixElementI = ContextSecondaryFloat;
+      MatrixElementMinX = MatrixElementMaxX;
+      if (ContextSecondaryFloat <= MatrixElementMaxX) {
+        MatrixElementMinX = ContextSecondaryFloat;
       }
-      MatrixElementF = pFloatOffsetValue[2];
+      MatrixElementMaxY = pFloatOffsetValue[2];
       CalculatedFilterValue = pFloatOffsetValue[7];
       MatrixTransformMultiplier1 = pFloatOffsetValue[6];
-      MatrixElementK = MatrixElementG;
+      MatrixElementMinZ = MatrixElementG;
       if (FilterInputValue <= MatrixElementG) {
-        MatrixElementK = FilterInputValue;
+        MatrixElementMinZ = FilterInputValue;
       }
-      MatrixElementJ = MatrixElementF;
-      if (MatrixTransformMultiplier1 <= MatrixElementF) {
-        MatrixElementJ = MatrixTransformMultiplier1;
+      MatrixElementMinY = MatrixElementMaxY;
+      if (MatrixTransformMultiplier1 <= MatrixElementMaxY) {
+        MatrixElementMinY = MatrixTransformMultiplier1;
       }
-      MatrixElementI = MatrixElementI - SystemContextPrimaryFloat;
-      MatrixElementK = MatrixElementK - SystemContextPrimaryFloat;
-      MatrixElementJ = MatrixElementJ - SystemContextPrimaryFloat;
-      if (fStack_d8 <= MatrixElementI) {
-        MatrixElementI = fStack_d8;
+      MatrixElementMinX = MatrixElementMinX - SystemContextPrimaryFloat;
+      MatrixElementMinZ = MatrixElementMinZ - SystemContextPrimaryFloat;
+      MatrixElementMinY = MatrixElementMinY - SystemContextPrimaryFloat;
+      if (fStack_d8 <= MatrixElementMinX) {
+        MatrixElementMinX = fStack_d8;
       }
-      if (fStack_d4 <= MatrixElementJ) {
-        MatrixElementJ = fStack_d4;
+      if (fStack_d4 <= MatrixElementMinY) {
+        MatrixElementMinY = fStack_d4;
       }
-      if (fStack_d0 <= MatrixElementK) {
-        MatrixElementK = fStack_d0;
+      if (fStack_d0 <= MatrixElementMinZ) {
+        MatrixElementMinZ = fStack_d0;
       }
-      fStack_d8 = MatrixElementI;
-      fStack_d4 = MatrixElementJ;
-      fStack_d0 = MatrixElementK;
+      fStack_d8 = MatrixElementMinX;
+      fStack_d4 = MatrixElementMinY;
+      fStack_d0 = MatrixElementMinZ;
       uStack_cc = uStack_9c;
-      if (MatrixElementE <= ContextSecondaryFloat) {
-        MatrixElementE = ContextSecondaryFloat;
+      if (MatrixElementMaxX <= ContextSecondaryFloat) {
+        MatrixElementMaxX = ContextSecondaryFloat;
       }
       if (MatrixElementG <= FilterInputValue) {
         MatrixElementG = FilterInputValue;
       }
-      if (MatrixElementF <= MatrixTransformMultiplier1) {
-        MatrixElementF = MatrixTransformMultiplier1;
+      if (MatrixElementMaxY <= MatrixTransformMultiplier1) {
+        MatrixElementMaxY = MatrixTransformMultiplier1;
       }
-      MatrixElementE = MatrixElementE + SystemContextPrimaryFloat;
+      MatrixElementMaxX = MatrixElementMaxX + SystemContextPrimaryFloat;
       MatrixElementG = MatrixElementG + SystemContextPrimaryFloat;
-      MatrixElementF = MatrixElementF + SystemContextPrimaryFloat;
-      if (MatrixElementE <= MatrixElementA) {
-        MatrixElementE = MatrixElementA;
+      MatrixElementMaxY = MatrixElementMaxY + SystemContextPrimaryFloat;
+      if (MatrixElementMaxX <= MatrixElementA) {
+        MatrixElementMaxX = MatrixElementA;
       }
-      if (MatrixElementF <= MatrixElementB) {
-        MatrixElementF = MatrixElementB;
+      if (MatrixElementMaxY <= MatrixElementB) {
+        MatrixElementMaxY = MatrixElementB;
       }
       if (MatrixElementG <= MatrixElementC) {
         MatrixElementG = MatrixElementC;
       }
-      MatrixElementA = MatrixElementE;
-      MatrixElementB = MatrixElementF;
+      MatrixElementA = MatrixElementMaxX;
+      MatrixElementB = MatrixElementMaxY;
       MatrixElementC = MatrixElementG;
       MemoryPoolIndex = (int)ProcessingStatusFlag + 1;
       pFloatOffsetValue = pFloatOffsetValue + 0xc;
@@ -184608,39 +184608,39 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   if (ValidationResult != 0) {
     do {
       MatrixElementG = *(float *)(AllocatedMemorySize + ArraySize);
-      MatrixElementE = *(float *)(AllocatedMemorySize + 4 + ArraySize);
-      MatrixElementF = *(float *)(AllocatedMemorySize + 8 + ArraySize);
+      MatrixElementMaxX = *(float *)(AllocatedMemorySize + 4 + ArraySize);
+      MatrixElementMaxY = *(float *)(AllocatedMemorySize + 8 + ArraySize);
       SystemContextPrimaryFloat = *(float *)(AllocatedMemorySize + 0xc + ArraySize);
-      MatrixElementI = MatrixElementE - MatrixElementG;
-      MatrixElementJ = MatrixElementF - MatrixElementG;
-      MatrixElementK = SystemContextPrimaryFloat - MatrixElementG;
-      if (fStack_d8 <= MatrixElementI) {
-        MatrixElementI = fStack_d8;
+      MatrixElementMinX = MatrixElementMaxX - MatrixElementG;
+      MatrixElementMinY = MatrixElementMaxY - MatrixElementG;
+      MatrixElementMinZ = SystemContextPrimaryFloat - MatrixElementG;
+      if (fStack_d8 <= MatrixElementMinX) {
+        MatrixElementMinX = fStack_d8;
       }
-      if (fStack_d4 <= MatrixElementJ) {
-        MatrixElementJ = fStack_d4;
+      if (fStack_d4 <= MatrixElementMinY) {
+        MatrixElementMinY = fStack_d4;
       }
-      if (fStack_d0 <= MatrixElementK) {
-        MatrixElementK = fStack_d0;
+      if (fStack_d0 <= MatrixElementMinZ) {
+        MatrixElementMinZ = fStack_d0;
       }
-      fStack_d8 = MatrixElementI;
-      fStack_d4 = MatrixElementJ;
-      fStack_d0 = MatrixElementK;
+      fStack_d8 = MatrixElementMinX;
+      fStack_d4 = MatrixElementMinY;
+      fStack_d0 = MatrixElementMinZ;
       uStack_cc = uStack_9c;
-      MatrixElementE = MatrixElementG + MatrixElementE;
-      if (MatrixElementE <= MatrixElementA) {
-        MatrixElementE = MatrixElementA;
+      MatrixElementMaxX = MatrixElementG + MatrixElementMaxX;
+      if (MatrixElementMaxX <= MatrixElementA) {
+        MatrixElementMaxX = MatrixElementA;
       }
-      MatrixElementF = MatrixElementG + MatrixElementF;
+      MatrixElementMaxY = MatrixElementG + MatrixElementMaxY;
       MatrixElementG = MatrixElementG + SystemContextPrimaryFloat;
-      if (MatrixElementF <= MatrixElementB) {
-        MatrixElementF = MatrixElementB;
+      if (MatrixElementMaxY <= MatrixElementB) {
+        MatrixElementMaxY = MatrixElementB;
       }
       if (MatrixElementG <= MatrixElementC) {
         MatrixElementG = MatrixElementC;
       }
-      MatrixElementA = MatrixElementE;
-      MatrixElementB = MatrixElementF;
+      MatrixElementA = MatrixElementMaxX;
+      MatrixElementB = MatrixElementMaxY;
       MatrixElementC = MatrixElementG;
       MemoryPoolIndex = (int)ProcessingStatusFlag + 1;
       ArraySize = ArraySize + 0x20;
@@ -184652,8 +184652,8 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   MatrixElementN = fStack_d4;
   MatrixElementO = fStack_d0;
   uStack_8c = uStack_cc;
-  fStack_88 = MatrixElementE;
-  fStack_84 = MatrixElementF;
+  fStack_88 = MatrixElementMaxX;
+  fStack_84 = MatrixElementMaxY;
   fStack_80 = MatrixElementG;
   ProcessMatrixElement(&MatrixElementM);
   ContextHandle[0x1f] = CONCAT44(MatrixElementN,MatrixElementM);

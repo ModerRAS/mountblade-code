@@ -130851,7 +130851,7 @@ void ProcessUIContextDataWithEncryptionC(UIHandle uiContext,longlong dataSource,
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ProcessUITextureDataFill(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809577d0,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIResourceHandle7D0,&stack0x00000040);
   }
 FUN_18073d372:
   if (param_6 != 0) {
