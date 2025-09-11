@@ -1267,6 +1267,24 @@
 #define FUN_180213700 ProcessSystemDataAndContext                  // 处理系统数据和上下文
 #define FUN_180159210 ConfigureSystemDataProcessing                 // 配置系统数据处理
 #define FUN_180406a00 ExecuteSystemDataTransfer                    // 执行系统数据传输
+/**
+ * @brief 执行系统数据传输操作
+ * 
+ * 该函数负责在系统组件之间传输数据，主要功能包括：
+ * 1. 在不同的内存区域之间复制数据
+ * 2. 处理字符串数据的编码转换
+ * 3. 管理内存块的分配和释放
+ * 4. 验证数据传输的完整性
+ * 
+ * @param SourceBuffer 源数据缓冲区指针
+ * @param MemorySize 内存大小参数
+ * @param EndPointer 结束指针参数
+ * @param AdditionalParam 附加参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180406a00
+ * @note 该函数是系统数据传输的核心组件
+ */
 #define FUN_18021a140 GetSystemMemoryBlockIndex                    // 获取系统内存块索引
 #define FUN_180255a60 ReleaseSystemMemoryBlock                     // 释放系统内存块
 #define FUN_180240a60 InitializeSystemContextAndMemory             // 初始化系统上下文和内存
@@ -1311,7 +1329,7 @@
 #define FUN_180631420 ProcessSystemConfiguration                   // 处理系统配置
 #define FUN_180631000 ValidateSystemConfiguration                  // 验证系统配置
 #define FUN_1802e6b00 InitializeSystemDataTransfer                  // 初始化系统数据传输
-#define FUN_18020d8a0 ExecuteSystemDataTransfer                    // 执行系统数据传输
+#define FUN_18020d8a0 ExecuteSystemContextTransfer                    // 执行系统上下文传输
 #define FUN_180626eb0 ProcessSystemDataValidation                  // 处理系统数据验证
 #define FUN_1802e8c60 ConvertSystemDataEncoding                   // 转换系统数据编码
 
