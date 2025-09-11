@@ -76,8 +76,8 @@
 #define FUN_180190a20 SetupSystemContextTransfer
 #define FUN_180190a35 CompleteSystemContextTransfer
 #define FUN_180190a4d ReinitializeSystemTransferState
-#define FUN_180190ad0 SetupSystemMemoryAllocator                   // 初始化系统内存管理器
-#define FUN_180190adc ClearSystemMemoryManager                     // 清理系统内存管理器
+#define FUN_180190ad0 SetupSystemMemoryAllocator
+#define FUN_180190adc ClearSystemMemoryManager
 #define FUN_180190ae0 TransferSystemMemoryData                    // 处理系统内存传输
 #define FUN_180190c90 ManageSystemDataProcessing                   // 处理系统数据处理
 #define FUN_180190c9f CompleteSystemDataProcessing                // 完成系统数据处理
@@ -217950,7 +217950,6 @@ long long * ProcessContextHandleTraversalAndMemoryManagement(long long *ContextH
 
 
 
-// 函数: long long * FUN_18017b6e0(long long *ContextHandle,uint32_t *ContextHandleSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer)
 /**
  * @brief 处理系统上下文和内存分配
  * 
@@ -217971,7 +217970,7 @@ long long * ProcessContextHandleTraversalAndMemoryManagement(long long *ContextH
  * @note 原始函数名：FUN_18017b6e0
  */
 #define ProcessSystemContextAndMemoryAllocation FUN_18017b6e0
-long long * ProcessSystemContextAndMemoryAllocation(long long *ContextHandle,uint32_t *ContextHandleSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer
+long long * ProcessSystemContextAndMemoryAllocation(long long *ContextHandle,uint32_t *ContextHandleSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
