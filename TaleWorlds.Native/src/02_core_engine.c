@@ -96,6 +96,7 @@
 #define ProcessSystemContextFloatOperations FUN_180208f20                         // 处理系统上下文浮点数操作 - 执行系统上下文中的浮点数计算和缓冲区管理
 #define ProcessSystemContextFloatConversion FUN_18020902a                          // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
 #define SystemNullOperation FUN_18020cad4                                        // 系统空操作函数 - 执行空操作
+#define SystemCoreEngineTermination FUN_18020fb10                              // 系统核心引擎终止函数 - 执行引擎终止操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -262972,7 +262973,8 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
 
 
 
-0fb10(voidvoid FUN_18020fb10(void
+// 系统终止函数
+void SystemCoreEngineTermination(void)
 {
     CoreEngineTerminateSystem();
 }

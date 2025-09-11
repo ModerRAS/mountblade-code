@@ -105,6 +105,7 @@ typedef enum {
 
 // UI系统函数语义化宏定义
 #define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
+#define FUN_180756450 ProcessUITextureDataWithParameters  // 处理UI纹理数据与参数
 #define FUN_18073f710 CleanupUIRenderContextAndReleaseResources  // 清理UI渲染上下文并释放资源
 #define FUN_18073f990 InitializeUIDataSourceWithValidation  // 初始化UI数据源并执行验证
 #define FUN_18073fa70 ProcessUIDataSourceWithTextureValidation  // 处理UI数据源并执行纹理验证
@@ -128558,18 +128559,16 @@ FUN_18073bbdd:
  * @note 该函数用于处理UI组件的事件响应和管理
  */
 void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
-void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
-
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
+  longlong cleanupFlag;
+  UIHandle cleanupContext;
   ulonglong renderTaskParameter;
   
   *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
