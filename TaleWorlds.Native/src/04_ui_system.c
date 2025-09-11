@@ -5318,20 +5318,28 @@ void* UIGestureCoordinates;
 #define UIContextOperationStatisticsTable UIContextStatisticsData    // UI上下文操作统计表 - 存储上下文操作的统计数据
 #define UIContextOperationLogTable UIContextLogData    // UI上下文操作日志表 - 存储上下文操作的日志数据
 
-// UI上下文操作数据表语义化别名
-#define UIContextConfigData UIContextOperationConfigTable     // UI上下文配置数据表
-#define UIContextStateData UIContextOperationStatusTable     // UI上下文状态数据表
-#define UIContextValidationData UIContextOperationValidationTable  // UI上下文验证数据表
-#define UIContextCacheData UIContextOperationCacheTable      // UI上下文缓存数据表
-#define UIContextResultData UIContextOperationDataTable260     // UI上下文结果数据表
-#define UIContextAdvancedData UIContextOperationDataTable310   // UI上下文高级数据表
-#define UIContextExtendedData UIContextOperationDataTable898   // UI上下文扩展数据表
-#define UIContextIndexData UIContextOperationDataTable810      // UI上下文索引数据表
-#define UIContextTemporaryData UIContextOperationDataTable6a0  // UI上下文临时数据表
-#define UIContextBufferData UIContextOperationDataTable880     // UI上下文缓冲区数据表
-#define UIContextMetadata UIContextOperationDataTable7b0       // UI上下文元数据表
-#define UIContextStatisticsData UIContextOperationDataTable8d0  // UI上下文统计数据表
-#define UIContextLogData UIContextOperationDataTable7f0        // UI上下文日志数据表
+// UI上下文操作数据表实际地址定义
+#define UIContextConfigData UNK_1809571c8     // UI上下文配置数据表
+#define UIContextStateData UNK_180957158     // UI上下文状态数据表
+#define UIContextValidationData UNK_1809570f8  // UI上下文验证数据表
+#define UIContextCacheData UNK_180957188      // UI上下文缓存数据表
+#define UIContextResultData UNK_180957260     // UI上下文结果数据表
+#define UIContextAdvancedData UNK_180957310   // UI上下文高级数据表
+#define UIContextExtendedData UNK_180957898   // UI上下文扩展数据表
+#define UIContextIndexData UNK_180957810      // UI上下文索引数据表
+#define UIContextTemporaryData UNK_1809576a0  // UI上下文临时数据表
+#define UIContextBufferData UNK_180957880     // UI上下文缓冲区数据表
+#define UIContextMetadata UNK_1809577b0       // UI上下文元数据表
+#define UIContextStatisticsData UNK_1809578d0  // UI上下文统计数据表
+#define UIContextLogData UNK_1809577f0        // UI上下文日志数据表
+
+// UI上下文操作扩展数据表定义
+#define UIContextOperationControlData UNK_180957758    // UI上下文操作控制数据表 - 存储上下文操作的控制数据
+#define UIContextOperationTransformData UNK_180957620   // UI上下文操作变换数据表 - 存储上下文操作的变换数据
+#define UIContextOperationRenderData UNK_1809576e0      // UI上下文操作渲染数据表 - 存储上下文操作的渲染数据
+#define UIContextOperationEventData UNK_1809575c8        // UI上下文操作事件数据表 - 存储上下文操作的事件数据
+#define UIContextOperationAnimationData UNK_180957680    // UI上下文操作动画数据表 - 存储上下文操作的动画数据
+#define UIContextOperationLayoutData UNK_180957770      // UI上下文操作布局数据表 - 存储上下文操作的布局数据
 
 // UI系统栈变量宏定义
 #define UIStackTransformMatrix70 &stack0x00000070        // UI变换矩阵栈70 - 存储UI变换矩阵数据
