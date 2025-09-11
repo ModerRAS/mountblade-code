@@ -3005,28 +3005,30 @@
 #define SecurityValidationFailedCode 0xc0000409          // 安全验证失败代码
 
 // 异常处理器层级重置偏移常量
-#define ExceptionHandlerTempCallbackOffsetDD0 0xdd0     // 异常处理器临时回调偏移量DD0
-#define ExceptionHandlerTempCallbackOffsetDE0 0xde0     // 异常处理器临时回调偏移量DE0
-#define ExceptionHandlerTempCallbackOffsetDC8 0xdc8     // 异常处理器临时回调偏移量DC8
-#define ExceptionHandlerTempCallbackOffsetEE0 0xee0     // 异常处理器临时回调偏移量EE0
-#define ExceptionHandlerTempCallbackOffsetED0 0xed0     // 异常处理器临时回调偏移量ED0
-#define ExceptionHandlerTempCallbackOffsetEB0 0xeb0     // 异常处理器临时回调偏移量EB0
-#define ExceptionHandlerTempCallbackOffsetEB8 0xeb8     // 异常处理器临时回调偏移量EB8
+#define ExceptionHandlerResetOffsetDD0 0xdd0     // 异常处理器重置偏移量DD0
+#define ExceptionHandlerResetOffsetDE0 0xde0     // 异常处理器重置偏移量DE0
+#define ExceptionHandlerResetOffsetDC8 0xdc8     // 异常处理器重置偏移量DC8
+#define ExceptionHandlerResetOffsetEE0 0xee0     // 异常处理器重置偏移量EE0
+#define ExceptionHandlerResetOffsetED0 0xed0     // 异常处理器重置偏移量ED0
+#define ExceptionHandlerResetOffsetEB0 0xeb0     // 异常处理器重置偏移量EB0
+#define ExceptionHandlerResetOffsetEB8 0xeb8     // 异常处理器重置偏移量EB8
 
 // 安全检查和位操作常量
-#define SecurityCheckBitMask26 0x1a
-#define SecurityCheckBitMask1 1
-#define systemContextPointerOffset70 0x70
+#define SecurityCheckPermissionMask 0x1a     // 安全检查权限掩码
+#define SecurityCheckEnabledMask 1          // 安全检查启用掩码
+// 系统上下文和数组操作常量
+#define SystemContextPointerOffset 0x70
 #define ArrayIterationStepSize 0x10
-#define ArrayDataOffset8 8
-#define ArrayDataOffsetC 0xc
-#define ValidationDataOffset58 0x58
-#define SystemResourceIndex2 2
-#define SystemResourceIndex4 4
+#define ArrayDataElementOffset8 8
+#define ArrayDataElementOffsetC 0xc
+// 数据验证和系统资源索引常量
+#define DataValidationOffset 0x58
+#define SystemResourceSecondaryIndex 2
+#define SystemResourceQuaternaryIndex 4
 
 // 数据验证和处理常量
-#define systemContextValidationOffset1C8 0x1c8            // 系统上下文验证偏移量1C8
-#define DataProcessingParameterOffset30 0x30              // 数据处理参数偏移量30
+#define SystemContextValidationOffset 0x1c8            // 系统上下文验证偏移量
+#define DataProcessingParameterOffset 0x30              // 数据处理参数偏移量
 #define SecurityContextValidationOffset5F0 0x5f0         // 安全上下文验证偏移量5F0
 #define SystemDataParameterOffsetPrimary 0x20                 // 系统数据参数偏移量20
 #define OperationBaseControlOffset 0x58                        // 操作基础偏移量58
