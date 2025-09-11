@@ -237557,7 +237557,7 @@ void FUN_180195140(long long ContextHandle, uint64_t *ContextHandleSize
  * 
  * 该函数是一个空操作函数，用于系统初始化或清理。
  */
-void FUN_18019515a(void
+void FUN_18019515a(void)
 {
   long long MainCalculationResult;
   uint64_t *SystemContext;
