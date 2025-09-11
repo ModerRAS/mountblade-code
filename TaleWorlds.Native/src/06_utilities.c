@@ -6025,10 +6025,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
-// 系统组件初始化函数
-// 功能：初始化系统组件，设置组件的初始状态和参数
-// 系统组件初始化函数
-#define InitializeSystemComponents FUN_18004c090
+/**
+ * @brief 初始化系统组件
+ * 
+ * 初始化系统的各个组件，设置组件的初始状态和参数
+ * 
+ * @note 原始函数名：FUN_18004c090
+ * @warning 组件初始化失败可能导致系统启动异常
+ * @see InitializeSystemCore, SetupSystemParameters
+ */
+#define InitializeSystemComponents InitializeSystemComponents
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
@@ -136918,10 +136924,16 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
-// 系统组件初始化函数
-// 功能：初始化系统组件，设置组件的初始状态和参数
-// 系统组件初始化函数
-#define InitializeSystemComponents FUN_18004c090
+/**
+ * @brief 初始化系统组件
+ * 
+ * 初始化系统的各个组件，设置组件的初始状态和参数
+ * 
+ * @note 原始函数名：FUN_18004c090
+ * @warning 组件初始化失败可能导致系统启动异常
+ * @see InitializeSystemCore, SetupSystemParameters
+ */
+#define InitializeSystemComponents InitializeSystemComponents
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
