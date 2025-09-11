@@ -238277,7 +238277,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   SystemCharacterStatusBuffer = ContextHandle + 0xc061;
   do {
     if (*(int *)(SystemCharacterStatusBuffer + 2) != 0) {
-      FUN_1801b8450(ContextHandle + 0xc060,SystemCharacterStatusBuffer);
+      InitializeSystemEvent(ContextHandle + 0xc060,SystemCharacterStatusBuffer);
     }
     SystemMemoryAllocationResult = SystemMemoryAllocationResult + 1;
     SystemCharacterStatusBuffer = SystemCharacterStatusBuffer + 4;
@@ -238287,9 +238287,9 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   CalculatedCodePoint = ProcessSystemDataConversion(CalculatedCodePoint,4);
   StoreSystemMemoryStatus(ContextHandle + 0x12,CalculatedCodePoint);
   ContextHandle[0x13] = 0;
-  FUN_1801afbc0(ContextHandle);
+  ProcessSystemContext(ContextHandle);
   if (*(char *)((long long)ContextHandle + 0x564) != '\0') {
-    FUN_1801af7a0(ContextHandle);
+    ProcessSystemEventQueue(ContextHandle);
   }
   ContextHandle[0x78] = 0;
   *(uint8_t *)(ContextHandle + 2) = 0;
