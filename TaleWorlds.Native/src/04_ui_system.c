@@ -135786,7 +135786,21 @@ FUN_1807405cf:
 
 
  void FUN_180740557(void)
-void FUN_180740557(void)
+#define ProcessUIBufferDataGlobal FUN_180740557
+/**
+ * @brief 处理UI缓冲区数据全局操作
+ * 
+ * 该函数负责处理UI系统的缓冲区数据全局操作：
+ * - 复制UI数据缓冲区
+ * - 处理UI缓冲区数据与控制信息
+ * - 执行UI上下文数据操作
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180740557
+ * @note 该函数执行后不返回，直接跳转到数据操作
+ */
+void ProcessUIBufferDataGlobal(void)
 
 {
   int operationResult;
