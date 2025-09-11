@@ -128240,8 +128240,9 @@ LAB_18073bfe2:
 
  
 
- void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIContextBufferOperation FUN_18073c020
+void ProcessUIContextBufferOperation(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
