@@ -257622,7 +257622,7 @@ void ProcessEncodingValidationAndPatternMatching(void)
         if (((*(byte *)(*(long long *)(BufferStatus + 0x38) + 8 + MemoryBlockIndex) & 1) != 0) &&
            (CharacterTablePointer = *(long long *)(*(long long *)(BufferStatus + 0x38) + MemoryBlockIndex),
            (*(uint *)(CharacterTablePointer + 0x100) & 0x800) != 0)) {
-          FUN_18007f0e0(LoopCounter,(long long)PatternIndex + 0x44,
+          ProcessSystemMemoryAllocationAndValidation(LoopCounter,(long long)PatternIndex + 0x44,
                         *(uint32_t *)((long long)PatternIndex + 0x844));
           BufferStatus = *(long long *)(AllocatedMemorySize + FramePointer);
         }
