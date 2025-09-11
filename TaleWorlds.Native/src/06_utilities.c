@@ -20824,35 +20824,36 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 
 
-// 函数: int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
-// 功能：处理资源复制操作，根据条件复制资源数据并执行相关操作
-// 
-// 该函数根据传入的资源操作上下文，执行资源复制操作。它会检查资源数据，
-// 查询系统数据，并在必要时分配资源。函数会处理数据复制和资源分配，
-// 确保操作的安全性和完整性。
-//
-// 参数:
-//   ResourceOperationContext - 资源操作上下文指针，包含操作所需的配置信息
-//     偏移量 0x10: 数据长度
-//     偏移量 0x18: 资源指针
-//     偏移量 0x20: 资源计数
-//     偏移量 0x4c: 系统查询标识符
-//
-// 返回值:
-//   int - 操作结果状态码
-//     0: 操作成功
-//     非0: 操作失败或错误代码
-//
-// 注意事项:
-//   - 函数包含不返回的子程序调用警告
-//   - 使用全局内存管理器进行资源分配
+/**
+ * @brief 处理资源复制操作
+ * 
+ * 该函数根据传入的资源操作上下文，执行资源复制操作。它会检查资源数据，
+ * 查询系统数据，并在必要时分配资源。函数会处理数据复制和资源分配，
+ * 确保操作的安全性和完整性。
+ * 
+ * @param ResourceOperationContext 资源操作上下文指针，包含操作所需的配置信息
+ *     - 偏移量 0x10: 数据长度
+ *     - 偏移量 0x18: 资源指针
+ *     - 偏移量 0x20: 资源计数
+ *     - 偏移量 0x4c: 系统查询标识符
+ * 
+ * @return int 操作结果状态码
+ *     - 0: 操作成功
+ *     - 非0: 操作失败或错误代码
+ * 
+ * @note 函数包含不返回的子程序调用警告
+ * @note 使用全局内存管理器进行资源分配
+ * @warning 确保传入的ResourceOperationContext有效，否则可能导致未定义行为
+ * 
+ * @see QueryAndRetrieveSystemDataA0, AllocateResourceA0
+ */
 int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
 
 {
-  int CopyOperationStatus;
-  int64_t ResourceTargetPointer;
-  uint8_t SystemQueryBuffer[8];
-  uint8_t ResourceDataBuffer[72];
+  int copyOperationStatus;
+  int64_t resourceTargetPointer;
+  uint8_t systemQueryBuffer[8];
+  uint8_t resourceDataBuffer[72];
   
   ResourceTargetPointer = 0;
   if (0 < *(int *)(ResourceOperationContext + SystemOperationStatusOffset)) {
