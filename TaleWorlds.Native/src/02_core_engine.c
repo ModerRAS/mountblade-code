@@ -244280,7 +244280,7 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
 
 
 
-9d190(uint64_t *ContextHandle,unsigned long long OperationBufferSizevoid FUN_18019d190(uint64_t *ContextHandle,unsigned long long OperationBufferSize
+void FUN_18019d190(uint64_t *ContextHandle,unsigned long long OperationBufferSize)
 {
   long long *ContextHandle;
   void *SystemContext;
@@ -253133,7 +253133,8 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
 
 
 
-06740(long long ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180206740(long long ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 配置系统字符处理 - 处理上下文管理和字符编码转换
+void ConfigureSystemCharacterProcessing(long long ContextHandle, char OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
@@ -253143,7 +253144,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   long long MemoryBoundaryEnd;
   unsigned long long SystemChecksum;
   long long *SystemDataTablePointer;
-  long long systemLoopCounter;
+  long long SystemLoopCounter;
   long long *ContextHandlePointer;
   long long SystemStringIndex;
   unsigned long long SystemStatusCode;
@@ -261345,13 +261346,13 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
   CalculatedMemorySize = (CalculatedMemorySize >> 2) - (CalculatedMemorySize >> 0x3f);
   Utf16CharacterValue = *(uint *)(ContextHandle + 0x3b0);
   *(uint *)(OperationBuffer + 3) = Utf16CharacterValue;
-  if (AllocatedMemorySize != 0) {
-    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
+  if (CalculatedMemorySize != 0) {
+    MemoryBlockIndex = (long long *)BufferAllocate(MemoryPoolManager,CalculatedMemorySize * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
   }
   *ContextHandleSize = MemoryBlockIndex;
-  OperationBufferSize[1] = MemoryBlockIndex;
-  OperationBufferSize[2] = AllocatedMemorySize * 0x98 + MemoryBlockIndex;
-  MemoryAddressMaskPointer = (void *)*ContextHandleSize;
+  OperationBuffer[1] = MemoryBlockIndex;
+  OperationBuffer[2] = CalculatedMemorySize * 0x98 + MemoryBlockIndex;
+  MemoryAddressMaskPointer = (uint64_t *)*ContextHandleSize;
   MemoryBlockIndex = *(long long *)(ContextHandle + 0x3a0);
   if (*(long long *)(ContextHandle + 0x398) != MemoryBlockIndex) {
     long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x398) - (long long)MemoryAddressMaskPointer;
@@ -296537,4 +296538,5 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ProcessSystemEncodingValidation FUN_1802e92b0             // 处理系统编码验证
 #define ProcessSystemDataStructure FUN_18019aac0                 // 处理系统数据结构
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
+#define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
 

@@ -129153,8 +129153,9 @@ FUN_18073c6e3:
 
 
 
- void FUN_18073c66b(void)
-void FUN_18073c66b(void)
+ void ExecuteUIContextReset(void)
+// 执行UI上下文重置
+// 这个函数重置UI上下文状态，包括缓冲区数据重置和验证操作
 
 {
   int operationResult;
@@ -129171,8 +129172,9 @@ void FUN_18073c66b(void)
 
 
 
- void FUN_18073c6e3(void)
-void FUN_18073c6e3(void)
+ void CleanupUIContextResources(void)
+// 清理UI上下文资源
+// 这个函数清理UI上下文占用的资源，包括内存释放和渲染任务执行
 
 {
   longlong stackParam00000030;
@@ -129188,8 +129190,9 @@ void FUN_18073c6e3(void)
 
 
 
- void FUN_18073c705(void)
-void FUN_18073c705(void)
+ void ValidateUIContextState(void)
+// 验证UI上下文状态
+// 这个函数验证UI上下文的当前状态，释放内存资源并执行渲染任务
 
 {
   ulonglong stackParam00000140;
@@ -129203,8 +129206,9 @@ void FUN_18073c705(void)
 
  
 
- void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize)
-void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize)
+ void ProcessUIDataWithBufferParams(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize)
+// 处理带缓冲区参数的UI数据
+// 这个函数处理带缓冲区参数的UI数据，包括数据传输和参数验证
 
 {
   int operationResult;
