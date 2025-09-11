@@ -11826,15 +11826,15 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089b307 - 系统初始化函数A0
 // 功能：初始化系统并返回初始化结果
-#define InitializeSystemA0 FUN_18089b307
+#define InitializeSystemA0 InitializeSystemWithValidationAndCleanup
 
 // 原始函数名：FUN_18089b31f - 系统参数设置函数A0
 // 功能：设置系统参数并返回设置结果
-#define SetSystemParametersA0 FUN_18089b31f
+#define SetSystemParametersA0 SetSystemParametersWithValidation
 
 // 原始函数名：FUN_18089b380 - 系统状态获取函数A0
 // 功能：获取系统状态并返回状态信息
-#define GetSystemStateA0 FUN_18089b380
+#define GetSystemStateA0 GetSystemStateWithValidation
 
 // 原始函数名：FUN_18089b460 - 系统数据验证函数A0
 // 功能：验证系统数据并返回验证结果
