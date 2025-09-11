@@ -126674,26 +126674,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
  
 
- void FUN_18073b190(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize)
-/**
- * @brief 执行UI上下文数据处理和加密操作
- * 
- * 该函数负责执行UI上下文的数据处理，包括加密解密和数据验证：
- * 1. 初始化UI上下文和清理资源
- * 2. 执行数据验证和控制
- * 3. 处理加密数据传输
- * 4. 执行纹理数据填充
- * 5. 在必要时释放内存资源
- * 
- * @param uiContext UI上下文句柄
- * @param dataSource 数据源句柄
- * @param targetBuffer 目标缓冲区句柄
- * @param bufferSize 缓冲区大小
- * 
- * @note 原始函数名：FUN_18073b190
- */
-#define ProcessUIContextDataWithEncryption FUN_18073b190
-void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize)
+ void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize)
 
 {
   int operationResult;
