@@ -202,6 +202,28 @@ typedef enum {
 #define UNK_18097edf8 UIRenderBufferTable          // UI渲染缓冲区表
 #define UNK_18097ee08 UITextureResourceTable       // UI纹理资源表
 #define UNK_18097ee30 UIAnimationDataTable         // UI动画数据表
+
+// UI系统函数语义化定义
+#define FUN_18073bcf0 ProcessUIContextWithDataSource
+#define FUN_18073bdc0 ProcessUIContextWithDataSourceB
+#define FUN_18073be90 ProcessUIContextWithDataSourceC
+#define FUN_18073bf60 ProcessUIContextCleanup
+#define FUN_18073c020 ProcessUIContextBufferOperation
+#define FUN_18073c03d ProcessUIContextBufferOperationB
+#define FUN_18073c099 ProcessUIContextGlobalReset
+#define FUN_18073c111 ProcessUIContextStateValidation
+#define FUN_18073c133 ProcessUIContextMemoryCleanup
+#define FUN_18073c160 ProcessUIContextLongOperation
+#define FUN_18073c17d ProcessUIContextLongOperationB
+#define FUN_18073c1e0 ProcessUIContextTaskCompletion
+#define FUN_18073c258 ProcessUIContextEventHandling
+#define FUN_18073c27a ProcessUIContextResourceRelease
+#define FUN_18073c2a0 ProcessUIContextDataTransfer
+#define FUN_18073c380 ProcessUIContextBufferOperationC
+#define FUN_18073c39d ProcessUIContextBufferOperationD
+#define FUN_18073c3f9 ProcessUIContextFinalCleanup
+#define FUN_18073c471 ProcessUIContextShutdown
+#define FUN_18073c493 ProcessUIContextFinalization
 #define UNK_18097ed40 UILayoutDataTable           // UI布局数据表
 #define UNK_18097ed50 UIFontResourceTable          // UI字体资源表
 #define UNK_18098b9b8 UIShaderDataTable           // UI着色器数据表
@@ -127939,8 +127961,26 @@ LAB_18073bcb8:
 
  
 
- void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
-void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 执行UI上下文数据验证和纹理处理操作
+ * 
+ * 该函数负责处理UI上下文数据验证和纹理处理，包括：
+ * 1. 初始化UI上下文和相关参数
+ * 2. 执行数据验证和控制操作
+ * 3. 处理纹理数据和验证操作
+ * 4. 根据需要释放内存资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI上下文
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * 
+ * @return void 无返回值，通过内部状态码表示操作结果
+ * 
+ * @note 原始函数名：FUN_18073bcf0
+ * @note 该函数是UI数据处理和纹理管理的重要组成部分
+ * @see ProcessUIContextWithCleanup, ValidateUIDataAndInitialize, ExecuteUIContextDataOperation
+ */
+#define ProcessUIContextWithTextureValidation FUN_18073bcf0
+void ProcessUIContextWithTextureValidation(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
@@ -127976,8 +128016,26 @@ LAB_18073bd88:
 
  
 
- void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
-void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 执行UI上下文数据处理和缓存管理操作
+ * 
+ * 该函数负责处理UI上下文数据和缓存管理，包括：
+ * 1. 初始化UI上下文和相关参数
+ * 2. 执行数据验证和控制操作
+ * 3. 处理缓存数据和管理操作
+ * 4. 根据需要释放内存资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI上下文
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * 
+ * @return void 无返回值，通过内部状态码表示操作结果
+ * 
+ * @note 原始函数名：FUN_18073bdc0
+ * @note 该函数是UI数据处理和缓存管理的重要组成部分
+ * @see ProcessUIContextWithCleanup, ValidateUIDataAndInitialize, ExecuteUIContextDataOperation
+ */
+#define ProcessUIContextWithCacheManagement FUN_18073bdc0
+void ProcessUIContextWithCacheManagement(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
