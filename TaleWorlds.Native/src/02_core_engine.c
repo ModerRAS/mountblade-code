@@ -255197,33 +255197,51 @@ void ProcessSystemContextAndPerformanceCounterOperation(uint64_t SystemContextHa
 
 
 // 函数: void FUN_180208400(long long ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统上下文数据和编码转换
+ * 
+ * 该函数负责处理系统上下文数据和编码转换操作，主要功能包括：
+ * - 验证上下文句柄的有效性
+ * - 处理UTF-8到UTF-16的编码转换
+ * - 管理系统缓冲区和数据传输
+ * - 设置系统状态标志
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180208400
+ */
+#define HandleSystemContextDataAndEncodingConversion FUN_180208400
+void HandleSystemContextDataAndEncodingConversion(long long SystemContextHandle,long long *ContextSizePointer,uint8_t Utf8SourceDataPointer,uint64_t Utf16EndDataPointer)
 {
   long long *ContextHandle;
   
-  if (*(long long *)(ContextHandle + 0x38) != 0) {
-    FUN_180080810(ContextHandle + 0x20,ContextHandle + 0x38,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-    *(uint32_t *)(ContextHandle + 0x28) = *(uint32_t *)(ContextHandle + 0x848);
-    *(uint32_t *)(ContextHandle + 0x2c) = 0x3f800000;
-    *(uint8_t *)(ContextHandle + 0x30) = *(uint8_t *)(ContextHandle + 0x40);
+  if (*(long long *)(SystemContextHandle + 0x38) != 0) {
+    ProcessSystemMemoryOperation(SystemContextHandle + 0x20,SystemContextHandle + 0x38,Utf8SourceDataPointer,Utf16EndDataPointer,0xfffffffffffffffe);
+    *(uint32_t *)(SystemContextHandle + 0x28) = *(uint32_t *)(SystemContextHandle + 0x848);
+    *(uint32_t *)(SystemContextHandle + 0x2c) = 0x3f800000;
+    *(uint8_t *)(SystemContextHandle + 0x30) = *(uint8_t *)(SystemContextHandle + 0x40);
   }
-  if (OperationBufferSize != (long long *)0x0) {
-    (**(code **)(*ContextHandleSize + 0x28))(OperationBufferSize);
+  if (ContextSizePointer != (long long *)0x0) {
+    (**(code **)(*ContextSizePointer + 0x28))(ContextSizePointer);
   }
-  ContextHandle = *(long long **)(ContextHandle + 0x38);
-  *(long long **)(ContextHandle + 0x38) = OperationBufferSize;
+  ContextHandle = *(long long **)(SystemContextHandle + 0x38);
+  *(long long **)(SystemContextHandle + 0x38) = ContextSizePointer;
   if (ContextHandle != (long long *)0x0) {
     (**(code **)(*ContextHandle + 0x38))();
   }
-  *(uint8_t *)(ContextHandle + 0x40) = Utf8SourcePointer;
-  *(uint32_t *)(ContextHandle + 0x848) = 0;
-  *(uint8_t *)(ContextHandle + 0x41) = 0;
+  *(uint8_t *)(SystemContextHandle + 0x40) = Utf8SourceDataPointer;
+  *(uint32_t *)(SystemContextHandle + 0x848) = 0;
+  *(uint8_t *)(SystemContextHandle + 0x41) = 0;
   return;
 }
 
 
 
 
-084b0(long long *ContextHandlevoid FUN_1802084b0(long long *ContextHandle
+// 函数: void FUN_1802084b0(long long *ContextHandle)
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;

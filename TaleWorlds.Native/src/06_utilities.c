@@ -32688,7 +32688,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
   operationResult = InitializeBufferA0(contextProcessingBuffer + 1,dataContext[1]);
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
     (**(FunctionPointer**)(*dataContext + 8))(dataContext,&DataProcessingConfigurationTableA2);
-    if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
+    if (((*(uint *)(dataContext + 3) & MemoryOperationFlagMask) == 0) ||
        (operationResult = ValidateResourceA0(dataContext,*(DataBuffer *)(dataContext[1] + CurrentResourceDataOffsetC0),0,1), operationResult == 0)) {
       currentResource = dataContext[1];
       resourceList = (int64_t *)(currentResource + CurrentResourceListOffset50);
