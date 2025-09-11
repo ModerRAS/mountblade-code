@@ -141,8 +141,10 @@
 #define NULL_INT64_POINTER (int64_t *)0x0
 #define NULL_FUNCTION_POINTER_TYPE (FunctionPointer *)0x0
 #define NULL_EXCEPTION_HANDLER_CONTEXT (ExceptionHandlerContext *)0x0
-#define NULL_DATA_BUFFER_POINTER NULL_DATA_BUFFER_POINTER
-#define NULL_FUNCTION_POINTER_POINTER NULL_FUNCTION_POINTER_POINTER
+#define NULL_DATA_BUFFER_POINTER (DataBuffer **)0x0
+#define NULL_FUNCTION_POINTER_POINTER (FunctionPointer**)0x0
+#define NULL_SYSTEM_DATA_PTR NULL_SYSTEM_DATA_PTR
+#define NULL_RESOURCE_MANAGER_PTR NULL_RESOURCE_MANAGER_PTR
 
 // 浮点数数据偏移量常量
 #define FloatingPointPrimaryDataOffset 0x20
@@ -136781,7 +136783,7 @@ void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,Dat
   SystemDataPtr *systemData;
   
   systemData = SystemResourceDataManager;
-  if (SystemResourceDataManager != (SystemDataPtr *)0x0) {
+  if (SystemResourceDataManager != NULL_SYSTEM_DATA_PTR) {
     ProcessSystemDataE0(&SystemResourceDataTable,*SystemResourceDataManager,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourceE0(systemData + 5);
       TerminateSystemE0(systemData);
@@ -136843,7 +136845,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
   ResourceManagerPtr *resourceManager;
   
   resourceManager = GlobalSystemResourceManagerPtr;
-  if (GlobalSystemResourceManagerPtr == (ResourceManagerPtr *)0x0) {
+  if (GlobalSystemResourceManagerPtr == NULL_RESOURCE_MANAGER_PTR) {
     return;
   }
   CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);

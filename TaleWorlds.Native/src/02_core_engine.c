@@ -49963,7 +49963,7 @@ void ProcessSystemConfigurationData(long long ContextHandle, long long *ContextH
   *MemoryAllocationMaskPointer = 0x10;
   OperationBufferSize[1] = OperationBufferSize[1] + 4;
   ContextHandleTablePointer = (uint *)OperationBufferSize[1];
-  Utf16Char = *(ushort *)(ContextHandle + 0x50);
+  Utf16Character = *(ushort *)(ContextHandle + 0x50);
   if ((unsigned long long)((*ContextHandleSize - (long long)ContextHandleTablePointer) + OperationBufferSize[2]) < 5) {
     ProcessBufferIndexllocation(OperationBufferSize,(long long)ContextHandleTablePointer + (4 - *ContextHandleSize));
     ContextHandleTablePointer = (uint *)OperationBufferSize[1];
@@ -49972,8 +49972,8 @@ void ProcessSystemConfigurationData(long long ContextHandle, long long *ContextH
   MemoryAllocationMaskPointer = (uint32_t *)(OperationBufferSize[1] + 4);
   OperationBufferSize[1] = (long long)MemoryAllocationMaskPointer;
   if (*(ushort *)(ContextHandle + 0x50) != 0) {
-    MemoryPoolIndex = *(void *)(ContextHandle + 0x48);
-    ArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x50) * 4;
+    MemoryPoolDataPointer = *(void *)(ContextHandle + 0x48);
+    DataArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x50) * 4;
     if ((unsigned long long)((*ContextHandleSize - (long long)MemoryAllocationMaskPointer) + OperationBufferSize[2]) <= ArraySize) {
       ProcessBufferIndexllocation(OperationBufferSize,(long long)MemoryAllocationMaskPointer + (ArraySize - *ContextHandleSize));
       MemoryAllocationMaskPointer = (uint32_t *)OperationBufferSize[1];
@@ -50139,7 +50139,7 @@ void ProcessMemoryBoundaryValidation(long long ContextHandle
   *MemoryAllocationMaskPointer = 0x10;
   SystemContext[1] = SystemContext[1] + 4;
   ContextHandleTablePointer = (uint *)SystemContext[1];
-  Utf16Char = *(ushort *)(ContextHandle + 0x50);
+  Utf16Character = *(ushort *)(ContextHandle + 0x50);
   if ((unsigned long long)((*SystemContext - (long long)ContextHandleTablePointer) + SystemContext[2]) < 5) {
     ProcessBufferIndexllocation();
     ContextHandleTablePointer = (uint *)SystemContext[1];
@@ -50148,8 +50148,8 @@ void ProcessMemoryBoundaryValidation(long long ContextHandle
   MemoryAllocationMaskPointer = (uint32_t *)(SystemContext[1] + 4);
   SystemContext[1] = (long long)MemoryAllocationMaskPointer;
   if (*(ushort *)(ContextHandle + 0x50) != 0) {
-    MemoryPoolIndex = *(void *)(ContextHandle + 0x48);
-    ArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x50) * 4;
+    MemoryPoolDataPointer = *(void *)(ContextHandle + 0x48);
+    DataArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x50) * 4;
     if ((unsigned long long)((*SystemContext - (long long)MemoryAllocationMaskPointer) + SystemContext[2]) <= ArraySize) {
       ProcessBufferIndexllocation();
       MemoryAllocationMaskPointer = (uint32_t *)SystemContext[1];
@@ -256884,7 +256884,21 @@ LAB_180208d4a:
 
 
 
-08e16(long long *ContextHandlevoid FUN_180208e16(long long *ContextHandle
+08e16(long long *ContextHandlevoid ProcessContextDataCleanup(long long *ContextHandle
+
+/**
+ * @brief 处理上下文数据清理操作
+ * 
+ * 该函数负责清理和重置上下文中的数据结构，主要功能包括：
+ * - 遍历内存池中的数据块
+ * - 清理标记为无效的数据项
+ * - 重置相关的状态标志和计数器
+ * - 确保内存池的一致性
+ * 
+ * @param ContextHandle 上下文句柄指针，指向需要清理的数据结构
+ * 
+ * @note 原始函数名：FUN_180208e16
+ */
 {
   long long MainCalculationResult;
   long long BufferStatus;
