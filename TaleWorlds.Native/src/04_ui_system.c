@@ -479,6 +479,8 @@ typedef enum {
 // UI系统全局变量语义化定义
 #define uiBufferData GlobalUIBufferData                  // UI缓冲区数据全局变量
 #define uiContext GlobalUIContext                        // UI上下文全局变量
+#define g_uiSizeLookupTable GlobalUISizeLookupTable       // UI大小查找表全局变量
+#define g_simdMultiplyMask GlobalSIMDMultiplyMask        // SIMD乘法掩码全局变量
 
 // UI系统栈参数语义化定义
 #define stackParamffffffffffffffa8 SystemStackParameterA8  // 系统栈参数A8
@@ -2007,6 +2009,9 @@ typedef enum {
 #define aeventCodeType8 UIeventCodeTypeArray8
 #define aprocessingStatus1 UIprocessingStatusArray1
 #define aprocessingStatus2 UIprocessingStatusArray2
+#define aprocessingStatus8 UIprocessingStatusArray8
+#define aiterationCount7 UIIterationCountArray7
+#define aresult8 UIResultArray8
 #define aprocessingStatus3 UIprocessingStatusArray3
 #define aprocessingStatus4 UIprocessingStatusArray4
 #define aprocessingStatus5 UIprocessingStatusArray5
@@ -125337,9 +125342,21 @@ FUN_18073a6c1:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a5ad(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073a5ad(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
+ /**
+ * 处理带多参数的UI数据高级处理
+ * 
+ * 该函数处理复杂的UI数据操作，包括数据验证、缓冲区操作和资源管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区标识符
+ * @param bufferSize 缓冲区大小句柄
+ * @param resultPointer 结果指针句柄
+ * @param validationFlag 验证标志
+ * @param resourceHandle 资源句柄
+ */
+void ProcessUIDataWithMultipleParametersAdvanced(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
+                                                UIHandle resultPointer,UIHandle validationFlag,UIHandle resourceHandle)
 
 {
   int operationResult;
@@ -125350,35 +125367,35 @@ void FUN_18073a5ad(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   longlong RegisterPointer;
   UIHandle eventHandle;
   UIHandle preservedRegister15;
-  ulonglong stackParam00000140;
+  ulonglong uiStackEncryptionKey;
   
   *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
-  param_6 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
+  validationFlag = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext,&resourceHandle,&validationFlag);
   if (operationResult == 0) {
-    operationResult = func_0x000180746880(param_7,dataSource,targetBuffer,bufferSize);
-    if (operationResult == 0) goto FUN_18073a6c1;
+    operationResult = ProcessUIBufferDataWithValidation(resourceHandle,dataSource,targetBuffer,bufferSize);
+    if (operationResult == 0) goto ProcessUIComponentStateUpdate;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = func_0x00018074b7d0(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074ba80(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    dataValidationResult = ProcessUIBufferCopyOperation(&UIStackDataBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&UIStackDataBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferCopyOperation(&UIStackDataBuffer + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(&UIStackDataBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ProcessUIDataBufferFinalize(&UIStackDataBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),bufferSize);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextDataValidator,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextDataValidator,&UIStackDataBuffer);
   }
-FUN_18073a6c1:
-  if (param_6 != 0) {
+ProcessUIComponentStateUpdate:
+  if (validationFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(uiStackEncryptionKey ^ (ulonglong)&UIStackBasePointer);
 }
 
 
@@ -125408,18 +125425,23 @@ void ProcessUIResourceCleanup(void)
 
 
 
- void FUN_18073a6c1(void)
-void FUN_18073a6c1(void)
+ /**
+ * 处理UI组件状态更新
+ * 
+ * 该函数处理UI组件的状态更新和内存资源释放。
+ * 
+ */
+void ProcessUIComponentStateUpdate(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong uiStackMemoryFlag;
+  ulonglong uiStackEncryptionKey;
   
-  if (stackParam00000030 != 0) {
+  if (uiStackMemoryFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(uiStackEncryptionKey ^ (ulonglong)&UIStackBasePointer);
 }
 
 
