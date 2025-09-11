@@ -129885,11 +129885,11 @@ void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578b0);
   }
 LAB_18073ce8e:
-  if (RenderContextSize != 0) {
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
