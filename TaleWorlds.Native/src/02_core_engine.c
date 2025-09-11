@@ -579,6 +579,8 @@
 #define FUN_1801a20e0 ResetSystemProcessingState                          // 重置系统处理状态
 #define FUN_18022d860 FinalizeContextHandleValidation                      // 完成上下文句柄验证
 #define FUN_18022ce40 CleanupContextHandleResources                       // 清理上下文句柄资源
+#define FUN_18020b790 HandleSystemEventCleanup                            // 处理系统事件清理
+#define FUN_18020bb70 ValidateSystemDataAndHandleContext                  // 验证系统数据和上下文句柄
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
@@ -243095,10 +243097,10 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
   unsigned long long BufferValidationStatus;
   void *pBufferTypeFlag;
   byte *CharacterStatusBuffer;
-  int iStack_238;
-  unsigned long long uStack_230;
+  int MemoryAllocationCounter;
+  unsigned long long SystemValidationStatus;
   void *pOperationStatus;
-  byte *pbStack_220;
+  byte *MemoryValidationFlag;
   int iStack_218;
   unsigned long long uStack_210;
   void *pCoreEngineUnsignedValue208;
@@ -259720,7 +259722,7 @@ LAB_18020b6e6:
 
 
 
-0b790(voidvoid FUN_18020b790(void
+void HandleSystemEventCleanup(void)
 {
     CoreEngineTerminateSystem();
 }
