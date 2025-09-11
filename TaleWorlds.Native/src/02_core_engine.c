@@ -217,6 +217,7 @@
 #define FUN_180204430 ProcessCharacterBufferAndStringOperations           // 处理字符缓冲区和字符串操作
 #define FUN_180206260 ProcessCharacterContextInitialization               // 处理字符上下文初始化
 #define FUN_1802062c0 ProcessCharacterContextCleanup                      // 处理字符上下文清理
+#define FUN_18021a140 GetMemoryAllocationInfo                             // 获取内存分配信息
 #define FUN_1802064e0 ProcessCharacterEncodingAndContextTransfer           // 处理字符编码和上下文传输
 #define FUN_180207e00 InitializeCharacterContextHandle                     // 初始化字符上下文句柄
 #define FUN_18020d6c0 ProcessCharacterStatusAndEventData                  // 处理字符状态和事件数据
@@ -224121,20 +224122,20 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
     SystemEncryptionKey = 0;
     SystemStackStatusFlag = 0xf;
     ContextHandle = *(long long **)(BufferStatus + 8);
-    pSystemContextPointerA8 = (long long **)&EncodingBuffer;
-    EncodingBuffer = &SystemBufferTertiary;
-    SystemStackRegisterValue58 = BufferStatus;
-    ppStackValidationFlag = &EncodingBuffer;
-    (**(code **)(*ContextHandle + 0x18))(ContextHandle,SystemOperationStatusMask,&EncodingBuffer,0);
-    ContextHandle = CoreEngineSignedValue70;
-    pSystemContextPointerA8 = &CoreEngineSignedValue70;
-    ProcessSystemMemoryEx2(&CoreEngineSignedValue70,CoreEngineSignedValue70[1]);
-    CoreEngineSignedValue70[1] = (long long)ContextHandle;
-    *CoreEngineSignedValue70 = (long long)ContextHandle;
-    CoreEngineSignedValue70[2] = (long long)ContextHandle;
-    StackProcessingValue = 0;
-    free(CoreEngineSignedValue70,0x60);
-    ProcessSystemStackData(SystemOperationStatusMask);
+    pSystemContextHandle = (long long **)&SystemEncodingBuffer;
+    SystemEncodingBuffer = &SystemBufferTertiary;
+    SystemStackRegister = BufferStatus;
+    ppStackValidationFlagPointer = &SystemEncodingBuffer;
+    (**(code **)(*ContextHandle + 0x18))(ContextHandle,SystemStatusBuffer,&SystemEncodingBuffer,0);
+    ContextHandle = SystemContextHandle;
+    pSystemContextHandle = &SystemContextHandle;
+    ProcessSystemMemoryEx2(&SystemContextHandle,SystemContextHandle[1]);
+    SystemContextHandle[1] = (long long)ContextHandle;
+    *SystemContextHandle = (long long)ContextHandle;
+    SystemContextHandle[2] = (long long)ContextHandle;
+    StackProcessingValueB = 0;
+    free(SystemContextHandle,0x60);
+    ProcessSystemStackData(SystemStatusBuffer);
     *ContextHandleSize = &SystemNullTemplate;
     if (OperationBufferSize[1] != 0) {
         ProcessSystemEventHandling();
@@ -224143,7 +224144,7 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
     *(uint32_t *)(OperationBufferSize + 3) = 0;
   }
   *ContextHandleSize = &ThreadLocalStorageTemplate;
-    CoreEngineExecuteUtilityFunction(ProcessingCounter ^ (unsigned long long)SystemFlagH);
+    CoreEngineExecuteUtilityFunction(SystemProcessingCounter ^ (unsigned long long)SystemOperationFlags);
 }
 
 
