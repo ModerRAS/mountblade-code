@@ -142687,7 +142687,7 @@ void ProcessUIContextDataValidationAndEventRender(longlong uiContext)
 {
   int operationResult;
   
-  operationResult = FUN_18078ad10();
+  operationResult = ProcessUIContextDataValidationAndEventRendering(stackUInt120, dataSource);
   if (operationResult == 0) {
     ProcessUIEventAndRenderData(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,uiContext + 0x116cc,0,0,0);
   }
@@ -212304,8 +212304,25 @@ UIHandle GetUIRenderStateIdentifier(void)
 
  
 
- void FUN_18078ad10(longlong uiContext,int dataSource)
-void FUN_18078ad10(longlong uiContext,int dataSource)
+ /**
+ * @brief 处理UI上下文数据验证和事件渲染
+ * 
+ * 该函数负责处理UI上下文数据验证和事件渲染操作，包括：
+ * - 执行数据验证和初始化
+ * - 处理UI事件和渲染数据
+ * - 管理UI上下文状态
+ * - 执行加密操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的上下文信息
+ * @param dataSource 数据源标识符，标识要处理的数据源
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18078ad10
+ * @note 该函数是UI数据处理和事件渲染系统的核心组件
+ * @see FUN_1807466e0, ProcessUIEventAndRenderData, FUN_18078b6a0
+ */
+void ProcessUIContextDataValidationAndEventRendering(longlong uiContext,int dataSource)
 
 {
   int operationResult;

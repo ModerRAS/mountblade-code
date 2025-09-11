@@ -251428,7 +251428,7 @@ joined_r0x0001802045de:
 
 
 
-044e0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointervoid FUN_1802044e0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer
+void FUN_1802044e0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer)
 {
   int LockResult;
   int LockOperationResult;
