@@ -2693,6 +2693,16 @@ typedef enum {
 // UI系统函数宏定义 - 清理UI上下文
 #define CleanupUIContext FUN_18070f490
 
+// 新美化的UI函数定义
+// 原始函数名：FUN_18073d010 - UI数据缓冲区和资源管理函数
+#define ProcessUIBufferDataAndResources FUN_18073d010
+
+// 原始函数名：FUN_18073d02d - UI上下文数据和事件管理函数
+#define ProcessUIContextDataAndEvents FUN_18073d02d
+
+// 原始函数名：FUN_18073d08b - UI数据处理简化操作函数
+#define ExecuteUIDataProcessingSimplified FUN_18073d08b
+
 // UI系统函数宏定义 - 获取UI上下文状态
 #define GetUIContextStatus FUN_18070f57b
 
@@ -130266,8 +130276,7 @@ CleanupUIResources:
 
 
 
- void FUN_18073d08b(void)
-/**
+ /**
  * @brief 执行UI数据处理的简化操作
  * 
  * 该函数是UI数据处理的一个简化版本，主要执行以下操作：
