@@ -260855,13 +260855,13 @@ unsigned long long HandleSystemMemoryContextManagement(long long ContextHandle)
   ContextHandleTablePointer = SeptenaryContextHandle;
   MemoryRangeBoundary = SystemContextRegister;
   if (MemoryAddressMaskPointer != NULL) {
-    ContextHandle2 = (long long *)*MemoryAddressMaskPointer;
-    ContextHandleData = ContextHandle7;
-    ConversionContext = ContextHandle7;
+    SecondaryContextHandle = (long long *)*MemoryAddressMaskPointer;
+    ContextHandleData = SeptenaryContextHandle;
+    ConversionContext = SeptenaryContextHandle;
     do {
-      ContextHandle3 = ContextHandleTablePointer;
-      ContextHandle6 = ConversionContext;
-      if (ContextHandle2 == (long long *)0x0) break;
+      TertiaryContextHandle = ContextHandleTablePointer;
+      SenaryContextHandle = ConversionContext;
+      if (SecondaryContextHandle == (long long *)0x0) break;
       pStringOffset = (long long *)(ContextHandle2[4] - ContextHandle2[5]);
       if ((unsigned long long)(ContextHandle2[5] - ContextHandle2[4]) < 0x8000000000000001) {
         pStringOffset = ContextHandle7;
