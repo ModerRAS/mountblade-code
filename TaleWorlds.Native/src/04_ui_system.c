@@ -10042,28 +10042,28 @@ void HandleUIEvent(UIFunctionPtr *eventHandler, UIHandle eventContext, longlong 
   UIFunctionPtr *standardStreamHandler;
   char *threadProcessingFlag;
   
-  if (((eventHandler != (UIFunctionPtr *)0x0) && (streamHandler = (UIFunctionPtr *)__acrt_iob_func(1), eventHandler != streamHandler)) &&
-     (streamHandler = (UIFunctionPtr *)__acrt_iob_func(2), eventHandler != streamHandler)) {
+  if (((eventHandler != (UIFunctionPtr *)0x0) && (standardStreamHandler = (UIFunctionPtr *)__acrt_iob_func(1), eventHandler != standardStreamHandler)) &&
+     (standardStreamHandler = (UIFunctionPtr *)__acrt_iob_func(2), eventHandler != standardStreamHandler)) {
     if (eventData != 0) {
       (*eventHandler)(eventData,eventContext);
     }
     (*eventHandler)(additionalData,eventContext);
     return;
   }
-  dataBuffer = DataBuffer;
-  threadFlag = (char *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
+  eventDataBuffer = DataBuffer;
+  threadProcessingFlag = (char *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
                    + 8);
-  if (*threadFlag == '\0') {
-    *threadFlag = '\x01';
-    streamHandler = FunctionPointer;
+  if (*threadProcessingFlag == '\0') {
+    *threadProcessingFlag = '\x01';
+    renderSystemFunction = FunctionPointer;
     if (FunctionPointer == (UIFunctionPtr *)0x0) {
-      streamHandler = (UIFunctionPtr *)UI_SYSTEM_RENDER_FUNCTION;
+      renderSystemFunction = (UIFunctionPtr *)UI_SYSTEM_RENDER_FUNCTION;
     }
     if (eventData != 0) {
-      (*streamHandler)(eventData,dataBuffer);
+      (*renderSystemFunction)(eventData,eventDataBuffer);
     }
-    (*streamHandler)(additionalData,dataBuffer);
-    *threadFlag = '\0';
+    (*renderSystemFunction)(additionalData,eventDataBuffer);
+    *threadProcessingFlag = '\0';
   }
   return;
 }

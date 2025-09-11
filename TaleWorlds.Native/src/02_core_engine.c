@@ -309,6 +309,21 @@
 #define FUN_1801940f0 InitializeSystemDataProcessing                    // 初始化系统数据处理
 #define FUN_180194530 ProcessSystemSignedValue                          // 处理系统有符号值
 #define FUN_180194350 FinalizeSystemContextOperation                    // 完成系统上下文操作
+#define FUN_180199930 ProcessSystemCharacterValidation                    // 处理系统字符验证
+#define FUN_1801998a0 ProcessContextMemoryPoolIteration                  // 处理上下文内存池迭代
+#define FUN_1801998ce ExecuteSystemContextCallbacks                       // 执行系统上下文回调
+#define FUN_18019991c PerformSystemNullOperation                          // 执行系统空操作
+#define FUN_180194530 ProcessSystemIntegerValues                          // 处理系统整数值
+#define FUN_18019cf00 ConfigureSystemStringOffset                         // 配置系统字符串偏移
+#define FUN_1801b84e0 ValidateSystemOperationStatus                        // 验证系统操作状态
+#define FUN_1801c1720 FinalizeSystemCleanupOperation                      // 完成系统清理操作
+#define FUN_1801166f0 ProcessSystemEventQueue                             // 处理系统事件队列
+#define FUN_180156300 CleanupSystemEncodingResources                      // 清理系统编码资源
+#define FUN_1801566b0 ResetSystemStringEncoding                          // 重置系统字符串编码
+#define FUN_18015c2b0 ProcessSystemStringData                             // 处理系统字符串数据
+#define FUN_1801b2460 ValidateSystemBufferStatus                          // 验证系统缓冲区状态
+#define FUN_1801aedf0 ProcessSystemMemoryAllocation                       // 处理系统内存分配
+#define FUN_1801a20e0 ResetSystemProcessingState                          // 重置系统处理状态
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
@@ -3169,6 +3184,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemRenderInitialization FUN_18037c8d0                // 处理系统渲染初始化
 #define ExecuteSystemVertexProcessing FUN_180389b20                    // 执行系统顶点处理
 #define HandleSystemPixelShader FUN_180374f40                          // 处理系统像素着色器
+#define ProcessSystemCharacterDataCleanup FUN_1802c6190                 // 处理系统字符数据清理
 
 // 新美化的系统事件处理函数
 #define FUN_180196af0 InitializeSystemEventHandling                    // 初始化系统事件处理
@@ -243474,7 +243490,7 @@ uint32_t ProcessContextHandleDataConversionAndSystemStatusUpdate(long long Conte
   *(uint32_t *)(SystemDataRegistry + 0x34) = ProcessingStatusFlag;
   *(uint32_t *)(SystemDataRegistry + 0x38) = SystemMemoryAllocationResult;
   *(uint32_t *)(SystemDataRegistry + 0x3c) = PreviousMemoryPoolIndex;
-  FUN_1802c6190(*(void *)(*(long long *)(ContextHandle + 0xc0) + 0x3a8));
+  ProcessSystemCharacterDataCleanup(*(void *)(*(long long *)(ContextHandle + 0xc0) + 0x3a8));
   ProcessSystemMemoryAllocation(*(long long *)(ContextHandle + 200) + 0x12678,
                 *(void *)(*(long long *)(ContextHandle + 0xc0) + 0x3a8));
   MemoryBlockIndex = *(long long *)(*(long long *)(ContextHandle + 0xc0) + 0x3a8);

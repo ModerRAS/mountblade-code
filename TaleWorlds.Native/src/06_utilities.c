@@ -11234,11 +11234,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define CleanupExceptionContext810 Unwind_180912810
 
 // 异常处理数据变量语义化宏定义
-// 异常数据表1地址 - 主要异常处理例程表
-#define ExceptionDataTable1Address 0x18098bdc8
-
-// 异常数据表2地址 - 辅助异常处理例程表
-#define ExceptionDataTable2Address 0x180a21690
+// 异常数据表地址定义已在文件开头提供
 
 // C++标准库函数宏定义
 // 错误处理函数 - 抛出C标准错误并处理错误码
@@ -40151,7 +40147,7 @@ OperationLabelD:
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x4c);
+  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemMemoryDataBufferOffset4C);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -40165,7 +40161,7 @@ OperationLabelD:
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x44);
+  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + DataBufferOffsetPrimary);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -40219,7 +40215,7 @@ ValidationErrorHandler:
   validationStatus = dataFlags;
   if (0x51 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-      validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x48);
+      validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemDataParameterOffset48);
     }
     else {
       validationStatus = 0x1c;
