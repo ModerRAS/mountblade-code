@@ -95,6 +95,7 @@
 #define ProcessSystemDataRegistryAndStackParameters FUN_1802e8c60                   // 处理系统数据注册和堆栈参数 - 管理系统数据注册表并处理相关堆栈参数
 #define ProcessSystemContextFloatOperations FUN_180208f20                         // 处理系统上下文浮点数操作 - 执行系统上下文中的浮点数计算和缓冲区管理
 #define ProcessSystemContextFloatConversion FUN_18020902a                          // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
+#define SystemNullOperation FUN_18020cad4                                        // 系统空操作函数 - 执行空操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
