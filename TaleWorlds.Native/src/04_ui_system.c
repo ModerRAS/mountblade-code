@@ -128413,19 +128413,21 @@ void ProcessUIContextStateValidation(void)
 void ProcessUIContextMemoryCleanup(void)
 
 {
-  ulonglong stackParam00000140;
+  // UI内存清理参数
+  ulonglong StackParameter;                                      // 栈参数，用于内存清理操作
   
+  // 释放UI内存资源
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务（使用栈参数进行异或操作以增加安全性）
+  ExecuteUIRenderTask(StackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
  
 
- void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
-/**
+ /**
  * @brief UI上下文长操作处理器
  * 
  * 处理UI上下文的长时间操作，包括数据加密、缓冲区管理和渲染任务执行
@@ -128441,41 +128443,52 @@ void ProcessUIContextMemoryCleanup(void)
  * 3. 处理数据源位移和缓冲区操作
  * 4. 验证和处理UI缓冲区数据
  * 5. 执行UI上下文数据操作
- * 6. 释放内存资源并执行渲染任务
  * 
  * @note 原始函数名：FUN_18073c160
  */
-void ProcessUIContextLongOperation(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+#define ProcessUIContextLongOperation FUN_18073c160
+void ProcessUIContextLongOperation(UIHandle uiContext, longlong dataSource, UIDword targetBuffer)
 
 {
-  int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  longlong *pstackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  // 操作结果变量
+  int OperationResult;                                           // 操作结果状态码
+  int DataValidationResult;                                      // 数据验证结果
+  int BufferCompareResult;                                       // 缓冲区比较结果
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong140,&stackLong148);
-  if (operationResult == 0) {
+  // UI数据处理变量
+  UIByte EncryptionKeyBuffer [32];                              // 加密密钥缓冲区
+  UIByte *DataBufferPointer;                                    // 数据缓冲区指针
+  longlong DataSourceOffset;                                     // 数据源偏移量
+  longlong *ContextHandlePointer;                               // 上下文句柄指针
+  UIByte ValidationBuffer [256];                                 // 验证缓冲区
+  ulonglong EncryptedStackValue;                                 // 加密栈值
+  
+  // 初始化加密栈值
+  EncryptedStackValue = XorEncryptionKey ^ (ulonglong)EncryptionKeyBuffer;
+  DataSourceOffset = 0;
+  
+  // 初始化UI上下文操作
+  OperationResult = func_0x00018074fb10(uiContext, &ContextHandlePointer, &DataSourceOffset);
+  if (OperationResult == 0) {
+    // 处理数据源位移和操作
     dataSource = dataSource << 0x14;
-    operationResult = (**(code **)(*pstackLong140 + 0xf0))(pstackLong140,dataSource,targetBuffer);
-    if (operationResult == 0) goto ProcessUIContextMemoryCleanupAndRender;
+    OperationResult = (**(code **)(*ContextHandlePointer + 0xf0))(ContextHandlePointer, dataSource, targetBuffer);
+    if (OperationResult == 0) goto ProcessUIContextMemoryCleanupAndRender;
   }
+  
+  // 处理全局UI资源管理器验证
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074be80(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    func_0x00018074b830(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    DataValidationResult = func_0x00018074be80(ValidationBuffer, 0x100, dataSource);
+    BufferCompareResult = ProcessUIBufferDataWithControl(ValidationBuffer + DataValidationResult, 0x100 - DataValidationResult, &UIBufferControlData);
+    func_0x00018074b830(ValidationBuffer + (DataValidationResult + BufferCompareResult), 0x100 - (DataValidationResult + BufferCompareResult), targetBuffer);
+    DataBufferPointer = ValidationBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextIndexData);
+    ExecuteUIContextDataOperation(OperationResult, 4, uiContext, &UIContextIndexData);
   }
+
 ProcessUIContextMemoryCleanupAndRender:
-  if (stackLong148 != 0) {
+  // 清理内存资源
+  if (DataSourceOffset != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
