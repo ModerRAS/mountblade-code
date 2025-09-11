@@ -156,16 +156,16 @@
 #define MemoryCleanupFlag 0x4
 #define SystemStateUpdateFlag 0x4
 
-// === 操作状态码常量 ===
-#define OperationSuccess 0                                          // 操作成功状态码
-#define MemoryValidationFailed -3                                   // 内存验证失败状态码
-#define MemoryProcessingFailed -4                                   // 内存处理失败状态码
+// 操作状态码常量
+#define OperationSuccess 0
+#define MemoryValidationFailed -3
+#define MemoryProcessingFailed -4
 
 // 异常状态标志位常量
-#define ExceptionStatusFlag1 0x1                                // 异常状态标志位1
-#define ExceptionStatusFlag2 0x2                                // 异常状态标志位2
-#define ExceptionStatusFlagMask1 0xfffffffe                     // 异常状态标志位1掩码
-#define ExceptionStatusFlagMask2 0xfffffffd                     // 异常状态标志位2掩码
+#define ExceptionStatusFlag1 0x1
+#define ExceptionStatusFlag2 0x2
+#define ExceptionStatusFlagMask1 0xfffffffe
+#define ExceptionStatusFlagMask2 0xfffffffd
 
 // 异常处理器偏移量常量
 #define TemporaryExceptionHandlerOffset68 0x68                  // 临时异常处理器偏移量68
