@@ -29892,7 +29892,7 @@ void ProcessFloatingPointDataWithValidation(void)
   float processedFloatValue;        // 处理后的浮点值
   
   if (((systemContextValidationFlag != '\0') || (*(int *)(*(int64_t *)(systemDataPointer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == processingLoopCounter)) &&
-     (systemResourceAllocationResult = ConfigureSystemParametersA0(), systemResourceAllocationResult == 0)) {
+     (systemResourceAllocationResult = ConfigureSystemA1(), systemResourceAllocationResult == 0)) {
     for (systemResourceAllocationResult = 0; (-1 < systemResourceAllocationResult && (systemResourceAllocationResult < *(int *)(systemDataPointer + SystemDataPointerOffset48))); systemResourceAllocationResult = systemResourceAllocationResult + 1) {
       exceptionHandlerDataPointer = *(int64_t *)(*(int64_t *)(systemDataPointer + SystemDataPointerOffset40) + (int64_t)systemResourceAllocationResult * 8);
       dataContext = *(int64_t *)(exceptionHandlerDataPointer + ExceptionHandlerDataPointerOffset68);
@@ -68767,7 +68767,7 @@ void HandleSystemException(DataBuffer exceptionContext,int64_t contextData)
   
   systemContext = *(int64_t *)(contextData + SystemContextOffset60);
   CleanupSystem(systemContext);
-  ConfigureSystemParametersA0(*(int64_t *)(contextData + SystemContextOffset70) + 8,0);
+  ConfigureSystemA1(*(int64_t *)(contextData + SystemContextOffset70) + 8,0);
   ExecuteSystemOperation(*(DataBuffer *)(systemContext + SystemDataOffset50),*(DataBuffer *)(contextData + SystemDataOffset78));
     _CxxThrowException(0,0);
 }
