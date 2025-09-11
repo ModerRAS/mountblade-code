@@ -236737,11 +236737,16 @@ void CompleteSystemContextAndCleanupResources(long long *ContextHandle)
 
 
 /**
- * @brief 释放系统上下文
+ * @brief 释放系统上下文和相关资源
  * 
- * 该函数负责释放系统上下文相关的资源和内存。
+ * 该函数负责释放系统上下文相关的资源和内存，包括：
+ * - 清理内存块和缓冲区分配状态
+ * - 执行资源释放回调
+ * - 重置系统内存状态
+ * 
+ * @note 原始函数名：FUN_180194370
  */
-void FUN_180194370(void
+void ReleaseSystemContextAndResources(void)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
