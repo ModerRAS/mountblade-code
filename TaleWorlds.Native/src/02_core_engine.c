@@ -258162,7 +258162,23 @@ LAB_1802097bc:
 
 
 
-0975a(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointervoid FUN_18020975a(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理系统数据验证和初始化
+ * 
+ * 该函数负责处理系统数据的验证和初始化操作，包括：
+ * - 验证系统数据完整性
+ * - 初始化数据结构
+ * - 处理内存分配
+ * - 配置系统参数
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18020975a
+ */
+void ProcessSystemDataValidationAndInitialization(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer)
 {
   long long MainCalculationResult;
   long long BufferStatus;

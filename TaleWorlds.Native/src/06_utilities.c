@@ -95,8 +95,8 @@
 
 // 系统异常处理地址常量
 #define ExceptionCriticalSectionAddress 0x180c82210
-#define ExceptionDataTable1Address 0x18098bdc8
-#define ExceptionDataTable2Address 0x180a21690
+#define ExceptionDataTable1Address 0x18098bdc8                       // 异常数据表主地址 - 主异常处理数据表
+#define ExceptionDataTable2Address 0x180a21690                       // 异常数据表次地址 - 备用异常处理数据表
 
 // 系统数据验证地址常量
 #define SystemDataValidationAddressA 0x180c4f450        // 线程本地存储主地址 - 用于系统数据验证
