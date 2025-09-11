@@ -258822,7 +258822,17 @@ long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,lon
 
 
 
-09b00(uint64_t ContextHandle,long long OperationBufferSize,int Utf8SourcePointervoid FUN_180209b00(uint64_t ContextHandle,long long OperationBufferSize,int Utf8SourcePointer
+/**
+ * @brief 处理系统字符串编码转换和数据验证操作
+ * 
+ * 该函数负责处理系统级别的字符串编码转换，包括UTF-8到UTF-16的转换，
+ * 以及相关的数据验证和内存管理操作。
+ * 
+ * @param ContextHandle 上下文句柄，用于访问系统资源
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的最大范围
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的UTF-8字符串
+ */
+void ProcessSystemStringEncodingAndValidation(uint64_t ContextHandle, long long OperationBufferSize, int Utf8SourcePointer)
 {
   uint Utf16Char;
   int LockOperationResult;
@@ -261619,7 +261629,18 @@ void HandleSystemContextValidation(long long ContextHandle
 
 
 
-0d4c0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020d4c0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 执行系统数据编码转换和验证操作
+ * 
+ * 该函数负责执行系统级别的数据编码转换，包括数据格式转换、
+ * 验证操作和内存管理功能。
+ * 
+ * @param ContextHandle 上下文句柄，用于访问系统资源
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的最大范围
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的数据
+ * @param Utf16EndPointer UTF-16结束指针，用于标记转换后的数据位置
+ */
+void ExecuteSystemDataEncodingAndValidation(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   unsigned long long MemoryPoolIndex;

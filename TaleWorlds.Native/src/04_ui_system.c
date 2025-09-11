@@ -134764,39 +134764,56 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
  
 
- void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
-
+ /**
+ * @brief 初始化UI数据源并处理数据操作
+ * 
+ * 该函数负责初始化UI数据源并处理相关的数据操作，主要功能包括：
+ * - 初始化UI数据源并设置初始值
+ * - 处理数据源的函数调用和操作
+ * - 管理数据缓冲区填充操作
+ * - 处理加密密钥和安全操作
+ * - 释放内存资源
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * @param dataSource 数据源指针，用于存储和操作数据源
+ * 
+ * @note 原始函数名：FUN_18073fbb0
+ * @note 加密操作：使用XorEncryptionKey进行数据加密
+ * @note 内存管理：通过RenderContextSize跟踪内存使用情况
+ * @note 异常处理：使用UNK_180957b90处理异常情况
+ */
+void InitializeUIDataSourceAndProcessOperation(UIHandle uiContext,UIByte *dataSource)
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *dataProcessingPointer;
+  longlong renderContextSize;
+  longlong *dataSourceHandle;
+  UIByte dataBuffer [256];
+  ulonglong encryptedKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if (dataSource != (UIByte *)0x0) {
     *dataSource = 0;
   }
-  RenderContextSize = 0;
-  operationResult = InitializeUIDataSource(uiContext,&pstackLong120,&RenderContextSize);
+  renderContextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext,&dataSourceHandle,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x1f0))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073fc56;
+    operationResult = (**(code **)(*dataSourceHandle + 0x1f0))(dataSourceHandle,dataSource);
+    if (operationResult == 0) goto operation_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIBufferDataFill(dataBuffer,0x100,dataSource);
+    dataProcessingPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b90);
+    ExecuteUIContextDataOperation(processingResult,2,uiContext,&GlobalUIExceptionHandlerB90);
   }
-LAB_18073fc56:
-  if (RenderContextSize != 0) {
+operation_complete:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
 }
 
 

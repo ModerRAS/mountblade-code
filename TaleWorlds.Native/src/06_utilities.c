@@ -80072,21 +80072,37 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase, int64_t dataBuffe
 /**
  * @brief 异常处理器回调执行函数A70
  * 
- * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
- * 主要用于异常处理过程中的回调执行和资源清理。
+ * 该函数执行异常处理回调，处理异常数据的提取和处理。
+ * 主要用于异常处理过程中的回调执行和资源清理，位于0xe8和0xf8偏移处。
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * 功能说明：
+ * 1. 从数据缓冲区的0xe8偏移处获取异常处理上下文
+ * 2. 从数据缓冲区的0xf8偏移处获取异常数据
+ * 3. 调用ProcessExceptionData函数处理异常数据
+ * 4. 传递清理标志和系统清理标志
+ * 
+ * 执行流程：
+ * - 数据提取 → 异常处理 → 资源清理
+ * 
+ * @param operationBase 操作基址，包含异常处理的上下文信息
+ * @param dataBuffer 数据缓冲区，包含异常处理的相关数据
+ * @param operationFlagA 操作标志A，用于控制异常处理的行为
+ * @param operationFlagB 操作标志B，用于控制异常处理的行为
+ * 
  * @note 原始函数名：Unwind_180907a70
+ * @warning 此函数涉及异常处理机制，修改时需要谨慎
+ * @see ProcessExceptionData, SystemCleanupFlagAlternative
  */
 #define ExecuteExceptionHandlerCallbacksA70 Unwind_180907a70
-void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  ProcessExceptionData(dataBuffer + DataBufferOffsetE8,*(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetF8),cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
-  return;
+    // 获取异常处理上下文和异常数据
+    DataBuffer exceptionContext = dataBuffer + DataBufferOffsetE8;
+    DataBuffer exceptionData = *(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetF8);
+    
+    // 处理异常数据，传递操作标志和系统清理标志
+    ProcessExceptionData(exceptionContext, exceptionData, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+    return;
 }
 
 
@@ -80098,9 +80114,10 @@ void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBu
  * 主要用于异常处理过程中的回调执行和资源清理，位于0xe80和0xf80偏移处。
  * 
  * 功能说明：
- * 1. 从数据缓冲区的0xf80偏移处获取异常数据
- * 2. 调用ProcessExceptionData函数处理异常数据
- * 3. 传递操作标志和系统清理标志
+ * 1. 从数据缓冲区的0xe80偏移处获取异常处理上下文
+ * 2. 从数据缓冲区的0xf80偏移处获取异常数据
+ * 3. 调用ProcessExceptionData函数处理异常数据
+ * 4. 传递操作标志和系统清理标志
  * 
  * 执行流程：
  * - 数据提取 → 异常处理 → 资源清理
@@ -80115,11 +80132,15 @@ void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBu
  * @see ProcessExceptionData, SystemCleanupFlagAlternative
  */
 #define ExecuteExceptionHandlerCallbacksA80 Unwind_180907a80
-void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  ProcessExceptionData(dataBuffer + ExceptionHandlerMemoryOffsetE80,*(DataBuffer *)(dataBuffer + ExceptionHandlerMemoryOffsetF80),cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
-  return;
+    // 获取异常处理上下文和异常数据
+    DataBuffer exceptionHandlerContext = dataBuffer + ExceptionHandlerMemoryOffsetE80;
+    DataBuffer exceptionHandlerData = *(DataBuffer *)(dataBuffer + ExceptionHandlerMemoryOffsetF80);
+    
+    // 处理异常数据，传递操作标志和系统清理标志
+    ProcessExceptionData(exceptionHandlerContext, exceptionHandlerData, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+    return;
 }
 
 
@@ -80147,20 +80168,29 @@ void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBu
  * @see TerminateSystemExecutionAndCleanupResources, SystemDefaultExceptionHandlerB
  */
 #define ManageResourceReferenceCountA90 Unwind_180907a90
-void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer)
-
+void ManageResourceReferenceCountA90(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t exceptionContext;
-  
-  exceptionContext = *(int64_t *)(dataBuffer + ValidationResultOffset);
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionContext + SystemParameterValidationOffset) != 0) {
-      TerminateSystemExecutionAndCleanupResources();
-  }
-  *(DataBuffer *)(exceptionContext + SystemParameterValidationOffset) = 0;
-  *(DataWord *)(exceptionContext + SystemFloatDataOffset38) = 0;
-  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset) = &SystemDefaultExceptionHandlerB;
-  return;
+    // 异常上下文管理变量
+    int64_t exceptionContextAddress;                    // 异常上下文地址
+    
+    // 获取异常上下文地址
+    exceptionContextAddress = *(int64_t *)(dataBuffer + ValidationResultOffset);
+    
+    // 设置临时异常处理器
+    *(DataBuffer *)(exceptionContextAddress + ExceptionHandlerContextDataOffset) = &SystemTemporaryExceptionHandler;
+    
+    // 检查系统参数验证状态，如果异常则终止系统执行
+    if (*(int64_t *)(exceptionContextAddress + SystemParameterValidationOffset) != 0) {
+        TerminateSystemExecutionAndCleanupResources();
+    }
+    
+    // 清理系统状态标志
+    *(DataBuffer *)(exceptionContextAddress + SystemParameterValidationOffset) = 0;
+    *(DataWord *)(exceptionContextAddress + SystemFloatDataOffset38) = 0;
+    
+    // 设置默认异常处理器B
+    *(DataBuffer *)(exceptionContextAddress + ExceptionHandlerContextDataOffset) = &SystemDefaultExceptionHandlerB;
+    return;
 }
 
 
