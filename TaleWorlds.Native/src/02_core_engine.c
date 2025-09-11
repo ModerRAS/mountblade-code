@@ -300025,6 +300025,21 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define StackMemoryDataOffset88 StackMemoryDataOffsetTertiary       // 栈内存数据偏移三级88
 #define StackMemoryDataOffset80 StackMemoryDataOffsetQuaternary    // 栈内存数据偏移四级80
 #define StackMemoryDataOffset78 StackMemoryDataOffsetSenary        // 栈内存数据偏移六级78
+#define memoryBlock1 PrimaryMemoryBlock                             // 主内存块1
+#define memoryBlock2 SecondaryMemoryBlock                           // 次内存块2
+#define StackContext2 SecondaryStackContext                         // 次栈上下文2
+#define Utf8BufferPointer Utf8SourceBufferPointer                   // UTF-8源缓冲区指针
+#define StackCharPointer80 StackCharacterPointerExtended            // 栈字符指针扩展80
+#define MemoryPointer MemoryBlockPointer                            // 内存块指针
+#define MemoryFlags MemoryAllocationFlags                           // 内存分配标志
+#define UnusedParam1 UnusedParameter1                               // 未使用参数1
+#define UnusedParam2 UnusedParameter2                               // 未使用参数2
+#define Utf16EndPointer Utf16EndBufferPointer                      // UTF-16结束缓冲区指针
+#define ThreadLocalStorageTemplate ThreadLocalStorageDataTemplate   // 线程本地存储数据模板
+#define SystemNullTemplate SystemNullDataTemplate                   // 系统空数据模板
+#define SourceByte SourceCharacterByte                             // 源字符字节
+#define CharacterNodeComparisonResult CharacterComparisonResult     // 字符节点比较结果
+#define ContextHandleSize ContextBufferSize                        // 上下文缓冲区大小
 
 /**
  * @brief 处理系统字符编码转换和矩阵运算
