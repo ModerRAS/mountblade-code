@@ -234449,7 +234449,20 @@ void ProcessSystemDataOptimizationAndValidation(uint64_t *ContextHandle,uint64_t
 
 
 
-void FUN_1801911b1(void)
+// 函数: void ProcessSystemDataCleanupAndReset(void)
+/**
+ * @brief 处理系统数据清理和重置操作
+ * 
+ * 该函数负责处理系统数据的清理和重置操作，主要功能包括：
+ * - 清理系统中的临时数据
+ * - 重置系统状态到初始状态
+ * - 释放不再使用的内存资源
+ * - 验证系统数据的完整性
+ * 
+ * @note 原始函数名：FUN_1801911b1
+ */
+#define ProcessSystemDataCleanupAndReset FUN_1801911b1
+void ProcessSystemDataCleanupAndReset(void)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -234517,7 +234530,25 @@ void FUN_1801911b1(void)
 
 
 
-void FUN_1801912b0(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointer)
+// 函数: void ProcessSystemEncodingConversionAndValidation(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointer)
+/**
+ * @brief 处理系统编码转换和验证操作
+ * 
+ * 该函数负责处理系统编码转换和验证操作，主要功能包括：
+ * - 转换不同编码格式的数据
+ * - 验证编码转换的正确性
+ * - 处理UTF-8到UTF-16的转换
+ * - 管理系统编码表和索引
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801912b0
+ */
+#define ProcessSystemEncodingConversionAndValidation FUN_1801912b0
+void ProcessSystemEncodingConversionAndValidation(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   long long *ContextHandle;
   byte *HighBytePointer;
@@ -235200,7 +235231,25 @@ LAB_180191cda:
 
 
 
-void FUN_180191d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void ProcessSystemMemoryConfigurationAndCleanup(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统内存配置和清理操作
+ * 
+ * 该函数负责处理系统内存配置和清理操作，主要功能包括：
+ * - 配置系统内存池和索引
+ * - 清理不再使用的内存资源
+ * - 处理Unicode码点的转换
+ * - 管理内存地址掩码和偏移量
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180191d40
+ */
+#define ProcessSystemMemoryConfigurationAndCleanup FUN_180191d40
+void ProcessSystemMemoryConfigurationAndCleanup(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   unsigned long long MemoryPoolIndex;
