@@ -128579,7 +128579,7 @@ void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDwo
   cleanupFlag = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = func_0x000180748d70(stackParam00000038,dataSource,targetBuffer);
+    operationResult = ProcessUIEventWithDataTarget(UIRenderParameter0,dataSource,targetBuffer);
     if (operationResult == 0) goto UIEventCleanupHandler;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
