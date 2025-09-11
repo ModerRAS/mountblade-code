@@ -97,6 +97,32 @@
 #define ExceptionCriticalSectionAddress 0x180c82210
 #define ExceptionDataTable1Address 0x18098bdc8
 #define ExceptionDataTable2Address 0x180a21690
+
+// 系统数据验证地址常量
+#define SystemDataValidationAddressA 0x180c4f450        // 线程本地存储主地址 - 用于系统数据验证
+#define SystemDataValidationAddressB 0x180c4f460        // 线程本地存储次地址 - 用于系统数据验证
+#define SystemDataValidationAddressC 0x180c919f0        // 系统互斥锁清理主地址 - 用于系统数据验证
+#define SystemDataValidationAddressD 0x180c919f1        // 系统互斥锁清理次地址 - 用于系统数据验证
+#define SystemDataValidationAddressE 0x180c91970         // 系统互斥锁对象主地址 - 用于系统数据验证
+#define SystemDataValidationAddressF 0x180c91f70         // 系统互斥锁对象次地址 - 用于系统数据验证
+
+// 系统异常管理地址常量
+#define SystemExceptionManagementAddressA 0x180c96690    // 系统互斥锁清理地址A - 用于异常管理
+#define SystemExceptionManagementAddressB 0x180c966f0    // 系统互斥锁清理地址B - 用于异常管理
+#define SystemExceptionManagementAddressC 0x180c96740    // 系统互斥锁清理地址C - 用于异常管理
+#define SystemExceptionManagementAddressD 0x180d497e0    // 系统异常初始化主地址 - 用于异常管理
+#define SystemExceptionManagementAddressE 0x180d498a0    // 系统异常初始化次地址 - 用于异常管理
+#define SystemExceptionManagementAddressF 0x180d49e70    // 系统异常初始化地址A - 用于异常管理
+#define SystemExceptionManagementAddressG 0x180d49f10    // 系统异常初始化地址B - 用于异常管理
+
+// 系统计算和浮点验证地址常量
+#define SystemCalculationAddressA 0x180c919f0            // 系统计算基础地址 - 用于系统计算
+#define SystemFloatValidationAddress 0x180985054         // 浮点数验证数据地址 - 用于浮点数验证
+
+// 系统异常处理核心地址常量
+#define SystemExceptionCriticalAddress 0x180c82210       // 异常临界区地址 - 用于异常处理
+#define SystemExceptionDataTableAddressA 0x18098bdc8      // 异常数据表地址A - 用于异常处理
+#define SystemExceptionDataTableAddressB 0x180a21690      // 异常数据表地址B - 用于异常处理
 // 系统错误码常量
 #define SystemConfigurationFailed 0x2
 #define SystemMemoryManagerInitFailed 0x3

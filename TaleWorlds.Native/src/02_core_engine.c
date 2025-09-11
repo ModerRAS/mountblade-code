@@ -132,6 +132,12 @@
 #define SystemPrimaryParameterOffset 8
 #define SystemSecondaryParameterOffset 0x10
 
+// 字符串处理常量
+#define MaximumStringLength 0x1000
+#define StringLengthFieldOffset 0x10
+#define StringDataPointerOffset 8
+#define ObjectCallbackFunctionOffset 0x38
+
 // 系统浮点数处理函数语义化宏定义
 #define FUN_180208f20 ProcessSystemFloatDataOperation                    // 处理系统浮点数数据操作
 
@@ -584,6 +590,7 @@
 #define FUN_18020c911 ProcessSystemEventQueueAndData                        // 处理系统事件队列和数据
 #define FUN_18020d310 HandleSystemDataValidation                             // 处理系统数据验证
 #define FUN_18020ccb0 ProcessSystemCharacterEncoding                         // 处理系统字符编码
+#define FUN_18020d160 HandleSystemContextValidation                         // 处理系统上下文验证
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
@@ -28558,7 +28565,7 @@ void WotsMain(uint64_t startupParameter
 void ExecuteObjectCallback(long long *ObjectPointer
 {
   if ((long long *)*ObjectPointer != (long long *)0x0) {
-    (**(void **)(*(long long *)*ObjectPointer + 0x38))();
+    (**(void **)(*(long long *)*ObjectPointer + ObjectCallbackFunctionOffset))();
   }
   return;
 }
@@ -28583,24 +28590,24 @@ void CoreEngineStringCopyHandler(long long stringDestination,long long stringSou
   long long stringLength;
   
   if (stringSource == 0) {
-    *(uint32_t *)(stringDestination + 0x10) = 0;
-    **(uint8_t **)(stringDestination + 8) = 0;
+    *(uint32_t *)(stringDestination + StringLengthFieldOffset) = 0;
+    **(uint8_t **)(stringDestination + StringDataPointerOffset) = 0;
     return;
   }
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
   } while (*(char *)(stringSource + stringLength) != '\0');
-  if ((int)stringLength < 0x1000) {
-    *(int *)(stringDestination + 0x10) = (int)stringLength;
+  if ((int)stringLength < MaximumStringLength) {
+    *(int *)(stringDestination + StringLengthFieldOffset) = (int)stringLength;
                     // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void *)(stringDestination + 8),0x1000);
+    strcpy_s(*(void *)(stringDestination + StringDataPointerOffset),MaximumStringLength);
     return;
   }
-  CoreEngineInitializeMemoryBuffer(&SystemMemoryBuffer,0x1000,stringSource);
-  *(uint32_t *)(stringDestination + 0x10) = 0;
-  **(uint8_t **)(stringDestination + 8) = 0;
+  CoreEngineInitializeMemoryBuffer(&SystemMemoryBuffer,MaximumStringLength,stringSource);
+  *(uint32_t *)(stringDestination + StringLengthFieldOffset) = 0;
+  **(uint8_t **)(stringDestination + StringDataPointerOffset) = 0;
   return;
 }
 
@@ -28619,11 +28626,11 @@ void CoreEngineStringCopyHandler(long long stringDestination,long long stringSou
  */
 void SafeCopyMemoryToBuffer(long long DestinationBuffer,uint64_t SourceData,int DataLength
 {
-  if (DataLength + 1 < 0x1000) {
-      memcpy(*(uint8_t **)(DestinationBuffer + 8),SourceData,(long long)DataLength);
+  if (DataLength + 1 < MaximumStringLength) {
+      memcpy(*(uint8_t **)(DestinationBuffer + StringDataPointerOffset),SourceData,(long long)DataLength);
   }
-  **(uint8_t **)(DestinationBuffer + 8) = 0;
-  *(uint32_t *)(DestinationBuffer + 0x10) = 0;
+  **(uint8_t **)(DestinationBuffer + StringDataPointerOffset) = 0;
+  *(uint32_t *)(DestinationBuffer + StringLengthFieldOffset) = 0;
   return;
 }
 
@@ -260891,7 +260898,7 @@ LAB_18020d04f:
 
 
 
-0d160(long long ContextHandlevoid FUN_18020d160(long long ContextHandle
+void HandleSystemContextValidation(long long ContextHandle
 {
   int LockResult;
   long long *BufferAllocationState;
