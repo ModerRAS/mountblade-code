@@ -68730,11 +68730,11 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
     SystemCharacterBuffer = (uint8_t *)0x0;
     SystemDataBufferSize = 0;
     DataOffsetValue = (long long)(int)((long long)SystemDataNode2 - (long long)SystemDataNode1 >> SystemEventContextShiftCount);
-    if (0 < lStack_448) {
-      lStack_478 = 0;
+    if (0 < DataOffsetValue) {
+      MemoryAlignmentValue = 0;
       do {
         MemoryPoolIndexAdditional = 0;
-        PrimaryProcessingStatusFlag7 = puStack_470 + lStack_478 * 4;
+        PrimaryProcessingStatusFlag7 = SystemDataNode1 + MemoryAlignmentValue * 4;
         LockOperationResult3 = *(int *)(PrimaryProcessingStatusFlag7 + 2) + -1;
         if (-1 < LockOperationResult3) {
           LoopIndex = (long long)LockOperationResult3;
@@ -68746,8 +68746,8 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
         }
         LockOperationResult3 = -1;
 PathSeparatorFound:
-        pStackValidationFlag278 = &SystemContextTemplate;
-        puStack_270 = aSystemUintBuffer260;
+        MemoryValidationFlag = &SystemContextTemplate;
+        SystemMemoryBuffer = aSystemUintBuffer260;
         iStack_268 = 0;
         aSystemUintBuffer260[0] = 0;
         SystemTertiaryStackPointer98 = &SystemContextTemplate;
@@ -68755,12 +68755,12 @@ PathSeparatorFound:
         FunctionAddress8 = 0;
         aMemoryStatusValue[0] = 0;
         if (LockOperationResult3 != -1) {
-          puStack_3e8 = &UnknownDataStructureTemplate;
-          puStack_3e0 = auStack_3d0;
-          auStack_3d0[0] = 0;
-          uStack_3d8 = 6;
-          strcpy_s(auStack_3d0,0x10,&SystemStringTemplate);
-          if (*(uint *)(PrimaryProcessingStatusFlag7 + 2) < uStack_3d8) {
+          SystemValidationBuffer = &UnknownDataStructureTemplate;
+          SystemValidationData = SystemValidationArray;
+          SystemValidationArray[0] = 0;
+          SystemValidationStatus = 6;
+          strcpy_s(SystemValidationArray,0x10,&SystemStringTemplate);
+          if (*(uint *)(PrimaryProcessingStatusFlag7 + 2) < SystemValidationStatus) {
 MemoryBoundaryCheck:
             hasMemoryBoundaryChanged = false;
           }
