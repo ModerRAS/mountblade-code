@@ -238910,7 +238910,7 @@ uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long Op
 
 
 
-96af0(long long ContextHandlevoid FUN_180196af0(long long ContextHandle
+void InitializeSystemEventHandling(long long ContextHandle)
 {
   long long MainCalculationResult;
   void *SystemContext;
