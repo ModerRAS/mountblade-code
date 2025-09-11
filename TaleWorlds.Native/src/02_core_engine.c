@@ -247595,7 +247595,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,(int)SystemStringIndex);
           memcpy(UnsignedProcessingStatusFlag + uStack_1f8,SystemValidationFunction9,(long long)((int)BufferValidationStatus + 2));
       }
-      StringLength = FUN_180203790();
+      StringLength = CalculateSystemStringLength();
       PrimaryProcessingStatusFlag8 = &SystemStatusValueQuaternary;
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
@@ -247616,7 +247616,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSecondary,pSystemStatusValue);
-      StringLength = FUN_180203740();
+      StringLength = ValidateSystemStringBuffer();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -247636,7 +247636,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterSecondary,pSystemStatusValue);
-      StringLength = FUN_1802036f0();
+      StringLength = ProcessSystemStringOperation();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
