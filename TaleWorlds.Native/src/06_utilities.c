@@ -65,8 +65,8 @@
 // 资源清理偏移常量
 #define ResourceCleanupPrimaryOffset 0x28                   // 资源清理主偏移量 - 用于主资源清理操作
 #define ResourceCleanupSecondaryOffset 0x48                // 资源清理辅助偏移量 - 用于辅助资源清理操作
-#define ExceptionContextResetOffset18 0x18                    // 异常上下文重置偏移量18 - 用于异常上下文重置操作
-#define ExceptionContextResetOffset20 0x20                    // 异常上下文重置偏移量20 - 用于异常上下文重置操作
+#define ExceptionContextResetPrimaryOffset 0x18                    // 异常上下文重置主偏移量 - 用于异常上下文重置操作
+#define ExceptionContextResetSecondaryOffset 0x20                    // 异常上下文重置次偏移量 - 用于异常上下文重置操作
 
 // 安全和验证常量
 #define SecurityValidationMask 0x40000000
