@@ -263564,7 +263564,7 @@ OperationCompleteLabel:
 
 
 
-0f620(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020f620(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemCharacterValidation(uint64_t ContextHandle, long long *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   int LockResult;
   int LockOperationResult;
