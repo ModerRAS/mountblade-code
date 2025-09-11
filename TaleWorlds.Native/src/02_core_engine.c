@@ -252484,7 +252484,8 @@ ProcessOperationBufferSizeAndMemoryBlockIndexManagement:
 
 
 
-04e64(long long ContextHandle,uint32_t OperationBufferSizevoid FUN_180204e64(long long ContextHandle,uint32_t OperationBufferSize
+// 函数: void ProcessUtf16CharacterEncodingAndMemoryPoolAllocation(long long ContextHandle,uint32_t OperationBufferSize)
+void ProcessUtf16CharacterEncodingAndMemoryPoolAllocation(long long ContextHandle,uint32_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t MemoryPoolIndex;
