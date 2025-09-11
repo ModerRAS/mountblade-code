@@ -1848,12 +1848,6 @@ uint32_t NetworkSocketRuntimeContextPointer;
  */
 uint32_t NetworkSocketDescriptor;
 
-/**
- * @brief 网络套接字运行时数据
- * 
- * 存储网络套接字运行时的动态数据和状态信息
- */
-uint32_t NetworkSocketRuntimeContext;
 
 /**
  * @brief 网络套接字上下文数据
