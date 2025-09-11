@@ -257829,9 +257829,9 @@ void ReleaseCharacterStatusBufferAndProcessSystemData(long long ContextHandle, u
         MemoryBlockIndex = MemoryBlockIndex + 0x10;
       }
       else {
-        MemoryBlockIndex = FUN_180079240();
+        MemoryBlockIndex = GetSystemMemoryBlockIndex();
       }
-      FUN_1800b32c0(SystemMemoryManagerPointer,&SystemContextRegister,MemoryBlockIndex,0,0);
+      ConfigureSystemMemoryAllocation(SystemMemoryManagerPointer,&SystemContextRegister,MemoryBlockIndex,0,0);
       if (SystemContextRegister != (long long *)0x0) {
         (**(code **)(*SystemContextRegister + 0x38))();
       }
