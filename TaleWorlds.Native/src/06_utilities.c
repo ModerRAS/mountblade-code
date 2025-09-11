@@ -133354,7 +133354,7 @@ void HandleUtilitySystemRequest(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + MemoryPointerOffset) == '\0') {
-    ValidateDataWithParams(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset60),*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68),
+    ValidateDataWithParams(*(DataBuffer *)(operationBase + ExceptionHandlerContextOffset60),*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68),
                   *(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset),*(DataBuffer *)(dataBuffer + ExceptionHandlerCountOffset));
   }
   return;
