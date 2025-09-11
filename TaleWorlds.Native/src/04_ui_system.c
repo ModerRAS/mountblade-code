@@ -400153,8 +400153,17 @@ void FinalizeUIComponentData(void)
 
 
 
- void FUN_18089a750(longlong uiContext,uint *dataSource)
-void FUN_18089a750(longlong uiContext,uint *dataSource)
+ /**
+ * @brief 验证UI上下文数据
+ * 
+ * 该函数用于验证UI上下文中的数据是否有效。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * 
+ * @note 原始函数名：FUN_18089a750
+ */
+void ValidateUIContextData(longlong uiContext, uint *dataSource)
 
 {
   uint result;
