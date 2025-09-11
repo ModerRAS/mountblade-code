@@ -256951,35 +256951,35 @@ void FUN_180208f20(long long ContextHandle, long long OperationBufferSize, int *
   float ContextPrimaryFloatValue;            // 上下文主浮点值
   
   if (OperationBufferSize == *(long long *)(ContextHandle + 0x20)) {
-    SecondaryFloatValue = *(float *)(ContextHandle + 0x28);
+    ScaledFloatValue = *(float *)(ContextHandle + 0x28);
   }
   else {
-    SecondaryFloatValue = *(float *)(ContextHandle + 0x848);
+    ScaledFloatValue = *(float *)(ContextHandle + 0x848);
   }
-  pComputedResult = *(int **)(OperationBufferSize + 0xb8);
+  ComputedResultPointer = *(int **)(OperationBufferSize + 0xb8);
   SystemOperationResult = 0;
-  SecondaryFloatValue = SecondaryFloatValue * 30.0;
-  EncodingValidationResult = (int)((*(long long *)(OperationBufferSize + 0xc0) - (long long)pComputedResult) / 0x28) + -1;
-  if (0 < EncodingValidationResult) {
-    BufferStatus = 0;
+  ScaledFloatValue = ScaledFloatValue * 30.0;
+  ValidationResult = (int)((*(long long *)(OperationBufferSize + 0xc0) - (long long)ComputedResultPointer) / 0x28) + -1;
+  if (0 < ValidationResult) {
+    ProcessingBufferStatus = 0;
     do {
-      if ((int)SecondaryFloatValue < *pComputedResult) break;
-      SystemOperationResult = IterationCounter + 1;
-      BufferStatus = BufferStatus + 1;
-      pComputedResult = pComputedResult + 10;
-    } while (BufferStatus < EncodingValidationResult);
+      if ((int)ScaledFloatValue < *ComputedResultPointer) break;
+      SystemOperationResult = LoopCounter + 1;
+      ProcessingBufferStatus = ProcessingBufferStatus + 1;
+      ComputedResultPointer = ComputedResultPointer + 10;
+    } while (ProcessingBufferStatus < ValidationResult);
   }
-  BufferStatus = *(long long *)(OperationBufferSize + 0xb8);
-  EncodingValidationResult = IterationCounter + -1;
-  pComputedResult = (int *)(BufferStatus + (long long)IntegerValue9 * 0x28);
-  if (EncodingValidationResult < 0) {
-    SecondaryFloatValue = 0.0;
-    StringLength = pComputedResult;
+  ProcessingBufferStatus = *(long long *)(OperationBufferSize + 0xb8);
+  ValidationResult = LoopCounter + -1;
+  ComputedResultPointer = (int *)(ProcessingBufferStatus + (long long)ArrayIndex * 0x28);
+  if (ValidationResult < 0) {
+    ScaledFloatValue = 0.0;
+    StringLengthPointer = ComputedResultPointer;
   }
   else {
-    SystemOperationResult = *(int *)(BufferStatus + (long long)EncodingValidationResult * 0x28);
-    SystemContextPrimaryFloat2 = (float)*pComputedResult;
-    if (SecondaryFloatValue <= SystemContextPrimaryFloat2) {
+    SystemOperationResult = *(int *)(ProcessingBufferStatus + (long long)ValidationResult * 0x28);
+    ContextPrimaryFloatValue = (float)*ComputedResultPointer;
+    if (ScaledFloatValue <= ContextPrimaryFloatValue) {
       SystemContextPrimaryFloat2 = SecondaryFloatValue;
     }
     SecondaryFloatValue = (SystemContextPrimaryFloat2 - (float)IntegerValue9) / (float)(*pComputedResult - IntegerValue9);

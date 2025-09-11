@@ -98,6 +98,14 @@ typedef enum {
 // UI系统组件偏移量常量
 #define UI_COMPONENT_RENDER_STATE_OFFSET 0xac   // UI组件渲染状态偏移量
 #define UI_COMPONENT_HANDLE_OFFSET 0xa8        // UI组件句柄偏移量
+
+// UI系统资源管理常量
+#define UIResourceStatusOffset 0x10             // UI资源状态偏移量
+#define GlobalUIExceptionHandlerAB0 0x180957ab0  // 全局UI异常处理器AB0地址
+
+// UI系统函数语义化宏定义
+#define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
+#define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
 #define UI_COMPONENT_DATA_OFFSET_98 0x98        // UI组件数据偏移量98
 #define UI_COMPONENT_DATA_OFFSET_9C 0x9c        // UI组件数据偏移量9C
 #define UI_COMPONENT_DATA_OFFSET_A0 0xa0        // UI组件数据偏移量A0
