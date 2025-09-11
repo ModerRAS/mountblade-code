@@ -292507,7 +292507,7 @@ long long ProcessSystemMemoryAllocation(long long ContextHandle,uint64_t Operati
         ErrorCode = 0;
         pcStack_e0 = (code *)0x0;
         pcStack_d8 = _guard_check_icall;
-        FUN_18023c450(*(void *)(MemoryPoolBlockSize + 0x98),0,*(uint32_t *)(MemoryPoolBlockSize + 0x468),&OperationStatus);
+        InitializeSystemBuffer(*(void *)(MemoryPoolBlockSize + 0x98),0,*(uint32_t *)(MemoryPoolBlockSize + 0x468),&OperationStatus);
         if (pcStack_e0 != (code *)0x0) {
           (*pcStack_e0)(&OperationStatus,0,0);
         }
