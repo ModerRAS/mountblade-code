@@ -245118,7 +245118,7 @@ LAB_18019e833:
                  (BufferStatus1 = *(long long *)(BufferStatus + 0x448), BufferStatus1 != 0)) {
                 *(uint32_t *)(BufferStatus1 + 0x2150) =
                      *(uint32_t *)(*(long long *)(BufferStatus1 + 0x2148) + 0x3054);
-                FUN_180379810(BufferStatus1);
+                ValidateSystemMemoryAllocation(BufferStatus1);
                 FUN_1803769d0(BufferStatus1);
                 ProcessSystemDataManager(*(long long *)(BufferStatus + 0x448) + 0x21e0);
                 ProcessSystemDataManager(BufferStatus + 0x81b0);
