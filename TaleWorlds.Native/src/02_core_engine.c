@@ -60001,9 +60001,9 @@ uint32_t GetSystemContextStatus(long long systemContext
 
 uint32_t GetSystemRegisterValue(void
 {
-  uint32_t NullPointerD;
+  uint32_t SystemRegisterValue;
   
-  return NullPointerD;
+  return SystemRegisterValue;
 }
 
 
@@ -60033,9 +60033,9 @@ uint ManageDataStructureMemoryAllocation(uint *ContextHandle,int OperationBuffer
   int ValidationResult;
   unsigned long long SystemChecksum;
   uint ProcessingStatusFlag;
-  int IntegerValue9;
-  uint *CharacterStatusBuffer;
-  bool BooleanVariable11;
+  int MemoryAllocationCount;
+  uint *MemoryBlockPointer;
+  bool IsMemoryOperationComplete;
   
   if (OperationBufferSize == 0) {
     return 0xffffffff;
@@ -60049,10 +60049,10 @@ uint ManageDataStructureMemoryAllocation(uint *ContextHandle,int OperationBuffer
   if (SystemChecksum <= MemoryAddressMaskPointer) {
     SystemFunctionPointer = (char *)((long long)ContextHandle + SystemChecksum + 0x408);
     AllocatedMemorySize = (MemoryAddressMaskPointer - SystemChecksum) + 1;
-    CharacterStatusBuffer = ContextHandle + (unsigned long long)(Utf16Char >> 0xb) * 2 + 2;
+    MemoryBlockPointer = ContextHandle + (unsigned long long)(Utf16Char >> 0xb) * 2 + 2;
     do {
       ValidationResult = (int)SystemChecksum;
-      if (*(long long *)CharacterStatusBuffer == 0) {
+      if (*(long long *)MemoryBlockPointer == 0) {
         BufferStatus = BufferAllocate(MemoryPoolManager,0x4000,0x25);
         LOCK();
         IsMemoryBlockEqual = *(long long *)(ContextHandle + (long long)ValidationResult * 2 + 2) == 0;
@@ -60063,7 +60063,7 @@ uint ManageDataStructureMemoryAllocation(uint *ContextHandle,int OperationBuffer
         if (IsMemoryBlockEqual) {
           ProcessingStatusFlag = ValidationResult * 0x800;
           SystemOperationResult = ProcessingStatusFlag + 0x800;
-          for (; (int)ProcessingStatusFlag < IntegerValue9; ProcessingStatusFlag = ProcessingStatusFlag + 1) {
+          for (; (int)ProcessingStatusFlag < MemoryAllocationCount; ProcessingStatusFlag = ProcessingStatusFlag + 1) {
             *(void *             (*(long long *)(ContextHandle + (unsigned long long)(ProcessingStatusFlag >> 0xb) * 2 + 2) +
              (long long)(int)(ProcessingStatusFlag + (ProcessingStatusFlag >> 0xb) * -0x800) * 8) = 0;
           }
@@ -60084,7 +60084,7 @@ uint ManageDataStructureMemoryAllocation(uint *ContextHandle,int OperationBuffer
         } while (*SystemFunctionPointer != '\0');
       }
       SystemChecksum = (unsigned long long)(ValidationResult + 1);
-      CharacterStatusBuffer = CharacterStatusBuffer + 2;
+      MemoryBlockPointer = MemoryBlockPointer + 2;
       SystemFunctionPointer = SystemFunctionPointer + 1;
       AllocatedMemorySize = AllocatedMemorySize + -1;
     } while (AllocatedMemorySize != 0);
@@ -60122,8 +60122,8 @@ uint32_t ProcessDataStructureBufferAllocation(long long ContextHandle
   uint OperationResult;
   int ProcessIterationCount;
   long long *SystemDataTablePointer;
-  uint32_t NullPointerD;
-  bool BooleanValidationFlag9;
+  uint32_t SystemRegisterValue;
+  bool IsValidationComplete;
   
   SystemFunctionPointer = (char *)(ContextHandle + 0x408 + PatternIndex);
   SystemDataRegistry = (FramePointer - PatternIndex) + 1;

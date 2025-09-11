@@ -20377,16 +20377,14 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
 
 
 
-// 函数: DataBuffer ValidateUtilitySystemState(void)
-// 
-// 工具系统状态验证函数
-// 验证工具系统的当前状态，确保系统运行正常
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
+/**
+ * @brief 验证工具系统状态
+ * 
+ * 验证工具系统的当前状态，确保系统运行正常。该函数会检查
+ * 系统的内存状态、数据缓冲区完整性和系统配置参数。
+ * 
+ * @return DataBuffer 成功返回0，失败返回错误代码
+ */
 DataBuffer ValidateUtilitySystemState(void)
 
 {
