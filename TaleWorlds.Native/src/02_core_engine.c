@@ -265520,7 +265520,7 @@ LAB_180214064:
     *(uint32_t *)(ContextHandle + 0x1cc) = SystemKeyPointer;
     *(uint32_t *)(ContextHandle + 0x1d0) = SystemUnsignedValue54;
     *(uint32_t *)(ContextHandle + 0x1d4) = Utf16Char;
-    InputDataLength = FUN_180849990(*(void *)(ContextHandle + 0x368),0,&SystemStackFlag,&BufferMemoryOffset);
+    InputDataLength = ProcessSystemStringValidation(*(void *)(ContextHandle + 0x368),0,&SystemStackFlag,&BufferMemoryOffset);
     if (InputDataLength != 0) {
       InitializeSystemEvent(&SystemEventTemplateDataPrimary);
     }
