@@ -248264,8 +248264,8 @@ LAB_1802016f7:
           uStack_1f8 = MemoryAllocationHandle;
         } while (MemoryBlockHandle < BufferValidationStatus);
       }
-      FUN_1806284c0(&pCoreEngineUnsignedValue208,
-                    *(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x68) + -4 + (long long)StringLength * 4));
+      ProcessSystemFloatData(&pCoreEngineFloatDataProcessor,
+                    *(uint32_t *)(*(long long *)(SystemContextSize + 0x68) + -4 + (long long)StringLength * 4));
       MemoryAllocationHandle = uStack_1f8 + 0x11;
       CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,MemoryAllocationHandle);
       PrimaryProcessingStatusFlag3 = (void *)(UnsignedProcessingStatusFlag + uStack_1f8);
