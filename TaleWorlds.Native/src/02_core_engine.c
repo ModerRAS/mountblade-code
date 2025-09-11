@@ -103826,7 +103826,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t ContextHandl
   long long PatternMatchStatus;
   long long SystemDataNode;
   long long SystemRegisterR11;
-  uint RegisterR13ValueD;
+  uint DataLength;
   char *CharacterLimit;
   float SystemContextPrimaryFloat3;
   uint32_t BaseFloatValue;
@@ -103996,7 +103996,7 @@ char ProcessSystemMemoryBuffer(void
   long long PatternMatchStatus;
   long long SystemDataNode;
   char *pSystemValidationChar;
-  uint RegisterR13ValueD;
+  uint DataLength;
   char *CharacterLimit;
   int NullPointerD;
   float PrimaryFloatValue;
@@ -199979,7 +199979,7 @@ void ValidateAndConvertContextHandleData(long long ContextHandle, uint64_t Opera
   long long secondaryLoopCounter;
   long long SystemRegisterR11;
   long long systemLoopCounter;
-  uint RegisterR13ValueD;
+  uint DataLength;
   uint64_t *CharacterLimit;
   unsigned long long Utf16Character;
   uint64_t SystemUnsignedValue38;
