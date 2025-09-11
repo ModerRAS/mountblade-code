@@ -681,6 +681,7 @@ typedef enum {
 #define FUN_1808698b0 ProcessUIComponentWithCodeEx5
 #define FUN_18086d470 ProcessUIComponentWithMemoryEx2
 #define FUN_18086d620 ProcessUIComponentWithMemoryEx3
+#define FUN_18088ff94 ProcessUIComponentWithHandlesEx15
 
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
 #define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
