@@ -6036,12 +6036,22 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define InitializeSystemComponents InitializeSystemComponents
 
-// 内存操作处理函数
-// 功能：处理内存操作，包括内存分配、释放和访问控制
-// 内存操作处理函数
+/**
+ * @brief 内存操作处理函数A0
+ * 
+ * 处理内存操作，包括内存分配、释放和访问控制
+ * 
+ * @note 原始函数名：FUN_18004b7c0
+ * @warning 内存操作错误可能导致系统崩溃
+ * @see AllocateSystemMemory, FreeSystemMemory
+ */
 #define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
-// Unwind函数宏定义 - 异常处理清理函数
+/**
+ * @brief Unwind函数宏定义 - 异常处理清理函数
+ * 
+ * 这些函数用于系统异常处理和资源清理
+ */
 #define UnwindCleanupContextA0 CleanupsystemContextA0
 #define UnwindCleanupContextA1 CleanupsystemContextA1
 #define UnwindCleanupContextA2 CleanupsystemContextA2
@@ -6062,7 +6072,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：Unwind_180909ec0
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 CleanupMutexLockA12
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
 /**
@@ -6072,7 +6081,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：Unwind_180909ee0
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA13 CleanupMutexLockA13
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 /**
@@ -6082,7 +6090,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：Unwind_180909f00
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 CleanupMutexLockA14
 // 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
 /**
@@ -6092,28 +6099,35 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：Unwind_180909f20
  */
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA15 ReleaseSystemContextResources
-// 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
-// 功能：清理系统上下文，释放相关资源
+/**
+ * @brief 系统上下文清理函数A16
+ * 
+ * 清理系统上下文并释放相关内存资源
+ * 
+ * @note 原始函数名：Unwind_180909f40
+ * @see CleanupsystemContextA15, ClearSystemContextData
+ */
 #define CleanupsystemContextA16 FreeSystemContextMemory
-// 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
-// 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
+/**
+ * @brief 内存资源引用计数清理函数
+ * 
+ * 清理内存资源的引用计数，处理内存块的释放和引用关系更新
+ * 
+ * @note 原始函数名：Unwind_180909f60
+ * @warning 引用计数管理错误可能导致内存泄漏
+ * @see ReleaseMemoryResourceReferences, FreeSystemMemory
+ */
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
 // 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA18 ClearSystemContextData
 // 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA20 DeallocateSystemContext
 // 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA21 TerminateSystemContext
 // 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA22 DestroySystemContext
 
 // 异常处理器执行函数宏定义
@@ -136935,12 +136949,22 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  */
 #define InitializeSystemComponents InitializeSystemComponents
 
-// 内存操作处理函数
-// 功能：处理内存操作，包括内存分配、释放和访问控制
-// 内存操作处理函数
+/**
+ * @brief 内存操作处理函数A0
+ * 
+ * 处理内存操作，包括内存分配、释放和访问控制
+ * 
+ * @note 原始函数名：FUN_18004b7c0
+ * @warning 内存操作错误可能导致系统崩溃
+ * @see AllocateSystemMemory, FreeSystemMemory
+ */
 #define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
-// Unwind函数宏定义 - 异常处理清理函数
+/**
+ * @brief Unwind函数宏定义 - 异常处理清理函数
+ * 
+ * 这些函数用于系统异常处理和资源清理
+ */
 #define UnwindCleanupContextA0 CleanupsystemContextA0
 #define UnwindCleanupContextA1 CleanupsystemContextA1
 #define UnwindCleanupContextA2 CleanupsystemContextA2
@@ -136961,7 +136985,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：Unwind_180909ec0
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 CleanupMutexLockA12
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
 /**
@@ -136971,7 +136994,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：Unwind_180909ee0
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA13 CleanupMutexLockA13
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 /**
@@ -136981,7 +137003,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：Unwind_180909f00
  */
-// 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 CleanupMutexLockA14
 // 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
 /**
@@ -136991,28 +137012,35 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：Unwind_180909f20
  */
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA15 ReleaseSystemContextResources
-// 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
-// 功能：清理系统上下文，释放相关资源
+/**
+ * @brief 系统上下文清理函数A16
+ * 
+ * 清理系统上下文并释放相关内存资源
+ * 
+ * @note 原始函数名：Unwind_180909f40
+ * @see CleanupsystemContextA15, ClearSystemContextData
+ */
 #define CleanupsystemContextA16 FreeSystemContextMemory
-// 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
-// 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
+/**
+ * @brief 内存资源引用计数清理函数
+ * 
+ * 清理内存资源的引用计数，处理内存块的释放和引用关系更新
+ * 
+ * @note 原始函数名：Unwind_180909f60
+ * @warning 引用计数管理错误可能导致内存泄漏
+ * @see ReleaseMemoryResourceReferences, FreeSystemMemory
+ */
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
 // 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA18 ClearSystemContextData
 // 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA20 DeallocateSystemContext
 // 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA21 TerminateSystemContext
 // 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
-// 功能：清理系统上下文，释放相关资源
 #define CleanupsystemContextA22 DestroySystemContext
 
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
