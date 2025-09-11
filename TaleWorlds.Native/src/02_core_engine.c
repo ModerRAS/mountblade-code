@@ -236355,7 +236355,17 @@ LAB_180193ed9:
 
 
 
-93e88(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,uint64_t *Utf16EndPointervoid FUN_180193e88(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,uint64_t *Utf16EndPointer
+/**
+ * @brief 处理系统数据编码进程
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * 该函数负责处理系统数据的编码进程，包括字符串比较、
+ * Unicode码点处理和内存分配等操作。
+ */
+void FUN_180193e88(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, uint64_t *Utf16EndPointer
 {
   bool StringComparisonByte;
   byte *HighBytePointer;
@@ -236667,7 +236677,14 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
 
 
 
-94350(long long *ContextHandlevoid FUN_180194350(long long *ContextHandle
+/**
+ * @brief 完成系统上下文操作
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * 该函数负责完成系统上下文的操作，包括缓冲区分配状态处理
+ * 和系统事件处理。
+ */
+void FUN_180194350(long long *ContextHandle
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -236691,7 +236708,12 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
 
 
 
-94370(voidvoid FUN_180194370(void
+/**
+ * @brief 释放系统上下文
+ * 
+ * 该函数负责释放系统上下文相关的资源和内存。
+ */
+void FUN_180194370(void
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
