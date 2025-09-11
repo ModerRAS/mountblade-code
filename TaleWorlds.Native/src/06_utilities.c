@@ -31449,11 +31449,11 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
   iterationCount = ValidateAndProcessSystemResourceA0(dataProcessingBuffer,&SystemValidationWordA);
   if (iterationCount == 0) {
     // 初始化异常缓冲区和资源验证
-    exceptionBuffer6 = (DataBuffer *)(dataBuffer + SystemContextDataOffset8);
+    exceptionDataBuffer = (DataBuffer *)(dataBuffer + SystemContextDataOffset8);
     SystemResourceValidationWord = 0;
-    SystemResourcePointerBuffer = exceptionBuffer6;
+    SystemResourcePointerBuffer = exceptionDataBuffer;
     // 执行异常缓冲区操作
-    dataProcessingBuffer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionBuffer6);
+    dataProcessingBuffer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionDataBuffer);
     // 验证系统资源完整性
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(dataProcessingBuffer + BufferPointerOffsetD0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
