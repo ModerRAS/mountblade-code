@@ -2346,24 +2346,24 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define SystemEventValidationStatus SystemEventCurrentCharacterStatus      // 系统事件当前字符
 
 // 额外的栈变量语义化宏定义
-#define StackUnsigned170 uStack_170                             // 栈无符号值170 - 内存分配标志
-#define StackUnsigned16c uStack_16c                             // 栈无符号值16c - 缓冲区大小
-#define StackUnsigned164 uStack_164                             // 栈无符号值164 - 验证状态
-#define StackSigned148 lStack_148                               // 栈有符号值148 - 字符数据偏移
-#define StackUnsigned138 uStack_138                             // 栈无符号值138 - 系统状态标志
-#define StackPointer120 plStack_120                             // 栈指针120 - 上下文指针数组
-#define StackTemporary118 pSystemTemporaryRegister118           // 栈临时118 - 系统临时寄存器
-#define StackUnsigned110 uStack_110                             // 栈无符号值110 - 内存偏移量
-#define StackUnsignedcc uStack_cc                               // 栈无符号值cc - 处理计数器
-#define StackUnsignedc4 uStack_c4                               // 栈无符号值c4 - 系统标志
-#define StackPointerc0 plStack_c0                               // 栈指针c0 - 上下文指针
-#define StackUnsigned9c uStack_9c                               // 栈无符号值9c - 核心引擎值
-#define StackPointer88 plStack_88                               // 栈指针88 - 系统数据指针
-#define StackBuffer80 StackBuffer80                             // 栈缓冲区80 - 字符处理缓冲区
-#define StackUnsigned60 uStack_60                               // 栈无符号值60 - 栈处理值
-#define StackUnsigned54 uStack_54                               // 栈无符号值54 - 系统无符号值
-#define StackPointer50 pSystemTemporaryValue50                  // 栈指针50 - 系统临时值
-#define StackUnsigned48 uStack_48                               // 栈无符号值48 - 内存偏移值
+#define StackUnsigned170 SystemMemoryAllocationFlag                  // 系统内存分配标志
+#define StackUnsigned16c BufferSizeStackValue                       // 缓冲区大小栈值
+#define StackUnsigned164 ValidationStatusStackValue                 // 验证状态栈值
+#define StackSigned148 CharacterDataOffsetStackValue                // 字符数据偏移栈值
+#define StackUnsigned138 SystemStatusFlagStackValue                 // 系统状态标志栈值
+#define StackPointer120 ContextPointerArrayStack                   // 上下文指针数组栈
+#define StackTemporary118 SystemTemporaryRegisterStack              // 系统临时寄存器栈
+#define StackUnsigned110 MemoryOffsetStackValue                    // 内存偏移栈值
+#define StackUnsignedcc ProcessingCounterStackValue                 // 处理计数器栈值
+#define StackUnsignedc4 SystemFlagStackValue                        // 系统标志栈值
+#define StackPointerc0 ContextPointerStack                         // 上下文指针栈
+#define StackUnsigned9c CoreEngineValueStack                        // 核心引擎值栈
+#define StackPointer88 SystemDataPointerStack                       // 系统数据指针栈
+#define StackBuffer80 CharacterProcessingBuffer                     // 字符处理缓冲区
+#define StackUnsigned60 StackProcessingValue                        // 栈处理值
+#define StackUnsigned54 SystemUnsignedValueStack                    // 系统无符号值栈
+#define StackPointer50 SystemTemporaryValueStack                    // 系统临时值栈
+#define StackUnsigned48 MemoryOffsetStackValue48                    // 内存偏移栈值48
 
 // 循环和计数变量语义化宏定义
 #define LoopIterationCounter LoopIndex                             // 循环迭代计数器 - 循环索引
