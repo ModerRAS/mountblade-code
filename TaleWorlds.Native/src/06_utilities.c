@@ -33296,7 +33296,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     totalProcessedLength = 0;
     currentBufferOffset = 0;
     nodeDescriptorArray = *(NodeDescriptor *)((int64_t)itemIndex * 3 + dataContext[6]);
-    while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != 0xffffff) {
+    while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != InvalidDataIndex) {
       dataBufferValue = *(uint *)(*dataContext + (uint64_t)currentNodeIndex * 8);
       if ((dataBufferValue & DataValidationMask) != 0xffffff) {
         stringDataAddress = (uint64_t)(dataBufferValue & DataValidationMask) + dataContext[4];
