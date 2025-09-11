@@ -289598,48 +289598,48 @@ long long ExecuteMatrixTransformAndFloatCalculations(void)
   float CalculatedDistance;
   char CharacterValidationStatus;
   float ProcessedTransformValue;
-  uint64_t ArraySize;
-  uint64_t *CharacterStatusBuffer;
-  long long SystemStringIndex;
-  long long SystemContextValue;
-  long long SystemContext;
-  long long FramePointer;
-  unsigned long long ValidationResult;
-  long long SystemParameter;
-  unsigned long long SystemRegisterR10;
-  char SystemRegisterR11B;
-  bool ProcessingStatusFlag;
-  float SystemFloatValue;
-  float SystemCoreScaleX;
-  float SecondaryFloatValue;
-  float SystemCoreScaleY;
-  float ContextPrimaryFloat9;
+  uint64_t MatrixElementCount;
+  uint64_t *StatusBufferPointer;
+  long long StringArrayIndex;
+  long long ContextDataValue;
+  long long SystemContextBase;
+  long long FramePointerOffset;
+  unsigned long long ValidationStatusCode;
+  long long SystemParameterBase;
+  unsigned long long ProcessingBitmask;
+  char ValidationByteFlag;
+  bool IsProcessingComplete;
+  float OriginalScaleX;
+  float CoreTransformScaleX;
+  float SecondaryTransformValue;
+  float CoreTransformScaleY;
+  float ContextTransformValue;
   float PrimaryScalingFactor;
-  uint64_t StackConfigurationData30;
-  uint64_t SystemUnsignedValue38;
+  uint64_t StackMatrixData30;
+  uint64_t StackMatrixData38;
   uint64_t StackProcessedData40;
   uint64_t StackProcessedData48;
   
   do {
-    if ((SystemRegisterR10 & 1) != 0) {
-      ValidationResult = (unsigned long long)SystemRegisterR11B;
-      CharacterStatus2 = *(char *)(ValidationResult + 0x100 + SystemContext);
-      if (*(char *)(SystemParameter + 0x1042) == '\0') {
-        CharacterStatusBuffer = (void *)(ValidationResult * 0x1b0 + 0x80 + *(long long *)(SystemContext + 0x140));
+    if ((ProcessingBitmask & 1) != 0) {
+      ValidationStatusCode = (unsigned long long)ValidationByteFlag;
+      CharacterValidationStatus = *(char *)(ValidationStatusCode + 0x100 + SystemContextBase);
+      if (*(char *)(SystemParameterBase + 0x1042) == '\0') {
+        CharacterStatusBuffer = (void *)(ValidationStatusCode * 0x1b0 + 0x80 + *(long long *)(SystemContextBase + 0x140));
         CharacterStatusBuffer = &DataStackBuffer;
         StackProcessedData40 = *CharacterStatusBuffer;
         StackProcessedData48 = CharacterStatusBuffer[1];
       }
       else {
-        CharacterStatusBuffer = (void *)(SystemParameter + (ValidationResult + 0xc2) * 0x10);
+        CharacterStatusBuffer = (void *)(SystemParameterBase + (ValidationStatusCode + 0xc2) * 0x10);
         CharacterStatusBuffer = &SystemStackBuffer;
-        StackConfigurationData30 = *CharacterStatusBuffer;
-        SystemUnsignedValue38 = CharacterStatusBuffer[1];
+        StackMatrixData30 = *CharacterStatusBuffer;
+        StackMatrixData38 = CharacterStatusBuffer[1];
       }
-      SystemCoreScaleX = (float)*CharacterStatusBuffer;
-      SystemFloatValue = (float)((unsigned long long)*CharacterStatusBuffer >> 0x20);
+      CoreTransformScaleX = (float)*CharacterStatusBuffer;
+      OriginalScaleX = (float)((unsigned long long)*CharacterStatusBuffer >> 0x20);
       PrimaryScalingFactor = (float)CharacterStatusBuffer[1];
-      if (CharacterStatus2 < '\0') {
+      if (CharacterValidationStatus < '\0') {
         CharacterStatusBuffer = (void *)(SystemParameter + (ValidationResult + 0x82) * 0x10);
         ArraySize = CharacterStatusBuffer[1];
         CharacterStatusBuffer = (void *)(SystemParameter + ValidationResult * 0x10);

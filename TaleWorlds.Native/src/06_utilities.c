@@ -30290,10 +30290,10 @@ MemoryAllocationLabel:
       dataFlags = 0;
       arrayIndex = 0;
     }
-    if (dataFlagCounter < 0) {
-      resourceIterator = (int64_t)-dataFlagCounter;
-      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)dataFlagCounter * 4);
-      if (dataFlagCounter < 0) {
+    if (dataProcessingFlagCount < 0) {
+      resourceIterator = (int64_t)-dataProcessingFlagCount;
+      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)dataProcessingFlagCount * 4);
+      if (dataProcessingFlagCount < 0) {
         for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
           *exceptionDataBuffer = 0;
           exceptionDataBuffer = exceptionDataBuffer + 1;
@@ -34736,10 +34736,10 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *operationBase,int64_t *dataBuffer
   uint *validationStatusPointer;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
-  int stackIndexBuffer [2];          // 栈整数缓冲区
+  int stackIndexTrackingBuffer [2];          // 栈索引跟踪缓冲区
   unsigned int stackUIntBuffer [2]; // 栈无符号整数缓冲区
   
-  stackIndexBuffer[0] = *(int *)(operationBase + 1);
+  stackIndexTrackingBuffer[0] = *(int *)(operationBase + 1);
   if (*dataBuffer == 0) {
     systemDataBuffer = 0x1c;
   }
@@ -34755,7 +34755,7 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *operationBase,int64_t *dataBuffer
         goto ProcessCheckpointBufferAllocation;
       }
     }
-    systemDataBuffer = ValidateDataAndReturnStatusO3(*dataBuffer,stackIndexBuffer,1,4,0);
+    systemDataBuffer = ValidateDataAndReturnStatusO3(*dataBuffer,stackIndexTrackingBuffer,1,4,0);
   }
 SecurityCheckpointA:
   if ((int)systemDataBuffer == 0) {
