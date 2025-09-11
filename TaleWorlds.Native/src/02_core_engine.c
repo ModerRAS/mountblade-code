@@ -244006,8 +244006,8 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
     StringLength = CalculateStringLengthAndValidate(BufferAllocationState,&DataContentStatus);
     if (StringLength == 0) {
       if (BufferAllocationState[0x17] != *(long long *)(*(long long *)(ContextHandle + 0x380) + 0x38)) {
-        FUN_18022cd30(BufferAllocationState,0);
-        FUN_18022cd30(BufferAllocationState,1,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x40));
+        InitializeBufferDataAndResources(BufferAllocationState,0);
+        InitializeBufferDataAndResources(BufferAllocationState,1,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x40));
         MemoryBlockIndex = *(long long **)(*(long long *)(ContextHandle + 0x3a0) + 0x1b8);
         if (MemoryBlockIndex != (long long *)0x0) {
           (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
