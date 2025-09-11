@@ -5418,7 +5418,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define CheckSystemHealthAndStatus CheckSystemHealthAndStatus
+#define FUN_1808fc5ac CheckSystemHealthAndStatus
 
 /**
  * @brief 系统参数配置器
