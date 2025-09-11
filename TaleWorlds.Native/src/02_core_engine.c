@@ -702,6 +702,85 @@
 #define FUN_1802033f0 ReleaseSystemMemoryResources                // 释放系统内存资源
 #define FUN_1802033c0 CleanupSystemMemoryAllocation                // 清理系统内存分配
 
+// 系统浮点数据处理函数
+#define FUN_1806284c0 ProcessSystemFloatData                       // 处理系统浮点数据
+#define FUN_1800ba4b0 ValidateSystemFloatData                      // 验证系统浮点数据
+#define FUN_180202660 CleanupSystemFloatResources                  // 清理系统浮点资源
+#define FUN_18062de90 ReleaseSystemFloatResources                   // 释放系统浮点资源
+#define FUN_180202d20 ConvertSystemFloatData                       // 转换系统浮点数据
+#define FUN_180202c00 ProcessSystemFloatConversion                  // 处理系统浮点转换
+#define FUN_180202e40 ExecuteSystemFloatOperation                  // 执行系统浮点操作
+#define FUN_180202d4d InitializeSystemFloatContext                 // 初始化系统浮点上下文
+#define FUN_180202e0f ResetSystemFloatContext                       // 重置系统浮点上下文
+#define FUN_180202e19 FinalizeSystemFloatContext                   // 完成系统浮点上下文
+#define FUN_180203100 ValidateSystemFloatContext                   // 验证系统浮点上下文
+#define FUN_180203aa0 AllocateSystemFloatBuffer                    // 分配系统浮点缓冲区
+#define FUN_180203ba0 InitializeSystemFloatProcessor               // 初始化系统浮点处理器
+#define FUN_180203e30 ExecuteSystemFloatProcessing                 // 执行系统浮点处理
+#define FUN_180204420 ProcessSystemFloatAllocation                 // 处理系统浮点分配
+#define FUN_180204463 ValidateSystemFloatHandle                    // 验证系统浮点句柄
+#define FUN_1802044c5 InitializeSystemFloatTransfer                // 初始化系统浮点传输
+#define FUN_1802044e0 ExecuteSystemFloatTransfer                    // 执行系统浮点传输
+#define FUN_180204700 ProcessSystemFloatContext                     // 处理系统浮点上下文
+#define FUN_180204722 ConvertSystemFloatContext                     // 转换系统浮点上下文
+
+// 系统编码和字符处理函数
+#define FUN_180204861 InitializeSystemEncoding                     // 初始化系统编码
+#define FUN_180204870 ExecuteSystemEncodingProcessing                // 执行系统编码处理
+#define FUN_1802063e0 ProcessSystemCharacterData                    // 处理系统字符数据
+#define FUN_180206330 ValidateSystemCharacterData                   // 验证系统字符数据
+#define FUN_180225e50 ConvertSystemCharacterEncoding                // 转换系统字符编码
+#define FUN_18030a2a0 InitializeSystemCharacterContext              // 初始化系统字符上下文
+#define FUN_180206690 ProcessSystemCharacterConversion              // 处理系统字符转换
+#define FUN_1802064e0 TransferSystemCharacterData                   // 传输系统字符数据
+#define FUN_180204a00 InitializeSystemMemoryAllocation              // 初始化系统内存分配
+#define FUN_180207840 ProcessSystemMemoryAllocation                 // 处理系统内存分配
+#define FUN_18004bf50 CleanupSystemMemoryAllocation                 // 清理系统内存分配
+#define FUN_180206740 ConfigureSystemCharacterProcessing            // 配置系统字符处理
+#define FUN_180207c90 ConvertSystemCharacterValue                   // 转换系统字符值
+#define FUN_180206950 ValidateSystemCharacterProcessing            // 验证系统字符处理
+#define FUN_18029b390 InitializeSystemUnicodeProcessing             // 初始化系统Unicode处理
+#define FUN_18029b1d0 ExecuteSystemUnicodeConversion                // 执行系统Unicode转换
+#define FUN_180207110 ProcessSystemUnicodeData                      // 处理系统Unicode数据
+#define FUN_18029ea30 ValidateSystemUnicodeData                     // 验证系统Unicode数据
+#define FUN_1802075c0 ConvertSystemUnicodeEncoding                  // 转换系统Unicode编码
+#define FUN_1800e81f0 AllocateSystemUnicodeBuffer                  // 分配系统Unicode缓冲区
+#define FUN_180081480 ProcessSystemUnicodeConversion               // 处理系统Unicode转换
+#define FUN_180207400 InitializeSystemMemoryValidation             // 初始化系统内存验证
+#define FUN_180204e40 ExecuteSystemMemoryValidation                // 执行系统内存验证
+#define FUN_180207530 ProcessSystemMemoryTransfer                   // 处理系统内存传输
+#define FUN_180207d70 ValidateSystemNodeOperation                  // 验证系统节点操作
+
+// 系统初始化和上下文管理函数
+#define FUN_1802055a0 InitializeSystemContext                     // 初始化系统上下文
+#define FUN_180207a20 ConfigureSystemContext                       // 配置系统上下文
+#define FUN_180207c90 InitializeSystemDataTemplate                 // 初始化系统数据模板
+#define FUN_180207f50 ValidateSystemContextData                    // 验证系统上下文数据
+#define FUN_180209470 InitializeSystemProcessing                  // 初始化系统处理
+#define FUN_180209720 ConfigureSystemProcessing                     // 配置系统处理
+#define FUN_1800b3590 ProcessSystemContextValidation              // 处理系统上下文验证
+#define FUN_180208400 ExecuteSystemContextTransfer                  // 执行系统上下文传输
+#define FUN_180080810 ProcessSystemCharacterConversion             // 处理系统字符转换
+#define FUN_1801efdb0 ConvertSystemCharacterData                   // 转换系统字符数据
+#define FUN_1801ef300 ValidateSystemCharacterEncoding              // 验证系统字符编码
+#define FUN_1801ef620 ProcessSystemUnicodeConversion               // 处理系统Unicode转换
+#define FUN_1800b6de0 InitializeSystemMemoryManager                // 初始化系统内存管理器
+#define FUN_1800b32c0 ConfigureSystemMemoryManager                 // 配置系统内存管理器
+#define FUN_180209980 ExecuteSystemMemoryAllocation                // 执行系统内存分配
+#define FUN_180209840 ValidateSystemMemoryAllocation                // 验证系统内存分配
+#define FUN_180207ea0 ProcessSystemMemoryCleanup                    // 处理系统内存清理
+#define FUN_18023c450 InitializeSystemBufferTransfer               // 初始化系统缓冲区传输
+#define FUN_1800bb630 ValidateSystemBufferTransfer                 // 验证系统缓冲区传输
+#define FUN_18020d6c0 ProcessSystemBufferDataTransfer               // 处理系统缓冲区数据传输
+#define FUN_18009ec20 InitializeSystemConfiguration                // 初始化系统配置
+#define FUN_1800c4800 ConfigureSystemConfiguration                  // 配置系统配置
+#define FUN_180631420 ProcessSystemConfiguration                   // 处理系统配置
+#define FUN_180631000 ValidateSystemConfiguration                  // 验证系统配置
+#define FUN_1802e6b00 InitializeSystemDataTransfer                  // 初始化系统数据传输
+#define FUN_18020d8a0 ExecuteSystemDataTransfer                    // 执行系统数据传输
+#define FUN_180626eb0 ProcessSystemDataValidation                  // 处理系统数据验证
+#define FUN_1802e8c60 ConvertSystemDataEncoding                   // 转换系统数据编码
+
 /**
  * @brief 配置核心引擎指针
  * 

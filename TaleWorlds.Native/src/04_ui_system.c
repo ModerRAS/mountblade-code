@@ -217,7 +217,7 @@ typedef enum {
 #define FUN_18073c17d ProcessUIContextLongOperationB
 #define CompleteUIContextProcessingTask ProcessUIContextTaskCompletion
 #define FUN_18073c258 ProcessUIContextEventHandling
-#define FUN_18073c27a ProcessUIContextResourceRelease
+#define FUN_18073c27a ReleaseUIMemoryResourceAndExecuteRender
 #define FUN_18073c2a0 ProcessUIContextDataTransfer
 #define FUN_18073c380 ProcessUIContextBufferOperationC
 #define FUN_18073c39d ProcessUIContextBufferOperationD
@@ -2150,7 +2150,7 @@ typedef enum {
 #define ProcessUIEventHandling FUN_18073c258
 
 // UI系统函数宏定义 - 释放UI资源
-#define ReleaseUIResources FUN_18073c27a
+#define ReleaseUIResources ReleaseUIMemoryResourceAndExecuteRender
 
 // UI系统函数宏定义 - 处理UI句柄变换
 #define ProcessUIHandleTransformation FUN_180707d35
@@ -10157,7 +10157,7 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
   uint64_t uiEncryptionKey;
   
   if (bufferSize != 0) {
-    uiEncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyParameter;
+    uiEncryptionKey = XorEncryptionKey ^ (ulonglong)uiEncryptionKeyParameter;
     threadLocalStorageFlag = (char *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
     if (*threadLocalStorageFlag == '\0') {
@@ -128643,14 +128643,23 @@ void ProcessUIContextEventHandling(void)
 
 
  void FUN_18073c27a(void)
-void FUN_18073c27a(void)
+/**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI系统占用的内存资源，并在清理完成后执行渲染任务。
+ * 这是一个关键的资源管理函数，确保在资源释放后系统能够正常继续渲染操作。
+ * 
+ * @note 此函数不返回值，执行完成后会调用渲染任务
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ReleaseUIMemoryResourceAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptedStackParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedStackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -128658,36 +128667,48 @@ void FUN_18073c27a(void)
  
 
  void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
+/**
+ * @brief 处理UI上下文数据传输操作
+ * 
+ * 该函数负责在UI上下文之间传输数据，包括数据验证、缓冲区管理和资源清理。
+ * 它使用加密栈参数来确保数据传输的安全性，并在操作完成后执行渲染任务。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识数据来源
+ * 
+ * @note 此函数使用XOR加密保护栈参数
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ProcessUIContextDataTransfer(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong renderContextSize;
+  longlong *contextDataPointer;
+  UIByte processingBuffer [256];
+  ulonglong encryptedStackKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptedStackKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextDataPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x40))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073c33b;
+    operationResult = (**(code **)(*contextDataPointer + 0x40))(contextDataPointer,dataSource);
+    if (operationResult == 0) goto CleanupAndRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIDataBufferClear(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIDataBufferClear(processingBuffer,0x100,dataSource);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextTemporaryData);
   }
-LAB_18073c33b:
-  if (RenderContextSize != 0) {
+CleanupAndRender:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedStackKey ^ (ulonglong)encryptionBuffer);
 }
 
 
@@ -128808,19 +128829,28 @@ LAB_18073c471:
 
 
  void FUN_18073c3f9(void)
-void FUN_18073c3f9(void)
+/**
+ * @brief 处理UI上下文最终清理操作
+ * 
+ * 该函数负责在UI上下文关闭前进行最终的清理操作，包括数据验证、缓冲区处理
+ * 和数据复制。它确保所有UI数据都被正确处理和清理，为系统关闭做准备。
+ * 
+ * @note 此函数执行最终的数据验证和清理操作
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ProcessUIContextFinalCleanup(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword originalRegisterEBX;
+  UIDword originalRegisterESI;
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,originalRegisterEBX);
+  dataValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  CopyUIDataBuffer(&stack0x00000040 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,4);
+  ExecuteUIContextDataOperation(originalRegisterESI,4);
 }
 
 
