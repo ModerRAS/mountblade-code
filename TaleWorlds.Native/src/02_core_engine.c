@@ -289983,7 +289983,7 @@ void FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long l
 
 
 
-2eca5(voidvoid FUN_18022eca5(void
+void FUN_18022eca5(void)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
@@ -290020,7 +290020,7 @@ void FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long l
 
 
 
-2ed22(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointervoid FUN_18022ed22(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
+void FUN_18022ed22(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
