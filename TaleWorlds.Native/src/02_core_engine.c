@@ -240504,12 +240504,12 @@ void ProcessSystemContextAndMathOperations(long long ContextHandle, long long Op
   uint64_t StackBuffer[2];
   
   if (OperationBufferSize != 0) {
-    IntegerValue = *(int *)(ContextHandle + 0x3358);
+    int SystemCounterValue = *(int *)(ContextHandle + 0x3358);
     InitializeContextHandleSystem(ContextHandle + 0x3018);
-    *(int *)(ContextHandle + 0x3358) = IntegerValue + 1;
-    ProcessSystemCharacterValidation(ContextHandle,*(uint32_t *)(ContextHandle + 0x3054));
+    *(int *)(ContextHandle + 0x3358) = SystemCounterValue + 1;
+    ProcessSystemCharacterValidation(ContextHandle, *(uint32_t *)(ContextHandle + 0x3054));
   }
-  StringProcessingStatus = (uint32_t *)ProcessCharacterWithSecondaryValidation(ContextHandle + 0x3018,auStack_18,*(uint32_t *)(ContextHandle + 0x3f50));
+  StringProcessingStatus = (uint32_t *)ProcessCharacterWithSecondaryValidation(ContextHandle + 0x3018, StackBuffer, *(uint32_t *)(ContextHandle + 0x3f50));
   UnicodeCodePoint = *StringProcessingStatus;
   MemoryAddressMaskPointer = StringProcessingStatus[1];
   CalculatedCodePoint = StringProcessingStatus[2];
