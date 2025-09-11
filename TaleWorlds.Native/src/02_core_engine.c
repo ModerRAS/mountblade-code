@@ -226028,19 +226028,19 @@ void ProcessCharacterTableAndDataInitialization(long long *CharacterContextHandl
  * @param Utf8SourcePointer UTF8源指针
  * @param Utf16EndPointer UTF16结束指针
  */
-void ProcessCharacterTableAndInitialization(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
+void ProcessCharacterTableAndInitialization(long long *CharacterDataHandle, uint64_t CharacterBufferSize, uint64_t Utf8DataPointer, uint64_t Utf16DataPointer)
 {
-  long long MainCalculationResult;
+  long long CharacterProcessingResult;
   
-  CharacterTablePointer = *ContextHandle;
-  ProcessCharacterDataAndValidation(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  *(long long *)(*ContextHandle + 8) = LoopCounter;
-  *(long long *)*ContextHandle = LoopCounter;
-  *(long long *)(*ContextHandle + 0x10) = LoopCounter;
-  ContextHandle[1] = 0;
+  CharacterTablePointer = *CharacterDataHandle;
+  ProcessCharacterDataAndValidation(CharacterDataHandle,*(void *)(ThreadLocalStorageData + 8),Utf8DataPointer,Utf16DataPointer,0xfffffffffffffffe);
+  *(long long *)(*CharacterDataHandle + 8) = LoopCounter;
+  *(long long *)*CharacterDataHandle = LoopCounter;
+  *(long long *)(*CharacterDataHandle + 0x10) = LoopCounter;
+  CharacterDataHandle[1] = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(*ContextHandle,0x60);
+  free(*CharacterDataHandle,0x60);
   return;
 }
 
@@ -226057,27 +226057,27 @@ void ProcessCharacterTableAndInitialization(long long *ContextHandle, uint64_t O
  * @param Utf8SourcePointer UTF8源指针
  * @param Utf16EndPointer UTF16结束指针
  */
-void ValidateAndCleanupCharacterTableMemory(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
+void ValidateAndCleanupCharacterTableMemory(long long *CharacterValidationHandle, uint64_t ValidationBufferSize, uint64_t Utf8ValidationPointer, uint64_t Utf16ValidationPointer)
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
-  unsigned long long UnicodeCodePoint;
+  long long CharacterValidationResult;
+  long long CharacterMemoryStatus;
+  unsigned long long UnicodeValidationCodePoint;
   
-  CharacterTablePointer = *ContextHandle;
+  CharacterTablePointer = *CharacterValidationHandle;
   if (CharacterTablePointer != 0) {
-    UnicodeCodePoint = ContextHandle[2] - LoopCounter & 0xfffffffffffffff8;
-    BufferStatus = LoopCounter;
-    if (0xfff < UnicodeCodePoint) {
-      BufferStatus = *(long long *)(CharacterTablePointer + -8);
-      if (0x1f < (CharacterTablePointer - BufferStatus) - 8U) {
+    UnicodeValidationCodePoint = CharacterValidationHandle[2] - LoopCounter & 0xfffffffffffffff8;
+    CharacterMemoryStatus = LoopCounter;
+    if (0xfff < UnicodeValidationCodePoint) {
+      CharacterMemoryStatus = *(long long *)(CharacterTablePointer + -8);
+      if (0x1f < (CharacterTablePointer - CharacterMemoryStatus) - 8U) {
           _invalid_parameter_noinfo_noreturn
-                  (CharacterTablePointer - BufferStatus,UnicodeCodePoint + 0x27,BufferStatus,Utf16EndPointer,0xfffffffffffffffe);
+                  (CharacterTablePointer - CharacterMemoryStatus,UnicodeValidationCodePoint + 0x27,CharacterMemoryStatus,Utf16ValidationPointer,0xfffffffffffffffe);
       }
     }
-    free(BufferStatus);
-    *ContextHandle = 0;
-    ContextHandle[1] = 0;
-    ContextHandle[2] = 0;
+    free(CharacterMemoryStatus);
+    *CharacterValidationHandle = 0;
+    CharacterValidationHandle[1] = 0;
+    CharacterValidationHandle[2] = 0;
   }
   return;
 }
