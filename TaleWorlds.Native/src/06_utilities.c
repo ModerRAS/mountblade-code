@@ -50107,7 +50107,7 @@ void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,D
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
  */
-void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemCallCleanupOperation6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset),
