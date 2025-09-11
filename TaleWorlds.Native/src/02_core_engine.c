@@ -60351,7 +60351,7 @@ MemoryAddressProcessingLoop:
       ReferenceCountPointer3 = (int *)0x0;
       pCoreEngineLoopCounter08 = (int *)0x0;
       ProcessingCounter0 = 3;
-      iStackX_10 = 1;
+      LoopCounter10 = 1;
       SystemStackPointer1f8 = *(int **)(*MemoryAllocationMaskPointer2 + SystemStackOffset170);
       ReferenceCountPointer5 = LockOperationResultPointer0;
       SystemUnsignedValue1A0 = ReferenceCountPointer4;
@@ -225413,7 +225413,7 @@ void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *Con
   }
 LAB_1801854b6:
   *(void *)(MemoryBlockIndex + 0x40) = BufferMemoryOffset;
-  NVGSDK_Highlights_CloseGroupAsync(*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,FUN_1801842a0,MemoryBlockIndex);
+  NVGSDK_Highlights_CloseGroupAsync(*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,HandleAsyncCallback,MemoryBlockIndex);
   SystemCleanupFlagF = 1;
   pSystemTemporaryValueD0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
@@ -225711,7 +225711,7 @@ void ProcessLongIntegerContextHandle(long long ContextHandle, long long *Context
   }
 LAB_1801859b0:
   *(void *)(SystemDataRegistry + 0x40) = BufferMemoryOffset;
-  NVGSDK_Highlights_OpenSummaryAsync(*(void *)(ContextHandle + 8),&CoreEngineSignedValueC8,FUN_1801842a0,SystemDataRegistry);
+  NVGSDK_Highlights_OpenSummaryAsync(*(void *)(ContextHandle + 8),&CoreEngineSignedValueC8,HandleAsyncCallback,SystemDataRegistry);
   SystemProcessFlagB = 1;
   SystemCleanupFlagF = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
@@ -225808,7 +225808,7 @@ void ProcessOptimizedDualPointerEncoding(long long ContextHandle, uint64_t *Cont
 LAB_180185b78:
   *(void *)(MemoryBlockIndex + 0x40) = BufferMemoryOffset;
   NVGSDK_Highlights_GetNumberOfHighlightsAsync
-            (*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,FUN_180185c00,MemoryBlockIndex);
+            (*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,HandleExtendedAsyncCallback,MemoryBlockIndex);
   SystemCleanupFlagF = 1;
   pSystemTemporaryValueD0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
