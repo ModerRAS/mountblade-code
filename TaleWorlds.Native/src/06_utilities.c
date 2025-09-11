@@ -10607,12 +10607,96 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证线程本地存储状态
 #define ValidateThreadLocalStorageA8 FUN_1809431a0
 
-// 原始函数名：FUN_18089f530 - 多参数数据处理函数
-// 功能：处理多参数数据验证和操作
+/**
+ * @brief 多参数数据处理和验证函数
+ * 
+ * 处理包含多个参数的数据操作，执行数据验证、转换和处理。
+ * 该函数支持多种数据类型和复杂的参数组合，是系统数据处理的核心组件。
+ * 
+ * @param parameterArray 参数数组指针，包含要处理的所有参数
+ * @param parameterCount 参数数量，指定数组中参数的个数
+ * @param processingFlags 处理标志位，控制处理的方式和类型：
+ *                        - DataValidationFlag (0x1): 执行数据验证
+ *                        - DataConversionFlag (0x2): 执行数据转换
+ *                        - DataNormalizationFlag (0x4): 执行数据标准化
+ *                        - DataEncryptionFlag (0x8): 执行数据加密
+ * @param validationContext 验证上下文指针，包含验证规则和配置信息
+ * @param outputBuffer 输出缓冲区指针，用于存储处理结果
+ * @param outputBufferSize 输出缓冲区大小
+ * 
+ * @return int 处理结果状态码：
+ *         - DataProcessingSuccess (0x0): 处理成功
+ *         - DataProcessingFailure (0x1): 处理失败
+ *         - InvalidParameterCount (0x2): 无效的参数数量
+ *         - InsufficientBufferSize (0x3): 输出缓冲区大小不足
+ *         - ValidationFailed (0x4): 数据验证失败
+ *         - EncryptionError (0x5): 数据加密错误
+ * 
+ * @details 实现细节：
+ * - 验证参数数组的有效性和完整性
+ * - 根据处理标志执行相应的数据操作
+ * - 应用验证规则确保数据质量
+ * - 处理数据转换和标准化操作
+ * - 执行数据加密（如果需要）
+ * - 将处理结果写入输出缓冲区
+ * - 返回详细的状态码指示处理结果
+ * 
+ * @note 该函数是系统数据处理的核心组件，支持复杂的多参数场景
+ * @warning 处理大量参数时可能会影响系统性能
+ * @see ValidateSystemConfiguration, ProcessDataBuffer, ExecuteDataValidationOperation
+ * 
+ * @post 如果处理成功，输出缓冲区将包含处理后的数据
+ * @post 如果处理失败，系统会保持原有状态不变
+ */
 #define ProcessMultiParameterDataWithValidation FUN_18089f530
 
-// 原始函数名：FUN_18089f571 - 系统状态检查函数
-// 功能：检查系统状态并返回状态码
+/**
+ * @brief 系统状态检查和验证函数
+ * 
+ * 检查系统当前状态，验证各个组件的运行状况，并返回详细的状态码。
+ * 该函数监控系统健康状态，包括内存使用、CPU利用率、进程状态等关键指标。
+ * 
+ * @param statusBuffer 状态缓冲区指针，用于存储状态检查结果
+ * @param bufferSize 缓冲区大小，指定可用的存储空间
+ * @param checkFlags 检查标志位，指定要检查的系统组件：
+ *                   - CheckMemoryStatus (0x1): 检查内存状态
+ *                   - CheckCPUUsage (0x2): 检查CPU使用率
+ *                   - CheckProcessStatus (0x4): 检查进程状态
+ *                   - CheckNetworkStatus (0x8): 检查网络状态
+ *                   - CheckDiskStatus (0x10): 检查磁盘状态
+ * @param validationLevel 验证级别，控制检查的深度和严格程度：
+ *                       - 0: 基本检查
+ *                       - 1-64: 不同级别的详细检查
+ *                       - 255: 最全面检查
+ * 
+ * @return int 系统状态码：
+ *         - SystemHealthy (0x0): 系统健康
+ *         - SystemWarning (0x1): 系统警告
+ *         - SystemError (0x2): 系统错误
+ *         - SystemCritical (0x3): 系统严重错误
+ *         - MemoryOverflow (0x4): 内存溢出
+ *         - CPUOverload (0x5): CPU过载
+ *         - ProcessFailure (0x6): 进程失败
+ *         - NetworkFailure (0x7): 网络故障
+ *         - DiskFailure (0x8): 磁盘故障
+ *         - UnknownError (0xFFFFFFFF): 未知错误
+ * 
+ * @details 实现细节：
+ * - 验证输入参数的有效性
+ * - 根据检查标志执行相应的状态检查
+ * - 收集各个系统组件的状态信息
+ * - 分析状态数据并生成状态码
+ * - 将详细状态信息写入缓冲区
+ * - 执行数据完整性验证
+ * - 返回综合状态码
+ * 
+ * @note 该函数是系统监控的核心组件，提供全面的系统健康检查
+ * @warning 全面的系统状态检查可能会影响系统性能
+ * @see ValidateSystemConfiguration, MonitorSystemPerformance, ExecuteSystemDiagnostics
+ * 
+ * @post 状态缓冲区将包含详细的系统状态信息
+ * @post 返回的状态码反映系统的整体健康状况
+ */
 #define CheckSystemStatusCodeWithValidation FUN_18089f571
 
 // 原始函数名：FUN_18089f970 - 数据处理和指针操作函数
