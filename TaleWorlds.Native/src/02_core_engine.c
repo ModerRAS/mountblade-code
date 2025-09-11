@@ -1764,6 +1764,17 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackMemoryPointer14c uStack_14c                    // 栈内存指针14c
 #define StackResourceFlags144 uStack_144                    // 栈资源标志144
 
+// 额外栈变量语义化定义
+#define StackFloatValue8f8 fStack_8f8                       // 栈浮点值8f8
+#define StackFloatValue70 fStack_70                         // 栈浮点值70
+#define StackFloatValue6c fStack_6c                         // 栈浮点值6c
+#define StackFloatValue78 fStack_78                         // 栈浮点值78
+#define StackFloatValue74 fStack_74                         // 栈浮点值74
+#define StackFloatValue88 fStack_88                         // 栈浮点值88
+#define StackFloatValue84 fStack_84                         // 栈浮点值84
+#define StackFloatValue80 fStack_80                         // 栈浮点值80
+#define StackFloatValue7c fStack_7c                         // 栈浮点值7c
+
 // 新增栈变量语义化宏定义
 #define StackTransformMatrix fStack0000000000000030             // 栈浮点值30
 #define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
