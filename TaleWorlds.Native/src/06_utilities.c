@@ -137,6 +137,11 @@
 #define MemoryCleanupFlag 0x4                                    // 内存清理标志 - 标识内存释放操作
 #define SystemStateUpdateFlag 0x4                                // 系统状态更新标志 - 标识系统状态更新操作
 
+// === 操作状态码常量 ===
+#define OperationSuccess 0                                          // 操作成功状态码
+#define MemoryValidationFailed -3                                   // 内存验证失败状态码
+#define MemoryProcessingFailed -4                                   // 内存处理失败状态码
+
 // 异常状态标志位常量
 #define ExceptionStatusFlag1 0x1                                // 异常状态标志位1
 #define ExceptionStatusFlag2 0x2                                // 异常状态标志位2
@@ -142480,7 +142485,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
     
     // 参数验证
     if (BufferSize == 0 || BufferSize > MaxSafeBufferSize) {
-        return InvalidBufferSizeError; // 无效缓冲区大小
+        return InvalidBufferSize; // 无效缓冲区大小
     }
     
     // 根据操作标志执行相应的内存管理操作
@@ -142488,14 +142493,14 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         // 内存分配模式
         ValidatedMemoryPointer = AllocateSystemMemoryA0(BufferSize);
         if (ValidatedMemoryPointer == NULL) {
-            return MemoryAllocationError; // 内存分配失败
+            return MemoryAllocationFailed; // 内存分配失败
         }
         
         // 验证内存边界
         ValidationResult = ValidateMemoryBoundary(ValidatedMemoryPointer, BufferSize);
         if (ValidationResult != 0) {
             ReleaseMemoryResourceA1(ValidatedMemoryPointer);
-            return MemoryValidationError; // 内存验证失败
+            return MemoryValidationFailed; // 内存验证失败
         }
         
         // 设置内存状态标志
@@ -142518,7 +142523,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
                 if (ValidatedMemoryPointer != NULL) {
                     ReleaseMemoryResourceA1(ValidatedMemoryPointer);
                 }
-                return MemoryProcessingError; // 内存处理失败
+                return MemoryProcessingFailed; // 内存处理失败
             }
         }
     }
@@ -142533,7 +142538,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         }
     }
     
-    return OperationSuccessCode; // 操作成功
+    return OperationSuccess; // 操作成功
 }
 
 // =============================================================================
