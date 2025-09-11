@@ -147,6 +147,17 @@
 #define FUN_1801601c0 HandleContextHandleTableOperations                 // 处理上下文句柄表操作
 #define FUN_18015c190 TransformUtf16ToUtf8Encoding                       // 转换UTF-16到UTF-8编码
 #define FUN_1801601a0 SetupContextHandleData                             // 初始化上下文句柄数据
+
+// UTF-16字符处理函数语义化宏定义
+#define FUN_180187c00 ProcessUtf16CharacterDataAndMemoryManagement     // 处理UTF-16字符数据和内存管理
+#define FUN_180187cd0 ReleaseSystemContextMemoryResources              // 释放系统上下文内存资源
+#define FUN_18018bd0d ValidateContextHandleMemoryIntegrity             // 验证上下文句柄内存完整性
+#define FUN_18018bd5f ResetSystemContextState                           // 重置系统上下文状态
+#define FUN_180190e30 ExecuteUtf16CharacterProcessing                   // 执行UTF-16字符处理
+#define FUN_1801977e0 HandleSystemContextDataValidation                // 处理系统上下文数据验证
+#define FUN_180208390 ProcessSystemMemoryAllocationEx                   // 处理系统内存分配扩展
+#define FUN_180208400 ManageSystemContextMemoryTransfer                 // 管理系统上下文内存传输
+#define FUN_1802084b0 CleanupSystemMemoryOperations                     // 清理系统内存操作
 #define FUN_180160341 VerifyAndTransformContextHandleData                // 验证并转换上下文句柄数据
 #define FUN_1801605f0 ExecuteContextHandleDataTasks                      // 执行上下文句柄数据处理
 #define FUN_1801605c8 ClearContextHandleData                             // 清理上下文句柄数据
