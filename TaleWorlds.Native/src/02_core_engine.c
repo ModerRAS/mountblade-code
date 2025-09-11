@@ -264475,7 +264475,7 @@ uint64_t ProcessSystemContextMemoryRelease(uint64_t ContextHandle, unsigned long
   SystemRegisterPointerX10 = ContextHandle + 0x5a;
   CoreEngineReleaseSystemResources();
   SystemRegisterPointerX10 = ContextHandle + 0x56;
-  FUN_1802185b0();
+  ConfigureSystemEnvironment();
   SystemRegisterPointerX10 = ContextHandle + 0x4c;
   _Mtx_destroy_in_situ();
   *ContextHandle = &SystemContextPrimary;
