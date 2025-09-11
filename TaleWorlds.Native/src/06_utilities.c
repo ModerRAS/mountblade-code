@@ -10942,8 +10942,20 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  */
 #define CleanupSystemDataCache FUN_180896040
 
-// 原始函数名：FUN_18089513 - 数据验证函数
-// 功能：验证系统数据块的完整性
+/**
+ * @brief 数据块完整性验证函数
+ * 
+ * 验证系统数据块的完整性和一致性，确保数据在存储和传输过程中没有被损坏。
+ * 该函数检查数据块的校验和、边界条件和格式正确性。
+ * 
+ * @param dataBlock 数据块指针
+ * @param blockSize 数据块大小
+ * @param validationFlags 验证标志位
+ * @return int 验证结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_18089513
+ * @note 这是数据完整性验证的核心函数
+ */
 #define ValidateDataBlockIntegrity FUN_180895130
 
 #define CheckDataProcessingStatus FUN_18088c790
