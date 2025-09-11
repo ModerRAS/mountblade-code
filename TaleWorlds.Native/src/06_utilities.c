@@ -10075,7 +10075,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 全局指针设置函数B27-B30
 #define SetGlobalDataPointerB27 ConfigureGlobalDataPointerAtOffsetB27
-#define SetGlobalDataPointerB28 FUN_180941fa0
+#define SetGlobalDataPointerB28 ConfigureGlobalDataPointerAtOffsetB28
 #define SetGlobalDataPointerB29 InitializeGlobalDataPointerA2
 #define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
 
