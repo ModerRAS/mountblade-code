@@ -132576,51 +132576,61 @@ void FUN_18073e700(UIHandle uiContext)
 
  
 
- void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据同步
+ * 
+ * 同步UI上下文数据，执行数据验证、缓冲区比较和结果处理
+ * 用于UI系统的数据同步和一致性维护
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ */
+void ProcessUIContextDataSynchronization(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
+void ProcessUIContextDataSynchronization(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 
 {
-  int operationResult;
+  int syncOperationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong *pstackLong148;
-  longlong stackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionDataBuffer [32];
+  UIByte *bufferPointer;
+  longlong *contextPointer;
+  longlong cleanupFlag;
+  UIByte dataProcessingBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  uiValidationResult = 0;
-  stackLong140 = 0;
-  operationResult = ManageUIContextResources(uiContext,&pstackLong148,&stackLong140);
-  if (operationResult == 0) {
-    if (pstackLong148[0x21] != 0) {
-      uiValidationResult = *(int *)(pstackLong148[0x21] + 0x124);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionDataBuffer;
+  dataValidationResult = 0;
+  cleanupFlag = 0;
+  syncOperationResult = ManageUIContextResources(uiContext,&contextPointer,&cleanupFlag);
+  if (syncOperationResult == 0) {
+    if (contextPointer[0x21] != 0) {
+      dataValidationResult = *(int *)(contextPointer[0x21] + 0x124);
     }
-    if (((int)pstackLong148[0x22] == 0) || (uiValidationResult == 0xf)) {
-      operationResult = (**(code **)(*pstackLong148 + 0x78))(pstackLong148,dataSource,targetBuffer);
-      if (operationResult == 0) goto LAB_18073e90c;
+    if (((int)contextPointer[0x22] == 0) || (dataValidationResult == 0xf)) {
+      syncOperationResult = (**(code **)(*contextPointer + 0x78))(contextPointer,dataSource,targetBuffer);
+      if (syncOperationResult == 0) goto ProcessUISyncComplete;
     }
     else {
-      operationResult = 0x2e;
+      syncOperationResult = 0x2e;
     }
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    dataValidationResult = ValidateUIDataAndInitialize(dataProcessingBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataProcessingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(dataProcessingBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
+    bufferPointer = dataProcessingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_180957998);
+    ExecuteUIContextDataOperation(syncOperationResult,5,uiContext,&UIRenderContextTable);
   }
-LAB_18073e90c:
-  if (stackLong140 != 0) {
+ProcessUISyncComplete:
+  if (cleanupFlag != 0) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackLong140,0xc);
+    ProcessUISystemCleanup(cleanupFlag,0xc);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionDataBuffer);
 }
 
 
