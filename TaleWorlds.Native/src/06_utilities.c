@@ -39476,15 +39476,15 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   if (*(uint *)(dataBuffer + 8) < DataValidationThreshold6D) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = *dataBuffer;
-      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer78,4);
+      validationOutcome = OperateDataO0(systemDataBuffer,&StackDataBuffer78,4);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer74,2);
+      validationOutcome = OperateDataO0(systemDataBuffer,&StackDataBuffer74,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,(int64_t)&stackDataBuffer74 + 2,2);
+      validationOutcome = OperateDataO0(systemDataBuffer,(int64_t)&StackDataBuffer74 + 2,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
