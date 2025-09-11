@@ -242,6 +242,13 @@ typedef enum {
 #define CompleteUIContextProcessingTask ProcessUIContextTaskCompletion
 #define FUN_18073c258 ProcessUIContextEventHandling
 #define FUN_18073c27a ReleaseUIMemoryResourceAndExecuteRender
+
+// 新美化的函数定义
+#define FUN_18073e270 ProcessUIContextDataTransferOperation
+#define FUN_18073e330 ProcessUISystemInitialization
+#define FUN_18073e414 ProcessUISystemCleanupOperation
+#define FUN_18073e446 ProcessUIContextCleanup
+#define FUN_18073e470 ProcessUIContextDataOperation
 #define FUN_18073c2a0 ProcessUIContextDataTransfer
 #define FUN_18073c380 ProcessUIContextBufferOperationC
 #define FUN_18073c39d ProcessUIContextBufferOperationD
@@ -132295,67 +132302,100 @@ void ProcessUISystemInitialization(void)
 
 
 
- void FUN_18073e414(void)
-void FUN_18073e414(void)
+ /**
+ * @brief 执行UI系统清理操作
+ * 
+ * 该函数负责UI系统的清理操作，包括资源清理和渲染任务执行。
+ * 主要功能：
+ * - 检查并执行系统清理
+ * - 执行UI渲染任务
+ * - 处理资源释放
+ */
+void ProcessUISystemCleanupOperation(void)
 
 {
-  longlong stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong resourceCleanupHandle;
+  ulonglong encryptionKey;
+  UIByte stackBuffer[256];
   
-  if (stackParam00000038 != 0) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackParam00000038,0xc);
+  // 检查是否需要执行清理操作
+  if (resourceCleanupHandle != 0) {
+    // 执行UI系统清理
+    ProcessUISystemCleanup(resourceCleanupHandle, 0xc);
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)stackBuffer);
 }
 
 
 
 
- void FUN_18073e446(UIHandle uiContext)
-void FUN_18073e446(UIHandle uiContext)
+ /**
+ * @brief 执行UI上下文清理操作
+ * 
+ * 该函数负责UI上下文的清理操作，释放相关资源。
+ * 
+ * @param uiContext UI上下文句柄
+ */
+void ProcessUIContextCleanup(UIHandle uiContext)
 
 {
-                     WARNING: Subroutine does not return
-  ProcessUISystemCleanup(uiContext,0xc);
+  // 执行UI系统清理操作
+  ProcessUISystemCleanup(uiContext, 0xc);
 }
 
 
 
  
 
- void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI上下文数据操作
+ * 
+ * 该函数负责处理UI上下文的数据操作，包括资源管理和渲染任务。
+ * 主要功能：
+ * - 管理UI上下文资源
+ * - 处理数据源操作
+ * - 执行纹理数据处理
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ */
+void ProcessUIContextDataOperation(UIHandle uiContext, UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong *apRenderContextSize [2];
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionKeyStorage[32];
+  UIByte *dataProcessingBuffer;
+  longlong *renderContextSize[2];
+  UIByte dataProcessingArray[256];
+  ulonglong encryptionKeyXor;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = ManageUIContextResources(uiContext,apRenderContextSize,0);
+  // 初始化加密密钥
+  encryptionKeyXor = XorEncryptionKey ^ (ulonglong)encryptionKeyStorage;
+  operationResult = ManageUIContextResources(uiContext, renderContextSize, 0);
   if (operationResult == 0) {
-    if (((int)apRenderContextSize[0][0x22] == 0) || ((int)apRenderContextSize[0][0x22] == 7)) {
-      operationResult = (**(code **)(*apRenderContextSize[0] + 0x120))(apRenderContextSize[0],dataSource);
-      if (operationResult == 0) goto LAB_18073e512;
+    // 检查上下文状态是否有效
+    if (((int)renderContextSize[0][0x22] == 0) || ((int)renderContextSize[0][0x22] == 7)) {
+      operationResult = (**(code **)(*renderContextSize[0] + 0x120))(renderContextSize[0], dataSource);
+      if (operationResult == 0) goto ProcessUIRenderTask;
     }
     else {
-      operationResult = 0x2e;
+      operationResult = 0x2e; // 返回错误码
     }
   }
+  
+  // 检查是否需要处理纹理数据
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUITextureDataWithSize(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_180957a20);
+    ProcessUITextureDataWithSize(dataProcessingArray, 0x100, dataSource);
+    dataProcessingBuffer = dataProcessingArray;
+    // 执行UI上下文数据操作
+    ExecuteUIContextDataOperation(operationResult, 5, uiContext, &UNK_180957a20);
   }
-LAB_18073e512:
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  
+ProcessUIRenderTask:
+  // 执行UI渲染任务
+  ExecuteUIRenderTask(encryptionKeyXor ^ (ulonglong)encryptionKeyStorage);
 }
 
 
