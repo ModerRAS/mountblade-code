@@ -49072,7 +49072,7 @@ void HandleExceptionCleanup830(DataBuffer operationBase,int64_t dataBuffer,DataB
  * 
  * @note 原始函数名：Unwind_180902840
  */
-void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanup840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA0(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78),*(DataBuffer *)(*(int64_t )(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset),
@@ -49094,7 +49094,7 @@ void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180902850
  */
-void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanup850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + DataProcessingOffset70),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerCallbackOffset),
@@ -49116,7 +49116,7 @@ void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180902860
  */
-void ExceptionCleanupHandler860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanup860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + DataProcessingOffset70),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerCallbackOffset),
@@ -49205,7 +49205,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180902890
  * @note 简化实现：直接调用系统清理函数处理特定偏移的资源
  */
-void ExceptionCleanupHandler_SystemResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemResourceReleaseCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataIntegrityA1(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x40,
