@@ -222,6 +222,66 @@ typedef enum {
 #define FUN_18073c380 ProcessUIContextBufferOperationC
 #define FUN_18073c39d ProcessUIContextBufferOperationD
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
+
+// 额外的UI系统函数语义化定义
+/**
+ * @brief 处理UI缓冲区数据与指定大小
+ * 
+ * 该函数处理UI缓冲区数据，支持指定大小的数据处理和内存管理。
+ * 主要用于UI数据的安全复制和验证。
+ * 
+ * @param bufferHandle 缓冲区句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180746bf0
+ */
+#define FUN_180746bf0 ProcessUIBufferDataWithSize
+
+/**
+ * @brief 验证UI数据源
+ * 
+ * 该函数验证UI数据源的有效性，包括数据完整性检查和权限验证。
+ * 确保数据源可以被安全访问和处理。
+ * 
+ * @param dataSource 数据源标识符
+ * 
+ * @return 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_180748dd0
+ */
+#define FUN_180748dd0 ValidateUIDataSource
+
+/**
+ * @brief 处理UI数据源验证
+ * 
+ * 该函数执行UI数据源的深度验证，包括数据格式检查和内容验证。
+ * 支持复杂的数据结构验证和错误处理。
+ * 
+ * @param dataSource 数据源标识符
+ * 
+ * @return 验证处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180748ea0
+ */
+#define FUN_180748ea0 ProcessUIDataSourceValidation
+
+/**
+ * @brief 执行UI数据处理
+ * 
+ * 该函数执行UI数据的完整处理流程，包括数据解析、转换和输出。
+ * 支持多种数据格式和处理模式。
+ * 
+ * @param dataSource 数据源标识符
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1807498f0
+ */
+#define FUN_1807498f0 ExecuteUIDataProcessing
 #define FUN_18073c471 ProcessUIContextShutdown
 #define FUN_18073c493 ProcessUIContextFinalization
 #define FUN_18073c54f ProcessUIDataBufferSequential      // 处理UI数据缓冲区顺序操作
