@@ -131465,32 +131465,40 @@ LAB_18073df0e:
 
 
 
- void FUN_18073de94(void)
-void FUN_18073de94(void)
-
+ /**
+ * @brief 执行UI数据缓冲区清理操作
+ * 
+ * 该函数执行UI数据缓冲区的清理操作，包括数据清除、控制和验证。
+ * 在栈上分配临时缓冲区进行数据处理。
+ */
+void ExecuteUIDataBufferCleanup(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextHandle;
   
   operationResult = ProcessUIDataBufferClear(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,5);
+  ExecuteUIContextDataOperation(contextHandle,5);
 }
 
 
 
 
- void FUN_18073df0c(void)
-void FUN_18073df0c(void)
-
+ /**
+ * @brief 执行UI渲染任务
+ * 
+ * 该函数执行UI渲染任务，使用XOR加密保护参数安全。
+ * 简单的渲染任务执行函数。
+ */
+void ExecuteUIRenderTaskSimple(void)
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptionKey;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -131547,13 +131555,17 @@ LAB_18073e0bd:
 
 
 
- void FUN_18073dfd7(void)
-void FUN_18073dfd7(void)
-
+ /**
+ * @brief 执行UI数据缓冲区复制和验证操作
+ * 
+ * 该函数执行UI数据缓冲区的复制、控制和验证操作。
+ * 在栈上分配临时缓冲区进行多步骤的数据处理。
+ */
+void ExecuteUIDataBufferCopyAndValidation(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextHandle;
   
   operationResult = CopyUIDataBuffer(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
@@ -131567,7 +131579,7 @@ void FUN_18073dfd7(void)
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,5);
+  ExecuteUIContextDataOperation(contextHandle,5);
 }
 
 

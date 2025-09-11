@@ -252919,7 +252919,19 @@ LAB_180204eec:
 
 
 
-04f4d(voidvoid FUN_180204f4d(void
+/**
+ * @brief 系统模式清理处理函数
+ * 
+ * 该函数负责清理系统模式索引和处理相关的模式数据。
+ * 主要功能包括：
+ * - 重置模式索引为最大值
+ * - 清理模式处理器的回调函数
+ * - 释放相关资源
+ * 
+ * @note 原始函数名：FUN_180204f4d
+ * @return 无返回值
+ */
+void CleanupSystemPatternHandler(void)
 {
   uint64_t *PatternIndex;
   long long *PatternCleanupHandler;
@@ -253086,13 +253098,13 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
   if (MemoryBufferSize != 0) {
     if (0 < *(int *)(MemoryBufferSize + 0x188)) {
       do {
-        FUN_180204e40(SystemDataTablePointer,MemoryBufferSize + (long long)(int)SecondaryProcessingStatusFlag * 0x18);
+        ExecuteSystemMemoryValidation(SystemDataTablePointer,MemoryBufferSize + (long long)(int)SecondaryProcessingStatusFlag * 0x18);
         CalculatedCodePoint = (int)SecondaryProcessingStatusFlag + 1;
         SecondaryProcessingStatusFlag = (unsigned long long *)(unsigned long long)CalculatedCodePoint;
         SystemDataTablePointer = _SystemFloatTableAddress;
       } while ((int)CalculatedCodePoint < *(int *)(MemoryBufferSize + 0x188));
     }
-    InitializeSystemMemoryBlock(MemoryBufferSize,0x18,0x10,FUN_1800586e0,MemoryAllocationResult);
+    InitializeSystemMemoryBlock(MemoryBufferSize,0x18,0x10,ProcessSystemMemoryTemplate,MemoryAllocationResult);
       CoreEngineFreeSystemMemory(MemoryBufferSize);
   }
   return;
