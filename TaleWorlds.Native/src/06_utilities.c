@@ -124346,7 +124346,7 @@ void ProcessSystemUnwindAndCleanupAtOffsetFE0(DataBuffer operationBase, int64_t 
  * 
  * @note 原始函数名：Unwind_180911000
  */
-void ProcessExceptionCleanupAtOffset180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124392,7 +124392,7 @@ void ProcessExceptionCleanupAtOffset180911000(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911020
  */
-void ProcessExceptionCleanupAtOffset180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion20Alt(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124440,7 +124440,7 @@ void ProcessExceptionCleanupAtOffset180911020(DataBuffer operationBase,int64_t d
  * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
  * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void HandleExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionCleanupVersion40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124488,7 +124488,7 @@ void HandleExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t da
  * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
  * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void HandleExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionCleanupVersion60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124536,7 +124536,7 @@ void HandleExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t da
  * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
  * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void HandleExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionCleanupVersion80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124584,7 +124584,7 @@ void HandleExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t da
  * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
  * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void HandleExceptionCleanupAtOffset1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionCleanupVersionA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124630,7 +124630,7 @@ void HandleExceptionCleanupAtOffset1809110a0(DataBuffer operationBase,int64_t da
  * 
  * @note 原始函数名：Unwind_1809110c0
  */
-void ProcessExceptionCleanupAtOffset1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersionC0Alt(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124676,7 +124676,7 @@ void ProcessExceptionCleanupAtOffset1809110c0(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_1809110e0
  */
-void ProcessExceptionCleanupAtOffset1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersionE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124722,7 +124722,7 @@ void ProcessExceptionCleanupAtOffset1809110e0(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911100
  */
-void ProcessExceptionCleanupAtOffset180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124768,7 +124768,7 @@ void ProcessExceptionCleanupAtOffset180911100(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911120
  */
-void ProcessExceptionCleanupAtOffset180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124814,7 +124814,7 @@ void ProcessExceptionCleanupAtOffset180911120(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911140
  */
-void ProcessExceptionCleanupAtOffset180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124860,7 +124860,7 @@ void ProcessExceptionCleanupAtOffset180911140(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911160
  */
-void ProcessExceptionCleanupAtOffset180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124906,7 +124906,7 @@ void ProcessExceptionCleanupAtOffset180911160(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911180
  */
-void ProcessExceptionCleanupAtOffset180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -125087,7 +125087,7 @@ void ExceptionContextProcessorA2(DataBuffer operationBase,int64_t dataBuffer,Dat
  * 
  * @note 原始函数名：Unwind_180911200
  */
-void ProcessExceptionCleanupAtOffset180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
