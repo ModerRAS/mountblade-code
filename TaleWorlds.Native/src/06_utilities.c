@@ -28465,7 +28465,7 @@ CleanupContextAndExit:
  * @param componentContext 组件上下文指针
  * @return 初始化状态码，0表示成功，其他值表示错误状态
  */
-uint InitializeSystemComponentDL0(int64_t *componentContext)
+uint InitializeSystemComponentWithDoubleLinking(int64_t *componentContext)
 
 {
   int itemCount;
