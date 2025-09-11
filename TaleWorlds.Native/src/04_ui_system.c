@@ -297,6 +297,26 @@ typedef enum {
 
 // 未美化函数名语义化定义
 #define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
+#define ProcessUIDataCompletion FUN_180739a2a               // 处理UI数据完成
+#define ProcessUIDataFinal FUN_180739a50                   // 处理最终UI数据
+#define ProcessUIDataFinalEx FUN_180739a6d                 // 处理最终UI数据扩展版本
+#define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
+#define UIReturnEmptyFunction FUN_18071ace8                // UI系统空返回函数
+
+// UI数据处理函数
+#define ProcessUIDataWithContext FUN_1807478a0             // 处理带上下文的UI数据
+#define ProcessUIDataWithBuffer FUN_180747ad0              // 处理带缓冲区的UI数据
+#define ProcessUIDataSourceValidation FUN_180748290        // 处理UI数据源验证
+#define ProcessUIDataWithTarget FUN_1807483a0              // 处理带目标的UI数据
+#define ProcessUIDataCleanup FUN_180748500                 // 处理UI数据清理
+#define ProcessUIDataWithParameters FUN_1807485c0          // 处理带参数的UI数据
+#define ProcessUIDataWithValidation FUN_180748b40          // 处理带验证的UI数据
+#define ProcessUIDataWithSecurity FUN_180748dd0            // 处理带安全的UI数据
+#define ProcessUIDataWithCompression FUN_180748ea0         // 处理带压缩的UI数据
+#define ProcessUIDataWithOptimization FUN_1807498f0        // 处理带优化的UI数据
+
+// UI上下文管理函数
+#define ManageUIContextResources FUN_180752c80              // 管理UI上下文资源
 #define ValidateAndProcessUIData FUN_180739085           // 验证和处理UI数据
 #define CleanupUIResourcesAndExecuteRender FUN_1807390fd  // 清理UI资源并执行渲染
 #define ProcessUIDataBuffer FUN_18073915d                 // 处理UI数据缓冲区
@@ -5507,6 +5527,11 @@ void* UIGestureCoordinates;
 #define UIStackTransformBuffer40 &stack0x00000040         // UI变换缓冲区栈40 - 存储UI变换缓冲区数据
 #define UIStackTransformBuffer30 &stack0x00000030         // UI变换缓冲区栈30 - 存储UI变换缓冲区数据
 #define UIStackRenderTaskData00 &stack0x00000000         // UI渲染任务数据栈00 - 存储UI渲染任务数据
+
+// UI系统栈参数宏定义
+#define UIStackParameterFFFFFFFFFFFFFFA8 stackParamffffffffffffffa8    // UI栈参数A8 - 用于存储循环计数器的高位部分
+#define UIStackParameterFFFFFFFFFFFFFFB8 stackParamffffffffffffffb8    // UI栈参数B8 - 用于存储事件处理状态的高位部分
+#define UIStackParameterFFFFFFFFFFFFFFB0 stackParamffffffffffffffb0    // UI栈参数B0 - 用于存储处理计数器的值
 
  // UI系统渲染缓冲区指针宏定义
 #define UIComponentDataBufferPointer (void*)0x18097f660        // UI组件数据缓冲区指针
@@ -208603,13 +208628,17 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
   // 初始化事件处理参数
   UILoopCounter = (uint)((ulonglong)UIStackParameterFFFFFFFFFFFFFFA8 >> 0x20);
   UIEventProcessingStatus = (uint)((ulonglong)UIStackParameterFFFFFFFFFFFFFFB8 >> 0x20);
-  *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f4) = 0;
-  *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f2) = 0;
-  *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f0) = 0;
-  if ((*(code **)(uiContext + 0x358) == (UIFunctionPtr *)0x0) ||
-     (eventCode = (**(code **)(uiContext + 0x358))(uiContext + 8), (int)eventCode == 0)) {
-    EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
-    UIProcessingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
+  
+  // 重置UI事件处理状态标志
+  *(UIWord *)(*(longlong )(UIBufferData + 0x48) + 0x127f4) = 0;
+  *(UIWord *)(*(longlong )(UIBufferData + 0x48) + 0x127f2) = 0;
+  *(UIWord *)(*(longlong )(UIBufferData + 0x48) + 0x127f0) = 0;
+  
+  // 检查事件处理函数指针是否有效
+  if ((*(code **)(UIContext + 0x358) == (UIFunctionPtr *)0x0) ||
+     (eventCode = (**(code **)(UIContext + 0x358))(UIContext + 8), (int)eventCode == 0)) {
+    EventMemoryAllocation = *(longlong *)(UIBufferData + 0x48);
+    UIProcessingCounter = (uint7)((ulonglong)UIStackParameterFFFFFFFFFFFFFFB0 >> 8);
     if (*(longlong *)(EventMemoryAllocation + 0x10f88) == 0) {
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (eventCode = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad08,&UNK_1807872a0,uiContext,
