@@ -243187,21 +243187,21 @@ LAB_180198f21:
   if ((int)ArraySize < (int)OperationStatus) {
     OperationResult = ArraySize;
   }
-  CoreEngineProcessSystemEvent(&pSystemFlagE,OperationResult + 1);
+  CoreEngineProcessSystemEvent(&SystemFlagEPointer,OperationResult + 1);
   Utf16Char4 = SystemStatusCode;
   if (0 < (int)ArraySize) {
     do {
       if (OperationStatus <= (uint)Utf16Char4) break;
-      HighByte = pbStack_f8[SystemStatusCode];
-      CoreEngineProcessSystemEvent(&pSystemFlagE,SystemCleanupFlagG + 1);
-      pbStack_d8[SystemCleanupFlagG] = HighByte;
-      pbStack_d8[SystemCleanupFlagG + 1] = 0;
+      HighByte = StackBytePointerF8[SystemStatusCode];
+      CoreEngineProcessSystemEvent(&SystemFlagEPointer,SystemCleanupFlagG + 1);
+      StackBytePointerD8[SystemCleanupFlagG] = HighByte;
+      StackBytePointerD8[SystemCleanupFlagG + 1] = 0;
       SystemCleanupFlagG = SystemCleanupFlagG + 1;
       Utf16Char4 = (unsigned long long)((uint)Utf16Char4 + 1);
       SystemStatusCode = SystemStatusCode + 1;
     } while ((long long)SystemStatusCode < (long long)(int)ArraySize);
   }
-  ContextHandleTablePointer = plStack_c0;
+  ContextHandleTablePointer = StackPointerC0;
   ArraySize = SystemCleanupFlagG;
   if (pbStack_f8 != (byte *)0x0) {
       CoreEngineFreeSystemMemory(pbStack_f8);
