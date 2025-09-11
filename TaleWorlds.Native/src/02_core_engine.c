@@ -45025,36 +45025,36 @@ SystemMemoryValidation: // 原始标签：LAB_180065a3e
  */
 void InitializeCoreEngineSystemConfiguration(void
 {
-  uint8_t systemStackDataBuffer2c8 [104];
-  uint64_t systemConfiguration260;
-  uint64_t systemConfiguration258;
-  uint32_t systemStatus250;
-  uint32_t systemControl24c;
-  uint32_t systemStatus248;
-  uint32_t systemControl244;
-  uint32_t systemStatus240;
-  uint32_t systemControl23c;
-  uint32_t systemStatus238;
-  uint32_t systemControl234;
-  uint32_t OperationValidationStatus;
-  uint8_t EncodingValidationByte;
-  uint8_t OperationStatus [512];
-  unsigned long long EncodedKeyResult;
+  uint8_t systemStackDataBuffer [104];
+  uint64_t systemConfigurationData1;
+  uint64_t systemConfigurationData2;
+  uint32_t systemStatusFlag1;
+  uint32_t systemControlFlag1;
+  uint32_t systemStatusFlag2;
+  uint32_t systemControlFlag2;
+  uint32_t systemStatusFlag3;
+  uint32_t systemControlFlag3;
+  uint32_t systemStatusFlag4;
+  uint32_t systemControlFlag4;
+  uint32_t operationValidationStatus;
+  uint8_t encodingValidationByte;
+  uint8_t operationStatusBuffer [512];
+  unsigned long long encodedKeyResult;
   
-  EncodedKeyResult = EncodingDecodingKey ^ (unsigned long long)aLoopCounter;
-  OperationSystemValidationStatus = 0x22657865;
-  SystemUintBuffer260 = 0x736172435c2e2e22;
-  SystemUintBuffer258 = 0x6564616f6c705568;
-  EncodingValidationByte = 0;
-  SystemUintBuffer240 = 0x616f6c70;
-  SystemUintBuffer23c = 0x2e726564;
-  SystemUintBuffer238 = 0x6c627550;
-  SystemUintBuffer234 = 0x2e687369;
-  BufferSystemValidationStatus = 0x75502e72;
-  SystemUnsignedValue24C = 0x73696c62;
-  BufferTypeFlag = 0x72435c68;
-  SystemUnsignedValue244 = 0x55687361;
-    memset(aOperationStatus,0,0x80);
+  encodedKeyResult = EncodingDecodingKey ^ (unsigned long long)loopCounter;
+  operationSystemValidationStatus = 0x22657865;
+  systemUintBuffer1 = 0x736172435c2e2e22;
+  systemUintBuffer2 = 0x6564616f6c705568;
+  encodingValidationByte = 0;
+  systemUintBuffer3 = 0x616f6c70;
+  systemUintBuffer4 = 0x2e726564;
+  systemUintBuffer5 = 0x6c627550;
+  systemUintBuffer6 = 0x2e687369;
+  bufferSystemValidationStatus = 0x75502e72;
+  systemUnsignedValue1 = 0x73696c62;
+  bufferTypeFlag = 0x72435c68;
+  systemUnsignedValue2 = 0x55687361;
+    memset(operationStatusBuffer, 0, 0x80);
 }
 
 
