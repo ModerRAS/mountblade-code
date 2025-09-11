@@ -127985,7 +127985,7 @@ void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957880);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextBufferData);
   }
 FUN_18073c471:
   if (stackLong148 != 0) {
