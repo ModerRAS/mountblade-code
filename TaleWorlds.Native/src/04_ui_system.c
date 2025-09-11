@@ -135665,7 +135665,26 @@ LAB_1807404aa:
  
 
  void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+#define ProcessUIContextWithBuffer FUN_1807404e0
+/**
+ * @brief 处理UI上下文与缓冲区操作
+ * 
+ * 该函数负责处理UI系统的上下文与缓冲区交互：
+ * - 验证UI资源并初始化上下文
+ * - 处理数据源验证
+ * - 执行数据缓冲区操作
+ * - 复制UI数据缓冲区
+ * - 执行UI上下文数据操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807404e0
+ * @note 该函数执行后不返回，直接跳转到数据操作
+ */
+void ProcessUIContextWithBuffer(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -135706,7 +135725,26 @@ FUN_1807405cf:
  
 
  void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+#define ProcessUIContextDataTransfer FUN_1807404fd
+/**
+ * @brief 处理UI上下文数据传输
+ * 
+ * 该函数负责处理UI系统的数据传输操作：
+ * - 初始化UI上下文参数
+ * - 验证数据源和目标缓冲区
+ * - 执行数据缓冲区操作
+ * - 复制UI数据缓冲区
+ * - 执行UI上下文数据操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807404fd
+ * @note 该函数执行后不返回，直接跳转到数据操作
+ */
+void ProcessUIContextDataTransfer(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
