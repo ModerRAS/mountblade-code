@@ -126476,36 +126476,36 @@ void ProcessUIContextDataOperation(UIHandle uiContext,UIHandle dataSource,UIHand
   UIByte workBuffer148 [256];
   ulonglong encryptionKey48;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong158 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
+  encryptionKey48 = XorEncryptionKey ^ (ulonglong)encryptionBuffer188;
+  contextResourceHandle158 = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext,&processedContextHandle150,&contextResourceHandle158);
   if (operationResult == 0) {
-    pstackUInt168 = (UIByte *)resultPointer;
-    operationResult = FUN_180747ad0(stackUInt150,dataSource,targetBuffer,bufferSize);
-    if (operationResult == 0) goto FUN_18073b13d;
+    resultDataPointer168 = (UIByte *)resultPointer;
+    operationResult = FUN_180747ad0(processedContextHandle150,dataSource,targetBuffer,bufferSize);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUITextureDataFill(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
-    pstackUInt168 = stackArray148;
+    dataValidationResult = CopyUIDataBuffer(workBuffer148,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(workBuffer148 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(workBuffer148 + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(workBuffer148 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUITextureDataFill(workBuffer148 + dataValidationResult,0x100 - dataValidationResult,bufferSize);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(workBuffer148 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(workBuffer148 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),resultPointer);
+    resultDataPointer168 = workBuffer148;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextTextureManager);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextTextureManager);
   }
-FUN_18073b13d:
-  if (stackLong158 != 0) {
+CleanupAndExit:
+  if (contextResourceHandle158 != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptionKey48 ^ (ulonglong)encryptionBuffer188);
 }
 
 
@@ -126513,8 +126513,25 @@ FUN_18073b13d:
  
 
  void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
+/**
+ * @brief 处理UI上下文数据操作的高级版本
+ * 
+ * 该函数是ProcessUIContextDataOperation的扩展版本，增加了额外的参数支持：
+ * 1. 支持更多的上下文参数
+ * 2. 提供更灵活的缓冲区管理
+ * 3. 增强的事件处理能力
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param eventProcessor 事件处理器
+ * @param resourceManager 资源管理器
+ */
+#define ProcessUIContextDataOperationAdvanced FUN_18073afdd
+void ProcessUIContextDataOperationAdvanced(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+                  UIHandle resultPointer,UIHandle eventProcessor,UIHandle resourceManager)
 
 {
   int operationResult;
@@ -126522,39 +126539,38 @@ void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
-  UIHandle preservedRegister12;
+  longlong registerStoragePointer;
+  UIHandle registerValue12;
   UIHandle eventHandle;
-  UIHandle preservedRegister15;
-  ulonglong stackParam00000140;
-  UIHandle stackParam000001b0;
+  UIHandle registerValue15;
+  ulonglong stackParam140;
+  UIHandle stackParam1b0;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
-  *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
-  *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
-  param_6 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
+  *(UIHandle *)(registerStoragePointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerStoragePointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerStoragePointer + -0x28) = registerValue12;
+  *(UIHandle *)(registerStoragePointer + -0x30) = eventHandle;
+  *(UIHandle *)(registerStoragePointer + -0x38) = registerValue15;
+  eventProcessor = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext,&resourceManager,&eventProcessor);
   if (operationResult == 0) {
-    operationResult = FUN_180747ad0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
-    if (operationResult == 0) goto FUN_18073b13d;
+    operationResult = FUN_180747ad0(resourceManager,dataSource,targetBuffer,bufferSize,stackParam1b0);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUITextureDataFill(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),stackParam000001b0
-                       );
+    dataValidationResult = CopyUIDataBuffer(&workBuffer40,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&workBuffer40 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(&workBuffer40 + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(&workBuffer40 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUITextureDataFill(&workBuffer40 + dataValidationResult,0x100 - dataValidationResult,bufferSize);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(&workBuffer40 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(&workBuffer40 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),stackParam1b0);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextTextureManager,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextTextureManager,&workBuffer40);
   }
 /**
  * @brief 执行UI渲染任务和资源释放
