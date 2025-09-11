@@ -254225,7 +254225,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   }
   else {
     SystemChecksum = 0x401;
-    MemoryPoolIndex = ProcessSystemMemoryPool(Utf16EndPointer);
+    MemoryPoolIndex = GetCharacterMemoryPoolIndex(Utf16EndPointer);
     MemoryPoolIndex = FUN_180225e50(MemoryPoolIndex);
   }
   OperationBufferSize[1] = 0;
