@@ -270051,7 +270051,16 @@ void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBuff
 
 
 
-1dc39(voidvoid FUN_18021dc39(void
+/**
+ * @brief 系统空操作函数A
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作。
+ * 通常用作占位符或默认回调函数。
+ * 
+ * @note 原始函数名：FUN_18021dc39
+ * @return 无返回值
+ */
+void SystemNullOperationA(void)
 {
   return;
 }
@@ -270059,7 +270068,16 @@ void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBuff
 
 
 
-1dc3e(voidvoid FUN_18021dc3e(void
+/**
+ * @brief 系统空操作函数B
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作。
+ * 通常用作占位符或默认回调函数。
+ * 
+ * @note 原始函数名：FUN_18021dc3e
+ * @return 无返回值
+ */
+void SystemNullOperationB(void)
 {
   return;
 }
@@ -270067,7 +270085,18 @@ void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBuff
 
 
 
-1dc44(voidvoid FUN_18021dc44(void
+/**
+ * @brief 系统数据处理循环函数
+ * 
+ * 该函数负责处理系统数据的循环操作，包括：
+ * - 执行数据处理回调函数
+ * - 遍历系统数据节点
+ * - 验证数据完整性
+ * 
+ * @note 原始函数名：FUN_18021dc44
+ * @return 无返回值
+ */
+void ProcessSystemDataLoop(void)
 {
   long long ProcessingResult;
   long long SystemContext;
@@ -270101,7 +270130,7 @@ void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBuff
  * @note 原始函数名: FUN_18021dc50（已重命名为SystemTerminateFunction）
  * @note 此函数不会返回
  */
-void SystemTerminateFunction(void
+void SystemTerminateFunction(void)
 {
     CoreEngineTerminateSystem();
 }
