@@ -246,6 +246,7 @@ typedef enum {
 #define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
 #define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
 #define ValidateUIContextAndExecuteRender FUN_18073a98b              // 验证UI上下文并执行渲染
+#define ReleaseUIResourceAndExecuteRender FUN_18073a9b5                // 释放UI资源并执行渲染
 
 // UI系统函数指针变量定义
 #define _DAT_180d4a958 UIEventDispatchFunctionPointer           // UI事件调度函数指针

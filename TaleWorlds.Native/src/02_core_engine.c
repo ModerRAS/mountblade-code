@@ -236104,7 +236104,7 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
   if (EncodingValidationResult != 0) {
     __Throw_C_error_std__YAXH_Z(EncodingValidationResult);
   }
-  ContextHandleTablePointer = (void *)FUN_1801940f0(MemoryBlockIndex,&SystemContextRegister,Utf8SourcePointer,Utf16EndPointer,ProcessingStatusFlag,SystemMemoryAllocationResult,EncodingConversionResult);
+  ContextHandleTablePointer = (void *)InitializeSystemDataProcessor(MemoryBlockIndex,&SystemContextRegister,Utf8SourcePointer,Utf16EndPointer,ProcessingStatusFlag,SystemMemoryAllocationResult,EncodingConversionResult);
   ProcessSystemConfigurationData(*ContextHandlePointer,OperationBufferSize);
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -240000,7 +240000,7 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   SystemTemporaryValue90 = ContextHandle;
   StackValidationData = OperationBufferSize;
   StackProcessingValue78 = OperationBufferSize;
-  plStack_c0 = (long long *)FUN_1801a9dd0(0,Utf8SourcePointer);
+  plStack_c0 = (long long *)ProcessSystemDataProcessing(0,Utf8SourcePointer);
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))(plStack_c0);
   }
@@ -240244,7 +240244,7 @@ long long * ProcessSystemMemoryBlockAndContextData(uint64_t ContextHandle,long l
   ProcessingCounter = 0xfffffffffffffffe;
   *ContextHandleSize = 0;
   if (Utf16EndPointer == '\0') {
-    MemoryBlockIndex = (long long *)FUN_18019eb80(ContextHandle,Utf8SourcePointer,Utf8SourcePointer,0,1);
+    MemoryBlockIndex = (long long *)ProcessSystemMemoryProcessing(ContextHandle,Utf8SourcePointer,Utf8SourcePointer,0,1);
     if (MemoryBlockIndex != (long long *)0x0) {
       SystemEventFlagPointer = MemoryBlockIndex;
       (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
@@ -240695,7 +240695,7 @@ LAB_180199c3b:
             }
             if (ppppppSystemCharacterStatusBuffer == &pppppEventVariablePointer) {
 LAB_180199c8a:
-              CharacterStatusBuffer = (void *)FUN_1800c2ab0(&pppppEventVariablePointer,aStackProcessingVariable70);
+              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppEventVariablePointer,aStackProcessingVariable70);
               ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
             }
             else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
@@ -240774,7 +240774,7 @@ LAB_180199dab:
             }
             if (ppppppSystemCharacterStatusBuffer == &pppppEventVariablePointer) {
 LAB_180199dfa:
-              CharacterStatusBuffer = (void *)FUN_1800c2ab0(&pppppEventVariablePointer,aStackProcessingValue);
+              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppEventVariablePointer,aStackProcessingValue);
               ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
             }
             else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
@@ -240859,7 +240859,7 @@ LAB_180199f4b:
             }
             if (ppppppSystemCharacterStatusBuffer == &pppppSystemPointerValue170) {
 LAB_180199f9a:
-              CharacterStatusBuffer = (void *)FUN_1800c2ab0(&pppppSystemPointerValue170,aStackProcessingUnsignedValue60);
+              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppSystemPointerValue170,aStackProcessingUnsignedValue60);
               ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
             }
             else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
@@ -240937,7 +240937,7 @@ LAB_18019a0bb:
             }
             if (ppppppSystemCharacterStatusBuffer == &pppppSystemPointerValue170) {
 LAB_18019a10a:
-              CharacterStatusBuffer = (void *)FUN_1800c2ab0(&pppppSystemPointerValue170,aBufferOffset);
+              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppSystemPointerValue170,aBufferOffset);
               ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
             }
             else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
