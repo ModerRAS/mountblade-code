@@ -119917,7 +119917,7 @@ void ProcessDataArrayEF0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090ff00
  * @note 这是一个异常数据表设置函数，用于设置异常处理数据
  */
-void SetExceptionDataTableF00(DataBuffer operationBase,int64_t dataBuffer)
+void SetExceptionDataTableVariant3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataTablePointer;
@@ -119940,7 +119940,7 @@ void SetExceptionDataTableF00(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090ff10
  * @note 这是一个系统操作处理函数，用于处理数据上下文中的系统操作（F10变体）
  */
-void ProcessSystemOperationsF10(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessSystemOperationDataBlocks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t systemExceptionHandlerContext;
