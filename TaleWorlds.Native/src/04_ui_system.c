@@ -133155,8 +133155,8 @@ FUN_18073eddb:
 
  
 
- void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
+ #define ProcessUIContextWithDataSource FUN_18073eccd          // 处理带数据源的UI上下文
+void ProcessUIContextWithDataSource(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,longlong *param_6)
 
 {
