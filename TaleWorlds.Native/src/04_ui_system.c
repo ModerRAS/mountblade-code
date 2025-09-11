@@ -240,6 +240,32 @@ typedef enum {
 #define UNK_180873e6c UIEventResourceTable         // UI事件资源表
 #define UNK_180873e4c UILayoutComponentTable       // UI布局组件表
 
+// UI系统缓冲区和数据表定义
+#define UNK_180741cf0 UIContextBufferTable          // UI上下文缓冲区表
+#define UNK_180770640 UIResourceBufferTable         // UI资源缓冲区表
+#define UNK_180785d90 UITextureBufferTable          // UI纹理缓冲区表
+#define UNK_1807872a0 UIAnimationBufferTable        // UI动画缓冲区表
+#define UNK_1807880a0 UIEventBufferTable            // UI事件缓冲区表
+#define UNK_18079ce70 UIComponentBufferTable        // UI组件缓冲区表
+#define UNK_18079cf70 UILayoutBufferTable           // UI布局缓冲区表
+#define UNK_180801c70 UIRenderBufferControlTable    // UI渲染缓冲区控制表
+#define UNK_180801ca0 UIDataBufferControlTable      // UI数据缓冲区控制表
+#define UNK_180807714 UIMemoryBufferTable           // UI内存缓冲区表
+#define UNK_18080b190 UIStateBufferTable            // UI状态缓冲区表
+#define UNK_180839720 UIProcessingBufferTable       // UI处理缓冲区表
+#define UNK_180839d30 UITaskBufferTable             // UI任务缓冲区表
+#define UNK_18083c4f0 UIContextDataTableEx          // UI上下文数据表扩展
+#define UNK_1808633a0 UIRenderDataTable             // UI渲染数据表
+#define UNK_180863400 UIRenderDataControlTable      // UI渲染数据控制表
+
+// UI系统资源句柄定义
+#define UNK_180957790 UIResourceHandle790           // UI资源句柄790
+#define UNK_1809577d0 UIResourceHandle7D0           // UI资源句柄7D0
+#define UNK_180957830 UIResourceHandle830           // UI资源句柄830
+#define UNK_180957858 UIResourceHandle858           // UI资源句柄858
+#define UNK_1809578b0 UIResourceHandle8B0           // UI资源句柄8B0
+#define UNK_1809578f0 UIResourceHandle8F0           // UI资源句柄8F0
+
 // UI系统函数语义化定义
 #define FUN_18073bcf0 ProcessUIContextWithDataSource
 #define FUN_18073bdc0 ProcessUIContextWithDataSourceB
