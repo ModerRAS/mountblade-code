@@ -217601,8 +217601,7 @@ void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64
 
 
 
-// 函数: void FUN_18017b480(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer)
-/**
+// 函数: /**
  * @brief 处理系统数据验证和字符编码
  * 
  * 该函数负责处理系统数据验证和字符编码操作。
