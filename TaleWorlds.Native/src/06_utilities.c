@@ -29956,10 +29956,10 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               EventOffsetStack = 0;
               EventFlagStack = EventFlagStack & ByteMask;
               ProcessDataSetFlagA0(&EventPointerStack,*(DataBuffer *)(operationBase + ValidationDataOffset58));
-              StackSystemPointer = &SystemValidationDataTableA6;
-              StackSystemData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
-              StackSystemOffset = 0;
-              ProcessSystemEventA0(&StackSystemPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
+              SystemPointerStack = &SystemValidationDataTableA6;
+              SystemDataStack = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
+              SystemOffsetStack = 0;
+              ProcessSystemEventA0(&SystemPointerStack,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionContextPointer = systemContextPointer;
             }
           }
@@ -29967,11 +29967,11 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),validationBuffer2);
             exceptionContextPointer = systemContextPointer;
             if (arrayIndex == 0) {
-              StackSecurityPointer = &SystemValidationDataTableA7;
-              StackSecurityData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
-              StackSecurityOffset = 0;
-              StackSecurityFlag = FloatOneValue;
-              ValidateSystemA0(&StackSecurityPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
+              SecurityPointerStack = &SystemValidationDataTableA7;
+              SecurityDataStack = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
+              SecurityOffsetStack = 0;
+              SecurityFlagStack = FloatOneValue;
+              ValidateSystemA0(&SecurityPointerStack,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionContextPointer = systemContextPointer;
             }
           }

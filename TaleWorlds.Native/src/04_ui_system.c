@@ -135835,7 +135835,7 @@ void FUN_1807418b0(UIHandle uiContext,UIDword dataSource)
   operationResult = FUN_180766520(uiContext,&stackUInt130,&stackLong138);
   if (operationResult == 0) {
     pstackUInt148 = (UIByte *)((ulonglong)pstackUInt148 & 0xffffffffffffff00);
-    operationResult = FUN_180765c40(stackUInt130,dataSource,0x40,1);
+    operationResult = ConfigureUIComponent(stackUInt130,dataSource,0x40,1);
     if (operationResult == 0) goto LAB_180741958;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -153416,7 +153416,7 @@ void FUN_180753880(longlong *uiContext,char dataSource)
     if (0 < aiStackX_10[0]) {
       do {
         sourceDataInt = (int)iterationCount;
-        FUN_18075ef40(bufferValidation,iterationCount,&stackLong48,&eventDataBuffer,0,1);
+        ProcessUIEventData(bufferValidation,iterationCount,&stackLong48,&eventDataBuffer,0,1);
         func_0x000180763610(puStackX_20,&stackUInt40);
         if (stackUInt40 == ((longlong)*(short *)((longlong)uiContext + 0x1fc) | 0xfeed0000U)) {
           FUN_18075dbf0(stackLong48,bufferValidation,puStackX_20,4);
@@ -409850,6 +409850,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统事件数据处理函数
 // 原始函数名: FUN_18075ef40
 #define ProcessUIEventData FUN_18075ef40
+
+// UI系统组件配置函数
+// 原始函数名: FUN_180765c40
+#define ConfigureUIComponent FUN_180765c40
 
 
 
