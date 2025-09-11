@@ -251773,27 +251773,27 @@ void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long 
   uint64_t CalculatedCodePoint;
   uint64_t OperationResult;
   uint64_t SystemChecksum;
-  bool BooleanValidationStatus8;
-  long long systemLoopCounter;
+  bool IsValidationComplete;
+  long long SystemLoopCounter;
   long long EncodingConversionResult;
-  unsigned long long ProcessedCharacter;
+  unsigned long long ProcessedCharacterCount;
   long long SystemContextValue;
-  long long OperationResult13;
-  long long LoopIndex;
-  int iStack_10;
-  int iStack_c;
+  long long SecondaryOperationResult;
+  long long MainLoopIndex;
+  int StackVariable10;
+  int StackVariable12;
   
-  ProcessedCharacter = OperationBufferSize - ContextHandle >> 4;
-  LoopIndex = OperationBufferSize - ContextHandle >> SystemEventContextShiftCount;
-  if (0 < LoopIndex) {
-    SystemDataTablePointer = (long long)(ProcessedCharacter - 1) >> 1;
-    SystemContextValue = LoopIndex * 0x10 + ContextHandle;
+  ProcessedCharacterCount = OperationBufferSize - ContextHandle >> 4;
+  MainLoopIndex = OperationBufferSize - ContextHandle >> SystemEventContextShiftCount;
+  if (0 < MainLoopIndex) {
+    SystemDataTablePointer = (long long)(ProcessedCharacterCount - 1) >> 1;
+    SystemContextValue = MainLoopIndex * 0x10 + ContextHandle;
     do {
       CalculatedCodePoint = *(void *)(SystemContextValue + -0x10);
       OperationResult = *(void *)(SystemContextValue + -8);
-      LoopIndex = LoopIndex + -1;
+      MainLoopIndex = MainLoopIndex + -1;
       SystemContextValue = SystemContextValue + -0x10;
-      EncodingConversionResult = LoopIndex;
+      EncodingConversionResult = MainLoopIndex;
       while (EncodingConversionResult < SystemDataTablePointer) {
         EncodingValidationResult = *(int *)(ContextHandle + 0x28 + EncodingConversionResult * 0x20);
         InputDataLength = *(int *)(ContextHandle + 0x18 + EncodingConversionResult * 0x20);
