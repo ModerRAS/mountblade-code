@@ -2547,6 +2547,39 @@ typedef enum {
 #define AudioChunkCount UIAudioChunkCount
 #define AudioDataRemaining UIAudioDataRemaining
 #define AudioDataPointer UIAudioDataPointer
+
+// UI系统事件处理变量名美化
+#define Var4 UIEventCodeTypeTemp
+#define Var7 UIMaxProcessingCountTemp
+#define Var10 UIEventStatusTemp
+#define Var13 UIBufferValueTemp
+#define Var5 UIProcessingStatusTemp
+#define Var8 UIIterationCounterTemp
+#define Var9 UIEventProcessingCounterTemp
+#define Var20 UIComponentIndexTemp
+#define Var22 UIEventProcessingCounterTemp2
+#define Var77 UIEventDataCombined
+#define Var111 UITotalResultTemp
+#define Var115 UIResultTemp
+#define Var119 UIContextValueTemp
+#define Var122 UIEventDataPointer
+#define Var124 UIResultBufferTemp
+#define Var131 UIContextValueTemp2
+#define Var135 UIContextValueTemp3
+#define Var139 UIContextValueTemp4
+#define Var142 UIDataPointerTemp
+#define Var146 UIDataPointerTemp2
+#define Var150 UIDataPointerTemp3
+#define Var22 UIIterationCountTemp
+#define Var24 UILoopCounterTemp
+#define Var29 UIIterationCountTemp2
+#define Var34 UIEventCodeTypeTemp2
+#define Var39 UIEventCodeTypeTemp3
+#define Var44 UIProcessingStatusTemp2
+#define Var49 UIProcessingStatusTemp3
+#define Var52 UILoopCounterTemp2
+
+// UI系统音频处理变量名美化（续）
 #define AudioDataCounter UIAudioDataCounter
 #define AudioProcessingMode UIAudioProcessingMode
 #define AudioSampleBuffer UIAudioSampleBuffer

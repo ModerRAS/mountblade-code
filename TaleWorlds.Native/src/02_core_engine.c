@@ -247,6 +247,8 @@
 #define FUN_18018e0f0 HandleSystemStringEncoding                        // 处理系统字符串编码
 #define FUN_18018f6a0 ProcessSystemContextOperation                      // 处理系统上下文操作
 #define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
+#define FUN_18018bd0d ProcessSystemHandleValidation                      // 处理系统句柄验证
+#define FUN_18018bd5f ResetSystemHandleState                            // 重置系统句柄状态
 #define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
 #define FUN_180190780 ReleaseSystemHandle                               // 释放系统句柄
