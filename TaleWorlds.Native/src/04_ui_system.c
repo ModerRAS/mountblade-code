@@ -217,6 +217,11 @@ typedef enum {
 #define FUN_18073bcf0 ProcessUIContextWithDataSource
 #define FUN_18073bdc0 ProcessUIContextWithDataSourceB
 #define FUN_18073be90 ProcessUIContextWithDataSourceC
+#define FUN_18073d2c3 ProcessUIBufferDataWithTextureFill
+#define FUN_18073d372 ProcessUIRenderTaskWithMemoryCheck
+#define FUN_18073d39c ProcessUIRenderTaskWithResourceRelease
+#define FUN_18073d3c0 ProcessUIContextDataWithEncryption
+#define FUN_18073d3dd ProcessUIContextDataWithEncryptionB
 #define FUN_18073bf60 ProcessUIContextCleanup
 #define FUN_18073c020 ProcessUIContextBufferOperation
 #define FUN_18073c03d ProcessUIContextBufferOperationB
