@@ -247178,7 +247178,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
         FramePointer[0x4d] = MatrixTransformMultiplier12;
         FramePointer[0x4e] = MatrixTransformMultiplier13;
         FramePointer[0x4f] = FilterInputValue2;
-        pContextPrimaryFloat9 = (float *)FUN_1801c0fb0(FramePointer + 0x4c,FramePointer + 0x7c,FramePointer + -0x1c);
+        pContextPrimaryFloat9 = (float *)ConvertSystemCharacterData(FramePointer + 0x4c,FramePointer + 0x7c,FramePointer + -0x1c);
         CharacterTablePointer = FunctionReturnValue;
         FilterInputValue5 = FramePointer[0x22];
         FilterInputValue0 = FramePointer[0x20];
@@ -247371,7 +247371,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     *(uint32_t *)(SystemAllocatedMemorySize + 0x60) = 1;
     if ((*(int *)(SystemUtf8SourcePointer + 2) != 0) && (*SystemUtf8SourcePointer[1] == '#')) {
       *(uint8_t *)(SystemAllocatedMemorySize + 0xd9) = 1;
-      FUN_1806289a0(SystemUtf8SourcePointer);
+      InitializeSystemMemoryBuffer(SystemUtf8SourcePointer);
     }
     CoreEngineInitializeSystemEvent(SystemAllocatedMemorySize,SystemUtf8SourcePointer);
     goto LAB_180202111;
