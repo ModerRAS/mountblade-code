@@ -128126,8 +128126,25 @@ LAB_18073bf28:
 
  
 
- void FUN_18073bf60(UIHandle uiContext)
-void FUN_18073bf60(UIHandle uiContext)
+ /**
+ * @brief 执行UI上下文初始化和数据准备操作
+ * 
+ * 该函数负责处理UI上下文初始化和数据准备，包括：
+ * 1. 初始化UI上下文和相关参数
+ * 2. 执行数据验证和控制操作
+ * 3. 处理高级数据和管理操作
+ * 4. 根据需要释放内存资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI上下文
+ * 
+ * @return void 无返回值，通过内部状态码表示操作结果
+ * 
+ * @note 原始函数名：FUN_18073bf60
+ * @note 该函数是UI上下文初始化和数据准备的重要组成部分
+ * @see ProcessUIContextWithCleanup, ProcessUIDataAndCompare, ExecuteUIContextDataOperation
+ */
+#define InitializeUIContextAndPrepareData FUN_18073bf60
+void InitializeUIContextAndPrepareData(UIHandle uiContext)
 
 {
   int operationResult;
