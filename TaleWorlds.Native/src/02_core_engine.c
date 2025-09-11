@@ -3816,6 +3816,14 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ExecuteSystemCleanupOperation FUN_180204a00                    // 执行系统清理操作
 #define ProcessSystemContextTransfer FUN_180207840                     // 处理系统上下文传输
 #define ProcessSystemConfiguration FUN_18004bf50                        // 处理系统配置
+#define GetMemoryPoolIndex FUN_180206330                               // 获取内存池索引
+#define ValidateMemoryPoolIndex FUN_180225e50                         // 验证内存池索引
+#define CalculateUnicodeCodePoint FUN_1802063e0                        // 计算Unicode码点
+#define ProcessCoreEngineSystemState FUN_180081480                     // 处理核心引擎系统状态
+#define ExecuteSystemFloatTableOperation FUN_180204e40                 // 执行系统浮点表操作
+#define GetSystemFunctionPointer FUN_180207bb0                         // 获取系统函数指针
+#define GetSystemSecondaryFunctionPointer FUN_180207a20                 // 获取系统辅助函数指针
+#define ValidateSystemIntegerValue FUN_180207d70                       // 验证系统整数值
 #define ExecuteSystemRenderPipeline FUN_180460970                       // 执行系统渲染管线
 #define InitializeSystemRenderState FUN_18045ff20                      // 初始化系统渲染状态
 #define ProcessSystemMemoryAllocation FUN_180303b70                    // 处理系统内存分配
@@ -3824,6 +3832,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ExecuteSystemDataProcessing FUN_1802ea790                      // 执行系统数据处理
 #define InitializeSystemGraphicsState FUN_1802ee720                    // 初始化系统图形状态
 #define ProcessSystemRenderInitialization FUN_18037c8d0                // 处理系统渲染初始化
+#define InitializeSystemContextPointer FUN_180209470                   // 初始化系统上下文指针
+#define ProcessSystemContextData FUN_180209720                        // 处理系统上下文数据
+#define ExecuteSystemMatrixTransform FUN_180208f20                     // 执行系统矩阵变换
+#define ConvertCharacterEncodingToTable FUN_1801efdb0                  // 转换字符编码到表
+#define ValidateCharacterEncodingConversion FUN_1801ef300              // 验证字符编码转换
+#define ProcessVectorCalculationResult FUN_1801ef620                  // 处理向量计算结果
 #define ExecuteSystemVertexProcessing FUN_180389b20                    // 执行系统顶点处理
 #define HandleSystemPixelShader FUN_180374f40                          // 处理系统像素着色器
 #define ProcessSystemCharacterDataCleanup FUN_1802c6190                 // 处理系统字符数据清理

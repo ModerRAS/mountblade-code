@@ -43150,14 +43150,14 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
   uint operationResult;
   uint64_t validationStatus;
   uint64_t memoryRegionBase;
-  ByteFlag stackSecurityBuffer[4];
-  ByteFlag stackValidationBuffer[12];
-  ByteFlag colorDataBuffer[32];
-  ByteFlag systemProcessingBuffer[32];
+  ByteFlag securityCheckBuffer[4];
+  ByteFlag validationBuffer[12];
+  ByteFlag imageDataBuffer[32];
+  ByteFlag processingBuffer[32];
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,systemProcessingBuffer,1,SecurityValidationTipsProcessingOperation);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,processingBuffer,1,SecurityValidationTipsProcessingOperation);
   if ((((int)validationStatus == 0) &&
-      (validationStatus = ExecuteSecurityValidation(dataBuffer,colorDataBuffer,0,SecurityValidationBufferImageProcessing), (int)validationStatus == 0)) &&
+      (validationStatus = ExecuteSecurityValidation(dataBuffer,imageDataBuffer,0,SecurityValidationBufferImageProcessing), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)validationStatus == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -43181,9 +43181,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
             validationStatus = memoryRegionBase;
             if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
               systemDataBuffer = *dataBuffer;
-              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,stackSecurityBuffer);
+              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,securityCheckBuffer);
               if ((int)validationStatus == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,stackValidationBuffer);
+                validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,validationBuffer);
               }
             }
           }
