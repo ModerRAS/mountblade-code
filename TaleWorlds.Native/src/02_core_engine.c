@@ -80286,7 +80286,7 @@ void InitializeSystemCoreComponents(void
   void *LocalProcessingStatusFlag;
   byte *StringEncodingBuffer;
   int CoreEngineLoopCounter0;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   
   SystemStringIndex = CoreEngineConfigFlag;
   StringProcessingStatus = (void *)(CoreEngineConfigFlag + 0x40);
@@ -80296,12 +80296,12 @@ void InitializeSystemCoreComponents(void
   if (TemporaryBuffer != NULL) {
     do {
       if (SystemValidationFlag == 0) {
-        HighByte = false;
+        HighByteFlag = false;
         CharacterStatusBuffer = (void *)TemporaryBuffer[1];
       }
       else {
         if (*(int *)(TemporaryBuffer + 6) == 0) {
-          HighByte = true;
+          HighByteFlag = true;
         }
         else {
           ValidationBytePointer = DataValidationBuffer;
@@ -80311,7 +80311,7 @@ void InitializeSystemCoreComponents(void
             if (*ValidationBytePointer != CalculatedCodePoint) break;
             ValidationBytePointer = ValidationBytePointer + 1;
           } while (CalculatedCodePoint != 0);
-          HighByte = 0 < InputDataLength;
+          HighByteFlag = 0 < InputDataLength;
           if (InputDataLength < 1) {
             CharacterStatusBuffer = (void *)TemporaryBuffer[1];
             goto LAB_1800960d8;
@@ -80321,7 +80321,7 @@ void InitializeSystemCoreComponents(void
       }
 StringProcessingStatusLabel:
       StringProcessingStatus = TemporaryBuffer;
-      if (HighByte) {
+      if (HighByteFlag) {
         StringProcessingStatus = SecondaryProcessingStatusFlag;
       }
       SecondaryProcessingStatusFlag = StringProcessingStatus;
@@ -80346,8 +80346,8 @@ StringProcessingStatusLabel:
 StringProcessingCompleteLabel:
   LocalProcessingStatusFlag = &SystemNullTemplate;
   if (DataValidationBuffer == (byte *)0x0) {
-    ByteStack28 = (byte *)0x0;
-    uStack_18 = 0;
+    StringEncodingBuffer = (byte *)0x0;
+    EncodingValidationFlags = 0;
     LocalProcessingStatusFlag = &ThreadLocalStorageTemplate;
     if (StringProcessingStatus != StringProcessingStatus) {
       InputDataLength = _Mtx_lock(StringProcessingStatus + 0x2d);
@@ -128999,7 +128999,7 @@ void ProcessSystemDataConcatenation(uint64_t ContextHandle,uint64_t OperationBuf
   uint64_t SystemStackOffset28;
   uint32_t ProcessingCounter;
   uint32_t uStack_1c;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   float fStack_14;
   
   ProcessingCounter = *(uint32_t *)(SystemConfigurationHandle + 0x16c8);
@@ -137354,7 +137354,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t ContextHandle,uint64_t OperationBu
   uint32_t uStack_24;
   uint32_t ProcessingCounter;
   uint32_t uStack_1c;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   
   SystemDataRegistry = SystemConfigurationHandle;
   StackValidationFlag = 3;
@@ -153707,7 +153707,7 @@ void ProcessContextHandleAndContextHandle(int ContextHandle, uint64_t *ContextHa
   uint32_t uStack_24;
   uint32_t ProcessingCounter;
   uint32_t uStack_1c;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   
   SystemDataRegistry = SystemConfigurationHandle;
   CharacterStatusBuffer = (uint32_t *)(SystemConfigurationHandle + 0x16c8 + (long long)ContextHandle * 0x10);
@@ -155577,7 +155577,7 @@ void ProcessUnicodeCharacterEncoding(uint ContextHandle,uint OperationBufferSize
   uint8_t SystemStackFlagArray [32];
   uint64_t SystemStackOffset28;
   uint64_t ProcessingCounter;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   unsigned long long uStack_10;
   
   CharacterTablePointer = SystemConfigurationHandle;
@@ -155636,7 +155636,7 @@ long long InitializeSystemCoreComponents(void
   uint8_t SystemStackFlagArray [32];
   uint64_t SystemStackOffset28;
   uint64_t ProcessingCounter;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   unsigned long long uStack_10;
   
   CharacterTablePointer = SystemConfigurationHandle;
@@ -186334,7 +186334,7 @@ void ProcessContextHandleWithUtf8BufferValidation(long long *ContextHandle,uint6
   int *piStack_30;
   long long SystemEventFlag;
   uint64_t ProcessingCounter;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   
   piStack_30 = (int *)0x0;
   SystemEventFlag = 0;
@@ -241967,7 +241967,7 @@ void OptimizeSystemCharacterData(long long ContextHandle,uint64_t OperationBuffe
   uint32_t uStack_24;
   uint32_t ProcessingCounter;
   uint32_t uStack_1c;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   uint32_t uStack_14;
   
   LockResult = _Mtx_lock(ContextHandle + 0x5b48,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -262036,7 +262036,7 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
   uint64_t UnicodeCodePoint;
   void *LocalProcessingStatusFlag;
   long long SystemEventFlag;
-  uint32_t uStack_18;
+  uint32_t EncodingValidationFlags;
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   BufferStatus = GetCurrentThread();
