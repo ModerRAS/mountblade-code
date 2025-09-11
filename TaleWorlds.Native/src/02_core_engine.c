@@ -46319,7 +46319,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *ContextHandle,uint64_t
   SystemStatusCode = MemoryPoolIndex;
   Utf16Char4 = MemoryPoolIndex;
   do {
-    ArraySize = ProcessingStatusFlag;
+    DataArraySize = ProcessingStatusFlag;
     if (ProcessedCharacter == 0) break;
     SystemChecksum = *(long long *)(ProcessedCharacter + 0x20) - *(long long *)(ProcessedCharacter + 0x28);
     if ((unsigned long long)(*(long long *)(ProcessedCharacter + 0x28) - *(long long *)(ProcessedCharacter + 0x20)) <
@@ -46328,7 +46328,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *ContextHandle,uint64_t
     }
     ValidationResult = SystemStatusCode;
     if ((SystemChecksum != 0) && (Utf16Char4 = Utf16Char4 + 1, ArraySize = ProcessedCharacter, ValidationResult = SystemChecksum, SystemChecksum <= SystemStatusCode)) {
-      ArraySize = ProcessingStatusFlag;
+      DataArraySize = ProcessingStatusFlag;
       ValidationResult = SystemStatusCode;
     }
     ContextHandle = (long long *)(ProcessedCharacter + 8);
@@ -131596,7 +131596,7 @@ void ProcessSystemMemoryAllocationAndConfiguration(uint64_t ContextHandle,uint64
   *(uint32_t *)(MemoryBlockIndex + 0x1a1c) = 0;
   *(float *)(MemoryBlockIndex + 0x1a20) = SystemContextPrimaryFloat2;
   *(float *)(MemoryBlockIndex + 0x1a24) = SystemContextPrimaryFloat3;
-  ArraySize = ProcessingStatusFlag;
+  DataArraySize = ProcessingStatusFlag;
   if (0 < (int)MemoryPoolIndex) {
     do {
       MemoryPoolIndex = (int)ArraySize + 1;
@@ -256057,7 +256057,7 @@ void ProcessContextHandleAndCharacterBufferManagement(long long *SystemContextHa
   BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - MemoryPoolBlockSize),8) +
           (SystemContextHandle[1] - MemoryPoolBlockSize);
   UnicodeCodePoint = ProcessingStatusFlag;
-  ArraySize = ProcessingStatusFlag;
+  DataArraySize = ProcessingStatusFlag;
   if (BufferStatus >> 6 == BufferStatus >> 0x3f) {
     *(uint8_t *)((long long)SystemContextHandle + 0x41) = 1;
     return;
@@ -289775,137 +289775,183 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long ContextHandle,
 
 
 
-uint64_t * FUN_18022b590(uint64_t *ContextHandle
+/**
+ * @brief 初始化系统处理状态标志
+ * 
+ * 初始化系统处理状态标志，设置系统上下文、内存块、数据节点和处理状态。
+ * 该函数负责配置系统的核心状态标志，初始化内存管理结构，并设置处理线程。
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @return 返回初始化后的系统上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_18022b590
+ * @warning 函数包含复杂的内存分配和状态标志初始化逻辑
+ */
+uint64_t * InitializeSystemProcessingStatusFlags(uint64_t *SystemContextPtr
 {
-  long long *ContextHandle;
-  void *SystemContext;
-  long long *MemoryBlockIndex;
-  long long SystemDataRegistry;
-  long long AllocatedMemorySize;
-  long long *MemoryRangeBoundary;
-  void *PreviousNode;
+  uint64_t *SystemContext;
+  uint64_t *ContextData;
+  uint64_t *MemoryBlockIterator;
+  uint64_t DataRegistrySize;
+  uint64_t AllocationCounter;
+  uint64_t *MemoryBoundaryPtr;
+  uint64_t *PreviousContextNode;
   
-  *ContextHandle = &DataNodeTemplateA;
-  *ContextHandle = &DataNodeTemplateB;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  *ContextHandle = &SystemMemoryBlockTemplate;
-  ContextHandle[2] = &ThreadLocalStorageTemplate;
-  ContextHandle[3] = 0;
-  *(uint32_t *)(ContextHandle + 4) = 0;
-  ContextHandle[2] = &SystemConfigurationHandler;
-  ContextHandle[3] = ContextHandle + 5;
-  *(uint32_t *)(ContextHandle + 4) = 0;
-  *(uint8_t *)(ContextHandle + 5) = 0;
-  *(uint8_t *)((long long)ContextHandle + 0xb2) = 0;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  *(uint16_t *)(ContextHandle + 0x16) = 0;
-  ContextHandle[0x15] = 0;
-  *ContextHandle = &SystemStringConfig13cc0;
-  MemoryBlockIndex = ContextHandle + 0x17;
-  SystemDataRegistry = 0x10;
-  ProcessSystemResourceInitialization(MemoryBlockIndex,8,0x10,&CoreEngineSystemBufferAllocator,InitializeSystemMemoryCallback);
-  PrimaryProcessingStatusFlag = ContextHandle + 0x29;
-  ContextHandle = ContextHandle + 0x2c;
-  ProcessSystemResourceInitialization(ContextHandle,0x38,2,FUN_180046480,CoreEngineSetupThreadLocalStorage);
-  StringProcessingStatus = ContextHandle + 0x2b;
-  AllocatedMemorySize = 2;
-  MemoryRangeBoundary = ContextHandle;
+  // 初始化系统数据节点模板
+  *SystemContextPtr = &DataNodeTemplateA;
+  *SystemContextPtr = &DataNodeTemplateB;
+  *(uint32_t *)(SystemContextPtr + 1) = 0;
+  *SystemContextPtr = &SystemMemoryBlockTemplate;
+  SystemContextPtr[2] = &ThreadLocalStorageTemplate;
+  SystemContextPtr[3] = 0;
+  *(uint32_t *)(SystemContextPtr + 4) = 0;
+  SystemContextPtr[2] = &SystemConfigurationHandler;
+  SystemContextPtr[3] = SystemContextPtr + 5;
+  *(uint32_t *)(SystemContextPtr + 4) = 0;
+  *(uint8_t *)(SystemContextPtr + 5) = 0;
+  *(uint8_t *)((uint64_t)SystemContextPtr + 0xb2) = 0;
+  *(uint32_t *)(SystemContextPtr + 1) = 0;
+  *(uint16_t *)(SystemContextPtr + 0x16) = 0;
+  SystemContextPtr[0x15] = 0;
+  *SystemContextPtr = &SystemStringConfig13cc0;
+  
+  // 初始化内存块索引
+  MemoryBlockIterator = SystemContextPtr + 0x17;
+  DataRegistrySize = 0x10;
+  ProcessSystemResourceInitialization(MemoryBlockIterator, 8, 0x10, &CoreEngineSystemBufferAllocator, InitializeSystemMemoryCallback);
+  
+  // 设置主处理状态标志
+  PrimaryProcessingStatusFlag = SystemContextPtr + 0x29;
+  SystemContextPtr = SystemContextPtr + 0x2c;
+  ProcessSystemResourceInitialization(SystemContextPtr, 0x38, 2, FUN_180046480, CoreEngineSetupThreadLocalStorage);
+  
+  // 初始化字符串处理状态
+  StringProcessingStatus = SystemContextPtr + 0x2b;
+  AllocationCounter = 2;
+  MemoryBoundaryPtr = SystemContextPtr;
+  
+  // 处理内存分配循环
   do {
     *(uint8_t *)StringProcessingStatus = 0;
     *PrimaryProcessingStatusFlag = 0xffffffffffffffff;
-    (**(code **)(*MemoryRangeBoundary + 0x10))(ContextHandle,&CoreEngineDataTemplate);
-    ContextHandle = ContextHandle + 7;
-    StringProcessingStatus = (void *)((long long)StringProcessingStatus + 1);
+    (**(code **)(*MemoryBoundaryPtr + 0x10))(SystemContextPtr, &CoreEngineDataTemplate);
+    SystemContextPtr = SystemContextPtr + 7;
+    StringProcessingStatus = (void *)((uint64_t)StringProcessingStatus + 1);
     PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 1;
-    MemoryRangeBoundary = MemoryRangeBoundary + 7;
-    AllocatedMemorySize = AllocatedMemorySize + -1;
-  } while (AllocatedMemorySize != 0);
-  ContextHandle[0x3c] = 0;
-  _Mtx_init_in_situ(ContextHandle + 0x3d,2);
-  ContextHandle[0x47] = 0;
-  ContextHandle[0x48] = 0;
-  ContextHandle[0x49] = 0;
-  *(uint32_t *)(ContextHandle + 0x4a) = 3;
-  ContextHandle[0x5a] = &ThreadLocalStorageTemplate;
-  ContextHandle[0x5b] = 0;
-  *(uint32_t *)(ContextHandle + 0x5c) = 0;
-  ContextHandle[0x5a] = &SystemConfigurationHandler;
-  ContextHandle[0x5b] = ContextHandle + 0x5d;
-  *(uint32_t *)(ContextHandle + 0x5c) = 0;
-  *(uint8_t *)(ContextHandle + 0x5d) = 0;
-  ContextHandle[0x6d] = 0;
-  ContextHandle[0x6e] = 0;
-  ContextHandle[0x6f] = 0;
-  *(uint32_t *)(ContextHandle + 0x70) = 0x11;
-  StringProcessingStatus = ContextHandle + 0x7b;
-  ContextHandle = ContextHandle + 0x7c;
-  ProcessSystemResourceInitialization(ContextHandle,8,0x10,&CoreEngineSystemBufferAllocator,InitializeSystemMemoryCallback);
-  AllocatedMemorySize = 5;
+    MemoryBoundaryPtr = MemoryBoundaryPtr + 7;
+    AllocationCounter = AllocationCounter - 1;
+  } while (AllocationCounter != 0);
+  
+  // 初始化系统互斥锁
+  SystemContextPtr[0x3c] = 0;
+  _Mtx_init_in_situ(SystemContextPtr + 0x3d, 2);
+  
+  // 配置系统处理区域
+  SystemContextPtr[0x47] = 0;
+  SystemContextPtr[0x48] = 0;
+  SystemContextPtr[0x49] = 0;
+  *(uint32_t *)(SystemContextPtr + 0x4a) = 3;
+  SystemContextPtr[0x5a] = &ThreadLocalStorageTemplate;
+  SystemContextPtr[0x5b] = 0;
+  *(uint32_t *)(SystemContextPtr + 0x5c) = 0;
+  SystemContextPtr[0x5a] = &SystemConfigurationHandler;
+  SystemContextPtr[0x5b] = SystemContextPtr + 0x5d;
+  *(uint32_t *)(SystemContextPtr + 0x5c) = 0;
+  *(uint8_t *)(SystemContextPtr + 0x5d) = 0;
+  SystemContextPtr[0x6d] = 0;
+  SystemContextPtr[0x6e] = 0;
+  SystemContextPtr[0x6f] = 0;
+  *(uint32_t *)(SystemContextPtr + 0x70) = 0x11;
+  
+  // 设置字符串处理状态
+  StringProcessingStatus = SystemContextPtr + 0x7b;
+  SystemContextPtr = SystemContextPtr + 0x7c;
+  ProcessSystemResourceInitialization(SystemContextPtr, 8, 0x10, &CoreEngineSystemBufferAllocator, InitializeSystemMemoryCallback);
+  
+  // 清理资源处理循环
+  AllocationCounter = 5;
   do {
-    MemoryRangeBoundary = (long long *)*ContextHandle;
-    *ContextHandle = 0;
-    if (MemoryRangeBoundary != (long long *)0x0) {
-      (**(code **)(*MemoryRangeBoundary + 0x38))();
+    MemoryBoundaryPtr = (uint64_t *)*SystemContextPtr;
+    *SystemContextPtr = 0;
+    if (MemoryBoundaryPtr != (uint64_t *)0x0) {
+      (**(code **)(*MemoryBoundaryPtr + 0x38))();
     }
-    ContextHandle = ContextHandle + 1;
-    AllocatedMemorySize = AllocatedMemorySize + -1;
-  } while (AllocatedMemorySize != 0);
+    SystemContextPtr = SystemContextPtr + 1;
+    AllocationCounter = AllocationCounter - 1;
+  } while (AllocationCounter != 0);
+  
+  // 重置字符串处理状态
   *(uint8_t *)StringProcessingStatus = 0;
   FUN_18040f650(StringProcessingStatus);
-  ContextHandle[0x79] = 0;
-  ContextHandle[0x7a] = 0;
+  SystemContextPtr[0x79] = 0;
+  SystemContextPtr[0x7a] = 0;
   FUN_18040f650(StringProcessingStatus);
-  ContextHandle[0x3a] = 0xffffffffffffffff;
-  *(uint8_t *)(ContextHandle + 0x3b) = 0;
-  *(uint32_t *)(ContextHandle + 0x27) = 0;
+  
+  // 设置系统状态标志
+  SystemContextPtr[0x3a] = 0xffffffffffffffff;
+  *(uint8_t *)(SystemContextPtr + 0x3b) = 0;
+  *(uint32_t *)(SystemContextPtr + 0x27) = 0;
+  
+  // 内存块清理循环
   do {
-    ContextHandle = (long long *)*MemoryBlockIndex;
+    SystemContextPtr = (uint64_t *)*MemoryBlockIterator;
     *MemoryBlockHandle = 0;
-    if (ContextHandle != (long long *)0x0) {
-      (**(code **)(*ContextHandle + 0x38))();
+    if (SystemContextPtr != (uint64_t *)0x0) {
+      (**(code **)(*SystemContextPtr + 0x38))();
     }
-    MemoryBlockIndex = MemoryBlockIndex + 1;
-    SystemDataRegistry = SystemDataRegistry + -1;
-  } while (SystemDataRegistry != 0);
-  ContextHandle = (long long *)ContextHandle[0x3c];
-  ContextHandle[0x3c] = 0;
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x38))();
+    MemoryBlockIterator = MemoryBlockIterator + 1;
+    DataRegistrySize = DataRegistrySize - 1;
+  } while (DataRegistrySize != 0);
+  
+  // 处理系统上下文清理
+  SystemContextPtr = (uint64_t *)SystemContextPtr[0x3c];
+  SystemContextPtr[0x3c] = 0;
+  if (SystemContextPtr != (uint64_t *)0x0) {
+    (**(code **)(*SystemContextPtr + 0x38))();
   }
-  ContextHandle[0x72] = 0;
-  ContextHandle[0x73] = 0;
-  ContextHandle[0x74] = 0;
-  ContextHandle[0x75] = 0;
-  ContextHandle[0x76] = 0;
-  ContextHandle[0x77] = 0;
-  *(uint8_t *)((long long)ContextHandle + 0x1d9) = 0;
-  ContextHandle[0x28] = 0;
-  InitializeCharacterTransformationData(ContextHandle + 0x6d);
-  *(uint32_t *)((long long)ContextHandle + 0x25c) = 0x3f800000;
-  *(uint32_t *)(ContextHandle + 0x4c) = 0x3f266666;
-  *(uint32_t *)((long long)ContextHandle + 0x264) = 0x3f800000;
-  ContextHandle[0x4d] = 0x3f800000;
-  *(uint32_t *)(ContextHandle + 0x50) = 0x3f800000;
-  *(uint32_t *)(ContextHandle + 0x4f) = 0;
-  *(uint32_t *)((long long)ContextHandle + 0x27c) = 0x3f000000;
-  *(uint32_t *)((long long)ContextHandle + 0x284) = 0x3f800000;
-  *(uint32_t *)(ContextHandle + 0x4b) = 0;
-  *(uint32_t *)(ContextHandle + 0x4e) = 0x3f800000;
-  *(uint32_t *)((long long)ContextHandle + 0x274) = 0x3f800000;
-  *(uint8_t *)((long long)ContextHandle + 0x13c) = 0;
-  ContextHandle[0x51] = 0;
-  ContextHandle[0x52] = 0;
-  ContextHandle[0x53] = 0;
-  ContextHandle[0x54] = 0;
-  ContextHandle[0x55] = 0x3f8000003f800000;
-  ContextHandle[0x56] = 0x3f8000003f800000;
-  ContextHandle[0x57] = 0x3f8000003f800000;
-  ContextHandle[0x58] = 0x3f8000003f800000;
-  *(uint32_t *)(ContextHandle + 0x59) = 0;
-  *(uint32_t *)(ContextHandle + 0x71) = 0;
-  *(uint8_t *)((long long)ContextHandle + 0x38c) = 9;
-  *(uint16_t *)(ContextHandle + 0x78) = 0xffff;
-  return ContextHandle;
+  
+  // 清理系统状态区域
+  SystemContextPtr[0x72] = 0;
+  SystemContextPtr[0x73] = 0;
+  SystemContextPtr[0x74] = 0;
+  SystemContextPtr[0x75] = 0;
+  SystemContextPtr[0x76] = 0;
+  SystemContextPtr[0x77] = 0;
+  *(uint8_t *)((uint64_t)SystemContextPtr + 0x1d9) = 0;
+  SystemContextPtr[0x28] = 0;
+  
+  // 初始化字符转换数据
+  InitializeCharacterTransformationData(SystemContextPtr + 0x6d);
+  
+  // 设置浮点常量值
+  *(uint32_t *)((uint64_t)SystemContextPtr + 0x25c) = 0x3f800000;
+  *(uint32_t *)(SystemContextPtr + 0x4c) = 0x3f266666;
+  *(uint32_t *)((uint64_t)SystemContextPtr + 0x264) = 0x3f800000;
+  SystemContextPtr[0x4d] = 0x3f800000;
+  *(uint32_t *)(SystemContextPtr + 0x50) = 0x3f800000;
+  *(uint32_t *)(SystemContextPtr + 0x4f) = 0;
+  *(uint32_t *)((uint64_t)SystemContextPtr + 0x27c) = 0x3f000000;
+  *(uint32_t *)((uint64_t)SystemContextPtr + 0x284) = 0x3f800000;
+  *(uint32_t *)(SystemContextPtr + 0x4b) = 0;
+  *(uint32_t *)(SystemContextPtr + 0x4e) = 0x3f800000;
+  *(uint32_t *)((uint64_t)SystemContextPtr + 0x274) = 0x3f800000;
+  *(uint8_t *)((uint64_t)SystemContextPtr + 0x13c) = 0;
+  
+  // 清理处理状态区域
+  SystemContextPtr[0x51] = 0;
+  SystemContextPtr[0x52] = 0;
+  SystemContextPtr[0x53] = 0;
+  SystemContextPtr[0x54] = 0;
+  SystemContextPtr[0x55] = 0x3f8000003f800000;
+  SystemContextPtr[0x56] = 0x3f8000003f800000;
+  SystemContextPtr[0x57] = 0x3f8000003f800000;
+  SystemContextPtr[0x58] = 0x3f8000003f800000;
+  *(uint32_t *)(SystemContextPtr + 0x59) = 0;
+  *(uint32_t *)(SystemContextPtr + 0x71) = 0;
+  *(uint8_t *)((uint64_t)SystemContextPtr + 0x38c) = 9;
+  *(uint16_t *)(SystemContextPtr + 0x78) = 0xffff;
+  
+  return SystemContextPtr;
 }
 
 
