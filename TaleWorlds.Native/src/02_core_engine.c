@@ -234092,7 +234092,24 @@ LAB_180190f00:
 
 
 
-void FUN_180190fa0(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
+// 函数: void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
+/**
+ * @brief 处理系统数据排序和插入操作
+ * 
+ * 该函数负责处理系统数据的排序和插入操作，主要功能包括：
+ * - 对上下文句柄中的数据进行排序处理
+ * - 插入新的数据项到适当的位置
+ * - 维护数据的有序性和完整性
+ * - 处理UTF-16字符的编码转换
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180190fa0
+ */
+#define ProcessSystemDataSortingAndInsertion FUN_180190fa0
+void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -239194,7 +239211,7 @@ LAB_1801974aa:
           (**(code **)(*MemoryBlockIndex + 0x1b8))(MemoryBlockIndex,Utf16Char,BufferStatus + 0x70);
           SystemContextValidationFlag = (**(code **)(*MemoryBlockIndex + 0x138))(MemoryBlockIndex);
           if (SystemContextValidationFlag != '\0') {
-            FUN_1801985e0(*(void *)(BufferStatus + 0x20),MemoryBlockIndex,0,BufferStatus,0);
+            ProcessSystemMemoryValidation(*(void *)(BufferStatus + 0x20),MemoryBlockIndex,0,BufferStatus,0);
           }
           MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
         } while (MemoryPoolBlockSize < ValidationResult);
@@ -239288,7 +239305,7 @@ LAB_1801974aa:
           (**(code **)(*MemoryBlockIndex + 0x1b8))(MemoryBlockIndex,Utf16Char,BufferStatus + 0x70);
           SystemContextValidationFlag = (**(code **)(*MemoryBlockIndex + 0x138))(MemoryBlockIndex);
           if (SystemContextValidationFlag != '\0') {
-            FUN_1801985e0(*(void *)(BufferStatus + 0x20),MemoryBlockIndex,0,BufferStatus,0);
+            ProcessSystemMemoryValidation(*(void *)(BufferStatus + 0x20),MemoryBlockIndex,0,BufferStatus,0);
           }
           MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
         } while (MemoryPoolBlockSize < ValidationResult);
