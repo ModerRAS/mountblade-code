@@ -71997,13 +71997,14 @@ void CleanupExceptionAtOffset160(DataBuffer operationBase,int64_t dataBuffer)
  * 对每个回调函数传入相应的参数并执行。如果资源指针为空，
  * 则直接返回，否则在执行完所有回调后终止系统。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针，包含异常上下文和回调函数信息
- * @param operationFlagA 操作标志A，传递给回调函数的参数
- * @param operationFlagB 操作标志B，传递给回调函数的参数
+ * @param systemContext 系统上下文数据缓冲区，包含系统运行状态信息
+ * @param exceptionContext 异常上下文数据缓冲区，包含异常处理相关的回调函数信息
+ * @param cleanupParameterA 清理参数A，传递给回调函数的参数，用于指定清理操作的类型
+ * @param cleanupParameterB 清理参数B，传递给回调函数的参数，用于指定清理操作的选项
  * 
  * @note 原始函数名：Unwind_1809063f0
  * @note 这是一个异常展开（unwind）处理函数，用于执行回调函数链
+ * @warning 该函数可能会导致系统终止，调用时需要确保系统状态的一致性
  */
 void ExecuteExceptionCallbackChain(SystemContext systemContext, ExceptionContext exceptionContext, CleanupParameter cleanupParameterA, CleanupParameter cleanupParameterB)
 
