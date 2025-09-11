@@ -103760,7 +103760,7 @@ uint8_t ProcessDataStructureWithParameters(uint32_t ContextHandle,float *Context
   float fStackX_14;
   float fStackX_18;
   float fStackX_1c;
-  unsigned long long StackParameterUnsigned20;
+  unsigned long long SystemStackParameter;
   uint64_t ErrorCode;
   float fStack_e0;
   float fStack_dc;
@@ -132177,7 +132177,7 @@ LAB_180125a82:
   uint64_t *pSystemRegisterFlag;
   void *TemporaryStackPointer;
   uint64_t **ppProcessingConfigurationFlag;
-  uint64_t *pStackParameterUnsigned20;
+  uint64_t *pSystemStackParameter;
   void *CoreEnginePointerBuffer78;
   unsigned long long StackProcessingDataSize;
   code *SystemFunctionPointer68;
@@ -168779,7 +168779,7 @@ void CoreEngineInitializeNetworkSystem(void
   uint8_t SystemRegisterFlagBuffer [8];
   void *TemporaryStackPointer;
   uint8_t *pProcessingConfigurationFlag;
-  uint64_t *pStackParameterUnsigned20;
+  uint64_t *pSystemStackParameter;
   uint64_t Utf16Char4;
   
   Utf16Char4 = 0xfffffffffffffffe;
@@ -168951,7 +168951,7 @@ void ProcessCharacterEncodingEx(long long ContextHandle, uint32_t *ContextHandle
   uint32_t *StringProcessingStatus;
   uint8_t StackBufferX10 [8];
   long long lStackX_18;
-  uint8_t *pStackParameterUnsigned20;
+  uint8_t *pSystemStackParameter;
   
   BufferStatus = *(long long *)(OperationBufferSize + 2);
   if ((BufferStatus == 0) || ((*(byte *)(OperationBufferSize + 0x28) & 0x20) != 0)) {
@@ -171530,7 +171530,7 @@ void ProcessUtf8BufferFinalization(int *ContextHandle,long long OperationBufferS
   float SecondaryScalingFactor;
   long long lStackX_10;
   uint64_t ReservedStackSpace;
-  uint8_t StackParameterUnsigned20;
+  uint8_t SystemStackParameter;
   uint64_t SystemStatusParameter;
   uint64_t UnicodeCodePoint3;
   int iStack_138;
@@ -205028,7 +205028,7 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
   long long *ContextHandle3;                          // 字符代码3
   unsigned long long Utf16Char4;                      // UTF16字符4
   long long *SystemContextRegister;                  // 系统上下文寄存器
-  uint StackParameterUnsigned20;                                    // 栈变量X_20
+  uint SystemStackParameter;                                    // 栈变量X_20
   void *ThreadLocalStorageBuffer;                    // 线程本地存储缓冲区
   uint8_t *CoreEnginePointerBuffer;               // 核心引擎指针缓冲区110
   uint ProcessingCounter;                             // 处理计数器
@@ -205656,7 +205656,7 @@ void ConfigureSystemCharacterStatusBuffer(long long ContextHandle)
   uint64_t *pSystemRegisterFlag;
   long long *SystemRegisterPointerX10;
   unsigned long long ProcessingConfigurationFlag;
-  uint64_t *pStackParameterUnsigned20;
+  uint64_t *pSystemStackParameter;
   void *pProcessingCounter;
   char *pcStack_100;
   uint SystemProcessFlagB;
@@ -211541,7 +211541,7 @@ uint8_t ProcessSystemResourceAllocationAndMemoryBoundaryManagement(long long Con
   long long *MemoryRangeBoundary;
   uint64_t SystemRegisterFlag;
   long long *SystemContextRegister;
-  unsigned long long StackParameterUnsigned20;
+  unsigned long long SystemStackParameter;
   uint64_t SystemChecksum;
   
   SystemChecksum = 0xfffffffffffffffe;
@@ -261563,7 +261563,7 @@ long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,l
   long long SystemDataRegistry;
   void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
-  uint64_t *pStackParameterUnsigned20;
+  uint64_t *pSystemStackParameter;
   
   *ContextHandle = &FinalDataStructureTemplate;
   TemporaryBuffer = ContextHandle + 2;
