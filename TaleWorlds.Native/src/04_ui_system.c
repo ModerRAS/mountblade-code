@@ -121954,7 +121954,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
     }
     else if ((((uiContext != 0) && (targetBuffer == 0)) && (bufferSize == 0)) &&
             ((resultPointer == 0 && (0xff < (int)dataSource)))) {
-      initializationResult = FUN_180742460(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),uiContext,dataSource,4,0);
+      initializationResult = InitializeUIResourceContext(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),uiContext,dataSource,4,0);
       if ((int)initializationResult != 0) {
         return initializationResult;
       }
