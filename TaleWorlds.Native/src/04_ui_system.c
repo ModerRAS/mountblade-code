@@ -131432,15 +131432,28 @@ void ReleaseUIMemoryResourceAndExecuteRenderTask(void)
 
 
 
- void ExecuteUIRenderTaskWithMemoryRelease(void)
+ /**
+ * @brief 执行UI渲染任务并释放内存
+ * 
+ * 该函数负责释放UI内存资源，并在释放完成后执行渲染任务。
+ * 与上一个函数功能类似，但执行顺序和参数处理有所不同。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ExecuteUIRenderTaskWithMemoryRelease
+ * @warning 此函数包含多个子函数调用，确保所有相关资源已正确初始化
+ */
 void ExecuteUIRenderTaskWithMemoryRelease(void)
 
 {
-  ulonglong encryptionKey;
-  
-  ReleaseUIMemoryResource();
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+    // 加密密钥变量
+    ulonglong encryptionKey;
+    
+    // 释放UI内存资源
+    ReleaseUIMemoryResource();
+    
+    // 执行渲染任务
+    ExecuteUIRenderTask(renderContextParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
