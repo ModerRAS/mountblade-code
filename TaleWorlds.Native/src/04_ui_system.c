@@ -654,6 +654,23 @@ typedef enum {
 #define FUN_18083cd7a ProcessUIComponentWithHandlesEx6
 #define FUN_18083cdf0 ProcessUIComponentWithHandlesEx7
 #define FUN_180851e40 ProcessUIComponentWithDataArrayEx
+#define FUN_180854610 ProcessUIComponentWithUlongEx2
+#define FUN_180854af0 ProcessUIComponentWithDataArrayEx2
+#define FUN_180854ce0 ProcessUIComponentWithDataArrayEx3
+#define FUN_180855130 ProcessUIComponentWithUIntEx
+#define FUN_180856570 ProcessUIComponentWithUIntEx2
+#define FUN_180856830 ProcessUIComponentWithUIntEx3
+#define FUN_18085acd0 ProcessUIComponentWithUIntEx4
+#define FUN_18085b050 ProcessUIComponentWithUIntEx5
+#define FUN_18085bc30 ProcessUIComponentWithChar
+#define FUN_18085c4b0 ProcessUIComponentWithDwordEx
+#define FUN_18085e8d0 ProcessUIComponentWithByteEx
+#define FUN_18085ed00 ProcessUIComponentWithByteEx2
+#define FUN_18085f5f0 ProcessUIComponentWithHandlesEx8
+#define FUN_18085f630 ProcessUIComponentWithHandlesEx9
+#define FUN_18085f790 ProcessUIComponentWithHandlesEx10
+#define FUN_18085f8d0 ProcessUIComponentWithHandlesEx11
+#define FUN_18085fbb0 ProcessUIComponentWithHandlesEx12
 
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
 #define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
@@ -128944,32 +128961,53 @@ LAB_18073c5c9:
 
 
 
- void FUN_18073c54f(void)
-void FUN_18073c54f(void)
+ /**
+ * @brief UI数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI数据缓冲区的操作：
+ * - 处理UI数据缓冲区的初始化和验证
+ * - 执行数据缓冲区的控制和验证操作
+ * - 处理数据缓冲区的最终化和清理操作
+ * - 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18073c54f
+ * @note 这是一个不返回的函数，执行完成后系统会继续其他操作
+ */
+void ProcessUIDataBufferOperations(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextParameter;
   
-  operationResult = ProcessUIDataBufferWithSize(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataBufferWithSize(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ProcessUIDataBufferWithSize(&UIStackDataBuffer,0x100);
+  dataValidationResult = ProcessUIBufferDataWithControl(&UIStackDataBuffer + operationResult,0x100 - operationResult,&UIBufferControlData);
+  ProcessUIDataBufferWithSize(&UIStackDataBuffer + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,4);
+  ExecuteUIContextDataOperation(contextParameter,4);
 }
 
 
 
 
- void FUN_18073c5c7(void)
-void FUN_18073c5c7(void)
+ /**
+ * @brief UI渲染任务执行函数
+ * 
+ * 该函数负责执行UI渲染任务：
+ * - 执行UI系统的渲染操作
+ * - 使用加密参数进行渲染任务
+ * - 处理渲染任务的初始化和执行
+ * 
+ * @note 原始函数名：FUN_18073c5c7
+ * @note 这是一个不返回的函数，执行完成后系统会继续其他操作
+ */
+void ExecuteUIRenderTaskWithEncryption(void)
 
 {
-  ulonglong stackParam00000140;
+  UIHandle encryptedRenderParameter;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedRenderParameter ^ (ulonglong)&UIStackDataBuffer);
 }
 
 
