@@ -23996,31 +23996,31 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     isVectorComponent1cInfinity = FloatInfinityValidationResult;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset2cInfinity = FloatInfinityValidationResult;
+    isVectorComponent2cInfinity = FloatInfinityValidationResult;
   }
-  if ((isDataOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isDataOffset2cInfinity != 0) {
+  if ((isVectorComponent28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponent2cInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
-  int isDataVector18Infinity = 0;
+  int isVectorZInfinityInitial = 0;
   vectorWRawData = *(uint *)(dataPtr + VectorComponentWOffset);
   vectorYFloatComponent = *(float *)(dataPtr + VectorComponentYFloatOffset);
   // 合并浮点数组件Z到系统上下文缓冲区
   systemContextArray[0] = MergeFloatComponents(systemContextArray[0].HighPart, vectorZComponent);
-  int isDataVector2cInfinity = isDataVector18Infinity;
+  int isVectorZInfinityProcessed = isVectorZInfinityInitial;
   if (((uint)vectorZComponent & FloatInfinityValue) == FloatInfinityValue) {
-    isDataVector2cInfinity = 0x1d;
+    isVectorZInfinityProcessed = 0x1d;
   }
-  int isDataVector1cInfinity = isDataVector18Infinity;
+  int isVectorWInfinity = isVectorZInfinityInitial;
   if ((vectorWRawData & FloatInfinityValue) == FloatInfinityValue) {
-    isDataVector1cInfinity = 0x1d;
+    isVectorWInfinity = 0x1d;
   }
   if (((uint)vectorYFloatComponent & FloatInfinityValue) == FloatInfinityValue) {
-    isDataVector28Infinity = 0x1d;
+    isVectorYInfinity = 0x1d;
   }
   int isVectorZInfinity = 0;
   int isVectorXInfinity = 0;
-  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isDataVector28Infinity == 0) {
+  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isVectorYInfinity == 0) {
     if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
        (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
@@ -28892,12 +28892,12 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   DataWord *systemStackDataPointerInput;
   DataWord *systemResourceDataPointer;
   DataWord *systemValidationDataPointer;
-  DataWord *systemStackDataPointer2;
-  DataWord *systemStackDataPointer3;
-  DataWord *systemStackDataPointer4;
-  DataWord *systemStackDataPointer5;
-  DataWord *systemStackDataPointer6;
-  DataWord *systemStackDataPointer7;
+  DataWord *systemStackDataPointerSecondary;
+  DataWord *systemStackDataPointerTertiary;
+  DataWord *systemStackDataPointerQuaternary;
+  DataWord *systemStackDataPointerQuinary;
+  DataWord *systemStackDataPointerSenary;
+  DataWord *systemStackDataPointerSeptenary;
   DataWord stackDataOffsetPrimary;
   DataWord stackDataOffsetSecondary;
   DataWord stackDataOffsetTertiary;

@@ -122442,7 +122442,7 @@ void ProcessUIDataWithEncryption(UIHandle uiContext, UIHandle dataSource, UIHand
   
   encryptedTaskParameter = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   resourceCleanupFlag = 0;
-  dataOperationResult = FUN_180749e60(uiContext,&contextHandle,&resourceCleanupFlag);
+  dataOperationResult = ProcessUIContextWithCleanup(uiContext,&contextHandle,&resourceCleanupFlag);
   if (dataOperationResult == 0) {
     dataOperationResult = func_0x0001807455d0(contextHandle,dataSource,targetBuffer);
     if (dataOperationResult == 0) goto ExecuteCleanupAndRenderTask;
@@ -122501,7 +122501,7 @@ void ProcessUIContextAndBufferData(UIHandle uiContext, UIHandle dataSource, UIHa
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(registerPointer + -0x28) = eventHandle;
   resourceCleanupFlag = 0;
-  contextOperationResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  contextOperationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (contextOperationResult == 0) {
     contextOperationResult = func_0x0001807455d0(operationHandle,dataSource,targetBuffer);
     if (contextOperationResult == 0) goto ExecuteCleanupAndRenderTask;
@@ -122635,9 +122635,9 @@ void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle data
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
-    processingResult = FUN_180745640(stackUInt140,dataSource,targetBuffer);
+    processingResult = ProcessUIDataWithSourceBuffer(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_180738fbf;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -123219,10 +123219,10 @@ void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIHandle dataSource,U
   ulonglong xorEncryptionResult;
   
   xorEncryptionResult = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
-  processingResult = FUN_180749e60(uiContext,contextHandles,0);
+  processingResult = ProcessUIContextWithCleanup(uiContext,contextHandles,0);
   if (processingResult == 0) {
     dataBufferPointer = (UIByte *)resultPointer;
-    processingResult = FUN_180745870(contextHandles[0],dataSource,targetBuffer,bufferSize);
+    processingResult = ProcessUIDataWithContextHandles(contextHandles[0],dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto ProcessingComplete;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -123267,7 +123267,7 @@ void ProcessUIContextDataTransfer(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180745f70(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_1807393ea;
@@ -123324,7 +123324,7 @@ void ProcessUIAnimationStateAndBufferOperation(UIHandle uiContext,UIDword dataSo
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt198;
   AnimationStateValue = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt160,&AnimationStateValue);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt160,&AnimationStateValue);
   if (processingResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
@@ -124397,7 +124397,7 @@ void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = FUN_1807463d0(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_180739dad;
@@ -124630,7 +124630,7 @@ void ProcessUIDataTransferAndRender(UIHandle uiContext,UIDword dataSource,UIHand
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt1c8;
   stackLong178 = 0;
   stackUInt168 = uiContext;
-  processingResult = FUN_180749e60(uiContext,&stackUInt170,&stackLong178);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt170,&stackLong178);
   if (processingResult == 0) {
     stackUInt190 = param_8;
     stackUInt198 = param_7;
@@ -124677,7 +124677,7 @@ void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   ulonglong stackUInt48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  processingResult = FUN_180749e60(uiContext,astackUInt158,0);
+  processingResult = ProcessUIContextWithCleanup(uiContext,astackUInt158,0);
   if (((processingResult != 0) ||
       (processingResult = func_0x000180746640(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0)) &&
      ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
@@ -124768,7 +124768,7 @@ void ProcessUIContextDataAndThemeRendering(UIHandle uiContext,UIHandle dataSourc
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  processingResult = FUN_180749e60(uiContext,astackUInt128,0);
+  processingResult = ProcessUIContextWithCleanup(uiContext,astackUInt128,0);
   if (((processingResult != 0) || (processingResult = func_0x0001807466b0(astackUInt128[0],dataSource), processingResult != 0)) &&
      ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
@@ -124814,7 +124814,7 @@ void ProcessUIContextDataAndFontRendering(UIHandle uiContext,UIHandle dataSource
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807466e0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073a35a;
@@ -124854,7 +124854,7 @@ void FUN_18073a390(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = FUN_180746780(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073a47d;
@@ -124899,7 +124899,7 @@ void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = FUN_180746780(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073a47d;
@@ -124988,7 +124988,7 @@ void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180746840(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073a55a;
@@ -125028,7 +125028,7 @@ void FUN_18073a590(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
   if (processingResult == 0) {
     processingResult = func_0x000180746880(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto FUN_18073a6c1;
@@ -125078,7 +125078,7 @@ void FUN_18073a5ad(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     processingResult = func_0x000180746880(param_7,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto FUN_18073a6c1;
@@ -125178,7 +125178,7 @@ void FUN_18073a710(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = FUN_1807468d0(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073a7fd;
@@ -125223,7 +125223,7 @@ void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = FUN_1807468d0(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073a7fd;
@@ -125314,7 +125314,7 @@ void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackLong150,&stackLong158);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackLong150,&stackLong158);
   if (processingResult == 0) {
     if (dataSource != (UIDword *)0x0) {
       *dataSource = *(UIDword *)(stackLong150 + 0x6d0);
@@ -125370,7 +125370,7 @@ void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     if (dataSource != (UIDword *)0x0) {
       *dataSource = *(UIDword *)(param_7 + 0x6d0);
@@ -125472,7 +125472,7 @@ void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   
   stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   stackLong138 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt130,&stackLong138);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt130,&stackLong138);
   if (processingResult == 0) {
     processingResult = func_0x00018074a590(stackUInt130,dataSource,targetBuffer);
     if (processingResult == 0) goto LAB_18073aa6e;
@@ -125510,7 +125510,7 @@ void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180746bd0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073ab4a;
@@ -125548,7 +125548,7 @@ void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   ulonglong stackUInt48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  processingResult = FUN_180749e60(uiContext,astackUInt158,0);
+  processingResult = ProcessUIContextWithCleanup(uiContext,astackUInt158,0);
   if (((processingResult != 0) || (processingResult = FUN_180746bf0(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0))
      && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = func_0x00018074b7d0(stackArray148,0x100,dataSource);
@@ -125624,7 +125624,7 @@ void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = FUN_1807478a0(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073adad;
@@ -125669,7 +125669,7 @@ void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = FUN_1807478a0(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073adad;
@@ -125761,7 +125761,7 @@ void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
   if (processingResult == 0) {
     pstackUInt168 = (UIByte *)resultPointer;
     processingResult = FUN_1807479e0(stackUInt150,dataSource,targetBuffer,bufferSize);
@@ -125819,7 +125819,7 @@ void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     processingResult = FUN_1807479e0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
     if (processingResult == 0) goto FUN_18073af6d;
@@ -125928,7 +125928,7 @@ void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
   if (processingResult == 0) {
     pstackUInt168 = (UIByte *)resultPointer;
     processingResult = FUN_180747ad0(stackUInt150,dataSource,targetBuffer,bufferSize);
@@ -125986,7 +125986,7 @@ void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     processingResult = FUN_180747ad0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
     if (processingResult == 0) goto FUN_18073b13d;
@@ -126094,7 +126094,7 @@ void FUN_18073b190(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
   if (processingResult == 0) {
     processingResult = FUN_180748100(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto FUN_18073b2c4;
@@ -126144,7 +126144,7 @@ void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     processingResult = FUN_180748100(param_7,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto FUN_18073b2c4;
@@ -126242,7 +126242,7 @@ void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748290(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b3a8;
@@ -126282,7 +126282,7 @@ void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = FUN_1807483a0(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073b4cf;
@@ -126327,7 +126327,7 @@ void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = FUN_1807483a0(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073b4cf;
@@ -126415,7 +126415,7 @@ void FUN_18073b520(UIHandle uiContext)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     if (RenderContextSize == 0) {
 LAB_18073b573:
@@ -126465,7 +126465,7 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt198;
   AnimationStateValue = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt160,&AnimationStateValue);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt160,&AnimationStateValue);
   if (processingResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
@@ -126531,7 +126531,7 @@ void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   *(UIHandle *)(RegisterPointer + -0x38) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x40) = preservedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (processingResult == 0) {
     processingResult = FUN_1807485c0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001c0);
     if (processingResult == 0) goto FUN_18073b7af;
@@ -126644,7 +126644,7 @@ void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180748b20(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b8a8;
@@ -126682,7 +126682,7 @@ void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748b40(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b97a;
@@ -126722,7 +126722,7 @@ void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = func_0x000180748d40(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073ba9f;
@@ -126767,7 +126767,7 @@ void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = func_0x000180748d40(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073ba9f;
@@ -126858,7 +126858,7 @@ void FUN_18073baf0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (processingResult == 0) {
     processingResult = func_0x000180748d70(stackUInt140,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073bbdd;
@@ -126903,7 +126903,7 @@ void FUN_18073bb0d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
     processingResult = func_0x000180748d70(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_18073bbdd;
@@ -126993,7 +126993,7 @@ void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748dd0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bcb8;
@@ -127031,7 +127031,7 @@ void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748ea0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bd88;
@@ -127069,7 +127069,7 @@ void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180748ee0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073be58;
@@ -127107,7 +127107,7 @@ void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807498f0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bf28;
@@ -127145,7 +127145,7 @@ void FUN_18073bf60(UIHandle uiContext)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  processingResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = ThunkUIBufferOperation(stackUInt120);
     if (processingResult == 0) goto LAB_18073bfe2;
@@ -137318,7 +137318,7 @@ UIHandle FUN_1807455f0(longlong uiContext)
 
 
 
-UIHandle FUN_180745640(longlong uiContext,longlong dataSource,longlong *targetBuffer)
+UIHandle ProcessUIDataWithSourceBuffer(longlong uiContext,longlong dataSource,longlong *targetBuffer)
 
 {
   UIHandle result;
@@ -137443,7 +137443,7 @@ UIHandle FUN_180745760(longlong uiContext,UIHandle dataSource,UIHandle *targetBu
  WARNING: Removing unreachable block (ram,0x000180745e67)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180745870(longlong uiContext,longlong dataSource,uint targetBuffer,uint *bufferSize,
+ulonglong ProcessUIDataWithContextHandles(longlong uiContext,longlong dataSource,uint targetBuffer,uint *bufferSize,
                        UIHandle *resultPointer)
 
 {
@@ -141961,7 +141961,7 @@ void FUN_180749e21(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180749e60(longlong uiContext,longlong *dataSource,longlong *targetBuffer)
+UIHandle ProcessUIContextWithCleanup(longlong uiContext,longlong *dataSource,longlong *targetBuffer)
 
 {
   longlong *uiMemoryPointer;
@@ -366004,7 +366004,7 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   *(longlong *)(*(longlong *)(uiBufferData + 800) + 8) = uiContext;
   if ((bufferValue & 0x10000) != 0) {
     astackLong38[0] = 0;
-    sourceDataInt = FUN_180749e60(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
+    sourceDataInt = ProcessUIContextWithCleanup(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
     if ((sourceDataInt != 0) ||
        (sourceDataInt = FUN_1808e27f0(*(UIHandle *)(astackLong38[0] + 0x12770),uiContext,uiContext + 0xac0),
        sourceDataInt != 0)) goto LAB_18087dbb3;
@@ -366016,12 +366016,12 @@ LAB_18087d6de:
   else {
     *(UIByte *)(_DAT_180be12f0 + 0x158) = 1;
     astackLong38[0] = 0;
-    sourceDataInt = FUN_180749e60(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
+    sourceDataInt = ProcessUIContextWithCleanup(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
     if ((sourceDataInt != 0) || (sourceDataInt = FUN_1807455f0(astackLong38[0]), sourceDataInt != 0)) goto LAB_18087dbb3;
     if ((*(byte *)(uiContext + 0x24) & 1) == 0) goto LAB_18087d6de;
 LAB_18087d6e3:
     astackLong38[0] = 0;
-    sourceDataInt = FUN_180749e60(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
+    sourceDataInt = ProcessUIContextWithCleanup(*(UIHandle *)(uiContext + 0x78),astackLong38,0);
     if (sourceDataInt != 0) goto LAB_18087dbb3;
     if (*(longlong *)(uiBufferData + 0x88) != 0) {
       sourceDataInt = 0x1c;
