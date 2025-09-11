@@ -5620,14 +5620,14 @@ static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *connec
     InitializeConnectionParameters(connectionContext);
     
     // 执行连接建立过程
-    connectionEstablishmentResult = PerformConnectionHandshake(NetworkConnectionContext, TimeoutValue);
+    connectionEstablishmentResult = PerformConnectionHandshake(connectionContext, timeoutValue);
     
     if (connectionEstablishmentResult == NetworkOperationSuccess) {
         // 连接成功，生成连接句柄
-        newConnectionHandle = GenerateConnectionHandle(NetworkConnectionContext);
+        newConnectionHandle = GenerateConnectionHandle(connectionContext);
         
         // 初始化连接安全上下文
-        InitializeSecurityContext(NetworkConnectionContext);
+        InitializeSecurityContext(connectionContext);
         
         return newConnectionHandle;
     }
