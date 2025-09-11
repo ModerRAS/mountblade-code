@@ -49,7 +49,7 @@
 #define ProcessSystemMemoryOperation ExecuteMemoryOperation       // 处理系统内存操作
 #define HandleSystemContextTransfer TransferSystemContext         // 处理系统上下文传输
 #define ConvertUtf8ToUtf16Context TransformUtf8ToUtf16Encoding       // 转换UTF-8到UTF-16上下文
-#define FUN_180186430 ProcessSystemOperationBuffer              // 处理系统操作缓冲区
+#define ProcessSystemOperationBuffer HandleSystemOperationBuffer    // 处理系统操作缓冲区
 #define FUN_1801864e0 HandleSystemContextOperation              // 处理系统上下文操作
 #define FUN_1801865a0 FinalizeSystemContext                     // 完成系统上下文处理
 #define FUN_1801879d0 ExecuteSystemBufferOperation              // 执行系统缓冲区操作
