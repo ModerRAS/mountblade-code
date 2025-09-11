@@ -2448,6 +2448,11 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryBufferSetup FUN_18014a900          // 处理系统内存缓冲区设置
 #define ProcessContextHandleMemoryAllocation FUN_18014acf0   // 处理字符代码内存分配
 #define ProcessCharacterDataAllocation FUN_1801753d0          // 处理字符数据分配
+
+// 系统寄存器变量语义化定义
+#define RegisterR12 SystemMemoryAllocationSize                      // R12寄存器 - 系统内存分配大小
+#define RegisterR13D SystemDataIndex                                   // R13D寄存器 - 系统数据索引
+#define RegisterR15 MemoryPoolPointer                                  // R15寄存器 - 内存池指针
 #define ProcessCharacterDataFinalization FUN_1801754b0         // 处理字符数据最终化
 #define ProcessContextHandleWithOperationBufferSize FUN_180175500 // 处理带系统缓冲区大小的字符代码
 #define ProcessSystemCharacterCleanup FUN_180175572             // 处理系统字符清理
@@ -123849,10 +123854,10 @@ void ProcessStringFormatting64Bit(char *ContextHandle,uint64_t OperationBufferSi
   char ValidationStatus;
   char *SystemValidationFunction;
   bool IsHighByteSet;
-  uint8_t aStackProcessingValue78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  uint8_t EncodingBuffer[32];
+  char FormatResultChar;
+  char FormattedValidationStatus[63];
+  unsigned long long EncodingKey;
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
@@ -123862,25 +123867,25 @@ LAB_18011f555:
       if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
-        while (cStack_58 == ' ') {
+        while (FormatResultChar == ' ') {
           SystemValidationFunction = SystemValidationFunction + 1;
-          cStack_58 = *SystemValidationFunction;
+          FormatResultChar = *SystemValidationFunction;
         }
         atof();
-          CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+          CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
       }
-        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+        CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    LowByte = ValidationStatus == '%';
-    if (LowByte) {
+    IsHighByteSet = ValidationStatus == '%';
+    if (IsHighByteSet) {
       if (ContextHandle[1] != '%') {
         ValidationStatus = *ContextHandle;
         goto LAB_18011f555;
       }
-      LowByte = true;
+      IsHighByteSet = true;
     }
     SystemValidationFunction = ContextHandle + 1;
-    if (!LowByte) {
+    if (!IsHighByteSet) {
       SystemValidationFunction = ContextHandle;
     }
     ContextHandle = SystemValidationFunction + 1;
@@ -123909,10 +123914,10 @@ void ProcessStringFormatting64BitV2(char *ContextHandle,uint64_t OperationBuffer
   char ValidationStatus;
   char *SystemValidationFunction;
   bool IsHighByteSet;
-  uint8_t aStackProcessingValue78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  uint8_t EncodingBuffer[32];
+  char FormatResultChar;
+  char FormattedValidationStatus[63];
+  unsigned long long EncodingKey;
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
@@ -123922,25 +123927,25 @@ LAB_18011f5f5:
       if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
-        while (cStack_58 == ' ') {
+        while (FormatResultChar == ' ') {
           SystemValidationFunction = SystemValidationFunction + 1;
-          cStack_58 = *SystemValidationFunction;
+          FormatResultChar = *SystemValidationFunction;
         }
         atof();
-          CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+          CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
       }
-        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+        CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    LowByte = ValidationStatus == '%';
-    if (LowByte) {
+    IsHighByteSet = ValidationStatus == '%';
+    if (IsHighByteSet) {
       if (ContextHandle[1] != '%') {
         ValidationStatus = *ContextHandle;
         goto LAB_18011f5f5;
       }
-      LowByte = true;
+      IsHighByteSet = true;
     }
     SystemValidationFunction = ContextHandle + 1;
-    if (!LowByte) {
+    if (!IsHighByteSet) {
       SystemValidationFunction = ContextHandle;
     }
     ContextHandle = SystemValidationFunction + 1;

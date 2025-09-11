@@ -39042,7 +39042,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
   short *psVar1;
   short *psVar2;
   longlong stringCompareIndex;
-  bool bVar4;
+  bool TransformCompleted;
   short sVar5;
   short sVar6;
   short sVar7;
@@ -45630,7 +45630,7 @@ void ProcessUIInputData(UIByte *uiContext,longlong dataSource,byte *targetBuffer
   byte BufferSizeFlag;
   byte BufferSizeStatus;
   byte EventprocessingFlags;
-  byte bVar9;
+  byte DataProcessingStatus;
   UIByte dataPointer;
   
   IsEventProcessingActive = targetBuffer[2];
@@ -70757,7 +70757,7 @@ LAB_18069b66c:
   int operationResult;
   longlong componentIndex;
   longlong stringCompareIndex;
-  bool bVar4;
+  bool ContextInitialized;
   
   if (_DAT_180c0c21c == 0) {
     LOCK();
@@ -105225,7 +105225,7 @@ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle ta
                   UIDword resultPointer)
 
 {
-  double dVar1;
+  double ComponentScaleFactor;
   float *TransformCoefficient1;
   uint eventCodeType;
   int sourceDataInt;
