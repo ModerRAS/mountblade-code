@@ -126446,7 +126446,7 @@ void ReleaseUIResourceAndExecuteRender(void)
 
  
 
- void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+ void ProcessUIDataWithBufferSize(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 /**
  * @brief 处理带参数的UI数据缓冲区操作
  * 
@@ -126531,7 +126531,7 @@ CleanupAndExit:
 
  
 
- void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+ void ProcessUIDataWithEncryption(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 /**
  * @brief 处理UI上下文数据操作的高级版本
  * 
