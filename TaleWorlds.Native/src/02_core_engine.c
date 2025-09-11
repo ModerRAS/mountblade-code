@@ -100006,7 +100006,7 @@ void ConfigureSystemDataStructureOffset3b0(long long ContextHandle, uint32_t Ope
 
 
 
-d470(long long ContextHandle,uint32_t OperationBufferSize/**
+/**
  * @brief 设置目标数据结构偏移量0xd90的值
  * 
  * 该函数用于设置目标数据结构中偏移量0xd90位置的值。
@@ -100017,7 +100017,7 @@ d470(long long ContextHandle,uint32_t OperationBufferSize/**
  * @param OperationBufferSize 源数据结构的值
  * @note 原始函数名：FUN_18010d470
  */
-void SetContextHandleOffsetD90(long long ContextHandle,uint32_t OperationBufferSize
+void SetContextHandleOffsetD90(long long ContextHandle,uint32_t OperationBufferSize)
 {
   char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
@@ -298723,8 +298723,6 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 原始函数名：FUN_180187bd0 - UTF-8数据清理函数
 #define CleanupUtf8Data FUN_180187bd0
 
-// 原始函数名：FUN_180187c00 - UTF-8数据同步函数
-#define SynchronizeUtf8Data FUN_180187c00
 
 // 原始函数名：FUN_1801878a0 - 字符表清理函数
 #define CleanupCharacterTableAndBuffer FUN_1801878a0
@@ -299310,7 +299308,6 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  * 
  * @note 原始函数名：FUN_180187c00
  */
-#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement
 
 /**
  * @brief 处理字符表和数据初始化
