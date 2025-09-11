@@ -128957,7 +128957,7 @@ void ProcessUIContextEventHandling(void)
 
  
 
- void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
+ void ProcessUIContextDataTransfer(UIHandle uiContext,UIHandle dataSource)
 /**
  * @brief 处理UI上下文数据传输操作
  * 
@@ -129933,7 +129933,7 @@ LAB_18073ce8e:
 
  
 
- void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+ void ProcessUIDataWithLongParams(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 /**
  * @brief UI系统数据复制处理器
  * 
@@ -130053,11 +130053,23 @@ ReleaseUIResources:
 
 
  void FUN_18073cf53(void)
-void FUN_18073cf53(void)
+#define ProcessUIBufferDataValidation FUN_18073cf53
+/**
+ * @brief 处理UI缓冲区数据验证
+ * 
+ * 该函数执行UI缓冲区数据的验证操作，包括数据检查和缓冲区控制。
+ * 验证完成后会执行UI上下文数据操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073cf53
+ * @note 该函数不返回，执行完毕后会跳转到数据操作任务
+ */
+void ProcessUIBufferDataValidation(void)
 
 {
   int operationResult;
-  int dataValidationResult;
+  int uiValidationResult;
   UIDword unmodifiedESI;
   
   operationResult = func_0x00018074be80(&stack0x00000040,0x100);
@@ -130071,31 +130083,55 @@ void FUN_18073cf53(void)
 
 
  void FUN_18073cfcb(void)
-void FUN_18073cfcb(void)
+#define ReleaseUIResourceAndExecuteRender FUN_18073cfcb
+/**
+ * @brief 释放UI资源并执行渲染
+ * 
+ * 该函数负责释放UI内存资源，并在完成后执行渲染任务。
+ * 主要用于UI资源的生命周期管理。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073cfcb
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  UIHandle resourceHandle;
+  ulonglong renderTaskKey;
   
-  if (stackParam00000030 != 0) {
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskKey ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
  void FUN_18073cfed(void)
-void FUN_18073cfed(void)
+#define ReleaseUIResourceAndExecuteRenderB FUN_18073cfed
+/**
+ * @brief 释放UI资源并执行渲染（版本B）
+ * 
+ * 该函数是ReleaseUIResourceAndExecuteRender的简化版本，
+ * 直接释放UI内存资源并执行渲染任务。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073cfed
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRenderB(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskKey;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskKey ^ (ulonglong)&stack0x00000000);
 }
 
 
