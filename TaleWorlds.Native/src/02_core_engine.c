@@ -243213,10 +243213,10 @@ LAB_180198f21:
   StackUnsigned104 = SystemChecksum & 0xfffffffd;
   StackBytePointerD8 = (byte *)0x0;
   SystemFlagH = 0;
-  pSystemFlagE = &ThreadLocalStorageTemplate;
-  MatchCounter = (int)plStack_c0;
+  SystemFlagEPointer = &ThreadLocalStorageTemplate;
+  MatchCounter = (int)StackPointerC0;
   OperationStatus = ArraySize;
-  if ((int)plStack_c0 < 10) {
+  if ((int)StackPointerC0 < 10) {
     ProcessSystemMemoryAllocationBuffer(acStack_70,&SystemInfoHandlerTemplate,0);
     CharacterTablePointer6 = -1;
     do {

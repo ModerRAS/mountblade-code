@@ -60092,7 +60092,23 @@ void ExceptionHandlerA75(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 
 
 
-void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型76 - 高级函数指针异常处理器
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x40偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0x1370偏移）
+ * 3. 设置临时异常处理器并检查清理状态（使用0x1340偏移）
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA76
+ */
+void SystemExceptionHandlerType76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -60120,7 +60136,23 @@ void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 
 
 
-void ExceptionHandlerA77(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型77 - 高级函数指针异常处理器
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 获取异常处理上下文和数据上下文（使用0x40和0x1380偏移）
+ * 2. 获取异常数据缓冲区（使用5000偏移）
+ * 3. 遍历验证状态指针，调用清理函数
+ * 4. 如果数据上下文为空，则直接返回
+ * 5. 设置默认异常处理器并返回
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（未使用）
+ * @note 原始函数名：ExceptionHandlerA77
+ */
+void SystemExceptionHandlerType77(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
