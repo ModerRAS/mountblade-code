@@ -5884,7 +5884,7 @@ void* UIGestureCoordinates;
 #define UIContextExtendedDataA UNK_1809578b0            // UI上下文扩展数据A - 用于扩展操作的数据表
 #define UIContextExtendedDataB UNK_180957858            // UI上下文扩展数据B - 用于扩展操作的数据表
 #define UIContextExtendedDataC UNK_1809578f0            // UI上下文扩展数据C - 用于扩展操作的数据表
-#define UIContextExtendedDataD UNK_180957910            // UI上下文扩展数据D - 用于扩展操作的数据表
+#define UIRenderStateManager UNK_180957910            // UI渲染状态管理器 - 管理UI渲染状态
 #define UIContextExtendedDataE UNK_1809577d0            // UI上下文扩展数据E - 用于扩展操作的数据表
 #define UIContextExtendedDataF UNK_180957830            // UI上下文扩展数据F - 用于扩展操作的数据表
 #define UIContextExtendedDataG UNK_180957790            // UI上下文扩展数据G - 用于扩展操作的数据表
@@ -130314,116 +130314,152 @@ void ExecuteUIDataProcessingSimplified(void)
 
 
 
- void FUN_18073d103(void)
-void FUN_18073d103(void)
+ /**
+ * @brief UI内存资源释放和渲染任务执行函数
+ * 
+ * 该函数负责在特定条件下释放UI内存资源，并执行渲染任务。
+ * 主要用于UI系统的资源清理和渲染流程控制。
+ * 
+ * @note 原始函数名：FUN_18073d103
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryResourceFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (memoryResourceFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_18073d125(void)
-void FUN_18073d125(void)
+ /**
+ * @brief UI内存资源强制释放和渲染任务执行函数
+ * 
+ * 该函数强制释放UI内存资源，并执行渲染任务。
+ * 主要用于UI系统的强制资源清理和渲染流程控制。
+ * 
+ * @note 原始函数名：FUN_18073d125
+ */
+void ForceReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
  
 
- void FUN_18073d150(UIHandle uiContext,UIDword dataSource)
-void FUN_18073d150(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief UI上下文数据处理和渲染函数
+ * 
+ * 该函数负责处理UI上下文数据，执行渲染操作，并管理内存资源。
+ * 主要用于UI系统的数据处理和渲染流程控制。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * 
+ * @note 原始函数名：FUN_18073d150
+ */
+void ProcessUIContextAndRender(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt168 [32];
-  UIByte *pstackUInt148;
-  longlong stackLong138;
-  longlong *pRenderDataAlignment;
-  UIByte astackUInt128 [256];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceCleanupFlag;
+  longlong *renderDataAlignment;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
-  stackLong138 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceCleanupFlag = 0;
+  operationResult = func_0x00018074fb10(uiContext,&renderDataAlignment,&resourceCleanupFlag);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pRenderDataAlignment + 0x1c8))(pRenderDataAlignment,dataSource);
+    operationResult = (**(code **)(*renderDataAlignment + 0x1c8))(renderDataAlignment,dataSource);
     if (operationResult == 0) goto LAB_18073d1f1;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    func_0x00018074b830(astackUInt128,0x100,dataSource);
-    pstackUInt148 = astackUInt128;
+    func_0x00018074b830(dataBuffer,0x100,dataSource);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957910);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIRenderStateManager);
   }
 LAB_18073d1f1:
-  if (stackLong138 != 0) {
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt168);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
 
  
 
- void FUN_18073d230(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize)
-void FUN_18073d230(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize)
+ /**
+ * @brief UI数据处理和缓冲区管理函数
+ * 
+ * 该函数负责处理UI数据，执行缓冲区操作，并管理内存资源。
+ * 主要用于UI系统的数据处理和缓冲区管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18073d230
+ */
+void ProcessUIDataAndBufferManagement(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong stackLong158;
-  longlong *pstackLong150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceCleanupFlag;
+  longlong *renderDataAlignment;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong158 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong150,&stackLong158);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceCleanupFlag = 0;
+  operationResult = func_0x00018074fb10(uiContext,&renderDataAlignment,&resourceCleanupFlag);
   if (operationResult == 0) {
     dataSource = dataSource << 0x14;
     targetBuffer = targetBuffer << 0x14;
-    operationResult = (**(code **)(*pstackLong150 + 0xe0))(pstackLong150,dataSource,targetBuffer,bufferSize);
-    if (operationResult == 0) goto FUN_18073d372;
+    operationResult = (**(code **)(*renderDataAlignment + 0xe0))(renderDataAlignment,dataSource,targetBuffer,bufferSize);
+    if (operationResult == 0) goto LAB_18073d372;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074be80(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiValidationResult = func_0x00018074be80(dataBuffer,0x100,dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = func_0x00018074be80(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = func_0x00018074be80(dataBuffer + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUITextureDataFill(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    pstackUInt168 = stackArray148;
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    ProcessUITextureDataFill(dataBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809577d0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextExtendedDataE);
   }
-FUN_18073d372:
-  if (stackLong158 != 0) {
+LAB_18073d372:
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 

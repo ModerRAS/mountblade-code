@@ -260914,24 +260914,24 @@ LAB_18020f107:
             long long MemoryBlockAddress = *(long long *                     (ContextHandleTablePointer[3] +
                      (ContextHandleTablePointer[1] +
                       ((ProcessedCharacter & 0xffffffffffffffe0) - **(long long **)(ContextHandleTablePointer[3] + ContextHandleTablePointer[1] * 8                      >> SystemEventContextShiftCount) & *MainContextPointer - 1U) * 8);
-            BufferStatus = *(long long *)(AllocatedMemorySize + 8);
+            BufferStatus = *(long long *)(MemoryBlockAddress + 8);
             ContextHandleTablePointer = (long long *)(BufferStatus + (unsigned long long)((uint)ProcessedCharacter & 0x1f) * 8);
-            SystemContextRegister = (long long *)*ContextHandlePointer;
-            *ContextHandlePointer = 0;
+            SystemContextRegister = (long long *)*MainContextPointer;
+            *MainContextPointer = 0;
             if (SystemContextRegister != (long long *)0x0) {
               (**(code **)(*SystemContextRegister + 0x38))();
             }
-            if ((long long *)*ContextHandlePointer != (long long *)0x0) {
-              (**(code **)(*(long long *)*ContextHandlePointer + 0x38))();
+            if ((long long *)*MainContextPointer != (long long *)0x0) {
+              (**(code **)(*(long long *)*MainContextPointer + 0x38))();
             }
             LOCK();
             ContextHandleTablePointer = (long long *)(BufferStatus + SystemMemoryFunctionOffset108);
-            MemoryBlockIndex = *ContextHandlePointer;
-            *ContextHandlePointer = *ContextHandlePointer + 1;
+            MemoryBlockIndex = *MainContextPointer;
+            *MainContextPointer = *MainContextPointer + 1;
             UNLOCK();
             if (MemoryBlockIndex == 0x1f) {
-              *(void *)(AllocatedMemorySize + 8) = 0;
-              ProcessDataStreamOperation(ContextHandle2[10],BufferStatus);
+              *(void *)(MemoryBlockAddress + 8) = 0;
+              ProcessDataStreamOperation(SecondaryContextHandle[10],BufferStatus);
             }
             isSystemContextNull = true;
             ContextHandleTablePointer = SystemContextRegister;
