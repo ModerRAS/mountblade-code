@@ -237676,22 +237676,20 @@ void SystemNoOperationFunction(void)
 
 
 /**
- * @brief 初始化系统数据结构变体
+ * @brief 清理系统窗口和资源变体
  * @param ContextHandle 上下文句柄
  * @param ContextHandleSize 上下文句柄大小指针
  * 
- * 该函数负责初始化系统数据结构的变体。
+ * 该函数负责清理系统窗口和释放相关资源的变体版本。
  */
-void FUN_180195190(long long ContextHandle, uint64_t *ContextHandleSize
+void CleanupSystemWindowAndResourcesVariant(long long ContextHandle, uint64_t *ContextHandleSize)
 {
-  long long MainCalculationResult;
-  
   ProcessSystemWindowUpdate(ContextHandle + 0x48);
   if (OperationBufferSize != NULL) {
-    CharacterTablePointer = __RTCastToVoid(OperationBufferSize);
+    void *ResourcePointer = __RTCastToVoid(OperationBufferSize);
     (**(code **)*ContextHandleSize)(OperationBufferSize,0);
-    if (CharacterTablePointer != 0) {
-        CoreEngineFreeSystemMemory(CharacterTablePointer);
+    if (ResourcePointer != 0) {
+        CoreEngineFreeSystemMemory(ResourcePointer);
     }
   }
   return;
