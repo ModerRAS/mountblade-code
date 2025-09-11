@@ -3574,16 +3574,16 @@ typedef union {
 #define StackFrameValidationFlagOffset77 0x77               // 栈帧验证标志偏移量77
 #define StackFrameSecondaryValidationFlagOffset7F 0x7f    // 栈帧次级验证标志偏移量7F
 #define StackFrameDataCheckOffsetNegative49 -0x49          // 栈帧数据检查负偏移量49
-#define StackFrameContextOffsetNegative21 -0x21               // 栈帧上下文负偏移量21 - 用于输入参数存储
-#define StackFrameContextOffsetNegative29 -0x29               // 栈帧上下文负偏移量29 - 用于异常缓冲区指针存储
-#define StackFrameContextOffsetNegative1D -0x1d               // 栈帧上下文负偏移量1D - 用于状态计数器存储
+#define StackFrameInputParameterOffset -0x21                 // 栈帧输入参数偏移量 - 用于存储输入参数
+#define StackFrameExceptionBufferOffset -0x29                // 栈帧异常缓冲区偏移量 - 用于存储异常缓冲区指针
+#define StackFrameStatusCounterOffset -0x1d                  // 栈帧状态计数器偏移量 - 用于存储状态计数器
 
 // 异常处理上下文相关偏移量常量
-#define ExceptionHandlerContextOffsetNegative14 -0x14        // 异常处理上下文负偏移量14 - 用于浮点数验证值存储
-#define ExceptionHandlerContextOffsetNegative10 -0x10         // 异常处理上下文负偏移量10 - 用于第二个浮点数验证值存储
-#define ExceptionHandlerContextOffsetNegativeC -0xc           // 异常处理上下文负偏移量C - 用于第三个浮点数验证值存储
-#define ExceptionHandlerContextOffsetNegative8 -0x8           // 异常处理上下文负偏移量8 - 用于第四个浮点数验证值存储
-#define ExceptionHandlerContextOffsetNegative4 -0x4           // 异常处理上下文负偏移量4 - 用于数据缓冲区指针存储
+#define ExceptionContextFirstFloatValueOffset -0x14            // 异常上下文第一浮点值偏移量 - 用于存储第一个浮点验证值
+#define ExceptionContextSecondFloatValueOffset -0x10          // 异常上下文第二浮点值偏移量 - 用于存储第二个浮点验证值
+#define ExceptionContextThirdFloatValueOffset -0xc             // 异常上下文第三浮点值偏移量 - 用于存储第三个浮点验证值
+#define ExceptionContextFourthFloatValueOffset -0x8            // 异常上下文第四浮点值偏移量 - 用于存储第四个浮点验证值
+#define ExceptionContextDataBufferPointerOffset -0x4            // 异常上下文数据缓冲区指针偏移量 - 用于存储数据缓冲区指针
 
 // 数据缓冲区相关偏移量常量
 #define DataBufferSizeOffset8 0x8                          // 数据缓冲区大小偏移量8
