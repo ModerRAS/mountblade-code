@@ -112,6 +112,10 @@ typedef enum {
 #define FUN_18073fa70 ProcessUIDataSourceWithTextureValidation  // 处理UI数据源并执行纹理验证
 #define FUN_18073fa8d ProcessUIDataSourceWithEventHandling  // 处理UI数据源并执行事件处理
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
+#define FUN_18074020b InitializeUIDataBuffer  // 初始化UI系统数据缓冲区
+#define FUN_180740283 ReleaseUIMemoryResourceWithValidation  // 释放UI系统内存资源
+#define FUN_1807402a5 ForceReleaseUIMemoryResource  // 强制释放UI系统内存资源
+#define FUN_1807402d0 ProcessUIDataTransferWithValidation  // 处理UI系统数据传输和资源验证
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define FUN_18073fe4d ProcessUIDataSourceToTargetBuffer  // 处理UI数据源到目标缓冲区的数据传输
 #define FUN_18073fea5 ProcessUIDataValidationAndBufferControl  // 处理UI数据验证和缓冲区控制操作
