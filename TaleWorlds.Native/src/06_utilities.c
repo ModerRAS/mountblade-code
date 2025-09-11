@@ -100046,9 +100046,12 @@ void ComplexExceptionHandlerAndReset(DataBuffer operationBase, int64_t dataBuffe
  * 该函数负责处理复杂的异常验证上下文清理操作，
  * 包括设置异常处理器、验证状态、终止系统等
  * 
+ * @param operationBase 操作基址，用于异常处理的基准地址
+ * @param dataBuffer 数据缓冲区，包含异常处理相关的数据
+ * 
  * @note 原始函数名：Unwind_18090c4b0
  */
-void ComplexValidationContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
+void ComplexValidationContextCleanup(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
