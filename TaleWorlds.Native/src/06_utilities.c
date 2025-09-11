@@ -11814,7 +11814,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 数据处理函数宏定义
 // 原始函数名：FUN_18089ac64 - 系统状态检查函数A0
 // 功能：检查系统状态并返回状态信息
-#define CheckSystemStateA0 FUN_18089ac64
+#define CheckSystemStateA0 CheckSystemStateWithValidation
 
 // 原始函数名：FUN_18089ace4 - 系统配置验证函数A0（第三替代版本）
 // 功能：验证系统配置并返回验证结果，提供第三替代验证方法
@@ -11822,7 +11822,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089b2a0 - 系统数据传输函数A0
 // 功能：传输系统数据并返回传输结果
-#define TransferSystemDataA0 FUN_18089b2a0
+#define TransferSystemDataA0 TransferSystemDataWithValidation
 
 // 原始函数名：FUN_18089b307 - 系统初始化函数A0
 // 功能：初始化系统并返回初始化结果
