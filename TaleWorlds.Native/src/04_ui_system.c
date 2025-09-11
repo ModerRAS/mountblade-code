@@ -135365,73 +135365,100 @@ void InitializeUIDataBuffer(void)
 
 
 
- void FUN_180740283(void)
-void FUN_180740283(void)
-
+ /**
+ * @brief 释放UI系统内存资源
+ * 
+ * 该函数负责在特定条件下释放UI系统的内存资源：
+ * - 检查堆栈参数是否有效
+ * - 根据条件执行内存资源释放操作
+ * 
+ * @note 原始函数名：FUN_180740283
+ */
+void ReleaseUIMemoryResourceWithValidation(void)
 {
-  longlong stackParam00000030;
+  longlong stackParameter;
   ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (stackParameter != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_1807402a5(void)
-void FUN_1807402a5(void)
-
+ /**
+ * @brief 强制释放UI系统内存资源
+ * 
+ * 该函数负责强制释放UI系统的内存资源，无论参数状态如何：
+ * - 直接调用内存资源释放函数
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_1807402a5
+ */
+void ForceReleaseUIMemoryResource(void)
 {
   ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
  
 
- void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-
+ /**
+ * @brief 处理UI系统数据传输和资源验证
+ * 
+ * 该函数负责处理UI系统的数据传输和资源验证操作：
+ * - 验证UI资源句柄和内存状态
+ * - 处理纹理数据和缓冲区数据
+ * - 执行数据加密和解密操作
+ * - 管理UI上下文和数据传输
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_1807402d0
+ */
+void ProcessUIDataTransferWithValidation(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int dataValidationResult;
+  int textureValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceHandle;
+  UIHandle validatedResource;
+  UIByte processingBuffer [256];
+  ulonglong encryptedValue;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
+  encryptedValue = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceHandle = 0;
+  operationResult = ValidateUIResource(uiContext,&validatedResource,&resourceHandle);
   if (operationResult == 0) {
-    operationResult = func_0x00018075e4f0(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_1807403bf;
+    operationResult = ProcessUIResourceOperation(validatedResource,dataSource,targetBuffer);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUITextureDataWithSize(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    textureValidationResult = ProcessUITextureDataWithSize(processingBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + textureValidationResult,0x100 - textureValidationResult,&UIBufferControlData);
+    ProcessUITextureDataWithSize(processingBuffer + (textureValidationResult + bufferCompareResult),0x100 - (textureValidationResult + bufferCompareResult),targetBuffer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957dd0);
+    ExecuteUIContextDataOperation(operationResult,7,uiContext,&UNK_180957dd0);
   }
-FUN_1807403bf:
-  if (stackLong148 != 0) {
+CleanupAndExit:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedValue ^ (ulonglong)encryptionBuffer);
 }
 
 
