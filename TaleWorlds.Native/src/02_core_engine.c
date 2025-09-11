@@ -200001,17 +200001,17 @@ void UtilityNoOperationEmpty(void)
 
 void ProcessFloatContextHandleConversionWithUtf8Pointer(float ContextHandle, long long OperationBufferSize, unsigned long long Utf8SourcePointer)
 {
-  float *pSystemContextPrimaryFloat;
+  float *PrimaryContextFloatPointer;
   uint MemoryPoolIndex;
   int MemoryComparisonResult;
-  char in_AL;
-  unsigned long long MemoryOffsetValue;
+  char ValidationFlag;
+  unsigned long long MemoryAddressOffset;
   long long AllocatedMemorySize;
-  long long SystemContext;
-  long long SystemDataNode;
-  long long SystemRegisterR10;
-  long long SystemRegisterR11;
-  bool BooleanValidationStatus6;
+  long long SystemContextRange;
+  long long SystemDataNodeBase;
+  long long LoopIterator;
+  long long DataRegisterBase;
+  bool HasMemoryBoundaryChanged;
   
 code_r0x0001801606bb:
   if (in_AL == '\0') goto LAB_1801606a6;
@@ -256965,7 +256965,7 @@ void ProcessSystemFloatDataOperation(long long SystemContextHandle, long long Me
   ComputedResultPointer = *(int **)(MemoryOperationSize + 0xb8);
   SystemOperationResult = 0;
   ScaledFloatValue = ScaledFloatValue * 30.0;
-  ValidationResult = (int)((*(long long *)(OperationBufferSize + 0xc0) - (long long)ComputedResultPointer) / 0x28) + -1;
+  ValidationResult = (int)((*(long long *)(MemoryOperationSize + 0xc0) - (long long)ComputedResultPointer) / 0x28) + -1;
   if (0 < ValidationResult) {
     ProcessingBufferStatus = 0;
     do {

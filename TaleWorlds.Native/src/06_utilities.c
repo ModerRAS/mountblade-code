@@ -166,6 +166,7 @@
 // 内存边界检查常量
 #define MemoryBufferMinimumSize 0x36                          // 内存缓冲区最小尺寸 (54字节)
 #define MemoryBufferMaximumSize 0x3d                          // 内存缓冲区最大尺寸 (61字节)
+#define MemorySystemContextOffset64 0x40                      // 内存系统上下文偏移量 (64字节)
 
 // 异常状态标志位常量
 #define ExceptionStatusFlag1 0x1
