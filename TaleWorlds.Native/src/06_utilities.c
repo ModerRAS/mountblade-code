@@ -131,7 +131,7 @@
 #define BoundaryCheckFailed -3
 
 // 空指针常量定义
-#define NULL_FUNCTION_POINTER (code *)0x0
+#define NULL_FUNCTION_POINTER NULL_FUNCTION_POINTER
 #define NULL_INT_POINTER (int *)0x0
 #define NULL_VOID_POINTER (void *)0x0
 
@@ -55724,7 +55724,7 @@ void InitializeValidationContextExceptionHandler(DataBuffer operationBase,int64_
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140))(exceptionContext + ExceptionHandlerPointerOffset130,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset108) = &SystemTemporaryExceptionHandler;
@@ -55764,7 +55764,7 @@ void SetupValidationContextExceptionHandler(DataBuffer operationBase, int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1B0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1B0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1B0))(exceptionContext + ExceptionHandlerContextOffset1A0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerStateOffset) = &SystemTemporaryExceptionHandler;
@@ -55804,7 +55804,7 @@ void ConfiguresystemContextExceptionHandler(DataBuffer operationBase, int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220))(exceptionContext + ExceptionHandlerStatusOffset210,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset1E8) = &SystemTemporaryExceptionHandler;
@@ -55844,7 +55844,7 @@ void InitializeAdvancedsystemContextExceptionHandler(DataBuffer operationBase, i
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset290) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset290) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset290))(exceptionContext + SystemParameterValidationOffset0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + systemContextFunctionPointerOffset600) = &SystemTemporaryExceptionHandler;
@@ -55883,7 +55883,7 @@ void ExceptionHandlerCleanupDataBuffer(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset300) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset300) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset300))(exceptionContext + ExceptionHandlerContextOffset2F0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataStatusOffset8) = &SystemTemporaryExceptionHandler;
@@ -55922,7 +55922,7 @@ void ExceptionHandlerCleanupOperationFlags(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset370) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset370) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset370))(exceptionContext + ExceptionHandlerContextOffset360,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset338) = &SystemTemporaryExceptionHandler;
@@ -55963,7 +55963,7 @@ void ConfigureValidationContextExceptionHandler(DataBuffer exceptionContext,int6
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(memoryBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3E0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3E0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3E0))(exceptionContext + ExceptionHandlerContextOffset3D0,0,0,cleanupFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset3a8) = &SystemTemporaryExceptionHandler;
@@ -56004,7 +56004,7 @@ void InitializeAdvancedValidationContextExceptionHandler(DataBuffer exceptionCon
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(memoryBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionContext + 0x450) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x450) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x450))(exceptionContext + 0x440,0,0,cleanupFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x418) = &SystemTemporaryExceptionHandler;
@@ -56045,7 +56045,7 @@ void InitializeSystemResourceExceptionHandler(DataBuffer exceptionContext,int64_
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(memoryBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510))(exceptionContext + ExceptionHandlerContextOffset500,0,0,cleanupFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset4e0) = &SystemTemporaryExceptionHandler;
@@ -56107,7 +56107,7 @@ void InitializeMemoryPoolExceptionHandler(DataBuffer exceptionContext,int64_t me
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(memoryBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionContext + 0x580) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x580) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x580))(exceptionContext + 0x570,0,0,cleanupFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset548) = &SystemTemporaryExceptionHandler;
@@ -56191,7 +56191,7 @@ void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset140))(exceptionContext + ExceptionHandlerContextOffset130,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset108) = &SystemTemporaryExceptionHandler;
@@ -56346,7 +56346,7 @@ void CleanupExceptionDataA2(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffsetQuinary) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffsetQuinary) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffsetQuinary))(exceptionContext + ExceptionHandlerContextOffset1A0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset178) = &SystemTemporaryExceptionHandler;
@@ -56386,7 +56386,7 @@ void CleanupExceptionDataA3(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCleanupOffset220))(exceptionContext + ExceptionHandlerStatusOffset210,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset1E8) = &SystemTemporaryExceptionHandler;
@@ -56426,7 +56426,7 @@ void CleanupExceptionDataA4(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset290) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset290) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset290))(exceptionContext + SystemParameterValidationOffset0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + systemContextFunctionPointerOffset600) = &SystemTemporaryExceptionHandler;
@@ -56466,7 +56466,7 @@ void CleanupExceptionDataA5(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset300) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset300) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset300))(exceptionContext + ExceptionHandlerCallbackOffset2f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataStatusOffset8) = &SystemTemporaryExceptionHandler;
@@ -56506,7 +56506,7 @@ void CleanupExceptionDataA6(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset370) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset370) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset370))(exceptionContext + ExceptionHandlerCallbackOffset360,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCallbackOffset338) = &SystemTemporaryExceptionHandler;
@@ -56546,7 +56546,7 @@ void CleanupExceptionDataA7(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset3e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset3e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset3e0))(exceptionContext + ExceptionHandlerCallbackOffset3d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCallbackOffset3a8) = &SystemTemporaryExceptionHandler;
@@ -56586,7 +56586,7 @@ void CleanupExceptionDataA8(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset450) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset450) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset450))(exceptionContext + ExceptionHandlerCallbackOffset440,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCallbackOffset418) = &SystemTemporaryExceptionHandler;
@@ -56628,7 +56628,7 @@ void InitializeExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset510))(exceptionContext + ExceptionHandlerContextOffset500,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset4e0) = &SystemTemporaryExceptionHandler;
@@ -56691,7 +56691,7 @@ void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   int64_t extendedHandlerContext;
   
   extendedHandlerContext = *(int64_t *)(dataBuffer + SystemDataBufferOffset80);
-  if (*(FunctionPointer**)(extendedHandlerContext + 0x580) != (code *)0x0) {
+  if (*(FunctionPointer**)(extendedHandlerContext + 0x580) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(extendedHandlerContext + 0x580))(extendedHandlerContext + 0x570,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(extendedHandlerContext + 0x548) = &SystemTemporaryExceptionHandler;
@@ -56861,7 +56861,7 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   
   // 检查并调用已存在的异常处理器回调函数
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset4C0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset4C0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset4C0))(exceptionContext + ExceptionHandlerContextOffset4B0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   
@@ -56922,7 +56922,7 @@ void ConfigureExceptionHandlerAtOffset530(DataBuffer operationBase,int64_t dataB
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   
   // 检查并调用已存在的异常处理器回调函数
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset530) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset530) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset530))(exceptionContext + ExceptionHandlerContextOffset520,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   
@@ -56983,7 +56983,7 @@ void ConfigureExceptionHandlerAtOffset5a0(DataBuffer operationBase,int64_t dataB
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   
   // 检查并调用已存在的异常处理器回调函数
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset5A0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset5A0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset5A0))(exceptionContext + ExceptionHandlerContextOffset590,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   
@@ -57044,7 +57044,7 @@ void ConfigureExceptionHandlerAtOffset610(DataBuffer operationBase,int64_t dataB
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   
   // 检查并调用已存在的异常处理器回调函数
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset610) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset610) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset610))(exceptionContext + ExceptionHandlerContextOffset600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   
@@ -57086,7 +57086,7 @@ void ConfigureExceptionHandlerAtOffset680(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0))(exceptionContext + 0x670,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x648) = &SystemTemporaryExceptionHandler;
@@ -57114,7 +57114,7 @@ void ExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x6f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x6f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x6f0))(exceptionContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x6b8) = &SystemTemporaryExceptionHandler;
@@ -57150,7 +57150,7 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x760) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x760) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x760))(exceptionContext + 0x750,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x728) = &SystemTemporaryExceptionHandler;
@@ -57196,7 +57196,7 @@ void ProcessExceptionContextAndHandlers(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000))(exceptionContext + ExceptionHandlerContextOffset7C0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset798) = &SystemTemporaryExceptionHandler;
@@ -57240,7 +57240,7 @@ void SystemExceptionHandlerType2(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x840) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x840) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x840))(exceptionContext + 0x830,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextStateOffset808) = &SystemTemporaryExceptionHandler;
@@ -57284,7 +57284,7 @@ void SystemExceptionHandlerType3(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x8b0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x8b0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x8b0))(exceptionContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x878) = &SystemTemporaryExceptionHandler;
@@ -57328,7 +57328,7 @@ void SystemExceptionHandlerType4(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x920) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x920) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x920))(exceptionContext + 0x910,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x8e8) = &SystemTemporaryExceptionHandler;
@@ -57372,7 +57372,7 @@ void SystemExceptionHandlerType5(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x990) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x990) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x990))(exceptionContext + SystemManagementOffset980,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x958) = &SystemTemporaryExceptionHandler;
@@ -57416,7 +57416,7 @@ void SystemExceptionHandlerType6(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xa08) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa08) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa08))(exceptionContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9d0) = &SystemTemporaryExceptionHandler;
@@ -57460,7 +57460,7 @@ void SystemExceptionHandlerType7(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xa80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa80))(exceptionContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa48) = &SystemTemporaryExceptionHandler;
@@ -57643,7 +57643,7 @@ void UnwindCleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset4C0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset4C0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset4C0))(exceptionContext + ExceptionHandlerPointerOffset4B0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset488) = &SystemTemporaryExceptionHandler;
@@ -57684,7 +57684,7 @@ void UnwindCleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset530) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset530) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset530))(exceptionContext + ExceptionHandlerPointerOffset520,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset4F8) = &SystemTemporaryExceptionHandler;
@@ -57726,7 +57726,7 @@ void ConfigureExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset5A0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset5A0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset5A0))(exceptionContext + ExceptionHandlerPointerOffset590,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset568) = &SystemTemporaryExceptionHandler;
@@ -57768,7 +57768,7 @@ void ConfigureExceptionHandlerB60(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610))(exceptionContext + ExceptionHandlerContextOffset600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset5d8) = &SystemTemporaryExceptionHandler;
@@ -57810,7 +57810,7 @@ void ConfigureExceptionHandlerB80(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextStatusOffset0))(exceptionContext + 0x670,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x648) = &SystemTemporaryExceptionHandler;
@@ -57852,7 +57852,7 @@ void ConfigureExceptionHandlerBa0(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x6f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x6f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x6f0))(exceptionContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x6b8) = &SystemTemporaryExceptionHandler;
@@ -57894,7 +57894,7 @@ void ConfigureExceptionHandlerBc0(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x760) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x760) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x760))(exceptionContext + 0x750,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x728) = &SystemTemporaryExceptionHandler;
@@ -57937,7 +57937,7 @@ void ValidateContextExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000))(exceptionContext + ExceptionHandlerContextOffset7C0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset798) = &SystemTemporaryExceptionHandler;
@@ -57980,7 +57980,7 @@ void ValidateContextExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x840) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x840) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x840))(exceptionContext + 0x830,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextStateOffset808) = &SystemTemporaryExceptionHandler;
@@ -58023,7 +58023,7 @@ void ValidateContextExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x8b0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x8b0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x8b0))(exceptionContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x878) = &SystemTemporaryExceptionHandler;
@@ -58066,7 +58066,7 @@ void ValidateContextExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x920) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x920) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x920))(exceptionContext + 0x910,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x8e8) = &SystemTemporaryExceptionHandler;
@@ -58124,7 +58124,7 @@ void SystemExceptionHandlerType42(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x990) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x990) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x990))(exceptionContext + SystemManagementOffset980,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x958) = &SystemTemporaryExceptionHandler;
@@ -58182,7 +58182,7 @@ void SystemExceptionHandlerType43(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xa08) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa08) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa08))(exceptionContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9d0) = &SystemTemporaryExceptionHandler;
@@ -58240,7 +58240,7 @@ void SystemExceptionHandlerType44(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xa80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa80))(exceptionContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa48) = &SystemTemporaryExceptionHandler;
@@ -58426,7 +58426,7 @@ void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + DataBufferOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400))(exceptionContext + ExceptionHandlerCallbackDataOffset180,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffset160) = &SystemTemporaryExceptionHandler;
@@ -58487,7 +58487,7 @@ void HandleExceptionWithFlagsPrimary(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x250) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x250) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x250))(exceptionContext + 0x240,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x220) = &SystemTemporaryExceptionHandler;
@@ -58548,7 +58548,7 @@ void HandleExceptionWithFlagsSecondary(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x310) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x310) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x310))(exceptionContext + 0x300,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2e0) = &SystemTemporaryExceptionHandler;
@@ -58609,7 +58609,7 @@ void HandleExceptionWithFlagsTertiary(DataBuffer operationBase,int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0))(exceptionContext + SystemDataRecordOffset3c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x3a0) = &SystemTemporaryExceptionHandler;
@@ -58670,7 +58670,7 @@ void HandleExceptionWithFlagsQuaternary(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x490) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x490) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x490))(exceptionContext + 0x480,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset460) = &SystemTemporaryExceptionHandler;
@@ -58731,7 +58731,7 @@ void HandleExceptionWithFlagsQuinary(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x550) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x550) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset550))(exceptionContext + ExceptionHandlerContextOffset540,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x520) = &SystemTemporaryExceptionHandler;
@@ -58792,7 +58792,7 @@ void HandleExceptionWithFlagsSenary(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610))(exceptionContext + ExceptionHandlerContextOffset600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset5e0) = &SystemTemporaryExceptionHandler;
@@ -58853,7 +58853,7 @@ void HandleExceptionWithFlagsSeptenary(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x6d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x6d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x6d0))(exceptionContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x6a0) = &SystemTemporaryExceptionHandler;
@@ -58914,7 +58914,7 @@ void HandleExceptionWithFlagsOctonary(DataBuffer operationBase,int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x790) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x790) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x790))(exceptionContext + 0x780,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x760) = &SystemTemporaryExceptionHandler;
@@ -58974,7 +58974,7 @@ void SetupAndCleanupExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x850) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x850) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x850))(exceptionContext + 0x840,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x820) = &SystemTemporaryExceptionHandler;
@@ -59034,7 +59034,7 @@ void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x910) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x910) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x910))(exceptionContext + systemContextPointerOffset900,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x8e0) = &SystemTemporaryExceptionHandler;
@@ -59094,7 +59094,7 @@ void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x9d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x9d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x9d0))(exceptionContext + 0x9c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9a0) = &SystemTemporaryExceptionHandler;
@@ -59158,7 +59158,7 @@ void ResetSystemExceptionHandlerHierarchyA0(DataBuffer operationBase,int64_t dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xa90) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa90) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa90))(exceptionContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa60) = &SystemTemporaryExceptionHandler;
@@ -59283,7 +59283,7 @@ void InitializeSystemExceptionHandlerA(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetB50) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetB50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetB50))(exceptionContext + ExceptionHandlerCallbackDataOffsetB40,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerPrimaryOffsetB20) = &SystemTemporaryExceptionHandler;
@@ -59340,7 +59340,7 @@ void InitializeSystemExceptionHandlerB(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetC10) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetC10) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetC10))(exceptionContext + ExceptionHandlerCallbackDataOffsetC00,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetBe0) = &SystemTemporaryExceptionHandler;
@@ -59397,7 +59397,7 @@ void InitializeSystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetCd0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetCd0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetCd0))(exceptionContext + ExceptionHandlerCallbackDataOffsetCc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetCa0) = &SystemTemporaryExceptionHandler;
@@ -59454,7 +59454,7 @@ void InitializeSystemExceptionHandlerD(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetD40) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetD40) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetD40))(exceptionContext + ExceptionHandlerCallbackDataOffsetD30,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetD08) = &SystemTemporaryExceptionHandler;
@@ -59490,7 +59490,7 @@ void InitializeSystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetDb0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetDb0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffsetDb0))(exceptionContext + ExceptionHandlerCallbackDataOffsetDa0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetD78) = &SystemTemporaryExceptionHandler;
@@ -59533,7 +59533,7 @@ void ResetSystemExceptionHandlerHierarchyB0(DataBuffer operationBase,int64_t dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerHierarchyB0_DataBufferOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB0_CallbackOffsetE20) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB0_CallbackOffsetE20) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB0_CallbackOffsetE20))(exceptionContext + ExceptionHandlerHierarchyB0_CallbackParamOffsetE10,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerHierarchyB0_TempCallbackOffsetDE8) = &SystemTemporaryExceptionHandler;
@@ -59576,7 +59576,7 @@ void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerHierarchyB1_DataBufferOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB1_CallbackOffsetEE0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB1_CallbackOffsetEE0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerHierarchyB1_CallbackOffsetEE0))(exceptionContext + ExceptionHandlerHierarchyB1_CallbackParamOffsetED0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerHierarchyB1_TempCallbackOffsetEB0) = &SystemTemporaryExceptionHandler;
@@ -59633,7 +59633,7 @@ void ResetExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerA0_DataBufferOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerA0_CallbackOffsetFA0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerA0_CallbackOffsetFA0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerA0_CallbackOffsetFA0))(exceptionContext + ExceptionHandlerA0_CallbackParamOffsetF90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerA0_TempCallbackOffsetF70) = &SystemTemporaryExceptionHandler;
@@ -59694,7 +59694,7 @@ void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1060) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1060) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1060))(exceptionContext + ExceptionHandlerContextOffset1050,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset1030) = &SystemTemporaryExceptionHandler;
@@ -59755,7 +59755,7 @@ void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0))(exceptionContext + ExceptionHandlerCallbackOffset10C0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempCallbackOffset1098) = &SystemTemporaryExceptionHandler;
@@ -59795,7 +59795,7 @@ void SetupAndCleanupExceptionHandlersA4(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1140) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1140) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1140))(exceptionContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1108) = &SystemTemporaryExceptionHandler;
@@ -59835,7 +59835,7 @@ void SetupAndCleanupExceptionHandlersA5(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x11b0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x11b0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x11b0))(exceptionContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1178) = &SystemTemporaryExceptionHandler;
@@ -59874,7 +59874,7 @@ void SetupAndCleanupExceptionHandlersA3(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + SystemDataOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1220) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1220) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1220))(exceptionContext + ExceptionHandlerCallbackParamOffset1210,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTemporaryHandlerOffset11e8) = &SystemTemporaryExceptionHandler;
@@ -59918,7 +59918,7 @@ void SystemExceptionHandlerType74(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + SystemDataOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1290) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1290) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1290))(exceptionContext + ExceptionHandlerCallbackParamOffset1280,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTemporaryHandlerOffset1258) = &SystemTemporaryExceptionHandler;
@@ -59946,7 +59946,7 @@ void ExceptionHandlerA75(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + SystemDataOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1300) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1300) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1300))(exceptionContext + ExceptionHandlerCallbackParamOffset12f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTemporaryHandlerOffset12c8) = &SystemTemporaryExceptionHandler;
@@ -59974,7 +59974,7 @@ void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + SystemDataOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1370) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1370) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionPointerOffset1370))(exceptionContext + ExceptionHandlerCallbackParamOffset1360,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTemporaryHandlerOffset1338) = &SystemTemporaryExceptionHandler;
@@ -60386,7 +60386,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400))(exceptionContext + SystemDataSecondaryOffset180,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset160) = &SystemTemporaryExceptionHandler;
@@ -60450,7 +60450,7 @@ void CleanupExceptionHandlersAtMultipleOffsets(DataBuffer operationBase,int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x250) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x250) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x250))(exceptionContext + 0x240,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x220) = &SystemTemporaryExceptionHandler;
@@ -60514,7 +60514,7 @@ void ResetExceptionHandlersState(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContextPointer;
   
   exceptionContextPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
-  if (*(FunctionPointer**)(exceptionContextPointer + ExceptionHandlerCallbackOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContextPointer + ExceptionHandlerCallbackOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContextPointer + ExceptionHandlerCallbackOffset))(exceptionContextPointer + ExceptionHandlerDataOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0Offset) = &SystemTemporaryExceptionHandler;
@@ -60584,7 +60584,7 @@ void ConfigureExceptionHandlerChain(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset3D0))(exceptionContext + SystemDataRecordOffset3c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x3a0) = &SystemTemporaryExceptionHandler;
@@ -60648,7 +60648,7 @@ void InitializeTertiaryExceptionHandlers(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContextPointer;
   
   exceptionContextPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
-  if (*(FunctionPointer**)(exceptionContextPointer + 0x490) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContextPointer + 0x490) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContextPointer + 0x490))(exceptionContextPointer + 0x480,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContextPointer + 0x460) = &SystemTemporaryExceptionHandler;
@@ -60712,7 +60712,7 @@ void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x550) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x550) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerPointerOffset550))(exceptionContext + ExceptionHandlerContextOffset540,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x520) = &SystemTemporaryExceptionHandler;
@@ -60776,7 +60776,7 @@ void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset610))(exceptionContext + ExceptionHandlerContextOffset600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset5e0) = &SystemTemporaryExceptionHandler;
@@ -60844,7 +60844,7 @@ void InitializeExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x6d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x6d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x6d0))(exceptionContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x6a0) = &SystemTemporaryExceptionHandler;
@@ -60915,7 +60915,7 @@ void InitializeExceptionHandlerContextA1(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x790) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x790) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x790))(exceptionContext + 0x780,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x760) = &SystemTemporaryExceptionHandler;
@@ -60989,7 +60989,7 @@ void InitializeExceptionHandlerContextA2(DataBuffer operationBase,int64_t dataBu
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   
   // 调用异常处理器回调函数（如果存在）
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset850) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset850) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset850))(exceptionContext + ExceptionHandlerCallbackOffset840, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -61069,7 +61069,7 @@ void ExceptionUnwindHandlerPrimary(DataBuffer exceptionContext, int64_t unwindCo
   exceptionContext = *(int64_t *)(unwindContext + ExceptionHandlerContextOffset80);
   
   // 调用异常处理器回调函数（如果存在）
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset910) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset910) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset910))(exceptionContext + ExceptionHandlerCallbackOffset900, 0, 0, systemFlag, SystemCleanupFlagAlternative);
   }
   
@@ -61146,7 +61146,7 @@ void ExceptionUnwindHandlerSecondary(DataBuffer exceptionContext, int64_t unwind
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(unwindContext + ResourceManagementOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x9d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x9d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x9d0))(exceptionContext + 0x9c0,0,0,systemFlag,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9a0) = &SystemTemporaryExceptionHandler;
@@ -61217,7 +61217,7 @@ void InitializeExceptionHandlerContextA3(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xa90) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa90) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa90))(exceptionContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa60) = &SystemTemporaryExceptionHandler;
@@ -61283,7 +61283,7 @@ void CleanupExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xb50) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xb50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xb50))(exceptionContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xb20) = &SystemTemporaryExceptionHandler;
@@ -61347,7 +61347,7 @@ void CleanupExceptionHandlersLevel0(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel0_FunctionPointerOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel0_FunctionPointerOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel0_FunctionPointerOffset))(exceptionContext + ExceptionHandlerLevel0_CallbackParamOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel0_TemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
@@ -61411,7 +61411,7 @@ void CleanupExceptionHandlersLevel1(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel1_FunctionPointerOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel1_FunctionPointerOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel1_FunctionPointerOffset))(exceptionContext + ExceptionHandlerLevel1_CallbackParamOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel1_TemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
@@ -61461,7 +61461,7 @@ void CleanupExceptionHandlersLevel2(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel2_FunctionPointerOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel2_FunctionPointerOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel2_FunctionPointerOffset))(exceptionContext + ExceptionHandlerLevel2_CallbackParamOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel2_TemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
@@ -61507,7 +61507,7 @@ void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel3_FunctionPointerSecondaryOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel3_FunctionPointerSecondaryOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel3_FunctionPointerSecondaryOffset))(exceptionContext + ExceptionHandlerLevel3_CallbackParamSecondaryOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel3_TemporaryHandlerSecondaryOffset) = &SystemTemporaryExceptionHandler;
@@ -61553,7 +61553,7 @@ void CleanupExceptionHandlersLevel4(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel4_FunctionPointerTertiaryOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel4_FunctionPointerTertiaryOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel4_FunctionPointerTertiaryOffset))(exceptionContext + ExceptionHandlerLevel4_CallbackParamTertiaryOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel4_FunctionPointerSecondaryOffset) = &SystemTemporaryExceptionHandler;
@@ -61602,7 +61602,7 @@ void CleanupExceptionHandlersLevel5(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel5_FunctionPointerSecondaryOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel5_FunctionPointerSecondaryOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerLevel5_FunctionPointerSecondaryOffset))(exceptionContext + ExceptionHandlerLevel5_CallbackParamSecondaryOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerLevel5_TemporaryHandlerSecondaryOffset) = &SystemTemporaryExceptionHandler;
@@ -61651,7 +61651,7 @@ void CleanupExceptionHandlersLevel6(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 4000) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 4000) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 4000))(exceptionContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xf70) = &SystemTemporaryExceptionHandler;
@@ -61700,7 +61700,7 @@ void CleanupExceptionHandlersLevel7(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1060) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1060) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1060))(exceptionContext + 0x1050,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1030) = &SystemTemporaryExceptionHandler;
@@ -61749,7 +61749,7 @@ void CleanupExceptionHandlersLevel8(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset10D0))(exceptionContext + ExceptionHandlerCallbackOffset10C0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempCallbackOffset1098) = &SystemTemporaryExceptionHandler;
@@ -61777,7 +61777,7 @@ void CleanupExceptionHandlersLevel9(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1140) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1140) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1140))(exceptionContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1108) = &SystemTemporaryExceptionHandler;
@@ -61805,7 +61805,7 @@ void CleanupExceptionHandlersLevel10(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x11b0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x11b0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x11b0))(exceptionContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1178) = &SystemTemporaryExceptionHandler;
@@ -61833,7 +61833,7 @@ void CleanupExceptionHandlersLevel11(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1220) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1220) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1220))(exceptionContext + 0x1210,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x11e8) = &SystemTemporaryExceptionHandler;
@@ -61861,7 +61861,7 @@ void CleanupExceptionHandlersLevel12(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1290) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1290) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1290))(exceptionContext + 0x1280,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1258) = &SystemTemporaryExceptionHandler;
@@ -61889,7 +61889,7 @@ void CleanupExceptionHandlersLevel13(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1300) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1300) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1300))(exceptionContext + 0x12f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x12c8) = &SystemTemporaryExceptionHandler;
@@ -61917,7 +61917,7 @@ void CleanupExceptionHandlersLevel14(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1370) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1370) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1370))(exceptionContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1338) = &SystemTemporaryExceptionHandler;
@@ -66368,7 +66368,7 @@ void ExecuteExceptionHandlerAtOffsetD8(DataBuffer context,int64_t exceptionConte
   code *exceptionHandler;
   
   exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0xd8) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandler != (code *)0x0) {
+  if (exceptionHandler != NULL_FUNCTION_POINTER) {
     (*exceptionHandler)(*(int64_t *)(exceptionContext + 0xd8),0,0,exceptionData,SystemCleanupFlagAlternative);
   }
   return;
@@ -66382,7 +66382,7 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionCo
   code *exceptionHandler;
   
   exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0xd8) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandler != (code *)0x0) {
+  if (exceptionHandler != NULL_FUNCTION_POINTER) {
     (*exceptionHandler)(*(int64_t *)(exceptionContext + 0xd8),0,0,exceptionData,SystemCleanupFlagAlternative);
   }
   return;
@@ -66406,7 +66406,7 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionCo
 void ExecuteExceptionHandlerAtOffset50(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != (code *)0x0) {
+  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50))(ExceptionContext + ExceptionHandlerContextOffset40, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -66433,7 +66433,7 @@ void ExecuteExceptionHandlerAtOffsetF0(DataBuffer ExceptionHandlerContext, int64
   code *ExceptionHandlerFunction;
   
   ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF0) + ExceptionHandlerCallbackOffset);
-  if (ExceptionHandlerFunction != (code *)0x0) {
+  if (ExceptionHandlerFunction != NULL_FUNCTION_POINTER) {
     (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF0), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -66466,7 +66466,7 @@ void ExecuteCleanupHandlerAtOffset108(DataBuffer ExceptionHandlerContext, int64_
 void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != (code *)0x0) {
+  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50))(ExceptionContext + ExceptionHandlerContextOffset40, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -66480,7 +66480,7 @@ void ExecuteExceptionHandlerAtOffsetF8(DataBuffer ExceptionHandlerContext, int64
   code *ExceptionHandlerFunction;
   
   ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8) + ExceptionHandlerCallbackOffset);
-  if (ExceptionHandlerFunction != (code *)0x0) {
+  if (ExceptionHandlerFunction != NULL_FUNCTION_POINTER) {
     (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -66494,7 +66494,7 @@ void ExecuteExceptionHandlerAtOffset100(DataBuffer ExceptionHandlerContext, int6
   code *ExceptionHandlerFunction;
   
   ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffset100) + ExceptionHandlerCallbackOffset);
-  if (ExceptionHandlerFunction != (code *)0x0) {
+  if (ExceptionHandlerFunction != NULL_FUNCTION_POINTER) {
     (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffset100), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -66508,7 +66508,7 @@ void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer ExceptionHandlerContext, in
   code *ExceptionHandlerFunction;
   
   ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8) + ExceptionHandlerCallbackOffset);
-  if (ExceptionHandlerFunction != (code *)0x0) {
+  if (ExceptionHandlerFunction != NULL_FUNCTION_POINTER) {
     (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -67180,10 +67180,10 @@ void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + DataBufferOffsetA8);
-  if (*(FunctionPointer**)(exceptionContext + 0x198) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x198) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x198))(exceptionContext + SystemDataSecondaryOffset188,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(exceptionContext + 0x178) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x178) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x178))(exceptionContext + 0x168,0,0);
   }
   *(uint8_t **)(exceptionContext + ExceptionHandlerContextDataOffset) = &SystemDefaultExceptionHandlerB;
@@ -67210,10 +67210,10 @@ void ExecuteExceptionHandlerCallbackA2(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(exceptionDataBuffer + DataBufferOffset48);
-  if (*(FunctionPointer**)(exceptionContext + 0x198) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x198) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x198))(exceptionContext + SystemDataSecondaryOffset188,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(exceptionContext + 0x178) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x178) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x178))(exceptionContext + 0x168,0,0);
   }
   *(uint8_t **)(exceptionContext + ExceptionHandlerContextDataOffset) = &SystemDefaultExceptionHandlerB;
@@ -67670,7 +67670,7 @@ ProcessCheckpointValidationData3:
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if ((code *)operationResult[3] != (code *)0x0) {
+  if ((code *)operationResult[3] != NULL_FUNCTION_POINTER) {
     (*(code *)operationResult[3])(operationResult + 1,0,0);
   }
   return;
@@ -67776,7 +67776,7 @@ void ExecuteExceptionCallback(DataBuffer exceptionContext, int64_t callbackConte
   code *callbackFunction;
   
   callbackFunction = *(FunctionPointer**)(*(int64_t *)(callbackContext + SystemDataBufferPointerOffset) + ExceptionHandlerCallbackOffset);
-  if (callbackFunction != (code *)0x0) {
+  if (callbackFunction != NULL_FUNCTION_POINTER) {
     (*callbackFunction)(*(int64_t *)(callbackContext + SystemDataBufferPointerOffset),0,0,callbackParam,SystemCleanupFlagAlternative);
   }
   return;
@@ -68491,7 +68491,7 @@ ProcessCheckpointValidationData3:
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if ((code *)operationResult[3] != (code *)0x0) {
+  if ((code *)operationResult[3] != NULL_FUNCTION_POINTER) {
     (*(code *)operationResult[3])(operationResult + 1,0,0);
   }
   return;
@@ -68925,7 +68925,7 @@ void ExecuteSystemCallbackWithCleanupFlags(DataBuffer systemContext, int64_t exe
   code *systemCallback;
   
   systemCallback = *(FunctionPointer**)(*(int64_t *)(executionContext + 0x50) + 0xd0);
-  if (systemCallback != (code *)0x0) {
+  if (systemCallback != NULL_FUNCTION_POINTER) {
     (*systemCallback)(*(int64_t *)(executionContext + 0x50) + 0xc0,0,0,cleanupFlag,SystemCleanupFlagAlternative);
   }
   return;
@@ -69760,10 +69760,10 @@ void DestroyMutexB(void)
 void ExecuteDualExceptionCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8))(dataBuffer + ExceptionHandlerContextOffset1e8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8))(dataBuffer + SystemCallbackDataOffset1C8,0,0);
   }
   *(uint8_t **)(dataBuffer + SystemDataBufferOffset80) = &SystemDefaultExceptionHandlerB;
@@ -69789,7 +69789,7 @@ void ExecuteDualExceptionCleanupCallbacks(DataBuffer operationBase,int64_t dataB
 void ExecutePrimaryExceptionCleanupCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ResourceManagementOffset1d8))(dataBuffer + SystemCallbackDataOffset1C8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -69814,7 +69814,7 @@ void ExecutePrimaryExceptionCleanupCallback(DataBuffer operationBase,int64_t dat
 void ExecuteSecondaryExceptionCleanupCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + SystemExceptionHandlerOffset1F8))(dataBuffer + ExceptionHandlerContextOffset1e8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -69990,7 +69990,7 @@ void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,Data
   code *handlerFunction;
   
   handlerFunction = *(FunctionPointer**)(*(int64_t *)(contextData + 0x50) + 0x178);
-  if (handlerFunction != (code *)0x0) {
+  if (handlerFunction != NULL_FUNCTION_POINTER) {
     (*handlerFunction)(*(int64_t *)(contextData + 0x50) + 0x168,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -73995,7 +73995,7 @@ void ExecuteExceptionHandlerContextCallbackA0(DataBuffer operationBase,int64_t d
 void ExecuteCallbackWithFlagsA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset))(dataBuffer + ExceptionHandlerDataBufferOffset68,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -74076,7 +74076,7 @@ void ExecuteNestedExceptionHandlerContextCallbackA0(DataBuffer operationBase,int
 void ExecuteCallbackWithFlagsA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerCountOffset))(dataBuffer + ExceptionHandlerDataBufferOffset68,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -76411,7 +76411,7 @@ void ExecuteContextCallbackDuringUnwind(DataBuffer operationBase,int64_t dataBuf
 void HandleExceptionDuringUnwindProcess(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(HandlerContext + 0xe8) != (code *)0x0) {
+  if (*(FunctionPointer**)(HandlerContext + 0xe8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(HandlerContext + 0xe8))(HandlerContext + 0xd8, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -76435,7 +76435,7 @@ void HandleExceptionDuringUnwindProcess(DataBuffer ExceptionContext, int64_t Han
 void UnwindExceptionHandlerA1(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(HandlerContext + ExceptionCallbackOffset68) != (code *)0x0) {
+  if (*(FunctionPointer**)(HandlerContext + ExceptionCallbackOffset68) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(HandlerContext + ExceptionCallbackOffset68))(HandlerContext + 0x58, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -76490,7 +76490,7 @@ void UnwindExceptionHandlerA2(DataBuffer ExceptionContext, int64_t HandlerContex
 void UnwindExceptionHandlerB0(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(HandlerContext + 0x108) != (code *)0x0) {
+  if (*(FunctionPointer**)(HandlerContext + 0x108) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(HandlerContext + 0x108))(HandlerContext + 0xf8, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
@@ -76606,7 +76606,7 @@ void UnwindExceptionHandlerB4(DataBuffer ExceptionContext, int64_t HandlerContex
  */
 void ExecuteExceptionHandlerCallbackJ0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffsetE8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffsetE8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffsetE8))(dataBuffer + DataBufferOffsetD8, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
@@ -76628,7 +76628,7 @@ void ExecuteExceptionHandlerCallbackJ0(DataBuffer operationBase, int64_t dataBuf
  */
 void ExecuteExceptionHandlerCallbackK0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerDataBufferOffset68) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerDataBufferOffset68) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerDataBufferOffset68))(exceptionDataBuffer + ExceptionHandlerContextOffset58, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
@@ -76704,7 +76704,7 @@ void ExecuteExceptionHandlerCallbackM0(DataBuffer operationBase, int64_t dataBuf
 void ExecuteHandlerAtOffset108(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset108) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset108) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset108))(dataBuffer + DataBufferOffsetF8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -77047,7 +77047,7 @@ void ProcessSystemDataWithOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48))(dataBuffer + SystemFloatDataOffset38,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -77071,7 +77071,7 @@ void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffe
 void ExecuteFunctionPointerCallbackA1Duplicate(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + DataBufferOffset48))(dataBuffer + SystemFloatDataOffset38,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -79828,13 +79828,13 @@ void ProcessExceptionDataA(DataBuffer operationBase,int64_t dataBuffer,DataBuffe
 void ExecuteExceptionHandlerCallbacksA30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + MemoryPointerOffset0))(dataBuffer + ExceptionHandlerContextOffset1f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset1e0))(dataBuffer + DataBufferOffset1d0,0,0);
   }
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0))(dataBuffer + ExceptionHandlerContextOffset1b0,0,0);
   }
   return;
@@ -79859,13 +79859,13 @@ void ExecuteExceptionHandlerCallbacksA30(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbacksA40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset2A0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset2A0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset2A0))(dataBuffer + DataBufferOffset290,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ValidationResultOffset0))(dataBuffer + DataBufferOffset270,0,0);
   }
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset260) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset260) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset260))(dataBuffer + ExceptionDataBufferOffset250,0,0);
   }
   return;
@@ -80123,7 +80123,7 @@ void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0))(dataBuffer + ExceptionHandlerContextOffset1b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80147,7 +80147,7 @@ void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbacksAC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset1e0))(dataBuffer + DataBufferOffset1d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80181,7 +80181,7 @@ void ExecuteExceptionHandlerCallbacksAC0(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbackAD0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + MemoryPointerOffset0))(dataBuffer + ExceptionHandlerContextOffset1f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80234,7 +80234,7 @@ void SetDefaultExceptionHandlerAE0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteExceptionHandlerCallbackAF0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset260) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset260) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset260))(dataBuffer + ExceptionHandlerContextOffset250,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80257,7 +80257,7 @@ void ExecuteExceptionHandlerCallbackAF0(DataBuffer operationBase,int64_t dataBuf
 void ExecuteExceptionHandlerCallbackB00(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ValidationResultOffset0))(dataBuffer + ExceptionHandlerContextOffset270,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80280,7 +80280,7 @@ void ExecuteExceptionHandlerCallbackB00(DataBuffer operationBase, int64_t dataBu
 void ExecuteExceptionHandlerCallbackB10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset2a0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset2a0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset2a0))(dataBuffer + ExceptionHandlerContextOffset290,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80619,13 +80619,13 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
 void ExecuteMultipleExceptionCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210))(dataBuffer + MemoryPointerOffset0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0))(dataBuffer + DataBufferOffset1e0,0,0);
   }
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset1d0))(dataBuffer + ExceptionHandlerContextOffset1c0,0,0);
   }
   return;
@@ -80798,7 +80798,7 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset1d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset1d0))(dataBuffer + ExceptionHandlerContextOffset1c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80821,7 +80821,7 @@ void ExecuteCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer,DataB
 void ExecuteCleanupOperationA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1f0))(dataBuffer + DataBufferOffset1e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80845,7 +80845,7 @@ void ExecuteCleanupOperationA1(DataBuffer operationBase,int64_t dataBuffer,DataB
 void ProcessSystemExceptionCallback7cb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionDataBufferOffset210))(dataBuffer + MemoryPointerOffset0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80994,13 +80994,13 @@ void ResetExceptionHandlerOffset1E8(DataBuffer operationBase,int64_t dataBuffer)
 void InvokeSystemExceptionHandlers7d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset150) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset150) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset150))(dataBuffer + DataBufferOffset140,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset130) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset130) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset130))(dataBuffer + SystemValidationDataOffset120,0,0);
   }
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110))(dataBuffer + ExceptionHandlerContextOffset100,0,0);
   }
   return;
@@ -81285,7 +81285,7 @@ void SetDefaultExceptionHandlerBDoublePointerOffset1E8(DataBuffer operationBase,
 void ExecuteExceptionHandlerCallbackOffset110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110))(dataBuffer + ExceptionHandlerContextOffset100,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81308,7 +81308,7 @@ void ExecuteExceptionHandlerCallbackOffset110(DataBuffer operationBase,int64_t d
 void ExecuteExceptionHandlerCallbackOffset130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset130) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset130) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset130))(dataBuffer + SystemValidationDataOffset120,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81331,7 +81331,7 @@ void ExecuteExceptionHandlerCallbackOffset130(DataBuffer operationBase,int64_t d
 void ExecuteExceptionHandlerCallbackOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset150) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset150) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset150))(dataBuffer + DataBufferOffset140,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81616,7 +81616,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
 void ExecuteExceptionHandlerCallbackOffset60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60))(exceptionDataBuffer + ExceptionHandlerContextOffset50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81639,10 +81639,10 @@ void ExecuteExceptionHandlerCallbackOffset60(DataBuffer operationBase,int64_t da
 void ExecuteExceptionHandlerCallbackOffset208And1E8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + MemoryPointerOffset8))(dataBuffer + SystemExceptionHandlerOffset1F8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8))(dataBuffer + ResourceManagementOffset1d8,0,0);
   }
   *(uint8_t **)(dataBuffer + systemContextPointerOffset90) = &SystemDefaultExceptionHandlerB;
@@ -81666,7 +81666,7 @@ void ExecuteExceptionHandlerCallbackOffset208And1E8(DataBuffer operationBase,int
 void ExecuteExceptionHandlerCallbackOffset60V2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset60))(exceptionDataBuffer + ExceptionHandlerContextOffset50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81708,7 +81708,7 @@ void SetDefaultExceptionHandlerBOffset90(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbackOffset1E8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1e8))(dataBuffer + ResourceManagementOffset1d8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81731,7 +81731,7 @@ void ExecuteExceptionHandlerCallbackOffset1E8(DataBuffer operationBase,int64_t d
 void ExecuteExceptionHandlerCallbackOffset208(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + MemoryPointerOffset8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + MemoryPointerOffset8))(dataBuffer + SystemExceptionHandlerOffset1F8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -93252,7 +93252,7 @@ void ExecuteMemoryOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteFunctionPointerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38))(dataBuffer + ValidationResultOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -93274,7 +93274,7 @@ void ExecuteFunctionPointerCallbackA0(DataBuffer operationBase,int64_t dataBuffe
 void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + SystemFloatDataOffset38))(dataBuffer + ValidationResultOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -98337,7 +98337,7 @@ void CleanupExceptionContextAtOffset20(DataBuffer operationBase,int64_t dataBuff
 void ExecuteExceptionHandlerCallbackZ0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58))(exceptionDataBuffer + DataBufferOffset48,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -98360,7 +98360,7 @@ void ExecuteExceptionHandlerCallbackZ0(DataBuffer operationBase,int64_t dataBuff
 void ExecuteExceptionHandlerCallbackZ1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionDataBuffer + ExceptionHandlerContextOffset58))(exceptionDataBuffer + DataBufferOffset48,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -101617,7 +101617,7 @@ void InvokeFunctionPointerAtOffset180(DataBuffer operationBase,int64_t dataBuffe
 void ExecuteOperationCallbackWithCleanupFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110))(dataBuffer + ExceptionHandlerContextOffset100,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -101668,7 +101668,7 @@ void InvokeFunctionPointerAtOffset158(DataBuffer operationBase,int64_t dataBuffe
 void ExecuteDataBufferOperationCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset110))(dataBuffer + ExceptionHandlerContextOffset100,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -122867,7 +122867,7 @@ void ResetExceptionContextAndConfigureHandlers(DataBuffer operationBase,int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xa00) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa00) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa00))(exceptionContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9c8) = &SystemTemporaryExceptionHandler;
@@ -122910,7 +122910,7 @@ void InitializeExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xa70) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa70) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa70))(exceptionContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa38) = &SystemTemporaryExceptionHandler;
@@ -122952,7 +122952,7 @@ void CleanupExceptionContextAtOffsetAE0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xae0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xae0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xae0))(exceptionContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xaa8) = &SystemTemporaryExceptionHandler;
@@ -122994,7 +122994,7 @@ void CleanupExceptionContextAtOffsetB50(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xb50) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xb50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xb50))(exceptionContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xb18) = &SystemTemporaryExceptionHandler;
@@ -123036,7 +123036,7 @@ void CleanupExceptionContextAtOffsetBC0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xbc0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xbc0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xbc0))(exceptionContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xb88) = &SystemTemporaryExceptionHandler;
@@ -123078,7 +123078,7 @@ void CleanupExceptionContextAtOffsetC30(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xc30) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xc30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xc30))(exceptionContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xbf8) = &SystemTemporaryExceptionHandler;
@@ -123120,7 +123120,7 @@ void CleanupExceptionContextAtOffsetCA0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xca0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xca0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xca0))(exceptionContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xc68) = &SystemTemporaryExceptionHandler;
@@ -123162,7 +123162,7 @@ void CleanupExceptionContextAtOffsetD10(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xd10) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xd10) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xd10))(exceptionContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xcd8) = &SystemTemporaryExceptionHandler;
@@ -123204,7 +123204,7 @@ void CleanupExceptionContextAtOffsetD80(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xd80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xd80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xd80))(exceptionContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xd48) = &SystemTemporaryExceptionHandler;
@@ -123246,7 +123246,7 @@ void CleanupExceptionContextAtOffsetDF0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xdf0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xdf0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xdf0))(exceptionContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xdb8) = &SystemTemporaryExceptionHandler;
@@ -123288,7 +123288,7 @@ void CleanupExceptionContextAtOffsetE60(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xe60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xe60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xe60))(exceptionContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xe28) = &SystemTemporaryExceptionHandler;
@@ -123328,7 +123328,7 @@ void CleanupExceptionMemoryBlocksA60(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0xed0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xed0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xed0))(exceptionContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xe98) = &SystemTemporaryExceptionHandler;
@@ -123368,7 +123368,7 @@ void CleanupExceptionMemoryBlocksA61(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetF40) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetF40) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetF40))(exceptionContext + ExceptionHandlerParameterOffsetF30,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetF08) = &SystemTemporaryExceptionHandler;
@@ -123409,7 +123409,7 @@ void InitializeExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetFb0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetFb0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffsetFb0))(exceptionContext + ExceptionHandlerParameterOffset4000,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetF78) = &SystemTemporaryExceptionHandler;
@@ -123456,7 +123456,7 @@ void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1020) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1020) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1020))(exceptionContext + ExceptionHandlerParameterOffset1010,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffsetFe8) = &SystemTemporaryExceptionHandler;
@@ -123498,7 +123498,7 @@ void InitializeExceptionHandlerA10(DataBuffer operationBase,int64_t dataBuffer,D
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1090) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1090) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1090))(exceptionContext + ExceptionHandlerParameterOffset1080,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerCleanupOffset1058) = &SystemTemporaryExceptionHandler;
@@ -123543,7 +123543,7 @@ void ResetExceptionHandlersAtOffset9a0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1100) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1100) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1100))(exceptionContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x10c8) = &SystemTemporaryExceptionHandler;
@@ -123590,7 +123590,7 @@ void ResetExceptionHandlersAtOffset9c0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1170) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1170) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset1170))(exceptionContext + ExceptionHandlerContextOffset1160,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset1138) = &SystemTemporaryExceptionHandler;
@@ -123635,7 +123635,7 @@ void ResetExceptionHandlersAtOffset9e0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset11e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset11e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset11e0))(exceptionContext + ExceptionHandlerContextOffset11d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset11a8) = &SystemTemporaryExceptionHandler;
@@ -123682,7 +123682,7 @@ void ResetExceptionHandlersAtOffsetA00(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1250) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1250) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1250))(exceptionContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1218) = &SystemTemporaryExceptionHandler;
@@ -123729,7 +123729,7 @@ void ResetExceptionHandlersAtOffsetA20(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x12c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x12c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x12c0))(exceptionContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1288) = &SystemTemporaryExceptionHandler;
@@ -123772,7 +123772,7 @@ void SystemExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1330) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1330) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1330))(exceptionContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x12f8) = &SystemTemporaryExceptionHandler;
@@ -123815,7 +123815,7 @@ void SystemExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x13a0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x13a0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x13a0))(exceptionContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1368) = &SystemTemporaryExceptionHandler;
@@ -123858,7 +123858,7 @@ void SystemExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410))(exceptionContext + ExceptionContextDataOffset1400,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x13d8) = &SystemTemporaryExceptionHandler;
@@ -123902,7 +123902,7 @@ void ResetExceptionHandlersAndSystemStateGroupSix(DataBuffer operationBase, int6
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480))(exceptionContext + ExceptionContextDataOffset1470, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1448) = &SystemTemporaryExceptionHandler;
@@ -123953,7 +123953,7 @@ void ResetExceptionHandlersAtOffsetAc0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0))(exceptionContext + ExceptionContextDataOffset14e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset14b8) = &SystemTemporaryExceptionHandler;
@@ -124001,7 +124001,7 @@ void ResetExceptionHandlersAtOffsetAe0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1560) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1560) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1560))(exceptionContext + ExceptionContextDataOffset1550,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1528) = &SystemTemporaryExceptionHandler;
@@ -124049,7 +124049,7 @@ void ResetExceptionHandlersAtOffsetB00(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset15d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset15d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset15d0))(exceptionContext + ExceptionContextDataOffset15c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1598) = &SystemTemporaryExceptionHandler;
@@ -124097,7 +124097,7 @@ void ResetExceptionHandlersAtOffsetB20(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1640) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1640) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1640))(exceptionContext + ExceptionContextDataOffset1630,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1608) = &SystemTemporaryExceptionHandler;
@@ -124140,7 +124140,7 @@ void ResetExceptionHandlerContextLayer1(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA))(exceptionContext + ExceptionHandlerOffsetExtendedHandlerB,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerOffsetCleanupHandlerA) = &SystemTemporaryExceptionHandler;
@@ -124168,7 +124168,7 @@ void ResetExceptionHandlerContextLayer2(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1720) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1720) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1720))(exceptionContext + 0x1710,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x16e8) = &SystemTemporaryExceptionHandler;
@@ -124196,7 +124196,7 @@ void ResetExceptionHandlerContextLayer3(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1790) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1790) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1790))(exceptionContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1758) = &SystemTemporaryExceptionHandler;
@@ -124243,7 +124243,7 @@ void ResetExceptionHandlersAtOffsetBa0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset))(exceptionContext + ExceptionHandlerParameterOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x17c8) = &SystemTemporaryExceptionHandler;
@@ -124290,7 +124290,7 @@ void ResetExceptionHandlersAtOffsetBc0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870))(exceptionContext + SystemDataSecondaryOffset1860,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataSecondaryOffset1838) = &SystemTemporaryExceptionHandler;
@@ -124330,7 +124330,7 @@ void ResetExceptionHandlerStateOffset18e0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0))(exceptionContext + SystemDataSecondaryOffset18d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataSecondaryOffset18a8) = &SystemTemporaryExceptionHandler;
@@ -124370,7 +124370,7 @@ void ResetExceptionHandlerStateOffset1950(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset1950) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset1950) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset1950))(exceptionContext + ExceptionHandlerResetOffset1940,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerResetOffset1918) = &SystemTemporaryExceptionHandler;
@@ -124410,7 +124410,7 @@ void ResetExceptionHandlerStateOffset19c0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset19c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset19c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerResetOffset19c0))(exceptionContext + ExceptionHandlerResetOffset19b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerResetOffset1988) = &SystemTemporaryExceptionHandler;
@@ -124450,7 +124450,7 @@ void ResetExceptionHandlerStateOffset1a30(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1a30) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1a30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1a30))(exceptionContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x19f8) = &SystemTemporaryExceptionHandler;
@@ -124490,7 +124490,7 @@ void ResetExceptionHandlerStateOffset1aa0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1aa0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1aa0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1aa0))(exceptionContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1a68) = &SystemTemporaryExceptionHandler;
@@ -124530,7 +124530,7 @@ void ResetExceptionHandlerStateOffset1b10(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1b10) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1b10) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1b10))(exceptionContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1ad8) = &SystemTemporaryExceptionHandler;
@@ -124570,7 +124570,7 @@ void ResetExceptionHandlerStateOffset1b80(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1b80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1b80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1b80))(exceptionContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1b48) = &SystemTemporaryExceptionHandler;
@@ -124610,7 +124610,7 @@ void ResetExceptionHandlerStateOffset1bf0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1bf0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1bf0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1bf0))(exceptionContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1bb8) = &SystemTemporaryExceptionHandler;
@@ -124649,7 +124649,7 @@ void ResetExceptionHandlerStateOffset1c60(DataBuffer operationBase, int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1c60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1c60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1c60))(exceptionContext + ExceptionHandlerCallbackParamOffset1c50, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1c28) = &SystemTemporaryExceptionHandler;
@@ -124688,7 +124688,7 @@ void ResetExceptionHandlerStateOffset1cd0(DataBuffer operationBase, int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1cd0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1cd0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1cd0))(exceptionContext + ExceptionHandlerCallbackParamOffset1cc0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1c98) = &SystemTemporaryExceptionHandler;
@@ -124727,7 +124727,7 @@ void ResetExceptionHandlerStateOffset1d40(DataBuffer operationBase, int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1d40) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1d40) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1d40))(exceptionContext + ExceptionHandlerCallbackParamOffset1d30, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1d08) = &SystemTemporaryExceptionHandler;
@@ -124767,7 +124767,7 @@ void ResetExceptionHandlerStateOffset1db0(DataBuffer operationBase, int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0))(exceptionContext + ExceptionHandlerCallbackParamOffset1da0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1d78) = &SystemTemporaryExceptionHandler;
@@ -124812,7 +124812,7 @@ void DualExceptionContextCleanupHandler(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1e20) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1e20) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1e20))(exceptionContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1de8) = &SystemTemporaryExceptionHandler;
@@ -124857,7 +124857,7 @@ void DualExceptionContextCleanupHandlerB(DataBuffer operationBase, int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1e90) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1e90) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1e90))(exceptionContext + ExceptionHandlerCallbackParamOffset1e80, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1e58) = &SystemTemporaryExceptionHandler;
@@ -124902,7 +124902,7 @@ void DualExceptionContextCleanupHandlerC(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1f00) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1f00) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1f00))(exceptionContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1ec8) = &SystemTemporaryExceptionHandler;
@@ -124947,7 +124947,7 @@ void DualExceptionContextCleanupHandlerD(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1f70) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1f70) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1f70))(exceptionContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1f38) = &SystemTemporaryExceptionHandler;
@@ -124992,7 +124992,7 @@ void DualExceptionContextCleanupHandlerE(DataBuffer operationBase,int64_t dataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x1fe0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1fe0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1fe0))(exceptionContext + 0x1fd0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1fa8) = &SystemTemporaryExceptionHandler;
@@ -125089,7 +125089,7 @@ void CleanupSystemExceptionStateVersion20(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextDataOffsetc0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextDataOffsetc0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextDataOffsetc0))(exceptionContext + ExceptionHandlerContextDataOffsetb0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffset88) = &SystemTemporaryExceptionHandler;
@@ -125135,7 +125135,7 @@ void CleanupSystemExceptionStateVersion40(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2130) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2130) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2130))(exceptionContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffsetf8) = &SystemTemporaryExceptionHandler;
@@ -125181,7 +125181,7 @@ void CleanupSystemExceptionStateVersion60(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x21a0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x21a0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x21a0))(exceptionContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2168) = &SystemTemporaryExceptionHandler;
@@ -125227,7 +125227,7 @@ void CleanupSystemExceptionStateVersion80(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2210) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2210) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2210))(exceptionContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x21d8) = &SystemTemporaryExceptionHandler;
@@ -125273,7 +125273,7 @@ void CleanupSystemExceptionStateVersionA0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2280) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2280) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2280))(exceptionContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2248) = &SystemTemporaryExceptionHandler;
@@ -125319,7 +125319,7 @@ void CleanupSystemExceptionStateVersionC0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x22f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x22f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x22f0))(exceptionContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x22b8) = &SystemTemporaryExceptionHandler;
@@ -125365,7 +125365,7 @@ void ResetExceptionHandlerStates(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2360) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2360) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2360))(exceptionContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 9000) = &SystemTemporaryExceptionHandler;
@@ -125411,7 +125411,7 @@ void CleanupExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x23d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x23d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x23d0))(exceptionContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2398) = &SystemTemporaryExceptionHandler;
@@ -125457,7 +125457,7 @@ void FinalizeExceptionHandlerCleanup(DataBuffer operationBase,int64_t dataBuffer
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440))(exceptionContext + ExceptionContextFunctionParameterOffset2430,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextTempHandlerOffset2408) = &SystemTemporaryExceptionHandler;
@@ -125504,7 +125504,7 @@ void ResetExceptionHandlersAtOffsetF40(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0))(exceptionContext + ExceptionContextSecondaryFunctionParameterOffset24A0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextTertiaryTempHandlerOffset2478) = &SystemTemporaryExceptionHandler;
@@ -125547,7 +125547,7 @@ void SystemExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2520) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2520) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2520))(exceptionContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x24e8) = &SystemTemporaryExceptionHandler;
@@ -125588,7 +125588,7 @@ void ProcessSystemUnwindAndCleanupAtOffsetF80(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2590) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2590) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2590))(exceptionContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2558) = &SystemTemporaryExceptionHandler;
@@ -125629,7 +125629,7 @@ void ProcessSystemUnwindAndCleanupAtOffsetFA0(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 0x2600) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2600) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2600))(exceptionContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x25c8) = &SystemTemporaryExceptionHandler;
@@ -125745,7 +125745,7 @@ void CleanupSystemExceptionStateVersion00(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xa00) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa00) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa00))(exceptionContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x9c8) = &SystemTemporaryExceptionHandler;
@@ -125791,7 +125791,7 @@ void CleanupSystemExceptionStateVersion20Alt(DataBuffer operationBase,int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xa70) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xa70) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xa70))(exceptionContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xa38) = &SystemTemporaryExceptionHandler;
@@ -125839,7 +125839,7 @@ void HandleSystemExceptionCleanupVersion40(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xae0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xae0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xae0))(exceptionContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xaa8) = &SystemTemporaryExceptionHandler;
@@ -125887,7 +125887,7 @@ void HandleSystemExceptionCleanupVersion60(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xb50) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xb50) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xb50))(exceptionContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xb18) = &SystemTemporaryExceptionHandler;
@@ -125935,7 +125935,7 @@ void HandleSystemExceptionCleanupVersion80(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xbc0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xbc0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xbc0))(exceptionContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xb88) = &SystemTemporaryExceptionHandler;
@@ -125983,7 +125983,7 @@ void HandleSystemExceptionCleanupVersionA0(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xc30) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xc30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xc30))(exceptionContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xbf8) = &SystemTemporaryExceptionHandler;
@@ -126029,7 +126029,7 @@ void CleanupSystemExceptionStateVersionC0Alt(DataBuffer operationBase,int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xca0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xca0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xca0))(exceptionContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xc68) = &SystemTemporaryExceptionHandler;
@@ -126075,7 +126075,7 @@ void CleanupSystemExceptionStateVersionE0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xd10) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xd10) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xd10))(exceptionContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xcd8) = &SystemTemporaryExceptionHandler;
@@ -126121,7 +126121,7 @@ void CleanupSystemExceptionStateVersion100(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xd80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xd80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xd80))(exceptionContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xd48) = &SystemTemporaryExceptionHandler;
@@ -126167,7 +126167,7 @@ void CleanupSystemExceptionStateVersion120(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xdf0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xdf0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xdf0))(exceptionContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xdb8) = &SystemTemporaryExceptionHandler;
@@ -126213,7 +126213,7 @@ void CleanupSystemExceptionStateVersion140(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xe60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xe60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xe60))(exceptionContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xe28) = &SystemTemporaryExceptionHandler;
@@ -126259,7 +126259,7 @@ void CleanupSystemExceptionStateVersion160(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xed0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xed0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xed0))(exceptionContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xe98) = &SystemTemporaryExceptionHandler;
@@ -126305,7 +126305,7 @@ void CleanupSystemExceptionStateVersion180(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xf40) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xf40) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xf40))(exceptionContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xf08) = &SystemTemporaryExceptionHandler;
@@ -126350,7 +126350,7 @@ void ExceptionContextProcessorA0(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0xfb0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0xfb0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0xfb0))(exceptionContext + 4000,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xf78) = &SystemTemporaryExceptionHandler;
@@ -126395,7 +126395,7 @@ void ExceptionContextProcessorA1(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1020) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1020) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1020))(exceptionContext + 0x1010,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0xfe8) = &SystemTemporaryExceptionHandler;
@@ -126440,7 +126440,7 @@ void ExceptionContextProcessorA2(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1090) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1090) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1090))(exceptionContext + ExceptionHandlerContextOffset1080,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1058) = &SystemTemporaryExceptionHandler;
@@ -126486,7 +126486,7 @@ void CleanupSystemExceptionStateVersion200(DataBuffer operationBase,int64_t data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1100) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1100) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1100))(exceptionContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x10c8) = &SystemTemporaryExceptionHandler;
@@ -126532,7 +126532,7 @@ void ProcessSystemExceptionCleanupAtPrimaryOffset(DataBuffer operationBase,int64
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1170) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1170) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1170))(exceptionContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1138) = &SystemTemporaryExceptionHandler;
@@ -126578,7 +126578,7 @@ void ProcessSystemExceptionCleanupAtSecondaryOffset(DataBuffer operationBase,int
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x11e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x11e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x11e0))(exceptionContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x11a8) = &SystemTemporaryExceptionHandler;
@@ -126619,7 +126619,7 @@ void ProcessSystemUnwindAndCleanupAtOffset260(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1250) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1250) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1250))(exceptionContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1218) = &SystemTemporaryExceptionHandler;
@@ -126660,7 +126660,7 @@ void ProcessSystemUnwindAndCleanupAtOffset280(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x12c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x12c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x12c0))(exceptionContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1288) = &SystemTemporaryExceptionHandler;
@@ -126701,7 +126701,7 @@ void ProcessSystemUnwindAndCleanupAtOffset2A0(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1330) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1330) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1330))(exceptionContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x12f8) = &SystemTemporaryExceptionHandler;
@@ -126742,7 +126742,7 @@ void ProcessSystemUnwindAndCleanupAtOffset2C0(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x13a0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x13a0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x13a0))(exceptionContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1368) = &SystemTemporaryExceptionHandler;
@@ -126783,7 +126783,7 @@ void ProcessSystemUnwindAndCleanupAtOffset2E0(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1410))(exceptionContext + ExceptionContextDataOffset1400,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x13d8) = &SystemTemporaryExceptionHandler;
@@ -126824,7 +126824,7 @@ void ProcessSystemUnwindAndCleanupAtOffset300(DataBuffer operationBase, int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1480))(exceptionContext + ExceptionContextDataOffset1470,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1448) = &SystemTemporaryExceptionHandler;
@@ -126869,7 +126869,7 @@ void ResetExceptionHandlerAtOffset14f0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset14f0))(exceptionContext + ExceptionContextDataOffset14e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset14b8) = &SystemTemporaryExceptionHandler;
@@ -126991,7 +126991,7 @@ void ExecuteExceptionHandlerCallback380(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1640) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1640) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1640))(exceptionContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerOffset1608) = &SystemTemporaryExceptionHandler;
@@ -127019,7 +127019,7 @@ void ExecuteExceptionHandlerCallback3A0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerA))(exceptionContext + ExceptionHandlerOffsetExtendedHandlerB,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerOffsetCleanupHandlerA) = &SystemTemporaryExceptionHandler;
@@ -127047,7 +127047,7 @@ void ExecuteExceptionHandlerCallback3C0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerC) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerC) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerOffsetExtendedHandlerC))(exceptionContext + ExceptionHandlerOffsetExtendedHandlerD,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerOffsetCleanupHandlerD) = &SystemTemporaryExceptionHandler;
@@ -127075,7 +127075,7 @@ void ExecuteExceptionHandlerCallback3E0(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1790) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1790) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1790))(exceptionContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1758) = &SystemTemporaryExceptionHandler;
@@ -127103,7 +127103,7 @@ void ExecuteExceptionHandlerCallback400(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffset))(exceptionContext + ExceptionHandlerParameterOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x17c8) = &SystemTemporaryExceptionHandler;
@@ -127131,7 +127131,7 @@ void ExecuteExceptionHandlerCallback420(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset1870))(exceptionContext + SystemDataSecondaryOffset1860,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataSecondaryOffset1838) = &SystemTemporaryExceptionHandler;
@@ -127183,7 +127183,7 @@ void ResetExceptionContextAtOffset18E0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + SystemDataSecondaryOffset18e0))(exceptionContext + SystemDataSecondaryOffset18d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + SystemDataSecondaryOffset18a8) = &SystemTemporaryExceptionHandler;
@@ -127211,7 +127211,7 @@ void ProcessExceptionCleanupAtOffset40Tertiary(DataBuffer operationBase,int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1950) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1950) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1950))(exceptionContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1918) = &SystemTemporaryExceptionHandler;
@@ -127239,7 +127239,7 @@ void ProcessExceptionCleanupAtOffset40Quaternary(DataBuffer operationBase,int64_
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x19c0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x19c0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x19c0))(exceptionContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1988) = &SystemTemporaryExceptionHandler;
@@ -127267,7 +127267,7 @@ void ProcessExceptionCleanupAtOffset40Quinary(DataBuffer operationBase,int64_t d
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1a30) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1a30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1a30))(exceptionContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x19f8) = &SystemTemporaryExceptionHandler;
@@ -127295,7 +127295,7 @@ void ProcessExceptionCleanupAtOffset40Senary(DataBuffer operationBase,int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1aa0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1aa0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1aa0))(exceptionContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1a68) = &SystemTemporaryExceptionHandler;
@@ -127323,7 +127323,7 @@ void ProcessExceptionCleanupAtOffset40Septenary(DataBuffer operationBase,int64_t
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1b10) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1b10) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1b10))(exceptionContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1ad8) = &SystemTemporaryExceptionHandler;
@@ -127369,7 +127369,7 @@ void ProcessExceptionCleanupAtOffset40Octonary(DataBuffer operationBase,int64_t 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1b80) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1b80) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1b80))(exceptionContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1b48) = &SystemTemporaryExceptionHandler;
@@ -127415,7 +127415,7 @@ void ProcessExceptionCleanupAtOffset40Nonary(DataBuffer operationBase,int64_t da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1bf0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1bf0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1bf0))(exceptionContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1bb8) = &SystemTemporaryExceptionHandler;
@@ -127467,7 +127467,7 @@ void ResetExceptionContextAtOffset1C60(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1C60) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1C60) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1C60))(exceptionContext + ExceptionContextDataOffset1C50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1C28) = &SystemTemporaryExceptionHandler;
@@ -127512,7 +127512,7 @@ void ExceptionContextProcessorA5(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1Cd0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1Cd0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextDataOffset1Cd0))(exceptionContext + ExceptionContextDataOffset1Cc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset1C98) = &SystemTemporaryExceptionHandler;
@@ -127557,7 +127557,7 @@ void ExceptionContextProcessorA6(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1d40) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1d40) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1d40))(exceptionContext + 0x1d30,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1d08) = &SystemTemporaryExceptionHandler;
@@ -127602,7 +127602,7 @@ void ExceptionContextProcessorA7(DataBuffer operationBase,int64_t dataBuffer,Dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1db0))(exceptionContext + ExceptionHandlerCallbackParamOffset1da0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerTempOffset1d78) = &SystemTemporaryExceptionHandler;
@@ -127648,7 +127648,7 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1e20) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1e20) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1e20))(exceptionContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1de8) = &SystemTemporaryExceptionHandler;
@@ -127693,7 +127693,7 @@ void CleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1e90) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1e90) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1e90))(exceptionContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1e58) = &SystemTemporaryExceptionHandler;
@@ -127738,7 +127738,7 @@ void CleanupExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer,DataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1f00) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1f00) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1f00))(exceptionContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1ec8) = &SystemTemporaryExceptionHandler;
@@ -127790,7 +127790,7 @@ void ResetExceptionContextAtOffset1F70(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x1f70) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x1f70) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x1f70))(exceptionContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1f38) = &SystemTemporaryExceptionHandler;
@@ -127843,7 +127843,7 @@ void ProcessExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer,DataB
   
   // 执行异常处理器回调函数（如果存在）
   exceptionHandlerCallback = (FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset1FE0);
-  if (*exceptionHandlerCallback != (code *)0x0) {
+  if (*exceptionHandlerCallback != NULL_FUNCTION_POINTER) {
     (**exceptionHandlerCallback)(exceptionContext + ExceptionHandlerParameterOffset1FD0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -127906,7 +127906,7 @@ void ProcessExceptionContextA1(DataBuffer operationBase,int64_t dataBuffer,DataB
   
   // 执行第二组异常处理器回调函数（如果存在）
   secondaryExceptionHandlerCallback = (FunctionPointer**)(exceptionContext + SecondaryExceptionHandlerCallbackOffset50);
-  if (*secondaryExceptionHandlerCallback != (code *)0x0) {
+  if (*secondaryExceptionHandlerCallback != NULL_FUNCTION_POINTER) {
     (**secondaryExceptionHandlerCallback)(exceptionContext + SecondaryExceptionHandlerParameterOffset40, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -127968,7 +127968,7 @@ void ProcessExceptionContextA2(DataBuffer operationBase,int64_t dataBuffer,DataB
   
   // 执行第三组异常处理器回调函数（如果存在）
   tertiaryExceptionHandlerCallback = (FunctionPointer**)(exceptionContext + TertiaryExceptionHandlerCallbackOffsetC0);
-  if (*tertiaryExceptionHandlerCallback != (code *)0x0) {
+  if (*tertiaryExceptionHandlerCallback != NULL_FUNCTION_POINTER) {
     (**tertiaryExceptionHandlerCallback)(exceptionContext + TertiaryExceptionHandlerParameterOffsetB0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -128015,7 +128015,7 @@ void CleanupExceptionAtOffset2130(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2130) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2130) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2130))(exceptionContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextDataOffsetf8) = &SystemTemporaryExceptionHandler;
@@ -128054,7 +128054,7 @@ void CleanupExceptionAtOffset21A0(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x21a0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x21a0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x21a0))(exceptionContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2168) = &SystemTemporaryExceptionHandler;
@@ -128093,7 +128093,7 @@ void CleanupExceptionAtOffset2210(DataBuffer exceptionContext,int64_t contextPoi
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(contextPointer + ContextPointerOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2210) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2210) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2210))(exceptionContext + 0x2200,0,0,validationFlags,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x21d8) = &SystemTemporaryExceptionHandler;
@@ -128134,7 +128134,7 @@ void CleanupExceptionAtOffset2280(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2280) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2280) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2280))(exceptionContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2248) = &SystemTemporaryExceptionHandler;
@@ -128173,7 +128173,7 @@ void CleanupExceptionAtOffset22F0(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x22f0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x22f0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x22f0))(exceptionContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x22b8) = &SystemTemporaryExceptionHandler;
@@ -128212,7 +128212,7 @@ void CleanupExceptionAtOffset2360(DataBuffer exceptionContext,int64_t contextPoi
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(contextPointer + ContextPointerOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2360) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2360) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2360))(exceptionContext + 0x2350,0,0,validationFlags,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 9000) = &SystemTemporaryExceptionHandler;
@@ -128240,7 +128240,7 @@ void ProcessExceptionContextCleanupAndHandlerSetup760(DataBuffer operationBase,i
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x23d0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x23d0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x23d0))(exceptionContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2398) = &SystemTemporaryExceptionHandler;
@@ -128281,7 +128281,7 @@ void Unwind_ExceptionContextCleanupA(DataBuffer operationBase, int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextFunctionPointerOffset2440))(exceptionContext + ExceptionContextFunctionParameterOffset2430,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextTempHandlerOffset2408) = &SystemTemporaryExceptionHandler;
@@ -128322,7 +128322,7 @@ void Unwind_ExceptionContextCleanupB(DataBuffer operationBase, int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + ExceptionContextSecondaryFunctionPointerOffset24B0))(exceptionContext + ExceptionContextSecondaryFunctionParameterOffset24A0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextTertiaryTempHandlerOffset2478) = &SystemTemporaryExceptionHandler;
@@ -128363,7 +128363,7 @@ void Unwind_ExceptionContextCleanupC(DataBuffer operationBase, int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2520) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2520) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2520))(exceptionContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x24e8) = &SystemTemporaryExceptionHandler;
@@ -128404,7 +128404,7 @@ void Unwind_ExceptionContextCleanupD(DataBuffer operationBase, int64_t dataBuffe
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2590) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2590) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2590))(exceptionContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x2558) = &SystemTemporaryExceptionHandler;
@@ -128432,7 +128432,7 @@ void ProcessSystemCleanupAndHandlerSetup800(DataBuffer operationBase,int64_t dat
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 0x2600) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + 0x2600) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(exceptionContext + 0x2600))(exceptionContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x25c8) = &SystemTemporaryExceptionHandler;
@@ -129189,7 +129189,7 @@ void Unwind_StatusFlagCleanupD(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDefaultExceptionHandlerA20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DefaultExceptionHandlerOffset30) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DefaultExceptionHandlerOffset30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DefaultExceptionHandlerOffset30))(dataBuffer + MemoryPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129214,7 +129214,7 @@ void ProcessDefaultExceptionHandlerA20(DataBuffer operationBase,int64_t dataBuff
 void ProcessSystemOperationDataProcessorA30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + SystemOperationDataOffset98) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + SystemOperationDataOffset98) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + SystemOperationDataOffset98))(dataBuffer + DataBufferOffset88,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129239,7 +129239,7 @@ void ProcessSystemOperationDataProcessorA30(DataBuffer operationBase,int64_t dat
 void ProcessExtendedComponentDataProcessorA40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ResourceCleanupOffset190) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ResourceCleanupOffset190) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ResourceCleanupOffset190))(dataBuffer + DataBufferOffsetA8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129264,7 +129264,7 @@ void ProcessExtendedComponentDataProcessorA40(DataBuffer operationBase,int64_t d
 void ProcessAdvancedComponentProcessorA50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetD8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetD8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetD8))(dataBuffer + ValidationStatusPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129289,7 +129289,7 @@ void ProcessAdvancedComponentProcessorA50(DataBuffer operationBase,int64_t dataB
 void ProcessTemporaryExceptionHandlerA60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetF8) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetF8) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetF8))(dataBuffer + DataProcessingContextOffsetE8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129300,7 +129300,7 @@ void ProcessTemporaryExceptionHandlerA60(DataBuffer operationBase,int64_t dataBu
 void HandleSystemCleanupAndResourceReleaseA70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset118) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset118) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset118))(dataBuffer + ExceptionHandlerContextOffset108,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129311,7 +129311,7 @@ void HandleSystemCleanupAndResourceReleaseA70(DataBuffer operationBase,int64_t d
 void HandleSystemCleanupAndResourceReleaseA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset138) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset138) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset138))(dataBuffer + DataBufferOffset128,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -129334,7 +129334,7 @@ void Unwind_ExceptionCallbackHandlerB8(DataBuffer operationBase,int64_t dataBuff
 // 原始函数名: Unwind_180911a90
 
 {
-  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset30) != (code *)0x0) {
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset30) != NULL_FUNCTION_POINTER) {
     (**(FunctionPointer**)(dataBuffer + DataBufferOffset30))(dataBuffer + MemoryPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
