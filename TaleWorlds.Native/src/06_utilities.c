@@ -15096,6 +15096,11 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackDataBufferSenary TemporaryDataBufferF    // 栈数据缓冲区第六变量
 #define StackDataBufferSeptenary TemporaryDataBufferG    // 栈数据缓冲区第七变量
 
+// ValidateMemoryStatus 函数新增变量定义
+#define StackDataBuffer78 TemporaryDataBufferH    // 栈数据缓冲区78 - 用于ValidateMemoryStatus函数
+#define StackDataBuffer74 TemporaryDataBufferI    // 栈数据缓冲区74 - 用于ValidateMemoryStatus函数
+#define StackDataBuffer70 TemporaryDataBufferJ    // 栈数据缓冲区70 - 用于ValidateMemoryStatus函数
+
 // 系统数据管理变量语义化定义
 #define TemporaryMemoryAllocationBuffer TemporaryMemoryAllocationBuffer    // 临时内存分配缓冲区
 #define SystemContextBuffer50 SystemValidationContextBuffer    // 系统验证上下文缓冲区
@@ -39438,9 +39443,9 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   int64_t operationBase;                      // 操作基础地址
   DataBuffer systemDataBuffer;                // 系统数据缓冲区
   uint64_t validationOutcome;                // 验证结果
-  DataBuffer stackDataBuffer78;              // 栈数据缓冲区78
-  DataBuffer stackDataBuffer74;              // 栈数据缓冲区74
-  DataBuffer stackDataBuffer70;              // 栈数据缓冲区70
+  DataBuffer StackDataBuffer78;              // 栈数据缓冲区78
+  DataBuffer StackDataBuffer74;              // 栈数据缓冲区74
+  DataBuffer StackDataBuffer70;              // 栈数据缓冲区70
   
   validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,SecurityValidationCodeLMPO);
   if ((int)validationResult != 0) {
@@ -143602,14 +143607,24 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 // 系统内存管理相关变量语义化定义
 #define UNK_180c4f450 SystemMemoryPoolManager              // 系统内存池管理器 - 负责系统内存池的分配和管理
 #define UNK_180c4f460 SystemMemoryAllocator                // 系统内存分配器 - 负责系统内存的分配操作
-#define UNK_180c919f0 SystemMemoryCleanupHandler           // 系统内存清理处理器 - 负责系统内存的清理操作
-#define UNK_180c91970 SystemMemoryResourceManager           // 系统内存资源管理器 - 负责系统内存资源的管理
-#define UNK_180c91f70 SystemMemorySecondaryManager         // 系统内存辅助管理器 - 负责系统内存的辅助管理
+// 系统内存管理器指针
+#define SystemMemoryManagerPointer UNK_180c91970
+
+// 系统内存辅助管理器指针
+#define SystemMemorySecondaryManagerPointer UNK_180c91f70
+
+// 系统内存清理处理器
+#define SystemMemoryCleanupHandler UNK_180c919f0
 
 // 系统线程管理相关变量语义化定义
-#define UNK_180c96690 SystemThreadManager                  // 系统线程管理器 - 负责系统线程的管理
-#define UNK_180c966f0 SystemThreadScheduler                 // 系统线程调度器 - 负责系统线程的调度
-#define UNK_180c96740 SystemThreadSynchronizer             // 系统线程同步器 - 负责系统线程的同步
+// 系统线程管理器指针
+#define SystemThreadManagerPointer UNK_180c96690
+
+// 系统线程调度器指针
+#define SystemThreadSchedulerPointer UNK_180c966f0
+
+// 系统线程同步器指针
+#define SystemThreadSynchronizerPointer UNK_180c96740
 #define UNK_180c497e0 SystemThreadContextManager           // 系统线程上下文管理器 - 负责线程上下文的管理
 #define UNK_180c498a0 SystemThreadExceptionHandler          // 系统线程异常处理器 - 负责线程异常的处理
 
