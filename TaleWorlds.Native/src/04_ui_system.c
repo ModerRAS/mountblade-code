@@ -129864,23 +129864,23 @@ void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong renderContextSize;
+  longlong *contextPointer;
+  UIByte workBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x118))(pstackLong120,dataSource);
+    operationResult = (**(code **)(*contextPointer + 0x118))(contextPointer,dataSource);
     if (operationResult == 0) goto LAB_18073ce8e;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    CopyUIDataBuffer(workBuffer,0x100,dataSource);
+    dataBufferPointer = workBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578b0);
   }
