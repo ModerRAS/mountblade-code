@@ -48106,7 +48106,22 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
 
 
 
-3630(uint64_t ContextHandle,uint64_t OperationBufferSize/**
+/**
+ * @brief 处理系统数据验证和状态检查
+ * 
+ * 该函数负责处理系统数据验证和状态检查，包括：
+ * - 验证系统数据结构的完整性
+ * - 检查系统状态和配置
+ * - 执行数据验证操作
+ * 
+ * @param ContextHandle 目标数据结构指针
+ * @param OperationBufferSize 源数据结构指针
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18013630
+ */
+void ProcessSystemDataValidationAndStatusCheck(uint64_t ContextHandle, uint64_t OperationBufferSize)/**
  * @brief 处理系统数据验证和状态检查
  * 
  * 该函数负责处理系统数据验证和状态检查，包括：
