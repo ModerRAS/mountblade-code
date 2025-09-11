@@ -19296,17 +19296,17 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   if (*(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) < 1) {
     return ResourceInvalidErrorCode;
   }
-  resourceReferenceCount = *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) + -1;
-  *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) = resourceReferenceCount;
-  if (*(int *)(resourceDataBuffer[0] + ResourceTertiaryOffset) + *(int *)(resourceDataBuffer[0] + ResourceSecondaryOffset) + resourceReferenceCount != 0) {
+  ResourceReferenceCount = *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) + -1;
+  *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) = ResourceReferenceCount;
+  if (*(int *)(resourceDataBuffer[0] + ResourceTertiaryOffset) + *(int *)(resourceDataBuffer[0] + ResourceSecondaryOffset) + ResourceReferenceCount != 0) {
     return 0;
   }
   resourceDataBuffer[0] = 0;
-  resourceReferenceCount = ValidateResourceHandle(resourceDataBuffer);
-  if (resourceReferenceCount == 0) {
-    resourceReferenceCount = CleanupResourceData(resourceContextPointer,0);
-    if (resourceReferenceCount == 0) {
-      resourceReferenceCount = ValidateSystemParameters(decrementValue);
+  ResourceReferenceCount = ValidateResourceHandle(resourceDataBuffer);
+  if (ResourceReferenceCount == 0) {
+    ResourceReferenceCount = CleanupResourceData(resourceContextPointer,0);
+    if (ResourceReferenceCount == 0) {
+      ResourceReferenceCount = ValidateSystemParameters(decrementValue);
       if (resourceReferenceCount == 0) {
           ReleaseSystemResources(resourceDataBuffer);
       }
