@@ -105,6 +105,7 @@ typedef enum {
 
 // UI系统函数语义化宏定义
 #define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
+#define FUN_18073f710 CleanupUIRenderContextAndReleaseResources  // 清理UI渲染上下文并释放资源
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
