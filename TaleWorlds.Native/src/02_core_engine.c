@@ -1206,6 +1206,22 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessOperationBufferSizeAndMemoryBlockIndexManagement FUN_180204f57
 
 /**
+ * @brief 处理系统上下文和缓冲区大小验证
+ * 
+ * 该函数负责处理系统上下文的验证和缓冲区大小管理，包括：
+ * - 上下文句柄的有效性验证
+ * - 缓冲区大小的计算和验证
+ * - 内存地址掩码的处理
+ * - 系统数据节点管理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1802055a0
+ */
+#define ProcessSystemContextAndBufferSizeValidation FUN_1802055a0
+
+/**
  * @brief 安全释放内存引用计数
  * 
  * 安全地减少内存引用计数，包含额外的安全检查
@@ -1679,6 +1695,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define LAB_18009b838 ThreadMemoryAllocationLabel                // 线程内存分配标签
 #define LAB_18009b917 SystemExceptionHandlingLabel               // 系统异常处理标签
 #define LAB_18009b91a SystemExceptionContinueLabel               // 系统异常继续标签
+
+// 字符串处理相关标签语义化宏定义
+#define LAB_180203b17 StringComparisonValidationCompleteLabel  // 字符串比较验证完成标签
+#define LAB_180203b67 ContextBufferReturnLabel                 // 上下文缓冲区返回标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
@@ -252805,7 +252825,8 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
 
 
 
-055a0(long long ContextHandlevoid FUN_1802055a0(long long ContextHandle
+// 函数: void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
+void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
 {
   int LockResult;
   long long *BufferAllocationState;
