@@ -100,6 +100,7 @@
 #define FUN_180202e40 ProcessSystemFloatTransformOperations      // 处理系统浮点变换操作
 #define FUN_180203100 ExecuteSystemFloatMatrixCalculations       // 执行系统浮点矩阵计算
 #define FUN_180204463 HandleSystemStringEncodingConversion       // 处理系统字符串编码转换
+#define FUN_180204ea2 ExpandSystemDataBufferCapacity             // 扩展系统数据缓冲区容量
 #define FUN_1802044c5 ProcessSystemContextBufferValidation       // 处理系统上下文缓冲区验证
 #define FUN_1802044e0 ValidateSystemContextDataPointers          // 验证系统上下文数据指针
 #define FUN_180204700 InitializeSystemContextProcessing          // 初始化系统上下文处理
