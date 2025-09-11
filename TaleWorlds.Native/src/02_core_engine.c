@@ -42569,11 +42569,11 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterValidationBuffer0);
   SecondaryDataBufferPointer20 = NULL;
   SecondaryDataBufferPointer18 = NULL;
-  SystemProcessingStackValue210 = 0;
-  CoreEngineProcessingFlag208 = 3;
-  PrimaryStackPointer60 = NULL;
+  SystemProcessingDataValue210 = 0;
+  CoreEngineProcessingStatusFlag208 = 3;
+  PrimaryContextPointer60 = NULL;
   CoreEnginePointerBuffer158 = NULL;
-  SystemProcessingStackValue150 = 0;
+  SystemProcessingDataValue150 = 0;
   CoreEngineSystemFlag = 3;
   OperationStatus = &SystemDataStructureTemplate;
   pErrorCode = SystemCleanupFlagF;
