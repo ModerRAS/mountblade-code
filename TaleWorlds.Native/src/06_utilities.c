@@ -10051,7 +10051,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180941e00 - 全局指针设置函数B21
 // 功能：设置全局数据指针B21到指定地址
-#define SetGlobalDataPointerB21 FUN_180941e00
+#define SetGlobalDataPointerB21 ConfigureGlobalDataPointerAtOffsetB21
 
 // 原始函数名：FUN_180941e90 - 全局指针设置函数B22
 // 功能：设置全局数据指针B22到指定地址
