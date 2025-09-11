@@ -99898,7 +99898,7 @@ void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x350) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset350) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -100293,8 +100293,8 @@ void ExecuteOperationCallbackWithCleanupFlags(DataBuffer operationBase,int64_t d
 void InvokeFunctionPointerAtOffset158(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x158) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x158) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + DataBufferOffset158) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + DataBufferOffset158) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -100990,7 +100990,7 @@ void SetDefaultExceptionHandlerBAtOffset318(DataBuffer operationBase,int64_t dat
 void SetDefaultExceptionHandlerBAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x350) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset350) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -102753,8 +102753,8 @@ void ProcessExceptionContextCE10(DataBuffer operationBase,int64_t dataBuffer)
   *(DataBuffer *)(dataBuffer + DataBufferOffset360) = 0;
   *(DataWord *)(dataBuffer + 0x370) = 0;
   *(DataBuffer *)(dataBuffer + 0x358) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(dataBuffer + 0x350) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x350) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + DataBufferOffset350) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + DataBufferOffset350) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -103174,8 +103174,8 @@ void InvokeExceptionHandlerContextCED0(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerContextCEE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x350) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x350) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + DataBufferOffset350) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + DataBufferOffset350) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -104536,7 +104536,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset350);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -106876,7 +106876,7 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset350);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -106921,7 +106921,7 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset350);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -117341,7 +117341,7 @@ void ReleaseSharedLockA90(DataBuffer operationBase,int64_t dataBuffer)
 void ResetExceptionHandlerToDefaultAtOffset158(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x158) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset158) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -117361,7 +117361,7 @@ void ResetExceptionHandlerToDefaultAtOffset158(DataBuffer operationBase, int64_t
 void ResetExceptionHandlerToDefaultAtOffset158B(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x158) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset158) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -118053,8 +118053,8 @@ void ClearExclusiveLockResource(DataBuffer operationBase, int64_t dataBuffer)
 void ExecuteFunctionPointerCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((int64_t *)**(int64_t **)(dataBuffer + 0x158) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + 0x158) + SystemFloatDataOffset38))();
+  if ((int64_t *)**(int64_t **)(dataBuffer + DataBufferOffset158) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + DataBufferOffset158) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -118665,7 +118665,7 @@ void ProcessSystemOperationsIteratively(DataBuffer operationBase, int64_t dataBu
   int64_t *dataContext;
   int64_t memoryRegionOffset;
   
-  dataContext = *(int64_t **)(dataBuffer + 0x158);
+  dataContext = *(int64_t **)(dataBuffer + DataBufferOffset158);
   exceptionContext = dataContext[1];
   for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
     ProcessSystemOperationsA1(memoryRegionOffset);
@@ -118697,7 +118697,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x158);
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset158);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -127746,7 +127746,7 @@ void Unwind_StatusFlagCleanupA(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ValidationDataOffset) & 1) != 0) {
     *(uint *)(dataBuffer + ValidationDataOffset) = *(uint *)(dataBuffer + ValidationDataOffset) & 0xfffffffe;
-    ProcessAndValidateDataBlock(dataBuffer + 0x158);
+    ProcessAndValidateDataBlock(dataBuffer + DataBufferOffset158);
   }
   return;
 }
