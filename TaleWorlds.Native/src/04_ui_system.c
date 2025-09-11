@@ -209,6 +209,7 @@ typedef enum {
 #define FUN_180791b60 InitializeUIRenderContext
 #define FUN_180791bb0 ProcessUIEventAndComponentInteraction
 #define FUN_180791d40 ClearUIContextDataBuffer
+#define FUN_180791db0 ProcessUIDataSourceAndBuffer
 #define UILookupTableF70 DAT_180956f70                    // UI查找表F70 - 存储UI组件的查找表数据
 #define UIComponentDataTableB8 DAT_1809536b8              // UI组件数据表B8 - 存储UI组件的基础数据
 #define UIContextDataTableB0 DAT_1809542b0                // UI上下文数据表B0 - 存储UI上下文相关数据
@@ -218673,13 +218674,31 @@ void ClearUIContextDataBuffer(longlong *uiContext)
 
 
 
-UIHandle FUN_180791db0(longlong *uiContext,int dataSource,UIDword *targetBuffer,longlong bufferSize)
-
+/**
+ * @brief 处理UI数据源和缓冲区操作
+ * 
+ * 该函数根据不同的数据源类型处理UI数据，包括：
+ * - 从数据源0读取UI渲染数据
+ * - 从数据源1读取UI变换数据
+ * - 调用底层数据处理函数进行进一步处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符（0或1）
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 操作成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180791db0
+ * @warning 该函数可能不返回，取决于底层数据处理函数的行为
+ */
+UIHandle ProcessUIDataSourceAndBuffer(longlong *uiContext, int dataSource, UIDword *targetBuffer, longlong bufferSize)
 {
   longlong allocatedMemory;
   float transformCoeff1;
   
   allocatedMemory = *uiContext;
+  
+  // 处理数据源0 - UI渲染数据
   if (dataSource == 0) {
     *targetBuffer = *(UIDword *)(allocatedMemory + 0x488);
     if (bufferSize == 0) {
@@ -218688,24 +218707,34 @@ UIHandle FUN_180791db0(longlong *uiContext,int dataSource,UIDword *targetBuffer,
     transformCoeff1 = *(float *)(allocatedMemory + 0x488);
   }
   else {
+    // 处理数据源1 - UI变换数据
     if ((dataSource != 1) || (*targetBuffer = *(UIDword *)(allocatedMemory + 0x484), bufferSize == 0)) {
       return 0;
     }
     transformCoeff1 = *(float *)(allocatedMemory + 0x484);
   }
-                     WARNING: Subroutine does not return
-  FUN_18076b390(bufferSize,0x20,&UIContextDataValidatorD90,(double)transformCoeff1);
+  
+  // 调用底层数据处理函数
+  WARNING: Subroutine does not return
+  FUN_18076b390(bufferSize, 0x20, &UIContextDataValidatorD90, (double)transformCoeff1);
 }
 
 
 
 
- void FUN_180791e20(void)
-void FUN_180791e20(void)
-
+ /**
+ * @brief 重置UI系统全局状态
+ * 
+ * 该函数负责重置UI系统的全局状态，将指定地址范围内的内存清零。
+ * 这是一个不返回的函数，通常用于系统初始化或重置操作。
+ * 
+ * @note 原始函数名：FUN_180791e20
+ * @warning 该函数不返回，用于系统重置操作
+ */
+void ResetUISystemGlobalState(void)
 {
-                     WARNING: Subroutine does not return
-  memset(0x180c10ab4,0,0x5c);
+  WARNING: Subroutine does not return
+  memset(0x180c10ab4, 0, 0x5c);
 }
 
 
