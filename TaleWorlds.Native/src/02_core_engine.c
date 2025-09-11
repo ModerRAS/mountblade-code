@@ -231964,20 +231964,20 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
  * 
  * @note 原始函数名：FUN_18018bd5f
  */
-#define ResetSystemHandleState FUN_18018bd5f
-void ResetSystemHandleState(void)
+#define ReinitializeSystemHandleAndBufferData FUN_18018bd5f
+void ReinitializeSystemHandleAndBufferData(void)
 {
-  uint32_t Utf16CharacterValue;
-  uint32_t *TargetDataPointer;
-  long long *SystemContextPointer;
-  uint32_t CharacterLoopCounter;
-  long long SystemDataSourceNode;
+  uint32_t Utf16CodeValue;
+  uint32_t *BufferTargetPointer;
+  long long *SystemContextController;
+  uint32_t CharacterIterationCount;
+  long long DataSourceMemoryNode;
   
   AllocateBufferIndex();
-  *(uint32_t *)SystemContextPointer[1] = CharacterLoopCounter;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0xc);
+  *(uint32_t *)SystemContextController[1] = CharacterIterationCount;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0xc);
   if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
     AllocateBufferIndex();
     TargetDataPointer = (uint32_t *)SystemContextPointer[1];

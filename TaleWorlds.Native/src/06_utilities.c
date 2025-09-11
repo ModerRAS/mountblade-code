@@ -138224,46 +138224,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 功能：验证操作参数的有效性并执行相应的系统操作
 // 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
-
-/**
- * @brief 初始化系统组件
- * 
- * 初始化系统的各个组件，设置组件的初始状态和参数
- * 
- * @note 原始函数名：FUN_18004c090
- * @warning 组件初始化失败可能导致系统启动异常
- * @see InitializeSystemCore, SetupSystemParameters
- */
-#define InitializeSystemComponents InitializeSystemComponents
-
-/**
- * @brief 内存操作处理函数A0
- * 
- * 处理内存操作，包括内存分配、释放和访问控制
- * 
- * @note 原始函数名：FUN_18004b7c0
- * @warning 内存操作错误可能导致系统崩溃
- * @see AllocateSystemMemory, FreeSystemMemory
- */
-#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
-
-/**
- * @brief Unwind函数宏定义 - 异常处理清理函数
- * 
- * 这些函数用于系统异常处理和资源清理
- */
-#define UnwindCleanupContextA0 CleanupsystemContextA0
-#define UnwindCleanupContextA1 CleanupsystemContextA1
-#define UnwindCleanupContextA2 CleanupsystemContextA2
-#define UnwindCleanupContextA3 CleanupsystemContextA3
-#define UnwindCleanupContextA4 CleanupsystemContextA4
-#define UnwindCleanupContextA5 CleanupsystemContextA5
-#define UnwindCleanupContextA6 CleanupsystemContextA6
-#define UnwindCleanupContextA7 CleanupsystemContextA7
-#define UnwindCleanupContextA8 CleanupsystemContextA8
-#define UnwindCleanupContextA9 CleanupsystemContextA9
-#define UnwindCleanupContextA10 CleanupsystemContextA10
-#define UnwindCleanupContextA11 CleanupsystemContextA11
 // 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
 /**
  * @brief 销毁互斥锁清理函数A12
