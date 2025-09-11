@@ -50030,10 +50030,16 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
  * 
  * 该函数使用SIMD指令对UI图像数据进行复杂的变换处理
  * 包括图像缩放、旋转、平移等操作
-  uiContext UI上下文数据
- *  dataSource 数据源缓冲区
- *  targetBuffer 目标缓冲区索引
-  原始函数名: FUN_180683f90
+ * 
+ * @param uiContext UI上下文数据
+ * @param dataSource 数据源缓冲区
+ * @param targetBuffer 目标缓冲区索引
+ * 
+ * 原始函数名: FUN_180683f90
+ * 
+ * 美化说明：此函数的变量名已进行语义化美化，将原始的Ghidra生成的变量名
+ * (如aresult, sVar16, aloopCounter2等)替换为具有语义的名称
+ * (如resultBuffer, eventSubIndex1, loopCounter2等)
  void ProcessUIImageTransform(UIByte (*uiContext) [16],UIByte (*dataSource) [16],int targetBuffer)
 
 {
