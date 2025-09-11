@@ -139019,7 +139019,7 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
             {
               do {
                 processingFlags = processingFlags & 0xffffffffffffff00;
-                FUN_18075ef40(stackUInt40,uiValidationResult,&stackLong20,astackUInt18,processingFlags,1);
+                ProcessUIEventData(stackUInt40,uiValidationResult,&stackLong20,astackUInt18,processingFlags,1);
                 if (stackLong20 == stackLong30) {
                   processingFlags = processingFlags & 0xffffffffffffff00;
                   FUN_180765c40(astackUInt18[0],0,0,1,processingFlags);
@@ -409845,6 +409845,11 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define pstackUInt58 UIPointer58                            // UI指针58 - 通用的UI指针
 #define stackInt50 UIStackInt50                             // UI整型栈50 - 通用的UI整型栈值
 #define stackUInt38 UIStackValue38                          // UI栈值38 - 通用的UI栈值
+
+// 新增UI系统函数语义化定义
+// UI系统事件数据处理函数
+// 原始函数名: FUN_18075ef40
+#define ProcessUIEventData FUN_18075ef40
 
 
 
