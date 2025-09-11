@@ -247829,7 +247829,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterUndenary,pSystemStatusValue);
-      StringLength = FUN_180203590();
+      StringLength = CleanupSystemMemoryResources();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -248061,7 +248061,7 @@ LAB_180201300:
         pSystemStatusValue = &SystemStatusValueSecondary;
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueDuodenary,pSystemStatusValue);
-      StringLength = FUN_180203550();
+      StringLength = InitializeSystemMemoryOperation();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
