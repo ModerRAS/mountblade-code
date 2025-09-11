@@ -48135,7 +48135,7 @@ void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBuffer
  * 
  180073630，HandleSystemDataValidation
  */
-void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBufferSize
+void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   void *CharacterStatusBuffer;
   char SystemCheckResult;
