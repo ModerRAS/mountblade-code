@@ -207,6 +207,7 @@
 #define FUN_18014f810 GetCharacterBuffer80                                // 获取字符缓冲区80
 #define FUN_18014f840 GetProcessingPointer88                              // 获取处理指针88
 #define FUN_18019c480 ProcessCharacterCodeData                            // 处理字符代码数据
+#define FUN_180204430 ProcessCharacterBufferAndStringOperations           // 处理字符缓冲区和字符串操作
 #define FUN_18013d22f ProcessCharacterEncodingAndStringFormatting         // 处理字符编码和字符串格式化
 #define FUN_18013d36b ProcessCharacterCodeValidationAndMemoryManagement   // 处理字符代码验证和内存管理
 #define FUN_18013d378 ManageUtf8BufferSizeAndCharacterCodeManagement      // 处理UTF-8缓冲区大小和字符代码管理
