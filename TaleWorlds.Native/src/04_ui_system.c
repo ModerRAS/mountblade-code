@@ -126885,7 +126885,7 @@ void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextOperationDataTable248);
   }
-FUN_18073ba9f:
+ExecuteUIRenderTaskWithResourceRelease:
   if (stackLong148 != 0) {
     ReleaseUIMemoryResource();
   }
