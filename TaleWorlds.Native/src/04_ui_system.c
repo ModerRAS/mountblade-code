@@ -125403,7 +125403,7 @@ void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   lStack0000000000000030 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = FUN_1807468d0(stackParam00000038,dataSource,targetBuffer);
+    operationResult = ProcessUIColorDataTransform(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073a7fd;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
