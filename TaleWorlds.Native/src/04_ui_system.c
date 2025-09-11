@@ -124636,7 +124636,7 @@ void ProcessUIDataTransferAndRender(UIHandle uiContext,UIDword dataSource,UIHand
     stackUInt198 = param_7;
     stackUInt1a0 = param_6;
     pstackUInt1a8 = (UIByte *)resultPointer;
-    processingResult = FUN_180746460(stackUInt170,dataSource,targetBuffer,bufferSize);
+    processingResult = ProcessUIEventAndRenderData(stackUInt170,dataSource,targetBuffer,bufferSize);
     if (processingResult == 0) goto LAB_18073a089;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -124681,13 +124681,13 @@ void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   if (((processingResult != 0) ||
       (processingResult = func_0x000180746640(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0)) &&
      ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    uiValidationResult = FUN_18074bdb0(stackArray148,0x100,dataSource);
+    uiValidationResult = ProcessUIDataWithHandleTarget(stackArray148,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bdb0(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ProcessUIDataWithHandleTarget(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bdb0(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+    ProcessUIDataWithHandleTarget(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStyleManager);
@@ -124707,13 +124707,13 @@ void FUN_18073a12e(void)
   int uiValidationResult;
   UIDword unmodifiedESI;
   
-  processingResult = FUN_18074bdb0(&stack0x00000040,0x100);
+  processingResult = ProcessUIDataWithHandleTarget(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bdb0(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ProcessUIDataWithHandleTarget(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074bdb0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ProcessUIDataWithHandleTarget(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,1);
 }
@@ -138660,7 +138660,7 @@ ulonglong ProcessUIDataConversion(longlong uiContext,uint dataSource,uint target
       pProcessingResult2[0] = -1;
       pProcessingResult2[1] = -1;
       *(UIHandle *)(uiContext + 0x68c) = 0xffffffffffffffff;
-      FUN_180746460(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,pProcessingResult2,0,0,0);
+      ProcessUIEventAndRenderData(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,pProcessingResult2,0,0,0);
       dataPointer = *(uint *)(uiContext + 0x6d8);
       CharacterDataOffset = *(longlong *)(uiBufferData + 0x670);
       stackUInt58 = *(uint *)(uiContext + 0x6dc) / dataPointer;
@@ -138877,7 +138877,7 @@ ulonglong FUN_180746c35(void)
       renderDataPointer = (UIHandle *)(uiTargetHandle + 0x684);
       *renderDataPointer = 0xffffffffffffffff;
       *(UIHandle *)(uiTargetHandle + 0x68c) = 0xffffffffffffffff;
-      FUN_180746460();
+      ProcessUIEventAndRenderData();
       componentIndex = *(uint *)(uiTargetHandle + 0x6dc);
       result = *(uint *)(uiTargetHandle + 0x6d8);
       allocatedMemory3 = *(longlong *)(uiContext + 0x670);
@@ -139060,7 +139060,7 @@ int FUN_180746d01(void)
       componentHandle = (UIHandle *)(uiTargetHandle + 0x684);
       *componentHandle = 0xffffffffffffffff;
       *(UIHandle *)(uiTargetHandle + 0x68c) = 0xffffffffffffffff;
-      FUN_180746460();
+      ProcessUIEventAndRenderData();
       loopCounter = (UIDword)((ulonglong)componentHandle >> 0x20);
       result = *(uint *)(uiTargetHandle + 0x6dc);
       iterationCount = *(uint *)(uiTargetHandle + 0x6d8);
@@ -141149,7 +141149,7 @@ void FUN_180748dd0(longlong uiContext)
   
   processingResult = FUN_18078ad10();
   if (processingResult == 0) {
-    FUN_180746460(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,uiContext + 0x116cc,0,0,0);
+    ProcessUIEventAndRenderData(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,uiContext + 0x116cc,0,0,0);
   }
   return;
 }
@@ -144006,8 +144006,8 @@ void ProcessUIDataWithFloatTarget(UIHandle uiContext,UIHandle dataSource,float *
 
 
 
- void FUN_18074bdb0(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
-void FUN_18074bdb0(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
+ void ProcessUIDataWithHandleTarget(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
+void ProcessUIDataWithHandleTarget(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
 
 {
   if (targetBuffer != (UIHandle *)0x0) {
@@ -210339,7 +210339,7 @@ LAB_18078a792:
             stackUInt58 = 0;
             stackUInt60 = 0;
             loopCounter = (uint)processingStatus;
-            uiCompareResult = FUN_180746460(uiContext,processingStatus,0,0);
+            uiCompareResult = ProcessUIEventAndRenderData(uiContext,processingStatus,0,0);
             if (uiCompareResult != 0) goto FUN_18078aa2c;
             if ((CONCAT44(stackUInt34,stackUInt38) == *(longlong *)(uiBufferData + 0x116cc)) &&
                (CONCAT44(stackUInt2c,stackUInt30) == *(longlong *)(uiBufferData + 0x116d4))) break;
@@ -210361,7 +210361,7 @@ LAB_18078a792:
           if (loopCounter != 0xffffffff) {
             processStatus = (ulonglong)loopCounter;
           }
-          uiCompareResult = FUN_180746460(uiContext,processingStatus,0,0);
+          uiCompareResult = ProcessUIEventAndRenderData(uiContext,processingStatus,0,0);
           if (uiCompareResult == 0) {
             if ((CONCAT44(stackUInt34,stackUInt38) == *(longlong *)(uiBufferData + 0x684)) &&
                (CONCAT44(stackUInt2c,stackUInt30) == *(longlong *)(uiBufferData + 0x68c))) {
@@ -210426,7 +210426,7 @@ LAB_18078aa58:
         pstackUInt68 = &stackUInt38;
         stackUInt58 = 0;
         stackUInt60 = 0;
-        uiCompareResult = FUN_180746460(uiContext,processingStatus,0,0);
+        uiCompareResult = ProcessUIEventAndRenderData(uiContext,processingStatus,0,0);
         if (uiCompareResult != 0) goto FUN_18078aa2c;
         if ((CONCAT44(stackUInt34,stackUInt38) == *(longlong *)(uiBufferData + 0x684)) &&
            (CONCAT44(stackUInt2c,stackUInt30) == *(longlong *)(uiBufferData + 0x68c))) {
@@ -210515,7 +210515,7 @@ LAB_18078a792:
         localInt7 = eventHandle;
         if (0 < loopCounter) {
           do {
-            loopCounter = FUN_180746460(eventStatus,localInt7,0,0,uiContextBasePointer + -0x20);
+            loopCounter = ProcessUIEventAndRenderData(eventStatus,localInt7,0,0,uiContextBasePointer + -0x20);
             if (loopCounter != 0) goto LAB_18078aa24;
             eventStatus = extraout_XMM0_Da_01;
             if ((*(longlong *)(uiContextBasePointer + -0x20) == *(longlong *)(contextHandle + 0x116cc)) &&
@@ -210538,7 +210538,7 @@ LAB_18078a792:
           if (localInt7 != -1) {
             loopCounter = localInt7;
           }
-          localInt7 = FUN_180746460(extraout_XMM0_Da_02,loopCounter,0,0,uiContextBasePointer + -0x20);
+          localInt7 = ProcessUIEventAndRenderData(extraout_XMM0_Da_02,loopCounter,0,0,uiContextBasePointer + -0x20);
           eventStatus = extraout_XMM0_Da_03;
           if (localInt7 == 0) {
             if ((*(longlong *)(uiContextBasePointer + -0x20) == *(longlong *)(contextHandle + 0x684)) &&
@@ -210606,7 +210606,7 @@ LAB_18078aa58:
     if ((*(int *)(contextHandle + 0x680) != 0) &&
        (*(int *)(contextHandle + 0x680) = eventHandle, localInt7 = eventHandle, 0 < loopCounter)) {
       do {
-        loopCounter = FUN_180746460(eventStatus,eventHandle,0,0,uiContextBasePointer + -0x20);
+        loopCounter = ProcessUIEventAndRenderData(eventStatus,eventHandle,0,0,uiContextBasePointer + -0x20);
         if (loopCounter != 0) goto LAB_18078aa24;
         eventStatus = extraout_XMM0_Da_09;
         if ((*(longlong *)(uiContextBasePointer + -0x20) == *(longlong *)(contextHandle + 0x684)) &&
@@ -210874,7 +210874,7 @@ void FUN_18078ad10(longlong uiContext,int dataSource)
       processingResult = dataSource;
     }
     stackUInt50 = 0;
-    uiValidationResult = FUN_180746460(uiContext,processingResult,0,0);
+    uiValidationResult = ProcessUIEventAndRenderData(uiContext,processingResult,0,0);
     if (uiValidationResult == 0) {
       if ((CONCAT44(stackUInt2c,stackUInt30) == *(longlong *)(uiBufferData + 0x684)) &&
          (CONCAT44(stackUInt24,stackUInt28) == *(longlong *)(uiBufferData + 0x68c))) {
@@ -210927,7 +210927,7 @@ void FUN_18078ad5d(UIDword uiContext)
   if (unmodifiedESI != -1) {
     uiValidationResult = unmodifiedESI;
   }
-  processingResult = FUN_180746460(uiContext,uiValidationResult,0,0);
+  processingResult = ProcessUIEventAndRenderData(uiContext,uiValidationResult,0,0);
   if (processingResult == 0) {
     if ((_StackHandle1 == *(longlong *)(contextHandle + 0x684)) &&
        (_uStack0000000000000050 == *(longlong *)(contextHandle + 0x68c))) {
@@ -211187,7 +211187,7 @@ UIHandle FUN_18078b010(longlong uiContext,int dataSource)
   *(UIHandle *)(uiContext + 0x68c) = 0xffffffffffffffff;
   result7 = 0;
   componentIndex = 0;
-  loopCounter = FUN_180746460(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,pProcessingResult1,0,0,0);
+  loopCounter = ProcessUIEventAndRenderData(uiContext,*(UIDword *)(uiBufferData + 0x680),0,0,pProcessingResult1,0,0,0);
   if ((int)loopCounter != 0) {
     return loopCounter;
   }

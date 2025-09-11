@@ -1282,21 +1282,21 @@
 #define SystemStatusCheckOffset44 0x44
 
 // 栈帧上下文偏移量常量
-#define StackFrameContextNegativeOffset80 -0x80
-#define StackFrameContextNegativeOffset78 -0x78
-#define StackFrameContextNegativeOffset70 -0x70
-#define StackFrameContextNegativeOffset68 -0x68
-#define StackFrameContextNegativeOffset64 -0x64
-#define StackFrameContextNegativeOffset60 -0x60
-#define StackFrameContextNegativeOffset5c -0x5c
-#define StackFrameContextNegativeOffset58 -0x58
-#define StackFrameContextNegativeOffset54 -0x54
-#define StackFrameContextNegativeOffset19 -0x19
-#define StackFrameContextNegativeOffset15 -0x15
-#define StackFrameContextNegativeOffset13 -0x13
-#define StackFrameContextNegativeOffset11 -0x11
-#define StackFrameContextNegativeOffsetD -0xd
-#define StackFrameContextNegativeOffset10 -0x10
+#define StackFrameContextValidationOffset -0x80            // 栈帧上下文验证偏移量
+#define StackFrameContextCleanupOffset -0x78              // 栈帧上下文清理偏移量
+#define StackFrameContextBasePointerOffset -0x70          // 栈帧上下文基址指针偏移量
+#define StackFrameContextLoopCounterOffset -0x68          // 栈帧上下文循环计数器偏移量
+#define StackFrameContextMemoryRegionOffset -0x64         // 栈帧上下文内存区域偏移量
+#define StackFrameContextOperationResultOffset -0x60       // 栈帧上下文操作结果偏移量
+#define StackFrameContextDataFlagsOffset -0x5c            // 栈帧上下文数据标志偏移量
+#define StackFrameContextSystemDataOffset -0x58           // 栈帧上下文系统数据偏移量
+#define StackFrameContextBufferPointerOffset -0x54        // 栈帧上下文缓冲区指针偏移量
+#define StackFrameContextParameterOffset19 -0x19          // 栈帧上下文参数偏移量19
+#define StackFrameContextParameterOffset15 -0x15          // 栈帧上下文参数偏移量15
+#define StackFrameContextParameterOffset13 -0x13          // 栈帧上下文参数偏移量13
+#define StackFrameContextParameterOffset11 -0x11          // 栈帧上下文参数偏移量11
+#define StackFrameContextParameterOffsetD -0xd             // 栈帧上下文参数偏移量D
+#define StackFrameContextParameterOffset10 -0x10           // 栈帧上下文参数偏移量10
 #define SystemStatusCheckOffset24 0x24
 #define SystemStatusCheckOffset48 0x48
 
@@ -1318,35 +1318,35 @@
 #define ExceptionHandlerCallbackOffset2a8 0x2a8
 
 // 异常处理器数组索引常量
-#define ExceptionHandlerCallbackIndex16 0x10
-#define DataBufferIndex77 0x77
-#define DataBufferIndex76 0x76
-#define DataBufferIndex78 0x78
-#define OperationResultIndex2E 0x2e
-#define OperationResultIndex4A 0x4a
-#define OperationResultIndex3D 0x3d
-#define MemoryResourcePointerIndex11 0x11
+#define ExceptionHandlerCallbackIndex16 0x10               // 异常处理器回调索引16
+#define DataBufferPrimaryIndex77 0x77                      // 数据缓冲区主索引77
+#define DataBufferSecondaryIndex76 0x76                    // 数据缓冲区辅助索引76
+#define DataBufferTertiaryIndex78 0x78                     // 数据缓冲区第三索引78
+#define OperationResultPrimaryIndex2E 0x2e                 // 操作结果主索引2E
+#define OperationResultSecondaryIndex4A 0x4a               // 操作结果辅助索引4A
+#define OperationResultTertiaryIndex3D 0x3d                // 操作结果第三索引3D
+#define MemoryResourcePointerIndex11 0x11                  // 内存资源指针索引11
 
 // 操作基础地址偏移量常量
-#define OperationBaseDataBufferOffset 0x50
-#define OperationBaseSecondaryDataOffset 0x54
-#define OperationBaseOffset118 0x118
-#define OperationBaseOffset210 0x210
-#define OperationBaseOffset21c 0x21c
-#define OperationBaseOffset2f4 0x2f4
-#define DataContextOffset4000 0x4000
-#define DataContextOffset8000 0x8000
-#define ExceptionContextDataOffset1193c 0x1193c
-#define MemoryOperationOffset2a0 0x2a0
-#define MemoryOperationOffset4a0 0x4a0
-#define ExceptionHandlerContextOffset3e0 0x3e0
-#define OperationBaseControlOffset 0x58
-#define OperationBaseStatusOffset 0x5c
-#define OperationBaseValidationOffset 0x60
-#define OperationBaseOffset64 0x64
-#define OperationBaseOffset68 0x68
-#define OperationBaseOffset6c 0x6c
-#define OperationBaseResultOffset 0x70
+#define OperationBaseDataBufferOffset 0x50                 // 操作基础数据缓冲区偏移量
+#define OperationBaseSecondaryDataOffset 0x54              // 操作基础辅助数据偏移量
+#define OperationBaseConfigurationOffset118 0x118          // 操作基础配置偏移量118
+#define OperationBaseMemoryOffset210 0x210                 // 操作基础内存偏移量210
+#define OperationBaseDataOffset21c 0x21c                   // 操作基础数据偏移量21c
+#define OperationBaseSystemOffset2f4 0x2f4                 // 操作基础系统偏移量2f4
+#define DataContextLargeOffset4000 0x4000                   // 数据上下文大偏移量4000
+#define DataContextHugeOffset8000 0x8000                   // 数据上下文巨大偏移量8000
+#define ExceptionContextDataOffset1193c 0x1193c            // 异常上下文数据偏移量1193c
+#define MemoryOperationPrimaryOffset2a0 0x2a0              // 内存操作主偏移量2a0
+#define MemoryOperationSecondaryOffset4a0 0x4a0            // 内存操作辅助偏移量4a0
+#define ExceptionHandlerContextOffset3e0 0x3e0             // 异常处理上下文偏移量3e0
+#define OperationBaseControlOffset 0x58                    // 操作基础控制偏移量
+#define OperationBaseStatusOffset 0x5c                     // 操作基础状态偏移量
+#define OperationBaseValidationOffset 0x60                 // 操作基础验证偏移量
+#define OperationBaseMemoryOffset64 0x64                    // 操作基础内存偏移量64
+#define OperationBaseRegisterOffset68 0x68                 // 操作基础寄存器偏移量68
+#define OperationBaseFlagsOffset6c 0x6c                    // 操作基础标志偏移量6c
+#define OperationBaseResultOffset 0x70                     // 操作基础结果偏移量
 #define OperationBaseOffset74 0x74
 #define OperationBaseConfigOffset 0x78
 #define OperationDataOffset40 0x40
@@ -2901,7 +2901,7 @@
  * 
  * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
  */
-#define ProcessSystemDataTransferWithValidation TransferSystemDataWithValidation
+#define ProcessSystemDataTransferWithValidation FUN_18089e230
 
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
@@ -10223,9 +10223,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：获取系统资源指针，用于访问和管理资源
 #define GetResourcePointer FUN_180847820
 
-// 原始函数名：FUN_1808ddf80 - 系统资源清理函数
-// 功能：清理系统资源并释放内存
-#define CleanupSystemResources FUN_1808ddf80
 
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
@@ -12883,9 +12880,6 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：处理数据操作
 #define ProcessDataOperationA5 FUN_18089cc80
 
-// 原始函数名：FUN_1808ddf80 - 系统清理函数A0
-// 功能：清理系统资源
-#define CleanupSystemResourcesA0 FUN_1808ddf80
 
 // 原始函数名：FUN_1808afc70 - 内存管理函数A0
 // 功能：管理系统内存
