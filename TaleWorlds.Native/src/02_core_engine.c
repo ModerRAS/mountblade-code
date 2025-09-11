@@ -147,6 +147,21 @@
 #define FUN_180212de0 HandleSystemMemoryOperations                     // 处理系统内存操作
 #define FUN_180212e00 ProcessSystemMemoryValidation                    // 处理系统内存验证
 #define FUN_180212e20 FinalizeSystemMemoryOperations                   // 完成系统内存操作
+
+// 核心引擎处理函数语义化宏定义
+#define FUN_1800f6ad0 ProcessLockOperationAndMemoryManagement         // 处理锁定操作和内存管理
+#define FUN_180048980 UpdateMemoryOperationStatus                      // 更新内存操作状态
+#define FUN_1800c4800 ProcessSystemStringEncodingAndValidation         // 处理系统字符串编码和验证
+#define FUN_1800a19c0 GetSystemStringEncodingResult                     // 获取系统字符串编码结果
+#define FUN_1800f0e70 InitializeSystemProcessingState                  // 初始化系统处理状态
+#define FUN_1800fc1c0 FinalizeSystemProcessingState                    // 完成系统处理状态
+#define FUN_1800842a0 GetMemoryBlockIndexFromPool                       // 从内存池获取内存块索引
+#define FUN_1800634b0 ProcessMessageBufferAndStatusFlags               // 处理消息缓冲区和状态标志
+#define FUN_180057170 ResetSystemMessageProcessing                     // 重置系统消息处理
+#define FUN_1800b8370 ProcessStringOffsetTable                         // 处理字符串偏移表
+#define FUN_1800be9a0 InitializeCharacterStatusBuffer                  // 初始化字符状态缓冲区
+#define FUN_1800c1420 CreateCharacterStatusBuffer                      // 创建字符状态缓冲区
+#define FUN_180080810 ProcessContextHandleAndStringIndex               // 处理上下文句柄和字符串索引
 #define FUN_1802140e0 ValidateSystemDataIntegrity                      // 验证系统数据完整性
 #define FUN_180214230 ProcessSystemContextConfiguration                 // 处理系统上下文配置
 #define FUN_1802143e0 HandleSystemContextCleanup                       // 处理系统上下文清理
