@@ -294476,7 +294476,6 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define SetContextHandleSize FUN_18017b259
 
 // 原始函数名：FUN_18017b28d - 系统清理函数
-#define CleanupSystemEx2 FUN_18017b28d
 
 // 原始函数名：FUN_18017b2ed - 上下文释放函数
 #define ReleaseContextHandle FUN_18017b2ed
