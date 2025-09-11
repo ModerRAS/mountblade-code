@@ -15819,7 +15819,7 @@ void CoreEngineInitializeNetworkConnectionPool(void) {
   CurrentNode = RootNode;
   PreviousNode = (uint64_t *)RootNode[1];
   while (IsPoolActive == false) {
-    MemoryNodeComparisonResult = memcmp(PreviousNode + SystemNodeHeaderSize, &SystemComparisonDataQuinary, SystemDataStructureSize);
+    MemoryComparisonResult = memcmp(PreviousNode + SystemNodeHeaderSize, &SystemComparisonDataQuinary, SystemDataStructureSize);
     if (MemoryComparisonResult < 0) {
       NextNode = (uint64_t *)PreviousNode[2];
       PreviousNode = CurrentNode;
@@ -15831,7 +15831,7 @@ void CoreEngineInitializeNetworkConnectionPool(void) {
     PreviousNode = NextNode;
     IsPoolActive = *(bool *)((int64_t)NextNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == RootNode) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary, CurrentNode + SystemNodeHeaderSize, SystemDataStructureSize), MemoryComparisonResult < 0)) {
+  if ((CurrentNode == RootNode) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary, CurrentNode + SystemNodeHeaderSize, SystemDataStructureSize), MemoryComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
     CoreEngineSetupNetworkConnection(SystemHandle,&NewNode,CurrentNode,MemoryOffset + NetworkMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNode;
