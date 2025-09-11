@@ -796,6 +796,13 @@
 #define FUN_180204e40 ExecuteSystemMemoryValidation                // 执行系统内存验证
 #define FUN_180207530 ProcessSystemMemoryTransfer                   // 处理系统内存传输
 #define FUN_180207d70 ValidateSystemNodeOperation                  // 验证系统节点操作
+#define FUN_180203ba0 InitializeSystemContextWithMemory            // 初始化系统上下文和内存
+#define FUN_180203e30 ProcessSystemContextAndMemory                // 处理系统上下文和内存
+#define FUN_180204420 InitializeSystemFloatAllocation               // 初始化系统浮点分配
+#define FUN_1802063e0 ConvertUtf16ToCharacterCode                  // 转换UTF-16到字符代码
+#define FUN_180206330 ProcessUtf16CharacterBuffer                  // 处理UTF-16字符缓冲区
+#define FUN_180225e50 ValidateUtf16CharacterPool                  // 验证UTF-16字符池
+#define FUN_18030a2a0 ProcessSystemContextAndMemoryBuffer          // 处理系统上下文和内存缓冲区
 
 // 系统初始化和上下文管理函数
 #define FUN_1802055a0 InitializeSystemContext                     // 初始化系统上下文
@@ -830,6 +837,13 @@
 #define FUN_18021a140 GetSystemMemoryBlockIndex                    // 获取系统内存块索引
 #define FUN_180623fd0 ConfigureSystemDataProcessing                // 配置系统数据处理
 #define FUN_180217b00 InitializeSystemDataTransfer                 // 初始化系统数据传输
+#define FUN_180218920 ProcessSystemDataAndValidation               // 处理系统数据和验证
+#define FUN_180219260 ValidateSystemDataAndMemory                 // 验证系统数据和内存
+#define FUN_180218a80 InitializeSystemMemoryAllocation             // 初始化系统内存分配
+#define FUN_180219020 ProcessSystemContextAndAllocation            // 处理系统上下文和分配
+#define FUN_1801566b0 InitializeSystemDataValidation               // 初始化系统数据验证
+#define FUN_1802121b0 ProcessSystemMemoryAndContext                // 处理系统内存和上下文
+#define FUN_1802185b0 ValidateSystemMemoryAndData                  // 验证系统内存和数据
 #define FUN_180218920 ProcessSystemDataValidation                 // 处理系统数据验证
 #define FUN_180219260 ExecuteSystemDataProcessing                 // 执行系统数据处理
 #define FUN_180218a80 CleanupSystemDataProcessing                 // 清理系统数据处理
@@ -853,6 +867,33 @@
 #define FUN_180840c00 GetSystemCharacterData                      // 获取系统字符数据
 #define FUN_180849990 HandleSystemCharacterProcessing            // 处理系统字符处理
 #define FUN_180849230 ProcessSystemStringEncoding                 // 处理系统字符串编码
+#define FUN_18084b410 ValidateSystemContextAndMemory               // 验证系统上下文和内存
+#define FUN_180156300 InitializeSystemDataTransfer                 // 初始化系统数据传输
+#define FUN_180213700 ProcessSystemDataAndContext                  // 处理系统数据和上下文
+#define FUN_180159210 ConfigureSystemDataProcessing                 // 配置系统数据处理
+#define FUN_180406a00 ExecuteSystemDataTransfer                    // 执行系统数据传输
+#define FUN_18021a140 GetSystemMemoryBlockIndex                    // 获取系统内存块索引
+#define FUN_180255a60 ReleaseSystemMemoryBlock                     // 释放系统内存块
+#define FUN_180240a60 InitializeSystemContextAndMemory             // 初始化系统上下文和内存
+#define FUN_1800634b0 ProcessSystemMessageAndStatus                 // 处理系统消息和状态
+#define FUN_180226420 ConfigureSystemEventHandling                  // 配置系统事件处理
+#define FUN_180639830 ProcessSystemDataAndValidation               // 处理系统数据和验证
+#define FUN_1806393b0 ValidateSystemMemoryAndData                 // 验证系统内存和数据
+#define FUN_180639930 InitializeSystemDataAndMemory                // 初始化系统数据和内存
+#define FUN_18063a050 ExecuteSystemMemoryAllocation                // 执行系统内存分配
+#define FUN_180229820 CleanupSystemMemoryResources                 // 清理系统内存资源
+#define FUN_18040d750 ProcessSystemContextAndData                  // 处理系统上下文和数据
+#define FUN_1802296d0 ReleaseSystemMemoryAndData                   // 释放系统内存和数据
+#define FUN_180229940 ValidateSystemDataAndContext                  // 验证系统数据和上下文
+#define FUN_180229ab0 ProcessSystemMemoryAndContext                // 处理系统内存和上下文
+#define FUN_1802299a0 InitializeSystemDataTransfer                 // 初始化系统数据传输
+#define FUN_18040af60 AllocateSystemMemoryBlock                    // 分配系统内存块
+#define FUN_18040b250 ProcessSystemCharacterData                   // 处理系统字符数据
+#define FUN_180627020 HandleSystemEventAndData                     // 处理系统事件和数据
+#define FUN_18040cf70 ValidateSystemContextAndMemory               // 验证系统上下文和内存
+#define FUN_18040cc40 CleanupSystemContextAndMemory                 // 清理系统上下文和内存
+#define FUN_18040b510 ProcessSystemContextAndValidation            // 处理系统上下文和验证
+#define FUN_180228450 InitializeSystemDataAndContext                // 初始化系统数据和上下文
 #define FUN_180207f50 ValidateSystemContextData                    // 验证系统上下文数据
 #define FUN_180209470 InitializeSystemProcessing                  // 初始化系统处理
 #define FUN_180209720 ConfigureSystemProcessing                     // 配置系统处理
@@ -250268,7 +250309,7 @@ LAB_18020393c:
       SystemCharacterStatusBuffer = *(void **)(Utf8SourcePointer + 8);
     }
     strcpy_s(aCharacterProcessingByte,0x40,SystemCharacterStatusBuffer);
-    pRemainingSpace = (int *)FUN_180203aa0(TemporaryBuffer,&pSystemProcessFlagB);
+    pRemainingSpace = (int *)AllocateSystemFloatBuffer(TemporaryBuffer,&pSystemProcessFlagB);
     *pRemainingSpace = ArrayIndex + OperationBufferSize;
     pSystemProcessFlagB = &ThreadLocalStorageTemplate;
   }
@@ -250357,7 +250398,7 @@ LAB_180203b67:
       if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_180203b67;
     }
   }
-  SystemContextPtr = (long long *)FUN_180203ba0(ContextHandle,SystemRegisterFlagBuffer,StringProcessingStatus,TemporaryBuffer,OperationBufferSize);
+  SystemContextPtr = (long long *)InitializeSystemFloatProcessor(ContextHandle,SystemRegisterFlagBuffer,StringProcessingStatus,TemporaryBuffer,OperationBufferSize);
   return (void *)(*SystemContextPtr + 0x78);
 }
 
@@ -287394,19 +287435,38 @@ long long ProcessDataBatch(long long ContextHandle,long long OperationBufferSize
 
 
 
-uint64_t * FUN_18022a590(long long ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理字符编码和系统注册表操作
+ * 
+ * 该函数负责处理字符编码相关的系统注册表操作，包括：
+ * - 计算编码转换结果
+ * - 处理Unicode码点数据
+ * - 管理内存分配和系统事件
+ * - 复制字符数据和状态信息
+ * - 设置处理状态标志
+ * 
+ * @param ContextHandle 上下文句柄 - 指向系统上下文结构的指针
+ * @param OperationBufferSize 操作缓冲区大小 - 处理操作的缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针 - 指向UTF-8源数据的指针
+ * 
+ * @return uint64_t* 返回处理后的UTF-8指针
+ * 
+ * @note 原始函数名：FUN_18022a590
+ * @warning 该函数涉及内存分配和系统事件处理，需要确保参数有效性
+ */
+uint64_t * HandleCharacterEncodingAndSystemRegistry(long long ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer)
 {
-  uint64_t *CharacterStatusBuffer;
-  uint32_t *PrimaryProcessingStatusFlag;
-  uint UnicodeCodePoint;
-  long long SystemDataRegistry;
-  long long AllocatedMemorySize;
-  uint32_t OperationResult;
-  uint32_t SystemChecksum;
-  uint32_t ProcessingStatusFlag;
-  uint64_t ArraySize;
-  long long EncodingConversionResult;
-  unsigned long long ProcessedCharacter;
+  uint64_t *CharacterStatusBuffer;           // 字符状态缓冲区指针
+  uint32_t *PrimaryProcessingStatusFlag;     // 主处理状态标志指针
+  uint UnicodeCodePoint;                      // Unicode码点
+  long long SystemDataRegistry;               // 系统数据注册表
+  long long AllocatedMemorySize;             // 分配的内存大小
+  uint32_t OperationResult;                  // 操作结果
+  uint32_t SystemChecksum;                    // 系统校验和
+  uint32_t ProcessingStatusFlag;             // 处理状态标志
+  uint64_t ArraySize;                         // 数组大小
+  long long EncodingConversionResult;        // 编码转换结果
+  unsigned long long ProcessedCharacter;     // 已处理的字符
   
   EncodingConversionResult = (OperationBufferSize - ContextHandle) / 6 + (OperationBufferSize - ContextHandle >> 0x3f);
   EncodingConversionResult = (EncodingConversionResult >> 4) - (EncodingConversionResult >> 0x3f);
