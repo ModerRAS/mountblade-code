@@ -991,14 +991,14 @@ typedef union {
 #define ExceptionHandlerResetOffset18f8 0x18f8
 
 // 异常处理器状态重置偏移量常量 (19c0系列)
-#define ExceptionHandlerResetOffset19b0 0x19b0
-#define ExceptionHandlerResetOffset19c0 0x19c0
-#define ExceptionHandlerResetOffset1988 0x1988
-#define ExceptionHandlerResetOffset1990 0x1990
-#define ExceptionHandlerResetOffset19a0 0x19a0
-#define ExceptionHandlerResetOffset1968 0x1968
-#define ExceptionHandlerResetOffset1970 0x1970
-#define ExceptionHandlerResetOffset1980 0x1980
+#define ExceptionHandlerResetOffset19b0 ExceptionHandlerResetAddress19B0          // 异常处理器重置地址19B0
+#define ExceptionHandlerResetOffset19c0 ExceptionHandlerResetControlAddress19C0   // 异常处理器重置控制地址19C0
+#define ExceptionHandlerResetOffset1988 ExceptionHandlerResetStatusAddress1988    // 异常处理器重置状态地址1988
+#define ExceptionHandlerResetOffset1990 ExceptionHandlerResetDataAddress1990      // 异常处理器重置数据地址1990
+#define ExceptionHandlerResetOffset19a0 ExceptionHandlerResetFlagAddress19A0      // 异常处理器重置标志地址19A0
+#define ExceptionHandlerResetOffset1968 ExceptionHandlerResetValidationAddress1968 // 异常处理器重置验证地址1968
+#define ExceptionHandlerResetOffset1970 ExceptionHandlerResetConfigAddress1970    // 异常处理器重置配置地址1970
+#define ExceptionHandlerResetOffset1980 ExceptionHandlerRecoveryAddress1980        // 异常处理器恢复地址1980
 
 // 异常处理器状态重置偏移量常量 (1a30系列)
 #define ExceptionHandlerResetOffset1a30 0x1a30
@@ -13875,7 +13875,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define inputParameter4 validationParameter4    // 验证参数4
 #define inputParameter6 dataProcessingSize    // 数据处理大小
 #define inputParameterTertiary totalProcessedDataSize    // 总处理数据大小
-#define inputParameter9 validationParameter9    // 验证参数9
+#define validationParameter9 validationParameter9    // 验证参数9
 #define systemExceptionBuffer exceptionBuffer2    // 系统异常缓冲区
 #define exceptionBuffer3 exceptionBuffer3    // 异常缓冲区3
 #define exceptionBuffer6 exceptionBuffer6    // 异常缓冲区6
@@ -39820,9 +39820,9 @@ ValidationLabelB:
       if ((int)statusCounter < 0) {
         loopCounter = -statusCounter;
       }
-      inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+      validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
       if ((int)loopCounter < 0) {
-        if (0 < inputParameter9) {
+        if (0 < validationParameter9) {
           return exceptionBuffer3;
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(StackFrameContext + -0x29) != 0)) {
@@ -39836,10 +39836,10 @@ ValidationLabelB:
       else {
         exceptionDataBuffer1 = *(DataBuffer **)(StackFrameContext + -0x29);
       }
-      if (inputParameter9 < 0) {
-        exceptionContext8 = (int64_t)-inputParameter9;
-        if (inputParameter9 < 0) {
-          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionDataBuffer1;
+      if (validationParameter9 < 0) {
+        exceptionContext8 = (int64_t)-validationParameter9;
+        if (validationParameter9 < 0) {
+          exceptionContext7 = (int64_t)validationParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionDataBuffer1;
           do {
             exceptionDataBuffer = (DataWord *)ExecuteSystemResourceOperation();
             OperationResultPrimary = exceptionDataBuffer[1];
@@ -39866,22 +39866,22 @@ ValidationLabelB:
       CleanupDataResourcesA0(StackFrameContext + -0x29,0);
       return exceptionBuffer3;
     }
-    inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+    validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
     calculatedFloatValue = validationFloatValue;
-    if (inputParameter9 == 0) {
+    if (validationParameter9 == 0) {
       exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
-      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
+      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < validationParameter9) {
+        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,validationParameter9);
         exceptionBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+        validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         calculatedFloatValue = accumulatedFloatValue;
       }
       exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
-      for (exceptionBuffer6 = exceptionBuffer3; (exceptionBuffer3 <= exceptionBuffer6 && (exceptionBuffer6 < exceptionBuffer3 + (int64_t)inputParameter9 * 3));
+      for (exceptionBuffer6 = exceptionBuffer3; (exceptionBuffer3 <= exceptionBuffer6 && (exceptionBuffer6 < exceptionBuffer3 + (int64_t)validationParameter9 * 3));
           exceptionBuffer6 = exceptionBuffer6 + 3) {
         *(DataBuffer *)(StackFrameContext + StackFrameValidationFlagOffset77) = 0;
         statusCounter = ValidateDataSecurityA1(systemContext + SystemContextDataBufferOffset48,StackFrameContext + StackFrameValidationFlagOffset77);
@@ -39895,7 +39895,7 @@ ValidationLabelB:
         calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + DataBufferOffset14) + *(float *)(exceptionBuffer6 + 2);
         *(float *)((int64_t)exceptionBuffer3 + DataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionBuffer3 + 3) = 1;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+        validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameExceptionBufferOffset);
       }
     }
@@ -39905,7 +39905,7 @@ ValidationLabelB:
       loopCounter = -statusCounter;
     }
     if ((int)loopCounter < 0) {
-      if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
+      if (0 < validationParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionBuffer3 != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionBuffer3,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
@@ -39914,10 +39914,10 @@ ValidationLabelB:
       exceptionBuffer3 = exceptionDataBuffer1;
       statusCounter = securityCheckResult;
     }
-    if (inputParameter9 < 0) {
-      exceptionContext8 = (int64_t)-inputParameter9;
-      if (inputParameter9 < 0) {
-        exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + DataBufferOffset14 + (int64_t)exceptionBuffer3;
+    if (validationParameter9 < 0) {
+      exceptionContext8 = (int64_t)-validationParameter9;
+      if (validationParameter9 < 0) {
+        exceptionContext7 = (int64_t)validationParameter9 * SystemDataRecordMultiplier + DataBufferOffset14 + (int64_t)exceptionBuffer3;
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
           calculatedFloatValue = *pValidationFloatValue4;
@@ -40092,10 +40092,10 @@ ValidationProcessingLabel:
       else {
         exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
       }
-      if (inputParameter9 < 0) {
-        exceptionContext8 = (int64_t)-inputParameter9;
-        if (inputParameter9 < 0) {
-          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionBuffer3;
+      if (validationParameter9 < 0) {
+        exceptionContext8 = (int64_t)-validationParameter9;
+        if (validationParameter9 < 0) {
+          exceptionContext7 = (int64_t)validationParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionBuffer3;
           do {
             exceptionDataBuffer1 = (DataWord *)ExecuteSystemResourceOperation();
             OperationResultPrimary = exceptionDataBuffer1[1];
@@ -40122,22 +40122,22 @@ ValidationProcessingLabel:
       CleanupDataResourcesA0(StackFrameContext + -0x29,0);
       return exceptionDataBuffer;
     }
-    inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+    validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
     calculatedFloatValue = validationFloatValue;
-    if (inputParameter9 == 0) {
+    if (validationParameter9 == 0) {
       exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
-      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
+      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < validationParameter9) {
+        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,validationParameter9);
         exceptionDataBuffer = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+        validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         calculatedFloatValue = accumulatedFloatValue;
       }
       exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
-      for (exceptionBuffer6 = exceptionDataBuffer; (exceptionDataBuffer <= exceptionBuffer6 && (exceptionBuffer6 < exceptionDataBuffer + (int64_t)inputParameter9 * 3));
+      for (exceptionBuffer6 = exceptionDataBuffer; (exceptionDataBuffer <= exceptionBuffer6 && (exceptionBuffer6 < exceptionDataBuffer + (int64_t)validationParameter9 * 3));
           exceptionBuffer6 = exceptionBuffer6 + 3) {
         *(DataBuffer *)(StackFrameContext + StackFrameValidationFlagOffset77) = 0;
         statusCounter = ValidateDataSecurityA1(systemContext + SystemContextDataBufferOffset48,StackFrameContext + StackFrameValidationFlagOffset77);
@@ -40151,7 +40151,7 @@ ValidationProcessingLabel:
         calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + SystemMemoryDataBufferOffset14) + *(float *)(exceptionBuffer6 + SystemMemoryDataBufferOffset2);
         *(float *)((int64_t)exceptionDataBuffer + SystemMemoryDataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer + 3) = 1;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+        validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
       }
     }
@@ -40161,7 +40161,7 @@ ValidationProcessingLabel:
       loopCounter = -statusCounter;
     }
     if ((int)loopCounter < 0) {
-      if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
+      if (0 < validationParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
@@ -40170,10 +40170,10 @@ ValidationProcessingLabel:
       exceptionDataBuffer = exceptionBuffer3;
       statusCounter = securityCheckResult;
     }
-    if (inputParameter9 < 0) {
-      exceptionContext8 = (int64_t)-inputParameter9;
-      if (inputParameter9 < 0) {
-        exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBuffer;
+    if (validationParameter9 < 0) {
+      exceptionContext8 = (int64_t)-validationParameter9;
+      if (validationParameter9 < 0) {
+        exceptionContext7 = (int64_t)validationParameter9 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBuffer;
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
           calculatedFloatValue = *pValidationFloatValue4;
@@ -133781,10 +133781,14 @@ void SetGlobalDataPointerB0(void)
 
 
 
-// 函数: void SetGlobalDataPointerB1(void)
-// 功能：设置全局数据指针B1到指定地址
-// 参数：无
-// 返回值：无
+/**
+ * @brief 设置全局数据指针B1
+ * 
+ * 该函数负责设置全局数据指针B1到指定地址。
+ * 这是一个初始化辅助函数，用于配置系统的全局指针。
+ * 
+ * @note 原始函数名：SetGlobalDataPointerB1
+ */
 void SetGlobalDataPointerB1(void)
 
 {
@@ -133796,10 +133800,14 @@ void SetGlobalDataPointerB1(void)
 
 
 
-// 函数: void SetGlobalDataPointerB2(void)
-// 功能：设置全局数据指针B2到指定地址
-// 参数：无
-// 返回值：无
+/**
+ * @brief 设置全局数据指针B2
+ * 
+ * 该函数负责设置全局数据指针B2到指定地址。
+ * 这是一个初始化辅助函数，用于配置系统的全局指针。
+ * 
+ * @note 原始函数名：SetGlobalDataPointerB2
+ */
 void SetGlobalDataPointerB2(void)
 
 {
@@ -139087,7 +139095,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 数据上下文偏移5c处的数据字
 // 功能：存储数据上下文偏移0x5c处的验证数据
-#define systemContextOffsetData5C uStack_11c
+#define DataContextOffset5CWord uStack_11c
 
 // 数据上下文偏移60处的数据字
 // 功能：存储数据上下文偏移0x60处的验证数据
