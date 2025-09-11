@@ -289901,7 +289901,20 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
 
 
 
-void FUN_18022ebe0(long long *ContextHandle)
+/**
+ * @brief 初始化字符转换数据
+ * 
+ * 该函数负责初始化字符转换所需的上下文数据，主要功能包括：
+ * - 设置字符状态缓冲区
+ * - 管理主处理状态标志
+ * - 处理系统上下文的初始化
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_18022ebe0
+ */
+#define InitializeCharacterTransformationData FUN_18022ebe0
+void InitializeCharacterTransformationData(long long *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -289924,7 +289937,23 @@ void FUN_18022ebe0(long long *ContextHandle)
 
 
 
-void FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
+/**
+ * @brief 处理系统数据传输扩展
+ * 
+ * 该函数负责处理系统数据的扩展传输操作，主要功能包括：
+ * - 管理Unicode码点的计算和验证
+ * - 处理内存池的分配和释放
+ * - 执行字符缓冲区的处理
+ * - 管理系统数据注册表
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_18022ec40
+ */
+#define ProcessSystemDataTransferEx FUN_18022ec40
+void ProcessSystemDataTransferEx(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   unsigned long long MemoryPoolIndex;
@@ -289983,7 +290012,19 @@ void FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long l
 
 
 
-void FUN_18022eca5(void)
+/**
+ * @brief 释放系统资源扩展
+ * 
+ * 该函数负责扩展的系统资源释放操作，主要功能包括：
+ * - 管理内存池的分配和释放
+ * - 处理Unicode码点和字符缓冲区
+ * - 清理系统事件模板
+ * - 管理系统数据节点的内存
+ * 
+ * @note 原始函数名：FUN_18022eca5
+ */
+#define ReleaseSystemResourcesEx FUN_18022eca5
+void ReleaseSystemResourcesEx(void)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
