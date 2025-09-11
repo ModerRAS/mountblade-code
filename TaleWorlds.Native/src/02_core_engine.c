@@ -198,6 +198,8 @@
 #define FUN_180170ba0 ProcessCharacterEncodingConversionAndValidation      // 处理字符编码转换和验证
 #define FUN_18006b6f0 ProcessThreadLocalStorageSetup                        // 处理线程本地存储设置
 #define FUN_180046480 SetupThreadLocalStorage                                 // 设置线程本地存储
+#define FUN_18020f940 InitializeThreadOperation                                 // 初始化线程操作
+#define FUN_180623fd0 ProcessSystemContextFlag                                  // 处理系统上下文标志
 #define FUN_1801210b0 GetSystemCharacterData                               // 获取系统字符数据
 #define FUN_180121300 GetSystemConfigurationHandle                         // 获取系统配置句柄
 #define FUN_180624c70 GetSystemStringIndex                                // 获取系统字符串索引
@@ -229647,6 +229649,7 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
  * 
  * @note 原始函数名：FUN_18018bd0d
  */
+#define ProcessSystemHandleValidation FUN_18018bd0d
 void ProcessSystemHandleValidation(uint32_t *ContextHandle)
 {
   uint32_t Utf16Char;

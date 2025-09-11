@@ -1997,6 +1997,16 @@ typedef enum {
 #define uiRenderStack UIRenderStack78
 #define blendFactorStack UIBlendFactorStack40
 
+// InitializeUISystem函数变量语义化定义
+#define uiContextValidationFlag *(char *)(resultPointer + 0x188)    // UI上下文验证标志
+#define operationCounter *(int *)(resultPointer + 0x18c)           // 操作计数器
+#define maxOperationCount *(int *)(resultPointer + 400)           // 最大操作计数
+#define cleanupInProgressFlag *(char *)(resultPointer + 0x18a)    // 清理进行中标志
+#define eventCallbackPointer *(code **)(resultPointer + 0x230)    // 事件回调指针
+#define uiContextHandle *(UIHandle *)(resultPointer + 0x170)      // UI上下文句柄
+#define bufferStateFlag *(int *)(resultPointer + 0x184)           // 缓冲区状态标志
+#define targetBufferHandle *(UIHandle *)(resultPointer + 0x150)    // 目标缓冲区句柄
+
 // UI系统函数宏定义补充
 
 // UI系统变量名美化补充
@@ -2042,6 +2052,14 @@ typedef enum {
 #define aprocessingStatus3 UIprocessingStatusArray3
 #define aprocessingStatus4 UIprocessingStatusArray4
 #define aprocessingStatus5 UIprocessingStatusArray5
+
+// ProcessUIContextValidation函数变量语义化定义
+#define uiContextValidationFlag *(char *)(uiContext + 0x188)    // UI上下文验证标志
+#define contextBufferThreshold 0x32                             // 上下文缓冲区阈值
+#define bufferDataArray aiStackX_8                              // 缓冲区数据数组
+#define bufferDataCapacity bufferDataArray[0]                   // 缓冲区数据容量
+#define currentBufferDataSize *(int *)(uiBufferData + 0x178)    // 当前缓冲区数据大小
+#define uiContextHandle *(UIHandle *)(uiContext + 0x170)        // UI上下文句柄
 #define acomponentStatus6 UIComponentStatusArray6
 #define aprocessingStatus7 UIprocessingStatusArray7
 #define aloopCounter0 UILoopCounterArray0
@@ -9170,8 +9188,7 @@ UIHandle GetUIStatusFlag(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  // UI图像混合变量名美化宏定义
 #define BlendResult UIColorBlendResult
 #define redChannelValue UIRedChannelValue
@@ -9486,8 +9503,7 @@ UIHandle GetUIStatusFlag(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   /**
  * @brief 初始化UI系统
@@ -9614,8 +9630,7 @@ void ResetUISystem(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件的主函数
@@ -9656,10 +9671,8 @@ void ProcessUIComponent(UIByte *ComponentData)
             UIBufferPointer = (UIByte *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
             UIBufferIndex = CurrentBufferIndex;
             if (UISystemEnabled == '\0') {
-                WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                WARNING: Subroutine does not return
-                WARNING: Treating indirect jump as call
-                memcpy();
+                                WARNING: Subroutine does not return
+                                memcpy();
                 return;
             }
             for (; RemainingCharacters != 0; RemainingCharacters = RemainingCharacters + -1) {
@@ -9677,8 +9690,7 @@ void ProcessUIComponent(UIByte *ComponentData)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
 /**
  * @brief 处理UI系统事件的核心函数
@@ -9739,8 +9751,7 @@ void HandleUIEvent(UIFunctionPtr *eventHandler, UIHandle eventContext, longlong 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  UI系统栈变量常量定义 - 用于替换stack0x等变量
 #define UIStackBufferBase &UIStackBufferBase
 #define UIStackTransformMatrix1 &UIStackTransformMatrix1
@@ -9807,8 +9818,7 @@ void UIEmptyFunction(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI参数
@@ -9984,8 +9994,7 @@ void RenderUIComponent(UIHandle uiContext, UIHandle dataSource, UIHandle targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  更新UI组件
  更新UI组件的状态和内容。它会检查渲染器是否已初始化，
@@ -10044,8 +10053,7 @@ void UpdateUIComponent(UIHandle uiContext, UIHandle dataSource, UIHandle targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  绘制UI元素
  绘制UI元素到指定的目标缓冲区。它会检查三级渲染器和主渲染器
@@ -10096,8 +10104,7 @@ void UpdateUIComponent(UIHandle uiContext, UIHandle dataSource, UIHandle targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void HandleUIEvent(UIDword uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void HandleUIEvent(UIDword uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -10136,8 +10143,7 @@ LAB_RenderJobCallbackHandler:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 更新UI系统条件
@@ -10723,8 +10729,7 @@ void ProcessUILayout(longlong layoutContext,longlong targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CreateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void CreateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -10843,8 +10848,7 @@ LayoutValidationSkip:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染操作
@@ -10964,8 +10968,7 @@ UIFrameFinalize:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 完成UI帧处理
@@ -11030,8 +11033,7 @@ void FinalizeUIFrame(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 更新UI组件列表
@@ -11081,8 +11083,7 @@ void ProcessUIComponentList(UIHandle uiContext,UIHandle *dataSource,UIHandle tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  处理UI系统消息
  *  uiContext UI上下文句柄
  *  dataSource 数据源指针
@@ -11164,8 +11165,7 @@ LAB_UIContextCreation:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,UIDataBuffer *targetBuffer,UIHandle bufferSize,
 void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,UIDataBuffer *targetBuffer,UIHandle bufferSize,
@@ -11246,22 +11246,19 @@ UIHandle * FreeUIResourceBuffer(UIHandle *resourceBuffer,ulonglong freeFlags)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 void pass_managed_library_callback_method_pointers(UIHandle uiContext)
 
 {
                      0x651890  36  pass_managed_library_callback_method_pointers
                      WARNING: Could not recover jumptable at 0x00018065189d. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*ManagedInterface + 0x40))(ManagedInterface,uiContext);
+                       (**(code **)(*ManagedInterface + 0x40))(ManagedInterface,uiContext);
   return;
 }
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 void pass_controller_methods(UIHandle uiContext)
 
 {
@@ -11272,8 +11269,7 @@ void pass_controller_methods(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 void pass_managed_initialize_method_pointer(UIHandle uiContext)
 
 {
@@ -11306,8 +11302,7 @@ UIHandle FreeUIComponentData(UIHandle uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 清除UI组件数据
@@ -11345,8 +11340,7 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI组件数据验证
  处理UI组件的数据验证和错误处理，包括组件状态的验证、
@@ -11402,8 +11396,7 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong targetBuffer)
 void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong targetBuffer)
@@ -11474,8 +11467,7 @@ LAB_UIEventInitialization:
   (**(code **)(uiContext + 0x78))(0x20,_guard_check_icall);
   (**(code **)(uiContext + 0x80))();
                      WARNING: Could not recover jumptable at 0x000180651d0e. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(uiContext + 0x58))();
+                       (**(code **)(uiContext + 0x58))();
   return;
 }
 
@@ -11689,8 +11681,7 @@ UIHandle RenderUIComponent(longlong RenderContext, longlong ComponentData)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 获取UI组件属性
  * 
@@ -11747,8 +11738,7 @@ int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 获取托管接口
  * 
@@ -11767,8 +11757,7 @@ UIHandle GetManagedInterface(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 设置UI组件属性
@@ -11951,8 +11940,7 @@ LAB_UIContextInitialize:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   /**
  * @brief 清理UI组件资源
@@ -11978,8 +11966,7 @@ void CleanupUIComponent(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   /**
  * @brief 处理UI组件数据
@@ -12254,8 +12241,7 @@ UIHandle ConvertUIString(UIHandle *uiContext,longlong dataSource,UIHandle target
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI系统内存分配器初始化函数
 void SetupUIMemoryAllocator(void)
@@ -12294,8 +12280,7 @@ void SetupUIMemoryAllocator(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  初始化UI纹理系统
  初始化UI系统中使用的所有纹理资源，包括纹理缓存、纹理池和纹理管理器。
@@ -12423,8 +12408,7 @@ void* InitializeUIString(UIHandle uiContext,UIHandle *dataSource,UIHandle target
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  调整UI系统动态数组大小
  调整UI系统动态数组的大小，以适应新的数据需求。
@@ -12494,17 +12478,14 @@ void* InitializeUIString(UIHandle uiContext,UIHandle *dataSource,UIHandle target
     allocatedMemory = bufferStartAddress + requiredSize;
   }
   *(longlong *)(uiBufferData + 0x18) = allocatedMemory;
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memcpy((longlong)sizeDifference + *(longlong *)(uiBufferData + 0x10),dataSource,(longlong)targetBuffer);
+                                          WARNING: Subroutine does not return
+                       memcpy((longlong)sizeDifference + *(longlong *)(uiBufferData + 0x10),dataSource,(longlong)targetBuffer);
   return;
 }
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI事件队列
  负责处理UI系统中的各种事件，包括鼠标点击、键盘输入、触摸事件等
@@ -12568,10 +12549,8 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,UIHandle targetB
     }
   }
   *preservedRegister15 = contextHandle;
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10),UIRenderParameter3);
+                                          WARNING: Subroutine does not return
+                       memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10),UIRenderParameter3);
   return;
 }
 
@@ -12593,10 +12572,8 @@ void ClearUIState(void)
     memset();
   }
   *preservedRegister15 = contextHandle;
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10));
+                                          WARNING: Subroutine does not return
+                       memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10));
   return;
 }
 
@@ -12611,17 +12588,14 @@ void UpdateUIComponentPosition(longlong uiContext,UIHandle dataSource,UIHandle t
   int RegisterValue;
   
   *(longlong *)(componentData + 0x18) = uiContext + bufferSize;
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10));
+                                          WARNING: Subroutine does not return
+                       memcpy((longlong)RegisterValue + *(longlong *)(componentData + 0x10));
   return;
 }
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  验证UI组件句柄的有效性
  验证UI组件句柄的有效性，检查句柄是否为空以及系统是否已初始化
@@ -12639,8 +12613,7 @@ void UpdateUIComponentPosition(longlong uiContext,UIHandle dataSource,UIHandle t
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 清理UI组件缓存
  * 
@@ -13402,8 +13375,7 @@ UIEventProcessingComplete:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIComponent(int componentId,void *componentData)
  初始化UI组件，设置组件的基本属性和状态
@@ -13630,8 +13602,7 @@ CreateUIComponentWithParams(UIHandle componentType,UIHandle componentStyle,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  UI组件数组初始化函数
  
  该函数负责初始化UI组件数组，分配内存并设置组件虚函数表。
@@ -13729,8 +13700,7 @@ void SetUIComponentAlpha(longlong componentContext, UIDword alphaValue)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  /**
  * @brief 创建UI颜色缓冲区
  * 
@@ -13854,8 +13824,7 @@ void UIComponentCleanup(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  创建并初始化UI组件实例
  分配UI组件内存并初始化组件数据结构
 UIDword * CreateUIComponentInstance(UIDword *componentData)
@@ -13931,8 +13900,7 @@ UIHandle * CleanupUIComponentMemoryAndResetPointers(UIHandle *componentPtr,ulong
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  /**
  * @brief 执行UI组件方法并清理资源
  * 
@@ -14009,8 +13977,7 @@ void CopyUIBufferData(longlong uiContext,UIHandle dataSource,UIHandle targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  /**
  * @brief 创建并初始化UI字符串缓冲区
  * 
@@ -14091,8 +14058,7 @@ UIHandle * InitializeSecondaryUIBuffer(UIHandle bufferId,UIHandle *uiBufferData,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UIComponentInitialize(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void UIComponentInitialize(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -14104,8 +14070,7 @@ void UIComponentInitialize(UIHandle uiContext,UIHandle dataSource,UIHandle targe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI系统元素管理函数
@@ -14478,8 +14443,7 @@ LabelCleanupPhase: // 清理阶段标签
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void LoadUIModules(ulonglong *module_list)
  加载UI模块并将模块添加到模块列表中
@@ -14740,8 +14704,7 @@ ProcessUIModulePath(UIHandle module_handle, UIHandle path_buffer, UIHandle targe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIModuleLoader(UIHandle loader_handle, UIHandle config_data, UIHandle targetBuffer, UIHandle bufferSize)
  初始化UI模块加载器
@@ -14754,8 +14717,7 @@ void InitializeUIModuleLoader(UIHandle loader_handle, UIHandle config_data, UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 根据路径查找UI模块
  * 
@@ -14869,8 +14831,7 @@ void DestroyUIComponentEx(UIHandle component_handle, UIHandle *component_data, U
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIComponentEx(ulonglong uiContext,UIHandle *dataSource,UIHandle targetBuffer,longlong *bufferSize,
              longlong resultPointer)
 
@@ -15032,8 +14993,7 @@ LAB_1806578f0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CreateUIContextEx(UIHandle contextHandle_handle, UIHandle config_data, undefined *contextHandle_ptr, UIHandle bufferSize,
 void CreateUIContextEx(UIHandle contextHandle_handle, UIHandle config_data, undefined *contextHandle_ptr, UIHandle bufferSize,
@@ -15254,8 +15214,7 @@ void InitializeUIAnimation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 扩展的UI布局更新函数
@@ -16720,8 +16679,7 @@ void CleanupUIMemoryPool(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 渲染UI元素
@@ -20840,8 +20798,7 @@ void ProcessUIInputEvents(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI碰撞检测处理器
@@ -22135,8 +22092,7 @@ void HandleUIRendererCleanup(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ConfigureUIRendererSettings(longlong uiContext)
 void ConfigureUIRendererSettings(longlong uiContext)
@@ -23161,8 +23117,7 @@ LAB_18065dae7:
                  (UIFunctionPtr *)((ulonglong)*(uint *)(preservedRegister15 + 0x65ded4 + (longlong)(int)processingStatus * 4) +
                          preservedRegister15);
                      WARNING: Could not recover jumptable at 0x00018065d9d3. Too many branches
-                     WARNING: Treating indirect jump as call
-            (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+                                 (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
             return;
           }
           processStatus = processingStatus + 1;
@@ -23178,8 +23133,7 @@ LAB_18065dae7:
                  (UIFunctionPtr *)((ulonglong)*(uint *)(preservedRegister15 + 0x65deec + (longlong)(int)processingStatus * 4) +
                          preservedRegister15);
                      WARNING: Could not recover jumptable at 0x00018065da9b. Too many branches
-                     WARNING: Treating indirect jump as call
-            (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+                                 (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
             return;
           }
           processStatus = processingStatus + 1;
@@ -23240,8 +23194,7 @@ LAB_18065dae7:
       do {
         if (loopCounter < 6) {
                      WARNING: Could not recover jumptable at 0x00018065dd17. Too many branches
-                     WARNING: Treating indirect jump as call
-          (*(UIFunctionPtr *)((ulonglong)*(uint *)(preservedRegister15 + 0x65df1c + (longlong)(int)loopCounter * 4) +
+                               (*(UIFunctionPtr *)((ulonglong)*(uint *)(preservedRegister15 + 0x65df1c + (longlong)(int)loopCounter * 4) +
                     preservedRegister15))(0x3f800000);
           return;
         }
@@ -24483,8 +24436,7 @@ void UpdateUIComponentRendering(longlong uiContext,UIHandle dataSource,UIHandle 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI复杂渲染操作函数
  
@@ -25684,8 +25636,7 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
    /**
  * @brief 计算UI组件变换矩阵
@@ -25940,8 +25891,7 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   /**
  * @brief 处理UI输入事件
@@ -26095,8 +26045,7 @@ void RenderUIComponent(longlong uiContext,float dataSource,UIHandle targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIAnimation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
 void ProcessUIAnimation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
@@ -27505,8 +27454,7 @@ LAB_18066375a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 创建UI组件
@@ -28838,8 +28786,7 @@ UIHandle UIAllocateResourceMemory(UIHandle *uiContext,ulonglong dataSource,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize,
 void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize,
@@ -29252,8 +29199,7 @@ LAB_18066a567:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentCollisionDetection(longlong uiContext,longlong dataSource,float *targetBuffer,float *bufferSize,char resultPointer,
  UI组件碰撞检测处理器
@@ -29387,8 +29333,7 @@ LAB_18066a567:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UpdateUIComponentRenderState(ulonglong uiContext,longlong dataSource,float *targetBuffer,UIHandle bufferSize,
  UI组件渲染状态更新器
@@ -30610,8 +30555,7 @@ void InitializeUIComponentSystem(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI组件数据
  处理UI组件的数据操作，包括组件状态更新、数据验证和组件初始化
@@ -30934,8 +30878,7 @@ LAB_18066cdc1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
  
@@ -31162,8 +31105,7 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataEncryption(byte *dataBuffer,uint bufferSize,longlong contextHandlePtr,code *encryptionCallback,UIHandle encryptionKey)
  UI数据加密处理器
@@ -31335,8 +31277,7 @@ void ResetUIComponentState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUILock(CodePointer InitializationCallback)
  初始化UI系统锁
@@ -31394,8 +31335,7 @@ void ResetUIComponentState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  初始化UI系统锁（无参数版本）
  初始化UI系统的临界区锁，确保线程安全。
@@ -31453,8 +31393,7 @@ void ResetUIComponentState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  执行UI系统初始化回调并释放锁
  * 
@@ -31493,8 +31432,7 @@ void ResetUIComponentState(void)
  WARNING: Removing unreachable block (ram,0x00018066d575)
  WARNING: Removing unreachable block (ram,0x00018066d506)
  WARNING: Removing unreachable block (ram,0x00018066d4ea)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeCPUFunctionPointers(void)
  初始化CPU相关的函数指针，根据CPU特性设置不同的实现
@@ -31579,8 +31517,7 @@ void InitializeCPUFunctionPointers(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIThreadLock(code *initializationCallback)
  初始化UI系统线程锁
@@ -31635,8 +31572,7 @@ void InitializeCPUFunctionPointers(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void SetupUIThreadLock(void)
  UI线程锁初始化器
@@ -31691,8 +31627,7 @@ void InitializeCPUFunctionPointers(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ReleaseUIThreadLock(void)
  UI线程锁清理器
@@ -31728,8 +31663,7 @@ void InitializeCPUFunctionPointers(void)
  WARNING: Removing unreachable block (ram,0x00018066d855)
  WARNING: Removing unreachable block (ram,0x00018066d7e6)
  WARNING: Removing unreachable block (ram,0x00018066d7ca)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIRenderingFunctions(void)
  初始化UI渲染相关的函数指针，根据CPU特性设置不同的实现
@@ -32169,8 +32103,7 @@ void InitializeUIRenderingFunctions(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIMemoryLockWithCallback(code *initializationCallback)
 void InitializeUIMemoryLockWithCallback(code *initializationCallback)
@@ -32221,8 +32154,7 @@ void InitializeUIMemoryLockWithCallback(code *initializationCallback)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UIMemoryLockWrapper(void)
 void UIMemoryLockWrapper(void)
@@ -32272,8 +32204,7 @@ void UIMemoryLockWrapper(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CheckUIMemoryLockInit(void)
 void CheckUIMemoryLockInit(void)
@@ -32667,8 +32598,7 @@ uint64_t GetUIDefaultStatusFlag(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  初始化UI系统核心组件
  初始化UI系统的核心组件，包括系统服务和基础功能模块
@@ -32688,8 +32618,7 @@ uint64_t GetUIDefaultStatusFlag(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  执行UI系统线程安全初始化
  执行UI系统的线程安全初始化，使用临界区确保初始化过程的原子性
@@ -32745,8 +32674,7 @@ uint64_t GetUIDefaultStatusFlag(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIEventQueue(void)
 void InitializeUIEventQueue(void)
@@ -32796,8 +32724,7 @@ void InitializeUIEventQueue(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  清理UI系统临界区和资源
  清理UI系统的临界区和相关资源，包括：
@@ -33618,8 +33545,7 @@ void RenderUISystem(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  设置UI渲染参数
  @note 原始函数名: RenderUIComponent
@@ -35244,8 +35170,7 @@ void SynchronizeUIBuffers(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  更新UI组件数据
  更新UI组件的数据内容，包括位置、大小、颜色等属性。
@@ -36784,8 +36709,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
     }
     RenderUIComponent(uiContext,dataSource,0);
                      WARNING: Could not recover jumptable at 0x000180671494. Too many branches
-                     WARNING: Treating indirect jump as call
-    WaitForSingleObject(*(UIHandle *)(uiContext + 0x4400),0xffffffff);
+                         WaitForSingleObject(*(UIHandle *)(uiContext + 0x4400),0xffffffff);
     return;
   }
                      WARNING: Subroutine does not return
@@ -36966,8 +36890,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void RenderUIComponentsAlt(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,short *resultPointer,
  UI渲染器初始化函数
@@ -37304,8 +37227,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI布局变换
  处理UI元素的布局变换，包括位置、大小、旋转等变换操作。
@@ -37471,8 +37393,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  验证UI布局数据
  验证UI布局数据的有效性和完整性，确保布局数据符合系统要求。
@@ -37657,8 +37578,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentEvent(longlong uiContext,longlong eventData,longlong componentData,short *eventFlags,int eventTypeId,
 void ProcessUIComponentEvent(longlong uiContext,longlong eventData,longlong componentData,short *eventFlags,int eventTypeId,
@@ -37783,8 +37703,7 @@ void ProcessUIComponentEvent(longlong uiContext,longlong eventData,longlong comp
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputDevice,short *inputFlags,int inputType,
 void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputDevice,short *inputFlags,int inputType,
@@ -38190,8 +38109,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI变换矩阵计算
  * 
@@ -38568,8 +38486,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI事件队列
  处理UI系统的事件队列，包括鼠标点击、键盘输入、触摸事件等。
@@ -39114,8 +39031,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIRenderData(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
  UI渲染数据处理函数
@@ -39168,8 +39084,7 @@ LAB_180673f27:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI输入事件
  处理用户界面输入事件，包括鼠标点击、键盘输入、触摸事件等。
@@ -39224,8 +39139,7 @@ LAB_180673f27:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI事件分发
  处理用户界面事件的分发，将事件分发给相应的处理程序。
@@ -39268,8 +39182,7 @@ LAB_180673f27:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  批量渲染UI元素
  批量渲染UI元素，优化渲染性能，减少绘制调用次数。
@@ -39348,8 +39261,7 @@ LAB_180673f27:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIMouseInput(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
 void ProcessUIMouseInput(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
@@ -39393,8 +39305,7 @@ void ProcessUIMouseInput(longlong uiContext,int dataSource,int targetBuffer,int 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUITouchInput(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
 void ProcessUITouchInput(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
@@ -39438,8 +39349,7 @@ void ProcessUITouchInput(longlong uiContext,UIHandle dataSource,int targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIKeyboardInput(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
 void ProcessUIKeyboardInput(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
@@ -39483,8 +39393,7 @@ void ProcessUIKeyboardInput(longlong uiContext,int dataSource,int targetBuffer,i
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIControllerInput(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
 void ProcessUIControllerInput(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
@@ -39892,8 +39801,7 @@ void ProcessUIDataBatch(longlong uiContext,longlong dataSource,longlong targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI像素数据转换
  处理UI系统中的像素数据转换，包括颜色空间转换、
@@ -40139,8 +40047,7 @@ void TriggerUIRenderingUpdate(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI加密像素数据
  处理UI系统中的加密像素数据，包括数据解密、
@@ -40399,8 +40306,7 @@ void ProcessUIEncryptedPixels(longlong uiContext,longlong dataSource,longlong ta
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI像素块数据
  处理UI系统中的像素块数据，包括数据读取、
@@ -40673,8 +40579,7 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  执行UI渲染任务
  执行UI渲染任务，处理渲染数据和参数
@@ -41044,8 +40949,7 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI系统数据处理处理器
  处理UI系统中的数据操作，包括数据的读取、转换和写入
@@ -41467,8 +41371,7 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ResetUIRenderState(void)
  UI渲染状态重置函数
@@ -41940,8 +41843,7 @@ void ResetUIRenderState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI像素数据转换函数
  处理UI像素数据的转换和优化，使用SIMD指令进行高效处理
@@ -42108,8 +42010,7 @@ void ResetUIRenderState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI系统数据传输处理器
  在UI系统中传输数据，包括数据复制和转换操作
@@ -42284,8 +42185,7 @@ void UINoOperation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI系统数据转换处理器
  在UI系统中转换数据格式和类型
@@ -42591,8 +42491,7 @@ void UINoOperation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataOperation(void)
 void ProcessUIDataOperation(void)
@@ -43285,8 +43184,7 @@ void ProcessUIMainData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIRendererData4Optimized(longlong uiContext,longlong dataSource,UIDword *targetBuffer,longlong bufferSize,
  UI渲染数据4处理函数优化版本
@@ -43399,8 +43297,7 @@ void ProcessUIMainData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataFiltering(longlong uiContext,longlong dataSource,UIHandle *targetBuffer,longlong bufferSize,
  UI数据过滤处理函数
@@ -43540,8 +43437,7 @@ void ProcessUIMainData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIRendererData2(ulonglong *uiContext,longlong dataSource,UIHandle *targetBuffer,longlong bufferSize,
 void ProcessUIRendererData2(ulonglong *uiContext,longlong dataSource,UIHandle *targetBuffer,longlong bufferSize,
@@ -44058,8 +43954,7 @@ void ProcessUIMainDataOptimized(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targetBuffer) [16],longlong bufferSize,
 void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targetBuffer) [16],longlong bufferSize,
@@ -44217,8 +44112,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI系统SIMD向量数据处理函数（优化版本）
  * 
@@ -45556,8 +45450,7 @@ void ProcessUIFocusData(UIDword *uiContext,longlong dataSource,byte *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  UI事件处理器函数
  处理UI系统的事件处理，包括事件分发、事件过滤和事件响应。
@@ -49401,8 +49294,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   执行UI图像变换处理
  * 
@@ -53336,8 +53228,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  高级UI图像差异计算函数（多模式AVX2优化）
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的差异，支持多种处理模式。
@@ -53730,8 +53621,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  计算UI图像块差异值
  * 
  * 该函数使用AVX2指令集计算两个UI图像块之间的差异值，支持多种像素处理模式。
@@ -54094,8 +53984,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统事件分发器初始化函数
  初始化UI系统的事件分发器，设置事件处理的基本参数和状态。
@@ -55206,8 +55095,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统状态更新器初始化函数
  初始化UI系统的状态更新器，设置状态更新的参数和缓冲区。
@@ -56208,8 +56096,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统数据流处理器初始化函数
  初始化UI系统的数据流处理器，设置数据流的处理参数和缓冲区。
@@ -60101,8 +59988,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void InitializeUIRenderDataProcessor(UIHandle *uiContext,int dataSource,UIByte (*targetBuffer) [16],
 /* * UI系统渲染数据处理器初始化函数
@@ -62156,8 +62042,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统缓冲区管理器初始化函数
  初始化UI系统的缓冲区管理器，设置缓冲区的处理参数和管理策略。
@@ -62735,8 +62620,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统内存管理器初始化函数
  初始化UI系统的内存管理器，设置内存分配和释放的参数。
@@ -64631,8 +64515,7 @@ void ExecuteUIErrorHandler(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
 void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
@@ -64755,8 +64638,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /* * UI系统纹理处理器初始化函数
  初始化UI系统的纹理处理器，设置纹理处理的参数和缓冲区。
@@ -64888,8 +64770,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI系统像素数据处理器函数
  * 
@@ -65022,8 +64903,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI系统高级像素数据处理器函数
  * 
@@ -65156,8 +65036,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI系统无符号整数像素数据处理器函数
  * 
@@ -65265,8 +65144,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   计算图像加权绝对差值（高级版本）
  * 
@@ -65373,8 +65251,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   计算图像像素平均值（高级版本）
  * 
@@ -65501,8 +65378,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   计算图像像素标准差（高级版本）
  * 
@@ -65629,8 +65505,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   计算图像像素中位数（高级版本）
  * 
@@ -65757,8 +65632,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   计算UI数据差值和
  * 
@@ -67544,8 +67418,7 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI数据加密处理函数
  对UI系统中的敏感数据进行加密处理，使用数学运算和随机数生成
@@ -68602,8 +68475,7 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI系统初始化和配置函数
  初始化UI系统的各个组件，包括：
@@ -69141,8 +69013,7 @@ uint SynchronizeUISystemState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI系统渲染器配置函数
  配置UI系统的渲染器和数据处理组件，包括：
@@ -69388,8 +69259,7 @@ LAB_18069a35d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   UI组件数据解析和状态设置函数
  解析UI组件数据并设置相应的状态，包括：
@@ -70533,8 +70403,7 @@ LAB_18069b66c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   初始化UI上下文并管理关键区域
  初始化UI上下文，管理关键区域的创建和销毁，
@@ -70590,8 +70459,7 @@ LAB_18069b66c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   原始函数名：FUN_18069bfc6 - UI系统临界区资源初始化函数
  初始化UI系统的临界区资源，管理线程安全的资源访问
@@ -70641,8 +70509,7 @@ void InitializeUICriticalSectionResource(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   清理UI系统临界区资源
  清理UI系统的临界区资源，包括释放临界区对象和相关内存
@@ -70672,8 +70539,7 @@ void InitializeUICriticalSectionResource(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentDataEncryption(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte *bufferSize,
  处理UI组件数据加密和渲染任务
@@ -70749,8 +70615,7 @@ void InitializeUICriticalSectionResource(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentRender(longlong uiContext,UIHandle dataSource,UIByte *targetBuffer,int bufferSize,
 void ProcessUIComponentRender(longlong uiContext,UIHandle dataSource,UIByte *targetBuffer,int bufferSize,
@@ -71040,8 +70905,7 @@ void RenderUIPanelInternal(UIHandle uiContext,longlong dataSource,longlong targe
 
  WARNING: Possible PIC construction at 0x00018069c9b4: Changing call to branch
  WARNING: Removing unreachable block (ram,0x00018069c9b9)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void RenderUICheckboxInternal(longlong uiContext,int dataSource,UIByte (*targetBuffer) [16])
 void RenderUICheckboxInternal(longlong uiContext,int dataSource,UIByte (*targetBuffer) [16])
@@ -71182,8 +71046,7 @@ void RenderUITextInternal(UIHandle uiContext,longlong dataSource,longlong target
 
  WARNING: Possible PIC construction at 0x00018069ca9b: Changing call to branch
  WARNING: Removing unreachable block (ram,0x00018069caa0)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void RenderUISliderInternal(longlong uiContext,int dataSource,UIByte (*targetBuffer) [16])
 void RenderUISliderInternal(longlong uiContext,int dataSource,UIByte (*targetBuffer) [16])
@@ -72076,8 +71939,7 @@ void RenderUIButtonInternal(UIHandle uiContext,longlong dataSource,UIHandle targ
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UpdateUIComponentData(UIHandle *uiContext,UIByte *dataSource,int targetBuffer,int bufferSize,
 void UpdateUIComponentData(UIHandle *uiContext,UIByte *dataSource,int targetBuffer,int bufferSize,
@@ -72331,8 +72193,7 @@ void ProcessUIEventData(longlong UiContext,longlong DataSource,UIHandle *TargetB
     return;
   }
                      WARNING: Could not recover jumptable at 0x00018069d932. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(UiContext + 4000))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,iterationCounter & 7);
+                       (**(code **)(UiContext + 4000))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,iterationCounter & 7);
   return;
 }
 
@@ -72391,8 +72252,7 @@ void ProcessUIEventDataExtended(longlong UiContext,longlong DataSource,UIHandle 
     return;
   }
                      WARNING: Could not recover jumptable at 0x00018069d9d2. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(UiContext + 0xfa8))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,iterationCounter & 7);
+                       (**(code **)(UiContext + 0xfa8))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,iterationCounter & 7);
   return;
 }
 
@@ -72741,8 +72601,7 @@ void ClearUIMemoryRegion(int *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 处理UI上下文数据验证
@@ -73075,8 +72934,7 @@ void ProcessUIComponentBlend(byte *uiContext,int dataSource,byte *targetBuffer,i
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 更新UI渲染上下文
@@ -73495,8 +73353,7 @@ void ExecuteUIRenderTaskStartup(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UpdateUIContext(longlong *uiContext)
 void UpdateUIContext(longlong *uiContext)
@@ -74292,8 +74149,7 @@ void InitializeUISystem(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI资源同步
@@ -75635,8 +75491,7 @@ void ProcessUIComponentStateUpdate(longlong uiContext,int dataSource,longlong ta
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataEncryption(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize)
 void ProcessUIDataEncryption(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize)
@@ -75930,8 +75785,7 @@ UIHandle InitializeUITargetBuffer(UIHandle uiContext,UIHandle dataSource,UIHandl
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件渲染数据
@@ -76219,8 +76073,7 @@ void ProcessUIComponentRenderData(longlong uiContext,longlong dataSource,int tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI动画数据
@@ -76378,8 +76231,7 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI纹理数据
@@ -76509,8 +76361,7 @@ void ProcessUILayoutData(int uiContext,int dataSource,int targetBuffer,longlong 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI事件数据
@@ -77147,8 +76998,7 @@ LAB_1807053b0:
 
  WARNING: Removing unreachable block (ram,0x0001807058f7)
  WARNING: Removing unreachable block (ram,0x0001807058e9)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CleanupUIResources(void)
 
@@ -77184,8 +77034,7 @@ LAB_1807053b0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentData(UIHandle *uiContext,UIDword *dataSource,UIHandle targetBuffer,int bufferSize,
                   UIHandle resultPointer,UIHandle param_6,int param_7)
@@ -77397,8 +77246,7 @@ LAB_180706998:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIEventBuffer(longlong uiContext,int dataSource,int targetBuffer)
 
@@ -78507,8 +78355,7 @@ void ProcessUIDataTransformation(float *uiContext,int64_t dataSource,float *targ
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI动画
@@ -79794,8 +79641,7 @@ float CalculateUIRenderDataWeightedSumAndError(float *uiContext, UIHandle dataSo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染数据和事件操作
@@ -80244,8 +80090,7 @@ void ProcessUIEventAndDataSource(longlong uiContext,UIHandle *dataSource,int tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI系统信号量和上下文数据
@@ -80345,8 +80190,7 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   处理UI上下文数据
  处理UI上下文中的数据，包括内存分配、数据验证、
@@ -80697,8 +80541,7 @@ int CalculateUIComponentMemoryOffset(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   触发UI渲染更新
  * 
@@ -80719,8 +80562,7 @@ int CalculateUIComponentMemoryOffset(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   处理UI渲染数据并触发更新
  * 
@@ -80761,8 +80603,7 @@ int CalculateUIComponentMemoryOffset(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
   执行UI渲染任务调度
  * 
@@ -82179,8 +82020,7 @@ int ProcessUIDataCalculation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI矩阵裁剪操作
@@ -82555,8 +82395,7 @@ LAB_1807100a5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * UI系统浮点数据归一化处理器
@@ -83237,8 +83076,7 @@ void UIEmptyOperation2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据初始化处理函数
@@ -85276,8 +85114,7 @@ void ProcessUIDataMatrixTransform(UIHandle uiContext, UIHandle dataSource, float
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据初始化
@@ -85426,8 +85263,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     if (dataSource != uiContext) {
                      WARNING: Could not recover jumptable at 0x0001808ffc53. Too many branches
                      WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-      memmove(param_7,param_6,(longlong)resultPointer << 2);
+                           memmove(param_7,param_6,(longlong)resultPointer << 2);
       return;
     }
   }
@@ -86798,8 +86634,7 @@ void ProcessUIContextDataTransform(UIHandle uiContext, float *dataSource, int ta
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据缓冲区批量处理器
@@ -87448,8 +87283,7 @@ void ProcessUITransformCoefficients(UIHandle uiContext, UIHandle dataSource, flo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI变换数据计算
@@ -87608,8 +87442,7 @@ void ProcessUITransformDataCalculation(longlong *uiContext,float *dataSource,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI缓冲区数据操作
@@ -87661,8 +87494,7 @@ void ProcessUIBufferDataOperation(UIHandle uiContext,UIHandle dataSource,int tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据验证和转换
@@ -87721,8 +87553,7 @@ void ProcessUIDataValidationAndConversion(UIHandle uiContext,int dataSource,UIDw
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 验证UI上下文和数据源
@@ -87801,8 +87632,7 @@ void ValidateUIContextAndDataSource(longlong uiContext,int dataSource,int target
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 计算UI组件插值系数
  * 
@@ -89161,8 +88991,7 @@ LAB_180715d56:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染上下文更新
@@ -89810,8 +89639,7 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据传输操作
@@ -89944,8 +89772,7 @@ void ProcessUIFloatTransformAndNormalization(longlong uiContext, longlong dataSo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI系统数据处理函数
@@ -93050,8 +92877,7 @@ void ProcessUIDataCalculationAndColorAdjustment(longlong uiContext, int dataSour
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  // 原始函数名：FUN_180719e00 - UI上下文数据处理器
 #define ProcessUIContextData FUN_180719e00
@@ -94599,8 +94425,7 @@ int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int target
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CleanupUIResources(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 /**
@@ -94777,8 +94602,7 @@ UIHandle ConvertUICoordinateData(UIHandle uiContext,longlong dataSource,longlong
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
 /**
@@ -94838,8 +94662,7 @@ void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
 /**
  * @brief UI系统数据块处理器
@@ -95857,8 +95680,7 @@ UIDword ProcessUIEventTypeValidationAndStateConfiguration(longlong uiContext,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染更新任务
@@ -96750,8 +96572,7 @@ void UIEmptyOperationProcessorVariant(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI浮点数据变换处理器
@@ -97216,8 +97037,7 @@ void ProcessUITransformMatrix(float uiContext, UIHandle dataSource, UIHandle tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
 void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
@@ -97654,8 +97474,7 @@ void ProcessUIComponentTransformations(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIRenderBufferData(longlong uiContext,longlong dataSource,float *targetBuffer)
 /**
@@ -98793,8 +98612,7 @@ void ProcessUIDataConversionFunction(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 初始化UI渲染数据处理器
@@ -99035,8 +98853,7 @@ void UINoOperationHandlerAlternative(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI渲染更新触发器
@@ -99076,8 +98893,7 @@ void TriggerUIRenderingUpdate(UIHandle uiContext, UIHandle dataSource, UIHandle 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIBufferOperationWithParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
 void ProcessUIBufferOperationWithParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
@@ -99109,8 +98925,7 @@ void ProcessUIBufferOperationWithParameters(UIHandle uiContext,UIHandle dataSour
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIAdvancedData(void)
 void ProcessUIAdvancedData(void)
@@ -99125,8 +98940,7 @@ void ProcessUIAdvancedData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComplexData(void)
 void ProcessUIComplexData(void)
@@ -100572,8 +100386,7 @@ void ProcessUIDwordArray(UIHandle uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIIntArray(UIHandle uiContext,int *dataSource)
 void ProcessUIIntArray(UIHandle uiContext,int *dataSource)
@@ -100711,8 +100524,7 @@ LAB_180722683:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentTransform(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void ProcessUIComponentTransform(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -100742,8 +100554,7 @@ void ProcessUIComponentTransform(longlong uiContext,UIHandle dataSource,UIHandle
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
 void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
@@ -101256,8 +101067,7 @@ LAB_180722ca8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
 void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
@@ -101759,8 +101569,7 @@ void ProcessUIContextDataBufferManagement(UIHandle uiContext, int dataSource, in
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
@@ -101779,8 +101588,7 @@ void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
 void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
@@ -103659,8 +103467,7 @@ void ProcessUIComponentContext(UIHandle *uiContext,longlong dataSource,UIHandle 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
 void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
@@ -103749,8 +103556,7 @@ void ValidateUIComponent(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
 void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
@@ -105046,8 +104852,7 @@ void ProcessUIVectorTransform(float *uiContext, float dataSource, float targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
@@ -105073,8 +104878,7 @@ void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle t
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
 void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
@@ -105322,8 +105126,7 @@ void ProcessUIRenderTaskInitialization(UIDword uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据变换和验证
@@ -105403,8 +105206,7 @@ void ProcessUIDataTransformationAndValidation(longlong uiContext,float *dataSour
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据转换和缩放
@@ -105446,8 +105248,7 @@ void ProcessUIDataConversionAndScaling(UIHandle uiContext,longlong dataSource,in
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据解包和转换
@@ -105635,8 +105436,7 @@ void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI变换数据
@@ -105821,8 +105621,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI元素索引
@@ -105883,8 +105682,7 @@ void ProcessUIElementIndex(longlong uiContext,float *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据
@@ -106260,8 +106058,7 @@ void ValidateUIContext(int *uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染更新和数据处理
@@ -107139,8 +106936,7 @@ void ProcessUIBufferData(longlong uiContext,int dataSource,int targetBuffer,long
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void UpdateUIComponentState(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 void UpdateUIComponentState(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
@@ -107273,8 +107069,7 @@ LAB_180729492:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 传输UI数据到缓冲区
@@ -107521,8 +107316,7 @@ LAB_180729492:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIClickEvent(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
 void ProcessUIClickEvent(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
@@ -107608,8 +107402,7 @@ void ProcessUIClickEvent(longlong uiContext,longlong dataSource,UIHandle targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIHoverEvent(longlong uiContext,longlong dataSource,int targetBuffer)
 void ProcessUIHoverEvent(longlong uiContext,longlong dataSource,int targetBuffer)
@@ -107840,8 +107633,7 @@ void ProcessUIComponentData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void TransferUIData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void TransferUIData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -108454,8 +108246,7 @@ void ProcessUIBufferAdvancedOperation(int uiContext, UIHandle dataSource, uint t
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 // 原始函数名：FUN_18072ab70 - UI系统数据处理函数
 #define ProcessUIDataAndComponents FUN_18072ab70
 /**
@@ -108751,8 +108542,7 @@ void UIEmptyOperation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  // 原始函数名：FUN_18072af30 - UI数据处理和转换函数
 #define ProcessUIDataAndConvert FUN_18072af30
@@ -109413,8 +109203,7 @@ double CalculateFloatArraySquareSum(longlong uiContext, int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据变换和缓冲区操作
@@ -109631,8 +109420,7 @@ void ProcessUIDataTransformation(double *uiContext, longlong dataSource, float t
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件数据变换和渲染操作
@@ -109922,8 +109710,7 @@ void ExecuteUIRenderTaskWrapperA(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据处理和变换处理器
@@ -112335,8 +112122,7 @@ void ProcessUIDataWithParameters(UIHandle uiContext)
   }
                      WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                      WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memset(uiContext,0,allocatedMemory << 2);
+                       memset(uiContext,0,allocatedMemory << 2);
   return;
 }
 
@@ -112876,8 +112662,7 @@ void ProcessUIDataTransformCalculation(longlong uiContext,UIHandle dataSource,fl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI值计算
@@ -113518,8 +113303,7 @@ void UIEventSystemEmptyOperation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件更新
@@ -113579,8 +113363,7 @@ void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件数据转换和验证
@@ -113938,8 +113721,7 @@ void ProcessUIDataWithValidation(longlong uiContext,int *dataSource,int *targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 执行UI缓冲区数据操作
@@ -114467,8 +114249,7 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI渲染表面处理
@@ -115363,8 +115144,7 @@ LAB_1807309fc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIHandleTransfer(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void ProcessUIHandleTransfer(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -115388,8 +115168,7 @@ void ProcessUIHandleTransfer(UIHandle uiContext,longlong dataSource,UIHandle tar
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
 void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize)
@@ -115720,8 +115499,7 @@ LAB_180732998:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -115898,8 +115676,7 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
@@ -116286,8 +116063,7 @@ void InitializeUIRenderTaskAndExecute(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI上下文渲染更新器33F0
@@ -116326,8 +116102,7 @@ void UpdateUIContextAndTriggerRendering(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
 void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
@@ -116388,8 +116163,7 @@ void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI事件代码类型处理器
@@ -116900,8 +116674,7 @@ LAB_18073414c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 验证UI组件上下文和状态
@@ -117129,8 +116902,7 @@ void ProcessUIDataAndValidation(short uiContext,char dataSource,int *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI字符数据与缓冲区转换
@@ -117649,8 +117421,7 @@ void FreeUIDataResources(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据与Word缓冲区
@@ -117955,8 +117726,7 @@ LAB_180734d2f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void CalculateUIDataTransformValue(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
 void CalculateUIDataTransformValue(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
@@ -119196,8 +118966,7 @@ void ProcessUIDataOperations(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
 void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulonglong targetBuffer,short bufferSize,uint resultPointer)
@@ -119321,8 +119090,7 @@ void ProcessUIComponentOperation(ulonglong uiContext,ulonglong dataSource,ulongl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI事件编码转换和数据解码
@@ -120760,8 +120528,7 @@ void ProcessUIComponentDataScalingSimple(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据缓冲区和加密操作
@@ -121546,8 +121313,7 @@ void UIReturnEmptyFunction2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI字符串处理和数据验证函数
@@ -122045,8 +121811,7 @@ LAB_18073802b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 处理UI上下文和数据源的初始化与验证
  * 
@@ -122105,8 +121870,7 @@ int InitializeUIContextAndDataSource(UIDword *uiContext,UIDword *dataSource,int 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  UI系统配置验证和初始化函数
  验证UI系统的配置状态，并根据传入的参数进行相应的初始化设置。
  * 主要用于UI系统的启动配置和参数验证。
@@ -122182,8 +121946,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  UI系统上下文创建函数
  创建UI系统的上下文对象，包括内存分配、信号量处理和验证操作。
  * 主要用于UI系统的初始化和上下文管理。
@@ -122246,8 +122009,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI系统数据分配和初始化函数
  * 
@@ -122352,8 +122114,7 @@ UIHandle InitializeUIMemoryPoolAndComponents(longlong uiContext, UIHandle dataSo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI系统目标句柄设置函数
  * 
@@ -122547,8 +122308,7 @@ int ProcessUIDataBufferOperations(longlong uiContext, int dataSource, UIHandle t
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据缓冲区处理和验证函数
@@ -122609,8 +122369,7 @@ ProcessUIDataBufferWithValidation_Complete:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  
 
@@ -122694,8 +122453,7 @@ void ReleaseUIResourcesAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据加密处理和缓冲区操作函数
@@ -122750,8 +122508,7 @@ ExecuteCleanupAndRenderTask:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI上下文数据处理和缓冲区管理函数
@@ -122886,8 +122643,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 /**
@@ -122946,8 +122702,7 @@ void ReleaseUIMemoryResource(void);
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据处理器
@@ -123102,8 +122857,7 @@ void CleanupUIResourcesAndExecuteRenderTask(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据处理和渲染任务执行函数
@@ -123155,8 +122909,7 @@ RenderTaskExecution:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据传输处理器
@@ -123290,8 +123043,7 @@ void ReleaseUIResourcesAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据缓冲区处理器
@@ -123344,8 +123096,7 @@ RenderTaskExecution:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI数据缓冲区处理器
@@ -123487,8 +123238,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 使用加密处理UI上下文数据
@@ -123540,8 +123290,7 @@ ProcessingComplete:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据传输和渲染
@@ -123588,8 +123337,7 @@ LAB_1807393ea:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 /**
@@ -123661,8 +123409,7 @@ CleanupUIAnimationStateAndExecuteRenderTask:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI上下文数据处理和验证函数
@@ -123821,8 +123568,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理带有加密和验证的UI数据转换
@@ -123899,8 +123645,7 @@ CleanupAndRender:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIDataWithContextManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 /**
@@ -124058,8 +123803,7 @@ void HandleUIComponentUpdate(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文并验证数据源
@@ -124112,8 +123856,7 @@ LAB_18073985a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文并管理状态
@@ -124157,8 +123900,7 @@ void ProcessUIContextWithStateManager(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文并管理事件调度
@@ -124258,8 +124000,7 @@ void ExecuteUIRenderTaskWithKeyValidation(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据最终验证和清理
@@ -124313,8 +124054,7 @@ CleanupUIResources:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据最终扩展验证和清理
@@ -124442,8 +124182,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  #define ProcessUIDataWithLongBuffer FUN_180739b90
  // 函数: void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -124501,8 +124240,7 @@ CleanupUIDataResources:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI系统数据处理函数
@@ -124643,8 +124381,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI系统数据处理和渲染管道函数
@@ -124703,8 +124440,7 @@ CleanupAndExit:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -124823,8 +124559,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  #define ValidateAndProcessUIContextData FUN_180739df0
  void FUN_180739df0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -124876,8 +124611,7 @@ ValidationComplete:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 验证和处理UI上下文数据
@@ -124921,8 +124655,7 @@ ValidationComplete:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI数据传输和渲染
@@ -124989,8 +124722,7 @@ LAB_18073a089:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 /**
@@ -125092,8 +124824,7 @@ void ExecuteUIRenderTaskWithEncryption(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据和主题渲染
@@ -125135,8 +124866,7 @@ void ProcessUIContextDataAndThemeRendering(UIHandle uiContext,UIHandle dataSourc
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据和字体渲染
@@ -125188,8 +124918,7 @@ LAB_18073a35a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据传输操作
@@ -125242,8 +124971,7 @@ ReleaseUIMemoryAndExecuteRenderLabel:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  // 函数: void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 /**
@@ -125367,8 +125095,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUIContextAndBufferData(UIHandle uiContext,UIHandle dataSource)
 void ProcessUIContextAndBufferData(UIHandle uiContext,UIHandle dataSource)
@@ -125405,8 +125132,7 @@ LAB_18073a55a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ProcessUITargetBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
@@ -125450,8 +125176,7 @@ ProcessUITextureDataCompleteLabel:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 处理带多参数的UI数据高级处理
@@ -125576,8 +125301,7 @@ void ProcessUIAnimationData(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 处理UI数据缓冲区传输
@@ -125626,8 +125350,7 @@ ReleaseUIMemoryAndExecuteRenderTask:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据验证和传输
@@ -125752,8 +125475,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  #define ExtractUIDataFromContext FUN_18073a840
 /**
@@ -125815,8 +125537,7 @@ void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  #define ExtractUIDataFromContextWithResult FUN_18073a85d
 void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize,
@@ -125923,8 +125644,7 @@ void FUN_18073a9b5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -125961,8 +125681,7 @@ LAB_18073aa6e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
@@ -125999,8 +125718,7 @@ LAB_18073ab4a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
@@ -126073,8 +125791,7 @@ void FUN_18073ac9a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -126115,8 +125832,7 @@ FUN_18073adad:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -126209,8 +125925,7 @@ void FUN_18073adcf(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
@@ -126261,8 +125976,7 @@ FUN_18073af6d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
@@ -126376,8 +126090,7 @@ void FUN_18073af9f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
@@ -126428,8 +126141,7 @@ FUN_18073b13d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
 void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
@@ -126543,8 +126255,7 @@ void FUN_18073b16f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b190(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize)
 void FUN_18073b190(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize)
@@ -126589,8 +126300,7 @@ FUN_18073b2c4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize,
 void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize,
@@ -126693,8 +126403,7 @@ void FUN_18073b2ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
 void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
@@ -126731,8 +126440,7 @@ LAB_18073b3a8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -126773,8 +126481,7 @@ FUN_18073b4cf:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -126866,8 +126573,7 @@ void FUN_18073b4f1(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b520(UIHandle uiContext)
 void FUN_18073b520(UIHandle uiContext)
@@ -126912,8 +126618,7 @@ LAB_18073b5be:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -126970,8 +126675,7 @@ FUN_18073b7af:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -127095,8 +126799,7 @@ void FUN_18073b7e9(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
 void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
@@ -127133,8 +126836,7 @@ LAB_18073b8a8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
@@ -127171,8 +126873,7 @@ LAB_18073b97a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
@@ -127213,8 +126914,7 @@ ExecuteUIRenderTaskWithResourceRelease:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
@@ -127331,8 +127031,7 @@ void ExecuteUIRenderTaskWithMemoryCleanup(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文和缓冲区操作
@@ -127389,8 +127088,7 @@ FUN_18073bbdd:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI组件事件
@@ -127500,8 +127198,7 @@ void FUN_18073bbff(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
 void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
@@ -127538,8 +127235,7 @@ LAB_18073bcb8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
 void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
@@ -127576,8 +127272,7 @@ LAB_18073bd88:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
 void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
@@ -127614,8 +127309,7 @@ LAB_18073be58:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
 void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
@@ -127652,8 +127346,7 @@ LAB_18073bf28:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073bf60(UIHandle uiContext)
 void FUN_18073bf60(UIHandle uiContext)
@@ -127690,8 +127383,7 @@ LAB_18073bfe2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -127732,8 +127424,7 @@ FUN_18073c111:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -127826,8 +127517,7 @@ void FUN_18073c133(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
@@ -127869,8 +127559,7 @@ FUN_18073c258:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
@@ -127969,8 +127658,7 @@ void FUN_18073c27a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
@@ -128007,8 +127695,7 @@ LAB_18073c33b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -128049,8 +127736,7 @@ FUN_18073c471:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -128143,8 +127829,7 @@ void FUN_18073c493(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
 void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
@@ -128219,8 +127904,7 @@ void FUN_18073c5c7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -128261,8 +127945,7 @@ FUN_18073c6e3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -128354,8 +128037,7 @@ void FUN_18073c705(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize)
 void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize)
@@ -128408,8 +128090,7 @@ FUN_18073c87f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize,
 void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize,
@@ -128518,8 +128199,7 @@ void FUN_18073c8a9(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
@@ -128556,8 +128236,7 @@ LAB_18073c96e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
@@ -128594,8 +128273,7 @@ LAB_18073ca4b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
@@ -128632,8 +128310,7 @@ LAB_18073cb2b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
@@ -128661,8 +128338,7 @@ void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
@@ -128699,8 +128375,7 @@ LAB_18073cccb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
 void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
@@ -128740,8 +128415,7 @@ LAB_18073cdb6:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
@@ -128778,8 +128452,7 @@ LAB_18073ce8e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
@@ -128822,8 +128495,7 @@ FUN_18073cfcb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
@@ -128917,8 +128589,7 @@ void FUN_18073cfed(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d010(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073d010(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -128959,8 +128630,7 @@ FUN_18073d103:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -129052,8 +128722,7 @@ void FUN_18073d125(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d150(UIHandle uiContext,UIDword dataSource)
 void FUN_18073d150(UIHandle uiContext,UIDword dataSource)
@@ -129090,8 +128759,7 @@ LAB_18073d1f1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d230(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize)
 void FUN_18073d230(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize)
@@ -129138,8 +128806,7 @@ FUN_18073d372:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d24d(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
 void FUN_18073d24d(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
@@ -129243,8 +128910,7 @@ void FUN_18073d39c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d3c0(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_18073d3c0(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
@@ -129286,8 +128952,7 @@ FUN_18073d4b8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d3dd(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_18073d3dd(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
@@ -129386,8 +129051,7 @@ void FUN_18073d4da(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d500(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
 void FUN_18073d500(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
@@ -129440,8 +129104,7 @@ FUN_18073d683:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d51d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
 void FUN_18073d51d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
@@ -129561,8 +129224,7 @@ void FUN_18073d6b5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
 void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
@@ -129599,8 +129261,7 @@ LAB_18073d77c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
 void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
@@ -129637,8 +129298,7 @@ LAB_18073d85d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
 void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
@@ -129675,8 +129335,7 @@ LAB_18073d93d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073d980(UIHandle uiContext,UIDword dataSource)
 void FUN_18073d980(UIHandle uiContext,UIDword dataSource)
@@ -129713,8 +129372,7 @@ LAB_18073da1e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073da60(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18073da60(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -129755,8 +129413,7 @@ FUN_18073db4f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073da7d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18073da7d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -129855,8 +129512,7 @@ void FUN_18073db71(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073dba0(UIHandle uiContext,UIDword dataSource)
 void FUN_18073dba0(UIHandle uiContext,UIDword dataSource)
@@ -129893,8 +129549,7 @@ LAB_18073dc41:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073dc80(UIHandle uiContext,UIByte dataSource)
 void FUN_18073dc80(UIHandle uiContext,UIByte dataSource)
@@ -129931,8 +129586,7 @@ LAB_18073dd1d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073dd60(UIHandle uiContext)
 void FUN_18073dd60(UIHandle uiContext)
@@ -129969,8 +129623,7 @@ LAB_18073dde3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073de20(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_18073de20(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -130042,8 +129695,7 @@ void FUN_18073df0c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -130133,8 +129785,7 @@ void FUN_18073e0bb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
@@ -130181,8 +129832,7 @@ FUN_18073e229:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
 void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -130279,8 +129929,7 @@ void FUN_18073e24b(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
 void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -130337,8 +129986,7 @@ FUN_18073e414:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
 void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -130462,8 +130110,7 @@ void FUN_18073e446(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
@@ -130500,8 +130147,7 @@ LAB_18073e512:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -130553,8 +130199,7 @@ FUN_18073e6ce:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -130665,8 +130310,7 @@ void FUN_18073e700(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -130717,8 +130361,7 @@ LAB_18073e90c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
 void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -130789,8 +130432,7 @@ FUN_18073eb6d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
@@ -130933,8 +130575,7 @@ void FUN_18073eba7(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ebd0(UIHandle uiContext)
 void FUN_18073ebd0(UIHandle uiContext)
@@ -130977,8 +130618,7 @@ LAB_18073ec81:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ecb0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18073ecb0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -131025,8 +130665,7 @@ FUN_18073eddb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
 void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
@@ -131129,8 +130768,7 @@ void FUN_18073edfd(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
 void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
@@ -131173,8 +130811,7 @@ LAB_18073eef2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ef30(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
 void FUN_18073ef30(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
@@ -131231,8 +130868,7 @@ FUN_18073f0d1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
 void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
@@ -131356,8 +130992,7 @@ void FUN_18073f103(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f130(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
 void FUN_18073f130(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
@@ -131398,8 +131033,7 @@ LAB_18073f20b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f240(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073f240(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -131440,8 +131074,7 @@ FUN_18073f32d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -131534,8 +131167,7 @@ void FUN_18073f34f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -131576,8 +131208,7 @@ FUN_18073f45d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -131670,8 +131301,7 @@ void FUN_18073f47f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f4a0(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073f4a0(UIHandle uiContext,UIHandle dataSource)
@@ -131708,8 +131338,7 @@ LAB_18073f53a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f570(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073f570(UIHandle uiContext,UIHandle dataSource)
@@ -131746,8 +131375,7 @@ LAB_18073f60a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f640(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073f640(UIHandle uiContext,UIHandle dataSource)
@@ -131784,8 +131412,7 @@ LAB_18073f6da:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f710(UIHandle uiContext)
 void FUN_18073f710(UIHandle uiContext)
@@ -131822,8 +131449,7 @@ LAB_18073f792:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
 void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
@@ -131861,8 +131487,7 @@ void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
 void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
@@ -131902,8 +131527,7 @@ LAB_18073fa2f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fa70(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 void FUN_18073fa70(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
@@ -131947,8 +131571,7 @@ FUN_18073fb64:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
@@ -132044,8 +131667,7 @@ void FUN_18073fb86(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
 void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
@@ -132085,8 +131707,7 @@ LAB_18073fc56:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
 void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
@@ -132123,8 +131744,7 @@ LAB_18073fd2a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fd60(UIHandle uiContext,UIDword dataSource)
 void FUN_18073fd60(UIHandle uiContext,UIDword dataSource)
@@ -132161,8 +131781,7 @@ LAB_18073fdf8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fe30(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18073fe30(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -132203,8 +131822,7 @@ FUN_18073ff1d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073fe4d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18073fe4d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -132298,8 +131916,7 @@ void FUN_18073ff3f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
 void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
@@ -132336,8 +131953,7 @@ LAB_18073fff8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
@@ -132385,8 +132001,7 @@ LAB_180740150:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132427,8 +132042,7 @@ FUN_180740283:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132520,8 +132134,7 @@ void FUN_1807402a5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132562,8 +132175,7 @@ FUN_1807403bf:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132655,8 +132267,7 @@ void FUN_1807403e1(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
 void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
@@ -132693,8 +132304,7 @@ LAB_1807404aa:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132735,8 +132345,7 @@ FUN_1807405cf:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -132828,8 +132437,7 @@ void FUN_1807405f1(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
 void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
@@ -132857,8 +132465,7 @@ void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807406e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_1807406e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -132955,8 +132562,7 @@ void FUN_180740884(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807408b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_1807408b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -133020,8 +132626,7 @@ void FUN_180740988(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807409b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void FUN_1807409b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -133108,8 +132713,7 @@ void FUN_180740b0f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740b40(UIHandle uiContext,UIHandle dataSource)
 void FUN_180740b40(UIHandle uiContext,UIHandle dataSource)
@@ -133137,8 +132741,7 @@ void FUN_180740b40(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740c00(UIHandle uiContext,UIHandle dataSource)
 void FUN_180740c00(UIHandle uiContext,UIHandle dataSource)
@@ -133175,8 +132778,7 @@ LAB_180740c9a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740cd0(UIHandle uiContext,UIHandle dataSource)
 void FUN_180740cd0(UIHandle uiContext,UIHandle dataSource)
@@ -133204,8 +132806,7 @@ void FUN_180740cd0(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740d90(UIHandle uiContext)
 void FUN_180740d90(UIHandle uiContext)
@@ -133242,8 +132843,7 @@ LAB_180740e13:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740e50(UIHandle uiContext)
 void FUN_180740e50(UIHandle uiContext)
@@ -133280,8 +132880,7 @@ LAB_180740ed2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740f10(UIHandle uiContext,UIByte dataSource)
 void FUN_180740f10(UIHandle uiContext,UIByte dataSource)
@@ -133318,8 +132917,7 @@ LAB_180740faf:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180740ff0(UIHandle uiContext,UIByte dataSource)
 void FUN_180740ff0(UIHandle uiContext,UIByte dataSource)
@@ -133356,8 +132954,7 @@ LAB_18074108c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807410d0(UIHandle uiContext,UIHandle dataSource)
 void FUN_1807410d0(UIHandle uiContext,UIHandle dataSource)
@@ -133394,8 +132991,7 @@ LAB_18074116a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807411a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize)
 void FUN_1807411a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize)
@@ -133440,8 +133036,7 @@ FUN_1807412d1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807411bd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize,
 void FUN_1807411bd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize,
@@ -133545,8 +133140,7 @@ void FUN_1807412fb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180741320(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
 void FUN_180741320(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
@@ -133587,8 +133181,7 @@ FUN_180741413:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18074133d(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
 void FUN_18074133d(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
@@ -133682,8 +133275,7 @@ void FUN_180741435(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180741460(UIHandle uiContext,UIDword dataSource,UIByte targetBuffer)
 void FUN_180741460(UIHandle uiContext,UIDword dataSource,UIByte targetBuffer)
@@ -133748,8 +133340,7 @@ void FUN_18074153b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180741560(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIDword bufferSize)
 void FUN_180741560(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIDword bufferSize)
@@ -133822,8 +133413,7 @@ void FUN_18074167a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807416a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_1807416a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -133887,8 +133477,7 @@ void FUN_18074177e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807417b0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_1807417b0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -133953,8 +133542,7 @@ void FUN_180741888(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807418b0(UIHandle uiContext,UIDword dataSource)
 void FUN_1807418b0(UIHandle uiContext,UIDword dataSource)
@@ -133992,8 +133580,7 @@ LAB_180741958:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807419a0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
 void FUN_1807419a0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
@@ -134048,8 +133635,7 @@ FUN_180741b27:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807419bd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize)
 void FUN_1807419bd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize)
@@ -134239,8 +133825,7 @@ UIHandle FUN_180741c20(int *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ThunkUIDataProcess(longlong *uiContext)
 
 {
@@ -134338,8 +133923,7 @@ void FUN_180741df0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180741e10(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,uint resultPointer,
 /**
@@ -134443,8 +134027,7 @@ void InitializeUIMemoryPool(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle CleanupUIContextResources(longlong *uiContext)
 
 {
@@ -134529,8 +134112,7 @@ int FindUIAvailableMemorySlot(longlong *uiContext,uint dataSource,int targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ReleaseUIRecomponentData(longlong *uiContext,int *dataSource)
 void ReleaseUIRecomponentData(longlong *uiContext,int *dataSource)
@@ -134706,8 +134288,7 @@ ProcessUIContextAllocation(longlong uiContext,longlong dataSource,int targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 分配UI组件内存
  * 
@@ -134761,8 +134342,7 @@ ulonglong AllocateUIComponentMemory(int uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180742650(longlong *uiContext,int *dataSource,int targetBuffer,UIHandle bufferSize,UIDword resultPointer,
 void FUN_180742650(longlong *uiContext,int *dataSource,int targetBuffer,UIHandle bufferSize,UIDword resultPointer,
@@ -134957,8 +134537,7 @@ LAB_180742a3a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807426bf(void)
 void FUN_1807426bf(void)
@@ -135259,8 +134838,7 @@ void FUN_180742af0(longlong *uiContext,uint dataSource,int targetBuffer,uint buf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDword bufferSize,UIDword resultPointer)
 
@@ -135287,8 +134865,7 @@ InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UI
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180742d90(longlong uiContext,int dataSource)
 
 {
@@ -135335,8 +134912,7 @@ ProcessUIDataTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180742e60(longlong uiContext)
 
 {
@@ -135409,8 +134985,7 @@ void FUN_180742ff0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180743010(longlong uiContext)
 
 {
@@ -136325,8 +135900,7 @@ UIHandle FUN_180743864(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180743880(longlong uiContext)
 
 {
@@ -136352,8 +135926,7 @@ UIHandle FUN_180743880(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807438b7(void)
 void FUN_1807438b7(void)
@@ -136962,8 +136535,7 @@ UIHandle * FUN_180744750(UIHandle *uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180744780(longlong uiContext)
 
 {
@@ -137352,8 +136924,7 @@ UIDword GetUISystemStatus(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据源操作
@@ -137413,8 +136984,7 @@ void ProcessUIContextDataSource(longlong uiContext, longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 处理UI上下文事件类型验证
  * @param uiContext UI上下文指针的指针
@@ -137464,8 +137034,7 @@ UIHandle ProcessUIContextEventType(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180744d60(longlong *uiContext)
 
 {
@@ -137501,8 +137070,7 @@ UIHandle FUN_180744d60(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIContextIteration(longlong *uiContext)
 
 {
@@ -137536,8 +137104,7 @@ UIHandle ProcessUIContextIteration(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
 
 {
@@ -137800,8 +137367,7 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807455f0(longlong uiContext)
 
 {
@@ -137994,8 +137560,7 @@ UIHandle FUN_180745760(longlong uiContext,UIHandle dataSource,UIHandle *targetBu
  WARNING: Removing unreachable block (ram,0x000180745c70)
  WARNING: Removing unreachable block (ram,0x000180745e57)
  WARNING: Removing unreachable block (ram,0x000180745e67)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong ProcessUIDataWithContextHandles(longlong uiContext,longlong dataSource,uint targetBuffer,uint *bufferSize,
                        UIHandle *resultPointer)
 
@@ -138122,8 +137687,7 @@ ulonglong ProcessUIDataWithContextHandles(longlong uiContext,longlong dataSource
  WARNING: Removing unreachable block (ram,0x000180745c70)
  WARNING: Removing unreachable block (ram,0x000180745e57)
  WARNING: Removing unreachable block (ram,0x000180745e67)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuffer,uint *bufferSize)
 
 {
@@ -138262,8 +137826,7 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
 
 {
@@ -138713,8 +138276,7 @@ UIHandle FUN_180746135(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180746180(longlong uiContext,UIDword *dataSource)
 void FUN_180746180(longlong uiContext,UIDword *dataSource)
@@ -138978,8 +138540,7 @@ UIHandle FUN_1807466e0(longlong uiContext,UIDword *dataSource)
         stringCompareIndex = 0;
       }
                      WARNING: Could not recover jumptable at 0x000180746769. Too many branches
-                     WARNING: Treating indirect jump as call
-      iterationCount = (**(code **)(allocatedMemory + 0x340))(stringCompareIndex,dataSource);
+                           iterationCount = (**(code **)(allocatedMemory + 0x340))(stringCompareIndex,dataSource);
       return iterationCount;
     }
     iterationCount = 0;
@@ -139100,8 +138661,7 @@ ulonglong GetUITargetBufferData(longlong uiContext,int dataSource,UIDword *targe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 处理UI系统数据转换
  * 
@@ -139346,8 +138906,7 @@ LAB_180747287:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180746c35(void)
 
 {
@@ -139561,8 +139120,7 @@ LAB_180747287:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180746d01(void)
 
 {
@@ -139745,8 +139303,7 @@ UIDword FUN_1807472a1(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1807472dd(void)
 
 {
@@ -139997,8 +139554,7 @@ UIHandle FUN_1807478a0(longlong uiContext,int dataSource,longlong targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180747930(UIDword uiContext,uint dataSource,UIHandle targetBuffer)
 void FUN_180747930(UIDword uiContext,uint dataSource,UIHandle targetBuffer)
@@ -140010,8 +139566,7 @@ void FUN_180747930(UIDword uiContext,uint dataSource,UIHandle targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180747970(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180747970(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -140023,8 +139578,7 @@ void FUN_180747970(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807479a0(UIHandle uiContext,UIDword dataSource,uint targetBuffer,UIHandle bufferSize)
 void FUN_1807479a0(UIHandle uiContext,UIDword dataSource,uint targetBuffer,UIHandle bufferSize)
@@ -140362,8 +139916,7 @@ ulonglong FUN_180747c73(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  处理UI元素数据操作
  *  uiContext 第一个参数标识符
@@ -140419,8 +139972,7 @@ ulonglong FUN_180747c73(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180747e10(longlong *uiContext,int dataSource)
 
 {
@@ -140456,8 +140008,7 @@ LAB_180747ea4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180747e34(UIHandle uiContext,int dataSource)
 
 {
@@ -140500,8 +140051,7 @@ UIHandle FUN_180747eef(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180747f10(longlong *uiContext,int dataSource)
 
 {
@@ -140537,8 +140087,7 @@ LAB_180747fa4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180747f34(UIHandle uiContext,int dataSource)
 
 {
@@ -140581,8 +140130,7 @@ UIHandle FUN_180747fef(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748010(longlong *uiContext,int dataSource)
 
 {
@@ -140618,8 +140166,7 @@ LAB_1807480a0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748034(UIHandle uiContext,int dataSource)
 
 {
@@ -140662,8 +140209,7 @@ UIHandle FUN_1807480eb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748100(longlong uiContext,int dataSource,longlong targetBuffer,UIByte bufferSize)
 
 {
@@ -140730,8 +140276,7 @@ UIHandle FUN_180748100(longlong uiContext,int dataSource,longlong targetBuffer,U
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748162(UIDword uiContext)
 
 {
@@ -140803,8 +140348,7 @@ void FUN_18074817c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748192(UIDword uiContext)
 
 {
@@ -140867,8 +140411,7 @@ UIHandle FUN_180748279(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180748290(longlong uiContext,int dataSource)
 
 {
@@ -140902,8 +140445,7 @@ UIHandle FUN_180748290(longlong uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807482c8(void)
 
 {
@@ -140946,8 +140488,7 @@ void InitializeUISystemState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180748323(void)
 void FUN_180748323(void)
@@ -141127,8 +140668,7 @@ UIHandle FUN_1807484f6(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180748500(longlong uiContext)
 void FUN_180748500(longlong uiContext)
@@ -141760,8 +141300,7 @@ void FUN_180748ea0(longlong uiContext,UIDword dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180749060(longlong uiContext)
 
 {
@@ -142051,8 +141590,7 @@ void FUN_1807498f0(longlong uiContext,UIDword dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x00018078c678)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 void ThunkUIBufferOperation(longlong uiContext)
 
 {
@@ -142365,8 +141903,7 @@ void FUN_1807499c7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807499f0(longlong uiContext)
 void FUN_1807499f0(longlong uiContext)
@@ -142529,8 +142066,7 @@ void FUN_180749e21(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIContextWithCleanup(longlong uiContext,longlong *dataSource,longlong *targetBuffer)
 
 {
@@ -142567,8 +142103,7 @@ UIHandle ProcessUIContextWithCleanup(longlong uiContext,longlong *dataSource,lon
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void ExecuteUIContextDataOperation(UIDword uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 void ExecuteUIContextDataOperation(UIDword uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
@@ -143301,8 +142836,7 @@ UIHandle FUN_18074a895(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 设置UI目标缓冲区
@@ -143624,8 +143158,7 @@ void FUN_18074aa3b(void)
   UNRECOVERED_JUMPTABLE =
        (UIFunctionPtr *)((ulonglong)*(uint *)(register9 + 0x74b1e0 + (longlong)bufferSize * 4) + register9);
                      WARNING: Could not recover jumptable at 0x00018074aa52. Too many branches
-                     WARNING: Treating indirect jump as call
-  (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
+                       (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
   return;
 }
 
@@ -143656,8 +143189,7 @@ void FUN_18074abb0(UIDword uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18074acbd(UIDword uiContext)
 void FUN_18074acbd(UIDword uiContext)
@@ -143802,8 +143334,7 @@ LAB_18074b1a5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18074af10(void)
 void FUN_18074af10(void)
@@ -144017,8 +143548,7 @@ void FUN_18074b1a3(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18074b200(longlong uiContext)
 void FUN_18074b200(longlong uiContext)
@@ -146538,8 +146068,7 @@ UIHandle FUN_18074de80(longlong *uiContext,float dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18074dfc0(longlong *uiContext,int dataSource,char targetBuffer)
 void FUN_18074dfc0(longlong *uiContext,int dataSource,char targetBuffer)
@@ -147745,8 +147274,7 @@ static void EmptyPlaceholderFunction(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 处理UI数据传输和初始化
  * 
@@ -147909,8 +147437,7 @@ LAB_18074ff2c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 初始化UI内存分配
  * 
@@ -148007,8 +147534,7 @@ static UIHandle ProcessUIDataIteration(longlong *uiContext, int dataSource, int 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180750190(longlong uiContext,longlong *dataSource,char targetBuffer)
 
 {
@@ -149258,8 +148784,7 @@ ulonglong FUN_180751580(longlong uiContext,longlong dataSource,uint targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180751800(UIHandle *uiContext)
 
 {
@@ -149489,8 +149014,7 @@ int FUN_180751800(UIHandle *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180751811(UIHandle *uiContext)
 
 {
@@ -149720,8 +149244,7 @@ int FUN_180751811(UIHandle *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807519a8(UIHandle uiContext,longlong *dataSource)
 void FUN_1807519a8(UIHandle uiContext,longlong *dataSource)
@@ -149899,8 +149422,7 @@ void FUN_1807519a8(UIHandle uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180751d7a(longlong uiContext)
 void FUN_180751d7a(longlong uiContext)
@@ -150005,8 +149527,7 @@ void FUN_180751ff0(longlong uiContext)
   }
   if (*(code **)(uiContext + 0xb0) != (UIFunctionPtr *)0x0) {
                      WARNING: Could not recover jumptable at 0x000180752031. Too many branches
-                     WARNING: Treating indirect jump as call
-    (**(code **)(uiContext + 0xb0))(uiContext);
+                         (**(code **)(uiContext + 0xb0))(uiContext);
     return;
   }
   return;
@@ -150307,8 +149828,7 @@ LAB_180752566:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据源设置和内存管理
@@ -151402,8 +150922,7 @@ UIHandle FUN_1807537b0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180753880(longlong *uiContext,char dataSource)
 void FUN_180753880(longlong *uiContext,char dataSource)
@@ -151548,8 +151067,7 @@ void FUN_180753880(longlong *uiContext,char dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807538ca(void)
 void FUN_1807538ca(void)
@@ -151699,8 +151217,7 @@ void FUN_1807538ca(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807539dc(void)
 void FUN_1807539dc(void)
@@ -151799,8 +151316,7 @@ void FUN_1807539dc(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180753aa9(void)
 void FUN_180753aa9(void)
@@ -152988,8 +152504,7 @@ UIHandle FUN_180754f85(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180754fe0(longlong uiContext,int *dataSource)
 
 {
@@ -153010,8 +152525,7 @@ UIDword FUN_180754fe0(longlong uiContext,int *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180755070(longlong *uiContext)
 
 {
@@ -153070,8 +152584,7 @@ UIHandle FUN_180755070(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 初始化UI资源管理器和内存分配器
@@ -153130,8 +152643,7 @@ void InitializeUIResourceManagerAndMemoryAllocator(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 清理UI资源并重置句柄
@@ -153163,8 +152675,7 @@ void CleanupUIResourcesAndResetHandles(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 根据UI上下文清理资源并重置上下文
@@ -154118,8 +153629,7 @@ UIHandle FUN_180756700(longlong uiContext,char *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807568a0(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,char bufferSize,char resultPointer,
 void FUN_1807568a0(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,char bufferSize,char resultPointer,
@@ -154323,8 +153833,7 @@ void FUN_180756a91(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180756aa0(longlong *uiContext,longlong *dataSource,longlong targetBuffer,char bufferSize,char resultPointer,
 void FUN_180756aa0(longlong *uiContext,longlong *dataSource,longlong targetBuffer,char bufferSize,char resultPointer,
@@ -154431,8 +153940,7 @@ FUN_180756d8a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180756b90(void)
 void FUN_180756b90(void)
@@ -154942,8 +154450,7 @@ UIHandle ProcessUIContextDataOperation(longlong *uiContext,UIHandle dataSource,U
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180757b50(longlong *uiContext,uint dataSource)
 void FUN_180757b50(longlong *uiContext,uint dataSource)
@@ -155504,8 +155011,7 @@ UIHandle FUN_1807580d0(longlong *uiContext,UIDword dataSource)
     result = func_0x00018074df60();
     if ((int)result == 0) {
                      WARNING: Could not recover jumptable at 0x000180758126. Too many branches
-                     WARNING: Treating indirect jump as call
-      result = (**(code **)(*uiContext + 0x78))(uiContext,dataSource);
+                           result = (**(code **)(*uiContext + 0x78))(uiContext,dataSource);
       return result;
     }
   }
@@ -157595,8 +157101,7 @@ UIDword FUN_18075a010(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18075a030(longlong uiContext,longlong dataSource)
 
 {
@@ -161647,8 +161152,7 @@ UIHandle FUN_18075d580(longlong *uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18075d5e0(void)
 
 {
@@ -162974,8 +162478,7 @@ ulonglong FUN_18075e390(longlong uiContext,UIDword dataSource,UIHandle targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18075e410(longlong uiContext)
 
 {
@@ -163009,8 +162512,7 @@ LAB_18075e4a6:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18075e41d(longlong uiContext)
 
 {
@@ -163709,8 +163211,7 @@ LAB_18075f05a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18075f090(longlong uiContext,int dataSource,UIHandle *targetBuffer,UIDword *bufferSize,
 void FUN_18075f090(longlong uiContext,int dataSource,UIHandle *targetBuffer,UIDword *bufferSize,
@@ -163760,8 +163261,7 @@ void FUN_18075f090(longlong uiContext,int dataSource,UIHandle *targetBuffer,UIDw
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18075f1e0(longlong uiContext,int dataSource,UIDword *targetBuffer,longlong bufferSize,
 void FUN_18075f1e0(longlong uiContext,int dataSource,UIDword *targetBuffer,longlong bufferSize,
@@ -163804,8 +163304,7 @@ void FUN_18075f1e0(longlong uiContext,int dataSource,UIDword *targetBuffer,longl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18075f4a0(void)
 
 {
@@ -163815,8 +163314,7 @@ UIHandle FUN_18075f4a0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18075f4c0(longlong *uiContext,ulonglong dataSource,ulonglong targetBuffer,int bufferSize,
                        longlong *resultPointer)
 
@@ -164049,8 +163547,7 @@ UIHandle FUN_18075f8e0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18075f970(longlong uiContext)
 
 {
@@ -164179,8 +163676,7 @@ LAB_18075fb15:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18075fa80(longlong uiContext)
 
 {
@@ -165957,8 +165453,7 @@ UIHandle FUN_180760953(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180760970(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIDword bufferSize,
 void FUN_180760970(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIDword bufferSize,
@@ -166094,8 +165589,7 @@ FUN_180760c64:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807609d5(void)
 void FUN_1807609d5(void)
@@ -166385,8 +165879,7 @@ UIHandle FUN_180760c90(longlong uiContext,longlong dataSource,UIDword targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
 void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
@@ -167181,8 +166674,7 @@ FUN_18076203a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180760e8e(UIDword uiContext)
 void FUN_180760e8e(UIDword uiContext)
@@ -168656,8 +168148,7 @@ UIHandle FUN_180762360(longlong uiContext,longlong dataSource,char targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1807623d0(longlong uiContext,char dataSource,char targetBuffer)
 
 {
@@ -168759,8 +168250,7 @@ LAB_1807625b6:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1807623e6(longlong uiContext,char dataSource,char targetBuffer)
 
 {
@@ -168878,8 +168368,7 @@ UIDword FUN_1807625db(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
 void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
@@ -169330,8 +168819,7 @@ UIHandle FUN_180762da0(longlong uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ProcessUIEventDispatch(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize,UIDword *resultPointer)
 
@@ -169632,8 +169120,7 @@ UIHandle FUN_180763220(UIHandle *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807632c0(float *uiContext,char dataSource,int targetBuffer,int bufferSize,float resultPointer)
 void FUN_1807632c0(float *uiContext,char dataSource,int targetBuffer,int bufferSize,float resultPointer)
@@ -172214,8 +171701,7 @@ UIHandle FUN_1807675ad(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807675e0(longlong *uiContext,char dataSource)
 
 {
@@ -172477,8 +171963,7 @@ UIHandle FUN_1807679d0(UIHandle *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180767ad0(longlong uiContext)
 
 {
@@ -172537,8 +172022,7 @@ LAB_180767bda:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_180767c00(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,int resultPointer,
              char param_6,UIDword param_7,UIHandle param_8,UIByte param_9)
@@ -172617,8 +172101,7 @@ FUN_180767c00(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180767cd6(void)
 
 {
@@ -172674,8 +172157,7 @@ void FUN_180767d88(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180767db0(longlong uiContext)
 
 {
@@ -172708,8 +172190,7 @@ UIHandle FUN_180767db0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180767e20(int uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
@@ -172810,8 +172291,7 @@ UIHandle FUN_180767e20(int uiContext,longlong dataSource,int targetBuffer,int bu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180767e42(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
 
 {
@@ -172825,8 +172305,7 @@ UIHandle FUN_180767e42(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
   
   if ((register10 == contextRegister) && (register10 = 0, RegisterPointerD < 0xd)) {
                      WARNING: Could not recover jumptable at 0x000180767e66. Too many branches
-                     WARNING: Treating indirect jump as call
-    result = (*(UIFunctionPtr *)((ulonglong)
+                         result = (*(UIFunctionPtr *)((ulonglong)
                        *(uint *)(FUN_180767f5c + CONCAT44(in_register_0000009c,RegisterPointerD) * 4) +
                       0x180000000))
                       ((UIFunctionPtr *)((ulonglong)
@@ -172840,8 +172319,7 @@ UIHandle FUN_180767e42(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
          (UIFunctionPtr *)((ulonglong)*(uint *)(CONCAT44(in_register_0000009c,RegisterPointerD) * 4 + 0x180767f90) +
                  0x180000000);
                      WARNING: Could not recover jumptable at 0x000180767eb5. Too many branches
-                     WARNING: Treating indirect jump as call
-    result = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+                         result = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
     return result;
   }
   *(int *)(GlobalUIResourceManagerF0 + 0xb0 + CONCAT44(in_register_0000009c,RegisterPointerD) * 4) = (int)targetBuffer;
@@ -172850,8 +172328,7 @@ UIHandle FUN_180767e42(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
          (UIFunctionPtr *)((ulonglong)*(uint *)(CONCAT44(in_register_0000009c,RegisterPointerD) * 4 + 0x180767fc4) +
                  0x180000000);
                      WARNING: Could not recover jumptable at 0x000180767f0e. Too many branches
-                     WARNING: Treating indirect jump as call
-    result = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
+                         result = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
     return result;
   }
   *(int *)(GlobalUIResourceManagerF0 + 0xe4 + CONCAT44(in_register_0000009c,RegisterPointerD) * 4) = unmodifiedEBX;
@@ -172863,8 +172340,7 @@ UIHandle FUN_180767e42(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
  WARNING: Instruction at (ram,0x00018076805e) overlaps instruction at (ram,0x00018076805d)
  
  WARNING: Control flow encountered bad instruction data
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180767f5c(char *uiContext,char *dataSource,undefined *targetBuffer,UIHandle bufferSize)
 void FUN_180767f5c(char *uiContext,char *dataSource,undefined *targetBuffer,UIHandle bufferSize)
@@ -173103,8 +172579,7 @@ UIHandle FUN_180768070(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180768090(longlong uiContext,UIHandle dataSource)
 
 {
@@ -173142,8 +172617,7 @@ UIHandle FUN_180768090(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076810a(void)
 
 {
@@ -173185,8 +172659,7 @@ UIHandle FUN_180768180(void)
  WARNING: Removing unreachable block (ram,0x000180768237)
  WARNING: Removing unreachable block (ram,0x0001807681dd)
  WARNING: Removing unreachable block (ram,0x0001807681c0)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 检查UI系统CPU特性支持
  * 
@@ -173241,8 +172714,7 @@ bool CheckUICPUFeatureSupport(uint uiContext)
 
  WARNING: Removing unreachable block (ram,0x000180768237)
  WARNING: Removing unreachable block (ram,0x0001807681dd)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 bool FUN_1807681b9(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
@@ -173343,8 +172815,7 @@ bool FUN_18076826f(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180768280(UIByte *uiContext)
 
 {
@@ -173366,8 +172837,7 @@ UIHandle FUN_180768280(UIByte *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword InitializeUIContextState(longlong *uiContext,char dataSource)
 
 {
@@ -173402,8 +172872,7 @@ UIDword CleanupUIContextState(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180768380(longlong uiContext,char dataSource)
 
 {
@@ -173451,8 +172920,7 @@ UIHandle FUN_180768420(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180768440(UIHandle uiContext,int dataSource,UIDword *targetBuffer,longlong *bufferSize)
 void FUN_180768440(UIHandle uiContext,int dataSource,UIDword *targetBuffer,longlong *bufferSize)
@@ -173572,8 +173040,7 @@ UIHandle FUN_180768650(UIHandle uiContext,UIHandle dataSource,int targetBuffer,c
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_1807686d0(void)
 
 {
@@ -173639,8 +173106,7 @@ UIHandle UILibraryReleaseHandler(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180768820(void)
 
 {
@@ -173721,8 +173187,7 @@ UIHandle FUN_180768940(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180768970(uint *uiContext)
 void FUN_180768970(uint *uiContext)
@@ -173751,8 +173216,7 @@ void FUN_180768970(uint *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_1807689d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,ulonglong bufferSize,
              uint resultPointer,UIDword param_6,longlong *param_7)
@@ -173888,8 +173352,7 @@ UIHandle * FUN_180768c40(UIHandle *uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180768c70(longlong uiContext)
 
 {
@@ -174284,8 +173747,7 @@ void FUN_18076906d(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180769080(longlong *uiContext)
 
 {
@@ -174334,8 +173796,7 @@ UIDword FUN_180769080(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffer)
 
 {
@@ -174631,8 +174092,7 @@ void FUN_180769820(UIHandle uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180769860(longlong uiContext)
 
 {
@@ -174795,8 +174255,7 @@ void FUN_180769b80(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180769c60(longlong *uiContext,longlong dataSource,int targetBuffer,int bufferSize,longlong resultPointer)
 
 {
@@ -175474,8 +174933,7 @@ void FUN_18076a370(longlong *uiContext,longlong dataSource,UIDword *targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076a3b0(longlong *uiContext)
 void FUN_18076a3b0(longlong *uiContext)
@@ -175602,8 +175060,7 @@ UIDword FUN_18076a5d0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076a6f0(void)
 
 {
@@ -175631,8 +175088,7 @@ UIHandle FUN_18076a6f0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076a70d(void)
 void FUN_18076a70d(void)
@@ -175764,8 +175220,7 @@ UIHandle FUN_18076abc5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076abd0(int uiContext)
 
 {
@@ -175781,8 +175236,7 @@ UIHandle FUN_18076abd0(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076ac40(int uiContext,longlong *dataSource)
 void FUN_18076ac40(int uiContext,longlong *dataSource)
@@ -175839,8 +175293,7 @@ void FUN_18076ac40(int uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076ade0(void)
 
 {
@@ -175874,8 +175327,7 @@ UIHandle FUN_18076ade0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076adfb(void)
 void FUN_18076adfb(void)
@@ -175937,8 +175389,7 @@ void FUN_18076aee0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076af64(void)
 
 {
@@ -176353,8 +175804,7 @@ char * FUN_18076b3b0(char *uiContext,UIHandle dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong GetUIStringCompareIndex(char *uiContext)
 
 {
@@ -176843,8 +176293,7 @@ void FUN_18076b9d0(uint *uiContext,ulonglong dataSource,longlong targetBuffer,ui
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18076bcd0(ulonglong uiContext,ulonglong dataSource,UIHandle targetBuffer,UIHandle bufferSize,
              UIHandle resultPointer)
@@ -176936,8 +176385,7 @@ void FUN_18076be47(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong FUN_18076c0a0(longlong uiContext,longlong dataSource,ulonglong targetBuffer)
 
 {
@@ -177017,8 +176465,7 @@ longlong FUN_18076c0a0(longlong uiContext,longlong dataSource,ulonglong targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076c260(uint *uiContext,longlong dataSource)
 void FUN_18076c260(uint *uiContext,longlong dataSource)
@@ -177389,8 +176836,7 @@ LAB_18076c6e6:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076c270(longlong uiContext,longlong dataSource,uint *targetBuffer)
 void FUN_18076c270(longlong uiContext,longlong dataSource,uint *targetBuffer)
@@ -179443,8 +178889,7 @@ void FUN_18076c894(longlong *uiContext,longlong dataSource,longlong targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong FUN_18076c8c0(uint *uiContext,ulonglong dataSource)
 
 {
@@ -180850,8 +180295,7 @@ longlong FUN_18076ce95(UIHandle uiContext,longlong dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
 
 {
@@ -182610,8 +182054,7 @@ LAB_18076e8e3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18076e930(longlong uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer
 void FUN_18076e930(longlong uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer
@@ -183951,8 +183394,7 @@ void FUN_18076f970(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076fa40(longlong *uiContext)
 
 {
@@ -184052,8 +183494,7 @@ UIHandle FUN_18076fc40(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18076fc90(longlong uiContext,int dataSource)
 
 {
@@ -184612,8 +184053,7 @@ UIHandle FUN_1807704e0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180770580(longlong uiContext)
 
 {
@@ -184653,8 +184093,7 @@ UIHandle FUN_180770580(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180770590(longlong uiContext)
 
 {
@@ -184693,8 +184132,7 @@ UIHandle FUN_180770590(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077059c(void)
 
 {
@@ -184730,8 +184168,7 @@ UIHandle FUN_18077059c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807705d4(void)
 
 {
@@ -184754,8 +184191,7 @@ UIHandle FUN_1807705d4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807705e8(void)
 
 {
@@ -185728,8 +185164,7 @@ void FUN_1807714c0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180771560(longlong uiContext,UIHandle *dataSource,longlong *targetBuffer)
 
 {
@@ -185907,8 +185342,7 @@ UIHandle FUN_1807716c2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1807716e0(longlong uiContext,UIHandle **dataSource,UIHandle *targetBuffer,longlong *bufferSize)
 
 {
@@ -186117,8 +185551,7 @@ int FUN_1807716e0(longlong uiContext,UIHandle **dataSource,UIHandle *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180771a50(longlong uiContext,UIHandle *dataSource,longlong *targetBuffer)
 
 {
@@ -186196,8 +185629,7 @@ UIHandle FUN_180771a50(longlong uiContext,UIHandle *dataSource,longlong *targetB
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 FUN_180771ed0(longlong uiContext,int *dataSource,UIDword *targetBuffer,UIDword bufferSize,
              UIHandle resultPointer)
@@ -186370,8 +185802,7 @@ void FUN_180772100(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ValidateUIDataStructure(longlong uiContext,longlong *dataSource,uint *targetBuffer,UIDword *bufferSize,longlong resultPointer)
 
@@ -186626,8 +186057,7 @@ LAB_180772526:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180772560(longlong uiContext,longlong *dataSource,UIDword *targetBuffer,longlong bufferSize)
 
 {
@@ -186716,8 +186146,7 @@ UIDword FUN_180772560(longlong uiContext,longlong *dataSource,UIDword *targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807726d0(longlong uiContext,UIByte dataSource)
 
 {
@@ -186780,8 +186209,7 @@ UIHandle FUN_180772810(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180772870(UIHandle uiContext,int dataSource,UIByte targetBuffer)
 
 {
@@ -186820,8 +186248,7 @@ UIHandle FUN_180772870(UIHandle uiContext,int dataSource,UIByte targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
 
 {
@@ -186925,8 +186352,7 @@ LAB_180772bcd:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180772ae2(void)
 void FUN_180772ae2(void)
@@ -186977,8 +186403,7 @@ void FUN_180772ae2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180772b52(void)
 void FUN_180772b52(void)
@@ -187140,8 +186565,7 @@ UIHandle FUN_180772dc0(longlong uiContext,UIDword *dataSource,int targetBuffer)
       return 0x44;
     }
                      WARNING: Could not recover jumptable at 0x000180772e32. Too many branches
-                     WARNING: Treating indirect jump as call
-    result = (**(code **)(uiContext + 0x68))();
+                         result = (**(code **)(uiContext + 0x68))();
     return result;
   }
   stackUInt48 = 0;
@@ -187161,8 +186585,7 @@ UIHandle FUN_180772dc0(longlong uiContext,UIDword *dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong FUN_180772e40(longlong uiContext)
 
 {
@@ -187254,8 +186677,7 @@ UIHandle FUN_180772f60(longlong uiContext,int *dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_180772fe0(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
              UIDword resultPointer,UIDword param_6,UIByte param_7)
@@ -187341,8 +186763,7 @@ int FUN_18077308b(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1807730d0(longlong uiContext,longlong dataSource,uint targetBuffer,int *bufferSize)
 
 {
@@ -187515,8 +186936,7 @@ LAB_1807733e2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180773143(int uiContext)
 
 {
@@ -187668,8 +187088,7 @@ LAB_1807733e2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180773193(void)
 
 {
@@ -187798,8 +187217,7 @@ LAB_1807733df:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180773305(void)
 
 {
@@ -187869,8 +187287,7 @@ UIDword FUN_1807733f3(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180773410(longlong uiContext,char dataSource)
 
 {
@@ -188837,8 +188254,7 @@ UIHandle FUN_180774290(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180774390(longlong *uiContext)
 
 {
@@ -188896,8 +188312,7 @@ void FUN_1807744e0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
              int *param_6)
@@ -190120,8 +189535,7 @@ void FUN_180775520(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180775540(longlong *uiContext)
 
 {
@@ -190135,8 +189549,7 @@ UIHandle FUN_180775540(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ProcessUIStateUpdate(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
 
@@ -190187,8 +189600,7 @@ ProcessUIStateUpdate(longlong *uiContext,UIHandle dataSource,UIHandle targetBuff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180775691(void)
 
 {
@@ -190590,8 +190002,7 @@ void FUN_180775b7c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180775bb0(longlong uiContext,int dataSource)
 
 {
@@ -190777,8 +190188,7 @@ void FUN_180775e3b(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180775ee7(UIHandle uiContext,UIHandle dataSource)
 void FUN_180775ee7(UIHandle uiContext,UIHandle dataSource)
@@ -191296,8 +190706,7 @@ ValidateUIComponentData(UIDword uiContext,UIHandle *dataSource,UIDword *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180776880(longlong uiContext,uint dataSource)
 
 {
@@ -191360,8 +190769,7 @@ UIHandle FUN_1807769b0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180776a50(longlong *uiContext)
 
 {
@@ -191403,8 +190811,7 @@ LAB_180776b4b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180776b70(longlong uiContext)
 
 {
@@ -191577,8 +190984,7 @@ void FUN_180777010(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807777c0(longlong uiContext,UIDword *dataSource,UIDword *targetBuffer,uint bufferSize,
 void FUN_1807777c0(longlong uiContext,UIDword *dataSource,UIDword *targetBuffer,uint bufferSize,
@@ -192442,8 +191848,7 @@ UIHandle FUN_180778d00(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180778db0(longlong *uiContext)
 
 {
@@ -195018,8 +194423,7 @@ void FUN_18077a0c5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077a0e0(longlong uiContext,int dataSource,uint targetBuffer)
 
 {
@@ -195144,8 +194548,7 @@ UIHandle FUN_18077a310(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077a410(longlong *uiContext)
 
 {
@@ -195207,8 +194610,7 @@ void FUN_18077a570(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18077a750(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
              int *param_6)
@@ -196264,8 +195666,7 @@ void FUN_18077b2c0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
 
@@ -196817,8 +196218,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
@@ -197271,8 +196671,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077c38b(longlong uiContext)
 
 {
@@ -197675,8 +197074,7 @@ void FUN_18077d3d0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,uint bufferSize,uint resultPointer)
 
 {
@@ -197973,8 +197371,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077d60f(void)
 
 {
@@ -198236,8 +197633,7 @@ UIHandle FUN_18077d60f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077d6ff(void)
 
 {
@@ -198529,8 +197925,7 @@ void FUN_18077df30(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077e000(longlong *uiContext)
 
 {
@@ -198641,8 +198036,7 @@ LAB_18077e21f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18077e250(longlong uiContext,int dataSource)
 
 {
@@ -199602,8 +198996,7 @@ void FUN_18077efd0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
 void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
@@ -200726,8 +200119,7 @@ ulonglong FUN_180780fa0(UIHandle uiContext,float dataSource,float targetBuffer,f
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 byte FUN_1807810c0(longlong uiContext,float *dataSource)
 
 {
@@ -200846,8 +200238,7 @@ UIByte ExecuteUISystemSimpleProcessing(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 byte FUN_1807812d0(longlong uiContext,float *dataSource)
 
 {
@@ -200903,8 +200294,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1807813a0(longlong uiContext,longlong dataSource)
 
 {
@@ -200930,8 +200320,7 @@ ulonglong FUN_1807813a0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180781430(longlong uiContext,longlong dataSource)
 
 {
@@ -200960,8 +200349,7 @@ ulonglong FUN_180781430(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1807814c0(longlong uiContext,longlong dataSource)
 
 {
@@ -201023,8 +200411,7 @@ LAB_18078160a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180781630(longlong uiContext,longlong dataSource)
 void FUN_180781630(longlong uiContext,longlong dataSource)
@@ -201046,8 +200433,7 @@ void FUN_180781630(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIByte FUN_1807816b0(longlong uiContext,longlong dataSource)
 
 {
@@ -201067,8 +200453,7 @@ UIByte FUN_1807816b0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180781730(longlong uiContext,longlong dataSource)
 void FUN_180781730(longlong uiContext,longlong dataSource)
@@ -201089,8 +200474,7 @@ void FUN_180781730(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807817e0(longlong uiContext,int dataSource)
 
 {
@@ -201179,8 +200563,7 @@ UIHandle FUN_1807817e0(longlong uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807817fa(float uiContext)
 
 {
@@ -201282,8 +200665,7 @@ UIHandle FUN_180781a59(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180781a70(longlong uiContext)
 
 {
@@ -201591,8 +200973,7 @@ ulonglong FUN_1807825e0(longlong uiContext,UIDword dataSource,float targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180782790(longlong *uiContext)
 
 {
@@ -201966,8 +201347,7 @@ UIDword FUN_180782f30(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180783090(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180783090(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -202466,8 +201846,7 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
 /**
  * @brief 处理UI组件初始化和验证
@@ -202813,8 +202192,7 @@ ProcessUIDataValidationAndConversion(longlong uiContext,int dataSource,longlong 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI系统数据缓冲区操作
@@ -203249,8 +202627,7 @@ void FUN_180784c2f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180784d10(longlong uiContext,int *dataSource,byte targetBuffer,char bufferSize)
 void FUN_180784d10(longlong uiContext,int *dataSource,byte targetBuffer,char bufferSize)
@@ -203722,8 +203099,7 @@ LAB_180785945:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180784ebd(UIHandle uiContext,ulonglong dataSource,char targetBuffer)
 void FUN_180784ebd(UIHandle uiContext,ulonglong dataSource,char targetBuffer)
@@ -204305,8 +203681,7 @@ UIHandle * FUN_180785a20(UIHandle *uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180785a50(longlong uiContext)
 
 {
@@ -204388,8 +203763,7 @@ void FUN_180785b10(longlong uiContext,longlong dataSource,UIDword *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180785c10(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffer,float *bufferSize,
 void FUN_180785c10(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffer,float *bufferSize,
@@ -204640,8 +204014,7 @@ longlong FUN_180785db0(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180785e40(longlong uiContext)
 void FUN_180785e40(longlong uiContext)
@@ -204816,8 +204189,7 @@ UIHandle SetupUIContexteventHandle(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 初始化UI上下文数据缓冲区
  * 
@@ -204861,8 +204233,7 @@ UIHandle InitializeUIContextDataBuffer(int *uiContext,UIHandle dataSource,UIHand
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文内存释放操作
@@ -204910,8 +204281,7 @@ void ProcessUIContextMemoryRelease(int *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文数据源验证操作
@@ -204955,8 +204325,7 @@ void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI上下文迭代清理操作
@@ -204997,8 +204366,7 @@ void ProcessUIContextIterativeCleanup(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078629f(UIHandle uiContext,UIHandle dataSource)
 void FUN_18078629f(UIHandle uiContext,UIHandle dataSource)
@@ -205010,8 +204378,7 @@ void FUN_18078629f(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807862c9(void)
 void FUN_1807862c9(void)
@@ -205138,8 +204505,7 @@ LAB_180786530:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 释放UI资源
  * 
@@ -205460,8 +204826,7 @@ void FUN_18078696b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807869c0(longlong *uiContext,int dataSource,int targetBuffer,int bufferSize,int resultPointer)
 
 {
@@ -205980,8 +205345,7 @@ UIDword FUN_180787277(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807872c0(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,int resultPointer)
 void FUN_1807872c0(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,int resultPointer)
@@ -206481,8 +205845,7 @@ void FUN_180787908(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 处理UI上下文数据和缓冲区
  * 
@@ -206738,8 +206101,7 @@ LAB_180787df9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180787983(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
@@ -208057,8 +207419,7 @@ void FUN_180788990(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807889e0(longlong uiContext,longlong dataSource)
 
 {
@@ -208181,8 +207542,7 @@ UIHandle FUN_1807889e0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180788a27(void)
 
 {
@@ -208311,8 +207671,7 @@ void FUN_180788d08(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180788d20(longlong uiContext,longlong dataSource)
 
 {
@@ -208357,8 +207716,7 @@ UIHandle FUN_180788d20(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180788d52(UIHandle uiContext,longlong dataSource)
 
 {
@@ -208452,8 +207810,7 @@ UIHandle FUN_180788e60(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI上下文清理函数
@@ -208479,8 +207836,7 @@ void CleanupUIContext(void *UIContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI资源句柄验证函数
  * 
@@ -209096,8 +208452,7 @@ void FUN_180789360(uint *uiContext,uint dataSource,int targetBuffer,int bufferSi
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
 
 {
@@ -209176,8 +208531,7 @@ UIHandle FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807894bb(longlong uiContext)
 
 {
@@ -209261,8 +208615,7 @@ UIHandle FUN_1807894bb(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 // 函数: UIHandle FUN_1807894e0(longlong uiContext)
 /**
  * @brief 处理UI上下文句柄和资源管理
@@ -209389,8 +208742,7 @@ void InitializeUIEmptyFunction(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIComponentHandler(void)
 
 {
@@ -209451,8 +208803,7 @@ UIHandle ProcessUIComponentHandler(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIContextValidation(UIHandle uiContext)
 
 {
@@ -209489,8 +208840,7 @@ UIHandle ProcessUIContextValidation(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIComponentRegistration(UIHandle uiContext)
 
 {
@@ -209520,8 +208870,7 @@ UIHandle ProcessUIComponentRegistration(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078971b(void)
 
 {
@@ -209572,8 +208921,7 @@ UIHandle GetUILayoutTypeIdentifier(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 ProcessUIComponentLayout(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,int resultPointer)
 
@@ -209662,8 +209010,7 @@ LAB_180789990:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807897f7(longlong uiContext)
 void FUN_1807897f7(longlong uiContext)
@@ -209761,8 +209108,7 @@ void FUN_1807899de(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 ProcessUIDataValidation(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer,longlong bufferSize,int resultPointer)
 
@@ -209885,8 +209231,7 @@ ProcessUIDataValidation(longlong uiContext,UIHandle dataSource,UIDword *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180789a48(longlong uiContext)
 void FUN_180789a48(longlong uiContext)
@@ -210018,8 +209363,7 @@ void FUN_180789cd9(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180789cf0(longlong *uiContext)
 void FUN_180789cf0(longlong *uiContext)
@@ -210065,8 +209409,7 @@ void FUN_180789cf0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180789e60(UIHandle *uiContext)
 
 {
@@ -210498,8 +209841,7 @@ UIDword ProcessUIDataAllocationAndValidation(UIHandle uiContext, longlong dataSo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078a260(longlong uiContext)
 
 {
@@ -210547,8 +209889,7 @@ UIHandle FUN_18078a260(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078a276(void)
 void FUN_18078a276(void)
@@ -210819,8 +210160,7 @@ LAB_18078a3ed:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078a540(longlong uiContext,longlong *dataSource)
 void FUN_18078a540(longlong uiContext,longlong *dataSource)
@@ -210865,8 +210205,7 @@ void FUN_18078a540(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078a600(longlong uiContext,char dataSource)
 void FUN_18078a600(longlong uiContext,char dataSource)
@@ -211276,8 +210615,7 @@ void FUN_18078aa4e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI资源句柄初始化函数
  * 
@@ -211363,8 +210701,7 @@ UIHandle InitializeUIRecomponentData(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078ac40(longlong uiContext,int dataSource,int targetBuffer)
 
 {
@@ -211392,8 +210729,7 @@ UIHandle FUN_18078ac40(longlong uiContext,int dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078ac65(UIHandle uiContext)
 
 {
@@ -211451,8 +210787,7 @@ UIHandle GetUIRenderStateIdentifier(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078ad10(longlong uiContext,int dataSource)
 void FUN_18078ad10(longlong uiContext,int dataSource)
@@ -211726,8 +211061,7 @@ UIHandle FUN_18078ae40(longlong uiContext,int dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078b010(longlong uiContext,int dataSource)
 
 {
@@ -212011,8 +211345,7 @@ UIHandle FUN_18078b010(longlong uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle ProcessUIEventChainValidation(longlong uiContext)
 
 {
@@ -212103,8 +211436,7 @@ UIHandle FUN_18078b670(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18078b6a0(longlong uiContext)
 
 {
@@ -212180,8 +211512,7 @@ ulonglong FUN_18078b6a0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18078b6ba(void)
 
 {
@@ -212255,8 +211586,7 @@ ulonglong FUN_18078b6ba(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18078b6d1(void)
 
 {
@@ -212346,8 +211676,7 @@ void FUN_18078b806(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078b880(longlong uiContext)
 void FUN_18078b880(longlong uiContext)
@@ -212696,8 +212025,7 @@ LAB_18078bea3:
 
 
  WARNING: Removing unreachable block (ram,0x00018078c678)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief UI系统上下文事件循环处理器
@@ -213455,8 +212783,7 @@ void FUN_18078c746(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  // 原始函数名：FUN_18078c760 - UI颜色缓冲区数据处理函数
 #define ProcessUIColorBufferData FUN_18078c760
@@ -213555,8 +212882,7 @@ LAB_18078c8ad:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  // 原始函数名：FUN_18078c796 - UI颜色缓冲区处理循环函数
 #define ProcessUIColorBufferLoop FUN_18078c796
@@ -213656,8 +212982,7 @@ LAB_18078c8ad:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078c92b(void)
 void FUN_18078c92b(void)
@@ -213786,8 +213111,7 @@ void FUN_18078ca50(UIHandle uiContext,longlong *dataSource,UIHandle targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer,char bufferSize)
 void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer,char bufferSize)
@@ -214190,8 +213514,7 @@ UIHandle * FUN_18078d220(UIHandle *uiContext,ulonglong dataSource)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  处理UI数据操作
  处理UI系统的数据操作，包括验证、缓冲区管理和数据处理
   uiContext UI上下文
@@ -214556,8 +213879,7 @@ LAB_18078d9a9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18078d9d0(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIHandle *bufferSize,
              UIByte *resultPointer)
@@ -214698,8 +214020,7 @@ LAB_18078ddf7:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18078de70(UIHandle uiContext,UIHandle *dataSource)
 
 {
@@ -214831,8 +214152,7 @@ void FUN_18078e180(void)
 
 
  WARNING: Removing unreachable block (ram,0x00018078fee2)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078e1b5(longlong uiContext,UIHandle dataSource,uint targetBuffer,UIDword bufferSize)
 void FUN_18078e1b5(longlong uiContext,UIHandle dataSource,uint targetBuffer,UIDword bufferSize)
@@ -216007,8 +215327,7 @@ LAB_180790207:
 
 
  WARNING: Removing unreachable block (ram,0x00018078fee2)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18078ea55(void)
 void FUN_18078ea55(void)
@@ -216730,8 +216049,7 @@ LAB_1807901f2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807901fa(void)
 void FUN_1807901fa(void)
@@ -216767,8 +216085,7 @@ void FUN_1807901fa(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079021c(void)
 void FUN_18079021c(void)
@@ -216797,8 +216114,7 @@ void FUN_18079021c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790231(void)
 void FUN_180790231(void)
@@ -216810,8 +216126,7 @@ void FUN_180790231(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790266(void)
 void FUN_180790266(void)
@@ -216831,8 +216146,7 @@ void FUN_180790266(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079027d(void)
 void FUN_18079027d(void)
@@ -217048,8 +216362,7 @@ void FUN_1807904e5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180790500(longlong uiContext,int dataSource,longlong *targetBuffer)
 
 {
@@ -217109,8 +216422,7 @@ LAB_1807905d8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180790523(UIHandle uiContext)
 
 {
@@ -217181,8 +216493,7 @@ void FUN_1807905e7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_180790610(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize,
              longlong resultPointer,int param_6)
@@ -217284,8 +216595,7 @@ LAB_180789990:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_180790680(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,UIDword *bufferSize,
              longlong resultPointer,int param_6)
@@ -217425,8 +216735,7 @@ FUN_180790680(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,UIDw
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807906f0(longlong uiContext)
 
 {
@@ -217609,8 +216918,7 @@ UIHandle FUN_1807908ad(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1807908c0(longlong uiContext)
 void FUN_1807908c0(longlong uiContext)
@@ -217927,8 +217235,7 @@ int FUN_1807909d0(longlong uiContext,int dataSource,longlong targetBuffer,longlo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong * FUN_180790ba0(longlong uiContext,int dataSource,short *targetBuffer,ulonglong bufferSize)
 
 {
@@ -218118,8 +217425,7 @@ UIHandle * FUN_180790ea0(UIHandle *uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790ee0(longlong *uiContext)
 void FUN_180790ee0(longlong *uiContext)
@@ -218169,8 +217475,7 @@ void FUN_180790ee0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
 void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
@@ -218213,8 +217518,7 @@ void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790f06(void)
 void FUN_180790f06(void)
@@ -218254,8 +217558,7 @@ void FUN_180790f06(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180790fa7(UIHandle uiContext,UIHandle dataSource)
 void FUN_180790fa7(UIHandle uiContext,UIHandle dataSource)
@@ -218284,8 +217587,7 @@ void FUN_180790fd9(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180790ff0(longlong uiContext)
 
 {
@@ -218310,8 +217612,7 @@ void FUN_180791040(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
 void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
@@ -218517,8 +217818,7 @@ FUN_1807915fb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180791277(int uiContext)
 void FUN_180791277(int uiContext)
@@ -218709,8 +218009,7 @@ void FUN_1807915fb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180791615(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBuffer,ulonglong bufferSize)
 void FUN_180791615(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBuffer,ulonglong bufferSize)
@@ -218844,8 +218143,7 @@ void FUN_1807916ce(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 FUN_1807916e0(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,int resultPointer,
              int param_6,UIDword param_7)
@@ -218873,8 +218171,7 @@ FUN_1807916e0(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle b
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
@@ -219090,8 +218387,7 @@ void FUN_180791b40(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 初始化UI系统渲染上下文
  * 
@@ -219276,8 +218572,7 @@ void ResetUISystemGlobalState(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180791f70(longlong uiContext,float *dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
 
 {
@@ -219770,8 +219065,7 @@ UIHandle FUN_180791f70(longlong uiContext,float *dataSource,longlong targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807920b7(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
 
 {
@@ -220240,8 +219534,7 @@ UIHandle FUN_1807920b7(longlong uiContext,UIHandle dataSource,longlong targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807930b9(longlong uiContext)
 
 {
@@ -220412,8 +219705,7 @@ UIHandle FUN_1807930b9(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807930dc(longlong uiContext,int dataSource)
 
 {
@@ -221040,8 +220332,7 @@ void FUN_180793ff0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,uint bufferSize,uint resultPointer)
 
 {
@@ -221346,8 +220637,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807942ce(void)
 
 {
@@ -221622,8 +220912,7 @@ UIHandle FUN_1807942ce(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807943f6(void)
 
 {
@@ -221962,8 +221251,7 @@ void FUN_180794e70(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
 
 {
@@ -222227,8 +221515,7 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1807950d0(void)
 
 {
@@ -223720,8 +223007,7 @@ UIHandle FUN_180797267(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float *bufferSize,float *resultPointer,
 void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float *bufferSize,float *resultPointer,
@@ -229975,8 +229261,7 @@ LAB_18079d0af:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18079d1f0(void)
 
 {
@@ -230370,8 +229655,7 @@ UIHandle FUN_18079df60(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18079e030(longlong *uiContext)
 
 {
@@ -230697,8 +229981,7 @@ UIHandle FUN_18079e320(longlong *uiContext,int dataSource,float *targetBuffer,lo
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
 void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
@@ -230961,8 +230244,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079ea10(UIHandle uiContext,longlong dataSource,int targetBuffer)
 void FUN_18079ea10(UIHandle uiContext,longlong dataSource,int targetBuffer)
@@ -231242,8 +230524,7 @@ void FUN_18079ea10(UIHandle uiContext,longlong dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079f0b0(longlong uiContext,float *dataSource)
 void FUN_18079f0b0(longlong uiContext,float *dataSource)
@@ -232367,8 +231648,7 @@ void FUN_18079f9f0(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
 void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
@@ -234184,8 +233464,7 @@ LAB_1808013f0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808014e0(longlong uiContext,UIByte dataSource)
 void FUN_1808014e0(longlong uiContext,UIByte dataSource)
@@ -234500,8 +233779,7 @@ LAB_18080177e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  初始化UI系统全局状态
  初始化UI系统的全局状态，调用核心初始化函数
  * 确保UI系统在启动时处于正确的初始状态
@@ -234517,8 +233795,7 @@ LAB_18080177e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180801ce0(longlong uiContext)
 
 {
@@ -234604,8 +233881,7 @@ UIHandle FUN_180801ce0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180801ef0(longlong uiContext)
 void FUN_180801ef0(longlong uiContext)
@@ -234738,8 +234014,7 @@ longlong FUN_180802570(longlong uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808025c0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,int *resultPointer,
 void FUN_1808025c0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,int *resultPointer,
@@ -234998,8 +234273,7 @@ FUN_1808027ca:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180802653(void)
 void FUN_180802653(void)
@@ -235269,8 +234543,7 @@ void FUN_1808027ca(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808027ec(void)
 void FUN_1808027ec(void)
@@ -235472,8 +234745,7 @@ void FUN_180802bae(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180802c10(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
 void FUN_180802c10(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
@@ -235577,8 +234849,7 @@ LAB_180802da0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180802e50(longlong uiContext,longlong dataSource)
 
 {
@@ -235647,8 +234918,7 @@ UIHandle FUN_180802e50(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180802ea1(longlong *uiContext)
 
 {
@@ -235709,8 +234979,7 @@ UIHandle FUN_180802ea1(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180802ecf(void)
 
 {
@@ -236022,8 +235291,7 @@ UIHandle FUN_1808035a0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808035c0(longlong uiContext)
 
 {
@@ -236097,8 +235365,7 @@ UIHandle FUN_1808035c0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808037e0(longlong uiContext)
 
 {
@@ -236213,8 +235480,7 @@ UIHandle FUN_1808037e0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808037fa(longlong uiContext)
 
 {
@@ -236317,8 +235583,7 @@ UIHandle FUN_1808037fa(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180803801(longlong uiContext)
 
 {
@@ -236582,8 +235847,7 @@ longlong FUN_180803ca0(longlong uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180803cf0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,UIDword *resultPointer,
 void FUN_180803cf0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,UIDword *resultPointer,
@@ -236817,8 +236081,7 @@ FUN_1808041e8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180803d63(longlong *uiContext,longlong dataSource)
 void FUN_180803d63(longlong *uiContext,longlong dataSource)
@@ -237023,8 +236286,7 @@ void FUN_180803d63(longlong *uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180803ddf(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
 void FUN_180803ddf(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer)
@@ -237291,8 +236553,7 @@ longlong FUN_180804260(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808043c0(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer)
 void FUN_1808043c0(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer)
@@ -237352,8 +236613,7 @@ void FUN_1808043c0(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804500(longlong uiContext)
 
 {
@@ -237445,8 +236705,7 @@ UIHandle FUN_180804500(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18080450a(longlong uiContext)
 
 {
@@ -237734,8 +236993,7 @@ FUN_1808048d0(ulonglong uiContext,longlong dataSource,UIHandle targetBuffer,uint
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180804980(longlong uiContext,int *dataSource)
 
 {
@@ -237820,8 +237078,7 @@ LAB_180804b26:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804b90(UIHandle uiContext,longlong dataSource)
 
 {
@@ -237868,8 +237125,7 @@ UIHandle FUN_180804c20(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ValidateUIBufferStructure(UIHandle uiContext,longlong *dataSource,longlong *targetBuffer,longlong bufferSize,char resultPointer)
 
@@ -237967,8 +237223,7 @@ ValidateUIBufferStructure(UIHandle uiContext,longlong *dataSource,longlong *targ
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804d3d(void)
 
 {
@@ -238038,8 +237293,7 @@ UIHandle FUN_180804d60(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804d6a(void)
 
 {
@@ -238104,8 +237358,7 @@ UIHandle FUN_180804dde(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804ed0(longlong *uiContext)
 
 {
@@ -238137,8 +237390,7 @@ UIHandle FUN_180804ed0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804ef2(void)
 
 {
@@ -238181,8 +237433,7 @@ UIHandle FUN_180804f75(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180804fa0(UIHandle *uiContext)
 
 {
@@ -238730,8 +237981,7 @@ UIHandle FUN_1808055a0(longlong *uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180805640(longlong *uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,UIDword *resultPointer
 void FUN_180805640(longlong *uiContext,int dataSource,UIHandle targetBuffer,int *bufferSize,UIDword *resultPointer
@@ -238918,8 +238168,7 @@ FUN_180805aea:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDword *bufferSize)
 void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDword *bufferSize)
@@ -239107,8 +238356,7 @@ void FUN_180805aea(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180805b10(longlong *uiContext)
 void FUN_180805b10(longlong *uiContext)
@@ -239706,8 +238954,7 @@ FUN_1808064f0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_1808065a0(longlong *uiContext,int *dataSource)
 
 {
@@ -239795,8 +239042,7 @@ LAB_180806740:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180806780(UIHandle uiContext,longlong dataSource)
 
 {
@@ -240313,8 +239559,7 @@ void FUN_180806fd0(UIHandle *uiContext)
   free(uiContext[1]);
   free(*uiContext);
                      WARNING: Could not recover jumptable at 0x000180807054. Too many branches
-                     WARNING: Treating indirect jump as call
-  free(uiContext);
+                       free(uiContext);
   return;
 }
 
@@ -241362,8 +240607,7 @@ LAB_18080837b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180808700(UIHandle uiContext,UIHandle *dataSource)
 void FUN_180808700(UIHandle uiContext,UIHandle *dataSource)
@@ -241700,8 +240944,7 @@ LAB_180808dec:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180808ec0(UIHandle uiContext,UIHandle *dataSource)
 void FUN_180808ec0(UIHandle uiContext,UIHandle *dataSource)
@@ -242808,8 +242051,7 @@ IndexBufferSetup:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080b1b0(longlong uiContext,UIDword *dataSource,UIHandle targetBuffer)
 void FUN_18080b1b0(longlong uiContext,UIDword *dataSource,UIHandle targetBuffer)
@@ -244449,8 +243691,7 @@ UIHandle FUN_18080c8a0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18080ce10(longlong uiContext,int dataSource)
 
 {
@@ -245159,8 +244400,7 @@ UIHandle FUN_18080d820(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080d840(longlong uiContext,int *dataSource,UIDword *targetBuffer)
 void FUN_18080d840(longlong uiContext,int *dataSource,UIDword *targetBuffer)
@@ -245295,8 +244535,7 @@ LAB_18080daa1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080dae0(longlong uiContext,int *dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer)
 void FUN_18080dae0(longlong uiContext,int *dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer)
@@ -245792,8 +245031,7 @@ void FUN_18080e076(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080e0e0(longlong uiContext,longlong dataSource,int *targetBuffer)
 void FUN_18080e0e0(longlong uiContext,longlong dataSource,int *targetBuffer)
@@ -245889,8 +245127,7 @@ void FUN_18080e1fd(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080e220(longlong uiContext)
 void FUN_18080e220(longlong uiContext)
@@ -246027,8 +245264,7 @@ void FUN_18080e220(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080e440(void)
 void FUN_18080e440(void)
@@ -246180,8 +245416,7 @@ void FUN_18080e440(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080e9f0(longlong uiContext,float *dataSource,int *targetBuffer,longlong bufferSize,int resultPointer,
 void FUN_18080e9f0(longlong uiContext,float *dataSource,int *targetBuffer,longlong bufferSize,int resultPointer,
@@ -246834,8 +246069,7 @@ LAB_18080f7c7:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18080f800(longlong uiContext,float *dataSource,int *targetBuffer,longlong bufferSize,int resultPointer,
 void FUN_18080f800(longlong uiContext,float *dataSource,int *targetBuffer,longlong bufferSize,int resultPointer,
@@ -250171,8 +249405,7 @@ UIHandle FUN_180811b9d(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180811f40(float *uiContext,UIDword *dataSource,float *targetBuffer,float *bufferSize,
 void FUN_180811f40(float *uiContext,UIDword *dataSource,float *targetBuffer,float *bufferSize,
@@ -250305,8 +249538,7 @@ void FUN_180811f40(float *uiContext,UIDword *dataSource,float *targetBuffer,floa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,float *resultPointer)
 void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,float *resultPointer)
@@ -250506,8 +249738,7 @@ void FUN_180812dc0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180813210(int uiContext)
 
 {
@@ -251213,8 +250444,7 @@ UIHandle FUN_180813210(int uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
 void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
@@ -251999,8 +251229,7 @@ UIHandle FUN_180815e8e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 ProcessUIRenderTransformMatrix(UIHandle uiContext,float *dataSource,int targetBuffer,int bufferSize,UIWord *resultPointer)
 
@@ -252176,8 +251405,7 @@ ProcessUIRenderTransformMatrix(UIHandle uiContext,float *dataSource,int targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808168c0(longlong uiContext,uint dataSource,char targetBuffer)
 void FUN_1808168c0(longlong uiContext,uint dataSource,char targetBuffer)
@@ -252400,8 +251628,7 @@ joined_r0x000180816c9e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180816928(void)
 void FUN_180816928(void)
@@ -252614,8 +251841,7 @@ void FUN_180816a3c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180816a57(void)
 void FUN_180816a57(void)
@@ -253271,8 +252497,7 @@ UIHandle FUN_180817180(UIHandle uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808171d0(UIHandle uiContext,int *dataSource,longlong targetBuffer,UIHandle *bufferSize)
 void FUN_1808171d0(UIHandle uiContext,int *dataSource,longlong targetBuffer,UIHandle *bufferSize)
@@ -253486,8 +252711,7 @@ void FUN_18081726f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180817430(UIHandle *uiContext)
 void FUN_180817430(UIHandle *uiContext)
@@ -255068,8 +254292,7 @@ UIHandle FUN_180818c2c(UIHandle uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180818c50(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 void FUN_180818c50(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
@@ -257865,8 +257088,7 @@ void FUN_18081b483(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18081b490(longlong *uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
@@ -258146,8 +257368,7 @@ UIHandle FUN_18081b8a0(longlong uiContext,longlong *dataSource,longlong targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081b980(longlong uiContext)
 void FUN_18081b980(longlong uiContext)
@@ -258311,8 +257532,7 @@ FUN_18081b7ac:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081bc90(longlong uiContext)
 void FUN_18081bc90(longlong uiContext)
@@ -258345,8 +257565,7 @@ void FUN_18081bc90(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081bd20(UIHandle *uiContext)
 void FUN_18081bd20(UIHandle *uiContext)
@@ -258405,8 +257624,7 @@ LAB_18081be5a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081be80(longlong uiContext)
 void FUN_18081be80(longlong uiContext)
@@ -258485,8 +257703,7 @@ FUN_18081b7ac:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18081c0f0(longlong *uiContext,char dataSource,longlong *targetBuffer)
 
 {
@@ -258667,8 +257884,7 @@ LAB_18081c502:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
 
 {
@@ -259004,8 +258220,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
@@ -259403,8 +258618,7 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18081ccc3(UIDword uiContext)
 
 {
@@ -259697,8 +258911,7 @@ void FUN_18081d22f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18081d250(short uiContext)
 
 {
@@ -259792,8 +259005,7 @@ UIHandle FUN_18081d250(short uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18081d44a(short uiContext)
 
 {
@@ -259985,8 +259197,7 @@ FUN_18081d8a0(float *uiContext,short dataSource,float *targetBuffer,short buffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081da90(float *uiContext,ulonglong dataSource,longlong targetBuffer,int bufferSize,ulonglong *resultPointer,
 void FUN_18081da90(float *uiContext,ulonglong dataSource,longlong targetBuffer,int bufferSize,ulonglong *resultPointer,
@@ -260083,14 +259294,12 @@ void FUN_18081da90(float *uiContext,ulonglong dataSource,longlong targetBuffer,i
   else if (bufferSize == 2) {
     if (param_7 == 1) {
                      WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
-                     WARNING: Treating indirect jump as call
-      (*(UIFunctionPtr *)*_DAT_180c4ea58)(uiContext,dataSource,targetBuffer,resultPointer);
+                           (*(UIFunctionPtr *)*_DAT_180c4ea58)(uiContext,dataSource,targetBuffer,resultPointer);
       return;
     }
     if (param_7 == 2) {
                      WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
-                     WARNING: Treating indirect jump as call
-      (*(UIFunctionPtr *)_DAT_180c4ea58[1])(uiContext,dataSource,targetBuffer,resultPointer);
+                           (*(UIFunctionPtr *)_DAT_180c4ea58[1])(uiContext,dataSource,targetBuffer,resultPointer);
       return;
     }
     if (result9 != 0) {
@@ -260463,8 +259672,7 @@ void FUN_18081e03c(UIHandle uiContext,float dataSource,UIHandle targetBuffer,int
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081e1f7(void)
 void FUN_18081e1f7(void)
@@ -260481,14 +259689,12 @@ void FUN_18081e1f7(void)
   
   if (stackParam00000070 == 1) {
                      WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
-                     WARNING: Treating indirect jump as call
-    (*(UIFunctionPtr *)*_DAT_180c4ea58)();
+                         (*(UIFunctionPtr *)*_DAT_180c4ea58)();
     return;
   }
   if (stackParam00000070 == 2) {
                      WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
-                     WARNING: Treating indirect jump as call
-    (*(UIFunctionPtr *)_DAT_180c4ea58[1])();
+                         (*(UIFunctionPtr *)_DAT_180c4ea58[1])();
     return;
   }
   if (unmodifiedEBX != 0) {
@@ -260528,8 +259734,7 @@ void FUN_18081e1f7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18081e5c0(float *uiContext,ulonglong dataSource,longlong targetBuffer,int bufferSize,ulonglong *resultPointer,
 void FUN_18081e5c0(float *uiContext,ulonglong dataSource,longlong targetBuffer,int bufferSize,ulonglong *resultPointer,
@@ -265670,8 +264875,7 @@ void FUN_1808249f0(longlong *uiContext)
   uiContext[5] = 0;
   uiContext[6] = 0;
                      WARNING: Could not recover jumptable at 0x000180824a27. Too many branches
-                     WARNING: Treating indirect jump as call
-  free(uiContext);
+                       free(uiContext);
   return;
 }
 
@@ -266662,10 +265866,8 @@ void FUN_180825ca0(int *uiContext,uint dataSource,int targetBuffer,longlong buff
   
   eventDataIndex = (longlong)(int)dataSource;
   if (targetBuffer == 0) {
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-    memcpy(bufferSize,uiContext,(ulonglong)dataSource << 2);
+                                          WARNING: Subroutine does not return
+                         memcpy(bufferSize,uiContext,(ulonglong)dataSource << 2);
     return;
   }
   if (targetBuffer == 1) {
@@ -269308,8 +268510,7 @@ int FUN_180828161(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808281a0(UIHandle uiContext)
 void FUN_1808281a0(UIHandle uiContext)
@@ -269345,8 +268546,7 @@ void FUN_1808281a0(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180828690(UIHandle uiContext,UIHandle dataSource)
 void FUN_180828690(UIHandle uiContext,UIHandle dataSource)
@@ -269363,8 +268563,7 @@ void FUN_180828690(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180828b00(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 void FUN_180828b00(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
@@ -269437,8 +268636,7 @@ void FUN_180829160(uint uiContext,uint dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808291f0(void)
 void FUN_1808291f0(void)
@@ -269455,8 +268653,7 @@ void FUN_1808291f0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180829400(UIHandle uiContext,UIHandle dataSource)
 void FUN_180829400(UIHandle uiContext,UIHandle dataSource)
@@ -269863,8 +269060,7 @@ LAB_180829eef:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180829f10(UIHandle uiContext,UIHandle dataSource,ushort targetBuffer)
 void FUN_180829f10(UIHandle uiContext,UIHandle dataSource,ushort targetBuffer)
@@ -269885,8 +269081,7 @@ void FUN_180829f10(UIHandle uiContext,UIHandle dataSource,ushort targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIHandle *bufferSize,
 void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIHandle *bufferSize,
@@ -269981,8 +269176,7 @@ void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIH
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082a780(UIHandle uiContext,longlong *dataSource)
 void FUN_18082a780(UIHandle uiContext,longlong *dataSource)
@@ -270327,8 +269521,7 @@ LAB_18082aeb4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082aee0(longlong *uiContext,UIHandle dataSource)
 void FUN_18082aee0(longlong *uiContext,UIHandle dataSource)
@@ -272519,8 +271712,7 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
  WARNING: Removing unreachable block (ram,0x00018082c9fc)
  WARNING: Removing unreachable block (ram,0x00018082cffe)
  WARNING: Removing unreachable block (ram,0x00018082d00e)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI向量变换操作
@@ -273146,8 +272338,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
  WARNING: Removing unreachable block (ram,0x00018082c9fc)
  WARNING: Removing unreachable block (ram,0x00018082cffe)
  WARNING: Removing unreachable block (ram,0x00018082d00e)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float *bufferSize)
 void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float *bufferSize)
@@ -273752,8 +272943,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
  WARNING: Removing unreachable block (ram,0x00018082c9fc)
  WARNING: Removing unreachable block (ram,0x00018082cffe)
  WARNING: Removing unreachable block (ram,0x00018082d00e)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *bufferSize)
 void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *bufferSize)
@@ -274290,8 +273480,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
  WARNING: Removing unreachable block (ram,0x00018082c9fc)
  WARNING: Removing unreachable block (ram,0x00018082cffe)
  WARNING: Removing unreachable block (ram,0x00018082d00e)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *bufferSize)
 void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *bufferSize)
@@ -275547,8 +274736,7 @@ void FUN_18082d0a6(UIHandle uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d350(UIByte (*uiContext) [32],uint *dataSource,float *targetBuffer,float *bufferSize,
 void FUN_18082d350(UIByte (*uiContext) [32],uint *dataSource,float *targetBuffer,float *bufferSize,
@@ -275809,8 +274997,7 @@ void FUN_18082d350(UIByte (*uiContext) [32],uint *dataSource,float *targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d365(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,float *bufferSize)
 void FUN_18082d365(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,float *bufferSize)
@@ -276078,8 +275265,7 @@ void FUN_18082d365(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d36a(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,float *bufferSize)
 void FUN_18082d36a(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,float *bufferSize)
@@ -276347,8 +275533,7 @@ void FUN_18082d36a(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d4de(UIByte (*uiContext) [32],longlong dataSource,float *targetBuffer,float *bufferSize)
 void FUN_18082d4de(UIByte (*uiContext) [32],longlong dataSource,float *targetBuffer,float *bufferSize)
@@ -276509,8 +275694,7 @@ void FUN_18082d4de(UIByte (*uiContext) [32],longlong dataSource,float *targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d566(UIByte (*uiContext) [32],longlong dataSource,float *targetBuffer,longlong bufferSize)
 void FUN_18082d566(UIByte (*uiContext) [32],longlong dataSource,float *targetBuffer,longlong bufferSize)
@@ -276602,8 +275786,7 @@ void FUN_18082d566(UIByte (*uiContext) [32],longlong dataSource,float *targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d5d2(UIByte (*uiContext) [32],longlong dataSource,uint targetBuffer,int bufferSize)
 void FUN_18082d5d2(UIByte (*uiContext) [32],longlong dataSource,uint targetBuffer,int bufferSize)
@@ -276854,8 +276037,7 @@ void FUN_18082d940(UIHandle uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082d9e0(UIHandle uiContext,UIHandle *dataSource,UIDword *targetBuffer)
 void FUN_18082d9e0(UIHandle uiContext,UIHandle *dataSource,UIDword *targetBuffer)
@@ -277332,8 +276514,7 @@ void FUN_18082e592(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082e5c0(UIHandle uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
 void FUN_18082e5c0(UIHandle uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
@@ -277649,8 +276830,7 @@ LAB_18082eccb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18082ed00(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 void FUN_18082ed00(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
@@ -283476,8 +282656,7 @@ void FUN_180833540(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -283724,8 +282903,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -284056,8 +283234,7 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180833f20(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180833f20(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -284171,8 +283348,7 @@ void FUN_180833f20(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -284378,8 +283554,7 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -284530,8 +283705,7 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180834880(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180834880(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -284876,8 +284050,7 @@ void FUN_180834880(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -285314,8 +284487,7 @@ void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180835500(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180835500(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -285487,8 +284659,7 @@ void FUN_180835500(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180835800(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180835800(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -285720,8 +284891,7 @@ void FUN_180835800(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180835d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180835d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -285907,8 +285077,7 @@ void FUN_180835d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
  WARNING: Removing unreachable block (ram,0x0001808364dc)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize,
 void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize,
@@ -286180,8 +285349,7 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
 
 
  WARNING: Removing unreachable block (ram,0x0001808368f5)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808366a0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,longlong *bufferSize,
 void FUN_1808366a0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,longlong *bufferSize,
@@ -286441,8 +285609,7 @@ void FUN_1808366a0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
 
 
  WARNING: Removing unreachable block (ram,0x000180836c0f)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808369c0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize,
 void FUN_1808369c0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize,
@@ -286592,8 +285759,7 @@ void FUN_1808369c0(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
 
 
  WARNING: Removing unreachable block (ram,0x000180836c0f)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808369de(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize)
 void FUN_1808369de(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffer,uint *bufferSize)
@@ -286744,8 +285910,7 @@ void FUN_1808369de(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
 
 
  WARNING: Removing unreachable block (ram,0x000180836c0f)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180836a6a(UIHandle uiContext)
 void FUN_180836a6a(UIHandle uiContext)
@@ -286940,8 +286105,7 @@ void FUN_180836c30(void)
 
 
  WARNING: Removing unreachable block (ram,0x000180836f10)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180836c90(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180836c90(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -287139,8 +286303,7 @@ void FUN_180836c90(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
  WARNING: Removing unreachable block (ram,0x00018083721a)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180837050(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180837050(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -287268,8 +286431,7 @@ void FUN_180837050(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
  WARNING: Removing unreachable block (ram,0x00018083774d)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808372e0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_1808372e0(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -287518,8 +286680,7 @@ void FUN_1808372e0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
  WARNING: Removing unreachable block (ram,0x000180837b46)
  WARNING: Removing unreachable block (ram,0x000180837c22)
  WARNING: Removing unreachable block (ram,0x000180837c60)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180837990(float *uiContext,uint dataSource,longlong targetBuffer,longlong *bufferSize,longlong *resultPointer)
 void FUN_180837990(float *uiContext,uint dataSource,longlong targetBuffer,longlong *bufferSize,longlong *resultPointer)
@@ -287717,8 +286878,7 @@ void FUN_180837990(float *uiContext,uint dataSource,longlong targetBuffer,longlo
 
 
  WARNING: Removing unreachable block (ram,0x000180837fdf)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180837d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180837d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -287877,8 +287037,7 @@ void FUN_180837d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
  WARNING: Removing unreachable block (ram,0x000180837fdf)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180837d61(float *uiContext,UIHandle dataSource,longlong targetBuffer,uint *bufferSize)
 void FUN_180837d61(float *uiContext,UIHandle dataSource,longlong targetBuffer,uint *bufferSize)
@@ -288044,8 +287203,7 @@ void FUN_180837d61(float *uiContext,UIHandle dataSource,longlong targetBuffer,ui
 
 
  WARNING: Removing unreachable block (ram,0x000180837fdf)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180837e0a(UIHandle uiContext)
 void FUN_180837e0a(UIHandle uiContext)
@@ -288242,8 +287400,7 @@ void FUN_180838000(void)
  WARNING: Removing unreachable block (ram,0x000180838344)
  WARNING: Removing unreachable block (ram,0x00018083837a)
  WARNING: Removing unreachable block (ram,0x0001808383db)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180838090(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180838090(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -288440,8 +287597,7 @@ void FUN_180838090(float *uiContext,uint dataSource,longlong targetBuffer,uint *
  WARNING: Removing unreachable block (ram,0x0001808387d2)
  WARNING: Removing unreachable block (ram,0x0001808387c3)
  WARNING: Removing unreachable block (ram,0x000180838811)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180838590(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
 void FUN_180838590(float *uiContext,uint dataSource,longlong targetBuffer,uint *bufferSize,longlong *resultPointer)
@@ -288598,8 +287754,7 @@ void FUN_180838590(float *uiContext,uint dataSource,longlong targetBuffer,uint *
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180838930(UIByte (*uiContext) [64],uint dataSource,longlong targetBuffer,uint *bufferSize,
 void FUN_180838930(UIByte (*uiContext) [64],uint dataSource,longlong targetBuffer,uint *bufferSize,
@@ -288746,8 +287901,7 @@ void FUN_180838930(UIByte (*uiContext) [64],uint dataSource,longlong targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808389ec(void)
 void FUN_1808389ec(void)
@@ -288884,8 +288038,7 @@ void FUN_1808389ec(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180838af4(void)
 void FUN_180838af4(void)
@@ -289637,8 +288790,7 @@ void FUN_180839208(void)
   *(UIHandle *)(RegisterPointer + -0x78) = unmodifiedXMM9_Qa;
   *(UIHandle *)(RegisterPointer + -0x70) = unmodifiedXMM9_Qb;
                      WARNING: Could not recover jumptable at 0x000180839239. Too many branches
-                     WARNING: Treating indirect jump as call
-  (*(UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839720 + contextRegister * 4) + 0x180000000))
+                       (*(UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839720 + contextRegister * 4) + 0x180000000))
             ((UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839720 + contextRegister * 4) + 0x180000000));
   return;
 }
@@ -289993,8 +289145,7 @@ void FUN_1808397b0(UIHandle uiContext,longlong dataSource)
   
   UNRECOVERED_JUMPTABLE = (UIFunctionPtr *)((ulonglong)*(uint *)(dataSource + 0x83998c + contextRegister * 4) + dataSource);
                      WARNING: Could not recover jumptable at 0x0001808397c2. Too many branches
-                     WARNING: Treating indirect jump as call
-  (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
+                       (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
   return;
 }
 
@@ -290306,8 +289457,7 @@ void FUN_180839a23(void)
   *(UIHandle *)(RegisterPointer + -0x38) = unmodifiedXMM6_Qa;
   *(UIHandle *)(RegisterPointer + -0x30) = unmodifiedXMM6_Qb;
                      WARNING: Could not recover jumptable at 0x000180839a3d. Too many branches
-                     WARNING: Treating indirect jump as call
-  (*(UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839d30 + contextRegister * 4) + 0x180000000))
+                       (*(UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839d30 + contextRegister * 4) + 0x180000000))
             ((UIFunctionPtr *)((ulonglong)*(uint *)(&UNK_180839d30 + contextRegister * 4) + 0x180000000));
   return;
 }
@@ -290492,8 +289642,7 @@ UIHandle FUN_180839d09(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuffer,longlong bufferSize)
 
 {
@@ -290615,8 +289764,7 @@ UIHandle FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180839dfd(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
@@ -290735,8 +289883,7 @@ UIHandle FUN_180839dfd(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180839e32(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,uint bufferSize)
 
 {
@@ -290946,8 +290093,7 @@ void FUN_18083a0df(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083a100(int uiContext,UIHandle dataSource)
 void FUN_18083a100(int uiContext,UIHandle dataSource)
@@ -291970,8 +291116,7 @@ UIHandle FUN_18083ac45(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083ad10(int uiContext,UIHandle dataSource)
 void FUN_18083ad10(int uiContext,UIHandle dataSource)
@@ -292001,8 +291146,7 @@ void FUN_18083ad10(int uiContext,UIHandle dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x00018083b0e0)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b050(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
 void FUN_18083b050(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
@@ -292138,8 +291282,7 @@ void FUN_18083b050(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b1f0(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer,int bufferSize)
 void FUN_18083b1f0(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer,int bufferSize)
@@ -292258,8 +291401,7 @@ void FUN_18083b1f0(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b202(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer,int bufferSize)
 void FUN_18083b202(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer,int bufferSize)
@@ -292400,8 +291542,7 @@ void FUN_18083b202(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18083b22e(UIHandle uiContext,uint dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
@@ -292577,8 +291718,7 @@ void FUN_18083b3a2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b3d0(UIByte (*uiContext) [32])
 void FUN_18083b3d0(UIByte (*uiContext) [32])
@@ -292673,8 +291813,7 @@ void FUN_18083b3d0(UIByte (*uiContext) [32])
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b4a0(UIByte (*uiContext) [32])
 void FUN_18083b4a0(UIByte (*uiContext) [32])
@@ -293051,8 +292190,7 @@ void FUN_18083b6b0(UIHandle uiContext,longlong dataSource)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083b6f0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
 void FUN_18083b6f0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
@@ -293278,8 +292416,7 @@ LAB_18083bb2d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083bb80(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 void FUN_18083bb80(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
@@ -293475,8 +292612,7 @@ void FUN_18083bb80(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083bbcf(void)
 void FUN_18083bbcf(void)
@@ -295013,8 +294149,7 @@ longlong * FUN_18083ca60(UIHandle uiContext,longlong *dataSource,longlong target
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18083ccd0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize,
              longlong resultPointer,int param_6)
@@ -295073,8 +294208,7 @@ FUN_18083ccd0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18083ccea(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
 
@@ -295121,8 +294255,7 @@ FUN_18083ccea(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
 void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
@@ -295156,8 +294289,7 @@ void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18083cd60(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize,
              longlong resultPointer,int param_6)
@@ -295216,8 +294348,7 @@ FUN_18083cd60(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18083cd7a(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
 
@@ -295264,8 +294395,7 @@ FUN_18083cd7a(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
 void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
@@ -295395,8 +294525,7 @@ FUN_18083cdf0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083d030(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle bufferSize,
 void FUN_18083d030(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle bufferSize,
@@ -295466,8 +294595,7 @@ UIHandle FUN_18083d360(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083d5d0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
 void FUN_18083d5d0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
@@ -297122,8 +296250,7 @@ int FUN_18083faf0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083fb90(longlong *uiContext,UIHandle dataSource)
 void FUN_18083fb90(longlong *uiContext,UIHandle dataSource)
@@ -297146,8 +296273,7 @@ void FUN_18083fb90(longlong *uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18083fbf0(longlong *uiContext,UIHandle dataSource)
 void FUN_18083fbf0(longlong *uiContext,UIHandle dataSource)
@@ -297471,8 +296597,7 @@ void FUN_1808400da(void)
  WARNING: Removing unreachable block (ram,0x0001808491ad)
  WARNING: Removing unreachable block (ram,0x0001808491b3)
  WARNING: Removing unreachable block (ram,0x000180849219)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_180840100(longlong *uiContext)
 
 {
@@ -297550,8 +296675,7 @@ void FUN_1808401c0(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180840270(longlong *uiContext)
 
 {
@@ -297587,8 +296711,7 @@ UIHandle FUN_180840270(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840330(ulonglong *uiContext,int dataSource)
 void FUN_180840330(ulonglong *uiContext,int dataSource)
@@ -297653,8 +296776,7 @@ LAB_180840449:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840490(UIHandle uiContext,ulonglong *dataSource)
 void FUN_180840490(UIHandle uiContext,ulonglong *dataSource)
@@ -297713,8 +296835,7 @@ LAB_1808404f2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840600(UIDword uiContext,int dataSource,longlong targetBuffer)
 void FUN_180840600(UIDword uiContext,int dataSource,longlong targetBuffer)
@@ -298075,8 +297196,7 @@ void FUN_18084090e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840950(UIHandle uiContext,longlong dataSource,longlong targetBuffer,int *bufferSize)
 void FUN_180840950(UIHandle uiContext,longlong dataSource,longlong targetBuffer,int *bufferSize)
@@ -298185,8 +297305,7 @@ LAB_180840ad5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
 void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
@@ -298256,8 +297375,7 @@ LAB_180840b99:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180840c00(UIHandle uiContext)
 void FUN_180840c00(UIHandle uiContext)
@@ -300676,8 +299794,7 @@ int FUN_180844e90(longlong uiContext,longlong dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180844f40(ulonglong uiContext,UIHandle *dataSource)
 void FUN_180844f40(ulonglong uiContext,UIHandle *dataSource)
@@ -300746,8 +299863,7 @@ void FUN_180844f40(ulonglong uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180845090(UIHandle uiContext,longlong dataSource)
 void FUN_180845090(UIHandle uiContext,longlong dataSource)
@@ -300796,8 +299912,7 @@ LAB_18084510c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808451c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_1808451c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -300858,8 +299973,7 @@ void FUN_18084527c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808452a0(UIHandle uiContext,UIDword *dataSource,UIHandle targetBuffer)
 void FUN_1808452a0(UIHandle uiContext,UIDword *dataSource,UIHandle targetBuffer)
@@ -300946,8 +300060,7 @@ void ExecuteUIRenderTaskShortcut(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808453c0(UIHandle uiContext,UIHandle *dataSource)
 void FUN_1808453c0(UIHandle uiContext,UIHandle *dataSource)
@@ -301005,8 +300118,7 @@ LAB_18084541c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180845520(UIHandle uiContext,UIHandle *dataSource)
 void FUN_180845520(UIHandle uiContext,UIHandle *dataSource)
@@ -301045,8 +300157,7 @@ LAB_1808455bc:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808455f0(UIHandle uiContext,ulonglong *dataSource)
 void FUN_1808455f0(UIHandle uiContext,ulonglong *dataSource)
@@ -301105,8 +300216,7 @@ LAB_180845652:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180845c40(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180845c40(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -301168,8 +300278,7 @@ void FUN_180845cfc(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 处理UI数据验证和处理
@@ -301253,8 +300362,7 @@ ExitValidationHandling:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 处理UI组件状态和渲染数据
@@ -301322,8 +300430,7 @@ void ProcessUIComponentStateAndRenderingData(ulonglong uiContext,uint *dataSourc
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * 获取UI数据源和目标缓冲区信息
@@ -301382,8 +300489,7 @@ LAB_18084610f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846210(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer,UIDword *bufferSize)
 void FUN_180846210(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer,UIDword *bufferSize)
@@ -301451,8 +300557,7 @@ LAB_1808462b2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846410(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void FUN_180846410(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
@@ -301514,8 +300619,7 @@ void FUN_1808464cb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
 void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
@@ -301562,8 +300666,7 @@ void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDword *bufferSize)
 void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDword *bufferSize)
@@ -301667,8 +300770,7 @@ void FUN_1808467de(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846810(ulonglong uiContext,UIByte *dataSource)
 void FUN_180846810(ulonglong uiContext,UIByte *dataSource)
@@ -301718,8 +300820,7 @@ void FUN_180846810(ulonglong uiContext,UIByte *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846930(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
 void FUN_180846930(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
@@ -301760,8 +300861,7 @@ LAB_1808469dd:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846a90(ulonglong uiContext,UIDword *dataSource)
 void FUN_180846a90(ulonglong uiContext,UIDword *dataSource)
@@ -301813,8 +300913,7 @@ void FUN_180846a90(ulonglong uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846bc0(ulonglong uiContext,uint dataSource,UIDword *targetBuffer)
 void FUN_180846bc0(ulonglong uiContext,uint dataSource,UIDword *targetBuffer)
@@ -301870,8 +300969,7 @@ void FUN_180846bc0(ulonglong uiContext,uint dataSource,UIDword *targetBuffer)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846d30(UIHandle uiContext,UIDword *dataSource)
 void FUN_180846d30(UIHandle uiContext,UIDword *dataSource)
@@ -301929,8 +301027,7 @@ LAB_180846d91:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846e90(ulonglong uiContext,uint *dataSource)
 void FUN_180846e90(ulonglong uiContext,uint *dataSource)
@@ -301988,8 +301085,7 @@ void FUN_180846e90(ulonglong uiContext,uint *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180846fe0(ulonglong uiContext,UIHandle *dataSource)
 void FUN_180846fe0(ulonglong uiContext,UIHandle *dataSource)
@@ -302036,8 +301132,7 @@ void FUN_180846fe0(ulonglong uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847110(ulonglong uiContext,UIHandle *dataSource)
 void FUN_180847110(ulonglong uiContext,UIHandle *dataSource)
@@ -302087,8 +301182,7 @@ void FUN_180847110(ulonglong uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847230(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180847230(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -302149,8 +301243,7 @@ void FUN_1808472ec(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847310(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180847310(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -302211,8 +301304,7 @@ void FUN_1808473cc(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808473f0(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
 void FUN_1808473f0(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
@@ -302253,8 +301345,7 @@ LAB_18084749d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847550(longlong uiContext,UIHandle *dataSource,UIByte targetBuffer)
 void FUN_180847550(longlong uiContext,UIHandle *dataSource,UIByte targetBuffer)
@@ -302325,8 +301416,7 @@ void FUN_180847550(longlong uiContext,UIHandle *dataSource,UIByte targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847690(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize,
 void FUN_180847690(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIDword bufferSize,
@@ -302414,8 +301504,7 @@ void FUN_1808477f4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 undefined * FUN_180847820(void)
 
 {
@@ -302435,8 +301524,7 @@ undefined * FUN_180847820(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
 void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
@@ -302483,8 +301571,7 @@ void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808479d0(longlong uiContext,longlong *dataSource,byte *targetBuffer)
 void FUN_1808479d0(longlong uiContext,longlong *dataSource,byte *targetBuffer)
@@ -302574,8 +301661,7 @@ LAB_180847c35:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847c60(longlong uiContext,longlong *dataSource,byte *targetBuffer)
 void FUN_180847c60(longlong uiContext,longlong *dataSource,byte *targetBuffer)
@@ -302649,8 +301735,7 @@ LAB_180847dc9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847df0(ulonglong uiContext,UIByte *dataSource)
 void FUN_180847df0(ulonglong uiContext,UIByte *dataSource)
@@ -302710,8 +301795,7 @@ bool FUN_180847f30(UIHandle uiContext)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180847f60(UIHandle uiContext)
 void FUN_180847f60(UIHandle uiContext)
@@ -302751,8 +301835,7 @@ LAB_180848016:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180848090(ulonglong uiContext,longlong dataSource,UIDword targetBuffer,UIHandle *bufferSize)
 void FUN_180848090(ulonglong uiContext,longlong dataSource,UIDword targetBuffer,UIHandle *bufferSize)
@@ -302819,8 +301902,7 @@ LAB_180848132:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808482f0(UIHandle uiContext)
 void FUN_1808482f0(UIHandle uiContext)
@@ -303481,8 +302563,7 @@ DataProcessingStart:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180848e50(char *uiContext,UIHandle *dataSource)
 void FUN_180848e50(char *uiContext,UIHandle *dataSource)
@@ -303752,8 +302833,7 @@ void FUN_18084900b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180849030(longlong *uiContext,UIHandle dataSource)
 
 {
@@ -303791,8 +302871,7 @@ LAB_1808490b9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180849054(UIHandle uiContext,UIHandle dataSource)
 
 {
@@ -303834,8 +302913,7 @@ UIHandle FUN_180849104(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180849120(longlong *uiContext,int dataSource)
 
 {
@@ -303894,8 +302972,7 @@ LAB_1808491ce:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180849144(UIHandle uiContext,int dataSource)
 
 {
@@ -303962,8 +303039,7 @@ UIHandle GetUISystemHandleConstant(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849230(UIHandle uiContext)
 void FUN_180849230(UIHandle uiContext)
@@ -304004,8 +303080,7 @@ LAB_1808492e6:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849360(ulonglong uiContext)
 void FUN_180849360(ulonglong uiContext)
@@ -304050,8 +303125,7 @@ LAB_180849462:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849490(UIHandle uiContext,UIHandle *dataSource)
 void FUN_180849490(UIHandle uiContext,UIHandle *dataSource)
@@ -304126,8 +303200,7 @@ LAB_1808494eb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849600(UIHandle uiContext,UIHandle dataSource)
 void FUN_180849600(UIHandle uiContext,UIHandle dataSource)
@@ -304155,8 +303228,7 @@ void FUN_180849600(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808496c0(UIDword uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_1808496c0(UIDword uiContext,longlong dataSource,UIDword targetBuffer)
@@ -304228,8 +303300,7 @@ void FUN_1808497fa(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849820(UIDword uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_180849820(UIDword uiContext,longlong dataSource,UIDword targetBuffer)
@@ -304304,8 +303375,7 @@ void FUN_18084995f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849990(UIHandle uiContext,UIDword dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
 void FUN_180849990(UIHandle uiContext,UIDword dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
@@ -304395,8 +303465,7 @@ LAB_1808499fb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849bb0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIByte bufferSize)
 void FUN_180849bb0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIByte bufferSize)
@@ -304439,8 +303508,7 @@ LAB_180849c81:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849d40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_180849d40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
@@ -304496,8 +303564,7 @@ LAB_180849dd1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180849f40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_180849f40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
@@ -304553,8 +303620,7 @@ LAB_180849fd1:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a140(UIHandle uiContext,UIByte dataSource)
 void FUN_18084a140(UIHandle uiContext,UIByte dataSource)
@@ -304596,8 +303662,7 @@ LAB_18084a1fa:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a280(UIHandle uiContext,UIDword dataSource)
 void FUN_18084a280(UIHandle uiContext,UIDword dataSource)
@@ -304639,8 +303704,7 @@ LAB_18084a346:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a3d0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void FUN_18084a3d0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
@@ -304683,8 +303747,7 @@ LAB_18084a498:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a550(UIHandle uiContext,UIDword dataSource)
 void FUN_18084a550(UIHandle uiContext,UIDword dataSource)
@@ -304725,8 +303788,7 @@ LAB_18084a608:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a680(UIDword uiContext,UIHandle dataSource)
 void FUN_18084a680(UIDword uiContext,UIHandle dataSource)
@@ -304758,8 +303820,7 @@ LAB_18084a719:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a7a0(UIDword uiContext,UIHandle dataSource)
 void FUN_18084a7a0(UIDword uiContext,UIHandle dataSource)
@@ -304797,8 +303858,7 @@ LAB_18084a83e:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084a8c0(UIHandle uiContext,UIDword dataSource)
 void FUN_18084a8c0(UIHandle uiContext,UIDword dataSource)
@@ -304840,8 +303900,7 @@ LAB_18084a986:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084aa10(UIHandle uiContext,UIDword dataSource)
 void FUN_18084aa10(UIHandle uiContext,UIDword dataSource)
@@ -304883,8 +303942,7 @@ LAB_18084aad6:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084ab60(UIHandle uiContext,UIDword dataSource)
 void FUN_18084ab60(UIHandle uiContext,UIDword dataSource)
@@ -304926,8 +303984,7 @@ LAB_18084ac26:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084acb0(UIHandle uiContext)
 void FUN_18084acb0(UIHandle uiContext)
@@ -304968,8 +304025,7 @@ LAB_18084ad66:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084ade0(UIHandle uiContext,UIDword dataSource)
 void FUN_18084ade0(UIHandle uiContext,UIDword dataSource)
@@ -305309,8 +304365,7 @@ void FUN_18084b240(UIDword *uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b2f0(UIHandle uiContext)
 void FUN_18084b2f0(UIHandle uiContext)
@@ -305336,8 +304391,7 @@ void FUN_18084b2f0(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b380(UIHandle uiContext)
 void FUN_18084b380(UIHandle uiContext)
@@ -305363,8 +304417,7 @@ void FUN_18084b380(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b410(UIHandle uiContext)
 /**
@@ -305413,8 +304466,7 @@ LAB_18084b4a9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b5a0(UIHandle uiContext,UIHandle *dataSource,longlong *targetBuffer)
 void FUN_18084b5a0(UIHandle uiContext,UIHandle *dataSource,longlong *targetBuffer)
@@ -305466,8 +304518,7 @@ void FUN_18084b5a0(UIHandle uiContext,UIHandle *dataSource,longlong *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b6c0(longlong uiContext,longlong dataSource)
 void FUN_18084b6c0(longlong uiContext,longlong dataSource)
@@ -305497,8 +304548,7 @@ void FUN_18084b6c0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI渲染任务的验证和执行
@@ -305553,8 +304603,7 @@ void FUN_18084b760(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b830(longlong uiContext,longlong dataSource)
 void FUN_18084b830(longlong uiContext,longlong dataSource)
@@ -305634,8 +304683,7 @@ void FUN_18084b955(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084b990(longlong *uiContext,longlong dataSource,longlong *targetBuffer)
 void FUN_18084b990(longlong *uiContext,longlong dataSource,longlong *targetBuffer)
@@ -305745,8 +304793,7 @@ LAB_18084bb9a:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084bbd0(longlong uiContext,longlong dataSource)
 void FUN_18084bbd0(longlong uiContext,longlong dataSource)
@@ -305878,8 +304925,7 @@ void FUN_18084bd22(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084be00(longlong *uiContext,longlong dataSource,longlong *targetBuffer)
 void FUN_18084be00(longlong *uiContext,longlong dataSource,longlong *targetBuffer)
@@ -305984,8 +305030,7 @@ void FUN_18084bff2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 void UIThunkFunction2(char *uiContext,UIHandle *dataSource)
 
 {
@@ -306132,8 +305177,7 @@ UIHandle * FUN_18084c050(UIHandle *uiContext,UIHandle dataSource,byte targetBuff
  WARNING: Removing unreachable block (ram,0x00018084c4fa)
  WARNING: Removing unreachable block (ram,0x00018084c500)
  WARNING: Removing unreachable block (ram,0x00018084c55b)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_18084c150(longlong *uiContext)
 
 {
@@ -306196,8 +305240,7 @@ uint FUN_18084c150(longlong *uiContext)
  WARNING: Removing unreachable block (ram,0x000180748086)
  WARNING: Removing unreachable block (ram,0x00018074808e)
  WARNING: Removing unreachable block (ram,0x0001807480eb)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_18084c220(longlong *uiContext)
 
 {
@@ -306243,8 +305286,7 @@ uint FUN_18084c220(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c2d0(UIHandle *uiContext)
 void FUN_18084c2d0(UIHandle *uiContext)
@@ -306319,8 +305361,7 @@ longlong FUN_18084c390(longlong uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084c470(longlong *uiContext,int dataSource)
 
 {
@@ -306367,8 +305408,7 @@ LAB_18084c510:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084c494(UIHandle uiContext,int dataSource)
 
 {
@@ -306422,8 +305462,7 @@ UIHandle FUN_18084c55b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI事件上下文数据
@@ -306630,8 +305669,7 @@ void FUN_18084c658(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c680(longlong *uiContext)
 void FUN_18084c680(longlong *uiContext)
@@ -306664,8 +305702,7 @@ void FUN_18084c680(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c730(UIHandle *uiContext)
 void FUN_18084c730(UIHandle *uiContext)
@@ -306871,8 +305908,7 @@ LAB_18084ca76:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c738(UIHandle *uiContext)
 void FUN_18084c738(UIHandle *uiContext)
@@ -307078,8 +306114,7 @@ LAB_18084ca76:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c744(UIHandle *uiContext)
 void FUN_18084c744(UIHandle *uiContext)
@@ -307286,8 +306321,7 @@ LAB_18084ca76:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084c8cc(UIDword uiContext)
 void FUN_18084c8cc(UIDword uiContext)
@@ -307774,8 +306808,7 @@ UIHandle FUN_18084ccf0(UIHandle uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint * FUN_18084cde0(longlong uiContext,uint *dataSource)
 
 {
@@ -307918,8 +306951,7 @@ LAB_18084cfd9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint * FUN_18084cde8(longlong uiContext,uint *dataSource)
 
 {
@@ -308062,8 +307094,7 @@ LAB_18084cfd9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084cf13(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffer)
 void FUN_18084cf13(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffer)
@@ -308227,8 +307258,7 @@ void FUN_18084d00e(UIHandle uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084d068(void)
 void FUN_18084d068(void)
@@ -308632,8 +307662,7 @@ LAB_18084d22e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d3f0(longlong *uiContext,int dataSource)
 
 {
@@ -308695,8 +307724,7 @@ LAB_18084d4b4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d414(UIHandle uiContext,int dataSource)
 
 {
@@ -308765,8 +307793,7 @@ UIHandle FUN_18084d4ff(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d520(longlong *uiContext,int dataSource)
 
 {
@@ -308802,8 +307829,7 @@ LAB_18084d5b4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d544(UIHandle uiContext,int dataSource)
 
 {
@@ -308846,8 +307872,7 @@ UIHandle FUN_18084d5ff(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d620(longlong *uiContext,int dataSource)
 
 {
@@ -308969,8 +307994,7 @@ LAB_18084d7db:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084d644(UIHandle uiContext,int dataSource)
 
 {
@@ -309311,8 +308335,7 @@ UIHandle FUN_18084d93b(UIHandle uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 undefined * FUN_18084da10(void)
 
 {
@@ -309349,8 +308372,7 @@ UIHandle * FUN_18084da70(UIHandle *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084dae0(longlong *uiContext)
 void FUN_18084dae0(longlong *uiContext)
@@ -309465,8 +308487,7 @@ longlong FUN_18084dbd0(longlong uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18084dc20(UIDword *uiContext)
 void FUN_18084dc20(UIDword *uiContext)
@@ -309531,8 +308552,7 @@ UIHandle FUN_18084de40(longlong uiContext,longlong dataSource,float *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084def0(longlong *uiContext,int dataSource)
 
 {
@@ -309589,8 +308609,7 @@ UIHandle FUN_18084def0(longlong *uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084df0d(UIHandle uiContext,int dataSource)
 
 {
@@ -309646,8 +308665,7 @@ UIHandle FUN_18084df0d(UIHandle uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084df73(void)
 
 {
@@ -309690,8 +308708,7 @@ UIHandle FUN_18084df73(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084df94(UIHandle uiContext)
 
 {
@@ -309731,8 +308748,7 @@ UIHandle FUN_18084df94(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084e00c(void)
 
 {
@@ -309751,8 +308767,7 @@ UIHandle FUN_18084e00c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18084e01e(void)
 
 {
@@ -309860,8 +308875,7 @@ UIHandle FUN_18084e470(UIHandle uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18084e4b0(longlong uiContext)
 
 {
@@ -310426,8 +309440,7 @@ UIHandle ProcessUIFloatDataTransformation(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  /**
  * @brief 处理UI复杂事件和数据
@@ -310615,8 +309628,7 @@ void FUN_18084f033(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18084f040(longlong *uiContext)
 
 {
@@ -310731,8 +309743,7 @@ LAB_18084f283:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 清理UI上下文并释放相关资源
  * 
@@ -310905,8 +309916,7 @@ UIDword GetUICriticalSectionStatus(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 释放UI上下文资源
  * 
@@ -311032,8 +310042,7 @@ LAB_18084f513:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18084f2da(longlong *uiContext)
 
 {
@@ -311196,8 +310205,7 @@ UIDword ReleaseUICriticalSectionResource(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI系统上下文数据清理器
  * 
@@ -311321,8 +310329,7 @@ PROCESSING_COMPLETE_LABEL:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18084f56a(longlong *uiContext)
 
 {
@@ -311470,8 +310477,7 @@ UIDword FUN_18084f7ce(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18084f7f0(longlong *uiContext)
 
 {
@@ -311704,8 +310710,7 @@ LAB_18084f987:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18084f800(longlong *uiContext)
 
 {
@@ -311962,8 +310967,7 @@ void FUN_18084fcba(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
  在UI上下文中查找并处理组件
  在UI上下文中根据特定的哈希值查找组件，
  * 并处理组件的索引、字符串比较和内存管理操作。
@@ -312201,8 +311205,7 @@ LAB_18084fe67:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18084fce0(longlong *uiContext)
 
 {
@@ -312459,8 +311462,7 @@ void FUN_18085019a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808501b0(longlong *uiContext)
 
 {
@@ -312693,8 +311695,7 @@ LAB_180850347:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808501c0(longlong *uiContext)
 
 {
@@ -312951,8 +311952,7 @@ void FUN_18085067a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180850690(longlong *uiContext)
 
 {
@@ -313185,8 +312185,7 @@ LAB_180850827:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808506a0(longlong *uiContext)
 
 {
@@ -313443,8 +312442,7 @@ void FUN_180850b5a(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180850b70(UIHandle *uiContext,UIHandle dataSource,longlong targetBuffer,UIHandle *bufferSize)
 void FUN_180850b70(UIHandle *uiContext,UIHandle dataSource,longlong targetBuffer,UIHandle *bufferSize)
@@ -315112,8 +314110,7 @@ LAB_180851f6d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180852090(UIHandle *uiContext,UIHandle *dataSource)
 void FUN_180852090(UIHandle *uiContext,UIHandle *dataSource)
@@ -315568,8 +314565,7 @@ LAB_180852980:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085219c(void)
 void FUN_18085219c(void)
@@ -316284,8 +315280,7 @@ UIHandle FUN_180852d23(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180852d40(longlong *uiContext,UIDword *dataSource,UIHandle *targetBuffer)
 
 {
@@ -316423,8 +315418,7 @@ LAB_180852f9c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180852d79(void)
 
 {
@@ -316567,8 +315561,7 @@ LAB_180852f9c:
 
 
  WARNING: Removing unreachable block (ram,0x000180852f3e)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180852f68(void)
 
 {
@@ -316715,8 +315708,7 @@ UIHandle FUN_180853180(longlong uiContext,int dataSource,UIDword targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180853230(longlong uiContext)
 void FUN_180853230(longlong uiContext)
@@ -316792,8 +315784,7 @@ UIHandle FUN_180853260(longlong *uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808532e0(longlong *uiContext,int dataSource)
 
 {
@@ -316829,8 +315820,7 @@ LAB_180853370:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180853304(UIHandle uiContext,int dataSource)
 
 {
@@ -316918,8 +315908,7 @@ UIHandle FUN_180853470(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong * FUN_180853560(longlong *uiContext,UIHandle *dataSource)
 
 {
@@ -317039,8 +316028,7 @@ LAB_180853768:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180853790(longlong *uiContext)
 
 {
@@ -317591,8 +316579,7 @@ UIHandle FUN_180854040(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180854200(longlong uiContext)
 
 {
@@ -317630,8 +316617,7 @@ UIHandle FUN_180854200(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808542a0(longlong uiContext,int *dataSource,uint targetBuffer,uint bufferSize,char resultPointer)
 
 {
@@ -317792,8 +316778,7 @@ LAB_1808545a3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808542fa(void)
 
 {
@@ -317953,8 +316938,7 @@ LAB_1808545a3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_1808545c4(UIHandle uiContext,longlong dataSource)
 
 {
@@ -317972,8 +316956,7 @@ UIDword FUN_1808545c4(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 FUN_180854610(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,UIDword bufferSize,
              UIDword resultPointer,UIDword param_6)
@@ -318066,8 +317049,7 @@ LAB_1808547bc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_18085461a(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,UIDword bufferSize)
 
 {
@@ -318158,8 +317140,7 @@ LAB_1808547bc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_1808547cb(void)
 
 {
@@ -318178,8 +317159,7 @@ UIDword FUN_1808547cb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180854810(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,UIHandle *bufferSize)
 
 {
@@ -318259,8 +317239,7 @@ LAB_180854958:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180854818(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,UIHandle *bufferSize,
                  UIHandle resultPointer,ulonglong param_6,UIHandle param_7,longlong param_8)
 
@@ -318346,8 +317325,7 @@ LAB_180854958:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_18085497c(void)
 
 {
@@ -318818,8 +317796,7 @@ void FUN_180854f55(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180854f70(longlong uiContext,UIHandle *dataSource,longlong targetBuffer,UIDword *bufferSize,
 void FUN_180854f70(longlong uiContext,UIHandle *dataSource,longlong targetBuffer,UIDword *bufferSize,
@@ -319017,8 +317994,7 @@ FUN_180855130(longlong uiContext,longlong dataSource,uint *targetBuffer,int buff
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808552c0(longlong uiContext)
 
 {
@@ -319074,8 +318050,7 @@ int FUN_1808552c0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808552ca(longlong uiContext)
 
 {
@@ -319130,8 +318105,7 @@ int FUN_1808552ca(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180855370(void)
 
 {
@@ -319150,8 +318124,7 @@ UIDword FUN_180855370(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808553b0(longlong *uiContext)
 
 {
@@ -319273,8 +318246,7 @@ UIHandle FUN_180855467(uint uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808554a0(longlong *uiContext)
 
 {
@@ -319455,8 +318427,7 @@ UIHandle FUN_18085555e(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808555a0(longlong *uiContext)
 
 {
@@ -319633,8 +318604,7 @@ UIHandle FUN_18085565f(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808556a0(longlong *uiContext)
 void FUN_1808556a0(longlong *uiContext)
@@ -319671,8 +318641,7 @@ void FUN_1808556a0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808556b9(void)
 void FUN_1808556b9(void)
@@ -319719,8 +318688,7 @@ void FUN_180855774(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180855780(longlong *uiContext)
 void FUN_180855780(longlong *uiContext)
@@ -319837,8 +318805,7 @@ UIHandle FUN_1808558e0(UIHandle uiContext,longlong dataSource,longlong targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808559c0(UIHandle *uiContext)
 
 {
@@ -320607,8 +319574,7 @@ UIHandle * FUN_180856099(UIHandle uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808560c0(longlong uiContext)
 
 {
@@ -320693,8 +319659,7 @@ LAB_180856179:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808561bc(void)
 
 {
@@ -321446,8 +320411,7 @@ UIHandle FUN_180856c80(longlong uiContext,uint *dataSource,UIHandle *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180856d20(longlong uiContext,UIHandle *dataSource,UIHandle targetBuffer)
 
 {
@@ -321542,8 +320506,7 @@ UIHandle FUN_180856d20(longlong uiContext,UIHandle *dataSource,UIHandle targetBu
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180856ec0(longlong uiContext,UIHandle *dataSource)
 void FUN_180856ec0(longlong uiContext,UIHandle *dataSource)
@@ -322425,8 +321388,7 @@ UIHandle FUN_180857b40(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180857b70(longlong uiContext,longlong dataSource)
 void FUN_180857b70(longlong uiContext,longlong dataSource)
@@ -322764,8 +321726,7 @@ void FUN_180857de5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 undefined * FUN_180857df0(void)
 
 {
@@ -322782,8 +321743,7 @@ undefined * FUN_180857df0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180857e50(longlong uiContext,uint *dataSource,int targetBuffer,uint bufferSize)
 
 {
@@ -323662,8 +322622,7 @@ LAB_180858e04:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180859210(longlong uiContext,longlong *dataSource)
 
 {
@@ -323694,8 +322653,7 @@ UIHandle FUN_180859210(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808592c0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong *bufferSize)
 
 {
@@ -323783,8 +322741,7 @@ UIHandle FUN_1808592c0(longlong uiContext,longlong dataSource,UIHandle targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808592ca(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong *bufferSize)
 
 {
@@ -323949,8 +322906,7 @@ UIHandle FUN_1808593e4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180859470(longlong *uiContext,int dataSource)
 
 {
@@ -324012,8 +322968,7 @@ LAB_180859535:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180859494(void)
 
 {
@@ -324082,8 +323037,7 @@ UIHandle FUN_180859580(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808595a0(longlong *uiContext,int dataSource)
 
 {
@@ -324145,8 +323099,7 @@ LAB_180859665:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808595c4(UIHandle uiContext,int dataSource)
 
 {
@@ -324215,8 +323168,7 @@ UIHandle FUN_1808596b0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808596d0(longlong uiContext,longlong dataSource)
 void FUN_1808596d0(longlong uiContext,longlong dataSource)
@@ -324444,8 +323396,7 @@ UIHandle FUN_180859a50(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180859ba0(longlong uiContext,longlong *dataSource)
 void FUN_180859ba0(longlong uiContext,longlong *dataSource)
@@ -324540,8 +323491,7 @@ LAB_180859ef9:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180859f30(longlong uiContext,int *dataSource,uint targetBuffer,uint bufferSize,uint resultPointer,uint param_6)
 
 {
@@ -324807,8 +323757,7 @@ LAB_18085a4fd:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18085a550(longlong uiContext,int *dataSource,uint targetBuffer,uint bufferSize,uint resultPointer,uint param_6)
 
 {
@@ -325014,8 +323963,7 @@ LAB_18085a91b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18085a5e5(void)
 
 {
@@ -325215,8 +324163,7 @@ LAB_18085a91b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_18085a934(UIHandle uiContext,longlong dataSource)
 
 {
@@ -325234,8 +324181,7 @@ UIDword FUN_18085a934(UIHandle uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18085a980(longlong uiContext)
 
 {
@@ -325428,8 +324374,7 @@ longlong FUN_18085ac39(void)
 
 
  WARNING: Removing unreachable block (ram,0x000180857ea9)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18085aca0(longlong uiContext)
 
 {
@@ -326308,8 +325253,7 @@ LAB_180858e04:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18085acd0(longlong uiContext,longlong *dataSource,uint *targetBuffer,ulonglong *bufferSize,char resultPointer,
              char param_6,UIByte param_7)
@@ -326629,8 +325573,7 @@ UIHandle FUN_18085b200(longlong uiContext,uint *dataSource,longlong *targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18085b580(longlong uiContext,uint dataSource,longlong targetBuffer,longlong bufferSize)
 
 {
@@ -326778,8 +325721,7 @@ LAB_18085b8b5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18085b595(longlong uiContext,uint dataSource,longlong targetBuffer,longlong bufferSize)
 
 {
@@ -326928,8 +325870,7 @@ LAB_18085b8b5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085b8e0(void)
 void FUN_18085b8e0(void)
@@ -326941,8 +325882,7 @@ void FUN_18085b8e0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong * FUN_18085b920(longlong uiContext,longlong *dataSource)
 
 {
@@ -327000,8 +325940,7 @@ longlong * FUN_18085b920(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong * FUN_18085ba10(longlong uiContext,longlong *dataSource)
 
 {
@@ -327122,8 +326061,7 @@ void FUN_18085bbe0(longlong uiContext,UIDword dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle
 FUN_18085bc30(longlong uiContext,uint dataSource,char targetBuffer,char bufferSize,UIHandle *resultPointer)
 
@@ -327438,8 +326376,7 @@ FUN_18085bc30(longlong uiContext,uint dataSource,char targetBuffer,char bufferSi
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085c230(longlong uiContext,ulonglong dataSource)
 void FUN_18085c230(longlong uiContext,ulonglong dataSource)
@@ -327562,8 +326499,7 @@ void FUN_18085c230(longlong uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword
 FUN_18085c4b0(longlong uiContext,longlong dataSource,UIDword targetBuffer,uint bufferSize,longlong *resultPointer)
 
@@ -327713,8 +326649,7 @@ UIDword * FUN_18085c820(longlong uiContext,UIDword *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 longlong * FUN_18085c8a0(longlong uiContext,longlong *dataSource)
 
 {
@@ -327772,8 +326707,7 @@ longlong * FUN_18085c8a0(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085ca30(longlong uiContext,ulonglong dataSource)
 void FUN_18085ca30(longlong uiContext,ulonglong dataSource)
@@ -328319,8 +327253,7 @@ LAB_18085d61f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18085d650(longlong uiContext,UIByte *dataSource)
 
 {
@@ -328392,8 +327325,7 @@ LAB_18085d78f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085d7f0(longlong *uiContext,UIHandle dataSource,UIDword targetBuffer)
 void FUN_18085d7f0(longlong *uiContext,UIHandle dataSource,UIDword targetBuffer)
@@ -328538,8 +327470,7 @@ UIHandle FUN_18085d860(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBu
  WARNING: Removing unreachable block (ram,0x000180747f8a)
  WARNING: Removing unreachable block (ram,0x000180747f92)
  WARNING: Removing unreachable block (ram,0x000180747fef)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_18085dbf0(longlong *uiContext)
 
 {
@@ -328585,8 +327516,7 @@ uint FUN_18085dbf0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085dca0(longlong *uiContext)
 void FUN_18085dca0(longlong *uiContext)
@@ -328691,8 +327621,7 @@ void FUN_18085dd7c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085dff0(UIHandle *uiContext)
 void FUN_18085dff0(UIHandle *uiContext)
@@ -328855,8 +327784,7 @@ LAB_18085e1d5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085e003(UIHandle *uiContext)
 void FUN_18085e003(UIHandle *uiContext)
@@ -329018,8 +327946,7 @@ LAB_18085e1d5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085e112(void)
 void FUN_18085e112(void)
@@ -329135,8 +328062,7 @@ LAB_18085e1d5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085e221(void)
 void FUN_18085e221(void)
@@ -329151,8 +328077,7 @@ void FUN_18085e221(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18085e4a0(longlong uiContext)
 void FUN_18085e4a0(longlong uiContext)
@@ -331447,8 +330372,7 @@ UIHandle FUN_1808603f6(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180860480(longlong uiContext,UIHandle dataSource,UIHandle *targetBuffer,char bufferSize)
 void FUN_180860480(longlong uiContext,UIHandle dataSource,UIHandle *targetBuffer,char bufferSize)
@@ -331563,8 +330487,7 @@ UIHandle FUN_180860650(longlong uiContext,UIHandle dataSource,longlong *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180860690(longlong uiContext,UIHandle *dataSource)
 void FUN_180860690(longlong uiContext,UIHandle *dataSource)
@@ -332286,8 +331209,7 @@ FUN_1808616bc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180860737(void)
 void FUN_180860737(void)
@@ -332978,8 +331900,7 @@ void FUN_1808616bc(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808616d8(void)
 void FUN_1808616d8(void)
@@ -333843,8 +332764,7 @@ void FUN_180861cd0(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861ce0(longlong *uiContext,int dataSource)
 
 {
@@ -333919,8 +332839,7 @@ UIHandle FUN_180861ce0(longlong *uiContext,int dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861d0b(void)
 
 {
@@ -333998,8 +332917,7 @@ UIHandle FUN_180861d0b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861d76(longlong uiContext)
 
 {
@@ -334066,8 +332984,7 @@ UIHandle FUN_180861d76(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861d98(UIHandle uiContext,UIHandle dataSource)
 
 {
@@ -334132,8 +333049,7 @@ UIHandle FUN_180861d98(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861e7c(void)
 
 {
@@ -334152,8 +333068,7 @@ UIHandle FUN_180861e7c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861e8b(void)
 
 {
@@ -334180,8 +333095,7 @@ UIHandle FUN_180861ed5(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861ef0(longlong *uiContext,int dataSource)
 
 {
@@ -334228,8 +333142,7 @@ LAB_180861f94:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180861f14(UIHandle uiContext,int dataSource)
 
 {
@@ -334283,8 +333196,7 @@ UIHandle FUN_180861fdf(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180862000(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180862000(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
@@ -334309,8 +333221,7 @@ void FUN_180862000(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180862080(longlong uiContext,longlong *dataSource,UIHandle targetBuffer)
 void FUN_180862080(longlong uiContext,longlong *dataSource,UIHandle targetBuffer)
@@ -334890,8 +333801,7 @@ UIHandle FUN_180862910(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808629a0(longlong uiContext,UIHandle dataSource,char targetBuffer)
 void FUN_1808629a0(longlong uiContext,UIHandle dataSource,char targetBuffer)
@@ -334975,8 +333885,7 @@ void FUN_1808629a0(longlong uiContext,UIHandle dataSource,char targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808629e9(longlong *uiContext)
 void FUN_1808629e9(longlong *uiContext)
@@ -335028,8 +333937,7 @@ void FUN_1808629e9(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808629f1(longlong *uiContext)
 void FUN_1808629f1(longlong *uiContext)
@@ -335099,8 +334007,7 @@ void FUN_180862a7d(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180862ad1(void)
 void FUN_180862ad1(void)
@@ -335141,8 +334048,7 @@ void FUN_180862ad1(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180862ae8(void)
 void FUN_180862ae8(void)
@@ -335370,8 +334276,7 @@ LAB_180862dd7:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180862e00(longlong uiContext,byte dataSource)
 
 {
@@ -335669,8 +334574,7 @@ LAB_180863343:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180863420(longlong uiContext)
 
 {
@@ -335830,8 +334734,7 @@ LAB_180863795:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180863430(ulonglong uiContext)
 
 {
@@ -336309,8 +335212,7 @@ UIHandle FUN_180863b80(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180863bd0(void)
 void FUN_180863bd0(void)
@@ -336794,8 +335696,7 @@ LAB_180864019:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180864040(longlong uiContext)
 
 {
@@ -337399,8 +336300,7 @@ void FUN_180864780(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180864850(longlong uiContext)
 void FUN_180864850(longlong uiContext)
@@ -339333,8 +338233,7 @@ UIHandle * FUN_180865bc0(UIHandle *uiContext,ulonglong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180865c20(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 
 {
@@ -339491,8 +338390,7 @@ UIHandle FUN_180865e20(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180865ec0(longlong *uiContext)
 
 {
@@ -339553,8 +338451,7 @@ UIHandle FUN_180865f90(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180865fc0(longlong uiContext,UIWord dataSource,UIHandle targetBuffer,char bufferSize)
 
 {
@@ -339661,8 +338558,7 @@ LAB_180866197:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808661e0(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 {
@@ -339737,8 +338633,7 @@ UIHandle FUN_1808661e0(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180866340(longlong uiContext,UIHandle *dataSource)
 
 {
@@ -339767,8 +338662,7 @@ UIHandle FUN_180866340(longlong uiContext,UIHandle *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180866550(UIHandle uiContext,longlong dataSource)
 void FUN_180866550(UIHandle uiContext,longlong dataSource)
@@ -340011,8 +338905,7 @@ UIHandle FUN_180866a90(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180866ba0(longlong uiContext,UIHandle dataSource)
 
 {
@@ -340065,8 +338958,7 @@ UIHandle FUN_180866ba0(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180866c90(longlong uiContext)
 void FUN_180866c90(longlong uiContext)
@@ -340090,8 +338982,7 @@ void FUN_180866c90(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180866d00(longlong uiContext,int dataSource,char targetBuffer,char bufferSize)
 
 {
@@ -340205,8 +339096,7 @@ UIHandle FUN_180866d00(longlong uiContext,int dataSource,char targetBuffer,char 
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180866e25(void)
 
 {
@@ -340323,8 +339213,7 @@ int FUN_180866f50(UIHandle uiContext,UIDword *dataSource,UIHandle *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180866fe0(UIHandle *uiContext,longlong *dataSource,char targetBuffer)
 
 {
@@ -340656,8 +339545,7 @@ UIHandle FUN_180867470(longlong uiContext,UIHandle dataSource,ulonglong targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808674e0(longlong *uiContext,longlong dataSource)
 void FUN_1808674e0(longlong *uiContext,longlong dataSource)
@@ -340752,8 +339640,7 @@ LAB_180867645:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808676f0(longlong *uiContext,int dataSource)
 
 {
@@ -340813,8 +339700,7 @@ LAB_1808677af:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180867714(UIHandle uiContext,int dataSource)
 
 {
@@ -341086,8 +339972,7 @@ FUN_180867b40(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180867bc0(UIHandle *uiContext)
 
 {
@@ -341168,8 +340053,7 @@ FUN_180867cf0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,UIHan
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_180867d60(UIHandle *uiContext)
 
 {
@@ -341259,8 +340143,7 @@ LAB_180867f55:
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180867f80(longlong uiContext,uint dataSource,UIHandle *targetBuffer)
 void FUN_180867f80(longlong uiContext,uint dataSource,UIHandle *targetBuffer)
@@ -341505,8 +340388,7 @@ UIHandle FUN_1808682e0(longlong uiContext,UIDword *dataSource,UIDword *targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180868330(longlong uiContext,UIHandle *dataSource)
 void FUN_180868330(longlong uiContext,UIHandle *dataSource)
@@ -341664,8 +340546,7 @@ void FUN_180868459(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180868490(longlong uiContext,longlong dataSource,longlong targetBuffer)
 void FUN_180868490(longlong uiContext,longlong dataSource,longlong targetBuffer)
@@ -341780,8 +340661,7 @@ UIHandle FUN_1808686a0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180868700(longlong *uiContext,int dataSource)
 
 {
@@ -341817,8 +340697,7 @@ LAB_180868794:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180868724(UIHandle uiContext,int dataSource)
 
 {
@@ -342088,8 +340967,7 @@ UIHandle FUN_180868a6c(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180868a80(char uiContext,UIHandle dataSource,longlong *targetBuffer,longlong *bufferSize)
 void FUN_180868a80(char uiContext,UIHandle dataSource,longlong *targetBuffer,longlong *bufferSize)
@@ -342789,8 +341667,7 @@ LAB_1808699bc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180869a50(longlong *uiContext,UIHandle dataSource)
 void FUN_180869a50(longlong *uiContext,UIHandle dataSource)
@@ -342813,8 +341690,7 @@ void FUN_180869a50(longlong *uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180869ab0(longlong *uiContext,UIHandle dataSource)
 void FUN_180869ab0(longlong *uiContext,UIHandle dataSource)
@@ -342837,8 +341713,7 @@ void FUN_180869ab0(longlong *uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180869b10(longlong uiContext,UIHandle *dataSource)
 void FUN_180869b10(longlong uiContext,UIHandle *dataSource)
@@ -343092,8 +341967,7 @@ void FUN_180869cee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180869d10(longlong uiContext,UIHandle *dataSource)
 void FUN_180869d10(longlong uiContext,UIHandle *dataSource)
@@ -343347,8 +342221,7 @@ void FUN_180869eee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180869f10(longlong uiContext,UIHandle *dataSource)
 void FUN_180869f10(longlong uiContext,UIHandle *dataSource)
@@ -343602,8 +342475,7 @@ void FUN_18086a0ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086a110(longlong uiContext,UIHandle *dataSource)
 void FUN_18086a110(longlong uiContext,UIHandle *dataSource)
@@ -343857,8 +342729,7 @@ void FUN_18086a2ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086a310(longlong uiContext,UIHandle *dataSource)
 void FUN_18086a310(longlong uiContext,UIHandle *dataSource)
@@ -344112,8 +342983,7 @@ void FUN_18086a4ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086a510(longlong uiContext,UIHandle *dataSource)
 void FUN_18086a510(longlong uiContext,UIHandle *dataSource)
@@ -344367,8 +343237,7 @@ void FUN_18086a6ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086a710(longlong uiContext,UIHandle *dataSource)
 void FUN_18086a710(longlong uiContext,UIHandle *dataSource)
@@ -344622,8 +343491,7 @@ void FUN_18086a8ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086a910(longlong uiContext,UIHandle *dataSource)
 void FUN_18086a910(longlong uiContext,UIHandle *dataSource)
@@ -344877,8 +343745,7 @@ void FUN_18086aaee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086ab10(longlong uiContext,UIHandle *dataSource)
 void FUN_18086ab10(longlong uiContext,UIHandle *dataSource)
@@ -345132,8 +343999,7 @@ void FUN_18086accb(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086acf0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086acf0(longlong uiContext,UIHandle *dataSource)
@@ -345387,8 +344253,7 @@ void FUN_18086aeab(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086aed0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086aed0(longlong uiContext,UIHandle *dataSource)
@@ -345642,8 +344507,7 @@ void FUN_18086b0ae(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086b0d0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086b0d0(longlong uiContext,UIHandle *dataSource)
@@ -345897,8 +344761,7 @@ void FUN_18086b2ae(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086b2d0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086b2d0(longlong uiContext,UIHandle *dataSource)
@@ -346152,8 +345015,7 @@ void FUN_18086b48b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086b4b0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086b4b0(longlong uiContext,UIHandle *dataSource)
@@ -346407,8 +345269,7 @@ void FUN_18086b68e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086b6b0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086b6b0(longlong uiContext,UIHandle *dataSource)
@@ -346662,8 +345523,7 @@ void FUN_18086b88e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086b8b0(longlong uiContext,UIHandle *dataSource)
 void FUN_18086b8b0(longlong uiContext,UIHandle *dataSource)
@@ -346917,8 +345777,7 @@ void FUN_18086ba6b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086ba90(longlong uiContext,UIHandle *dataSource)
 void FUN_18086ba90(longlong uiContext,UIHandle *dataSource)
@@ -347172,8 +346031,7 @@ void FUN_18086bc6e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086bc90(longlong uiContext,UIHandle *dataSource)
 void FUN_18086bc90(longlong uiContext,UIHandle *dataSource)
@@ -347427,8 +346285,7 @@ void FUN_18086be6e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086be90(longlong uiContext,UIHandle *dataSource)
 void FUN_18086be90(longlong uiContext,UIHandle *dataSource)
@@ -347682,8 +346539,7 @@ void FUN_18086c06e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086c090(longlong uiContext,UIHandle *dataSource)
 void FUN_18086c090(longlong uiContext,UIHandle *dataSource)
@@ -347937,8 +346793,7 @@ void FUN_18086c26e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086c290(longlong uiContext,UIHandle *dataSource)
 void FUN_18086c290(longlong uiContext,UIHandle *dataSource)
@@ -348192,8 +347047,7 @@ void FUN_18086c44b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086c470(longlong uiContext,UIHandle *dataSource)
 void FUN_18086c470(longlong uiContext,UIHandle *dataSource)
@@ -348447,8 +347301,7 @@ void FUN_18086c64e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086c670(longlong uiContext,UIHandle *dataSource)
 void FUN_18086c670(longlong uiContext,UIHandle *dataSource)
@@ -348702,8 +347555,7 @@ void FUN_18086c84e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086c870(longlong uiContext,UIHandle *dataSource)
 void FUN_18086c870(longlong uiContext,UIHandle *dataSource)
@@ -348957,8 +347809,7 @@ void FUN_18086ca4e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086ca70(longlong uiContext,UIHandle *dataSource)
 void FUN_18086ca70(longlong uiContext,UIHandle *dataSource)
@@ -349212,8 +348063,7 @@ void FUN_18086cc4e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086cc70(longlong uiContext,UIHandle *dataSource)
 void FUN_18086cc70(longlong uiContext,UIHandle *dataSource)
@@ -349467,8 +348317,7 @@ void FUN_18086ce4e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086ce70(longlong uiContext,UIHandle *dataSource)
 void FUN_18086ce70(longlong uiContext,UIHandle *dataSource)
@@ -349722,8 +348571,7 @@ void FUN_18086d04e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086d070(longlong uiContext,UIHandle *dataSource)
 void FUN_18086d070(longlong uiContext,UIHandle *dataSource)
@@ -349977,8 +348825,7 @@ void FUN_18086d24e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086d270(longlong uiContext,UIHandle *dataSource)
 void FUN_18086d270(longlong uiContext,UIHandle *dataSource)
@@ -350366,8 +349213,7 @@ FUN_18086d620(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086d7d0(longlong uiContext,longlong *dataSource)
 
 {
@@ -350430,8 +349276,7 @@ LAB_18086d8a4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086d930(longlong uiContext,longlong *dataSource)
 
 {
@@ -350891,8 +349736,7 @@ LAB_18086dd0b:
 
 
  WARNING: Removing unreachable block (ram,0x00018086df1b)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086ddc0(longlong uiContext,longlong *dataSource)
 
 {
@@ -350947,8 +349791,7 @@ LAB_18086de7b:
 
 
  WARNING: Removing unreachable block (ram,0x00018086df1b)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086ddc8(longlong uiContext,longlong *dataSource)
 
 {
@@ -351082,8 +349925,7 @@ LAB_18086dffb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086e090(longlong uiContext,longlong dataSource)
 
 {
@@ -351215,8 +350057,7 @@ LAB_18086e2ac:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086e330(longlong uiContext,longlong dataSource)
 
 {
@@ -351348,8 +350189,7 @@ LAB_18086e53b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086e5c0(longlong uiContext,longlong dataSource)
 
 {
@@ -351478,8 +350318,7 @@ LAB_18086e7cb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086e860(longlong uiContext,UIHandle dataSource)
 
 {
@@ -351605,8 +350444,7 @@ LAB_18086ea7b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086eb00(longlong uiContext,longlong dataSource)
 
 {
@@ -351738,8 +350576,7 @@ LAB_18086ed1c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086eda0(longlong uiContext,longlong dataSource)
 
 {
@@ -351871,8 +350708,7 @@ LAB_18086efbb:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086f040(longlong uiContext,longlong dataSource)
 
 {
@@ -352004,8 +350840,7 @@ LAB_18086f26b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18086f300(longlong uiContext,longlong dataSource)
 
 {
@@ -352201,8 +351036,7 @@ void FUN_18086f5fd(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086f610(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 void FUN_18086f610(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
@@ -352271,8 +351105,7 @@ void FUN_18086f610(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18086f69d(void)
 void FUN_18086f69d(void)
@@ -353056,8 +351889,7 @@ UIHandle FUN_1808719a0(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBu
  WARNING: Removing unreachable block (ram,0x0001808831c0)
  WARNING: Removing unreachable block (ram,0x000180883213)
  WARNING: Removing unreachable block (ram,0x000180883279)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_180872300(longlong *uiContext)
 
 {
@@ -353114,8 +351946,7 @@ uint FUN_180872300(longlong *uiContext)
  WARNING: Removing unreachable block (ram,0x000180883340)
  WARNING: Removing unreachable block (ram,0x000180883393)
  WARNING: Removing unreachable block (ram,0x000180883405)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_1808723c0(longlong *uiContext)
 
 {
@@ -353170,8 +352001,7 @@ uint FUN_1808723c0(longlong *uiContext)
  WARNING: Removing unreachable block (ram,0x0001808836ae)
  WARNING: Removing unreachable block (ram,0x0001808836c0)
  WARNING: Removing unreachable block (ram,0x000180883732)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_180872480(longlong *uiContext)
 
 {
@@ -353219,8 +352049,7 @@ uint FUN_180872480(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180872540(longlong *uiContext)
 void FUN_180872540(longlong *uiContext)
@@ -353276,8 +352105,7 @@ LAB_18087257d:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180872630(longlong *uiContext)
 
 {
@@ -353507,8 +352335,7 @@ UIHandle FUN_180872630(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180872cc0(longlong *uiContext)
 
 {
@@ -353605,8 +352432,7 @@ UIHandle FUN_180872cc0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180872ef0(longlong uiContext)
 void FUN_180872ef0(longlong uiContext)
@@ -353832,8 +352658,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180872f02(longlong uiContext,UIHandle dataSource,uint targetBuffer)
 void FUN_180872f02(longlong uiContext,UIHandle dataSource,uint targetBuffer)
@@ -354059,8 +352884,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180872f0b(longlong uiContext,uint dataSource,uint targetBuffer)
 void FUN_180872f0b(longlong uiContext,uint dataSource,uint targetBuffer)
@@ -354287,8 +353111,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18087304a(longlong uiContext)
 void FUN_18087304a(longlong uiContext)
@@ -354451,8 +353274,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18087306d(void)
 void FUN_18087306d(void)
@@ -354607,8 +353429,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18087309b(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 void FUN_18087309b(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
@@ -354750,8 +353571,7 @@ LAB_1808732e4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808732fb(void)
 void FUN_1808732fb(void)
@@ -354795,8 +353615,7 @@ void FUN_1808732fb(void)
  WARNING: Removing unreachable block (ram,0x000180867781)
  WARNING: Removing unreachable block (ram,0x000180867790)
  WARNING: Removing unreachable block (ram,0x0001808677fa)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_1808733a0(longlong *uiContext)
 
 {
@@ -355231,8 +354050,7 @@ void FUN_180873460(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180873cd0(longlong *uiContext)
 
 {
@@ -355522,8 +354340,7 @@ UIHandle FUN_1808741f0(longlong *uiContext,int *dataSource,int *targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180874340(longlong *uiContext)
 
 {
@@ -355683,8 +354500,7 @@ UIHandle FUN_1808744c7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808744f0(longlong *uiContext)
 
 {
@@ -355720,8 +354536,7 @@ UIHandle FUN_1808744f0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808745b0(longlong *uiContext)
 
 {
@@ -355757,8 +354572,7 @@ UIHandle FUN_1808745b0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180874670(longlong *uiContext)
 
 {
@@ -355878,8 +354692,7 @@ UIHandle FUN_18087471e(uint uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180874760(longlong *uiContext)
 void FUN_180874760(longlong *uiContext)
@@ -355967,8 +354780,7 @@ LAB_1808747d2:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180874940(longlong *uiContext)
 
 {
@@ -356048,8 +354860,7 @@ UIHandle FUN_180874940(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18087494c(longlong *uiContext)
 
 {
@@ -356138,8 +354949,7 @@ UIHandle FUN_18087494c(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180874980(UIDword uiContext)
 void FUN_180874980(UIDword uiContext)
@@ -356259,8 +355069,7 @@ UIDword FUN_180874b18(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180874b30(longlong uiContext)
 
 {
@@ -356512,8 +355321,7 @@ UIHandle FUN_180874b30(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180874ce3(void)
 
 {
@@ -356772,8 +355580,7 @@ void FUN_1808753d0(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180875520(longlong *uiContext)
 
 {
@@ -356864,8 +355671,7 @@ UIHandle FUN_180875520(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180875538(void)
 
 {
@@ -356952,8 +355758,7 @@ UIHandle FUN_180875538(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180875569(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
@@ -357712,8 +356517,7 @@ longlong FUN_1808761f0(longlong *uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808762b0(longlong uiContext,longlong *dataSource)
 void FUN_1808762b0(longlong uiContext,longlong *dataSource)
@@ -358167,8 +356971,7 @@ LAB_1808769aa:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180876428(void)
 void FUN_180876428(void)
@@ -358570,8 +357373,7 @@ UIHandle FUN_180876d70(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180876d90(longlong uiContext,longlong *dataSource)
 void FUN_180876d90(longlong uiContext,longlong *dataSource)
@@ -358627,8 +357429,7 @@ LAB_180876e6f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180876eb0(longlong uiContext,longlong *dataSource)
 void FUN_180876eb0(longlong uiContext,longlong *dataSource)
@@ -358692,8 +357493,7 @@ UIHandle FUN_180876fb0(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180877030(longlong uiContext,longlong *dataSource,longlong targetBuffer)
 void FUN_180877030(longlong uiContext,longlong *dataSource,longlong targetBuffer)
@@ -358851,8 +357651,7 @@ LAB_18087752c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180877560(longlong *uiContext,longlong *dataSource,longlong *targetBuffer)
 void FUN_180877560(longlong *uiContext,longlong *dataSource,longlong *targetBuffer)
@@ -359037,8 +357836,7 @@ void FUN_1808777c0(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180877810(longlong uiContext,longlong *dataSource)
 void FUN_180877810(longlong uiContext,longlong *dataSource)
@@ -359105,8 +357903,7 @@ void FUN_180877810(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180877970(longlong uiContext,longlong *dataSource)
 void FUN_180877970(longlong uiContext,longlong *dataSource)
@@ -359312,8 +358109,7 @@ LAB_180877dfe:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180877f00(longlong uiContext,longlong *dataSource)
 void FUN_180877f00(longlong uiContext,longlong *dataSource)
@@ -359379,8 +358175,7 @@ void FUN_180877f00(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808780d0(longlong uiContext,longlong *dataSource)
 void FUN_1808780d0(longlong uiContext,longlong *dataSource)
@@ -359472,8 +358267,7 @@ LAB_18087811f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808782a0(longlong uiContext,longlong *dataSource,longlong *targetBuffer)
 void FUN_1808782a0(longlong uiContext,longlong *dataSource,longlong *targetBuffer)
@@ -359709,8 +358503,7 @@ LAB_180878722:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808782c0(longlong uiContext,UIHandle dataSource,longlong *targetBuffer)
 void FUN_1808782c0(longlong uiContext,UIHandle dataSource,longlong *targetBuffer)
@@ -359960,8 +358753,7 @@ void FUN_180878771(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808787b5(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong *bufferSize)
 void FUN_1808787b5(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong *bufferSize)
@@ -360107,8 +358899,7 @@ LAB_1808786e5:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808787d0(longlong uiContext,longlong *dataSource,UIHandle *targetBuffer,longlong bufferSize,
 void FUN_1808787d0(longlong uiContext,longlong *dataSource,UIHandle *targetBuffer,longlong bufferSize,
@@ -360481,8 +359272,7 @@ FUN_18087920b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808789b7(float uiContext)
 void FUN_1808789b7(float uiContext)
@@ -360789,8 +359579,7 @@ void FUN_18087920b(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180879232(void)
 void FUN_180879232(void)
@@ -361034,8 +359823,7 @@ LAB_180879203:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180879270(longlong uiContext,longlong *dataSource)
 void FUN_180879270(longlong uiContext,longlong *dataSource)
@@ -361651,8 +360439,7 @@ void FUN_180879ad0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879aef. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1b8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1b8))(uiContext,result,1);
   return;
 }
 
@@ -361667,8 +360454,7 @@ void FUN_180879b00(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879b1f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x228))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x228))(uiContext,result,1);
   return;
 }
 
@@ -361683,8 +360469,7 @@ void FUN_180879b30(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879b4f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1d8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1d8))(uiContext,result,1);
   return;
 }
 
@@ -361699,8 +360484,7 @@ void FUN_180879b60(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879b7f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1b0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1b0))(uiContext,result,1);
   return;
 }
 
@@ -361715,8 +360499,7 @@ void FUN_180879b90(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879baf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x180))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x180))(uiContext,result,1);
   return;
 }
 
@@ -361731,8 +360514,7 @@ void FUN_180879bc0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879bdf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1e8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1e8))(uiContext,result,1);
   return;
 }
 
@@ -361747,8 +360529,7 @@ void FUN_180879bf0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879c0f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1a8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1a8))(uiContext,result,1);
   return;
 }
 
@@ -361763,8 +360544,7 @@ void FUN_180879c20(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879c3f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1e0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1e0))(uiContext,result,1);
   return;
 }
 
@@ -361779,8 +360559,7 @@ void FUN_180879c50(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879c6f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x248))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x248))(uiContext,result,1);
   return;
 }
 
@@ -361795,8 +360574,7 @@ void FUN_180879c80(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879c9f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x250))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x250))(uiContext,result,1);
   return;
 }
 
@@ -361811,8 +360589,7 @@ void FUN_180879cb0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879ccf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1c0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1c0))(uiContext,result,1);
   return;
 }
 
@@ -361827,8 +360604,7 @@ void FUN_180879ce0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879cff. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x178))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x178))(uiContext,result,1);
   return;
 }
 
@@ -361843,8 +360619,7 @@ void FUN_180879d10(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879d2f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x240))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x240))(uiContext,result,1);
   return;
 }
 
@@ -361859,8 +360634,7 @@ void FUN_180879d40(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879d5f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x170))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x170))(uiContext,result,1);
   return;
 }
 
@@ -361875,8 +360649,7 @@ void FUN_180879d70(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879d8f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1f8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1f8))(uiContext,result,1);
   return;
 }
 
@@ -361891,8 +360664,7 @@ void FUN_180879da0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879dbf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x230))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x230))(uiContext,result,1);
   return;
 }
 
@@ -361907,8 +360679,7 @@ void FUN_180879dd0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879def. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 400))(uiContext,result,1);
+                       (**(code **)(*uiContext + 400))(uiContext,result,1);
   return;
 }
 
@@ -361923,8 +360694,7 @@ void FUN_180879e00(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879e1f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x188))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x188))(uiContext,result,1);
   return;
 }
 
@@ -361939,8 +360709,7 @@ void FUN_180879e30(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879e4f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x220))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x220))(uiContext,result,1);
   return;
 }
 
@@ -361955,8 +360724,7 @@ void FUN_180879e60(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879e7f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x200))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x200))(uiContext,result,1);
   return;
 }
 
@@ -361971,8 +360739,7 @@ void FUN_180879e90(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879eaf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x238))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x238))(uiContext,result,1);
   return;
 }
 
@@ -361987,8 +360754,7 @@ void FUN_180879ec0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879edf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x168))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x168))(uiContext,result,1);
   return;
 }
 
@@ -362003,8 +360769,7 @@ void FUN_180879ef0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879f0f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1f0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1f0))(uiContext,result,1);
   return;
 }
 
@@ -362019,8 +360784,7 @@ void FUN_180879f20(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879f3f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x218))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x218))(uiContext,result,1);
   return;
 }
 
@@ -362035,8 +360799,7 @@ void FUN_180879f50(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879f6f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x210))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x210))(uiContext,result,1);
   return;
 }
 
@@ -362051,8 +360814,7 @@ void FUN_180879f80(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879f9f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1d0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1d0))(uiContext,result,1);
   return;
 }
 
@@ -362067,8 +360829,7 @@ void FUN_180879fb0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879fcf. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1a0))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1a0))(uiContext,result,1);
   return;
 }
 
@@ -362083,8 +360844,7 @@ void FUN_180879fe0(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x000180879fff. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x198))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x198))(uiContext,result,1);
   return;
 }
 
@@ -362099,8 +360859,7 @@ void FUN_18087a010(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x00018087a02f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x208))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x208))(uiContext,result,1);
   return;
 }
 
@@ -362115,8 +360874,7 @@ void FUN_18087a040(longlong *uiContext)
   
   result = FUN_180847820();
                      WARNING: Could not recover jumptable at 0x00018087a05f. Too many branches
-                     WARNING: Treating indirect jump as call
-  (**(code **)(*uiContext + 0x1c8))(uiContext,result,1);
+                       (**(code **)(*uiContext + 0x1c8))(uiContext,result,1);
   return;
 }
 
@@ -362514,8 +361272,7 @@ void FUN_18087a740(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18087a790(longlong uiContext,UIHandle dataSource)
 void FUN_18087a790(longlong uiContext,UIHandle dataSource)
@@ -366321,8 +365078,7 @@ void FUN_18087c9b0(UIHandle uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,uint bufferSize,
                  UIHandle resultPointer)
 
@@ -367168,8 +365924,7 @@ UIHandle FUN_18087df01(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18087df20(longlong *uiContext,int dataSource,UIHandle *targetBuffer)
 
 {
@@ -367228,8 +365983,7 @@ UIHandle FUN_18087df20(longlong *uiContext,int dataSource,UIHandle *targetBuffer
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18087df50(int uiContext,uint dataSource)
 
 {
@@ -367286,8 +366040,7 @@ UIHandle FUN_18087df50(int uiContext,uint dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18087dfaf(void)
 
 {
@@ -368725,8 +367478,7 @@ LAB_180880327:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180880350(longlong uiContext,longlong *dataSource)
 
 {
@@ -370054,8 +368806,7 @@ UIHandle FUN_180881eb0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180881fa0(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer)
 void FUN_180881fa0(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer)
@@ -370626,8 +369377,7 @@ void FUN_1808823f2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180882400(longlong uiContext)
 void FUN_180882400(longlong uiContext)
@@ -370725,8 +369475,7 @@ LAB_18088254f:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180882440(void)
 void FUN_180882440(void)
@@ -371200,8 +369949,7 @@ UIHandle FUN_180882c20(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180882c70(longlong *uiContext,int dataSource)
 
 {
@@ -371277,8 +370025,7 @@ LAB_180882d69:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180882c94(void)
 
 {
@@ -371361,8 +370108,7 @@ UIHandle FUN_180882db4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180882dd0(longlong *uiContext,int dataSource)
 
 {
@@ -371421,8 +370167,7 @@ LAB_180882e99:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180882df4(UIHandle uiContext,int dataSource)
 
 {
@@ -371488,8 +370233,7 @@ UIHandle FUN_180882ee4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief 分配和管理UI上下文内存
  * 
@@ -371552,8 +370296,7 @@ LAB_180882fa1:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180882f24(UIHandle uiContext,int dataSource)
 
 {
@@ -371607,8 +370350,7 @@ UIHandle FUN_180882fec(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883010(longlong *uiContext,int dataSource)
 
 {
@@ -371644,8 +370386,7 @@ LAB_1808830a3:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883034(void)
 
 {
@@ -371688,8 +370429,7 @@ UIHandle FUN_1808830ee(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883110(longlong *uiContext,int dataSource)
 
 {
@@ -371786,8 +370526,7 @@ LAB_18088322e:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883134(void)
 
 {
@@ -371891,8 +370630,7 @@ UIHandle FUN_180883279(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883290(longlong *uiContext,int dataSource)
 
 {
@@ -371992,8 +370730,7 @@ LAB_1808833ba:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808832b4(void)
 
 {
@@ -372100,8 +370837,7 @@ UIHandle FUN_180883405(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883420(longlong *uiContext,int dataSource)
 
 {
@@ -372137,8 +370873,7 @@ LAB_1808834b4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883444(UIHandle uiContext,int dataSource)
 
 {
@@ -372181,8 +370916,7 @@ UIHandle FUN_1808834ff(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883520(longlong *uiContext,int dataSource)
 
 {
@@ -372218,8 +370952,7 @@ LAB_1808835b4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883544(UIHandle uiContext,int dataSource)
 
 {
@@ -372262,8 +370995,7 @@ UIHandle FUN_1808835ff(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883620(longlong *uiContext,int dataSource)
 
 {
@@ -372326,8 +371058,7 @@ LAB_1808836e7:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883644(void)
 
 {
@@ -372397,8 +371128,7 @@ UIHandle FUN_180883732(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883750(longlong *uiContext,int dataSource)
 
 {
@@ -372515,8 +371245,7 @@ LAB_1808838fe:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180883774(void)
 
 {
@@ -372689,8 +371418,7 @@ uint FUN_180883a00(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180883a30(UIHandle uiContext)
 void FUN_180883a30(UIHandle uiContext)
@@ -379150,8 +377878,7 @@ LAB_180889e09:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180889f10(longlong uiContext,uint *dataSource)
 
 {
@@ -379174,8 +377901,7 @@ UIHandle FUN_180889f10(longlong uiContext,uint *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180889f60(UIHandle uiContext,longlong dataSource)
 void FUN_180889f60(UIHandle uiContext,longlong dataSource)
@@ -379976,8 +378702,7 @@ UIHandle FUN_18088aee0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088af30(longlong uiContext,UIHandle dataSource,UIByte targetBuffer)
 void FUN_18088af30(longlong uiContext,UIHandle dataSource,UIByte targetBuffer)
@@ -380175,8 +378900,7 @@ FUN_18088b503:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088afd0(void)
 void FUN_18088afd0(void)
@@ -380926,8 +379650,7 @@ UIHandle FUN_18088c1b0(longlong uiContext,ulonglong *dataSource,uint targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088c290(longlong uiContext)
 
 {
@@ -381067,8 +379790,7 @@ UIHandle FUN_18088c401(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088c410(uint uiContext)
 
 {
@@ -381093,8 +379815,7 @@ UIHandle FUN_18088c410(uint uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088c449(void)
 
 {
@@ -381117,8 +379838,7 @@ UIHandle FUN_18088c449(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088c46a(void)
 void FUN_18088c46a(void)
@@ -381239,8 +379959,7 @@ UIHandle FUN_18088c790(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088c7c0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer)
 
 {
@@ -381275,8 +379994,7 @@ UIHandle FUN_18088c7c0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_18088c8a0(int *uiContext)
 
 {
@@ -381358,8 +380076,7 @@ void FUN_18088c9b0(int *uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088ca20(longlong uiContext,longlong dataSource,UIHandle *targetBuffer)
 
 {
@@ -381390,8 +380107,7 @@ UIHandle FUN_18088ca20(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIDword FUN_18088cae0(int *uiContext)
 
 {
@@ -381487,8 +380203,7 @@ longlong FUN_18088cbf0(longlong uiContext)
  WARNING: Removing unreachable block (ram,0x000180747e8a)
  WARNING: Removing unreachable block (ram,0x000180747e92)
  WARNING: Removing unreachable block (ram,0x000180747eef)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_18088ccd0(longlong *uiContext)
 
 {
@@ -381541,8 +380256,7 @@ uint FUN_18088ccd0(longlong *uiContext)
  WARNING: Removing unreachable block (ram,0x00018088e811)
  WARNING: Removing unreachable block (ram,0x00018088e820)
  WARNING: Removing unreachable block (ram,0x00018088e892)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_18088cd80(longlong *uiContext)
 
 {
@@ -381754,8 +380468,7 @@ int FUN_18088cfc0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d0c0(longlong uiContext)
 void FUN_18088d0c0(longlong uiContext)
@@ -381797,8 +380510,7 @@ void FUN_18088d0c0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d2be(void)
 void FUN_18088d2be(void)
@@ -381873,8 +380585,7 @@ void FUN_18088d2be(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d388(void)
 void FUN_18088d388(void)
@@ -381907,8 +380618,7 @@ void FUN_18088d388(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d510(longlong uiContext)
 void FUN_18088d510(longlong uiContext)
@@ -381972,8 +380682,7 @@ void FUN_18088d510(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d575(void)
 void FUN_18088d575(void)
@@ -382096,8 +380805,7 @@ LAB_18088d83c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d850(longlong uiContext)
 void FUN_18088d850(longlong uiContext)
@@ -382143,8 +380851,7 @@ void FUN_18088d850(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d880(void)
 void FUN_18088d880(void)
@@ -382187,8 +380894,7 @@ void FUN_18088d880(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d902(void)
 void FUN_18088d902(void)
@@ -382208,8 +380914,7 @@ void FUN_18088d902(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d90e(void)
 void FUN_18088d90e(void)
@@ -382227,8 +380932,7 @@ void FUN_18088d90e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088d9d0(void)
 void FUN_18088d9d0(void)
@@ -382270,8 +380974,7 @@ void FUN_18088da49(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088da50(longlong uiContext)
 
 {
@@ -382315,8 +381018,7 @@ UIHandle FUN_18088da50(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088da6d(void)
 void FUN_18088da6d(void)
@@ -382334,8 +381036,7 @@ void FUN_18088da6d(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088dad3(void)
 
 {
@@ -382374,8 +381075,7 @@ UIHandle FUN_18088dad3(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088daf0(longlong uiContext)
 
 {
@@ -382505,8 +381205,7 @@ UIHandle FUN_18088dcf0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088dd60(longlong uiContext,longlong *dataSource)
 void FUN_18088dd60(longlong uiContext,longlong *dataSource)
@@ -382794,8 +381493,7 @@ void FUN_18088e210(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088e220(longlong uiContext)
 void FUN_18088e220(longlong uiContext)
@@ -382821,8 +381519,7 @@ void FUN_18088e220(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088e480(longlong uiContext,longlong dataSource,UIByte targetBuffer,float bufferSize)
 
 {
@@ -382909,8 +381606,7 @@ UIHandle FUN_18088e480(longlong uiContext,longlong dataSource,UIByte targetBuffe
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088e4e4(void)
 
 {
@@ -383035,8 +381731,7 @@ UIHandle FUN_18088e700(longlong uiContext,longlong *dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088e780(longlong *uiContext,int dataSource)
 
 {
@@ -383106,8 +381801,7 @@ LAB_18088e847:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18088e7a4(UIHandle uiContext,int dataSource)
 
 {
@@ -383222,8 +381916,7 @@ UIHandle FUN_18088e8b0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088e970(longlong uiContext,longlong *dataSource,UIDword targetBuffer)
 void FUN_18088e970(longlong uiContext,longlong *dataSource,UIDword targetBuffer)
@@ -383274,7 +381967,20 @@ void FUN_18088e970(longlong uiContext,longlong *dataSource,UIDword targetBuffer)
 
 
 UIHandle
-FUN_18088ea60(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longlong bufferSize,longlong resultPointer)
+/**
+ * @brief 初始化UI系统
+ * 
+ * 初始化用户界面系统，设置UI组件和事件处理器
+ * 管理UI系统的核心功能和状态
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源类型 (0x100001=初始化, 0x100002=设置缓冲区, 0x100004=清理缓冲区)
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果数据指针
+ * @return UIHandle 操作结果句柄，0表示成功，非0表示错误代码
+ */
+UIHandle InitializeUISystem(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longlong bufferSize,longlong resultPointer)
 
 {
   UIHandle result;
@@ -383282,21 +381988,23 @@ FUN_18088ea60(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longlong b
   if (resultPointer == 0) {
     return 0x1c;
   }
+  
+  // 数据源类型1：UI系统初始化
   if (dataSource == 0x100001) {
-    if (*(char *)(resultPointer + 0x188) != '\0') {
+    if (uiContextValidationFlag != '\0') {
       FUN_180768b70(resultPointer + 0x178);
-      *(int *)(resultPointer + 0x18c) = *(int *)(resultPointer + 0x18c) + 1;
-      if (*(int *)(resultPointer + 400) <= *(int *)(resultPointer + 0x18c)) {
-        if (*(char *)(resultPointer + 0x18a) == '\0') {
-          if ((*(code **)(resultPointer + 0x230) != (UIFunctionPtr *)0x0) &&
-             (result = (**(code **)(resultPointer + 0x230))(), (int)result != 0)) {
+      operationCounter = operationCounter + 1;
+      if (maxOperationCount <= operationCounter) {
+        if (cleanupInProgressFlag == '\0') {
+          if ((eventCallbackPointer != (UIFunctionPtr *)0x0) &&
+             (result = (**(code **)eventCallbackPointer)(), (int)result != 0)) {
             return result;
           }
         }
         else {
-          *(UIDword *)(resultPointer + 0x18c) = 0;
-          *(UIByte *)(resultPointer + 0x18a) = 0;
-          result = ValidateUIContextState(*(UIHandle *)(resultPointer + 0x170));
+          operationCounter = 0;
+          cleanupInProgressFlag = 0;
+          result = ValidateUIContextState(uiContextHandle);
           if ((int)result != 0) {
             return result;
           }
@@ -383304,22 +382012,24 @@ FUN_18088ea60(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longlong b
       }
     }
   }
+  // 数据源类型2：设置目标缓冲区
   else if (dataSource == 0x100002) {
-    if (*(int *)(resultPointer + 0x184) != 0) {
+    if (bufferStateFlag != 0) {
       return 0x1c;
     }
-    *(UIDword *)(resultPointer + 0x184) = 1;
+    bufferStateFlag = 1;
     if (bufferSize != 0) {
-      *(UIHandle *)(resultPointer + 0x150) = targetBuffer;
+      targetBufferHandle = targetBuffer;
       return 0;
     }
   }
+  // 数据源类型4：清理缓冲区
   else if (dataSource == 0x100004) {
-    if (*(int *)(resultPointer + 0x184) != 1) {
+    if (bufferStateFlag != 1) {
       return 0x1c;
     }
-    *(UIDword *)(resultPointer + 0x184) = 0;
-    *(UIHandle *)(resultPointer + 0x150) = 0;
+    bufferStateFlag = 0;
+    targetBufferHandle = 0;
   }
   return 0;
 }
@@ -383894,8 +382604,7 @@ void FUN_18088f195(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_18088f1a0(UIHandle uiContext,longlong dataSource)
 void FUN_18088f1a0(UIHandle uiContext,longlong dataSource)
@@ -385639,8 +384348,7 @@ UIHandle FUN_18088fff0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  执行UI元素渲染任务
  执行UI元素的渲染任务，包括任务调度、资源管理和渲染执行
@@ -386556,8 +385264,7 @@ UIHandle FUN_1808909ba(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808909d0(longlong uiContext)
 
 {
@@ -386609,8 +385316,7 @@ UIHandle FUN_1808909d0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808909f3(void)
 
 {
@@ -387304,8 +386010,7 @@ UIHandle FUN_180891210(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180891280(longlong uiContext)
 
 {
@@ -387355,8 +386060,7 @@ void FUN_180891360(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_1808913c0(longlong uiContext,UIHandle dataSource)
 
 {
@@ -387400,8 +386104,7 @@ ulonglong FUN_1808913c0(longlong uiContext,UIHandle dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_1808913ff(UIDword uiContext)
 
 {
@@ -387496,8 +386199,7 @@ void FUN_1808915d0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180891650(longlong uiContext,longlong dataSource)
 
 {
@@ -387903,8 +386605,7 @@ UIHandle FUN_180891de0(longlong uiContext,longlong dataSource)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180891e40(longlong uiContext,longlong dataSource)
 void FUN_180891e40(longlong uiContext,longlong dataSource)
@@ -387971,8 +386672,7 @@ LAB_180891fc0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180891e7d(UIHandle uiContext,UIHandle dataSource)
 void FUN_180891e7d(UIHandle uiContext,UIHandle dataSource)
@@ -388043,8 +386743,7 @@ LAB_180891fc0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180891ea1(void)
 void FUN_180891ea1(void)
@@ -388109,8 +386808,7 @@ LAB_180891fc0:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180891ec9(int uiContext,int dataSource)
 void FUN_180891ec9(int uiContext,int dataSource)
@@ -388568,8 +387266,7 @@ LAB_18088d83c:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180892410(longlong uiContext,longlong dataSource)
 void FUN_180892410(longlong uiContext,longlong dataSource)
@@ -389415,8 +388112,7 @@ UIHandle FUN_180892e35(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180892e50(longlong uiContext,UIHandle dataSource)
 void FUN_180892e50(longlong uiContext,UIHandle dataSource)
@@ -389899,8 +388595,7 @@ void FUN_180893700(longlong uiContext,longlong dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x000180893865)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180893760(longlong uiContext,longlong dataSource)
 
 {
@@ -389941,8 +388636,7 @@ int FUN_180893760(longlong uiContext,longlong dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x000180893865)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_18089379d(longlong uiContext,UIHandle dataSource)
 
 {
@@ -390013,8 +388707,7 @@ void FUN_1808938c0(longlong uiContext,longlong dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x000180893a22)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180893930(longlong uiContext,longlong dataSource)
 
 {
@@ -390054,8 +388747,7 @@ int FUN_180893930(longlong uiContext,longlong dataSource)
 
 
  WARNING: Removing unreachable block (ram,0x000180893a22)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 int FUN_180893964(UIHandle uiContext,UIHandle dataSource)
 
 {
@@ -390556,8 +389248,7 @@ void FUN_1808940e8(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808940f0(longlong uiContext,longlong dataSource)
 void FUN_1808940f0(longlong uiContext,longlong dataSource)
@@ -390737,8 +389428,7 @@ int FUN_1808947b0(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180894860(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
 void FUN_180894860(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
@@ -390824,8 +389514,7 @@ void FUN_18089494e(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808949c0(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
 void FUN_1808949c0(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
@@ -390930,8 +389619,7 @@ void FUN_180894ad2(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180894b00(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
 void FUN_180894b00(longlong uiContext,UIDword *dataSource,longlong *targetBuffer)
@@ -391200,8 +389888,7 @@ LAB_180894ebf:
  WARNING: Removing unreachable block (ram,0x000180895fb1)
  WARNING: Removing unreachable block (ram,0x000180895fc0)
  WARNING: Removing unreachable block (ram,0x000180896027)
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 uint FUN_180894ef0(longlong *uiContext)
 
 {
@@ -391249,8 +389936,7 @@ uint FUN_180894ef0(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180894fb0(longlong uiContext)
 
 {
@@ -391305,8 +389991,7 @@ UIHandle FUN_180894fb0(longlong uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180895070(longlong *uiContext)
 
 {
@@ -391342,8 +390027,7 @@ UIHandle FUN_180895070(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180895130(longlong *uiContext)
 
 {
@@ -391540,8 +390224,7 @@ UIHandle FUN_180895345(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180895360(longlong uiContext,UIByte *dataSource,int *targetBuffer)
 void FUN_180895360(longlong uiContext,UIByte *dataSource,int *targetBuffer)
@@ -392256,8 +390939,7 @@ UIDword FUN_180895ef0(UIHandle uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180895f20(longlong *uiContext,int dataSource)
 
 {
@@ -392306,8 +390988,7 @@ LAB_180895fdc:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180895f44(UIHandle uiContext,int dataSource)
 
 {
@@ -392363,8 +391044,7 @@ UIHandle FUN_180896027(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180896040(longlong *uiContext,int dataSource)
 
 {
@@ -392400,8 +391080,7 @@ LAB_1808960d4:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180896064(UIHandle uiContext,int dataSource)
 
 {
@@ -392444,8 +391123,7 @@ UIHandle FUN_18089611f(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_180896140(longlong uiContext)
 
 {
@@ -392834,8 +391512,7 @@ void FUN_180896880(longlong *uiContext)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_1808968a0(longlong uiContext)
 
 {
@@ -392951,8 +391628,7 @@ UIHandle FUN_180896c10(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180896c60(UIHandle uiContext,longlong dataSource,uint targetBuffer,char bufferSize)
 void FUN_180896c60(UIHandle uiContext,longlong dataSource,uint targetBuffer,char bufferSize)
@@ -393595,8 +392271,7 @@ void FUN_1808974f4(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180897520(longlong *uiContext,longlong *dataSource)
 void FUN_180897520(longlong *uiContext,longlong *dataSource)
@@ -393669,8 +392344,7 @@ void FUN_1808975a6(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_1808975e0(longlong uiContext,longlong dataSource)
 void FUN_1808975e0(longlong uiContext,longlong dataSource)
@@ -394593,8 +393267,7 @@ void FUN_180897b16(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180897b40(longlong *uiContext,longlong dataSource,UIDword targetBuffer)
 void FUN_180897b40(longlong *uiContext,longlong dataSource,UIDword targetBuffer)
@@ -394681,8 +393354,7 @@ LAB_180897ce8:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180897d20(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 void FUN_180897d20(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
@@ -394833,8 +393505,7 @@ void FUN_18089802e(void)
 
 
  WARNING: Type propagation algorithm not settling
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 
  void FUN_180898040(longlong *uiContext)
 void FUN_180898040(longlong *uiContext)
@@ -395833,8 +394504,7 @@ UIHandle FUN_180898d4d(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180898d60(longlong *uiContext,int dataSource)
 
 {
@@ -395883,8 +394553,7 @@ LAB_180898e0b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_180898d84(UIHandle uiContext,int dataSource)
 
 {
@@ -398435,8 +397104,7 @@ void FUN_18089ac96(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle FUN_18089ace4(void)
 
 {
@@ -400603,8 +399271,7 @@ LAB_18089c131:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18089c190(longlong uiContext,UIHandle *dataSource)
 
 {
@@ -400839,8 +399506,7 @@ LAB_18089c300:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 UIHandle * FUN_18089c1fb(void)
 
 {
@@ -401094,8 +399760,7 @@ LAB_18089c300:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 /**
  * @brief UI系统事件处理函数
  * 
@@ -401352,8 +400017,7 @@ LAB_18089c300:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18089c2d8(UIHandle uiContext)
 
 {
@@ -405357,8 +404021,7 @@ void FUN_18089e4d7(void)
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18089e4f0(longlong uiContext,UIHandle *dataSource)
 
 {
@@ -405461,8 +404124,7 @@ LAB_18089e70b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18089e558(void)
 
 {
@@ -405577,8 +404239,7 @@ LAB_18089e70b:
 
 
 
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+ 
 ulonglong FUN_18089e624(void)
 
 {
