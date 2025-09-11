@@ -126061,7 +126061,7 @@ void ExecuteUIRenderContextTask(void)
   if (operationResult == 0) {
     pstackUInt168 = (UIByte *)resultPointer;
     operationResult = ProcessUIBufferDataTransfer(stackUInt150,dataSource,targetBuffer,bufferSize);
-    if (operationResult == 0) goto FUN_18073af6d;
+    if (operationResult == 0) goto UIResourceCleanupAndRenderTask;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(stackArray148,0x100,dataSource);
@@ -126079,7 +126079,7 @@ void ExecuteUIRenderContextTask(void)
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextShaderManager);
   }
-FUN_18073af6d:
+UIResourceCleanupAndRenderTask:
   if (stackLong158 != 0) {
     ReleaseUIMemoryResource();
   }
@@ -126117,7 +126117,7 @@ void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSo
   operationResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (operationResult == 0) {
     operationResult = ProcessUIBufferDataTransfer(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
-    if (operationResult == 0) goto FUN_18073af6d;
+    if (operationResult == 0) goto UIResourceCleanupAndRenderTask;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
@@ -126135,7 +126135,7 @@ void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSo
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextShaderManager,&stack0x00000040);
   }
-FUN_18073af6d:
+UIResourceCleanupAndRenderTask:
   if (param_6 != 0) {
     ReleaseUIMemoryResource();
   }
@@ -141601,7 +141601,7 @@ int FUN_180749060(longlong uiContext)
                                                       eventCode = FUN_180783810();
                                                       localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,0,0,0);
                                                       if (localValidationResult == 0) {
-                                                        eventCode = FUN_180779050();
+                                                        eventCode = InitializeUIRenderMemoryRegion();
                                                         localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,0,0,0);
                                                         if (localValidationResult == 0) {
                                                           eventCode = FUN_1807a86a0();
