@@ -126384,13 +126384,18 @@ void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextTextureManager,&stack0x00000040);
   }
-FUN_18073b13d:
-  if (param_6 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
-}
+/**
+ * @brief 执行UI渲染任务和资源释放
+ * 
+ * 该函数负责执行UI渲染任务并释放相关资源：
+ * - 检查参数6并释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param param6 参数6，用于判断是否需要释放内存资源
+ * @param stackParameter140 栈参数，用于计算渲染任务地址
+ * @param stackBaseAddr 栈基址指针
+ */
+void ExecuteUIRenderTaskWithResourceRelease(uint32_t param6, uint64_t stackParameter140, uint64_t* stackBaseAddr)
 
 
 
