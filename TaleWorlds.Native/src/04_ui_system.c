@@ -134714,37 +134714,61 @@ LAB_18073fc56:
 
  
 
- void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 初始化UI渲染上下文并处理数据源
+ * 
+ * 该函数负责初始化UI渲染上下文，处理数据源的数据传输，并执行相关的UI操作。
+ * 函数会根据数据源的类型和状态，选择不同的数据处理路径，并确保在操作完成后
+ * 正确释放内存资源。
+ * 
+ * @param uiContext UI上下文句柄，用于标识和管理UI上下文
+ * @param dataSource 数据源句柄，包含需要处理的UI数据
+ * 
+ * @return void
+ * 
+ * @note 该函数使用了XOR加密密钥进行数据保护，并且在某些条件下会调用
+ *       不返回的子函数（ExecuteUIContextDataOperation和ExecuteUIRenderTask）
+ */
+void InitializeUIRenderContextAndProcessDataSource(UIHandle uiContext, UIHandle dataSource)
 
 {
-  int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  int operationResult;                                    // 操作结果状态码
+  UIByte encryptionBuffer[32];                           // 加密缓冲区，用于XOR加密操作
+  UIByte *dataBufferPointer;                             // 数据缓冲区指针
+  longlong renderContextSize;                             // 渲染上下文大小
+  UIHandle renderContextHandle;                           // 渲染上下文句柄
+  UIByte dataTransferBuffer[256];                         // 数据传输缓冲区
+  ulonglong encryptionKey;                               // 加密密钥
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
+  // 使用XOR加密密钥初始化加密缓冲区
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  
+  // 初始化UI数据源并获取渲染上下文信息
+  operationResult = InitializeUIDataSource(uiContext, &renderContextHandle, &renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180756fe0(stackUInt120,dataSource);
-    if (operationResult == 0) goto LAB_18073fd2a;
+    // 处理UI数据源传输
+    operationResult = ProcessUIDataSourceTransfer(renderContextHandle, dataSource);
+    if (operationResult == 0) goto CLEANUP_RENDER_CONTEXT;
   }
+  
+  // 检查全局UI资源管理器状态，如果设置了特定标志则执行扩展操作
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b70);
+    // 复制UI数据到传输缓冲区
+    CopyUIDataBuffer(dataTransferBuffer, 0x100, dataSource);
+    dataBufferPointer = dataTransferBuffer;
+    // 执行UI上下文数据操作（此函数不返回）
+    ExecuteUIContextDataOperation(operationResult, 2, uiContext, &UIContextExtendedDataMM);
   }
-LAB_18073fd2a:
-  if (RenderContextSize != 0) {
+
+CLEANUP_RENDER_CONTEXT:
+  // 如果渲染上下文大小不为零，释放UI内存资源
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  
+  // 执行UI渲染任务（此函数不返回）
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
