@@ -127148,8 +127148,18 @@ void ReleaseUIResourceAndExecuteRenderEx(void)
 
 
 
- void FUN_18073b4f1(void)
-void FUN_18073b4f1(void)
+ #define ReleaseUIResourceAndExecuteRenderTaskEx FUN_18073b4f1
+/**
+ * @brief 释放UI资源并执行渲染任务扩展版本
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073b4f1
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRenderTaskEx(void)
 
 {
   ulonglong stackParam00000140;
@@ -127163,8 +127173,22 @@ void FUN_18073b4f1(void)
 
  
 
- void FUN_18073b520(UIHandle uiContext)
-void FUN_18073b520(UIHandle uiContext)
+ #define ProcessUIContextWithInputData FUN_18073b520
+/**
+ * @brief 处理UI上下文与输入数据操作
+ * 
+ * 该函数负责处理UI上下文与输入数据操作，包括：
+ * - 处理UI上下文和清理操作
+ * - 执行输入数据的处理
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * 
+ * @note 原始函数名：FUN_18073b520
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIContextWithInputData(UIHandle uiContext)
 
 {
   int operationResult;
