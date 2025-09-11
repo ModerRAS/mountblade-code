@@ -31379,9 +31379,9 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
   DataBuffer systemMemoryBuffer;
   uint8_t *exceptionDataBuffer;
   float processedValue;
-  int64_t ExceptionHandlerContext4;
+  int64_t ExceptionHandlerContextInstance;
   float *floatValuePointer;
-  DataBuffer *exceptionBuffer6;
+  DataBuffer *ExceptionDataBufferInstance;
   ByteFlag TertiaryEncryptionKeyBuffer [32];
   DataWord SystemValidationWordA;
   char ValidationCharBuffer [4];
