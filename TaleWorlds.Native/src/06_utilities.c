@@ -31056,7 +31056,7 @@ void ProcessFloatingPointDataWithValidation(void)
   int validationErrorCode;
   DataWord systemRegisterEBX;           // 系统寄存器EBX值
   int64_t systemStackPointer;      // 系统栈帧指针
-  int systemRegisterValueR12;           // 系统寄存器R12值
+  int systemRegisterValueGeneralPurpose;           // 系统通用寄存器值
   int64_t dataContextPointer;            // 数据上下文指针
   char systemRegisterValueR15B;         // 系统寄存器R15B值
   float calculatedFloatResultA;          // 计算的浮点结果A
@@ -32067,7 +32067,7 @@ SystemDataValidationCheckpoint:
   DataWord loopCounter;
   DataWord systemMemoryBuffer;
   char statusChar;
-  int functionInputParameter3;
+  int functionInputParameterValidationCode;
   uint systemDataBufferIndex;
   int64_t systemInputAccumulator;
   int64_t exceptionContextIndex;
@@ -50064,7 +50064,7 @@ void HandleExceptionRecoveryI0(DataBuffer context, int64_t exceptionData, DataBu
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void HandleSystemException790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionAtOffset790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemDataWithEncryption(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset) + ExceptionHandlerCallbackOffset),
@@ -50084,7 +50084,7 @@ void HandleSystemException790(DataBuffer operationBase,int64_t dataBuffer,DataBu
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void HandleSystemException7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionAtOffset7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *memoryResourcePointer;
@@ -137248,7 +137248,7 @@ void *AllocateBufferEN0(void *bufferParams, size_t allocationSize)
  * 
  * @note 原始函数名：FUN_18088aca0
  */
-int CheckSystemStatusEP0(void *systemContext)
+int CheckSystemStatusWithEnhancedParameters(void *systemContext)
 {
     // 系统状态相关变量
     uint32_t SystemHealthStatus;                  // 系统健康状态
