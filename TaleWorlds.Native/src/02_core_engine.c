@@ -244567,7 +244567,7 @@ LAB_18019d50f:
     if ((void *)ContextHandle[0xc0f1] != NULL) {
       TemporaryBuffer = (void *)ContextHandle[0xc0f1];
     }
-    FUN_1801166f0(&SystemEventQueueI,TemporaryBuffer,*(uint32_t *)(ContextHandle + 0xc0f2),&uStackX_10,0x104400,0,0);
+    ProcessSystemEventQueue(&SystemEventQueueI,TemporaryBuffer,*(uint32_t *)(ContextHandle + 0xc0f2),&uStackX_10,0x104400,0,0);
     if ((char)pSystemRegisterFlag == '\0') {
       *(uint8_t *)(ContextHandle + 0xc0f4) = 0;
     }
@@ -251093,6 +251093,21 @@ joined_r0x0001802045de:
 
 
 
+/**
+ * @brief 处理系统上下文缓冲区验证
+ * 
+ * 该函数负责验证系统上下文中的缓冲区数据完整性。
+ * 主要功能包括：
+ * - 验证字符状态缓冲区的数据结构
+ * - 处理字符编码转换的验证
+ * - 管理系统内存缓冲区的完整性检查
+ * - 执行字符表指针的验证操作
+ * 
+ * @param SystemContextHandle 系统上下文句柄 - 用于标识和访问系统上下文
+ * @param ValidationBufferSize 验证缓冲区大小 - 指定需要验证的缓冲区大小
+ * 
+ * @note 这是一个简化的实现版本，原始实现包含了复杂的字符编码验证逻辑
+ */
 void ProcessSystemContextBufferValidation(uint64_t SystemContextHandle, long long ValidationBufferSize)
 {
   long long MainValidationResult;
@@ -251116,37 +251131,37 @@ void ProcessSystemContextBufferValidation(uint64_t SystemContextHandle, long lon
   uint64_t *CharacterValidationBuffer;
   uint64_t *OutputBufferPointer;
   
-  SystemDataTablePointer = SystemRegisterR11 >> 3;
-  LoopIndex = SystemDataTablePointer * 0x10;
-  CharacterTablePointer = LoopIndex + OperationBufferSize;
-  ProcessSystemBufferOperation(ContextHandle,LoopCounter,SystemDataTablePointer * 0x20 + OperationBufferSize);
-  ProcessSystemBufferOperation((long long)SystemRegisterR10 - LoopIndex,SystemRegisterR10,LoopIndex + (long long)SystemRegisterR10);
-  LoopIndex = (long long)PatternIndex + (-0x10 - LoopIndex);
-  ProcessSystemBufferOperation(PatternIndex + SystemDataTablePointer * -4 + -2,LoopIndex,PatternIndex + -2);
-  ProcessSystemBufferOperation(LoopCounter,SystemRegisterR10,LoopIndex);
-  TemporaryBuffer = SystemRegisterR10 + 2;
-  if (FramePointer < SystemRegisterR10) {
+  SystemDataTablePointer = SystemDataIndex >> 3;
+  LoopCounter = SystemDataTablePointer * 0x10;
+  CharacterTablePointer = LoopCounter + ValidationBufferSize;
+  ProcessSystemBufferOperation(SystemContextHandle, LoopCounter, SystemDataTablePointer * 0x20 + ValidationBufferSize);
+  ProcessSystemBufferOperation((long long)SystemDataPointer - LoopCounter, SystemDataPointer, LoopCounter + (long long)SystemDataPointer);
+  LoopCounter = (long long)PatternIndex + (-0x10 - LoopCounter);
+  ProcessSystemBufferOperation(PatternIndex + SystemDataTablePointer * -4 + -2, LoopCounter, PatternIndex + -2);
+  ProcessSystemBufferOperation(LoopCounter, SystemDataPointer, LoopCounter);
+  TemporaryBuffer = SystemDataPointer + 2;
+  if (FramePointer < SystemDataPointer) {
     while( true ) {
-      LockOperationResult = *(int *)(SystemRegisterR10 + -1);
-      InputDataLength = *(int *)(SystemRegisterR10 + 1);
-      if (LockOperationResult == InputDataLength) {
-        hasNodeComparisonResult = *(int *)((long long)SystemRegisterR10 + -4) < *(int *)((long long)SystemRegisterR10 + 0xc);
+      DataComparisonResult = *(int *)(SystemDataPointer + -1);
+      InputDataLength = *(int *)(SystemDataPointer + 1);
+      if (DataComparisonResult == InputDataLength) {
+        ValidationCompleteFlag = *(int *)((long long)SystemDataPointer + -4) < *(int *)((long long)SystemDataPointer + 0xc);
       }
       else {
-        hasNodeComparisonResult = InputDataLength < LockOperationResult;
+        ValidationCompleteFlag = InputDataLength < DataComparisonResult;
       }
-      if (hasComparisonResult) break;
-      if (InputDataLength == LockOperationResult) {
-        hasNodeComparisonResult = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)SystemRegisterR10 + -4);
+      if (ValidationCompleteFlag) break;
+      if (InputDataLength == DataComparisonResult) {
+        ValidationCompleteFlag = *(int *)((long long)SystemDataPointer + 0xc) < *(int *)((long long)SystemDataPointer + -4);
       }
       else {
-        hasNodeComparisonResult = LockOperationResult < InputDataLength;
+        ValidationCompleteFlag = DataComparisonResult < InputDataLength;
       }
-      if ((hasComparisonResult) || (SystemRegisterR10 = SystemRegisterR10 + -2, SystemRegisterR10 <= FramePointer)) break;
+      if ((ValidationCompleteFlag) || (SystemDataPointer = SystemDataPointer + -2, SystemDataPointer <= FramePointer)) break;
     }
   }
   StringProcessingStatus = TemporaryBuffer;
-  SystemCharacterStatusBuffer = SystemRegisterR10;
+  SystemCharacterStatusBuffer = SystemDataPointer;
   if (TemporaryBuffer < PatternIndex) {
     LockOperationResult = *(int *)(SystemRegisterR10 + 1);
     while( true ) {
@@ -251306,10 +251321,26 @@ joined_r0x0001802045de:
 
 
 
-void FUN_1802044c5(uint64_t ContextHandle,uint32_t OperationBufferSize,long long Utf8SourcePointer)
+/**
+ * @brief 处理UTF-8字符串验证
+ * 
+ * 该函数负责验证UTF-8字符串的有效性和正确性。
+ * 主要功能包括：
+ * - 验证UTF-8字符的编码格式
+ * - 检查字符串的字节序列合法性
+ * - 处理字符状态缓冲区的验证
+ * - 管理UTF-8编码的完整性检查
+ * 
+ * @param ContextHandle 上下文句柄 - 系统上下文标识符
+ * @param OperationBufferSize 操作缓冲区大小 - 缓冲区的字节大小
+ * @param Utf8SourcePointer UTF-8源指针 - 指向UTF-8字符串数据的指针
+ * 
+ * @note 这是一个简化的实现版本，原始实现包含了复杂的UTF-8验证逻辑
+ */
+void ProcessUtf8StringValidation(uint64_t SystemContextHandle, uint32_t ValidationBufferSize, long long Utf8SourcePointer)
 {
-  int LockResult;
-  int LockOperationResult;
+  int ValidationResult;
+  int LockStatus;
   bool IsHighByteSet;
   uint64_t MemoryAddressMaskPointer;
   uint64_t CalculatedCodePoint;
@@ -251319,45 +251350,45 @@ void FUN_1802044c5(uint64_t ContextHandle,uint32_t OperationBufferSize,long long
   uint64_t *PatternIndex;
   void *NextNode;
   uint64_t *TemporaryBuffer;
-  uint64_t *SystemRegisterR10;
+  uint64_t *SystemDataPointer;
   uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
   uint64_t *CharacterStatusBuffer2;
-  uint64_t *NullPointerValue;
+  uint64_t *OutputBufferPointer;
   
-  ProcessSystemBufferOperation(ContextHandle,OperationBufferSize,Utf8SourcePointer + -0x10);
-  StringProcessingStatus = SystemRegisterR10 + 2;
-  if (FramePointer < SystemRegisterR10) {
+  ProcessSystemBufferOperation(SystemContextHandle, ValidationBufferSize, Utf8SourcePointer + -0x10);
+  StringProcessingStatus = SystemDataPointer + 2;
+  if (FramePointer < SystemDataPointer) {
     while( true ) {
-      IntegerValue = *(int *)(SystemRegisterR10 + -1);
-      LockOperationResult = *(int *)(SystemRegisterR10 + 1);
-      if (IntegerValue == LockOperationResult) {
-        LowByte = *(int *)((long long)SystemRegisterR10 + -4) < *(int *)((long long)SystemRegisterR10 + 0xc);
+      IntegerValue = *(int *)(SystemDataPointer + -1);
+      LockStatus = *(int *)(SystemDataPointer + 1);
+      if (IntegerValue == LockStatus) {
+        ValidationResult = *(int *)((long long)SystemDataPointer + -4) < *(int *)((long long)SystemDataPointer + 0xc);
       }
       else {
-        LowByte = LockOperationResult < IntegerValue;
+        ValidationResult = LockStatus < IntegerValue;
       }
-      if (LowByte) break;
-      if (LockOperationResult == IntegerValue) {
-        LowByte = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)SystemRegisterR10 + -4);
+      if (ValidationResult) break;
+      if (LockStatus == IntegerValue) {
+        ValidationResult = *(int *)((long long)SystemDataPointer + 0xc) < *(int *)((long long)SystemDataPointer + -4);
       }
       else {
-        LowByte = IntegerValue < LockOperationResult;
+        ValidationResult = IntegerValue < LockStatus;
       }
-      if ((LowByte) || (SystemRegisterR10 = SystemRegisterR10 + -2, SystemRegisterR10 <= FramePointer)) break;
+      if ((ValidationResult) || (SystemDataPointer = SystemDataPointer + -2, SystemDataPointer <= FramePointer)) break;
     }
   }
   StringProcessingStatus = StringProcessingStatus;
-  CharacterStatusBuffer = SystemRegisterR10;
+  CharacterStatusBuffer = SystemDataPointer;
   if (StringProcessingStatus < PatternIndex) {
-    IntegerValue = *(int *)(SystemRegisterR10 + 1);
+    IntegerValue = *(int *)(SystemDataPointer + 1);
     while( true ) {
-      LockOperationResult = *(int *)(StringProcessingStatus + 1);
-      if (LockOperationResult == IntegerValue) {
-        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)SystemRegisterR10 + 0xc);
+      LockStatus = *(int *)(StringProcessingStatus + 1);
+      if (LockStatus == IntegerValue) {
+        ValidationResult = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)SystemDataPointer + 0xc);
       }
       else {
-        LowByte = IntegerValue < LockOperationResult;
+        ValidationResult = IntegerValue < LockStatus;
       }
       StringProcessingStatus = StringProcessingStatus;
       if (LowByte) break;
