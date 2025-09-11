@@ -131261,12 +131261,12 @@ void ProcessUIContextDataOperationSimple(void)
 
 
 
- void FUN_18073db4f(void)
-void FUN_18073db4f(void)
+ void ReleaseUIMemoryResourceAndExecuteRenderTask(void)
+void ReleaseUIMemoryResourceAndExecuteRenderTask(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong renderContextSize;
+  ulonglong encryptionKey;
   
   if (stackParam00000030 != 0) {
     ReleaseUIMemoryResource();
