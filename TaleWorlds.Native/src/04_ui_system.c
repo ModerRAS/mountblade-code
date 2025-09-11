@@ -607,11 +607,11 @@ typedef enum {
 
 // UI系统向量处理常量
 #define UIVectorMultiplyMask370 UIVectorMultiplyMask20                  // UI向量乘法掩码20 - 用于向量乘法运算的掩码
-#define _DAT_180947500 UIVectorMultiplyMask21                  // UI向量乘法掩码21 - 用于向量乘法运算的掩码
+#define UIVectorSecondaryMask500 UIVectorMultiplyMask21                  // UI向量乘法掩码21 - 用于向量乘法运算的掩码
 #define DAT_180980640 UISenarySystemDataTable                    // UI第六数据表
 #define DAT_1809473f0 UIVectorOperationMask3F0                  // UI向量操作掩码3F0
 #define DAT_180947510 UIVectorOperationMask510                  // UI向量操作掩码510
-#define DAT_180947370 UIVectorOperationMask370                  // UI向量操作掩码370
+#define UIVectorMultiplyMask370 UIVectorOperationMask370                  // UI向量操作掩码370
 #define DAT_180a40580 UIXOREncryptionKey580                     // UI异或加密密钥580
 #define ProcessUIDataWithMultipleParameters FUN_18073a5ad         // 处理带多参数的UI数据
 #define ProcessUIResourceCleanup FUN_18073a613                  // 处理UI资源清理
@@ -1512,8 +1512,8 @@ typedef enum {
 
 #define DAT_1809472f0 UIConfigurationData2F0              // UI配置数据2F0 - 存储UI系统的配置信息
 #define DAT_180956f70 UILookupTableDataF70                // UI查找表数据F70 - 存储UI系统的查找表数据
-#define DAT_180947370 UIVectorMultiplyMask370              // UI向量乘法掩码370 - 用于UI向量计算的乘法掩码
-#define DAT_180947500 UIVectorSecondaryMask500             // UI向量次级掩码500 - 用于UI向量计算的次级掩码
+#define UIVectorMultiplyMask370 UIVectorMultiplyMask370              // UI向量乘法掩码370 - 用于UI向量计算的乘法掩码
+#define UIVectorSecondaryMask500 UIVectorSecondaryMask500             // UI向量次级掩码500 - 用于UI向量计算的次级掩码
 #define UIComponentInterfaceID UIComponentInterfaceIDB00  // UI组件接口ID B00 - UI组件的接口标识符
 #define UIComponentInterfaceIID UIComponentInterfaceIIDB10 // UI组件接口IID B10 - UI组件的接口实例标识符
 #define DAT_180c0c6e8 UIComponentInstancePtrE8            // UI组件实例指针E8 - 指向UI组件实例的指针
@@ -5993,7 +5993,7 @@ void* UIGestureCoordinates;
  #define UIVectorMultiplyMask26 _DAT_1809474d0
 #define UIVectorMultiplyMask27 _DAT_1809474e0
 #define UIVectorMultiplyMask28 _DAT_1809474f0
-#define UIVectorMultiplyMask29 _DAT_180947500
+#define UIVectorMultiplyMask29 UIVectorSecondaryMask500
 #define UIVectorMultiplyMask30 UIVectorCalculationMask510
  #define UIVectorMultiplyMask31 _DAT_180947520
 #define UIComponentIndexVector _DAT_180947040       // UI组件索引向量 - 存储UI组件的索引信息
@@ -48671,7 +48671,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType11 = pmaddwd(aeventCodeType04,UIVectorMultiplyMask20);
       iterationData19 = pmaddwd(aeventCodeType04,UIVectorMultiplyMask370);
       iterationData54 = pmaddwd(aprocessingFlags23,UIVectorMultiplyMask370);
-      aeventCodeType50 = pmaddwd(aeventCodeType81,_DAT_180947500);
+      aeventCodeType50 = pmaddwd(aeventCodeType81,UIVectorSecondaryMask500);
       aprocessingFlags16 = pmaddwd(aeventCodeType81,UIVectorMultiplyMask370);
       aprocessingFlags1._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       aprocessingFlags1._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
@@ -48682,9 +48682,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType99._8_4_ = iterationData54._8_4_ + 0x2000 >> 0xe;
       aeventCodeType99._12_4_ = iterationData54._12_4_ + 0x2000 >> 0xe;
       aprocessingFlags00 = packssdw(aeventCodeType99,aprocessingFlags1);
-      iterationData19 = pmaddwd(astackUIntcc8,_DAT_180947500);
+      iterationData19 = pmaddwd(astackUIntcc8,UIVectorSecondaryMask500);
       iterationData54 = pmaddwd(aeventStatus7,UIVectorMultiplyMask370);
-      iterationData82 = pmaddwd(aeventStatus7,_DAT_180947500);
+      iterationData82 = pmaddwd(aeventStatus7,UIVectorSecondaryMask500);
       aeventCodeType56._0_4_ = aeventCodeType50._0_4_ + 0x2000 >> 0xe;
       aeventCodeType56._4_4_ = aeventCodeType50._4_4_ + 0x2000 >> 0xe;
       aeventCodeType56._8_4_ = aeventCodeType50._8_4_ + 0x2000 >> 0xe;
@@ -48694,7 +48694,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags2._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags2._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       aeventCodeType57 = packssdw(aeventCodeType56,aprocessingFlags2);
-      iterationData19 = pmaddwd(astackUIntd18,_DAT_180947500);
+      iterationData19 = pmaddwd(astackUIntd18,UIVectorSecondaryMask500);
       aeventprocessingFlags8._0_4_ = iterationData54._0_4_ + 0x2000 >> 0xe;
       aeventprocessingFlags8._4_4_ = iterationData54._4_4_ + 0x2000 >> 0xe;
       aeventprocessingFlags8._8_4_ = iterationData54._8_4_ + 0x2000 >> 0xe;
@@ -48857,7 +48857,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       iterationDataer4._10_2_ = astackUIntd58._12_2_ - aeventCodeType97._12_2_;
       iterationDataer4._12_2_ = astackUIntca8._14_2_;
       iterationDataer4._14_2_ = astackUIntd58._14_2_ - aeventCodeType97._14_2_;
-      iterationData19 = pmaddwd(iterationData86,_DAT_180947500);
+      iterationData19 = pmaddwd(iterationData86,UIVectorSecondaryMask500);
       acontextValue9._8_8_ =
            (UIHandle)
            (CONCAT64(CONCAT42(CONCAT22(aeventCodeType97._6_2_ + astackUIntd58._6_2_,ContextFirstValue89),
@@ -48890,7 +48890,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags8._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags8._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       aeventCodeType97 = packssdw(iterationData58,aprocessingFlags8);
-      iterationData19 = pmaddwd(iterationDataer4,_DAT_180947500);
+      iterationData19 = pmaddwd(iterationDataer4,UIVectorSecondaryMask500);
       aprocessingFlags9._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       aprocessingFlags9._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       aprocessingFlags9._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
@@ -133508,8 +133508,21 @@ FUN_18073f0d1:
 
 
 
- void FUN_18073efed(void)
-void FUN_18073efed(void)
+ // 函数: void FUN_18073efed(void)
+#define ProcessUIBufferDataSequence FUN_18073efed
+/**
+ * @brief UI数据缓冲区序列处理函数
+ * 
+ * 该函数负责处理UI数据缓冲区的序列操作，包括：
+ * - 复制和验证UI数据缓冲区
+ * - 处理缓冲区控制数据
+ * - 执行数据比较操作
+ * - 触发UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18073efed
+ * @note 该函数执行一系列UI数据处理操作
+ */
+void ProcessUIBufferDataSequence(void)
 
 {
   int operationResult;
@@ -133536,8 +133549,20 @@ void FUN_18073efed(void)
 
 
 
- void FUN_18073f0d1(void)
-void FUN_18073f0d1(void)
+ // 函数: void FUN_18073f0d1(void)
+#define ExecuteUIRenderTaskWithCleanup FUN_18073f0d1
+/**
+ * @brief 执行UI渲染任务和清理操作
+ * 
+ * 该函数负责执行UI渲染任务并进行系统清理，包括：
+ * - 检查系统参数并执行清理操作
+ * - 执行UI渲染任务
+ * - 处理任务执行结果
+ * 
+ * @note 原始函数名：FUN_18073f0d1
+ * @note 该函数执行渲染任务并确保系统清理
+ */
+void ExecuteUIRenderTaskWithCleanup(void)
 
 {
   longlong stackParam00000038;
