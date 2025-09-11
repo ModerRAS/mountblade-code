@@ -1,0 +1,49 @@
+// 03_rendering.c 函数调用映射定义
+// 用于批量替换FUN_函数调用为语义化名称
+
+// 材质属性处理函数
+#define FUN_1802feba0 CalculateAndConvertMaterialPropertyValue
+#define FUN_180351190 ValidateRenderMaterialPointer
+#define FUN_18014a1b0 ProcessMaterialPropertyValueConversion
+#define FUN_1802eeab0 SetupRenderMaterialPropertyData
+#define FUN_180634a60 InitializeRenderStateMatrix
+#define FUN_180630b20 ProcessRenderMaterialPropertyData
+#define FUN_1801b46a0 CalculateMaterialPropertyValues
+#define FUN_180355030 AllocateRenderMaterialBuffer
+#define FUN_180354db0 ValidateRenderMaterialElement
+#define FUN_18005d190 ProcessRenderMaterialElements
+#define FUN_180469f40 CreateRenderMaterialNode
+#define FUN_1802efdd0 UpdateRenderMaterialState
+#define FUN_1801982b0 ProcessDataStreamOffset
+
+// 渲染状态管理函数
+#define FUN_180350540 ProcessRenderMaterialPropertyValueByte
+#define FUN_18034dfa0 InitializeRenderMaterialPropertyAllocation
+#define FUN_18034ebc0 CleanupRenderMaterialPropertyAllocation
+#define FUN_18034fb70 GetRenderMaterialPropertyStatus
+#define FUN_1802e8c60 ProcessRenderMaterialShaderCurve
+#define FUN_1802e9fa0 InitializeRenderMaterialShaderState
+#define FUN_180046190 ProcessRenderMaterialObjectState
+#define FUN_180046400 AllocateRenderMaterialPropertyNode
+
+// 渲染资源管理函数
+#define FUN_180440660 UnloadRenderResource
+#define FUN_1800b3510 ProcessRenderMaterialData
+
+// 数据处理函数
+#define FUN_1803203f0 AllocateRenderMaterialPropertyData
+#define FUN_18021f710 ProcessRenderMaterialTransformMatrix
+#define FUN_180338100 SetRenderMaterialPropertyValue
+#define FUN_1803387a0 ProcessRenderMaterialPropertyEx
+#define FUN_180338f90 ProcessRenderMaterialPropertyData
+#define FUN_180339080 InitializeRenderMaterialProperty
+#define FUN_180339c00 InitializeRenderMaterialObjectEx
+#define FUN_180339e50 SerializeRenderMaterialPropertyData
+#define FUN_180339f6a AllocateRenderMaterialPropertyBuffer
+#define FUN_18033a07d EmptyRenderMaterialFunction
+#define FUN_18034a501 RenderMaterialEmptyFunction
+#define FUN_18034a520 InitializeRenderMaterialObjectProperties
+#define FUN_18035ce30 InitializeRenderMaterialExtendedData
+#define FUN_18035d3f0 ValidateRenderMaterialObjectPointer
+#define FUN_18035d710 ProcessRenderMaterialDataValidation
+#define FUN_18035d760 CleanupRenderMaterialObjectMemory

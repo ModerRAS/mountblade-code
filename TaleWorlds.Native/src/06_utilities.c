@@ -135407,9 +135407,20 @@ void ResetThreadLocalStorage(void)
 
 
 // 函数: void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePointer,DataBuffer CleanupType,DataBuffer Flags)
-// 功能：清理工具系统资源，释放内存和句柄
-// 参数：SystemHandle-系统句柄，resourcePointer-资源指针，CleanupType-清理类型，Flags-标志位
-// 返回值：无
+/**
+ * @brief 清理工具系统资源
+ * 
+ * 清理工具系统的各种资源，包括内存分配、句柄和系统状态。
+ * 该函数负责释放系统资源，重置状态标志，并确保系统资源的正确清理。
+ * 
+ * @param SystemHandle 系统句柄，用于标识系统实例
+ * @param resourcePointer 资源指针，指向要清理的资源
+ * @param CleanupType 清理类型，指定清理操作的模式
+ * @param Flags 标志位，控制清理操作的具体行为
+ * 
+ * @note 此函数会调用资源清理和系统终止函数
+ * @warning 如果系统状态异常，会调用系统终止函数
+ */
 void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePointer,DataBuffer CleanupType,DataBuffer Flags)
 
 {
@@ -135430,38 +135441,44 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
     TerminateSystemE0(resourceManager);
 }
 
-// 系统数据处理相关宏定义
-// 原始函数名：FUN_180867d60 - 系统数据处理函数CD1
-// 功能：处理系统数据CD1，执行数据验证和转换操作
+// 系统数据处理函数
+// 原始函数名：FUN_180867d60
+// 功能：处理系统数据，执行数据验证和转换操作
 #define ProcessSystemDataCD1 FUN_180867d60
 
-// 原始函数名：FUN_18085ff30 - 内存分配管理函数CL1
-// 功能：管理内存分配CL1，处理内存块的分配和释放
+// 内存分配管理函数
+// 原始函数名：FUN_18085ff30
+// 功能：管理内存分配，处理内存块的分配和释放
 #define ManageMemoryAllocationCL1 FUN_18085ff30
 
-// 原始函数名：FUN_18085eef0 - 系统数据处理执行函数
+// 系统数据处理执行函数
+// 原始函数名：FUN_18085eef0
 // 功能：执行系统数据处理，包括数据解析和验证
 #define ExecuteSystemDataProcessing FUN_18085eef0
 
-// 原始函数名：FUN_18064e900 - 系统终止函数E0
+// 系统终止函数
+// 原始函数名：FUN_18064e900
 // 功能：终止系统运行，清理系统资源
 #define TerminateSystemExecutionAndCleanupResources FUN_18064e900
 
-// 原始函数名：FUN_180657620 - 系统资源清理函数E1
-// 功能：清理系统资源E1，释放内存和句柄
+// 系统资源清理函数
+// 原始函数名：FUN_180657620
+// 功能：清理系统资源，释放内存和句柄
 #define CleanupSystemResourceE1 FUN_180657620
 
-// 系统缓冲区操作相关宏定义
-// 原始函数名：FUN_18088c740 - 系统缓冲区分配函数CA0
-// 功能：分配系统缓冲区CA0，初始化内存空间
+// 系统缓冲区操作函数
+// 原始函数名：FUN_18088c740
+// 功能：分配系统缓冲区，初始化内存空间
 #define AllocateSystemBufferCA0 FUN_18088c740
 
-// 原始函数名：FUN_1808c7b30 - 资源操作执行函数CM0
-// 功能：执行资源操作CM0，处理资源访问和管理
+// 资源操作执行函数
+// 原始函数名：FUN_1808c7b30
+// 功能：执行资源操作，处理资源访问和管理
 #define ExecuteResourceOperationCM0 FUN_1808c7b30
 
-// 原始函数名：FUN_18088c790 - 系统资源清理函数CA0
-// 功能：清理系统资源CA0，释放缓冲区内存
+// 系统资源清理函数
+// 原始函数名：FUN_18088c790
+// 功能：清理系统资源，释放缓冲区内存
 #define CleanupSystemResourceCA0 FUN_18088c790
 
 // 原始函数名：FUN_1808c7dc0 - 系统调用执行函数CN0

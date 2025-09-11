@@ -35210,11 +35210,12 @@ void SafeReleaseMemoryReferenceCount(void
 /**
  * @brief 处理系统事件队列
  * 
- * 该函数负责处理系统事件队列中的所有待处理事件，遍历事件队列并调用相应的事件处理器。
+ * 该函数负责处理系统事件队列中的所有待处理事件。
+ * 遍历事件队列并执行每个事件的回调函数。
  * 
- * @param eventQueuePointer 事件队列指针，指向包含事件处理信息的队列结构
+ * @param eventQueuePointer 事件队列指针
  * 
- * @note 该函数遍历事件队列中的每个事件，如果事件不为空，则调用对应的事件处理器函数
+ * @note 原始函数名：FUN_1800578a0
  */
 void ProcessSystemEventQueue(long long *eventQueuePointer) {
   long long *eventHandlerPointer;
