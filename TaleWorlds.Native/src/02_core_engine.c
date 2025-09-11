@@ -264624,8 +264624,8 @@ LAB_1801571ef:
   *(bool *)(ContextHandle + 0x42) = *(int *)(CoreEngineMemoryContext + 0x1ce0) != 0;
   uStack_d30 = 0xffffffff;
   pcStack_d38 = InitializeSystemMemoryPool;
-  FUN_180738730(0,0,&SystemEncodingDataSecondary,FUN_180211f70);
-  FUN_180840330(ContextHandle + 0x6d,0x20214);
+  SetupSystemEncodingInterface(0,0,&SystemEncodingDataSecondary,ConfigureSystemOperationParameters);
+  ConfigureSystemEncodingContext(ContextHandle + 0x6d,0x20214);
   SystemCleanupFlagG0 = 0;
   uStack_cf4 = 0;
   uStack_cec = 0;
@@ -264990,7 +264990,7 @@ SkipMemoryAllocation:
   if (*(void **)(BufferSize + 8) != NULL) {
     ProcessingStatusFlag = *(void **)(BufferSize + 8);
   }
-  UnicodeCodePoint = FUN_180845c40(*(void *)(SystemContextCopy + 0x368), ProcessingStatusFlag, &ResultHandle);
+  UnicodeCodePoint = ProcessUnicodeCodePointConversion(*(void *)(SystemContextCopy + 0x368), ProcessingStatusFlag, &ResultHandle);
   ProcessingStatusFlag = &CoreEngineDataTemplate;
   if (*(void **)(BufferSize + 8) != NULL) {
     ProcessingStatusFlag = *(void **)(BufferSize + 8);
