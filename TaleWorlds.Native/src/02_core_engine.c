@@ -257951,27 +257951,27 @@ void InitializeSystemValidationBuffer(long long *ContextHandle)
   
   CoreEngineExecuteSystemEvent(&SystemValidationPointer,*ContextHandle + 0x1f0);
   while (0 < (int)SystemPriorityLevel) {
-    BufferStatus = strstr(CoreEngineSignedValue48,&SystemUnknownProcessingStatusFlagC);
-    if (BufferStatus == 0) break;
-    ComputedResult = 6;
-    IntegerValue = (int)BufferStatus - (int)CoreEngineSignedValue48;
+    SystemBufferStatus = strstr(CoreEngineStringValue,&SystemUnknownProcessingStatusFlagC);
+    if (SystemBufferStatus == 0) break;
+    ComputedValidationResult = 6;
+    IntegerValue = (int)SystemBufferStatus - (int)CoreEngineStringValue;
     if (SystemPriorityLevel < IntegerValue + 6U) {
-      ComputedResult = SystemPriorityLevel - IntegerValue;
+      ComputedValidationResult = SystemPriorityLevel - IntegerValue;
     }
-    OperationResult = IntegerValue + ComputedResult;
-    if (OperationResult < SystemPriorityLevel) {
-      BufferStatus = (long long)(int)OperationResult;
+    ValidationOperationResult = IntegerValue + ComputedValidationResult;
+    if (ValidationOperationResult < SystemPriorityLevel) {
+      SystemBufferStatus = (long long)(int)ValidationOperationResult;
       do {
-        *(uint8_t *)((BufferStatus - ComputedResult) + CoreEngineSignedValue48) = *(uint8_t *)(BufferStatus + CoreEngineSignedValue48);
-        OperationResult = OperationResult + 1;
-        BufferStatus = BufferStatus + 1;
-      } while (OperationResult < SystemPriorityLevel);
+        *(uint8_t *)((SystemBufferStatus - ComputedValidationResult) + CoreEngineStringValue) = *(uint8_t *)(SystemBufferStatus + CoreEngineStringValue);
+        ValidationOperationResult = ValidationOperationResult + 1;
+        SystemBufferStatus = SystemBufferStatus + 1;
+      } while (ValidationOperationResult < SystemPriorityLevel);
     }
-    SystemPriorityLevel = SystemPriorityLevel - ComputedResult;
-    *(uint8_t *)((unsigned long long)SystemPriorityLevel + CoreEngineSignedValue48) = 0;
+    SystemPriorityLevel = SystemPriorityLevel - ComputedValidationResult;
+    *(uint8_t *)((unsigned long long)SystemPriorityLevel + CoreEngineStringValue) = 0;
   }
-  BufferStatus = InitializeSystemMemoryManager(SystemMemoryManagerPointer,&SystemValidationPointer,0);
-  if (BufferStatus != 0) {
+  SystemBufferStatus = InitializeSystemMemoryManager(SystemMemoryManagerPointer,&SystemValidationPointer,0);
+  if (SystemBufferStatus != 0) {
     MemoryBlockIndex = ContextHandle[2];
     if (MemoryBlockIndex != 0) {
       if (*(long long *)(MemoryBlockIndex + 0x1b0) == 0) {
@@ -257986,7 +257986,7 @@ void InitializeSystemValidationBuffer(long long *ContextHandle)
       }
     }
     IntegerValue = 0;
-    if (*(long long *)(BufferStatus + 0x40) - *(long long *)(BufferStatus + 0x38) >> 4 != 0) {
+    if (*(long long *)(SystemBufferStatus + 0x40) - *(long long *)(SystemBufferStatus + 0x38) >> 4 != 0) {
       ContextHandleTablePointer = (void *)ContextHandle[0xc];
       do {
         if (ContextHandleTablePointer < (void *)ContextHandle[0xd]) {
@@ -258025,11 +258025,11 @@ LAB_180209615:
         }
         IntegerValue = IntegerValue + 1;
       } while ((unsigned long long)(long long)IntegerValue <
-               (unsigned long long)(*(long long *)(BufferStatus + 0x40) - *(long long *)(BufferStatus + 0x38) >> 4));
+               (unsigned long long)(*(long long *)(SystemBufferStatus + 0x40) - *(long long *)(SystemBufferStatus + 0x38) >> 4));
     }
   }
   SystemTemplatePointer = &SystemNullTemplate;
-  if (CoreEngineSignedValue48 != 0) {
+  if (CoreEngineStringValue != 0) {
       ProcessSystemEventHandling();
   }
   return;
