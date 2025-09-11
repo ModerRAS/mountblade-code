@@ -386612,9 +386612,9 @@ UIHandle ProcessUIContextDataValidation(longlong uiContext)
     validationResultPointer = (int *)(uiContext + 0x20);
     if (0 < *(int *)(uiBufferData + 0x18)) {
       do {
-        if ((*puiValidationResult != _DAT_180c4eaa0) || (puiValidationResult[1] != _DAT_180c4eaa4)) {
-          lStackX_8 = 0;
-          result = FUN_1808681d0(maxProcessingCount,(int *)(uiContext + 0x20) + (longlong)(int)loopCounter * 2,&lStackX_8)
+        if ((*validationResultPointer != _DAT_180c4eaa0) || (validationResultPointer[1] != _DAT_180c4eaa4)) {
+          resourceHandle = 0;
+          result = FUN_1808681d0(maxProcessingCount,(int *)(uiContext + 0x20) + (longlong)(int)loopCounter * 2,&resourceHandle)
           ;
           if ((int)result != 0) {
             return result;
