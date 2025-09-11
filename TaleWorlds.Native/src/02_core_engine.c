@@ -80272,7 +80272,16 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t ContextHandle, long lon
  * @brief 初始化系统核心组件
  180096040
  */
-void InitializeSystemCoreComponents(void
+/**
+ * @brief 初始化系统核心组件
+ * 
+ * 该函数负责初始化系统的核心组件，包括字符串处理、编码转换、
+ * 内存管理和系统状态验证等功能。主要用于系统启动时的
+ * 基础设施初始化。
+ * 
+ * @note 原始函数名：FUN_180096040
+ */
+void InitializeSystemCoreComponents(void)
 {
   byte StringComparisonByte;
   bool HighByteFlag;
