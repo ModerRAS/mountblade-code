@@ -5698,11 +5698,11 @@ static void ReleaseConnectionResources(NetworkConnectionContext *connectionConte
 static void InitializeConnectionParameters(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：设置基本连接参数
-    if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionStatus = 0;              // 重置连接状态为未连接
-        NetworkConnectionContext->connectionHandle = 0;              // 清空连接句柄
-        NetworkConnectionContext->lastActivityTime = 0;               // 重置最后活动时间
-        NetworkConnectionContext->heartbeatTimestamp = 0;            // 重置心跳时间戳
+    if (connectionContext) {
+        connectionContext->connectionStatus = 0;              // 重置连接状态为未连接
+        connectionContext->connectionHandle = 0;              // 清空连接句柄
+        connectionContext->lastActivityTime = 0;               // 重置最后活动时间
+        connectionContext->heartbeatTimestamp = 0;            // 重置心跳时间戳
     }
 }
 
@@ -5825,8 +5825,8 @@ static void InitializeSecurityContext(NetworkConnectionContext *connectionContex
     // 3. 配置加密算法
     // 4. 初始化证书验证
     // 5. 启用数据完整性检查
-    if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionStatus |= NetworkStatusSecureFlag;  // 标记连接为安全状态
+    if (connectionContext) {
+        connectionContext->connectionStatus |= NetworkStatusSecureFlag;  // 标记连接为安全状态
     }
 }
 
