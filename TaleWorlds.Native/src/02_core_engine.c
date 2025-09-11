@@ -239384,7 +239384,7 @@ LAB_1801974aa:
         ProcessSystemBufferOperation(BufferStatus);
       }
       else {
-        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
+        ProcessSystemMemoryAllocation(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
       }
       *(uint16_t *)(BufferStatus + 0x2b0) = *(uint16_t *)(BufferStatus + 0x2b4);
     }
@@ -239485,7 +239485,7 @@ LAB_18019797c:
         ProcessSystemBufferOperation(BufferStatus);
       }
       else {
-        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
+        ProcessSystemMemoryAllocation(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
       }
       *(uint16_t *)(BufferStatus + 0x2b0) = *(uint16_t *)(BufferStatus + 0x2b4);
     }

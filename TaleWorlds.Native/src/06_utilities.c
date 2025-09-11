@@ -140259,7 +140259,7 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：遍历异常处理器上下文指针，执行所有非空的异常处理器回调函数
 #define IterateAndExecuteExceptionHandlers Unwind_180908730
 
-// 原始函数名：Unwind_180908750 - 互斥锁销毁函数
+// 互斥锁销毁函数
 // 功能：销毁系统互斥锁，清理同步资源
 #define DestroySystemMutex Unwind_180908750
 
