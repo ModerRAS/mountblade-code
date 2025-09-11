@@ -70017,16 +70017,16 @@ void ProcessUnwindDataValidation(DataBuffer exceptionContext, int64_t exceptionC
  */
 void ValidateUnwindMemoryAccess(DataBuffer exceptionContext, int64_t memoryContext)
 {
-  int64_t exceptionContext;
-  int64_t *dataContext;
-  int64_t memoryRegionOffset;
+  int64_t exceptionContextBoundary;
+  int64_t *dataContextPointer;
+  int64_t memoryRegionIterator;
   
-  dataContext = *(int64_t **)(memoryContext + MemoryRegionDataOffset);
-  exceptionContext = dataContext[1];
-  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionContext; memoryRegionOffset = memoryRegionOffset + ResourceQueueStepSize) {
-    ProcessSystemConfigurationA0(memoryRegionOffset);
+  dataContextPointer = *(int64_t **)(memoryContext + MemoryRegionDataOffset);
+  exceptionContextBoundary = dataContextPointer[1];
+  for (memoryRegionIterator = *dataContextPointer; memoryRegionIterator != exceptionContextBoundary; memoryRegionIterator = memoryRegionIterator + ResourceQueueStepSize) {
+    ProcessSystemConfigurationA0(memoryRegionIterator);
   }
-  if (*dataContext == 0) {
+  if (*dataContextPointer == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
