@@ -2644,58 +2644,58 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackMatrixOperand fStack_4c                         // 栈浮点值4c
 // 无符号栈变量
 #define UnsignedStackVariable StackUnsignedValueCc
-#define StackProcessingDataPointer9c uStack_9c                    // 栈处理值9c
-#define StackCharacterValueA4 StackCharacterValueA4         // 栈字符值A4
-#define StackUnsignedValueA0 CoreEngineUnsignedValueA0      // 栈无符号值A0
-#define StackProcessingDataPointer98 SystemOperationValidationFlag        // 栈处理值98
-#define StackProcessingDataPointerA8 CoreEngineValueA8            // 栈处理值A8
+#define StackProcessingDataPointer9c StackOperationValidationFlag           // 栈操作验证标志9c
+#define StackCharacterValueA4 StackCharacterEncodingValue         // 栈字符编码值A4
+#define StackUnsignedValueA0 StackMemoryAllocationSize         // 栈内存分配大小A0
+#define StackProcessingDataPointer98 StackSystemOperationFlag        // 栈系统操作标志98
+#define StackProcessingDataPointerA8 StackSystemContextPointer            // 栈系统上下文指针A8
 
 // 核心引擎处理函数栈变量语义化定义
 #define StackNormalizedParameter fStack_17c                 // 栈标准化参数值
-#define StackProcessingStatus184 uStack_184                  // 栈处理状态184
-#define StackSystemValue180 SystemUnsignedValue180          // 栈系统值180
-#define StackValidationStatus178 uStack_178                  // 栈验证状态178
-#define StackProcessingFlags170 uStack_170                  // 栈处理标志170
-#define StackOperationMask16c uStack_16c                    // 栈操作掩码16c
+#define StackProcessingStatus184 StackSystemProcessingStatus          // 栈系统处理状态184
+#define StackSystemValue180 StackSystemMemoryOffset              // 栈系统内存偏移180
+#define StackValidationStatus178 StackSystemValidationStatus      // 栈系统验证状态178
+#define StackProcessingFlags170 StackSystemOperationFlags         // 栈系统操作标志170
+#define StackOperationMask16c StackSystemOperationMask          // 栈系统操作掩码16c
 #define StackDataContentStatus DataContentStatus             // 栈数据内容状态
-#define StackValidationFlags160 SystemUnsignedValue160       // 栈验证标志160
-#define StackProcessingStatus158 uStack_158                  // 栈处理状态158
-#define StackValidationMask154 uStack_154                    // 栈验证掩码154
-#define StackAllocationFlags150 uStack_150                  // 栈分配标志150
-#define StackMemoryPointer14c uStack_14c                    // 栈内存指针14c
-#define StackResourceFlags144 uStack_144                    // 栈资源标志144
+#define StackValidationFlags160 StackSystemValidationFlags         // 栈系统验证标志160
+#define StackProcessingStatus158 StackSystemOperationStatus          // 栈系统操作状态158
+#define StackValidationMask154 StackSystemValidationMask          // 栈系统验证掩码154
+#define StackAllocationFlags150 StackMemoryAllocationFlags         // 栈内存分配标志150
+#define StackMemoryPointer14c StackMemoryAllocationPointer         // 栈内存分配指针14c
+#define StackResourceFlags144 StackSystemResourceFlags            // 栈系统资源标志144
 
 // 高频使用栈变量语义化定义
-#define StackFloatCalculationResult fStack_118              // 栈浮点计算结果（使用69次）
-#define StackTransformScaleFactor fStack_d0                 // 栈变换缩放因子（使用63次）
-#define StackMatrixOperationResult fStack_e8                 // 栈矩阵运算结果（使用52次）
-#define StackMemoryOperationData fStack_d8                  // 栈内存操作数据（使用52次）
-#define StackSystemProcessingValue fStack_f0                // 栈系统处理值（使用50次）
-#define StackBufferDataPointer fStack_258                   // 栈缓冲区数据指针（使用49次）
-#define StackSystemStatusFlag fStack_f8                      // 栈系统状态标志（使用47次）
-#define StackDataValidationResult fStack_e0                   // 栈数据验证结果（使用46次）
-#define StackMemoryAllocationOffset fStack_d4                // 栈内存分配偏移量（使用40次）
-#define StackMatrixTransformData fStack_218                 // 栈矩阵变换数据（使用40次）
-#define StackCharacterProcessingResult fStack_1e0            // 栈字符处理结果（使用36次）
-#define StackEncodingConversionData fStack_ec               // 栈编码转换数据（使用35次）
-#define StackUnicodeProcessingValue fStack_128              // 栈Unicode处理值（使用35次）
-#define StackSystemConfigurationValue fStack_100             // 栈系统配置值（使用35次）
-#define StackBufferDataOperation fStack_40                   // 栈缓冲区数据操作（使用34次）
+#define StackFloatCalculationResult StackMathCalculationResult     // 栈数学计算结果（使用69次）
+#define StackTransformScaleFactor StackGraphicsScaleFactor      // 栈图形缩放因子（使用63次）
+#define StackMatrixOperationResult StackMatrixComputationResult // 栈矩阵计算结果（使用52次）
+#define StackMemoryOperationData StackMemoryManagementData     // 栈内存管理数据（使用52次）
+#define StackSystemProcessingValue StackSystemProcessingValue    // 栈系统处理值（使用50次）
+#define StackBufferDataPointer StackBufferMemoryPointer         // 栈缓冲区内存指针（使用49次）
+#define StackSystemStatusFlag StackSystemOperationFlag          // 栈系统操作标志（使用47次）
+#define StackDataValidationResult StackDataVerificationResult   // 栈数据验证结果（使用46次）
+#define StackMemoryAllocationOffset StackMemoryPoolOffset       // 栈内存池偏移量（使用40次）
+#define StackMatrixTransformData StackTransformationMatrixData   // 栈变换矩阵数据（使用40次）
+#define StackCharacterProcessingResult StackStringEncodingResult // 栈字符串编码结果（使用36次）
+#define StackEncodingConversionData StackCharacterEncodingData      // 栈字符编码数据（使用35次）
+#define StackUnicodeProcessingValue StackUnicodeCodePointValue      // 栈Unicode码点值（使用35次）
+#define StackSystemConfigurationValue StackSystemConfigData        // 栈系统配置数据（使用35次）
+#define StackBufferDataOperation StackBufferManagementOperation    // 栈缓冲区管理操作（使用34次）
 
 // 额外栈变量语义化定义
-#define StackFloatValue8f8 fStack_8f8                       // 栈浮点值8f8
-#define StackFloatValue70 fStack_70                         // 栈浮点值70
-#define StackFloatValue6c fStack_6c                         // 栈浮点值6c
-#define StackFloatValue78 fStack_78                         // 栈浮点值78
-#define StackFloatValue74 fStack_74                         // 栈浮点值74
-#define StackFloatValue88 fStack_88                         // 栈浮点值88
-#define StackFloatValue84 fStack_84                         // 栈浮点值84
-#define StackFloatValue80 fStack_80                         // 栈浮点值80
-#define StackFloatValue7c fStack_7c                         // 栈浮点值7c
+#define StackFloatValue8f8 StackExtendedPrecisionFloat            // 栈扩展精度浮点数8f8
+#define StackFloatValue70 StackRenderingParameterFloat          // 栈渲染参数浮点数70
+#define StackFloatValue6c StackMatrixElementFloat               // 栈矩阵元素浮点数6c
+#define StackFloatValue78 StackVectorComponentFloat             // 栈向量分量浮点数78
+#define StackFloatValue74 StackTransformationFloat              // 栈变换浮点数74
+#define StackFloatValue88 StackSystemConfigurationFloat         // 栈系统配置浮点数88
+#define StackFloatValue84 StackMemoryManagementFloat           // 栈内存管理浮点数84
+#define StackFloatValue80 StackDataProcessingFloat             // 栈数据处理浮点数80
+#define StackFloatValue7c StackOperationResultFloat             // 栈操作结果浮点数7c
 
 // 新增栈变量语义化宏定义
-#define MatrixTransformData fStack0000000000000030             // 栈浮点值30
-#define CalculationFloat40 fStack0000000000000040             // 栈浮点值40
+#define MatrixTransformData StackMatrixTransformData30        // 栈矩阵变换数据30
+#define CalculationFloat40 StackMathCalculationResult40        // 栈数学计算结果40
 
 // InitializeCoreEngineDataStructure函数变量语义化宏定义
 #define LockResult SystemLockResult                          // 锁结果
