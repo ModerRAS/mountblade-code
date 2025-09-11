@@ -233,10 +233,10 @@
 #define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48 - 用于内存区域管理的主偏移量
 #define SystemMemoryRegionOffset50 0x50                         // 系统内存区域偏移量50 - 用于内存区域管理的辅助偏移量
 #define SystemMemoryRegionSize1C 0x1c                           // 系统内存区域大小1C - 内存区域的标准大小
-#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14 - 数据缓冲区的第一偏移量
-#define SystemMemoryDataBufferOffset2 0x2                       // 系统内存数据缓冲区偏移量2 - 数据缓冲区的第二偏移量
-#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30 - 数据缓冲区的第三偏移量
-#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C - 数据缓冲区的第四偏移量
+#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14 - 主数据缓冲区偏移量
+#define SystemMemoryDataBufferOffset2 0x2                        // 系统内存数据缓冲区偏移量2 - 辅助数据缓冲区偏移量
+#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30 - 浮点数据缓冲区偏移量
+#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C - 扩展数据缓冲区偏移量
 
 // 数据处理相关常量
 #define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C - 用于数据大小计算的乘数常量
