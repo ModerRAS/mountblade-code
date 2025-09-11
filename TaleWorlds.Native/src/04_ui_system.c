@@ -405045,23 +405045,23 @@ ulonglong ProcessUIComponentDataValidationAndRendering(void)
   uint stackParameterB0;
   uint stackParameterB8;
   
-  if (*(int *)(contextRegister + 0x18) != 0) {
+  if (*(int *)(contextRegisterValue + 0x18) != 0) {
     return 0x1c;
   }
-  iterationCount = ValidateUIEventDataStructureAndIntegrity(*contextHandle,componentData + 0x44,4);
-  if ((int)iterationCount != 0) {
-    return iterationCount;
+  validationResult = ValidateUIEventDataStructureAndIntegrity(*uiContextHandle,componentDataPtr + 0x44,4);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  iterationCounter = 0;
-  stackParam000000b8 = 0;
-  iterationCount = ProcessUIComponentMetricsCalculation(*contextHandle,&stack0x000000b8);
-  if ((int)iterationCount != 0) {
-    return iterationCount;
+  iterationIndex = 0;
+  stackParameterB8 = 0;
+  validationResult = ProcessUIComponentMetricsCalculation(*uiContextHandle,&stack0x000000b8);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  stackParam000000b0 = 0;
-  processStatus = stackParam000000b8 & 1;
-  maxProcessingCount = stackParam000000b8 >> 1;
-  iterationCount = iterationCounter;
+  stackParameterB0 = 0;
+  processStatusFlag = stackParameterB8 & 1;
+  maxProcessingIterations = stackParameterB8 >> 1;
+  validationResult = iterationIndex;
   if (maxProcessingCount != 0) {
     do {
       eventCode = ProcessUIComponentTransformationAndRendering();
