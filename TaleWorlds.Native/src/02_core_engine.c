@@ -288732,7 +288732,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
       ContextHandle[1] = SystemDataRegistry;
     }
     else {
-      ContextHandleTablePointer = (void *)FUN_18022ef00(OperationBufferSize,Utf8SourcePointer);
+      ContextHandleTablePointer = (void *)ProcessMemoryPoolAllocationAndCharacterBuffer(OperationBufferSize,Utf8SourcePointer);
       CharacterStatusBuffer = (void *)ContextHandle[1];
       for (SecondaryProcessingStatusFlag = ContextHandleTablePointer; SecondaryProcessingStatusFlag != CharacterStatusBuffer; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0xb) {
         (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
@@ -288761,7 +288761,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
   else {
     BufferStatus = BufferAllocate(MemoryPoolManager,FramePointer * 0x58,(char)SystemDataNode[3]);
   }
-  FUN_18022efb0();
+  ProcessUnicodeCodePointAndCharacterBuffer();
   CharacterStatusBuffer = (void *)SystemDataNode[1];
   SystemEventTemplatePointer = (void *)*SystemDataNode;
   if (SystemEventTemplatePointer != CharacterStatusBuffer) {
@@ -288800,12 +288800,12 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
   SystemDataRegistry = SUB168(SEXT816(SystemRegisterR10) * SEXT816(*(long long *)(SystemDataNode + 8) - Utf8SourcePointer),8);
   CalculatedCodePoint = (SystemDataRegistry >> 4) - (SystemDataRegistry >> 0x3f);
   if (CalculatedCodePoint < FramePointer) {
-    FUN_18022ef00();
-    UnicodeCodePoint = FUN_18022efb0(CalculatedCodePoint * 0x58 + PatternIndex);
+    ProcessMemoryPoolAllocationAndCharacterBuffer();
+    UnicodeCodePoint = ProcessUnicodeCodePointAndCharacterBuffer(CalculatedCodePoint * 0x58 + PatternIndex);
     *(void *)(SystemDataNode + 8) = UnicodeCodePoint;
   }
   else {
-    PrimaryProcessingStatusFlag = (void *)FUN_18022ef00();
+    PrimaryProcessingStatusFlag = (void *)ProcessMemoryPoolAllocationAndCharacterBuffer();
     CharacterStatusBuffer = *(uint64_t **)(SystemDataNode + 8);
     for (SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag; SecondaryProcessingStatusFlag != CharacterStatusBuffer; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0xb) {
       (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
