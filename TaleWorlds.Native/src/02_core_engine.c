@@ -263011,7 +263011,22 @@ uint64_t ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle, int OperationBuffe
 
 
 
-uint64_t * FUN_180211fa0(uint64_t *ContextHandle
+/**
+ * @brief 初始化系统上下文二级配置
+ * 
+ * 该函数负责初始化系统上下文的二级配置，包括：
+ * - 设置系统上下文二级引用
+ * - 初始化互斥锁和同步机制
+ * - 配置字符状态缓冲区
+ * - 初始化系统资源
+ * - 管理缓冲区分配状态
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @return uint64_t* 初始化后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180211fa0
+ */
+uint64_t * InitializeSystemContextSecondaryConfiguration(uint64_t *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
