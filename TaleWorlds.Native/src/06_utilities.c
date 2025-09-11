@@ -20396,20 +20396,20 @@ DataBuffer ValidateUtilitySystemState(void)
   uint32_t systemHealthStatusIndicator;
   uint64_t adjustedParameterValue;
   int64_t systemDataProcessingBuffer;
-  uint64_t iterationCounter;
-  uint64_t dataAddressContext;
+  uint64_t validationIterationCount;
+  uint64_t dataAddressPointer;
   uint64_t memoryValidationStatus;
   uint64_t systemMemoryContext;
   uint64_t parameterAccumulator;
   int *dataOperationContext;
   int64_t memoryValidationResult;
-  int memoryRegionBase;
+  int memoryRegionBaseAddress;
   
-  iterationCounter = 0;
+  validationIterationCount = 0;
   systemInputParameter = 0;
   adjustedParameterValue = systemInputParameter - 8;
   if (parameterAccumulator == 0) {
-    systemMemoryContext = dataAddressContext;
+    systemMemoryContext = dataAddressPointer;
   }
   dataValidationContext = (DataWord *)(StackFrameContext + DataPointerOffset + (int64_t)*(int *)(StackFrameContext + ArrayCountOffset) * 8);
   dataOperationContext = (int *)(StackFrameContext + ArrayDataOffset);
@@ -20417,7 +20417,7 @@ DataBuffer ValidateUtilitySystemState(void)
     do {
       if ((*dataOperationContext != MemoryValidationConstantA) || (dataOperationContext[1] != MemoryValidationConstantB)) {
         memoryValidationResult = 0;
-        memoryValidationStatus = ValidateMemoryAddressA0(systemMemoryContext,(int *)(StackFrameContext + ArrayDataOffset) + (int64_t)(int)dataAddressContext * 2,
+        memoryValidationStatus = ValidateMemoryAddressA0(systemMemoryContext,(int *)(StackFrameContext + ArrayDataOffset) + (int64_t)(int)dataAddressPointer * 2,
                               &systemDataProcessingBuffer);
         if ((int)memoryValidationStatus != 0) {
           return memoryValidationStatus;
@@ -20431,11 +20431,11 @@ DataBuffer ValidateUtilitySystemState(void)
           return memoryValidationStatus;
         }
       }
-      memoryRegionBase = (int)dataAddressContext + 1;
-      dataAddressContext = (uint64_t)memoryRegionBase;
+      memoryRegionBaseAddress = (int)dataAddressPointer + 1;
+      dataAddressPointer = (uint64_t)memoryRegionBaseAddress;
       dataValidationContext = dataValidationContext + 1;
       dataOperationContext = dataOperationContext + 2;
-    } while ((int)memoryRegionBase < *(int *)(StackFrameContext + ArrayCountOffset));
+    } while ((int)memoryRegionBaseAddress < *(int *)(StackFrameContext + ArrayCountOffset));
   }
   return 0;
 }
