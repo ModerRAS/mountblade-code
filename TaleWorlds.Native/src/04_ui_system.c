@@ -605,6 +605,7 @@ typedef enum {
 #define FUN_180743700 CreateUIOperationBuffer                // 创建UI操作缓冲区
 #define func_0x000180743b40 ExecuteUIOperation                // 执行UI操作
 #define FUN_180759d80 ProcessUIDataOperationAlternative      // 处理UI数据操作替代方案
+#define FUN_1807594d0 ExecuteUIDataBindingAlternative        // 执行UI数据绑定替代方案
 #define ProcessUIDataFinalEx FUN_180739a6d                 // 处理最终UI数据扩展版本
 #define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
 #define UIReturnEmptyFunction FUN_18071ace8                // UI系统空返回函数
@@ -158993,35 +158994,59 @@ ProcessUIDataBindingAndOperation(longlong uiContext, longlong dataSource, longlo
 
 
 
+/**
+ * @brief 简化版UI数据绑定操作
+ * 
+ * 该函数是UI数据绑定操作的简化版本，主要功能包括：
+ * - 验证UI缓冲区和数据源的完整性
+ * - 创建简化的UI操作缓冲区
+ * - 设置基本的数据绑定参数
+ * - 执行简化的数据操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区标识符
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针标识符
+ * @param param_6 操作模式参数
+ * @return UIHandle 操作结果句柄，0表示成功，5表示验证失败
+ */
 UIHandle
-FUN_1807593d0(longlong uiContext,longlong dataSource,UIDword targetBuffer,UIDword bufferSize,
-             UIDword resultPointer,UIByte param_6)
-
+ProcessUISimplifiedDataBinding(longlong uiContext, longlong dataSource, UIDword targetBuffer, 
+                               UIDword bufferSize, UIDword resultPointer, UIByte param_6)
 {
   UIHandle result;
-  UIByte *puStackX_8;
+  UIByte *operationBuffer;
   
+  // 验证UI缓冲区和数据源的完整性
   if (((*(longlong *)(uiBufferData + 0xe8) == 0) || (*(int *)(*(longlong *)(uiBufferData + 0xe8) + 0x28) != 0)
       ) && ((*(longlong *)(dataSource + 0xe8) == 0 ||
             (*(int *)(*(longlong *)(dataSource + 0xe8) + 0x2c) != 0)))) {
+    
+    // 检查UI上下文状态标志
     if ((*(uint *)(uiContext + 100) >> 8 & 1) == 0) {
-      result = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_8,0x28,param_6);
+      // 创建简化的UI操作缓冲区
+      result = CreateUIOperationBuffer(*(UIHandle *)(uiContext + 0xa8), &operationBuffer, 0x28, param_6);
       if ((int)result == 0) {
-        *puStackX_8 = 2;
-        *(longlong *)(puStackX_8 + 8) = uiContext;
-        *(longlong *)(puStackX_8 + 0x10) = dataSource;
-        *(UIDword *)(puStackX_8 + 0x18) = targetBuffer;
-        *(UIDword *)(puStackX_8 + 0x1c) = bufferSize;
-        *(UIDword *)(puStackX_8 + 0x20) = resultPointer;
-        result = func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),puStackX_8,param_6);
+        // 设置操作缓冲区参数（简化版本）
+        *operationBuffer = 2;  // 简化操作类型标识
+        *(longlong *)(operationBuffer + 8) = uiContext;
+        *(longlong *)(operationBuffer + 0x10) = dataSource;
+        *(UIDword *)(operationBuffer + 0x18) = targetBuffer;
+        *(UIDword *)(operationBuffer + 0x1c) = bufferSize;
+        *(UIDword *)(operationBuffer + 0x20) = resultPointer;
+        
+        // 执行简化的UI操作
+        result = ExecuteUIOperation(*(UIHandle *)(uiContext + 0xa8), operationBuffer, param_6);
       }
     }
     else {
-      result = FUN_1807594d0();
+      // 执行替代的数据操作
+      result = ExecuteUIDataBindingAlternative();
     }
   }
   else {
-    result = 5;
+    result = 5;  // 返回错误码：验证失败
   }
   return result;
 }
