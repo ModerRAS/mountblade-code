@@ -252396,29 +252396,30 @@ LAB_180204df9:
 
 
 
-04e40(long long ContextHandle,int *ContextHandleSizevoid FUN_180204e40(long long ContextHandle,int *ContextHandleSize
+// 函数: void ProcessSystemContextDataTransferAndMemoryManagement(long long ContextHandle,int *ContextHandleSize)
+void ProcessSystemContextDataTransferAndMemoryManagement(long long ContextHandle,int *ContextHandleSize)
 {
-  int LockResult;
-  int LockOperationResult;
+  int DataLockResult;
+  int MemoryLockOperationResult;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   unsigned long long *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  void *NextNode;
+  void *DataBufferNode;
   
   if (*ContextHandleSize == -1) {
     return;
   }
-  IntegerValue = OperationBufferSize[2];
-  if (IntegerValue == -1) goto ProcessSystemDataCleanupAndMemoryRelease;
+  int DataValueIndex = OperationBufferSize[2];
+  if (DataValueIndex == -1) goto ProcessSystemDataCleanupAndMemoryRelease;
   SecondaryProcessingStatusFlag = (unsigned long long *)(ContextHandle + 0x98 + (unsigned long long)*(uint *)(ContextHandle + 0x90) * 0x20);
-  StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
-  if (StringProcessingStatus < (void *)SecondaryProcessingStatusFlag[2]) {
-    LockOperationResult = OperationBufferSize[3];
-    *StringProcessingStatus = *(void *)OperationBufferSize;
-    *(int *)(StringProcessingStatus + 1) = IntegerValue;
-    *(int *)((long long)StringProcessingStatus + 0xc) = LockOperationResult;
+  void *StringDataBuffer = (void *)SecondaryProcessingStatusFlag[1];
+  if (StringDataBuffer < (void *)SecondaryProcessingStatusFlag[2]) {
+    MemoryLockOperationResult = OperationBufferSize[3];
+    *StringDataBuffer = *(void *)OperationBufferSize;
+    *(int *)(StringDataBuffer + 1) = DataValueIndex;
+    *(int *)((long long)StringDataBuffer + 0xc) = MemoryLockOperationResult;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
     goto ProcessSystemDataCleanupAndMemoryRelease;
   }
