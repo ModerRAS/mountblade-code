@@ -231,6 +231,18 @@ typedef enum {
 #define UIContextHandleTable180954878 UIContextHandleTable878  // UI上下文句柄表878
 #define UIComponentTypeTable1809535e0 UIComponentTypeTable5E0  // UI组件类型表5E0
 
+// UI系统核心功能函数语义化宏定义
+#define ProcessUIBufferDataValidation FUN_18073a405              // 处理UI缓冲区数据验证
+#define ReleaseUIMemoryAndExecuteRender FUN_18073a47d            // 释放UI内存并执行渲染
+#define ReleaseUIMemoryAndExecuteRenderTask FUN_18073a49f          // 释放UI内存并执行渲染任务
+#define ProcessUIContextAndBufferData FUN_18073a4c0              // 处理UI上下文和缓冲区数据
+#define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
+#define ProcessUIDataWithMultipleParameters FUN_18073a5ad         // 处理带多参数的UI数据
+#define ProcessUIResourceCleanup FUN_18073a613                  // 处理UI资源清理
+#define ProcessUIComponentStateUpdate FUN_18073a6c1              // 处理UI组件状态更新
+#define ProcessUIAnimationData FUN_18073a6eb                      // 处理UI动画数据
+#define ProcessUIDataBufferTransfer FUN_18073a710                 // 处理UI数据缓冲区传输
+
 // 未美化函数名语义化定义
 #define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
 #define ValidateAndProcessUIData FUN_180739085           // 验证和处理UI数据
@@ -125073,7 +125085,7 @@ FUN_18073a47d:
 
 
  void FUN_18073a405(void)
-void FUN_18073a405(void)
+void ProcessUIBufferDataValidation(void)
 
 {
   int operationResult;
@@ -125092,7 +125104,7 @@ void FUN_18073a405(void)
 
 
  void FUN_18073a47d(void)
-void FUN_18073a47d(void)
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
@@ -127034,8 +127046,8 @@ FUN_18073bbdd:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073bb0d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
-void FUN_18073bb0d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+ void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
