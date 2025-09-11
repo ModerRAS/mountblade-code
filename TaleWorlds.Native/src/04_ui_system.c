@@ -94592,19 +94592,19 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
   float transformCoeff1;
   int bufferCompareResult;
   uint processingFlags;
-  int localValidationResult;
+  int validationResult;
   longlong contextDataHandle;
-  float *pResultFloatValue;
-  int localInt8;
+  float *resultFloatValue;
+  int iterationIndex;
   float tempFloatValue;
   float normalizedSum0;
   float normalizedSum1;
   float normalizedSum2;
-  float afStack_68 [16];
+  float transformCoefficients[16];
   
   contextDataHandle = (longlong)param_8;
-  afStack_68[0] = 0.0;
-  afStack_68[1] = 0.0;
+  transformCoefficients[0] = 0.0;
+  transformCoefficients[1] = 0.0;
   allocatedMemory = (longlong)resultPointer + contextDataHandle * 2;
   normalizedSum2 = 0.0;
   if (resultPointer == 0) {
@@ -94617,10 +94617,10 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
   uiCompareResult = *(int *)(param_6 + 8);
   if (dataSource < targetBuffer) {
     do {
-      pResultFloatValue = afStack_68;
-      localInt8 = 0;
+      resultFloatValue = transformCoefficients;
+      iterationIndex = 0;
       do {
-        localValidationResult = 0x1f;
+        validationResult = 0x1f;
         if (*(uint *)(param_6 + 0x20) != 0) {
           for (; *(uint *)(param_6 + 0x20) >> localValidationResult == 0; localValidationResult = localValidationResult + -1) {
           }
