@@ -128424,7 +128424,27 @@ void ProcessUIContextMemoryCleanup(void)
  
 
  void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
-void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+/**
+ * @brief UI上下文长操作处理器
+ * 
+ * 处理UI上下文的长时间操作，包括数据加密、缓冲区管理和渲染任务执行
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 初始化加密密钥和内存资源
+ * 2. 执行UI上下文操作
+ * 3. 处理数据源位移和缓冲区操作
+ * 4. 验证和处理UI缓冲区数据
+ * 5. 执行UI上下文数据操作
+ * 6. 释放内存资源并执行渲染任务
+ * 
+ * @note 原始函数名：FUN_18073c160
+ */
+void ProcessUIContextLongOperation(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -128443,7 +128463,7 @@ void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
   if (operationResult == 0) {
     dataSource = dataSource << 0x14;
     operationResult = (**(code **)(*pstackLong140 + 0xf0))(pstackLong140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073c258;
+    if (operationResult == 0) goto ProcessUIContextMemoryCleanupAndRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074be80(astackUInt138,0x100,dataSource);
@@ -128453,7 +128473,7 @@ void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextIndexData);
   }
-FUN_18073c258:
+ProcessUIContextMemoryCleanupAndRender:
   if (stackLong148 != 0) {
     ReleaseUIMemoryResource();
   }
