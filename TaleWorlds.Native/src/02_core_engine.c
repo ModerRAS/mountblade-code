@@ -50,13 +50,13 @@
 #define HandleSystemContextTransfer TransferSystemContext         // 处理系统上下文传输
 #define ConvertUtf8ToUtf16Context TransformUtf8ToUtf16Encoding       // 转换UTF-8到UTF-16上下文
 #define ProcessSystemOperationBuffer HandleSystemOperationBuffer    // 处理系统操作缓冲区
-#define FUN_1801864e0 HandleSystemContextOperation              // 处理系统上下文操作
-#define FUN_1801865a0 FinalizeSystemContext                     // 完成系统上下文处理
-#define FUN_1801879d0 ExecuteSystemBufferOperation              // 执行系统缓冲区操作
-#define FUN_180187a30 ProcessSystemDataTransfer                 // 处理系统数据传输
-#define FUN_180187aa0 HandleSystemMemoryAllocation              // 处理系统内存分配
-#define FUN_180187b40 ManageSystemResourceOperation            // 管理系统资源操作
-#define FUN_180187bd0 ReleaseSystemResources                    // 释放系统资源
+#define ProcessCharacterTablePointerAndUnicodeCleanup FUN_1801864e0  // 处理字符表指针和Unicode码点清理
+#define FinalizeSystemContextCleanup FUN_1801865a0                // 完成系统上下文清理
+#define ExecuteSystemBufferOperationEx FUN_1801879d0              // 执行系统缓冲区操作扩展
+#define ProcessSystemDataTransferEx FUN_180187a30                 // 处理系统数据传输扩展
+#define HandleSystemMemoryAllocationEx FUN_180187aa0              // 处理系统内存分配扩展
+#define ManageSystemResourceOperationEx FUN_180187b40            // 管理系统资源操作扩展
+#define ReleaseSystemResourcesEx FUN_180187bd0                    // 释放系统资源扩展
 #define FUN_180187c00 FinalizeSystemBufferOperation             // 完成系统缓冲区操作
 #define FUN_180187cd0 CleanupSystemOperations                   // 清理系统操作
 #define FUN_18018b8c0 ValidateSystemContext                      // 验证系统上下文
@@ -147,6 +147,9 @@
 #define FUN_180136231 InitializeCharacterProcessing                      // 初始化字符处理
 #define FUN_18013643d CleanupCharacterProcessing                         // 清理字符处理
 #define FUN_180136457 ResetCharacterEncoder                              // 重置字符编码器
+
+// 核心引擎工具函数语义化宏定义
+#define CoreEngineExecuteUtilityFunction ExecuteSystemUtilityFunction        // 执行系统工具函数
 #define FUN_180137110 ProcessCharacterInputBufferValidation              // 处理字符输入缓冲区验证
 #define FUN_180137370 ProcessCharacterCodeConversion                     // 处理字符代码转换
 #define FUN_1801376c9 ProcessUtf8CharacterEncodingEx                     // 扩展UTF-8字符编码处理
@@ -578,7 +581,6 @@
 
 // 系统内存和数据处理函数
 #define ProcessSystemMemoryOperation FUN_180186430                // 处理系统内存操作
-#define ProcessSystemMemoryWithHandle FUN_1801864e0               // 处理带句柄的系统内存
 #define SetContextHandleMemorySize FUN_1801865a0                  // 设置上下文句柄内存大小
 #define ProcessSystemMemoryWithExtendedData FUN_1801879d0         // 处理带扩展数据的系统内存
 #define ProcessSystemMemoryWithExtendedHandle FUN_180187a30       // 处理带扩展句柄的系统内存
@@ -1397,6 +1399,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackValidationFlag20 StackValidationFlag20                 // 栈验证标志20
 #define StackValidationFlagD8 StackValidationFlagD8                 // 栈验证标志D8
 #define StackValidationFlag49 StackValidationFlag49                 // 栈验证标志49
+
+// 系统栈处理变量定义
+#define aStackProcessingValue78 SystemStackProcessingBuffer78        // 系统栈处理缓冲区78
+#define uStack_18 SystemStackUnsignedValue18                        // 系统栈无符号值18
 
 // 系统事件和标志变量定义
 #define SystemEventValidationStatus SystemEventCurrentCharacterStatus      // 系统事件当前字符
@@ -15036,23 +15042,7 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @param Utf8SourcePointer - UTF8源指针
  * @param Utf16EndPointer - UTF16结束指针
  * 
- * @note 原始函数名：FUN_1801864e0
  */
-#define ProcessSystemMemoryEx7 FUN_1801864e0
-
-/**
- * @brief 系统数据处理函数10
- * 
- * 该函数处理系统数据操作（变体10）
- * 
- * @param ContextHandle - 上下文句柄
- * @param OperationBufferSize - 操作缓冲区大小
- * @param Utf8SourcePointer - UTF8源指针
- * @param Utf16EndPointer - UTF16结束指针
- * 
- * @note 原始函数名：FUN_1801864e0
- */
-#define ProcessSystemDataEx9 FUN_1801864e0
 
 /**
  * @brief 系统配置处理函数
@@ -217284,7 +217274,6 @@ long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *Cont
 
 
 
-// 函数: long long * FUN_18017b240(long long *ContextHandle,long long *ContextHandleSize)
 /**
  * @brief 处理字符代码缓冲区和数据管理
  * 
@@ -217363,7 +217352,6 @@ long long * ProcessContextHandleBufferAndDataManagement(long long *ContextHandle
 
 
 
-// 函数: void FUN_18017b259(long long ContextHandle,long long *ContextHandleSize)
 /**
  * @brief 处理系统数据和内存边界管理
  * 

@@ -125728,18 +125728,18 @@ void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *
   UIByte tempBufferArray [256];
   ulonglong encryptedParam;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong158 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&stackLong150,&stackLong158);
+  encryptedParam = XorEncryptionKey ^ (ulonglong)encryptionKeyArray;
+  cleanupFlag = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext, &contextDataPtr, &cleanupFlag);
   if (operationResult == 0) {
     if (dataSource != (UIDword *)0x0) {
-      *dataSource = *(UIDword *)(stackLong150 + 0x6d0);
+      *dataSource = *(UIDword *)(contextDataPtr + 0x6d0);
     }
     if (targetBuffer != (UIDword *)0x0) {
-      *targetBuffer = *(UIDword *)(stackLong150 + 0x1193c);
+      *targetBuffer = *(UIDword *)(contextDataPtr + 0x1193c);
     }
     if (bufferSize != (UIDword *)0x0) {
-      *bufferSize = *(UIDword *)(stackLong150 + 0x6d4);
+      *bufferSize = *(UIDword *)(contextDataPtr + 0x6d4);
     }
   }
   else if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -128127,7 +128127,7 @@ void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
     FUN_18074bdf0(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809577b0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextMetadata);
   }
 LAB_18073c5c9:
                      WARNING: Subroutine does not return
