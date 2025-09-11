@@ -46410,8 +46410,8 @@ void ProcessCoreEngineDataStructure(uint64_t ContextHandle,long long OperationBu
   uint8_t *MemoryAllocationBuffer;
   uint BufferOffset;
   unsigned long long AllocationSize;
-  char ControlFlag120;
-  char ValidationFlag119;
+  char SystemControlFlag;
+  char SystemValidationFlag;
   uint32_t StringEncodingBuffer;
   void *SystemEventTemplatePointer;
   uint8_t *BufferPointer110;
@@ -46435,7 +46435,7 @@ void ProcessCoreEngineDataStructure(uint64_t ContextHandle,long long OperationBu
   
   MemoryContext60 = 0xfffffffffffffffe;
   MemoryContext48 = EncodingDecodingKey ^ (unsigned long long)aProcessingStatus;
-  ControlFlag120 = AdditionalParameter1;
+  SystemControlFlag = AdditionalParameter1;
   CharacterStatusBuffer = (uint8_t *)0x0;
   Utf16Char4 = 0;
   StringEncodingBuffer = 0;
@@ -47310,6 +47310,7 @@ void ProcessSystemDataStructureValidation(uint64_t ContextHandle,long long Opera
   char SystemTertiaryFlag;
   uint8_t StackValidationFlag116;
   uint StackOperationFlag114;
+  char SystemValidationStatusFlag118;
   void *CoreEnginePointerBuffer;
   uint8_t *StackValidationBuffer108;
   uint SystemProcessFlagA;
@@ -47911,7 +47912,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
   uint64_t *pCharacterStatusBuffer2;
   void *pCharacterStatusBuffer3;
   void *pConfigurationString;
-  char StackFlagX10;
+  char StackProcessingFlagX;
   uint ReturnCode5;
   void *pCoreEngineBuffer110;
   uint64_t *pStackDataBuffer108;
@@ -243610,7 +243611,22 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
 
 
 
-9c6e0(long long ContextHandle,long long OperationBufferSizevoid FUN_18019c6e0(long long ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理系统上下文和内存缓冲区管理
+ * 
+ * 该函数负责处理系统上下文和内存缓冲区的管理操作。
+ * 主要功能包括：
+ * - 管理上下文句柄和操作缓冲区
+ * - 处理UTF-16字符编码转换
+ * - 执行内存分配和状态检查
+ * - 管理系统栈数据和处理标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18019c6e0
+ */
+void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long long OperationBufferSize)
 {
   uint Utf16Char;
   long long *BufferAllocationState;
