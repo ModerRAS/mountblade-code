@@ -1847,6 +1847,59 @@ typedef enum {
 #define ResultFloatValue MatrixValue
 #define TemporaryFloatValue TransformResult
 #define localChar9 SystemStatus
+
+// UI系统变换系数变量美化
+#define transformCoeff13 UITransformCoefficient13
+#define transformCoeff15 UITransformCoefficient15
+#define transformCoefficient UITransformCoefficient
+#define rotationAngle UIRotationAngle
+#define ResultFloatValue UIMatrixResultValue
+#define AccumulatedFloatValue UIAccumulatedFloatValue
+
+// UI系统栈变量美化
+#define fStack0000000000000054 UIStackFloat54
+#define fStack000000000000005c UIStackFloat5C
+#define fStack000000000000006c UIStackFloat6C
+#define fStack0000000000000074 UIStackFloat74
+#define fStack0000000000000080 UIStackFloat80
+#define fStack0000000000000084 UIStackFloat84
+
+// UI系统寄存器变量美化
+#define unmodifiedXMM8_Da UIRegisterXMM8_DataA
+#define unmodifiedXMM9_Da UIRegisterXMM9_DataA
+#define unmodifiedXMM10_Da UIRegisterXMM10_DataA
+#define unmodifiedXMM12_Da UIRegisterXMM12_DataA
+#define unmodifiedXMM12_Db UIRegisterXMM12_DataB
+#define unmodifiedXMM12_Dc UIRegisterXMM12_DataC
+#define unmodifiedXMM12_Dd UIRegisterXMM12_DataD
+#define unmodifiedXMM13_Da UIRegisterXMM13_DataA
+#define unmodifiedXMM14_Da UIRegisterXMM14_DataA
+#define unmodifiedXMM15_Da UIRegisterXMM15_DataA
+#define preservedXMM6 UIPreservedRegisterXMM6
+#define preservedXMM7 UIPreservedRegisterXMM7
+
+// UI系统处理结果变量美化
+#define ProcessingResult3 UIProcessingResult3
+#define ProcessingResult6 UIProcessingResult6
+#define isCharacterMatch UICharacterMatchStatus
+#define CharacterDataOffset UICharacterDataOffset
+#define BaseValuePointer0 UIBaseValuePointer0
+#define result1 UIResult1
+#define ProcessingResult3 UIProcessingResult3
+#define allocatedMemory2 UIAllocatedMemoryBlock2
+#define allocatedMemory4 UIAllocatedMemoryBlock4
+#define allocatedMemory5 UIAllocatedMemoryBlock5
+#define uiTargetHandle UITargetHandle
+#define eventHandle UIEventHandle
+#define finalResult UIFinalResult
+#define FloatValue1 UIFloatValue1
+#define FloatValue2 UIFloatValue2
+#define in_XMM5_Da UIInputXMM5_DataA
+#define transformCoeffPointer UITransformCoefficientPointer
+#define uiCompareResult UICompareResult
+#define accumulatedFloatValue UIAccumulatedFloatValue
+#define vectorComponentX UIVectorComponentX
+#define transformCoeffPointer UITransformCoeffPointer
 #define AccumulatedFloat AnimationTime
 #define transformCoefficient AnimationDelta
 #define transformCoeff16 MinimumBoundsValue
