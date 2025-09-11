@@ -244097,7 +244097,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
           *(uint8_t *)(StringOffset + 0xf9) = 1;
           UNLOCK();
         }
-        FUN_1802decc0(EncodingConversionResult,OperationBufferSize,*(void *)(ContextHandle + 0x398),&SystemOperationValidationFlag,&uStack_118);
+        ExecuteSystemDataConversion(EncodingConversionResult,OperationBufferSize,*(void *)(ContextHandle + 0x398),&SystemOperationValidationFlag,&uStack_118);
         ProcessingStatusFlag = *(void *)(*(long long *)(ContextHandle + 0x398) + 0x1d8);
         MemoryAddressMaskPointer = *(void *)(*(long long *)(ContextHandle + 0x398) + 0x1b8);
         Utf16Char = *(uint *)(EncodingConversionResult + 0x314);
@@ -261340,11 +261340,11 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
   long long *OperationBuffer;
   
   MemoryBlockIndex = 0;
-  long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x3a0) - *(long long *)(ContextHandle + 0x398);
-  AllocatedMemorySize = AllocatedMemorySize / 0x26 + (AllocatedMemorySize >> 0x3f);
-  AllocatedMemorySize = (AllocatedMemorySize >> 2) - (AllocatedMemorySize >> 0x3f);
-  Utf16Char = *(uint *)(ContextHandle + 0x3b0);
-  *(uint *)(OperationBufferSize + 3) = Utf16Char;
+  CalculatedMemorySize = *(long long *)(ContextHandle + 0x3a0) - *(long long *)(ContextHandle + 0x398);
+  CalculatedMemorySize = CalculatedMemorySize / 0x26 + (CalculatedMemorySize >> 0x3f);
+  CalculatedMemorySize = (CalculatedMemorySize >> 2) - (CalculatedMemorySize >> 0x3f);
+  Utf16CharacterValue = *(uint *)(ContextHandle + 0x3b0);
+  *(uint *)(OperationBuffer + 3) = Utf16CharacterValue;
   if (AllocatedMemorySize != 0) {
     MemoryBlockIndex = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
   }
