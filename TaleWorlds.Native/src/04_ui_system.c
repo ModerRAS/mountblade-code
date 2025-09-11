@@ -132621,8 +132621,20 @@ void ProcessUIBufferCleanupTask(void)
 
 
 
- void FUN_18073e700(UIHandle uiContext)
-void FUN_18073e700(UIHandle uiContext)
+ /**
+ * @brief 处理UI上下文清理任务
+ * 
+ * 该函数执行UI上下文的清理任务，包括：
+ * - 系统资源清理
+ * - 内存管理
+ * - 上下文释放
+ * 
+ * @param uiContext UI上下文句柄
+ * 
+ * @note 原始函数名：FUN_18073e700
+ * @note 该函数是一个简单的包装函数，调用系统清理函数
+ */
+void ProcessUIContextCleanupTask(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
