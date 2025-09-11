@@ -224,6 +224,14 @@ typedef enum {
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
 #define FUN_18073c471 ProcessUIContextShutdown
 #define FUN_18073c493 ProcessUIContextFinalization
+#define FUN_18073c4c0 ProcessUIDataBufferWithSize        // 处理带大小的UI数据缓冲区
+#define FUN_18073c5f0 ProcessUIDataWithDualBuffers       // 处理带双缓冲区的UI数据
+#define FUN_18073c60d ProcessUIDataWithDualBuffersEx     // 处理带双缓冲区的UI数据扩展版本
+#define FUN_18073c66b ExecuteUIContextReset             // 执行UI上下文重置
+#define FUN_18073c6e3 CleanupUIContextResources         // 清理UI上下文资源
+#define FUN_18073c705 ValidateUIContextState           // 验证UI上下文状态
+#define FUN_18073c730 ProcessUIDataWithBufferParams    // 处理带缓冲区参数的UI数据
+#define FUN_18073c74d ProcessUIDataWithExtendedParams  // 处理带扩展参数的UI数据
 #define UNK_18097ed40 UILayoutDataTable           // UI布局数据表
 #define UNK_18097ed50 UIFontResourceTable          // UI字体资源表
 #define UNK_18098b9b8 UIShaderDataTable           // UI着色器数据表
