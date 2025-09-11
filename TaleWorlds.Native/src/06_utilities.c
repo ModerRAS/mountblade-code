@@ -143625,14 +143625,24 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 
 // 系统线程同步器指针
 #define SystemThreadSynchronizerPointer UNK_180c96740
-#define UNK_180c497e0 SystemThreadContextManager           // 系统线程上下文管理器 - 负责线程上下文的管理
-#define UNK_180c498a0 SystemThreadExceptionHandler          // 系统线程异常处理器 - 负责线程异常的处理
+// 系统线程上下文管理器指针
+#define SystemThreadContextManagerPointer UNK_180c497e0
+
+// 系统线程异常处理器指针
+#define SystemThreadExceptionHandlerPointer UNK_180c498a0
 
 // 系统异常处理相关变量语义化定义
-#define UNK_180d49e70 SystemExceptionTable                 // 系统异常表 - 存储系统异常信息
-#define UNK_180d49f10 SystemExceptionHandler               // 系统异常处理器 - 处理系统异常
-#define UNK_180d497e0 SystemExceptionStack                 // 系统异常栈 - 存储系统异常栈信息
-#define UNK_180d498a0 SystemExceptionFrame                 // 系统异常帧 - 存储系统异常帧信息
+// 系统异常表指针
+#define SystemExceptionTablePointer UNK_180d49e70
+
+// 系统异常处理器指针
+#define SystemExceptionHandlerPointer UNK_180d49f10
+
+// 系统异常栈指针
+#define SystemExceptionStackPointer UNK_180d497e0
+
+// 系统异常帧指针
+#define SystemExceptionFramePointer UNK_180d498a0
 
 // 系统资源管理相关变量语义化定义
 #define UNK_180985054 SystemResourceTable                   // 系统资源表 - 存储系统资源信息
