@@ -127092,8 +127092,19 @@ void ExecuteUIRenderTaskWithMemoryCleanup(uint32_t stackParameter30, uint64_t st
 
 
 
- void FUN_18073b457(void)
-void FUN_18073b457(void)
+ #define ProcessUITextureDataWithControl FUN_18073b457
+/**
+ * @brief 处理纹理数据与控制操作
+ * 
+ * 该函数负责处理纹理数据与控制操作，包括：
+ * - 复制UI数据缓冲区
+ * - 执行数据缓冲区验证和控制
+ * - 处理纹理数据
+ * 
+ * @note 原始函数名：FUN_18073b457
+ * @note 该函数不返回，执行完毕后会跳转到UI上下文数据操作
+ */
+void ProcessUITextureDataWithControl(void)
 
 {
   int operationResult;
@@ -127110,8 +127121,18 @@ void FUN_18073b457(void)
 
 
 
- void FUN_18073b4cf(void)
-void FUN_18073b4cf(void)
+ #define ReleaseUIResourceAndExecuteRenderEx FUN_18073b4cf
+/**
+ * @brief 释放UI资源并执行渲染任务扩展版本
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073b4cf
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRenderEx(void)
 
 {
   longlong stackParam00000030;
