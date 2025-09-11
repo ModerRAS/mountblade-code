@@ -618,7 +618,7 @@
 #define FUN_180219020 FinalizeSystemContextTransfer                // 完成系统上下文传输
 
 // 系统指针处理函数语义化宏定义
-#define FUN_18021a140 GetSystemContextPointer                      // 获取系统上下文指针
+#define FUN_18021a140 GetSystemContextController                      // 获取系统上下文指针
 #define FUN_1802185b0 ResetSystemPointerState                     // 重置系统指针状态
 
 // 系统编码处理函数语义化宏定义
@@ -984,7 +984,7 @@
 #define SystemMemoryBlockSize 0xb8                           // 系统内存块大小
 
 // 变量名语义化宏定义
-#define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
+#define Utf16CodeValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress FramePointer         // 栈帧地址
 
@@ -992,7 +992,7 @@
 #define PrimaryStatusBlock SystemPrimaryStatusBlock               // 主要状态块
 #define SecondaryProcessingStatusFlag SystemSecondaryProcessingStatusFlag    // 次要处理状态标志
 #define StringProcessingStatus SystemStringProcessingStatus         // 字符串处理状态
-#define SystemContextPtr SystemContextPointer                 // 系统上下文指针
+#define SystemContextPtr SystemContextController                 // 系统上下文指针
 #define AllocatedMemorySize MemoryAllocationSize                // 已分配内存大小
 #define TemporaryBuffer SystemTemporaryBuffer                 // 临时缓冲区
 #define MemoryComparisonResult MemoryComparisonResult         // 内存比较结果
@@ -2322,7 +2322,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define SystemStringPointerOffset 8                         // 系统字符串指针偏移量
 #define SystemStatusByte LowByte                          // 系统状态字节
 #define MemoryBlockStatus IsMemoryBlockEqual              // 内存块状态
-#define Utf16CharacterValue Utf16Char                     // UTF-16字符值
+#define Utf16CodeValue Utf16Char                     // UTF-16字符值
 #define LockOperationResult StringComparisonResult    // 字符串比较结果
 #define ValidationResult pValidationResult                // 验证结果
 #define SystemRegister IntegerValue9                       // 系统寄存器
@@ -2533,7 +2533,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define CharacterStatus2 SystemCharacterStatus2             // 字符状态2（系统字符状态2）
 #define SystemStatusChar SystemStatusCharacter              // 系统状态字符（系统状态字符）
 #define HighByte UnicodeHighByte                           // 高字节（Unicode高字节）
-#define Utf16Char Utf16CharacterValue                      // UTF-16字符（UTF-16字符值）
+#define Utf16Char Utf16CodeValue                      // UTF-16字符（UTF-16字符值）
 #define SystemDataNode SystemContextDataNode               // 系统数据节点（系统上下文数据节点）
 #define AllocatedMemorySize SystemContextSize               // 已分配内存大小（系统上下文大小）
 #define CharacterTablePointer SystemCharacterTablePointer   // 字符表指针（系统字符表指针）
@@ -2546,7 +2546,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define ValidationStatus SystemDistanceValidationStatus          // 验证状态（距离验证状态）
 #define RemainingSpace SystemRemainingSpace                 // 剩余空间（系统剩余空间）
 #define StackParameterUnsigned20 StackParameterUnsigned20                       // 栈参数X20（栈参数X20）
-#define SystemContext SystemContextPointer                 // 系统上下文（系统上下文指针）
+#define SystemContext SystemContextController                 // 系统上下文（系统上下文指针）
 #define BufferMemoryOffset SystemBufferMemoryOffset                     // 系统缓冲区偏移量
 #define ThreadPriorityComparisonResult ThreadPriorityComparison // 线程优先级比较结果
 #define ThreadConfigurationFlags1 PrimaryThreadConfigFlags       // 线程配置标志1
@@ -2605,8 +2605,8 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define SystemStackOffset1e8 IntegerStackOffset1e8                    // 系统栈偏移量1e8
 #define SystemStackOffset1d0 SystemContextDataOffset            // 系统栈偏移量1d0
 #define SystemStackPointer218 SystemValidationPointer           // 系统栈指针218
-#define SystemStackPointerB0 SystemContextPointerB0                    // 系统栈指针B0
-#define SystemStackPointerA8 SystemContextPointerA8                    // 系统栈指针A8
+#define SystemStackPointerB0 SystemContextControllerB0                    // 系统栈指针B0
+#define SystemStackPointerA8 SystemContextControllerA8                    // 系统栈指针A8
 #define ValidationBytePointer48 ValidationBytePointer48                 // 验证字节指针48
 #define SystemStackInteger40 SystemStackInteger40                     // 系统栈整数40
 #define SystemStackOffsetB0 SystemStackOffsetB0                      // 系统栈偏移量B0
@@ -2661,7 +2661,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackCharacterValueA4 StackCharacterEncodingValue         // 栈字符编码值A4
 #define StackUnsignedValueA0 StackMemoryAllocationSize         // 栈内存分配大小A0
 #define StackProcessingDataPointer98 StackSystemOperationFlag        // 栈系统操作标志98
-#define StackProcessingDataPointerA8 StackSystemContextPointer            // 栈系统上下文指针A8
+#define StackProcessingDataPointerA8 StackSystemContextController            // 栈系统上下文指针A8
 
 // 核心引擎处理函数栈变量语义化定义
 #define StackNormalizedParameter fStack_17c                 // 栈标准化参数值
@@ -4411,7 +4411,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define ExecuteSystemDataProcessing FUN_1802ea790                      // 执行系统数据处理
 #define InitializeSystemGraphicsState FUN_1802ee720                    // 初始化系统图形状态
 #define ProcessSystemRenderInitialization FUN_18037c8d0                // 处理系统渲染初始化
-#define InitializeSystemContextPointer FUN_180209470                   // 初始化系统上下文指针
+#define InitializeSystemContextController FUN_180209470                   // 初始化系统上下文指针
 #define ProcessSystemContextData FUN_180209720                        // 处理系统上下文数据
 #define ExecuteSystemMatrixTransform FUN_180208f20                     // 执行系统矩阵变换
 #define ConvertCharacterEncodingToTable FUN_1801efdb0                  // 转换字符编码到表
@@ -4559,7 +4559,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define AllocateSystemMemoryEx FUN_180193bc0                       // 分配系统内存扩展
 #define ProcessSystemKeyData FUN_180631000                         // 处理系统密钥数据
 #define GetSystemDataRegistry FUN_180085e10                       // 获取系统数据注册表
-#define GetSystemContextPointer FUN_18013f220                  // 获取系统上下文指针
+#define GetSystemContextController FUN_18013f220                  // 获取系统上下文指针
 #define ProcessSystemEventHandling FUN_1801c2640                // 处理系统事件处理
 #define ProcessSystemCleanupOperations FUN_1801b8150          // 处理系统清理操作
 #define ProcessSystemMemoryOperations FUN_180197a20            // 处理系统内存操作
@@ -5802,7 +5802,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define UpdateUtf8EncodingStatus FUN_18016f7d0
 
 // 原始函数名：FUN_1801659e0 - UTF-16字符值获取函数
-#define GetUtf16CharacterValue FUN_1801659e0
+#define GetUtf16CodeValue FUN_1801659e0
 
 // 原始函数名：FUN_18016f990 - UTF-8输入缓冲区重置函数
 #define ResetContextHandle FUN_18016f990
@@ -9131,14 +9131,14 @@ const char* const SystemRenderConfigTemplateSpecialEffectG = (const char*)0x180a
 #define FUN_18020ee40 ProcessSystemEventQueue                      // 处理系统事件队列
 
 // 系统上下文和缓冲区管理函数
-#define FUN_180218bc0 ProcessSystemContextPointer                 // 处理系统上下文指针
+#define FUN_180218bc0 ProcessSystemContextController                 // 处理系统上下文指针
 #define FUN_180217b00 InitializeSystemContextTransfer              // 初始化系统上下文传输
 #define FUN_180218920 ConfigureSystemContextValidation            // 配置系统上下文验证
 #define FUN_180219260 ExecuteSystemContextSynchronization          // 执行系统上下文同步
 #define FUN_180218a80 ReleaseSystemContextResources                 // 释放系统上下文资源
 #define FUN_180219020 FinalizeSystemContextTransfer                // 完成系统上下文传输
 #define FUN_18015c2b0 ProcessSystemHandleRelease                   // 处理系统句柄释放
-#define FUN_18021a140 GetSystemContextPointer                      // 获取系统上下文指针
+#define FUN_18021a140 GetSystemContextController                      // 获取系统上下文指针
 #define FUN_1801566b0 ResetSystemPointerState                     // 重置系统指针状态
 #define FUN_1802121b0 InitializeSystemBufferTransfer               // 初始化系统缓冲区传输
 #define FUN_1802185b0 CleanupSystemBufferOperations               // 清理系统缓冲区操作
@@ -10712,7 +10712,7 @@ const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
  * @param OperationBufferSize UTF-8缓冲区大小
  * @note 原始函数名：FUN_18013f220
  */
-#define GetSystemContextPointer FUN_18013f220
+#define GetSystemContextController FUN_18013f220
 
 /**
  * @brief 处理系统数据表指针操作
@@ -33743,7 +33743,7 @@ FloatProcessingComplete: // 原始标签：LAB_180052ce3，FloatProcessingComple
       SystemStatusCode = (uint)MemoryAllocationMaskPointer;
       Utf16Char = (long long)(int)Utf16Char % (long long)(int)SystemStatusCode;
       SystemChecksum = (uint)Utf16Char;
-      CalculatedCodePoint = Utf16CharacterValue & 0xffffffff;
+      CalculatedCodePoint = Utf16CodeValue & 0xffffffff;
       Utf16Char = MemoryAllocationMaskPointer;
     }
     ValidationResult = (int)ProcessedCharacter / (int)SystemStatusCode;
@@ -44578,9 +44578,9 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   SystemFlagE = 9;
   strcpy_s(SystemCleanupFlagF,0x10,&SystemFlagTemplateA8);
   ProcessSystemCoreData(&ContextHandle,&UnsignedProcessingStatusFlag,&OperationStatus);
-  CharacterStatusBuffer8 = CoreEngineSystemContextPointer158;
+  CharacterStatusBuffer8 = CoreEngineSystemContextController158;
   CharacterStatusBuffer9 = ContextHandle;
-  if (1 < (unsigned long long)((long long)CoreEngineSystemContextPointer158 - (long long)ContextHandle >> SystemEventContextShiftCount)) {
+  if (1 < (unsigned long long)((long long)CoreEngineSystemContextController158 - (long long)ContextHandle >> SystemEventContextShiftCount)) {
     ThreadLocalStorageBuffer = &SystemDataStructureTemplate;
     CoreEnginePointerBuffer = SystemProcessFlagA;
     SystemProcessFlagA[0] = 0;
@@ -55248,7 +55248,7 @@ void CoreEngineProcessSystemContext(void
   } while ((long long)(functionPointer + (-0x808 - (long long)systemEventTemplatePtr6)) <= (long long)currentUnicodeValue);
   // 获取系统事件模板指针
   systemEventTemplatePointer = (void *            (*(long long *              ((long long)*(int *)(systemEventTablePointer + 0x1210) * 0x908 + systemEventTablePointer + 8 +
-              currentUnicodeValue * 8) + (unsigned long long)(Utf16Char - (Utf16CharacterValue & 0xfffffe00)) * 0x60);
+              currentUnicodeValue * 8) + (unsigned long long)(Utf16Char - (Utf16CodeValue & 0xfffffe00)) * 0x60);
   long long systemContextData = SystemContext;
   eventDataStructureHandle = systemEventTemplatePointer;
   
@@ -62814,8 +62814,8 @@ void ValidateCoreEngineDataIntegrity(long long ContextHandle,long long *ContextH
   int EncodingValidationResult;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerB0;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationValidationFlag;
   uint8_t *pSystemOperationStatusMask;
@@ -62839,30 +62839,30 @@ void ValidateCoreEngineDataIntegrity(long long ContextHandle,long long *ContextH
     ReleaseSystemMemoryResources();
     pSystemOperationValidationFlag = &ThreadLocalStorageTemplate;
     MemoryBlockIndex = MemoryAllocate(MemoryPoolManager,EncodingValidationResult,0x10,0x1e);
-    ExecuteSystemMemoryOperationA(Utf16Char,&SystemContextPointerB0);
-    BufferAllocationState = SystemContextPointerB0;
-    SystemContextPointerB0[2] = MemoryBlockIndex;
-    *(int *)(SystemContextPointerB0 + 3) = EncodingValidationResult;
-    *(int *)((long long)SystemContextPointerB0 + 0x1c) = EncodingValidationResult;
-    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
+    ExecuteSystemMemoryOperationA(Utf16Char,&SystemContextControllerB0);
+    BufferAllocationState = SystemContextControllerB0;
+    SystemContextControllerB0[2] = MemoryBlockIndex;
+    *(int *)(SystemContextControllerB0 + 3) = EncodingValidationResult;
+    *(int *)((long long)SystemContextControllerB0 + 0x1c) = EncodingValidationResult;
+    *(uint8_t *)(SystemContextControllerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)*ContextHandleSize;
+    SystemContextControllerB0 = (long long *)0x0;
+    SystemContextControllerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)BufferAllocationState;
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (SystemContextPointerB0 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerB0 + 0x38))();
+    if (SystemContextControllerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerB0 + 0x38))();
     }
       memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  SystemContextPointerA8 = (long long *)*ContextHandleSize;
+  SystemContextControllerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    (**(code **)(*SystemContextPointerA8 + 0x38))();
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextControllerA8 + 0x38))();
   }
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
 }
@@ -62888,8 +62888,8 @@ void OptimizeCoreEngineDataPerformance(long long ContextHandle,long long *Contex
   long long SystemDataRegistry;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerB0;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationValidationFlag;
   uint8_t *pSystemOperationStatusMask;
@@ -62913,30 +62913,30 @@ void OptimizeCoreEngineDataPerformance(long long ContextHandle,long long *Contex
     ReleaseSystemMemoryResources();
     pSystemOperationValidationFlag = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    ExecuteSystemMemoryOperationB(MemoryPoolIndex,&SystemContextPointerB0);
-    MemoryBlockIndex = SystemContextPointerB0;
-    SystemContextPointerB0[2] = SystemDataRegistry;
-    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
-    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
+    ExecuteSystemMemoryOperationB(MemoryPoolIndex,&SystemContextControllerB0);
+    MemoryBlockIndex = SystemContextControllerB0;
+    SystemContextControllerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextControllerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextControllerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextControllerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)*ContextHandleSize;
+    SystemContextControllerB0 = (long long *)0x0;
+    SystemContextControllerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (SystemContextPointerB0 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerB0 + 0x38))();
+    if (SystemContextControllerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerB0 + 0x38))();
     }
       memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  SystemContextPointerA8 = (long long *)*ContextHandleSize;
+  SystemContextControllerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    (**(code **)(*SystemContextPointerA8 + 0x38))();
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextControllerA8 + 0x38))();
   }
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
 }
@@ -62962,8 +62962,8 @@ void CleanupCoreEngineDataResources(long long ContextHandle,long long *ContextHa
   long long SystemDataRegistry;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerB0;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationValidationFlag;
   uint8_t *pSystemOperationStatusMask;
@@ -62987,30 +62987,30 @@ void CleanupCoreEngineDataResources(long long ContextHandle,long long *ContextHa
     ReleaseSystemMemoryResources();
     pSystemOperationValidationFlag = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    AllocateDataNodeStructure(MemoryPoolIndex,&SystemContextPointerB0);
-    MemoryBlockIndex = SystemContextPointerB0;
-    SystemContextPointerB0[2] = SystemDataRegistry;
-    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
-    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
+    AllocateDataNodeStructure(MemoryPoolIndex,&SystemContextControllerB0);
+    MemoryBlockIndex = SystemContextControllerB0;
+    SystemContextControllerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextControllerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextControllerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextControllerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)*ContextHandleSize;
+    SystemContextControllerB0 = (long long *)0x0;
+    SystemContextControllerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (SystemContextPointerB0 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerB0 + 0x38))();
+    if (SystemContextControllerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerB0 + 0x38))();
     }
       memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  SystemContextPointerA8 = (long long *)*ContextHandleSize;
+  SystemContextControllerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    (**(code **)(*SystemContextPointerA8 + 0x38))();
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextControllerA8 + 0x38))();
   }
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
 }
@@ -63120,8 +63120,8 @@ void ProcessCoreEngineExtendedMemoryAllocation(long long ContextHandle,long long
   long long SystemDataRegistry;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerB0;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationValidationFlag;
   uint8_t *pSystemOperationStatusMask;
@@ -63145,30 +63145,30 @@ void ProcessCoreEngineExtendedMemoryAllocation(long long ContextHandle,long long
     ReleaseSystemMemoryResources();
     pSystemOperationValidationFlag = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeMemoryPoolManager(MemoryPoolIndex,&SystemContextPointerB0);
-    MemoryBlockIndex = SystemContextPointerB0;
-    SystemContextPointerB0[2] = SystemDataRegistry;
-    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
-    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
+    InitializeMemoryPoolManager(MemoryPoolIndex,&SystemContextControllerB0);
+    MemoryBlockIndex = SystemContextControllerB0;
+    SystemContextControllerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextControllerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextControllerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextControllerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)*ContextHandleSize;
+    SystemContextControllerB0 = (long long *)0x0;
+    SystemContextControllerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (SystemContextPointerB0 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerB0 + 0x38))();
+    if (SystemContextControllerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerB0 + 0x38))();
     }
       memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  SystemContextPointerA8 = (long long *)*ContextHandleSize;
+  SystemContextControllerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    (**(code **)(*SystemContextPointerA8 + 0x38))();
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextControllerA8 + 0x38))();
   }
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemCleanupFlagF);
 }
@@ -63854,22 +63854,22 @@ uint8_t ProcessSystemMemoryAllocation(long long *ContextHandle,uint64_t Operatio
  * - 操作类型3：返回固定地址
  * - 操作类型4：返回目标指针
  * 
- * @param TargetDataPointer 目标数据结构指针
+ * @param BufferTargetPointer 目标数据结构指针
  * @param SourceDataPointer 源数据结构指针
  * @param OperationType 操作类型参数 (0-4)
  * @return long long 返回操作结果或内存地址
  */
-long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, long long *SourceDataPointer, int OperationType
+long long ProcessCoreEngineDataStructureOperation(long long *BufferTargetPointer, long long *SourceDataPointer, int OperationType
 {
   
   if (OperationType == 3) {
     return 0x180bfdd20;
   }
   if (OperationType == 4) {
-    return *TargetDataPointer;
+    return *BufferTargetPointer;
   }
   if (OperationType == 0) {
-    long long MemoryBlockIndex = *TargetDataPointer;
+    long long MemoryBlockIndex = *BufferTargetPointer;
     if (MemoryBlockIndex != 0) {
       if (*(long long **)(MemoryBlockIndex + 0x18) != (long long *)0x0) {
         (**(code **)(**(long long **)(MemoryBlockIndex + 0x18) + 0x38))();
@@ -63896,11 +63896,11 @@ long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, 
       if (ReferencePointer2 != (long long *)0x0) {
         (**(code **)(*ReferencePointer2 + 0x28))();
       }
-      *TargetDataPointer = (long long)AllocatedMemoryBlock;
+      *BufferTargetPointer = (long long)AllocatedMemoryBlock;
       return 0;
     }
     if (OperationType == 2) {
-      *TargetDataPointer = *SourceDataPointer;
+      *BufferTargetPointer = *SourceDataPointer;
       *SourceDataPointer = 0;
       return 0;
     }
@@ -81986,7 +81986,7 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   uint32_t SystemStackRegisterBuffer;
   uint16_t StackProcessingUnsignedValueac;
   uint16_t StackProcessingUnsignedValueaa;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerA8;
   uint32_t CoreEngineUnsignedValueA0;
   uint32_t uStack_9c;
   uint32_t SystemOperationValidationFlag;
@@ -82034,8 +82034,8 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   TemporaryFlag = 0;
   BufferInitializationFlag = 0;
   CharacterTablePointer = SystemRegisterPointerX10[0x2b7];
-  pPerformanceCounterPointer = &SystemContextPointerA8;
-  SystemContextPointerA8 = pSystemTemporaryRegister118;
+  pPerformanceCounterPointer = &SystemContextControllerA8;
+  SystemContextControllerA8 = pSystemTemporaryRegister118;
   CoreEngineUnsignedValueA0 = (uint32_t)UnsignedStackValue110;
   uStack_9c = UnsignedStackValue110.HighPart;
   SystemOperationValidationFlag = (uint32_t)ProcessingCounter;
@@ -82054,10 +82054,10 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))();
   }
-  MemoryAllocationMaskPointer = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextPointerA8,&ppSystemRegisterFlag);
+  MemoryAllocationMaskPointer = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextControllerA8,&ppSystemRegisterFlag);
   *(void *)(ContextHandle + 0x68) = MemoryAllocationMaskPointer;
   CharacterTablePointer = SystemContextRegister[0x2b7];
-  pPerformanceCounterPointer = &SystemContextPointerA8;
+  pPerformanceCounterPointer = &SystemContextControllerA8;
   uStack_170 = (uint32_t)CalculatedCodePoint;
   uStack_16c = (uint32_t)((unsigned long long)CalculatedCodePoint >> 0x20);
   StackProcessingUnsignedValue164 = (uint32_t)(CONCAT26(StackProcessingUnsignedValueaa,MemoryPoolIndex) >> 0x20);
@@ -82076,7 +82076,7 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   if (plStack_120 != (long long *)0x0) {
     (**(code **)(*plStack_120 + 0x28))();
   }
-  CalculatedCodePoint = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextPointerA8,&ppSystemRegisterFlag);
+  CalculatedCodePoint = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextControllerA8,&ppSystemRegisterFlag);
   *(void *)(ContextHandle + 0xa8) = CalculatedCodePoint;
   if (plStack_120 != (long long *)0x0) {
     (**(code **)(*plStack_120 + 0x38))();
@@ -121653,7 +121653,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *ContextHandle,char *Co
     StackFloat124 = -3.4028235e+38;
     SystemCallProcessFloatData(&StackFloat130,(unsigned long long)StatusCode,0);
     Utf16Char = SystemCallSystemCleanup();
-    return Utf16CharacterValue & 0xffffffffffffff00;
+    return Utf16CodeValue & 0xffffffffffffff00;
   }
   SecondaryProcessingStatusFlag = (uint *)((unsigned long long)SystemCheckResult & 0xffffffffffffff00);
   SystemCallProcessFloatData(&StackFloatX8,OperationBufferSize);
@@ -122075,7 +122075,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t ContextHandle
   float TempCalculationResultA;
   float StackProcessingParameter3;
   uint32_t BufferStorageValue;
-  uint32_t SystemContextPointer;
+  uint32_t SystemContextController;
   uint32_t InputParameter1;
   uint32_t StackProcessingParameterC8;
   uint32_t SystemValidationStatusE0;
@@ -124277,17 +124277,17 @@ void ExpandUtf8BufferShift3(int *ContextHandle,int OperationBufferSize) {
  * 
  * @note 函数会复制现有数据到新分配的内存中
  * @note 使用SystemCallMemoryAccess进行内存分配
- * @note 依赖SystemContextPointer和InputDataLength寄存器值
+ * @note 依赖SystemContextController和InputDataLength寄存器值
  * @note 内存块大小为InputDataLength << 3字节（即*8）
  */
 void ExpandUtf8BufferShift3NoArgs(void) {
-  long long SystemContextPointer;
+  long long SystemContextController;
   uint64_t AllocatedMemoryBuffer;
   int *SystemContextArray;
   long long InputDataLength;
   
-  if (SystemContextPointer != 0) {
-    *(int *)(SystemContextPointer + 0x3a8) = *(int *)(SystemContextPointer + 0x3a8) + 1;
+  if (SystemContextController != 0) {
+    *(int *)(SystemContextController + 0x3a8) = *(int *)(SystemContextController + 0x3a8) + 1;
   }
   AllocatedMemoryBuffer = SystemCallMemoryAccess(InputDataLength << 3,SystemMemoryPoolBase);
   if (*(long long *)(SystemContextArray + 2) != 0) {
@@ -126867,7 +126867,7 @@ uint64_t ConvertUtf8FourByteSequenceF0(uint64_t ContextHandle,long long Operatio
         ((*(byte *)(OperationBufferSize + 3) & 0xc0) == 0x80)) &&
        (Utf16Char = (Utf16EndPointer & 7) * 0x40000 + (*(byte *)(OperationBufferSize + 2) & 0x3f) * 0x40 +
                 (*(byte *)(OperationBufferSize + 1) & 0x3f) * 0x1000 + (*(byte *)(OperationBufferSize + 3) & 0x3f),
-       (Utf16CharacterValue & 0xfffff800) != 0xd800)) {
+       (Utf16CodeValue & 0xfffff800) != 0xd800)) {
       *SystemRegisterR10 = Utf16Char;
     }
   }
@@ -126898,7 +126898,7 @@ uint64_t ConvertUtf8FourByteSequenceF4(uint64_t ContextHandle,long long Operatio
      ((((*(byte *)(OperationBufferSize + 2) & 0xc0) == 0x80 && ((*(byte *)(OperationBufferSize + 3) & 0xc0) == 0x80)) &&
       (Utf16Char = (Utf16EndPointer & 7) * 0x40000 + (*(byte *)(OperationBufferSize + 2) & 0x3f) * 0x40 +
                (*(byte *)(OperationBufferSize + 1) & 0x3f) * 0x1000 + (*(byte *)(OperationBufferSize + 3) & 0x3f),
-      (Utf16CharacterValue & 0xfffff800) != 0xd800)))) {
+      (Utf16CodeValue & 0xfffff800) != 0xd800)))) {
     *SystemRegisterR10 = Utf16Char;
   }
   return 4;
@@ -157565,7 +157565,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t SystemParameter1;
   uint32_t RenderingContextHandle;
   unsigned long long BufferStorageValue;
-  uint64_t SystemContextPointer;
+  uint64_t SystemContextController;
   
   *(void *)(ProcessingResult + 0x18) = FramePointer;
   *(void *)(ProcessingResult + 0x20) = SystemDataNode;
@@ -157597,7 +157597,7 @@ void ProcessSystemBufferStatus(void)
       MemoryAllocationCounter = MemoryAllocationCounter + 1;
     } while ((int)MemoryAllocationBase < *(int *)(SystemContext + 0x1c68));
   }
-  SystemContextPointer = *(void *)(SystemContext + SystemContextMemoryOffset);
+  SystemContextController = *(void *)(SystemContext + SystemContextMemoryOffset);
   BufferStatus = **(long long **)(SystemContext + 0x1c70);
   BufferStorageValue = PatternIndex;
   if ((*(uint *)(SystemContext + 0x19e8) & 0x400) != 0) {
@@ -161983,7 +161983,7 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle, uint32_t Operatio
   uint8_t ContextHandleFlag;
   int ConfigurationValidationResult;
   long long InputDataLength;
-  long long SystemContextPointer;
+  long long SystemContextController;
   long long SystemDataNode;
   char CharacterValidationStatus;
   long long SystemRegisterValue;
@@ -162010,17 +162010,17 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle, uint32_t Operatio
   SystemFloatParameter = (float)CalculateContextHandleFloatValue(OperationBufferSize);
   CharacterSystemValidationStatus = (char)SystemRegisterValue;
   StringLength = (int)SystemRegisterValue;
-  if (*(int *)(SystemContextPointer + 0x1d2c) == -1) {
-    if (*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus) goto LAB_180132ba2;
+  if (*(int *)(SystemContextController + 0x1d2c) == -1) {
+    if (*(char *)(SystemContextController + 0x1d21) != CharacterValidationStatus) goto LAB_180132ba2;
   }
   else {
-    *(uint8_t *)(SystemContextPointer + 0x1d21) = 1;
-    *(int *)(SystemContextPointer + 0x1d30) = *(int *)(SystemContextPointer + 0x1d2c);
+    *(uint8_t *)(SystemContextController + 0x1d21) = 1;
+    *(int *)(SystemContextController + 0x1d30) = *(int *)(SystemContextController + 0x1d2c);
 LAB_180132ba2:
-    if (*(int *)(SystemContextPointer + 0x1ca0) == StringLength) {
-      *(uint16_t *)(SystemContextPointer + 0x1d09) = 0x101;
-      *(int *)(SystemContextPointer + 0x1d0c) = StringLength;
-      *(char *)(SystemContextPointer + 0x1d06) = CharacterValidationStatus;
+    if (*(int *)(SystemContextController + 0x1ca0) == StringLength) {
+      *(uint16_t *)(SystemContextController + 0x1d09) = 0x101;
+      *(int *)(SystemContextController + 0x1d0c) = StringLength;
+      *(char *)(SystemContextController + 0x1d06) = CharacterValidationStatus;
     }
   }
   if ((*(char *)(SystemDataNode + 0x1d21) == CharacterValidationStatus) && (*(char *)(SystemDataNode + 0x1d09) == CharacterValidationStatus)) {
@@ -162030,14 +162030,14 @@ LAB_180132ba2:
     ContextHandleFlag = 1;
   }
   *(uint8_t *)(SystemDataNode + 0x1d08) = ContextHandleFlag;
-  BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+  BufferPointer = *(long long *)(SystemContextController + 0x1c98);
   if (((BufferPointer == 0) || ((*(uint *)(BufferPointer + 0xc) & 0x40000) != 0)) ||
-     (*(long long *)(SystemContextPointer + 0x1cd8) != SystemRegisterValue)) goto LAB_180132de6;
+     (*(long long *)(SystemContextController + 0x1cd8) != SystemRegisterValue)) goto LAB_180132de6;
   TertiaryMatrixFloat = (float)(int)(*(float *)(SystemDataNode + 0x19fc) * *(float *)(BufferPointer + 0x2d8) *
-                        *(float *)(BufferPointer + 0x2dc) * 100.0 * *(float *)(SystemContextPointer + 0x18) + 0.5);
+                        *(float *)(BufferPointer + 0x2dc) * 100.0 * *(float *)(SystemContextController + 0x18) + 0.5);
   if (((*(int *)(BufferPointer + 0x174) == StringLength) && (*(char *)(BufferPointer + 0x17d) != CharacterValidationStatus)) &&
-     (*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus)) {
-    ConfigurationValidationResult = *(int *)(SystemContextPointer + 0x1d2c);
+     (*(char *)(SystemContextController + 0x1d21) != CharacterValidationStatus)) {
+    ConfigurationValidationResult = *(int *)(SystemContextController + 0x1d2c);
     if (ConfigurationValidationResult == 0) {
       NormalizedValue = -TertiaryMatrixFloat;
 LAB_180132c8d:
@@ -162045,7 +162045,7 @@ LAB_180132c8d:
       NormalizedValue = (float)(int)(NormalizedValue + MatrixTransformX);
       *(float *)(BufferPointer + 0x8c) = NormalizedValue;
       *(float *)(BufferPointer + 0x118) = (MatrixTransformX + *(float *)(BufferPointer + 0x118)) - NormalizedValue;
-      ConfigurationValidationResult = *(int *)(SystemContextPointer + 0x1d2c);
+      ConfigurationValidationResult = *(int *)(SystemContextController + 0x1d2c);
     }
     else {
       NormalizedValue = TertiaryMatrixFloat;
@@ -162070,40 +162070,40 @@ LAB_180132d15:
     MatrixTransformX = (float)(int)(MatrixCoefficient1 * TertiaryMatrixFloat + NormalizedValue);
     *(float *)(BufferPointer + 0x8c) = MatrixTransformX;
     *(float *)(BufferPointer + 0x118) = (NormalizedValue + *(float *)(BufferPointer + 0x118)) - MatrixTransformX;
-    *(uint8_t *)(SystemContextPointer + 0x1d20) = 1;
+    *(uint8_t *)(SystemContextController + 0x1d20) = 1;
   }
   if (MatrixCoefficient2 != ReferenceFloatValue) {
     NormalizedValue = *(float *)(BufferPointer + 0x90);
     TertiaryMatrixFloat = (float)(int)(MatrixCoefficient2 * TertiaryMatrixFloat + NormalizedValue);
     *(float *)(BufferPointer + 0x90) = TertiaryMatrixFloat;
     *(float *)(BufferPointer + 0x11c) = (NormalizedValue + *(float *)(BufferPointer + 0x11c)) - TertiaryMatrixFloat;
-    *(uint8_t *)(SystemContextPointer + 0x1d20) = 1;
+    *(uint8_t *)(SystemContextController + 0x1d20) = 1;
   }
 LAB_180132de6:
-  *(void *)(SystemContextPointer + 0x1d54) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContextPointer + 0x1d5c) = 0xff7fffffff7fffff;
-  *(int *)(SystemContextPointer + 0x1d38) = StringLength;
-  *(long long *)(SystemContextPointer + 0x1d40) = SystemRegisterValue;
-  *(uint32_t *)(SystemContextPointer + 0x1d50) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1d4c) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1d48) = 0x7f7fffff;
-  *(int *)(SystemContextPointer + 0x1d68) = StringLength;
-  *(long long *)(SystemContextPointer + 0x1d70) = SystemRegisterValue;
-  *(uint32_t *)(SystemContextPointer + 0x1d80) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1d7c) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1d78) = 0x7f7fffff;
-  *(void *)(SystemContextPointer + 0x1d84) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContextPointer + 0x1d8c) = 0xff7fffffff7fffff;
-  *(int *)(SystemContextPointer + 0x1d98) = StringLength;
-  *(long long *)(SystemContextPointer + 0x1da0) = SystemRegisterValue;
-  *(uint32_t *)(SystemContextPointer + 0x1db0) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1dac) = 0x7f7fffff;
-  *(uint32_t *)(SystemContextPointer + 0x1da8) = 0x7f7fffff;
-  *(void *)(SystemContextPointer + 0x1db4) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContextPointer + 0x1dbc) = 0xff7fffffff7fffff;
-  if (((*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus) && (*(char *)(SystemContextPointer + 0x1d20) != CharacterValidationStatus)) &&
-     (*(int *)(SystemContextPointer + 0x1cfc) == StringLength)) {
-    BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+  *(void *)(SystemContextController + 0x1d54) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextController + 0x1d5c) = 0xff7fffffff7fffff;
+  *(int *)(SystemContextController + 0x1d38) = StringLength;
+  *(long long *)(SystemContextController + 0x1d40) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextController + 0x1d50) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1d4c) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1d48) = 0x7f7fffff;
+  *(int *)(SystemContextController + 0x1d68) = StringLength;
+  *(long long *)(SystemContextController + 0x1d70) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextController + 0x1d80) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1d7c) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1d78) = 0x7f7fffff;
+  *(void *)(SystemContextController + 0x1d84) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextController + 0x1d8c) = 0xff7fffffff7fffff;
+  *(int *)(SystemContextController + 0x1d98) = StringLength;
+  *(long long *)(SystemContextController + 0x1da0) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextController + 0x1db0) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1dac) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextController + 0x1da8) = 0x7f7fffff;
+  *(void *)(SystemContextController + 0x1db4) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextController + 0x1dbc) = 0xff7fffffff7fffff;
+  if (((*(char *)(SystemContextController + 0x1d21) != CharacterValidationStatus) && (*(char *)(SystemContextController + 0x1d20) != CharacterValidationStatus)) &&
+     (*(int *)(SystemContextController + 0x1cfc) == StringLength)) {
+    BufferPointer = *(long long *)(SystemContextController + 0x1c98);
     TertiaryMatrixFloat = *(float *)(BufferPointer + 0x3d0);
     SecondaryMatrixFloat = (*(float *)(BufferPointer + 0x248) - *(float *)(BufferPointer + 0x40)) - 1.0;
     MatrixTransformX = (*(float *)(BufferPointer + 0x250) - *(float *)(BufferPointer + 0x40)) + 1.0;
@@ -162142,13 +162142,13 @@ LAB_180132de6:
       }
       *(float *)(BufferPointer + 0x3d8) = MatrixTransformX;
       *(float *)(BufferPointer + 0x3dc) = MatrixTransformW;
-      *(int *)(SystemContextPointer + 0x1ca0) = StringLength;
+      *(int *)(SystemContextController + 0x1ca0) = StringLength;
     }
-    *(char *)(SystemContextPointer + 0x1d20) = CharacterValidationStatus;
+    *(char *)(SystemContextController + 0x1d20) = CharacterValidationStatus;
   }
-  BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+  BufferPointer = *(long long *)(SystemContextController + 0x1c98);
   if (((BufferPointer == 0) ||
-      (InputDataLength = (long long)*(int *)(SystemContextPointer + 0x1cfc) + 0x3d,
+      (InputDataLength = (long long)*(int *)(SystemContextController + 0x1cfc) + 0x3d,
       *(float *)(BufferPointer + 8 + InputDataLength * 0x10) < *(float *)(BufferPointer + InputDataLength * 0x10))) ||
      (*(float *)(BufferPointer + 0xc + InputDataLength * 0x10) < *(float *)(BufferPointer + 4 + InputDataLength * 0x10))) {
     SystemReturnCode = 0;
@@ -162175,17 +162175,17 @@ LAB_180132de6:
          CONCAT44(*(float *)(BufferPointer + 0x44) + StackFloat2,
                   *(float *)(BufferPointer + 0x40) + StackFloat1);
   }
-  *(void *)(SystemContextPointer + 0x1cc4) = StackFloat1;
-  *(void *)(SystemContextPointer + 0x1ccc) = StackFloat3;
-  *(float *)(SystemContextPointer + 0x1cd0) = SystemFloatParameter + *(float *)(SystemContextPointer + 0x1cd0);
-  *(float *)(SystemContextPointer + 0x1cc8) = SystemFloatParameter + *(float *)(SystemContextPointer + 0x1cc8);
-  SystemFloatParameter = *(float *)(SystemContextPointer + 0x1cc4) + 1.0;
-  *(int *)(SystemContextPointer + 0x1cd4) = StringLength;
-  if (*(float *)(SystemContextPointer + 0x1ccc) <= SystemFloatParameter) {
-    SystemFloatParameter = *(float *)(SystemContextPointer + 0x1ccc);
+  *(void *)(SystemContextController + 0x1cc4) = StackFloat1;
+  *(void *)(SystemContextController + 0x1ccc) = StackFloat3;
+  *(float *)(SystemContextController + 0x1cd0) = SystemFloatParameter + *(float *)(SystemContextController + 0x1cd0);
+  *(float *)(SystemContextController + 0x1cc8) = SystemFloatParameter + *(float *)(SystemContextController + 0x1cc8);
+  SystemFloatParameter = *(float *)(SystemContextController + 0x1cc4) + 1.0;
+  *(int *)(SystemContextController + 0x1cd4) = StringLength;
+  if (*(float *)(SystemContextController + 0x1ccc) <= SystemFloatParameter) {
+    SystemFloatParameter = *(float *)(SystemContextController + 0x1ccc);
   }
-  *(float *)(SystemContextPointer + 0x1cc4) = SystemFloatParameter;
-  *(float *)(SystemContextPointer + 0x1ccc) = SystemFloatParameter;
+  *(float *)(SystemContextController + 0x1cc4) = SystemFloatParameter;
+  *(float *)(SystemContextController + 0x1ccc) = SystemFloatParameter;
   return;
 }
 
@@ -162205,7 +162205,7 @@ void ProcessSystemFloatMatrixOperations(void
   float *SystemFloatPointer;
   long long BufferPointer;
   long long SearchStartIndex;
-  long long SystemContextPointer;
+  long long SystemContextController;
   long long SystemDataNode;
   int SystemRegisterValue;
   float MatrixCoefficient3;
@@ -175043,7 +175043,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)ContextHandle + 0xc);
           *(uint *)((long long)ContextHandle + 0xc) = Utf16Char | 0x1010002;
-          ProcessedCharacter = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+          ProcessedCharacter = Utf16CodeValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(StringOffset + 0xa0) & 0x40) != 0) {
             ProcessedCharacter = Utf16Char | 0x1010003;
           }
@@ -175213,7 +175213,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)SystemContext + 0xc);
           *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-          ArraySize = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+          ArraySize = Utf16CodeValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(MemoryPoolBlockSize + 0xa0) & 0x40) != 0) {
             ArraySize = Utf16Char | 0x1010003;
           }
@@ -175407,7 +175407,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)SystemContext + 0xc);
           *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-          ArraySize = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+          ArraySize = Utf16CodeValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(MemoryPoolBlockSize + 0xa0) & 0x40) != 0) {
             ArraySize = Utf16Char | 0x1010003;
           }
@@ -175560,7 +175560,7 @@ void ValidateCharacterEncodingSystemConfiguration(void)
         }
         Utf16Char = *(uint *)((long long)SystemContext + 0xc);
         *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-        SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+        SystemChecksum = Utf16CodeValue & 0xfffffffe | 0x1010002;
         if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
           SystemChecksum = Utf16Char | 0x1010003;
         }
@@ -175660,7 +175660,7 @@ void ProcessContextHandleUtf16Conversion(long long ContextHandle)
     }
     Utf16Char = *(uint *)((long long)SystemContext + 0xc);
     *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-    SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+    SystemChecksum = Utf16CodeValue & 0xfffffffe | 0x1010002;
     if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
       SystemChecksum = Utf16Char | 0x1010003;
     }
@@ -175727,7 +175727,7 @@ void InitializeSystemMemoryAndCharacterEncoding(void)
   uint64_t *SystemContext;
   int SystemRegister;
   unsigned long long StackFrameAddress;
-  unsigned long long Utf16CharacterValue;
+  unsigned long long Utf16CodeValue;
   long long PatternMatchStatus;
   long long SystemDataNode;
   byte MemoryBlockStatus;
@@ -175756,7 +175756,7 @@ void InitializeSystemMemoryAndCharacterEncoding(void)
     }
     Utf16Char = *(uint *)((long long)SystemContext + 0xc);
     *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-    SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
+    SystemChecksum = Utf16CodeValue & 0xfffffffe | 0x1010002;
     if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
       SystemChecksum = Utf16Char | 0x1010003;
     }
@@ -175828,7 +175828,7 @@ void ProcessUtf8SystemFlush(void)
 {
   uint16_t Utf16ContextHandle;
   uint32_t SystemMemoryPoolIndex;
-  uint64_t *SystemContextPointer;
+  uint64_t *SystemContextController;
   int SystemRegisterValue;
   long long DataPatternIndex;
   long long SystemConfigurationParameter;
@@ -175843,18 +175843,18 @@ void ProcessUtf8SystemFlush(void)
   }
   
   // 设置系统上下文中的字符代码
-  *(uint16_t *)(SystemContextPointer + 0x86) = Utf16ContextHandle;
+  *(uint16_t *)(SystemContextController + 0x86) = Utf16ContextHandle;
   
   // 检查数据源状态并处理输入缓冲区
   if ((((*(byte *)(DataPatternIndex + 0xa1) & 2) != 0) ||
-      (*(int *)(DataPatternIndex + 0x9c) == *(int *)(SystemContextPointer + 1))) &&
+      (*(int *)(DataPatternIndex + 0x9c) == *(int *)(SystemContextController + 1))) &&
      (StackProcessingBuffer != (uint8_t *)0x0)) {
     *InputDataBuffer = 0;
   }
   
   // 分配系统内存并设置内存分配索引
-  SystemMemoryPoolIndex = AllocateSystemMemory(*(void *)(SystemContextPointer[0x81] + 0x68),*SystemContextPointer);
-  *(uint32_t *)(SystemContextPointer + 0x11) = SystemMemoryPoolIndex;
+  SystemMemoryPoolIndex = AllocateSystemMemory(*(void *)(SystemContextController[0x81] + 0x68),*SystemContextController);
+  *(uint32_t *)(SystemContextController + 0x11) = SystemMemoryPoolIndex;
   
   return;
 }
@@ -186852,7 +186852,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *ContextHandle,long lon
   MemoryBlockHandle = 0;
   PatternMatchStatus = SearchStartIndex;
   if (SystemDataRegistry != 0) {
-    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 8,Utf16CharacterValue & 0xff,Utf16EndPointer,0xfffffffffffffffe);
+    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 8,Utf16CodeValue & 0xff,Utf16EndPointer,0xfffffffffffffffe);
   }
   *ContextHandle = BufferStatus;
   ContextHandle[1] = BufferStatus;
@@ -186868,7 +186868,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *ContextHandle,long lon
   *(uint *)(ContextHandle + 8) = Utf16Char;
   PatternMatchStatus = SearchStartIndex;
   if (SystemDataRegistry != 0) {
-    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
+    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CodeValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
   }
   ContextHandle[5] = BufferStatus;
   ContextHandle[6] = BufferStatus;
@@ -186882,7 +186882,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *ContextHandle,long lon
     *(uint *)(ContextHandle + 0xc) = Utf16Char;
     PatternMatchStatus = SearchStartIndex;
     if (SystemDataRegistry != 0) {
-      BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 4,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
+      BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 4,Utf16CodeValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
     }
     ContextHandle[9] = BufferStatus;
     ContextHandle[10] = BufferStatus;
@@ -186896,7 +186896,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *ContextHandle,long lon
       Utf16Char = *(uint *)(OperationBufferSize + 0x10);
       *(uint *)(ContextHandle + 0x10) = Utf16Char;
       if (BufferStatus != 0) {
-        MemoryBlockIndex = BufferAllocate(MemoryPoolManager,BufferStatus * 0x18,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
+        MemoryBlockIndex = BufferAllocate(MemoryPoolManager,BufferStatus * 0x18,Utf16CodeValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
       }
       ContextHandle[0xd] = MemoryBlockIndex;
       ContextHandle[0xe] = MemoryBlockIndex;
@@ -189372,7 +189372,7 @@ void ResetSystemEventHandler(void)
  */
 void ExpandAndManageCharacterDataMemoryPool(uint64_t *ContextHandle,unsigned long long OperationBufferSize)
 {
-  uint Utf16CharacterValue;
+  uint Utf16CodeValue;
   uint64_t MemoryAllocationCounter;
   long long *NewMemoryBlockPointer;
   long long SystemDataRegistry;
@@ -189413,11 +189413,11 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *ContextHandle,unsigned lon
         *(int *)(SystemDataRegistry + -0x10 + (long long)MemoryPoolSizePointer) = (int)MemoryPoolSizePointer[-2];
         SystemCharacterStatusBuffer = (void *)((long long)MemoryPoolSizePointer + SystemDataRegistry + -8);
         MemoryAllocationIndex = *MemoryPoolSizePointer - MemoryPoolSizePointer[-1] >> 3;
-        Utf16CharacterValue = *(uint *)(MemoryPoolSizePointer + 2);
-        *(uint *)(SystemDataRegistry + 0x10 + (long long)MemoryPoolSizePointer) = Utf16CharacterValue;
+        Utf16CodeValue = *(uint *)(MemoryPoolSizePointer + 2);
+        *(uint *)(SystemDataRegistry + 0x10 + (long long)MemoryPoolSizePointer) = Utf16CodeValue;
         memoryBlockListHead = (long long *)0x0;
         if (MemoryAllocationIndex != 0) {
-          memoryBlockListHead = (long long *)BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 8,Utf16CharacterValue & 0xff);
+          memoryBlockListHead = (long long *)BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 8,Utf16CodeValue & 0xff);
         }
         *SystemCharacterStatusBuffer = memoryBlockListHead;
         *(long long **)(SystemDataRegistry + (long long)MemoryPoolSizePointer) = memoryBlockListHead;
@@ -196852,7 +196852,7 @@ void TerminateSystemProcess(void)
  */
 void ProcessCharacterEncodingAndBufferManagement(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer)
 {
-  uint64_t Utf16CharacterValue;
+  uint64_t Utf16CodeValue;
   long long StringLengthStatus;
   int MemoryValidationResult;
   long long StringIndexCounter;
@@ -196869,7 +196869,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t ContextHandle, uint64_
   code *ErrorHandlingPointer;
   void *ValidationContextPointer;
   
-  Utf16CharacterValue = SystemMemoryManager;
+  Utf16CodeValue = SystemMemoryManager;
   ProcessedOperationResult = 0xfffffffffffffffe;
   StackInitializationBuffer[0] = 0;
   StackProcessingConfiguration[0] = Utf8SourcePointer;
@@ -196885,8 +196885,8 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t ContextHandle, uint64_
     ErrorHandlingPointer = ProcessSystemMemoryManagement;
     ValidationContextPointer = &SystemValidationBufferSecondary;
     EncodingBufferArray[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
-    SystemOperationStatus98 = (uint32_t)Utf16CharacterValue;
-    SystemUnsignedValue94 = (uint32_t)((unsigned long long)Utf16CharacterValue >> 0x20);
+    SystemOperationStatus98 = (uint32_t)Utf16CodeValue;
+    SystemUnsignedValue94 = (uint32_t)((unsigned long long)Utf16CodeValue >> 0x20);
     *EncodingBufferArray[0] = SystemOperationStatus98;
     EncodingBufferArray[0][1] = SystemUnsignedValue94;
     *(uint32_t **)(EncodingBufferArray[0] + 2) = StackInitializationBuffer;
@@ -201887,7 +201887,7 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
   double TimeDifferenceInSeconds;
   uint UnicodeCodePoint;
   uint32_t MemoryAddressMask;
-  uint8_t *SystemContextPointer;
+  uint8_t *SystemContextController;
   void *CurrentProcessingNode;
   void *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
@@ -202261,16 +202261,16 @@ void ConvertCharacterEncoding(long long ContextHandle,long long OperationBufferS
   long long *SystemContextHandle;
   long long *BufferAllocationState;
   long long MemoryBlockIndex;
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   
   *(long long *)(OperationBufferSize + 0x48) = ContextHandle;
-  SystemContextPointer = *(long long **)(ContextHandle + 0x30);
+  SystemContextController = *(long long **)(ContextHandle + 0x30);
   SystemContextHandle = (long long *)0x0;
   BufferAllocationState = *(long long **)(ContextHandle + 0x28);
-  MemoryBlockIndex = (long long)SystemContextPointer - (long long)BufferAllocationState >> 3;
-  if (SystemContextPointer < *(long long **)(ContextHandle + 0x38)) {
-    *(long long **)(ContextHandle + 0x30) = SystemContextPointer + 1;
-    *SystemContextPointer = OperationBufferSize;
+  MemoryBlockIndex = (long long)SystemContextController - (long long)BufferAllocationState >> 3;
+  if (SystemContextController < *(long long **)(ContextHandle + 0x38)) {
+    *(long long **)(ContextHandle + 0x30) = SystemContextController + 1;
+    *SystemContextController = OperationBufferSize;
     return;
   }
   if (MemoryBlockIndex == 0) {
@@ -202282,10 +202282,10 @@ void ConvertCharacterEncoding(long long ContextHandle,long long OperationBufferS
   }
   SystemContextHandle = (long long *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 8,*(uint8_t *)(ContextHandle + 0x40));
   BufferAllocationState = *(long long **)(ContextHandle + 0x28);
-  SystemContextPointer = *(long long **)(ContextHandle + 0x30);
+  SystemContextController = *(long long **)(ContextHandle + 0x30);
 LAB_180161f28:
-  if (BufferAllocationState != SystemContextPointer) {
-      memmove(SystemContextHandle,BufferAllocationState,(long long)SystemContextPointer - (long long)BufferAllocationState);
+  if (BufferAllocationState != SystemContextController) {
+      memmove(SystemContextHandle,BufferAllocationState,(long long)SystemContextController - (long long)BufferAllocationState);
   }
   *SystemContextHandle = OperationBufferSize;
   if (*(long long *)(ContextHandle + 0x28) == 0) {
@@ -202310,7 +202310,7 @@ LAB_180161f28:
  */
 long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long BufferValidationStatus;
   long long *MemoryBlockIndex;
   uint8_t *MemoryAllocationMaskPointer;
@@ -204098,7 +204098,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
   unsigned long long EncodedFunctionAddress;
   uint32_t SystemValidationFlag = 0;
   void *AllocatedMemoryBuffer;
-  void *SystemContextPointer;
+  void *SystemContextController;
   uint64_t StackParameter;
   void *MemoryAllocationPointer;
   uint32_t StackOperationCode;
@@ -204136,7 +204136,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
   SystemValidationFlag = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> SystemEventContextShiftCount != 0) {
     AllocatedMemoryBuffer = AllocateSystemMemoryBuffer(&SystemResourcePointer);
-    SystemContextPointer = &SystemNullTemplate;
+    SystemContextController = &SystemNullTemplate;
     StackParameter = 0;
     MemoryAllocationPointer = NULL;
     StackOperationCode = 0;
@@ -204144,7 +204144,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
     ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + Utf16CharacterDataOffset);
     ArraySize = (unsigned long long)ConvertedUtf16Char;
     if (*(long long *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset) != 0) {
-      CoreEngineProcessSystemEvent(&SystemContextPointer,ArraySize);
+      CoreEngineProcessSystemEvent(&SystemContextController,ArraySize);
     }
     if (ConvertedUtf16Char != 0) {
         memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset),ArraySize);
@@ -204154,14 +204154,14 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
     }
     StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + MemoryAllocationHeaderOffset),(uint32_t)StackParameter);
     StackOperationCode = ConvertedUtf16Char;
-    CoreEngineProcessSystemEvent(&SystemContextPointer,SystemEventInitializationFlag);
+    CoreEngineProcessSystemEvent(&SystemContextController,SystemEventInitializationFlag);
     SecondaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackOperationCode + (long long)MemoryAllocationPointer);
     *SecondaryProcessingStatusFlag = 0x72726554; // "TerT" - Terminal Text
     SecondaryProcessingStatusFlag[1] = 0x536e6961; // "ainS" - Main String
     SecondaryProcessingStatusFlag[2] = 0x65646168; // "hade" - Header
     SecondaryProcessingStatusFlag[3] = 0x2f7372; // "rs/" - Resource path
     StackOperationCode = SystemEventInitializationFlag;
-    AllocatedMemoryBuffer = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextPointer,&SystemResourcePointerB8,*Utf8SourcePointer);
+    AllocatedMemoryBuffer = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextController,&SystemResourcePointerB8,*Utf8SourcePointer);
     ThreadLocalStoragePointer = &SystemNullTemplate;
     StackDataBuffer = 0;
     MemoryBlockOffset = 0;
@@ -204192,13 +204192,13 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
     SystemStackOperationFlagA0 = 0;
     SystemResourcePointerB8 = &ThreadLocalStorageTemplate;
     StackValidationFlag = 2;
-    SystemContextPointer = &SystemNullTemplate;
+    SystemContextController = &SystemNullTemplate;
     if (MemoryAllocationPointer != NULL) {
         ProcessSystemEventHandling();
     }
     MemoryAllocationPointer = NULL;
     StackParameter = StackParameter & SystemStackParameterMask;
-    SystemContextPointer = &ThreadLocalStorageTemplate;
+    SystemContextController = &ThreadLocalStorageTemplate;
     SystemResourcePointer = &SystemNullTemplate;
     if (StackMemoryOffset != 0) {
         ProcessSystemEventHandling();
@@ -204209,7 +204209,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
     OperationStatus = CoreEngineValidateSystemStatus(&ThreadLocalStoragePointer);
     if (OperationStatus != '\0') {
       SystemChecksum = ProcessMemoryAllocation(ContextDataPointerArray,&ThreadLocalStoragePointer);
-      CoreEngineFinalizeSystemEvent(&SystemContextPointer,SystemChecksum);
+      CoreEngineFinalizeSystemEvent(&SystemContextController,SystemChecksum);
       ContextDataPointerArray[0] = &ThreadLocalStorageTemplate;
       CharacterStatusBuffer = &CoreEngineDataTemplate;
       if (MemoryAllocationPointer != NULL) {
@@ -204240,13 +204240,13 @@ SystemMemoryValidationError:
       StackDataBufferC0 = 0;
       StackDataBufferC8 = 0;
       SHFileOperationW(&SystemResourcePointer);
-      SystemContextPointer = &SystemNullTemplate;
+      SystemContextController = &SystemNullTemplate;
       if (MemoryAllocationPointer != NULL) {
           ProcessSystemEventHandling();
       }
       MemoryAllocationPointer = NULL;
       StackParameter = StackParameter & 0xffffffff00000000;
-      SystemContextPointer = &ThreadLocalStorageTemplate;
+      SystemContextController = &ThreadLocalStorageTemplate;
     }
     StackValidationFlag = 0;
     ThreadLocalStoragePointer = &SystemNullTemplate;
@@ -204899,7 +204899,7 @@ void InitializeContextHandleThreadLocalStorage(uint64_t *ContextHandle)
  */
 long long InitializeContextHandleProcessingAndSystemBufferManagement(long long ContextHandle,long long OperationBufferSize)
 {
-  uint Utf16CharacterValue;
+  uint Utf16CodeValue;
   void *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -204912,11 +204912,11 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
   SystemDataRegistry = SystemDataRegistry / 0x26 + (SystemDataRegistry >> 0x3f);
   MemoryBlockHandle = 0;
   AllocatedMemorySize = (SystemDataRegistry >> 2) - (SystemDataRegistry >> 0x3f);
-  Utf16CharacterValue = *(uint *)(OperationBufferSize + 0x38);
-  *(uint *)(ContextHandle + 0x38) = Utf16CharacterValue;
+  Utf16CodeValue = *(uint *)(OperationBufferSize + 0x38);
+  *(uint *)(ContextHandle + 0x38) = Utf16CodeValue;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CodeValue & 0xff);
   }
   *(long long *)(ContextHandle + 0x20) = SystemDataRegistry;
   *(long long *)(ContextHandle + 0x28) = SystemDataRegistry;
@@ -204955,7 +204955,7 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
   *(uint *)(ContextHandle + 400) = Utf16Char;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CodeValue & 0xff);
   }
   *(long long *)(ContextHandle + 0x178) = SystemDataRegistry;
   *(long long *)(ContextHandle + 0x180) = SystemDataRegistry;
@@ -204991,7 +204991,7 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
   *(uint *)(ContextHandle + 0x4a8) = Utf16Char;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CodeValue & 0xff);
   }
   *(long long *)(ContextHandle + 0x490) = SystemDataRegistry;
   *(long long *)(ContextHandle + 0x498) = SystemDataRegistry;
@@ -205029,7 +205029,7 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
   Utf16Char = *(uint *)(OperationBufferSize + 0x10d0);
   *(uint *)(ContextHandle + 0x10d0) = Utf16Char;
   if (SystemDataRegistry != 0) {
-    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 0x98,Utf16CharacterValue & 0xff);
+    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 0x98,Utf16CodeValue & 0xff);
   }
   *(long long *)(ContextHandle + 0x10b8) = MemoryBlockIndex;
   *(long long *)(ContextHandle + 0x10c0) = MemoryBlockIndex;
@@ -205531,8 +205531,8 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
   long long CoreEngineSignedValueC8;                  // 核心引擎有符号值C8
   uint CoreEngineValueC0;                             // 核心引擎值C0
   uint64_t MemoryOffsetValue;                         // 内存偏移值
-  long long *SystemContextPointerB0;                              // 栈指针b0
-  long long *SystemContextPointerA8;                              // 栈指针a8
+  long long *SystemContextControllerB0;                              // 栈指针b0
+  long long *SystemContextControllerA8;                              // 栈指针a8
   long long *CoreEngineSignedValueA0;                // 核心引擎有符号值A0指针
   uint32_t SystemOperationValidationFlag;                     // 系统操作标志98
   void *pSystemOperationStatusMask;                          // 系统操作90指针
@@ -205581,7 +205581,7 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
     do {
       if (*(char *)(CoreEngineSignedValueC8 + MemoryBlockIndex) == '.') {
         if (ArrayIndex != -1) {
-          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemCleanupFlagG,&SystemContextPointerB0,0,ArrayIndex);
+          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemCleanupFlagG,&SystemContextControllerB0,0,ArrayIndex);
           if (CoreEngineSignedValueC8 != 0) {
               ProcessSystemEventHandling();
           }
@@ -205591,14 +205591,14 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
           *(uint32_t *)(MemoryBlockIndex + 0x10) = 0;
           *(void *)(MemoryBlockIndex + 8) = 0;
           *(void *)(MemoryBlockIndex + 0x18) = 0;
-          SystemContextPointerB0 = (long long *)&SystemNullTemplate;
-          if (SystemContextPointerA8 != (long long *)0x0) {
+          SystemContextControllerB0 = (long long *)&SystemNullTemplate;
+          if (SystemContextControllerA8 != (long long *)0x0) {
               ProcessSystemEventHandling();
           }
-          SystemContextPointerA8 = (long long *)0x0;
+          SystemContextControllerA8 = (long long *)0x0;
           SystemOperationValidationFlag = 0;
-          SystemContextPointerB0 = (long long *)&ThreadLocalStorageTemplate;
-          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemOperationStatusMask,&SystemContextPointerB0,ArrayIndex + 1,CalculationFunctionAddress);
+          SystemContextControllerB0 = (long long *)&ThreadLocalStorageTemplate;
+          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemOperationStatusMask,&SystemContextControllerB0,ArrayIndex + 1,CalculationFunctionAddress);
           if (SystemValidationStatusPointer != 0) {
               ProcessSystemEventHandling();
           }
@@ -205608,13 +205608,13 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
           *(uint32_t *)(MemoryBlockIndex + 0x10) = 0;
           *(void *)(MemoryBlockIndex + 8) = 0;
           *(void *)(MemoryBlockIndex + 0x18) = 0;
-          SystemContextPointerB0 = (long long *)&SystemNullTemplate;
-          if (SystemContextPointerA8 != (long long *)0x0) {
+          SystemContextControllerB0 = (long long *)&SystemNullTemplate;
+          if (SystemContextControllerA8 != (long long *)0x0) {
               ProcessSystemEventHandling();
           }
-          SystemContextPointerA8 = (long long *)0x0;
+          SystemContextControllerA8 = (long long *)0x0;
           SystemOperationValidationFlag = 0;
-          SystemContextPointerB0 = (long long *)&ThreadLocalStorageTemplate;
+          SystemContextControllerB0 = (long long *)&ThreadLocalStorageTemplate;
           goto LAB_18016a086;
         }
         break;
@@ -205632,14 +205632,14 @@ LAB_18016a086:
   SystemCleanupFlagF = 1;
   MemoryBlockIndex = AllocateSystemDataRegistry(MemoryPoolIndex,&pSystemCleanupFlagG);
   if (MemoryBlockIndex != 0) {
-    SystemContextPointerB0 = (long long *)0x0;
-    SystemContextPointerA8 = (long long *)0x0;
+    SystemContextControllerB0 = (long long *)0x0;
+    SystemContextControllerA8 = (long long *)0x0;
     CoreEngineSignedValueA0 = (long long *)0x0;
     SystemOperationValidationFlag = 3;
     pSystemContextPtr = (long long **)AllocateSystemContextAndInitialize(MemoryBlockIndex,&EnginePointerBuffer,&pSystemOperationStatusMask);
     SystemContextRegister = (long long *)0x0;
     pStringOffset = ContextHandle2;
-    if (&SystemContextPointerB0 != pSystemContextPtr) {
+    if (&SystemContextControllerB0 != pSystemContextPtr) {
       pSystemProcessFlagB = NULL;
       lStack_f0 = 0;
       ErrorCode = 0;
@@ -205652,8 +205652,8 @@ LAB_18016a086:
       pSystemContextPtr[2] = (long long *)0x0;
       SystemOperationValidationFlag = *(uint32_t *)(pSystemContextPtr + 3);
       *(uint32_t *)(pSystemContextPtr + 3) = 3;
-      SystemContextPointerB0 = SystemContextRegister;
-      SystemContextPointerA8 = pStringOffset;
+      SystemContextControllerB0 = SystemContextRegister;
+      SystemContextControllerA8 = pStringOffset;
     }
     if (EnginePointerBuffer != NULL) {
         ProcessSystemEventHandling();
@@ -205780,7 +205780,7 @@ LAB_18016a555:
         SystemContextRegister = SystemContextRegister + 1;
       } while ((unsigned long long)(long long)(int)StackParameterUnsigned20 < Utf16Char4);
     }
-    if (SystemContextPointerB0 != (long long *)0x0) {
+    if (SystemContextControllerB0 != (long long *)0x0) {
         ProcessSystemEventHandling();
     }
   }
@@ -209754,7 +209754,7 @@ UpdateUtf8EncodingStatus(uint64_t ContextHandle,uint64_t OperationBufferSize,uin
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryPoolIndex = 0;
-  Utf16Char = GetUtf16CharacterValue();
+  Utf16Char = GetUtf16CodeValue();
   ProcessTemporaryBuffer(ContextHandle,Utf16Char,Utf8SourcePointer,Utf16EndPointer,MemoryPoolIndex,UnicodeCodePoint);
   return ContextHandle;
 }
@@ -216894,13 +216894,13 @@ void ProcessCharacterEncodingAndMemoryPoolManagement(uint64_t ContextHandle, lon
   long long MemoryAllocationOffset;                 // 内存分配偏移量
   long long *PrimaryContextHandlePointer;          // 主要字符代码指针
   uint8_t SystemSecurityValidationBuffer [32];     // 系统安全验证缓冲区
-  void *SystemContextPointer;                       // 系统上下文指针
+  void *SystemContextController;                       // 系统上下文指针
   uint8_t *Utf8DataBufferPointer;                   // UTF8数据缓冲区指针
   uint32_t SystemOperationCode;                     // 系统操作代码
   unsigned long long SystemDataAddress;              // 系统数据地址
   long long *SystemTablePointer;                    // 系统表指针
   void **SystemEventPointerArray;                  // 系统事件指针数组
-  void *SecondarySystemContextPointer;              // 次要系统上下文指针
+  void *SecondarySystemContextController;              // 次要系统上下文指针
   long long SystemMemoryOffset870;                  // 系统内存偏移量870
   uint32_t SystemStatusFlag860;                     // 系统状态标志860
   long long SystemMemoryOffset858;                  // 系统内存偏移量858
@@ -217104,7 +217104,7 @@ void ProcessContextHandleSizeAndUtf8SourceData(uint64_t ContextHandle, uint64_t 
   uint8_t SystemSecurityValidationBuffer968 [32];     // 系统安全验证缓冲区968
   uint64_t SystemUnsignedValue948;                    // 系统无符号值948
   long long **SystemTablePointer940;                  // 系统表指针940
-  void *SystemContextPointer938;                      // 系统上下文指针938
+  void *SystemContextController938;                      // 系统上下文指针938
   long long SystemMemoryOffset930;                    // 系统内存偏移量930
   uint32_t SystemStatusFlag928;                       // 系统状态标志928
   unsigned long long SystemDataAddress920;            // 系统数据地址920
@@ -217113,7 +217113,7 @@ void ProcessContextHandleSizeAndUtf8SourceData(uint64_t ContextHandle, uint64_t 
   uint64_t SystemOperationCode908;                    // 系统操作代码908
   long long SystemTemporaryValue900;                   // 系统临时值900
   uint64_t *SystemDataPointer8f8;                     // 系统数据指针8f8
-  void *SystemContextPointer8e8;                      // 系统上下文指针8e8
+  void *SystemContextController8e8;                      // 系统上下文指针8e8
   void *SystemDataBuffer8e0;                          // 系统数据缓冲区8e0
   int SystemInteger8d8;                               // 系统整数8d8
   uint8_t SystemDataBuffer8d0 [136];                  // 系统数据缓冲区8d0
@@ -217689,7 +217689,7 @@ void ProcessMemoryAddressMaskAndBufferStatus(long long ContextHandle,uint64_t Op
   void *PreviousNode;
   unsigned long long ProcessingStatusFlag;
   uint8_t SystemFlagH [32];
-  long long **pSystemContextPointerA8;
+  long long **pSystemContextControllerA8;
   long long *SystemStackPointer;
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
@@ -217745,7 +217745,7 @@ LAB_1801794f5:
       }
     }
     if ((PrimaryProcessingStatusFlag == StringProcessingStatus) || (ContextHandle < (long long *)PrimaryProcessingStatusFlag[4])) {
-      pSystemContextPointerA8 = &SystemStackPointer;
+      pSystemContextControllerA8 = &SystemStackPointer;
       PrimaryProcessingStatusFlag = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       ContextHandle = SystemStackPointer;
@@ -217795,7 +217795,7 @@ LAB_1801794f5:
       }
     }
     if ((SystemEventTemplatePointer == StringProcessingStatus) || (ContextHandle < (long long *)SystemEventTemplatePointer[4])) {
-      pSystemContextPointerA8 = &SystemStackPointer;
+      pSystemContextControllerA8 = &SystemStackPointer;
       SystemEventTemplatePointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
       SystemEventTemplatePointer = (void *)*SystemEventTemplatePointer;
       ContextHandle = SystemStackPointer;
@@ -217819,7 +217819,7 @@ LAB_1801794f5:
   }
   SystemOperationStatusMask = StackValidationData;
   if ((MemoryAllocationMaskPointer == StringProcessingStatus) || (ContextHandle < (long long *)MemoryAllocationMaskPointer[4])) {
-    pSystemContextPointerA8 = &SystemStackPointer;
+    pSystemContextControllerA8 = &SystemStackPointer;
     MemoryAllocationMaskPointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
     MemoryAllocationMaskPointer = (void *)*MemoryAllocationMaskPointer;
   }
@@ -219045,14 +219045,14 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
     SystemContextRegister = BufferAllocationState;
     (**(code **)(*BufferAllocationState + 0x28))(BufferAllocationState);
   }
-  SystemContextRegister = SystemContextPointerA8;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    MemoryAllocationIndex = *SystemContextPointerA8;
-    SystemContextPointerA8 = BufferAllocationState;
+  SystemContextRegister = SystemContextControllerA8;
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    MemoryAllocationIndex = *SystemContextControllerA8;
+    SystemContextControllerA8 = BufferAllocationState;
     (**(code **)(MemoryAllocationIndex + 0x38))();
-    BufferAllocationState = SystemContextPointerA8;
+    BufferAllocationState = SystemContextControllerA8;
   }
-  SystemContextPointerA8 = BufferAllocationState;
+  SystemContextControllerA8 = BufferAllocationState;
   if (&CoreEngineUnsignedValueA0 != Utf8SourcePointer) {
     ProcessSystemDataValidationAndCharacterEncoding(&CoreEngineUnsignedValueA0,*Utf8SourcePointer,Utf8SourcePointer[1]);
   }
@@ -219062,7 +219062,7 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
   MemoryAllocationIndex = 1;
   if (ProcessingStatusFlag < *(unsigned long long *)(ContextHandle + 0x70)) {
     *(unsigned long long *)(ContextHandle + 0x68) = ProcessingStatusFlag + 0x68;
-    ProcessSystemBufferAllocationAndMemoryManagement(ProcessingStatusFlag,&SystemContextPointerA8);
+    ProcessSystemBufferAllocationAndMemoryManagement(ProcessingStatusFlag,&SystemContextControllerA8);
   }
   else {
     StringOffset = *(long long *)(ContextHandle + 0x60);
@@ -219074,7 +219074,7 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
     }
     ProcessSystemContextAndMemoryAllocation(&SystemContextRegister,StringOffset,ProcessingStatusFlag,MemoryBlockIndex);
     BufferAllocationState = SystemContextRegister;
-    ProcessSystemBufferAllocationAndMemoryManagement(SystemContextRegister,&SystemContextPointerA8);
+    ProcessSystemBufferAllocationAndMemoryManagement(SystemContextRegister,&SystemContextControllerA8);
     SystemContextRegister = BufferAllocationState + 0xd;
     StringOffset = *(long long *)(ContextHandle + 0x68);
     MemoryPoolBlockSize = *(long long *)(ContextHandle + 0x60);
@@ -219193,7 +219193,7 @@ void CleanupSystemDataTable(long long *ContextHandle
   uint SystemFlagH;
   long long *plStack_c0;
   long long *plStack_b8;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   uint CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long *SystemStackPointer;
@@ -219253,7 +219253,7 @@ void CleanupSystemDataTable(long long *ContextHandle
         plStack_c0 = (long long *)BufferAllocate(MemoryPoolManager,SystemDataTablePointer << 6,CoreEngineValueA8 & 0xff);
       }
       MemoryRangeBoundary = (long long *)0x0;
-      SystemContextPointerB0 = plStack_c0 + SystemDataTablePointer * 8;
+      SystemContextControllerB0 = plStack_c0 + SystemDataTablePointer * 8;
       SystemDataTablePointer = *(long long *)(ProcessedCharacter + 0x30 + AllocatedMemorySize);
       BufferStatus = *(long long *)(ProcessedCharacter + 0x28 + AllocatedMemorySize);
       plStack_b8 = plStack_c0;
@@ -219474,7 +219474,7 @@ long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *Cont
   AllocatedMemorySize = 0;
   SystemDataRegistry = AllocatedMemorySize;
   if (MemoryBoundaryEnd != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 8,Utf16CharacterValue & 0xff,Utf16EndPointer,ArraySize);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 8,Utf16CodeValue & 0xff,Utf16EndPointer,ArraySize);
   }
   ContextHandle[1] = SystemDataRegistry;
   ContextHandle[2] = SystemDataRegistry;
@@ -219495,7 +219495,7 @@ long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *Cont
   *(uint *)(ContextHandle + 8) = Utf16Char;
   SystemDataRegistry = AllocatedMemorySize;
   if (MemoryBoundaryEnd != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 6,Utf16CharacterValue & 0xff,Utf16EndPointer,ArraySize);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 6,Utf16CodeValue & 0xff,Utf16EndPointer,ArraySize);
   }
   ContextHandle[5] = SystemDataRegistry;
   ContextHandle[6] = SystemDataRegistry;
@@ -219510,7 +219510,7 @@ long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *Cont
   Utf16Char = *(uint *)(OperationBufferSize + 0xc);
   *(uint *)(ContextHandle + 0xc) = Utf16Char;
   if (SystemDataRegistry != 0) {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CharacterValue & 0xff,Utf16EndPointer,ArraySize);
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CodeValue & 0xff,Utf16EndPointer,ArraySize);
   }
   ContextHandle[9] = AllocatedMemorySize;
   ContextHandle[10] = AllocatedMemorySize;
@@ -219697,7 +219697,7 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long l
 void ProcessSystemDataNodeAndMemoryAllocation(void)
 {
   long long MemoryAllocationResult;
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long StackFrameAddress;
   long long CharacterPatternMatchStatus;
   long long DataNodeSize;
@@ -219710,18 +219710,18 @@ void ProcessSystemDataNodeAndMemoryAllocation(void)
     CharacterTablePointer = 0;
   }
   else {
-    CharacterTablePointer = (long long *)BufferAllocate(MemoryPoolManager,DataNodeSize << 6,(char)SystemContextPointer[3]);
+    CharacterTablePointer = (long long *)BufferAllocate(MemoryPoolManager,DataNodeSize << 6,(char)SystemContextController[3]);
   }
   if (StackFrameAddress != PatternIndex) {
-      memmove(CharacterTablePointer, SystemContextPointer, DataNodeSize * 0x40);
+      memmove(CharacterTablePointer, SystemContextController, DataNodeSize * 0x40);
   }
-  if (*SystemContextPointer != 0) {
+  if (*SystemContextController != 0) {
       ProcessSystemEventHandling();
   }
-  *SystemContextPointer = LoopCounter;
+  *SystemContextController = LoopCounter;
   CharacterTablePointer = (long long *)(DataNodeSize * 0x40 + LoopCounter);
-  SystemContextPointer[2] = LoopCounter;
-  SystemContextPointer[1] = LoopCounter;
+  SystemContextController[2] = LoopCounter;
+  SystemContextController[1] = LoopCounter;
   return;
 }
 
@@ -219934,7 +219934,7 @@ void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64
 #define ProcessSystemDataValidationAndCharacterEncoding FUN_18017b480
 void ProcessSystemDataValidationAndCharacterEncoding(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long MemoryAllocationStatus;
   unsigned long long UnicodeCodePoint;
   long long *EngineContext;
@@ -219953,24 +219953,24 @@ void ProcessSystemDataValidationAndCharacterEncoding(long long *ContextHandle,lo
     if (OperationBufferSize != Utf8SourcePointer) {
       MemoryBoundaryEnd = MemoryAllocationStatus - (long long)OperationBufferSize;
       do {
-        SystemContextPointer = (long long *)*ContextHandleSize;
-        *(long long **)(MemoryBoundaryEnd + (long long)OperationBufferSize) = SystemContextPointer;
-        if (SystemContextPointer != (long long *)0x0) {
-          (**(code **)(*SystemContextPointer + 0x28))();
+        SystemContextController = (long long *)*ContextHandleSize;
+        *(long long **)(MemoryBoundaryEnd + (long long)OperationBufferSize) = SystemContextController;
+        if (SystemContextController != (long long *)0x0) {
+          (**(code **)(*SystemContextController + 0x28))();
         }
         OperationBufferSize = OperationBufferSize + 1;
       } while (OperationBufferSize != Utf8SourcePointer);
     }
-    SystemContextPointer = (long long *)ContextHandle[1];
-    memoryBlockListHead = (long long *)*SystemContextPointer;
-    if (memoryBlockListHead != SystemContextPointer) {
+    SystemContextController = (long long *)ContextHandle[1];
+    memoryBlockListHead = (long long *)*SystemContextController;
+    if (memoryBlockListHead != SystemContextController) {
       do {
         if ((long long *)*memoryBlockListHead != (long long *)0x0) {
           (**(code **)(*(long long *)*memoryBlockListHead + 0x38))();
         }
         memoryBlockListHead = memoryBlockListHead + 1;
-      } while (memoryBlockListHead != SystemContextPointer);
-      memoryBlockListHead = (long long *)*SystemContextPointer;
+      } while (memoryBlockListHead != SystemContextController);
+      memoryBlockListHead = (long long *)*SystemContextController;
     }
     if (memoryBlockListHead != (long long *)0x0) {
         CoreEngineFreeSystemMemory(memoryBlockListHead);
@@ -221795,7 +221795,7 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
 void InitializeSystemDataStructureProcessor(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint32_t ConvertedUtf16Character;
-  void *SystemContextPointer;
+  void *SystemContextController;
   uint32_t *EventTemplateBuffer;
   uint64_t *MemoryAddressMaskBuffer;
   void *SystemPriorityLevelPointer;
@@ -221884,7 +221884,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t ContextHandle, uint64_t Op
 void InitializeSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint32_t ConvertedUtf16Character;
-  void *SystemContextPointer;
+  void *SystemContextController;
   uint64_t *EventTemplateBuffer;
   void *MemoryOffsetPointer;
   uint64_t *StackRegisterFlagBuffer;
@@ -224245,7 +224245,7 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   long long CoreEngineSignedValueC8;
   long long StackTemporaryValueC0;
   uint64_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   long long StackTemporaryValueA8;
   long long EncodingParameterArray[7];
   long long *EncodingContextPointer;
@@ -224257,7 +224257,7 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   SystemCleanupStatusFlag = 0;
   CoreEngineSignedValueC8 = *ContextHandleSize;
   StackTemporaryValueC0 = OperationBufferSize[1] - CoreEngineSignedValueC8 >> 2;
-  SystemContextPointerB0 = Utf8SourcePointer;
+  SystemContextControllerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   EncodingContextPointer = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -224320,7 +224320,7 @@ void ProcessUtf8CharacterEncoding(long long ContextHandle, long long *ContextHan
   uint64_t MemoryAllocationMaskPointer;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   uint64_t CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long StackLongValue;
@@ -224342,7 +224342,7 @@ void ProcessUtf8CharacterEncoding(long long ContextHandle, long long *ContextHan
   }
   MemoryOffsetValue = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
-  SystemContextPointerB0 = (long long *)MemoryBlockIndex;
+  SystemContextControllerB0 = (long long *)MemoryBlockIndex;
   SystemStackFlag = Utf8SourcePointer;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     if (pSystemTemporaryValue50 == alStack_88) {
@@ -224360,7 +224360,7 @@ LAB_180184089:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
   NVGSDK_GetUILanguageAsync(*(void *)(ContextHandle + 8),&SystemAsyncOperationDataPrimary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
-  SystemContextPointerB0 = alStack_88;
+  SystemContextControllerB0 = alStack_88;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     (**(code **)(*pSystemTemporaryValue50 + 0x20)              (pSystemTemporaryValue50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),pSystemTemporaryValue50 != alStack_88));
     pSystemTemporaryValue50 = (long long *)0x0;
@@ -225073,7 +225073,7 @@ void ProcessSystemContextHandleSize(long long ContextHandle, long long *ContextH
   uint64_t MemoryAllocationMaskPointer;
   uint8_t SystemCleanupFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   uint64_t CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long StackLongValue;
@@ -225095,7 +225095,7 @@ void ProcessSystemContextHandleSize(long long ContextHandle, long long *ContextH
   }
   MemoryOffsetValue = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
-  SystemContextPointerB0 = (long long *)MemoryBlockIndex;
+  SystemContextControllerB0 = (long long *)MemoryBlockIndex;
   SystemStackFlag = Utf8SourcePointer;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     if (pSystemTemporaryValue50 == alStack_88) {
@@ -225113,7 +225113,7 @@ LAB_180184d09:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
   NVGSDK_Highlights_GetUserSettingsAsync(*(void *)(ContextHandle + 8),&SystemAsyncOperationDataSecondary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
-  SystemContextPointerB0 = alStack_88;
+  SystemContextControllerB0 = alStack_88;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     (**(code **)(*pSystemTemporaryValue50 + 0x20)              (pSystemTemporaryValue50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),pSystemTemporaryValue50 != alStack_88));
     pSystemTemporaryValue50 = (long long *)0x0;
@@ -225506,7 +225506,7 @@ void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *Con
   uint64_t *CharacterStatusBufferPointer;
   uint8_t CoreEngineStatusByte;
   uint64_t MemoryOffsetMask;
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long MemoryBlockHandle;
   long long StackValueArray [7];
   long long *StackPointer60;
@@ -225521,7 +225521,7 @@ void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *Con
     CharacterStatusBufferPointer = (void *)*ContextHandleSize;
   }
   CoreEngineStatusByte = *(uint8_t *)(OperationBufferSize + 4);
-  SystemContextPointer = Utf8SourcePointer;
+  SystemContextController = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   StackPointer60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -225776,7 +225776,7 @@ void ProcessLongIntegerContextHandle(long long ContextHandle, long long *Context
   long long CoreEngineSignedValueC8;
   long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -225791,7 +225791,7 @@ void ProcessLongIntegerContextHandle(long long ContextHandle, long long *Context
   pErrorCode = (uint32_t *)0x0;
   pSystemFlagE = (uint32_t *)0x0;
   SecondaryProcessingStatusFlag = (void *)*ContextHandleSize;
-  SystemContextPointerB0 = Utf8SourcePointer;
+  SystemContextControllerB0 = Utf8SourcePointer;
   if (SecondaryProcessingStatusFlag != (void *)OperationBufferSize[1]) {
     do {
       SystemEventTemplatePointer = SecondaryProcessingStatusFlag;
@@ -225899,7 +225899,7 @@ void ProcessOptimizedDualPointerEncoding(long long ContextHandle, uint64_t *Cont
   uint32_t CoreEngineValueC0;
   uint32_t uStack_bc;
   uint64_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -225915,7 +225915,7 @@ void ProcessOptimizedDualPointerEncoding(long long ContextHandle, uint64_t *Cont
   }
   CoreEngineValueC0 = *(uint32_t *)(OperationBufferSize + 4);
   uStack_bc = *(uint32_t *)((long long)OperationBufferSize + 0x24);
-  SystemContextPointerB0 = Utf8SourcePointer;
+  SystemContextControllerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   plStack_60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -226203,7 +226203,7 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 #define ProcessSystemMemoryBlockAndBufferCleanup FUN_180186430
 void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -226211,25 +226211,25 @@ void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t O
   uint64_t OperationResult;
   
   OperationResult = 0xfffffffffffffffe;
-  SystemContextPointer = (long long *)(ContextHandle + 0x28);
-  BufferStatus = *SystemContextPointer;
+  SystemContextController = (long long *)(ContextHandle + 0x28);
+  BufferStatus = *SystemContextController;
   SystemDataRegistry = BufferStatus;
   memoryBlockListHead = *(long long **)(BufferStatus + 8);
   if (*(char *)((long long)*(long long **)(BufferStatus + 8) + SystemNodeStatusOffset) == '\0') {
     do {
-      ProcessSystemMemory(SystemContextPointer,memoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
+      ProcessSystemMemory(SystemContextController,memoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
       MemoryBlockIndex = (long long *)*memoryBlockListHead;
       free(memoryBlockListHead,0x28);
       memoryBlockListHead = MemoryBlockIndex;
     } while (*(char *)((long long)MemoryBlockIndex + SystemNodeStatusOffset) == '\0');
-    SystemDataRegistry = *SystemContextPointer;
+    SystemDataRegistry = *SystemContextController;
   }
   *(long long *)(SystemDataRegistry + 8) = BufferStatus;
-  *(long long *)*SystemContextPointer = BufferStatus;
-  *(long long *)(*SystemContextPointer + 0x10) = BufferStatus;
-  *(void *)(SystemContextPointer + 0x30) = 0;
-  free(*SystemContextPointer,0x28);
-  ProcessSystemStackData(SystemContextPointer + 8);
+  *(long long *)*SystemContextController = BufferStatus;
+  *(long long *)(*SystemContextController + 0x10) = BufferStatus;
+  *(void *)(SystemContextController + 0x30) = 0;
+  free(*SystemContextController,0x28);
+  ProcessSystemStackData(SystemContextController + 8);
   return;
 }
 
@@ -226425,18 +226425,18 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
  */
 void ProcessSystemMemoryBufferAndUtfConversion(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long MemoryBufferStatus;
   
-  SystemContextPointer = (long long *)(ContextHandle + 0x20);
-  MemoryBufferStatus = *SystemContextPointer;
-  ProcessSystemMemoryEx2(SystemContextPointer,*(void *)(MemoryBufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  *(long long *)(*SystemContextPointer + 8) = MemoryBufferStatus;
-  *(long long *)*SystemContextPointer = MemoryBufferStatus;
-  *(long long *)(*SystemContextPointer + 0x10) = MemoryBufferStatus;
-  *(void *)(SystemContextPointer + 0x28) = 0;
-  free(*SystemContextPointer,0x60);
-  ProcessSystemStackData(SystemContextPointer);
+  SystemContextController = (long long *)(ContextHandle + 0x20);
+  MemoryBufferStatus = *SystemContextController;
+  ProcessSystemMemoryEx2(SystemContextController,*(void *)(MemoryBufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  *(long long *)(*SystemContextController + 8) = MemoryBufferStatus;
+  *(long long *)*SystemContextController = MemoryBufferStatus;
+  *(long long *)(*SystemContextController + 0x10) = MemoryBufferStatus;
+  *(void *)(SystemContextController + 0x28) = 0;
+  free(*SystemContextController,0x60);
+  ProcessSystemStackData(SystemContextController);
   return;
 }
 
@@ -226600,7 +226600,7 @@ void CleanupSystemStackData(long long ContextHandle)
 void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer,uint32_t Utf16EndPointer,
                   uint32_t AdditionalParameter1)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long SystemBufferStatus;
   void *SystemEventTemplatePointer;
   long long SystemDataRegistry;
@@ -226670,12 +226670,12 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
       SystemDataRegistry = SystemDataRegistry + 1;
     } while (SystemEventTemplatePointer[SystemDataRegistry] != '\0');
     ReallocateContextHandle(StackValue,SystemEventTemplatePointer,SystemDataRegistry);
-    SystemContextPointer = *(long long **)(SystemBufferStatus + 8);
+    SystemContextController = *(long long **)(SystemBufferStatus + 8);
     SystemCleanupFlagDoublePointer = &CharacterStatusBufferPointer;
     CharacterStatusBufferPointer = &SystemBufferQuinary;
     StackMemoryBuffer = SystemBufferStatus;
     SystemOperationPointer = &CharacterStatusBufferPointer;
-    (**(code **)(*SystemContextPointer + 0x30))(SystemContextPointer,ValidationData,&CharacterStatusBufferPointer,0);
+    (**(code **)(*SystemContextController + 0x30))(SystemContextController,ValidationData,&CharacterStatusBufferPointer,0);
     ProcessSystemStackData(StackValue);
     ProcessSystemStackData(ValidationData);
     *ContextHandleSize = &SystemNullTemplate;
@@ -226717,7 +226717,7 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
  */
 void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long SystemBufferStatus;
   void **SystemEventTemplateDoublePointer;
   void **MemoryAllocationMaskPointer;
@@ -226771,12 +226771,12 @@ void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long Op
         CalculatedCodePoint = CalculatedCodePoint + 1;
       } while (CalculatedCodePoint < Utf8SourcePointer);
     }
-    SystemContextPointer = *(long long **)(SystemBufferStatus + 8);
+    SystemContextController = *(long long **)(SystemBufferStatus + 8);
     CalculationFunctionAddressPointer = &ProcessingVariableBuffer;
     ProcessingVariableBuffer = &SystemBufferSenary;
     StackMemoryBuffer = SystemBufferStatus;
     FunctionAddressPointer = &ProcessingVariableBuffer;
-    (**(code **)(*SystemContextPointer + 0x38))(SystemContextPointer,&SystemOperationFlagPointer,&ProcessingVariableBuffer,0);
+    (**(code **)(*SystemContextController + 0x38))(SystemContextController,&SystemOperationFlagPointer,&ProcessingVariableBuffer,0);
     SystemEventTemplateDoublePointer = SystemOperationPointer;
     MemoryAllocationMaskPointer = SystemOperationFlagPointer;
     if (SystemOperationFlagPointer != (void **)0x0) {
@@ -227247,29 +227247,29 @@ void CleanupCharacterTableAndBuffer(long long *ContextHandle)
  */
 void ProcessSystemStringIndexAndCharacterTableOperation(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   long long BufferStatus;
   
   // 计算系统上下文指针的偏移位置
-  SystemContextPointer = (long long *)(ContextHandle + 0x30);
-  BufferStatus = *SystemContextPointer;
+  SystemContextController = (long long *)(ContextHandle + 0x30);
+  BufferStatus = *SystemContextController;
   
   // 执行系统内存扩展操作
-  ProcessSystemMemoryEx2(SystemContextPointer, *(void *)(BufferStatus + 8), Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
+  ProcessSystemMemoryEx2(SystemContextController, *(void *)(BufferStatus + 8), Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
   
   // 更新字符表指针和数据
-  *(long long *)(*SystemContextPointer + 8) = BufferStatus;
-  *(long long *)*SystemContextPointer = BufferStatus;
-  *(long long *)(*SystemContextPointer + 0x10) = BufferStatus;
+  *(long long *)(*SystemContextController + 8) = BufferStatus;
+  *(long long *)*SystemContextController = BufferStatus;
+  *(long long *)(*SystemContextController + 0x10) = BufferStatus;
   
   // 清理上下文数据
-  *(void *)(SystemContextPointer + 0x38) = 0;
+  *(void *)(SystemContextController + 0x38) = 0;
   
   // 释放内存资源
-  free(*SystemContextPointer, 0x60);
+  free(*SystemContextController, 0x60);
   
   // 处理系统栈数据
-  ProcessSystemStackData(SystemContextPointer);
+  ProcessSystemStackData(SystemContextController);
   return;
 }
 
@@ -228090,7 +228090,7 @@ LAB_18018802f:
  */
 uint64_t * ProcessUtf16CharacterEncodingConversion(void
 {
-  unsigned long long Utf16CharacterValue;
+  unsigned long long Utf16CodeValue;
   unsigned long long MemoryPoolIndex;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -228109,11 +228109,11 @@ LAB_180188024:
   do {
     if (*(char *)((long long)SystemDataNode + SystemNodeStatusOffset) != '\0') {
       if (SystemContext != RegisterR13Value) {
-        Utf16CharacterValue = SystemContext[6];
+        Utf16CodeValue = SystemContext[6];
         MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
         MemoryNodeComparisonResult = memcmp();
         if (InputDataLength == 0) {
-          if (Utf16CharacterValue <= MemoryPoolIndex) {
+          if (Utf16CodeValue <= MemoryPoolIndex) {
 LAB_18018802f:
             return SystemContext + 8;
           }
@@ -228125,14 +228125,14 @@ LAB_18018802f:
       return (void *)(StackProcessingParameter3 + 0x40);
     }
     SystemContextPtr = SystemDataNode + 4;
-    Utf16CharacterValue = SystemDataNode[6];
+    Utf16CodeValue = SystemDataNode[6];
     if (0xf < (unsigned long long)SystemDataNode[7]) {
       SystemContextPtr = (long long *)*SystemContextPtr;
     }
     MemoryNodeComparisonResult = memcmp(SystemContextPtr);
     StatusFlag = InputDataLength < 0;
     if (InputDataLength != 0) goto code_r0x00018018801e;
-    if (Utf16CharacterValue < CharacterLimit) goto LAB_180188024;
+    if (Utf16CodeValue < CharacterLimit) goto LAB_180188024;
 LAB_180187f7e:
     SystemContext = SystemDataNode;
     SystemDataNode = (void *)*SystemContext;
@@ -228747,7 +228747,7 @@ void ProcessSystemEncoding(long long ContextHandle, uint64_t *ContextHandleSize
   uint64_t CalculationSystemFunctionPointer;
   void **SystemPointerPointer;
   long long SystemArrayBuffer [7];
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   unsigned long long StackChecksumValue;
   
   CoreEngineSystemValue = 0xfffffffffffffffe;
@@ -228758,30 +228758,30 @@ void ProcessSystemEncoding(long long ContextHandle, uint64_t *ContextHandleSize
   CalculationSystemFunctionPointer = OperationBufferSize[2];
   SystemOperationFlagPointer = &SystemBufferOctonary;
   SystemPointerPointer = &SystemOperationFlagPointer;
-  SystemContextPointer = (long long *)0x0;
+  SystemContextController = (long long *)0x0;
   if ((SystemPointerPointer != (void **)0x0) &&
-     (SystemContextPointer = (long long *)(*(code *)&SystemFunctionDispatchPointer)(SystemPointerPointer,SystemArrayBuffer),
+     (SystemContextController = (long long *)(*(code *)&SystemFunctionDispatchPointer)(SystemPointerPointer,SystemArrayBuffer),
      SystemPointerPointer != (void **)0x0)) {
     (**(code **)(*SystemPointerPointer + 0x20))(SystemPointerPointer,CONCAT71((int7)((unsigned long long)&SystemOperationFlagPointer >> 8),SystemPointerPointer != &SystemOperationFlagPointer));
     SystemPointerPointer = (void **)0x0;
   }
   ProcessSystemData(&SystemOperationFlagPointer,ContextHandle);
-  if (SystemContextPointer != (long long *)0x0) {
-    if (SystemContextPointer == SystemArrayBuffer) {
-      Utf16Character = (**(code **)(*SystemContextPointer + 8))(SystemContextPointer,ContextHandle);
+  if (SystemContextController != (long long *)0x0) {
+    if (SystemContextController == SystemArrayBuffer) {
+      Utf16Character = (**(code **)(*SystemContextController + 8))(SystemContextController,ContextHandle);
       *(void *)(ContextHandle + 0x38) = Utf16Character;
-      if (SystemContextPointer == (long long *)0x0) goto LAB_18018873e;
-      (**(code **)(*SystemContextPointer + 0x20))(SystemContextPointer,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextPointer != SystemArrayBuffer));
+      if (SystemContextController == (long long *)0x0) goto LAB_18018873e;
+      (**(code **)(*SystemContextController + 0x20))(SystemContextController,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextController != SystemArrayBuffer));
     }
     else {
-      *(long long **)(ContextHandle + 0x38) = SystemContextPointer;
+      *(long long **)(ContextHandle + 0x38) = SystemContextController;
     }
-    SystemContextPointer = (long long *)0x0;
+    SystemContextController = (long long *)0x0;
   }
 LAB_18018873e:
-  if (SystemContextPointer != (long long *)0x0) {
-    (**(code **)(*SystemContextPointer + 0x20))(SystemContextPointer,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextPointer != SystemArrayBuffer));
-    SystemContextPointer = (long long *)0x0;
+  if (SystemContextController != (long long *)0x0) {
+    (**(code **)(*SystemContextController + 0x20))(SystemContextController,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextController != SystemArrayBuffer));
+    SystemContextController = (long long *)0x0;
   }
   if (SystemPointerPointer != (void **)0x0) {
     (**(code **)(*SystemPointerPointer + 0x20))(SystemPointerPointer,SystemPointerPointer != &SystemOperationFlagPointer);
@@ -228873,7 +228873,7 @@ void ProcessSystemMemoryAllocationAndValidation(long long *ContextHandle, long l
  */
 uint64_t * ProcessSystemMemoryAllocationAndUtf8Management(long long *ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer
 {
-  unsigned long long Utf16CharacterValue;
+  unsigned long long Utf16CodeValue;
   code *SystemValidationFunction;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAllocationMaskPointer;
@@ -228897,11 +228897,11 @@ uint64_t * ProcessSystemMemoryAllocationAndUtf8Management(long long *ContextHand
     MemoryAllocationMaskPointer = (void *)(*SystemValidationFunction)();
     return MemoryAllocationMaskPointer;
   }
-  Utf16CharacterValue = AllocatedMemorySize + 1;
+  Utf16CodeValue = AllocatedMemorySize + 1;
   ArraySize = (ContextHandle[2] - SystemDataTablePointer) / 0x18;
-  SystemChecksum = Utf16CharacterValue;
-  if ((ArraySize <= 0xaaaaaaaaaaaaaaa - (ArraySize >> 1)) && (SystemChecksum = ArraySize + (ArraySize >> 1), SystemChecksum < Utf16CharacterValue)  {
-    SystemChecksum = Utf16CharacterValue;
+  SystemChecksum = Utf16CodeValue;
+  if ((ArraySize <= 0xaaaaaaaaaaaaaaa - (ArraySize >> 1)) && (SystemChecksum = ArraySize + (ArraySize >> 1), SystemChecksum < Utf16CodeValue)  {
+    SystemChecksum = Utf16CodeValue;
   }
   SystemEventTemplatePointer = (void *)AllocateSystemMemoryBlock();
   MemoryAllocationMaskPointer = SystemEventTemplatePointer + ((MemoryBoundaryEnd >> 2) - (MemoryBoundaryEnd >> 0x3f)) * 3;
@@ -228941,7 +228941,7 @@ uint64_t * ProcessSystemMemoryAllocationAndUtf8Management(long long *ContextHand
     free(AllocatedMemorySize);
   }
   *ContextHandle = (long long)SystemEventTemplatePointer;
-  ContextHandle[1] = (long long)(SystemEventTemplatePointer + Utf16CharacterValue * 3);
+  ContextHandle[1] = (long long)(SystemEventTemplatePointer + Utf16CodeValue * 3);
   ContextHandle[2] = (long long)(SystemEventTemplatePointer + SystemChecksum * 3);
   return MemoryAllocationMaskPointer;
 }
@@ -231933,44 +231933,44 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
   SystemContextManager[1] = SystemContextManager[1] + 4;
   DataTargetPointer = (uint32_t *)SystemContextManager[1];
   ExtractedUtf16Char = *(uint32_t *)(DataSourceNode + 0x1c);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0xc);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0xc);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
   return;
 }
 
@@ -232003,36 +232003,36 @@ void ReinitializeSystemHandleAndBufferData(void)
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
   Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0xc);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
-  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
+  BufferTargetPointer = (uint32_t *)SystemContextController[1];
+  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
+  if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
-    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+    BufferTargetPointer = (uint32_t *)SystemContextController[1];
   }
-  *TargetDataPointer = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  *BufferTargetPointer = Utf16CodeValue;
+  SystemContextController[1] = SystemContextController[1] + 4;
   return;
 }
 
@@ -234922,19 +234922,19 @@ void ResetSystemOperationState(void)
 void ReleaseSystemHandle(long long *ContextHandle)
 {
   uint64_t *HandleStatusBuffer;
-  void *SystemContextPointer;
+  void *SystemContextController;
   
   HandleStatusBuffer = (void *)ContextHandle[1];
-  SystemContextPointer = (void *)*ContextHandle;
-  if (SystemContextPointer != HandleStatusBuffer) {
+  SystemContextController = (void *)*ContextHandle;
+  if (SystemContextController != HandleStatusBuffer) {
     do {
-      (**(code **)*SystemContextPointer)(SystemContextPointer, 0);
-      SystemContextPointer = SystemContextPointer + 0x69;
-    } while (SystemContextPointer != HandleStatusBuffer);
+      (**(code **)*SystemContextController)(SystemContextController, 0);
+      SystemContextController = SystemContextController + 0x69;
+    } while (SystemContextController != HandleStatusBuffer);
     ContextHandle[1] = *ContextHandle;
     return;
   }
-  ContextHandle[1] = (long long)SystemContextPointer;
+  ContextHandle[1] = (long long)SystemContextController;
   return;
 }
 
@@ -242929,8 +242929,8 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   SystemPriorityLevel = EncodingDecodingKey ^ (unsigned long long)aBufferInitializationFlag;
   uStack_104 = 0;
   plStack_b8 = (long long *)0x0;
-  SystemContextPointerB0 = (long long *)0x0;
-  SystemContextPointerA8 = (long long *)0x0;
+  SystemContextControllerB0 = (long long *)0x0;
+  SystemContextControllerA8 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 3;
   ProcessingCounter = Utf16EndPointer;
   SystemTemporaryValue90 = ContextHandle;
@@ -242954,8 +242954,8 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   SystemBytePointer[3] = 0;
   plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,1);
   StackLongValue = ContextHandle + 0x607e0;
-  ContextHandle9 = SystemContextPointerB0;
-  pBufferIndex = SystemContextPointerA8;
+  ContextHandle9 = SystemContextControllerB0;
+  pBufferIndex = SystemContextControllerA8;
   SystemChecksum = 0;
   OperationStatus = ArraySize;
 LAB_180198f21:
@@ -243031,7 +243031,7 @@ LAB_18019914b:
       if (MemoryAllocationHandle == 0) {
 LAB_1801991d4:
         ProcessSystemDataValidation(SystemTemporaryValue90,StackValidationData,&plStack_b8,ProcessingCounter);
-        ContextHandle9 = SystemContextPointerB0;
+        ContextHandle9 = SystemContextControllerB0;
         pBufferIndex = plStack_b8;
         uStack_104 = uStack_104 | 1;
         pSystemProcessFlagA = &SystemNullTemplate;
@@ -243096,7 +243096,7 @@ LAB_180199282:
     ContextHandleTablePointer = *(long long **)(CharacterTablePointer6 + Utf16Char4 * 8);
     *ContextHandle9 = (long long)ContextHandleTablePointer;
     if (ContextHandleTablePointer != (long long *)0x0) {
-      SystemContextPointerB0 = SystemContextPtr;
+      SystemContextControllerB0 = SystemContextPtr;
       (**(code **)(*ContextHandlePointer + 0x28))();
       plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,MatchCounter + 1);
       ContextHandle9 = SystemContextPtr;
@@ -243141,12 +243141,12 @@ LAB_1801992e1:
   pBufferIndex = ContextHandle7 + MemoryBlockIndex;
   MatchCounter = (int)plStack_c0;
   plStack_b8 = ContextHandle7;
-  SystemContextPointerA8 = pBufferIndex;
+  SystemContextControllerA8 = pBufferIndex;
 LAB_18019937e:
   plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,MatchCounter + 1);
   ContextHandle9 = SystemContextPtr;
   SystemChecksum = uStack_104;
-  SystemContextPointerB0 = SystemContextPtr;
+  SystemContextControllerB0 = SystemContextPtr;
   goto LAB_180198f21;
 }
 
@@ -243569,7 +243569,7 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
   long long SystemTemporaryValueD0;
   uint64_t *SystemCharacterStatusBufferPointer;
   long long *plStack_b8;
-  long long *SystemContextPointerB0;
+  long long *SystemContextControllerB0;
   uint64_t CoreEngineValueA8;
   uint32_t CoreEngineUnsignedValueA0;
   uint64_t SystemOperationValidationFlag;
@@ -243623,22 +243623,22 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
     do {
       if (*(char *)(lStack_100 + 0x2e5) == '\x04') {
         plStack_b8 = (long long *)0x0;
-        SystemContextPointerB0 = (long long *)0x0;
+        SystemContextControllerB0 = (long long *)0x0;
         CoreEngineValueA8 = 0;
         CoreEngineUnsignedValueA0 = 3;
         uStack_178 = Utf16Character;
         ProcessSystemEncodingValidation(lStack_100,&plStack_b8,0,0xffffffff);
         pPerformanceCounterPointer = (long long **                       CONCAT44(pPerformanceCounterPointer.HighPart,
                                 (int)MemoryPoolIndex7 +
-                                (int)((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3));
+                                (int)((long long)SystemContextControllerB0 - (long long)plStack_b8 >> 3));
         BufferAllocationState8 = plStack_b8;
         plStack_110 = plStack_b8;
         MemoryPoolIndexAdditional = ProcessingCounter;
         ContextHandle2 = PreviousContextPointer;
         MemoryBlockIndex = plStack_b8;
         SystemContextPtr = plStack_b8;
-        memoryBlockListHead = SystemContextPointerB0;
-        if (plStack_b8 != SystemContextPointerB0) {
+        memoryBlockListHead = SystemContextControllerB0;
+        if (plStack_b8 != SystemContextControllerB0) {
           do {
             MemoryBufferC = *BufferAllocationState8;
             pOperationStatus = &SystemNullTemplate;
@@ -244136,32 +244136,32 @@ LAB_18019a44a:
             ContextHandle2 = PreviousContextPointer;
             MemoryBlockIndex = plStack_b8;
             SystemContextPtr = plStack_b8;
-            memoryBlockListHead = SystemContextPointerB0;
+            memoryBlockListHead = SystemContextControllerB0;
             Utf16Character = uStack_178;
-          } while (plStack_110 != SystemContextPointerB0);
+          } while (plStack_110 != SystemContextControllerB0);
         }
-        for (; MemoryPoolSizePointer = SystemContextPointerB0, BufferAllocationState8 = plStack_b8, ProcessingCounter = MemoryPoolIndexAdditional, PreviousContextPointer = ContextHandle2,
-            MemoryBlockIndex != SystemContextPointerB0; MemoryBlockIndex = MemoryBlockIndex + 1) {
+        for (; MemoryPoolSizePointer = SystemContextControllerB0, BufferAllocationState8 = plStack_b8, ProcessingCounter = MemoryPoolIndexAdditional, PreviousContextPointer = ContextHandle2,
+            MemoryBlockIndex != SystemContextControllerB0; MemoryBlockIndex = MemoryBlockIndex + 1) {
           plStack_b8 = SystemContextPtr;
-          SystemContextPointerB0 = memoryBlockListHead;
+          SystemContextControllerB0 = memoryBlockListHead;
           if ((long long *)*MemoryBlockIndex != (long long *)0x0) {
             (**(code **)(*(long long *)*MemoryBlockIndex + 0x38))();
           }
           MemoryPoolIndexAdditional = ProcessingCounter;
           ContextHandle2 = PreviousContextPointer;
           SystemContextPtr = plStack_b8;
-          memoryBlockListHead = SystemContextPointerB0;
-          SystemContextPointerB0 = MemoryPoolSizePointer;
+          memoryBlockListHead = SystemContextControllerB0;
+          SystemContextControllerB0 = MemoryPoolSizePointer;
           plStack_b8 = BufferAllocationState8;
         }
         if (plStack_b8 != (long long *)0x0) {
           plStack_b8 = SystemContextPtr;
-          SystemContextPointerB0 = memoryBlockListHead;
+          SystemContextControllerB0 = memoryBlockListHead;
             CoreEngineFreeSystemMemory(BufferAllocationState8);
         }
         MemoryPoolIndex7 = (unsigned long long)pPerformanceCounterPointer & 0xffffffff;
         plStack_b8 = SystemContextPtr;
-        SystemContextPointerB0 = memoryBlockListHead;
+        SystemContextControllerB0 = memoryBlockListHead;
       }
       MemoryBufferC = *ContextHandle2;
       do {
@@ -245359,7 +245359,7 @@ uint32_t ProcessContextHandleDataConversionAndSystemStatusUpdate(long long Conte
   uint64_t ProcessedCharacter;
   uint64_t SystemStatusCode;
   uint64_t ValidationResult;
-  uint64_t Utf16CharacterValue;
+  uint64_t Utf16CodeValue;
   uint64_t Utf16ConversionContext;
   
   long long *MemoryBlockIndex = *(long long *)(ContextHandle + 0xc0);
@@ -245387,13 +245387,13 @@ uint32_t ProcessContextHandleDataConversionAndSystemStatusUpdate(long long Conte
   ProcessedCharacter = *(void *)(MemoryBlockIndex + 0x38);
   SystemStatusCode = *(void *)(MemoryBlockIndex + 0x40);
   ValidationResult = *(void *)(MemoryBlockIndex + 0x48);
-  Utf16CharacterValue = *(void *)(MemoryBlockIndex + 0x50);
+  Utf16CodeValue = *(void *)(MemoryBlockIndex + 0x50);
   Utf16ConversionContext = *(void *)(MemoryBlockIndex + 0x58);
   *(void *)(SystemDataRegistry + 0x126b0) = *(void *)(MemoryBlockIndex + 0x30);
   *(void *)(SystemDataRegistry + 0x126b8) = ProcessedCharacter;
   *(void *)(SystemDataRegistry + 0x126c0) = SystemStatusCode;
   *(void *)(SystemDataRegistry + 0x126c8) = ValidationResult;
-  *(void *)(SystemDataRegistry + 0x126d0) = Utf16CharacterValue;
+  *(void *)(SystemDataRegistry + 0x126d0) = Utf16CodeValue;
   *(void *)(SystemDataRegistry + 0x126d8) = Utf16ConversionContext;
   *(byte *)(*(long long *)(ContextHandle + 200) + 0x126a0) = *(byte *)(CoreEngineSystemContext + 0x224) & 1;
   *(uint8_t *)(*(long long *)(ContextHandle + 200) + 0x12670) = 1;
@@ -245440,12 +245440,12 @@ uint32_t ProcessContextHandleDataConversionAndSystemStatusUpdate(long long Conte
  */
 uint64_t ProcessContextHandleConversionEx(uint64_t ContextHandle, unsigned long long OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  uint64_t Utf16CharacterValue;
+  uint64_t Utf16CodeValue;
   
-  Utf16CharacterValue = 0xfffffffffffffffe;
+  Utf16CodeValue = 0xfffffffffffffffe;
   InitializeDataProcessor();
   if ((OperationBufferSize & 1) != 0) {
-    free(ContextHandle, 0xd0, Utf8SourcePointer, Utf16EndPointer, Utf16CharacterValue);
+    free(ContextHandle, 0xd0, Utf8SourcePointer, Utf16EndPointer, Utf16CodeValue);
   }
   return ContextHandle;
 }
@@ -246337,8 +246337,8 @@ unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t 
   long long alStackX_10 [2];
   long long ****pppPerformanceCounterPointer;
   long long ***ppplStack_b8;
-  long long ***ppSystemContextPointerB0;
-  long long ***ppSystemContextPointerA8;
+  long long ***ppSystemContextControllerB0;
+  long long ***ppSystemContextControllerA8;
   long long **pCoreEngineSignedValueA0;
   long long **pSystemStackPointer;
   long long ****SystemTemporaryRegister90;
@@ -246378,12 +246378,12 @@ unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t 
   *(uint8_t *)(alStackX_10[0] + 0x12c09) = *(uint8_t *)(SystemContextRegisterPointer + 3);
   SystemContextHandlePointer3 = SystemContextRegisterPointer[0x77];
   if (SystemContextHandlePointer3 != (long long ****)0x0) {
-    ppSystemContextPointerA8 = (long long ***)SystemContextHandlePointer3;
+    ppSystemContextControllerA8 = (long long ***)SystemContextHandlePointer3;
     ContextHandle = (*(code *)(*SystemContextHandlePointer3)[5])(SystemContextHandlePointer3);
-    ppSystemContextPointerA8 = *(long long ****)(SystemMemoryAllocationIndex + 0x124b0);
+    ppSystemContextControllerA8 = *(long long ****)(SystemMemoryAllocationIndex + 0x124b0);
     *(long long *****)(SystemMemoryAllocationIndex + 0x124b0) = SystemContextHandlePointer3;
-    if (ppSystemContextPointerA8 != (long long ***)0x0) {
-      ContextHandle = (**(code **)((long long)*ppSystemContextPointerA8 + 0x38))();
+    if (ppSystemContextControllerA8 != (long long ***)0x0) {
+      ContextHandle = (**(code **)((long long)*ppSystemContextControllerA8 + 0x38))();
     }
   }
   pppContextHandle3 = in_RCX[0x6b];
@@ -248767,7 +248767,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
   uint8_t *SystemCharacterStatusBufferPointer;
   uint8_t *SystemCharacterStatusCurrentBuffer;
   uint SystemMemoryAllocationHandle;
-  uint SystemUtf16CharacterValue;
+  uint SystemUtf16CodeValue;
   unsigned long long SystemMemoryAllocationOffset;
   float *SystemSecondaryContextFloatPointer1;
   float *SystemSecondaryContextFloatPointer2;
@@ -248865,7 +248865,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     CoreEngineInitializeSystemEvent(SystemAllocatedMemorySize,SystemUtf8SourcePointer);
     goto LAB_180202111;
   }
-  SystemUtf16CharacterValue = 0;
+  SystemUtf16CodeValue = 0;
   if (SystemOperationBufferSize == 2) {
     SystemStackFloatPointer1E0 = (float *)0x0;
     SystemStackFloatPointer1D8 = (float *)0x0;
@@ -254307,7 +254307,7 @@ void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *Con
  */
 void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsigned long long MemoryBufferSize)
 {
-  long long *SystemContextPointer;
+  long long *SystemContextController;
   unsigned long long *PrimaryProcessingStatusFlag;
   unsigned long long *SystemEventTemplatePointer;
   unsigned long long *MemoryAllocationMaskPointer;
@@ -254335,8 +254335,8 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
         if (MemoryBufferSize != *MemoryAllocationMaskPointer) break;
         *PrimaryProcessingStatusFlag = MemoryAllocationMaskPointer[1];
         MemoryAllocationMaskPointer[1] = (unsigned long long)StringProcessingStatus;
-        SystemContextPointer = (long long *)(SystemDataTablePointer + 0x18);
-        *SystemContextPointer = *SystemContextPointer + -1;
+        SystemContextController = (long long *)(SystemDataTablePointer + 0x18);
+        *SystemContextController = *SystemContextController + -1;
         SystemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
         StringProcessingStatus = MemoryAllocationMaskPointer;
       } while ((unsigned long long *)*PrimaryProcessingStatusFlag != (unsigned long long *)0x0);
@@ -256194,7 +256194,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   unsigned long long SystemChecksum;
   uint ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   long long *SystemStackPointer;
   uint64_t SystemOperationStatusMask;
@@ -256223,18 +256223,18 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   SystemTemporaryValue50 = 0;
   SystemStackPointer = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 0;
-  SystemContextPointerA8 = (long long *)0x0;
+  SystemContextControllerA8 = (long long *)0x0;
   if (OperationBufferSize != (long long *)0x0) {
     (**(code **)(*ContextHandleSize + 0x28))(OperationBufferSize);
   }
   MemoryBlockIndex = OperationBufferSize;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    AllocatedMemorySize = *SystemContextPointerA8;
-    SystemContextPointerA8 = OperationBufferSize;
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    AllocatedMemorySize = *SystemContextControllerA8;
+    SystemContextControllerA8 = OperationBufferSize;
     (**(code **)(AllocatedMemorySize + 0x38))();
-    MemoryBlockIndex = SystemContextPointerA8;
+    MemoryBlockIndex = SystemContextControllerA8;
   }
-  SystemContextPointerA8 = MemoryBlockIndex;
+  SystemContextControllerA8 = MemoryBlockIndex;
   MemoryBlockIndex = SystemStackPointer;
   CoreEngineUnsignedValueA0 = 0;
   SystemStackPointer = (long long *)0x0;
@@ -256253,7 +256253,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   SystemDataValue2 = 0;
   BufferMemoryOffset = 0;
   SystemUnsignedValue54 = 0x3f800000;
-  InitializeSystemValidationBuffer(&SystemContextPointerA8);
+  InitializeSystemValidationBuffer(&SystemContextControllerA8);
   AllocatedMemorySize = CoreEngineMemoryContext;
   SystemChecksum = OperationResult;
   ArraySize = OperationResult;
@@ -256265,13 +256265,13 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
       ArraySize = (unsigned long long)ProcessingStatusFlag;
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)(OperationBufferSize[8] - OperationBufferSize[7] >> 4));
   }
-  ConfigureSystemValidationParameters(ContextHandle,&SystemContextPointerA8);
-  if ((SystemContextPointerA8 != (long long *)0x0) &&
-     (EncodingValidationResult = (int)(SystemContextPointerA8[8] - SystemContextPointerA8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
+  ConfigureSystemValidationParameters(ContextHandle,&SystemContextControllerA8);
+  if ((SystemContextControllerA8 != (long long *)0x0) &&
+     (EncodingValidationResult = (int)(SystemContextControllerA8[8] - SystemContextControllerA8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
     do {
-      CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + SystemContextPointerA8[7]) + 0x100);
+      CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + SystemContextControllerA8[7]) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
-      BufferStatus = *(long long *)(OperationResult + SystemContextPointerA8[7]);
+      BufferStatus = *(long long *)(OperationResult + SystemContextControllerA8[7]);
       *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       OperationResult = OperationResult + 0x10;
@@ -256282,8 +256282,8 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
     if (SystemStackPointer != (long long *)0x0) {
       (**(code **)(*SystemStackPointer + 0x38))();
     }
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     return;
   }
@@ -256320,7 +256320,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   unsigned long long MemoryAllocationLoopCounter;
   long long *plStack_b8;
   uint64_t SystemStackRegisterBuffer;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerA8;
   uint64_t CoreEngineUnsignedValueA0;
   uint64_t SystemOperationValidationFlag;
   uint64_t SystemOperationStatusMask;
@@ -256345,7 +256345,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   SystemKeyPointer = 0;
   BufferMemoryOffset = 0;
   lStack_60 = 0;
-  SystemContextPointerA8 = (long long *)0x0;
+  SystemContextControllerA8 = (long long *)0x0;
   SystemStackRegisterBuffer = 0;
   plStack_b8 = (long long *)0x0;
   if (OperationBufferSize != (long long *)0x0) {
@@ -256364,13 +256364,13 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
     (**(code **)(*Utf16EndPointer + 0x28))(Utf16EndPointer);
   }
   MemoryBlockIndex = Utf16EndPointer;
-  if (SystemContextPointerA8 != (long long *)0x0) {
-    AllocatedMemorySize = *SystemContextPointerA8;
-    SystemContextPointerA8 = Utf16EndPointer;
+  if (SystemContextControllerA8 != (long long *)0x0) {
+    AllocatedMemorySize = *SystemContextControllerA8;
+    SystemContextControllerA8 = Utf16EndPointer;
     (**(code **)(AllocatedMemorySize + 0x38))();
-    MemoryBlockIndex = SystemContextPointerA8;
+    MemoryBlockIndex = SystemContextControllerA8;
   }
-  SystemContextPointerA8 = MemoryBlockIndex;
+  SystemContextControllerA8 = MemoryBlockIndex;
   CoreEngineUnsignedValueA0 = *AdditionalParameter1;
   SystemOperationValidationFlag = AdditionalParameter1[1];
   SystemOperationStatusMask = AdditionalParameter1[2];
@@ -256409,8 +256409,8 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
     } while (AllocatedMemorySize != 0);
   }
   if (lStack_60 == 0) {
-    if (SystemContextPointerA8 != (long long *)0x0) {
-      (**(code **)(*SystemContextPointerA8 + 0x38))();
+    if (SystemContextControllerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextControllerA8 + 0x38))();
     }
     if (plStack_b8 != (long long *)0x0) {
       (**(code **)(*plStack_b8 + 0x38))();
@@ -258341,7 +258341,7 @@ LAB_180209615:
  */
 long long * ProcessContextHandleBoundaryAndMemoryAllocation(long long *ContextHandle,long long *ContextHandleSize)
 {
-  uint Utf16CharacterValue;
+  uint Utf16CodeValue;
   long long *BufferAllocationState;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAllocationMask;
@@ -258389,13 +258389,13 @@ long long * ProcessContextHandleBoundaryAndMemoryAllocation(long long *ContextHa
     *(uint32_t *)((long long)MemoryRangeBoundary + 0x54) = MemoryAllocationMask;
     SystemDataTablePointer = (OperationBufferSize[0xc] - OperationBufferSize[0xb]) / 6 + (OperationBufferSize[0xc] - OperationBufferSize[0xb] >> 0x3f);
     SystemDataTablePointer = (SystemDataTablePointer >> 1) - (SystemDataTablePointer >> 0x3f);
-    Utf16CharacterValue = *(uint *)(OperationBufferSize + 0xe);
-    *(uint *)(MemoryRangeBoundary + 0xe) = Utf16CharacterValue;
+    Utf16CodeValue = *(uint *)(OperationBufferSize + 0xe);
+    *(uint *)(MemoryRangeBoundary + 0xe) = Utf16CodeValue;
     if (SystemDataTablePointer == 0) {
       MemoryPoolBlockSize = 0;
     }
     else {
-      MemoryPoolBlockSize = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,Utf16CharacterValue & 0xff);
+      MemoryPoolBlockSize = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,Utf16CodeValue & 0xff);
     }
     MemoryRangeBoundary[0xb] = MemoryPoolBlockSize;
     MemoryRangeBoundary[0xc] = MemoryPoolBlockSize;
@@ -258552,7 +258552,7 @@ void SystemEventProcessingWrapper(void)
  */
 long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint Utf16CharacterValue;
+  uint Utf16CodeValue;
   long long *BufferAllocationState;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAllocationMask;
@@ -258600,7 +258600,7 @@ long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,lon
     AllocatedMemorySize = 0;
   }
   else {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CharacterValue & 0xff,Utf16EndPointer,SystemChecksum);
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CodeValue & 0xff,Utf16EndPointer,SystemChecksum);
   }
   ContextHandle[0xb] = AllocatedMemorySize;
   ContextHandle[0xc] = AllocatedMemorySize;
@@ -258688,7 +258688,7 @@ long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,lon
         AllocatedMemorySize = 0;
       }
       else {
-        AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CharacterValue & 0xff);
+        AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CodeValue & 0xff);
       }
       Utf16EndPointer[0xb] = AllocatedMemorySize;
       Utf16EndPointer[0xc] = AllocatedMemorySize;
@@ -261148,8 +261148,8 @@ void ProcessSystemCharacterEncoding(uint64_t ContextHandle,uint64_t OperationBuf
   int LockOperationResult0;
   uint64_t SystemRegisterFlag;
   long long *plStack_b8;
-  long long *SystemContextPointerB0;
-  long long *SystemContextPointerA8;
+  long long *SystemContextControllerB0;
+  long long *SystemContextControllerA8;
   uint32_t CoreEngineUnsignedValueA0;
   int iStack_98;
   int iStack_94;
@@ -261173,10 +261173,10 @@ void ProcessSystemCharacterEncoding(uint64_t ContextHandle,uint64_t OperationBuf
   CoreEngineFinalizeSystemEvent(&plStack_b8);
   iStack_8c = InitializeSystemMemoryPool(MemoryAllocationHandle,&plStack_b8);
   plStack_b8 = (long long *)&SystemNullTemplate;
-  if (SystemContextPointerB0 != (long long *)0x0) {
+  if (SystemContextControllerB0 != (long long *)0x0) {
       ProcessSystemEventHandling();
   }
-  SystemContextPointerB0 = (long long *)0x0;
+  SystemContextControllerB0 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 0;
   plStack_b8 = (long long *)&ThreadLocalStorageTemplate;
   SecondaryProcessingStatusFlag = (void *)SystemEventTemplatePointer[2];
@@ -261236,16 +261236,16 @@ LAB_18020ce30:
     (**(code **)(*ContextHandle5 + 0x28))(ConversionContext);
   }
   plStack_b8 = (long long *)0x0;
-  SystemContextPointerB0 = (long long *)0x0;
-  SystemContextPointerA8 = (long long *)0x0;
+  SystemContextControllerB0 = (long long *)0x0;
+  SystemContextControllerA8 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 3;
   FUN_1802e8c60(ConversionContext);
-  if (SystemContextPointerB0 < SystemContextPointerA8) {
-    *SystemContextPointerB0 = (long long)ConversionContext;
-    pStringOffset = SystemContextPointerB0;
+  if (SystemContextControllerB0 < SystemContextControllerA8) {
+    *SystemContextControllerB0 = (long long)ConversionContext;
+    pStringOffset = SystemContextControllerB0;
   }
   else {
-    SystemDataTablePointer = (long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3;
+    SystemDataTablePointer = (long long)SystemContextControllerB0 - (long long)plStack_b8 >> 3;
     if (SystemDataTablePointer == 0) {
       SystemDataTablePointer = 1;
 LAB_18020ceb6:
@@ -261256,19 +261256,19 @@ LAB_18020ceb6:
       if (SystemDataTablePointer != 0) goto LAB_18020ceb6;
       pStringOffset = (long long *)0x0;
     }
-    if (plStack_b8 != SystemContextPointerB0) {
-        memmove(pStringOffset,plStack_b8,(long long)SystemContextPointerB0 - (long long)plStack_b8);
+    if (plStack_b8 != SystemContextControllerB0) {
+        memmove(pStringOffset,plStack_b8,(long long)SystemContextControllerB0 - (long long)plStack_b8);
     }
     *pStringOffset = (long long)ConversionContext;
     if (plStack_b8 != (long long *)0x0) {
         ProcessSystemEventHandling();
     }
-    SystemContextPointerA8 = pStringOffset + SystemDataTablePointer;
+    SystemContextControllerA8 = pStringOffset + SystemDataTablePointer;
     plStack_b8 = pStringOffset;
   }
-  SystemContextPointerB0 = pStringOffset + 1;
+  SystemContextControllerB0 = pStringOffset + 1;
   iStack_98 = 0;
-  if ((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3 != 0) {
+  if ((long long)SystemContextControllerB0 - (long long)plStack_b8 >> 3 != 0) {
     lStack_88 = 0;
     do {
       CharacterTablePointer6 = *Utf16EndPointer;
@@ -261310,7 +261310,7 @@ LAB_18020ceb6:
       CharacterTablePointer6 = lStack_80;
       ContextHandle9 = CoreEngineSignedValue70;
     } while ((unsigned long long)(long long)iStack_98 <
-             (unsigned long long)((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3));
+             (unsigned long long)((long long)SystemContextControllerB0 - (long long)plStack_b8 >> 3));
   }
   if (plStack_b8 != (long long *)0x0) {
       ProcessSystemEventHandling();
@@ -263584,7 +263584,7 @@ void SystemCoreEngineTermination(void)
  */
 long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint Utf16CharacterValue;
+  uint Utf16CodeValue;
   void *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   uint64_t *MemoryAllocationMaskPointer;
@@ -263597,10 +263597,10 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
   CalculatedMemorySize = *(long long *)(ContextHandle + 0x3a0) - *(long long *)(ContextHandle + 0x398);
   CalculatedMemorySize = CalculatedMemorySize / 0x26 + (CalculatedMemorySize >> 0x3f);
   CalculatedMemorySize = (CalculatedMemorySize >> 2) - (CalculatedMemorySize >> 0x3f);
-  Utf16CharacterValue = *(uint *)(ContextHandle + 0x3b0);
-  *(uint *)(OperationBuffer + 3) = Utf16CharacterValue;
+  Utf16CodeValue = *(uint *)(ContextHandle + 0x3b0);
+  *(uint *)(OperationBuffer + 3) = Utf16CodeValue;
   if (CalculatedMemorySize != 0) {
-    MemoryBlockIndex = (long long *)BufferAllocate(MemoryPoolManager,CalculatedMemorySize * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
+    MemoryBlockIndex = (long long *)BufferAllocate(MemoryPoolManager,CalculatedMemorySize * 0x98,Utf16CodeValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
   }
   *ContextHandleSize = MemoryBlockIndex;
   OperationBuffer[1] = MemoryBlockIndex;
@@ -266912,7 +266912,7 @@ unsigned long long ValidateSystemUnicodeConversion(void
     SystemStackLong40 = *(long long *)(SystemDataNode + 8);
   }
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemUnicodeValidationConfig);
-  return Utf16CharacterValue & 0xffffffffffffff00;
+  return Utf16CodeValue & 0xffffffffffffff00;
 }
 
 
@@ -267327,7 +267327,7 @@ unsigned long long GetSystemUtf16Char(void
     StackDataTemplate = *(void **)(SystemDataNode + 8);
   }
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemUtf16ConversionConfig);
-  return Utf16CharacterValue & 0xffffffffffffff00;
+  return Utf16CodeValue & 0xffffffffffffff00;
 }
 
 
@@ -267527,7 +267527,7 @@ unsigned long long ValidateSystemUtf16Configuration(void
   unsigned long long Utf16Character;
   
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
-  return Utf16CharacterValue & 0xffffffffffffff00;
+  return Utf16CodeValue & 0xffffffffffffff00;
 }
 
 
@@ -268727,7 +268727,7 @@ LAB_180216e0c:
   MemoryBoundaryEnd = (BufferStatus - SystemDataTablePointer) / 0x26 + (BufferStatus - SystemDataTablePointer >> 0x3f);
   MemoryBoundaryEnd = (MemoryBoundaryEnd >> 2) - (MemoryBoundaryEnd >> 0x3f);
   if (MemoryBoundaryEnd != 0) {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0xfffffffffffffffe,0,0,0,
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x98,Utf16CodeValue & 0xff,Utf16EndPointer,0xfffffffffffffffe,0,0,0,
                           Utf16Char);
   }
   MemoryBoundaryEnd = MemoryBoundaryEnd * 0x98 + AllocatedMemorySize;
@@ -285226,7 +285226,7 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
   SystemDataBuffer238 = 0;
   OperationStatusPointer = OperationBufferSize;
   Utf16Char = (*SystemSystemFunctionPointerA)(1,&SystemUnknownProcessingStatusFlagI,&SystemDataBuffer240);
-  if ((Utf16CharacterValue & 0xfff00000) != 0xbad00000) {
+  if ((Utf16CodeValue & 0xfff00000) != 0xbad00000) {
       memset(CharacterProcessingBuffer,0,0x200);
   }
   *ContextHandleSize = &ThreadLocalStorageTemplate;
@@ -292314,7 +292314,7 @@ long long ManageSystemMemoryPool(long long ContextHandle
   SystemPrimaryReturnCode = 0xfffffffffffffffe;
   CharacterStatusBuffer = (unsigned long long *)(ContextHandle + 0x368);
   FUN_18022ebe0(CharacterStatusBuffer);
-  SystemContextPtr = (long long *)GetSystemContextPointer(*(void *)(ContextHandle + 0x1e0));
+  SystemContextPtr = (long long *)GetSystemContextController(*(void *)(ContextHandle + 0x1e0));
   ProcessedCharacter = 0;
   CharacterTablePointer = *SystemContextPtr;
   MemoryPoolBlockSize = SystemContextPtr[1] - CharacterTablePointer;
@@ -292934,7 +292934,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
   }
   if (*(long long *)(OperationBufferSize + 200) != 0) {
     Utf16Char = *(unsigned long long *)(*(long long *)(OperationBufferSize + 200) + 0x278);
-    Utf16Char = (MemoryPoolIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CharacterValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
+    Utf16Char = (MemoryPoolIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CodeValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
                          Utf16Char >> 0x18 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x20 & 0xff) *
                         0x100000001b3 ^ Utf16Char >> 0x28 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x30 & 0xff
                       ) * 0x100000001b3 ^ Utf16Char >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
@@ -292944,7 +292944,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
   }
   if (*(long long *)(OperationBufferSize + 0xd8) != 0) {
     Utf16Char = *(unsigned long long *)(*(long long *)(OperationBufferSize + 0xd8) + 0x278);
-    Utf16Char = (MemoryPoolIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CharacterValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
+    Utf16Char = (MemoryPoolIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CodeValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
                          Utf16Char >> 0x18 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x20 & 0xff) *
                         0x100000001b3 ^ Utf16Char >> 0x28 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x30 & 0xff
                       ) * 0x100000001b3 ^ Utf16Char >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
@@ -298311,7 +298311,7 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @param CharacterContextHandle 字符上下文句柄指针
  * @param ThreadLocalStorageData 线程本地存储数据指针
  * @param Utf8SourceDataPointer UTF-8源数据指针
- * @param Utf16TargetDataPointer UTF-16目标数据指针
+ * @param Utf16BufferTargetPointer UTF-16目标数据指针
  * @param AddressMask 地址掩码，用于地址计算
  * @return 处理结果状态码
  * @note 原始函数名：FUN_180187a00
@@ -298965,7 +298965,7 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 }
 
 // 美化过程中添加的函数宏定义
-#define GetSystemContextPointer FUN_180240a60  // 获取系统上下文指针
+#define GetSystemContextController FUN_180240a60  // 获取系统上下文指针
 
 // =============================================================================
 // 新增的FUN_函数美化定义 - 自动生成部分
@@ -299775,7 +299775,7 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  * 
  * @note 原始函数名：FUN_18021a140
  */
-#define FUN_18021a140 GetSystemContextPointerOperation
+#define FUN_18021a140 GetSystemContextControllerOperation
 
 /**
  * @brief 重置系统指针状态
