@@ -39009,7 +39009,7 @@ DataProcessLabelC:
  * 
  * @note 这是一个简化的实现，主要执行基本的系统状态检查
  */
-void CheckSystemStatusB0(void)
+void CheckSystemStatusWithMemoryValidation(void)
 
 {
   uint SystemValidationFlag;
@@ -39115,7 +39115,7 @@ DataProcessLabelC:
 
 
 
-void InitializeSystemComponentsB0(void)
+void InitializeSystemComponentsWithDefaults(void)
 
 {
   return;
@@ -42893,7 +42893,7 @@ DataBuffer ValidateDataIntegrityA1(int64_t operationBase,DataBuffer *dataBuffer)
  * @warning 验证失败会导致相关操作被拒绝，并可能触发安全异常
  * @see ExecuteSecurityValidation, ValidatePortControlRequest, ExecutePortControlOperation
  */
-void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
+void ValidateDataParametersWithSecurity(int64_t DataContext, DataBuffer *SecurityBuffer)
 
 {
   int securityCheckResult;
@@ -42961,7 +42961,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
  * @note 此函数包含安全验证机制
  * @warning 状态检查失败会影响系统正常运行
  */
-void CheckSystemStateC0(DataWord SystemStateParameter)
+void CheckSystemStateWithParameter(DataWord SystemStateParameter)
 
 {
   int inputParameter;
@@ -43020,7 +43020,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
 
 
 
-void CleanupSystemResourcesC0(void)
+void CleanupSystemResourcesCompletely(void)
 
 {
   return;
@@ -56804,8 +56804,8 @@ void ProcessExceptionContextAndHandlers(DataBuffer operationBase,int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionContext + 2000) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + 2000))(exceptionContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000))(exceptionContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x798) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContext + 0x7a0) != 0) {
@@ -57545,8 +57545,8 @@ void ValidateContextExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuf
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionContext + 2000) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + 2000))(exceptionContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset2000))(exceptionContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x798) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContext + 0x7a0) != 0) {
