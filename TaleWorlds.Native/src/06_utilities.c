@@ -181,9 +181,9 @@
 #define SystemDataElementSize 0x30                             // 系统数据块元素大小
 
 // 异常处理器偏移量常量
-#define ExceptionHandlerOffset3B0 0x3b0                        // 异常处理器偏移量3B0 - 用于设置默认异常处理器
-#define ExceptionHandlerOffset470 0x470                        // 异常处理器偏移量470 - 用于设置默认异常处理器
-#define ExceptionHandlerOffset4D0 0x4d0                        // 异常处理器偏移量4D0 - 用于设置默认异常处理器
+#define ExceptionHandlerOffset3B0 0x3b0
+#define ExceptionHandlerOffset470 0x470
+#define ExceptionHandlerOffset4D0 0x4d0
 
 // 数据缓冲区偏移量常量
 #define DataBufferOffsetA8 0xa8                                // 数据缓冲区偏移量A8 - 用于数据缓冲区操作
