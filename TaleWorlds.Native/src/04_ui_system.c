@@ -132706,9 +132706,30 @@ ProcessUISyncComplete:
 
  
 
- void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
+ /**
+ * @brief 处理UI数据缓冲区与纹理资源
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，包括：
+ * - 数据源验证和比较
+ * - 缓冲区数据复制
+ * - 纹理数据处理
+ * - 上下文资源管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 纹理参数1
+ * @param param_7 纹理参数2
+ * 
+ * @return void
+ * 
+ * @note 这是一个简化实现，用于演示UI数据处理流程
+ * @see ManageUIContextResources, ProcessUIDataAndCompare, CopyUIDataBuffer
+ */
+void ProcessUIBufferDataWithTextureResources(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
+                                          UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
 
 {
   int operationResult;
@@ -132777,8 +132798,26 @@ FUN_18073eb6d:
 
  
 
- void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
-void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 处理UI数据缓冲区与多纹理资源
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，支持多个纹理参数：
+ * - 数据源验证和比较
+ * - 缓冲区数据复制
+ * - 多纹理数据处理
+ * - 上下文资源管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return void
+ * 
+ * @note 这是一个简化实现，用于演示UI多纹理数据处理流程
+ * @see ManageUIContextResources, ProcessUIDataAndCompare, CopyUIDataBuffer
+ */
+void ProcessUIBufferDataWithMultiTextureResources(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
 {
   int operationResult;
