@@ -4490,7 +4490,6 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define ProcessContextHandleAndDataBufferManagement FUN_180187aa0      // 处理上下文句柄和数据缓冲区管理操作
 #define ProcessContextHandleAndSystemBufferOperations FUN_180187b40    // 处理上下文句柄和系统缓冲区操作
 #define ProcessContextHandleMemoryManagement FUN_180187bd0            // 处理上下文句柄的内存管理操作
-#define ProcessContextHandleAndSystemResourceManagement FUN_180187c00  // 处理上下文句柄和系统资源管理操作
 #define ProcessContextHandleResourceCleanup FUN_180187cd0            // 处理上下文句柄的资源清理操作
 #define GetMemoryPoolSizePointer FUN_18018ca20                // 获取内存池块大小指针
 
@@ -232030,37 +232029,37 @@ ProcessCharacterEncodingConversionAndStatusManagement(long long EncodingContextH
   uint64_t EncodingChecksum;
   long long *SystemDataTablePointer;
   
-  UnicodeCodePoint = AdditionalParameter1 % (unsigned long long)*(uint *)(ContextHandle + 0x10);
-  CharacterStatusBuffer = (void *)(*(long long *)(ContextHandle + 8) + UnicodeCodePoint * 8);
+  UnicodeCodePointValue = EncodingParameter % (unsigned long long)*(uint *)(EncodingContextHandle + 0x10);
+  CharacterStatusBuffer = (void *)(*(long long *)(EncodingContextHandle + 8) + UnicodeCodePointValue * 8);
   SystemDataTablePointer = (long long *)*CharacterStatusBuffer;
   do {
     if (SystemDataTablePointer == (long long *)0x0) {
 LAB_18018bee2:
-      ProcessEngineDataTransfer(ContextHandle + 0x20,&AdditionalParameter1,(unsigned long long)*(uint *)(ContextHandle + 0x10),
-                    *(uint32_t *)(ContextHandle + 0x18),1);
-      SecondaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x20,*(uint8_t *)(ContextHandle + 0x2c));
-      MemoryAllocationMaskPointer = *(uint32_t *)((long long)Utf16EndPointer + 4);
-      BufferStatus = Utf16EndPointer[1];
-      CalculatedCodePoint = *(uint32_t *)((long long)Utf16EndPointer + 0xc);
-      *SecondaryProcessingStatusFlag = (int)*Utf16EndPointer;
-      SecondaryProcessingStatusFlag[1] = MemoryAllocationMaskPointer;
-      SecondaryProcessingStatusFlag[2] = (int)BufferStatus;
-      SecondaryProcessingStatusFlag[3] = CalculatedCodePoint;
-      *(void *)(SecondaryProcessingStatusFlag + 4) = 0;
-      *(void *)(SecondaryProcessingStatusFlag + 6) = 0;
-      if ((char)AdditionalParameter1 == '\0') {
-        *(void *)(SecondaryProcessingStatusFlag + 6) = *(void *)(*(long long *)(ContextHandle + 8) + UnicodeCodePoint * 8);
-        *(uint32_t **)(*(long long *)(ContextHandle + 8) + UnicodeCodePoint * 8) = SecondaryProcessingStatusFlag;
-        *(long long *)(ContextHandle + 0x18) = *(long long *)(ContextHandle + 0x18) + 1;
-        BufferStatus = *(long long *)(ContextHandle + 8);
-        *ContextHandleSize = SecondaryProcessingStatusFlag;
-        OperationBufferSize[1] = BufferStatus + UnicodeCodePoint * 8;
+      ProcessEngineDataTransfer(EncodingContextHandle + 0x20,&EncodingParameter,(unsigned long long)*(uint *)(EncodingContextHandle + 0x10),
+                    *(uint32_t *)(EncodingContextHandle + 0x18),1);
+      CharacterDataBuffer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x20,*(uint8_t *)(EncodingContextHandle + 0x2c));
+      MemoryAllocationFlag = *(uint32_t *)((long long)Utf16EndPointer + 4);
+      BufferValidationStatus = Utf16EndPointer[1];
+      ProcessedCodePoint = *(uint32_t *)((long long)Utf16EndPointer + 0xc);
+      *CharacterDataBuffer = (int)*Utf16EndPointer;
+      CharacterDataBuffer[1] = MemoryAllocationFlag;
+      CharacterDataBuffer[2] = (int)BufferValidationStatus;
+      CharacterDataBuffer[3] = ProcessedCodePoint;
+      *(void *)(CharacterDataBuffer + 4) = 0;
+      *(void *)(CharacterDataBuffer + 6) = 0;
+      if ((char)EncodingParameter == '\0') {
+        *(void *)(CharacterDataBuffer + 6) = *(void *)(*(long long *)(EncodingContextHandle + 8) + UnicodeCodePointValue * 8);
+        *(uint32_t **)(*(long long *)(EncodingContextHandle + 8) + UnicodeCodePointValue * 8) = CharacterDataBuffer;
+        *(long long *)(EncodingContextHandle + 0x18) = *(long long *)(EncodingContextHandle + 0x18) + 1;
+        BufferValidationStatus = *(long long *)(EncodingContextHandle + 8);
+        *ContextHandleSize = CharacterDataBuffer;
+        OperationBufferSize[1] = BufferValidationStatus + UnicodeCodePointValue * 8;
         *(uint8_t *)(OperationBufferSize + 2) = 1;
         return OperationBufferSize;
       }
-      SystemChecksum = MemoryAllocate(MemoryPoolManager,(unsigned long long)AdditionalParameter1.HighPart * 8 + 8,8,
-                            *(uint8_t *)(ContextHandle + 0x2c));
-        memset(SystemChecksum,0,(unsigned long long)AdditionalParameter1.HighPart * 8);
+      EncodingChecksum = MemoryAllocate(MemoryPoolManager,(unsigned long long)EncodingParameter.HighPart * 8 + 8,8,
+                            *(uint8_t *)(EncodingContextHandle + 0x2c));
+        memset(EncodingChecksum,0,(unsigned long long)EncodingParameter.HighPart * 8);
     }
     if ((*Utf16EndPointer == *SystemDataTablePointer) && (Utf16EndPointer[1] == SystemDataTablePointer[1])) {
       if (SystemDataTablePointer != (long long *)0x0) {
