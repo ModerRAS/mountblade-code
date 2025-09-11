@@ -256975,7 +256975,7 @@ void ProcessSystemFloatDataOperation(long long SystemContextHandle, long long Me
       ComputedResultPointer = ComputedResultPointer + 10;
     } while (ProcessingBufferStatus < ValidationResult);
   }
-  ProcessingBufferStatus = *(long long *)(OperationBufferSize + 0xb8);
+  ProcessingBufferStatus = *(long long *)(MemoryOperationSize + 0xb8);
   ValidationResult = LoopCounter + -1;
   ComputedResultPointer = (int *)(ProcessingBufferStatus + (long long)ArrayIndex * 0x28);
   if (ValidationResult < 0) {
@@ -257000,34 +257000,34 @@ void ProcessSystemFloatDataOperation(long long SystemContextHandle, long long Me
     else {
       ScaledFloatValue = 0.0;
     }
-    ContextPrimaryFloatValue = ScaledFloatValue * AdditionalParameter1;
-    AdditionalParameter1 = (1.0 - ScaledFloatValue) * AdditionalParameter1;
-    if (0.0 < AdditionalParameter1) {
+    ContextPrimaryFloatValue = ScaledFloatValue * ScalingParameter;
+    ScalingParameter = (1.0 - ScaledFloatValue) * ScalingParameter;
+    if (0.0 < ScalingParameter) {
       ProcessingBufferStatus = *(long long *)(StringLengthPointer + 2);
       ValidationResult = 0;
       if (0 < (int)(*(long long *)(StringLength + 4) - BufferStatus >> 3)) {
         MemoryAllocationIndex = 0;
         do {
           if (0.0 < *(float *)(MemoryAllocationIndex + 4 + BufferStatus)) {
-            SystemOperationResult = *Utf8SourcePointer;
+            SystemOperationResult = *CharacterDataPointer;
             MemoryBoundaryEnd = (long long)IntegerValue9;
-            pCalculatedFilterValue = (float *)(Utf16EndPointer + 4);
+            pCalculatedFilterValue = (float *)(EncodingEndPointer + 4);
             StringComparisonByte = false;
             AllocatedMemorySize = 0;
             do {
               if (MemoryBoundaryEnd <= AllocatedMemorySize) {
                 if (!StringComparisonByte) {
                   if (0xff < IntegerValue9) goto FUN_1802090ff;
-                  *(uint32_t *)(Utf16EndPointer + MemoryBoundaryEnd * 8) = *(uint32_t *)(MemoryAllocationIndex + BufferStatus);
+                  *(uint32_t *)(EncodingEndPointer + MemoryBoundaryEnd * 8) = *(uint32_t *)(MemoryAllocationIndex + BufferStatus);
                   SecondaryFloatValue = *(float *)(MemoryAllocationIndex + 4 + BufferStatus);
-                  *Utf8SourcePointer = IterationCounter + 1;
-                  *(float *)(Utf16EndPointer + 4 + MemoryBoundaryEnd * 8) = AdditionalParameter1 * SecondaryFloatValue;
+                  *CharacterDataPointer = IterationCounter + 1;
+                  *(float *)(EncodingEndPointer + 4 + MemoryBoundaryEnd * 8) = ScalingParameter * SecondaryFloatValue;
                 }
                 break;
               }
               if (pFilterInputValue[-1] == *(float *)(MemoryAllocationIndex + BufferStatus)) {
                 StringComparisonByte = true;
-                *pCalculatedFilterValue = AdditionalParameter1 * *(float *)(MemoryAllocationIndex + 4 + BufferStatus) + *pFilterInputValue;
+                *pCalculatedFilterValue = ScalingParameter * *(float *)(MemoryAllocationIndex + 4 + BufferStatus) + *pFilterInputValue;
               }
               AllocatedMemorySize = AllocatedMemorySize + 1;
               pCalculatedFilterValue = pFilterInputValue + 2;
