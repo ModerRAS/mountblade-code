@@ -253811,11 +253811,11 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             ConfigurationString = stackPointer1B0;
             SystemDataTablePointer = lStack_1c8;
             if (stackPointer1B0 < pSystemValue1a8) {
-              FUN_180204a00(stackPointer1B0);
+              InitializeSystemMemoryAllocation(stackPointer1B0);
               stackPointer1B0 = ConfigurationString + 3;
             }
             else {
-              FUN_180207840(&SystemTemplatePointer,lStack_1c8);
+              ProcessSystemMemoryAllocation(&SystemTemplatePointer,lStack_1c8);
             }
             IntegerValue6 = IntegerValue6 + 1;
             SystemDataTablePointer = SystemDataTablePointer + 0x18;
@@ -253852,7 +253852,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             ConfigurationString = ConfigurationString + 3) {
           SystemTemplatePointer = StringProcessingStatus;
           stackPointer1B0 = PrimaryProcessingStatusFlag0;
-          FUN_18004bf50(ConfigurationString);
+          ValidateSystemDataIntegrity(ConfigurationString);
           StringProcessingStatus = SystemTemplatePointer;
           PrimaryProcessingStatusFlag0 = stackPointer1B0;
           stackPointer1B0 = SecondaryProcessingStatusFlag;
@@ -253866,7 +253866,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             CoreEngineFreeSystemMemory(ContextHandleTablePointer);
         }
         for (; SystemDataTablePointer != EncodingConversionResult; SystemDataTablePointer = SystemDataTablePointer + 0x18) {
-          FUN_18004bf50(SystemDataTablePointer);
+          ValidateSystemDataIntegrity(SystemDataTablePointer);
         }
         if (StringOffset != 0) {
             CoreEngineFreeSystemMemory(StringOffset);
@@ -253894,7 +253894,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
         lStack_1d8 = EncodingConversionResult;
         CoreEngineSignedValueE8 = SystemDataTablePointer;
         lStack_e0 = EncodingConversionResult;
-        SystemChecksum = FUN_180206690(SystemStringIndex,0,IntegerValue9);
+        SystemChecksum = CalculateSystemChecksum(SystemStringIndex,0,IntegerValue9);
         FUN_1802064e0(ContextHandle,&LocalDataStructure160,SystemChecksum,IntegerValue9);
         if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
           InitializeSystemMemoryAllocation();
@@ -254075,7 +254075,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             ConfigurationString != puStack_190; ConfigurationString = ConfigurationString + 3) {
           ProcessingContextPointer = StringProcessingStatus;
           puStack_190 = PrimaryProcessingStatusFlag0;
-          FUN_18004bf50(ConfigurationString);
+          ValidateSystemDataIntegrity(ConfigurationString);
           SystemDataTablePointer = lStack_1e0;
           StringProcessingStatus = ProcessingContextPointer;
           PrimaryProcessingStatusFlag0 = puStack_190;
