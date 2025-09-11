@@ -126937,7 +126937,7 @@ void ProcessUIContextWithEncryption(UIHandle uiContext,UIDword dataSource)
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180748290(stackUInt120,dataSource);
+    operationResult = ProcessUIDataSourceValidation(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073b3a8;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -126992,7 +126992,7 @@ void ProcessUIContextWithTextureData(UIHandle uiContext,UIHandle dataSource,UIHa
   stackLong148 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
-    operationResult = FUN_1807483a0(stackUInt140,dataSource,targetBuffer);
+    operationResult = ProcessUIDataWithTarget(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073b4cf;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {

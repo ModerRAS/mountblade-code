@@ -225510,23 +225510,23 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
   MemoryAddressMaskPointer = 0xfffffffffffffffe;
   BufferStatus = *ContextHandle;
   if (BufferStatus != 0) {
-    MemoryBlockIndex = ContextHandle[1];
-    if (BufferStatus != MemoryBlockIndex) {
+    long long CurrentMemoryBlockIndex = ContextHandle[1];
+    if (BufferStatus != CurrentMemoryBlockIndex) {
       do {
         ProcessSystemStackData(BufferStatus);
         BufferStatus = BufferStatus + 0x28;
-      } while (BufferStatus != MemoryBlockIndex);
+      } while (BufferStatus != CurrentMemoryBlockIndex);
       BufferStatus = *ContextHandle;
     }
     Utf16Char = ((ContextHandle[2] - BufferStatus) / 0x28) * 0x28;
-    MemoryBlockIndex = BufferStatus;
+    CurrentMemoryBlockIndex = BufferStatus;
     if (0xfff < Utf16Char) {
-      MemoryBlockIndex = *(long long *)(BufferStatus + -8);
-      if (0x1f < (BufferStatus - MemoryBlockIndex) - 8U) {
+      CurrentMemoryBlockIndex = *(long long *)(BufferStatus + -8);
+      if (0x1f < (BufferStatus - CurrentMemoryBlockIndex) - 8U) {
           _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + 0x27,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
       }
     }
-    free(MemoryBlockIndex);
+    free(CurrentMemoryBlockIndex);
     *ContextHandle = 0;
     ContextHandle[1] = 0;
     ContextHandle[2] = 0;
@@ -225558,19 +225558,19 @@ void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
   long long MainCalculationResult;
   long long BufferStatus;
   
-  CharacterTablePointer = *ContextHandle;
-  if (CharacterTablePointer != 0) {
+  long long CurrentCharacterTablePointer = *ContextHandle;
+  if (CurrentCharacterTablePointer != 0) {
     BufferStatus = ContextHandle[1];
-    if (CharacterTablePointer != BufferStatus) {
+    if (CurrentCharacterTablePointer != BufferStatus) {
       do {
-        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTablePointer);
-        CharacterTablePointer = CharacterTablePointer + 0x40;
-      } while (CharacterTablePointer != BufferStatus);
-      CharacterTablePointer = *ContextHandle;
+        ProcessSystemStringIndexAndCharacterTableOperation(CurrentCharacterTablePointer);
+        CurrentCharacterTablePointer = CurrentCharacterTablePointer + 0x40;
+      } while (CurrentCharacterTablePointer != BufferStatus);
+      CurrentCharacterTablePointer = *ContextHandle;
     }
     BufferStatus = LoopCounter;
     if ((0xfff < (ContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (BufferStatus = *(long long *)(CharacterTablePointer + -8), 0x1f < (CharacterTablePointer - BufferStatus) - 8U)) {
+       (BufferStatus = *(long long *)(CurrentCharacterTablePointer + -8), 0x1f < (CurrentCharacterTablePointer - BufferStatus) - 8U)) {
         _invalid_parameter_noinfo_noreturn();
     }
     free(BufferStatus);
