@@ -42276,6 +42276,12 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   uint32_t systemStateFlag;
   void *localProcessingStatusFlag;
   uint32_t systemInitializationMode;
+  void *localProcessingStatusFlagSecondary;
+  uint32_t systemInitializationFlags;
+  uint32_t memoryPoolIndex;
+  void *processInfoTemplate;
+  uint32_t processedCharacter;
+  uint32_t computedResult;
   
   stackSecurityValue = 0xfffffffffffffffe;
   encodingKey = EncodingDecodingKey ^ (unsigned long long)securityBuffer;
@@ -42322,60 +42328,60 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   SystemMemoryPointer = SystemStackRegisterBuffer;
   MemoryOffsetValue = 0;
   SystemStackRegisterBuffer[0] = 0;
-  SystemValue310 = 4;
+  systemValue310 = 4;
   InitializeSystemCharacterStatusBuffer(&SystemCharacterStatusBufferPointer,&SystemInfoHandlerTemplate,0x130a7);
   SystemTemplatePointer = &CoreEngineDataTemplate;
   if (SystemMemoryPointer != NULL) {
     SystemTemplatePointer = SystemMemoryPointer;
   }
-  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterStatusBuffer80);
-  SystemValue310 = 0;
+  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&systemCharacterStatusBuffer80);
+  systemValue310 = 0;
   SystemCharacterStatusBufferPointer = &ThreadLocalStorageTemplate;
   SystemTemplatePointer = &SystemTemplatePointer;
-  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterStatusBufferA0);
+  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&systemCharacterStatusBufferA0);
   SystemTemplatePointer = &SystemStackTemplate;
-  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemConfigurationString0);
+  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&systemConfigurationString);
   SystemTemplatePointer = &CoreEngineDataTemplate;
   if (SystemTemplatePointer != NULL) {
     SystemTemplatePointer = SystemTemplatePointer;
   }
-  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterStatusBufferCurrent0);
+  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&systemCharacterStatusBufferCurrent);
   SystemTemplatePointer = &CoreEngineDataTemplate;
-  if (PrimaryStackPointerd8 != NULL) {
-    SystemTemplatePointer = PrimaryStackPointerd8;
+  if (primaryStackPointerD8 != NULL) {
+    SystemTemplatePointer = primaryStackPointerD8;
   }
-  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemSystemCharacterStatusPointer0);
-  PrimaryStackPointere0 = &SystemNullTemplate;
-  if (PrimaryStackPointerd8 != NULL) {
+  ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&systemSystemCharacterStatusPointer);
+  primaryStackPointerE0 = &SystemNullTemplate;
+  if (primaryStackPointerD8 != NULL) {
       ProcessSystemEventHandling();
   }
   ContextHandle = NULL;
-  SystemValue1c8 = 0;
-  ThreadLocalStoragePointer = &ThreadLocalStorageTemplate;
-  NullTemplatePointer = &SystemNullTemplate;
+  systemValue1C8 = 0;
+  threadLocalStoragePointer = &ThreadLocalStorageTemplate;
+  nullTemplatePointer = &SystemNullTemplate;
   if (SystemTemplatePointer != NULL) {
       ProcessSystemEventHandling();
   }
   SystemTemplatePointer = NULL;
-  SystemValue1a8 = 0;
-  NullTemplatePointer = &ThreadLocalStorageTemplate;
-  pMemoryBlockCount = &SystemNullTemplate;
-  SystemValue2a8 = 0;
-  SystemValue2b8 = 0;
-  SystemValue2b0 = 0;
-  ProcessInfoPointer = &SystemNullTemplate;
-  SystemValue2d0 = 0;
-  ThreadSystemContext = NULL;
-  SystemStateFlag = 0;
-  LocalProcessingStatusFlag8 = &SystemNullTemplate;
-  SystemInitializationMode = 0;
-  LocalProcessingStatusFlag0 = NULL;
-  SystemInitializationFlags = 0;
-  MemoryPoolIndex = CoreEngineGetSystemStatus();
-  ProcessSystemContextConfiguration(&ProcessInfoPointer,&ProcessInfoTemplate,MemoryPoolIndex / 0x100000 & 0xffffffff);
-  StackValidationData[0] = 0x48;
-  ProcessedCharacter = GetCurrentProcess();
-  ComputedResult = K32GetProcessMemoryInfo(ProcessedCharacter,StackValidationData,0x48);
+  systemValue1A8 = 0;
+  nullTemplatePointer = &ThreadLocalStorageTemplate;
+  memoryBlockCountPointer = &SystemNullTemplate;
+  systemValue2A8 = 0;
+  systemValue2B8 = 0;
+  systemValue2B0 = 0;
+  processInfoPointer = &SystemNullTemplate;
+  systemValue2D0 = 0;
+  threadSystemContext = NULL;
+  systemStateFlag = 0;
+  localProcessingStatusFlag = &SystemNullTemplate;
+  systemInitializationMode = 0;
+  localProcessingStatusFlagSecondary = NULL;
+  systemInitializationFlags = 0;
+  memoryPoolIndex = CoreEngineGetSystemStatus();
+  ProcessSystemContextConfiguration(&processInfoPointer,&processInfoTemplate,memoryPoolIndex / 0x100000 & 0xffffffff);
+  stackValidationData[0] = 0x48;
+  processedCharacter = GetCurrentProcess();
+  computedResult = K32GetProcessMemoryInfo(processedCharacter,stackValidationData,0x48);
   MemoryPoolIndex = 0;
   if (ComputedResult != 0) {
     MemoryPoolIndex = SystemKeyPointer;
@@ -288037,7 +288043,7 @@ long long ManageSystemMemoryPool(long long ContextHandle
   SystemPrimaryReturnCode = 0xfffffffffffffffe;
   CharacterStatusBuffer = (unsigned long long *)(ContextHandle + 0x368);
   FUN_18022ebe0(CharacterStatusBuffer);
-  SystemContextPtr = (long long *)FUN_180240a60(*(void *)(ContextHandle + 0x1e0));
+  SystemContextPtr = (long long *)GetSystemContextPointer(*(void *)(ContextHandle + 0x1e0));
   ProcessedCharacter = 0;
   CharacterTablePointer = *SystemContextPtr;
   MemoryPoolBlockSize = SystemContextPtr[1] - CharacterTablePointer;
@@ -294598,4 +294604,7 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
         return -1; // 系统存在异常状态
     }
 }
+
+// 美化过程中添加的函数宏定义
+#define GetSystemContextPointer FUN_180240a60  // 获取系统上下文指针
 
