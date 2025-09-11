@@ -249191,9 +249191,26 @@ joined_r0x0001802045de:
 
 
 
-uint64_t * FUN_180204430(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理字符状态缓冲区和字符串编码转换
+ * 
+ * 该函数负责处理字符状态缓冲区的管理和字符串编码转换操作。
+ * 主要功能包括：
+ * - 管理字符状态缓冲区的分配和释放
+ * - 执行字符串编码转换和验证
+ * - 处理字符码点计算和验证
+ * - 管理字符表的查找和更新
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 操作结果指针
+ * 
+ * @note 原始函数名：FUN_180204430
+ */
+uint64_t * ProcessCharacterStatusBufferAndStringEncoding(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
-  int LockResult;
+  int SynchronizationResult;
   int LockOperationResult;
   bool IsHighByteSet;
   uint64_t MemoryAddressMaskPointer;

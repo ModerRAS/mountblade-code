@@ -371072,7 +371072,23 @@ UIHandle FUN_180882ee4(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180882f00(longlong *uiContext,int dataSource)
+/**
+ * @brief 分配和管理UI上下文内存
+ * 
+ * 该函数负责为UI上下文分配内存并管理相关的数据结构：
+ * - 验证数据源的有效性
+ * - 分配UI资源内存
+ * - 复制组件上下文数据
+ * - 更新UI上下文状态
+ * 
+ * @param uiContext UI上下文指针数组，包含上下文信息
+ * @param dataSource 数据源索引，指定要处理的数据源
+ * 
+ * @return UIHandle 返回操作状态，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180882f00
+ */
+#define AllocateUIContextAndManageMemory FUN_180882f00
 
 {
   int processingResult;
