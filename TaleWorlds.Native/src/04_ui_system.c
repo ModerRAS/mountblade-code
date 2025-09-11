@@ -129369,11 +129369,11 @@ FUN_18073c87f:
 void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptionKey;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
