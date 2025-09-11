@@ -15649,46 +15649,46 @@ uint8_t MemoryManagementSenaryCache;                   // 内存管理第六缓�
 uint8_t MemoryManagementSeptenaryCache;                // 内存管理第七缓存 - 第七级内存管理缓存数据
 uint8_t MemoryManagementOctonaryCache;                 // 内存管理第八缓存 - 第八级内存管理缓存数据
 uint8_t MemoryManagementNonaryCache;                   // 内存管理第九缓存 - 第九级内存管理缓存数据
-uint8_t SystemMemoryManagementDenaryCache;
-uint8_t SystemMemoryManagementUndenaryCache;
-uint8_t SystemMemoryManagementDuodenaryCache;
-uint8_t SystemMemoryManagementTridenaryCache;
-uint8_t SystemMemoryManagementQuattuordenaryCache;
+uint8_t MemoryManagementDenaryCache;                  // 内存管理第十缓存 - 第十级内存管理缓存数据
+uint8_t MemoryManagementUndenaryCache;                 // 内存管理第十一缓存 - 第十一级内存管理缓存数据
+uint8_t MemoryManagementDuodenaryCache;                // 内存管理第十二缓存 - 第十二级内存管理缓存数据
+uint8_t MemoryManagementTridenaryCache;                // 内存管理第十三缓存 - 第十三级内存管理缓存数据
+uint8_t MemoryManagementQuattuordenaryCache;           // 内存管理第十四缓存 - 第十四级内存管理缓存数据
 // 工具系统内存管理数据块 - 配置和状态数据
-uint8_t SystemMemoryManagementPrimaryConfig;
-uint8_t SystemMemoryManagementSecondaryConfig;
-uint8_t SystemMemoryManagementTertiaryConfig;
-uint8_t SystemMemoryManagementQuaternaryConfig;
-uint8_t SystemMemoryManagementStatusFlag;
+uint8_t MemoryManagementPrimaryConfig;                // 内存管理主配置 - 主要内存管理配置数据
+uint8_t MemoryManagementSecondaryConfig;              // 内存管理辅助配置 - 辅助内存管理配置数据
+uint8_t MemoryManagementTertiaryConfig;               // 内存管理第三配置 - 第三级内存管理配置数据
+uint8_t MemoryManagementQuaternaryConfig;             // 内存管理第四配置 - 第四级内存管理配置数据
+uint8_t MemoryManagementStatusFlag;                  // 内存管理状态标志 - 内存管理状态指示标志
 // 工具系统功能指针 - 系统核心功能指针
-uint8_t SystemGlobalStatusPointer;
-uint8_t SystemMemoryFunctionPointer;
-uint8_t SystemProcessFunctionPointer;
-uint8_t SystemSecurityFunctionPointer;
-uint8_t SystemNetworkFunctionPointer;
-uint8_t SystemFileFunctionPointer;
-uint8_t SystemThreadFunctionPointer;
-uint8_t SystemEventFunctionPointer;
-uint8_t SystemTimerFunctionPointer;
-uint8_t SystemInputFunctionPointer;
-uint8_t SystemOutputFunctionPointer;
-uint8_t SystemDebugFunctionPointer;
-uint8_t SystemLogFunctionPointer;
-uint8_t SystemConfigFunctionPointer;
-uint8_t SystemResourceFunctionPointer;
-uint8_t SystemCleanupFunctionPointer;
+uint8_t GlobalStatusPointer;                          // 全局状态指针 - 指向系统全局状态数据
+uint8_t MemoryFunctionPointer;                        // 内存功能指针 - 指向内存管理功能函数
+uint8_t ProcessFunctionPointer;                       // 进程功能指针 - 指向进程处理功能函数
+uint8_t SecurityFunctionPointer;                      // 安全功能指针 - 指向安全检查功能函数
+uint8_t NetworkFunctionPointer;                       // 网络功能指针 - 指向网络通信功能函数
+uint8_t FileFunctionPointer;                          // 文件功能指针 - 指向文件操作功能函数
+uint8_t ThreadFunctionPointer;                        // 线程功能指针 - 指向线程管理功能函数
+uint8_t EventFunctionPointer;                         // 事件功能指针 - 指向事件处理功能函数
+uint8_t TimerFunctionPointer;                         // 计时器功能指针 - 指向计时器管理功能函数
+uint8_t InputFunctionPointer;                         // 输入功能指针 - 指向输入处理功能函数
+uint8_t OutputFunctionPointer;                        // 输出功能指针 - 指向输出处理功能函数
+uint8_t DebugFunctionPointer;                         // 调试功能指针 - 指向调试处理功能函数
+uint8_t LogFunctionPointer;                           // 日志功能指针 - 指向日志记录功能函数
+uint8_t ConfigFunctionPointer;                        // 配置功能指针 - 指向配置管理功能函数
+uint8_t ResourceFunctionPointer;                     // 资源功能指针 - 指向资源管理功能函数
+uint8_t CleanupFunctionPointer;                       // 清理功能指针 - 指向清理处理功能函数
 // 工具系统配置区域 - 系统配置数据和扩展功能指针
-uint8_t SystemPrimaryConfigData;
-uint8_t SystemValidationFunctionPointer;
-uint8_t SystemSecondaryConfigData;
-uint8_t SystemInitializationFunctionPointer;
+uint8_t PrimaryConfigData;                             // 主配置数据 - 系统主要配置数据
+uint8_t ValidationFunctionPointer;                    // 验证功能指针 - 指向数据验证功能函数
+uint8_t SecondaryConfigData;                           // 辅助配置数据 - 系统辅助配置数据
+uint8_t InitializationFunctionPointer;                 // 初始化功能指针 - 指向系统初始化功能函数
 // 工具系统数据区域 - 系统核心数据缓冲区
-uint8_t SystemStatusData;
-uint8_t SystemMemoryData;
-uint8_t SystemProcessData;
-uint8_t SystemSecurityData;
-uint8_t SystemNetworkData;
-uint8_t SystemFileData;
+uint8_t StatusData;                                     // 状态数据 - 系统状态信息数据
+uint8_t MemoryData;                                     // 内存数据 - 系统内存信息数据
+uint8_t ProcessData;                                    // 进程数据 - 系统进程信息数据
+uint8_t SecurityData;                                   // 安全数据 - 系统安全信息数据
+uint8_t NetworkData;                                    // 网络数据 - 系统网络信息数据
+uint8_t FileData;                                       // 文件数据 - 系统文件信息数据
 uint8_t SystemThreadData;
 uint8_t SystemEventData;
 uint8_t SystemTimerData;

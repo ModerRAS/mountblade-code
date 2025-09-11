@@ -100088,40 +100088,40 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
   float *transformCoeffPointer;
   ulonglong maxProcessingCount;
   longlong contextOffset;
-  float *temporaryFloatValue;
-  int registerPointerD;
+  float *inputBufferPointer;
+  int dataElementCount;
   int remainingElements;
-  float xmm5Value;
+  float transformMultiplier;
   float normalizedSum;
-  float preservedXMM7;
+  float preservedRegisterValue;
   
-  normalizedSum = -preservedXMM7;
+  normalizedSum = -preservedRegisterValue;
   contextOffset = (longlong)targetBuffer;
-  remainingElements = registerPointerD - targetBuffer;
-  temporaryFloatValue = uiContext;
+  remainingElements = dataElementCount - targetBuffer;
+  inputBufferPointer = uiContext;
   if (3 < remainingElements) {
     transformCoeffPointer = uiContext + contextOffset;
     processingFlags = (remainingElements - 4U >> 2) + 1;
     maxProcessingCount = (ulonglong)processingFlags;
     bufferSize = processingFlags * 4;
     do {
-      baseValue = *temporaryFloatValue;
+      baseValue = *inputBufferPointer;
       transformCoeff1 = *transformCoeffPointer;
-      *transformCoeffPointer = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+      *transformCoeffPointer = transformCoeff1 * transformMultiplier + baseValue * preservedRegisterValue;
       transformCoeff2 = transformCoeffPointer[1 - contextOffset];
-      *temporaryFloatValue = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
+      *inputBufferPointer = transformCoeff1 * normalizedSum + baseValue * transformMultiplier;
       baseValue = transformCoeffPointer[1];
-      temporaryFloatValue = temporaryFloatValue + 4;
-      transformCoeffPointer[1] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
+      inputBufferPointer = inputBufferPointer + 4;
+      transformCoeffPointer[1] = baseValue * transformMultiplier + transformCoeff2 * preservedRegisterValue;
       transformCoeff1 = transformCoeffPointer[2 - contextOffset];
-      transformCoeffPointer[1 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
+      transformCoeffPointer[1 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * transformMultiplier;
       baseValue = transformCoeffPointer[2];
-      transformCoeffPointer[2] = baseValue * xmm5Value + transformCoeff1 * preservedXMM7;
+      transformCoeffPointer[2] = baseValue * transformMultiplier + transformCoeff1 * preservedRegisterValue;
       transformCoeff2 = transformCoeffPointer[3 - contextOffset];
-      transformCoeffPointer[2 - contextOffset] = baseValue * normalizedSum + transformCoeff1 * xmm5Value;
+      transformCoeffPointer[2 - contextOffset] = baseValue * normalizedSum + transformCoeff1 * transformMultiplier;
       baseValue = transformCoeffPointer[3];
-      transformCoeffPointer[3] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
-      transformCoeffPointer[3 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
+      transformCoeffPointer[3] = baseValue * transformMultiplier + transformCoeff2 * preservedRegisterValue;
+      transformCoeffPointer[3 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * transformMultiplier;
       transformCoeffPointer = transformCoeffPointer + 4;
       maxProcessingCount = maxProcessingCount - 1;
     } while (maxProcessingCount != 0);
@@ -100129,11 +100129,11 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
   if (bufferSize < remainingElements) {
     maxProcessingCount = (ulonglong)(uint)(remainingElements - bufferSize);
     do {
-      baseValue = *temporaryFloatValue;
-      transformCoeff1 = temporaryFloatValue[contextOffset];
-      temporaryFloatValue[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
-      *temporaryFloatValue = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
-      temporaryFloatValue = temporaryFloatValue + 1;
+      baseValue = *inputBufferPointer;
+      transformCoeff1 = inputBufferPointer[contextOffset];
+      inputBufferPointer[contextOffset] = transformCoeff1 * transformMultiplier + baseValue * preservedRegisterValue;
+      *inputBufferPointer = transformCoeff1 * normalizedSum + baseValue * transformMultiplier;
+      inputBufferPointer = inputBufferPointer + 1;
       maxProcessingCount = maxProcessingCount - 1;
     } while (maxProcessingCount != 0);
   }
@@ -100147,20 +100147,20 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
       do {
         baseValue = *uiContext;
         transformCoeff1 = uiContext[contextOffset];
-        uiContext[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+        uiContext[contextOffset] = transformCoeff1 * transformMultiplier + baseValue * preservedRegisterValue;
         transformCoeff2 = uiContext[-1];
-        *uiContext = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
+        *uiContext = transformCoeff1 * normalizedSum + baseValue * transformMultiplier;
         baseValue = uiContext[contextOffset + -1];
-        uiContext[contextOffset + -1] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
+        uiContext[contextOffset + -1] = baseValue * transformMultiplier + transformCoeff2 * preservedRegisterValue;
         transformCoeff1 = uiContext[-2];
-        uiContext[-1] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
+        uiContext[-1] = baseValue * normalizedSum + transformCoeff2 * transformMultiplier;
         baseValue = uiContext[contextOffset + -2];
-        uiContext[contextOffset + -2] = baseValue * xmm5Value + transformCoeff1 * preservedXMM7;
+        uiContext[contextOffset + -2] = baseValue * transformMultiplier + transformCoeff1 * preservedRegisterValue;
         transformCoeff2 = uiContext[-3];
-        uiContext[-2] = baseValue * normalizedSum + transformCoeff1 * xmm5Value;
+        uiContext[-2] = baseValue * normalizedSum + transformCoeff1 * transformMultiplier;
         baseValue = uiContext[contextOffset + -3];
-        uiContext[contextOffset + -3] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
-        uiContext[-3] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
+        uiContext[contextOffset + -3] = baseValue * transformMultiplier + transformCoeff2 * preservedRegisterValue;
+        uiContext[-3] = baseValue * normalizedSum + transformCoeff2 * transformMultiplier;
         uiContext = uiContext + -4;
         maxProcessingCount = maxProcessingCount - 1;
       } while (maxProcessingCount != 0);
@@ -100168,8 +100168,8 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
     for (; -1 < remainingElements; remainingElements = remainingElements + -1) {
       baseValue = *uiContext;
       transformCoeff1 = uiContext[contextOffset];
-      uiContext[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
-      *uiContext = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
+      uiContext[contextOffset] = transformCoeff1 * transformMultiplier + baseValue * preservedRegisterValue;
+      *uiContext = transformCoeff1 * normalizedSum + baseValue * transformMultiplier;
       uiContext = uiContext + -1;
     }
   }
