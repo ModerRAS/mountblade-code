@@ -68915,8 +68915,8 @@ MemoryAddressProcessing:
           LoopIndex = SystemContextHandle;
           if (ValidationStatus == '\0') {
             CharacterStatusBuffer9 = &CoreEngineDataTemplate;
-            if (puStack_530 != (uint8_t *)0x0) {
-              CharacterStatusBuffer9 = puStack_530;
+            if (SystemCharacterBuffer != (uint8_t *)0x0) {
+              CharacterStatusBuffer9 = SystemCharacterBuffer;
             }
             InitializeSystemEvent(CharacterStatusBuffer9);
           }
