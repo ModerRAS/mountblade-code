@@ -372,7 +372,7 @@ typedef union {
 #define MemoryResourceManagementOffset 0x70
 #define MemoryResourcePointerOffsetPrimary 0x2d0
 #define MemoryBlockShift 0x10
-#define MemoryManagementFlagMask 0xff000000
+// MemoryManagementFlagMask已在前面定义
 #define MemoryResourcePointerOffsetQuaternary 0x1f0
 #define MemoryResourcePointerOffsetQuinary 0x210
 #define MemoryResourcePointerOffsetSenary 0x1d0
@@ -2964,7 +2964,7 @@ typedef union {
 #define ExceptionHandlerPointerOffset20 0x20                 // 异常处理器指针偏移量20
 #define MemoryRegionMask 0xffffffffffff0000                   // 内存区域掩码
 #define ExceptionMemoryRegionOffset 0x1000                   // 异常内存区域偏移量
-#define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数
+// ExceptionMemoryBlockMultiplier已在前面定义
 #define ExceptionMemoryRegionOffset70 0x70                   // 异常内存区域偏移量70
 #define SystemCleanupFlagAlternative 0x80000000               // 系统清理标志备选方案 - 用于资源清理和内存管理的标准标志值
 #define StandardResourceCleanupFlag 0x80000000                  // 标准资源清理标志 - 统一用于所有资源清理操作的标志值
