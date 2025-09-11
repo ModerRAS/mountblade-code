@@ -57592,9 +57592,9 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   int *ReferenceCountPointer218;
   int *ReferenceCountPointer210;
   int *CoreEngineLoopCounter;
-  uint32_t ProcessingCounter0;
+  uint32_t ProcessingCounter;
   int *SystemStackPointer1f8;
-  int *MemoryAllocationPointer1f0;
+  int *MemoryAllocationPointer;
   int StackOffset1E8;
   uint8_t (*StackDataBuffer1e0) [16];
   unsigned long long SystemStackData;
