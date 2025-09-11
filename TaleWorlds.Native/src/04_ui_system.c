@@ -134049,7 +134049,22 @@ void FUN_180741df0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
  void FUN_180741e10(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,uint resultPointer,
-void FUN_180741e10(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,uint resultPointer,
+/**
+ * @brief 初始化UI组件和资源分配
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数标志
+ * 
+ * 该函数负责初始化UI组件和相关资源，包括：
+ * - 状态初始化和验证
+ * - 内存分配和管理
+ * - 数据源处理
+ * - 资源清理
+ */
+void InitializeUIComponentAndResources(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,uint resultPointer,
                   char param_6)
 
 {
@@ -150111,16 +150126,16 @@ UIHandle ProcessUIEventActivationAndDataValidation(UIHandle *uiContext, int data
   }
   else if ((targetBuffer == 0) || (*(longlong *)(targetBuffer + 0xb8) == 0)) {
     if (uiContext[0x15] == 0) {
-      ProcessingFlag = false;
-      localChar4 = (**(code **)*uiContext)();
-      if (localChar4 != '\0') {
-        ptrLocal6 = (UIHandle *)uiContext[0x15];
-        if ((ptrLocal6 == (UIHandle *)0x0) && (ptrLocal6 = uiContext, uiContext[0x14] != 0)) {
-          ptrLocal6 = *(UIHandle **)(uiContext[0x14] + (longlong)*(int *)(uiBufferData + 0x18) * 8);
+      IsProcessingActive = false;
+      isContextAvailable = (**(code **)*uiContext)();
+      if (isContextAvailable != '\0') {
+        contextPointer = (UIHandle *)uiContext[0x15];
+        if ((contextPointer == (UIHandle *)0x0) && (contextPointer = uiContext, uiContext[0x14] != 0)) {
+          contextPointer = *(UIHandle **)(uiContext[0x14] + (longlong)*(int *)(uiBufferData + 0x18) * 8);
         }
-        if (((ptrLocal6 != (UIHandle *)0x0) && ((*(uint *)(ptrLocal6 + 0xb) & 4) != 0)) &&
-           ((*(uint *)(ptrLocal6 + 0xb) & 8) == 0)) {
-          ProcessingFlag = true;
+        if (((contextPointer != (UIHandle *)0x0) && ((*(uint *)(contextPointer + 0xb) & 4) != 0)) &&
+           ((*(uint *)(contextPointer + 0xb) & 8) == 0)) {
+          IsProcessingActive = true;
           func_0x000180743c20(uiContext[0x1b],9);
         }
       }
@@ -150159,8 +150174,8 @@ UIHandle ProcessUIEventActivationAndDataValidation(UIHandle *uiContext, int data
         }
       }
       else {
-        localChar4 = (**(code **)*uiContext)(uiContext);
-        if (localChar4 == '\0') {
+        isContextAvailable = (**(code **)*uiContext)(uiContext);
+        if (isContextAvailable == '\0') {
           if (*(longlong *)(*(longlong *)(allocatedMemory + 0xb8) + 0x60) == *(longlong *)(allocatedMemory + 0x60)) {
             *(UIHandle *)(allocatedMemory + 0x60) = 0;
           }
@@ -150176,8 +150191,8 @@ UIHandle ProcessUIEventActivationAndDataValidation(UIHandle *uiContext, int data
       *(longlong *)((longlong)dataSource * 8 + uiContext[0x14]) = targetBuffer;
       *(UIDword *)(uiBufferData + 10) = *(UIDword *)((longlong)uiContext + 0x44);
       *(UIDword *)((longlong)uiContext + 0x4c) = 0;
-      localChar4 = (**(code **)*uiContext)(uiContext);
-      if (localChar4 != '\0') {
+      isContextAvailable = (**(code **)*uiContext)(uiContext);
+      if (isContextAvailable != '\0') {
         (**(code **)(*(longlong *)uiContext[0x2f] + 0x88))
                   ((longlong *)uiContext[0x2f],0,*(int *)((longlong)uiContext + 0x44) + -1);
       }
