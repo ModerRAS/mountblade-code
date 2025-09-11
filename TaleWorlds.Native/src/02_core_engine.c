@@ -269326,7 +269326,7 @@ ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHa
   long long SearchStartIndex;
   
   MemoryPoolIndex = AdditionalParameter1 % (unsigned long long)*(uint *)(ContextHandle + 0x10);
-  MemoryBlockIndex = FUN_180218bc0(ContextHandle,*(void *)(*(long long *)(ContextHandle + 8) + MemoryPoolIndex * 8),
+  MemoryBlockIndex = ProcessSystemContextAccess(ContextHandle,*(void *)(*(long long *)(ContextHandle + 8) + MemoryPoolIndex * 8),
                               Utf16EndPointer);
   if (MemoryBlockIndex == 0) {
     ProcessEngineDataTransfer(ContextHandle + 0x20,&AdditionalParameter1,*(uint32_t *)(ContextHandle + 0x10),
@@ -270256,7 +270256,7 @@ LAB_18021943e:
     Utf8SourcePointer = (Utf8SourcePointer >> 1) + (Utf8SourcePointer >> 2);
     if ((long long)((long long)plStack_38 - (long long)ContextHandle & 0xfffffffffffffff8U) <
         (long long)((long long)OperationBufferSize - (long long)plStack_30 & 0xfffffffffffffff8U)) {
-      FUN_180219260(ContextHandle,plStack_38,Utf8SourcePointer,Utf16EndPointer);
+      ExecuteSystemDataTransformation(ContextHandle,plStack_38,Utf8SourcePointer,Utf16EndPointer);
       SystemDataTablePointer = OperationBufferSize;
       ContextHandle = MemoryPoolSizePointer;
     }
