@@ -69,24 +69,6 @@
 #define HandleSystemStringEncodingEx ProcessExtendedStringEncoding                 // 处理系统字符串编码扩展
 #define ProcessSystemContextOperationEx ManageExtendedSystemContext              // 处理系统上下文操作扩展
 #define InitializeSystemDataProcessorEx SetupExtendedSystemDataProcessor              // 初始化系统数据处理器扩展
-#define FUN_18019067c VerifySystemHandleIntegrity
-#define FUN_180190743 ClearSystemOperationState
-#define FUN_180190780 FreeSystemHandleResources
-#define FUN_1801907f0 ExecuteSystemByteOperations
-#define FUN_180190a20 SetupSystemContextTransfer
-#define FUN_180190a35 CompleteSystemContextTransfer
-#define FUN_180190a4d ResetSystemTransferState
-#define FUN_180190ad0 InitializeSystemMemoryManager
-#define FUN_180190adc CleanupSystemMemoryManager
-#define FUN_180190ae0 ProcessSystemMemoryTransfer                    // 处理系统内存传输
-#define FUN_180190c90 ManageSystemDataProcessing                   // 处理系统数据处理
-#define FUN_180190c9f CompleteSystemDataProcessing                // 完成系统数据处理
-#define FUN_180190cc0 SetupSystemContextController                 // 初始化系统上下文管理器
-#define FUN_180190e00 ReinitializeSystemContextManager            // 重置系统上下文管理器
-#define FUN_180190e0a ClearSystemContextManager                    // 清理系统上下文管理器
-#define FUN_180190e30 ProcessSystemContextInformation              // 处理系统上下文数据
-#define FUN_180190fa0 ManageSystemContextTransfer                  // 处理系统上下文传输
-#define FUN_180190fbb FinalizeSystemContextTransfer                // 完成系统上下文传输
 #define FUN_1801911b1 ResetSystemStringEncoding                   // 重置系统字符串编码
 #define FUN_1801912b0 ProcessSystemStringEncodingConversion        // 处理系统字符串编码
 #define FUN_180191d40 ValidateSystemDataIntegrity                  // 执行系统数据验证
