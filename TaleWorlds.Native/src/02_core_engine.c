@@ -241356,12 +241356,12 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
     } while ((unsigned long long)(long long)(int)SystemMemoryAllocationResult <
              (unsigned long long)(*(long long *)(ContextHandle + 0xe8) - *(long long *)(ContextHandle + 0xe0) >> 3));
   }
-  FUN_1801970c0(ContextHandle,OperationBufferSize);
+  ProcessSystemMemoryValidation(ContextHandle,OperationBufferSize);
   if (((*(long long **)(ContextHandle + 0x318) != (long long *)0x0) && (*(char *)(ContextHandle + 0x2a61) != '\0'      ) && ((*(char *)(ContextHandle + 0x2a62) != '\0' && (*(int *)(SystemConfigData + 0xaf0) != 0)))) {
     (**(code **)(**(long long **)(ContextHandle + 0x318) + 0x40))();
   }
   if (Utf8SourcePointer != '\0') {
-    FUN_1801998a0(ContextHandle,OperationBufferSize);
+    ProcessSystemDataIntegrityCheck(ContextHandle,OperationBufferSize);
   }
   return;
 }
@@ -241554,7 +241554,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
   StackMemoryStatus = 0;
   ProcessingStatus = 0;
   ProcessingCounter = MemoryPoolIndexAdditional;
-  FUN_1801c2360(ContextHandle + 0x60830,&PreviousContextPointer);
+  ProcessSystemMemoryBuffer(ContextHandle + 0x60830,&PreviousContextPointer);
   uStack_178 = OperationStatus;
   if (OperationStatus != MemoryPoolIndexAdditional) {
     lStack_100 = CONCAT44(uStack_dc,SystemFlagE);
@@ -241568,7 +241568,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
         CoreEngineValueA8 = 0;
         CoreEngineUnsignedValueA0 = 3;
         uStack_178 = Utf16Character;
-        FUN_1802e92b0(lStack_100,&plStack_b8,0,0xffffffff);
+        ProcessSystemEncodingValidation(lStack_100,&plStack_b8,0,0xffffffff);
         pPerformanceCounterPointer = (long long **                       CONCAT44(pPerformanceCounterPointer.HighPart,
                                 (int)MemoryPoolIndex7 +
                                 (int)((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3));
@@ -254685,7 +254685,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
   uint64_t VectorCalculationResult_00;
   unsigned long long MemoryPoolIndexAdditional;
   unsigned long long MemoryPoolIndex7;
-  long long lStack0000000000000058;
+  long long StringProcessingOffset;
   long long *StackProcessingParameter4;
   uint StackProcessingParameter5;
   
