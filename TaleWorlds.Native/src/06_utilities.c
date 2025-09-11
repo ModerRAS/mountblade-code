@@ -48830,7 +48830,7 @@ void HandleExceptionRecoveryI0(DataBuffer context, int64_t exceptionData, DataBu
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemException790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemDataWithEncryption(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset),
@@ -48850,7 +48850,7 @@ void ExceptionHandler790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemException7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *memoryResourcePointer;
@@ -48875,7 +48875,7 @@ void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemException7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *systemresourcePointer;
@@ -48898,7 +48898,7 @@ void ExceptionHandler7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
  */
-void ExceptionHandler7C0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleSystemException7C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
@@ -48924,7 +48924,7 @@ void ExceptionHandler7C0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
  */
-void ExceptionHandler7D0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleSystemException7D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
@@ -49050,7 +49050,7 @@ void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180902830
  */
-void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanup830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA0(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78),*(DataBuffer *)(*(int64_t )(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset),
@@ -50130,7 +50130,7 @@ void HandleSystemCallCleanupOperation6(DataBuffer operationBase,int64_t dataBuff
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
  */
-void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemCallCleanupOperation7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset),
@@ -50151,7 +50151,7 @@ void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,D
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
  */
-void ExceptionHandlerValidationContext(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionContextAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
