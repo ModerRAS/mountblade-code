@@ -224092,34 +224092,34 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
     do {
       MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
     } while (MemoryAddressMaskPointer[MemoryPoolBlockSize] != '\0');
-    ReallocateContextHandle(SystemOperationStatusMask);
+    ReallocateContextHandle(SystemStatusBuffer);
     MemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if ((void *)OperationBufferSize[1] != NULL) {
       MemoryAddressMaskPointer = (void *)OperationBufferSize[1];
     }
-    SystemKeyPointer = 0;
-    SystemStackFlag = 0xf;
-    EncodingBuffer = (void *)((unsigned long long)EncodingBuffer & 0xffffffffffffff00);
-    ReallocateContextHandle(&EncodingBuffer,&SystemBufferSecondary,5);
-    UnicodeCodePoint = ProcessSystemUnicodeCodePoint(&CoreEngineSignedValue70,&EncodingBuffer);
+    SystemEncryptionKey = 0;
+    SystemStackStatusFlag = 0xf;
+    SystemEncodingBuffer = (void *)((unsigned long long)SystemEncodingBuffer & 0xffffffffffffff00);
+    ReallocateContextHandle(&SystemEncodingBuffer,&SystemBufferSecondary,5);
+    UnicodeCodePoint = ProcessSystemUnicodeCodePoint(&SystemContextHandle,&SystemEncodingBuffer);
     do {
       MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
     } while (MemoryAddressMaskPointer[MemoryBoundaryEnd] != '\0');
     ReallocateContextHandle(UnicodeCodePoint,MemoryAddressMaskPointer,MemoryBoundaryEnd);
-    if (0xf < SystemStackFlag) {
-      CalculatedCodePoint = SystemStackFlag + 1;
-      MemoryAddressMaskPointer = EncodingBuffer;
+    if (0xf < SystemStackStatusFlag) {
+      CalculatedCodePoint = SystemStackStatusFlag + 1;
+      MemoryAddressMaskPointer = SystemEncodingBuffer;
       if (0xfff < CalculatedCodePoint) {
-        CalculatedCodePoint = SystemStackFlag + 0x28;
-        MemoryAddressMaskPointer = *(void **)(EncodingBuffer + -8);
-        if ((void *)0x1f < EncodingBuffer + (-8 - (long long)MemoryAddressMaskPointer)) {
+        CalculatedCodePoint = SystemStackStatusFlag + 0x28;
+        MemoryAddressMaskPointer = *(void **)(SystemEncodingBuffer + -8);
+        if ((void *)0x1f < SystemEncodingBuffer + (-8 - (long long)MemoryAddressMaskPointer)) {
             _invalid_parameter_noinfo_noreturn();
         }
       }
       free(MemoryAddressMaskPointer,CalculatedCodePoint);
     }
-    SystemKeyPointer = 0;
-    SystemStackFlag = 0xf;
+    SystemEncryptionKey = 0;
+    SystemStackStatusFlag = 0xf;
     ContextHandle = *(long long **)(BufferStatus + 8);
     pSystemContextPointerA8 = (long long **)&EncodingBuffer;
     EncodingBuffer = &SystemBufferTertiary;
