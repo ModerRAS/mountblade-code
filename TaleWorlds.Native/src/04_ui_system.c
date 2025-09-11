@@ -5313,14 +5313,14 @@ void* UIGestureCoordinates;
 #define UIContextOperationTempTable UNK_1809576a0    // UI上下文操作临时表 - 存储上下文操作的临时数据
 #define UIContextOperationBufferTable UNK_180957880    // UI上下文操作缓冲区表 - 存储上下文操作的缓冲区数据
 #define UIContextOperationMetadataTable UNK_1809577b0    // UI上下文操作元数据表 - 存储上下文操作的元数据
-#define UIContextOperationDataTable8d0 UNK_1809578d0    // UI上下文操作数据表8d0 - 存储上下文操作的统计数据
-#define UIContextOperationDataTable7f0 UNK_1809577f0    // UI上下文操作数据表7f0 - 存储上下文操作的日志数据
+#define UIContextOperationStatisticsTable UNK_1809578d0    // UI上下文操作统计表 - 存储上下文操作的统计数据
+#define UIContextOperationLogTable UNK_1809577f0    // UI上下文操作日志表 - 存储上下文操作的日志数据
 
 // UI上下文操作数据表语义化别名
-#define UIContextConfigData UIContextOperationDataTable1c8     // UI上下文配置数据表
-#define UIContextStateData UIContextOperationDataTable158     // UI上下文状态数据表
-#define UIContextValidationData UIContextOperationDataTable0f8  // UI上下文验证数据表
-#define UIContextCacheData UIContextOperationDataTable188      // UI上下文缓存数据表
+#define UIContextConfigData UIContextOperationConfigTable     // UI上下文配置数据表
+#define UIContextStateData UIContextOperationStatusTable     // UI上下文状态数据表
+#define UIContextValidationData UIContextOperationValidationTable  // UI上下文验证数据表
+#define UIContextCacheData UIContextOperationCacheTable      // UI上下文缓存数据表
 #define UIContextResultData UIContextOperationDataTable260     // UI上下文结果数据表
 #define UIContextAdvancedData UIContextOperationDataTable310   // UI上下文高级数据表
 #define UIContextExtendedData UIContextOperationDataTable898   // UI上下文扩展数据表
@@ -216863,7 +216863,7 @@ UIHandle FUN_1807906f0(longlong uiContext)
   UIDword auStackX_8 [2];
   
   maxProcessingCount = *(UIHandle *)(GlobalUIResourceManagerF0 + 0x160 + (longlong)*(int *)(uiBufferData + 0x30) * 8);
-  contextDataHandle = FUN_180791040();
+  contextDataHandle = InitializeUIMemoryRegion();
   eventProcessingCounter = 0;
   componentContextPtr = (UIHandle *)
            FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x40,&UIContextResourceManager780,0x24c,0,0,1);
@@ -217713,12 +217713,23 @@ UIHandle FUN_180790ff0(longlong uiContext)
 
 
 
- void FUN_180791040(void)
-void FUN_180791040(void)
-
+ /**
+ * @brief 初始化UI系统内存区域
+ * 
+ * 清零UI系统核心内存区域，为UI系统初始化做准备
+ * 
+ * @details 实现细节：
+ * - 清零地址0x180c108f4开始的0x5c字节内存区域
+ * - 这个内存区域可能包含UI系统的全局状态和配置信息
+ * - 清零操作确保UI系统从一个干净的状态开始初始化
+ * 
+ * @note 原始函数名：FUN_180791040
+ * @warning 该函数不返回，通常在系统初始化阶段调用
+ * @see InitializeUIRenderContext
+ */
+void InitializeUIMemoryRegion(void)
 {
-                     WARNING: Subroutine does not return
-  memset(0x180c108f4,0,0x5c);
+  memset(0x180c108f4, 0, 0x5c);
 }
 
 
@@ -218515,7 +218526,7 @@ void FUN_180791b40(longlong uiContext)
 UIRenderContext * InitializeUIRenderContext(void)
 {
   // 调用底层UI初始化函数
-  FUN_180791040();
+  InitializeUIMemoryRegion();
   
   // 设置渲染上下文数据结构大小
   UIRenderContextSize = 0x20;
