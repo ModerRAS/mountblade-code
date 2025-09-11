@@ -4927,10 +4927,32 @@ typedef enum {
 #define fStack_194 UIFloatStack194
 #define stackLong190 UIStackLong190
 #define stackLong188 UIStackLong188
+
+// UI系统栈变量美化（基于实际用途）
+#define stackUInt98 UIOperationFlag98
+#define stackUInt70 UIValidationFlag70
+#define stackUInt32_60 UIProcessingFlag60
+#define stackUInt32_64 UIValidationFlag64
+#define stackUInt32_68 UIOperationFlag68
+#define stackUInt32_6c UIProcessingFlag6c
+#define stackUInt32_70 UIValidationFlag70
+#define stackUInt32_74 UIOperationFlag74
+#define stackUInt32_78 UIProcessingFlag78
+#define stackUInt32_7c UIValidationFlag7c
 #define pcStack_180 UIPtrCharStack180
 #define stackUInt178 UIStackUInt178
 #define fStack_170 UIFloatStack170
 #define fStack_16c UIFloatStack16c
+
+// UI系统更多栈变量美化
+#define stackUInt170 UIAnimationSpeed170
+#define stackUInt298 UIValidationFlag298
+#define pstackUInt180 UIPtrBuffer180
+#define pstackUInt178 UIPtrBuffer178
+#define astackUInt168 UIBufferArray168
+#define stackUInt38 UIOperationFlag38
+#define pstackUInt30 UIPtrBuffer30
+#define pstackUInt50 UIPtrBuffer50
 #define fStack_168 UIFloatStack168
 #define stackLong160 UIStackLong160
 #define stackLong158 UIStackLong158
