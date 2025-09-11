@@ -18748,7 +18748,15 @@ uint8_t SystemResourceManagementTable;
  * 
  * @note 原始函数名：ProcessObjectDataWithValidation
  */
-void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
+/**
+ * @brief 处理对象数据并进行验证
+ * 
+ * @param ObjectHandle 对象句柄，标识要处理的对象
+ * @param DataContext 数据上下文，包含数据处理所需的上下文信息
+ * 
+ * 该函数负责处理指定对象的数据，包括数据验证、安全检查和资源管理。
+ * 函数执行栈保护检查以防止栈溢出攻击，并进行完整的数据验证流程。
+ */
 {
   // 资源和操作相关变量
   uint64_t ResourceIdentifier;              // 资源标识符
