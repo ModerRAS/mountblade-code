@@ -125730,8 +125730,7 @@ void ReleaseUIResourceAndExecuteRender(void)
 
  
 
- void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073a9e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ void ProcessUIRenderContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -125767,8 +125766,7 @@ LAB_18073aa6e:
 
  
 
- void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
+ void ProcessUIRenderContextWithDataTexture(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
@@ -125805,7 +125803,7 @@ LAB_18073ab4a:
  
 
  void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
-void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
+void ProcessUIRenderContextWithBufferValidation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
 {
   int operationResult;
