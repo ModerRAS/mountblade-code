@@ -126058,7 +126058,7 @@ void ExecuteUIRenderContextTask(void)
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt150,&stackLong158);
   if (operationResult == 0) {
     pstackUInt168 = (UIByte *)resultPointer;
-    operationResult = FUN_1807479e0(stackUInt150,dataSource,targetBuffer,bufferSize);
+    operationResult = ProcessUIBufferDataTransfer(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto FUN_18073af6d;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -126114,7 +126114,7 @@ void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSo
   param_6 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (operationResult == 0) {
-    operationResult = FUN_1807479e0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
+    operationResult = ProcessUIBufferDataTransfer(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
     if (operationResult == 0) goto FUN_18073af6d;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
