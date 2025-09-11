@@ -2533,7 +2533,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackFloatValue10 fStackX_10                        // 栈浮点值10
 #define StackMatrixOperand fStack_4c                         // 栈浮点值4c
 // 无符号栈变量
-#define UnsignedStackVariable uStack_cc
+#define UnsignedStackVariable StackUnsignedValueCc
 #define StackProcessingDataPointer9c uStack_9c                    // 栈处理值9c
 #define StackCharacterValueA4 StackCharacterValueA4         // 栈字符值A4
 #define StackUnsignedValueA0 CoreEngineUnsignedValueA0      // 栈无符号值A0
@@ -289591,7 +289591,7 @@ InitializeSystemMemoryBlockTemplate(uint64_t *ContextHandle,unsigned long long O
 long long ExecuteMatrixTransformAndFloatCalculations(void)
 {
   uint64_t *CharacterStatusBuffer;
-  float *pContextSecondaryFloat;
+  float *TransformMatrixBuffer;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier;
