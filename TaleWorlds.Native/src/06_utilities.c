@@ -249,6 +249,7 @@
 #define SecurityValidationCodeTSNI 0x54534e49                    // 安全验证码TSNI - 用于线程安全验证
 #define SecurityValidationCodePAM  0x2050414d                    // 安全验证码PAM - 用于参数访问管理验证
 #define SecurityValidationCodeMRAP 0x4d524150                    // 安全验证码MRAP - 用于内存资源访问验证
+#define SecurityValidationCodeBMRP 0x424d5250                    // 安全验证码BMRP - 用于备份内存资源处理验证
 
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
@@ -37367,7 +37368,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionContex
   uint stackByteBuffer [2];
   ByteFlag inputValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(exceptionContext,inputValidationBuffer,0,0x54534e49);
+  operationResult = ExecuteSecurityValidation(exceptionContext,inputValidationBuffer,0,SecurityValidationCodeTSNI);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -38036,7 +38037,7 @@ void ValidateAndProcessSystemData(int64_t systemContext, DataBuffer *DataArray)
   uint stackByteBuffer [2];
   ByteFlag inputValidationBuffer [32];
   
-  arrayIndex = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x2050414d);
+  arrayIndex = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,SecurityValidationCodePAM);
   if ((arrayIndex == 0) && (arrayIndex = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), arrayIndex == 0)) {
     stackByteBuffer[0] = 0;
     arrayIndex = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
@@ -39643,11 +39644,11 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *exceptionContext)
   uint allocationErrorCode;
   
   operationResult = 1;
-  validationStatus = ExecuteSecurityValidation(exceptionContext,securityBufferSecondary,1,0x4d524150);
+  validationStatus = ExecuteSecurityValidation(exceptionContext,securityBufferSecondary,1,SecurityValidationCodeMRAP);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = ExecuteSecurityValidation(exceptionContext,securityBufferPrimary,0,0x424d5250);
+  validationStatus = ExecuteSecurityValidation(exceptionContext,securityBufferPrimary,0,SecurityValidationCodeBMRP);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -45505,7 +45506,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
   colorPackedData = validationStatusPointer[1];
   inputDataWord = validationStatusPointer[2];
   inputAlphaComponent = validationStatusPointer[3];
-  memoryRegionBase = ExecuteDataBufferOperation(dataBuffer,systemConfigBuffer,0,0x4c525443,0);
+  memoryRegionBase = ExecuteDataBufferOperation(dataBuffer,systemConfigBuffer,0,SecurityValidationCodeLRTC,0);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
