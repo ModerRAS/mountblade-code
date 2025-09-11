@@ -23720,21 +23720,21 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
   if (operationResult != 0) {
     return;
   }
-  allocationCount = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> BitShift31Bits;
-  allocationCount = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ allocationCount) - allocationCount;
-  requiredCapacity = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
-  if (allocationCount < requiredCapacity) {
-    allocationCount = (int)((float)allocationCount * 1.5);
-    if (requiredCapacity <= allocationCount) {
-      requiredCapacity = allocationCount;
+  int currentQueueAllocationCount = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> BitShift31Bits;
+  currentQueueAllocationCount = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ currentQueueAllocationCount) - currentQueueAllocationCount;
+  int newQueueRequiredCapacity = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
+  if (currentQueueAllocationCount < newQueueRequiredCapacity) {
+    currentQueueAllocationCount = (int)((float)currentQueueAllocationCount * 1.5);
+    if (newQueueRequiredCapacity <= currentQueueAllocationCount) {
+      newQueueRequiredCapacity = currentQueueAllocationCount;
     }
-    if (requiredCapacity < 8) {
-      requiredCapacity = 8;
+    if (newQueueRequiredCapacity < 8) {
+      newQueueRequiredCapacity = 8;
     }
-    if (requiredCapacity < *(int *)(queueInfo + QUEUE_SIZE_OFFSET)) goto ErrorHandlingLabel;
-    if (requiredCapacity != 0) {
-      if ((MaximumMemoryBufferSize < requiredCapacity * 8 - 1U) ||
-         (memoryResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
+    if (newQueueRequiredCapacity < *(int *)(queueInfo + QUEUE_SIZE_OFFSET)) goto ErrorHandlingLabel;
+    if (newQueueRequiredCapacity != 0) {
+      if ((MaximumMemoryBufferSize < newQueueRequiredCapacity * 8 - 1U) ||
+         (memoryResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),newQueueRequiredCapacity * 8,&SystemMemoryPoolB,
                                 MemoryAllocationFlagsF4,MemoryAllocationFlags0), memoryResourcePointer == 0)) goto ErrorHandlingLabel;
       if (*(int *)(queueInfo + QUEUE_SIZE_OFFSET) != 0) {
           memcpy(memoryResourcePointer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
@@ -23747,7 +23747,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
                     &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
     *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = memoryResourcePointer;
-    *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = requiredCapacity;
+    *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = newQueueRequiredCapacity;
   }
   *(int64_t *)
    (*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) + (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) * 8) =
@@ -23773,17 +23773,17 @@ SystemCleanupLabel:
 void ResetUtilitySystemToInitialState(void)
 
 {
-  int resourceValidationStatus;
-  int memoryAllocationResult;
-  int64_t systemParameter;
-  int64_t memoryBufferPointer;
-  int64_t adjustedSystemParameter;
-  uint operationFlags;
-  int64_t systemContext;
-  int64_t TemporarySystemRegister;
-  DataBuffer systemContextBuffer;
-  int systemInitializationStatus;
-  int64_t systemResourcePointer;
+  int resourceValidationStatus = 0;
+  int memoryAllocationResult = 0;
+  int64_t systemParameter = 0;
+  int64_t memoryBufferPointer = 0;
+  int64_t adjustedSystemParameter = 0;
+  uint operationFlags = 0;
+  int64_t systemContext = 0;
+  int64_t temporarySystemRegister = 0;
+  DataBuffer systemContextBuffer = 0;
+  int systemInitializationStatus = 0;
+  int64_t systemResourcePointer = 0;
   
   systemResourcePointer = 0;
   adjustedSystemParameter = systemParameter + 8;
