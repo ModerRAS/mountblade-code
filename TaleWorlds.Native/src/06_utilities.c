@@ -1387,6 +1387,8 @@ typedef union {
 #define ExceptionHandlerContextOffset2D0 0x2d0                    // 异常处理器上下文偏移量2D0
 #define ExceptionHandlerContextOffset2E0 0x2e0                    // 异常处理器上下文偏移量2E0
 #define ExceptionHandlerContextOffset2E20 0x2e20                  // 异常处理器上下文偏移量2E20 - 用于异常上下文清理
+#define ExceptionHandlerContextOffset2E30 0x2e30                  // 异常处理器上下文偏移量2E30 - 用于异常上下文释放
+#define ExceptionHandlerContextOffset2E50 0x2e50                  // 异常处理器上下文偏移量2E50 - 用于异常上下文终止
 #define ExceptionHandlerContextOffset2A8 0x2a8                    // 异常处理器上下文偏移量2A8
 #define ExceptionHandlerContextOffset2B0 0x2b0                    // 异常处理器上下文偏移量2B0
 
@@ -130084,27 +130086,32 @@ void HandleSystemExceptionContextCleanup(DataBuffer operationBase, int64_t dataB
 
 
 /**
- * @brief 系统异常处理器110EE0
+ * @brief 处理系统异常上下文释放
  * 
- * 该函数负责处理系统异常，从0x2e30偏移量处获取异常上下文，
+ * 该函数负责处理系统异常的上下文释放，从异常处理器列表中获取异常上下文，
  * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器列表信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911ee0
+ * @note 处理偏移量0x2e30处的异常处理器上下文
  */
-void HandleSystemExceptionAtOffset110EE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void HandleSystemExceptionContextRelease(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + 0x2e30);
+  // 从异常处理器列表中获取异常上下文
+  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + ExceptionHandlerContextOffset2E30);
   if (exceptionContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) - 1;
     }
-      HandleSystemException(exceptionContext,ExceptionDataPointer,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+    // 执行异常处理释放
+    HandleSystemException(exceptionContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -130113,27 +130120,32 @@ void HandleSystemExceptionAtOffset110EE0(DataBuffer operationBase,int64_t dataBu
 
 
 /**
- * @brief 系统异常处理器110F00
+ * @brief 处理系统异常上下文终止
  * 
- * 该函数负责处理系统异常，从0x2e50偏移量处获取异常上下文，
+ * 该函数负责处理系统异常的上下文终止，从异常处理器列表中获取异常上下文，
  * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器列表信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911f00
+ * @note 处理偏移量0x2e50处的异常处理器上下文
  */
-void HandleSystemExceptionAtOffset110F00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void HandleSystemExceptionContextTermination(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + 0x2e50);
+  // 从异常处理器列表中获取异常上下文
+  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + ExceptionHandlerContextOffset2E50);
   if (exceptionContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) - 1;
     }
-      HandleSystemException(exceptionContext,ExceptionDataPointer,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+    // 执行异常处理终止
+    HandleSystemException(exceptionContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
