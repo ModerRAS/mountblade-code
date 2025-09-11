@@ -248304,7 +248304,7 @@ LAB_1802016f7:
           uStack_1f8 = MemoryAllocationHandle;
         } while (SystemStringIndex < BufferValidationStatus);
       }
-      FUN_1806284c0(&pCoreEngineUnsignedValue208,
+      ProcessSystemFloatData(&pCoreEngineUnsignedValue208,
                     *(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x88) + -4 + (long long)StringLength * 4));
       FUN_1800ba4b0(StackProcessingVariable1B8,&SystemMemoryAllocationParameter);
       MemoryAllocationHandle = SystemValue1a8 + 6;
