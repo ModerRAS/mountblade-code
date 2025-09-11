@@ -244119,7 +244119,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
           *(uint8_t *)(StringOffset + 0xf9) = 1;
           UNLOCK();
         }
-        FUN_1802decc0(SystemStringIndex,OperationBufferSize,*(void *)(ContextHandle + 0x3a0),&SystemOperationValidationFlag,&uStack_118);
+        ExecuteSystemDataConversion(SystemStringIndex,OperationBufferSize,*(void *)(ContextHandle + 0x3a0),&SystemOperationValidationFlag,&uStack_118);
         ProcessingStatusFlag = *(void *)(*(long long *)(ContextHandle + 0x3a0) + 0x1d8);
         MemoryAddressMaskPointer = *(void *)(*(long long *)(ContextHandle + 0x3a0) + 0x1b8);
         Utf16Char = *(uint *)(SystemStringIndex + 0x314);
@@ -244330,7 +244330,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   SystemTemporaryData20 = SystemConfigurationHandle;
   SystemConfigurationHandle = *ContextHandle;
   if (*(char *)(ContextHandle + 0xc0e7) == '\0') {
-    FUN_180199930(ContextHandle);
+    ProcessSystemCharacterEncodingAndValidation(ContextHandle);
   }
   InitializeSystemCharacterStatusBuffer(SystemStringTemplateErrorD,0,0);
   SystemTemporaryData10 = 0;
@@ -244384,7 +244384,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   SystemEventQueuePointer = NULL;
   CalculationFunctionPointer = 0;
   SystemStackProcessingValue78 = 3;
-  FUN_1801b84e0(ContextHandle + 0xc060,&SystemOperationStatusMaskPointer);
+  ValidateSystemOperationStatus(ContextHandle + 0xc060,&SystemOperationStatusMaskPointer);
   (**(code **)(pSystemStackRegisterBuffer + 0x10))(&pSystemStackRegisterBuffer,&CoreEngineDataTemplate);
   MemoryPoolIndex = (long long)SystemEventQueuePointer - (long long)SystemOperationStatusMaskPointer >> SystemEventContextShiftCount;
   SystemTemporaryData10 = MemoryPoolIndex;
@@ -245119,17 +245119,17 @@ LAB_18019e833:
                 *(uint32_t *)(BufferStatus1 + 0x2150) =
                      *(uint32_t *)(*(long long *)(BufferStatus1 + 0x2148) + 0x3054);
                 ValidateSystemMemoryAllocation(BufferStatus1);
-                FUN_1803769d0(BufferStatus1);
+                CleanupSystemMemoryResources(BufferStatus1);
                 ProcessSystemDataManager(*(long long *)(BufferStatus + 0x448) + 0x21e0);
                 ProcessSystemDataManager(BufferStatus + 0x81b0);
               }
               if (SystemValidationStatusSecondary == '\0') {
-                FUN_1801aedf0(BufferStatus);
+                ResetSystemMemoryAllocation(BufferStatus);
               }
               return;
             }
             do {
-              FUN_1802f07e0(*PrimaryProcessingStatusFlag2);
+              ProcessSystemValidationFlag(*PrimaryProcessingStatusFlag2);
               UnicodeContextHandle = (int)Utf16ConversionContext + 1;
               Utf16ConversionContext = (unsigned long long)UnicodeContextHandle;
               PrimaryProcessingStatusFlag2 = PrimaryProcessingStatusFlag2 + 1;
@@ -245138,7 +245138,7 @@ LAB_18019e833:
           } while( true );
         }
         do {
-          FUN_1802f0f10(*PrimaryProcessingStatusFlag2);
+          ExecuteSystemValidation(*PrimaryProcessingStatusFlag2);
           UnicodeContextHandle = (int)Utf16ConversionContext + 1;
           Utf16ConversionContext = (unsigned long long)UnicodeContextHandle;
           PrimaryProcessingStatusFlag2 = PrimaryProcessingStatusFlag2 + 1;
