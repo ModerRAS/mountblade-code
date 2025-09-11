@@ -5500,9 +5500,9 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectio
     }
     
     // 检查连接状态
-    if (*ConnectionStatus & NetworkStatusConnectedFlag) {
+    if (*connectionStatus & NetworkStatusConnectedFlag) {
         // 连接已建立，执行连接维护操作
-        connectionValidationStatus = ValidateConnectionIntegrity(NetworkConnectionContext);
+        connectionValidationStatus = ValidateConnectionIntegrity(connectionContext);
         
         if (connectionValidationStatus == NetworkValidationSuccess) {
             // 连接状态良好，更新连接时间戳
@@ -5515,7 +5515,7 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectio
         }
     } else {
         // 连接未建立，尝试建立新连接
-        processedConnectionHandle = EstablishNetworkConnection(NetworkConnectionContext, TimeoutValue);
+        processedConnectionHandle = EstablishNetworkConnection(connectionContext, timeoutValue);
         
         if (processedConnectionHandle != NetworkErrorConnectionFailed) {
             // 连接成功，更新状态
@@ -5551,7 +5551,7 @@ static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *connection
     uint32_t securityValidationResult;
     
     // 执行数据完整性检查
-    dataIntegrityCheckResult = PerformDataIntegrityCheck(NetworkConnectionContext);
+    dataIntegrityCheckResult = PerformDataIntegrityCheck(connectionContext);
     
     // 执行安全性验证
     securityValidationResult = PerformSecurityValidation(NetworkConnectionContext);
