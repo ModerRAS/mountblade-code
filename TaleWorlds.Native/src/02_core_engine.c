@@ -248203,7 +248203,7 @@ LAB_1802016f7:
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSeptenvigintenary,pSystemStatusValue);
-      StringLength = FUN_180203420();
+      StringLength = FinalizeSystemMemoryOperation();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
