@@ -42789,7 +42789,7 @@ uint64_t ValidateSystemMemoryStatus(void)
   memoryDataValue = ProcessSystemDataWithValidation(*memoryBufferContext,memorysystemContext + ContextOperationOffset60);
   memoryValidationStatus = (uint64_t)memoryDataValue;
   if (memoryDataValue == 0) {
-    memoryValidationStatus = 0x1c;
+    memoryValidationStatus = MemoryValidationStatusFailed;
     if (*(uint *)(memoryBufferContext + 8) < 0x36) {
       operationResult = 0;
     }
