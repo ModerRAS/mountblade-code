@@ -171,32 +171,26 @@
 #define TemporaryExceptionHandlerOffset68 0x68                  // 临时异常处理器偏移量68
 #define TemporaryExceptionHandlerOffset70 0x70                  // 临时异常处理器偏移量70
 
-// 系统数据参数偏移量常量
-#define SystemDataParameterOffset20 0x20                       // 系统数据参数偏移量20
-#define SystemDataParameterOffset48 0x48                       // 系统数据参数偏移量48
-#define SystemDataParameterOffset58 0x58                       // 系统数据参数偏移量58
-#define SystemDataParameterOffset30 0x30                       // 系统数据参数偏移量30
+// 异常处理器上下文偏移常量
+#define ExceptionHandlerContextF0Offset 0xf0                 // 异常处理器上下文F0偏移 - 用于验证上下文索引
+#define ExceptionHandlerContextF8Offset 0xf8                 // 异常处理器上下文F8偏移 - 用于异常处理器检查
 
 // 系统数据块大小常量
 #define SystemDataElementSize 0x30                             // 系统数据块元素大小
 
-// 异常处理器偏移量常量
-#define ExceptionHandlerOffset3B0 0x3b0
-#define ExceptionHandlerOffset470 0x470
-#define ExceptionHandlerOffset4D0 0x4d0
+// 资源队列和验证偏移常量
+#define ResourceQueueStepSize 0x20                            // 资源队列步长 - 用于队列遍历
+#define ValidationFlagOffset3541 0x3541                       // 验证标志偏移3541 - 用于资源验证
+#define ValidationContextOffset3538 0x3538                     // 验证上下文偏移3538 - 用于上下文链接
 
-// 数据缓冲区偏移量常量
-#define DataBufferOffsetA8 0xa8
-#define DataBufferOffsetD0 0xd0
-#define DataBufferOffsetD8 0xd8
-#define DataBufferOffsetE0 0xe0
-#define DataBufferOffset290 0x290
-#define DataBufferOffset2A0 0x2a0
-#define DataBufferOffset260 0x260
-#define DataBufferOffset270 0x270
-#define DataBufferOffset298 0x298
-#define DataBufferOffset360 0x360
-#define DataBufferOffsetF0 0xf0
+// 内存管理和引用常量
+#define MemoryReferencePointerOffset 0x10                      // 内存引用指针偏移 - 用于引用计数
+#define ResourceDataPointerOffset 0x18                        // 资源数据指针偏移 - 用于数据访问
+#define ResourceDataPointerOffset20 0x20                      // 资源数据指针偏移20 - 用于数据更新
+#define ReferenceCountOffset 0x24                             // 引用计数偏移 - 用于资源管理
+#define ResourceValidationCheckOffset 0x2c                     // 资源验证检查偏移 - 用于验证状态
+#define ValidationStatusPointerE0Offset 0xe0                   // 验证状态指针E0偏移 - 用于内存区域验证
+#define ValidationStatusPointerOffset 0x28                     // 验证状态指针偏移 - 用于状态验证
 #define DataBufferOffset1B8 0x1b8
 #define DataBufferOffsetB1 0xb1
 #define DataBufferOffset2B0 0x2b0
@@ -15597,24 +15591,24 @@ uint32_t SystemMemoryBlockCount;             // 系统内存块计数 - 存储�
  */
 bool ValidateUtilityMemoryAccessPermissions(void);
 // 工具系统内存验证相关变量
-void *systemMemoryValidationContext;
-int32_t memoryValidationResultCode;
-int32_t memoryValidationErrorCode;
-int32_t utilityMemoryValidationTertiary;
-int32_t utilityMemoryValidationQuaternary;
-int32_t utilityMemoryValidationQuinary;
-int32_t utilityMemoryValidationSenary;
-int32_t utilityMemoryValidationSeptenary;
-int32_t utilityMemoryValidationOctonary;
-int32_t utilityMemoryValidationNonary;
-int32_t utilityMemoryValidationDenary;
+void* SystemMemoryValidationContext;                // 系统内存验证上下文 - 内存验证的上下文信息
+int32_t MemoryValidationResultCode;                  // 内存验证结果码 - 验证操作的返回结果
+int32_t MemoryValidationErrorCode;                   // 内存验证错误码 - 验证失败的错误信息
+int32_t MemoryValidationTertiary;                    // 内存验证第三级参数 - 验证过程中的第三级数据
+int32_t MemoryValidationQuaternary;                  // 内存验证第四级参数 - 验证过程中的第四级数据
+int32_t MemoryValidationQuinary;                     // 内存验证第五级参数 - 验证过程中的第五级数据
+int32_t MemoryValidationSenary;                      // 内存验证第六级参数 - 验证过程中的第六级数据
+int32_t MemoryValidationSeptenary;                   // 内存验证第七级参数 - 验证过程中的第七级数据
+int32_t MemoryValidationOctonary;                    // 内存验证第八级参数 - 验证过程中的第八级数据
+int32_t MemoryValidationNonary;                      // 内存验证第九级参数 - 验证过程中的第九级数据
+int32_t MemoryValidationDenary;                      // 内存验证第十级参数 - 验证过程中的第十级数据
 // 工具系统内存验证数据块11-13
-void* utilityMemoryValidationDataUndenary;
-void* utilityMemoryValidationDataDuodenary;
-void* utilityMemoryValidationDataTerdenary;
-// 工具系统内存管理数据块Fourteen-FortyThree
-void* UtilityMemoryManagementPrimaryBlock;
-void* UtilityMemoryManagementSecondaryBlock;
+void* MemoryValidationDataUndenary;                  // 内存验证第十一数据块 - 第十一级验证数据
+void* MemoryValidationDataDuodenary;                 // 内存验证第十二数据块 - 第十二级验证数据
+void* MemoryValidationDataTerdenary;                 // 内存验证第十三数据块 - 第十三级验证数据
+// 工具系统内存管理数据块
+void* MemoryManagementPrimaryBlock;                   // 内存管理主数据块 - 主要内存管理数据
+void* MemoryManagementSecondaryBlock;                 // 内存管理辅助数据块 - 辅助内存管理数据
 // 工具系统内存管理数据块 - 内存池指针
 void* SystemMemoryManagementTertiaryDataBlock;
 void* SystemMemoryManagementQuaternaryDataBlock;
@@ -32179,13 +32173,13 @@ void ProcessFloatingPointData(float inputValue)
     baseValue = systemValue;
     do {
       processedValue = *floatDataArrayPointer;
-      if (validationFloatValue != 0.0) {
+      if (processedValue != 0.0) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingValidationError;
-        ValidationDataBuffer = dataPointerD;
-        StackFloatRegisterB = loopCounterFloat;
-        StackFloatRegisterC = floatValidationValue;
-        operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
+        ValidationDataBuffer = dataBuffer;
+        StackFloatRegisterB = arrayIterationCounter;
+        StackFloatRegisterC = processedValue;
+        operationResult = ValidateDataIntegrityA0(processedValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
       arrayIterationCounter = (float)((int)arrayIterationCounter + 1);
@@ -70535,14 +70529,14 @@ void CleanupExceptionDataTableAndSynchronization(DataBuffer operationBase,int64_
 void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *resourceReferenceCount;
-  char *validationFlag;
-  DataBuffer *validationStatusPointer;
-  int64_t calculatedIndex;
-  int64_t resourceIterator;
-  uint64_t dataFlags;
+  int *resourceReferenceCounter;
+  char *resourceValidationFlag;
+  DataBuffer *systemValidationStatus;
+  int64_t validationContextIndex;
+  int64_t threadContextIterator;
+  uint64_t memoryRegionFlags;
   
-  resourceIterator = *(int64_t *)(dataBuffer + ExceptionHandlerListOffset);
+  threadContextIterator = *(int64_t *)(dataBuffer + ExceptionHandlerListOffset);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset);
