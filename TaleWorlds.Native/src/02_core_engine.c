@@ -248275,7 +248275,7 @@ LAB_1802016f7:
       uStack_1f8 = MemoryAllocationHandle;
       if (0x14 < BufferValidationStatus) {
         do {
-          FUN_1806284c0(&pCoreEngineUnsignedValue208,*(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x88) + SystemStringIndex * 4));
+          ProcessSystemFloatData(&pCoreEngineFloatDataProcessor,*(uint32_t *)(*(long long *)(SystemContextSize + 0x88) + SystemContextStringIndex * 4));
           MemoryAllocationHandle = uStack_1f8 + 1;
           CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,MemoryAllocationHandle);
           *(uint16_t *)(UnsignedProcessingStatusFlag + uStack_1f8) = 0x2c;
