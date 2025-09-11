@@ -2727,6 +2727,10 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackUnicodeProcessingValue StackUnicodeCodePointValue      // 栈Unicode码点值（使用35次）
 #define StackSystemConfigurationValue StackSystemConfigData        // 栈系统配置数据（使用35次）
 #define StackBufferDataOperation StackBufferManagementOperation    // 栈缓冲区管理操作（使用34次）
+#define SystemStackBufferCopy SystemKeyStackBuffer                // 系统栈缓冲区副本
+#define StackBuffer570 SystemEventProcessingFlag                 // 系统事件处理标志570
+#define StackBufferAddress StackMemoryBaseAddress                 // 栈缓冲区地址
+#define StackTempPointer SystemTemporaryStackPointer              // 系统临时栈指针
 
 // 额外栈变量语义化定义
 #define StackFloatValue8f8 StackExtendedPrecisionFloat            // 栈扩展精度浮点数8f8
@@ -260663,7 +260667,7 @@ LAB_18020c1b3:
   CalculationFunctionAddress = 0;
   StackProcessingDataBuffer = 3;
   ProcessSystemContextAllocation(&SystemTemporaryValue90, &StackParameter18);
-  FUN_1802e8c60(Utf8SourcePointer, &SystemTemporaryValue90);
+  FinalizeStringEncodingOperation(Utf8SourcePointer, &SystemTemporaryValue90);
   BufferInitializationFlag = NULL;
   DataProcessingFlags = NULL;
   CharacterStatusBuffer9 = NULL;
@@ -261329,7 +261333,7 @@ LAB_18020ce30:
   SystemContextControllerB0 = (long long *)0x0;
   SystemContextControllerA8 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 3;
-  FUN_1802e8c60(ConversionContext);
+  FinalizeStringEncodingOperation(ConversionContext);
   if (SystemContextControllerB0 < SystemContextControllerA8) {
     *SystemContextControllerB0 = (long long)ConversionContext;
     pStringOffset = SystemContextControllerB0;
@@ -261414,7 +261418,7 @@ LAB_18020ceb6:
   LockOperationResult0 = iStack_90;
   if ((unsigned long long)(ContextHandle9[1] - SystemDataTablePointer >> 3) <= (unsigned long long)(long long)iStack_94) {
 LAB_18020d12d:
-    FUN_18020b790(EnginePointerBuffer,iStack_8c,LockOperationResult0);
+    LockSystemResource(EnginePointerBuffer,iStack_8c,LockOperationResult0);
     return;
   }
   goto LAB_18020ce30;
