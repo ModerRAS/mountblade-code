@@ -65033,7 +65033,7 @@ uint8_t GetSystemStatusFlag(void)
   uint8_t resourceCreationFlags;
   long long ResourceMemoryOffset;
   long long MemoryBlockAddress;
-  int SystemIndex;
+  int SystemIterationIndex;
   long long SystemDataIndexPointer;
   
   do {

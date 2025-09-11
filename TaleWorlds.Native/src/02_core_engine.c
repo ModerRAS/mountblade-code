@@ -290343,7 +290343,7 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long 
   long long *BufferAllocationState;
   uint32_t *SystemEventTemplatePointer;
   void *MemoryAddressMaskPointer;
-  uint8_t aProcessingCounter [32];
+  uint8_t ProcessingCounter [32];
   uint32_t ErrorCode;
   uint64_t SystemFlagE;
   long long *plStack_d8;
