@@ -98,6 +98,10 @@
 #define FUN_18022ba00 SetupSystemMemoryCallbacks                         // 初始化系统内存回调配置
 #define FUN_18022ba40 ExecuteSystemInitialization                        // 执行系统初始化
 #define FUN_1801166f0 VerifySystemBufferAndProcessData                   // 验证系统缓冲区并处理数据
+#define FUN_180047e70 ProcessSystemEventData                              // 处理系统事件数据
+#define FUN_180639ec0 ValidateSystemContextIntegrity                      // 验证系统上下文完整性
+#define FUN_18017b400 ProcessSystemMemoryAllocation                        // 处理系统内存分配
+#define FUN_180123c00 HandleSystemStringEncoding                          // 处理系统字符串编码
 #define FUN_180320050 CleanSystemMemoryResources                         // 执行系统内存清理
 #define FUN_1801601c0 HandleContextHandleTableOperations                 // 处理上下文句柄表操作
 #define FUN_18015c190 TransformUtf16ToUtf8Encoding                       // 转换UTF-16到UTF-8编码
