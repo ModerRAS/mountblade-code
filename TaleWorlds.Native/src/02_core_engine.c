@@ -84642,7 +84642,7 @@ uint64_t * ProcessSystemDataStructureSearchAndValidation(long long *ContextHandl
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
   uint64_t SystemChecksum;
-  uint8_t auStack_18 [16];
+  uint8_t SystemBufferParameters [16];
   
   BufferAllocationState = (long long *)*ContextHandle;
   if ((Utf16EndPointer == BufferAllocationState) || (Utf16EndPointer == ContextHandle)) {
@@ -84695,7 +84695,7 @@ LAB_18009c037:
     return OperationBufferSize;
   }
 LAB_18009c054:
-  MemoryAddressMaskPointer = (void *)ProcessSystemDataAndAllocateTertiary(ContextHandle,auStack_18);
+  MemoryAddressMaskPointer = (void *)ProcessSystemDataAndAllocateTertiary(ContextHandle,SystemBufferParameters);
   *ContextHandleSize = *MemoryAddressMaskPointer;
   return OperationBufferSize;
 }
@@ -127021,7 +127021,7 @@ void UpdateSystemDataTable(int *ContextHandle,uint OperationBufferSize,uint Utf8
   unsigned long long HashCode;
   uint *MemoryAddressMaskPointer;
   unsigned long long SearchKey;
-  uint auStack_18 [2];
+  uint SystemOperationParameters [2];
   uint uStack_10;
   
   int DataKey = *ContextHandle;
@@ -127042,9 +127042,9 @@ void UpdateSystemDataTable(int *ContextHandle,uint OperationBufferSize,uint Utf8
     MemoryAddressMaskPointer[2] = Utf8SourcePointer;
     return;
   }
-  auStack_18[0] = OperationBufferSize;
+  SystemOperationParameters[0] = OperationBufferSize;
   uStack_10 = Utf8SourcePointer;
-  ProcessMemoryBlockExtension(ContextHandle,MemoryAddressMaskPointer,auStack_18);
+  ProcessMemoryBlockExtension(ContextHandle,MemoryAddressMaskPointer,SystemOperationParameters);
   return;
 }
 
@@ -127070,7 +127070,7 @@ void ProcessSystemValidation(int *ContextHandle,uint OperationBufferSize,uint64_
   unsigned long long UnicodeCodePoint;
   uint *MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
-  uint auStack_18 [2];
+  uint SystemOperationParameters [2];
   uint64_t uStack_10;
   
   IntegerValue = *ContextHandle;
@@ -127091,9 +127091,9 @@ void ProcessSystemValidation(int *ContextHandle,uint OperationBufferSize,uint64_
     *(void *)(MemoryAddressMaskPointer + 2) = Utf8SourcePointer;
     return;
   }
-  auStack_18[0] = OperationBufferSize;
+  SystemOperationParameters[0] = OperationBufferSize;
   uStack_10 = Utf8SourcePointer;
-  ProcessMemoryBlockExtension(ContextHandle,MemoryAddressMaskPointer,auStack_18);
+  ProcessMemoryBlockExtension(ContextHandle,MemoryAddressMaskPointer,SystemOperationParameters);
   return;
 }
 
@@ -231953,7 +231953,7 @@ long long * ProcessUtf8ToUtf16EncodingConversion(long long *ContextHandle,long l
   long long *SystemDataTablePointer;
   long long systemLoopCounter;
   long long lStackX_8;
-  uint8_t auStack_18 [16];
+  uint8_t SystemBufferParameters [16];
   
   MemoryBlockListHead = ContextHandle;
   if ((long long *)ContextHandle[2] != (long long *)0x0) {
@@ -232066,7 +232066,7 @@ LAB_18018cbba:
     }
   }
 LAB_18018cbd8:
-  MemoryBlockListHead = (long long *)ProcessSystemCharacterEncodingConversion(ContextHandle,auStack_18,SystemContextPtr,OperationBufferSize);
+  MemoryBlockListHead = (long long *)ProcessSystemCharacterEncodingConversion(ContextHandle,SystemBufferParameters,SystemContextPtr,OperationBufferSize);
   lStackX_8 = *MemoryBlockListHead;
 LAB_18018cbeb:
   return (long long *)(lStackX_8 + 0x40);
