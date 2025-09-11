@@ -1,20 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 04_ui_system.c
- * @brief Mount & Blade: Native UI系统实现
- * 
- * 该文件实现了游戏的核心UI系统，包括：
- * - UI组件管理和渲染
- * - 事件处理和状态管理
- * - 资源管理和内存分配
- * - 布局计算和动画处理
- * 
- * @author Ghidra逆向工程
- * @version 1.0
- * @date 2025
- */
-
 // UI系统基本类型定义
 typedef uint8_t UIByte;
 typedef uint16_t UIWord;
@@ -322,6 +307,7 @@ typedef enum {
 #define FUN_18089dcd6 UIReturnEmptyFunctionB                      // UI系统空返回函数B
 #define FUN_18089dcf0 ProcessUIEventDataWithValidation             // 处理UI事件数据与验证
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
+#define FUN_180762660 ProcessUIDataWithContext                  // 处理带上下文的UI数据
 
 /**
  * @brief 处理UI上下文数据操作
@@ -49999,11 +49985,11 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
         sVar132 = *(short *)piterationData3[3];
         BufferCapacityValue6 = *(short *)(piterationData3[3] + 2);
         BufferCapacityValue8 = *(short *)(piterationData3[3] + 4);
-        sVar160 = *(short *)(piterationData3[3] + 6);
+        BufferDepth160 = *(short *)(piterationData3[3] + 6);
         ContextSecondValue4 = iterationData19._6_2_;
         iterationData70._0_12_ = iterationData19._0_12_;
         iterationData70._12_2_ = ContextSecondValue4;
-        iterationData70._14_2_ = sVar160;
+        iterationData70._14_2_ = BufferDepth160;
         iterationData69._12_4_ = iterationData70._12_4_;
         iterationData69._0_10_ = iterationData19._0_10_;
         iterationData69._10_2_ = BufferCapacityValue8;
@@ -50015,20 +50001,20 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
         bufferValue._2_2_ = BufferCapacityValue6;
         ContextSecondValue2 = iterationData19._2_2_;
         bufferValue._0_2_ = ContextSecondValue2;
-        sVar274 = iterationData19._0_2_;
-        iterationData67._0_4_ = CONCAT22(sVar132,sVar274);
+        BufferOffset274 = iterationData19._0_2_;
+        iterationData67._0_4_ = CONCAT22(sVar132,BufferOffset274);
         iterationData67._4_12_ = bufferValue;
-        sVar162 = *(short *)piterationData3[5];
-        sVar163 = *(short *)(piterationData3[5] + 2);
-        sVar164 = *(short *)(piterationData3[5] + 4);
-        sVar165 = *(short *)(piterationData3[5] + 6);
-        sVar74 = iterationData54._6_2_;
+        TextureWidth162 = *(short *)piterationData3[5];
+        TextureHeight163 = *(short *)(piterationData3[5] + 2);
+        TextureDepth164 = *(short *)(piterationData3[5] + 4);
+        TextureMips165 = *(short *)(piterationData3[5] + 6);
+        TextureOffset74 = iterationData54._6_2_;
         aCounterResult4._0_12_ = iterationData54._0_12_;
-        aCounterResult4._12_2_ = sVar74;
-        aCounterResult4._14_2_ = sVar165;
+        aCounterResult4._12_2_ = TextureOffset74;
+        aCounterResult4._14_2_ = TextureMips165;
         aCounterResult3._12_4_ = aCounterResult4._12_4_;
         aCounterResult3._0_10_ = iterationData54._0_10_;
-        aCounterResult3._10_2_ = sVar164;
+        aCounterResult3._10_2_ = TextureDepth164;
         sVar248 = iterationData54._4_2_;
         aCounterResult2._10_6_ = aCounterResult3._10_6_;
         aCounterResult2._0_8_ = iterationData54._0_8_;
@@ -50042,30 +50028,30 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
         sVar161 = *(short *)(piterationData3[5] + 10);
         sVar215 = *(short *)(piterationData3[5] + 0xc);
         sVar244 = *(short *)(piterationData3[5] + 0xe);
-        sVar250 = iterationData54._8_2_;
-        sVar251 = iterationData54._10_2_;
-        aresult94._0_8_ = CONCAT26(sVar161,CONCAT24(sVar251,CONCAT22(BufferCapacityValue7,sVar250)));
-        sVar78 = iterationData54._12_2_;
-        aresult94._8_2_ = sVar78;
+        TextureOffset250 = iterationData54._8_2_;
+        TextureOffset251 = iterationData54._10_2_;
+        aresult94._0_8_ = CONCAT26(sVar161,CONCAT24(TextureOffset251,CONCAT22(BufferCapacityValue7,TextureOffset250)));
+        TextureOffset78 = iterationData54._12_2_;
+        aresult94._8_2_ = TextureOffset78;
         aresult94._10_2_ = sVar215;
         sVar79 = iterationData54._14_2_;
         iterationData14._12_2_ = sVar79;
         iterationData14._0_12_ = aresult94;
         iterationData14._14_2_ = sVar244;
-        sVar70 = *(short *)(piterationData3[3] + 8);
-        sVar71 = *(short *)(piterationData3[3] + 10);
-        sVar72 = *(short *)(piterationData3[3] + 0xc);
-        sVar73 = *(short *)(piterationData3[3] + 0xe);
+        BufferWidth70 = *(short *)(piterationData3[3] + 8);
+        BufferHeight71 = *(short *)(piterationData3[3] + 10);
+        BufferDepth72 = *(short *)(piterationData3[3] + 0xc);
+        BufferMips73 = *(short *)(piterationData3[3] + 0xe);
         ContextSecondValue5 = iterationData19._8_2_;
-        sVar275 = iterationData19._10_2_;
-        iterationData79._0_8_ = CONCAT26(sVar71,CONCAT24(sVar275,CONCAT22(sVar70,ContextSecondValue5)));
-        sVar276 = iterationData19._12_2_;
-        iterationData79._8_2_ = sVar276;
-        iterationData79._10_2_ = sVar72;
-        sVar277 = iterationData19._14_2_;
-        iterationData96._12_2_ = sVar277;
+        BufferOffset275 = iterationData19._10_2_;
+        iterationData79._0_8_ = CONCAT26(BufferHeight71,CONCAT24(BufferOffset275,CONCAT22(BufferWidth70,ContextSecondValue5)));
+        BufferOffset276 = iterationData19._12_2_;
+        iterationData79._8_2_ = BufferOffset276;
+        iterationData79._10_2_ = BufferDepth72;
+        BufferOffset277 = iterationData19._14_2_;
+        iterationData96._12_2_ = BufferOffset277;
         iterationData96._0_12_ = iterationData79;
-        iterationData96._14_2_ = sVar73;
+        iterationData96._14_2_ = BufferMips73;
         aeventCodeType39._0_8_ = aeventCodeType19._0_8_;
         aeventCodeType39._8_4_ = adataPointer._0_4_;
         aeventCodeType39._12_4_ = aresult1._0_4_;
@@ -171556,8 +171542,8 @@ UIDword FUN_1807625db(void)
 
  
 
- void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
-void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
+ void ProcessUIDataWithContext(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
+void ProcessUIDataWithContext(longlong uiContext,int dataSource,UIHandle *targetBuffer,int bufferSize)
 
 {
   uint *resultPointer;
