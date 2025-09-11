@@ -2505,6 +2505,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define InitializeSystemEvent FUN_1801b8450              // 初始化系统事件
 #define ProcessSystemEvent FUN_1801afbc0                  // 处理系统事件
 #define ProcessSystemEventQueue FUN_1801af7a0              // 处理系统事件队列
+#define ProcessSystemContextFinalization FUN_1801b02f0    // 处理系统上下文最终化
 #define ProcessSystemEventFinalization FUN_180197a20      // 处理系统事件最终化
 
 // 系统资源管理函数
@@ -238812,7 +238813,7 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
             pSystemShortValue1 = (short *)(MemoryBlockIndex + 0x2b0);
             *pSystemShortValue1 = *pSystemShortValue1 + 1;
             if (*(long long *)(MemoryBlockIndex + 0x168) != 0) {
-              FUN_1802eeba0();
+              ProcessSystemEventCleanup();
             }
           }
         }
@@ -238824,13 +238825,13 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
       (*(char *)((long long)ContextHandle + 0x2a62) != '\0')) && (*(int *)(SystemConfigData + 0xaf0) != 0)) {
     (**(code **)(*ContextHandle[99] + 0x40))();
   }
-  FUN_1801b02f0(ContextHandle);
+  ProcessSystemContextFinalization(ContextHandle);
   if (((ContextHandle[99] != (long long *)0x0) && (*(char *)((long long)ContextHandle + 0x2a61) != '\0')) &&
      ((*(char *)((long long)ContextHandle + 0x2a62) != '\0' && (*(int *)(SystemConfigData + 0xaf0) != 0)))) {
     (**(code **)(*ContextHandle[99] + 0x40))();
   }
-  FUN_1802d1da0(ContextHandle[0x4c],afStackX_10[0]);
-  FUN_1802d1e30(ContextHandle[0x4c]);
+  ProcessSystemConfigurationUpdate(ContextHandle[0x4c],afStackX_10[0]);
+  ProcessSystemConfigurationFinalize(ContextHandle[0x4c]);
   if (*(int *)(CoreEngineSystemContext + SystemContextEventOffset340) != 0) {
     (**(code **)(CoreEngineEventHandler + 0x118)              (*(uint32_t *)((long long)ContextHandle + 0x286c),afStackX_10[0]);
   }
