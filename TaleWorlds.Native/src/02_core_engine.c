@@ -238028,7 +238028,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   *(uint8_t *)(ContextHandle + 0xc0e7) = 0;
   *(uint8_t *)(ContextHandle + 0xc0f4) = 0;
   CalculatedCodePoint = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
-  MemoryPoolSizePointer = (long long *)FUN_180275090(CalculatedCodePoint);
+  MemoryPoolSizePointer = (long long *)InitializeSystemMemoryPool(CalculatedCodePoint);
   if (MemoryPoolSizePointer != (long long *)0x0) {
     plStack_110 = MemoryPoolSizePointer;
     (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
@@ -240150,7 +240150,7 @@ long long * ProcessSystemMemoryBlockAndContextData(uint64_t ContextHandle,long l
   else {
     FUN_1801a0860(ContextHandle,&SystemEventFlagPointer);
     MemoryPoolIndex = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
-    MemoryBlockIndex = (long long *)FUN_180275090(MemoryPoolIndex);
+    MemoryBlockIndex = (long long *)InitializeSystemMemoryPool(MemoryPoolIndex);
     if (MemoryBlockIndex != (long long *)0x0) {
       StackProcessingBuffer = MemoryBlockIndex;
       (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
@@ -243922,7 +243922,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
   
   SystemProcessFlagB = 0xfffffffffffffffe;
   MemoryValidationChecksum = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
-  SystemDataTable = (long long *)FUN_180275090(MemoryValidationChecksum);
+  SystemDataTable = (long long *)InitializeSystemMemoryPool(MemoryValidationChecksum);
   (**(code **)(*SystemDataTable + 0x100))(SystemDataTable,0);
   MemoryLoopIndex = *ContextHandleSize;
   ConfigurationIterator = OperationBufferSize[1] - MemoryLoopIndex >> 3;
