@@ -40069,6 +40069,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float validationCounter;           // 验证计数器，用于存储验证操作的计数
   float secondValidationValue;       // 次级验证值，用于存储次级验证的结果
   float thirdValidationValue;        // 三级验证值，用于存储三级验证的结果
+  DataBuffer* contextPointerD;       // 上下文指针D，用于存储上下文数据的指针
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
