@@ -247697,7 +247697,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterQuinary,pSystemStatusValue);
-      StringLength = FUN_1802036a0();
+      StringLength = ExecuteSystemStringEncoding();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -247718,27 +247718,27 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterSenary,pSystemStatusValue);
       SystemStringIndex = CoreEngineMemoryContext;
-      StringLength = FUN_18010cc20(CoreEngineMemoryContext);
+      StringLength = RetrieveSystemStringIndex(CoreEngineMemoryContext);
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
       else {
-        StringLength = FUN_18010cc20(SystemStringIndex);
+        StringLength = RetrieveSystemStringIndex(SystemStringIndex);
         if (StringLength == 1) {
           pSystemStatusValue = &SystemStatusValueTertiary;
         }
         else {
-          StringLength = FUN_18010cc20(SystemStringIndex);
+          StringLength = RetrieveSystemStringIndex(SystemStringIndex);
           if (StringLength == 2) {
             pSystemStatusValue = &SystemStatusValuePrimary;
           }
           else {
-            StringLength = FUN_18010cc20(SystemStringIndex);
+            StringLength = RetrieveSystemStringIndex(SystemStringIndex);
             if (StringLength == 3) {
               pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
             }
             else {
-              StringLength = FUN_18010cc20(SystemStringIndex);
+              StringLength = RetrieveSystemStringIndex(SystemStringIndex);
               pSystemStatusValue = &SystemStatusValuePrimary;
               if (StringLength == 4) {
                 pSystemStatusValue = &SystemStatusValueSecondary;
@@ -247748,7 +247748,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterSeptenary,pSystemStatusValue);
-      StringLength = FUN_180203660();
+      StringLength = ConvertSystemStringEncoding();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -253811,7 +253811,25 @@ LAB_180206c6d:
 
 
 
-06cb0(uint64_t ContextHandle,unsigned long long OperationBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180206cb0(uint64_t ContextHandle,unsigned long long OperationBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理上下文句柄和UTF-16编码数据
+ * 
+ * 该函数负责处理系统上下文句柄和UTF-16编码数据的转换和管理。
+ * 主要功能包括：
+ * - 验证操作缓冲区大小和字符状态
+ * - 管理内存地址掩码和上下文句柄指针
+ * - 处理字符状态缓冲区和主处理状态标志
+ * - 执行内存分配和释放操作
+ * - 调用UTF-16编码处理函数
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180206cb0
+ * @return 无返回值
+ */
+void ProcessContextHandleAndUtf16EncodingData(uint64_t ContextHandle,unsigned long long OperationBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long *PrimaryProcessingStatusFlag;
