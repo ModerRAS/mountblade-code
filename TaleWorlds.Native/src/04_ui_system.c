@@ -6262,6 +6262,7 @@ void* UIGestureCoordinates;
 #define UIContextExtendedDataKK UNK_180957b58            // UI上下文扩展数据KK - 用于扩展操作的数据表
 #define UIContextExtendedDataLL UNK_180957b90            // UI上下文扩展数据LL - 用于扩展操作的数据表
 #define UIContextExtendedDataMM UNK_180957b70            // UI上下文扩展数据MM - 用于扩展操作的数据表
+#define func_0x000180756fe0 ProcessUIDataSourceTransfer            // 处理UI数据源传输
 #define UIContextExtendedDataNN UNK_180957bc8            // UI上下文扩展数据NN - 用于扩展操作的数据表
 #define UIContextExtendedDataOO UNK_180957b40            // UI上下文扩展数据OO - 用于扩展操作的数据表
 #define UIContextExtendedDataPP UNK_180957b28            // UI上下文扩展数据PP - 用于扩展操作的数据表

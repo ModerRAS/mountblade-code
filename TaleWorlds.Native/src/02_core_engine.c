@@ -2303,7 +2303,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 
 // 新增栈变量语义化宏定义
 #define MatrixTransformData fStack0000000000000030             // 栈浮点值30
-#define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
+#define CalculationFloat40 fStack0000000000000040             // 栈浮点值40
 
 // InitializeCoreEngineDataStructure函数变量语义化宏定义
 #define LockResult SystemLockResult                          // 锁结果
@@ -106939,7 +106939,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   uint64_t SystemParameter1;
   uint32_t SystemStatusCode;
   uint64_t ProcessedCharacter;
-  float StackFloatValue40;
+  float CalculationFloat40;
   float TempCalculationResultA;
   float StackFloatValue48;
   float FloatParameter2;
@@ -106997,20 +106997,20 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   pSystemContextPrimaryFloat = *(float **)(SystemConfigurationHandle + 0x19f0);
   FloatOffsetValue = *(float *)(SystemConfigurationHandle + 0x19f8);
   ProcessFloatAndSystemConfiguration(pSystemContextPrimaryFloat,&DataStackBuffer,FloatOffsetValue,0x7f7fffff,CONCAT44(SystemStatusCode,0xbf800000));
-  CalculatedDistance = StackFloatValue40;
-  if (0.0 < StackFloatValue40) {
-    CalculatedDistance = StackFloatValue40 - FloatOffsetValue / *pSystemContextPrimaryFloat;
+  CalculatedDistance = CalculationFloat40;
+  if (0.0 < CalculationFloat40) {
+    CalculatedDistance = CalculationFloat40 - FloatOffsetValue / *pSystemContextPrimaryFloat;
   }
   CalculationBuffer = TempCalculationResultA;
   InputDataBuffer = (float)(int)(CalculatedDistance + 0.95);
   if (0.0 < StackProcessingParameter58) {
     FloatOffsetValue = (ProcessedFloatValue8 - NormalizedParameterValue) * SecondaryFloatValue + NormalizedParameterValue + *(float *)(SystemContext + 0x166c);
     StackUintValue6c = 0x3f000000;
-    StackFloatValue40 = NormalizedParameterValue;
+    CalculationFloat40 = NormalizedParameterValue;
     if ((NormalizedParameterValue <= FloatOffsetValue) &&
-       (StackFloatValue40 = (ProcessedFloatValue8 - StackProcessingParameter58) - *(float *)(SystemContext + 0x1674),
-       FloatOffsetValue <= StackFloatValue40)) {
-      StackFloatValue40 = FloatOffsetValue;
+       (CalculationFloat40 = (ProcessedFloatValue8 - StackProcessingParameter58) - *(float *)(SystemContext + 0x1674),
+       FloatOffsetValue <= CalculationFloat40)) {
+      CalculationFloat40 = FloatOffsetValue;
     }
     pSystemContextValidationFlag = &MemoryAllocationStackBuffer;
     if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
@@ -122095,7 +122095,7 @@ char CoreEngineValidateSystemStatus(void
   char cStack0000000000000034;
   float StackProcessingVariable38;
   float StackProcessedFloat3c;
-  float StackFloatValue40;
+  float CalculationFloat40;
   float TempCalculationResultA;
   byte PrimaryDataStorage;
   long long DataStorageValue;
@@ -122124,7 +122124,7 @@ char CoreEngineValidateSystemStatus(void
   FilterInputValue0 = MatrixTransformElementC + FilterInputValue0;
   StackProcessingVariable38 = MatrixTransformElementC;
   StackProcessedFloat3c = FilterInputValue;
-  StackFloatValue40 = FilterInputValue0;
+  CalculationFloat40 = FilterInputValue0;
   TempCalculationResultA = FilterInputValue1;
   if ((MatrixTransformElementC < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
     *(int *)(FramePointer + 0x70) = SystemContext[0xc];
@@ -122199,8 +122199,8 @@ char CoreEngineValidateSystemStatus(void
     if ((AuxiliaryCalculationFloat10 <= *(float *)(PatternIndex + 0x3ac)) ||
        (StackProcessingVariable38 <= *(float *)(PatternIndex + 0x118))) {
       if (((AuxiliaryCalculationFloat10 < *(float *)(PatternIndex + 0x3ac)) &&
-          (StackFloatValue40 < *(float *)(PatternIndex + 0x118))) &&
-         (ContextSecondaryFloat6 = *(float *)(PatternIndex + 0x118) - StackFloatValue40, Utf16ConversionContext != 0)) {
+          (CalculationFloat40 < *(float *)(PatternIndex + 0x118))) &&
+         (ContextSecondaryFloat6 = *(float *)(PatternIndex + 0x118) - CalculationFloat40, Utf16ConversionContext != 0)) {
         IntegerValue6 = *NullPointerValue;
         SystemContext[0x15] = 1;
         goto LAB_18011c9d6;
@@ -122430,7 +122430,7 @@ char ManageSystemResourceAndRelease(void)
   char cStack0000000000000034;
   float StackProcessingVariable38;
   float StackProcessedFloat3c;
-  float StackFloatValue40;
+  float CalculationFloat40;
   float TempCalculationResultA;
   byte PrimaryDataStorage;
   long long DataStorageValue;
@@ -122459,7 +122459,7 @@ char ManageSystemResourceAndRelease(void)
   FilterInputValue0 = MatrixTransformElementC + FilterInputValue0;
   StackProcessingVariable38 = MatrixTransformElementC;
   StackProcessedFloat3c = FilterInputValue;
-  StackFloatValue40 = FilterInputValue0;
+  CalculationFloat40 = FilterInputValue0;
   TempCalculationResultA = FilterInputValue1;
   if ((MatrixTransformElementC < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
     *(int *)(FramePointer + 0x70) = SystemContext[0xc];
@@ -122534,8 +122534,8 @@ char ManageSystemResourceAndRelease(void)
     if ((AuxiliaryCalculationFloat10 <= *(float *)(PatternIndex + 0x3ac)) ||
        (StackProcessingVariable38 <= *(float *)(PatternIndex + 0x118))) {
       if (((AuxiliaryCalculationFloat10 < *(float *)(PatternIndex + 0x3ac)) &&
-          (StackFloatValue40 < *(float *)(PatternIndex + 0x118))) &&
-         (ContextSecondaryFloat6 = *(float *)(PatternIndex + 0x118) - StackFloatValue40, Utf16ConversionContext != 0)) {
+          (CalculationFloat40 < *(float *)(PatternIndex + 0x118))) &&
+         (ContextSecondaryFloat6 = *(float *)(PatternIndex + 0x118) - CalculationFloat40, Utf16ConversionContext != 0)) {
         IntegerValue6 = *NullPointerValue;
         SystemContext[0x15] = 1;
         goto LAB_18011c9d6;
@@ -166909,7 +166909,7 @@ void InitializeSystemStateAndMemoryManagement(void
   float MatrixTransformData;
   float StackFloatValue34;
   float StackFloatValue38;
-  float StackFloatValue40;
+  float CalculationFloat40;
   uint32_t StackProcessedData48;
   uint32_t StackProcessedFloat4c;
   uint32_t StackProcessingVariable50;
@@ -166935,7 +166935,7 @@ void InitializeSystemStateAndMemoryManagement(void
     SystemContextPrimaryFloat2 = (*(float *)(AllocatedMemorySize + 0x18) - *(float *)(AllocatedMemorySize + 0x14)) *
              *(float *)((long long)ComputedResult * 0x1c + *(long long *)(AllocatedMemorySize + 0x38)) +
              *(float *)(AllocatedMemorySize + 0x14) + *(float *)(FramePointer + 0x40);
-    StackFloatValue40 = SystemContextPrimaryFloat2 + 4.0;
+    CalculationFloat40 = SystemContextPrimaryFloat2 + 4.0;
     StackProcessingVariable38 = SystemContextPrimaryFloat2 - 4.0;
     if (*(int *)(MemoryPoolBlockSize + 0x1b2c) == ValidationResult) {
       *(int *)(MemoryPoolBlockSize + 0x1b34) = ValidationResult;
@@ -166945,8 +166945,8 @@ void InitializeSystemStateAndMemoryManagement(void
     }
     long long AllocatedMemorySize = *(long long *)(MemoryPoolBlockSize + 0x1af8);
     if (((((*(float *)(AllocatedMemorySize + 0x22c) <= BaseFloatValue && BaseFloatValue != *(float *)(AllocatedMemorySize + 0x22c           ) && (SecondaryFloatValue < *(float *)(AllocatedMemorySize + 0x234))) &&
-         (*(float *)(AllocatedMemorySize + 0x228) <= StackFloatValue40 &&
-          StackFloatValue40 != *(float *)(AllocatedMemorySize + 0x228))) &&
+         (*(float *)(AllocatedMemorySize + 0x228) <= CalculationFloat40 &&
+          CalculationFloat40 != *(float *)(AllocatedMemorySize + 0x228))) &&
         (StackProcessingVariable38 < *(float *)(AllocatedMemorySize + 0x230))) ||
        (((ValidationResult != 0 && (ValidationResult == *(int *)(MemoryPoolBlockSize + 0x1b2c))) || (*(char *)(MemoryPoolBlockSize + 0x2e38) != '\0')       )) {
       StackValidationFlag1 = '\0';
@@ -167076,7 +167076,7 @@ void ProcessSystemCharacterAndStatusManagement(void
   float MatrixTransformData;
   float StackProcessedFloat34;
   float StackProcessingVariable38;
-  float StackFloatValue40;
+  float CalculationFloat40;
   uint32_t StackProcessedData48;
   uint32_t StackValue4c;
   uint32_t StackUnsignedValue50;
@@ -167098,7 +167098,7 @@ void ProcessSystemCharacterAndStatusManagement(void
     SecondaryFloatValue = (*(float *)(AllocatedMemorySize + 0x18) - *(float *)(AllocatedMemorySize + 0x14)) *
              *(float *)((long long)StringLength * 0x1c + *(long long *)(AllocatedMemorySize + 0x38)) +
              *(float *)(AllocatedMemorySize + 0x14) + *(float *)(FramePointer + 0x40);
-    StackFloatValue40 = SecondaryFloatValue + 4.0;
+    CalculationFloat40 = SecondaryFloatValue + 4.0;
     StackProcessingVariable38 = SecondaryFloatValue - 4.0;
     if (*(int *)(SystemDataNode + 0x1b2c) == ValidationResult) {
       *(int *)(SystemDataNode + 0x1b34) = ValidationResult;
@@ -167108,8 +167108,8 @@ void ProcessSystemCharacterAndStatusManagement(void
     }
     long long AllocatedMemorySize = *(long long *)(SystemDataNode + 0x1af8);
     if (((((*(float *)(AllocatedMemorySize + 0x22c) <= BaseFloatValue && BaseFloatValue != *(float *)(AllocatedMemorySize + 0x22c           ) && (SecondaryFloatValue < *(float *)(AllocatedMemorySize + 0x234))) &&
-         (*(float *)(AllocatedMemorySize + 0x228) <= StackFloatValue40 &&
-          StackFloatValue40 != *(float *)(AllocatedMemorySize + 0x228))) &&
+         (*(float *)(AllocatedMemorySize + 0x228) <= CalculationFloat40 &&
+          CalculationFloat40 != *(float *)(AllocatedMemorySize + 0x228))) &&
         (StackProcessingVariable38 < *(float *)(AllocatedMemorySize + 0x230))) ||
        (((ValidationResult != 0 && (ValidationResult == *(int *)(SystemDataNode + 0x1b2c))) ||
         (*(char *)(SystemDataNode + 0x2e38) != '\0')))) {
