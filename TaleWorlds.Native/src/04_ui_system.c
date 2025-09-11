@@ -139089,7 +139089,7 @@ UIHandle ProcessUIHandleAllocationAndValidation(void)
          (ProcessUIEvent(0,&MaxIterations,0,1), 0 < MaxIterations)) {
         do {
           processingFlags = processingFlags & 0xffffffffffffff00;
-          FUN_18075ef40(0,ComparisonResult,&ProcessingContext,&ResultBuffer,processingFlags);
+          ProcessUIEventData(0,ComparisonResult,&ProcessingContext,&ResultBuffer,processingFlags);
           if (ProcessingContext == AllocationOffset) {
             processingFlags = processingFlags & 0xffffffffffffff00;
             FUN_180765c40(ResultBuffer,0,0,1,processingFlags);
@@ -153036,7 +153036,7 @@ void FUN_180753170(longlong *uiContext)
     ProcessUIEvent(uStackX_10,aiStackX_8,0,1);
     if (0 < aiStackX_8[0]) {
       do {
-        FUN_18075ef40(uStackX_10,uiValidationResult,&lStackX_20,&bufferValidation,0,1);
+        ProcessUIEventData(uStackX_10,uiValidationResult,&lStackX_20,&bufferValidation,0,1);
         func_0x000180763610(bufferValidation,&stackUInt38);
         if (stackUInt38 == ((longlong)*(short *)((longlong)uiContext + 0x1fc) | 0xfeed0000U)) {
           FUN_18075dbf0(lStackX_20,uStackX_10,bufferValidation,4);
@@ -153073,7 +153073,7 @@ void FUN_1807531d6(void)
   
   do {
     StackData1 = 1;
-    FUN_18075ef40(stackParam00000078,unmodifiedEBX,&stack0x00000088,&stack0x00000080,0);
+    ProcessUIEventData(stackParam00000078,unmodifiedEBX,&stack0x00000088,&stack0x00000080,0);
     func_0x000180763610(stackParam00000080,&stack0x00000030);
     if (stackParam00000030 == ((longlong)*(short *)(uiTargetHandle + 0x1fc) | 0xfeed0000U)) {
       FUN_18075dbf0(stackParam00000088,stackParam00000078,stackParam00000080,4);

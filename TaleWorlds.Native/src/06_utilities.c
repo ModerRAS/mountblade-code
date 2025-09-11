@@ -29951,11 +29951,11 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               ProcessingOffsetStack = 0;
               ProcessingFlagStack = 0;
               ProcessDataBlockA0(&StackDataPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
-              StackEventPointer = &SystemValidationDataTableA5;
-              StackEventData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
-              StackEventOffset = 0;
-              StackEventFlag = StackEventFlag & ByteMask;
-              ProcessDataSetFlagA0(&StackEventPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
+              EventPointerStack = &SystemValidationDataTableA5;
+              EventDataStack = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
+              EventOffsetStack = 0;
+              EventFlagStack = EventFlagStack & ByteMask;
+              ProcessDataSetFlagA0(&EventPointerStack,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackSystemPointer = &SystemValidationDataTableA6;
               StackSystemData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackSystemOffset = 0;
