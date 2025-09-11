@@ -237922,7 +237922,19 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 
 
-95450(long long ContextHandlevoid FUN_180195450(long long ContextHandle
+/**
+ * @brief 释放系统内存资源
+ * 
+ * 该函数负责释放系统内存资源，主要功能包括：
+ * - 释放字符表指针和相关内存
+ * - 处理内存池索引和Unicode代码点
+ * - 执行系统内存迭代和清理
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180195450
+ */
+void ReleaseSystemMemoryResources(long long ContextHandle)
 {
   long long MainCalculationResult;
   unsigned long long MemoryPoolIndex;
@@ -237949,7 +237961,17 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 
 
-95464(voidvoid FUN_180195464(void
+/**
+ * @brief 释放系统UTF-16内存资源
+ * 
+ * 该函数负责释放系统UTF-16内存资源，主要功能包括：
+ * - 释放UTF-16字符和相关内存
+ * - 处理内存池索引和Unicode代码点
+ * - 执行系统内存迭代和清理
+ * 
+ * @note 原始函数名：FUN_180195464
+ */
+void ReleaseSystemUtf16MemoryResources(void)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryPoolIndex;
@@ -237972,7 +237994,17 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 
 
-95484(voidvoid FUN_180195484(void
+/**
+ * @brief 处理系统内存迭代和清理
+ * 
+ * 该函数负责处理系统内存迭代和清理，主要功能包括：
+ * - 执行系统内存迭代操作
+ * - 处理输入数据长度和寄存器值
+ * - 释放系统内存资源
+ * 
+ * @note 原始函数名：FUN_180195484
+ */
+void ProcessSystemMemoryIterationAndCleanup(void)
 {
   long long ProcessingResult;
   uint InputDataLength;
@@ -237990,7 +238022,16 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 
 
-954a7(voidvoid FUN_1801954a7(void
+/**
+ * @brief 释放系统数据节点内存
+ * 
+ * 该函数负责释放系统数据节点的内存资源，主要功能包括：
+ * - 释放系统数据节点的内存
+ * - 执行内存清理操作
+ * 
+ * @note 原始函数名：FUN_1801954a7
+ */
+void ReleaseSystemDataNodeMemory(void)
 {
   long long SystemDataNode;
   
@@ -238000,7 +238041,14 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
 
 
 
-954c7(voidvoid FUN_1801954c7(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于保持系统接口的一致性。
+ * 
+ * @note 原始函数名：FUN_1801954c7
+ */
+void SystemNullOperation(void)
 {
   return;
 }
