@@ -127,6 +127,8 @@
 #define FUN_180202e40 ProcessUnicodeCharacterConversion                  // 处理Unicode字符转换
 #define FUN_180203100 ProcessCharacterEncodingValidation                 // 处理字符编码验证
 #define FUN_180204463 ProcessSystemStringComparison                      // 处理系统字符串比较
+#define FUN_1802044c5 ProcessUtf8StringValidation                        // 处理UTF-8字符串验证
+#define FUN_1802044e0 ProcessSystemMemoryAllocation                       // 处理系统内存分配
 
 // 核心引擎数据处理函数语义化宏定义
 #define FUN_180173c40 ValidateSystemContextIntegrity                     // 处理系统上下文验证
