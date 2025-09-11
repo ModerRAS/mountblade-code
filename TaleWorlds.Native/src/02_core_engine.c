@@ -2227,8 +2227,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 扩展系统栈变量语义化映射
 // 系统上下文处理数组190
 #define SystemContextProcessingArray190 auStack_190
-#define SystemStackArray218 auStack_218                     // 系统栈数组218
-#define SystemStackArray328 auStack_328                     // 系统栈数组328
+// 系统栈数组218
+#define SystemStackArray218 auStack_218
+// 系统栈数组328
+#define SystemStackArray328 auStack_328
 #define SystemStackArray870 auStack_870                     // 系统栈数组870
 #define SystemStackArray890 auStack_890                     // 系统栈数组890
 #define SystemStackArray18c auStack_18c                     // 系统栈数组18c
