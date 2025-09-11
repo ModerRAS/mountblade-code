@@ -2247,77 +2247,93 @@ void* GetSystemInitializationFunction;
  * @warning 必须在系统根表初始化完成后调用
  * @see GetSystemRootTable, GetGameCoreSystemInitializationFunction
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化Mount & Blade游戏的核心系统，包括节点管理、内存分配和系统配置。
+ * 此函数负责设置游戏运行所需的基础架构和环境。
+ * 
+ * @details 主要功能包括：
+ * - 查找或创建游戏核心系统节点
+ * - 配置系统节点的标识符和数据结构
+ * - 设置系统节点的激活状态和处理器
+ * - 分配必要的系统内存资源
+ * 
+ * @note 这是系统启动过程中的关键函数
+ * @warning 初始化失败可能导致游戏无法正常启动
+ * @see GetSystemRootTable, GetGameCoreSystemInitializationFunction, AllocateSystemMemory
+ */
 void InitializeGameCoreSystem(void)
 {
   // 系统状态和节点管理变量
-  bool IsGameCoreSystemNodeActive;                              // 游戏核心系统节点是否已激活
-  void** SystemRootNodeReference;                               // 系统根节点引用指针
-  int SystemIdentifierComparisonResult;                          // 系统标识符比较结果
-  long long* SystemGlobalTablePointer;                          // 系统全局表指针
-  long long RequiredSystemMemoryAllocation;                     // 需要分配的系统内存大小
+  bool isGameCoreSystemNodeActive;                              // 游戏核心系统节点是否已激活
+  void** systemRootNodeReference;                               // 系统根节点引用指针
+  int systemIdentifierComparisonResult;                          // 系统标识符比较结果
+  long long* systemGlobalTablePointer;                          // 系统全局表指针
+  long long requiredSystemMemoryAllocation;                     // 需要分配的系统内存大小
   
   // 节点遍历和管理指针
-  void** CurrentSystemNodePointer;                             // 当前系统节点指针
-  void** PreviousSystemNodePointer;                            // 前一个系统节点指针
-  void** NextSystemNodePointer;                                // 下一个系统节点指针
-  void** AllocatedSystemNodePointer;                           // 已分配的系统节点指针
+  void** currentSystemNodePointer;                             // 当前系统节点指针
+  void** previousSystemNodePointer;                            // 前一个系统节点指针
+  void** nextSystemNodePointer;                                // 下一个系统节点指针
+  void** allocatedSystemNodePointer;                           // 已分配的系统节点指针
   
   // 系统初始化函数指针
-  void* GameCoreSystemInitializerFunction;                     // 游戏核心系统初始化函数指针
+  void* gameCoreSystemInitializerFunction;                     // 游戏核心系统初始化函数指针
   
   // 获取系统全局表和根节点引用
-  SystemGlobalTablePointer = (long long*)GetSystemRootTable();
-  SystemRootNodeReference = (void**)*SystemGlobalTablePointer;
+  systemGlobalTablePointer = (long long*)GetSystemRootTable();
+  systemRootNodeReference = (void**)*systemGlobalTablePointer;
   
   // 检查游戏核心系统节点是否已经激活
-  IsGameCoreSystemNodeActive = *(bool*)((long long)SystemRootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  isGameCoreSystemNodeActive = *(bool*)((long long)systemRootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
   
   // 获取游戏核心系统初始化函数
-  GameCoreSystemInitializerFunction = GetGameCoreSystemInitializationFunction;
+  gameCoreSystemInitializerFunction = GetGameCoreSystemInitializationFunction;
   
   // 初始化节点遍历指针
-  PreviousSystemNodePointer = SystemRootNodeReference;
-  CurrentSystemNodePointer = (void**)SystemRootNodeReference[RootNodeCurrentIndex];
+  previousSystemNodePointer = systemRootNodeReference;
+  currentSystemNodePointer = (void**)systemRootNodeReference[RootNodeCurrentIndex];
   
   // 遍历节点树查找游戏核心系统节点
-  while (!IsGameCoreSystemNodeActive) {
+  while (!isGameCoreSystemNodeActive) {
     // 比较当前节点标识符与游戏核心系统标识符
-    SystemIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, SystemIdentifierSize);
+    systemIdentifierComparisonResult = memcmp(currentSystemNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, SystemIdentifierSize);
     
-    if (SystemIdentifierComparisonResult < 0) {
+    if (systemIdentifierComparisonResult < 0) {
       // 当前节点标识符较小，移动到下一个节点
-      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
-      CurrentSystemNodePointer = PreviousSystemNodePointer;
+      nextSystemNodePointer = (void**)currentSystemNodePointer[NodeNextPointerOffset];
+      currentSystemNodePointer = previousSystemNodePointer;
     }
     else {
       // 当前节点标识符较大或相等，移动到头节点
-      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeHeadPointerOffset];
+      nextSystemNodePointer = (void**)currentSystemNodePointer[NodeHeadPointerOffset];
     }
     
     // 更新遍历指针
-    PreviousSystemNodePointer = CurrentSystemNodePointer;
-    CurrentSystemNodePointer = NextSystemNodePointer;
+    previousSystemNodePointer = currentSystemNodePointer;
+    currentSystemNodePointer = nextSystemNodePointer;
     
     // 检查下一个节点是否为激活的游戏核心系统节点
-    IsGameCoreSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + NodeActiveFlagOffset);
+    isGameCoreSystemNodeActive = *(bool*)((long long)nextSystemNodePointer + NodeActiveFlagOffset);
   }
   
   // 检查是否需要创建新的游戏核心系统节点
-  if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
-      (SystemIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierComparisonResult < 0)) {
+  if ((previousSystemNodePointer == systemRootNodeReference) || 
+      (systemIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, previousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), systemIdentifierComparisonResult < 0)) {
     
     // 计算需要的系统内存大小并分配内存
-    RequiredSystemMemoryAllocation = GetSystemMemorySize(SystemGlobalTablePointer);
-    AllocateSystemMemory(SystemGlobalTablePointer, &AllocatedSystemNodePointer, PreviousSystemNodePointer, RequiredSystemMemoryAllocation + NodeAllocationExtraSize, RequiredSystemMemoryAllocation);
-    PreviousSystemNodePointer = AllocatedSystemNodePointer;
+    requiredSystemMemoryAllocation = GetSystemMemorySize(systemGlobalTablePointer);
+    AllocateSystemMemory(systemGlobalTablePointer, &allocatedSystemNodePointer, previousSystemNodePointer, requiredSystemMemoryAllocation + NodeAllocationExtraSize, requiredSystemMemoryAllocation);
+    previousSystemNodePointer = allocatedSystemNodePointer;
   }
   
   // 配置游戏核心系统节点的属性
-  PreviousSystemNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
-  PreviousSystemNodePointer[NodeIdentifier2Index] = GameCoreSystemIdentifier2;
-  PreviousSystemNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
-  PreviousSystemNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  PreviousSystemNodePointer[NodeHandlerIndex] = GameCoreSystemInitializerFunction;
+  previousSystemNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
+  previousSystemNodePointer[NodeIdentifier2Index] = GameCoreSystemIdentifier2;
+  previousSystemNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
+  previousSystemNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  previousSystemNodePointer[NodeHandlerIndex] = gameCoreSystemInitializerFunction;
   
   return;
 }
@@ -2334,52 +2350,68 @@ void InitializeGameCoreSystem(void)
  * @note 此函数假设系统表和标识符已预先定义
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 初始化系统数据表的基础分配器节点，包括节点查找、内存分配和标识符设置。
+ * 该函数会在系统表中查找或创建基础分配器节点，并配置其基本属性。
+ * 
+ * @details 主要功能包括：
+ * - 遍历系统节点树查找基础分配器节点
+ * - 如果节点不存在，则创建新的基础分配器节点
+ * - 配置节点的标识符、数据指针和处理器
+ * - 设置节点的激活状态和初始化标志
+ * 
+ * @note 此函数假设系统表和标识符已预先定义
+ * @warning 初始化失败可能导致系统内存管理异常
+ * @see GetSystemRootTable, GetBaseAllocatorSystemInitializationFunction, AllocateSystemMemory
+ */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  bool IsBaseAllocatorNodeInitialized;                     // 基础分配器节点是否已初始化
-  void** SystemRootNodeReference;                                // 系统根节点引用
-  int BaseAllocatorIdentifierMatchResult;                  // 基础分配器标识符匹配结果
-  long long* SystemMainTablePointer;                        // 系统主表指针
-  long long SystemRequiredMemorySize;                       // 系统所需内存大小
-  void** CurrentSystemNodePointer;                         // 当前系统节点指针
-  void** PreviousSystemNodePointer;                        // 前一个系统节点指针
-  void** NextSystemNodePointer;                           // 下一个系统节点指针
-  void** NewBaseAllocatorNodePointer;                     // 新基础分配器节点指针
-  void* BaseAllocatorInitializationHandler;              // 基础分配器初始化处理器
+  bool isBaseAllocatorNodeInitialized;                     // 基础分配器节点是否已初始化
+  void** systemRootNodeReference;                                // 系统根节点引用
+  int baseAllocatorIdentifierMatchResult;                  // 基础分配器标识符匹配结果
+  long long* systemMainTablePointer;                        // 系统主表指针
+  long long systemRequiredMemorySize;                       // 系统所需内存大小
+  void** currentSystemNodePointer;                         // 当前系统节点指针
+  void** previousSystemNodePointer;                        // 前一个系统节点指针
+  void** nextSystemNodePointer;                           // 下一个系统节点指针
+  void** newBaseAllocatorNodePointer;                     // 新基础分配器节点指针
+  void* baseAllocatorInitializationHandler;              // 基础分配器初始化处理器
   
-  SystemMainTablePointer = (long long*)GetSystemRootTable();
-  SystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsBaseAllocatorNodeInitialized = *(bool*)((long long)SystemRootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
-  BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
-  PreviousSystemNodePointer = SystemRootNodeReference;
-  CurrentSystemNodePointer = (void**)SystemRootNodeReference[RootNodeCurrentIndex];
+  systemMainTablePointer = (long long*)GetSystemRootTable();
+  systemRootNodeReference = (void**)*systemMainTablePointer;
+  isBaseAllocatorNodeInitialized = *(bool*)((long long)systemRootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  baseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
+  previousSystemNodePointer = systemRootNodeReference;
+  currentSystemNodePointer = (void**)systemRootNodeReference[RootNodeCurrentIndex];
   
-  while (!IsBaseAllocatorNodeInitialized) {
-    BaseAllocatorIdentifierMatchResult = memcmp(CurrentSystemNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, SystemIdentifierSize);
-    if (BaseAllocatorIdentifierMatchResult < 0) {
-      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
-      CurrentSystemNodePointer = PreviousSystemNodePointer;
+  while (!isBaseAllocatorNodeInitialized) {
+    baseAllocatorIdentifierMatchResult = memcmp(currentSystemNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, SystemIdentifierSize);
+    if (baseAllocatorIdentifierMatchResult < 0) {
+      nextSystemNodePointer = (void**)currentSystemNodePointer[NodeNextPointerOffset];
+      currentSystemNodePointer = previousSystemNodePointer;
     }
     else {
-      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeHeadPointerOffset];
+      nextSystemNodePointer = (void**)currentSystemNodePointer[NodeHeadPointerOffset];
     }
-    PreviousSystemNodePointer = CurrentSystemNodePointer;
-    CurrentSystemNodePointer = NextSystemNodePointer;
-    IsBaseAllocatorNodeInitialized = *(bool*)((long long)NextSystemNodePointer + NodeActiveFlagOffset);
+    previousSystemNodePointer = currentSystemNodePointer;
+    currentSystemNodePointer = nextSystemNodePointer;
+    isBaseAllocatorNodeInitialized = *(bool*)((long long)nextSystemNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
-      (BaseAllocatorIdentifierMatchResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), BaseAllocatorIdentifierMatchResult < 0)) {
-    SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
-    AllocateSystemMemory(SystemMainTablePointer, &NewBaseAllocatorNodePointer, PreviousSystemNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
-    PreviousSystemNodePointer = NewBaseAllocatorNodePointer;
+  if ((previousSystemNodePointer == systemRootNodeReference) || 
+      (baseAllocatorIdentifierMatchResult = memcmp(&BaseAllocatorSystemIdentifier1, previousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), baseAllocatorIdentifierMatchResult < 0)) {
+    systemRequiredMemorySize = GetSystemMemorySize(systemMainTablePointer);
+    AllocateSystemMemory(systemMainTablePointer, &newBaseAllocatorNodePointer, previousSystemNodePointer, systemRequiredMemorySize + NodeAllocationExtraSize, systemRequiredMemorySize);
+    previousSystemNodePointer = newBaseAllocatorNodePointer;
   }
   
-  PreviousSystemNodePointer[NodeIdentifier1Index] = BaseAllocatorSystemIdentifier1;
-  PreviousSystemNodePointer[NodeIdentifier2Index] = BaseAllocatorSystemIdentifier2;
-  PreviousSystemNodePointer[SystemNodeDataPointerIndex] = &BaseAllocatorSystemNodeData;
-  PreviousSystemNodePointer[SystemNodeActiveFlagIndex] = BaseAllocatorSystemFlag;
-  PreviousSystemNodePointer[NodeHandlerIndex] = BaseAllocatorInitializationHandler;
+  previousSystemNodePointer[NodeIdentifier1Index] = BaseAllocatorSystemIdentifier1;
+  previousSystemNodePointer[NodeIdentifier2Index] = BaseAllocatorSystemIdentifier2;
+  previousSystemNodePointer[SystemNodeDataPointerIndex] = &BaseAllocatorSystemNodeData;
+  previousSystemNodePointer[SystemNodeActiveFlagIndex] = BaseAllocatorSystemFlag;
+  previousSystemNodePointer[NodeHandlerIndex] = baseAllocatorInitializationHandler;
   return;
 }
 

@@ -597,6 +597,14 @@ typedef enum {
 #define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
 #define ProcessUIDataCompletion FUN_180739a2a               // 处理UI数据完成
 #define ProcessUIDataFinal FUN_180739a50                   // 处理最终UI数据
+
+// 新美化的函数定义 - UI数据绑定和操作相关
+#define FUN_18078a0c0 CreateUIDataBindingHandle              // 创建UI数据绑定句柄
+#define FUN_180765990 InitializeUIDataBinding                 // 初始化UI数据绑定
+#define FUN_1807631a0 ProcessUIAlternateOperation            // 处理UI替代操作
+#define FUN_180743700 CreateUIOperationBuffer                // 创建UI操作缓冲区
+#define func_0x000180743b40 ExecuteUIOperation                // 执行UI操作
+#define FUN_180759d80 ProcessUIDataOperationAlternative      // 处理UI数据操作替代方案
 #define ProcessUIDataFinalEx FUN_180739a6d                 // 处理最终UI数据扩展版本
 #define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
 #define UIReturnEmptyFunction FUN_18071ace8                // UI系统空返回函数
@@ -158886,65 +158894,99 @@ ulonglong FUN_180759120(longlong *uiContext,UIDword dataSource,longlong targetBu
 
 
 UIHandle
-FUN_180759220(longlong uiContext,longlong dataSource,longlong *targetBuffer,int bufferSize,UIByte resultPointer,
-             longlong param_6)
-
+/**
+ * @brief 处理UI数据绑定和操作
+ * 
+ * 该函数负责处理UI组件的数据绑定操作，包括：
+ * - 验证数据源和目标的有效性
+ * - 创建和管理数据绑定句柄
+ * - 设置数据操作的标志和参数
+ * - 处理不同类型的缓冲区大小
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小类型（1, 2, 3）
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数，用于控制操作模式
+ * @return UIHandle 操作结果句柄，0表示成功
+ */
+UIHandle
+ProcessUIDataBindingAndOperation(longlong uiContext, longlong dataSource, longlong *targetBuffer, 
+                               int bufferSize, UIByte resultPointer, longlong param_6)
 {
   UIHandle result;
-  longlong lStackX_10;
-  UIByte *apstackUInt18 [2];
+  longlong dataBindingHandle;
+  UIByte *operationBuffer[2];
   
+  // 检查数据源是否有效
   if (dataSource == 0) {
-    result = 0x1f;
+    result = 0x1f;  // 返回错误码：无效数据源
   }
+  // 验证UI缓冲区和数据源的完整性
   else if (((*(longlong *)(uiBufferData + 0xe8) == 0) ||
            (*(int *)(*(longlong *)(uiBufferData + 0xe8) + 0x28) != 0)) &&
           ((*(longlong *)(dataSource + 0xe8) == 0 ||
            (*(int *)(*(longlong *)(dataSource + 0xe8) + 0x2c) != 0)))) {
-    result = FUN_18078a0c0(*(longlong *)(uiBufferData + 0xa8) + 0x720,&lStackX_10,1);
+    
+    // 创建数据绑定句柄
+    result = CreateUIDataBindingHandle(*(longlong *)(uiBufferData + 0xa8) + 0x720, &dataBindingHandle, 1);
     if ((int)result == 0) {
       if (param_6 == 0) {
-        FUN_180765990(lStackX_10,1);
+        InitializeUIDataBinding(dataBindingHandle, 1);
+        
+        // 根据缓冲区大小设置相应的标志
         if (bufferSize == 1) {
-          *(uint *)(lStackX_10 + 0x7c) = *(uint *)(lStackX_10 + 0x7c) | 1;
+          *(uint *)(dataBindingHandle + 0x7c) = *(uint *)(dataBindingHandle + 0x7c) | 1;
         }
         else if (bufferSize == 2) {
-          *(uint *)(lStackX_10 + 0x7c) = *(uint *)(lStackX_10 + 0x7c) | 4;
+          *(uint *)(dataBindingHandle + 0x7c) = *(uint *)(dataBindingHandle + 0x7c) | 4;
         }
         else if (bufferSize == 3) {
-          *(uint *)(lStackX_10 + 0x7c) = *(uint *)(lStackX_10 + 0x7c) | 5;
+          *(uint *)(dataBindingHandle + 0x7c) = *(uint *)(dataBindingHandle + 0x7c) | 5;
         }
       }
       else {
-        FUN_1807631a0();
+        ProcessUIAlternateOperation();
       }
+      
+      // 检查上下文和数据源的状态标志
       if (((*(uint *)(uiContext + 100) >> 8 & 1) == 0) && ((*(uint *)(dataSource + 100) >> 8 & 1) == 0))
       {
-        result = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),apstackUInt18,0x28,1);
+        // 创建UI操作缓冲区
+        result = CreateUIOperationBuffer(*(UIHandle *)(uiContext + 0xa8), operationBuffer, 0x28, 1);
         if ((int)result != 0) {
           return result;
         }
-        *apstackUInt18[0] = resultPointer;
-        *(longlong *)(apstackUInt18[0] + 8) = uiContext;
-        *(longlong *)(apstackUInt18[0] + 0x10) = dataSource;
-        *(longlong *)(apstackUInt18[0] + 0x18) = lStackX_10;
-        *(int *)(apstackUInt18[0] + 0x20) = bufferSize;
-        result = func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),apstackUInt18[0],1);
+        
+        // 设置操作缓冲区参数
+        *operationBuffer[0] = resultPointer;
+        *(longlong *)(operationBuffer[0] + 8) = uiContext;
+        *(longlong *)(operationBuffer[0] + 0x10) = dataSource;
+        *(longlong *)(operationBuffer[0] + 0x18) = dataBindingHandle;
+        *(int *)(operationBuffer[0] + 0x20) = bufferSize;
+        
+        // 执行UI操作
+        result = ExecuteUIOperation(*(UIHandle *)(uiContext + 0xa8), operationBuffer[0], 1);
         if ((int)result != 0) {
           return result;
         }
       }
       else {
-        FUN_180759d80(uiContext,dataSource,targetBuffer,bufferSize,resultPointer,lStackX_10,0);
+        // 处理替代的UI数据操作
+        ProcessUIDataOperationAlternative(uiContext, dataSource, targetBuffer, bufferSize, 
+                                       resultPointer, dataBindingHandle, 0);
       }
+      
+      // 设置目标缓冲区
       if (targetBuffer != (longlong *)0x0) {
-        *targetBuffer = lStackX_10;
+        *targetBuffer = dataBindingHandle;
       }
-      result = 0;
+      result = 0;  // 操作成功
     }
   }
   else {
-    result = 5;
+    result = 5;  // 返回错误码：验证失败
   }
   return result;
 }
@@ -410038,6 +410080,30 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统事件码生成函数
 // 原始函数名: FUN_180743b50
 #define GenerateUIEventCode FUN_180743b50
+
+// UI系统内存验证函数
+// 原始函数名: FUN_180743c40
+#define ValidateUIMemoryAllocation FUN_180743c40
+
+// UI系统上下文操作函数
+// 原始函数名: FUN_18073eccd
+#define ProcessUIContextWithBuffer FUN_18073eccd
+
+// UI系统资源管理函数
+// 原始函数名: FUN_18073ed53
+#define ProcessUIResourceUpdate FUN_18073ed53
+
+// UI系统状态同步函数
+// 原始函数名: FUN_18073eddb
+#define SyncUIComponentStates FUN_18073eddb
+
+// UI系统组件清理函数
+// 原始函数名: FUN_18073edfd
+#define CleanupUIComponentData FUN_18073edfd
+
+// UI系统数据处理函数
+// 原始函数名: FUN_18073ee30
+#define ProcessUIDataWithValidation FUN_18073ee30
 
 
 
