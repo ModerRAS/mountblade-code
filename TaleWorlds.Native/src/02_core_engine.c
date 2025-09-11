@@ -1452,11 +1452,11 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 扩展栈变量语义化宏定义
 #define SystemStackPointer3f8 puStack_3f8                   // 系统栈指针3f8
 #define SystemStackUnsigned3e4 uStack_3e4                   // 系统栈无符号3e4
-#define SystemStackPointer3e0 ppuStack_3e0                 // 系统栈指针3e0
-#define SystemStackPointer3d8 puStack_3d8                   // 系统栈指针3d8
+#define SystemStackPointer3e0 SystemMemoryPoolPointer             // 系统栈指针3e0
+#define SystemStackPointer3d8 SystemResourceManagerPointer         // 系统栈指针3d8
 #define SystemStackOffset3d0 lStack_3d0                     // 系统栈偏移量3d0
-#define SystemStackUnsigned3c8 uStack_3c8                   // 系统栈无符号3c8
-#define SystemStackUnsigned3c0 uStack_3c0                   // 系统栈无符号3c0
+#define SystemStackUnsigned3c8 SystemValidationResultCount      // 系统栈无符号3c8
+#define SystemStackUnsigned3c0 SystemOperationStatusCode        // 系统栈无符号3c0
 #define SystemStackOffset3b8 lStack_3b8                     // 系统栈偏移量3b8
 #define SystemStackPointer3b0 puStack_3b0                   // 系统栈指针3b0
 #define SystemStackPointer3a8 SystemUnicodeConversionPointer      // 系统栈指针3a8
