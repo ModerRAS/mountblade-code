@@ -255242,6 +255242,21 @@ void HandleSystemContextDataAndEncodingConversion(long long SystemContextHandle,
 
 
 // 函数: void FUN_1802084b0(long long *ContextHandle)
+/**
+ * @brief 处理上下文句柄和字符状态缓冲区管理
+ * 
+ * 该函数负责处理上下文句柄和字符状态缓冲区的管理操作，主要功能包括：
+ * - 验证上下文句柄的有效性
+ * - 处理字符状态缓冲区的分配和管理
+ * - 执行Unicode码点的计算和验证
+ * - 管理内存池和系统资源
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_1802084b0
+ */
+#define ProcessContextHandleAndCharacterBufferManagement FUN_1802084b0
+void ProcessContextHandleAndCharacterBufferManagement(long long *SystemContextHandle)
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;
@@ -255253,14 +255268,14 @@ void HandleSystemContextDataAndEncodingConversion(long long SystemContextHandle,
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
   
-  MemoryPoolBlockSize = *ContextHandle;
+  MemoryPoolBlockSize = *SystemContextHandle;
   ProcessingStatusFlag = 0;
-  BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(ContextHandle[1] - MemoryPoolBlockSize),8) +
-          (ContextHandle[1] - MemoryPoolBlockSize);
+  BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - MemoryPoolBlockSize),8) +
+          (SystemContextHandle[1] - MemoryPoolBlockSize);
   UnicodeCodePoint = ProcessingStatusFlag;
   ArraySize = ProcessingStatusFlag;
   if (BufferStatus >> 6 == BufferStatus >> 0x3f) {
-    *(uint8_t *)((long long)ContextHandle + 0x41) = 1;
+    *(uint8_t *)((long long)SystemContextHandle + 0x41) = 1;
     return;
   }
   do {
@@ -255286,14 +255301,14 @@ void HandleSystemContextDataAndEncodingConversion(long long SystemContextHandle,
       } while ((unsigned long long)(long long)(int)MemoryAddressMaskPointer <
                (unsigned long long)(*(long long *)(MemoryPoolBlockSize + 0x40) - BufferStatus >> 4));
     }
-    MemoryPoolBlockSize = *ContextHandle;
+    MemoryPoolBlockSize = *SystemContextHandle;
     MemoryAddressMaskPointer = (int)UnicodeCodePoint + 1;
-    BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(ContextHandle[1] - MemoryPoolBlockSize),8) +
-            (ContextHandle[1] - MemoryPoolBlockSize);
+    BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - MemoryPoolBlockSize),8) +
+            (SystemContextHandle[1] - MemoryPoolBlockSize);
     UnicodeCodePoint = (unsigned long long)MemoryAddressMaskPointer;
     ArraySize = ArraySize + 0x78;
   } while ((unsigned long long)(long long)(int)MemoryAddressMaskPointer < (unsigned long long)((BufferStatus >> 6) - (BufferStatus >> 0x3f)));
-  *(uint8_t *)((long long)ContextHandle + 0x41) = 1;
+  *(uint8_t *)((long long)SystemContextHandle + 0x41) = 1;
   return;
 }
 
