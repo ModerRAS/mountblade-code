@@ -1026,6 +1026,7 @@
 
 // 系统上下文偏移量常量
 #define systemContextOffset 0x8
+#define systemContextOperationOffset 0x20
 #define SystemContextOffset104 0x104
 
 // 内存指针偏移量常量
