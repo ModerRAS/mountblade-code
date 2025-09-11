@@ -143933,11 +143933,11 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define ManageSystemSecurityPolicies FUN_180059ee0             // 管理系统安全策略 - 管理系统的安全策略
 #define ValidateSystemComponentStatus FUN_18005a050            // 验证系统组件状态 - 验证系统组件的状态
 #define HandleSystemLoggingOperations FUN_18005cb60             // 处理系统日志操作 - 处理系统的日志操作
-#define FUN_18005d260 ProcessSystemConfigurationManagement     // 处理系统配置管理 - 处理系统配置的管理操作
-#define FUN_18005d560 InitializeSystemResourceTracking         // 初始化系统资源跟踪 - 初始化系统的资源跟踪
-#define FUN_18005d580 ManageSystemCacheOperations               // 管理系统缓存操作 - 管理系统缓存的操作
-#define FUN_180060150 ProcessSystemMemoryValidation            // 处理系统内存验证 - 处理系统内存的验证操作
-#define FUN_180060bd0 HandleSystemResourceCleanup              // 处理系统资源清理 - 处理系统资源的清理操作
+#define ProcessSystemConfigurationManagement FUN_18005d260     // 处理系统配置管理 - 处理系统配置的管理操作
+#define InitializeSystemResourceTracking FUN_18005d560         // 初始化系统资源跟踪 - 初始化系统的资源跟踪
+#define ManageSystemCacheOperations FUN_18005d580             // 管理系统缓存操作 - 管理系统缓存的操作
+#define ProcessSystemMemoryValidation FUN_180060150           // 处理系统内存验证 - 处理系统内存的验证操作
+#define HandleSystemResourceCleanup FUN_180060bd0              // 处理系统资源清理 - 处理系统资源的清理操作
 #define FUN_180067070 ValidateSystemDataConsistency            // 验证系统数据一致性 - 验证系统数据的一致性
 #define FUN_1800670d0 ProcessSystemSecurityValidation          // 处理系统安全验证 - 处理系统安全的验证操作
 #define FUN_18006a050 InitializeSystemErrorReporting           // 初始化系统错误报告 - 初始化系统的错误报告
