@@ -48,8 +48,8 @@
 
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
-#define FUN_180211930 InitializeSystemContextDataNode           // 初始化系统上下文数据节点
-#define FUN_180211fa0 InitializeSystemContextSecondaryConfiguration  // 初始化系统上下文二级配置
+#define InitializeSystemContextDataNode InitializeSystemContextDataNode           // 初始化系统上下文数据节点
+#define InitializeSystemContextSecondaryConfiguration InitializeSystemContextSecondaryConfiguration  // 初始化系统上下文二级配置
 #define FUN_180227230 InitializeSystemProcessingStatusFlags     // 初始化系统处理状态标志
 #define FUN_18022b590 ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
 #define FUN_18022c770 ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源

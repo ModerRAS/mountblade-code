@@ -29208,7 +29208,7 @@ void ExecuteSecurityCheck(void)
  * @param resultData 结果数据指针，用于返回查询结果
  * @return 无返回值
  */
-void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuffer *resultData)
+void QueryAndRetrieveSystemData(int64_t systemDataStructure, int searchIndex, DataBuffer *resultData)
 
 {
   DataBuffer systemDataBuffer;
