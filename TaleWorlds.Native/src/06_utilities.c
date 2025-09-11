@@ -52,109 +52,109 @@
 #define DataProcessingMultiplier 0xc
 
 // 数据处理操作偏移常量
-#define DataOperationParameterPrimaryOffset 0x10                  // 数据操作参数主偏移量 - 用于数据操作的第一参数
-#define DataOperationParameterSecondaryOffset 0x14                  // 数据操作参数次偏移量 - 用于数据操作的第二参数
-#define DataOperationParameterTertiaryOffset 0x16                  // 数据操作参数三级偏移量 - 用于数据操作的第三参数
+#define DataOperationParameterPrimaryOffset 0x10
+#define DataOperationParameterSecondaryOffset 0x14
+#define DataOperationParameterTertiaryOffset 0x16
 
 // 资源清理偏移常量
-#define ResourceCleanupPrimaryOffset 0x28                   // 资源清理主偏移量 - 用于主资源清理操作
-#define ResourceCleanupSecondaryOffset 0x48                // 资源清理辅助偏移量 - 用于辅助资源清理操作
-#define ExceptionContextResetPrimaryOffset 0x18                    // 异常上下文重置主偏移量 - 用于异常上下文重置操作
-#define ExceptionContextResetSecondaryOffset 0x20                    // 异常上下文重置次偏移量 - 用于异常上下文重置操作
+#define ResourceCleanupPrimaryOffset 0x28
+#define ResourceCleanupSecondaryOffset 0x48
+#define ExceptionContextResetPrimaryOffset 0x18
+#define ExceptionContextResetSecondaryOffset 0x20
 
 // 安全和验证常量
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
 #define OperationFlagMask SystemFlagBit800000
-// === 线程本地存储地址常量 ===
-#define ThreadLocalStoragePrimaryAddress 0x180c4f450            // 线程本地存储主地址 - 线程本地存储的主基地址
-#define ThreadLocalStorageSecondaryAddress 0x180c4f460         // 线程本地存储辅助地址 - 线程本地存储的辅助基地址
-#define ThreadLocalStorageBaseAddress 0x180c4f450              // 线程本地存储基础地址 - 线程本地存储的基础地址
+// 线程本地存储地址常量
+#define ThreadLocalStoragePrimaryAddress 0x180c4f450
+#define ThreadLocalStorageSecondaryAddress 0x180c4f460
+#define ThreadLocalStorageBaseAddress 0x180c4f450
 
-// === 系统互斥锁地址常量 ===
-#define SystemMutexCleanupPrimaryAddress 0x180c919f0            // 系统互斥锁清理主地址 - 系统互斥锁清理函数的主基地址
-#define SystemMutexCleanupSecondaryAddress 0x180c919f1          // 系统互斥锁清理辅助地址 - 系统互斥锁清理函数的辅助基地址
-#define SystemMutexObjectAddress 0x180c91970                    // 系统互斥对象地址 - 系统互斥对象的存储地址
-#define SystemMutexObjectSecondaryAddress 0x180c91f70           // 系统互斥对象辅助地址 - 系统互斥对象的辅助存储地址
-#define SystemMutexCleanupAddressA 0x180c96690                  // 系统互斥锁清理地址A - 系统互斥锁清理的第一个地址
-#define SystemMutexCleanupAddressB 0x180c966f0                  // 系统互斥锁清理地址B - 系统互斥锁清理的第二个地址
-#define SystemMutexCleanupAddressC 0x180c96740                  // 系统互斥锁清理地址C - 系统互斥锁清理的第三个地址
+// 系统互斥锁地址常量
+#define SystemMutexCleanupPrimaryAddress 0x180c919f0
+#define SystemMutexCleanupSecondaryAddress 0x180c919f1
+#define SystemMutexObjectAddress 0x180c91970
+#define SystemMutexObjectSecondaryAddress 0x180c91f70
+#define SystemMutexCleanupAddressA 0x180c96690
+#define SystemMutexCleanupAddressB 0x180c966f0
+#define SystemMutexCleanupAddressC 0x180c96740
 
-// === 系统异常初始化地址常量 ===
-#define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
-#define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
-#define SystemExceptionInitializerAddressA 0x180d49e70           // 系统异常初始化器地址A - 系统异常初始化器的第一个地址
-#define SystemExceptionInitializerAddressB 0x180d49f10           // 系统异常初始化器地址B - 系统异常初始化器的第二个地址
+// 系统异常初始化地址常量
+#define SystemExceptionInitializerPrimaryAddress 0x180d497e0
+#define SystemExceptionInitializerSecondaryAddress 0x180d498a0
+#define SystemExceptionInitializerAddressA 0x180d49e70
+#define SystemExceptionInitializerAddressB 0x180d49f10
 
-// === 系统计算地址常量 ===
-#define SystemCalculationBaseAddress 0x180c919f0                // 系统计算基地址 - 系统计算功能的基础地址
+// 系统计算地址常量
+#define SystemCalculationBaseAddress 0x180c919f0
 
-// === 浮点数验证地址常量 ===
-#define FloatValidationDataAddress 0x180985054                   // 浮点数验证数据地址 - 浮点数验证数据的存储地址
+// 浮点数验证地址常量
+#define FloatValidationDataAddress 0x180985054
 
-// === 系统异常处理地址常量 ===
-#define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
-#define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
-#define ExceptionDataTable2Address 0x180a21690                   // 异常数据表2地址 - 异常处理数据表的第二个地址
-// === 系统错误码常量 ===
-#define SystemConfigurationFailed 0x2                            // 系统配置失败 - 系统配置过程中出现错误
-#define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败 - 内存管理器初始化过程中出现错误
-#define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败 - 异常处理器初始化过程中出现错误
-#define SystemStateValidationFailed 0x5                          // 系统状态验证失败 - 系统状态验证过程中出现错误
+// 系统异常处理地址常量
+#define ExceptionCriticalSectionAddress 0x180c82210
+#define ExceptionDataTable1Address 0x18098bdc8
+#define ExceptionDataTable2Address 0x180a21690
+// 系统错误码常量
+#define SystemConfigurationFailed 0x2
+#define SystemMemoryManagerInitFailed 0x3
+#define SystemExceptionHandlerInitFailed 0x4
+#define SystemStateValidationFailed 0x5
 
 // 系统标志常量
-#define SystemFlagBit8 SystemFlagBit8                                    // 系统标志位8 - 第8位标志
-#define SystemFlagBit11 0x800                                   // 系统标志位11 - 第11位标志
-#define StandardMemoryBlockSize StandardMemoryBlockSize                            // 标准内存块大小 - 512字节
-#define SmallMemoryBlockSize 0x20                                // 小内存块大小 - 32字节
-#define MediumMemoryBlockSize 0x28                               // 中等内存块大小 - 40字节
+#define SystemFlagBit8 SystemFlagBit8
+#define SystemFlagBit11 0x800
+#define StandardMemoryBlockSize StandardMemoryBlockSize
+#define SmallMemoryBlockSize 0x20
+#define MediumMemoryBlockSize 0x28
 
 // 系统数据偏移常量
-#define SystemDataOffset218 0x218                                // 系统数据偏移量218
-#define SystemDataOffset8b0 0x8b0                               // 系统数据偏移量8b0
-#define SecurityBufferOffset8 8                                  // 安全缓冲区偏移量8
-#define SystemContextOffset4 4                                   // 系统上下文偏移量4
-#define SystemDataOffset30 0x30                                  // 系统数据偏移量30
-#define ExceptionHandlerOffset868 0x868                          // 异常处理器偏移量868
+#define SystemDataOffset218 0x218
+#define SystemDataOffset8b0 0x8b0
+#define SecurityBufferOffset8 8
+#define SystemContextOffset4 4
+#define SystemDataOffset30 0x30
+#define ExceptionHandlerOffset868 0x868
 
-// === 资源管理常量 ===
-#define ResourceReferenceDecrement -1                             // 资源引用计数递减值 - 用于减少资源引用计数的常量
+// 资源管理常量
+#define ResourceReferenceDecrement -1
 
-// === 验证标志常量 ===
-#define ValidateBoundaryCheck 0x1                                // 边界检查标志 - 启用内存边界验证
-#define ValidateDataProcessing 0x2                                // 数据处理标志 - 启用数据处理和验证
-#define ValidateSecureCleanup 0x4                                 // 安全清理标志 - 启用内存安全清理
+// 验证标志常量
+#define ValidateBoundaryCheck 0x1
+#define ValidateDataProcessing 0x2
+#define ValidateSecureCleanup 0x4
 
-// === 错误码常量 ===
-#define InvalidMemoryAddress -1                                   // 无效内存地址错误码
-#define InvalidBufferSize -2                                       // 无效缓冲区大小错误码
-#define BoundaryCheckFailed -3                                     // 边界检查失败错误码
+// 错误码常量
+#define InvalidMemoryAddress -1
+#define InvalidBufferSize -2
+#define BoundaryCheckFailed -3
 
-// === 浮点数数据偏移量常量 ===
-#define FloatingPointPrimaryDataOffset 0x20                    // 浮点数主数据偏移量 - 用于存储浮点数的主要数据
-#define FloatingPointSecondaryDataOffset 4                     // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
-#define FloatingPointMaxRangeOffset 0x38                      // 浮点数最大范围偏移量 - 用于存储浮点数的最大范围值
-#define FloatingPointMinRangeOffset 0x3c                      // 浮点数最小范围偏移量 - 用于存储浮点数的最小范围值
-#define FloatingPointValidationStatusOffset 0x34               // 浮点数验证状态偏移量 - 用于存储浮点数验证状态
-#define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
-#define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
-#define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
-#define StackBufferFloatDataOffset 4                          // 栈缓冲区浮点数据偏移量 - 用于存储栈缓冲区中的浮点数据
-#define DataBufferParameterDataOffset 4                       // 数据缓冲区参数数据偏移量 - 用于存储数据缓冲区中的参数数据
-#define HashChainDataOffset 4                                 // 哈希链数据偏移量 - 用于存储哈希链中的数据
-#define SecurityCheckResultDataOffset 4                       // 安全检查结果数据偏移量 - 用于存储安全检查结果的数据
-#define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
-#define DataBufferDataHandleOffset 4                          // 数据缓冲区数据句柄偏移量 - 用于存储数据缓冲区中的数据句柄
-#define OperationBaseStatusFlagOffset 4                        // 操作基础状态标志偏移量 - 用于存储操作基础的状态标志
-#define ValidationFloatValueSecondaryOffset 1                   // 验证浮点值辅助偏移量 - 用于存储验证浮点值的辅助数据
-#define ContextResourceReleaseOffset 1                          // 上下文资源释放偏移量 - 用于上下文资源释放操作的偏移量
-#define DataValidationParameterSize 4                           // 数据验证参数大小 - 用于数据验证操作的参数大小
+// 浮点数数据偏移量常量
+#define FloatingPointPrimaryDataOffset 0x20
+#define FloatingPointSecondaryDataOffset 4
+#define FloatingPointMaxRangeOffset 0x38
+#define FloatingPointMinRangeOffset 0x3c
+#define FloatingPointValidationStatusOffset 0x34
+#define ContextBufferFloatDataOffset 4
+#define DataProcessingFloatDataOffset 4
+#define DataStructureFloatDataOffset 4
+#define StackBufferFloatDataOffset 4
+#define DataBufferParameterDataOffset 4
+#define HashChainDataOffset 4
+#define SecurityCheckResultDataOffset 4
+#define SystemValidationQueryOffset 0x18
+#define DataBufferDataHandleOffset 4
+#define OperationBaseStatusFlagOffset 4
+#define ValidationFloatValueSecondaryOffset 1
+#define ContextResourceReleaseOffset 1
+#define DataValidationParameterSize 4
 
 // 内存操作标志常量
-#define MemoryAllocationFlag 0x1                                 // 内存分配标志 - 标识内存分配操作
-#define MemoryProcessingFlag 0x2                                 // 内存处理标志 - 标识内存数据处理操作
-#define MemoryCleanupFlag 0x4                                    // 内存清理标志 - 标识内存释放操作
-#define SystemStateUpdateFlag 0x4                                // 系统状态更新标志 - 标识系统状态更新操作
+#define MemoryAllocationFlag 0x1
+#define MemoryProcessingFlag 0x2
+#define MemoryCleanupFlag 0x4
+#define SystemStateUpdateFlag 0x4
 
 // === 操作状态码常量 ===
 #define OperationSuccess 0                                          // 操作成功状态码
