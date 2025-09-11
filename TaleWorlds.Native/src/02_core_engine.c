@@ -157,6 +157,8 @@
 #define FUN_180623fd0 HandleSystemEventProcessing                        // 处理系统事件处理
 #define FUN_1803ba550 ConfigureStringProcessingParameters                 // 配置字符串处理参数
 #define FUN_1803bb5f0 ProcessSystemBufferOperation                        // 处理系统缓冲区操作
+#define FUN_18020c8f0 ConvertSystemDataFormat                           // 转换系统数据格式
+#define FUN_18020d730 AllocateSystemContextBuffer                        // 分配系统上下文缓冲区
 
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
