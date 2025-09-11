@@ -140097,39 +140097,39 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：处理系统安全操作，包括安全检查和权限验证
 #define ProcessSystemSecurityB0 Unwind_1809097b0
 
-// 原始函数名：Unwind_1809097c0 - 系统安全执行函数B0
+// 系统安全执行函数B0
 // 功能：执行系统安全操作，处理系统安全验证
 #define ExecuteSystemSecurityB0 Unwind_1809097c0
 
-// 原始函数名：Unwind_1809097d0 - 系统性能处理函数B0
+// 系统性能处理函数B0
 // 功能：处理系统性能操作，包括性能监控和优化
 #define ProcessSystemPerformanceB0 Unwind_1809097d0
 
-// 原始函数名：Unwind_1809097e0 - 系统性能执行函数B0
+// 系统性能执行函数B0
 // 功能：执行系统性能操作，处理系统性能优化
 #define ExecuteSystemPerformanceB0 Unwind_1809097e0
 
-// 原始函数名：Unwind_1809097f0 - 系统资源销毁函数A0
+// 系统资源销毁函数A0
 // 功能：销毁系统资源，释放内存和清理资源
 #define DestroySystemResourcesA0 Unwind_1809097f0
 
-// 原始函数名：Unwind_180909800 - 系统销毁执行函数A0
+// 系统销毁执行函数A0
 // 功能：执行系统销毁操作，处理系统资源释放
 #define ExecuteSystemDestructionA0 Unwind_180909800
 
-// 原始函数名：Unwind_180909820 - 系统关闭处理函数A0
+// 系统关闭处理函数A0
 // 功能：处理系统关闭操作，包括系统关闭和清理
 #define ProcessSystemShutdownA0 Unwind_180909820
 
-// 原始函数名：Unwind_180909840 - 系统关闭执行函数A0
+// 系统关闭执行函数A0
 // 功能：执行系统关闭操作，处理系统关闭流程
 #define ExecuteSystemShutdownA0 Unwind_180909840
 
-// 原始函数名：Unwind_180909850 - 系统终结处理函数A0
+// 系统终结处理函数A0
 // 功能：处理系统终结操作，包括系统终结和清理
 #define ProcessSystemFinalizationA0 Unwind_180909850
 
-// 原始函数名：Unwind_180909860 - 系统终结执行函数A0
+// 系统终结执行函数A0
 // 功能：执行系统终结操作，处理系统终结流程
 #define ExecuteSystemFinalizationA0 Unwind_180909860
 
@@ -140137,8 +140137,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统终止处理函数A0
  * 
  * 处理系统终止操作，包括系统终止和清理
- * 
- * @note 原始函数名：Unwind_180909870
  */
 #define ProcessSystemTerminationA0 Unwind_180909870
 
