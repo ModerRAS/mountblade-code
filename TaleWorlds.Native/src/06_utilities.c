@@ -142413,6 +142413,45 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @note 这是系统资源管理的核心函数
  * @see ExecuteMemoryCleanup, ExecuteCacheCleanup, ExecuteResourceOptimization
  */
+/**
+ * @brief 清理和优化系统资源
+ * 
+ * 执行系统资源的清理操作，包括内存回收、缓存清理和性能优化。
+ * 确保系统资源得到合理分配和释放。该函数是系统资源管理的核心组件，
+ * 负责协调各种清理操作并返回详细的执行状态。
+ * 
+ * @param ResourceHandle 资源句柄，标识要清理的资源
+ * @param CleanupFlags 清理标志位，指定清理的类型和方式：
+ *                     - CleanupMemoryFlag (0x1): 执行内存清理
+ *                     - CleanupCacheFlag (0x2): 执行缓存清理
+ *                     - CleanupHandlesFlag (0x4): 清理资源句柄
+ *                     - CleanupTempDataFlag (0x8): 清理临时数据
+ * @param OptimizationLevel 优化级别，控制优化的程度：
+ *                          - 0: 不执行优化
+ *                          - 1-64: 不同级别的优化强度
+ *                          - 255: 最高级别优化
+ * 
+ * @return int 清理结果状态码：
+ *         - ResourceCleanupSuccess (0x0): 清理成功
+ *         - ResourceCleanupFailure (0x1): 清理失败
+ *         - InvalidResourceHandle (0xFFFFFFFF): 无效的资源句柄
+ *         - OptimizationFailed (0x2): 优化失败
+ *         - PartialCleanupSuccess (0x3): 部分清理成功
+ * 
+ * @details 实现细节：
+ * - 验证资源句柄的有效性，确保操作的对象存在
+ * - 根据清理标志执行相应的清理操作，包括内存和缓存清理
+ * - 根据优化级别执行优化操作，提高系统性能
+ * - 跟踪清理结果，包括释放的内存数量和清理的缓存数量
+ * - 返回详细的执行状态，便于调用者了解操作结果
+ * 
+ * @note 该函数是系统资源管理的核心函数，支持多种清理和优化模式
+ * @warning 清理操作可能会影响系统性能，建议在系统负载较低时执行
+ * @see ExecuteMemoryCleanup, ExecuteCacheCleanup, ExecuteResourceOptimization
+ * 
+ * @post 如果清理成功，相关资源会被正确释放和优化
+ * @post 如果清理失败，系统会保持原有状态不变
+ */
 int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlags, uint8_t OptimizationLevel)
 {
     // 系统资源清理状态变量

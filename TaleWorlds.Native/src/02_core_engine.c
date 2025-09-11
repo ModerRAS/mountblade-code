@@ -239223,7 +239223,7 @@ LAB_1801974aa:
     }
     if ((*(long long *)(BufferStatus + 0x260) != 0) &&
        (*(long long *)(*(long long *)(BufferStatus + 0x260) + 0x28) == 0)) {
-      FUN_1803005b0();
+      ProcessSystemUnicodeConversion();
     }
     if (*(short *)(BufferStatus + 0x2b0) != *(short *)(BufferStatus + 0x2b4)) {
       if (*(char *)(BufferStatus + 0x2d8) == '\0') {
@@ -239324,7 +239324,7 @@ LAB_180197948:
 LAB_18019797c:
     if ((*(long long *)(BufferStatus + 0x260) != 0) &&
        (*(long long *)(*(long long *)(BufferStatus + 0x260) + 0x28) == 0)) {
-      FUN_1803005b0();
+      ProcessSystemUnicodeConversion();
     }
     if (*(short *)(BufferStatus + 0x2b0) != *(short *)(BufferStatus + 0x2b4)) {
       if (*(char *)(BufferStatus + 0x2d8) == '\0') {
