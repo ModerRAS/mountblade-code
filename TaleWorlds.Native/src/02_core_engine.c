@@ -126,6 +126,48 @@
 #define FUN_1801566b0 InitializeSystemProcessing                       // 初始化系统处理
 #define FUN_1802121b0 CleanupSystemProcessing                          // 清理系统处理
 
+// 系统数据处理函数语义化宏定义
+#define FUN_18020dc20 ProcessSystemCharacterBuffer                     // 处理系统字符缓冲区
+#define FUN_18020ddf0 InitializeSystemDataTransfer                     // 初始化系统数据传输
+#define FUN_18020e3b0 ValidateSystemContextHandle                     // 验证系统上下文句柄
+#define FUN_18020e3d0 ProcessSystemContextResources                    // 处理系统上下文资源
+#define FUN_18020e8e0 TransferSystemContextData                        // 传输系统上下文数据
+#define FUN_18020e9b0 ProcessSystemContextAndData                      // 处理系统上下文和数据
+#define FUN_18020f620 ProcessUnicodeDataOperation                      // 处理Unicode数据操作
+#define FUN_18020f790 ConvertSystemStringEncoding                      // 转换系统字符串编码
+#define FUN_18020f7d0 ValidateSystemMemoryContext                      // 验证系统内存上下文
+#define FUN_18020f870 ProcessSystemCharacterValidation                 // 处理系统字符验证
+#define FUN_18020f8a0 ProcessSystemStringEncoding                     // 处理系统字符串编码
+#define FUN_18020f8d0 HandleSystemContextOperations                   // 处理系统上下文操作
+#define FUN_180211520 ProcessSystemDataAndContext                      // 处理系统数据和上下文
+#define FUN_180211720 InitializeSystemResourceAllocation                // 初始化系统资源分配
+#define FUN_180211f70 ConfigureSystemOperationParameters                // 配置系统操作参数
+#define FUN_1802122c0 ValidateSystemResourceHandle                     // 验证系统资源句柄
+#define FUN_1802122e0 ProcessSystemResourceAllocation                  // 处理系统资源分配
+#define FUN_180212de0 HandleSystemMemoryOperations                     // 处理系统内存操作
+#define FUN_180212e00 ProcessSystemMemoryValidation                    // 处理系统内存验证
+#define FUN_180212e20 FinalizeSystemMemoryOperations                   // 完成系统内存操作
+#define FUN_1802140e0 ValidateSystemDataIntegrity                      // 验证系统数据完整性
+#define FUN_180214230 ProcessSystemContextConfiguration                 // 处理系统上下文配置
+#define FUN_1802143e0 HandleSystemContextCleanup                       // 处理系统上下文清理
+#define FUN_1802147c0 InitializeSystemEventHandling                    // 初始化系统事件处理
+#define FUN_180215e10 ProcessSystemDataValidation                      // 处理系统数据验证
+#define FUN_180215ea0 ValidateSystemDataTransfer                       // 验证系统数据传输
+#define FUN_180216508 TransferSystemMemoryData                         // 传输系统内存数据
+#define FUN_180216522 ProcessSystemMemoryTransfer                      // 处理系统内存传输
+#define FUN_1802165a5 SystemNullOperationVoid                          // 系统空操作函数
+#define FUN_1802165b4 SystemDebugOperation                             // 系统调试操作
+#define FUN_1802165c0 ProcessSystemFloatData                           // 处理系统浮点数据
+#define FUN_180216650 ValidateSystemFloatData                         // 验证系统浮点数据
+#define FUN_1802166e0 ProcessSystemDoubleData                          // 处理系统双精度数据
+#define FUN_180216770 ValidateSystemDoubleData                        // 验证系统双精度数据
+#define FUN_180216800 HandleSystemMemoryRelease                        // 处理系统内存释放
+#define FUN_180216860 ProcessSystemMemoryAndContext                    // 处理系统内存和上下文
+#define FUN_180216c00 InitializeSystemCalculation                     // 初始化系统计算
+#define FUN_180216c12 ValidateSystemCalculation                        // 验证系统计算
+#define FUN_180216c40 SystemIdleOperation                              // 系统空闲操作
+#define FUN_180216c80 ProcessSystemCalculationAndData                 // 处理系统计算和数据
+
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
 #define ContextHandleTableBaseOffset 0x2003d0
