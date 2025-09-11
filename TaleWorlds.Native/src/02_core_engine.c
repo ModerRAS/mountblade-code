@@ -77,6 +77,7 @@
 #define FUN_1801998a0 ProcessContextMemoryPoolIteration           // 处理系统上下文内存池迭代
 #define FUN_1801998ce ExecuteSystemContextCallbacks                // 执行系统上下文回调函数
 #define FUN_18019991c SystemNullOperation                          // 系统空操作函数
+#define FUN_180199930 ProcessSystemCharacterEncodingAndValidation     // 处理系统字符编码和验证
 #define FUN_180194530 ProcessSystemSignedIntegerValues             // 处理系统有符号值
 #define FUN_180204430 HandleCharacterStatusAndStringEncoding             // 处理字符状态缓冲区和字符串编码转换
 #define FUN_180206260 ProcessUtf16CharacterData                          // 处理UTF-16字符处理
@@ -240486,21 +240487,21 @@ LAB_180198720:
 
 
 
-98750(long long ContextHandle,long long OperationBufferSizevoid FUN_180198750(long long ContextHandle,long long OperationBufferSize
+void ProcessSystemContextAndMathOperations(long long ContextHandle, long long OperationBufferSize)
 {
-  int LockResult;
+  int SystemLockResult;
   void *SystemContext;
   uint32_t UnicodeCodePoint;
-  uint32_t MemoryAddressMaskPointer;
+  uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   uint32_t OperationResult;
   uint32_t *StringProcessingStatus;
-  long long secondaryLoopCounter;
-  long long *pStringOffset;
+  long long SecondaryLoopCounter;
+  long long *StringOffsetPointer;
   float PrimaryFloatValue;
   float SecondaryFloatValue;
-  float SystemContextPrimaryFloat2;
-  uint64_t auStack_18 [2];
+  float SystemContextFloatValue;
+  uint64_t StackBuffer[2];
   
   if (OperationBufferSize != 0) {
     IntegerValue = *(int *)(ContextHandle + 0x3358);
@@ -241451,7 +241452,21 @@ void SystemNullOperation(void)
 
 
 
-99930(long long ContextHandlevoid FUN_180199930(long long ContextHandle
+// 函数: void FUN_180199930(long long ContextHandle)
+/**
+ * @brief 处理系统字符编码和验证操作
+ * 
+ * 该函数负责处理系统字符编码和验证的核心操作，包括：
+ * - 字符串比较和字节处理
+ * - 内存块索引和管理
+ * - UTF-8和UTF-16字符转换
+ * - 系统上下文和内存池管理
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180199930
+ */
+void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
 {
   byte StringComparisonByte;
   bool HighByte;
