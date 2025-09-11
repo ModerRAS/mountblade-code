@@ -70011,7 +70011,7 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
   void* CurrentThreadIdentifier;
   
   CurrentThreadIdentifier = SystemInvalidHandleTemplate;
-  resourceDataIndex = *(long long *)(SystemResourceManager + 8);
+  ResourceDataIndex = *(long long *)(SystemResourceManager + 8);
   if (ResourceDataIndex != 0) {
     ResourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
     if (ResourcePoolPointer != (long long *)0x0) {
@@ -70022,7 +70022,7 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
     if (SystemResourceOffsetPointer != (long long *)0x0) {
       (**(code **)(*SystemResourceOffsetPointer + 0x38))();
     }
-    resourceDataIndex = *(long long *)(SystemResourceManager + 8);
+    ResourceDataIndex = *(long long *)(SystemResourceManager + 8);
     if (*SystemResourceManager != '\0') {
       SystemProcessBufferPointer = ResourceDataIndex;
       if ((SystemResourceManager[0x10] & 2U) == 0) {
@@ -70045,7 +70045,7 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
   SystemResourceManager[0xd] = '\0';
   SystemResourceManager[0xe] = '\0';
   SystemResourceManager[0xf] = '\0';
-  resourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
+  ResourcePoolPointer = *(long long **)(SystemResourceManager + 0x18);
   SystemResourceManager[0x18] = '\0';
   SystemResourceManager[0x19] = '\0';
   SystemResourceManager[0x1a] = '\0';
