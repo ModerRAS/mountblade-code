@@ -38815,7 +38815,7 @@ uint64_t * ValidateSystemDataProcessing(void)
         return exceptionBuffer3;
       }
       exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + StackFrameContextNegativeOffset11,8);
-      OperationResultPrimary = floatResultA;
+      OperationResultPrimary = processedNormalizedFloatValue;
     }
     else {
       exceptionBuffer3 = (DataBuffer *)0x1c;
@@ -39071,7 +39071,7 @@ DataBuffer * ProcessSystemDataValidation(void)
         return resultPointer;
       }
       resultPointer = (DataBuffer *)OperateDataO0(validationResult,framePointer + -0x11,8);
-      systemStatus = floatResultA;
+      systemStatus = processedNormalizedFloatValue;
     }
     else {
       resultPointer = (DataBuffer *)0x1c;
@@ -40149,7 +40149,7 @@ OperationLabelD:
     return memoryRegionBase;
   }
   memoryRegionBase = validationOutcome;
-  secondaryFloatResult = floatResultA;
+  secondaryFloatResult = processedNormalizedFloatValue;
   operationResult = dataFlags;
   securityCheckResult = systemContextD;
   if (*(uint *)(registerContext + 8) < 0x70) {

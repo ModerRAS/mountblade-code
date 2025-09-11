@@ -232779,9 +232779,9 @@ LAB_18019099c:
               StringComparisonByte0 = false;
             }
             else {
-              if (iStack_350 == 0) goto LAB_18019099a;
+              if (StringComparisonFlag == 0) goto LAB_18019099a;
               SystemBytePointer = (byte *)*TemporaryBuffer;
-              MemoryBlockIndex = (long long)puStack_358 - (long long)SystemBytePointer;
+              MemoryBlockIndex = (long long)StringComparisonPointer - (long long)SystemBytePointer;
               do {
                 CurrentBytePointer = SystemBytePointer + MemoryBlockIndex;
                 ValidationResult = (uint)*SystemBytePointer - (uint)*CurrentBytePointer;
