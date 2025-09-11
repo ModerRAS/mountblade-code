@@ -1047,6 +1047,27 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 系统参数偏移量常量
 #define SystemParameterEventFlagsOffset 0x4e                 // 系统参数事件标志偏移量
 #define SystemParameterStatusOffset 0x4c                     // 系统参数状态偏移量
+
+// 系统线程管理函数
+#define InitializeSystemThreadPool FUN_180058850               // 初始化系统线程池
+#define CreateSystemThread FUN_180058870                      // 创建系统线程
+#define DestroySystemThread FUN_180058890                      // 销毁系统线程
+#define ManageSystemThreadPriority FUN_1800588b0              // 管理系统线程优先级
+#define SynchronizeSystemThreads FUN_1800588d0                 // 同步系统线程
+
+// 系统文件操作函数
+#define OpenSystemFile FUN_1800588f0                          // 打开系统文件
+#define CloseSystemFile FUN_180058910                         // 关闭系统文件
+#define ReadSystemFile FUN_180058930                          // 读取系统文件
+#define WriteSystemFile FUN_180058950                         // 写入系统文件
+#define SeekSystemFile FUN_180058970                          // 定位系统文件
+
+// 系统网络通信函数
+#define InitializeNetworkConnection FUN_180058990              // 初始化网络连接
+#define SendNetworkData FUN_1800589b0                         // 发送网络数据
+#define ReceiveNetworkData FUN_1800589d0                       // 接收网络数据
+#define CloseNetworkConnection FUN_1800589f0                   // 关闭网络连接
+#define ValidateNetworkConnection FUN_180058a10                // 验证网络连接
 #define SystemParameterProcessingFlagOffset 0x4d             // 系统参数处理标志偏移量
 #define SystemParameterMemoryAllocationOffset 0x54           // 系统参数内存分配偏移量
 
