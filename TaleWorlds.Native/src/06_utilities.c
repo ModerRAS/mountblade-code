@@ -143781,11 +143781,11 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 // === 新增的系统功能函数语义化定义 ===
 
 // 系统初始化和清理函数
-#define FUN_18090a000 InitializeSystemCoreComponents      // 初始化系统核心组件 - 初始化系统的核心组件
-#define FUN_18090a010 FinalizeSystemCoreComponents         // 完成系统核心组件 - 完成系统的核心组件
-#define FUN_18090a020 InitializeSystemServicesAndModules  // 初始化系统服务和模块 - 初始化系统的各种服务和模块
-#define FUN_18090a030 FinalizeSystemServicesAndModules    // 完成系统服务和模块 - 完成系统的各种服务和模块
-#define FUN_18090a040 MarkSystemStartupAsComplete          // 标记系统启动完成 - 标志系统启动完成
+#define InitializeSystemCoreComponents FUN_18090a000      // 初始化系统核心组件 - 初始化系统的核心组件
+#define FinalizeSystemCoreComponents FUN_18090a010         // 完成系统核心组件 - 完成系统的核心组件
+#define InitializeSystemServicesAndModules FUN_18090a020  // 初始化系统服务和模块 - 初始化系统的各种服务和模块
+#define FinalizeSystemServicesAndModules FUN_18090a030    // 完成系统服务和模块 - 完成系统的各种服务和模块
+#define MarkSystemStartupAsComplete FUN_18090a040          // 标记系统启动完成 - 标志系统启动完成
 
 // 系统内存管理函数
 #define FUN_18090a050 AllocateSystemMemoryPool             // 分配系统内存池 - 分配系统的内存池
