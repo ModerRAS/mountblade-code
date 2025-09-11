@@ -721,6 +721,7 @@
 #define FUN_1802036f0 ProcessSystemStringOperation                // 处理系统字符串操作
 #define FUN_1802036a0 ExecuteSystemStringEncoding               // 执行系统字符串编码
 #define FUN_18010cc20 RetrieveSystemStringIndex                    // 获取系统字符串索引
+#define GetSystemContextDataPointer FUN_1801bc8d0                // 获取系统上下文数据指针
 #define FUN_180203660 ConvertSystemStringEncoding                 // 转换系统字符串编码
 #define FUN_180203610 ValidateSystemStringEncoding                // 验证系统字符串编码
 #define FUN_1802035d0 ProcessSystemMemoryAllocation               // 处理系统内存分配
@@ -243664,7 +243665,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     SystemPrimaryReturnCode = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
     ProcessingFlags0 = &plStack_1d0;
     SystemContextDataPointer = &SystemDataTemplate1801bc960;
-    pcStack_1b8 = FUN_1801bc8d0;
+    pcStack_1b8 = GetSystemContextDataPointer;
     plStack_2e8 = ContextHandle;
     SystemStackPointer2e0 = OperationBufferSize;
     plStack_1d0 = ContextHandle;
@@ -244774,7 +244775,7 @@ LAB_18019d905:
     pSystemRegisterFlag = &SystemCleanupFlagG;
     SystemCleanupFlagG = ContextHandle + 0xc182;
     SystemMemoryPointer = &SystemMemoryBlockAddress;
-    pcStack_b8 = FUN_18031c090;
+    pcStack_b8 = ConfigureSystemStackHandler;
     CoreEngineExecuteConfiguration(&SystemCleanupFlagG);
   }
   for (; PrimaryProcessingStatusFlag != SystemEventTemplatePointer; PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 4) {
@@ -253864,7 +253865,7 @@ void ProcessContextHandleAndUtf16EncodingData(uint64_t ContextHandle,unsigned lo
     }
   }
   if (OperationBufferSize != 0) {
-    FUN_180204e40(_SystemFloatTableAddress,OperationBufferSize + 8,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    ProcessSystemFloatTransformOperations(_SystemFloatTableAddress,OperationBufferSize + 8,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     if (*(long long **)(OperationBufferSize + 0x18) != (long long *)0x0) {
       (**(code **)(**(long long **)(OperationBufferSize + 0x18) + 0x38))();
     }
