@@ -251,6 +251,7 @@ typedef enum {
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
 #define FUN_18089d557 ValidateUIDataAndContextStructure          // 验证UI数据和上下文结构
 #define FUN_18089dcd6 UIReturnEmptyFunctionB                      // UI系统空返回函数B
+#define FUN_18089dcf0 ProcessUIEventDataWithValidation             // 处理UI事件数据与验证
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
 
 /**
@@ -404981,8 +404982,18 @@ void ValidateUIDataAndContextStructure(UIDword uiContext)
 
 
  void FUN_18089dcd6(void)
-void FUN_18089dcd6(void)
+void UIReturnEmptyFunctionB(void)
 
+/**
+ * @brief UI系统空返回函数B
+ * 
+ * 该函数是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18089dcd6
+ * @note 这是一个简单的返回函数，不执行任何操作
+ */
 {
   return;
 }
@@ -404990,7 +405001,24 @@ void FUN_18089dcd6(void)
 
 
 ulonglong FUN_18089dcf0(longlong uiContext,UIHandle *dataSource)
+ulonglong ProcessUIEventDataWithValidation(longlong uiContext,UIHandle *dataSource)
 
+/**
+ * @brief 处理UI事件数据与验证
+ * 
+ * 该函数负责处理UI事件数据并进行验证，包括：
+ * - 验证UI数据签名和格式
+ * - 验证UI上下文数据的完整性
+ * - 验证UI事件数据结构和完整性
+ * - 处理验证错误和返回状态码
+ * 
+ * @param uiContext UI上下文标识符
+ * @param dataSource 数据源句柄数组
+ * @return ulonglong 处理结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_18089dcf0
+ * @note 该函数处理"PSIP"和"BISP"类型的数据签名
+ */
 {
   UIHandle result;
   uint iterationCount;
