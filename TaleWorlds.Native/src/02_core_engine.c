@@ -260563,7 +260563,8 @@ LAB_18020c9db:
 
 
 
-0cad4(voidvoid FUN_18020cad4(void
+// 空操作函数
+void SystemNullOperation(void)
 {
   return;
 }
