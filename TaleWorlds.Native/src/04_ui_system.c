@@ -133209,8 +133209,8 @@ FUN_18073eddb:
 
 
 
- void FUN_18073ed53(void)
-void FUN_18073ed53(void)
+ #define ProcessUIContextDataOperation FUN_18073ed53         // 处理UI上下文数据操作
+void ProcessUIContextDataOperation(void)
 
 {
   int operationResult;
@@ -133228,8 +133228,8 @@ void FUN_18073ed53(void)
 
 
 
- void FUN_18073eddb(void)
-void FUN_18073eddb(void)
+ #define ExecuteUISystemCleanup FUN_18073eddb                  // 执行UI系统清理
+void ExecuteUISystemCleanup(void)
 
 {
   longlong stackParam00000038;
