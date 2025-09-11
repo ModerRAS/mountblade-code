@@ -125128,7 +125128,7 @@ void ProcessUIContextAndBufferData(UIHandle uiContext,UIHandle dataSource)
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180746840(stackUInt120,dataSource);
+    operationResult = ProcessUITextureDataValidation(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073a55a;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
