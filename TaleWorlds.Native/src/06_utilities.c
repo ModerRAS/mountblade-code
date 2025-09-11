@@ -13674,6 +13674,39 @@ int ProcessSystemDataTransferWithValidation(void* inputData, void* outputData, s
  * @note 原始函数名：FUN_180069530
  * @note 这是系统内存完整性验证的核心函数
  */
+/**
+ * @brief 验证系统内存完整性和安全性
+ * 
+ * 验证系统内存的完整性和安全性，检查内存访问权限和数据一致性。
+ * 该函数负责验证内存区域的访问权限，检查数据的完整性，并确保系统内存的安全。
+ * 
+ * @param memoryAddress 要验证的内存地址
+ * @param memorySize 要验证的内存大小（字节）
+ * @param validationType 验证类型，指定要执行的验证操作：
+ *                       - ValidateBasicIntegrity (0x1): 基本完整性验证
+ *                       - ValidateSecurityAttributes (0x2): 安全属性验证
+ *                       - ValidateDataConsistency (0x4): 数据一致性验证
+ *                       - ValidateFullIntegrity (0x8): 完整性全面验证
+ * 
+ * @return int 验证结果状态码：
+ *         - OperationSuccess (0x0): 验证成功
+ *         - InvalidMemoryAddress (0x1): 无效内存地址
+ *         - MemoryAlignmentError (0x2): 内存对齐错误
+ *         - MemoryAccessDenied (0x3): 内存访问被拒绝
+ *         - MemoryValidationFailed (0x4): 内存验证失败
+ *         - InvalidValidationType (0x5): 无效验证类型
+ * 
+ * @details 实现细节：
+ * - 验证输入参数的有效性，包括空指针检查和内存大小验证
+ * - 验证内存地址的对齐和边界，确保内存访问的效率
+ * - 检查内存访问权限，确保调用者有权限访问指定的内存区域
+ * - 根据验证类型执行相应的验证操作，使用switch语句选择验证方法
+ * - 检查验证结果，返回相应的状态码
+ * 
+ * @note 该函数支持多种验证模式，可以根据需要选择适当的验证类型
+ * @warning 调用此函数前，确保内存地址和大小参数正确
+ * @see ValidateBasicMemoryIntegrity, ValidateMemorySecurityAttributes, ValidateMemoryDataConsistency
+ */
 int ValidateSystemMemoryAndIntegrity(void* memoryAddress, size_t memorySize, uint32_t validationType)
 {
     // 内存验证状态变量

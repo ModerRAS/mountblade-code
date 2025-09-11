@@ -239111,7 +239111,7 @@ LAB_1801974aa:
     pCharacterValidationBuffer = SystemCharacterStatusPointerReference;
     if ((long long)ContextHandle[0x53f] - (long long)ContextHandle[0x53e] >> 3 != 0) {
       do {
-        FUN_1803005b0(*(void *)((long long)pSystemCharacterStatusBuffer + (long long)ContextHandle[0x53e]));
+        ProcessSystemUnicodeConversion(*(void *)((long long)pSystemCharacterStatusBuffer + (long long)ContextHandle[0x53e]));
         ValidationResult = (int)pCharacterValidationBuffer + 1;
         pSystemCharacterStatusBuffer = pSystemCharacterStatusBuffer + 1;
         pCharacterValidationBuffer = (uint64_t **)(unsigned long long)ValidationResult;
