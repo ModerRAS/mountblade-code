@@ -139071,19 +139071,19 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈数据字K
 // 功能：存储异常上下文的数据字2
-#define StackExceptionContextData2 uStack_12c
+#define StackExceptionContextWord2 uStack_12c
 
 // 栈数据字L
 // 功能：存储异常上下文的数据字3
-#define StackExceptionContextData3 uStack_128
+#define StackExceptionContextWord3 uStack_128
 
 // 数据上下文偏移54处的数据字
 // 功能：存储数据上下文偏移0x54处的验证数据
-#define systemContextOffsetData54 uStack_124
+#define DataContextOffset54Word uStack_124
 
 // 数据上下文偏移58处的数据字
 // 功能：存储数据上下文偏移0x58处的验证数据
-#define systemContextOffsetData58 uStack_120
+#define DataContextOffset58Word uStack_120
 
 // 数据上下文偏移5c处的数据字
 // 功能：存储数据上下文偏移0x5c处的验证数据
