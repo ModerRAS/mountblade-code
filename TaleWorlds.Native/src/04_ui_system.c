@@ -128702,49 +128702,79 @@ LAB_18073c33b:
 
  
 
- void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文缓冲区操作C
+ * 
+ * 该函数负责执行UI上下文缓冲区的复杂操作，包括：
+ * - 初始化加密缓冲区和数据指针
+ * - 获取渲染上下文信息
+ * - 执行缓冲区数据验证和比较
+ * - 复制UI数据缓冲区
+ * - 释放内存资源
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @return void
+ */
+void ProcessUIContextBufferOperationC(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  longlong *pstackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong contextSize;
+  longlong *contextPointer;
+  UIByte processingBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong140,&stackLong148);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  contextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext, &contextPointer, &contextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong140 + 0x120))(pstackLong140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073c471;
+    operationResult = (**(code **)(*contextPointer + 0x120))(contextPointer, dataSource, targetBuffer);
+    if (operationResult == 0) goto LAB_18073c471;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    dataValidationResult = ValidateUIDataAndInitialize(processingBuffer, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(processingBuffer + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), targetBuffer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextBufferData);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UIContextBufferData);
   }
-FUN_18073c471:
-  if (stackLong148 != 0) {
+LAB_18073c471:
+  if (contextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
 
  
 
- void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文缓冲区操作D
+ * 
+ * 该函数负责执行UI上下文缓冲区的扩展操作，包括：
+ * - 初始化上下文句柄和事件句柄
+ * - 设置寄存器指针和堆栈参数
+ * - 获取渲染上下文信息
+ * - 执行数据验证和缓冲区比较
+ * - 复制数据到目标缓冲区
+ * - 释放内存资源
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @return void
+ */
+void ProcessUIContextBufferOperationD(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -128752,30 +128782,30 @@ void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  longlong *stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong contextSize;
+  longlong *contextPointer;
+  ulonglong bufferParam;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  contextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext, &contextPointer, &contextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*stackParam00000038 + 0x120))(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073c471;
+    operationResult = (**(code **)(*contextPointer + 0x120))(contextPointer, dataSource, targetBuffer);
+    if (operationResult == 0) goto LAB_18073c471;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = ValidateUIDataAndInitialize(&bufferParam, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&bufferParam + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(&bufferParam + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextBufferData,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UIContextBufferData, &bufferParam);
   }
-FUN_18073c471:
-  if (lStack0000000000000030 != 0) {
+LAB_18073c471:
+  if (contextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return

@@ -1652,6 +1652,9 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemMemoryAllocationStatus SystemMemoryAllocationResult   // 系统内存分配状态
 #define SystemEncodingConversionResult EncodingConversionResult      // 系统编码转换结果
 #define PrimaryContextHandle ContextHandle1                          // 主上下文句柄
+#define SecondaryContextHandle ContextHandle2                        // 次要上下文句柄
+#define SystemContextData ContextHandle4                           // 系统上下文数据
+#define SystemContextFlag ContextHandle5                            // 系统上下文标志
 #define SystemOperationStatusCode SystemStatusCode                   // 系统操作状态码
 #define SystemContextRegisterPointer in_RCX                          // 系统上下文寄存器指针
 
@@ -1705,7 +1708,19 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackUnsigned2b0 uStack_2b0                         // 系统栈无符号2b0
 #define SystemStackUnsigned2b8 uStack_2b8                         // 系统栈无符号2b8
 #define SystemStackPointer218 plStack_218                         // 系统栈指针218
-#define SystemStackArray190 auStack_190                           // 系统栈数组190
+#define SystemContextOperationPointer plStack_220                    // 系统上下文操作指针
+#define SystemMemoryAllocationPointer plStack_228                  // 系统内存分配指针
+#define SystemMemoryOperationPointer plStack_230                   // 系统内存操作指针
+#define SystemStackPointer278 plStack_278                           // 系统栈指针278
+#define SystemStackPointer290 plStack_290                           // 系统栈指针290
+#define SystemContextRegister270 plStack_270                       // 系统上下文寄存器270
+#define SystemMemoryOperationBlock8a0 plStack_8a0                 // 系统内存操作块8a0
+#define SystemMemoryOperationBlock2d0 plStack_2d0                  // 系统内存操作块2d0
+#define SystemContextProcessingArray190 auStack_190                 // 系统上下文处理数组190
+#define SystemKeyStackArray158 auStack_158                         // 系统密钥栈数组158
+#define SystemEncodingStackArray418 auStack_418                    // 系统编码栈数组418
+#define SystemStackUnsigned338 uStack_338                         // 系统栈无符号338
+#define SystemStackUnsigned398 uStack_398                         // 系统栈无符号398
 #define SystemStackPointer350 puStack_350                         // 系统栈指针350
 #define SystemStackPointer3A8 puStack_3a8                         // 系统栈指针3A8
 #define SystemStackPointer368 puStack_368                         // 系统栈指针368
@@ -242884,14 +242899,14 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     MatchCounter = (int)*(void *)(ContextHandle[0xc170] + 0x1dd0);
   }
   *(float *)((long long)OperationBufferSize + 0x129fc) = (float)MatchCounter;
-  FUN_1801acb30(ContextHandle);
+  ProcessSystemAnimationSequencing(ContextHandle);
   MatchCounter = (int)ContextHandle[0x4f8];
   if (4 < MatchCounter) {
-    FUN_180316460(ContextHandle + 0xc182);
+    HandleSystemTextureMapping(ContextHandle + 0xc182);
     MatchCounter = (int)ContextHandle[0x4f8];
   }
   if (6 < MatchCounter) {
-    FUN_18031a470(ContextHandle + 0xc182);
+    ProcessSystemShaderCompilation(ContextHandle + 0xc182);
   }
   ContextHandleData = (long long *)ProcessSystemMemoryManager();
   if (ContextHandleData != (long long *)0x0) {
@@ -243075,7 +243090,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
       BufferIndex = *(long long *)(MemoryBufferC + BufferIndex);
       if (((ContextHandle[100] != 0) && ((*(byte *)(BufferIndex + 0x1bd8) & 0x20) != 0)) &&
          ((*(byte *)(BufferIndex + 0x1bd9) & 2) == 0)) {
-        FUN_18031e320(ContextHandle[100],BufferIndex);
+        HandleSystemBufferManagement(ContextHandle[100],BufferIndex);
       }
       *(uint8_t *)(BufferIndex + 0x1c60) = 1;
       if (((*(int *)(BufferIndex + 0x124bc) == 0) && (*(int *)(BufferIndex + 0x2920) == 0)) &&
@@ -243135,14 +243150,14 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     fStack_2b8 = fStack_2b8 * 200.0;
     fStack_2b4 = fStack_2b4 * 200.0;
     fStack_2b0 = fStack_2b0 * 200.0;
-    FUN_1802ea790(ContextHandle[0x1040]);
+    ExecuteSystemDataProcessing(ContextHandle[0x1040]);
     *(byte *)(ContextHandle[0x1040] + 0x2e8) = *(byte *)(ContextHandle[0x1040] + 0x2e8) & 0xef;
   }
   if ((ContextHandle[0x103f] != 0) && (*(char *)(CoreEngineSystemContext + 0x1504) == '\x01')) {
-    FUN_1802ee720();
+    InitializeSystemGraphicsState();
   }
   if (ContextHandle[0x89] != 0) {
-    FUN_18037c8d0();
+    ProcessSystemRenderInitialization();
   }
   BufferIndex = TimeoutValueStorage;
   if (*(int *)(OperationBufferSize[0x6b0] + 0x110) != 0) {
@@ -243155,7 +243170,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
         ProcessOperationResultAllocation(BufferIndex,&plStack_278,0);
       }
       if (*(char *)(SystemMemoryManager + 0x162f) != '\0') {
-        FUN_180389b20(ContextHandle + 0x534);
+        ExecuteSystemVertexProcessing(ContextHandle + 0x534);
       }
       if ((*(char *)(SystemMemoryManager + 0x1630) != '\0') &&
          ((long long *)ContextHandle[0x535] != (long long *)0x0)) {
@@ -243315,7 +243330,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
       }
     }
     if (ContextHandle[0x89] != 0) {
-      FUN_180374f40(ContextHandle[0x89],OperationBufferSize);
+      HandleSystemPixelShader(ContextHandle[0x89],OperationBufferSize);
     }
     if ((*(char *)((long long)ContextHandle + 0x563) != '\0') &&
        (ValidationResult = (int)(ContextHandle[0xb6] - ContextHandle[0xb5] >> 0x3f),
