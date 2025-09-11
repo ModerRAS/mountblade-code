@@ -9336,11 +9336,11 @@ UIHandle GetUIStatusFlag(void)
         registerXMM2[0xf] = (0 < extraChannelValue4) * (extraChannelValue4 < 0x100) * resultVector2[0xe] - (0xff < extraChannelValue4);
         *(UIDword *)(allocatedMemory4 + 0xc + (longlong)textureHandle) = registerXMM2._0_4_;
         textureHandle = textureHandle + 4;
-        processingResult7 = processingResult6;
+        finalProcessingResult = intermediateProcessingResult;
       } while ((longlong)textureHandle - (longlong)targetBuffer < (longlong)(int)(bufferSize - bufferValue));
     }
   }
-  allocatedMemory3 = (longlong)processingResult7;
+  allocatedMemory3 = (longlong)finalProcessingResult;
   if (allocatedMemory3 < (int)bufferSize) {
     allocatedMemory4 = (int)bufferSize - allocatedMemory3;
     pixelBufferPtr = (byte *)(allocatedMemory3 + (longlong)targetBuffer);
