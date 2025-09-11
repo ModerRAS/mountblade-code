@@ -99048,7 +99048,7 @@ void ScanSystemCharacterStatusBuffer(uint64_t ContextHandle,uint64_t OperationBu
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = Utf8SourcePointer;
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -102640,7 +102640,7 @@ char CheckSystemMemoryStatus(void
   long long CharacterLimit;
   char NullPointerValueB;
   float CalculatedDistance;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   float *RenderParameterBuffer1;
   char *RenderCharacterStatusBuffer;
   uint8_t *RenderResultBuffer;
@@ -117865,7 +117865,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   uint64_t FloatProcessingParameter;
   uint32_t MemoryAllocationBase;
   double TimeDifferenceInSeconds3;
@@ -127361,7 +127361,7 @@ void ProcessSystemValidation(int *ContextHandle,uint OperationBufferSize,uint64_
 void ExecuteSystemMemoryOperation(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = Utf8SourcePointer;
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -137408,7 +137408,7 @@ unsigned long long ConvertSystemDataAndParameters(uint64_t ContextHandle,uint64_
   uint Utf16ConversionContext;
   float SystemCoreScaleX;
   float SecondaryFloatValue;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   MemoryBlockIndex = SystemConfigurationHandle;
   if (SystemConfigurationHandle != 0) {
@@ -154863,7 +154863,7 @@ ea30(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePoin
 {
   uint64_t uStackX_10;
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   uStackX_10 = OperationBufferSize;
   ProcessingConfigurationFlag = Utf8SourcePointer;
@@ -155142,7 +155142,7 @@ void ProcessSystemMemoryManagement(uint32_t ContextHandle,uint64_t OperationBuff
   int CharacterTablePointer;
   uint32_t SystemRegisterR10D;
   int SystemRegisterR11D;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   if ((*(int *)(in_RCX + Utf16EndPointer * 0x30) == SystemRegisterR11D) &&
      (*(int *)(in_RCX + 0x18 + Utf16EndPointer * 0x30) == *(int *)(FramePointer + 0x1a90) + -1)) {
@@ -173379,7 +173379,7 @@ void ProcessCharacterEncodingValidation(long long ContextHandle,uint32_t *Contex
   uint8_t aSystemPrimaryReturnCode [16];
   uint32_t Utf16Character;
   uint64_t SystemRegisterFlagBuffer [3];
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   uint64_t BufferMemoryOffset;
   unsigned long long aSystemKeyPointer [9];
   
@@ -176327,7 +176327,7 @@ void InitializeSystemCharacterProcessing(void)
   void *SystemContext;
   uint64_t uStackX_10;
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   if (*(char *)(SystemConfigurationHandle + 0x2e38) != '\0') {
     CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x2e40);
@@ -176715,7 +176715,7 @@ uint64_t * GetCharacterStatusBuffer(void)
   void *NextNode;                           // 下一个节点指针
   uint ArraySize;        // 系统内存分配结果
   byte *CharacterLimit;                     // 字符限制指针
-  uint64_t StackParameterUnsigned20;                      // 栈变量X_20
+  uint64_t SystemStackParameter;                      // 栈变量X_20
   uint64_t StackParameter28;               // 栈变量00000028
   uint64_t SystemValidationStatus30;        // 系统输入字符串缓冲区30
   uint64_t TertiaryDataStorage;             // 第三级数据存储
@@ -176789,7 +176789,7 @@ uint64_t * GetCharacterStatusBufferByCode(int ContextHandle)
   void *NextNode;                           // 下一个节点指针
   uint ArraySize;        // 系统内存分配结果
   byte *CharacterLimit;                     // 字符限制指针
-  uint64_t StackParameterUnsigned20;                      // 栈变量X_20
+  uint64_t SystemStackParameter;                      // 栈变量X_20
   uint64_t StackParameter28;               // 栈变量00000028
   uint64_t SystemValidationStatus30;        // 系统输入字符串缓冲区30
   uint64_t TertiaryDataStorage;             // 第三级数据存储
@@ -194659,7 +194659,7 @@ InitializeMemoryPoolManager(long long *ContextHandle,long long *ContextHandleSiz
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
   long long lStackX_18;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   void *SystemCharacterStatusBufferPointer;
   uint64_t *SystemMemoryPointer;
   uint MemoryOffsetValue;
@@ -208953,7 +208953,7 @@ ProcessUtf8ToUtf16ConversionAdvanced(uint64_t *ContextHandle,uint64_t OperationB
   int *pValidationResult;
   int ProcessIterationCount;
   unsigned long long ProcessingStatusFlag;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   StringLength = 0;
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229477,7 +229477,7 @@ void ReleaseMemoryBlock24Bytes(uint64_t ContextHandle, char OperationBufferSize,
 void ProcessUtf16CharacterConversionPrimary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229506,7 +229506,7 @@ void ProcessUtf16CharacterConversionPrimary(uint64_t ContextHandle, uint32_t *Co
 void ProcessUtf16CharacterConversionSecondary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229535,7 +229535,7 @@ void ProcessUtf16CharacterConversionSecondary(uint64_t ContextHandle, uint32_t *
 void ProcessUtf16CharacterConversionTertiary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229564,7 +229564,7 @@ void ProcessUtf16CharacterConversionTertiary(uint64_t ContextHandle, uint32_t *C
 void ProcessUtf16CharacterConversionQuaternary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229593,7 +229593,7 @@ void ProcessUtf16CharacterConversionQuaternary(uint64_t ContextHandle, uint32_t 
 void ProcessUtf16CharacterConversionQuinary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
@@ -229622,7 +229622,7 @@ void ProcessUtf16CharacterConversionQuinary(uint64_t ContextHandle, uint32_t *Co
 void ProcessUtf16CharacterConversionSenary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
-  uint64_t StackParameterUnsigned20;
+  uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   StackParameterUnsigned20 = Utf16EndPointer;
