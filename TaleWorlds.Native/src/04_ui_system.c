@@ -5303,11 +5303,11 @@ void* UIGestureCoordinates;
 // UI系统上下文操作数据表定义
 #define UIContextOperationDataTable248 UIContextOperationDataBaseTable
 #define UIContextOperationConfigTable UNK_1809571c8    // UI上下文操作配置表 - 存储上下文操作的配置数据
-#define UIContextOperationDataTable158 UNK_180957158    // UI上下文操作数据表158 - 存储上下文操作的状态数据
-#define UIContextOperationDataTable0f8 UNK_1809570f8    // UI上下文操作数据表0f8 - 存储上下文操作的验证数据
-#define UIContextOperationDataTable188 UNK_180957188    // UI上下文操作数据表188 - 存储上下文操作的缓存数据
-#define UIContextOperationDataTable260 UNK_180957260    // UI上下文操作数据表260 - 存储上下文操作的结果数据
-#define UIContextOperationDataTable310 UNK_180957310    // UI上下文操作数据表310 - 存储上下文操作的高级数据
+#define UIContextOperationStatusTable UNK_180957158    // UI上下文操作状态表 - 存储上下文操作的状态数据
+#define UIContextOperationValidationTable UNK_1809570f8    // UI上下文操作验证表 - 存储上下文操作的验证数据
+#define UIContextOperationCacheTable UNK_180957188    // UI上下文操作缓存表 - 存储上下文操作的缓存数据
+#define UIContextOperationResultTable UNK_180957260    // UI上下文操作结果表 - 存储上下文操作的结果数据
+#define UIContextOperationAdvancedTable UNK_180957310    // UI上下文操作高级表 - 存储上下文操作的高级数据
 #define UIContextOperationDataTable898 UNK_180957898    // UI上下文操作数据表898 - 存储上下文操作的扩展数据
 #define UIContextOperationDataTable810 UNK_180957810    // UI上下文操作数据表810 - 存储上下文操作的索引数据
 #define UIContextOperationDataTable6a0 UNK_1809576a0    // UI上下文操作数据表6a0 - 存储上下文操作的临时数据

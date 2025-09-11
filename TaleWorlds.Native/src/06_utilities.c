@@ -1025,6 +1025,7 @@
 #define DestinationContextOffset1E0 0x1e0
 
 // 系统上下文偏移量常量
+#define systemContextOffset 0x8
 #define SystemContextOffset104 0x104
 
 // 内存指针偏移量常量
@@ -17909,6 +17910,7 @@ int ProcessResourceCleanupOperations(uint64_t ResourceHandle, int64_t SystemRegi
   uint64_t ResourceCleanupBuffer;           // 资源清理缓冲区
   uint64_t FunctionCallContext;             // 函数调用上下文
   uint64_t SecurityValidationContext;       // 安全验证上下文
+  uint64_t FunctionCallBuffer;              // 函数调用缓冲区
   
   // 执行栈保护检查，防止栈溢出攻击
   StackProtectionGuard = ExceptionEncryptionKeyValue ^ (uint64_t)&ResourceCleanupBuffer;
