@@ -1055,12 +1055,85 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ManageSystemThreadPriority FUN_1800588b0              // 管理系统线程优先级
 #define SynchronizeSystemThreads FUN_1800588d0                 // 同步系统线程
 
+/**
+ * @brief 初始化系统线程池
+ * 
+ * 创建并初始化系统线程池，为多线程处理做准备
+ * 该函数负责：
+ * 1. 分配线程池所需的内存资源
+ * 2. 初始化线程同步机制
+ * 3. 设置线程池的初始参数
+ * 4. 创建工作线程并启动
+ * 
+ * @param poolSize 线程池的大小（线程数量）
+ * @param threadStackSize 每个线程的栈大小（字节）
+ * @param priority 线程优先级（0-31，数值越大优先级越高）
+ * @return 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180058850
+ * @warning 线程池初始化失败可能导致系统无法进行多线程处理
+ * @see CreateSystemThread, DestroySystemThread
+ */
+#define InitializeSystemThreadPool FUN_180058850
+
+/**
+ * @brief 创建系统线程
+ * 
+ * 创建一个新的系统线程，用于执行特定的任务
+ * 
+ * @param threadFunction 线程函数指针
+ * @param threadParameter 线程参数
+ * @param threadPriority 线程优先级
+ * @return 线程句柄，创建失败返回NULL
+ * 
+ * @note 原始函数名：FUN_180058870
+ */
+#define CreateSystemThread FUN_180058870
+
 // 系统文件操作函数
 #define OpenSystemFile FUN_1800588f0                          // 打开系统文件
 #define CloseSystemFile FUN_180058910                         // 关闭系统文件
 #define ReadSystemFile FUN_180058930                          // 读取系统文件
 #define WriteSystemFile FUN_180058950                         // 写入系统文件
 #define SeekSystemFile FUN_180058970                          // 定位系统文件
+
+/**
+ * @brief 打开系统文件
+ * 
+ * 打开指定的系统文件，返回文件句柄
+ * 该函数负责：
+ * 1. 验证文件路径和权限
+ * 2. 分配文件句柄资源
+ * 3. 设置文件访问模式
+ * 4. 初始化文件缓冲区
+ * 
+ * @param filePath 文件路径字符串
+ * @param accessMode 访问模式（读/写/读写）
+ * @param shareMode 共享模式
+ * @param creationDisposition 创建方式
+ * @return 文件句柄，打开失败返回INVALID_HANDLE_VALUE
+ * 
+ * @note 原始函数名：FUN_1800588f0
+ * @warning 文件打开失败可能导致系统无法访问必要的数据文件
+ * @see CloseSystemFile, ReadSystemFile, WriteSystemFile
+ */
+#define OpenSystemFile FUN_1800588f0
+
+/**
+ * @brief 关闭系统文件
+ * 
+ * 关闭已打开的系统文件，释放相关资源
+ * 
+ * @param fileHandle 文件句柄
+ * @return 关闭结果状态码：
+ *         - 0: 关闭成功
+ *         - 非0值: 关闭失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180058910
+ */
+#define CloseSystemFile FUN_180058910
 
 // 系统网络通信函数
 #define InitializeNetworkConnection FUN_180058990              // 初始化网络连接
