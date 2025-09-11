@@ -73140,9 +73140,9 @@ void ProcessDataStructureMemoryReorganization(long long *ContextHandle,uint64_t 
         ConfigurationString[3] = UnicodeCodePoint;
         ConfigurationString = ConfigurationString + 4;
       }
-      lStackX_10 = *Utf16EndPointer;
+      OperationResultBuffer10 = *Utf16EndPointer;
       alStackX_18[0] = *Utf8SourcePointer;
-      ConfigurationString = (uint32_t *)AllocateSystemMemoryBuffer(alStackX_18,&lStackX_10);
+      ConfigurationString = (uint32_t *)AllocateSystemMemoryBuffer(alStackX_18,&OperationResultBuffer10);
       TemporaryBuffer = (void *)ContextHandle[1];
       if (OperationBufferSize != TemporaryBuffer) {
         do {
