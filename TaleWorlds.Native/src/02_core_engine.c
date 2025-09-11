@@ -238141,7 +238141,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   *(uint32_t *)(ContextHandle + 0xc0f2) = 0;
   *(uint32_t *)((long long)ContextHandle + 0x607d4) = 0x3dcccccd;
   *(uint32_t *)(ContextHandle + 0xc0fb) = 0x47c35000;
-  FUN_180397bc0(ContextHandle + 0xc0fc,ContextHandle,*(uint8_t *)(OperationBufferSize + 0x28));
+  ProcessSystemContextConfiguration(ContextHandle + 0xc0fc,ContextHandle,*(uint8_t *)(OperationBufferSize + 0x28));
   ContextHandle[0xc11c] = 0;
   ContextHandle[0xc11d] = _guard_check_icall;
   InitializeSystemNetwork(ContextHandle + 0xc11e);
