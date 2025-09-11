@@ -260886,34 +260886,34 @@ unsigned long long HandleSystemMemoryContextManagement(long long ContextHandle)
       ContextHandleTablePointer = SystemContextRegister;
       if (SystemStatusChar != '\0') {
 LAB_18020f107:
-        (**(code **)(*ContextHandlePointer + 0x60))(ContextHandleTablePointer);
-        (**(code **)(*ContextHandlePointer + 0x70))(ContextHandleTablePointer);
+        (**(code **)(*MainContextPointer + 0x60))(ContextHandleTablePointer);
+        (**(code **)(*MainContextPointer + 0x70))(ContextHandleTablePointer);
         ProcessedCharacter = 1;
         goto LAB_18020f126;
       }
-      ContextHandle2 = (long long *)*MemoryAddressMaskPointer;
+      SecondaryContextHandle = (long long *)*MemoryAddressMaskPointer;
       ContextHandleData = SystemContextRegister;
       MemoryRangeBoundary = SystemContextRegister;
-      while (SystemContextRegister = ContextHandleData, SystemContextRegister = SystemContextRegister, ContextHandle2 != (long long *)0x0) {
-        if (ContextHandle2 != ContextHandle6) {
-          AllocatedMemorySize = ContextHandle2[7];
-          if ((char)ContextHandle2[9] == '\0') {
-            if ((unsigned long long)((ContextHandle2[6] - AllocatedMemorySize) - ContextHandle2[4]) < 0x8000000000000001            goto LAB_18020f0dd;
+      while (SystemContextRegister = ContextHandleData, SystemContextRegister = SystemContextRegister, SecondaryContextHandle != (long long *)0x0) {
+        if (SecondaryContextHandle != SenaryContextHandle) {
+          AllocatedMemorySize = SecondaryContextHandle[7];
+          if ((char)SecondaryContextHandle[9] == '\0') {
+            if ((unsigned long long)((SecondaryContextHandle[6] - AllocatedMemorySize) - SecondaryContextHandle[4]) < 0x8000000000000001) goto LAB_18020f0dd;
             LOCK();
-            ContextHandleTablePointer = ContextHandle2 + 6;
-            BufferStatus = *ContextHandlePointer;
-            *ContextHandlePointer = *ContextHandlePointer + 1;
+            ContextHandleTablePointer = SecondaryContextHandle + 6;
+            BufferStatus = *MainContextPointer;
+            *MainContextPointer = *MainContextPointer + 1;
             UNLOCK();
-            if ((unsigned long long)((BufferStatus - ContextHandle2[4]) - AllocatedMemorySize) < 0x8000000000000001) goto LAB_18020f0d2;
+            if ((unsigned long long)((BufferStatus - SecondaryContextHandle[4]) - AllocatedMemorySize) < 0x8000000000000001) goto LAB_18020f0d2;
             LOCK();
-            CharacterStatusBuffer = (unsigned long long *)(ContextHandle2 + 5);
+            CharacterStatusBuffer = (unsigned long long *)(SecondaryContextHandle + 5);
             ProcessedCharacter = *CharacterStatusBuffer;
             *CharacterStatusBuffer = *CharacterStatusBuffer + 1;
             UNLOCK();
-            ContextHandleTablePointer = (long long *)ContextHandle2[0xc];
-            long long AllocatedMemorySize = *(long long *                     (ContextHandleTablePointer[3] +
+            ContextHandleTablePointer = (long long *)SecondaryContextHandle[0xc];
+            long long MemoryBlockAddress = *(long long *                     (ContextHandleTablePointer[3] +
                      (ContextHandleTablePointer[1] +
-                      ((ProcessedCharacter & 0xffffffffffffffe0) - **(long long **)(ContextHandleTablePointer[3] + ContextHandleTablePointer[1] * 8                      >> SystemEventContextShiftCount) & *ContextHandlePointer - 1U) * 8);
+                      ((ProcessedCharacter & 0xffffffffffffffe0) - **(long long **)(ContextHandleTablePointer[3] + ContextHandleTablePointer[1] * 8                      >> SystemEventContextShiftCount) & *MainContextPointer - 1U) * 8);
             BufferStatus = *(long long *)(AllocatedMemorySize + 8);
             ContextHandleTablePointer = (long long *)(BufferStatus + (unsigned long long)((uint)ProcessedCharacter & 0x1f) * 8);
             SystemContextRegister = (long long *)*ContextHandlePointer;
