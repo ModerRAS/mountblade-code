@@ -2021,10 +2021,10 @@ typedef enum {
 #define UpdateUIFocusState UpdateUIFocusSystemState
 
  // UI系统函数宏定义 - 处理UI焦点事件
-#define ProcessUIFocusEvent FUN_18070b6a0
+#define ProcessUIFocusEvent HandleUIFocusChangeEvent
 
  // UI系统函数宏定义 - 处理UI组件事件
-#define ProcessUIComponentEvent FUN_18070ba50
+#define ProcessUIComponentEvent HandleUIComponentInteractionEvent
 
 // UI系统函数宏定义 - 计算UI组件边界框
 /**
@@ -2045,7 +2045,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_18065a1d0
  */
-#define CalculateUIComponentBounds FUN_18065a1d0
+#define CalculateUIComponentBounds ComputeUIComponentBoundingBox
 
 // UI系统函数宏定义 - 处理UI边界框碰撞检测
 /**
@@ -194108,9 +194108,9 @@ undefined UIUpdateSystem;
 UIHandle UIActiveHandle;
 undefined UIResourceCleanupHandler;
 // UI系统状态变量语义化定义
-#define UNK_18095af28 UIStatusFlagAf28
-#define UNK_18095af38 UIStatusFlagAf38
-#define UNK_18095afe8 UIStatusFlagAfe8
+#define UNK_18095af28 UIComponentStatusFlagAf28             // UI组件状态标志Af28 - 用于跟踪UI组件的激活和禁用状态
+#define UNK_18095af38 UIInputProcessingFlagAf38            // UI输入处理标志Af38 - 用于标记UI输入事件的处理状态
+#define UNK_18095afe8 UIRenderingStatusFlagAfe8            // UI渲染状态标志Afe8 - 用于控制UI渲染流程的状态标记
 
 // UI系统数据缓冲区变量语义化定义
 #define UNK_180958c10 UIDataBufferC10                      // UI数据缓冲区C10 - 用于存储UI系统的主要数据
@@ -194123,13 +194123,13 @@ undefined UIResourceCleanupHandler;
 #define UNK_180986258 UIValidationBuffer258                 // UI验证缓冲区258 - 用于存储UI验证相关数据
 #define UNK_1809843d0 UIProcessingBuffer3D0                 // UI处理缓冲区3D0 - 用于UI数据处理过程中的临时存储
 #define UNK_180984358 UIProcessingBuffer358                 // UI处理缓冲区358 - 用于UI数据处理过程中的临时存储
-#define UIContextResourceManager430 UIStatusFlagB430
-#define UNK_18095af48 UIStatusFlagAf48
-#define UNK_18095b038 UIStatusFlagB038
-#define UNK_18095b4a8 UIStatusFlagB4a8
-#define UNK_18095b4b8 UIStatusFlagB4b8
-#define UNK_18095b4c0 UIStatusFlagB4c0
-#define UNK_18095b4d0 UIStatusFlagB4d0
+#define UIContextResourceManager430 UIStatusFlagB430          // UI上下文资源管理器状态标志B430 - 用于管理UI上下文资源的分配和释放
+#define UNK_18095af48 UIMemoryStatusFlagAf48                  // UI内存状态标志Af48 - 用于跟踪UI内存分配和释放状态
+#define UNK_18095b038 UITextureStatusFlagB038                // UI纹理状态标志B038 - 用于标记UI纹理资源的加载和卸载状态
+#define UNK_18095b4a8 UIEventStatusFlagB4a8                   // UI事件状态标志B4a8 - 用于控制UI事件的处理和分发状态
+#define UNK_18095b4b8 UILayoutStatusFlagB4b8                  // UI布局状态标志B4b8 - 用于标记UI布局计算和更新状态
+#define UNK_18095b4c0 UIFocusStatusFlagB4c0                  // UI焦点状态标志B4c0 - 用于控制UI焦点的获取和失去状态
+#define UNK_18095b4d0 UIVisibleStatusFlagB4d0                // UI可见性状态标志B4d0 - 用于控制UI组件的显示和隐藏状态
 
 // CleanupUIAnimationStateAndExecuteRenderTask函数变量语义化定义
 #define astackUInt198 EncryptionBuffer198            // 加密缓冲区198字节
