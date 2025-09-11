@@ -93,11 +93,17 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
-// 核心引擎高级函数语义化宏定义
-#define FUN_18016cff0 ProcessMemoryBlockAndStackData                    // 处理内存块和栈值
-#define FUN_18016d400 CleanupCharacterEncodingAndBuffer                 // 处理字符编码和缓冲区清理
-#define FUN_180169f60 CreateSystemEventTemplate                           // 分配系统事件模板
-#define FUN_180629c00 SetupSystemBuffer                                   // 初始化系统缓冲区
+// 系统数据处理函数语义化宏定义
+#define FUN_18019fc79 ProcessSystemContextMatrixTransform        // 处理系统上下文矩阵变换
+#define FUN_180200780 HandleSystemContextDataTransfer            // 处理系统上下文数据传输
+#define FUN_180202d4d ValidateSystemContextFloatValues           // 验证系统上下文浮点值
+#define FUN_180202e40 ProcessSystemFloatTransformOperations      // 处理系统浮点变换操作
+#define FUN_180203100 ExecuteSystemFloatMatrixCalculations       // 执行系统浮点矩阵计算
+#define FUN_180204463 HandleSystemStringEncodingConversion       // 处理系统字符串编码转换
+#define FUN_1802044c5 ProcessSystemContextBufferValidation       // 处理系统上下文缓冲区验证
+#define FUN_1802044e0 ValidateSystemContextDataPointers          // 验证系统上下文数据指针
+#define FUN_180204700 InitializeSystemContextProcessing          // 初始化系统上下文处理
+#define FUN_180204722 ExecuteSystemContextFullProcessing         // 执行完整系统上下文处理
 #define FUN_18016afc0 FinalizeContextHandleTasks                         // 处理上下文句柄最终化
 #define FUN_18022ebe0 SetupCharacterTransformationData                  // 初始化字符转换数据
 #define FUN_18022b980 HandleContextHandleMemory                          // 管理上下文句柄内存
@@ -246464,9 +246470,21 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
 
 
 
-void FUN_18019fc79(long long ContextHandle,long long OperationBufferSize)
+/**
+ * @brief 处理系统上下文矩阵变换操作
+ * 
+ * 该函数负责处理系统上下文的矩阵变换操作，包括浮点数计算、矩阵变换和缓冲区验证。
+ * 函数通过多个寄存器操作和内存访问来执行复杂的矩阵变换计算。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18019fc79
+ * @warning 此函数包含大量的浮点数寄存器操作，需要谨慎处理
+ */
+void ProcessSystemContextMatrixTransform(long long ContextHandle,long long OperationBufferSize)
 {
-  long long *ContextHandle;
+  long long *SystemContextHandle;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;

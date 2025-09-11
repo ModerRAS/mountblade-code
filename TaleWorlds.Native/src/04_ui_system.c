@@ -300266,7 +300266,26 @@ int ProcessUIEventCodeIterationValidation(longlong uiContext,longlong dataSource
 
 
 
-int FUN_180842d40(longlong uiContext,longlong dataSource,int targetBuffer)
+/**
+ * @brief 处理UI数据完整性和缓冲区操作
+ * 
+ * 该函数执行UI数据的完整性验证和缓冲区操作，确保数据的正确性。
+ * 主要功能包括：
+ * - 执行缓冲区控制操作
+ * - 进行数据比较验证
+ * - 执行数据初始化操作
+ * - 返回处理结果的偏移量
+ * 
+ * @param uiContext UI上下文句柄 - 指向UI上下文结构的指针
+ * @param dataSource 数据源指针 - 包含要处理的数据源
+ * @param targetBuffer 目标缓冲区 - 用于存储处理结果的缓冲区
+ * @return int 处理结果的偏移量，用于后续的数据处理
+ * 
+ * @note 原始函数名：FUN_180842d40
+ * @warning 该函数依赖于全局变量uiBufferData和UIBufferControlData
+ * @see ProcessUIBufferDataWithControl, ProcessUIDataAndCompare, ValidateUIDataAndInitialize
+ */
+int ProcessUIDataIntegrityAndBufferOperation(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
@@ -300289,7 +300308,25 @@ int FUN_180842d40(longlong uiContext,longlong dataSource,int targetBuffer)
 
 
 
-int FUN_180842e00(longlong uiContext,longlong dataSource,int targetBuffer)
+/**
+ * @brief 处理UI数据验证和缓冲区控制操作
+ * 
+ * 该函数执行UI数据的验证和缓冲区控制操作，确保数据的完整性和正确性。
+ * 主要功能包括：
+ * - 执行缓冲区控制验证
+ * - 进行数据比较操作
+ * - 返回验证结果的偏移量
+ * 
+ * @param uiContext UI上下文句柄 - 指向UI上下文结构的指针
+ * @param dataSource 数据源指针 - 包含要验证的数据源
+ * @param targetBuffer 目标缓冲区 - 用于存储验证结果的缓冲区
+ * @return int 验证结果的偏移量，用于后续的数据处理
+ * 
+ * @note 原始函数名：FUN_180842e00
+ * @warning 该函数依赖于全局变量uiBufferData和UIBufferControlData
+ * @see ProcessUIBufferDataWithControl, ProcessUIDataAndCompare
+ */
+int ProcessUIDataValidationAndBufferControl(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
