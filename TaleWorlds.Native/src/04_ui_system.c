@@ -336275,7 +336275,7 @@ UIHandle FUN_180862e90(longlong uiContext,byte dataSource)
           uiValidationResult = uiValidationResult + -0x40;
         }
         eventDataIndex = (longlong)uiValidationResult + *(longlong *)(uiBufferData + 0x338);
-        processingFlags = FUN_18073ced0(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,
+        processingFlags = ProcessUIDataWithLongParams(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,
                               0xffffffffffffffff);
         if ((int)processingFlags != 0) {
           return processingFlags;
