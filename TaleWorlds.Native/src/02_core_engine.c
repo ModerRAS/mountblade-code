@@ -202,6 +202,7 @@
 #define FUN_180623fd0 ProcessSystemContextFlag                                  // 处理系统上下文标志
 #define FUN_1801210b0 GetSystemCharacterData                               // 获取系统字符数据
 #define FUN_180121300 GetSystemConfigurationHandle                         // 获取系统配置句柄
+#define FUN_18020eaa0 ProcessSystemContextValidation                       // 处理系统上下文验证
 #define FUN_180624c70 GetSystemStringIndex                                // 获取系统字符串索引
 #define FUN_180627ce0 ProcessSystemDataTable                               // 处理系统数据表
 #define FUN_18015c270 ReleaseSystemBufferMemory                            // 释放系统缓冲区内存
@@ -229723,6 +229724,7 @@ void ProcessSystemHandleValidation(uint32_t *ContextHandle)
  * 
  * @note 原始函数名：FUN_18018bd5f
  */
+#define ResetSystemHandleState FUN_18018bd5f
 void ResetSystemHandleState(void)
 {
   uint32_t Utf16Char;
@@ -258881,7 +258883,20 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint64_t *ContextHandle,
 
 
 
-0eaa0(long long *ContextHandlevoid FUN_18020eaa0(long long *ContextHandle
+/**
+ * @brief 系统上下文验证和处理函数
+ * 
+ * 该函数负责验证和处理系统上下文，通过循环验证状态并执行相应的操作。
+ * 主要功能包括：
+ * - 验证上下文状态
+ * - 执行系统回调函数
+ * - 处理验证结果
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * 
+ * @note 原始函数名：FUN_18020eaa0
+ */
+void ProcessSystemContextValidation(long long *ContextHandle
 {
   char ValidationStatus;
   
