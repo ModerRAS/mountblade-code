@@ -40058,6 +40058,18 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float exceptionDataBufferB;  // 异常数据缓冲区B，替换异常相关变量
   float inputParameterTertiary; // 输入参数Tertiary，替换参数相关变量
   
+  // 新增语义化变量定义
+  float interpolatedResultValue;    // 插值结果数值，用于存储插值计算的结果
+  float validationResultValue;       // 验证结果数值，用于存储验证操作的结果
+  DataBuffer* exceptionDataBuffer4;  // 异常数据缓冲区4，用于存储异常处理数据
+  DataBuffer* exceptionDataBuffer5;  // 异常数据缓冲区5，用于存储异常处理数据
+  float* pValidationFloatValue3;    // 验证浮点值指针3，指向验证浮点数据
+  int64_t exceptionContext7;         // 异常上下文7，用于异常处理的上下文信息
+  int64_t exceptionContext6;         // 异常上下文6，用于异常处理的上下文信息
+  float validationCounter;           // 验证计数器，用于存储验证操作的计数
+  float secondValidationValue;       // 次级验证值，用于存储次级验证的结果
+  float thirdValidationValue;        // 三级验证值，用于存储三级验证的结果
+  
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
     operationResult = ValidateDataProcessingA0(systemContext,systemContextData + ExceptionCleanupOffset58);
