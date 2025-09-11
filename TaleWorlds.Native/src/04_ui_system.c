@@ -139072,7 +139072,7 @@ UIHandle ProcessUIHandleAllocationAndValidation(void)
                       ((longlong *)TargetContext[4],0xfffffffd,&AllocationOffset);
     if (((int)InitializationStatus == 0) && (InitializationStatus = (**(code **)(*TargetContext + 0x120))(), (int)InitializationStatus == 0)) {
       processingFlags = CONCAT71((int7)((ulonglong)ResultHandle >> 8),1);
-      FUN_180759220(BufferHandle,0,&ValidationHandle,0,processingFlags);
+      ProcessUIComponentRegistration(BufferHandle,0,&ValidationHandle,0,processingFlags);
       func_0x000180766510(ValidationHandle,ContextData | 0xfeed0000);
       AllocationStatusFlag = MemoryAllocationFlag;
       if ((MemoryAllocationFlag == '\0') &&
