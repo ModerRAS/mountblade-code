@@ -256249,7 +256249,7 @@ void ProcessSystemContextFloatOperations(long long SystemContextHandle,float Flo
  * - 内存池操作和数据缓冲区处理
  * - 字符编码和Unicode处理
  * 
- * @param ContextHandle 系统上下文句柄指针
+ * @param SystemContextHandle 系统上下文句柄指针
  * @param OperationBufferSize 操作缓冲区大小
  * @param Utf8SourcePointer UTF-8源数据指针
  * @param Utf16EndPointer UTF-16结束指针
@@ -256353,20 +256353,20 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
                     *(uint32_t *)((long long)SystemContextHandle + 0x2c));
       MemoryAllocationBase = SystemStackValue & 0xffffffff;
     }
-    MemoryAllocationOffset = MemoryPoolIndexSecondary;
+    MemoryAllocationOffset = SecondaryMemoryPoolIndex;
     if (0 < (long long)Utf16EndPointer) {
       do {
-        IntegerValue4 = (int)MemoryAllocationBase;
-        if (0xff < IntegerValue4) break;
-        HighByte8 = false;
-        NormalizedParameterPointer = (float *)(ContextHandle + 9);
-        SystemStatusCode = MemoryPoolIndexSecondary;
+        IntegerValue = (int)MemoryAllocationBase;
+        if (0xff < IntegerValue) break;
+        HighByteFlag = false;
+        NormalizedParameterValue = (float *)(SystemContextHandle + 9);
+        SystemStatusCode = SecondaryMemoryPoolIndex;
         do {
-          if (IntegerValue4 <= (int)SystemStatusCode) {
-            if (!HighByte8) {
-              MemoryAllocationBase = (unsigned long long)(IntegerValue4 + 1);
-              *(float *)((long long)ContextHandle + (long long)IntegerValue4 * 8 + 0x44) = *Utf8SourcePointer;
-              *(float *)(ContextHandle + (long long)IntegerValue4 + 9) = Utf8SourcePointer[1];
+          if (IntegerValue <= (int)SystemStatusCode) {
+            if (!HighByteFlag) {
+              MemoryAllocationBase = (unsigned long long)(IntegerValue + 1);
+              *(float *)((long long)SystemContextHandle + (long long)IntegerValue * 8 + 0x44) = *Utf8SourcePointer;
+              *(float *)(SystemContextHandle + (long long)IntegerValue + 9) = Utf8SourcePointer[1];
             }
             break;
           }
