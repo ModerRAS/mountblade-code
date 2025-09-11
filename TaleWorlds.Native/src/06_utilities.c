@@ -1386,6 +1386,7 @@ typedef union {
 #define ExceptionHandlerContextOffset2F0 0x2f0                    // 异常处理器上下文偏移量2F0
 #define ExceptionHandlerContextOffset2D0 0x2d0                    // 异常处理器上下文偏移量2D0
 #define ExceptionHandlerContextOffset2E0 0x2e0                    // 异常处理器上下文偏移量2E0
+#define ExceptionHandlerContextOffset2E20 0x2e20                  // 异常处理器上下文偏移量2E20 - 用于异常上下文清理
 #define ExceptionHandlerContextOffset2A8 0x2a8                    // 异常处理器上下文偏移量2A8
 #define ExceptionHandlerContextOffset2B0 0x2b0                    // 异常处理器上下文偏移量2B0
 
@@ -130048,17 +130049,33 @@ void CleanupFinalExceptionHandlerContext(DataBuffer operationBase, int64_t dataB
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
  */
-void HandleSystemExceptionAtOffset110EC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理系统异常上下文清理
+ * 
+ * 该函数负责处理系统异常的上下文清理，从异常处理器列表中获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器列表信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911ec0
+ * @note 处理偏移量0x2e20处的异常处理器上下文
+ */
+void HandleSystemExceptionContextCleanup(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + 0x2e20);
+  // 从异常处理器列表中获取异常上下文
+  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + ExceptionHandlerContextOffset2E20);
   if (exceptionContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) - 1;
     }
-      HandleSystemException(exceptionContext,ExceptionDataPointer,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+    // 执行异常处理清理
+    HandleSystemException(exceptionContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
