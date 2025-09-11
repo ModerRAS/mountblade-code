@@ -109,7 +109,7 @@
 #define SystemStateValidationFailed 0x5                          // 系统状态验证失败 - 系统状态验证过程中出现错误
 
 // === 资源管理常量 ===
-#define ResourceReferenceDecrement -1                             // 资源引用计数递减值
+#define ResourceReferenceDecrement -1                             // 资源引用计数递减值 - 用于减少资源引用计数的常量
 
 // === 浮点数数据偏移量常量 ===
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
