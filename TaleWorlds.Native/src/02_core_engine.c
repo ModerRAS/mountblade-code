@@ -102,6 +102,15 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 系统资源管理函数语义化宏定义
+#define FUN_180240390 ManageSystemResourceLifecycle                        // 管理系统资源生命周期
+#define FUN_180241080 AllocateSystemResourceBuffer                        // 分配系统资源缓冲区
+#define FUN_180241680 ConfigureSystemResourceTable                        // 配置系统资源表
+#define FUN_180242280 ValidateSystemResourceIntegrity                      // 验证系统资源完整性
+#define FUN_180242e80 ProcessSystemResourceCleanup                         // 处理系统资源清理
+#define FUN_180243a80 OptimizeSystemResourceUsage                         // 优化系统资源使用
+#define FUN_180244680 MonitorSystemResourcePerformance                    // 监控系统资源性能
+
 // 上下文句柄结构体偏移量
 #define ContextHandleStatusOffset 0x15
 #define ContextHandleConfigOffset 0xac
