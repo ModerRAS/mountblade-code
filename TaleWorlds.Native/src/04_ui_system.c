@@ -124058,9 +124058,8 @@ void ProcessUIContextWithEventDispatcher(UIHandle uiContext,UIHandle dataSource,
 
 
 
- void ProcessUIDataBufferValidationAndCleanup(void)
-/**
- * 处理UI数据缓冲区验证和清理
+ /**
+ * @brief 处理UI数据缓冲区验证和清理
  * 
  * 该函数负责处理UI系统中的数据缓冲区验证和清理操作，包括：
  * - 缓冲区数据验证
@@ -124078,8 +124077,8 @@ void ProcessUIDataBufferValidationAndCleanup(void)
   UIDword contextData;
   
   operationResult = ProcessUIDataBufferValidation(&SystemDataBuffer,0x100);
-  uiValidationResult = CompareUIDataWithBuffer(&SystemDataBuffer + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataBufferValidation(&SystemDataBuffer + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  dataValidationResult = CompareUIDataWithBuffer(&SystemDataBuffer + operationResult,0x100 - operationResult,&UIBufferControlData);
+  ProcessUIDataBufferValidation(&SystemDataBuffer + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(contextData,1);
 }
