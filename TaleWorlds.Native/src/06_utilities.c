@@ -31438,11 +31438,11 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   // 获取数据上下文指针
   dataContext = *(int64_t *)(dataBuffer + SystemDataBufferOffset80);
-  exceptionContext4 = 0;
+  exceptionHandlerContext = 0;
   SystemValidationWordA = 0;
   dataProcessingBuffer = dataContext + 8;
   if (dataContext == 0) {
-    dataProcessingBuffer = exceptionContext4;
+    dataProcessingBuffer = exceptionHandlerContext;
   }
   ProcessingLongIntegerB = dataBuffer;
   // 验证并处理系统资源
