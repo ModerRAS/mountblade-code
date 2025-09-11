@@ -237,6 +237,21 @@
 #define SystemConfigurationOffsetD8 0xd8                         // 系统配置偏移量D8 - 用于系统配置数据访问
 #define SystemConfigurationOffset1C 0x1c                         // 系统配置偏移量1C - 用于系统配置数据访问
 
+// 数据处理大小常量
+#define LargeDataSizeThreshold 0x40000                            // 大数据量阈值 - 超过此值需要特殊处理
+#define SystemDataBufferThreshold 0x8000                          // 系统数据缓冲区阈值 - 用于数据大小验证
+
+// 数据验证掩码常量
+#define DataValidationMask 0xffffff                                // 数据验证掩码 - 用于数据完整性验证
+#define InvalidDataIndex 0xffffff                                  // 无效数据索引 - 表示数据索引无效
+
+// 安全验证标识常量
+#define SecurityValidationFEMP 0x46454d50                         // 安全验证标识FEMP - 用于前端内存保护验证
+#define SecurityValidationTSLP 0x54534c50                         // 安全验证标识TSLP - 用于线程安全锁定保护验证
+
+// 内存操作标志常量
+#define MemoryOperationFlagMask 0x1000000                        // 内存操作标志掩码 - 用于标识内存操作状态
+
 // 位域操作联合体定义 - 用于处理特定位域操作
 typedef union {
     DataWord FullValue;
@@ -30154,7 +30169,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
   
   if ((*(int64_t *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + SystemDataOffset30), 0 < dataSize)) {
     dataSource = *(int64_t *)(resourceContext + systemContextOffset28);
-    if (0x40000 < dataSize) {
+    if (LargeDataSizeThreshold < dataSize) {
       adjustedSize = CalculateSystemDataSize(dataSource + DataSourceOffset40000,10);
       if (adjustedSize != 0) {
         dataSize = ((int)adjustedSize - (int)dataSource) + 1;
@@ -35221,7 +35236,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
         }
         systemDataBuffer = *(uint *)(resourceIterator + ExceptionHandlerCallbackOffset);
         memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-        if (systemDataBuffer < 0x8000) {
+        if (systemDataBuffer < SystemDataBufferThreshold) {
           *(short *)(StackFrameContext + ArrayDataOffset) = (short)systemDataBuffer;
           securityCheckResult = 2;
         }
@@ -35672,7 +35687,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
           } while (operationResult < (int)dataBuffer[DataValidationOffset68]);
         }
         systemDataBuffer = dataBuffer[100];
-        if (systemDataBuffer < 0x8000) {
+        if (systemDataBuffer < SystemDataBufferThreshold) {
           systemStackBuffer = CONCAT62(systemStackBuffer._2_6_,(short)systemDataBuffer);
           memoryRegionBase = 2;
         }
@@ -35816,7 +35831,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   }
   systemDataBuffer = *(uint *)(destinationContext + 400);
   memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-  if (systemDataBuffer < 0x8000) {
+  if (systemDataBuffer < SystemDataBufferThreshold) {
     *(short *)(stackFrameContext + ArrayDataOffset) = (short)systemDataBuffer;
     operationResult = 2;
   }
