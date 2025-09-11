@@ -244681,7 +244681,7 @@ unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t 
     SystemDataTablePointer = *(long long *)(SystemEncodingConversionResult + 0x58) - *(long long *)(SystemEncodingConversionResult + 0x50) >> 3;
     if (SystemDataTablePointer != 0) {
       if (SystemContextRegisterPointer[8] != (long long ****)0x0) {
-        FUN_180080810(*(long long *)(*(long long *)(SystemEncodingConversionResult + 0x50) + -8 + SystemDataTablePointer * 8) + 0x168);
+        ProcessSystemCharacterData(*(long long *)(*(long long *)(SystemEncodingConversionResult + 0x50) + -8 + SystemDataTablePointer * 8) + 0x168);
       }
       SystemEncodingConversionResult = alStackX_10[0];
       if (*(char *)(SystemContextRegisterPointer + 3) == '\0') {
@@ -251749,7 +251749,22 @@ joined_r0x0001802045de:
 
 
 
-void FUN_180204700(long long ContextHandle,long long OperationBufferSize)
+/**
+ * @brief 处理系统内存缓冲区排序和数据插入操作
+ * 
+ * 该函数对系统内存缓冲区中的数据进行排序和插入操作，主要功能包括：
+ * - 计算处理字符数量和循环索引
+ * - 遍历并比较内存块中的数据
+ * - 执行数据块的插入和重新排序
+ * - 维护内存缓冲区的完整性
+ * 
+ * @param ContextHandle 系统上下文句柄，用于标识和管理系统内存上下文
+ * @param OperationBufferSize 操作缓冲区大小，定义了需要处理的数据范围
+ * 
+ * @note 原始函数名：FUN_180204700
+ * @note 这是一个简化实现，仅修改变量名和函数名，不改变程序逻辑
+ */
+void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long long OperationBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -251837,7 +251852,24 @@ void FUN_180204700(long long ContextHandle,long long OperationBufferSize)
 
 
 
-void FUN_180204722(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换和缓冲区管理
+ * 
+ * 该函数执行UTF-8到UTF-16的字符编码转换，并管理相关缓冲区操作：
+ * - 处理字符编码转换和验证
+ * - 管理字符状态缓冲区
+ * - 执行数据块的插入和重新排序
+ * - 维护编码转换过程中的内存完整性
+ * 
+ * @param ContextHandle 系统上下文句柄，用于标识和管理编码转换上下文
+ * @param OperationBufferSize 操作缓冲区大小，定义了编码转换的数据范围
+ * @param Utf8SourcePointer UTF-8源数据指针，指向需要转换的UTF-8字符串数据
+ * @param Utf16EndPointer UTF-16目标指针，用于存储转换后的UTF-16数据
+ * 
+ * @note 原始函数名：FUN_180204722
+ * @note 这是一个简化实现，仅修改变量名和函数名，不改变程序逻辑
+ */
+void ProcessUtf8ToUtf16EncodingAndBufferManagement(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, long long Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -253856,7 +253888,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
   else {
     CalculatedCodePoint = FUN_180081480(CoreEngineSystemState,&SystemContextRegister,
                           ((*(byte *)(OperationBufferSize + 1) & 1) + 1) * *ContextHandleSize * 2);
-    FUN_180080810(Utf8SourcePointer,CalculatedCodePoint);
+    ProcessSystemCharacterData(Utf8SourcePointer,CalculatedCodePoint);
     SystemRegisterPointerX10 = SystemContextRegister;
   }
   if (SystemRegisterPointerX10 != (long long *)0x0) {
