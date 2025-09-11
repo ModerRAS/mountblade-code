@@ -299020,3 +299020,24 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  */
 #define FUN_180208e16 ProcessSystemExtendedOperation
 
+// 系统核心功能函数语义化宏定义 - 新发现的需要美化的函数
+#define FUN_180081480 AllocateSystemMemoryBlock                              // 分配系统内存块
+#define FUN_18029ea30 ProcessCharacterEncodingConversion                    // 处理字符编码转换
+#define FUN_1802075c0 ExecuteCharacterEncodingValidation                    // 执行字符编码验证
+#define FUN_1800e81f0 GetSystemContextPointer                              // 获取系统上下文指针
+#define FUN_180204e40 ProcessSystemFloatTransform                          // 处理系统浮点变换
+#define FUN_180207d70 ValidateIntegerValue                                  // 验证整数值
+#define FUN_180204a00 ProcessMemoryAddressMask                             // 处理内存地址掩码
+#define FUN_18004bf50 CleanMemoryBoundary                                  // 清理内存边界
+#define FUN_1802063e0 HandleLockOperation                                    // 处理锁定操作
+#define FUN_180209470 InitializeSystemContextBuffer                         // 初始化系统上下文缓冲区
+#define FUN_180209720 ConfigureSystemContextData                           // 配置系统上下文数据
+#define FUN_180208f20 ProcessMatrixTransformAndCharacterData              // 处理矩阵变换和字符数据
+#define FUN_1801efdb0 ConvertCharacterTableData                            // 转换字符表数据
+#define FUN_1801ef300 ValidateCharacterTableData                           // 验证字符表数据
+#define FUN_1801ef620 ProcessVectorCalculationAndData                      // 处理向量计算和数据
+#define FUN_18007f0e0 HandleCharacterDataProcessing                         // 处理字符数据处理
+#define FUN_1800b6de0 ValidateSystemMemoryManager                          // 验证系统内存管理器
+#define FUN_180079240 GetSystemMemoryBlockIndex                             // 获取系统内存块索引
+
+

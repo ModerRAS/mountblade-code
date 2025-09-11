@@ -133687,8 +133687,29 @@ FUN_18073f32d:
 
  
 
- void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIContextWithDataTransfer FUN_18073f25d
+/**
+ * @brief 处理UI上下文数据传输操作
+ * 
+ * 该函数负责处理UI系统中的数据传输操作，包括：
+ * - 初始化UI上下文和相关句柄
+ * - 验证和处理数据源
+ * - 执行数据缓冲区操作
+ * - 管理内存资源的分配和释放
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文环境
+ * @param dataSource 数据源标识符，提供需要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f25d
+ * @note 该函数处理UI数据的传输和转换操作
+ * @see ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation, ExecuteUIRenderTask
+ */
+void ProcessUIContextWithDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
