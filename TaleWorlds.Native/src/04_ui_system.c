@@ -122126,11 +122126,11 @@ int ProcessUIBufferOperationChain(longlong uiContext,int dataSource,UIHandle tar
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bc50(processingResult + uiContext,dataSource - processingResult,param_6);
+  uiValidationResult = ProcessUIDataWithHandleAndBuffer(processingResult + uiContext,dataSource - processingResult,param_6);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b930(processingResult + uiContext,dataSource - processingResult,param_7);
+  uiValidationResult = ValidateUIDataWithContext(processingResult + uiContext,dataSource - processingResult,param_7);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
@@ -122138,7 +122138,7 @@ int ProcessUIBufferOperationChain(longlong uiContext,int dataSource,UIHandle tar
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(processingResult + uiContext,dataSource - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b930(processingResult + uiContext,dataSource - processingResult,param_9);
+  uiValidationResult = ValidateUIDataWithContext(processingResult + uiContext,dataSource - processingResult,param_9);
   return uiValidationResult + processingResult;
 }
 
@@ -124480,7 +124480,7 @@ void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
     if (processingResult == 0) goto LAB_180739f5a;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutCalculator);
@@ -124674,7 +124674,7 @@ void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
     if (processingResult == 0) goto LAB_18073a35a;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextFontRenderer);
@@ -124716,7 +124716,7 @@ void FUN_18073a390(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074b7d0(astackUInt138,0x100,dataSource);
     uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ValidateUIDataWithContext(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager);
@@ -124761,7 +124761,7 @@ void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ValidateUIDataWithContext(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager,&stack0x00000040);
   }
@@ -124787,7 +124787,7 @@ void FUN_18073a405(void)
   
   processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,1);
 }
@@ -125181,13 +125181,13 @@ void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
     }
   }
   else if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074b930(stackArray148,0x100,dataSource);
+    uiValidationResult = ValidateUIDataWithContext(stackArray148,0x100,dataSource);
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+    ValidateUIDataWithContext(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextEventProcessor);
@@ -125237,13 +125237,13 @@ void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
     }
   }
   else if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074b930(&stack0x00000040,0x100,dataSource);
+    uiValidationResult = ValidateUIDataWithContext(&stack0x00000040,0x100,dataSource);
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = CopyUIDataBuffer(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
+    ValidateUIDataWithContext(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextEventProcessor,&stack0x00000040);
   }
@@ -125265,13 +125265,13 @@ void FUN_18073a8dd(void)
   int uiValidationResult;
   UIDword unmodifiedESI;
   
-  processingResult = FUN_18074b930(&stack0x00000040,0x100);
+  processingResult = ValidateUIDataWithContext(&stack0x00000040,0x100);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = CopyUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,1);
 }
@@ -127576,7 +127576,7 @@ void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(astackUInt138,0x100,dataSource);
     uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ValidateUIDataWithContext(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578d0);
@@ -127621,7 +127621,7 @@ void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ValidateUIDataWithContext(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578d0,&stack0x00000040);
   }
@@ -127646,7 +127646,7 @@ void FUN_18073c66b(void)
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,4);
 }
@@ -129329,7 +129329,7 @@ void FUN_18073de20(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = FUN_18074bac0(astackUInt138,0x100,dataSource);
     uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ValidateUIDataWithContext(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_180957980);
@@ -129352,7 +129352,7 @@ void FUN_18073de94(void)
   
   processingResult = FUN_18074bac0(&stack0x00000040,0x100);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,5);
 }
@@ -129409,10 +129409,10 @@ void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b930(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
+    uiCompareResult = ValidateUIDataWithContext(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
+    ValidateUIDataWithContext(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_1809579c8);
@@ -129440,10 +129440,10 @@ void FUN_18073dfd7(void)
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b930(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ValidateUIDataWithContext(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,5);
 }
@@ -131023,7 +131023,7 @@ void FUN_18073f4a0(UIHandle uiContext,UIHandle dataSource)
     if (processingResult == 0) goto LAB_18073f53a;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957ad0);
@@ -131061,7 +131061,7 @@ void FUN_18073f570(UIHandle uiContext,UIHandle dataSource)
     if (processingResult == 0) goto LAB_18073f60a;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957a78);
@@ -131217,7 +131217,7 @@ void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
     if (processingResult == 0) goto LAB_18073fa2f;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957be0);
@@ -132176,7 +132176,7 @@ void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
   processingResult = FUN_180763070(uiContext,astackUInt128,0);
   if (((processingResult != 0) || (processingResult = func_0x00018075ecb0(astackUInt128[0],dataSource), processingResult != 0)) &&
      ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    FUN_18074b930(astackUInt118,0x100,dataSource);
+    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957d38);
@@ -132378,7 +132378,7 @@ void FUN_1807409b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     uiValidationResult = func_0x00018074b7d0(stackArray148,0x100,dataSource);
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b930(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ValidateUIDataWithContext(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = FUN_18074b880(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
@@ -132411,7 +132411,7 @@ void FUN_180740a2b(void)
   processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b930(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ValidateUIDataWithContext(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
@@ -143590,8 +143590,8 @@ UIHandle FUN_18074b8e9(UIWord *uiContext)
 
 
 
- void FUN_18074b930(UIHandle uiContext,UIHandle dataSource,UIDword *targetBuffer)
-void FUN_18074b930(UIHandle uiContext,UIHandle dataSource,UIDword *targetBuffer)
+ void ValidateUIDataWithContext(UIHandle uiContext,UIHandle dataSource,UIDword *targetBuffer)
+void ValidateUIDataWithContext(UIHandle uiContext,UIHandle dataSource,UIDword *targetBuffer)
 
 {
   if (targetBuffer != (UIDword *)0x0) {
@@ -143759,8 +143759,8 @@ LAB_18074bbf9:
 
 
 
- void FUN_18074bc50(UIHandle uiContext,UIDword dataSource,UIDword *targetBuffer)
-void FUN_18074bc50(UIHandle uiContext,UIDword dataSource,UIDword *targetBuffer)
+ void ProcessUIDataWithHandleAndBuffer(UIHandle uiContext,UIDword dataSource,UIDword *targetBuffer)
+void ProcessUIDataWithHandleAndBuffer(UIHandle uiContext,UIDword dataSource,UIDword *targetBuffer)
 
 {
   if (targetBuffer != (UIDword *)0x0) {
@@ -300333,7 +300333,7 @@ void ProcessUIDataValidationAndHandling(UIHandle uiContext,UIDword *dataSource,u
                      WARNING: Subroutine does not return
       ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
     }
-    dataProcessingStatus = FUN_18074bc50(processingBuffer,0x100,dataSource);
+    dataProcessingStatus = ProcessUIDataWithHandleAndBuffer(processingBuffer,0x100,dataSource);
     validationResult = FUN_18074b880(processingBuffer + dataProcessingStatus,0x100 - dataProcessingStatus,&UIBufferControlData);
     CopyUIDataBuffer(processingBuffer + (dataProcessingStatus + validationResult),0x100 - (dataProcessingStatus + validationResult),targetBuffer);
     dataBufferPointer = processingBuffer;
@@ -300416,7 +300416,7 @@ void ProcessUIComponentStateAndRenderingData(ulonglong uiContext,uint *dataSourc
                      WARNING: Subroutine does not return
       ExecuteUIRenderTask(encryptionValue ^ (ulonglong)encryptionBuffer);
     }
-    FUN_18074b930(processingBuffer,0x100,0);
+    ValidateUIDataWithContext(processingBuffer,0x100,0);
     dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(0x1f,0xc,uiContext,&UNK_180984790);
@@ -300662,7 +300662,7 @@ void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
                      WARNING: Subroutine does not return
       ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt168);
     }
-    FUN_18074b930(astackUInt118,0x100,0);
+    ValidateUIDataWithContext(astackUInt118,0x100,0);
     pstackUInt148 = astackUInt118;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(0x1f,0xc,uiContext,&UNK_180984700);
@@ -300748,7 +300748,7 @@ void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDwo
   uiValidationResult = func_0x00018074b7d0(stackArray148 + processingResult,0x100 - processingResult,targetBuffer);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(stackArray148 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(stackArray148 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),bufferSize);
+  ValidateUIDataWithContext(stackArray148 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),bufferSize);
   pstackUInt188 = (UIDword *)stackArray148;
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(0x1f,0xc,uiContext,&UNK_1809846e0);
@@ -300772,7 +300772,7 @@ void FUN_180846730(void)
   uiValidationResult = func_0x00018074b7d0(&stack0x00000060 + processingResult,0x100 - processingResult,unmodifiedEBP);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000060 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000060 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ValidateUIDataWithContext(&stack0x00000060 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,0xc);
 }
@@ -301078,7 +301078,7 @@ void FUN_180846e90(ulonglong uiContext,uint *dataSource)
                      WARNING: Subroutine does not return
       ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt178);
     }
-    FUN_18074b930(astackUInt128,0x100,0);
+    ValidateUIDataWithContext(astackUInt128,0x100,0);
     pstackUInt158 = astackUInt128;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(0x1f,0xd,uiContext,&UNK_180984968);
@@ -407324,6 +407324,8 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // 新增UI系统核心函数定义
 #define FUN_18074b880 ValidateUIBufferDataOperation     // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
 #define FUN_180741e10 InitializeUIComponentAndResources  // 初始化UI组件和资源 - 初始化UI系统组件和相关资源
+#define FUN_18074bc50 ProcessUIDataWithHandleAndBuffer  // 处理带句柄和缓冲区的UI数据 - 处理UI数据与句柄和缓冲区的交互
+#define ValidateUIDataWithContext ValidateUIDataWithContext        // 验证带上下文的UI数据 - 验证UI数据并处理上下文信息
 #define FUN_180744cc0 ProcessUIRenderPipelineOperation   // 处理UI渲染管道操作 - 执行UI渲染管道的各个阶段
 #define FUN_18088c790 ExecuteUIEventDispatch            // 执行UI事件调度 - 分发和处理UI系统事件
 #define FUN_180742050 ManageUIMemoryPoolAllocation      // 管理UI内存池分配 - 管理UI系统的内存池分配操作
