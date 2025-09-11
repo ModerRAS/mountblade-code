@@ -43,6 +43,8 @@
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
 #define FUN_180211930 InitializeSystemContextDataNode           // 初始化系统上下文数据节点
+#define FUN_180211fa0 InitializeSystemContextSecondaryConfiguration  // 初始化系统上下文二级配置
+#define FUN_180227230 InitializeSystemProcessingStatusFlags     // 初始化系统处理状态标志
 #define FUN_18022b590 ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
 #define FUN_18022c770 ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源
 #define FUN_18022bf70 HandleSystemContextValidation              // 处理系统上下文验证
@@ -284860,7 +284862,22 @@ LAB_1802270fc:
 
 
 
-uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 初始化系统处理状态标志
+ * 
+ * 该函数负责初始化系统的处理状态标志，包括：
+ * - 分配内存给主处理状态标志
+ * - 设置系统主数据模板引用
+ * - 初始化状态标志值
+ * - 根据操作缓冲区大小配置附加状态信息
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小，如果非零则包含附加状态信息
+ * @return uint64_t* 初始化后的处理状态标志指针
+ * 
+ * @note 原始函数名：FUN_180227230
+ */
+uint64_t * InitializeSystemProcessingStatusFlags(uint64_t ContextHandle, long long OperationBufferSize)
 {
   uint64_t Utf16Char;
   void *SystemContext;
