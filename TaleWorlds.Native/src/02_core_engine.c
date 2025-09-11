@@ -53721,7 +53721,6 @@ void ProcessFloatCalculationAndDataFiltering(void)
   long long SystemEventStackMemory190;
   float *SystemTransformMatrixArray180;
   uint64_t SystemEventStackMemory188;
-  long long SystemEventStackMemory190;
   
   MemoryBlockIndex3 = *(long long *)(SystemContext + 0x1b8);
   LowByte0 = *(byte *)(MemoryBlockIndex3 + 0x38c);

@@ -1018,7 +1018,7 @@ typedef enum {
 #define ValidateUIComponentHandleWithBounds ValidateUIComponentHandleBounds             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
 #define ProcessUIComponentHandleWithEventDispatch DispatchUIComponentEvents      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
 #define SetupUIContextEventHandle SetupUIContextEventHandler                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
-#define InitializeUIContextDataBuffer FUN_1807861b0                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
+#define InitializeUIContextDataBuffer InitializeUIContextDataBuffer                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
 #define ProcessUIContextMemoryRelease FUN_180786250                 // 处理UI上下文内存释放 - 释放UI上下文占用的内存资源
 #define ProcessUIContextDataSourceValidation FUN_180786262           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
 
@@ -205278,7 +205278,7 @@ UIHandle SetupUIContexteventHandle(void)
  * 
  * @return UIHandle 返回操作结果句柄，0表示成功，非0表示错误代码
  * 
- * @note 原始函数名：FUN_1807861b0
+ * @note 原始函数名：InitializeUIContextDataBuffer
  * @note 该函数负责UI上下文的初始化和内存分配
  */
 UIHandle InitializeUIContextDataBuffer(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
