@@ -5554,7 +5554,7 @@ static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *connection
     dataIntegrityCheckResult = PerformDataIntegrityCheck(connectionContext);
     
     // 执行安全性验证
-    securityValidationResult = PerformSecurityValidation(NetworkConnectionContext);
+    securityValidationResult = PerformSecurityValidation(connectionContext);
     
     // 综合验证结果
     if (dataIntegrityCheckResult == NetworkValidationSuccess && 
@@ -5617,7 +5617,7 @@ static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *connec
     uint32_t connectionEstablishmentResult;
     
     // 初始化连接参数
-    InitializeConnectionParameters(NetworkConnectionContext);
+    InitializeConnectionParameters(connectionContext);
     
     // 执行连接建立过程
     connectionEstablishmentResult = PerformConnectionHandshake(NetworkConnectionContext, TimeoutValue);
