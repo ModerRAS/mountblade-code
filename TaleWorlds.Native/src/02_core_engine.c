@@ -19986,7 +19986,7 @@ void CoreEngineInitializeConnectionManager(void
 
 
 
- void CoreEngineInitializeUISystem(void/**
+ /**
  * @brief 初始化系统缓存管理器
  * 
  * 该函数负责初始化系统缓存管理器，设置缓存池和缓存处理机制。
