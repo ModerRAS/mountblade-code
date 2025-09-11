@@ -100018,7 +100018,7 @@ e230(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
  * 
  * @note 原始函数名：e2b0
  */
-void SetSystemDataStructureOffset1C0(long long ContextHandle, uint32_t OperationBufferSize)
+void ConfigureSystemDataStructureOffset1C0(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
   void *PrimaryProcessingStatusFlag;
@@ -100061,7 +100061,7 @@ void SetSystemDataStructureOffset220(long long ContextHandle, uint32_t Operation
   uint32_t StackProcessingBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x3e0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 1000))(auStackX_10),
+     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 1000))(StackProcessingBuffer),
      OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -100080,6 +100080,16 @@ void SetSystemDataStructureOffset220(long long ContextHandle, uint32_t Operation
 
 
 
+/**
+ * @brief 设置系统数据结构偏移量280
+ * 
+ * 该函数负责设置系统上下文中数据结构的偏移量280，根据不同的条件执行不同的操作
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：e3b0
+ */
 void SetSystemDataStructureOffset280(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
@@ -100087,7 +100097,7 @@ void SetSystemDataStructureOffset280(long long ContextHandle, uint32_t Operation
   uint32_t StackProcessingBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x5a0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x5a8))(auStackX_10),
+     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x5a8))(StackProcessingBuffer),
      OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -100106,6 +100116,16 @@ void SetSystemDataStructureOffset280(long long ContextHandle, uint32_t Operation
 
 
 
+/**
+ * @brief 设置系统数据结构偏移量2E0
+ * 
+ * 该函数负责设置系统上下文中数据结构的偏移量2E0，根据不同的条件执行不同的操作
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：e430
+ */
 void SetSystemDataStructureOffset2E0(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
@@ -100113,7 +100133,7 @@ void SetSystemDataStructureOffset2E0(long long ContextHandle, uint32_t Operation
   uint32_t StackProcessingBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x530) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x538))(auStackX_10),
+     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x538))(StackProcessingBuffer),
      OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
