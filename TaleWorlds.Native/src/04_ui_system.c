@@ -243,6 +243,13 @@ typedef enum {
 #define ReleaseUIMemoryAndExecuteRenderTask FUN_18073a49f          // 释放UI内存并执行渲染任务
 #define ProcessUIContextAndBufferData FUN_18073a4c0              // 处理UI上下文和缓冲区数据
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
+
+// UI系统函数指针变量定义
+#define _DAT_180d4a958 UIEventDispatchFunctionPointer           // UI事件调度函数指针
+#define _DAT_180c0c6d0 UIMemoryAllocatorFunctionPointer         // UI内存分配器函数指针
+#define _DAT_180c0d100 UIResourceHandlerFunctionPointer         // UI资源处理函数指针
+#define _DAT_180c0e170 UITransformFunctionPointer              // UI变换函数指针
+#define _DAT_180c108d0 UIRenderFunctionPointer                  // UI渲染函数指针
 #define ProcessUIDataWithMultipleParameters FUN_18073a5ad         // 处理带多参数的UI数据
 #define ProcessUIResourceCleanup FUN_18073a613                  // 处理UI资源清理
 #define ProcessUIComponentStateUpdate FUN_18073a6c1              // 处理UI组件状态更新
