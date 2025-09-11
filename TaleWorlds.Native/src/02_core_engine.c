@@ -50031,15 +50031,15 @@ void ProcessMemoryBoundaryValidation(long long ContextHandle
 {
   ushort ValidationStatus;
   uint64_t MemoryCalculationResult;
-  int *ValidationResultPointer;
-  uint32_t *MemoryMaskPointer;
-  uint *ComparisonValuePointer;
+  int *ValidationDataPointer;
+  uint32_t *MemoryAllocationMaskPointer;
+  uint *DataComparisonPointer;
   long long MemoryBoundaryEnd;
   long long *SystemContext;
   long long MemoryPoolBlockSize;
   int ComputedResult;
-  unsigned long long MemoryAllocationLoopCounter;
-  long long MemoryOffsetValue;
+  unsigned long long MemoryIterationCounter;
+  long long MemoryAllocationOffset;
   
   ProcessDataStructureSerialization();
   MemoryBoundaryEnd = *(long long *)(ContextHandle + 0x28) - *(long long *)(ContextHandle + 0x20);
