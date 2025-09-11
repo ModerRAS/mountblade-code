@@ -253172,7 +253172,7 @@ void ConfigureSystemCharacterProcessing(long long ContextHandle, char OperationB
           MemoryBoundaryEnd = *ContextHandlePointer;
           RemainingSpace = *(int *)(MemoryBoundaryEnd + 8 + SystemChecksum);
           if (RemainingSpace != -1) {
-            FUN_18030a460(*(void *                           (*(long long *                             (((long long)*(int *)(MemoryBoundaryEnd + 0xc + SystemChecksum) + 0x25) * 0x20 + ContextHandle) +
+            ReleaseSystemResourceHandle(*(void *                           (*(long long *                             (((long long)*(int *)(MemoryBoundaryEnd + 0xc + SystemChecksum) + 0x25) * 0x20 + ContextHandle) +
                            (long long)RemainingSpace * 0x18),*(void *)(MemoryBoundaryEnd + SystemChecksum),MemoryBoundaryEnd,Utf16EndPointer,
                           ValidationResult);
           }
@@ -253230,7 +253230,8 @@ void ConfigureSystemCharacterProcessing(long long ContextHandle, char OperationB
 
 
 
-06950(uint64_t ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointervoid FUN_180206950(uint64_t ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer
+// 处理系统上下文大小和UTF-8编码转换
+void ProcessSystemContextAndUtf8Encoding(uint64_t ContextHandle, long long *ContextHandleSize, long long Utf8SourcePointer)
 {
   int *ReferenceCountPointer;
   char SystemCheckResult;
@@ -261353,9 +261354,9 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
   OperationBuffer[1] = MemoryBlockIndex;
   OperationBuffer[2] = CalculatedMemorySize * 0x98 + MemoryBlockIndex;
   MemoryAddressMaskPointer = (uint64_t *)*ContextHandleSize;
-  MemoryBlockIndex = *(long long *)(ContextHandle + 0x3a0);
-  if (*(long long *)(ContextHandle + 0x398) != MemoryBlockIndex) {
-    long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x398) - (long long)MemoryAddressMaskPointer;
+  MemoryBlockIndex = (long long *)*(long long *)(ContextHandle + 0x3a0);
+  if (*(long long *)(ContextHandle + 0x398) != (long long)MemoryBlockIndex) {
+    long long MemoryRangeEnd = *(long long *)(ContextHandle + 0x398) - (long long)MemoryAddressMaskPointer;
     do {
       *MemoryAddressMaskPointer = &ThreadLocalStorageTemplate;
       MemoryAddressMaskPointer[1] = 0;
@@ -296539,4 +296540,5 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ProcessSystemDataStructure FUN_18019aac0                 // 处理系统数据结构
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 #define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
+#define ConfigureSystemStackHandler FUN_18031c090                   // 配置系统栈处理器
 
