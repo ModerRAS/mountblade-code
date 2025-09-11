@@ -202,6 +202,16 @@ typedef enum {
 #define UNK_18097edf8 UIRenderBufferTable          // UI渲染缓冲区表
 #define UNK_18097ee08 UITextureResourceTable       // UI纹理资源表
 #define UNK_18097ee30 UIAnimationDataTable         // UI动画数据表
+#define UNK_18020f868 UIComponentResourceTable     // UI组件资源表
+#define UNK_180985578 UIContextDataTable           // UI上下文数据表
+#define UNK_180873e5c UILayoutResourceTable        // UI布局资源表
+#define UNK_180985548 UIResourceHandleTable        // UI资源句柄表
+#define UNK_1809855a0 UIRenderContextTable         // UI渲染上下文表
+#define UNK_1809855d0 UIStateDataTable             // UI状态数据表
+#define UNK_180873e54 UILayoutEventTable           // UI布局事件表
+#define UNK_180873e64 UIAnimationResourceTable     // UI动画资源表
+#define UNK_180873e6c UIEventResourceTable         // UI事件资源表
+#define UNK_180873e4c UILayoutComponentTable       // UI布局组件表
 
 // UI系统函数语义化定义
 #define FUN_18073bcf0 ProcessUIContextWithDataSource
@@ -366550,9 +366560,9 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 0x358;
   componentContextPtr[2] = iterationCounter;
-  componentContextPtr[3] = &UNK_18020f868;
+  componentContextPtr[3] = &UIComponentResourceTable;
   componentContextPtr[4] = uiContext;
-  *componentContextPtr = &UNK_180985578;
+  *componentContextPtr = &UIContextDataTable;
   *(UIHandle **)(uiContext + 0x8d0) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
@@ -366566,9 +366576,9 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 0x388;
   componentContextPtr[2] = iterationCounter;
-  componentContextPtr[3] = &UNK_180873e5c;
+  componentContextPtr[3] = &UILayoutResourceTable;
   componentContextPtr[4] = uiContext;
-  *componentContextPtr = &UNK_180985578;
+  *componentContextPtr = &UIContextDataTable;
   *(UIHandle **)(uiContext + 0x8d8) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
@@ -366582,9 +366592,9 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 0x3b8;
   componentContextPtr[2] = iterationCounter;
-  componentContextPtr[3] = &UNK_180873e54;
+  componentContextPtr[3] = &UILayoutEventTable;
   componentContextPtr[4] = uiContext;
-  *componentContextPtr = &UNK_1809855a0;
+  *componentContextPtr = &UIRenderContextTable;
   *(UIHandle **)(uiContext + 0x8e0) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
@@ -366598,9 +366608,9 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 1000;
   componentContextPtr[2] = iterationCounter;
-  componentContextPtr[3] = &UNK_180873e64;
+  componentContextPtr[3] = &UIAnimationResourceTable;
   componentContextPtr[4] = uiContext;
-  *componentContextPtr = &UNK_180985578;
+  *componentContextPtr = &UIContextDataTable;
   *(UIHandle **)(uiContext + 0x8e8) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
@@ -366614,9 +366624,9 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x78);
   result = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 0x418;
-  componentContextPtr[3] = &UNK_180873e6c;
+  componentContextPtr[3] = &UIEventResourceTable;
   componentContextPtr[4] = iterationCounter;
-  *componentContextPtr = &UNK_1809855d0;
+  *componentContextPtr = &UIStateDataTable;
   componentContextPtr[2] = result;
   *(UIHandle **)(uiContext + 0x8f0) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;

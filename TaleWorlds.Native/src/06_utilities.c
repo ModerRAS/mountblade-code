@@ -143277,25 +143277,25 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define FUN_18090a040 MarkSystemStartupAsComplete          // 标记系统启动完成 - 标志系统启动完成
 
 // 系统内存管理函数
-#define FUN_18090a050 AllocateSystemMemoryBlock           // 分配系统内存块 - 分配系统的内存块
-#define FUN_18090a060 FreeSystemMemoryBlock               // 释放系统内存块 - 释放系统的内存块
-#define FUN_18090a070 ResizeSystemMemoryBlock             // 调整系统内存块大小 - 调整系统内存块的大小
-#define FUN_18090a080 ValidateSystemMemoryAccess          // 验证系统内存访问 - 验证系统内存的访问权限
+#define FUN_18090a050 AllocateSystemMemoryPool             // 分配系统内存池 - 分配系统的内存池
+#define FUN_18090a060 FreeSystemMemoryPool                 // 释放系统内存池 - 释放系统的内存池
+#define FUN_18090a070 ResizeSystemMemoryPool              // 调整系统内存池大小 - 调整系统内存池的大小
+#define FUN_18090a080 ValidateSystemMemoryAccess           // 验证系统内存访问 - 验证系统内存的访问权限
 #define FUN_18090a090 OptimizeSystemMemoryUsage            // 优化系统内存使用 - 优化系统的内存使用效率
 
 // 系统资源管理函数
-#define FUN_18090a0a0 CreateSystemResource                 // 创建系统资源 - 创建系统的资源
-#define FUN_18090a0b0 DestroySystemResource                // 销毁系统资源 - 销毁系统的资源
-#define FUN_18090a0c0 LockSystemResource                  // 锁定系统资源 - 锁定系统的资源
-#define FUN_18090a0d0 UnlockSystemResource                // 解锁系统资源 - 解锁系统的资源
-#define FUN_18090a0e0 QuerySystemResourceStatus            // 查询系统资源状态 - 查询系统资源的状态信息
+#define FUN_18090a0a0 CreateSystemResourceHandle            // 创建系统资源句柄 - 创建系统的资源句柄
+#define FUN_18090a0b0 DestroySystemResourceHandle           // 销毁系统资源句柄 - 销毁系统的资源句柄
+#define FUN_18090a0c0 LockSystemResourceHandle              // 锁定系统资源句柄 - 锁定系统的资源句柄
+#define FUN_18090a0d0 UnlockSystemResourceHandle            // 解锁系统资源句柄 - 解锁系统的资源句柄
+#define FUN_18090a0e0 QuerySystemResourceHandleStatus       // 查询系统资源句柄状态 - 查询系统资源句柄的状态信息
 
 // 系统线程管理函数
-#define FUN_18090a0f0 CreateSystemThread                   // 创建系统线程 - 创建系统的线程
-#define FUN_18090a100 DestroySystemThread                  // 销毁系统线程 - 销毁系统的线程
-#define FUN_18090a110 SuspendSystemThread                  // 挂起系统线程 - 挂起系统的线程
-#define FUN_18090a120 ResumeSystemThread                   // 恢复系统线程 - 恢复系统的线程
-#define FUN_18090a130 SetSystemThreadPriority              // 设置系统线程优先级 - 设置系统线程的优先级
+#define FUN_18090a0f0 CreateSystemWorkerThread             // 创建系统工作线程 - 创建系统的工作线程
+#define FUN_18090a100 DestroySystemWorkerThread            // 销毁系统工作线程 - 销毁系统的工作线程
+#define FUN_18090a110 SuspendSystemWorkerThread             // 挂起系统工作线程 - 挂起系统的工作线程
+#define FUN_18090a120 ResumeSystemWorkerThread              // 恢复系统工作线程 - 恢复系统的工作线程
+#define FUN_18090a130 SetSystemWorkerThreadPriority         // 设置系统工作线程优先级 - 设置系统工作线程的优先级
 
 // 系统异常处理函数
 #define FUN_18090a140 HandleSystemException                // 处理系统异常 - 处理系统的异常情况

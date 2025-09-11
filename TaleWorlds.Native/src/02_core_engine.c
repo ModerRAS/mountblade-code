@@ -332,6 +332,8 @@
 #define FUN_1801b2460 ValidateSystemBufferStatus                          // 验证系统缓冲区状态
 #define FUN_1801aedf0 ProcessSystemMemoryAllocation                       // 处理系统内存分配
 #define FUN_1801a20e0 ResetSystemProcessingState                          // 重置系统处理状态
+#define FUN_18022d860 FinalizeContextHandleValidation                      // 完成上下文句柄验证
+#define FUN_18022ce40 CleanupContextHandleResources                       // 清理上下文句柄资源
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
@@ -27651,13 +27653,18 @@ void CoreEngineStringCopySafeHandler(long long destinationBuffer,long long sourc
 
 
 
- void CoreEngineStringCopyWithLength(long long ContextHandle,uint64_t OperationBufferSize,int Utf8SourcePointer/**
+ /**
  * @brief 处理核心引擎指定长度的字符串复制操作
  * 
  * 该函数负责复制指定长度的字符串数据
  * 包含长度验证和缓冲区管理，最大支持0x400字节
+ * 
+ * @param destinationBuffer 目标缓冲区指针
+ * @param sourceData 源数据指针
+ * @param copyLength 要复制的长度
+ * @return void
  */
-void CoreEngineStringCopyWithLength(long long destinationBuffer,uint64_t sourceData,int copyLength
+void CoreEngineStringCopyWithLength(long long destinationBuffer,uint64_t sourceData,int copyLength)
 {
   if (copyLength + 1 < 0x400) {
       memcpy(*(uint8_t **)(destinationBuffer + 8),sourceData,(long long)copyLength);
@@ -27692,7 +27699,7 @@ void CoreEngineStringCopyCleanup(void)
  * @param stringBuffer 目标字符串缓冲区指针
  * @return void
  */
-void CoreEngineStringCopyFinalize(uint8_t* stringBuffer
+void CoreEngineStringCopyFinalize(uint8_t* stringBuffer)
 {
   long long bufferContext;
   
@@ -249504,11 +249511,18 @@ void ProcessOptimizedFloatArraySorting(float *ContextHandle,float *ContextHandle
 
 
 
-02e0f(voidvoid FUN_180202e0f(void
+/**
+ * @brief 检查并执行系统初始化
+ * 
+ * 该函数检查系统状态并执行必要的初始化操作
+ * 
+ * @note 原始函数名：FUN_180202e0f
+ */
+void CheckAndExecuteSystemInitialization(void)
 {
-  long long FramePointer;
+  long long SystemFramePointer;
   
-  if (FramePointer == 0) {
+  if (SystemFramePointer == 0) {
     FUN_180203100();
   }
   return;
@@ -249517,7 +249531,14 @@ void ProcessOptimizedFloatArraySorting(float *ContextHandle,float *ContextHandle
 
 
 
-02e19(voidvoid FUN_180202e19(void
+/**
+ * @brief 执行系统资源初始化
+ * 
+ * 该函数负责执行系统资源的初始化操作
+ * 
+ * @note 原始函数名：FUN_180202e19
+ */
+void ExecuteSystemResourceInitialization(void)
 {
   FUN_180203100();
   return;
@@ -296572,6 +296593,11 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ProcessSystemMemoryBuffer FUN_1801c2360                   // 处理系统内存缓冲区
 #define ProcessSystemEncodingValidation FUN_1802e92b0             // 处理系统编码验证
 #define ProcessSystemDataStructure FUN_18019aac0                 // 处理系统数据结构
+#define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
+
+// 已美化的函数宏定义
+#define ClearContextHandleBuffer FUN_18019eb00                     // 清理上下文句柄缓冲区
+#define ResetContextHandleData FUN_18019eb40                      // 重置上下文句柄数据
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 #define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
 #define ConfigureSystemStackHandler FUN_18031c090                   // 配置系统栈处理器
