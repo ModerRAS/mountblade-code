@@ -30477,10 +30477,25 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
 
 
 
-// 原始函数名：FUN_180896c60 - 数据缓冲区处理函数A1
+// 原始函数名：FUN_180896c60 - 复杂数据缓冲区处理函数
 // 功能：处理复杂的数据缓冲区，包括多种数据类型的验证和转换
 #define ProcessComplexDataBufferWithValidation FUN_180896c60
 
+/**
+ * @brief 复杂数据缓冲区处理函数
+ * 
+ * 该函数负责处理复杂的数据缓冲区，包括多种数据类型的验证和转换操作。
+ * 它会根据输入的操作标志和数据上下文，对数据进行多阶段处理，包括验证、
+ * 加密、内存管理等操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param dataContextParam 数据上下文参数
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @param validationType 验证类型
+ * @return void
+ */
 void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer dataBuffer, int64_t dataContextParam, DataWord* operationFlagA, DataWord operationFlagB, char validationType)
 
 {
@@ -30488,53 +30503,53 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   int64_t dataContext;
   int operationStatus;
   int arrayIndex;
-  int LoopCounter;
-  uint8_t **DataFlagsPointer;
-  int allocatedMemoryBlock;
-  ByteFlag PrimaryEncryptionKeyBuffer [32];
-  DataWord SystemConfigurationData;
-  float RgbColorData [3];
+  int mainLoopCounter;
+  uint8_t **dataFlagsPointer;
+  int allocatedMemorySize;
+  ByteFlag primaryEncryptionKeyBuffer [32];
+  DataWord systemConfigurationData;
+  float rgbColorData [3];
   uint8_t *securityValidationContext;
   int cleanupStepIndex;
-  DataBuffer PrimaryMemoryBuffer;
-  uint64_t SecondaryMemoryOperationBuffer;
-  int64_t TertiaryMemoryOperationBuffer;
-  DataBuffer QuaternaryMemoryOperationBuffer;
-  DataBuffer QuinaryMemoryOperationBuffer;
-  DataBuffer SenaryMemoryOperationBuffer;
-  DataBuffer MemoryBufferA;
-  DataBuffer memoryOperationBufferG;
-  DataWord memoryOperationBufferH;
-  uint memoryOperationBufferI;
+  DataBuffer primaryMemoryBuffer;
+  uint64_t secondaryMemoryBuffer;
+  int64_t tertiaryMemoryBuffer;
+  DataBuffer quaternaryMemoryBuffer;
+  DataBuffer quinaryMemoryBuffer;
+  DataBuffer senaryMemoryBuffer;
+  DataBuffer auxiliaryMemoryBuffer;
+  DataBuffer memoryBufferG;
+  DataWord memoryBufferH;
+  uint memoryBufferI;
   uint8_t *dataProcessingContext;
   int processingIterationIndex;
-  uint dataProcessingBufferA;
-  DataWord dataProcessingBufferB;
-  int dataProcessingBufferC;
-  DataWord dataProcessingBufferD;
-  uint dataProcessingBufferE;
-  DataWord dataProcessingBufferF;
-  DataWord dataProcessingBufferG;
+  uint dataProcessingCounterA;
+  DataWord dataProcessingValueB;
+  int dataProcessingCounterC;
+  DataWord dataProcessingValueD;
+  uint dataProcessingCounterE;
+  DataWord dataProcessingValueF;
+  DataWord dataProcessingValueG;
   uint8_t *exceptionContextPointer;
   DataWord validationFlagA;
   uint validationFlagB;
   DataWord validationFlagC;
-  uint ValidationOffsetA;
-  DataWord ValidationDataA;
-  ByteFlag DataBufferA [StandardDataBufferSize];
+  uint validationOffsetA;
+  DataWord validationDataA;
+  ByteFlag workingDataBuffer [StandardDataBufferSize];
   uint64_t colorProcessingData;
   
   // 位域操作变量声明 - 用于处理特定位域操作
-  BitFieldOperationUnion BitFieldOperationContext;
-  BitFieldOperationUnion FloatingPointProcessingValue;
-  BitFieldOperationUnion FloatingPointInputValueA;
-  BitFieldOperationUnion FloatingPointStackRegisterB;
-  BitFieldOperationUnion SystemParameterArray;
-  BitFieldOperationUnion SystemStatusBuffer;
-  BitFieldOperationUnion SystemTemporaryMemoryBuffer;
+  BitFieldOperationUnion bitFieldOperationContext;
+  BitFieldOperationUnion floatingPointProcessingValue;
+  BitFieldOperationUnion floatingPointInputValueA;
+  BitFieldOperationUnion floatingPointStackRegisterB;
+  BitFieldOperationUnion systemParameterArray;
+  BitFieldOperationUnion systemStatusBuffer;
+  BitFieldOperationUnion systemTemporaryMemoryBuffer;
   
-  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
-  LoopCounter = 0;
+  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)primaryEncryptionKeyBuffer;
+  mainLoopCounter = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + OperationStatusOffset);
     if (operationStatus == 0) {
@@ -30542,45 +30557,45 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
       ValidationFlag = 0;
       ValidationOffset = 0;
       ValidationData = operationFlagA;
-      InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),StandardMemoryBlockSize);
-      DataFlagsPointer = exceptionContextPointer;
+      InitializeMemory(workingDataBuffer,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),StandardMemoryBlockSize);
+      dataFlagsPointer = exceptionContextPointer;
 SecurityValidationLabel:
-      operationStatus = ValidateDataIntegrityA0(operationBase,DataFlagsPointer);
+      operationStatus = ValidateDataIntegrityA0(operationBase,dataFlagsPointer);
     }
     else {
       cleanupStepIndex = 0;
       if (1 < operationStatus - 1U) {
         securityValidationContext = &DataProcessingStatusTable;
-        DataFlagsPointer = securityValidationContext;
-        memoryOperationBufferH = 0;
-        MemoryBufferA = 0;
-        SecondaryMemoryOperationBuffer = 0;
-        TertiaryMemoryOperationBuffer = 0;
-        QuaternaryMemoryOperationBuffer = 0;
-        QuinaryMemoryOperationBuffer = 0;
-        SenaryMemoryOperationBuffer = 0;
-        memoryOperationBufferG = 0;
-        memoryOperationBufferI = operationFlagA;
+        dataFlagsPointer = securityValidationContext;
+        memoryBufferH = 0;
+        auxiliaryMemoryBuffer = 0;
+        secondaryMemoryBuffer = 0;
+        tertiaryMemoryBuffer = 0;
+        quaternaryMemoryBuffer = 0;
+        quinaryMemoryBuffer = 0;
+        senaryMemoryBuffer = 0;
+        memoryBufferG = 0;
+        memoryBufferI = operationFlagA;
         goto ProcessCheckpointSystemCleanup;
       }
       securityValidationContext = &SystemStatusFlagTable;
-      TertiaryMemoryOperationBuffer = (uint64_t)operationFlagA << 0x20;
-      MemoryBufferA = *(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset);
-      SecondaryMemoryOperationBuffer = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + MemoryOperationOffset));
+      tertiaryMemoryBuffer = (uint64_t)operationFlagA << 0x20;
+      auxiliaryMemoryBuffer = *(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset);
+      secondaryMemoryBuffer = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + MemoryOperationOffset));
       operationStatus = ValidateDataIntegrityA0(operationBase,securityValidationContext);
     }
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
-    dataProcessingBufferA = *(uint *)(dataBuffer + ExceptionHandlerCallbackOffset);
-    dataProcessingBufferB = *(DataWord *)(dataBuffer + DataBufferContextOffset);
-    dataProcessingBufferC = *(int *)(dataBuffer + FloatValueOffset);
-    dataProcessingBufferD = *(DataWord *)(dataBuffer + DataBufferProcessingOffset);
+    dataProcessingCounterA = *(uint *)(dataBuffer + ExceptionHandlerCallbackOffset);
+    dataProcessingValueB = *(DataWord *)(dataBuffer + DataBufferContextOffset);
+    dataProcessingCounterC = *(int *)(dataBuffer + FloatValueOffset);
+    dataProcessingValueD = *(DataWord *)(dataBuffer + DataBufferProcessingOffset);
     processingIterationIndex = 0;
     dataProcessingContext = &SystemConfigurationDataTable;
-    dataProcessingBufferF = 0;
-    dataProcessingBufferE = operationFlagA;
+    dataProcessingValueF = 0;
+    dataProcessingCounterE = operationFlagA;
     operationStatus = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
-    allocatedMemoryBlock = 0;
+    allocatedMemorySize = 0;
     operationStatus = *(int *)(*(int64_t *)(dataBuffer + SystemDataBufferPointerOffset) + SystemDataStatusOffset);
     if (0 < operationStatus) {
       do {
@@ -30593,8 +30608,8 @@ SecurityValidationLabel:
             ExecuteSystemSecurityCheck;
             return;
         }
-        allocatedMemoryBlock = allocatedMemoryBlock + 1;
-      } while (allocatedMemoryBlock < operationStatus);
+        allocatedMemorySize = allocatedMemorySize + 1;
+      } while (allocatedMemorySize < operationStatus);
     }
   }
   if (((operationFlagB != '\0') || (*(int *)(*(int64_t *)(dataBuffer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == 0)) &&
