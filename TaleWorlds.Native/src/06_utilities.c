@@ -100154,6 +100154,18 @@ void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 初始化异常处理器C390
+ * 
+ * 该函数负责初始化异常处理器C390，通过检查异常上下文指针并调用相应的函数指针
+ * 来完成异常处理器的初始化工作。该函数在系统栈展开过程中被调用。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090c390
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器C390
+ */
 void InitializeExceptionHandlerC390(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -128344,11 +128356,11 @@ void ProcessExceptionContextCleanupAndHandlerSetup760(DataBuffer operationBase,i
 
 
 /**
- * @brief 处理异常上下文清理和异常处理器设置
+ * @brief 处理异常上下文清理和异常处理器设置A
  * 
- * 该函数负责清理异常上下文并设置异常处理器。它首先调用异常上下文中
- * 注册的清理函数，然后设置临时异常处理器，执行系统终止操作，最后
- * 设置默认异常处理器。这个过程确保了异常处理的完整性和安全性。
+ * 该函数负责清理异常上下文并设置异常处理器。它首先调用异常上下文中注册的清理函数，
+ * 然后设置临时异常处理器，执行系统终止操作，最后设置默认异常处理器。
+ * 该函数在系统栈展开过程中被调用，用于清理异常相关的资源。
  * 
  * @param operationBase 操作基址，用于系统操作
  * @param dataBuffer 数据缓冲区，包含异常上下文信息

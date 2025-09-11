@@ -299998,6 +299998,34 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  */
 #define FUN_1800814d0 ManageSystemContextStateTransition
 
+// 变量名语义化宏定义 - 美化数字后缀变量名
+#define calculationParameter1 PrimaryCalculationParameter           // 主计算参数1
+#define calculationParameter2 SecondaryCalculationParameter         // 次计算参数2
+#define CharacterTablePointer68 CharacterTablePointerExtended       // 字符表指针扩展
+#define FilterCoefficient1 PrimaryFilterCoefficient                  // 主滤波系数1
+#define FilterCoefficient3 TertiaryFilterCoefficient               // 三级滤波系数3
+#define FilterCoefficient4 QuaternaryFilterCoefficient             // 四级滤波系数4
+#define byteValue1 PrimaryByteValue                                // 主字节值1
+#define byteValue2 SecondaryByteValue                              // 次字节值2
+#define ProcessingStatusFlag1 PrimaryProcessingStatusFlag           // 主处理状态标志1
+#define ProcessingStatusFlag2 SecondaryProcessingStatusFlag         // 次处理状态标志2
+#define ProcessingStatusFlag3 TertiaryProcessingStatusFlag          // 三级处理状态标志3
+#define ProcessingStatusFlag4 QuaternaryProcessingStatusFlag        // 四级处理状态标志4
+#define ProcessingStatusFlag6 SenaryProcessingStatusFlag           // 六级处理状态标志6
+#define ShouldUseBuffer0 BufferUsageFlag                            // 缓冲区使用标志
+#define MemoryAddress268 ExtendedMemoryAddress                     // 扩展内存地址
+#define SystemStatus48 SystemStatusExtended                       // 系统状态扩展
+#define BufferFlags40 BufferFlagsExtended                         // 缓冲区标志扩展
+#define SystemStatus30 SystemStatusSecondary                       // 系统状态次级
+#define StackSecurityValue78 StackSecurityValidationValue         // 栈安全验证值
+#define StringComparisonByte2 StringComparisonStatusByte           // 字符串比较状态字节
+#define Utf16Character Utf16CharacterCode                          // UTF-16字符代码
+#define AdditionalParameter1 AdditionalProcessingParameter          // 附加处理参数
+#define StackMemoryDataOffset90 StackMemoryDataOffsetExtended       // 栈内存数据偏移扩展90
+#define StackMemoryDataOffset88 StackMemoryDataOffsetTertiary       // 栈内存数据偏移三级88
+#define StackMemoryDataOffset80 StackMemoryDataOffsetQuaternary    // 栈内存数据偏移四级80
+#define StackMemoryDataOffset78 StackMemoryDataOffsetSenary        // 栈内存数据偏移六级78
+
 /**
  * @brief 处理系统字符编码转换和矩阵运算
  * 
