@@ -73275,7 +73275,7 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xa8);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetA8);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -100067,10 +100067,22 @@ void SetDefaultExceptionHandlerAtOffset350(DataBuffer operationBase,int64_t data
 
 
 
+/**
+ * @brief 设置默认异常处理器到偏移量0x188
+ * 
+ * 该函数负责在偏移量0x188位置设置默认异常处理器B
+ * 这是异常处理机制的一部分，用于初始化异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809066f0
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
 void SetDefaultExceptionHandlerAtOffset188(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + FloatValueOffset8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset188) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
