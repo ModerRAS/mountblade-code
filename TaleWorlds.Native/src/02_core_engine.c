@@ -223805,15 +223805,15 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   unsigned long long SystemStackFlag;
   
   MemoryOffsetValue = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aSystemProcessFlagB;
-  SystemCleanupFlagF = 0;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)SystemProcessFlagArray;
+  SystemCleanupStatusFlag = 0;
   CoreEngineSignedValueC8 = *ContextHandleSize;
-  lStack_c0 = OperationBufferSize[1] - CoreEngineSignedValueC8 >> 2;
+  StackTemporaryValueC0 = OperationBufferSize[1] - CoreEngineSignedValueC8 >> 2;
   SystemContextPointerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
-  plStack_60 = (long long *)0x0;
+  EncodingContextPointer = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
-  lStack_a8 = MemoryBlockIndex;
+  StackTemporaryValueA8 = MemoryBlockIndex;
   if (CharacterStatusBuffer != NULL) {
     plStack_60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,aStackLongValue);
   }
@@ -227201,25 +227201,25 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandl
 #define ProcessCharacterTableAndDataInitialization FUN_180187cd0
 void ProcessCharacterTableAndDataInitialization(long long *CharacterContextHandle)
 {
-  long long TableCalculationResult;
-  long long MemoryAllocationStatus;
+  long long CharacterTableCalculationResult;
+  long long MemoryBlockStatus;
   
-  long long TableDataPointer = *CharacterContextHandle;
-  if (TableDataPointer != 0) {
-    MemoryAllocationStatus = CharacterContextHandle[1];
-    if (TableDataPointer != MemoryAllocationStatus) {
+  long long CharacterTablePointer = *CharacterContextHandle;
+  if (CharacterTablePointer != 0) {
+    MemoryBlockStatus = CharacterContextHandle[1];
+    if (CharacterTablePointer != MemoryBlockStatus) {
       do {
-        ProcessSystemStringIndexAndCharacterTableOperation(TableDataPointer);
-        TableDataPointer = TableDataPointer + 0x40;
-      } while (TableDataPointer != MemoryAllocationStatus);
-      TableDataPointer = *CharacterContextHandle;
+        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTablePointer);
+        CharacterTablePointer = CharacterTablePointer + CharacterTableBlockSize;
+      } while (CharacterTablePointer != MemoryBlockStatus);
+      CharacterTablePointer = *CharacterContextHandle;
     }
-    MemoryAllocationStatus = LoopCounter;
-    if ((0xfff < (CharacterContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (MemoryAllocationStatus = *(long long *)(TableDataPointer + -8), 0x1f < (TableDataPointer - MemoryAllocationStatus) - 8U)) {
+    MemoryBlockStatus = SystemLoopCounter;
+    if ((0xfff < (CharacterContextHandle[2] - SystemLoopCounter & 0xffffffffffffffc0U)) &&
+       (MemoryBlockStatus = *(long long *)(CharacterTablePointer + -8), 0x1f < (CharacterTablePointer - MemoryBlockStatus) - 8U)) {
         _invalid_parameter_noinfo_noreturn();
     }
-    free(MemoryAllocationStatus);
+    free(MemoryBlockStatus);
     *CharacterContextHandle = 0;
     CharacterContextHandle[1] = 0;
     CharacterContextHandle[2] = 0;
@@ -227245,7 +227245,7 @@ void ProcessCharacterTableAndInitialization(long long *CharacterDataHandle, uint
   long long CharacterProcessingResult;
   
   CharacterTablePointer = *CharacterDataHandle;
-  ProcessCharacterDataAndValidation(CharacterDataHandle,*(void *)(ThreadLocalStorageData + 8),Utf8DataPointer,Utf16DataPointer,0xfffffffffffffffe);
+  ProcessCharacterDataAndValidation(CharacterDataHandle,*(void *)(ThreadLocalStorageData + 8),Utf8DataPointer,Utf16DataPointer,SystemAddressMask);
   *(long long *)(*CharacterDataHandle + 8) = LoopCounter;
   *(long long *)*CharacterDataHandle = LoopCounter;
   *(long long *)(*CharacterDataHandle + 0x10) = LoopCounter;
@@ -256530,7 +256530,7 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
                 if (IntegerValue4 == -1) {
                   SystemDataTablePointer = *(long long *)(SystemStringIndex + 0x10 + SystemStackRegisterValue58);
                   if (SystemDataTablePointer == 0) {
-                    CharacterTablePointer6 = FUN_1801efdb0(CharacterTablePointer6,MemoryAllocationIndex);
+                    CharacterTablePointer6 = ConvertCharacterTableToInternalFormat(CharacterTablePointer6,MemoryAllocationIndex);
                     Utf16Character = StackProcessingDataPointer;
                     if ((CharacterTablePointer6 == 0) || (LockOperationResult1 = *(int *)(CharacterTablePointer6 + 0x18), LockOperationResult1 == 0)                    goto SystemCharacterValidationCheck;
                     UnicodeContextHandle = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
@@ -257801,7 +257801,7 @@ void ReleaseCharacterStatusBufferAndProcessSystemData(long long ContextHandle, u
     SystemPriorityLevel = SystemPriorityLevel - ComputedResult;
     *(uint8_t *)((unsigned long long)SystemPriorityLevel + CoreEngineSignedValue48) = 0;
   }
-  BufferStatus = FUN_1800b6de0(SystemMemoryManagerPointer,&SystemValidationPointer,0);
+  BufferStatus = InitializeSystemMemoryManager(SystemMemoryManagerPointer,&SystemValidationPointer,0);
   if (BufferStatus != 0) {
     MemoryBlockIndex = ContextHandle[2];
     if (MemoryBlockIndex != 0) {

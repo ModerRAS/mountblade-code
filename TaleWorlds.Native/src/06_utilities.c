@@ -437,7 +437,38 @@ typedef union {
 // MemoryManagementFlagMask已在前面定义
 #define MemoryResourcePointerOffsetQuaternary 0x1f0
 #define MemoryResourcePointerOffsetQuinary 0x210
+
+// 栈帧上下文偏移量常量
+#define StackFramePointerTableOffset -0x80                    // 栈帧指针表偏移量 - 用于访问栈帧指针表
+#define StackFrameLoopCounterOffset -0x68                      // 栈帧循环计数器偏移量 - 用于存储循环计数器
+#define StackFrameValidationStatusOffset -0x64                 // 栈帧验证状态偏移量 - 用于存储验证状态
+#define StackFrameMemoryRegionBaseOffset -0x60                  // 栈帧内存区域基址偏移量 - 用于存储内存区域基址
+#define StackFrameOperationResultOffset -0x5c                   // 栈帧操作结果偏移量 - 用于存储操作结果
+#define StackFrameDataFlagsOffset -0x58                         // 栈帧数据标志偏移量 - 用于存储数据标志
+#define StackFrameBasePointerOffset -0x70                      // 栈帧基址指针偏移量 - 用于存储基址指针
+#define StackFrameSystemResultOffset -0x54                     // 栈帧系统结果偏移量 - 用于存储系统操作结果
+#define StackFrameContextDataOffset -0x78                      // 栈帧上下文数据偏移量 - 用于存储上下文数据
+#define StackFrameExceptionDataBufferOffset -0x29              // 栈帧异常数据缓冲区偏移量 - 用于存储异常数据缓冲区指针
+
+// 浮点数据偏移量常量
+#define FloatDataArrayOffset -0x14                              // 浮点数据数组偏移量 - 用于访问浮点数组的起始位置
+#define FloatDataFirstElementOffset -0x14                       // 浮点数据第一元素偏移量 - 第一个浮点数元素的偏移
+#define FloatDataSecondElementOffset -0x10                      // 浮点数据第二元素偏移量 - 第二个浮点数元素的偏移
+#define FloatDataThirdElementOffset -0xc                        // 浮点数据第三元素偏移量 - 第三个浮点数元素的偏移
+#define FloatDataFourthElementOffset -8                         // 浮点数据第四元素偏移量 - 第四个浮点数元素的偏移
+#define FloatDataTerminatorOffset -4                            // 浮点数据终止符偏移量 - 浮点数据数组的终止符位置
 #define MemoryResourcePointerOffsetSenary 0x1d0
+
+// 数据记录和验证常量
+#define DataRecordHeaderOffset 0x14                             // 数据记录头部偏移量 - 数据记录头部的偏移位置
+#define DataRecordSecondaryOffset18 0x18                         // 数据记录辅助偏移量18 - 数据记录的辅助偏移位置
+#define DataValidationContextOffset40 0x40                      // 数据验证上下文偏移量40 - 数据验证上下文的偏移位置
+#define DataValidationContextOffset44 0x44                      // 数据验证上下文偏移量44 - 数据验证上下文的辅助偏移位置
+#define DataValidationContextOffset48 0x48                      // 数据验证上下文偏移量48 - 数据验证上下文的第三偏移位置
+#define DataRegisterContextOffset30 0x30                         // 数据寄存器上下文偏移量30 - 数据寄存器上下文的偏移位置
+#define DataValidationOperationOffset7f 0x7f                     // 数据验证操作偏移量7f - 数据验证操作的偏移位置
+#define DataSystemContextOffset48 0x48                          // 数据系统上下文偏移量48 - 数据系统上下文的偏移位置
+#define DataSystemContextOffset5c 0x5c                          // 数据系统上下文偏移量5c - 数据系统上下文的辅助偏移位置
 
 // 异常处理器管理常量
 #define ExceptionHandlerContextDataOffset 0x70
@@ -31068,7 +31099,7 @@ void ProcessFloatingPointDataWithValidation(void)
         memoryRegionBase = *(DataWord *)(exceptionContext + ExceptionContextDataOffset14);
         operationResult = *(DataWord *)(exceptionContext + SystemDataSecondaryOffset18);
         dataFlags = *(DataWord *)(exceptionContext + ExceptionContextDataOffset1C);
-        *(DataWord *)(StackFrameContext + -0x78) = 0;
+        *(DataWord *)(StackFrameContext + StackFrameContextDataOffset) = 0;
         *(int *)(StackFrameContext + -0x68) = loopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
         loopCounter = loopCounter + 1;
@@ -31121,7 +31152,7 @@ void ProcessFloatingPointDataWithValidation(void)
         memoryRegionBase = *(DataWord *)(exceptionContext + ExceptionContextDataOffset14);
         operationResult = *(DataWord *)(exceptionContext + SystemDataSecondaryOffset18);
         dataFlags = *(DataWord *)(exceptionContext + ExceptionContextDataOffset1C);
-        *(DataWord *)(StackFrameContext + -0x78) = 0;
+        *(DataWord *)(StackFrameContext + StackFrameContextDataOffset) = 0;
         *(int *)(StackFrameContext + -0x68) = loopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
         loopCounter = loopCounter + 1;
@@ -31174,7 +31205,7 @@ void ProcessFloatingPointDataWithValidation(void)
         memoryRegionBase = *(DataWord *)(exceptionContext + ExceptionContextDataOffset14);
         operationResult = *(DataWord *)(exceptionContext + SystemDataSecondaryOffset18);
         dataFlags = *(DataWord *)(exceptionContext + ExceptionContextDataOffset1C);
-        *(DataWord *)(StackFrameContext + -0x78) = 0;
+        *(DataWord *)(StackFrameContext + StackFrameContextDataOffset) = 0;
         *(int *)(StackFrameContext + -0x68) = loopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
         loopCounter = loopCounter + 1;
@@ -31230,7 +31261,7 @@ void ProcessFloatingPointDataWithValidation(void)
         memoryRegionBase = *(DataWord *)(exceptionContext + ExceptionContextDataOffset14);
         operationResult = *(DataWord *)(exceptionContext + SystemDataSecondaryOffset18);
         dataFlags = *(DataWord *)(exceptionContext + ExceptionContextDataOffset1C);
-        *(DataWord *)(StackFrameContext + -0x78) = 0;
+        *(DataWord *)(StackFrameContext + StackFrameContextDataOffset) = 0;
         *(int *)(StackFrameContext + -0x68) = calculatedSize;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataValidationReference;
         calculatedSize = calculatedSize + 1;
@@ -40206,7 +40237,7 @@ ValidationProcessingLabel:
         *(float *)((int64_t)exceptionDataBuffer + SystemMemoryDataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer + 3) = 1;
         validationParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
-        exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
+        exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + StackFrameExceptionDataBufferOffset);
       }
     }
     statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
