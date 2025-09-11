@@ -106,6 +106,13 @@ typedef enum {
 // UI系统函数语义化宏定义
 #define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
+#define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
+#define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
+#define func_0x000180756330 ProcessUIDataSourceExtract // 处理UI数据源提取
+
+// UI系统异常处理器地址常量
+#define GlobalUIExceptionHandlerA48 0x180957a48  // 全局UI异常处理器A48地址
+#define GlobalUIExceptionHandlerBA8 0x180957ba8  // 全局UI异常处理器BA8地址
 #define UI_COMPONENT_DATA_OFFSET_98 0x98        // UI组件数据偏移量98
 #define UI_COMPONENT_DATA_OFFSET_9C 0x9c        // UI组件数据偏移量9C
 #define UI_COMPONENT_DATA_OFFSET_A0 0xa0        // UI组件数据偏移量A0
@@ -134360,37 +134367,55 @@ LAB_18073f792:
  
 
  void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
-void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
+/**
+ * @brief UI数据源初始化和复制函数
+ * 
+ * 该函数负责初始化UI数据源并处理数据复制操作，主要功能包括：
+ * - 初始化UI数据源和渲染上下文
+ * - 处理数据源的复制和传输
+ * - 管理数据源的有效性和状态
+ * - 处理异常情况和错误状态
+ * - 执行UI渲染任务和数据操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * @param dataSource 数据源指针，用于存储和操作数据源
+ * 
+ * @note 原始函数名：FUN_18073f8b0
+ * @note 数据源管理：通过dataSource指针管理数据源的状态
+ * @note 异常处理：使用GlobalUIExceptionHandlerBA8处理异常情况
+ * @note 内存管理：通过RenderContextSize跟踪内存使用情况
+ */
+void InitializeUIDataSourceAndCopy(UIHandle uiContext,UIHandle *dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *dataProcessingPointer;
+  longlong renderContextSize;
+  UIHandle uiResourceHandle;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext,&uiResourceHandle,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180756200(stackUInt120,dataSource);
+    operationResult = ProcessUIDataSourceCopy(uiResourceHandle,dataSource);
   }
   else if (dataSource != (UIHandle *)0x0) {
     *dataSource = 0;
   }
-  if ((processingResult != 0) && ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+  if ((operationResult != 0) && ((*(byte *)(GlobalUIResourceManagerF0 + UIResourceStatusOffset) & 0x80) != 0)) {
+    CopyUIDataBuffer(dataBuffer,0x100,dataSource);
+    dataProcessingPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957ba8);
+    ExecuteUIContextDataOperation(operationResult,2,uiContext,&GlobalUIExceptionHandlerBA8);
   }
-  if (RenderContextSize != 0) {
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
