@@ -130278,7 +130278,7 @@ void ProcessUIContextAndDataSource(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(workBuffer,0x100,dataSource);
     dataBufferPointer = workBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578b0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIResourceHandle8B0);
   }
 LAB_18073ce8e:
   if (renderContextSize != 0) {
@@ -130337,7 +130337,7 @@ void ProcessUIDataCopyOperation(UIHandle uiContext,longlong dataSource,longlong 
     func_0x00018074be80(processingBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UNK_180957858);
+    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UIResourceHandle858);
   }
 ReleaseUIResources:
   if (resourceHandle != 0) {
@@ -130398,7 +130398,7 @@ void ValidateUIDataOperation(UIHandle uiContext,longlong dataSource,longlong tar
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     func_0x00018074be80(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UNK_180957858,&stack0x00000040);
+    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UIResourceHandle858,&stack0x00000040);
   }
 ReleaseUIResources:
   if (resourceHandle != 0) {
@@ -130546,7 +130546,7 @@ void ProcessUIBufferDataAndResources(UIHandle uiContext, UIHandle dataSource, UI
     ProcessUIDataWithFloatTarget(uiDataProcessingBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
     uiBufferPointer = uiDataProcessingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UNK_1809578f0);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UIResourceHandle8F0);
   }
 CleanupUIResources:
   if (uiResourceHandle != 0) {
@@ -130612,7 +130612,7 @@ void ProcessUIContextDataAndEvents(UIHandle uiContext, UIHandle dataSource, UIHa
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
     ProcessUIDataWithFloatTarget(&stack0x00000040 + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UNK_1809578f0, &stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UIResourceHandle8F0, &stack0x00000040);
   }
 CleanupUIResources:
   if (uiResourceHandle != 0) {
