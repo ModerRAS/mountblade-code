@@ -386604,12 +386604,12 @@ UIHandle ProcessUIContextDataValidation(longlong uiContext)
   result = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),&resourceHandle);
   if ((int)result == 0) {
     loopCounter = 0;
-    maxProcessingCount = lStackX_8 - 8;
-    if (lStackX_8 == 0) {
+    maxProcessingCount = resourceHandle - 8;
+    if (resourceHandle == 0) {
       maxProcessingCount = loopCounter;
     }
     uiStatusPointer = (UIDword *)(uiContext + 0x20 + (longlong)*(int *)(uiBufferData + 0x18) * 8);
-    puiValidationResult = (int *)(uiContext + 0x20);
+    validationResultPointer = (int *)(uiContext + 0x20);
     if (0 < *(int *)(uiBufferData + 0x18)) {
       do {
         if ((*puiValidationResult != _DAT_180c4eaa0) || (puiValidationResult[1] != _DAT_180c4eaa4)) {
