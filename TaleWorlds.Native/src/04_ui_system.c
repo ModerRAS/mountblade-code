@@ -125235,7 +125235,7 @@ ReleaseUIMemoryAndExecuteRender:
 
 
 
- void FUN_18073a405(void)
+ void ProcessUIBufferDataValidation(void)
 /**
  * @brief 处理UI缓冲区数据验证
  * 
