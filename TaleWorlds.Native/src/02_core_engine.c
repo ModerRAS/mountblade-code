@@ -60397,7 +60397,7 @@ ReferenceCountBufferAllocation:
           StackParameterUnsigned20 = StackParameterUnsigned20 + 4;
           SystemStackPointer1f8 = *(int **)(*MemoryAllocationMaskPointer2 + SystemStackOffset170);
           LockOperationResultPointer5 = ReferenceCountPointer6;
-        } while ((unsigned long long)(long long)iStackX_10 <
+        } while ((unsigned long long)(long long)LoopCounter10 <
                  (unsigned long long)(*(long long *)(*MemoryAllocationMaskPointer2 + SystemStackOffset170 + 8) - (long long)SystemStackPointer1f8 >> 2                );
       }
       do {
