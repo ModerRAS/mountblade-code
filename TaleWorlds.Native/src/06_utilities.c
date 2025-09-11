@@ -6939,7 +6939,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：Unwind_1809092f0
  */
-#define CleanupExceptionContextA1 Unwind_1809092f0
+#define CleanupExceptionContextA1 CleanupExceptionContextAtOffset176
 
 /**
  * @brief 异常处理器重置函数（偏移量A0）
@@ -6948,15 +6948,15 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：Unwind_180909400
  */
-#define ResetExceptionHandlerA0 Unwind_180909400
+#define ResetExceptionHandlerA0 ResetExceptionHandlerAtOffset256
 
 // 原始函数名：Unwind_1809094a0 - 异常数据清理函数A0
 // 功能：清理异常数据，重置异常处理状态
-#define CleanupExceptionDataA0 Unwind_1809094a0
+#define CleanupExceptionDataA0 CleanupExceptionDataAtOffset1184
 
 // 原始函数名：Unwind_1809094b0 - 异常数据清理函数A1
 // 功能：清理异常数据，重置异常处理状态
-#define CleanupExceptionDataA1 Unwind_1809094b0
+#define CleanupExceptionDataA1 CleanupExceptionDataAtOffset1200
 
 // 原始函数名：Unwind_180909500 - 异常状态重置函数A0
 // 功能：重置异常状态标志，清理异常处理状态
