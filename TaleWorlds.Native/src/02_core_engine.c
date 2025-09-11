@@ -242201,7 +242201,7 @@ LAB_18019a44a:
   ConfigurationString[3] = 0x736567;
   iStack_238 = 0xf;
   pbStack_240 = (byte *)ConfigurationString;
-  FUN_18019aac0(&SystemTemporaryValueD0,&pppppSystemPointerValue170,&pBufferTypeFlag);
+  ProcessSystemDataStructure(&SystemTemporaryValueD0,&pppppSystemPointerValue170,&pBufferTypeFlag);
   pBufferTypeFlag = &SystemNullTemplate;
     CoreEngineFreeSystemMemory(ConfigurationString);
 }
@@ -244415,7 +244415,7 @@ void ValidateSystemContext(long long ContextHandle
   alStack_148[1] = 0;
   UNLOCK();
   iStack_138 = 0;
-  FUN_1801c2360(ContextHandle + 0x60830,&plStack_c0);
+  ProcessSystemMemoryBuffer(ContextHandle + 0x60830,&plStack_c0);
   BufferStatus1 = ContextHandle + 0x60830;
   PrimaryProcessingStatusFlag4 = PrimaryProcessingStatusFlag0;
   do {
