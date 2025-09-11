@@ -886,6 +886,9 @@ typedef enum {
 
 // UI系统初始化函数
 #define InitializeUIContextAndParameters FUN_18071ace8         // 初始化UI上下文和参数
+#define func_0x000180762a70 ProcessUIEventDataValidation        // 处理UI事件数据验证
+#define func_0x00018074b830 ProcessUIDataBufferCleanup          // 处理UI数据缓冲区清理
+#define func_0x00018074be80 ValidateUIDataWithBufferControl     // 验证UI数据与缓冲区控制
 
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8

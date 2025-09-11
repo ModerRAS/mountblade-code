@@ -299021,7 +299021,7 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define FUN_180208e16 ProcessSystemExtendedOperation
 
 // 系统核心功能函数语义化宏定义 - 新发现的需要美化的函数
-#define FUN_180081480 AllocateSystemMemoryBlock                              // 分配系统内存块
+#define FUN_180081480 AllocateSystemMemoryBlockAndInitialize                // 分配并初始化系统内存块
 #define FUN_18029ea30 ProcessCharacterEncodingConversion                    // 处理字符编码转换
 #define FUN_1802075c0 ExecuteCharacterEncodingValidation                    // 执行字符编码验证
 #define FUN_1800e81f0 GetSystemContextPointer                              // 获取系统上下文指针
