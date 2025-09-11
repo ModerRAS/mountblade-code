@@ -2252,6 +2252,14 @@
 
 // 系统寄存器上下文偏移量常量
 #define RegisterContextDataSizeOffset 0x18          // 寄存器上下文数据大小偏移量
+
+// 异常处理器偏移量常量
+#define ExceptionHandlerContextOffset188 0x188            // 异常处理上下文偏移量188
+#define ExceptionHandlerContextOffset290 0x290            // 异常处理上下文偏移量290
+#define ExceptionHandlerContextOffset2f0 0x2f0            // 异常处理上下文偏移量2f0
+#define ExceptionHandlerContextOffset350 0x350            // 异常处理上下文偏移量350
+#define ExceptionHandlerContextOffset410 0x410            // 异常处理上下文偏移量410
+#define ExceptionHandlerContextOffset470 0x470            // 异常处理上下文偏移量470
 #define RegisterContextValidationStatusOffset 0x7f  // 寄存器上下文验证状态偏移量
 #define RegisterContextOperationFlagsOffset 0x34    // 寄存器上下文操作标志偏移量
 #define RegisterContextMemoryPointerOffset 0x60    // 寄存器上下文内存指针偏移量
@@ -10248,9 +10256,198 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证系统配置和状态
 #define ValidateSystemConfigurationWithValidation FUN_18089e87d
 
+/**
+ * @brief 系统数据处理核心函数
+ * 
+ * 该函数是系统数据处理的核心组件，负责处理系统数据块的核心操作。
+ * 它包括数据验证、完整性检查、传输控制和安全验证等功能。
+ * 
+ * @param dataBlock 数据块指针
+ * @param blockSize 数据块大小
+ * @param operationFlags 操作标志位
+ * @return int 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18089979
+ * @note 这是系统数据处理的核心函数，处理高频数据操作
+ */
+#define ProcessDataBlockCore FUN_18089979
+
+/**
+ * @brief 系统数据完整性验证函数
+ * 
+ * 该函数负责验证系统数据的完整性和安全性，确保数据在传输和存储过程中
+ * 没有被损坏或篡改。它使用多种验证算法来检查数据的有效性。
+ * 
+ * @param dataBuffer 数据缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param validationType 验证类型标志
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_1808ddf8
+ * @note 这是系统数据安全验证的核心函数
+ */
+#define ValidateSystemDataIntegrity FUN_1808ddf8
+
+/**
+ * @brief 系统数据同步函数
+ * 
+ * 该函数负责同步系统数据状态和缓冲区，确保系统各个组件之间的数据一致性。
+ * 它处理数据同步操作，包括内存同步和状态同步。
+ * 
+ * @param syncTarget 同步目标指针
+ * @param syncSource 同步源指针
+ * @param syncSize 同步数据大小
+ * @param syncFlags 同步标志位
+ * @return int 同步结果状态码
+ * 
+ * @note 原始函数名：FUN_18089909
+ * @note 这是系统数据一致性的关键函数
+ */
+#define SynchronizeSystemData FUN_18089909
+
+/**
+ * @brief 数据处理辅助函数
+ * 
+ * 该函数是数据处理的辅助组件，负责辅助处理数据块操作。
+ * 它提供数据处理的辅助功能，包括数据格式转换和预处理。
+ * 
+ * @param auxiliaryData 辅助数据指针
+ * @param auxiliarySize 辅助数据大小
+ * @param processingFlags 处理标志位
+ * @return int 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18089904
+ * @note 这是数据处理的辅助支持函数
+ */
+#define ProcessDataBlockAuxiliary FUN_18089904
+
+/**
+ * @brief 系统数据清理函数
+ * 
+ * 该函数负责清理系统数据缓存和缓冲区，释放不再需要的数据资源。
+ * 它确保系统内存的有效使用和数据的及时清理。
+ * 
+ * @param cleanupTarget 清理目标指针
+ * @param cleanupSize 清理数据大小
+ * @param cleanupFlags 清理标志位
+ * @return int 清理结果状态码
+ * 
+ * @note 原始函数名：FUN_18089604
+ * @note 这是系统内存管理的重要函数
+ */
+#define CleanupSystemDataCache FUN_18089604
+
+// 原始函数名：FUN_18089513 - 数据验证函数
+// 功能：验证系统数据块的完整性
+#define ValidateDataBlockIntegrity FUN_18089513
+
+// 原始函数名：FUN_18088c79 - 数据处理状态函数
+// 功能：检查数据处理状态和进度
+#define CheckDataProcessingStatus FUN_18088c79
+
+// 原始函数名：FUN_18088c74 - 数据处理控制函数
+// 功能：控制数据处理流程和操作
+#define ControlDataProcessingFlow FUN_18088c74
+
+// 原始函数名：FUN_18084027 - 数据处理配置函数
+// 功能：配置数据处理参数和选项
+#define ConfigureDataProcessingOptions FUN_18084027
+
+// 原始函数名：FUN_18089752 - 数据处理优化函数
+// 功能：优化数据处理性能和效率
+#define OptimizeDataProcessingPerformance FUN_18089752
+
+// 原始函数名：FUN_180891d4 - 数据处理验证函数
+// 功能：验证数据处理操作的有效性
+#define ValidateDataProcessingOperation FUN_180891d4
+
+// 原始函数名：FUN_180891cf - 数据处理辅助函数
+// 功能：辅助处理数据操作和验证
+#define ProcessDataOperationAuxiliary FUN_180891cf
+
+// 原始函数名：FUN_180891ca - 数据处理管理函数
+// 功能：管理数据处理操作和资源
+#define ManageDataProcessingOperations FUN_180891ca
+
+// 原始函数名：FUN_18088aca - 数据处理监控函数
+// 功能：监控数据处理性能和状态
+#define MonitorDataProcessingPerformance FUN_18088aca
+
+// 原始函数名：FUN_18085300 - 数据处理恢复函数
+// 功能：恢复数据处理操作和状态
+#define RecoverDataProcessingState FUN_18085300
+
 // 原始函数名：FUN_18089e9af - 数据处理函数
 // 功能：处理数据验证和操作
 #define ProcessDataWithValidationAndSecurity FUN_18089e9af
+
+// 系统配置函数定义
+// 原始函数名：FUN_180942a8 - 系统配置函数
+// 功能：配置系统参数和选项
+#define ConfigureSystemParametersAndOptions FUN_180942a8
+
+// 原始函数名：FUN_180942a6 - 系统配置辅助函数
+// 功能：辅助配置系统参数
+#define ConfigureSystemParametersAuxiliary FUN_180942a6
+
+// 原始函数名：FUN_1809425e - 系统初始化函数
+// 功能：初始化系统组件和参数
+#define InitializeSystemComponentsAndParameters FUN_1809425e
+
+// 原始函数名：FUN_1808aef4 - 系统清理函数
+// 功能：清理系统缓存和缓冲区
+#define CleanupSystemCacheAndBuffers FUN_1808aef4
+
+// 原始函数名：FUN_18089b21 - 系统验证函数
+// 功能：验证系统配置和状态
+#define ValidateSystemConfigurationAndStatus FUN_18089b21
+
+// 内存管理函数定义
+// 原始函数名：FUN_180942930 - 内存管理函数
+// 功能：管理系统内存分配和释放
+#define ManageSystemMemoryAllocation FUN_180942930
+
+// 原始函数名：FUN_180942a20 - 内存处理函数
+// 功能：处理内存数据操作
+#define ProcessMemoryDataOperations FUN_180942a20
+
+// 原始函数名：FUN_1809429f0 - 内存验证函数
+// 功能：验证内存操作的有效性
+#define ValidateMemoryOperations FUN_1809429f0
+
+// 原始函数名：FUN_180942a60 - 内存配置函数
+// 功能：配置内存管理参数
+#define ConfigureMemoryManagementParameters FUN_180942a60
+
+// 原始函数名：FUN_180942a80 - 内存初始化函数
+// 功能：初始化内存管理系统
+#define InitializeMemoryManagementSystem FUN_180942a80
+
+// 系统资源管理函数定义
+// 原始函数名：FUN_180942fa0 - 资源管理函数
+// 功能：管理系统资源分配和释放
+#define ManageSystemResourceAllocation FUN_180942fa0
+
+// 原始函数名：FUN_180942fc0 - 资源安全函数
+// 功能：管理系统资源安全配置
+#define ConfigureSystemResourceSecurity FUN_180942fc0
+
+// 线程管理函数定义
+// 原始函数名：FUN_180943140 - 线程初始化函数
+// 功能：初始化线程本地存储
+#define InitializeThreadLocalStorageA5 FUN_180943140
+
+// 原始函数名：FUN_180943160 - 线程配置函数
+// 功能：配置线程本地存储参数
+#define ConfigureThreadLocalStorageA6 FUN_180943160
+
+// 原始函数名：FUN_180943180 - 线程管理函数
+// 功能：管理线程本地存储操作
+#define ManageThreadLocalStorageA7 FUN_180943180
+
+// 原始函数名：FUN_1809431a0 - 线程验证函数
+// 功能：验证线程本地存储状态
+#define ValidateThreadLocalStorageA8 FUN_1809431a0
 
 // 原始函数名：FUN_18089f530 - 多参数数据处理函数
 // 功能：处理多参数数据验证和操作
@@ -30243,7 +30440,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
         // 获取系统内存缓冲区并执行数据处理操作
         systemMemoryBuffer = *(DataBuffer *)(*(int64_t *)(operationBase + OperationBaseOffset8) + SystemContextDataOffset800);
         loopCounter = (**(FunctionPointer**)*exceptionBuffer6)(exceptionBuffer6);
-        iterationCount = ProcessDataOperationA7(loopCounter,systemMemoryBuffer,systemNameBuffer);
+        iterationCount = ProcessDataAndReturnO1(loopCounter,systemMemoryBuffer,systemNameBuffer);
         if (iterationCount == 0) {
           // 验证系统名称缓冲区并初始化系统
           if (systemNameBuffer[0] != '\0') {
@@ -30518,7 +30715,7 @@ void ProcessDataTypes(void)
       }
       SystemDataBufferTertiary = *(DataBuffer *)(*(int64_t *)(systemContext + SystemContextDataOffset8) + SystemContextDataOffset800);
       SystemDataBufferSecondary = (**(FunctionPointer**)*MemoryResourcePointerSecondary)(MemoryResourcePointerSecondary);
-      resourceValidationStatus = ProcessDataOperationA7(SystemDataBufferSecondary,SystemDataBufferTertiary,SystemNameBuffer);
+      resourceValidationStatus = ProcessDataAndReturnO1(SystemDataBufferSecondary,SystemDataBufferTertiary,SystemNameBuffer);
       if (resourceValidationStatus == 0) {
         OperationResultQuaternary = calculatedFloatValue;
         if (SystemNameBuffer[0] != '\0') {
@@ -30764,7 +30961,7 @@ SystemDataValidationCheckpoint:
   }
   SystemDataBufferTertiary = *(DataBuffer *)(*(int64_t *)(systemContext + SystemContextDataOffset8) + SystemContextDataOffset800);
   SystemDataBufferSecondary = (**(FunctionPointer**)*FloatRegisterR12)(FloatRegisterR12);
-  resourceValidationStatus = ProcessDataOperationA7(SystemDataBufferSecondary,SystemDataBufferTertiary,SystemNameBuffer);
+  resourceValidationStatus = ProcessDataAndReturnO1(SystemDataBufferSecondary,SystemDataBufferTertiary,SystemNameBuffer);
   if (resourceValidationStatus == 0) {
     OperationResultTertiary = floatResultA;
     if (SystemNameBuffer[0] != '\0') {
@@ -75451,7 +75648,7 @@ void ExecuteFunctionPointerCallbackA0(DataBuffer operationBase,int64_t dataBuffe
 void ProcessSystemDataWithOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessSystemDataA1(dataBuffer + SystemFloatDataOffset38);
+  ValidateResourceA0(dataBuffer + SystemFloatDataOffset38);
   return;
 }
 
@@ -99810,7 +100007,7 @@ void SetDefaultExceptionHandlerAtOffset3B0(DataBuffer operationBase,int64_t data
 void SetDefaultExceptionHandlerAtOffset470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x470) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset470) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
