@@ -600,7 +600,7 @@ typedef enum {
 // UI系统数据变量定义
 #define UIEventThresholdCounter UIEventProcessingThresholdCounter         // UI事件处理阈值计数器
 #define UIPrimarySystemDataTable UIPrimarySystemDataTable                   // UI主数据表
-#define DAT_180be2df8 UISecondarySystemDataTable                 // UI次数据表
+#define UISecondaryDataTable UISecondarySystemDataTable                 // UI次数据表
 #define DAT_180be2288 UITertiarySystemDataTable                  // UI第三数据表
 #define DAT_180be2d08 UIQuaternarySystemDataTable                // UI第四数据表
 #define DAT_180be2ee8 UIQuinarySystemDataTable                   // UI第五数据表
@@ -133646,23 +133646,23 @@ LAB_18073f20b:
 
  
 
- void FUN_18073f240(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073f240(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ void ProcessUIContextWithDataTarget(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+void ProcessUIContextWithDataTarget(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong memoryHandle;
+  UIHandle contextHandle;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt140,&stackLong148);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  memoryHandle = 0;
+  operationResult = FUN_180754f10(uiContext,&contextHandle,&memoryHandle);
   if (operationResult == 0) {
     operationResult = func_0x0001807533d0(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073f32d;
@@ -196191,7 +196191,7 @@ undefined UIResourceManager;
 undefined UIResourceCache;
 undefined UIConfigDataPrimary;
 undefined UIConfigDataSecondary;
-undefined DAT_180be2df8;
+undefined UISecondaryDataTable;
 undefined DAT_180be2ee8;
 undefined UIStateDataPrimary;
 // UI系统配置数据变量语义化定义
@@ -223414,8 +223414,8 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
         normalizedSum0 = transformCoeff15;
         do {
           transformCoeff15 = normalizedSum2;
-          normalizedSum2 = _DAT_180be2df8 + *(float *)((longlong)targetBuffer + eventDataIndex);
-          _DAT_180be2df8 = -_DAT_180be2df8;
+          normalizedSum2 = _UISecondaryDataTable + *(float *)((longlong)targetBuffer + eventDataIndex);
+          _UISecondaryDataTable = -_UISecondaryDataTable;
           normalizedSum2 = normalizedSum2 * *(float *)(uiContext + 800) + transformCoeff15 * *(float *)(uiContext + 0x324) +
                    normalizedSum0 * *(float *)(uiContext + 0x328);
           *targetBuffer = normalizedSum2;
@@ -223442,10 +223442,10 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           normalizedSum0 = *(float *)(uiContext + 0x324);
           transformCoeff13 = *(float *)(uiContext + 800);
           AccumulatedFloat = *(float *)(uiContext + 0x328);
-          tempFloatValue = _DAT_180be2df8 + dataSource[1];
-          normalizedSum2 = (_DAT_180be2df8 + *dataSource) * transformCoeff13 + normalizedSum0 * transformCoeff14 + AccumulatedFloat * transformCoeff15;
+          tempFloatValue = _UISecondaryDataTable + dataSource[1];
+          normalizedSum2 = (_UISecondaryDataTable + *dataSource) * transformCoeff13 + normalizedSum0 * transformCoeff14 + AccumulatedFloat * transformCoeff15;
           dataSource = dataSource + 2;
-          _DAT_180be2df8 = -_DAT_180be2df8;
+          _UISecondaryDataTable = -_UISecondaryDataTable;
           *targetBuffer = normalizedSum2;
           normalizedSum0 = tempFloatValue * transformCoeff13 + normalizedSum0 * normalizedSum6 + AccumulatedFloat * epsilonValue;
           targetBuffer[1] = normalizedSum0;
@@ -223493,13 +223493,13 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           normalizedSum3 = *(float *)(uiContext + 0x324);
           baseValue = *(float *)(uiContext + 800);
           normalizedSum5 = *(float *)(uiContext + 0x328);
-          vectorComponentX = _DAT_180be2df8 + TransformCoefficient1[2];
-          transformCoeff14 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + normalizedSum3 * normalizedSum6 + normalizedSum5 * normalizedSum1;
-          epsilonValue = _DAT_180be2df8 + TransformCoefficient1[1];
-          transformCoeff13 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + normalizedSum3 * AccumulatedFloat + normalizedSum5 * finalResult;
-          tempFloatValue = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue + normalizedSum3 * normalizedSum2 + normalizedSum5 * fStack_c4;
-          normalizedSum1 = _DAT_180be2df8 + TransformCoefficient1[3];
-          _DAT_180be2df8 = -_DAT_180be2df8;
+          vectorComponentX = _UISecondaryDataTable + TransformCoefficient1[2];
+          transformCoeff14 = (_UISecondaryDataTable + TransformCoefficient1[-2]) * baseValue + normalizedSum3 * normalizedSum6 + normalizedSum5 * normalizedSum1;
+          epsilonValue = _UISecondaryDataTable + TransformCoefficient1[1];
+          transformCoeff13 = (_UISecondaryDataTable + TransformCoefficient1[-1]) * baseValue + normalizedSum3 * AccumulatedFloat + normalizedSum5 * finalResult;
+          tempFloatValue = (_UISecondaryDataTable + *TransformCoefficient1) * baseValue + normalizedSum3 * normalizedSum2 + normalizedSum5 * fStack_c4;
+          normalizedSum1 = _UISecondaryDataTable + TransformCoefficient1[3];
+          _UISecondaryDataTable = -_UISecondaryDataTable;
           FloatValue2 = epsilonValue * baseValue + normalizedSum3 * transformCoeff15 + normalizedSum5 * fStack_c8;
           pTransformCoefficient2[-1] = transformCoeff13;
           epsilonValue = normalizedSum5 * fStackX_10;
@@ -223569,15 +223569,15 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           normalizedSum3 = *(float *)(uiContext + 800);
           baseValue = *(float *)(uiContext + 0x324);
           vectorComponentX = *(float *)(uiContext + 0x328);
-          normalizedSum2 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * normalizedSum3 + normalizedSum6 * baseValue + normalizedSum5 * vectorComponentX;
-          transformCoeff15 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * normalizedSum3 + transformCoeff13 * baseValue + normalizedSum1 * vectorComponentX;
-          normalizedSum0 = (_DAT_180be2df8 + *TransformCoefficient1) * normalizedSum3 + AccumulatedFloat * baseValue + finalResult * vectorComponentX;
-          epsilonValue = (_DAT_180be2df8 + TransformCoefficient1[1]) * normalizedSum3 + fStack_c4 * baseValue + FloatValue2 * vectorComponentX;
-          transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[2]) * normalizedSum3 + fStack_d0 * baseValue + tempFloatValue * vectorComponentX;
-          transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[3]) * normalizedSum3 + fStack_cc * baseValue + fStack_bc * vectorComponentX;
-          transformCoeff14 = (_DAT_180be2df8 + TransformCoefficient1[4]) * normalizedSum3 + fStack_d4 * baseValue + fStack_b8 * vectorComponentX;
-          normalizedSum3 = (_DAT_180be2df8 + TransformCoefficient1[5]) * normalizedSum3 + fStack_c8 * baseValue + fStack_b4 * vectorComponentX;
-          _DAT_180be2df8 = -_DAT_180be2df8;
+          normalizedSum2 = (_UISecondaryDataTable + TransformCoefficient1[-2]) * normalizedSum3 + normalizedSum6 * baseValue + normalizedSum5 * vectorComponentX;
+          transformCoeff15 = (_UISecondaryDataTable + TransformCoefficient1[-1]) * normalizedSum3 + transformCoeff13 * baseValue + normalizedSum1 * vectorComponentX;
+          normalizedSum0 = (_UISecondaryDataTable + *TransformCoefficient1) * normalizedSum3 + AccumulatedFloat * baseValue + finalResult * vectorComponentX;
+          epsilonValue = (_UISecondaryDataTable + TransformCoefficient1[1]) * normalizedSum3 + fStack_c4 * baseValue + FloatValue2 * vectorComponentX;
+          transformCoeff12 = (_UISecondaryDataTable + TransformCoefficient1[2]) * normalizedSum3 + fStack_d0 * baseValue + tempFloatValue * vectorComponentX;
+          transformCoefficient = (_UISecondaryDataTable + TransformCoefficient1[3]) * normalizedSum3 + fStack_cc * baseValue + fStack_bc * vectorComponentX;
+          transformCoeff14 = (_UISecondaryDataTable + TransformCoefficient1[4]) * normalizedSum3 + fStack_d4 * baseValue + fStack_b8 * vectorComponentX;
+          normalizedSum3 = (_UISecondaryDataTable + TransformCoefficient1[5]) * normalizedSum3 + fStack_c8 * baseValue + fStack_b4 * vectorComponentX;
+          _UISecondaryDataTable = -_UISecondaryDataTable;
           pTransformCoefficient2[1] = epsilonValue;
           pTransformCoefficient2[2] = transformCoeff12;
           pTransformCoefficient2[3] = transformCoefficient;
@@ -223624,7 +223624,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       pTransformCoefficient2 = (float *)(uiContext + 0x224);
       eventDataIndex = (longlong)targetBuffer - (longlong)dataSource;
       iterationCount = (ulonglong)resultPointer;
-      normalizedSum2 = _DAT_180be2df8;
+      normalizedSum2 = _UISecondaryDataTable;
       do {
         transformCoeff15 = pTransformCoefficient2[-1];
         normalizedSum0 = *pTransformCoefficient2;
@@ -223643,7 +223643,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
             TransformCoefficient1 = TransformCoefficient1 + (int)resultPointer;
             processingFlags = (ulonglong)maxProcessingCount;
             normalizedSum0 = epsilonValue;
-            _DAT_180be2df8 = normalizedSum2;
+            _UISecondaryDataTable = normalizedSum2;
           } while (maxProcessingCount != 0);
         }
         pTransformCoefficient2[-1] = transformCoeff15;
@@ -223716,10 +223716,10 @@ UIHandle FUN_1807942ce(void)
         TemporaryFloatValue = *(float *)(contextHandle + 0x324);
         transformCoefficient = *(float *)(contextHandle + 800);
         finalResult = *(float *)(contextHandle + 0x328);
-        ResultFloatValue = _DAT_180be2df8 + uiContextBasePointer[1];
-        AccumulatedFloat = (_DAT_180be2df8 + *uiContextBasePointer) * transformCoefficient + TemporaryFloatValue * transformCoeff12 + finalResult * transformCoeff13;
+        ResultFloatValue = _UISecondaryDataTable + uiContextBasePointer[1];
+        AccumulatedFloat = (_UISecondaryDataTable + *uiContextBasePointer) * transformCoefficient + TemporaryFloatValue * transformCoeff12 + finalResult * transformCoeff13;
         uiContextBasePointer = uiContextBasePointer + 2;
-        _DAT_180be2df8 = -_DAT_180be2df8;
+        _UISecondaryDataTable = -_UISecondaryDataTable;
         *uiTargetHandle = AccumulatedFloat;
         TemporaryFloatValue = ResultFloatValue * transformCoefficient + TemporaryFloatValue * normalizedSum3 + finalResult * normalizedSum5;
         uiTargetHandle[1] = TemporaryFloatValue;
@@ -223766,14 +223766,14 @@ UIHandle FUN_1807942ce(void)
         normalizedSum0 = *(float *)(contextHandle + 0x324);
         baseValue = *(float *)(contextHandle + 800);
         normalizedSum2 = *(float *)(contextHandle + 0x328);
-        normalizedSum1 = _DAT_180be2df8 + TransformCoefficient1[2];
-        transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + normalizedSum0 * normalizedSum3 + normalizedSum2 * tempFloatValue;
-        normalizedSum5 = _DAT_180be2df8 + TransformCoefficient1[1];
-        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + normalizedSum0 * finalResult + normalizedSum2 * vectorComponentX;
-        ResultFloatValue = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue + normalizedSum0 * AccumulatedFloat +
+        normalizedSum1 = _UISecondaryDataTable + TransformCoefficient1[2];
+        transformCoeff12 = (_UISecondaryDataTable + TransformCoefficient1[-2]) * baseValue + normalizedSum0 * normalizedSum3 + normalizedSum2 * tempFloatValue;
+        normalizedSum5 = _UISecondaryDataTable + TransformCoefficient1[1];
+        transformCoefficient = (_UISecondaryDataTable + TransformCoefficient1[-1]) * baseValue + normalizedSum0 * finalResult + normalizedSum2 * vectorComponentX;
+        ResultFloatValue = (_UISecondaryDataTable + *TransformCoefficient1) * baseValue + normalizedSum0 * AccumulatedFloat +
                 normalizedSum2 * fStack0000000000000034;
-        tempFloatValue = _DAT_180be2df8 + TransformCoefficient1[3];
-        _DAT_180be2df8 = -_DAT_180be2df8;
+        tempFloatValue = _UISecondaryDataTable + TransformCoefficient1[3];
+        _UISecondaryDataTable = -_UISecondaryDataTable;
         normalizedSum6 = normalizedSum5 * baseValue + normalizedSum0 * transformCoeff13 + normalizedSum2 * fStack0000000000000030;
         pTransformCoefficient2[-1] = transformCoefficient;
         normalizedSum5 = normalizedSum2 * fStack0000000000000108;
@@ -223842,20 +223842,20 @@ UIHandle FUN_1807942ce(void)
         normalizedSum0 = *(float *)(contextHandle + 800);
         baseValue = *(float *)(contextHandle + 0x324);
         normalizedSum1 = *(float *)(contextHandle + 0x328);
-        AccumulatedFloat = (_DAT_180be2df8 + TransformCoefficient1[-2]) * normalizedSum0 + normalizedSum3 * baseValue + normalizedSum2 * normalizedSum1;
-        transformCoeff13 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * normalizedSum0 + transformCoefficient * baseValue + tempFloatValue * normalizedSum1;
-        TemporaryFloatValue = (_DAT_180be2df8 + *TransformCoefficient1) * normalizedSum0 + finalResult * baseValue + vectorComponentX * normalizedSum1;
-        normalizedSum5 = (_DAT_180be2df8 + TransformCoefficient1[1]) * normalizedSum0 + fStack0000000000000034 * baseValue +
+        AccumulatedFloat = (_UISecondaryDataTable + TransformCoefficient1[-2]) * normalizedSum0 + normalizedSum3 * baseValue + normalizedSum2 * normalizedSum1;
+        transformCoeff13 = (_UISecondaryDataTable + TransformCoefficient1[-1]) * normalizedSum0 + transformCoefficient * baseValue + tempFloatValue * normalizedSum1;
+        TemporaryFloatValue = (_UISecondaryDataTable + *TransformCoefficient1) * normalizedSum0 + finalResult * baseValue + vectorComponentX * normalizedSum1;
+        normalizedSum5 = (_UISecondaryDataTable + TransformCoefficient1[1]) * normalizedSum0 + fStack0000000000000034 * baseValue +
                  normalizedSum6 * normalizedSum1;
-        FloatValue2 = (_DAT_180be2df8 + TransformCoefficient1[2]) * normalizedSum0 + fStack0000000000000028 * baseValue +
+        FloatValue2 = (_UISecondaryDataTable + TransformCoefficient1[2]) * normalizedSum0 + fStack0000000000000028 * baseValue +
                  ResultFloatValue * normalizedSum1;
-        epsilonValue = (_DAT_180be2df8 + TransformCoefficient1[3]) * normalizedSum0 + fStack000000000000002c * baseValue +
+        epsilonValue = (_UISecondaryDataTable + TransformCoefficient1[3]) * normalizedSum0 + fStack000000000000002c * baseValue +
                  fStack000000000000003c * normalizedSum1;
-        transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[4]) * normalizedSum0 + fStackX_24 * baseValue +
+        transformCoeff12 = (_UISecondaryDataTable + TransformCoefficient1[4]) * normalizedSum0 + fStackX_24 * baseValue +
                  fStack0000000000000040 * normalizedSum1;
-        normalizedSum0 = (_DAT_180be2df8 + TransformCoefficient1[5]) * normalizedSum0 + fStack0000000000000030 * baseValue +
+        normalizedSum0 = (_UISecondaryDataTable + TransformCoefficient1[5]) * normalizedSum0 + fStack0000000000000030 * baseValue +
                  fStack0000000000000044 * normalizedSum1;
-        _DAT_180be2df8 = -_DAT_180be2df8;
+        _UISecondaryDataTable = -_UISecondaryDataTable;
         pTransformCoefficient2[1] = normalizedSum5;
         pTransformCoefficient2[2] = FloatValue2;
         pTransformCoefficient2[3] = epsilonValue;
@@ -223901,7 +223901,7 @@ UIHandle FUN_1807942ce(void)
     pTransformCoefficient2 = (float *)(contextHandle + 0x224);
     eventDataIndex = (longlong)uiTargetHandle - (longlong)uiContextBasePointer;
     maxProcessingCount = register9 & 0xffffffff;
-    AccumulatedFloat = _DAT_180be2df8;
+    AccumulatedFloat = _UISecondaryDataTable;
     do {
       transformCoeff13 = pTransformCoefficient2[-1];
       TemporaryFloatValue = *pTransformCoefficient2;
@@ -223919,7 +223919,7 @@ UIHandle FUN_1807942ce(void)
           sourceDataInt = sourceDataInt + -1;
           TransformCoefficient1 = TransformCoefficient1 + register9;
           TemporaryFloatValue = normalizedSum5;
-          _DAT_180be2df8 = AccumulatedFloat;
+          _UISecondaryDataTable = AccumulatedFloat;
         } while (sourceDataInt != 0);
       }
       pTransformCoefficient2[-1] = transformCoeff13;
@@ -224009,14 +224009,14 @@ UIHandle FUN_1807943f6(void)
         TemporaryFloatValue = *(float *)(contextHandle + 0x324);
         baseValue = *(float *)(contextHandle + 800);
         normalizedSum0 = *(float *)(contextHandle + 0x328);
-        tempFloatValue = _DAT_180be2df8 + TransformCoefficient1[2];
-        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + TemporaryFloatValue * normalizedSum1 + normalizedSum0 * ResultFloatValue;
-        normalizedSum3 = _DAT_180be2df8 + TransformCoefficient1[1];
-        AccumulatedFloat = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + TemporaryFloatValue * normalizedSum5 + normalizedSum0 * normalizedSum2;
-        finalResult = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue + TemporaryFloatValue * transformCoeff13 +
+        tempFloatValue = _UISecondaryDataTable + TransformCoefficient1[2];
+        transformCoefficient = (_UISecondaryDataTable + TransformCoefficient1[-2]) * baseValue + TemporaryFloatValue * normalizedSum1 + normalizedSum0 * ResultFloatValue;
+        normalizedSum3 = _UISecondaryDataTable + TransformCoefficient1[1];
+        AccumulatedFloat = (_UISecondaryDataTable + TransformCoefficient1[-1]) * baseValue + TemporaryFloatValue * normalizedSum5 + normalizedSum0 * normalizedSum2;
+        finalResult = (_UISecondaryDataTable + *TransformCoefficient1) * baseValue + TemporaryFloatValue * transformCoeff13 +
                  normalizedSum0 * fStack0000000000000034;
-        ResultFloatValue = _DAT_180be2df8 + TransformCoefficient1[3];
-        _DAT_180be2df8 = -_DAT_180be2df8;
+        ResultFloatValue = _UISecondaryDataTable + TransformCoefficient1[3];
+        _UISecondaryDataTable = -_UISecondaryDataTable;
         vectorComponentX = normalizedSum3 * baseValue + TemporaryFloatValue * transformCoeff12 + normalizedSum0 * fStack0000000000000030;
         pTransformCoefficient2[-1] = AccumulatedFloat;
         normalizedSum3 = normalizedSum0 * fStack0000000000000108;
@@ -224085,20 +224085,20 @@ UIHandle FUN_1807943f6(void)
         TemporaryFloatValue = *(float *)(contextHandle + 800);
         baseValue = *(float *)(contextHandle + 0x324);
         tempFloatValue = *(float *)(contextHandle + 0x328);
-        transformCoeff13 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * TemporaryFloatValue + normalizedSum1 * baseValue + normalizedSum0 * tempFloatValue;
-        transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * TemporaryFloatValue + AccumulatedFloat * baseValue + ResultFloatValue * tempFloatValue;
-        FloatValue2 = (_DAT_180be2df8 + *TransformCoefficient1) * TemporaryFloatValue + normalizedSum5 * baseValue + normalizedSum2 * tempFloatValue;
-        normalizedSum3 = (_DAT_180be2df8 + TransformCoefficient1[1]) * TemporaryFloatValue + fStack0000000000000034 * baseValue +
+        transformCoeff13 = (_UISecondaryDataTable + TransformCoefficient1[-2]) * TemporaryFloatValue + normalizedSum1 * baseValue + normalizedSum0 * tempFloatValue;
+        transformCoeff12 = (_UISecondaryDataTable + TransformCoefficient1[-1]) * TemporaryFloatValue + AccumulatedFloat * baseValue + ResultFloatValue * tempFloatValue;
+        FloatValue2 = (_UISecondaryDataTable + *TransformCoefficient1) * TemporaryFloatValue + normalizedSum5 * baseValue + normalizedSum2 * tempFloatValue;
+        normalizedSum3 = (_UISecondaryDataTable + TransformCoefficient1[1]) * TemporaryFloatValue + fStack0000000000000034 * baseValue +
                  vectorComponentX * tempFloatValue;
-        epsilonValue = (_DAT_180be2df8 + TransformCoefficient1[2]) * TemporaryFloatValue + fStack0000000000000028 * baseValue +
+        epsilonValue = (_UISecondaryDataTable + TransformCoefficient1[2]) * TemporaryFloatValue + fStack0000000000000028 * baseValue +
                  finalResult * tempFloatValue;
-        normalizedSum6 = (_DAT_180be2df8 + TransformCoefficient1[3]) * TemporaryFloatValue + fStack000000000000002c * baseValue +
+        normalizedSum6 = (_UISecondaryDataTable + TransformCoefficient1[3]) * TemporaryFloatValue + fStack000000000000002c * baseValue +
                  fStack000000000000003c * tempFloatValue;
-        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[4]) * TemporaryFloatValue + fStackX_24 * baseValue +
+        transformCoefficient = (_UISecondaryDataTable + TransformCoefficient1[4]) * TemporaryFloatValue + fStackX_24 * baseValue +
                  fStack0000000000000040 * tempFloatValue;
-        TemporaryFloatValue = (_DAT_180be2df8 + TransformCoefficient1[5]) * TemporaryFloatValue + fStack0000000000000030 * baseValue +
+        TemporaryFloatValue = (_UISecondaryDataTable + TransformCoefficient1[5]) * TemporaryFloatValue + fStack0000000000000030 * baseValue +
                 fStack0000000000000044 * tempFloatValue;
-        _DAT_180be2df8 = -_DAT_180be2df8;
+        _UISecondaryDataTable = -_UISecondaryDataTable;
         pTransformCoefficient2[1] = normalizedSum3;
         pTransformCoefficient2[2] = epsilonValue;
         pTransformCoefficient2[3] = normalizedSum6;
@@ -224144,7 +224144,7 @@ UIHandle FUN_1807943f6(void)
     pTransformCoefficient2 = (float *)(contextHandle + 0x224);
     eventDataIndex = uiTargetHandle - (longlong)uiContextBasePointer;
     maxProcessingCount = register9 & 0xffffffff;
-    transformCoeff13 = _DAT_180be2df8;
+    transformCoeff13 = _UISecondaryDataTable;
     do {
       transformCoeff12 = pTransformCoefficient2[-1];
       FloatValue2 = *pTransformCoefficient2;
@@ -224162,7 +224162,7 @@ UIHandle FUN_1807943f6(void)
           sourceDataInt = sourceDataInt + -1;
           TransformCoefficient1 = TransformCoefficient1 + register9;
           FloatValue2 = normalizedSum3;
-          _DAT_180be2df8 = transformCoeff13;
+          _UISecondaryDataTable = transformCoeff13;
         } while (sourceDataInt != 0);
       }
       pTransformCoefficient2[-1] = transformCoeff12;
