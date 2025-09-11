@@ -28073,7 +28073,20 @@ void CoreEngineProcessSystemData(unsigned long long *SystemProcessingStatusFlag
 
 
 
-int CoreEngineCompareThreadPriorities(long long ThreadHandle1,long long ThreadHandle2
+/**
+ * @brief 比较两个线程的优先级
+ * 
+ * 该函数负责比较两个线程的优先级，用于线程调度和资源分配决策。
+ * 函数会分析线程的优先级、内存分配情况和字符状态缓冲区，
+ * 然后返回比较结果以确定哪个线程应该获得更高的优先级。
+ * 
+ * @param ThreadHandle1 第一个线程的句柄
+ * @param ThreadHandle2 第二个线程的句柄
+ * @return int 比较结果（负数表示第一个线程优先级较低，正数表示较高，0表示相等）
+ * 
+ * @note 原始函数名：FUN_180083253
+ */
+int CoreEngineCompareThreadPriorities(long long PrimaryThreadHandle,long long SecondaryThreadHandle
 {
   uint64_t ***ppCharacterStatusBuffer;
   long long FirstThreadPriority;
