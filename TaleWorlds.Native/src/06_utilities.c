@@ -461,6 +461,7 @@ typedef union {
 #define ExceptionHandlerCleanupOffset1038 0x1038        // 异常处理器清理偏移量1038 - 用于异常处理器清理操作
 #define ExceptionHandlerStatusOffset1040 0x1040           // 异常处理器状态偏移量1040 - 用于异常处理器状态检查
 #define ExceptionHandlerDataOffset1050 0x1050             // 异常处理器数据偏移量1050 - 用于异常处理器数据存储
+#define ExceptionHandlerCleanupOffset2e0 0x2e0           // 异常处理器清理偏移量2e0 - 用于异常处理器清理操作
 
 // =============================================================================
 // 异常处理资源管理常量

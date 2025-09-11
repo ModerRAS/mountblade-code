@@ -236368,7 +236368,6 @@ void ProcessSystemDataTableAndSort(void)
 
 
 
-// 函数: void FUN_180190e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 /**
  * @brief 处理系统字符编码和缓冲区操作
  * 
@@ -236382,8 +236381,6 @@ void ProcessSystemDataTableAndSort(void)
  * @param OperationBufferSize 操作缓冲区大小
  * @param Utf8SourcePointer UTF-8源指针
  * @param Utf16EndPointer UTF-16结束指针
- * 
- * @note 原始函数名：FUN_180190e30
  */
 #define ProcessSystemMemoryBufferAndCharacterEncoding FUN_180190e30
 void ProcessSystemMemoryBufferAndCharacterEncoding(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
@@ -236439,7 +236436,6 @@ MemoryBufferProcessingCompleteLabel:
 
 
 
-// 函数: void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 /**
  * @brief 处理系统数据排序和插入操作
  * 
@@ -236452,8 +236448,6 @@ MemoryBufferProcessingCompleteLabel:
  * @param ContextHandle 上下文句柄指针
  * @param ContextHandleSize 上下文句柄大小指针
  * @param Utf8SourcePointer UTF-8源数据指针
- * 
- * @note 原始函数名：FUN_180190fa0
  */
 #define ProcessSystemDataSortingAndInsertion FUN_180190fa0
 void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
