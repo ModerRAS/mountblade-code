@@ -261072,14 +261072,14 @@ void ProcessSystemContextHandler(uint64_t *ContextHandle)
   SystemTemporaryValueD0 = &StackPointerD8;
   StackPointerD8 = BufferAllocationState;
   (**(code **)(*BufferAllocationState + 0x28))(BufferAllocationState);
-  (*ValidationStatus)(ContextHandle,&plStack_d8);
-  InitializeSystemCondition(alStack_b8);
+  (*ValidationStatus)(ContextHandle,&StackPointerD8);
+  InitializeSystemCondition(StackArrayB8);
   (**(code **)(*BufferAllocationState + 0x38))(BufferAllocationState);
-  ppSystemTemporaryValueD0 = (long long **)PerformanceCounterArray;
+  SystemTemporaryValueD0 = (long long **)PerformanceCounterArray;
   _Mtx_destroy_in_situ(CoreEngineAddressStack70);
-  ppSystemTemporaryValueD0 = (long long **)alStack_b8;
-  _Cnd_destroy_in_situ(alStack_b8);
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aSystemProcessFlagB);
+  SystemTemporaryValueD0 = (long long **)StackArrayB8;
+  _Cnd_destroy_in_situ(StackArrayB8);
+    CoreEngineExecuteUtilityFunction(StackValue18 ^ (unsigned long long)SystemProcessFlagArray);
 }
 
 

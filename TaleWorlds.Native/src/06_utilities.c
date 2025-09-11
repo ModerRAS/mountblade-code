@@ -40070,6 +40070,10 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float secondValidationValue;       // 次级验证值，用于存储次级验证的结果
   float thirdValidationValue;        // 三级验证值，用于存储三级验证的结果
   DataBuffer* contextPointerD;       // 上下文指针D，用于存储上下文数据的指针
+  DataWord* exceptionDataBuffer;     // 异常数据缓冲区，用于存储异常处理的数据
+  float normalizedFloatValue;        // 标准化浮点值，用于存储标准化后的浮点数值
+  float interpolatedFloatValue;       // 插值浮点值，用于存储插值计算的浮点数值
+  float validationFloatValue;        // 验证浮点值，用于存储验证操作的浮点数值
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
