@@ -6119,9 +6119,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @see ReleaseMemoryResourceReferences, FreeSystemMemory
  */
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
-// 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
+/**
+ * @brief 系统上下文清理函数A18
+ * 
+ * 清理系统上下文数据，重置系统状态
+ * 
+ * @note 原始函数名：Unwind_180909f80
+ * @see CleanupsystemContextA15, CleanupsystemContextA16
+ */
 #define CleanupsystemContextA18 ClearSystemContextData
-// 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
+/**
+ * @brief 系统上下文清理函数A19
+ * 
+ * 重置系统上下文指针，清理引用关系
+ * 
+ * @note 原始函数名：Unwind_180909fa0
+ * @see CleanupsystemContextA18, CleanupsystemContextA20
+ */
 #define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
 #define CleanupsystemContextA20 DeallocateSystemContext
@@ -13549,7 +13563,7 @@ void InitializeUtilityModule(void)
 int ProcessSystemDataTransferWithValidation(void* inputData, void* outputData, size_t dataSize, uint32_t validationFlags)
 {
     // 数据传输状态变量
-    int transferStatus;
+    uint32_t transferStatus;
     size_t bytesTransferred;
     uint32_t validationStatus;
     
@@ -21249,7 +21263,7 @@ void ValidateAndProcessUtilitySystemData(int64_t dataContext,int64_t systemConte
 void ExecuteUtilitySystemCleanupOperation(int64_t systemHandle, int64_t cleanupContext)
 
 {
-  int CleanupStatus;           // 清理状态
+  uint32_t cleanupStatus;       // 清理状态
   
   cleanupStatus = CleanupSystemResourceA1(*(DataBuffer *)(cleanupContext + systemContextValidationOffset),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset));
   if (cleanupStatus == 0) {
@@ -137032,9 +137046,23 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * @see ReleaseMemoryResourceReferences, FreeSystemMemory
  */
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
-// 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
+/**
+ * @brief 系统上下文清理函数A18
+ * 
+ * 清理系统上下文数据，重置系统状态
+ * 
+ * @note 原始函数名：Unwind_180909f80
+ * @see CleanupsystemContextA15, CleanupsystemContextA16
+ */
 #define CleanupsystemContextA18 ClearSystemContextData
-// 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
+/**
+ * @brief 系统上下文清理函数A19
+ * 
+ * 重置系统上下文指针，清理引用关系
+ * 
+ * @note 原始函数名：Unwind_180909fa0
+ * @see CleanupsystemContextA18, CleanupsystemContextA20
+ */
 #define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
 #define CleanupsystemContextA20 DeallocateSystemContext
