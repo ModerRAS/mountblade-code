@@ -94115,7 +94115,22 @@ void EmptyUIPlaceholderFunction(void)
 
 
 
+ // UI元素数据处理相关变量定义
+#define param_6 UIOperationParam6
+#define param_7 UIOperationParam7
+#define param_8 UIOperationParam8
+#define param_9 UIOperationParam9
+#define ptrLocalInt4 UICharacterDataPointer
+#define ProcessingResult UIProcessingResult
+#define UIValidationResult UIValidationResult
+#define localLong7 UILocalDataOffset
+#define loopCounter UIProcessingLoopCounter
+#define uiElementIndex UIElementDataIndex
+#define contextOffset UIContextProcessingOffset
+#define stackInt78 UIStackCounter78
+
  void ProcessUIDataTransformationWithValidation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+
 /**
  * @brief UI元素数据处理函数
  * 
@@ -94248,6 +94263,13 @@ void ProcessUIDataBufferComparison(longlong uiContext,int dataSource,int targetB
 
 
 
+
+ // UI数据缓冲区比较处理相关变量定义
+#define uiHandleParameter UIContextHandle
+#define processingParameter UIProcessingParameter
+#define dataValidationResult UIDataValidationResult
+#define puiCompareResult UIComparisonResultPointer
+#define operationResult UIOperationResult
 
  // 原始函数名：FUN_18071b0a2 - UI元素数据批量处理器
 #define ProcessUIElementDataBatch FUN_18071b0a2
