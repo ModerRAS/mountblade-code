@@ -1020,6 +1020,19 @@ typedef union {
 // 系统内存管理函数语义化宏定义
 #define ManageSystemMemoryAndResources ManageMemoryAllocationAndCleanup  // 管理内存分配和清理
 
+// 异常处理相关变量语义化宏定义
+#define ExceptionContextPtr SystemExceptionContextPtr                  // 系统异常上下文指针
+#define ExceptionDataPointer SystemExceptionDataPointer                // 系统异常数据指针
+#define ExceptionContext SystemExceptionContextPtr                      // 异常上下文（简化名称）
+#define ExceptionData SystemExceptionDataPointer                        // 异常数据（简化名称）
+
+// 系统数据偏移量常量
+#define SystemDataParameterOffset20 0x20                             // 系统数据参数偏移量20
+
+// 系统函数处理语义化宏定义
+#define ValidateExceptionDataPointer ValidateSystemExceptionDataPointer  // 验证系统异常数据指针
+#define ProcessDataBufferA0 ProcessSystemDataBufferWithExceptionHandling  // 处理系统数据缓冲区（带异常处理）
+
 // 对象和资源管理偏移量常量
 #define ObjectDestructorCallbackOffset 0xc8
 
