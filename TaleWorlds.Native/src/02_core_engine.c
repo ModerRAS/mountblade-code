@@ -249459,7 +249459,7 @@ void ProcessFloatArrayQuickSort(float *FloatArrayPointer,float *ArraySizePointer
       ProcessingStatusPointer = pCalculatedDistance + 1;
     }
     IterationCount = IterationCount + -1;
-    FUN_180202c00(pCalculatedDistance,OperationBufferSize,IterationCount,ProcessFlag);
+    ProcessSystemFloatConversion(pCalculatedDistance,OperationBufferSize,IterationCount,ProcessFlag);
     ArrayOffset = (long long)pCalculatedDistance - (long long)FloatArrayPointer;
     OperationBufferSize = pCalculatedDistance;
   }
@@ -249535,7 +249535,7 @@ void ProcessFloatArraySearchAndSort(uint32_t SearchPattern,float *ArraySizePoint
       ArrayIterator = ArrayIterator + 1;
     }
     FrameAddress = FrameAddress + -1;
-    SearchPattern = FUN_180202c00(ArrayIterator,OperationBufferSize,FrameAddress,StatusFlag);
+    SearchPattern = ProcessSystemFloatConversion(ArrayIterator,OperationBufferSize,FrameAddress,StatusFlag);
     OperationBufferSize = ArrayIterator;
   } while (0x70 < (long long)((long long)ArrayIterator - (long long)PatternPointer & 0xfffffffffffffffcU));
   if (FrameAddress == 0) {
