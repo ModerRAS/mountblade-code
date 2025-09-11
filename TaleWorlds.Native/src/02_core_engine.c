@@ -111,6 +111,14 @@
 #define SystemPrimaryParameterOffset 8
 #define SystemSecondaryParameterOffset 0x10
 
+// 系统节点标识符常量
+#define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
+#define SystemNodeIdentifierSecondary 0x9c552acd3ed5548d   // 系统节点次标识符
+
+// 系统队列标识符常量
+#define SystemQueueIdentifierPrimary 0x49086ba08ab981a7    // 系统队列主标识符
+#define SystemQueueIdentifierSecondary 0xa9191d34ad910696   // 系统队列次标识符
+
 // 系统事件处理偏移量
 #define SystemEventOffset 4
 #define SystemSecondaryEventOffset 8
@@ -20021,8 +20029,8 @@ void CoreEngineInitializeCacheManager(void)
     CoreEngineSetupMemoryNode(SystemContext,&TemporaryStackPointer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     LeftTraverseNode = TemporaryStackPointer;
   }
-  LeftTraverseNode[6] = 0x4b2d79e470ee4e2c;
-  LeftTraverseNode[7] = 0x9c552acd3ed5548d;
+  LeftTraverseNode[6] = SystemNodeIdentifierPrimary;
+  LeftTraverseNode[7] = SystemNodeIdentifierSecondary;
   LeftTraverseNode[8] = &SystemConnectionTemplateA;
   LeftTraverseNode[9] = 0;
   LeftTraverseNode[10] = StackProcessingConfigurationFlag;
@@ -20074,7 +20082,7 @@ void CoreEngineInitializeQueueManager(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -20770,7 +20778,7 @@ void InitializeNetworkSecurityNode(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -21240,7 +21248,7 @@ void NetworkSecurityProcessorInitialize(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -23013,7 +23021,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
     CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemory + 0x20,AllocatedMemory);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -23388,7 +23396,7 @@ void CoreEngineInitializeEventManager(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -23763,7 +23771,7 @@ void CoreEngineInitializeSecurityManager(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
@@ -24761,7 +24769,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
-  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;

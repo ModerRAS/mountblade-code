@@ -130172,17 +130172,33 @@ void ValidateSystemCallProtection(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ProcessSystemCleanupAndHandlerManagementF50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理系统清理和处理器管理F50
+ * 
+ * 该函数负责处理系统清理和异常处理器管理，从异常处理器计数器中获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器计数信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911f50
+ * @note 处理偏移量0x200处的系统上下文数据
+ */
+void ProcessSystemCleanupAndHandlerManagementF50(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionContext;
   
+  // 从异常处理器计数器中获取异常上下文
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset) + SystemContextDataOffset200);
   if (exceptionContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) - 1;
     }
-      HandleSystemException(exceptionContext,ExceptionDataPointer,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+    // 执行系统清理和处理器管理
+    HandleSystemException(exceptionContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -130190,17 +130206,33 @@ void ProcessSystemCleanupAndHandlerManagementF50(DataBuffer operationBase,int64_
 
 
 
-void ProcessSystemCleanupAndHandlerManagementF70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理系统清理和处理器管理F70
+ * 
+ * 该函数负责处理系统清理和异常处理器管理，从异常处理器计数器中获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器计数信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911f70
+ * @note 处理偏移量0xe0处的异常处理器上下文数据
+ */
+void ProcessSystemCleanupAndHandlerManagementF70(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset) + 0xe0);
+  // 从异常处理器计数器中获取异常上下文
+  exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset) + ExceptionHandlerContextOffsetE0);
   if (exceptionContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) - 1;
     }
-      HandleSystemException(exceptionContext,ExceptionDataPointer,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+    // 执行系统清理和处理器管理
+    HandleSystemException(exceptionContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
