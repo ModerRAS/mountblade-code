@@ -318,6 +318,8 @@ typedef enum {
 #define ProcessUIGraphicsParameters FUN_18072e720        // UI图形参数处理
 #define ProcessUIRenderContext FUN_180726fd0           // UI渲染上下文处理
 #define ProcessUIComponentLayout FUN_18072ec50          // UI组件布局处理
+#define ProcessUIContextDataValidationAndControlFlow FUN_18078a600 // UI上下文数据验证和控制流处理
+#define ProcessUIComponentDataAndContextValidation FUN_18078ae40 // UI组件数据和上下文验证处理
 #define ProcessUICoefficientCalculation FUN_18072e4b0   // UI系数计算处理
 #define ProcessUISurfaceRendering FUN_18072fba0         // UI表面渲染处理
 #define ProcessUIInterfaceRendering FUN_180730e60        // UI界面渲染处理
@@ -124348,8 +124350,7 @@ void CleanupUIBufferResources(void)
 
 
  #define CleanupUIResources FUN_180739b3f
- void FUN_180739b3f(void)
-void CleanupUIResources(void)
+ void CleanupUIResources(void)
 
 {
   longlong resourceHandle;
@@ -125633,51 +125634,68 @@ FUN_18073a7fd:
 
 
 
- void FUN_18073a785(void)
-void FUN_18073a785(void)
+ /**
+ * @brief 处理UI数据验证和缓冲区操作
+ * 
+ * 该函数执行UI数据的验证处理，包括缓冲区数据控制和上下文数据操作。
+ * 它处理数据验证结果并执行相应的UI上下文操作。
+ */
+void ProcessUIDataValidationAndBufferOperation(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword dataSourceParam;
+  UIDword contextParam;
   
-  operationResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074ba80(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSourceParam);
+  dataValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  FUN_18074ba80(&stack0x00000040 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(contextParam,1);
 }
 
 
 
 
- void FUN_18073a7fd(void)
-void FUN_18073a7fd(void)
+ /**
+ * @brief 清理UI内存资源并执行渲染任务
+ * 
+ * 该函数检查是否需要清理UI内存资源，然后执行渲染任务。
+ * 这是一个资源清理和任务执行的辅助函数。
+ */
+void CleanupUIMemoryAndExecuteRenderTask(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryCleanupFlag;
+  ulonglong renderTaskParam;
   
-  if (stackParam00000030 != 0) {
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_18073a81f(void)
+ #define ReleaseUIMemoryAndExecuteRenderSimple FUN_18073a81f
 void FUN_18073a81f(void)
+/**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数直接释放UI内存资源并执行渲染任务。
+ * 这是一个简化的资源清理和渲染执行函数。
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParam;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -125685,19 +125703,30 @@ void FUN_18073a81f(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
-void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
+ #define ExtractUIDataFromContext FUN_18073a840
+/**
+ * @brief 从UI上下文中提取数据信息
+ * 
+ * 该函数从UI上下文中提取数据源、目标缓冲区和缓冲区大小信息。
+ * 它使用XOR加密密钥来保护数据传输，并通过输出参数返回提取的信息。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 输出参数，返回数据源指针
+ * @param targetBuffer 输出参数，返回目标缓冲区指针  
+ * @param bufferSize 输出参数，返回缓冲区大小指针
+ */
+void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *targetBuffer, UIDword *bufferSize)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong stackLong158;
-  longlong stackLong150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionKeyArray [32];
+  UIByte *tempDataPointer;
+  longlong cleanupFlag;
+  longlong contextDataPtr;
+  UIByte tempBufferArray [256];
+  ulonglong encryptedParam;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
@@ -125737,7 +125766,7 @@ void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize,
+ #define ExtractUIDataFromContextWithResult FUN_18073a85d
 void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong param_7)
 
