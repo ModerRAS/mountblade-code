@@ -8882,12 +8882,12 @@ const void* const SystemMemoryPoolPointer = (void*)0x18009a070;
 // 系统内存边界常量 - 用于替换UNK_180a0ad90等变量
 const void* const SystemMemoryBoundaryStartAddress = (void*)0x180a0ad90;
 const void* const SystemMemoryBoundaryEndAddress = (void*)0x180a0adf8;
-const void* const SystemMemoryCheckBoundary1 = (void*)0x180a0ae10;
-const void* const SystemMemoryCheckBoundary2 = (void*)0x180a0ae28;
-const void* const SystemMemoryCheckBoundary3 = (void*)0x180a0ae30;
-const void* const SystemMemoryBoundaryCheck4 = (void*)0x180a0aef8;
-const void* const SystemMemoryBoundaryCheck5 = (void*)0x180a03ad8;
-const void* const SystemMemoryBoundaryCheck6 = (void*)0x180a0af54;
+const void* const SystemMemoryCheckBoundaryLower = (void*)0x180a0ae10;
+const void* const SystemMemoryCheckBoundaryMiddle = (void*)0x180a0ae28;
+const void* const SystemMemoryCheckBoundaryUpper = (void*)0x180a0ae30;
+const void* const SystemMemoryBoundaryCheckStart = (void*)0x180a0aef8;
+const void* const SystemMemoryBoundaryCheckMid = (void*)0x180a03ad8;
+const void* const SystemMemoryBoundaryCheckEnd = (void*)0x180a0af54;
 
 // 系统处理状态标志常量 - 用于替换UNK_180a07218等变量
 const void* const SystemSecondaryProcessingStatusFlagAddress = (void*)0x180a07218;
@@ -45182,7 +45182,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
   if ((Utf8SourcePointer == '\0') && (EngineInitializationFlag == '\0')) {
     if (((EngineThreadStatus == '\0') || (LockOperationResult = IsDebuggerPresent(), LockOperationResult != 0)) &&
        (EngineRunningFlag == '\0')) {
-      UnicodeCodePoint = MessageBoxA(0,&MessageBoxTemplateAA0,&MessageBoxTemplateB24,0x40004);
+      UnicodeCodePoint = MessageBoxA(0,&MessageBoxTemplateAA0,&MessageBoxTemplateUser,0x40004);
       switch(UnicodeCodePoint) {
       case 1:
         break;
@@ -45205,7 +45205,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
     }
     else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
       SystemMessageTemplatePointer = &MessageBoxTemplateAA0;
-      SystemSecondaryMessageTemplate = &MessageBoxTemplateB24;
+      SystemSecondaryMessageTemplate = &MessageBoxTemplateUser;
       SystemDataTemplatePointer = &SystemDataTemplateConfig;
       ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd);
     }
@@ -45422,7 +45422,7 @@ SystemValidationStart: // 原始标签：LAB_180066bf4，SystemValidationStart
       }
       if (((EngineThreadStatus == '\0') || (ValidationResult = IsDebuggerPresent(), ValidationResult != 0)) &&
          (EngineRunningFlag == '\0')) {
-        MemoryAllocationMaskPointer = MessageBoxA(0,&MessageBoxTemplateAA0,&MessageBoxTemplateB24,0x40004);
+        MemoryAllocationMaskPointer = MessageBoxA(0,&MessageBoxTemplateAA0,&MessageBoxTemplateUser,0x40004);
         switch(MemoryAllocationMaskPointer) {
         case 1:
           break;
@@ -45444,7 +45444,7 @@ SystemValidationStart: // 原始标签：LAB_180066bf4，SystemValidationStart
         if (InputDataLength == 4) goto SystemValidationStart;
       }
       else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
-        ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd,&SystemDataTemplateConfig,&MessageBoxTemplateB24,
+        ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd,&SystemDataTemplateConfig,&MessageBoxTemplateUser,
                       &MessageBoxTemplateAA0);
       }
       ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB28);
