@@ -25071,32 +25071,52 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
 
 
 
+/**
+ * @brief 验证并处理浮点数值
+ * 
+ * 该函数负责验证输入的浮点数值的有效性，并在验证通过后进行处理。
+ * 主要功能包括：
+ * 1. 检查浮点数是否为无穷大或NaN
+ * 2. 验证浮点数是否在有效范围内
+ * 3. 将浮点数转换为系统内部格式
+ * 4. 分配必要的内存资源
+ * 
+ * @param valueContext 值上下文指针，包含要验证的浮点数
+ * @param operationContext 操作上下文指针，用于操作参数
+ * @param exceptionContext 异常上下文指针，用于异常处理
+ * @param processingContext 处理上下文指针，用于数据处理
+ * @return DataBuffer 处理结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_1800809a0
+ * @warning 浮点数范围必须在0.0到3.4028235e+38之间
+ * @see QueryAndRetrieveSystemDataA0, MergeHighLowWords
+ */
 DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationContext,DataBuffer exceptionContext,DataBuffer processingContext)
 
 {
-  float floatingPointValue;
-  uint64_t systemOperationResult;
-  int64_t resultStoragePointer;
-  DataBuffer destinationExecutionContext;
-  int64_t temporaryStackValue;
+  float inputValue;
+  uint64_t systemValidationResult;
+  int64_t resultStorageLocation;
+  DataBuffer targetExecutionContext;
+  int64_t temporaryStackData;
   
-  floatingPointValue = *(float *)(valueContext + DataValidationOffset18);
-  temporaryStackValue = MergeHighLowWords(temporaryStackValue.HighPart, floatingPointValue);
-  if (((uint)floatingPointValue & FloatInfinityValue) == FloatInfinityValue) {
+  inputValue = *(float *)(valueContext + DataValidationOffset18);
+  temporaryStackData = MergeHighLowWords(temporaryStackData.HighPart, inputValue);
+  if (((uint)inputValue & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  if ((floatingPointValue < 0.0) || (3.4028235e+38 <= floatingPointValue)) {
+  if ((inputValue < 0.0) || (3.4028235e+38 <= inputValue)) {
     return ComponentDataValidationFailure;
   }
-  SystemOperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + ExceptionHandlerCallbackOffset),&temporaryStackValue);
-  if ((int)systemOperationResult != 0) {
-    return systemOperationResult;
+  systemValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + ExceptionHandlerCallbackOffset),&temporaryStackData);
+  if ((int)systemValidationResult != 0) {
+    return systemValidationResult;
   }
-  if (temporaryStackValue == 0) {
-    resultStoragePointer = 0;
+  if (temporaryStackData == 0) {
+    resultStorageLocation = 0;
   }
   else {
-    resultStoragePointer = temporaryStackValue + -8;
+    resultStorageLocation = temporaryStackData + -8;
   }
   *(DataWord *)(resultStoragePointer + systemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
   resultStoragePointer = *(int64_t *)(operationContext + systemContextConfigOffset98);
