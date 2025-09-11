@@ -248277,7 +248277,7 @@ LAB_1802016f7:
       if (0x14 < BufferValidationStatus) {
         MemoryBlockHandle = 0x14;
         do {
-          FUN_1806284c0(&pCoreEngineUnsignedValue208,*(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x68) + MemoryBlockHandle * 4));
+          ProcessSystemFloatData(&pCoreEngineUnsignedValue208,*(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x68) + MemoryBlockHandle * 4));
           MemoryAllocationHandle = uStack_1f8 + 1;
           CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,MemoryAllocationHandle);
           *(uint16_t *)(UnsignedProcessingStatusFlag + uStack_1f8) = 0x2c;
