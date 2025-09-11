@@ -242417,7 +242417,7 @@ void ProcessSystemDataTransformationAndMemoryManagement(long long *ContextHandle
     SystemKeyPointer = SystemKeyPointer & 0xffffffff00000000;
     EnginePointerBuffer = &ThreadLocalStorageTemplate;
   }
-  FUN_1801bb3a0(*(void *)ContextHandle[1],((void *)ContextHandle[1])[1],0);
+  ProcessSystemMemoryBlockOperation(*(void *)ContextHandle[1],((void *)ContextHandle[1])[1],0);
   MemoryBlockIndex = ((long long *)ContextHandle[1])[1];
   for (long long AllocatedMemorySize = *(long long *)ContextHandle[1]; AllocatedMemorySize != MemoryBlockIndex; AllocatedMemorySize = AllocatedMemorySize + 0x28) {
     SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
