@@ -61,10 +61,10 @@
 #define CleanupSystemOperationsEx FUN_180187cd0                   // 清理系统操作扩展
 #define ValidateSystemContextEx FUN_18018b8c0                      // 验证系统上下文扩展
 #define ProcessSystemMemoryAllocationEx FUN_18018b9e0              // 处理系统内存分配扩展
-#define FUN_18018bbd0 HandleSystemContextValidation               // 处理系统上下文验证
-#define FUN_18018bd0d ProcessSystemHandleOperation                // 处理系统句柄操作
-#define FUN_18018bd5f ResetSystemDataProcessing                  // 重置系统数据处理
-#define FUN_18018c050 ExecuteSystemStringEncodingOperation       // 执行系统字符串编码操作
+#define HandleSystemContextValidationEx FUN_18018bbd0               // 处理系统上下文验证扩展
+#define ProcessSystemHandleOperationEx FUN_18018bd0d                // 处理系统句柄操作扩展
+#define ResetSystemDataProcessingEx FUN_18018bd5f                  // 重置系统数据处理扩展
+#define ExecuteSystemStringEncodingOperationEx FUN_18018c050       // 执行系统字符串编码操作扩展
 #define FUN_18018cef0 ProcessSystemUnicodeConversion              // 处理系统Unicode转换
 #define FUN_18018e0f0 HandleSystemStringEncoding                 // 处理系统字符串编码
 #define FUN_18018f6a0 ProcessSystemContextOperation              // 处理系统上下文操作
