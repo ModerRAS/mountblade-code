@@ -142881,3 +142881,112 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
     return DataProcessingSuccess;
 }
 
+// === 新增的系统功能语义化定义 ===
+
+// 系统内存管理相关变量语义化定义
+#define UNK_180c4f450 SystemMemoryPoolManager              // 系统内存池管理器 - 负责系统内存池的分配和管理
+#define UNK_180c4f460 SystemMemoryAllocator                // 系统内存分配器 - 负责系统内存的分配操作
+#define UNK_180c919f0 SystemMemoryCleanupHandler           // 系统内存清理处理器 - 负责系统内存的清理操作
+#define UNK_180c91970 SystemMemoryResourceManager           // 系统内存资源管理器 - 负责系统内存资源的管理
+#define UNK_180c91f70 SystemMemorySecondaryManager         // 系统内存辅助管理器 - 负责系统内存的辅助管理
+
+// 系统线程管理相关变量语义化定义
+#define UNK_180c96690 SystemThreadManager                  // 系统线程管理器 - 负责系统线程的管理
+#define UNK_180c966f0 SystemThreadScheduler                 // 系统线程调度器 - 负责系统线程的调度
+#define UNK_180c96740 SystemThreadSynchronizer             // 系统线程同步器 - 负责系统线程的同步
+#define UNK_180c497e0 SystemThreadContextManager           // 系统线程上下文管理器 - 负责线程上下文的管理
+#define UNK_180c498a0 SystemThreadExceptionHandler          // 系统线程异常处理器 - 负责线程异常的处理
+
+// 系统异常处理相关变量语义化定义
+#define UNK_180d49e70 SystemExceptionTable                 // 系统异常表 - 存储系统异常信息
+#define UNK_180d49f10 SystemExceptionHandler               // 系统异常处理器 - 处理系统异常
+#define UNK_180d497e0 SystemExceptionStack                 // 系统异常栈 - 存储系统异常栈信息
+#define UNK_180d498a0 SystemExceptionFrame                 // 系统异常帧 - 存储系统异常帧信息
+
+// 系统资源管理相关变量语义化定义
+#define UNK_180985054 SystemResourceTable                   // 系统资源表 - 存储系统资源信息
+#define UNK_180985060 SystemResourceManager                 // 系统资源管理器 - 管理系统资源
+#define UNK_180985070 SystemResourcePool                   // 系统资源池 - 存储系统资源
+#define UNK_180985080 SystemResourceCache                  // 系统资源缓存 - 缓存系统资源
+
+// 系统配置管理相关变量语义化定义
+#define UNK_180985090 SystemConfigurationManager            // 系统配置管理器 - 管理系统配置
+#define UNK_1809850a0 SystemConfigurationData              // 系统配置数据 - 存储系统配置数据
+#define UNK_1809850b0 SystemConfigurationValidator         // 系统配置验证器 - 验证系统配置
+#define UNK_1809850c0 SystemConfigurationCache            // 系统配置缓存 - 缓存系统配置
+
+// 系统性能监控相关变量语义化定义
+#define UNK_1809850d0 SystemPerformanceMonitor             // 系统性能监控器 - 监控系统性能
+#define UNK_1809850e0 SystemPerformanceCounter             // 系统性能计数器 - 计数系统性能
+#define UNK_1809850f0 SystemPerformanceLogger              // 系统性能日志器 - 记录系统性能
+#define UNK_180985100 SystemPerformanceAnalyzer            // 系统性能分析器 - 分析系统性能
+
+// 系统日志记录相关变量语义化定义
+#define UNK_180985110 SystemLoggerManager                  // 系统日志管理器 - 管理系统日志
+#define UNK_180985120 SystemLogBuffer                      // 系统日志缓冲区 - 存储系统日志
+#define UNK_180985130 SystemLogFormatter                   // 系统日志格式化器 - 格式化系统日志
+#define UNK_180985140 SystemLogWriter                      // 系统日志写入器 - 写入系统日志
+
+// 系统数据验证相关变量语义化定义
+#define UNK_180985150 SystemDataValidator                  // 系统数据验证器 - 验证系统数据
+#define UNK_180985160 SystemDataIntegrityChecker          // 系统数据完整性检查器 - 检查系统数据完整性
+#define UNK_180985170 SystemDataVerificationTable          // 系统数据验证表 - 存储系统数据验证信息
+#define UNK_180985180 SystemDataErrorLogger                // 系统数据错误日志器 - 记录系统数据错误
+
+// 系统状态管理相关变量语义化定义
+#define UNK_180985190 SystemStateManager                   // 系统状态管理器 - 管理系统状态
+#define UNK_1809851a0 SystemStatusMonitor                  // 系统状态监控器 - 监控系统状态
+#define UNK_1809851b0 SystemHealthChecker                  // 系统健康检查器 - 检查系统健康状态
+#define UNK_1809851c0 SystemDiagnosticsManager            // 系统诊断管理器 - 管理系统诊断
+
+// === 新增的系统功能函数语义化定义 ===
+
+// 系统初始化和清理函数
+#define FUN_18090a000 InitializeSystemCore                // 初始化系统核心 - 初始化系统的核心组件
+#define FUN_18090a010 FinalizeSystemCore                  // 完成系统核心 - 完成系统的核心组件
+#define FUN_18090a020 InitializeSystemServices             // 初始化系统服务 - 初始化系统的各种服务
+#define FUN_18090a030 FinalizeSystemServices               // 完成系统服务 - 完成系统的各种服务
+#define FUN_18090a040 SystemStartupComplete               // 系统启动完成 - 标志系统启动完成
+
+// 系统内存管理函数
+#define FUN_18090a050 AllocateSystemMemoryBlock           // 分配系统内存块 - 分配系统的内存块
+#define FUN_18090a060 FreeSystemMemoryBlock               // 释放系统内存块 - 释放系统的内存块
+#define FUN_18090a070 ResizeSystemMemoryBlock             // 调整系统内存块大小 - 调整系统内存块的大小
+#define FUN_18090a080 ValidateSystemMemoryAccess          // 验证系统内存访问 - 验证系统内存的访问权限
+#define FUN_18090a090 OptimizeSystemMemoryUsage            // 优化系统内存使用 - 优化系统的内存使用效率
+
+// 系统资源管理函数
+#define FUN_18090a0a0 CreateSystemResource                 // 创建系统资源 - 创建系统的资源
+#define FUN_18090a0b0 DestroySystemResource                // 销毁系统资源 - 销毁系统的资源
+#define FUN_18090a0c0 LockSystemResource                  // 锁定系统资源 - 锁定系统的资源
+#define FUN_18090a0d0 UnlockSystemResource                // 解锁系统资源 - 解锁系统的资源
+#define FUN_18090a0e0 QuerySystemResourceStatus            // 查询系统资源状态 - 查询系统资源的状态信息
+
+// 系统线程管理函数
+#define FUN_18090a0f0 CreateSystemThread                   // 创建系统线程 - 创建系统的线程
+#define FUN_18090a100 DestroySystemThread                  // 销毁系统线程 - 销毁系统的线程
+#define FUN_18090a110 SuspendSystemThread                  // 挂起系统线程 - 挂起系统的线程
+#define FUN_18090a120 ResumeSystemThread                   // 恢复系统线程 - 恢复系统的线程
+#define FUN_18090a130 SetSystemThreadPriority              // 设置系统线程优先级 - 设置系统线程的优先级
+
+// 系统异常处理函数
+#define FUN_18090a140 HandleSystemException                // 处理系统异常 - 处理系统的异常情况
+#define FUN_18090a150 LogSystemException                   // 记录系统异常 - 记录系统的异常信息
+#define FUN_18090a160 RecoverSystemFromException           // 从异常中恢复系统 - 从异常情况中恢复系统
+#define FUN_18090a170 ValidateSystemExceptionHandling      // 验证系统异常处理 - 验证系统异常处理的正确性
+#define FUN_18090a180 ConfigureSystemExceptionHandler      // 配置系统异常处理器 - 配置系统的异常处理器
+
+// 系统配置管理函数
+#define FUN_18090a190 LoadSystemConfiguration              // 加载系统配置 - 加载系统的配置信息
+#define FUN_18090a1a0 SaveSystemConfiguration              // 保存系统配置 - 保存系统的配置信息
+#define FUN_18090a1b0 ValidateSystemConfiguration          // 验证系统配置 - 验证系统配置的正确性
+#define FUN_18090a1c0 ApplySystemConfiguration             // 应用系统配置 - 应用系统的配置信息
+#define FUN_18090a1d0 ResetSystemConfiguration              // 重置系统配置 - 重置系统的配置信息
+
+// 系统性能监控函数
+#define FUN_18090a1e0 StartSystemPerformanceMonitoring     // 开始系统性能监控 - 开始监控系统的性能
+#define FUN_18090a1f0 StopSystemPerformanceMonitoring      // 停止系统性能监控 - 停止监控系统的性能
+#define FUN_18090a200 CollectSystemPerformanceMetrics      // 收集系统性能指标 - 收集系统的性能指标
+#define FUN_18090a210 AnalyzeSystemPerformanceData         // 分析系统性能数据 - 分析系统的性能数据
+#define FUN_18090a220 GenerateSystemPerformanceReport     // 生成系统性能报告 - 生成系统的性能报告
+
