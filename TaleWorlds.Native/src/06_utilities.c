@@ -15610,17 +15610,17 @@ void* MemoryValidationDataTerdenary;                 // 内存验证第十三数
 void* MemoryManagementPrimaryBlock;                   // 内存管理主数据块 - 主要内存管理数据
 void* MemoryManagementSecondaryBlock;                 // 内存管理辅助数据块 - 辅助内存管理数据
 // 工具系统内存管理数据块 - 内存池指针
-void* SystemMemoryManagementTertiaryDataBlock;
-void* SystemMemoryManagementQuaternaryDataBlock;
-void* SystemMemoryManagementQuinaryDataBlock;
-void* SystemMemoryManagementSenaryDataBlock;
-void* SystemMemoryManagementSeptenaryDataBlock;
-void* SystemMemoryManagementOctonaryDataBlock;
-void* SystemMemoryManagementNonaryDataBlock;
-void* SystemMemoryManagementDenaryDataBlock;
-void* SystemMemoryManagementUndenaryDataBlock;
-void* SystemMemoryManagementDuodenaryDataBlock;
-void* SystemMemoryManagementTerdenaryDataBlock;
+void* MemoryPoolTertiaryBlock;                        // 内存池第三数据块 - 第三级内存池数据
+void* MemoryPoolQuaternaryBlock;                      // 内存池第四数据块 - 第四级内存池数据
+void* MemoryPoolQuinaryBlock;                         // 内存池第五数据块 - 第五级内存池数据
+void* MemoryPoolSenaryBlock;                          // 内存池第六数据块 - 第六级内存池数据
+void* MemoryPoolSeptenaryBlock;                       // 内存池第七数据块 - 第七级内存池数据
+void* MemoryPoolOctonaryBlock;                        // 内存池第八数据块 - 第八级内存池数据
+void* MemoryPoolNonaryBlock;                          // 内存池第九数据块 - 第九级内存池数据
+void* MemoryPoolDenaryBlock;                          // 内存池第十数据块 - 第十级内存池数据
+void* MemoryPoolUndenaryBlock;                        // 内存池第十一数据块 - 第十一级内存池数据
+void* MemoryPoolDuodenaryBlock;                       // 内存池第十二数据块 - 第十二级内存池数据
+void* MemoryPoolTerdenaryBlock;                       // 内存池第十三数据块 - 第十三级内存池数据
 // 工具系统内存管理标志位 - 系统状态和控制标志
 uint8_t SystemMemoryManagementPrimaryFlag;
 uint8_t SystemMemoryManagementSecondaryFlag;

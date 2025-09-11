@@ -13515,8 +13515,6 @@ Label_1807c2a43:
  * 主要用于系统运行时的安全验证和保护，通过异或操作确保栈指针的安全性。
  * 
  * @param SecurityContext 安全上下文参数，包含需要验证的安全信息
- * 
- * 原始函数名为FUN_1807c3d8b，现已重命名为SystemSecurityValidationFunction
  */
 void SystemSecurityValidationFunction(uint64_t SecurityContext)
 {
