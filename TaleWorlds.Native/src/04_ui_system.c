@@ -10155,6 +10155,8 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
   uint64_t uiRenderStateValue2;
   uint8_t uiRenderDataBuffer [512];
   uint64_t uiEncryptionKey;
+  uint64_t uiEncryptionKeyParameter;
+  ulonglong *uiOperationResult;
   
   if (bufferSize != 0) {
     uiEncryptionKey = XorEncryptionKey ^ (ulonglong)uiEncryptionKeyParameter;
@@ -10162,7 +10164,7 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
     if (*threadLocalStorageFlag == '\0') {
       *threadLocalStorageFlag = '\x01';
-      operationResult = (ulonglong *)GetUIResourceManager();
+      uiOperationResult = (ulonglong *)GetUIResourceManager();
       uiRenderStateValue2 = resultPointer;
       uiRenderStateValue1 = 0;
       __stdio_common_vsprintf(*processingResult | 2,uiRenderDataBuffer,0x1ff,bufferSize);
@@ -10170,7 +10172,7 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
       ProcessUIRenderRequest(uiContext,dataSource,targetBuffer,uiRenderDataBuffer);
     }
                      WARNING: Subroutine does not return
-    ExecuteUIRenderTask(uiEncryptionKey ^ (ulonglong)astackUInt278);
+    ExecuteUIRenderTask(uiEncryptionKey ^ (ulonglong)UIEncryptionKeyArray278);
   }
   return;
 }
@@ -10179,16 +10181,6 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
 
 
   /**
- * @brief 设置UI系统状态
- * 
- * 设置UI系统的状态信息，包括线程本地标志和资源管理器。
- * 主要用于UI系统的状态初始化和更新。
- * 
- * @param uiContext UI上下文指针
- * 
- * @note 原始函数名: SetUIState
- */
-/**
  * @brief 设置UI系统状态
  * 
  * 根据给定的UI上下文设置UI系统的状态。该函数负责管理UI系统的状态转换，
