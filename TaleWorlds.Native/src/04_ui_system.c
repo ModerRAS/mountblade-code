@@ -253,6 +253,7 @@ typedef enum {
 #define ProcessUIVectorTransformationAndInterpolation FUN_1807762e0 // 处理UI向量变换和插值
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
 #define ProcessUIContextDataTransferAndValidation FUN_18073a0c0     // 处理UI上下文数据传输和验证
+#define ProcessUIDataWithContextAndRender FUN_18073a3ad               // 处理UI上下文数据并渲染
 #define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
 #define ProcessUIComponentTransform FUN_1807226f0           // 处理UI组件变换
 
@@ -123254,7 +123255,22 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 使用加密处理UI上下文数据
+ * 
+ * 该函数负责处理需要加密的UI上下文数据，包括：
+ * - 初始化加密缓冲区
+ * - 执行XOR加密操作
+ * - 处理数据传输
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return void
+ */
 void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
                                         UIHandle resultPointer)
 
@@ -123651,7 +123667,7 @@ CleanupAndRender:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073965d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ void ProcessUIDataWithContextManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 /**
  * @brief 带上下文管理的UI数据处理和渲染函数
  * 
@@ -123957,7 +123973,7 @@ void ProcessUIContextWithEventDispatcher(UIHandle uiContext,UIHandle dataSource,
 
 
 
- void FUN_1807399b2(void)
+ void ProcessUIDataBufferValidationAndCleanup(void)
 /**
  * 处理UI数据缓冲区验证和清理
  * 
@@ -123986,7 +124002,7 @@ void ProcessUIDataBufferValidationAndCleanup(void)
 
 
 
- void FUN_180739a2a(void)
+ void ExecuteUIRenderTaskWithKeyValidation(void)
 /**
  * 执行UI渲染任务和密钥验证
  * 
@@ -124011,7 +124027,20 @@ void ExecuteUIRenderTaskWithKeyValidation(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739a50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI数据最终验证和清理
+ * 
+ * 该函数负责处理UI系统中的数据最终验证和清理操作，包括：
+ * - 初始化验证参数
+ * - 执行数据验证
+ * - 处理清理操作
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return void
+ */
 void ProcessUIDataFinalWithValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
@@ -124053,7 +124082,20 @@ CleanupUIResources:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739a6d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI数据最终扩展验证和清理
+ * 
+ * 该函数负责处理UI系统中的数据最终扩展验证和清理操作，包括：
+ * - 初始化验证参数和寄存器状态
+ * - 执行扩展数据验证
+ * - 处理资源管理和清理
+ * - 执行加密渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return void
+ */
 void ProcessUIDataFinalExWithValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
@@ -124761,8 +124803,19 @@ void ProcessUIContextDataTransferAndValidation(UIHandle uiContext, UIHandle data
 
 
 
- void FUN_18073a12e(void)
-void FUN_18073a12e(void)
+ /**
+ * @brief 处理UI栈数据并执行上下文操作
+ * 
+ * 该函数负责处理UI系统中的栈数据操作，包括：
+ * - 处理栈数据的目标操作
+ * - 验证缓冲区数据
+ * - 执行上下文数据操作
+ * - 管理数据流和处理结果
+ * 
+ * @note 原始函数名：FUN_18073a12e
+ * @warning 此函数不会返回，调用后会直接跳转到上下文操作函数
+ */
+void ProcessUIStackDataAndExecuteContextOperation(void)
 
 {
   int processingResult;
@@ -124900,8 +124953,20 @@ LAB_18073a35a:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a390(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073a390(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据传输操作
+ * 
+ * 该函数负责处理UI上下文数据传输操作，包括：
+ * - 处理UI上下文清理和验证
+ * - 执行数据传输操作
+ * - 验证和控制缓冲区数据
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ */
+void ProcessUIContextDataTransferOperation(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
@@ -124942,8 +125007,26 @@ FUN_18073a47d:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+/**
+ * @brief 处理UI上下文数据并执行渲染任务
+ * 
+ * 该函数负责处理UI上下文数据，包括：
+ * - 清理UI上下文
+ * - 处理数据传输
+ * - 验证数据有效性
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073a3ad
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
@@ -399990,7 +400073,23 @@ void FUN_18089c019(void)
 
 
 
-ulonglong FUN_18089c030(longlong uiContext,UIHandle *dataSource)
+/**
+ * @brief 处理UI事件数据和验证
+ * 
+ * 该函数负责处理UI系统的事件数据，包括：
+ * - 验证事件数据结构的完整性
+ * - 处理UI组件的指标计算
+ * - 管理UI缓冲区的数据操作
+ * - 执行事件数据的验证和清理
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含要处理的事件数据
+ * 
+ * @return 处理状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_18089c030
+ */
+#define ProcessUIEventDataAndValidation FUN_18089c030
 
 {
   int processingResult;
