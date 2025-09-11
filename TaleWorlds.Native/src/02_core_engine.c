@@ -247047,6 +247047,24 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
 
 
 
+/**
+ * @brief 处理系统内存和字符编码操作
+ * 
+ * 该函数负责处理系统内存管理和字符编码转换操作。主要功能包括：
+ * - 系统内存分配和管理
+ * - UTF-8到UTF-16字符编码转换
+ * - 内存池管理和优化
+ * - 浮点数数据处理和验证
+ * - 系统上下文状态管理
+ * - 字符串缓冲区处理
+ * 
+ * @param SystemContextHandle 系统上下文句柄，用于标识系统上下文
+ * @param SystemOperationBufferSize 操作缓冲区大小，指定数据处理的缓冲区容量
+ * @param SystemUtf8SourcePointer UTF-8源数据指针，指向要处理的UTF-8字符串数据
+ * 
+ * @note 原始函数名：FUN_180200780
+ * @note 此函数为核心引擎系统的重要组成部分，负责内存和编码的核心处理逻辑
+ */
 void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int SystemOperationBufferSize,void **SystemUtf8SourcePointer
 {
   float SystemContextPrimaryFloat;
@@ -249748,16 +249766,16 @@ void ProcessSystemFloatTransformOperations(float *ContextHandle,float *ContextHa
  */
 void ProcessFloatArraySortingAndInsertion(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
 {
-  float SystemContextPrimaryFloat;
-  unsigned long long MemoryPoolIndex;
-  unsigned long long UnicodeCodePoint;
-  unsigned long long MemoryOffsetValue;
-  unsigned long long CalculatedCodePoint;
+  float PrimaryFloatValue;
+  unsigned long long ArrayIndex;
+  unsigned long long DataValue;
+  unsigned long long MemoryOffset;
+  unsigned long long InsertionPoint;
   unsigned long long OperationResult;
-  unsigned long long SystemChecksum;
-  float *pProcessedFloatValue8;
-  unsigned long long MemoryAllocationLoopCounter;
-  bool StringComparisonByte0;
+  unsigned long long SortControlValue;
+  float *DataSourcePointer;
+  unsigned long long LoopCounter;
+  bool ComparisonFlag;
   
   SystemMemoryAllocationResult = (long long)OperationBufferSize - (long long)ContextHandle >> 2;
   if (1 < (long long)SystemMemoryAllocationResult) {
