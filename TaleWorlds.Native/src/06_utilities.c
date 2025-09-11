@@ -41277,7 +41277,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
+  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + SystemMemoryDataBufferOffset4C);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -41534,7 +41534,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
+  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + SystemMemoryDataBufferOffset4C);
   if ((int)operationResult != 0) {
     return operationResult;
   }
