@@ -40298,7 +40298,7 @@ ValidationLabelB:
     else {
       statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameterTertiary) {
-        statusCounter = ValidateSystemParametersA0(systemContext + 0x48,inputParameterTertiary);
+        statusCounter = ValidateSystemParametersA0(systemContext + SystemContextDataBufferOffset48,inputParameterTertiary);
         systemMemoryBuffer = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameterTertiary = *(int *)(StackFrameContext + -0x21);
@@ -40368,7 +40368,7 @@ ValidationLabelB:
     }
   }
   else {
-    systemMemoryBuffer = CreateExceptionDataBuffer(operationBase,systemContext + 0x48);
+    systemMemoryBuffer = CreateExceptionDataBuffer(operationBase,systemContext + SystemContextDataBufferOffset48);
     calculatedResultValue = normalizedFloatValue;
     if ((int)systemMemoryBuffer != 0) {
       return systemMemoryBuffer;
@@ -41024,21 +41024,21 @@ OperationLabelD:
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
+  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + SystemMemoryDataBufferOffset4C);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
+  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + SystemContextDataOffsetPrimary);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
+  memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + DataBufferOffsetPrimary);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
@@ -41071,8 +41071,8 @@ ValidationContextHandler:
       operationResult = 0;
       if (validationStatus == 0) {
         memoryRegionBase = 0;
-        operationResult = (uint)(*(char *)(StackFrameContext + 0x77) != '\0');
-        securityCheckResult = (uint)(*(char *)(StackFrameContext + 0x77) == '\0');
+        operationResult = (uint)(*(char *)(StackFrameContext + StackFrameValidationFlagOffset77) != '\0');
+        securityCheckResult = (uint)(*(char *)(StackFrameContext + StackFrameValidationFlagOffset77) == '\0');
       }
       else {
         memoryRegionBase = (uint64_t)validationStatus;
