@@ -250733,7 +250733,7 @@ LAB_180203ca7:
       ArraySize = (unsigned long long)SystemDataTablePointer & 0xffffffffffffff00;
 LAB_180203caa:
       if (MemoryBlockListHead != (long long *)0x0) {
-        FUN_180203e30(ContextHandle,OperationBufferSize,MemoryBlockListHead,ArraySize,AdditionalParameter1);
+        ProcessSystemContextAndMemory(ContextHandle,OperationBufferSize,MemoryBlockListHead,ArraySize,AdditionalParameter1);
         return OperationBufferSize;
       }
     }
@@ -251048,7 +251048,7 @@ LAB_1802042b6:
       }
       goto LAB_1802042b6;
     }
-    FUN_180204420(aFunctionAddress,ContextHandle,OperationBufferSize,Utf16EndPointer);
+    InitializeSystemFloatAllocation(aFunctionAddress,ContextHandle,OperationBufferSize,Utf16EndPointer);
     paOperationResult = (uint8_t (*) [16])aFunctionAddress.Low64Part;
     MemoryPoolIndex = aFunctionAddress.High64Part;
     Utf8SourcePointer = (Utf8SourcePointer >> 1) + (Utf8SourcePointer >> 2);
@@ -252602,10 +252602,10 @@ uint64_t *ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle,ui
   StackProcessingUnsignedValue60 = 0xfffffffffffffffe;
   MemoryPoolSizePointer = (long long *)0x0;
   if (Utf16EndPointer == '\x01') {
-    FUN_1802063e0(Utf8SourcePointer);
+    ConvertUtf16ToUtf8Character(Utf8SourcePointer);
     if (1 < Utf8SourcePointer - 0xeU) {
-      MemoryPoolIndex = FUN_180206330(Utf8SourcePointer);
-      FUN_180225e50(MemoryPoolIndex);
+      MemoryPoolIndex = GetCharacterMemoryPoolIndex(Utf8SourcePointer);
+      ValidateCharacterMemoryAllocation(MemoryPoolIndex);
     }
     ProcessSystemMemoryStatus();
     *ContextHandleSize = 0;
