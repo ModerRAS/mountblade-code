@@ -198,6 +198,16 @@ typedef enum {
 
 // 未美化变量名语义化定义
 // UI查找表和数据表
+
+// UI系统渲染上下文变量语义化定义
+#define _DAT_180c10a88 UIRenderContextSize
+#define _DAT_180c10a70 UIRenderContextBaseAddress
+#define _DAT_180c10a80 UIRenderBufferSize
+#define DAT_180c10a70 UIRenderContextData
+
+// UI系统函数语义化定义
+#define FUN_180791b60 InitializeUIRenderContext
+#define FUN_180791bb0 ProcessUIEventAndComponentInteraction
 #define UILookupTableF70 DAT_180956f70                    // UI查找表F70 - 存储UI组件的查找表数据
 #define UIComponentDataTableB8 DAT_1809536b8              // UI组件数据表B8 - 存储UI组件的基础数据
 #define UIContextDataTableB0 DAT_1809542b0                // UI上下文数据表B0 - 存储UI上下文相关数据
@@ -218543,20 +218553,53 @@ void FUN_180791b40(longlong uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180791b60(void)
-
+/**
+ * @brief 初始化UI系统渲染上下文
+ * 
+ * 该函数负责初始化UI系统的渲染上下文，设置默认的渲染参数和状态。
+ * 主要功能包括：
+ * - 调用底层初始化函数
+ * - 设置渲染数据结构的大小和基地址
+ * - 配置渲染缓冲区参数
+ * 
+ * @return UI渲染上下文指针
+ * 
+ * @note 原始函数名：FUN_180791b60
+ */
+UIRenderContext * InitializeUIRenderContext(void)
 {
+  // 调用底层UI初始化函数
   FUN_180791040();
-  _DAT_180c10a88 = 0x20;
-  _DAT_180c10a70 = 0x180be2b40;
-  _DAT_180c10a80 = 0x40;
-  return &DAT_180c10a70;
+  
+  // 设置渲染上下文数据结构大小
+  UIRenderContextSize = 0x20;
+  
+  // 设置渲染上下文基地址
+  UIRenderContextBaseAddress = 0x180be2b40;
+  
+  // 设置渲染缓冲区大小
+  UIRenderBufferSize = 0x40;
+  
+  return &UIRenderContextData;
 }
 
 
 
-UIHandle FUN_180791bb0(longlong *uiContext)
-
+/**
+ * @brief 处理UI事件和组件交互
+ * 
+ * 该函数负责处理UI系统的事件和组件交互，包括：
+ * - 初始化UI元素的默认参数
+ * - 处理组件事件循环
+ * - 验证事件处理结果
+ * - 更新UI状态
+ * 
+ * @param uiContext UI上下文指针
+ * @return 事件处理句柄，成功返回0
+ * 
+ * @note 原始函数名：FUN_180791bb0
+ */
+UIHandle ProcessUIEventAndComponentInteraction(longlong *uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
@@ -218566,6 +218609,8 @@ UIHandle FUN_180791bb0(longlong *uiContext)
   
   allocatedMemory = *uiContext;
   uiElementIndex = 0;
+  
+  // 初始化UI渲染参数
   *(UIHandle *)(allocatedMemory + 0x450) = 0x3f800000;
   *(UIDword *)(allocatedMemory + 0x458) = 0;
   *(UIDword *)(allocatedMemory + 0x45c) = 0x3f800000;
@@ -218578,8 +218623,11 @@ UIHandle FUN_180791bb0(longlong *uiContext)
   *(UIDword *)(allocatedMemory + 0x478) = 0x3fec835e;
   *(UIHandle *)(allocatedMemory + 0x47c) = 0x3f800000;
   *(UIDword *)(allocatedMemory + 0x228) = 0x3f800000;
+  
   componentHandle = *(longlong *)(allocatedMemory + 0xe8);
   *(float *)(allocatedMemory + 0x220) = (float)*(int *)(*(longlong *)(allocatedMemory + 0xa8) + 0x6d0) * 0.5 - 10.0;
+  
+  // 处理组件事件循环
   if (0 < *(int *)(componentIndex + 0x60)) {
     contextDataHandle = 0;
     do {
@@ -218594,6 +218642,8 @@ UIHandle FUN_180791bb0(longlong *uiContext)
       contextDataHandle = contextDataHandle + 8;
     } while (localValidationResult < *(int *)(componentIndex + 0x60));
   }
+  
+  // 更新UI状态
   *(UIDword *)(allocatedMemory + 0x218) = *(UIDword *)(allocatedMemory + 0x484);
   *(UIDword *)(allocatedMemory + 0x21c) = *(UIDword *)(allocatedMemory + 0x488);
   FUN_180793880(allocatedMemory);
@@ -218604,11 +218654,21 @@ UIHandle FUN_180791bb0(longlong *uiContext)
 
 
  void FUN_180791d40(longlong *uiContext)
-void FUN_180791d40(longlong *uiContext)
-
+/**
+ * @brief 清理UI上下文数据缓冲区
+ * 
+ * 该函数负责清理UI上下文中的数据缓冲区，将指定范围内的内存清零。
+ * 这是一个不返回的函数，通常用于系统清理或重置操作。
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名：FUN_180791d40
+ * @warning 该函数不返回，用于系统清理操作
+ */
+void ClearUIContextDataBuffer(longlong *uiContext)
 {
-                     WARNING: Subroutine does not return
-  memset(*uiContext + 0x22c,0,0x200);
+  WARNING: Subroutine does not return
+  memset(*uiContext + 0x22c, 0, 0x200);
 }
 
 

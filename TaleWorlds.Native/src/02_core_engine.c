@@ -98645,21 +98645,44 @@ e430(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
 
 
 // 原始函数名：FUN_18010e4b0 - 验证目标数据结构的函数
-uint ValidateContextHandle(long long ContextHandle
+#define ValidateContextHandle FUN_18010e4b0
+
+/**
+ * @brief 验证上下文句柄
+ * 
+ * 验证系统上下文句柄的有效性和匹配性，包括：
+ * - 上下文句柄状态检查
+ * - 字符串模板匹配
+ * - 上下文数据结构验证
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @return 验证结果：
+ *         1: 验证成功
+ *         0: 验证失败
+ *         其他值: 验证状态码
+ * 
+ * @note 该函数用于确保系统上下文句柄的有效性和正确性
+ */
+uint ValidateContextHandle(long long ContextHandle)
 {
-  uint in_EAX;
+  uint StringComparisonResult;
   
+  // 检查上下文句柄状态标志
   if (*(int *)(ContextHandle + 0x14) != -1) {
-    in_EAX = strcmp(&SystemStringTemplate,ContextHandle + 0x18);
-    if (in_EAX == 0) {
-      return 1;
+    // 比较系统字符串模板
+    StringComparisonResult = strcmp(&SystemStringTemplate, ContextHandle + 0x18);
+    if (StringComparisonResult == 0) {
+      return 1; // 验证成功
     }
   }
-  return in_EAX & 0xffffff00;
+  return StringComparisonResult & 0xffffff00;
 }
 
 
 
+
+// 原始函数名：FUN_18010e7e0 - 处理系统配置和目标数据结构
+#define ProcessSystemConfigurationAndContextHandle FUN_18010e7e0
 
 /**
  * @brief 处理系统配置和目标数据结构
@@ -98671,11 +98694,23 @@ uint ValidateContextHandle(long long ContextHandle
  * @param OperationBufferSize 源数据结构值
  * @param Utf8SourcePointer 保留参数1
  * @param Utf16EndPointer 保留参数2
+ * 
+ * @note 该函数处理系统配置的核心逻辑，包括数据结构设置和配置参数更新
  */
-void ProcessSystemConfigurationAndContextHandle(long long ContextHandle,uint32_t OperationBufferSize,uint8_t Utf8SourcePointer,uint32_t Utf16EndPointer)
+void ProcessSystemConfigurationAndContextHandle(long long ContextHandle, uint32_t OperationBufferSize, uint8_t Utf8SourcePointer, uint32_t Utf16EndPointer)
 {
-  ProcessSystemConfigurationEx(ContextHandle,*(void *)(ContextHandle + 0x88),*(uint32_t *)(ContextHandle + 0x80),OperationBufferSize,
-                Utf8SourcePointer,Utf16EndPointer);
+  void *SystemConfigurationPointer;
+  uint32_t SystemConfigurationSize;
+  
+  // 获取系统配置指针和大小
+  SystemConfigurationPointer = *(void **)(ContextHandle + 0x88);
+  SystemConfigurationSize = *(uint32_t *)(ContextHandle + 0x80);
+  
+  // 处理系统配置扩展
+  ProcessSystemConfigurationEx(ContextHandle, SystemConfigurationPointer, SystemConfigurationSize, OperationBufferSize,
+                Utf8SourcePointer, Utf16EndPointer);
+  
+  // 重置系统配置大小
   *(uint32_t *)(ContextHandle + 0x80) = 0;
   return;
 }
