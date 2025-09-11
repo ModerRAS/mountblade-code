@@ -12060,17 +12060,17 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
-#define ExecuteSecurityCheck FUN_1808fc050
+#define ExecuteSecurityCheck ExecuteSystemSecurityValidation
 
-#define AllocateMemoryBlockA0 FUN_18089b7d0
-#define ReleaseMemoryBlockA0 FUN_18089b813
-#define CopyMemoryBlockA0 FUN_18089b86d
-#define MoveMemoryBlockA0 FUN_18089b896
-#define ValidateMemoryBlockA0 FUN_18089bd70
-#define InitializeMemoryBlockA0 FUN_18089c030
-#define ClearMemoryBlockA0 FUN_18089c190
-#define CompareMemoryBlocksA0 FUN_18089c2d8
-#define FindMemoryPatternA0 FUN_18089c630
+#define AllocateMemoryBlockA0 AllocateMemoryWithSizeAndAlignment
+#define ReleaseMemoryBlockA0 ReleaseMemoryWithSecurityChecks
+#define CopyMemoryBlockA0 CopyMemoryBlockWithBoundsChecking
+#define MoveMemoryBlockA0 MoveMemoryBlockWithOverlapProtection
+#define ValidateMemoryBlockA0 ValidateMemoryBlockIntegrityAndBounds
+#define InitializeMemoryBlockA0 InitializeMemoryBlockWithPattern
+#define ClearMemoryBlockA0 ClearMemoryBlockWithZeroPattern
+#define CompareMemoryBlocksA0 CompareMemoryBlocksWithOptimizedAlgorithm
+#define FindMemoryPatternA0 FindMemoryPatternWithBoyerMooreAlgorithm
 
 // 内存管理函数宏定义
 #define AllocateMemoryA0 AllocateMemoryWithSizeValidation    // 带大小验证的内存分配函数
