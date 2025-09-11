@@ -19178,7 +19178,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   uint32_t processingFlags;
   uint32_t statusRegister;
   uint64_t operationResult;
-  uint64_t *ArrayElementContext;
+  uint64_t *arrayElementIterator;
   int32_t integerConversionResult;
   float processedFloatValue;
   uint8_t simdProcessingBuffer [16];
@@ -19187,7 +19187,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   float inputFloatValue;
   uint32_t validationFlags;
   uint32_t statusFlags;
-  int32_t integerConversionValue;
+  int32_t convertedIntegerValue;
   uint64_t simdRegister;
   
   // 查询系统数据并获取上下文
@@ -19202,11 +19202,11 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     inputFloatValue = *(float *)(resourceDescriptor + resourceDescriptorDataOffset);
     
     // 遍历浮点数组并进行验证
-    for (ArrayElementContext = *(uint64_t **)(exceptionContext + ExceptionHandlerContextArrayOffset);
-        (*(uint64_t **)(exceptionContext + ExceptionHandlerContextArrayOffset) <= ArrayElementContext &&
-        (ArrayElementContext < *(uint64_t **)(exceptionContext + ExceptionHandlerContextOffset) + *(int32_t *)(exceptionContext + ExceptionDataOffset))); 
-        ArrayElementContext = ArrayElementContext + ArrayElementIncrement) {
-      operationResult = ProcessFloatingPointDataValidationA0(*ArrayElementContext, inputFloatValue, 0);
+    for (arrayElementIterator = *(uint64_t **)(exceptionContext + ExceptionHandlerContextArrayOffset);
+        (*(uint64_t **)(exceptionContext + ExceptionHandlerContextArrayOffset) <= arrayElementIterator &&
+        (arrayElementIterator < *(uint64_t **)(exceptionContext + ExceptionHandlerContextOffset) + *(int32_t *)(exceptionContext + ExceptionDataOffset))); 
+        arrayElementIterator = arrayElementIterator + ArrayElementIncrement) {
+      operationResult = ProcessFloatingPointDataValidationA0(*arrayElementIterator, inputFloatValue, 0);
       if ((int32_t)operationResult != 0) {
         return operationResult;
       }
@@ -19222,8 +19222,8 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
       processedFloatValue = 0.0f;
       
       if ((validationFlags & 1) == 0) {
-        if ((((statusFlags >> 3 & 1) != 0) && (integerConversionValue = (int32_t)processedFloatValue, integerConversionValue != IntegerMinValue)) &&
-           ((float)integerConversionValue != processedFloatValue)) {
+        if ((((statusFlags >> 3 & 1) != 0) && (convertedIntegerValue = (int32_t)processedFloatValue, convertedIntegerValue != IntegerMinValue)) &&
+           ((float)convertedIntegerValue != processedFloatValue)) {
           // 使用SIMD指令处理浮点数转换
           simdRegister = 0;
           *(float *)&simdRegister = processedFloatValue;
