@@ -2221,10 +2221,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackUnsigned4d8 uStack_4d8                   // 系统栈无符号4d8
 #define SystemStackUnsigned5a8 uStack_5a8                  // 系统栈无符号5a8
 #define SystemStackPointer5b8 puStack_5b8                  // 系统栈指针5b8
-#define SystemStackArray5d8 auStack_5d8                     // 系统栈数组5d8
+// 系统栈数组5d8
+#define SystemStackArray5d8 auStack_5d8
 
 // 扩展系统栈变量语义化映射
-#define SystemStackArray190 auStack_190                     // 系统栈数组190
+// 系统上下文处理数组190
+#define SystemContextProcessingArray190 auStack_190
 #define SystemStackArray218 auStack_218                     // 系统栈数组218
 #define SystemStackArray328 auStack_328                     // 系统栈数组328
 #define SystemStackArray870 auStack_870                     // 系统栈数组870
