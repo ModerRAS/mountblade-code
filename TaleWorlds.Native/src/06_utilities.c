@@ -136571,23 +136571,23 @@ void *AllocateBufferEN0(void *bufferParams, size_t allocationSize)
     }
     
     // 执行缓冲区分配
-    allocatedBuffer = AllocateSystemMemoryA0(allocationSize);
-    if (allocatedBuffer == NULL) {
+    systemAllocatedBuffer = AllocateSystemMemoryA0(allocationSize);
+    if (systemAllocatedBuffer == NULL) {
         return NULL;
     }
     
     // 验证分配的缓冲区
-    validationFlags = ValidateMemoryBuffer(allocatedBuffer, allocationSize);
-    if (validationFlags != 0) {
+    memoryValidationFlags = ValidateMemoryBuffer(systemAllocatedBuffer, allocationSize);
+    if (memoryValidationFlags != 0) {
         // 验证失败，释放内存
-        ReleaseMemoryResourceA1(allocatedBuffer);
+        ReleaseMemoryResourceA1(systemAllocatedBuffer);
         return NULL;
     }
     
     // 初始化缓冲区内容
-    InitializeBufferContent(allocatedBuffer, allocationSize);
+    InitializeBufferContent(systemAllocatedBuffer, allocationSize);
     
-    return allocatedBuffer;
+    return systemAllocatedBuffer;
 }
 
 // 原始函数名：FUN_18088c790 - 资源清理函数EO0

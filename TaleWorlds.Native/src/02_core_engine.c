@@ -118467,7 +118467,7 @@ uint64_t ProcessSystemBufferAndSort(void
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
   long long SearchStartIndex;
-  int in_EAX;
+  int RegisterAccumulatorValue;
   uint32_t MemoryAddressMaskPointer;
   uint32_t *ContextHandlePointer;
   long long SystemContext;
@@ -118489,7 +118489,7 @@ uint64_t ProcessSystemBufferAndSort(void
   if (((((CharacterLimitD & 1) != 0) && ((*(byte *)(SystemDataNode + 0x13) & 1) == 0)) && (1 < *SystemDataNode)) &&
      (SystemDataNode[9] != -1)) {
     qsort(*(void *)(SystemDataNode + 2),(long long)*SystemDataNode,0x28,&SystemSortFunctionAddress);
-    in_EAX = SystemDataNode[8];
+    RegisterAccumulatorValue = SystemDataNode[8];
   }
   MemoryAllocationThreshold1 = 0.0;
   SystemChecksum = CharacterLimitD | 0x40;
