@@ -123228,7 +123228,7 @@ void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIHandle dataSource,U
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     resultBufferHandle = resultPointer;
     dataBufferPointer = (UIByte *)bufferSize;
-    FUN_180738b40(processingArray,0x100,dataSource,targetBuffer);
+    ProcessUIDataWithProcessingArray(processingArray,0x100,dataSource,targetBuffer);
     dataBufferPointer = processingArray;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextHandleData440);
