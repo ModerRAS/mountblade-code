@@ -130529,8 +130529,7 @@ FUN_18073d372:
 
 
 
- void FUN_18073d2c3(void)
-void FUN_18073d2c3(void)
+ void ProcessUIBufferDataWithTextureFill(void)
 
 {
   int operationResult;
@@ -130552,8 +130551,7 @@ void FUN_18073d2c3(void)
 
 
 
- void FUN_18073d372(void)
-void FUN_18073d372(void)
+ void ProcessUIRenderTaskWithMemoryCheck(void)
 
 {
   longlong stackParam00000030;
@@ -130569,8 +130567,7 @@ void FUN_18073d372(void)
 
 
 
- void FUN_18073d39c(void)
-void FUN_18073d39c(void)
+ void ProcessUIRenderTaskWithResourceRelease(void)
 
 {
   ulonglong stackParam00000140;
