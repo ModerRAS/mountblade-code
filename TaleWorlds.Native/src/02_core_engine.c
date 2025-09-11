@@ -231891,24 +231891,24 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
  * @note 系统数据节点偏移：0x20, 0x1c, 0x0c
  * @note 内存边界检查：5字节
  */
-#define ProcessSystemHandleValidation FUN_18018bd0d
-void ProcessSystemHandleValidation(uint32_t *ContextHandle)
+#define ValidateSystemHandleAndExtractUtf16Data FUN_18018bd0d
+void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
 {
-  uint32_t Utf16CharacterValue;
-  long long ProcessingStatus;
-  uint32_t *TargetDataPointer;
-  long long *SystemContextPointer;
-  long long SystemDataSourceNode;
+  uint32_t ExtractedUtf16Char;
+  long long ValidationStatus;
+  uint32_t *DataTargetPointer;
+  long long *SystemContextManager;
+  long long DataSourceNode;
   
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x20);
-  if ((unsigned long long)((ProcessingStatus - (long long)ContextHandle) + SystemContextPointer[2]) < 5) {
+  ExtractedUtf16Char = *(uint32_t *)(DataSourceNode + 0x20);
+  if ((unsigned long long)((ValidationStatus - (long long)OutputContextHandle) + SystemContextManager[2]) < 5) {
     AllocateBufferIndex();
-    ContextHandle = (uint32_t *)SystemContextPointer[1];
+    OutputContextHandle = (uint32_t *)SystemContextManager[1];
   }
-  *ContextHandle = Utf16CharacterValue;
-  SystemContextPointer[1] = SystemContextPointer[1] + 4;
-  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
-  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x1c);
+  *OutputContextHandle = ExtractedUtf16Char;
+  SystemContextManager[1] = SystemContextManager[1] + 4;
+  DataTargetPointer = (uint32_t *)SystemContextManager[1];
+  ExtractedUtf16Char = *(uint32_t *)(DataSourceNode + 0x1c);
   if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
     AllocateBufferIndex();
     TargetDataPointer = (uint32_t *)SystemContextPointer[1];
@@ -271206,9 +271206,9 @@ LAB_18021ae8e:
  */
 uint32_t GetInputDataLength(void)
 {
-  uint32_t InputDataLength;
+  uint32_t DataLength;
   
-  return InputDataLength;
+  return DataLength;
 }
 
 
@@ -271217,56 +271217,57 @@ uint32_t GetInputDataLength(void)
 /**
  * @brief 处理字符编码转换和验证
  * 
- * 该函数负责处理字符编码的转换操作，并验证编码的正确性
- * 主要用于UTF-8到其他编码格式的转换处理
+ * 该函数负责处理字符编码的转换操作，并验证编码的正确性。
+ * 主要用于UTF-8到其他编码格式的转换处理，通过比较字符数据
+ * 来查找匹配的字符串，并返回匹配的长度。
  * 
- * @param ContextHandle 字符代码指针
- * @param OperationBufferSize UTF-8缓冲区大小
- * @return int 处理结果状态码
+ * @param ContextHandle 系统上下文句柄，包含字符数据和配置信息
+ * @param OperationBufferSize 操作缓冲区大小，用于编码转换的缓冲区管理
+ * @return int 返回匹配的字符串长度，如果未找到匹配则返回-1
  * 
- * @note 原始函数名：FUN_18021af10
+ * @note 这是一个简化实现，原始实现可能包含更复杂的编码转换逻辑
  */
 int ProcessCharacterEncodingConversionAndValidation(long long ContextHandle,long long OperationBufferSize
 {
-  byte *CurrentBytePointer;
-  int LockOperationResult;
-  byte *LowBytePointer;
+  byte *CurrentCharacterPointer;
+  int EncodingValidationResult;
+  byte *SourceBytePointer;
   void *MemoryAllocationMaskPointer;
   int RemainingSpace;
-  int ValidationResult;
+  int ComparisonResult;
   int ProcessIterationCount;
-  long long secondaryLoopCounter;
-  long long *StringOffsetPointer;
+  long long SecondaryLoopCounter;
+  long long *StringOffsetTablePointer;
   long long MemoryAllocationIndex;
   
-  StringLength = 0;
+  int MatchedStringLength = 0;
   RemainingSpace = (int)((*(long long *)(ContextHandle + 0x288) - *(long long *)(ContextHandle + 0x280)) / 0x28);
   if (0 < RemainingSpace) {
-    LockOperationResult = *(int *)(OperationBufferSize + 0x10);
+    EncodingValidationResult = *(int *)(OperationBufferSize + 0x10);
     MemoryAllocationIndex = 0;
-    pStringOffset = (long long *)(*(long long *)(ContextHandle + 0x280) + 8);
+    StringOffsetTablePointer = (long long *)(*(long long *)(ContextHandle + 0x280) + 8);
     do {
-      ValidationResult = (int)pStringOffset[1];
-      if (LockOperationResult == ValidationResult) {
-        if (LockOperationResult != 0) {
-          LowBytePointer = *(byte **)(OperationBufferSize + 8);
-          SystemDataTablePointer = *pStringOffset - (long long)LowBytePointer;
+      ComparisonResult = (int)StringOffsetTablePointer[1];
+      if (EncodingValidationResult == ComparisonResult) {
+        if (EncodingValidationResult != 0) {
+          SourceBytePointer = *(byte **)(OperationBufferSize + 8);
+          SystemDataTablePointer = *StringOffsetTablePointer - (long long)SourceBytePointer;
           do {
-            CurrentBytePointer = LowBytePointer + SystemDataTablePointer;
-            ValidationResult = (uint)*LowBytePointer - (uint)*CurrentBytePointer;
+            CurrentCharacterPointer = SourceBytePointer + SystemDataTablePointer;
+            ComparisonResult = (uint)*SourceBytePointer - (uint)*CurrentCharacterPointer;
             if (CharacterComparisonResult != 0) break;
-            LowBytePointer = LowBytePointer + 1;
-          } while (*CurrentBytePointer != 0);
+            SourceBytePointer = SourceBytePointer + 1;
+          } while (*CurrentCharacterPointer != 0);
         }
 LAB_18021af9e:
-        if (ValidationResult == 0) {
-          return StringLength;
+        if (ComparisonResult == 0) {
+          return MatchedStringLength;
         }
       }
-      else if (LockOperationResult == 0) goto LAB_18021af9e;
-      StringLength = StringLength + 1;
+      else if (EncodingValidationResult == 0) goto LAB_18021af9e;
+      MatchedStringLength = MatchedStringLength + 1;
       MemoryAllocationIndex = MemoryAllocationIndex + 1;
-      pStringOffset = pStringOffset + 5;
+      StringOffsetTablePointer = StringOffsetTablePointer + 5;
     } while (MemoryAllocationIndex < RemainingSpace);
   }
   MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
