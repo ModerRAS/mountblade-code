@@ -27748,73 +27748,73 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
     ProcessIdentifier = 0;
     MemoryContext = NULL;
     OperationStatus = 0;
-    SystemInfoStackProcessingStatusFlag = (int64_t *)CONCAT44(SystemInfoStackProcessingStatusFlag.HighPart,0x10);
-    SystemInfoValidationStatus = GetComputerNameA(SystemInfoApplicationHandle,&SystemInfoStackProcessingStatusFlag);
-    if (SystemInfoValidationStatus == 0) {
+    StackProcessingStatusFlag = (int64_t *)CONCAT44(StackProcessingStatusFlag.HighPart,0x10);
+    ValidationStatus = GetComputerNameA(ApplicationHandle,&StackProcessingStatusFlag);
+    if (ValidationStatus == 0) {
       CoreEngineInitializeNetworkComponent(&NetworkComponentConfigTemplate);
     }
     else {
-      if (0xf < ((uint64_t)SystemInfoStackProcessingStatusFlag & 0xffffffff)) goto CheckSystemInfoBounds;
-      *(uint8_t *)((int64_t)SystemInfoApplicationHandle + ((uint64_t)SystemInfoStackProcessingStatusFlag & 0xffffffff)) = 0;
-      (**(code **)(SystemInfoSecurityContext + 0x10))(&SystemInfoSecurityContext,SystemInfoApplicationHandle);
+      if (0xf < ((uint64_t)StackProcessingStatusFlag & 0xffffffff)) goto CheckSystemInfoBounds;
+      *(uint8_t *)((int64_t)ApplicationHandle + ((uint64_t)StackProcessingStatusFlag & 0xffffffff)) = 0;
+      (**(code **)(SecurityContext + 0x10))(&SecurityContext,ApplicationHandle);
     }
-    SystemInfoStackProcessingStatusFlag = (int64_t *)CONCAT44(SystemInfoStackProcessingStatusFlag.HighPart,0x101);
-    SystemInfoValidationStatus = GetUserNameA(SystemInfoProcessingBuffer,&SystemInfoStackProcessingStatusFlag);
-    if (SystemInfoValidationStatus == 0) {
+    StackProcessingStatusFlag = (int64_t *)CONCAT44(StackProcessingStatusFlag.HighPart,0x101);
+    ValidationStatus = GetUserNameA(ProcessingBuffer,&StackProcessingStatusFlag);
+    if (ValidationStatus == 0) {
       CoreEngineInitializeNetworkComponent(&NetworkComponentConfigTemplateSecondary);
     }
     else {
-      if (0x100 < ((uint64_t)SystemInfoStackProcessingStatusFlag & 0xffffffff)) {
+      if (0x100 < ((uint64_t)StackProcessingStatusFlag & 0xffffffff)) {
         CoreEngineSetupNetworkConnection();
 CheckSystemInfoBounds:
         CoreEngineSetupNetworkConnection();
-        SystemInfoCallbackHandler = (void *)swi(3);
-        (*SystemInfoCallbackHandler)();
+        CallbackHandler = (void *)swi(3);
+        (*CallbackHandler)();
         return;
       }
-      SystemInfoProcessingBuffer[(uint64_t)SystemInfoStackPointer & 0xffffffff] = 0;
-      (**(code **)(SystemInfoStackSecondaryPointer + 0x10))(&SystemInfoStackSecondaryPointer,SystemInfoProcessingBuffer);
+      ProcessingBuffer[(uint64_t)StackPointer & 0xffffffff] = 0;
+      (**(code **)(StackSecondaryPointer + 0x10))(&StackSecondaryPointer,ProcessingBuffer);
     }
-    SystemInfoStackPrimaryPointer = &CoreEngineDataTemplate;
-    if (SystemInfoStackAlternativePointer != NULL) {
-      SystemInfoStackPrimaryPointer = SystemInfoStackAlternativePointer;
+    PrimaryStackPointer = &CoreEngineDataTemplate;
+    if (StackAlternativePointer != NULL) {
+      PrimaryStackPointer = StackAlternativePointer;
     }
-    SystemInfoStackTertiaryPointer = &CoreEngineDataTemplate;
-    if (SystemInfoStackSecondaryAlternativePointer != NULL) {
-      SystemInfoStackTertiaryPointer = SystemInfoStackSecondaryAlternativePointer;
+    TertiaryStackPointer = &CoreEngineDataTemplate;
+    if (StackSecondaryAlternativePointer != NULL) {
+      TertiaryStackPointer = StackSecondaryAlternativePointer;
     }
-    SystemInfoStackQuaternaryPointer = &SystemInfoPrimaryTemplate;
+    StackQuaternaryPointer = &SystemInfoPrimaryTemplate;
     CoreEngineApplySystemConfiguration(SystemConfigHandle,5,0xffffffffffffffff,4);
-    RenderConfigSystemPointer = &RenderConfigManager;
-    SecurityBufferSystemPointer = SystemInfoSecurityBuffer;
-    SystemInfoStackProcessingConfigurationFlag = 0;
-    SystemInfoSecurityBuffer[0] = 0;
-    SystemInfoStackProcessingInitializationFlag = 2;
-    CoreEngineInitializeSystemInfoHandler(&RenderConfigSystemPointer,&SystemInfoHandlerTemplate,0x130a7);
-    SystemInfoStackTertiaryPointer = &CoreEngineDataTemplate;
-    if (SecurityBufferSystemPointer != NULL) {
-      SystemInfoStackTertiaryPointer = SecurityBufferSystemPointer;
+    RenderConfigPointer = &RenderConfigManager;
+    SecurityBufferPointer = SecurityBuffer;
+    StackProcessingConfigurationFlag = 0;
+    SecurityBuffer[0] = 0;
+    StackProcessingInitializationFlag = 2;
+    CoreEngineInitializeSystemInfoHandler(&RenderConfigPointer,&SystemInfoHandlerTemplate,0x130a7);
+    TertiaryStackPointer = &CoreEngineDataTemplate;
+    if (SecurityBufferPointer != NULL) {
+      TertiaryStackPointer = SecurityBufferPointer;
     }
-    SystemInfoStackQuaternaryPointer = &SystemInfoSecondaryTemplate;
+    StackQuaternaryPointer = &SystemInfoSecondaryTemplate;
     CoreEngineApplySystemConfiguration(SystemConfigHandle,5,0xffffffffffffffff,4);
-    SystemInfoStackProcessingInitializationFlag = 0;
-    RenderConfigSystemPointer = &ThreadLocalStorageTemplate;
-    SystemInfoStackSecondaryPointer = &SystemNullTemplate;
-    if (SystemInfoStackAlternativePointer != NULL) {
+    StackProcessingInitializationFlag = 0;
+    RenderConfigPointer = &ThreadLocalStorageTemplate;
+    StackSecondaryPointer = &SystemNullTemplate;
+    if (StackAlternativePointer != NULL) {
         ProcessSystemEventHandling();
     }
-    SystemInfoStackAlternativePointer = NULL;
-    SystemInfoStackProcessingFlag = SystemInfoStackProcessingFlag & 0xffffffff00000000;
-    SystemInfoStackSecondaryPointer = &ThreadLocalStorageTemplate;
-    SystemInfoStackNullTemplatePointer = &SystemNullTemplate;
-    if (SystemInfoStackSecondaryAlternativePointer != NULL) {
+    StackAlternativePointer = NULL;
+    StackProcessingFlag = StackProcessingFlag & 0xffffffff00000000;
+    StackSecondaryPointer = &ThreadLocalStorageTemplate;
+    StackNullTemplatePointer = &SystemNullTemplate;
+    if (StackSecondaryAlternativePointer != NULL) {
         ProcessSystemEventHandling();
     }
-    SystemInfoStackSecondaryAlternativePointer = NULL;
-    SystemInfoStackMemoryFlag = SystemInfoStackMemoryFlag & 0xffffffff00000000;
-    SystemInfoStackNullTemplatePointer = &ThreadLocalStorageTemplate;
-    SystemInfoStackThreadLocalStoragePointer = &SystemNullTemplate;
-    if (SystemInfoStackSecurityFlag != 0) {
+    StackSecondaryAlternativePointer = NULL;
+    StackProcessingFlag = StackProcessingFlag & 0xffffffff00000000;
+    StackNullTemplatePointer = &ThreadLocalStorageTemplate;
+    StackThreadLocalStoragePointer = &SystemNullTemplate;
+    if (StackSecurityFlag != 0) {
         ProcessSystemEventHandling();
     }
     SystemInfoStackSecurityFlag = 0;
