@@ -1195,7 +1195,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ValidationResult pValidationResult                // 验证结果
 #define SystemRegister IntegerValue9                       // 系统寄存器
 #define ProcessingParameter StackProcessingParameter58    // 处理参数
-#define UnicodeCodePoint CalculatedCodePoint              // Unicode码点
+#define UnicodeCodePoint CalculatedUnicodeCodePoint              // 计算出的Unicode码点
+#define EngineParameterInverseValueA PrimaryEngineParameterInverseValue // 主引擎参数逆值
+#define EngineParameterInverseValueB SecondaryEngineParameterInverseValue // 次引擎参数逆值
+#define SystemEventTemplatePointer SystemEventTemplateDataPointer // 系统事件模板数据指针
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
 // 新增系统配置偏移量常量
@@ -1425,9 +1428,16 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 系统模板和异常处理变量语义化宏定义
 #define SystemNullTemplate SystemNullDataTemplate          // 系统空数据模板
 #define ThreadLocalStorageTemplate ThreadLocalStorageDataTemplate // 线程本地存储数据模板
+#define SystemCharacterStatusBufferPointer4e8 PrimarySystemCharacterStatusBuffer   // 主系统字符状态缓冲区指针
+#define SystemCharacterStatusBufferPointer488 SecondarySystemCharacterStatusBuffer // 次系统字符状态缓冲区指针
+#define CharacterStatusBufferPointer488 PrimaryCharacterStatusBuffer             // 主字符状态缓冲区指针
+#define CharacterStatusBufferPointer428 SecondaryCharacterStatusBuffer           // 次字符状态缓冲区指针
 #define ExceptionList SystemExceptionList                  // 系统异常列表
 #define BufferAllocationComplete MemoryAllocationCompleteLabel // 内存分配完成标签
 #define CoreEngineDataTemplate CoreEngineSystemDataTemplate    // 核心引擎系统数据模板
+#define StackBuffer678 SystemEventProcessingStackBuffer        // 系统事件处理栈缓冲区
+#define ThreadHandle1 PrimaryThreadHandle                       // 主线程句柄
+#define ThreadHandle2 SecondaryThreadHandle                     // 次线程句柄
 
 // 系统函数语义化宏定义
 #define CONCAT71 Concatenate71BitValues                    // 连接71位值
