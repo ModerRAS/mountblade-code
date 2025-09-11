@@ -1443,9 +1443,9 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackPointer2e0 SystemStackPointer2e0                   // 系统栈指针2e0
 #define SystemStackOffset2d8 SystemStackOffset2d8                     // 系统栈偏移量2d8
 #define SystemStackUnsigned270 SystemUnicodeValidationStatus     // 系统栈无符号270
-#define SystemStackOffset268 lStack_268                     // 系统栈偏移量268
-#define SystemStackOffset258 lStack_258                     // 系统栈偏移量258
-#define SystemStackOffset248 lStack_248                     // 系统栈偏移量248
+#define SystemStackOffset268 SystemCharacterDataOffset            // 系统栈偏移量268
+#define SystemStackOffset258 SystemStringDataOffset               // 系统栈偏移量258
+#define SystemStackOffset248 SystemUnicodeDataOffset              // 系统栈偏移量248
 #define SystemStackUnsigned1e0 SystemMemoryAllocationStatus      // 系统栈无符号1e0
 #define SystemStackUnsigned1d0 SystemContextHandleStatus         // 系统栈无符号1d0
 
@@ -1454,10 +1454,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackUnsigned3e4 SystemExceptionHandlingStatus      // 系统栈无符号3e4
 #define SystemStackPointer3e0 SystemMemoryPoolPointer             // 系统栈指针3e0
 #define SystemStackPointer3d8 SystemResourceManagerPointer         // 系统栈指针3d8
-#define SystemStackOffset3d0 lStack_3d0                     // 系统栈偏移量3d0
+#define SystemStackOffset3d0 SystemMemoryManagementOffset       // 系统栈偏移量3d0
 #define SystemStackUnsigned3c8 SystemValidationResultCount      // 系统栈无符号3c8
 #define SystemStackUnsigned3c0 SystemOperationStatusCode        // 系统栈无符号3c0
-#define SystemStackOffset3b8 lStack_3b8                     // 系统栈偏移量3b8
+#define SystemStackOffset3b8 SystemResourceManagementOffset     // 系统栈偏移量3b8
 #define SystemStackPointer3b0 SystemCharacterEncodingPointer     // 系统栈指针3b0
 #define SystemStackPointer3a8 SystemUnicodeConversionPointer      // 系统栈指针3a8
 #define SystemStackUnsigned3a0 SystemStringEncodingStatus         // 系统栈无符号3a0
@@ -1470,10 +1470,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackPointer350 SystemEventHandlerPointer          // 系统栈指针350
 #define SystemStackInteger340 SystemOperationResultCode          // 系统栈整数340
 #define SystemStackUnsigned338 SystemContextSwitchStatus         // 系统栈无符号338
-#define SystemStackOffset310 lStack_310                     // 系统栈偏移量310
-#define SystemStackUnsigned298 uStack_298                   // 系统栈无符号298
-#define SystemStackUnsigned290 uStack_290                   // 系统栈无符号290
-#define SystemStackPointer270 plStack_270                   // 系统栈指针270
+#define SystemStackOffset310 SystemThreadLocalStorageOffset      // 系统栈偏移量310
+#define SystemStackUnsigned298 SystemInitializationStatus          // 系统栈无符号298
+#define SystemStackUnsigned290 SystemConfigurationStatus         // 系统栈无符号290
+#define SystemStackPointer270 SystemExceptionHandlingPointer      // 系统栈指针270
 
 // 新增栈变量语义化宏定义
 #define StackFloatValue14 fStackX_14                        // 栈浮点值14
@@ -239696,7 +239696,7 @@ LAB_18019797c:
   long long BufferStatus;
   
   *ContextHandle = &SystemConfigurationTemplatePrimary;
-  FUN_1801a2ea0();
+  ProcessSystemStateInitialization();
   CharacterStatusBuffer = (void *)ContextHandle[0x66c];
   if (CharacterStatusBuffer != NULL) {
     BufferStatus = __RTCastToVoid(CharacterStatusBuffer);
