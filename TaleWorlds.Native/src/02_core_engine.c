@@ -81160,7 +81160,7 @@ StringProcessingCompleteLabel:
             SecondaryProcessingStatusFlag = StringProcessingStatus;
             StringProcessingStatus = CharacterStatusBufferCurrent;
           } while (CharacterStatusBufferCurrent != NULL);
-          if (StringProcessingStatus == OperationBufferSize) goto LAB_18009abe9;
+          if (StringProcessingStatus == OperationBufferSize) goto StringProcessingStatusLabel;
           if (*(int *)(StringProcessingStatus + 6) != 0) {
             if (SystemStackRegisterBuffer != 0) {
               CurrentBytePointer0 = (byte *)StringProcessingStatus[5];
@@ -81174,7 +81174,7 @@ StringProcessingCompleteLabel:
               } while (ProcessedCharacter != 0);
               if ((int)(StringComparisonByte - ProcessedCharacter) < 1) goto StringComparisonResultLabel;
             }
-            goto LAB_18009abe9;
+            goto StringProcessingStatusLabel;
           }
         }
 StringComparisonResultLabel:
