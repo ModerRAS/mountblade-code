@@ -4068,7 +4068,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FloatStatusFlagOffset 0x35                 // 浮点状态标志偏移量
 #define DataPointerMultiplier 4                    // 数据指针乘数
 #define DataPointerMultiplierSecondary 8           // 数据指针次级乘数
-#define ExceptionHandlerCallbackOffsetPrimary 0x10     // 异常处理回调偏移量10
+// 已在前面定义为ExceptionHandlerCallbackOffsetPrimary
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
