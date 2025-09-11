@@ -125490,34 +125490,34 @@ void ProcessUIDataBufferTransfer(UIHandle uiContext,UIDword dataSource,UIHandle 
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte uiDataBuffer178 [32];
+  UIByte *uiDataPointer158;
+  longlong uiMemoryFlag148;
+  UIHandle uiResourceHandle140;
+  UIByte uiDataBuffer138 [256];
+  ulonglong uiStackEncryptionKey38;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
+  uiStackEncryptionKey38 = XorEncryptionKey ^ (ulonglong)uiDataBuffer178;
+  uiMemoryFlag148 = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext,&uiResourceHandle140,&uiMemoryFlag148);
   if (operationResult == 0) {
-    operationResult = FUN_1807468d0(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073a7fd;
+    operationResult = ProcessUIDataBufferValidation(uiResourceHandle140,dataSource,targetBuffer);
+    if (operationResult == 0) goto ReleaseUIMemoryAndExecuteRenderTask;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b7d0(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074ba80(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    dataValidationResult = ProcessUIBufferCopyOperation(uiDataBuffer138,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(uiDataBuffer138 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ProcessUIDataBufferFinalize(uiDataBuffer138 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
+    uiDataPointer158 = uiDataBuffer138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextRenderController);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextRenderController);
   }
-FUN_18073a7fd:
-  if (stackLong148 != 0) {
+ReleaseUIMemoryAndExecuteRenderTask:
+  if (uiMemoryFlag148 != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(uiStackEncryptionKey38 ^ (ulonglong)uiDataBuffer178);
 }
 
 
