@@ -162,6 +162,7 @@
 #define MemoryProcessingFailed -4
 #define MemoryAllocationSizeExceeded 0x11
 #define MemoryValidationStatusFailed 0x1c
+#define DataValidationSecurityCheckRequired 0x12
 
 // 内存边界检查常量
 #define MemoryBufferMinimumSize 0x36                          // 内存缓冲区最小尺寸 (54字节)
@@ -42813,7 +42814,7 @@ uint64_t ValidateSystemMemoryStatus(void)
       memoryValidationStatus = 0;
     }
     else if (*(int *)(memoryBufferContext[1] + SystemDataSecondaryOffset18) == 0) {
-      memoryDataValue = GetMemoryAddressA0(*memoryBufferContext,memorysystemContext + 0x40);
+      memoryDataValue = GetMemoryAddressA0(*memoryBufferContext,memorysystemContext + MemorySystemContextOffset64);
       memoryValidationStatus = (uint64_t)memoryDataValue;
     }
     if ((int)memoryValidationStatus == 0) {
