@@ -127321,32 +127321,48 @@ void ExecuteUIRenderTaskWithLayoutEngine(uint32_t param6, uint64_t stackParamete
 
 
 
- void FUN_18073b695(void)
-void FUN_18073b695(void)
+ /**
+ * @brief 处理UI数据验证和初始化
+ * 
+ * 该函数负责处理UI数据的验证和初始化操作。它会执行一系列的数据处理步骤，
+ * 包括数据验证、缓冲区控制处理和浮点数目标处理。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: FUN_18073b695
+ * @note 函数内部使用了栈缓冲区进行数据处理
+ * @note 最后会执行UI上下文数据操作，该操作不会返回
+ * 
+ * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ProcessUIDataWithFloatTarget, ExecuteUIContextDataOperation
+ */
+void ProcessUIDataValidationAndInitialization(void)
 
 {
-  int operationResult;
-  int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  int DataProcessingStatus;
+  int DataValidationResult;
+  UIDword OriginalRegisterEBX;
+  UIDword OriginalRegisterESI;
+  UIByte StackDataBuffer[64];
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIDataWithFloatTarget(&stack0x00000040 + processingResult,0x100 - processingResult);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIDataWithFloatTarget(&stack0x00000040 + processingResult,0x100 - processingResult);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIDataWithFloatTarget(&stack0x00000040 + processingResult,0x100 - processingResult);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataWithFloatTarget(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
-                     WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  // 初始化数据验证和缓冲区处理
+  DataProcessingStatus = ValidateUIDataAndInitialize(StackDataBuffer, 0x100, OriginalRegisterEBX);
+  DataValidationResult = ProcessUIBufferDataWithControl(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus, &UIBufferControlData);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIDataWithFloatTarget(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIBufferDataWithControl(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus, &UIBufferControlData);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIDataWithFloatTarget(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIBufferDataWithControl(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus, &UIBufferControlData);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIDataWithFloatTarget(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus);
+  DataProcessingStatus = DataProcessingStatus + DataValidationResult;
+  DataValidationResult = ProcessUIBufferDataWithControl(StackDataBuffer + DataProcessingStatus, 0x100 - DataProcessingStatus, &UIBufferControlData);
+  ProcessUIDataWithFloatTarget(StackDataBuffer + (DataProcessingStatus + DataValidationResult), 0x100 - (DataProcessingStatus + DataValidationResult));
+  
+  // 执行UI上下文数据操作（此操作不会返回）
+  ExecuteUIContextDataOperation(OriginalRegisterESI, 1);
 }
 
 
