@@ -204,7 +204,7 @@
 #define FUN_1801899b0 ProcessCharacterCodeBufferData                      // 处理字符代码缓冲区数据
 #define FUN_180189aa0 ProcessCharacterCodeDataConversion                  // 处理字符代码数据转换
 #define FUN_180189b30 ProcessCharacterCodeTripleData                      // 处理字符代码三重数据
-#define FUN_18014f810 GetCharacterBuffer80                                // 获取字符缓冲区80
+#define FUN_18014f810 GetCharacterProcessingBuffer                                // 获取字符缓冲区80
 #define FUN_18014f840 GetProcessingPointer88                              // 获取处理指针88
 #define FUN_18019c480 ProcessCharacterCodeData                            // 处理字符代码数据
 #define FUN_180204430 ProcessCharacterBufferAndStringOperations           // 处理字符缓冲区和字符串操作
@@ -1238,7 +1238,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 栈变量语义化宏定义
 #define StackPointer88 pcStack_88                          // 栈指针88
-#define CharacterBuffer80 CharacterBuffer80               // 字符缓冲区80
+#define CharacterProcessingBuffer CharacterProcessingBuffer               // 字符缓冲区80
 #define StackPointerC0 pcStack_c0                          // 栈指针C0
 #define StackPointerB8 pcStack_b8                          // 栈指针B8
 #define StackPointer110 ProgramCounterStack110                        // 栈指针110
@@ -2094,7 +2094,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessContextHandleBufferData FUN_1801899b0                // 处理字符代码缓冲区数据
 #define ProcessContextHandleDataConversion FUN_180189aa0            // 处理字符代码数据转换
 #define ProcessContextHandleTripleData FUN_180189b30               // 处理字符代码三重数据
-#define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
+#define GetCharacterProcessingBuffer FUN_18014f810                       // 获取字符缓冲区80
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
 #define ProcessContextHandleData FUN_18019c480                    // 处理字符代码数据
 #define ProcessCharacterEncodingAndStringFormatting FUN_18013d22f  // 处理字符编码和字符串格式化
@@ -28882,10 +28882,10 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
       }
       ValidateEngineConfiguration(ContextHandleTablePointer,&ValidationConfigBuffer);
       SystemEventPointer = &SystemNullTemplate;
-      if (CharacterBuffer80 != (char *)0x0) {
+      if (CharacterProcessingBuffer != (char *)0x0) {
           ProcessSystemEventHandling();
       }
-      CharacterBuffer80 = (char *)0x0;
+      CharacterProcessingBuffer = (char *)0x0;
       SystemContextHandle = SystemContextHandle & 0xffffffff00000000;
       SystemEventPointer = &ThreadLocalStorageTemplate;
       SystemPrimaryReturnCode = MemoryAddressMaskPointer + 1;
@@ -68951,8 +68951,8 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   CopyDataStructureWithSecurityCheck(UnicodeCodePoint,&lStack_240);
   SystemStackRegisterBuffer[0] = UnicodeCodePoint;
   if (SystemOperationStatusMask != AdditionalParameter2) {
-    if (CharacterBuffer80 != (code *)0x0) {
-      (*CharacterBuffer80)(SystemOperationStatusMask,0,0);
+    if (CharacterProcessingBuffer != (code *)0x0) {
+      (*CharacterProcessingBuffer)(SystemOperationStatusMask,0,0);
     }
     CharacterPointer = *(code **)(AdditionalParameter2 + 0x10);
     if (CharacterPointer != (code *)0x0) {
@@ -68960,7 +68960,7 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
       CharacterPointer = *(code **)(AdditionalParameter2 + 0x10);
     }
     pcStack_78 = *(code **)(AdditionalParameter2 + 0x18);
-    CharacterBuffer80 = CharacterPointer;
+    CharacterProcessingBuffer = CharacterPointer;
   }
   SystemDataTablePointer = *(long long *)(CleanupContextStorage + 8);
   SystemDataRegistry = GetSystemSystemDataRegistry(SystemDataTablePointer + 200);
@@ -68972,8 +68972,8 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
     __Throw_C_error_std__YAXH_Z(LockOperationResult);
   }
   DataBufferPointer = (void *)SystemOperationStatusMask;
-  if (CharacterBuffer80 != (code *)0x0) {
-    (*CharacterBuffer80)(SystemOperationStatusMask,0,0);
+  if (CharacterProcessingBuffer != (code *)0x0) {
+    (*CharacterProcessingBuffer)(SystemOperationStatusMask,0,0);
   }
   DataBufferPointer = SystemStackRegisterBuffer;
   if (SystemSystemFunctionPointer != (code *)0x0) {
@@ -181458,7 +181458,7 @@ void ProcessContextHandleSizeAndSystemProcessFlagBuffer(long long ContextHandle,
   long long CoreEngineSignedValueA0;
   uint8_t *apSystemOperationValidationFlag [2];
   code *pcStack_88;
-  code *CharacterBuffer80;
+  code *CharacterProcessingBuffer;
   uint8_t aStackProcessingValue78 [16];
   code *SystemFunctionPointer68;
   code *ProgramCounterStack60;
@@ -181511,7 +181511,7 @@ void ProcessContextHandleSizeAndSystemProcessFlagBuffer(long long ContextHandle,
     ProcessSystemOperationFlags(aCoreEngineValueC0,SystemProcessFlagBuffer);
     CoreEngineSignedValueA0 = CoreEngineSignedValueC8;
     StackPointer88 = GetProcessingPointer88;
-    CharacterBuffer80 = GetCharacterBuffer80;
+    CharacterProcessingBuffer = GetCharacterProcessingBuffer;
     apSystemOperationValidationFlag[0] = (uint8_t *)MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
     *(void *)(apSystemOperationValidationFlag[0] + 0x10) = 0;
     *(code **)(apSystemOperationValidationFlag[0] + 0x18) = _guard_check_icall;
@@ -237660,8 +237660,8 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   ContextHandle[0x1041] = 0;
   ContextHandle[0x1042] = 0;
   ContextHandle[0x1043] = 0;
-  FUN_1802e5470(ContextHandle + 0x1045);
-  FUN_1801b8150();
+  InitializeSystemFileSystem(ContextHandle + 0x1045);
+  InitializeSystemRenderer();
   ContextHandle[0xc0e2] = 0;
   ContextHandle[0xc0e3] = 0;
   ContextHandle[0xc0e4] = 0;
@@ -289404,7 +289404,7 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle,long long Operatio
   int *piStack_a0;
   long long *aSystemStackPointer [2];
   code *pcStack_88;
-  code *CharacterBuffer80;
+  code *CharacterProcessingBuffer;
   uint64_t StackProcessingValue78;
   
   StackProcessingValue78 = 0xfffffffffffffffe;
@@ -289555,7 +289555,7 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle,long long Operatio
     SystemCleanupFlagG = &AdditionalParameter1;
     pCoreEngineIntegerValueC8 = aiStackX_18;
     pcStack_88 = FUN_180239720;
-    CharacterBuffer80 = FUN_180239610;
+    CharacterProcessingBuffer = FUN_180239610;
     aSystemContextRegister[0] = OperationBufferSize;
     pCoreEngineSignedValueE8 = ContextHandle;
     aSystemStackPointer[0] = (long long *)MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
