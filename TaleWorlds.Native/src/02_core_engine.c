@@ -239316,7 +239316,7 @@ LAB_1801974aa:
           do {
             SystemDataRegistry = *(long long *)(*(long long *)(BufferStatus + 0x1c0) + MemoryPoolBlockSize * 8);
             if ((*(uint *)(SystemDataRegistry + 0x2ac) & 0x20000000) == 0) {
-              FUN_1802ebcb0(SystemDataRegistry,Utf16Char,1);
+              ProcessSystemCharacterTransformation(SystemDataRegistry,Utf16Char,1);
             }
             MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
           } while (MemoryPoolBlockSize < ValidationResult);
@@ -239329,7 +239329,7 @@ LAB_1801974aa:
     }
     if (*(short *)(BufferStatus + 0x2b0) != *(short *)(BufferStatus + 0x2b4)) {
       if (*(char *)(BufferStatus + 0x2d8) == '\0') {
-        FUN_1802e7e20(BufferStatus);
+        ProcessSystemBufferOperation(BufferStatus);
       }
       else {
         FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
@@ -239416,7 +239416,7 @@ LAB_180197948:
           do {
             SystemDataRegistry = *(long long *)(*(long long *)(BufferStatus + 0x1c0) + MemoryPoolBlockSize * 8);
             if ((*(uint *)(SystemDataRegistry + 0x2ac) & 0x20000000) == 0) {
-              FUN_1802ebcb0(SystemDataRegistry,Utf16Char,1);
+              ProcessSystemCharacterTransformation(SystemDataRegistry,Utf16Char,1);
             }
             MemoryPoolBlockSize = MemoryPoolBlockSize + 1;
           } while (MemoryPoolBlockSize < ValidationResult);
@@ -239430,7 +239430,7 @@ LAB_18019797c:
     }
     if (*(short *)(BufferStatus + 0x2b0) != *(short *)(BufferStatus + 0x2b4)) {
       if (*(char *)(BufferStatus + 0x2d8) == '\0') {
-        FUN_1802e7e20(BufferStatus);
+        ProcessSystemBufferOperation(BufferStatus);
       }
       else {
         FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
