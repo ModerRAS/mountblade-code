@@ -217671,49 +217671,49 @@ void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64
 #define ProcessSystemDataValidationAndCharacterEncoding FUN_18017b480
 void ProcessSystemDataValidationAndCharacterEncoding(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer)
 {
-  long long *ContextHandle;
-  long long BufferStatus;
+  long long *SystemContextPointer;
+  long long MemoryAllocationStatus;
   unsigned long long UnicodeCodePoint;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
   long long MemoryBoundaryEnd;
-  unsigned long long SystemChecksum;
+  unsigned long long SystemValidationChecksum;
   
-  SystemChecksum = (long long)Utf8SourcePointer - (long long)OperationBufferSize >> 3;
-  if ((unsigned long long)(ContextHandle[2] - *ContextHandle >> 3) < SystemChecksum) {
-    if (SystemChecksum == 0) {
-      BufferStatus = 0;
+  SystemValidationChecksum = (long long)Utf8SourcePointer - (long long)OperationBufferSize >> 3;
+  if ((unsigned long long)(ContextHandle[2] - *ContextHandle >> 3) < SystemValidationChecksum) {
+    if (SystemValidationChecksum == 0) {
+      MemoryAllocationStatus = 0;
     }
     else {
-      BufferStatus = BufferAllocate(MemoryPoolManager,SystemChecksum * 8,(char)ContextHandle[3]);
+      MemoryAllocationStatus = BufferAllocate(MemoryPoolManager,SystemValidationChecksum * 8,(char)ContextHandle[3]);
     }
     if (OperationBufferSize != Utf8SourcePointer) {
-      MemoryBoundaryEnd = BufferStatus - (long long)OperationBufferSize;
+      MemoryBoundaryEnd = MemoryAllocationStatus - (long long)OperationBufferSize;
       do {
-        ContextHandle = (long long *)*ContextHandleSize;
-        *(long long **)(MemoryBoundaryEnd + (long long)OperationBufferSize) = ContextHandle;
-        if (ContextHandle != (long long *)0x0) {
-          (**(code **)(*ContextHandle + 0x28))();
+        SystemContextPointer = (long long *)*ContextHandleSize;
+        *(long long **)(MemoryBoundaryEnd + (long long)OperationBufferSize) = SystemContextPointer;
+        if (SystemContextPointer != (long long *)0x0) {
+          (**(code **)(*SystemContextPointer + 0x28))();
         }
         OperationBufferSize = OperationBufferSize + 1;
       } while (OperationBufferSize != Utf8SourcePointer);
     }
-    ContextHandle = (long long *)ContextHandle[1];
-    MemoryBlockListHead = (long long *)*ContextHandle;
-    if (MemoryBlockListHead != ContextHandle) {
+    SystemContextPointer = (long long *)ContextHandle[1];
+    MemoryBlockListHead = (long long *)*SystemContextPointer;
+    if (MemoryBlockListHead != SystemContextPointer) {
       do {
         if ((long long *)*MemoryBlockListHead != (long long *)0x0) {
           (**(code **)(*(long long *)*MemoryBlockListHead + 0x38))();
         }
         MemoryBlockListHead = MemoryBlockListHead + 1;
-      } while (MemoryBlockListHead != ContextHandle);
-      MemoryBlockListHead = (long long *)*ContextHandle;
+      } while (MemoryBlockListHead != SystemContextPointer);
+      MemoryBlockListHead = (long long *)*SystemContextPointer;
     }
     if (MemoryBlockListHead != (long long *)0x0) {
         CoreEngineFreeSystemMemory(MemoryBlockListHead);
     }
-    MemoryBoundaryEnd = BufferStatus + SystemChecksum * 8;
-    *ContextHandle = BufferStatus;
+    MemoryBoundaryEnd = MemoryAllocationStatus + SystemValidationChecksum * 8;
+    *ContextHandle = MemoryAllocationStatus;
     ContextHandle[2] = MemoryBoundaryEnd;
     ContextHandle[1] = MemoryBoundaryEnd;
   }
