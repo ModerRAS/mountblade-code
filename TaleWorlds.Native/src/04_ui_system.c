@@ -94541,6 +94541,18 @@ void UINoOperationHandler(void)
 #define ProcessUIDataFinalEx FUN_180739a6d                 // 处理最终UI数据扩展版本
 #define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
 
+// UI系统数据处理函数宏定义
+#define ProcessUITextureDataWithValidation FUN_18073e1b1   // 处理带验证的UI纹理数据
+#define ProcessUISystemCleanup FUN_18073e229              // 处理UI系统清理
+#define ProcessUIContextWithDataSource FUN_18073e24b      // 处理带数据源的UI上下文
+#define ProcessUIRenderTaskFinalize FUN_18073e330          // 处理UI渲染任务最终化
+#define ProcessUIBufferOperations FUN_18073e414            // 处理UI缓冲区操作
+#define ProcessUIContextWithTexture FUN_18073e446          // 处理带纹理的UI上下文
+#define ProcessUIDataWithTexture FUN_18073e470              // 处理带纹理的UI数据
+#define ProcessUIContextFinalCleanup FUN_18073e5ea         // 处理UI上下文最终清理
+#define ProcessUIResourcesFinalize FUN_18073e6ce            // 处理UI资源最终化
+#define ProcessUIContextWithParameters FUN_18073e700       // 处理带参数的UI上下文
+
 // 函数: void FUN_18071ace8(void)
 #define UIReturnEmptyFunction FUN_18071ace8
 /**
@@ -131978,8 +131990,22 @@ FUN_18073e229:
 
 
 
- void FUN_18073e1b1(void)
-void FUN_18073e1b1(void)
+ /**
+ * @brief 处理UI纹理数据验证
+ * 
+ * 该函数负责处理UI系统中的纹理数据验证操作，包括：
+ * - 处理纹理数据的大小验证
+ * - 执行缓冲区控制操作
+ * - 进行数据比较和验证
+ * - 执行上下文数据操作
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e1b1
+ * @note 该函数主要处理纹理数据的验证和缓冲区操作
+ * @see ProcessUITextureDataWithSize, ProcessUIBufferDataWithControl, ProcessUIDataAndCompare
+ */
+void ProcessUITextureDataWithValidation(void)
 
 {
   int operationResult;
@@ -131997,8 +132023,22 @@ void FUN_18073e1b1(void)
 
 
 
- void FUN_18073e229(void)
-void FUN_18073e229(void)
+ /**
+ * @brief 处理UI系统清理操作
+ * 
+ * 该函数负责处理UI系统的清理操作，包括：
+ * - 检查堆栈参数的有效性
+ * - 执行系统清理操作
+ * - 执行渲染任务处理
+ * - 管理系统资源的释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e229
+ * @note 该函数主要处理UI系统的清理和资源释放
+ * @see ProcessUISystemCleanup, ExecuteUIRenderTask
+ */
+void ProcessUISystemCleanup(void)
 
 {
   longlong stackParam00000038;
