@@ -41754,7 +41754,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   DataWord systemDataBuffer3;
   float finalCalculatedResult;
   
-  *(DataWord *)(dataPointer + 0x30) = registerContextValue;
+  *(DataWord *)(dataPointer + SystemDataRecordOffset30) = registerContextValue;
   if ((int)DestinationContext != 0) {
     return DestinationContext & SystemCleanupFlag;
   }
