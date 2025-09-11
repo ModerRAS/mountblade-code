@@ -2788,6 +2788,8 @@ typedef union {
 #define SecurityValidationPortOperationRequest 0x504f5250        // "PORP" - Port Operation Request  
 #define SecurityValidationJobOperationRequest 0x4a4f5250          // "JORP" - Job Operation Request
 #define SecurityValidationTipsProcessingOperation 0x54495053     // "TIPS" - Tips Processing Operation
+#define SecurityValidationInputKnowledgeBase 0x494b4e42          // "IKNB" - Input Knowledge Base
+#define SecurityValidationBufferImageProcessing 0x42495053        // "BIPS" - Buffer Image Processing
 
 // 异常处理上下文常量
 #define ExceptionHandlerPointerOffset 0x2b8
@@ -3061,6 +3063,15 @@ typedef union {
 #define ResourceStatusFlagOffset35 0x35                // 资源状态标志偏移量35
 #define SystemRegisterOffset40 0x40                    // 系统寄存器偏移量40
 #define ExceptionHandlerOffset80 0x80                  // 异常处理器偏移量80
+
+// CleanupSystemResources函数专用偏移量常量
+#define ResourceValidationFlagOffset3541 0x3541              // 资源验证标志偏移量3541 - 用于CleanupSystemResources函数
+#define ValidationContextOffset3538 0x3538                    // 验证上下文偏移量3538 - 用于CleanupSystemResources函数
+#define ValidationStatusPointerE0Offset 0xe0                  // 验证状态指针偏移量E0 - 用于CleanupSystemResources函数
+#define ExceptionHandlerContextF8Offset 0xf8                   // 异常处理上下文偏移量F8 - 用于CleanupSystemResources函数
+#define ExceptionHandlerContextF0Offset 0xf0                   // 异常处理上下文偏移量F0 - 用于CleanupSystemResources函数
+#define ResourceValidationCheckOffset 0x10                     // 资源验证检查偏移量 - 用于CleanupSystemResources函数
+#define ResourceDataPointerOffset20 0x20                       // 资源数据指针偏移量20 - 用于CleanupSystemResources函数
 
 // 内存操作基础常量
 #define MemoryOperationBaseAddress SystemFlagBit80         // 内存操作基础地址
@@ -34060,11 +34071,11 @@ void ProcessMultiSegmentDataPrimary(DataBuffer systemContext,int64_t DataBuffer)
 {
   int OperationResult;
   
-  OperationResult = OperateDataO0(systemContext,DataBuffer,4);
+  OperationResult = ReadDataFromBuffer(systemContext,DataBuffer,4);
   if (OperationResult == 0) {
-    OperationResult = OperateDataO0(systemContext,DataBuffer + 4,2);
+    OperationResult = ReadDataFromBuffer(systemContext,DataBuffer + 4,2);
     if (OperationResult == 0) {
-      OperationResult = OperateDataO0(systemContext,DataBuffer + 6,2);
+      OperationResult = ReadDataFromBuffer(systemContext,DataBuffer + 6,2);
       if (OperationResult == 0) {
         OperationResult = OperateDataO0(systemContext,DataBuffer + 8,8);
         if (OperationResult == 0) {
@@ -42989,7 +43000,7 @@ void ValidateDataParametersWithSecurity(int64_t DataContext, DataBuffer *Securit
   ByteFlag stackValidationBuffer [32];
   
   securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,SecurityValidationJobOperationRequest);
-  if (((securityCheckResult == 0) && (securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,0x494b4e42), securityCheckResult == 0)) &&
+  if (((securityCheckResult == 0) && (securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,SecurityValidationInputKnowledgeBase), securityCheckResult == 0)) &&
      (securityCheckResult = ValidatePortControlRequest(SecurityBuffer,DataContext + ExceptionHandlerCallbackOffset), securityCheckResult == 0)) {
     if (*(uint *)(SecurityBuffer + 8) < 0x37) {
       securityCheckResult = 0;
@@ -43128,9 +43139,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
   ByteFlag colorDataBuffer[32];
   ByteFlag systemProcessingBuffer[32];
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,systemProcessingBuffer,1,0x54495053);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,systemProcessingBuffer,1,SecurityValidationTipsProcessingOperation);
   if ((((int)validationStatus == 0) &&
-      (validationStatus = ExecuteSecurityValidation(dataBuffer,colorDataBuffer,0,0x42495053), (int)validationStatus == 0)) &&
+      (validationStatus = ExecuteSecurityValidation(dataBuffer,colorDataBuffer,0,SecurityValidationBufferImageProcessing), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)validationStatus == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -70135,6 +70146,14 @@ void ValidateUnwindMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
  * 
  * 该函数负责清理系统资源，包括验证状态、释放内存和异常处理。
  * 函数会遍历资源链表，验证每个资源的状态标志，并在必要时调用相应的清理函数。
+ * 
+ * 主要功能：
+ * - 验证系统上下文的有效性
+ * - 清理验证状态指针和相关资源
+ * - 检查异常处理器状态并在必要时终止系统
+ * - 遍历资源队列，验证资源状态标志
+ * - 管理内存区域标志和资源引用计数
+ * - 处理内存资源异常和清理操作
  * 
  * @param systemContext 系统上下文指针，包含系统状态和配置信息
  * @param contextHandle 上下文句柄，用于访问资源管理器
