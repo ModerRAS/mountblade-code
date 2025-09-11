@@ -22714,15 +22714,15 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_18089be10 - 数据验证和处理函数B0
 // 功能：验证和处理数据参数，执行系统操作，包含安全检查和完整性验证
-#define ValidateAndProcessDataWithSecurityB0 FUN_18089be10
+#define ValidateAndProcessDataWithSecurityB0 ValidateAndProcessSystemDataWithSecurity
 
 // 原始函数名：FUN_18089be41 - 系统状态检查函数B0
 // 功能：检查系统状态并执行相应操作，包括内存管理和资源状态检查
-#define CheckSystemStatusWithValidationB0 FUN_18089be41
+#define CheckSystemStatusWithValidationB0 CheckSystemMemoryAndResourceStatus
 
 // 原始函数名：FUN_18089c019 - 系统初始化函数B0
 // 功能：初始化系统组件和状态
-#define InitializeSystemComponentsB0 FUN_18089c019
+#define InitializeSystemComponentsB0 InitializeSystemCoreComponents
 
 // 原始函数名：FUN_18089cc29 - 空操作函数P
 // 功能：空操作函数，用于占位和流程控制，在条件分支中作为默认操作
@@ -22746,7 +22746,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_18089d0b0 - 数据处理函数C0
 // 功能：处理数据参数并执行验证，包含完整性和安全性检查
-#define ProcessDataWithSecurityValidationC0 FUN_18089d0b0
+#define ProcessDataWithSecurityValidationC0 ProcessAndValidateDataWithSecurityChecks
 
 // 原始函数名：FUN_18089d208 - 空操作函数U
 // 功能：空操作函数，用于占位和流程控制，在数据验证中作为默认操作
@@ -143270,11 +143270,11 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 // === 新增的系统功能函数语义化定义 ===
 
 // 系统初始化和清理函数
-#define FUN_18090a000 InitializeSystemCore                // 初始化系统核心 - 初始化系统的核心组件
-#define FUN_18090a010 FinalizeSystemCore                  // 完成系统核心 - 完成系统的核心组件
-#define FUN_18090a020 InitializeSystemServices             // 初始化系统服务 - 初始化系统的各种服务
-#define FUN_18090a030 FinalizeSystemServices               // 完成系统服务 - 完成系统的各种服务
-#define FUN_18090a040 SystemStartupComplete               // 系统启动完成 - 标志系统启动完成
+#define FUN_18090a000 InitializeSystemCoreComponents      // 初始化系统核心组件 - 初始化系统的核心组件
+#define FUN_18090a010 FinalizeSystemCoreComponents         // 完成系统核心组件 - 完成系统的核心组件
+#define FUN_18090a020 InitializeSystemServicesAndModules  // 初始化系统服务和模块 - 初始化系统的各种服务和模块
+#define FUN_18090a030 FinalizeSystemServicesAndModules    // 完成系统服务和模块 - 完成系统的各种服务和模块
+#define FUN_18090a040 MarkSystemStartupAsComplete          // 标记系统启动完成 - 标志系统启动完成
 
 // 系统内存管理函数
 #define FUN_18090a050 AllocateSystemMemoryBlock           // 分配系统内存块 - 分配系统的内存块
