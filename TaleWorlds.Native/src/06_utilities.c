@@ -142340,27 +142340,27 @@ int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlag
     // 根据清理标志执行相应的清理操作
     if (CleanupFlags & CleanupMemoryFlag) {
         // 执行内存清理操作
-        CleanupStatus = ExecuteMemoryCleanup(ResourcePointer);
-        if (CleanupStatus == CleanupSuccess) {
-            MemoryFreedCount = GetFreedMemoryCount(ResourcePointer);
+        cleanupStatus = ExecuteMemoryCleanup(resourcePointer);
+        if (cleanupStatus == CleanupSuccess) {
+            memoryFreedCount = GetFreedMemoryCount(resourcePointer);
         }
     }
     
     if (CleanupFlags & CleanupCacheFlag) {
         // 执行缓存清理操作
-        CleanupStatus = ExecuteCacheCleanup(ResourcePointer);
-        if (CleanupStatus == CleanupSuccess) {
-            CacheClearedCount = GetClearedCacheCount(ResourcePointer);
+        cleanupStatus = ExecuteCacheCleanup(resourcePointer);
+        if (cleanupStatus == CleanupSuccess) {
+            cacheClearedCount = GetClearedCacheCount(resourcePointer);
         }
     }
     
     // 根据优化级别执行优化操作
     if (OptimizationLevel > 0) {
-        OptimizationScore = ExecuteResourceOptimization(ResourcePointer, OptimizationLevel);
+        optimizationScore = ExecuteResourceOptimization(resourcePointer, OptimizationLevel);
     }
     
     // 返回清理结果状态
-    if (CleanupStatus == CleanupSuccess) {
+    if (cleanupStatus == CleanupSuccess) {
         return ResourceCleanupSuccess;
     } else {
         return ResourceCleanupFailure;
