@@ -2409,7 +2409,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackFloatValue58 StackFloatValue58                       // 栈浮点值58 - 浮点运算值
 #define StackFloatValue54 StackFloatValue54                       // 栈浮点值54 - 浮点运算值
 #define StackFloatValue50 StackFloatValue50                       // 栈浮点值50 - 浮点运算值
-#define StackFloatValue4C StackFloatValue4C                       // 栈浮点值4C - 浮点运算值
+#define StackFloatProcessingValue StackFloatProcessingValue                       // 栈浮点值4C - 浮点运算值
 #define SystemDataBufferMemoryOffset BufferMemoryOffset                         // 系统数据缓冲区偏移量
 #define SystemContextValidationPointer SystemValidationPointer     // 系统上下文验证指针
 #define SystemContextDataPointer ContextDataPointer                 // 系统上下文数据指针
@@ -52729,7 +52729,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
   float StackFloatValue58;
   float StackFloatValue54;
   float StackFloatValue50;
-  float StackFloatValue4C;
+  float StackFloatProcessingValue;
   uint64_t StackUnsigned48;
   uint64_t SystemPriorityLevel;
   uint64_t FunctionAddress;
@@ -52801,7 +52801,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
       StackFloatValue58 = ContextHandle[0x50];
       StackFloatValue54 = ContextHandle[0x51];
       StackFloatValue50 = ContextHandle[0x52];
-      StackFloatValue4C = ContextHandle[0x53];
+      StackFloatProcessingValue = ContextHandle[0x53];
       StackUnsigned48 = *(void *)(ContextHandle + 0x54);
       SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
       InitializeStackUnsignedData(&StackProcessingDataBuffer);
@@ -52815,7 +52815,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
         PrimaryFloatValue = ContextHandle[0x50];
         SecondaryFloatValue = ContextHandle[0x51];
         StackFloatValue50 = ContextHandle[0x52];
-        StackFloatValue4C = ContextHandle[0x53];
+        StackFloatProcessingValue = ContextHandle[0x53];
         StackUnsigned48 = *(void *)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
         ConvertAngleToRadians(&StackProcessingDataBuffer,0x3fc90fdb);
@@ -52827,7 +52827,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
         PrimaryFloatValue = ContextHandle[0x50];
         SecondaryFloatValue = ContextHandle[0x51];
         StackFloatValue50 = ContextHandle[0x52];
-        StackFloatValue4C = ContextHandle[0x53];
+        StackFloatProcessingValue = ContextHandle[0x53];
         StackUnsigned48 = *(void *)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
         NormalizeFloatValue(&StackProcessingDataBuffer);
@@ -59035,7 +59035,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
       StackProcessingDataFlags = *(void *)(ContextHandle + 0x4e);
       BufferMemoryOffset = *(void **)(ContextHandle + 0x50);
       DistanceThresholdValue = ContextHandle[0x52];
-      StackFloatValue4C = ContextHandle[0x53];
+      StackFloatProcessingValue = ContextHandle[0x53];
       ContextDataPointer = *(void **)(ContextHandle + 0x54);
       SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
       InitializeStackUnsignedData(&StackProcessingDataBuffer);
@@ -59048,7 +59048,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
         StackProcessingDataFlags = *(void *)(ContextHandle + 0x4e);
         BufferMemoryOffset = *(void **)(ContextHandle + 0x50);
         DistanceThresholdValue = ContextHandle[0x52];
-        StackFloatValue4C = ContextHandle[0x53];
+        StackFloatProcessingValue = ContextHandle[0x53];
         ContextDataPointer = *(void **)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
         ConvertAngleToRadians(&StackProcessingDataBuffer,0x3fc90fdb);
@@ -59059,7 +59059,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
         StackProcessingDataFlags = *(void *)(ContextHandle + 0x4e);
         BufferMemoryOffset = *(void **)(ContextHandle + 0x50);
         DistanceThresholdValue = ContextHandle[0x52];
-        StackFloatValue4C = ContextHandle[0x53];
+        StackFloatProcessingValue = ContextHandle[0x53];
         ContextDataPointer = *(void **)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
         NormalizeFloatValue(&StackProcessingDataBuffer);
@@ -162075,7 +162075,7 @@ void ProcessSystemConfigurationUpdate(void
   float PrimaryFloatValue;
   float SecondaryFloatValue;
   float DistanceThresholdValue;
-  float StackFloatValue4C;
+  float StackFloatProcessingValue;
   
   ReferenceCountPointer = (int *)(SystemConfigurationHandle + 0x1d98);
   if ((*(int *)(SystemConfigurationHandle + 0x1d38) == 0) && (*ReferenceCountPointer == 0)) {
@@ -256906,7 +256906,24 @@ LAB_180208d4a:
 
 
 
-08f20(long long ContextHandle,long long OperationBufferSize,int *Utf8SourcePointer,long long Utf16EndPointer,float AdditionalParameter1void FUN_180208f20(long long ContextHandle,long long OperationBufferSize,int *Utf8SourcePointer,long long Utf16EndPointer,float AdditionalParameter1
+/**
+ * @brief 处理系统浮点变换操作
+ * 
+ * 该函数负责处理系统中的浮点数变换操作，包括矩阵变换和字符编码处理。
+ * 根据上下文句柄和操作缓冲区大小进行数据变换和验证。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1（浮点数）
+ * @return void
+ * 
+ * @note 该函数涉及复杂的浮点数计算和内存操作
+ * @note 根据不同的操作缓冲区大小选择不同的数据源
+ * @note 函数内部包含迭代处理和边界检查
+ */
+void FUN_180208f20(long long ContextHandle, long long OperationBufferSize, int *Utf8SourcePointer, long long Utf16EndPointer, float AdditionalParameter1)
 {
   bool StringComparisonByte;
   long long BufferStatus;

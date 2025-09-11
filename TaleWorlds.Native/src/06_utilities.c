@@ -32934,6 +32934,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
       }
       operationResult = *(int *)(currentResource + SystemParameterValidationOffset);
       if (operationResult != 1) {
+        // 重置栈保护标志
         stackGuard = stackGuard & ZeroValue;
         dataProcessingBuffer = (int64_t *)&DataValidationBufferA;
         systemContextArray[0] = (int64_t *)CONCAT44(systemContextArray[0]._4_4_,operationResult);
@@ -33027,6 +33028,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
                       (uint64_t)*(uint *)((int64_t)operationBase + SystemParameterOffset1C);
               calculatedIndex = operationBase[2];
               StackLongIntegerPointerB = (int64_t *)&SystemValidationTable;
+              // 清除系统清理标志
               SystemCleanupFlagLocal = SystemCleanupFlagLocal & ZeroValue;
               operationBase[2] = statusCounter;
               StackLongIntegerPointerArrayA[0] = exceptionContextPointer6;
