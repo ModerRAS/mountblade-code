@@ -598,7 +598,7 @@ typedef enum {
 #define _DAT_180c108d0 UIRenderFunctionPointer                  // UI渲染函数指针
 
 // UI系统数据变量定义
-#define DAT_180c4ea98 UIEventProcessingThresholdCounter         // UI事件处理阈值计数器
+#define UIEventThresholdCounter UIEventProcessingThresholdCounter         // UI事件处理阈值计数器
 #define DAT_180be2198 UIPrimarySystemDataTable                   // UI主数据表
 #define DAT_180be2df8 UISecondarySystemDataTable                 // UI次数据表
 #define DAT_180be2288 UITertiarySystemDataTable                  // UI第三数据表
@@ -5984,7 +5984,7 @@ void* UIGestureCoordinates;
  #define UIVectorMultiplyMask17 _DAT_180947440
  #define UIVectorMultiplyMask18 _DAT_180947450
  #define UIVectorMultiplyMask19 _DAT_180947460
- #define UIVectorMultiplyMask20 _DAT_180947470
+ #define UIVectorMultiplyMask20 UIVectorMultiplyMask20
 #define UIVectorMultiplyMask21 _DAT_180947480
  #define UIVectorMultiplyMask22 _DAT_180947490
 #define UIVectorMultiplyMask23 _DAT_1809474a0
@@ -48728,8 +48728,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags5._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       aprocessingFlags5._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags5._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
-      iterationData19 = pmaddwd(aeventCodeType55,_DAT_180947470);
-      iterationData54 = pmaddwd(aeventCodeType13,_DAT_180947470);
+      iterationData19 = pmaddwd(aeventCodeType55,UIVectorMultiplyMask20);
+      iterationData54 = pmaddwd(aeventCodeType13,UIVectorMultiplyMask20);
       aeventCodeType82._0_4_ = aprocessingFlags16._0_4_ + 0x2000 >> 0xe;
       aeventCodeType82._4_4_ = aprocessingFlags16._4_4_ + 0x2000 >> 0xe;
       aeventCodeType82._8_4_ = aprocessingFlags16._8_4_ + 0x2000 >> 0xe;
@@ -48808,9 +48808,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       acomponentStatus6._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       acomponentStatus6._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       astackUIntad8 = packssdw(aeventprocessingFlags9,acomponentStatus6);
-      iterationData19 = pmaddwd(iterationDataer2,_DAT_180947470);
+      iterationData19 = pmaddwd(iterationDataer2,UIVectorMultiplyMask20);
       iterationData82 = pmaddwd(aresult74,UIVectorMultiplyMask370);
-      iterationData54 = pmaddwd(aresult74,_DAT_180947470);
+      iterationData54 = pmaddwd(aresult74,UIVectorMultiplyMask20);
       aeventCodeType11 = pmaddwd(iterationDataer2,UIVectorMultiplyMask370);
       aeventCodeType34._0_4_ = aeventCodeType50._0_4_ + 0x2000 >> 0xe;
       aeventCodeType34._4_4_ = aeventCodeType50._4_4_ + 0x2000 >> 0xe;
@@ -48896,8 +48896,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags9._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags9._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       aeventCodeType11 = packssdw(aresult76,aprocessingFlags9);
-      iterationData19 = pmaddwd(adataPointer1,_DAT_180947470);
-      iterationData54 = pmaddwd(acontextValue9,_DAT_180947470);
+      iterationData19 = pmaddwd(adataPointer1,UIVectorMultiplyMask20);
+      iterationData54 = pmaddwd(acontextValue9,UIVectorMultiplyMask20);
       aeventCodeType50 = pmaddwd(iterationDataer4,UIVectorMultiplyMask370);
       aprocessingFlags16 = pmaddwd(iterationData86,UIVectorMultiplyMask370);
       adataPointer2._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
@@ -50400,7 +50400,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aresult15._2_2_ = ContextFirstValue7 - sVar23;
     aresult15._0_2_ = sVar59 - eventIndex;
     iterationDataer5 = pmaddwd(iterationData4,UIVectorCalculationMask3F0);
-    aeventStatus5 = pmaddwd(aresult15,_DAT_180947470);
+    aeventStatus5 = pmaddwd(aresult15,UIVectorMultiplyMask20);
     aresult13 = pmaddwd(aresult15,UIVectorMultiplyMask370);
     maxProcessingCount0._2_2_ = sVar48 - ContextFirstValue3;
     maxProcessingCount0._0_2_ = sVar69 - sVar19;
@@ -50457,7 +50457,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aresult14._8_4_ = aresult19._8_4_ + 0x2000 >> 0xe;
     aresult14._12_4_ = aresult19._12_4_ + 0x2000 >> 0xe;
     aresult15 = packssdw(aresult14,acomponentIndex);
-    aloopCounter2 = pmaddwd(maxProcessingCount0,_DAT_180947470);
+    aloopCounter2 = pmaddwd(maxProcessingCount0,UIVectorMultiplyMask20);
     iterationDataer5 = pmaddwd(maxProcessingCount0,UIVectorMultiplyMask370);
     iterationData4._0_4_ = iterationData2._0_4_ + 0x2000 >> 0xe;
     iterationData4._4_4_ = iterationData2._4_4_ + 0x2000 >> 0xe;
@@ -133565,15 +133565,15 @@ void ProcessUIBufferDataSequence(void)
 void ExecuteUIRenderTaskWithCleanup(void)
 
 {
-  longlong stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong systemCleanupParameter;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000038 != 0) {
+  if (systemCleanupParameter != 0) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackParam00000038,0xc);
+    ProcessUISystemCleanup(systemCleanupParameter,0xc);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -133605,8 +133605,8 @@ void CleanupUIContextAndExecuteTask(UIHandle uiContext)
 
  
 
- void FUN_18073f130(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
-void FUN_18073f130(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
+ void ProcessUIContextWithDataBuffer(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
+void ProcessUIContextWithDataBuffer(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UIHandle bufferSize)
 
 {
   int operationResult;
@@ -138754,7 +138754,25 @@ UIHandle FUN_180743b50(longlong uiContext,UIDword dataSource)
 
 
 
-UIHandle FUN_180743c40(longlong uiContext)
+// 函数: UIHandle FUN_180743c40(longlong uiContext)
+#define ValidateUIResourceAndCleanupContext FUN_180743c40
+/**
+ * @brief 验证UI资源并清理上下文
+ * 
+ * 该函数负责验证UI资源的有效性并清理上下文状态，包括：
+ * - 检查UI资源分配状态
+ * - 验证上下文完整性
+ * - 执行系统清理操作
+ * - 处理资源验证失败的情况
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0值表示失败
+ * 
+ * @note 原始函数名：FUN_180743c40
+ * @note 该函数执行UI资源验证和上下文清理操作
+ */
+UIHandle ValidateUIResourceAndCleanupContext(longlong uiContext)
 
 {
   UIHandle result;
@@ -155214,7 +155232,27 @@ void FUN_180754efe(void)
 
 
 
-UIHandle FUN_180754f10(ulonglong uiContext,ulonglong *dataSource,longlong *targetBuffer)
+// 函数: UIHandle FUN_180754f10(ulonglong uiContext,ulonglong *dataSource,longlong *targetBuffer)
+#define ValidateUIContextAndAllocateMemory FUN_180754f10
+/**
+ * @brief 验证UI上下文并分配内存
+ * 
+ * 该函数负责验证UI上下文的有效性并分配所需的内存资源，包括：
+ * - 验证数据源指针的有效性
+ * - 检查UI上下文的完整性和对齐
+ * - 分配和管理内存资源
+ * - 处理内存分配失败的情况
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源指针，用于存储处理结果
+ * @param targetBuffer 目标缓冲区指针，用于存储分配的内存
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0值表示失败
+ * 
+ * @note 原始函数名：FUN_180754f10
+ * @note 该函数执行UI上下文验证和内存分配操作
+ */
+UIHandle ValidateUIContextAndAllocateMemory(ulonglong uiContext,ulonglong *dataSource,longlong *targetBuffer)
 
 {
   longlong allocatedMemory;
@@ -176144,7 +176182,24 @@ FUN_1807689d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,ulong
 
 
 
-UIHandle FUN_180768b50(ulonglong *uiContext)
+// 函数: UIHandle FUN_180768b50(ulonglong *uiContext)
+#define GetCurrentThreadIdentifier FUN_180768b50
+/**
+ * @brief 获取当前线程标识符
+ * 
+ * 该函数负责获取当前执行线程的标识符，包括：
+ * - 调用系统API获取线程ID
+ * - 将线程ID存储到指定位置
+ * - 返回操作结果
+ * 
+ * @param uiContext UI上下文指针，用于存储获取的线程ID
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0值表示失败
+ * 
+ * @note 原始函数名：FUN_180768b50
+ * @note 该函数获取当前线程的标识符并存储到指定位置
+ */
+UIHandle GetCurrentThreadIdentifier(ulonglong *uiContext)
 
 {
   uint result;
@@ -196187,7 +196242,7 @@ undefined UIConfigDataQuaternary;
 #define DAT_180be35f8 UIConfigDataTable35f8
 
 // UI系统计数器和阈值变量语义化定义
-#define DAT_180c4ea98 UIEventThresholdCounter
+#define UIEventThresholdCounter UIEventThresholdCounter
 #define DAT_180c4ea94 UIEventThresholdCounterValue
 
 // UI系统处理状态变量语义化定义
@@ -196860,7 +196915,7 @@ undefined UIContextDataBufferB50;
 undefined UNK_180984ac0;
 undefined UNK_180984ac8;
 undefined UNK_180984ad0;
-undefined DAT_180c4ea98;
+undefined UIEventThresholdCounter;
 undefined DAT_180c4ea94;
 undefined UNK_180984be0;
 undefined UIContextDataBufferCD0;
@@ -310013,10 +310068,10 @@ uint * FUN_18084cde0(longlong uiContext,uint *dataSource)
         loopCounter = *(uint *)((longlong)ptrLocal8 + 0x34);
       }
       *dataSource = loopCounter;
-      if ((*(int *)(stringCompareIndex + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(stringCompareIndex + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (*(int *)(ptrLocal8 + 0x14) != _DAT_180c4ea94) {
         pcontextDataHandle = *(longlong **)(uiContext + 0x78);
@@ -310156,10 +310211,10 @@ uint * FUN_18084cde8(longlong uiContext,uint *dataSource)
         loopCounter = *(uint *)((longlong)ptrLocal8 + 0x34);
       }
       *dataSource = loopCounter;
-      if ((*(int *)(stringCompareIndex + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(stringCompareIndex + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (*(int *)(ptrLocal8 + 0x14) != _DAT_180c4ea94) {
         pcontextDataHandle = *(longlong **)(uiContext + 0x78);
@@ -310249,10 +310304,10 @@ void FUN_18084cf13(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffe
       processingFlags = *(uint *)((longlong)targetBuffer + 0x34);
     }
     *uiTargetHandle = processingFlags;
-    if ((*(int *)(componentIndex + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+    if ((*(int *)(componentIndex + 0x48) < _UIEventThresholdCounter) &&
+       (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
       _DAT_180c4ea94 = RegisterValue;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
     processingFlags = (uint)uiContextBasePointer;
     if (*(int *)(contextHandle + 0x14) != _DAT_180c4ea94) {
@@ -310401,10 +310456,10 @@ void FUN_18084d068(void)
   uint stackParam00000050;
   
   do {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
+    FUN_1808fcb90(&UIEventThresholdCounter);
+    if (_UIEventThresholdCounter == -1) {
       _DAT_180c4ea94 = RegisterValue;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
     do {
       eventCode = (uint)uiContextBasePointer;
@@ -310462,7 +310517,7 @@ LAB_18084cfd9:
         eventCode = *(uint *)((longlong)contextHandle + 0x34);
       }
       *uiTargetHandle = eventCodeType;
-    } while (_DAT_180c4ea98 <= *preservedRegister15);
+    } while (_UIEventThresholdCounter <= *preservedRegister15);
   } while( true );
 }
 
@@ -311458,11 +311513,11 @@ undefined * FUN_18084da10(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea98) {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
+              0x48) < _UIEventThresholdCounter) {
+    FUN_1808fcb90(&UIEventThresholdCounter);
+    if (_UIEventThresholdCounter == -1) {
       _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
   }
   return &DAT_180c4ea94;
@@ -325046,10 +325101,10 @@ LAB_180857f82:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*pstackInt100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*pstackInt100 < _UIEventThresholdCounter) && (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1))
       {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       iterationCounter = (uint)bufferValue;
       if (iterationCounter <= _DAT_180c4ea94) {
@@ -325202,10 +325257,10 @@ LAB_1808580a0:
         loopCounter = stackUInt168;
         stackUInt158 = maxProcessingCount;
       }
-      if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (_DAT_180c4ea94 < stackUInt158) {
         eventStatus = 0;
@@ -325265,10 +325320,10 @@ LAB_180859163:
           }
           return result8;
         }
-        if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+        if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+           (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
           _DAT_180c4ea94 = iterationCounter;
-          FUN_1808fcb30(&DAT_180c4ea98);
+          FUN_1808fcb30(&UIEventThresholdCounter);
         }
         *(uint *)(uiContext + 0x148) = _DAT_180c4ea94;
         iterationCounter = FUN_180855810(uiContext,iterationCount6);
@@ -325403,10 +325458,10 @@ LAB_180858c20:
           return result8;
         }
       }
-      if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (*(uint *)(allocatedMemory5 + 0xa0) != _DAT_180c4ea94) {
         resultPointer4 = (UIDword *)FUN_18084da10();
@@ -325642,10 +325697,10 @@ LAB_180858e04:
     }
     *(uint *)(uiContext + 8) = iterationCounter;
     *(UIDword *)(uiBufferData + 0xc) = 2;
-    if ((*(int *)(stackLongc0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+    if ((*(int *)(stackLongc0 + 0x48) < _UIEventThresholdCounter) &&
+       (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
       _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
     stackUInt15c = _DAT_180c4ea94;
     colorBufferPointer4 = (longlong *)(uiContext + 0x70);
@@ -327672,10 +327727,10 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*pstackInt100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*pstackInt100 < _UIEventThresholdCounter) && (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1))
       {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (iterationCount7 <= _DAT_180c4ea94) {
         return 0;
@@ -327829,10 +327884,10 @@ LAB_1808580a0:
         maxProcessingCount = stackUInt168;
         stackUInt158 = iterationCounter;
       }
-      if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       if (_DAT_180c4ea94 < stackUInt158) {
         dataPointer = 0;
@@ -327892,10 +327947,10 @@ LAB_180859163:
           }
           return result9;
         }
-        if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+        if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+           (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
           _DAT_180c4ea94 = iterationCounter;
-          FUN_1808fcb30(&DAT_180c4ea98);
+          FUN_1808fcb30(&UIEventThresholdCounter);
         }
         *(uint *)(uiContext + 0x148) = _DAT_180c4ea94;
         iterationCounter = FUN_180855810(uiContext,iterationCount6);
@@ -328033,10 +328088,10 @@ LAB_180858c20:
           return result9;
         }
       }
-      if ((*(int *)(*pstackLongc8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+      if ((*(int *)(*pstackLongc8 + 0x48) < _UIEventThresholdCounter) &&
+         (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
         _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        FUN_1808fcb30(&UIEventThresholdCounter);
       }
       iterationCount7 = stackUInt15c;
       if (*(uint *)(allocatedMemory4 + 0xa0) != _DAT_180c4ea94) {
@@ -328273,10 +328328,10 @@ LAB_180858e04:
     }
     *(uint *)(uiContext + 8) = iterationCounter;
     *(UIDword *)(uiBufferData + 0xc) = 2;
-    if ((*(int *)(stackLongc0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+    if ((*(int *)(stackLongc0 + 0x48) < _UIEventThresholdCounter) &&
+       (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
       _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
     iterationCount7 = _DAT_180c4ea94;
     uiMemoryPointer7 = (longlong *)(uiContext + 0x70);
@@ -328411,10 +328466,10 @@ FUN_18085acd0(longlong uiContext,longlong *dataSource,uint *targetBuffer,ulonglo
       return 0;
     }
     ProcessingFlag = false;
-    if ((*(int *)(*uiMemoryPointer + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+    if ((*(int *)(*uiMemoryPointer + 0x48) < _UIEventThresholdCounter) &&
+       (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
       _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+      FUN_1808fcb30(&UIEventThresholdCounter);
     }
     iterationCount = *(uint *)(contextValue + 0x10);
     processingFlags = *targetBuffer;
@@ -362200,10 +362255,10 @@ LAB_1808788de:
         if (uiMemoryPointer6 != uiMemoryPointer) {
           stringCompareIndex = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(stringCompareIndex + 0x48) < _DAT_180c4ea98) &&
-               (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+            if ((*(int *)(stringCompareIndex + 0x48) < _UIEventThresholdCounter) &&
+               (FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
               _DAT_180c4ea94 = 0;
-              FUN_1808fcb30(&DAT_180c4ea98);
+              FUN_1808fcb30(&UIEventThresholdCounter);
             }
             if ((int)uiMemoryPointer6[0x14] != _DAT_180c4ea94) {
               for (dataPointer = uiMemoryPointer6[0x10];
@@ -362491,10 +362546,10 @@ void FUN_1808789b7(float uiContext)
         if (uiMemoryPointer7 != uiMemoryPointer) {
           stringCompareIndex = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(stringCompareIndex + 0x48) < _DAT_180c4ea98) &&
-               (uiContext = (float)FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
+            if ((*(int *)(stringCompareIndex + 0x48) < _UIEventThresholdCounter) &&
+               (uiContext = (float)FUN_1808fcb90(&UIEventThresholdCounter), _UIEventThresholdCounter == -1)) {
               _DAT_180c4ea94 = 0;
-              uiContext = (float)FUN_1808fcb30(&DAT_180c4ea98);
+              uiContext = (float)FUN_1808fcb30(&UIEventThresholdCounter);
             }
             if ((int)uiMemoryPointer7[0x14] != _DAT_180c4ea94) {
               for (contextValue = uiMemoryPointer7[0x10];
@@ -362735,10 +362790,10 @@ void FUN_180879232(void)
   int stackParam00000070;
   
   do {
-    iterationCounter = FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
+    iterationCounter = FUN_1808fcb90(&UIEventThresholdCounter);
+    if (_UIEventThresholdCounter == -1) {
       _DAT_180c4ea94 = RegisterValue;
-      iterationCounter = FUN_1808fcb30(&DAT_180c4ea98);
+      iterationCounter = FUN_1808fcb30(&UIEventThresholdCounter);
     }
     do {
       if ((int)uiTargetHandle[0x14] != _DAT_180c4ea94) {
@@ -362788,7 +362843,7 @@ void FUN_180879232(void)
         eventHandle = 0x48;
         preservedRegister13 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       }
-    } while (_DAT_180c4ea98 <= *(int *)(eventHandle + preservedRegister13));
+    } while (_UIEventThresholdCounter <= *(int *)(eventHandle + preservedRegister13));
   } while( true );
 LAB_180878cc1:
   localInt8 = (int)componentIndex;
