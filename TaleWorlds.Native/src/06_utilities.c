@@ -18909,25 +18909,25 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         ComponentListPointer = (int64_t *)(ComponentDataPointer + COMPONENT_LIST_OFFSET);
         ComponentSearchIndex = 0;
         RegisteredComponentCount = *(int32_t *)(ComponentDataPointer + COMPONENT_COUNT_OFFSET);
-        if (0 < registeredComponentCount) {
-          activeComponentContext = (int64_t *)*componentListPointer;
-          componentIterationCounter = componentSearchIndex;
+        if (0 < RegisteredComponentCount) {
+          ActiveComponentPointer = (int64_t *)*ComponentListPointer;
+          ComponentIterationCounter = ComponentSearchIndex;
           do {
-            if (*activeComponentContext == componentValidationDataBuffer) {
-              if (ComponentInactiveStatus < (int32_t)componentIterationCounter) {
+            if (*ActiveComponentPointer == ComponentValidationDataBuffer) {
+              if (ComponentInactiveStatus < (int32_t)ComponentIterationCounter) {
                 return 0;
               }
               break;
             }
-            componentIterationCounter = (uint64_t)((int32_t)componentIterationCounter + ArrayElementIncrement);
-            componentSearchIndex = componentSearchIndex + ArrayElementIncrement;
-            activeComponentContext = activeComponentContext + ArrayElementIncrement;
-          } while ((int64_t)componentSearchIndex < (int64_t)registeredComponentCount);
+            ComponentIterationCounter = (uint64_t)((int32_t)ComponentIterationCounter + ArrayElementIncrement);
+            ComponentSearchIndex = ComponentSearchIndex + ArrayElementIncrement;
+            ActiveComponentPointer = ActiveComponentPointer + ArrayElementIncrement;
+          } while ((int64_t)ComponentSearchIndex < (int64_t)RegisteredComponentCount);
         }
-        registeredComponentCount = registeredComponentCount + 1;
-        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < registeredComponentCount) {
-          componentListCapacity = (int32_t)((float)*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
-          componentBufferSize = registeredComponentCount;
+        RegisteredComponentCount = RegisteredComponentCount + 1;
+        if (*(int32_t *)(ComponentDataPointer + COMPONENT_CAPACITY_OFFSET) < RegisteredComponentCount) {
+          ComponentListCapacity = (int32_t)((float)*(int32_t *)(ComponentDataPointer + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
+          ComponentDataBufferSize = RegisteredComponentCount;
           if (registeredComponentCount <= componentListCapacity) {
             componentBufferSize = componentListCapacity;
           }
