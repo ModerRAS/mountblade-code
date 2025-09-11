@@ -120053,7 +120053,7 @@ void CoreEngineCleanupShaderData(void)
 
 
 
-bbb0(int *ContextHandle,uint32_t OperationBufferSize,long long Utf8SourcePointervoid CoreEngineProcessShaderData(int *ContextHandle,uint32_t OperationBufferSize,long long Utf8SourcePointer
+void CoreEngineProcessShaderData(int *ContextHandle,uint32_t OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryPoolIndex;
