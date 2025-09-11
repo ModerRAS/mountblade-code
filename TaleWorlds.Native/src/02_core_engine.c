@@ -200051,13 +200051,13 @@ LAB_180161f28:
 
 /**
  * @brief 处理字符编码和内存块管理
- * @param ContextHandle 字符代码
- * @param ContextHandleSize 字符代码大小指针
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
  * @param Utf8SourcePointer UTF8源指针
  * @return 内存块索引指针
  * @note 该函数处理字符编码验证和内存块分配管理
  */
-long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer
+long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer)
 {
   long long *ContextHandlePointer;
   long long BufferValidationStatus;
