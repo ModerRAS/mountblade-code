@@ -125979,14 +125979,19 @@ FUN_18073adad:
 
 
 
- void FUN_18073ad35(void)
-void FUN_18073ad35(void)
+ /**
+ * @brief 执行UI渲染上下文任务
+ * 
+ * 该函数执行UI渲染上下文相关的任务，包括数据验证、
+ * 缓冲区控制和数据填充操作。
+ */
+void ExecuteUIRenderContextTask(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword dataSource;
+  UIDword contextFlags;
   
   operationResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
