@@ -12988,7 +12988,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：管理系统内存
 #define ManageSystemMemoryA0 ManageSystemMemoryFunction
 
-// 原始函数名：FUN_1808a5d60 - 内存分配函数A0
+// 内存分配函数 - 带验证功能
 // 功能：分配系统内存并进行安全验证
 #define AllocateSystemMemoryA0 AllocateSystemMemoryWithValidation
 
