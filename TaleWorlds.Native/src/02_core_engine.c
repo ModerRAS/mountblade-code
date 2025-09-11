@@ -3063,6 +3063,9 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryBlock FUN_1800a3880                  // 处理系统内存块
 #define ProcessSystemRenderObjectConfiguration FUN_18029ae20    // 处理系统渲染对象配置
 #define ProcessSystemDataEncoding FUN_18029de40                 // 处理系统数据编码
+#define ProcessSystemCharacterTransformation FUN_1802ebcb0      // 处理系统字符转换
+#define ProcessSystemBufferOperation FUN_1802e7e20              // 处理系统缓冲区操作
+#define ProcessSystemMemoryAllocation FUN_18063ad30             // 处理系统内存分配
 #define ProcessSystemRenderMaterial FUN_18029c8a0               // 处理系统渲染材质
 #define ProcessSystemMemoryAllocationEx FUN_1802aaef0           // 处理系统内存分配扩展
 #define ProcessSystemMemoryAllocationVariantB FUN_1800ba230     // 处理系统内存分配变体B
@@ -239128,18 +239131,18 @@ LAB_1801974aa:
       do {
         ArrayIndex = *(int *)((long long)CharacterStatusBuffer2 + (long long)SystemCharacterStatusPointerReference);
         if (ArrayIndex == 0) {
-          FUN_1802ee610(*(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference),
+          ExecuteSystemStringEncoding(*(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference),
                         *(void *)((long long)(CharacterStatusBuffer2 + 3) + (long long)SystemCharacterStatusPointerReference));
         }
         else if (ArrayIndex == 1) {
-          FUN_18039f2b0(*(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference),
+          ValidateSystemStringEncoding(*(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference),
                         *(void *)((long long)(CharacterStatusBuffer2 + 3) + (long long)SystemCharacterStatusPointerReference));
         }
         else if (ArrayIndex == 2) {
           UnicodeContextHandle = *(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference);
           OperationResult = *(void *)((long long)(CharacterStatusBuffer2 + 3) + (long long)SystemCharacterStatusPointerReference);
           SystemMemoryAllocationResult = ProcessUnicodeContextData(UnicodeContextHandle,OperationResult);
-          FUN_1802fca80(UnicodeContextHandle,OperationResult,SystemMemoryAllocationResult);
+          CompleteSystemUnicodeProcessing(UnicodeContextHandle,OperationResult,SystemMemoryAllocationResult);
         }
         else if (ArrayIndex == 3) {
           UnicodeContextHandle = *(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference);
@@ -239149,7 +239152,7 @@ LAB_1801974aa:
           if (psystemEventConfigurationPointer != (uint64_t ****)0x0) {
             (*(code *)(*psystemEventConfigurationPointer)[5])();
           }
-          FUN_1802f9710(UnicodeContextHandle,&psystemEventConfigurationPointer,OperationResult);
+          InitializeSystemEventConfiguration(UnicodeContextHandle,&psystemEventConfigurationPointer,OperationResult);
         }
         ValidationResult = (int)pSystemCharacterStatusBuffer + 1;
         SystemCharacterStatusPointerReference = SystemCharacterStatusPointerReference + 4;
