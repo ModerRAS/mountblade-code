@@ -6240,9 +6240,9 @@ void* UIGestureCoordinates;
 #define UIContextOperationLayoutData UIOperationLayoutBuffer      // UI上下文操作布局数据表 - 存储上下文操作的布局数据
 
 // UI上下文扩展数据表定义
-#define UIContextExtendedDataA UNK_1809578b0            // UI上下文扩展数据A - 用于扩展操作的数据表
-#define UIContextExtendedDataB UNK_180957858            // UI上下文扩展数据B - 用于扩展操作的数据表
-#define UIContextExtendedDataC UNK_1809578f0            // UI上下文扩展数据C - 用于扩展操作的数据表
+#define UIContextExtendedDataA UIExtendedDataBufferA         // UI上下文扩展数据A - 用于扩展操作的数据表
+#define UIContextExtendedDataB UIExtendedDataBufferB         // UI上下文扩展数据B - 用于扩展操作的数据表
+#define UIContextExtendedDataC UIExtendedDataBufferC         // UI上下文扩展数据C - 用于扩展操作的数据表
 #define UIRenderStateManager UNK_180957910            // UI渲染状态管理器 - 管理UI渲染状态
 #define UIContextExtendedDataE UNK_1809577d0            // UI上下文扩展数据E - 用于扩展操作的数据表
 #define UIContextExtendedDataF UNK_180957830            // UI上下文扩展数据F - 用于扩展操作的数据表
