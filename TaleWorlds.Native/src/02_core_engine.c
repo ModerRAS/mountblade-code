@@ -293,6 +293,117 @@
  */
 #define FUN_18020da10 ProcessSystemDataValidation
 
+// 系统字符处理函数语义化宏定义
+#define FUN_1801ef300 ValidateCharacterDataTable
+#define FUN_1801ef620 TransformCharacterMatrixData
+#define FUN_1801efdb0 ProcessCharacterEncodingConversion
+#define FUN_18023c450 InitializeSystemBuffer
+#define FUN_1800bb630 ValidateSystemMemoryIntegrity
+#define FUN_18020d6c0 ProcessSystemConfigurationData
+#define FUN_18009ec20 HandleSystemPriorityLevel
+#define FUN_180631420 ConfigureSystemStringEncoding
+#define FUN_180631000 TransformSystemStringData
+#define FUN_18020d8a0 HandleSystemDataValidation
+#define FUN_1802e8c60 ProcessSystemDataRegistry
+#define FUN_1802e6b00 HandleSystemDataTransfer
+#define FUN_18020b790 ConfigureSystemBufferAccess
+#define FUN_1802f5440 ManageSystemMemoryOperation
+#define FUN_1802f1890 ExecuteSystemMemoryTransfer
+#define FUN_1802f1930 ProcessSystemMemoryAllocation
+#define FUN_1803ba550 ProcessSystemStackOperation
+#define FUN_18009ec80 HandleSystemParameterProcessing
+#define FUN_18009fb60 FinalizeSystemProcessing
+#define FUN_18005ee30 TransformSystemDataFormat
+#define FUN_18020f620 ProcessSystemCharacterValidation
+#define FUN_180060fc0 HandleSystemMemoryOperation
+#define FUN_180623fd0 ValidateSystemProcessingStatus
+#define FUN_18020ee40 CheckSystemOperationResult
+#define FUN_180218bc0 ProcessSystemContextAccess
+#define FUN_180217b00 InitializeSystemDataTransfer
+#define FUN_180218920 ValidateSystemDataTransfer
+#define FUN_180219260 ExecuteSystemDataTransformation
+#define FUN_180218a80 FinalizeSystemDataOperation
+#define FUN_180219020 ProcessSystemMemoryAccess
+#define FUN_18021a140 RetrieveSystemContextInfo
+#define FUN_1801566b0 ResetSystemProcessingState
+#define FUN_1802121b0 InitializeSystemModule
+#define FUN_1802185b0 ConfigureSystemEnvironment
+#define FUN_180738730 SetupSystemEncodingInterface
+#define FUN_180840330 ConfigureSystemEncodingContext
+#define FUN_180849600 HandleSystemCleanupOperation
+#define FUN_180845520 ProcessSystemContextTransfer
+#define FUN_18073bc20 InitializeSystemMemoryContext
+#define FUN_18073bdc0 ConfigureSystemMemoryAllocation
+#define FUN_180211720 ValidateSystemContextStatus
+#define FUN_180845c40 ProcessSystemUnicodeConversion
+#define FUN_180846fe0 HandleSystemStringEncoding
+#define FUN_1808496c0 TransformSystemCharacterData
+#define FUN_180845d20 ConfigureSystemCharacterProcessing
+#define FUN_180840490 ValidateSystemCharacterData
+#define FUN_180848090 HandleSystemStringOperation
+#define FUN_1808482f0 ProcessSystemCharacterBuffer
+#define FUN_180840c00 RetrieveSystemCharacterData
+#define FUN_180849990 ProcessSystemStringValidation
+#define FUN_180849230 HandleSystemStringTransfer
+#define FUN_1808452a0 ProcessSystemFloatCalculation
+#define FUN_180845090 ConfigureSystemPriorityLevel
+#define FUN_1808451c0 HandleSystemDataBuffer
+#define FUN_1808453c0 ProcessSystemDataTransfer
+#define FUN_180156300 ResetSystemContextState
+#define FUN_18084b410 ValidateSystemContextAccess
+#define FUN_18073a840 ProcessSystemUTF16Conversion
+#define FUN_180739a50 HandleSystemUTF16Processing
+#define FUN_18073baf0 RetrieveSystemStringLength
+#define FUN_18021a140 ProcessSystemDataValidation
+#define FUN_180739950 ConfigureSystemStringBuffer
+#define FUN_1808455f0 HandleSystemCharacterBuffer
+#define FUN_180846fe0 ProcessSystemDataEncoding
+#define FUN_180844f40 ValidateSystemCharacterBuffer
+#define FUN_180847110 ProcessSystemCharacterValidation
+#define FUN_18084a7a0 HandleSystemStringCleanup
+#define FUN_180739270 ProcessSystemCharacterStream
+#define FUN_180213700 HandleSystemDataProcessing
+#define FUN_180845ef0 ConfigureSystemParameter
+#define FUN_180213440 ProcessSystemMemoryBuffer
+#define FUN_180159210 ExecuteSystemContextOperation
+#define FUN_18084b380 RetrieveSystemFloatData
+#define FUN_180213440 ProcessSystemBufferValidation
+#define FUN_180840490 ValidateSystemBufferOperation
+#define FUN_180407630 ProcessSystemStringEncoding
+#define FUN_1802164f0 HandleSystemStringOperation
+#define FUN_18084a280 ProcessSystemCharacterConversion
+#define FUN_180406800 ValidateSystemCharacterConversion
+#define FUN_1801582f0 ConfigureSystemContextTransfer
+#define FUN_180846050 ProcessSystemMatrixOperation
+#define FUN_180213920 ValidateSystemDataFormat
+#define FUN_180628570 HandleSystemPriorityProcessing
+#define FUN_18084acb0 CheckSystemValidationResult
+#define FUN_180849d40 ProcessSystemEventHandling
+#define FUN_180849bb0 ConfigureSystemEventParameters
+#define FUN_180847310 HandleSystemEventConfiguration
+#define FUN_18084ab60 ProcessSystemFloatCalculation
+#define FUN_18084a8c0 FinalizeSystemEventOperation
+#define FUN_1801597a0 ExecuteSystemContextInitialization
+#define FUN_1801595d0 ConfigureSystemEventProcessing
+#define FUN_180628f30 HandleSystemEventValidation
+#define FUN_1802195b0 ProcessSystemContextCleanup
+#define FUN_1802187b0 FinalizeSystemContextOperation
+#define FUN_18073ebd0 ValidateSystemResourceAccess
+#define FUN_180211930 ProcessSystemBufferAllocation
+#define FUN_180754f10 ConfigureSystemLockOperation
+#define FUN_180749ef0 HandleSystemLockValidation
+#define FUN_180743d80 FinalizeSystemLockOperation
+#define FUN_18073acc0 ProcessSystemUTF16Validation
+#define FUN_18073b310 ConfigureSystemStringOperation
+#define FUN_18073e110 ProcessSystemCharacterEncoding
+#define FUN_18073a710 RetrieveSystemCharacterLength
+#define FUN_18073e940 HandleSystemStreamProcessing
+#define FUN_1800f6ad0 ProcessSystemMemoryAllocation
+#define FUN_180846610 ConfigureSystemStreamBuffer
+#define FUN_180846a90 RetrieveSystemFloatData
+#define FUN_180846810 ProcessSystemFloatValidation
+#define FUN_1808473f0 ValidateSystemFloatProcessing
+
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
 #define SystemNodeIdentifierSecondary 0x9c552acd3ed5548d   // 系统节点次标识符
@@ -525,7 +636,6 @@
 #define FUN_180840c00 ReleaseSystemMemoryResources                 // 释放系统内存资源
 
 // 上下文句柄和系统资源管理函数语义化宏定义
-#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement // 处理上下文句柄和系统资源管理
 #define FUN_180187cd0 ProcessCharacterTableAndDataInitialization     // 处理字符表和数据初始化
 #define FUN_18018bd0d ProcessSystemHandleValidation                  // 处理系统句柄验证
 #define FUN_18018bd5f ResetSystemHandleState                         // 重置系统句柄状态
@@ -231908,16 +232018,16 @@ void ResetSystemHandleState(void)
 
 
 uint64_t *
-ProcessCharacterEncodingConversionAndStatusManagement(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
-             unsigned long long AdditionalParameter1
+ProcessCharacterEncodingConversionAndStatusManagement(long long EncodingContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+             unsigned long long EncodingParameter
 {
   uint64_t *CharacterStatusBuffer;
-  long long BufferStatus;
-  unsigned long long UnicodeCodePoint;
-  uint32_t MemoryAllocationMaskPointer;
-  uint32_t CalculatedCodePoint;
-  uint32_t *SecondaryProcessingStatusFlag;
-  uint64_t SystemChecksum;
+  long long BufferValidationStatus;
+  unsigned long long UnicodeCodePointValue;
+  uint32_t MemoryAllocationFlag;
+  uint32_t ProcessedCodePoint;
+  uint32_t *CharacterDataBuffer;
+  uint64_t EncodingChecksum;
   long long *SystemDataTablePointer;
   
   UnicodeCodePoint = AdditionalParameter1 % (unsigned long long)*(uint *)(ContextHandle + 0x10);
