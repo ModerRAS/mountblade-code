@@ -138089,6 +138089,23 @@ void FUN_180745f10(longlong uiContext,int *dataSource)
 
 
 
+/**
+ * @brief 验证UI数据源
+ * 
+ * 该函数用于验证UI数据源的有效性和完整性。
+ * 执行以下主要操作：
+ * - 检查数据源指针是否为空
+ * - 验证数据源的结构和标志位
+ * - 确保数据源可以被UI系统安全使用
+ * - 返回验证结果状态码
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 待验证的数据源指针
+ * @return UIHandle 返回验证结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_180745f70
+ * @note 这是UI数据安全性的重要验证函数
+ */
 UIHandle ValidateUIDataSource(UIHandle uiContext,longlong dataSource)
 
 {
@@ -144001,7 +144018,23 @@ void FUN_18074bd20(void)
 
 
 
- void ProcessUIDataWithFloatTarget(UIHandle uiContext,UIHandle dataSource,float *targetBuffer)
+ /**
+ * @brief 处理带浮点目标的UI数据
+ * 
+ * 该函数专门处理需要浮点数目标缓冲区的UI数据操作。
+ * 执行以下主要操作：
+ * - 验证目标缓冲区的有效性
+ * - 执行浮点数数据的转换和处理
+ * - 调用底层的数据处理函数
+ * - 确保数据类型的安全转换
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，包含待处理的数据
+ * @param targetBuffer 浮点数目标缓冲区指针，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_18074bd40
+ * @note 该函数通常用于需要高精度数值计算的UI操作
+ */
 void ProcessUIDataWithFloatTarget(UIHandle uiContext,UIHandle dataSource,float *targetBuffer)
 
 {
