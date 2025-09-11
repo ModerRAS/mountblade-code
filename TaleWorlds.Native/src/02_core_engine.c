@@ -239708,7 +239708,7 @@ LAB_18019797c:
   ContextHandle[0x66c] = 0;
   ProcessSystemMemoryBlockRelease();
   _Mtx_destroy_in_situ();
-  FUN_1801b9920(ContextHandle + 0xc190);
+  ProcessSystemStateUpdate(ContextHandle + 0xc190);
   if ((long long *)ContextHandle[0xc18f] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0xc18f] + 0x38))();
   }
