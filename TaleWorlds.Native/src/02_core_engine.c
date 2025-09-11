@@ -256499,7 +256499,7 @@ void ProcessSystemCharacterBufferAndStatusManagement(void)
     LoopCounter = LoopCounter + 1;
     SystemChecksum = SystemChecksum + 0x78;
     MemoryBlockIndex = CalculateSystemBufferDifference(CharacterLimit[1] - SystemParameter);
-  } while ((unsigned long long)(long long)RegisterEBPValue < (unsigned long long)((MemoryBlockIndex >> 6) - (MemoryBlockIndex >> 0x3f)));
+  } while ((unsigned long long)(long long)LoopCounter < (unsigned long long)((MemoryBlockIndex >> 6) - (MemoryBlockIndex >> 0x3f)));
   *(uint8_t *)((long long)CharacterLimit + 0x41) = 1;
   return;
 }
@@ -256548,47 +256548,47 @@ void SetSystemContextStatusFlag(long long SystemContextHandle)
 void ProcessSystemContextFloatOperations(long long SystemContextHandle,float FloatOperationSize)
 {
   long long *ContextHandle;
-  float ContextSecondaryFloat;
+  float SecondaryFloatValue;
   float CalculatedFilterValue;
   
   if (*(long long *)(SystemContextHandle + 0x38) != 0) {
-    ContextSecondaryFloat = FloatOperationSize + *(float *)(SystemContextHandle + 0x848);
-    *(float *)(SystemContextHandle + 0x848) = ContextSecondaryFloat;
+    SecondaryFloatValue = FloatOperationSize + *(float *)(SystemContextHandle + 0x848);
+    *(float *)(SystemContextHandle + 0x848) = SecondaryFloatValue;
     CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(SystemContextHandle + 0x38) + 0xc0) + -0x28) *
             0.033333335;
-    if (FilterInputValue < ContextSecondaryFloat) {
+    if (FilterInputValue < SecondaryFloatValue) {
       if (*(char *)(SystemContextHandle + 0x40) == '\0') {
         *(float *)(SystemContextHandle + 0x848) = FilterInputValue;
       }
       else {
-        ContextSecondaryFloat = ContextSecondaryFloat - FilterInputValue;
-        if (ContextSecondaryFloat <= 0.0) {
-          ContextSecondaryFloat = 0.0;
+        SecondaryFloatValue = SecondaryFloatValue - FilterInputValue;
+        if (SecondaryFloatValue <= 0.0) {
+          SecondaryFloatValue = 0.0;
         }
-        *(float *)(SystemContextHandle + 0x848) = ContextSecondaryFloat;
+        *(float *)(SystemContextHandle + 0x848) = SecondaryFloatValue;
       }
     }
   }
   if (*(long long *)(SystemContextHandle + 0x20) != 0) {
-    ContextSecondaryFloat = FloatOperationSize + *(float *)(SystemContextHandle + 0x28);
-    *(float *)(SystemContextHandle + 0x28) = ContextSecondaryFloat;
+    SecondaryFloatValue = FloatOperationSize + *(float *)(SystemContextHandle + 0x28);
+    *(float *)(SystemContextHandle + 0x28) = SecondaryFloatValue;
     CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(SystemContextHandle + 0x20) + 0xc0) + -0x28) *
             0.033333335;
-    if (FilterInputValue < ContextSecondaryFloat) {
+    if (FilterInputValue < SecondaryFloatValue) {
       if (*(char *)(SystemContextHandle + 0x30) == '\0') {
         *(float *)(SystemContextHandle + 0x28) = FilterInputValue;
       }
       else {
-        ContextSecondaryFloat = ContextSecondaryFloat - FilterInputValue;
-        if (ContextSecondaryFloat <= 0.0) {
-          ContextSecondaryFloat = 0.0;
+        SecondaryFloatValue = SecondaryFloatValue - FilterInputValue;
+        if (SecondaryFloatValue <= 0.0) {
+          SecondaryFloatValue = 0.0;
         }
-        *(float *)(SystemContextHandle + 0x28) = ContextSecondaryFloat;
+        *(float *)(SystemContextHandle + 0x28) = SecondaryFloatValue;
       }
     }
-    ContextSecondaryFloat = *(float *)(SystemContextHandle + 0x2c) - FloatOperationSize * 5.0;
-    *(float *)(SystemContextHandle + 0x2c) = ContextSecondaryFloat;
-    if (ContextSecondaryFloat <= 0.0) {
+    SecondaryFloatValue = *(float *)(SystemContextHandle + 0x2c) - FloatOperationSize * 5.0;
+    *(float *)(SystemContextHandle + 0x2c) = SecondaryFloatValue;
+    if (SecondaryFloatValue <= 0.0) {
       ContextHandle = *(long long **)(SystemContextHandle + 0x20);
       *(void *)(SystemContextHandle + 0x20) = 0;
       if (ContextHandle != (long long *)0x0) {
@@ -259831,9 +259831,9 @@ LAB_18020b304:
       }
     }
     if (*(int *)(CoreEngineSystemContext + 4) != 1) goto LAB_18020b488;
-    pppppppSystemStatusValue = &ppppppContextDataPointer8;
-    ppppppSystemCharacterStatusBuffer = pppppppuStack_478;
-    if (pppppppuStack_478 == (uint64_t *******)0x0) {
+    SystemStatusValuePtr = &ContextDataPointer8;
+    SystemCharacterStatusBuffer = SystemStackCharacterStatusBufferPtr;
+    if (SystemStackCharacterStatusBufferPtr == (uint64_t *******)0x0) {
 LAB_18020b3fb:
       SystemValidationStatus = "game_entity";
       do {
@@ -259862,25 +259862,25 @@ LAB_18020b3fb:
         }
       }
 LAB_18020b45e:
-      puStack_4e0 = &SystemNullTemplate;
-      if (pbStack_4d8 != (byte *)0x0) {
+      StackEventTemplatePtr = &SystemNullTemplate;
+      if (StackByteFlagPtr != (byte *)0x0) {
           ProcessSystemEventHandling();
       }
     }
     else {
       do {
-        if (iStack_4d0 == 0) {
+        if (StackIntFlag == 0) {
           HighByte = false;
-          pppppProcessingStatusFlagPointer6 = (uint64_t *******)ppppppSystemCharacterStatusBuffer[1];
+          ProcessingStatusFlagPointer6 = (uint64_t *******)SystemCharacterStatusBuffer[1];
         }
         else {
-          if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) == 0) {
+          if (*(int *)(SystemCharacterStatusBuffer + 6) == 0) {
             HighByte = true;
           }
           else {
-            CurrentBytePointer2 = pbStack_4d8;
+            CurrentBytePointer2 = StackByteFlagPtr;
             do {
-              MemoryAllocationHandle = (uint)CurrentBytePointer2[(long long)ppppppSystemCharacterStatusBuffer[5] - (long long)pbStack_4d8];
+              MemoryAllocationHandle = (uint)CurrentBytePointer2[(long long)SystemCharacterStatusBuffer[5] - (long long)StackByteFlagPtr];
               InputDataLength2 = *CurrentBytePointer2 - MemoryAllocationHandle;
               if (*CurrentBytePointer2 != MemoryAllocationHandle) break;
               CurrentBytePointer2 = CurrentBytePointer2 + 1;
