@@ -126607,19 +126607,19 @@ void ProcessUIDataBufferAndTextureFill(void)
   UIDword contextHandle;
   UIByte textureParameter;
   
-  operationResult = CopyUIDataBuffer(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = CopyUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUITextureDataFill(&stack0x00000040 + processingResult,0x100 - processingResult,eventHandleB);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = CopyUIDataBuffer(&workBuffer40,0x100);
+  dataValidationResult = ProcessUIBufferDataWithControl(&workBuffer40 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = CopyUIDataBuffer(&workBuffer40 + operationResult,0x100 - operationResult);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUIBufferDataWithControl(&workBuffer40 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUITextureDataFill(&workBuffer40 + operationResult,0x100 - operationResult,textureParameter);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUIBufferDataWithControl(&workBuffer40 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  CopyUIDataBuffer(&workBuffer40 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(contextHandle,1);
 }
 
 

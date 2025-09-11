@@ -726,8 +726,6 @@
 #define OperationBaseOffset8 0x8
 #define DataDescriptorOffset8 0x8
 #define SystemParameterOffsetSecondary 0x1c
-#define ExceptionHandlerContextOffset58 0x58
-#define ExceptionHandlerContextOffsetSecondary 0x60
 #define ExceptionDataBufferOffset60 0x60
 #define MemoryPointerOffset 0x20
 #define ResourceIteratorOffset 0x40
@@ -747,7 +745,6 @@
 #define ExceptionHandlerCallbackOffsetE8 0xe8
 #define ExceptionHandlerContextOffsetD8 0xd8
 #define ExceptionHandlerDataBufferOffset68 0x68
-#define ExceptionHandlerContextOffset58 0x58
 #define RegisterContextDataPointerOffset 0x20
 #define RegisterContextDataSizeOffset 0x28
 #define RegisterContextCountOffset 0x2c
@@ -2431,7 +2428,6 @@
 // 异常处理器偏移常量
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
-#define ExceptionHandlerCallbackOffsetPrimary 0x10
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
 #define ExceptionHandlerContextSecondaryOffset 0x78
 #define ExceptionMemoryRegionOffset 0x208
@@ -2612,7 +2608,6 @@
 // 异常处理器回调相关常量
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
 #define ExceptionHandlerContextOffsetA8 0xa8
-#define ExceptionHandlerCallbackOffsetPrimary 0x10
 #define ExceptionHandlerContextFunctionOffsetPrimary 0x38
 #define ExceptionContextStatusOffset680 0x680
 #define SystemDataSecondaryOffset188 0x188
@@ -2621,7 +2616,6 @@
 // 异常处理数据缓冲区相关常量
 #define ExceptionHandlerDataBufferOffset78 0x78
 #define DataProcessingOffset70 0x70
-#define ExceptionHandlerContextOffsetPrimary 0x40
 #define ExceptionHandlerContextDataOffset 0x70
 #define MemoryReferenceCleanupOffset310 0x310
 #define DataBufferOffset104 0x104
@@ -2748,7 +2742,6 @@
 #define resourceDescriptorOffset 0x10
 
 // 异常处理器调用偏移量常量
-#define ExceptionHandlerContextOffsetSecondary 0x60
 #define ExceptionHandlerTertiaryOffset410 0x410
 
 // 数据处理和内存操作常量
@@ -2880,8 +2873,6 @@
 #define ExceptionHandlerContextOffsetC0 0xc0
 #define ExceptionHandlerContextOffset1C 0x1c
 #define ExceptionHandlerContextOffset24 0x24
-#define ExceptionHandlerContextOffset58 0x58
-#define ExceptionHandlerContextOffsetSecondary 0x60
 #define ExceptionHandlerContextOffset70 0x70
 #define ExceptionHandlerContextOffset94 0x94
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
@@ -4067,7 +4058,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
-#define ExceptionHandlerCallbackOffsetPrimary 0x10
 
 // 异常资源清理函数E0相关常量
 #define ExceptionResourceCountOffset 0x50
