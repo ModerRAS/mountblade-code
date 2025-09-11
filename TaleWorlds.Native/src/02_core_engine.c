@@ -152023,7 +152023,7 @@ void InitializeSystemFloatProcessor(void)
 void ProcessSystemDataDeallocation(void)
 {
   long long MainCalculationResult;
-  int in_EAX;
+  int RegisterAccumulatorValue;
   long long SystemContext;
   long long PatternMatchStatus;
   long long SystemDataNode;
@@ -244280,7 +244280,7 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
 
 
 
-void FUN_18019d190(uint64_t *ContextHandle,unsigned long long OperationBufferSize)
+void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long OperationBufferSize)
 {
   long long *ContextHandle;
   void *SystemContext;
@@ -244729,10 +244729,10 @@ unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t 
              (unsigned long long)((long long)in_RCX[0xc17a] - (long long)pppContextHandle3 >> 6));
   }
   if (*(char *)(CoreEngineSystemContext + 0x12e0) != '\0') {
-    ContextHandle = FUN_18019d190(in_RCX);
+    ContextHandle = InitializeSystemDataPointer(in_RCX);
   }
   if (in_RCX[0xc170] != (long long ****)0x0) {
-    CharacterDataValidationResult = FUN_180160500(ContextHandle,0x5f);
+    CharacterDataValidationResult = ValidateSystemContextHandle(ContextHandle,0x5f);
     if (CharacterDataValidationResult != '\0') {
 
 /**
@@ -244909,7 +244909,7 @@ LAB_18019e4af:
               ProcessEngineDataTransfer(&SystemUnsignedValue160);
               if (fStack_190._0_1_ != '\0') {
                 Utf16ConversionContext = Utf16Char4 % (unsigned long long)(uint)fStack_18c;
-                FUN_180083b20(aSystemUnsignedValue180,fStack_18c);
+                ProcessSystemUnsignedValues(aSystemUnsignedValue180,fStack_18c);
               }
               PrimaryProcessingStatusFlag2[1] = *(unsigned long long *)(DataContentPointer + Utf16ConversionContext * 8);
               *(unsigned long long **)(DataContentPointer + Utf16ConversionContext * 8) = PrimaryProcessingStatusFlag2;
@@ -245011,7 +245011,7 @@ LAB_18019e731:
                                 DataContentStatus & 0xffffffff,1);
                   if ((char)ProcessingStatus != '\0') {
                     Utf16ConversionContext = Utf16Char4 % (unsigned long long)(uint)ProcessingStatus.HighPart;
-                    FUN_180083b20(aSystemUnsignedValue180,ProcessingStatus.HighPart);
+                    ProcessSystemUnsignedValues(aSystemUnsignedValue180,ProcessingStatus.HighPart);
                   }
                   PrimaryProcessingStatusFlag4[1] = *(unsigned long long *)(DataContentPointer + Utf16ConversionContext * 8);
                   *(unsigned long long **)(DataContentPointer + Utf16ConversionContext * 8) = PrimaryProcessingStatusFlag4;
@@ -245073,7 +245073,7 @@ LAB_18019e833:
                 fStack_128 = fStack_190 * 0.5;
                 fStack_124 = fStack_124 * 0.5;
                 fStack_120 = *(float *)(BufferStatus1 + 0x46c) + 5.0;
-                FUN_180319320(SystemTemporaryRegister118 + 0x60c10,&plStack_110,&fStack_128);
+                CalculateSystemMemoryAllocation(SystemTemporaryRegister118 + 0x60c10,&plStack_110,&fStack_128);
                 if (plStack_110 != (long long *)0x0) {
                   (**(code **)(*plStack_110 + 0x38))();
                 }
