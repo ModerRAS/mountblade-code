@@ -132648,7 +132648,7 @@ void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt1b8;
   stackLong170 = 0;
   stackUInt168 = uiContext;
-  operationResult = FUN_180752c80(uiContext,&pstackLong178,&stackLong170);
+  operationResult = ManageUIContextResources(uiContext,&pstackLong178,&stackLong170);
   if (operationResult == 0) {
     if (((int)pstackLong178[0x22] == 0) || ((int)pstackLong178[0x22] == 7)) {
       stackUInt188 = param_7;
@@ -132728,7 +132728,7 @@ void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   *(UIHandle *)(RegisterPointer + -0x40) = preservedRegister15;
   lStack0000000000000048 = 0;
   uStack0000000000000050 = uiContext;
-  operationResult = FUN_180752c80(uiContext,&stack0x00000040,&stack0x00000048);
+  operationResult = ManageUIContextResources(uiContext,&stack0x00000040,&stack0x00000048);
   if (operationResult == 0) {
     if (((int)inputString[0x22] == 0) || ((int)inputString[0x22] == 7)) {
       operationResult = (**(code **)(*inputString + 0x28))
@@ -132854,7 +132854,7 @@ void FUN_18073ebd0(UIHandle uiContext)
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  uiValidationResult = FUN_180752c80(uiContext,apRenderContextSize,0);
+  uiValidationResult = ManageUIContextResources(uiContext,apRenderContextSize,0);
   if (uiValidationResult == 0) {
     allocatedMemory = apRenderContextSize[0][0x1b];
     if (allocatedMemory == 0) {
@@ -133048,7 +133048,7 @@ void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   stackLong120 = 0;
-  operationResult = FUN_180752c80(uiContext,&pRenderContextSize,&stackLong120);
+  operationResult = ManageUIContextResources(uiContext,&pRenderContextSize,&stackLong120);
   if (operationResult == 0) {
     if (((int)pRenderContextSize[0x22] == 0) || ((int)pRenderContextSize[0x22] == 7)) {
       operationResult = (**(code **)(*pRenderContextSize + 0x118))(pRenderContextSize,dataSource);
