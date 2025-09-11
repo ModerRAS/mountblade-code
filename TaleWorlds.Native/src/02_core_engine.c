@@ -92685,7 +92685,7 @@ void ProcessContextHandleStatus(long long ContextHandle
   uint32_t uStack_1a4;
   uint32_t SystemUnsignedValue1A0;
   uint uStack_19c;
-  uint32_t aStackProcessingVariable [2];
+  uint32_t StackProcessingVariableArray [2];
   uint64_t uStack_190;
   void *pProcessingStatus;
   uint8_t *SystemProcessingStatusFlag;
@@ -96765,7 +96765,7 @@ af70(uint64_t *ContextHandle,long long OperationBufferSize,long long Utf8SourceP
   uint8_t *stackPointer1B0;
   uint SystemValue1a8;
   uint64_t SystemStackPointer1A0;
-  uint8_t aStackProcessingVariable [4];
+  uint8_t StackProcessingBuffer4 [4];
   uint uStack_194;
   void *puStack_190;
   uint16_t *pProcessingStatus;

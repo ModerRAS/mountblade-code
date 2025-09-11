@@ -32947,7 +32947,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   inputParameterTertiary = 0;
   systemHashBuffer = 0;
   resourceValidationStatus = (int)StackFrameContext;
-  memoryRegionBase = *(uint3 *)((int64_t)dataBuffer * 3 + systemContext[6]);
+  memoryRegionBase = *(NodeDescriptor *)((int64_t)dataBuffer * 3 + systemContext[6]);
   while (validationOutcome = (uint)memoryRegionBase, validationOutcome != 0xffffff) {
     validationStatus = *(uint *)(*systemContext + (uint64_t)validationOutcome * 8);
     if ((validationStatus & DataValidationMask) != 0xffffff) {
