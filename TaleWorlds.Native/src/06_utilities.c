@@ -30000,30 +30000,30 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               else if (loopCounterInput < allocatedMemoryBlock) {
                 loopCounterInput = allocatedMemoryBlock;
               }
-              securityCheckResult = CleanupSystemResourceDW0(&StackMemoryBuffer,loopCounterInput);
+              securityCheckResult = CleanupSystemResourceDW0(&MemoryBufferStack,loopCounterInput);
               dataFlags = (uint64_t)securityCheckResult;
-              arrayIndex = (int)StackMemoryData;
+              arrayIndex = (int)MemoryDataStack;
               if (securityCheckResult != 0) {
-                securityCheckResult = StackMemoryData.lowWord;
-                if ((int64_t)StackMemoryData < 0) {
-                  securityCheckResult = -StackMemoryData.lowWord;
+                securityCheckResult = MemoryDataStack.lowWord;
+                if ((int64_t)MemoryDataStack < 0) {
+                  securityCheckResult = -MemoryDataStack.lowWord;
                 }
-                resourceIterator = (int64_t)(int)StackMemoryData;
-                statusCounter = StackMemoryData.lowWord;
+                resourceIterator = (int64_t)(int)MemoryDataStack;
+                statusCounter = MemoryDataStack.lowWord;
                 if ((int)securityCheckResult < 0) {
-                  if (0 < (int)StackMemoryData) {
+                  if (0 < (int)MemoryDataStack) {
                     return dataFlags;
                   }
-                  if ((0 < (int)StackMemoryData.lowWord) && (StackMemoryBuffer != 0)) {
-                      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),StackMemoryBuffer,&SystemMemoryPoolB,
+                  if ((0 < (int)MemoryDataStack.lowWord) && (MemoryBufferStack != 0)) {
+                      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),MemoryBufferStack,&SystemMemoryPoolB,
                                   SystemFlagBit8,1);
                   }
-                  StackMemoryBuffer = 0;
-                  StackMemoryData = 0;
+                  MemoryBufferStack = 0;
+                  MemoryDataStack = 0;
                   statusCounter = 0;
                 }
                 if (arrayIndex < 0) {
-                  exceptionDataBuffer = (DataWord *)(StackMemoryBuffer + resourceIterator * 4);
+                  exceptionDataBuffer = (DataWord *)(MemoryBufferStack + resourceIterator * 4);
                   resourceIterator = (int64_t)-arrayIndex;
                   if (arrayIndex < 0) {
                     for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
@@ -30032,23 +30032,23 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
                     }
                   }
                 }
-                StackMemoryData = StackMemoryData & ZeroValue;
+                MemoryDataStack = MemoryDataStack & ZeroValue;
                 if ((int)statusCounter < 0) {
                   statusCounter = -statusCounter;
                 }
                 if (statusCounter == 0) {
                   return dataFlags;
                 }
-                CleanupSystemResourceDW0(&StackMemoryBuffer,0);
+                CleanupSystemResourceDW0(&MemoryBufferStack,0);
                 return dataFlags;
               }
-              loopCounter = (uint64_t)StackMemoryData.lowWord;
-              stackMemoryIndex = (int)StackMemoryData;
+              loopCounter = (uint64_t)MemoryDataStack.lowWord;
+              stackMemoryIndex = (int)MemoryDataStack;
             }
             stackUIntBuffer[0] = stackMemoryIndex + 1;
             dataFlags = (uint64_t)stackUIntBuffer[0];
-            StackMemoryData = CONCAT44(StackMemoryData.lowWord,stackUIntBuffer[0]);
-            *(DataWord *)(StackMemoryBuffer + (int64_t)stackMemoryIndex * 4) = operationResult;
+            MemoryDataStack = CONCAT44(MemoryDataStack.lowWord,stackUIntBuffer[0]);
+            *(DataWord *)(MemoryBufferStack + (int64_t)stackMemoryIndex * 4) = operationResult;
             exceptionContextPointer = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;

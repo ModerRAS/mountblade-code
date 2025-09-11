@@ -134295,7 +134295,7 @@ void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   stackLong148 = 0;
   operationResult = FUN_180763070(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
-    operationResult = FUN_18075dbf0(stackUInt140,dataSource,targetBuffer,4);
+    operationResult = ProcessUIDataBuffer(stackUInt140,dataSource,targetBuffer,4);
     if (operationResult == 0) goto FUN_180740283;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -134339,7 +134339,7 @@ void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   lStack0000000000000030 = 0;
   operationResult = FUN_180763070(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = FUN_18075dbf0(stackParam00000038,dataSource,targetBuffer,4);
+    operationResult = ProcessUIDataBuffer(stackParam00000038,dataSource,targetBuffer,4);
     if (operationResult == 0) goto FUN_180740283;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -139022,7 +139022,7 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
                 ProcessUIEventData(stackUInt40,uiValidationResult,&stackLong20,astackUInt18,processingFlags,1);
                 if (stackLong20 == stackLong30) {
                   processingFlags = processingFlags & 0xffffffffffffff00;
-                  FUN_180765c40(astackUInt18[0],0,0,1,processingFlags);
+                  ConfigureUIComponent(astackUInt18[0],0,0,1,processingFlags);
                 }
                 uiValidationResult = uiValidationResult + 1;
               } while (uiValidationResult < aiStackX_20[0]);
@@ -139092,7 +139092,7 @@ UIHandle ProcessUIHandleAllocationAndValidation(void)
           ProcessUIEventData(0,ComparisonResult,&ProcessingContext,&ResultBuffer,processingFlags);
           if (ProcessingContext == AllocationOffset) {
             processingFlags = processingFlags & 0xffffffffffffff00;
-            FUN_180765c40(ResultBuffer,0,0,1,processingFlags);
+            ConfigureUIComponent(ResultBuffer,0,0,1,processingFlags);
           }
           ComparisonResult = ComparisonResult + 1;
         } while (ComparisonResult < MaxIterations);
@@ -153044,7 +153044,7 @@ void FUN_180753170(longlong *uiContext)
           aiStackX_8[0] = aiStackX_8[0] + -1;
         }
         else if ((lStackX_20 == astackLong30[0]) && (*(char *)((longlong)uiContext + 0x1fe) == '\0')) {
-          FUN_180765c40(bufferValidation,0x3f800000,0,1,0);
+          ConfigureUIComponent(bufferValidation,0x3f800000,0,1,0);
         }
         uiValidationResult = uiValidationResult + 1;
       } while (uiValidationResult < aiStackX_8[0]);
@@ -153081,7 +153081,7 @@ void FUN_1807531d6(void)
       stackParam00000070 = stackParam00000070 + -1;
     }
     else if ((stackParam00000088 == stackParam00000038) && (*(char *)(uiTargetHandle + 0x1fe) == '\0')) {
-      FUN_180765c40(stackParam00000080,0x3f800000,0,1,0);
+      ConfigureUIComponent(stackParam00000080,0x3f800000,0,1,0);
     }
     unmodifiedEBX = unmodifiedEBX + 1;
   } while (unmodifiedEBX < stackParam00000070);
