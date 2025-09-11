@@ -136803,6 +136803,10 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 系统计算函数
 #define CalculateSystemParameterValue FUN_1800ba100
 
+// 系统值计算函数 - 执行系统值的计算和验证操作
+// 功能：根据输入参数计算系统值，用于内存管理和系统操作
+#define CalculateSystemValue FUN_1800f8930
+
 // 系统参数验证函数
 #define ValidateSystemConfigurationParameters FUN_180047e40
 
