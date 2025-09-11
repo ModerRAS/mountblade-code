@@ -40291,79 +40291,61 @@ ValidationLabelD:
  * @see ValidateDataProcessingA0, ProcessSystemStatusA0, ReleaseSystemMemoryA0
  */
 uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
-
 {
-  DataWord SystemValidationData1;
-  DataWord SystemValidationData2;
-  DataWord validationStatus;
-  float primaryFloatValue;
-  float secondaryFloatValue;
-  float tertiaryFloatValue;
-  DataBuffer validationOutcome;
-  uint inputParameter;
-  uint securityCheckResult;
-  uint processingFlag;
-  uint absoluteValue;
-  uint64_t operationResult;
-  DataWord *validationDataPtr;
-  float *floatDataPtr;
-  DataBuffer *dataBufferPtr;
-  DataBuffer *temporaryDataBuffer;
-  int64_t validationLoopCounter;
-  int64_t stackFramePtr;
-  int64_t systemContextData;
-  DataBuffer *contextDataPtr;
-  int64_t arraySizeCounter;
-  int bufferSize;
-  DataBuffer *resourcePtr;
-  uint resourceFlag;
-  bool validationComplete;
-  bool securityValidationPassed;
-  float calculationResultFloatValue;    // 计算结果浮点值
-  float tempFloatValueA;                         // 临时浮点值A
-  float tempFloatValueB;                         // 临时浮点值B  
-  float tempFloatValueC;                         // 临时浮点值C
-  float tempFloatValueD;                         // 临时浮点值D
-  float processedResultFloatValue;        // 处理结果浮点值
-  
-  // 新增的语义化变量，用于替换原始的Ghidra生成变量名
-  float calculatedFloatValue;       // 计算浮点数值，替换fVar20
-  float floatValidationIterationCount; // 浮点验证迭代计数，替换fVar4
-  float componentXFloatValue;       // X分量浮点值，替换fVar5
-  float componentYFloatValue;       // Y分量浮点值，替换fVar6
-  float componentZFloatValue;       // Z分量浮点值，替换fVar7
-  float normalizedFloatResult;     // 标准化浮点结果，替换fVar9
-  float systemDataBuffer;      // 系统数据缓冲区，替换系统相关变量
-  float statusCounter;         // 状态计数器，替换状态相关变量
-  float loopCounter;           // 循环计数器，替换循环相关变量
-  float inputParameterSecondary;       // 输入参数Secondary，替换参数相关变量
-  float systemMemoryBuffer;     // 系统数据缓冲区1，替换系统相关变量
-  float operationBase;         // 操作基数，替换操作相关变量
-  float stackFrameContext;     // 栈帧指针，替换栈相关变量
-  float registerValueR12;      // 寄存器R12值，替换寄存器相关变量
-  float exceptionDataBufferD;  // 异常数据缓冲区D，替换异常相关变量
-  float exceptionContextG; // 异常处理上下文G，替换异常处理相关变量
-  float exceptionContextF; // 异常处理上下文F，替换异常处理相关变量
-  float exceptionDataBufferB;  // 异常数据缓冲区B，替换异常相关变量
-  float inputParameterTertiary; // 输入参数Tertiary，替换参数相关变量
-  
-  // 新增语义化变量定义
-  float interpolatedResultValue;    // 插值结果数值，用于存储插值计算的结果
-  float validationResultValue;       // 验证结果数值，用于存储验证操作的结果
-  DataBuffer* exceptionDataBuffer4;  // 异常数据缓冲区4，用于存储异常处理数据
-  DataBuffer* exceptionDataBuffer5;  // 异常数据缓冲区5，用于存储异常处理数据
-  float* pValidationFloatValue3;    // 验证浮点值指针3，指向验证浮点数据
-  int64_t exceptionContext7;         // 异常上下文7，用于异常处理的上下文信息
-  int64_t exceptionContext6;         // 异常上下文6，用于异常处理的上下文信息
-  float validationCounter;           // 验证计数器，用于存储验证操作的计数
-  float secondValidationValue;       // 次级验证值，用于存储次级验证的结果
-  float thirdValidationValue;        // 三级验证值，用于存储三级验证的结果
-  DataBuffer* contextPointerD;       // 上下文指针D，用于存储上下文数据的指针
-  DataWord* exceptionDataBuffer;     // 异常数据缓冲区，用于存储异常处理的数据
-  float normalizedFloatValue;        // 标准化浮点值，用于存储标准化后的浮点数值
-  float interpolatedFloatValue;       // 插值浮点值，用于存储插值计算的浮点数值
-  float validationFloatValue;        // 验证浮点值，用于存储验证操作的浮点数值
-  float calculatedFloatValue;        // 计算浮点值，用于存储计算结果的浮点数值
+    // 基础验证和状态变量
+    DataWord systemValidationData1;
+    DataWord systemValidationData2;
+    DataWord validationStatus;
+    float primaryFloatValue;
+    float secondaryFloatValue;
+    float tertiaryFloatValue;
+    DataBuffer validationOutcome;
+    uint inputParameter;
+    uint securityCheckResult;
+    uint processingFlag;
+    uint absoluteValue;
+    uint64_t operationResult;
+    
+    // 指针和数据结构变量
+    DataWord *validationDataPtr;
+    float *floatDataPtr;
+    DataBuffer *dataBufferPtr;
+    DataBuffer *temporaryDataBuffer;
+    int64_t validationLoopCounter;
+    int64_t stackFramePtr;
+    int64_t systemContextData;
+    DataBuffer *contextDataPtr;
+    int64_t arraySizeCounter;
+    
+    // 资源和内存管理变量
+    int bufferSize;
+    DataBuffer *resourcePtr;
+    uint resourceFlag;
+    bool validationComplete;
+    bool securityValidationPassed;
+    
+    // 计算和处理变量
+    float calculationResultFloatValue;
+    float tempFloatValueA;
+    float tempFloatValueB;
+    float tempFloatValueC;
+    float tempFloatValueD;
+    float processedResultFloatValue;
+    
+    // 系统状态和控制变量
+    float systemDataBuffer;
+    float statusCounter;
+    float inputParameterSecondary;
+    float systemMemoryBuffer;
+    float operationBase;
+    
+    // 异常处理变量
+    float registerValueR12;
+    float exceptionDataBufferD;
+    float exceptionContextG;
+    float exceptionContextF;
+    float exceptionDataBufferB;
+    float inputParameterTertiary;
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {

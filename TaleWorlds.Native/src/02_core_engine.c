@@ -284667,14 +284667,14 @@ uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
   uint Utf16Char;
-  uint8_t aMemoryCopyBuffer [32];
+  uint8_t MemoryCopyBuffer [32];
   uint32_t BufferTypeFlag;
-  uint64_t SystemUintBuffer240;
-  uint64_t SystemUintBuffer238;
-  uint64_t uStack_230;
-  uint64_t *pOperationStatus;
-  uint8_t SystemStackArray218 [512];
-  unsigned long long uStack_18;
+  uint64_t SystemDataBuffer240;
+  uint64_t SystemDataBuffer238;
+  uint64_t Utf16CharEndMarker;
+  uint64_t *OperationStatusPointer;
+  uint8_t CharacterProcessingBuffer [512];
+  unsigned long long EncodingKey;
   
   uStack_230 = 0xfffffffffffffffe;
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)aMemoryCopyBuffer;
