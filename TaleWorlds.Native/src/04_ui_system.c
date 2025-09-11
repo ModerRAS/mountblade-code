@@ -126445,7 +126445,7 @@ LAB_18073ab4a:
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   operationResult = ProcessUIContextWithCleanup(uiContext,astackUInt158,0);
-  if (((processingResult != 0) || (operationResult = FUN_180746bf0(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0))
+  if (((processingResult != 0) || (operationResult = ProcessUIBufferDataWithSize(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0))
      && ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(stackArray148,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
@@ -128377,7 +128377,7 @@ void ProcessUIContextWithTextureValidation(UIHandle uiContext,UIDword dataSource
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180748ea0(stackUInt120,dataSource);
+    operationResult = ProcessUIDataSourceValidation(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073bd88;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -128487,7 +128487,7 @@ void ProcessUIContextWithResultManagement(UIHandle uiContext,UIDword dataSource)
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_1807498f0(stackUInt120,dataSource);
+    operationResult = ExecuteUIDataProcessing(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073bf28;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {

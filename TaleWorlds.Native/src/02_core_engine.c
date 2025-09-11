@@ -260862,27 +260862,27 @@ unsigned long long HandleSystemMemoryContextManagement(long long ContextHandle)
       TertiaryContextHandle = ContextHandleTablePointer;
       SenaryContextHandle = ConversionContext;
       if (SecondaryContextHandle == (long long *)0x0) break;
-      pStringOffset = (long long *)(ContextHandle2[4] - ContextHandle2[5]);
-      if ((unsigned long long)(ContextHandle2[5] - ContextHandle2[4]) < 0x8000000000000001) {
-        pStringOffset = ContextHandle7;
+      StringOffsetPointer = (long long *)(SecondaryContextHandle[4] - SecondaryContextHandle[5]);
+      if ((unsigned long long)(SecondaryContextHandle[5] - SecondaryContextHandle[4]) < 0x8000000000000001) {
+        StringOffsetPointer = SeptenaryContextHandle;
       }
-      if ((pStringOffset != (long long *)0x0) &&
-         (ContextHandleData = (long long *)((long long)ContextHandleData + 1), ContextHandle3 = pStringOffset, ContextHandle6 = ContextHandle2,
-         pStringOffset <= ContextHandleTablePointer)) {
-        ContextHandle3 = ContextHandleTablePointer;
-        ContextHandle6 = ConversionContext;
+      if ((StringOffsetPointer != (long long *)0x0) &&
+         (ContextHandleData = (long long *)((long long)ContextHandleData + 1), TertiaryContextHandle = StringOffsetPointer, SenaryContextHandle = SecondaryContextHandle,
+         StringOffsetPointer <= ContextHandleTablePointer)) {
+        TertiaryContextHandle = ContextHandleTablePointer;
+        SenaryContextHandle = ConversionContext;
       }
-      ContextHandleTablePointer = ContextHandle2 + 1;
-      ContextHandle2 = (long long *)(*ContextHandlePointer + -8);
-      if (*ContextHandlePointer == 0) {
-        ContextHandle2 = ContextHandle7;
+      ContextHandleTablePointer = SecondaryContextHandle + 1;
+      SecondaryContextHandle = (long long *)(*MainContextPointer + -8);
+      if (*MainContextPointer == 0) {
+        SecondaryContextHandle = SeptenaryContextHandle;
       }
-      ContextHandleTablePointer = ContextHandle3;
-      ConversionContext = ContextHandle6;
+      ContextHandleTablePointer = TertiaryContextHandle;
+      ConversionContext = SenaryContextHandle;
     } while (ContextHandleData < (long long *)0x3);
     ContextHandleTablePointer = SystemContextRegister;
     if (ContextHandleData != (long long *)0x0) {
-      SystemStatusChar = ProcessSystemMemoryOperation(ContextHandle6,&SystemContextRegister,ContextHandle2,ContextHandle3,0xfffffffffffffffe);
+      SystemStatusChar = ProcessSystemMemoryOperation(SenaryContextHandle,&SystemContextRegister,SecondaryContextHandle,TertiaryContextHandle,0xfffffffffffffffe);
       ContextHandleTablePointer = SystemContextRegister;
       if (SystemStatusChar != '\0') {
 LAB_18020f107:
