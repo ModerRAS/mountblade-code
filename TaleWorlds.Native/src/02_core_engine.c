@@ -256924,20 +256924,20 @@ LAB_180208d4a:
 
 
 /**
- * @brief 处理系统浮点变换操作
+ * @brief 处理系统浮点数据操作
  * 
- * 该函数负责处理系统中的浮点数变换操作，包括矩阵变换和字符编码处理。
- * 根据上下文句柄和操作缓冲区大小进行数据变换和验证。
+ * 该函数负责处理系统中的浮点数数据操作，包括数据变换和编码处理。
+ * 根据系统上下文和内存操作大小进行数据处理和验证。
  * 
- * @param ContextHandle 上下文句柄
- * @param OperationBufferSize 操作缓冲区大小
- * @param Utf8SourcePointer UTF-8源数据指针
- * @param Utf16EndPointer UTF-16结束指针
- * @param AdditionalParameter1 额外参数1（浮点数）
+ * @param SystemContextHandle 系统上下文句柄
+ * @param MemoryOperationSize 内存操作大小
+ * @param CharacterDataPointer 字符数据指针
+ * @param EncodingEndPointer 编码结束指针
+ * @param ScalingParameter 缩放参数
  * @return void
  * 
  * @note 该函数涉及复杂的浮点数计算和内存操作
- * @note 根据不同的操作缓冲区大小选择不同的数据源
+ * @note 根据不同的内存操作大小选择不同的数据源
  * @note 函数内部包含迭代处理和边界检查
  */
 #define ProcessSystemFloatDataOperation FUN_180208f20
