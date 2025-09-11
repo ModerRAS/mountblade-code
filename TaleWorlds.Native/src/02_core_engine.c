@@ -229637,7 +229637,21 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
 
 
 
-8bd0d(uint32_t *ContextHandlevoid FUN_18018bd0d(uint32_t *ContextHandle
+// 函数: void FUN_18018bd0d(uint32_t *ContextHandle)
+/**
+ * @brief 处理系统句柄验证
+ * 
+ * 该函数负责处理系统句柄的验证操作，主要功能包括：
+ * - 验证句柄的有效性和状态
+ * - 处理字符编码和缓冲区管理
+ * - 执行系统数据的完整性检查
+ * - 返回验证结果状态
+ * 
+ * @param ContextHandle 要验证的句柄指针
+ * 
+ * @note 原始函数名：FUN_18018bd0d
+ */
+void ProcessSystemHandleValidation(uint32_t *ContextHandle)
 {
   uint32_t Utf16Char;
   long long ProcessingResult;
@@ -229698,7 +229712,19 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
 
 
 
-8bd5f(voidvoid FUN_18018bd5f(void
+// 函数: void FUN_18018bd5f(void)
+/**
+ * @brief 重置系统句柄状态
+ * 
+ * 该函数负责重置系统句柄的状态，主要功能包括：
+ * - 初始化系统上下文和缓冲区
+ * - 处理字符编码和循环计数器
+ * - 执行缓冲区分配和管理
+ * - 重置系统状态标志
+ * 
+ * @note 原始函数名：FUN_18018bd5f
+ */
+void ResetSystemHandleState(void)
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
