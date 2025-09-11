@@ -265779,7 +265779,7 @@ LAB_180214378:
   }
   if (-1 < *(int *)(*(long long *)(CoreEngineSystemDataTable + 0x2018) + 0x330)) {
     ConfigureSystemResourceContext(ContextHandle[0x6d],&SystemDataBufferPointerQuaternary,&plStack_150);
-    FUN_1808453c0(plStack_150,&pLoopCounterVariable);
+    ValidateSystemResourceContext(plStack_150,&pLoopCounterVariable);
     if (pLoopCounterVariable == (long long *)0x0) {
       *(uint8_t *)((long long)ContextHandle + 0x401) = 1;
     }
