@@ -125085,6 +125085,19 @@ FUN_18073a47d:
 
 
  void FUN_18073a405(void)
+/**
+ * @brief 处理UI缓冲区数据验证
+ * 
+ * 该函数负责验证UI缓冲区数据的有效性，包括：
+ * - 执行数据缓冲区初始化和验证
+ * - 处理UI数据的控制和验证操作
+ * - 确保数据完整性和安全性
+ * 
+ * @note 该函数是UI系统数据验证的核心函数
+ * @note 处理完成后会执行UI上下文数据操作
+ * 
+ * @see ProcessUIBufferDataWithControl, ValidateUIDataWithContext, ExecuteUIContextDataOperation
+ */
 void ProcessUIBufferDataValidation(void)
 
 {
@@ -126952,7 +126965,20 @@ ExecuteUIRenderTaskWithResourceRelease:
 
 
 
- void ProcessUIRenderTaskWithCleanup(void)
+ /**
+ * @brief 执行UI渲染任务并清理资源
+ * 
+ * 该函数负责执行UI渲染任务，并在执行完成后清理相关的资源。
+ * 主要功能包括：
+ * - 复制和验证UI数据缓冲区
+ * - 处理UI缓冲区数据控制
+ * - 执行UI上下文数据操作
+ * - 释放UI内存资源
+ * - 执行最终的渲染任务
+ * 
+ * @note 该函数不会返回（WARNING: Subroutine does not return）
+ */
+void ProcessUIRenderTaskWithCleanup(void)
 void ProcessUIRenderTaskWithCleanup(void)
 
 {
@@ -126988,7 +127014,18 @@ void ExecuteUIRenderTaskWithResourceRelease(void)
 
 
 
- void ExecuteUIRenderTaskWithMemoryCleanup(void)
+ /**
+ * @brief 执行UI渲染任务并清理内存
+ * 
+ * 该函数负责执行UI渲染任务，并在执行前释放UI内存资源。
+ * 主要功能包括：
+ * - 释放UI内存资源
+ * - 执行渲染任务
+ * 
+ * @param stackParam00000140 渲染任务参数
+ * @note 该函数不会返回（WARNING: Subroutine does not return）
+ */
+void ExecuteUIRenderTaskWithMemoryCleanup(void)
 void ExecuteUIRenderTaskWithMemoryCleanup(void)
 
 {
