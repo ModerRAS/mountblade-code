@@ -131180,32 +131180,32 @@ void ProcessUIContextDataSourceOperationDword(UIHandle uiContext,UIDword dataSou
 
 {
   int operationResult;
-  UIByte astackUInt168 [32];
-  UIByte *pstackUInt148;
-  longlong stackLong138;
-  longlong *pRenderDataAlignment;
-  UIByte astackUInt128 [256];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer[32];
+  UIByte *textureDataPointer;
+  longlong renderContextSize;
+  longlong *renderDataAlignment;
+  UIByte textureBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
-  stackLong138 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&renderDataAlignment,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pRenderDataAlignment + 0x48))(pRenderDataAlignment,dataSource);
-    if (operationResult == 0) goto LAB_18073da1e;
+    operationResult = (**(code **)(*renderDataAlignment + 0x48))(renderDataAlignment,dataSource);
+    if (operationResult == 0) goto ExitCleanup;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    func_0x00018074b830(astackUInt128,0x100,dataSource);
-    pstackUInt148 = astackUInt128;
+    func_0x00018074b830(textureBuffer,0x100,dataSource);
+    textureDataPointer = textureBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809576c0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextExtendedDataM);
   }
-LAB_18073da1e:
-  if (stackLong138 != 0) {
+ExitCleanup:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt168);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
