@@ -134740,14 +134740,24 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 
 
- void FUN_18073fb86(void)
-
+ /**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，主要功能包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * - 处理加密密钥操作
+ * 
+ * @note 原始函数名：FUN_18073fb86
+ * @note 此函数会调用不返回的子函数ExecuteUIRenderTask
+ */
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 {
   ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&StackBuffer);
 }
 
 
