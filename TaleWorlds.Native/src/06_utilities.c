@@ -11708,6 +11708,16 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define DestroyBasicOstream __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ
 
 
+// 互斥锁操作函数宏定义
+// 功能：在当前位置销毁互斥锁对象
+#define DestroyMutexInPlace _Mtx_destroy_in_situ
+
+// 功能：解锁互斥锁
+#define UnlockMutex _Mtx_unlock
+
+// 功能：锁定互斥锁
+#define LockMutex _Mtx_lock
+
 // 工具函数宏定义
 // 数据验证和处理函数A0
 // 功能：验证输入数据并执行相应的处理操作

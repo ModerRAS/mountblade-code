@@ -235430,7 +235430,7 @@ void SystemDataValidationAndProcessing(void)
   long long secondaryLoopCounter;
   bool BooleanValidationFlag9;
   uint32_t TemporaryStackValue58;
-  uint32_t TemporaryStackValue5c;
+  uint32_t HighByteStorage;
   
   if (NullPointerValue != 0) {
     return;
@@ -235553,7 +235553,7 @@ void ProcessSystemDataTableAndSort(void)
   long long secondaryLoopCounter;
   bool BooleanValidationFlag9;
   uint32_t TemporaryStackValue58;
-  uint32_t TemporaryStackValue5c;
+  uint32_t HighByteStorage;
   
   SystemDataTablePointer = FramePointer - (long long)CharacterLimit >> 3;
   TemporaryStackValue58 = SystemParameter;
