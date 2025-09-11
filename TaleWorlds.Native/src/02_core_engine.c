@@ -2193,7 +2193,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ReferenceCountPointer5 ReferenceCountPointer5          // 引用计数指针5
 #define LockOperationResultPointer0 LockOperationResultPointer0 // 字符串比较结果指针0
 #define SystemStackPointer190 SystemStackPointer190            // 系统栈指针190
-#define LoopCounterVariable lStack_158                          // 循环计数器变量
+// 线程池操作索引值
+#define ThreadPoolOperationIndex lStack_158
 #define SystemMemoryAllocationBlock128 pplStack_128             // 系统内存分配块128
 #define SystemMemoryAllocationBlock298 pplStack_298             // 系统内存分配块298
 #define SystemMemoryAllocationBlock260 pplStack_260             // 系统内存分配块260
