@@ -32978,7 +32978,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
       }
       inputParameterTertiary = inputParameterTertiary + calculatedSize;
     }
-    memoryRegionBase = *(uint3 *)((uint64_t)validationOutcome * 3 + systemContext[8]);
+    memoryRegionBase = *(NodeDescriptor *)((uint64_t)validationOutcome * 3 + systemContext[8]);
   }
   SystemDataBufferTertiary = 0;
   if (resourceValidationStatus != 0) {

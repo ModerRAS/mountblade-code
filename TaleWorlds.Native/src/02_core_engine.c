@@ -92728,10 +92728,10 @@ void ProcessContextHandleStatus(long long ContextHandle
   ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackSystemContextSecondary);
   pProcessingStatus = &ThreadLocalStorageTemplate;
   if (ValidationStatus != '\0') {
-    aStackProcessingVariable[0] = 0;
+    StackProcessingVariableArray[0] = 0;
     MemoryPoolIndex = 0;
     if ((*(long long *)(ContextHandle + 0x1f00) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(aStackProcessingVariable), MemoryPoolIndex = aStackProcessingVariable[0], ValidationStatus == '\0'       ) {
+       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(aStackProcessingVariable), MemoryPoolIndex = StackProcessingVariableArray[0], ValidationStatus == '\0'       ) {
       if (CoreEngineThreadStatus == '\0') {
         MemoryAddressMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1eb0) != NULL) {
