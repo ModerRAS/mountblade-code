@@ -161,6 +161,7 @@
 #define FUN_180137ef1 ProcessSystemFinalization                          // 处理系统最终化
 #define FUN_180137f90 ProcessUtf8BufferFinalization                      // 处理UTF-8缓冲区最终化
 #define FUN_1801842a0 ProcessAsyncCallback                                // 处理异步回调函数
+#define FUN_180185c00 ProcessAsyncCallbackEx                              // 处理异步回调函数扩展
 #define FUN_18012eff0 ValidateSystemConfiguration                        // 验证系统配置
 #define FUN_180174340 ProcessUtf8InputBuffer                             // 处理UTF-8输入缓冲区
 #define FUN_180170380 ProcessCharacterEncodingAndDataValidation          // 处理字符编码和数据验证
@@ -196,6 +197,7 @@
 #define FUN_180170ac0 ProcessSystemEncodingAndBufferManagement             // 处理系统编码和缓冲区管理
 #define FUN_180170ba0 ProcessCharacterEncodingConversionAndValidation      // 处理字符编码转换和验证
 #define FUN_18006b6f0 ProcessThreadLocalStorageSetup                        // 处理线程本地存储设置
+#define FUN_180046480 SetupThreadLocalStorage                                 // 设置线程本地存储
 #define FUN_1801210b0 GetSystemCharacterData                               // 获取系统字符数据
 #define FUN_180121300 GetSystemConfigurationHandle                         // 获取系统配置句柄
 #define FUN_180624c70 GetSystemStringIndex                                // 获取系统字符串索引
@@ -541,6 +543,7 @@
 #define ValidateSystemCharacterEncoding FUN_1800c4720  // 验证系统字符编码
 #define ManageSystemEncodingAndStatus FUN_180190ae0 // 管理系统编码和状态
 #define InitializeSystemDataTemplate FUN_1800e7d00    // 初始化系统数据模板
+#define FUN_1800586e0 ProcessSystemMemoryTemplate                      // 处理系统内存模板
 #define ProcessSystemEventTemplate FUN_1801b99e0            // 处理系统事件模板
 #define SetupSystemMemoryBlock FUN_18004a130       // 设置系统内存块
 #define ConvertSystemCharacterEncoding FUN_180207e00      // 转换系统字符编码
