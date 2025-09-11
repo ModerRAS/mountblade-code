@@ -253872,7 +253872,8 @@ code_r0x0001802077e2:
 
 
 
-07840(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180207840(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 执行系统上下文数据传输和编码转换
+void ExecuteSystemContextTransfer(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
