@@ -219,8 +219,8 @@
 #define BitOperationMask7fff 0x7fff
 
 // 字符验证常量
-#define CharacterValidationOffset 0x57                           // 字符验证偏移量 - 用于字符编码验证的偏移位置
-#define SystemDataRecordHeaderOffset 0x14                       // 系统数据记录头偏移量 - 用于数据记录头部的偏移位置
+#define CharacterValidationOffset 0x57
+#define SystemDataRecordHeaderOffset 0x14
 
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值 - 用于数据大小验证的最小阈值
