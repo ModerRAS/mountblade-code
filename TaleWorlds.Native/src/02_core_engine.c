@@ -60393,7 +60393,7 @@ ReferenceCountBufferAllocation:
             ReferenceCountPointer210 = ReferenceCountPointer6;
           }
           ReferenceCountPointer210 = ReferenceCountPointer210 + 1;
-          iStackX_10 = iStackX_10 + 1;
+          LoopCounter10 = LoopCounter10 + 1;
           StackParameterUnsigned20 = StackParameterUnsigned20 + 4;
           SystemStackPointer1f8 = *(int **)(*MemoryAllocationMaskPointer2 + SystemStackOffset170);
           LockOperationResultPointer5 = ReferenceCountPointer6;
