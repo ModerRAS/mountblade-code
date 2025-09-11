@@ -130,6 +130,11 @@
 #define InvalidBufferSize -2
 #define BoundaryCheckFailed -3
 
+// 空指针常量定义
+#define NULL_FUNCTION_POINTER (code *)0x0
+#define NULL_INT_POINTER (int *)0x0
+#define NULL_VOID_POINTER (void *)0x0
+
 // 浮点数数据偏移量常量
 #define FloatingPointPrimaryDataOffset 0x20
 #define FloatingPointSecondaryDataOffset 4
