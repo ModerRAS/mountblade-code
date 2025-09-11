@@ -52,20 +52,20 @@
 #define DataProcessingMultiplier 12                                     // 数据处理乘数 (0xc = 12)
 
 // 数据处理操作偏移常量
-#define DataOperationParameterPrimaryOffset 0x10
-#define DataOperationParameterSecondaryOffset 0x14
-#define DataOperationParameterTertiaryOffset 0x16
+#define DataOperationParameterPrimaryOffset 16                          // 数据操作参数主偏移量 (0x10 = 16字节)
+#define DataOperationParameterSecondaryOffset 20                       // 数据操作参数次偏移量 (0x14 = 20字节)
+#define DataOperationParameterTertiaryOffset 22                        // 数据操作参数第三偏移量 (0x16 = 22字节)
 
 // 资源清理偏移常量
-#define ResourceCleanupPrimaryOffset 0x28
-#define ResourceCleanupSecondaryOffset 0x48
-#define ExceptionContextResetPrimaryOffset 0x18
-#define ExceptionContextResetSecondaryOffset 0x20
+#define ResourceCleanupPrimaryOffset 40                                 // 资源清理主偏移量 (0x28 = 40字节)
+#define ResourceCleanupSecondaryOffset 72                              // 资源清理次偏移量 (0x48 = 72字节)
+#define ExceptionContextResetPrimaryOffset 24                         // 异常上下文重置主偏移量 (0x18 = 24字节)
+#define ExceptionContextResetSecondaryOffset 32                       // 异常上下文重置次偏移量 (0x20 = 32字节)
 
 // 安全和验证常量
-#define SecurityValidationMask 0x40000000
-#define MemoryOperationFlag 0x4000000
-#define OperationFlagMask SystemFlagBit800000
+#define SecurityValidationMask 0x40000000                             // 安全验证掩码 (第30位)
+#define MemoryOperationFlag 0x4000000                                 // 内存操作标志 (第26位)
+#define OperationFlagMask SystemFlagBit800000                         // 操作标志掩码
 // 线程本地存储地址常量
 #define ThreadLocalStoragePrimaryAddress 0x180c4f450
 #define ThreadLocalStorageSecondaryAddress 0x180c4f460
