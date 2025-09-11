@@ -125471,7 +125471,7 @@ void CleanupUIMemoryAndExecuteRenderTask(void)
 
 
  #define ReleaseUIMemoryAndExecuteRenderSimple FUN_18073a81f
-void FUN_18073a81f(void)
+void ReleaseUIMemoryAndExecuteRenderSimple(void)
 /**
  * @brief 释放UI内存资源并执行渲染任务
  * 

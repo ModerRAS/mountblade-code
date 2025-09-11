@@ -2517,6 +2517,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemContextProcessing FUN_1801a0860           // 处理系统上下文处理
 
 #define ProcessSystemMemoryManagement FUN_18015c0a0
+#define ProcessSystemContextRetrieval FUN_1802ed2b0                // 处理系统上下文检索
+#define ProcessSystemDataMatching FUN_1802a0ec0                    // 处理系统数据匹配
+#define ProcessSystemCharacterValidation FUN_1802e1840             // 处理系统字符验证
+#define ProcessSystemStatusCheck FUN_1801f2a40                    // 处理系统状态检查
+#define ProcessSystemDataComparison FUN_1801c1880                 // 处理系统数据比较
+#define ProcessSystemMatchCounting FUN_1802e4530                  // 处理系统匹配计数
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
 #define ProcessSystemMemoryBufferFinalization FUN_180170da0   // 处理系统内存缓冲区最终化
