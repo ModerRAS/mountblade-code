@@ -3051,6 +3051,18 @@ typedef union {
 #define InitializeSystemMemoryPool ProcessSystemDataTransferWithValidation
 #define FUN_180062300 ProcessSystemDataTransferWithValidation
 
+// 全局指针配置函数宏定义
+#define FUN_1809422e0 ConfigureGlobalDataPointerAtOffset27
+#define FUN_180942300 ConfigureGlobalDataPointerAtOffset28
+#define FUN_180942320 ConfigureGlobalDataPointerAtOffset29
+#define FUN_180942340 ConfigureGlobalDataPointerAtOffset30
+#define FUN_180942360 ConfigureGlobalDataPointerAtOffset31
+#define FUN_1809423a0 ConfigureGlobalDataPointerAtOffset33
+#define FUN_1809423c0 ConfigureGlobalDataPointerAtOffset34
+#define FUN_1809423e0 ConfigureGlobalDataPointerAtOffset35
+#define FUN_180941820 ProcessSystemDataValidation
+#define FUN_180941840 ExecuteSystemSecurityCheck
+
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
 #define DataOperationTypeTNVE 0x544e5645   // "TNVE" - 数据验证操作
