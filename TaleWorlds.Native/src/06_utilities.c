@@ -25847,7 +25847,15 @@ DataBuffer GetSystemStatusA0(void)
 
 
 
-// 函数: void UtilityNoOperationI(void)
+/**
+ * @brief 空操作函数I
+ * 
+ * 该函数执行空操作，无任何实际功能
+ * 
+ * 用途：用于占位或测试目的
+ * 
+ * @note 原始函数名：UtilityNoOperationI
+ */
 void UtilityNoOperationI(void)
 
 {
@@ -25856,7 +25864,15 @@ void UtilityNoOperationI(void)
 
 
 
-// 系统配置验证函数A0
+/**
+ * @brief 验证系统配置A0
+ * 
+ * 该函数用于验证系统配置的有效性和完整性
+ * 
+ * @return DataBuffer 验证结果状态码，返回ResourceNotFoundCode表示资源未找到
+ * 
+ * @note 原始函数名：ValidateSystemConfigurationA0
+ */
 DataBuffer ValidateSystemConfigurationA0(void)
 
 {
