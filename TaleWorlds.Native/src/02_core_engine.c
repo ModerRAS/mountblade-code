@@ -241034,7 +241034,7 @@ LAB_18019914b:
       Utf16Char4 = SystemStatusCode;
       if (MemoryAllocationHandle == 0) {
 LAB_1801991d4:
-        FUN_1801993a0(SystemTemporaryValue90,StackValidationData,&plStack_b8,ProcessingCounter);
+        ProcessSystemDataValidation(SystemTemporaryValue90,StackValidationData,&plStack_b8,ProcessingCounter);
         ContextHandle9 = SystemContextPointerB0;
         pBufferIndex = plStack_b8;
         uStack_104 = uStack_104 | 1;
