@@ -50,10 +50,10 @@
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
 #define InitializeSystemContextDataNode InitializeSystemContextDataNode           // 初始化系统上下文数据节点
 #define InitializeSystemContextSecondaryConfiguration InitializeSystemContextSecondaryConfiguration  // 初始化系统上下文二级配置
-#define FUN_180227230 InitializeSystemProcessingStatusFlags     // 初始化系统处理状态标志
-#define FUN_18022b590 ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
-#define FUN_18022c770 ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源
-#define FUN_18022bf70 HandleSystemContextValidation              // 处理系统上下文验证
+#define InitializeSystemProcessingStatusFlags InitializeSystemProcessingStatusFlags     // 初始化系统处理状态标志
+#define ValidateAndInitializeMemoryBlock ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
+#define ProcessContextHandleAndSystemResources ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源
+#define HandleSystemContextValidation HandleSystemContextValidation              // 处理系统上下文验证
 #define InitializeSystemContext SetupSystemContext                 // 初始化系统上下文
 #define CleanupSystemContext ClearSystemContext                    // 清理系统上下文
 #define ResetSystemMemoryManager ReinitializeMemoryManager       // 重置系统内存管理器
