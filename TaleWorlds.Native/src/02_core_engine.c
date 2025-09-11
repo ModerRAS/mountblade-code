@@ -254825,7 +254825,7 @@ void ProcessSystemContextLocking(uint64_t ContextHandle, long long OperationBuff
   unsigned long long ProcessingStatusFlag;
   uint32_t *TemporaryBuffer;
   uint32_t *CharacterStatusBuffer;
-  int aiStack_50 [4];
+  int CharacterEncodingParameters [4];
   long long *SecondaryContextPointer;
   
   IntegerValue = *(int *)(OperationBufferSize + 0x184);
@@ -254846,8 +254846,8 @@ void ProcessSystemContextLocking(uint64_t ContextHandle, long long OperationBuff
         }
         else {
           InputDataLength = CharacterStatusBuffer[-0x40];
-          ProcessFloatingPointContextHandleAndEncoding(_SystemFloatTableAddress,aiStack_50,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
-          FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,aiStack_50[0] * InputDataLength,
+          ProcessFloatingPointContextHandleAndEncoding(_SystemFloatTableAddress,CharacterEncodingParameters,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
+          FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,CharacterEncodingParameters[0] * InputDataLength,
                         *(void *)(*(long long *)(Utf8SourcePointer + SystemChecksum * 8) + 0x10),InputDataLength * IntegerValue,0);
           FUN_1802075c0(OperationBufferSize,aiStack_50,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
           if (SecondaryContextPointer != (long long *)0x0) {
