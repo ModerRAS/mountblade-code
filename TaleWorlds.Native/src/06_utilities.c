@@ -3547,8 +3547,8 @@ typedef union {
 #define ExceptionContextOffset3a8 0x3a8                        // 异常上下文偏移量3a8
 
 // 异常清理相关偏移量常量
-#define ExceptionCleanupOffset48 0x48                          // 异常清理偏移量48
-#define ExceptionCleanupOffset58 0x58                          // 异常清理偏移量58
+#define ExceptionCleanupMainOffset 0x48                         // 异常清理主偏移量 - 用于主清理操作
+#define ExceptionCleanupSecondaryOffset 0x58                   // 异常清理辅助偏移量 - 用于辅助清理操作
 
 // 系统上下文相关偏移量常量
 #define SystemContextOffset60 0x60                            // 系统上下文偏移量60
@@ -3600,12 +3600,12 @@ typedef union {
 #define ExceptionHandlerCallbackOffsetB40 0xb40        // 异常处理器回调偏移量B40
 
 // 栈帧上下文偏移量常量
-#define StackFrameSecurityCheckOffsetNegativeE -0xe     // 栈帧安全检查负偏移量E
-#define StackFrameSecurityCheckOffsetNegativeB -0xb     // 栈帧安全检查负偏移量B
-#define StackFrameSecurityCheckOffsetNegativeD -0xd     // 栈帧安全检查负偏移量D
-#define StackFrameSecurityCheckOffsetNegativeC -0xc     // 栈帧安全检查负偏移量C
-#define StackFrameDataOffsetNegative44 -0x44            // 栈帧数据负偏移量44
-#define StackFrameDataOffsetNegative3C -0x3c            // 栈帧数据负偏移量3C
+#define StackFrameSecurityValidationOffsetE -0xe        // 栈帧安全验证偏移量E - 用于安全验证操作
+#define StackFrameSecurityValidationOffsetB -0xb        // 栈帧安全验证偏移量B - 用于安全验证操作
+#define StackFrameSecurityValidationOffsetD -0xd        // 栈帧安全验证偏移量D - 用于安全验证操作
+#define StackFrameSecurityValidationOffsetC -0xc        // 栈帧安全验证偏移量C - 用于安全验证操作
+#define StackFrameDataBufferOffset44 -0x44              // 栈帧数据缓冲区偏移量44 - 用于数据缓冲区操作
+#define StackFrameDataBufferOffset3C -0x3c              // 栈帧数据缓冲区偏移量3C - 用于数据缓冲区操作
 
 // 异常上下文数据偏移量常量
 #define ExceptionContextDataSizeOffset6D8 0x6d8         // 异常上下文数据大小偏移量6D8
@@ -39670,7 +39670,7 @@ uint64_t * ValidateSystemDataProcessing(void)
     return exceptionBuffer3;
   }
   if (SystemDataBufferSizeMaximum < *(uint *)(DestinationContext + SystemDataSizeOffset)) {
-    exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(OperationResultPrimary,systemContext + ExceptionCleanupOffset58);
+    exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(OperationResultPrimary,systemContext + ExceptionCleanupSecondaryOffset);
     calculatedFloatValue = calculatedFloatValue;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
@@ -39678,18 +39678,18 @@ uint64_t * ValidateSystemDataProcessing(void)
     goto ProcessCheckpointCalculationResult;
   }
   if (*(uint *)(DestinationContext + 8) < 0x6a) {
-    *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+    *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
     *(DataBuffer *)(StackFrameContext + -0x21) = 0;
     statusCounter = ProcessDataFlagsA0(OperationResultPrimary,StackFrameContext + -0x29,0);
     exceptionBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
-      statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+      statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
       loopCounter = statusCounter;
       if ((int)statusCounter < 0) {
         loopCounter = -statusCounter;
       }
-      inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+      inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
       if ((int)loopCounter < 0) {
         if (0 < inputParameter9) {
           return exceptionBuffer3;
@@ -39698,7 +39698,7 @@ ValidationLabelB:
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
                         &SystemMemoryPoolB,SystemFlagBit8,1);
         }
-        *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+        *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
         *(DataWord *)(StackFrameContext + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
@@ -39722,10 +39722,10 @@ ValidationLabelB:
             exceptionContext8 = exceptionContext8 + -1;
             exceptionContext7 = exceptionContext7 + SystemDataSecondaryOffset18;
           } while (exceptionContext8 != 0);
-          statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+          statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
         }
       }
-      *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative21) = 0;
+      *(DataWord *)(StackFrameContext + StackFrameInputParameterOffset) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
@@ -39735,7 +39735,7 @@ ValidationLabelB:
       CleanupDataResourcesA0(StackFrameContext + -0x29,0);
       return exceptionBuffer3;
     }
-    inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+    inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
     calculatedFloatValue = validationFloatValue;
     if (inputParameter9 == 0) {
       exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -39746,7 +39746,7 @@ ValidationLabelB:
         statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
         exceptionBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         calculatedFloatValue = accumulatedFloatValue;
       }
       exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -39764,11 +39764,11 @@ ValidationLabelB:
         calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + DataBufferOffset14) + *(float *)(exceptionBuffer6 + 2);
         *(float *)((int64_t)exceptionBuffer3 + DataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionBuffer3 + 3) = 1;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
-        exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameContextOffsetNegative29);
+        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
+        exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameExceptionBufferOffset);
       }
     }
-    statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+    statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -39778,8 +39778,8 @@ ValidationLabelB:
       if ((0 < (int)statusCounter) && (exceptionBuffer3 != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionBuffer3,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
-      *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
-      *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative1D) = 0;
+      *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
+      *(DataWord *)(StackFrameContext + StackFrameStatusCounterOffset) = 0;
       exceptionBuffer3 = exceptionDataBuffer1;
       statusCounter = securityCheckResult;
     }
@@ -39801,10 +39801,10 @@ ValidationLabelB:
           exceptionContext8 = exceptionContext8 + -1;
           exceptionContext7 = exceptionContext7 + SystemDataSecondaryOffset18;
         } while (exceptionContext8 != 0);
-        statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+        statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
       }
     }
-    *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative21) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameInputParameterOffset) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
@@ -39824,7 +39824,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
       systemDataBuffer5 = systemDataBuffer5 + DataProcessingMultiplier1C) {
-    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
+    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupSecondaryOffset);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
@@ -39926,7 +39926,7 @@ DataBuffer * ProcessSystemDataValidation(void)
     return resultPointer;
   }
   if (0x81 < *(uint *)(inputParameter + 8)) {
-    contextPointer = (DataBuffer *)ProcessSystemDataA0(systemStatus,systemContext + ExceptionCleanupOffset58);
+    contextPointer = (DataBuffer *)ProcessSystemDataA0(systemStatus,systemContext + ExceptionCleanupSecondaryOffset);
     calculatedFloatValue = calculatedFloatValue;
     if ((int)contextPointer != 0) {
       return contextPointer;
@@ -39954,7 +39954,7 @@ ValidationProcessingLabel:
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
                         &SystemMemoryPoolB,SystemFlagBit8,1);
         }
-        *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+        *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
         *(DataWord *)(StackFrameContext + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
@@ -39978,10 +39978,10 @@ ValidationProcessingLabel:
             exceptionContext8 = exceptionContext8 + -1;
             exceptionContext7 = exceptionContext7 + SystemDataSecondaryOffset18;
           } while (exceptionContext8 != 0);
-          statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+          statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
         }
       }
-      *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative21) = 0;
+      *(DataWord *)(StackFrameContext + StackFrameInputParameterOffset) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
@@ -39991,7 +39991,7 @@ ValidationProcessingLabel:
       CleanupDataResourcesA0(StackFrameContext + -0x29,0);
       return exceptionDataBuffer;
     }
-    inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+    inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
     calculatedFloatValue = validationFloatValue;
     if (inputParameter9 == 0) {
       exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -40002,7 +40002,7 @@ ValidationProcessingLabel:
         statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
         exceptionDataBuffer = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         calculatedFloatValue = accumulatedFloatValue;
       }
       exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -40020,11 +40020,11 @@ ValidationProcessingLabel:
         calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + SystemMemoryDataBufferOffset14) + *(float *)(exceptionBuffer6 + SystemMemoryDataBufferOffset2);
         *(float *)((int64_t)exceptionDataBuffer + SystemMemoryDataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer + 3) = 1;
-        inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
+        inputParameter9 = *(int *)(StackFrameContext + StackFrameInputParameterOffset);
         exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
       }
     }
-    statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+    statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -40034,7 +40034,7 @@ ValidationProcessingLabel:
       if ((0 < (int)statusCounter) && (exceptionDataBuffer != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
-      *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+      *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
       *(DataWord *)(StackFrameContext + -0x1d) = 0;
       exceptionDataBuffer = exceptionBuffer3;
       statusCounter = securityCheckResult;
@@ -40057,10 +40057,10 @@ ValidationProcessingLabel:
           exceptionContext8 = exceptionContext8 + -1;
           exceptionContext7 = exceptionContext7 + SystemDataSecondaryOffset18;
         } while (exceptionContext8 != 0);
-        statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+        statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
       }
     }
-    *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative21) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameInputParameterOffset) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
@@ -40080,7 +40080,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
       systemDataBuffer5 = systemDataBuffer5 + DataProcessingMultiplier1C) {
-    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
+    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupSecondaryOffset);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
@@ -40193,7 +40193,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
-    operationResult = ValidateDataProcessingA0(systemContext,systemContextData + ExceptionCleanupOffset58);
+    operationResult = ValidateDataProcessingA0(systemContext,systemContextData + ExceptionCleanupSecondaryOffset);
     processedResultFloatValue = calculationResultFloatValue;
     if ((int)operationResult != 0) {
       return operationResult;
@@ -40207,7 +40207,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
     systemMemoryBuffer = (uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
-      statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+      statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
       loopCounter = statusCounter;
       if ((int)statusCounter < 0) {
         loopCounter = -statusCounter;
@@ -40246,7 +40246,7 @@ ValidationLabelB:
             exceptionContextG = exceptionContextG + -1;
             exceptionContextF = exceptionContextF + SystemDataSecondaryOffset18;
           } while (exceptionContextG != 0);
-          statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+          statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
         }
       }
       *(uint *)(StackFrameContext + -0x21) = securityCheckResult;
@@ -40292,7 +40292,7 @@ ValidationLabelB:
         exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
       }
     }
-    statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+    statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -40325,7 +40325,7 @@ ValidationLabelB:
           exceptionContext7 = exceptionContext7 + -1;
           exceptionContext6 = exceptionContext6 + SystemDataSecondaryOffset18;
         } while (exceptionContext7 != 0);
-        statusCounter = *(uint *)(StackFrameContext + StackFrameContextOffsetNegative1D);
+        statusCounter = *(uint *)(StackFrameContext + StackFrameStatusCounterOffset);
       }
     }
     *(uint *)(StackFrameContext + -0x21) = securityCheckResult;
@@ -40348,7 +40348,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemMemoryBuffer &&
       (systemMemoryBuffer < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
       systemMemoryBuffer = systemMemoryBuffer + DataProcessingMultiplier1C) {
-    calculatedResultValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
+    calculatedResultValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupSecondaryOffset);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) &&
@@ -44456,7 +44456,7 @@ uint64_t InitializeSystemComponentsA0(void)
   if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(systemMemoryBuffer,contextPointer + SystemFloatDataOffset38,0), (int)securityCheckResult == 0)) &&
      (securityCheckResult = ValidateSystemOperationA0(calculatedFloatValue,contextPointer + ContextPointerOffset48,0), (int)securityCheckResult == 0)) {
     if (*(uint *)(DestinationContext + 8) < 0x84) {
-      *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
+      *(DataBuffer *)(StackFrameContext + StackFrameExceptionBufferOffset) = 0;
       *(DataBuffer *)(StackFrameContext + -0x21) = 0;
       operationResult = InitializeSystemComponentA0(normalizedFloatValue,StackFrameContext + -0x29,0);
       securityCheckResult = (uint64_t)operationResult;
@@ -47041,7 +47041,7 @@ void ExceptionUnwindHandler3(DataBuffer exceptionContext, int64_t unwindContext)
   int64_t *exceptionHandlerChain;
   int64_t *exceptionHandler;
   
-  exceptionHandlerChain = *(int64_t **)(unwindContext + ExceptionCleanupOffset48);
+  exceptionHandlerChain = *(int64_t **)(unwindContext + ExceptionCleanupMainOffset);
   if (exceptionHandlerChain != NULL) {
     exceptionHandler = (int64_t *)*exceptionHandlerChain;
     if (exceptionHandler != (int64_t *)0x0) {
@@ -47075,7 +47075,7 @@ void ExceptionUnwindHandlerPrimary(DataBuffer exceptionContext, int64_t unwindPa
 {
   DataBuffer *exceptionChainPointer;
   
-  exceptionChainPointer = *(DataBuffer **)(unwindParam + ExceptionCleanupOffset48);
+  exceptionChainPointer = *(DataBuffer **)(unwindParam + ExceptionCleanupMainOffset);
   *exceptionChainPointer = &ExceptionDataTable1;
   *exceptionChainPointer = &ExceptionDataTable2;
   *exceptionChainPointer = &ExceptionDataTable3;
@@ -47130,7 +47130,7 @@ void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 void SetExceptionHandlerPointer(DataBuffer exceptionContext, int64_t handlerPointer)
 
 {
-  **(DataBuffer **)(handlerPointer + ExceptionCleanupOffset48) = &ExceptionDataTable6;
+  **(DataBuffer **)(handlerPointer + ExceptionCleanupMainOffset) = &ExceptionDataTable6;
   return;
 }
 
