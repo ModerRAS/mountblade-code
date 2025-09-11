@@ -42,6 +42,9 @@
 
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
+#define FUN_18022b590 ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
+#define FUN_18022c770 ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源
+#define FUN_18022bf70 HandleSystemContextValidation              // 处理系统上下文验证
 #define InitializeSystemContext SetupSystemContext                 // 初始化系统上下文
 #define CleanupSystemContext ClearSystemContext                    // 清理系统上下文
 #define ResetSystemMemoryManager ReinitializeMemoryManager       // 重置系统内存管理器
@@ -290425,15 +290428,15 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long 
  */
 void ProcessContextValidationAndUtfEncoding(long long ContextHandle, uint64_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  code *ValidationStatus;
-  void *PrimaryProcessingStatusFlag;
+  code *ContextValidationCallback;
+  void *PrimaryDataTemplate;
   
-  ValidationStatus = *(code **)(*(long long *)(ContextHandle + 0x2d0) + 0x10);
-  PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  ContextValidationCallback = *(code **)(*(long long *)(ContextHandle + 0x2d0) + 0x10);
+  PrimaryDataTemplate = &CoreEngineDataTemplate;
   if ((void *)OperationBufferSize[1] != NULL) {
-    PrimaryProcessingStatusFlag = (void *)OperationBufferSize[1];
+    PrimaryDataTemplate = (void *)OperationBufferSize[1];
   }
-  (*ValidationStatus)((long long *)(ContextHandle + 0x2d0),PrimaryProcessingStatusFlag,ValidationStatus,Utf16EndPointer,0xfffffffffffffffe);
+  (*ContextValidationCallback)((long long *)(ContextHandle + 0x2d0),PrimaryDataTemplate,ContextValidationCallback,Utf16EndPointer,0xfffffffffffffffe);
   FUN_18022bf70(ContextHandle,1);
   *ContextHandleSize = &ThreadLocalStorageTemplate;
   return;
