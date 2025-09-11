@@ -631,6 +631,24 @@
 #define ProcessSystemMemoryWithExtendedFlags FUN_180187b40        // 处理带扩展标志的系统内存
 #define ReleaseSystemMemoryHandle FUN_180187bd0                   // 释放系统内存句柄
 
+// 系统验证和调试函数
+#define ValidateSystemIntegrity FUN_180188010                     // 验证系统完整性
+#define CheckSystemMemoryLeaks FUN_180188150                      // 检查系统内存泄漏
+#define DebugSystemState FUN_180188290                           // 调试系统状态
+#define LogSystemEvent FUN_1801883d0                             // 记录系统事件
+
+// 系统配置和初始化函数
+#define InitializeSystemConfiguration FUN_180188510              // 初始化系统配置
+#define LoadSystemSettings FUN_180188650                         // 加载系统设置
+#define SaveSystemSettings FUN_180188790                         // 保存系统设置
+#define ResetSystemToDefaults FUN_1801888d0                      // 重置系统到默认设置
+
+// 系统性能监控函数
+#define MonitorSystemPerformance FUN_180188a10                   // 监控系统性能
+#define CollectSystemMetrics FUN_180188b50                       // 收集系统指标
+#define AnalyzeSystemBottlenecks FUN_180188c90                  // 分析系统瓶颈
+#define OptimizeSystemPerformance FUN_180188dd0                  // 优化系统性能
+
 /**
  * @brief 配置核心引擎指针
  * 
