@@ -288,6 +288,7 @@ typedef enum {
 #define ProcessUIContextDataTransfer FUN_180728660          // 处理UI上下文数据传输
 #define TransferUIDataToBuffer FUN_180728720                // 传输UI数据到缓冲区
 #define ProcessUIContextValidation FUN_18088eb60            // 处理UI上下文验证
+#define ProcessUIEventAndComponentData FUN_18088ebb0        // 处理UI事件和组件数据
 #define ProcessUITransformDataWithCoefficients FUN_180721810 // 处理UI变换数据与系数
 #define ValidateUIFloatParameter FUN_180721f12               // 验证UI浮点参数
 #define ProcessUIFloatData FUN_180721f4c                     // 处理UI浮点数据
@@ -2061,6 +2062,18 @@ typedef enum {
 #define bufferDataCapacity bufferDataArray[0]                   // 缓冲区数据容量
 #define currentBufferDataSize *(int *)(uiBufferData + 0x178)    // 当前缓冲区数据大小
 #define uiContextHandle *(UIHandle *)(uiContext + 0x170)        // UI上下文句柄
+
+// ProcessUIEventAndComponentData函数变量语义化定义
+#define eventCodeSignature eventCodeType                         // 事件代码签名
+#define uiComponentTarget uiTargetHandle                        // UI组件目标句柄
+#define memoryCompareSize 0x30                                  // 内存比较大小
+#define dataBlockSeparator 0x7b                                 // 数据块分隔符
+#define dataBlockPadding 0x2c                                   // 数据块填充
+#define componentDataOffset1 0xc                                // 组件数据偏移量1
+#define componentDataOffset2 0x18                               // 组件数据偏移量2
+#define componentDataOffset3 0x24                               // 组件数据偏移量3
+#define systemEventHandler UNK_180986218                        // 系统事件处理器
+#define systemMemoryManager UNK_1809fe7f8                      // 系统内存管理器
 #define acomponentStatus6 UIComponentStatusArray6
 #define aprocessingStatus7 UIprocessingStatusArray7
 #define aloopCounter0 UILoopCounterArray0

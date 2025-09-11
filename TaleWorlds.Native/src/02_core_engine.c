@@ -229835,7 +229835,19 @@ LAB_18018bee2:
 
 
 
-8c050(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointervoid FUN_18018c050(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 系统字符串编码操作函数
+ * 
+ * 执行系统字符串编码操作，包括内存复制和数据处理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18018c050
+ */
+void ExecuteSystemStringEncodingOperation(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
     memcpy(*(void *)(*Utf16EndPointer + 0xb0),*(void *)(ContextHandle + 8),
          (long long)(*(int *)Utf16EndPointer[1] * 0xc));
@@ -230689,7 +230701,19 @@ LAB_18018ce62:
 
  (ram,0x00018018d6f3 (ram,0x00018018d6fc (ram,0x00018018d702 (ram,0x00018018d713 (ram,0x00018018d748 (ram,0x00018018d71c (ram,0x00018018d724 (ram,0x00018018d6ae (ram,0x00018018d444 (ram,0x00018018d3a1 (ram,0x00018018d4ee (ram,0x00018018d530 (ram,0x00018018d539 (ram,0x00018018d53d (ram,0x00018018d5dd (ram,0x00018018d69e (ram,0x00018018d6a3 (ram,0x00018018d6b1 (ram,0x00018018d6e1 (ram,0x00018018d6e5 (ram,0x00018018d551 (ram,0x00018018d55a (ram,0x00018018d58b (ram,0x00018018d593 (ram,0x00018018d596 (ram,0x00018018d563 (ram,0x00018018d567 (ram,0x00018018d5b0 (ram,0x00018018d5bf (ram,0x00018018d750 (ram,0x00018018d753 (ram,0x00018018d76d (ram,0x00018018d77c (ram,0x00018018d7af (ram,0x00018018d7aa (ram,0x00018018d7b9 (ram,0x00018018d7db (ram,0x00018018d7e3 (ram,0x00018018d3f1 (ram,0x00018018d3f9 (ram,0x00018018d400 (ram,0x00018018d441 (ram,0x00018018d41c (ram,0x00018018d421 (ram,0x00018018d461 (ram,0x00018018d46f (ram,0x00018018d4e4 (ram,0x00018018d51e
 
-8cef0(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,int Utf16EndPointervoid FUN_18018cef0(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief 系统Unicode转换处理函数
+ * 
+ * 处理系统Unicode转换操作，包括字节指针处理和内存地址掩码操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18018cef0
+ */
+void ProcessSystemUnicodeConversion(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,int Utf16EndPointer
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
