@@ -127357,8 +127357,7 @@ void ProcessUIDataValidationAndInitialization(void)
 
 
 
- void FUN_18073b7af(void)
-void FUN_18073b7af(void)
+ void ReleaseUIMemoryAndExecuteRenderTaskB7AF(void)
 
 {
   longlong stackParam00000030;
