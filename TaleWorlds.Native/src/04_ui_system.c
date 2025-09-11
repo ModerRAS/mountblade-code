@@ -130775,8 +130775,7 @@ FUN_18073d683:
 
  
 
- void FUN_18073d51d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
-void FUN_18073d51d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
+ void ProcessUIDataBufferOperationB(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong *param_7)
 
 {
@@ -130863,8 +130862,8 @@ void ProcessUIResourceCleanupTask(void)
 
 
 
- void FUN_18073d683(void)
-void FUN_18073d683(void)
+ void ProcessUIComponentResetTask(void)
+void ProcessUIComponentResetTask(void)
 
 {
   longlong stackParam00000030;
@@ -130880,8 +130879,8 @@ void FUN_18073d683(void)
 
 
 
- void FUN_18073d6b5(void)
-void FUN_18073d6b5(void)
+ void ProcessUIContextStateReset(void)
+void ProcessUIContextStateReset(void)
 
 {
   ulonglong stackParam00000140;
