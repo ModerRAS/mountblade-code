@@ -29906,7 +29906,7 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
+          BitFieldOperationContext = MergeHighLowWords(BitFieldOperationContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
@@ -29917,7 +29917,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -29926,7 +29926,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -29953,7 +29953,7 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
+          BitFieldOperationContext = MergeHighLowWords(BitFieldOperationContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
@@ -29964,7 +29964,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -29973,7 +29973,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30000,7 +30000,7 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
+          BitFieldOperationContext = MergeHighLowWords(BitFieldOperationContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
@@ -30011,7 +30011,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -30020,7 +30020,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30047,7 +30047,7 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
+          BitFieldOperationContext = MergeHighLowWords(BitFieldOperationContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
@@ -30058,7 +30058,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -30067,7 +30067,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30097,7 +30097,7 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (allocatedMemoryBlock = ValidateDataWithSecurityCheck(dataContext,ValidationFloatArrayC,0), allocatedMemoryBlock != 0)) break;
         LoopCounter = arrayIndex;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
+          BitFieldOperationContext = MergeHighLowWords(BitFieldOperationContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA7;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = allocatedMemoryBlock;

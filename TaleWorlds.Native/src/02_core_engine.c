@@ -239890,7 +239890,14 @@ LAB_18019797c:
 
 
 
-97a06(voidvoid FUN_180197a06(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 这是一个空操作函数，用于保持系统结构的完整性。
+ * 
+ * @note 原始函数名：FUN_180197a06
+ */
+void ProcessSystemNoOperation(void)
 {
   return;
 }
