@@ -253327,7 +253327,23 @@ long long ProcessUtf8SourcePointerAndContext(long long *ContextHandle,long long 
 
 
 
-uint64_t * FUN_180207e00(uint64_t *ContextHandle
+/**
+ * @brief 设置字符上下文句柄
+ * 
+ * 该函数负责初始化字符上下文句柄，设置其初始状态和默认值。
+ * 主要功能包括：
+ * - 将句柄设置为最大值（0xFFFFFFFFFFFFFFFF）
+ * - 设置句柄的大小和属性字段
+ * - 清除句柄的关联数据
+ * - 返回初始化后的句柄指针
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @return uint64_t* 返回初始化后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180207e00
+ * @note 该函数用于字符处理系统的初始化阶段
+ */
+uint64_t * SetupCharacterContextHandle(uint64_t *ContextHandle
 {
   *ContextHandle = 0xffffffffffffffff;
   *(uint32_t *)(ContextHandle + 1) = 0xffffffff;
@@ -258604,7 +258620,25 @@ LAB_18020d5b5:
 
 
 
-uint64_t * FUN_18020d6c0(uint64_t *ContextHandle,int *ContextHandleSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理字符状态和事件数据
+ * 
+ * 该函数负责处理字符状态缓冲区和事件数据的处理，包括状态更新和事件触发。
+ * 主要功能包括：
+ * - 处理字符状态缓冲区的数据
+ * - 管理缓冲区分配状态
+ * - 执行系统事件处理
+ * - 更新上下文句柄和状态信息
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 返回处理后的字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18020d6c0
+ * @note 该函数用于字符状态管理和事件处理的核心组件
+ */
+uint64_t * HandleCharacterStatusAndEvents(uint64_t *ContextHandle,int *ContextHandleSize,uint64_t *Utf8SourcePointer
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
