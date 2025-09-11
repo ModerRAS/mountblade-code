@@ -34059,11 +34059,11 @@ validation_error_handler:
     }
   }
   else {
-    func_0x00018069d1c0(dataSource);
+    ProcessUIDataSourceValidation(dataSource);
   }
   localChar1 = **(char **)(dataSource + 0xf00);
   if (*(char *)(dataSource + 0xf60) != '\0') {
-    func_0x00018069ba40(uiContext,dataSource);
+    ProcessUIContextDataSourceValidation(uiContext,dataSource);
   }
   if (*(char *)(*(longlong *)(dataSource + 0xf00) + 2) == '\0') {
     ProcessUIComponentRender(dataSource,*(UIHandle *)(dataSource + 0xf20),*(UIHandle *)(dataSource + 0xf28),
@@ -34212,7 +34212,7 @@ void RenderUIComponentInternal(longlong renderContext, longlong componentData)
     }
   }
   else {
-    func_0x00018069d1c0(dataSource);
+    ProcessUIDataSourceValidation(dataSource);
   }
   localChar1 = **(char **)(contextHandle + 0xf00);
   if (*(char *)(contextHandle + 0xf60) != '\0') {
@@ -69233,11 +69233,11 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
     }
   }
   else {
-    func_0x00018069d1c0(dataSource);
+    ProcessUIDataSourceValidation(dataSource);
   }
   localChar1 = **(char **)(dataSource + 0xf00);
   if (*(char *)(dataSource + 0xf60) != '\0') {
-    func_0x00018069ba40(uiContext,dataSource);
+    ProcessUIContextDataSourceValidation(uiContext,dataSource);
   }
   if (*(char *)(*(longlong *)(dataSource + 0xf00) + 2) == '\0') {
     ProcessUIComponentRender(dataSource,*(UIHandle *)(dataSource + 0xf20),*(UIHandle *)(dataSource + 0xf28),

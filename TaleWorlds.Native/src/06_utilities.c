@@ -32027,7 +32027,7 @@ void ProcessDataTypes(void)
               stackInputParameterC = &DataIntegrityValidationErrorD;
               operationResult = SystemOperationResult;
               ValidationDataBuffer = inputFloatValue;
-              StackFloatRegisterB = dataPointerD;
+              StackFloatRegisterB = inputFloatValue;
               resourceValidationStatus = ValidateDataIntegrityA0(secondaryFloatResultA,&stackInputParameterC);
               operationResultQuaternary = tertiaryFloatResultA;
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -32166,7 +32166,7 @@ SystemDataValidationCheckpoint:
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = SystemDataBufferTertiary;
         StackFrameContext[-10] = SystemDataBufferSecondary;
-        *(float *)(StackFrameContext + -0xd) = dataPointerD;
+        *(float *)(StackFrameContext + -0xd) = inputFloatValue;
         securityCheckResult = *(DataWord *)(contextPointer + ContextPointerOffset58);
         statusCounter = *(DataWord *)(contextPointer + ContextPointerOffset5C);
         loopCounter = *(DataWord *)(contextPointer + ContextPointerOffset60);
@@ -32273,7 +32273,7 @@ SystemDataValidationCheckpoint:
           stackInputParameterC = &DataIntegrityValidationErrorD;
           operationResult = SystemOperationResult;
           ValidationDataBuffer = inputFloatValue;
-          StackFloatRegisterB = dataPointerD;
+          StackFloatRegisterB = inputFloatValue;
           resourceValidationStatus = ValidateDataIntegrityA0(transformedFloatValue,&stackInputParameterC);
           OperationResultTertiary = secondaryFloatResultA;
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
@@ -32436,7 +32436,7 @@ void ProcessFloatingPointData(float inputValue)
       stackInputParameterC = &DataIntegrityValidationErrorD;
       operationResult = SystemOperationResult;
       ValidationDataBuffer = inputFloatValue;
-      StackFloatRegisterB = dataPointerD;
+      StackFloatRegisterB = inputFloatValue;
       operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
       dataFlags = accumulatedFloatValue;
       if (operationResult != 0) GOTO_ValidationFailure;

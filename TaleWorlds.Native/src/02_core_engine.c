@@ -236382,7 +236382,7 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
       StackParameterUnsigned20 = (uint32_t)Utf16Char;
       TertiaryStatusValue = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
       *(uint32_t *)(ContextHandle + MemoryBlockIndex) = StackParameterUnsigned20;
-      *(uint32_t *)((long long)ContextHandle + MemoryBlockIndex * 8 + 4) = uStackX_24;
+      *(uint32_t *)((long long)ContextHandle + MemoryBlockIndex * 8 + 4) = TertiaryStatusValue;
     } while (MemoryBoundaryEnd != 0);
   }
   StringProcessingStatus = OperationBufferSize;
@@ -236430,7 +236430,7 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
         StackParameterUnsigned20 = (uint32_t)Utf16Char;
         TertiaryStatusValue = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
         *(uint32_t *)(ContextHandle + AllocatedMemorySize) = StackParameterUnsigned20;
-        *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = uStackX_24;
+        *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = TertiaryStatusValue;
       }
       StringProcessingStatus = StringProcessingStatus + 1;
     } while (StringProcessingStatus < Utf8SourcePointer);
@@ -236476,11 +236476,11 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
              *(uint32_t *)((long long)ContextHandle + SystemDataTablePointer * 8 + 4);
         AllocatedMemorySize = SystemDataTablePointer;
       }
-      uStackX_14 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+      SecondaryStatusValue = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
       OperationBufferSize = OperationBufferSize + -1;
-      uStackX_10 = (uint32_t)Utf16Char;
-      *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = uStackX_14;
-      *(uint32_t *)(ContextHandle + AllocatedMemorySize) = uStackX_10;
+      SystemStatusValue = (uint32_t)Utf16Char;
+      *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = SecondaryStatusValue;
+      *(uint32_t *)(ContextHandle + AllocatedMemorySize) = SystemStatusValue;
       SystemDataTablePointer = (8 - (long long)ContextHandle) + (long long)OperationBufferSize >> 3;
     } while (1 < SystemDataTablePointer);
   }
