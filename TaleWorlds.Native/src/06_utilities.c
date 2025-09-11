@@ -19208,14 +19208,14 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
       componentDataContext = baseSystemValidationContext;
       componentInfoContext = baseSystemValidationContext;
       if (resourceInfoContext != (int64_t *)NullPointer) {
-        contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
+        systemContextDataPointer = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
-        if (contextDataContext == exceptionContextPointer) {
-          *(int64_t **)(stackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
-          ExecuteSystemDataProcessing(stackMemoryContext,moduleDataContext);
-          moduleDataContext[2] = stackMemoryContext;
-          systemModuleOperationResult = InitializeSystemComponent(stackMemoryContext);
+        if (systemContextDataPointer == systemExceptionContextPointer) {
+          *(int64_t **)(systemStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
+          ExecuteSystemDataProcessing(systemStackMemoryContext,moduleDataContext);
+          moduleDataContext[2] = systemStackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(systemStackMemoryContext);
           if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
@@ -19224,19 +19224,19 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
         if ((int32_t)moduleDataContext[5] <= (int32_t)componentInfoContext) {
           return ResourceInvalidErrorCode;
         }
-        resourceInfoContext = contextDataContext + RESOURCE_DATA_OFFSET;
-        if (contextDataContext == (int64_t *)NullPointer) {
+        resourceInfoContext = systemContextDataPointer + RESOURCE_DATA_OFFSET;
+        if (systemContextDataPointer == (int64_t *)NullPointer) {
           resourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
         *(int64_t *)(moduleDataContext[4] + systemContextOffset + (int64_t)componentDataContext) = *resourceInfoContext;
-        if (contextDataContext == exceptionContextPointer) break;
-        resourceInfoContext = (int64_t *)(*contextDataContext + MODULE_RESOURCE_OFFSET);
-        if (*contextDataContext == 0) {
-          resourceInfoContext = baseValidationContext;
+        if (systemContextDataPointer == systemExceptionContextPointer) break;
+        resourceInfoContext = (int64_t *)(*systemContextDataPointer + MODULE_RESOURCE_OFFSET);
+        if (*systemContextDataPointer == 0) {
+          resourceInfoContext = baseSystemValidationContext;
         }
-        contextDataContext = baseValidationContext;
+        systemContextDataPointer = baseSystemValidationContext;
         if (resourceInfoContext != (int64_t *)NullPointer) {
-          contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
+          systemContextDataPointer = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
         componentDataContext = componentDataContext + COMPONENT_DATA_OFFSET;
         componentInfoContext = (int64_t *)(uint64_t)((int32_t)componentInfoContext + 1);
@@ -139729,27 +139729,27 @@ uint8_t SystemExceptionHandlerStateTable;
 // 异常处理相关栈变量
 // 原始变量名：ExceptionContextProcessorA - 异常上下文处理器A
 // 功能：存储异常上下文处理器的低32位
-#define ExceptionContextProcessorA ExceptionContextProcessorA
+#define ExceptionContextProcessorLow32Bits ExceptionContextProcessorA
 
 // 原始变量名：ExceptionContextProcessorB - 异常上下文处理器B
 // 功能：存储异常上下文处理器的高32位
-#define ExceptionContextProcessorB ExceptionContextProcessorB
+#define ExceptionContextProcessorHigh32Bits ExceptionContextProcessorB
 
 // 原始变量名：StatusCounterA - 状态计数器A
 // 功能：存储状态计数的低32位
-#define StatusCounterA StatusCounterA
+#define StatusCounterLow32Bits StatusCounterA
 
 // 原始变量名：StatusCounterB - 状态计数器B
 // 功能：存储状态计数的高32位
-#define StatusCounterB StatusCounterB
+#define StatusCounterHigh32Bits StatusCounterB
 
 // 原始变量名：resourcePointerA - 资源指针A
 // 功能：存储资源指针的数据
-#define resourcePointerA resourcePointerA
+#define ResourcePointerPrimary resourcePointerA
 
 // 原始变量名：resourcePointerB - 资源指针B
 // 功能：存储资源指针的下一个数据
-#define resourcePointerB resourcePointerB
+#define ResourcePointerSecondary resourcePointerB
 
 // 原始变量名：uStack_2a4 - 验证状态指针A
 // 功能：存储验证状态指针的数据
