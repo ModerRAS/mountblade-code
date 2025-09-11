@@ -68723,7 +68723,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
     SystemDataNode1 = NULL;
     SystemDataNode2 = NULL;
     SystemDataValue = 0;
-    uStack_458 = 3;
+    SystemDataFlag = 3;
     ProcessSystemConfigurationHandle(*ContextHandle,&SystemDataNode1,&SystemFunctionParameter);
     CharacterStatusBufferPointer538 = &SystemNullTemplate;
     SystemDataBufferCapacity = 0;
@@ -68748,7 +68748,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
 PathSeparatorFound:
         MemoryValidationFlag = &SystemContextTemplate;
         SystemMemoryBuffer = aSystemUintBuffer260;
-        iStack_268 = 0;
+        SystemMemoryCounter = 0;
         aSystemUintBuffer260[0] = 0;
         SystemTertiaryStackPointer98 = &SystemContextTemplate;
         CoreEnginePointerBuffer390 = aMemoryStatusValue;
