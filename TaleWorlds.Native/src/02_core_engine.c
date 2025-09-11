@@ -260937,26 +260937,26 @@ LAB_18020f107:
             ContextHandleTablePointer = SystemContextRegister;
           }
           else {
-            if (0x8000000000000000 < (unsigned long long)((ContextHandle2[6] - AllocatedMemorySize) - ContextHandle2[4])) {
+            if (0x8000000000000000 < (unsigned long long)((SecondaryContextHandle[6] - AllocatedMemorySize) - SecondaryContextHandle[4])) {
               LOCK();
-              ContextHandleTablePointer = ContextHandle2 + 6;
-              BufferStatus = *ContextHandlePointer;
-              *ContextHandlePointer = *ContextHandlePointer + 1;
+              ContextHandleTablePointer = SecondaryContextHandle + 6;
+              BufferStatus = *MainContextPointer;
+              *MainContextPointer = *MainContextPointer + 1;
               UNLOCK();
-              if (0x8000000000000000 < (unsigned long long)((BufferStatus - ContextHandle2[4]) - AllocatedMemorySize)) {
+              if (0x8000000000000000 < (unsigned long long)((BufferStatus - SecondaryContextHandle[4]) - AllocatedMemorySize)) {
                 LOCK();
-                CharacterStatusBuffer = (unsigned long long *)(ContextHandle2 + 5);
+                CharacterStatusBuffer = (unsigned long long *)(SecondaryContextHandle + 5);
                 ProcessedCharacter = *CharacterStatusBuffer;
                 *CharacterStatusBuffer = *CharacterStatusBuffer + 1;
                 UNLOCK();
-                ContextHandleTablePointer = (long long *)ContextHandle2[0xb];
-                long long AllocatedMemorySize = *(long long *                         (ContextHandleTablePointer[2] + 8 +
+                ContextHandleTablePointer = (long long *)SecondaryContextHandle[0xb];
+                long long ExtendedMemoryAddress = *(long long *                         (ContextHandleTablePointer[2] + 8 +
                          (((ProcessedCharacter & 0xffffffffffffffe0) -
                            *(long long *)(ContextHandleTablePointer[2] + ContextHandleTablePointer[1] * 0x10) >> SystemEventContextShiftCount) + ContextHandleTablePointer[1] &
-                         *ContextHandlePointer - 1U) * 0x10);
+                         *MainContextPointer - 1U) * 0x10);
                 ProcessedCharacter = (unsigned long long)((uint)ProcessedCharacter & 0x1f);
-                ContextHandleTablePointer = *(long long **)(AllocatedMemorySize + ProcessedCharacter * 8);
-                *(void *)(AllocatedMemorySize + ProcessedCharacter * 8) = 0;
+                ContextHandleTablePointer = *(long long **)(ExtendedMemoryAddress + ProcessedCharacter * 8);
+                *(void *)(ExtendedMemoryAddress + ProcessedCharacter * 8) = 0;
                 SystemContextRegister = ContextHandleTablePointer;
                 SystemRegisterPointerX10 = SystemContextRegister;
                 if (SystemContextRegister != (long long *)0x0) {
