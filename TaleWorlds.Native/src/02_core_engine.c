@@ -238786,13 +238786,13 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
       if (SystemShortValue2 != 0) {
         if (SystemShortValue2 == 1) {
           if (*(int *)(SystemConfigData + 0xaf0) != 0) {
-            FUN_1802fddb0(MemoryBlockIndex);
+            ProcessSystemMemoryDeallocateEx(MemoryBlockIndex);
           }
         }
         else if (SystemShortValue2 == 4) {
           if ((*(long long *)(MemoryBlockIndex + 0xd0) != 0) &&
              (*(long long *)(*(long long *)(MemoryBlockIndex + 0xd0) + 0x1000) != 0)) {
-            FUN_1802fe7c0(MemoryBlockIndex,0);
+            ProcessSystemMemoryCleanupEx(MemoryBlockIndex,0);
           }
         }
         else if (SystemShortValue2 == 2) {

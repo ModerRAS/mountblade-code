@@ -133973,7 +133973,20 @@ void FUN_180741b59(void)
 
 
 
-UIHandle FUN_180741b80(int *uiContext)
+/**
+ * @brief 处理UI上下文清理操作
+ * 
+ * 该函数负责递减UI上下文引用计数，当计数归零时执行清理操作：
+ * - 调用系统清理函数
+ * - 释放UI资源
+ * - 重置相关数据结构
+ * 
+ * @param uiContext UI上下文指针，包含当前UI系统的状态信息
+ * @return 返回操作结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_180741b80
+ */
+UIHandle ProcessUIContextCleanup(int *uiContext)
 
 {
   UIHandle result;
@@ -134013,7 +134026,7 @@ UIHandle FUN_180741b80(int *uiContext)
 
 
 
-UIHandle FUN_180741c20(int *uiContext)
+UIHandle ProcessUIContextInitialization(int *uiContext)
 
 {
   UIHandle result;

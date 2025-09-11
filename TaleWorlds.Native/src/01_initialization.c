@@ -10229,56 +10229,120 @@ void InitializeSystemFrameworkManager(void)
 
 
 /**
- * @brief 初始化系统搜索管理器D
+ * @brief 初始化系统搜索管理器
  * 
- * 该函数负责初始化系统的搜索管理器组件，设置搜索相关的
- * 数据结构和回调函数。
+ * 该函数负责初始化系统的高级搜索管理器组件，建立搜索功能的基础架构。
+ * 它会创建搜索相关的数据结构，设置回调函数，并配置搜索算法的核心参数。
+ * 
+ * 功能详解：
+ * - 获取系统根数据表，建立数据访问基础
+ * - 初始化搜索功能指针，配置搜索算法
+ * - 在系统节点中查找或创建搜索管理器节点
+ * - 设置节点的标识符、数据指针和回调函数
+ * - 配置内存管理器作为搜索系统的数据节点
+ * 
+ * 数据结构：
+ * - SystemDataTable: 系统数据表根指针
+ * - RootNodeReference: 系统节点树的根引用
+ * - CurrentSystemNode: 当前处理的系统节点
+ * - PreviousSystemNode: 前一个系统节点，用于链表操作
+ * - SystemSearchFunctionPtr: 搜索函数指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数是系统初始化过程中的关键组件，为后续的搜索功能提供基础设施
+ * @note 涉及复杂的内存节点操作和链表管理
+ * @note 原始函数名可能包含"SearchManagerAdvanced"相关标识
+ * 
+ * @see GetSystemRootTable, GetSystemSearchFunctionD, AllocateSystemMemory
  */
 void InitializeSystemSearchManagerAdvanced(void)
 {
+  // 系统节点状态标志 - 用于跟踪当前节点的激活状态
   char SystemNodeActiveFlag;
+  
+  // 系统数据表指针 - 指向系统根数据表的指针
   void** SystemDataTable;
+  
+  // 系统标识符比较结果 - 用于节点查找和比较操作
   int SystemIdentifierCompareResult;
+  
+  // 内存系统数据指针 - 指向系统内存数据的指针（未使用）
   int64_t* MemorySystemDataPointer;
+  
+  // 系统当前操作时间戳 - 用于记录操作时间（未使用）
   int64_t SystemCurrentOperationTimestamp;
+  
+  // 系统根节点引用 - 指向系统节点树的根节点
   void** RootNodeReference;
+  
+  // 当前系统节点指针 - 当前正在处理的系统节点
   void** CurrentSystemNode;
+  
+  // 下一个系统节点指针 - 用于遍历节点链表
   void** NextSystemNode;
+  
+  // 前一个系统节点指针 - 用于链表操作和节点插入
   void** PreviousSystemNode;
+  
+  // 已分配内存节点指针 - 指向新分配的内存节点
   void** AllocatedMemoryNode;
+  
+  // 系统搜索函数指针 - 指向搜索功能的核心函数
   void* SystemSearchFunctionPtr;
+  
+  // 所需内存大小 - 用于内存分配计算（未使用）
   int64_t RequiredMemorySize;
   
+  // 获取系统根数据表，建立数据访问基础
   SystemDataTable = (long long*)GetSystemRootTable();
+  
+  // 获取系统节点树的根引用
   RootNodeReference = (void**)*SystemDataTable;
-  SystemIsNodeActive = *(char*)((long long)RootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 检查根节点的激活状态
+  SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 初始化搜索功能指针，配置搜索算法
   SystemSearchFunctionPtr = GetSystemSearchFunctionD;
+  
+  // 初始化节点遍历指针
   PreviousSystemNode = RootNodeReference;
   CurrentSystemNode = (void**)RootNodeReference[RootNodeCurrentIndex];
   
+  // 遍历系统节点链表，查找合适的节点位置
   while (SystemNodeActiveFlag == '\0') {
+    // 比较当前节点与输入控制器模板的标识符
     SystemIdentifierCompareResult = memcmp(CurrentSystemNode + 4, &SystemDataTemplateInputController, SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
+      // 如果当前节点较小，则移动到下一个节点
       NextSystemNode = (void**)CurrentSystemNode[2];
       CurrentSystemNode = PreviousSystemNode;
     }
     else {
+      // 否则移动到前一个节点
       NextSystemNode = (void**)*CurrentSystemNode;
     }
+    // 更新节点指针并检查下一个节点的状态
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
-    SystemIsNodeActive = *(char*)((long long)NextSystemNode + NodeActiveFlagOffset);
+    SystemNodeActiveFlag = *(char*)((long long)NextSystemNode + NodeActiveFlagOffset);
   }
   
+  // 检查是否需要创建新的内存节点
   if ((PreviousSystemNode == RootNodeReference) || 
       (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateInputController, PreviousSystemNode + 4, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
+    // 计算所需内存大小并分配新节点
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousSystemNode, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
     PreviousSystemNode = AllocatedMemoryNode;
   }
   
+  // 配置新节点的属性和标识符
   PreviousSystemNode[SystemNodeIdentifier1Index] = SystemScriptingModuleIdentifier1;
   PreviousSystemNode[SystemNodeIdentifier2Index] = SystemNetworkModuleIdentifier2;
+  
+  // 设置节点的数据指针和状态
   PreviousSystemNode[8] = &SystemDataNodeMemoryManager;
   PreviousSystemNode[9] = 4;
   PreviousSystemNode[SystemNodeCallbackIndex] = EventCallbackPointer;
