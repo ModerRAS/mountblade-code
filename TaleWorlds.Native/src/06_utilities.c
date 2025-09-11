@@ -20049,43 +20049,43 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
 DataBuffer ValidateresourcePointerAccess(int64_t resourceDescriptor)
 
 {
-  uint64_t validationResult;
-  int64_t resourceData [2];
-  int64_t accessContext [2];
+  uint64_t resourceAccessValidationResult;
+  int64_t resourceInfoData [2];
+  int64_t accessValidationContext [2];
   
   // 查询系统数据获取资源信息
-  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset), resourceData);
-  if ((int)validationResult == 0) {
+  resourceAccessValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset), resourceInfoData);
+  if ((int)resourceAccessValidationResult == 0) {
     // 调整资源指针
-    if (resourceData[0] == 0) {
-      resourceData[0] = 0;
+    if (resourceInfoData[0] == 0) {
+      resourceInfoData[0] = 0;
     }
     else {
-      resourceData[0] = resourceData[0] + resourcePointerAdjustment;
+      resourceInfoData[0] = resourceInfoData[0] + resourcePointerAdjustment;
     }
     
     // 初始化访问上下文
-    accessContext[0] = 0;
-    validationResult = ValidateResourceAccess(resourceData[0], resourceDescriptor + resourceDescriptorSecondaryOffset, accessContext);
-    if ((int)validationResult == 0) {
-      if (accessContext[0] != 0) {
+    accessValidationContext[0] = 0;
+    resourceAccessValidationResult = ValidateResourceAccess(resourceInfoData[0], resourceDescriptor + resourceDescriptorSecondaryOffset, accessValidationContext);
+    if ((int)resourceAccessValidationResult == 0) {
+      if (accessValidationContext[0] != 0) {
         // 验证指针数据有效性
-        if (*(int64_t *)(accessContext[0] + PointerDataOffset) == 0) {
+        if (*(int64_t *)(accessValidationContext[0] + PointerDataOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
         
         // 处理资源数据
-        validationResult = ProcessResourceData(*(int64_t *)(accessContext[0] + PointerDataOffset), 
+        resourceAccessValidationResult = ProcessResourceData(*(int64_t *)(accessValidationContext[0] + PointerDataOffset), 
                                              *(DataWord *)(resourceDescriptor + resourceDescriptorPrimaryOffset),
                                              *(ByteFlag *)(resourceDescriptor + resourceDescriptorQuaternaryOffset));
-        if ((int)validationResult != 0) {
-          return validationResult;
+        if ((int)resourceAccessValidationResult != 0) {
+          return resourceAccessValidationResult;
         }
       }
-      validationResult = 0;
+      resourceAccessValidationResult = 0;
     }
   }
-  return validationResult;
+  return resourceAccessValidationResult;
 }
 
 
@@ -21297,23 +21297,23 @@ void PerformNoOperation(void)
 DataBuffer ValidateResourceAndTerminate(int64_t resourceHandle)
 
 {
-  uint64_t validationResult;
-  int64_t stackPointer;
+  uint64_t resourceValidationResult;
+  int64_t exceptionHandlerStackPointer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackPointer);
-  if ((int)validationResult != 0) {
-    return validationResult;
+  resourceValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&exceptionHandlerStackPointer);
+  if ((int)resourceValidationResult != 0) {
+    return resourceValidationResult;
   }
-  if (stackPointer == 0) {
-    stackPointer = 0;
+  if (exceptionHandlerStackPointer == 0) {
+    exceptionHandlerStackPointer = 0;
   }
   else {
-    stackPointer = stackPointer + -8;
+    exceptionHandlerStackPointer = exceptionHandlerStackPointer + -8;
   }
-  if (*(int64_t *)(stackPointer + ExceptionHandlerCallbackOffset) == 0) {
+  if (*(int64_t *)(exceptionHandlerStackPointer + ExceptionHandlerCallbackOffset) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(stackPointer + ExceptionHandlerCallbackOffset),1);
+    ReleaseResource(*(int64_t *)(exceptionHandlerStackPointer + ExceptionHandlerCallbackOffset),1);
 }
 
 
@@ -21326,22 +21326,22 @@ DataBuffer ValidateResourceAndTerminate(int64_t resourceHandle)
 DataWord ValidateRegisterResource(void)
 
 {
-  int64_t systemRegisterValue;
-  int64_t adjustedPointer;
+  int64_t systemRaxRegisterValue;
+  int64_t exceptionHandlerAdjustedPointer;
   
   // 获取系统寄存器值（从RAX寄存器）
-  systemRegisterValue = GetSystemRegisterValue();
+  systemRaxRegisterValue = GetSystemRegisterValue();
   
-  if (systemRegisterValue == 0) {
-    adjustedPointer = 0;
+  if (systemRaxRegisterValue == 0) {
+    exceptionHandlerAdjustedPointer = 0;
   }
   else {
-    adjustedPointer = systemRegisterValue + -8;
+    exceptionHandlerAdjustedPointer = systemRaxRegisterValue + -8;
   }
-  if (*(int64_t *)(adjustedPointer + ExceptionHandlerCallbackOffset) == 0) {
+  if (*(int64_t *)(exceptionHandlerAdjustedPointer + ExceptionHandlerCallbackOffset) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(adjustedPointer + ExceptionHandlerCallbackOffset),1);
+    ReleaseResource(*(int64_t *)(exceptionHandlerAdjustedPointer + ExceptionHandlerCallbackOffset),1);
 }
 
 
