@@ -67801,7 +67801,7 @@ void ProcessUIFilterOperation(void)
 {
   longlong allocatedMemory;
   UIDword *contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   int unmodifiedESI;
   int dataValidationResult;
   longlong uiTargetHandle;
@@ -126269,7 +126269,7 @@ void ProcessUIResourceCleanup(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
@@ -126849,7 +126849,7 @@ LAB_18073ab4a:
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
@@ -128432,7 +128432,7 @@ void ProcessUIRenderTaskWithCleanup(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -128608,7 +128608,7 @@ void PerformUIResourceOptimization(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ProcessUIDataAndCompare(&stack0x00000040,0x100,unmodifiedEBX);
@@ -131232,7 +131232,7 @@ void ProcessUIResourceCleanupTask(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   UIDword preservedRegister15D;
@@ -132235,7 +132235,7 @@ void ProcessUITextureDataWithValidation(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100);
@@ -133116,7 +133116,7 @@ void ExecuteUIDataValidationAndProcessing(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   UIHandle stackParam00000050;
   
@@ -133382,7 +133382,7 @@ void ProcessUIContextDataOperation(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = func_0x00018074b830(&stack0x00000040,0x100);
@@ -134632,7 +134632,7 @@ event_handling_complete:
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100);
@@ -134878,7 +134878,7 @@ void FUN_18073fea5(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ProcessUIDataAndCompare(&stack0x00000040,0x100,unmodifiedEBX);
@@ -136151,7 +136151,7 @@ void FUN_180741223(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   
@@ -136576,7 +136576,7 @@ void FUN_180741810(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
@@ -136762,7 +136762,7 @@ void FUN_180741a43(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   UIDword preservedRegister15D;
@@ -146528,7 +146528,7 @@ void FUN_18074acbd(UIDword uiContext)
   char *plocalChar5;
   longlong contextDataHandle;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodified0000002c;
   longlong *componentData;
   ulonglong iterationCount;
@@ -146673,7 +146673,7 @@ void FUN_18074af10(void)
   char *plocalChar5;
   longlong contextDataHandle;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodified0000002c;
   longlong *componentData;
   ulonglong iterationCount;
@@ -151462,7 +151462,7 @@ void CleanupUIContextAndProcessMemory(void)
   UIHandle iterationCount;
   longlong stringCompareIndex;
   longlong contextRegister;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   longlong *pcontextDataHandle;
   longlong eventHandle;
@@ -190255,7 +190255,7 @@ UIHandle FUN_18077302d(longlong uiContext)
   UIHandle iterationCount;
   longlong stringCompareIndex;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIHandle eventHandle;
   
   *(UIHandle *)(contextRegister + 8) = eventHandle;
@@ -193028,7 +193028,7 @@ UIDword FUN_180775494(UIDword uiContext,float dataSource)
 {
   float baseValue;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   bool in_CF;
   bool in_ZF;
   UIDword iterationCount;
@@ -213686,7 +213686,7 @@ LAB_18078a3ed:
 UIDword FUN_18078a40b(void)
 
 {
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong preservedRegister15;
   
   if (preservedRegister15 != 0) {
@@ -238607,7 +238607,7 @@ UIDword FUN_180802ecf(void)
   longlong *pcontextDataHandle;
   UIDword *componentContextPtr;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   int stackParam00000050;
   double stackParam00000068;
@@ -238656,7 +238656,7 @@ UIDword FUN_180802f65(void)
   UIDword *resultPointer;
   UIHandle *piterationCount;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIHandle componentData;
   
   resultPointer = (UIDword *)(contextHandle + 0x4b8);
@@ -241013,7 +241013,7 @@ UIHandle FUN_180804ef2(void)
 
 {
   longlong *uiMemoryPointer;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   int allocationFlags;
   
@@ -241041,7 +241041,7 @@ UIHandle FUN_180804ef2(void)
 UIHandle FUN_180804f75(void)
 
 {
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   
   *(UIDword *)(componentData + 0x2b8) = unmodifiedEBP;
@@ -243326,7 +243326,7 @@ void FUN_1808071a4(void)
 {
   longlong contextRegister;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodified0000002c;
   
   *(UIDword *)(contextRegister + 0x1010) = unmodifiedEBP;
@@ -300596,7 +300596,7 @@ void FUN_18084062e(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UI
   longlong *uiMemoryPointer;
   int dataValidationResult;
   longlong stringCompareIndex;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   longlong contextDataHandle;
   
@@ -300636,7 +300636,7 @@ void FUN_18084063e(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   longlong *uiMemoryPointer;
   int dataValidationResult;
   longlong stringCompareIndex;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   longlong contextDataHandle;
   longlong in_XMM0_Qb;
@@ -304594,7 +304594,7 @@ void FUN_180846730(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   
   operationResult = ProcessUIBufferDataWithControl(&stack0x00000060,0x100);
@@ -305323,7 +305323,7 @@ void FUN_180847710(void)
   int operationResult;
   int dataValidationResult;
   UIDword UIPreservedEBX;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   
@@ -309493,7 +309493,7 @@ UIStatus ProcessUIComponentContextData(longlong uiContext)
 void FUN_18084c653(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -309510,7 +309510,7 @@ void FUN_18084c653(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 void FUN_18084c658(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -312288,7 +312288,7 @@ void FUN_18084db76(void)
   longlong contextRegister;
   uint result;
   longlong componentIndex;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong *uiTargetHandle;
   
   componentIndex = *uiTargetHandle;
@@ -312313,7 +312313,7 @@ void FUN_18084dba2(void)
 
 {
   uint result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   result = (int)*(uint *)(uiTargetHandle + 0xc) >> 0x1f;
@@ -322046,7 +322046,7 @@ UIHandle FUN_180855415(uint uiContext,longlong dataSource)
   UIDword *bufferPtr;
   UIHandle loopCounter;
   UIDword *ptrLocal6;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong contextOffset;
   longlong *uiTargetHandle;
   UIDword in_XMM0_Da;
@@ -322086,7 +322086,7 @@ UIHandle FUN_180855467(uint uiContext)
 
 {
   UIHandle result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -322169,7 +322169,7 @@ UIHandle FUN_180855512(UIDword uiContext,int dataSource,uint targetBuffer)
   UIHandle loopCounter;
   longlong registerCX;
   UIDword *ptrLocal6;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong contextOffset;
   longlong uiTargetHandle;
   
@@ -322215,7 +322215,7 @@ UIHandle FUN_18085551e(longlong uiContext)
   UIHandle maxProcessingCount;
   uint iterationCounter;
   UIDword *ptrLocal8;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   longlong uiTargetHandle;
   
@@ -322250,7 +322250,7 @@ UIHandle FUN_180855559(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
   UIHandle result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -322267,7 +322267,7 @@ UIHandle FUN_18085555e(UIHandle uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
   UIHandle result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -323752,7 +323752,7 @@ FUN_18085652b:
 UIDword FUN_18085644f(void)
 
 {
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   
   FUN_18084c5a0(&stack0x00000040);
   return unmodifiedEBP;
@@ -331436,7 +331436,7 @@ void FUN_18085dd4b(longlong uiContext)
 {
   uint result;
   longlong componentIndex;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong *uiTargetHandle;
   
   componentIndex = *uiTargetHandle + 0x10;
@@ -331461,7 +331461,7 @@ void FUN_18085dd7c(void)
 
 {
   uint result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   result = (int)*(uint *)(uiTargetHandle + 0xc) >> 0x1f;
@@ -332832,7 +332832,7 @@ UIHandle FUN_18085f163(UIHandle *uiContext)
   UIDword iterationCount;
   UIHandle eventCodeType;
   longlong contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   char unmodifiedSIL;
   
   for (; (*(UIHandle **)(contextHandle + 0x4d0) <= uiContext &&
@@ -358313,7 +358313,7 @@ UIHandle FUN_18087447c(longlong uiContext)
   UIHandle result;
   uint iterationCount;
   longlong stringCompareIndex;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong *uiTargetHandle;
   bool in_ZF;
   char in_SF;
@@ -358532,7 +358532,7 @@ UIHandle FUN_18087471e(uint uiContext)
 
 {
   UIHandle result;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   
   *(UIDword *)(uiTargetHandle + 8) = unmodifiedEBP;
@@ -364116,7 +364116,7 @@ UIHandle FUN_18087970e(int uiContext,int dataSource)
   UIHandle eventCodeType;
   longlong contextDataHandle;
   UIByte unmodifiedBL;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong componentData;
   UIDword *uiTargetHandle;
   UIDword preservedXMM6;
@@ -394816,7 +394816,7 @@ FUN_180895e19(int uiContext,int dataSource,UIHandle targetBuffer,UIHandle buffer
   UIHandle result;
   UIHandle *piterationCount;
   UIDword *contextHandle;
-  UIDword unmodifiedEBP;
+  UIDword UIPreservedEBP;
   longlong uiTargetHandle;
   UIHandle bufferSizeParameter;
   
