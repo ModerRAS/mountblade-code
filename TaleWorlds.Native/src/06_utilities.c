@@ -18869,33 +18869,33 @@ void ValidateSystemState(void)
 uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
-  int64_t componentDataContext;              // 组件数据上下文指针
-  int64_t systemContextHandle;               // 系统上下文句柄
-  int32_t componentBufferSize;                // 组件缓冲区大小
-  uint64_t systemDataQueryStatus;            // 系统数据查询状态
-  uint64_t componentValidationStatus;        // 组件验证状态
-  int64_t *activeComponentContext;           // 活动组件上下文指针
-  int32_t registeredComponentCount;          // 已注册组件数量
-  uint64_t componentIterationCounter;        // 组件迭代计数器
-  int32_t componentListCapacity;              // 组件列表容量
-  uint64_t componentSearchIndex;             // 组件搜索索引
-  int64_t *componentListPointer;             // 组件列表指针
-  int64_t systemContextBuffer;               // 系统上下文缓冲区
-  int8_t componentValidationDataBuffer [DataValidationBufferSize];  // 组件验证数据缓冲区
+  int64_t ComponentDataPointer;              // 组件数据上下文指针
+  int64_t SystemContextPointer;               // 系统上下文句柄
+  int32_t ComponentDataBufferSize;                // 组件缓冲区大小
+  uint64_t SystemDataQueryStatus;            // 系统数据查询状态
+  uint64_t ComponentValidationStatus;        // 组件验证状态
+  int64_t *ActiveComponentPointer;           // 活动组件上下文指针
+  int32_t RegisteredComponentCount;          // 已注册组件数量
+  uint64_t ComponentIterationCounter;        // 组件迭代计数器
+  int32_t ComponentListCapacity;              // 组件列表容量
+  uint64_t ComponentSearchIndex;             // 组件搜索索引
+  int64_t *ComponentListPointer;             // 组件列表指针
+  int64_t SystemContextBuffer;               // 系统上下文缓冲区
+  int8_t ComponentValidationDataBuffer [DataValidationBufferSize];  // 组件验证数据缓冲区
   
-  systemDataQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
-  if ((int)systemDataQueryStatus != 0) {
+  SystemDataQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&SystemContextBuffer);
+  if ((int)SystemDataQueryStatus != 0) {
     return SystemQueryStatus;
   }
-  systemContextHandle = *(int64_t *)(systemContextBuffer + systemContextOffset);
-  if ((systemContextHandle == 0) || (*(int64_t *)(systemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
+  SystemContextPointer = *(int64_t *)(SystemContextBuffer + systemContextOffset);
+  if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + SYSTEM_CONTEXT_OFFSET) != SystemContextBuffer)) {
     return systemContextValidationFailure;
   }
-  componentDataContext = *(int64_t *)(systemContextHandle + COMPONENT_DATA_OFFSET);
-  if (componentDataContext == 0) {
+  ComponentDataPointer = *(int64_t *)(SystemContextPointer + COMPONENT_DATA_OFFSET);
+  if (ComponentDataPointer == 0) {
     return ComponentDataValidationFailure;
   }
-  if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
+  if (*(int32_t *)(SystemContextPointer + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
     systemDataQueryStatus = ProcessInputData(systemContextHandle,componentValidationDataBuffer);
     if ((int32_t)systemDataQueryStatus != 0) {
       return systemDataQueryStatus;
