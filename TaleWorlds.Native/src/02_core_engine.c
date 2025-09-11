@@ -253298,7 +253298,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
   IntegerValue9 = 0;
   if (*(int *)(ContextHandle + 0x60) != -1) {
     *(uint32_t *)(ContextHandle + 0x60) = 0xffffffff;
-    FUN_180206740(ContextHandle,1);
+    ConfigureSystemOperationParameters(ContextHandle,1);
     lStack_1f0 = 0;
     do {
       IntegerValue6 = 0;
@@ -253324,8 +253324,8 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
         lStack_1d8 = EncodingConversionResult;
         lStack_108 = SystemDataTablePointer;
         lStack_100 = EncodingConversionResult;
-        SystemChecksum = FUN_180206690(StringOffset,0,IntegerValue9);
-        FUN_1802064e0(ContextHandle,&lStack_178,SystemChecksum,IntegerValue9);
+        SystemChecksum = CalculateSystemChecksum(StringOffset,0,IntegerValue9);
+        ValidateSystemContextData(ContextHandle,&lStack_178,SystemChecksum,IntegerValue9);
         if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
           FUN_180204a00();
           ContextHandle8[1] = ContextHandle8[1] + 0x18;

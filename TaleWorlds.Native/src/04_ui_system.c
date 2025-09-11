@@ -647,6 +647,18 @@ typedef enum {
 #define ProcessUIEventAndComponentData FUN_18088ebb0        // 处理UI事件和组件数据
 #define ProcessUITransformDataWithCoefficients FUN_180721810 // 处理UI变换数据与系数
 #define ValidateUIFloatParameter FUN_180721f12               // 验证UI浮点参数
+
+// UI系统基础函数语义化定义
+#define UIReturnEmptyFunction FUN_18071ace8                   // UI系统空返回函数 - 执行空操作并返回的UI函数
+#define ProcessUIComponentDataBuffer FUN_180739b90            // 处理UI组件数据缓冲区 - 处理UI组件的数据缓冲区操作
+#define ProcessUIContextAndDataSource FUN_18073a3ad           // 处理UI上下文和数据源 - 处理UI上下文和数据源的操作
+#define ProcessUIResourceAllocation FUN_18073c020              // 处理UI资源分配 - 处理UI系统资源的分配操作
+#define ProcessUIResourceRelease FUN_18073c03d                // 处理UI资源释放 - 处理UI系统资源的释放操作
+#define ResetUIContextState FUN_18073c099                     // 重置UI上下文状态 - 重置UI系统的上下文状态
+#define ClearUIComponentCache FUN_18073c111                  // 清空UI组件缓存 - 清空UI组件的缓存数据
+#define ProcessUIDataSourceAndBuffer FUN_18073cd10            // 处理UI数据源和缓冲区 - 处理UI数据源和缓冲区的操作
+#define ProcessUIEventAndDataSource FUN_18073cdf0             // 处理UI事件和数据源 - 处理UI事件和数据源的操作
+#define ProcessUIDataWithContext FUN_18073dba0                // 处理带上下文的UI数据 - 处理带上下文的UI数据操作
 #define ProcessUIFloatData FUN_180721f4c                     // 处理UI浮点数据
 #define ProcessUIDoubleParameter FUN_180721fa6               // 处理UI双精度参数
 #define CalculateUIContextLogarithmicValue FUN_180776010      // 计算UI上下文对数值
@@ -172192,7 +172204,7 @@ UIHandle FUN_180765f57(longlong *uiContext)
       return 0x26;
     }
     stackParam00000050 = sVar6;
-    sStack0000000000000052 = sVar7;
+    UIComponentSize = sVar7;
     stackParam00000058 = stackParam00000048;
     eventCode = FUN_18076def0(&stack0x00000050,stackParam000000a8,unmodifiedESI,preservedRegister15D,maxIterations)
     ;
@@ -172218,9 +172230,9 @@ UIHandle FUN_180765f57(longlong *uiContext)
     }
     else if (((longlong *)&stack0x00000050 == uiMemoryPointer) ||
             (((stackParam00000050 == (short)*uiMemoryPointer &&
-              (sStack0000000000000052 == *(short *)((longlong)uiContext + 0x9a))) &&
+              (UIComponentSize == *(short *)((longlong)uiContext + 0x9a))) &&
              (localInt8 = memcmp(stackParam00000058,uiContext[0x14],
-                             (longlong)((int)sStack0000000000000052 * (int)stackParam00000050 * 4)),
+                             (longlong)((int)UIComponentSize * (int)stackParam00000050 * 4)),
              localInt8 == 0)))) {
                      WARNING: Subroutine does not return
       FUN_180742250(*contextHandle + 0x10bd0,stackParam00000048,&UIDefaultDataBuffer,0,1);
@@ -172330,7 +172342,7 @@ UIHandle FUN_180765f5f(longlong *uiContext)
       return 0x26;
     }
     stackParam00000050 = sVar6;
-    sStack0000000000000052 = sVar7;
+    UIComponentSize = sVar7;
     stackParam00000058 = stackParam00000048;
     eventCode = FUN_18076def0(&stack0x00000050,stackParam000000a8,unmodifiedESI,preservedRegister15D,maxIterations)
     ;
@@ -172356,9 +172368,9 @@ UIHandle FUN_180765f5f(longlong *uiContext)
     }
     else if (((longlong *)&stack0x00000050 == uiMemoryPointer) ||
             (((stackParam00000050 == (short)*uiMemoryPointer &&
-              (sStack0000000000000052 == *(short *)((longlong)uiContext + 0x9a))) &&
+              (UIComponentSize == *(short *)((longlong)uiContext + 0x9a))) &&
              (localInt8 = memcmp(stackParam00000058,uiContext[0x14],
-                             (longlong)((int)sStack0000000000000052 * (int)stackParam00000050 * 4)),
+                             (longlong)((int)UIComponentSize * (int)stackParam00000050 * 4)),
              localInt8 == 0)))) {
                      WARNING: Subroutine does not return
       FUN_180742250(*contextHandle + 0x10bd0,stackParam00000048,&UIDefaultDataBuffer,0,1);
