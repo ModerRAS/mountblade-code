@@ -243,7 +243,8 @@ typedef enum {
 #define ReleaseUIMemoryAndExecuteRenderTask FUN_18073a49f          // 释放UI内存并执行渲染任务
 #define ProcessUIContextAndBufferData FUN_18073a4c0              // 处理UI上下文和缓冲区数据
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
-#define ProcessUIContextDataValidationAndTransfer FUN_18073a72d    // 处理UI上下文数据验证和传输
+#define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
+#define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
 
 // UI系统函数指针变量定义
 #define _DAT_180d4a958 UIEventDispatchFunctionPointer           // UI事件调度函数指针
@@ -125631,8 +125632,26 @@ void ExtractUIDataFromContextWithResult(UIHandle uiContext,UIDword *dataSource,U
 
 
 
- void FUN_18073a8dd(void)
-void FUN_18073a8dd(void)
+ /**
+ * @brief 处理UI数据控制和复制操作
+ * 
+ * 该函数负责处理UI数据的控制和复制操作，包括：
+ * - 验证UI上下文数据的有效性
+ * - 处理数据缓冲区的控制操作
+ * - 执行数据复制和验证
+ * - 确保数据处理的完整性和安全性
+ */
+void ProcessUIDataWithControlAndCopy(void)
+/**
+ * @brief 处理UI数据控制和复制操作
+ * 
+ * 该函数负责处理UI数据的控制和复制操作，包括：
+ * - 验证UI上下文数据的有效性
+ * - 处理数据缓冲区的控制操作
+ * - 执行数据复制和验证
+ * - 确保数据处理的完整性和安全性
+ */
+void ProcessUIDataWithControlAndCopy(void)
 
 {
   int operationResult;

@@ -2480,6 +2480,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemEventValidation FUN_1802f9710        // 处理系统事件验证
 #define ProcessSystemDataRelease FUN_1802e7e20            // 处理系统数据释放
 #define ProcessSystemBufferRelease FUN_18063ad30          // 处理系统缓冲区释放
+#define ProcessSystemCharacterDataOptimization FUN_18039f2b0    // 处理系统字符数据优化
+#define ProcessSystemBufferDataValidation FUN_180304010        // 处理系统缓冲区数据验证
 
 // 系统初始化和状态管理函数
 #define ProcessSystemStateInitialization FUN_1801a2ea0      // 处理系统状态初始化
@@ -2523,6 +2525,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemStatusCheck FUN_1801f2a40                    // 处理系统状态检查
 #define ProcessSystemDataComparison FUN_1801c1880                 // 处理系统数据比较
 #define ProcessSystemMatchCounting FUN_1802e4530                  // 处理系统匹配计数
+#define ProcessSystemConfigurationUpdate FUN_1802d1da0              // 处理系统配置更新
+#define ProcessSystemConfigurationFinalize FUN_1802d1e30           // 处理系统配置最终化
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
 #define ProcessSystemMemoryBufferFinalization FUN_180170da0   // 处理系统内存缓冲区最终化
@@ -235390,7 +235394,7 @@ LAB_180193b87:
       if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_180193b87;
     }
   }
-  SystemContextPtr = (long long *)FUN_18013f220(ContextHandle,SystemRegisterFlagBuffer,StringProcessingStatus,TemporaryBuffer,OperationBufferSize);
+  SystemContextPtr = (long long *)CreateSystemContextInstance(ContextHandle,SystemRegisterFlagBuffer,StringProcessingStatus,TemporaryBuffer,OperationBufferSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -235473,7 +235477,7 @@ LAB_180193b87:
       if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_180193b87;
     }
   }
-  SystemContextPtr = (long long *)FUN_18013f220();
+  SystemContextPtr = (long long *)CreateSystemContextInstance();
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -235521,7 +235525,7 @@ LAB_180193b87:
       if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto LAB_180193b87;
     }
   }
-  MemoryBlockIndex = (long long *)FUN_18013f220();
+  MemoryBlockIndex = (long long *)CreateSystemContextInstance();
   return *MemoryBlockIndex + 0x40;
 }
 
@@ -241716,7 +241720,7 @@ LAB_18019a44a:
     *(uint32_t *)(OperationBufferSize[0x6b0] + 0x5b0) = *(uint32_t *)((long long)ContextHandle + 0x27bc);
     *(uint32_t *)((long long)OperationBufferSize + 0x995c) = *(uint32_t *)(OperationBufferSize[0x6b0] + 0x5b0);
     SystemEventFlag0 = 0;
-    MatchCounter = FUN_1802e4530(OperationBufferSize[0x6b0] + 0x560,OperationBufferSize,&SystemEventFlag0);
+    MatchCounter = ProcessSystemMatchCounting(OperationBufferSize[0x6b0] + 0x560,OperationBufferSize,&SystemEventFlag0);
     if (0 < MatchCounter) {
       BufferIndex = 0;
       do {
