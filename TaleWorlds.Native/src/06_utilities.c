@@ -1028,39 +1028,41 @@ typedef union {
 #define ExceptionRecoveryHandlerOffsetB0 ExceptionRecoveryConfigAddressB0        // 异常恢复配置地址B0
 
 // 资源清理偏移量常量
-#define ResourceCleanupOffset438 0x438                    // 资源清理偏移量438
-#define ResourceCleanupOffset2A8 0x2a8                    // 资源清理偏移量2A8
-#define ResourceCleanupOffset890 0x890                    // 资源清理偏移量890
-#define ResourceCleanupOffset2E0 0x2e0                    // 资源清理偏移量2E0
-#define ResourceCleanupOffset930 0x930                    // 资源清理偏移量930
+#define ResourceCleanupOffset438 ResourceCleanupPrimaryAddress438                // 资源清理主地址438
+#define ResourceCleanupOffset2A8 ResourceCleanupSecondaryAddress2A8             // 资源清理辅助地址2A8
+#define ResourceCleanupOffset890 ResourceCleanupTertiaryAddress890               // 资源清理第三地址890
+#define ResourceCleanupOffset2E0 ResourceCleanupQuaternaryAddress2E0             // 资源清理第四地址2E0
+#define ResourceCleanupOffset930 ResourceCleanupControlAddress930                // 资源清理控制地址930
 
 // 系统内存管理常量
-#define ResourceManagementOffset80 0x80                   // 资源管理偏移量80
-#define MemoryBlockMultiplier50 0x50                      // 内存块乘数50
-#define MemoryExceptionCheckOffsetE 0xe                   // 内存异常检查偏移量E
+#define ResourceManagementOffset80 ResourceManagementAddress80                  // 资源管理地址80
+#define MemoryBlockMultiplier50 MemoryBlockSizeMultiplier50                    // 内存块大小乘数50
+#define MemoryExceptionCheckOffsetE MemoryExceptionCheckAddressE               // 内存异常检查地址E
 
 // 数据缓冲区偏移量常量
-#define DataBufferOffsetE0 0xe0                           // 数据缓冲区偏移量E0
-#define DataBufferOffsetA8 0xa8                           // 数据缓冲区偏移量A8
-#define DataBufferOffsetD0 0xd0                           // 数据缓冲区偏移量D0
-#define DataBufferOffsetD8 0xd8                           // 数据缓冲区偏移量D8
-#define DataBufferOffsetE8 0xe8                           // 数据缓冲区偏移量E8
-#define ExceptionRecoveryHandlerOffsetC0 0xc0
-#define ExceptionRecoveryHandlerOffsetD8 0xd8
-#define ExceptionRecoveryHandlerOffsetE8 0xe8
-#define ExceptionContextPointerOffsetD0 0xd0
+#define DataBufferOffsetE0 DataBufferPrimaryAddressE0                          // 数据缓冲区主地址E0
+#define DataBufferOffsetA8 DataBufferSecondaryAddressA8                       // 数据缓冲区辅助地址A8
+#define DataBufferOffsetD0 DataBufferTertiaryAddressD0                       // 数据缓冲区第三地址D0
+#define DataBufferOffsetD8 DataBufferQuaternaryAddressD8                     // 数据缓冲区第四地址D8
+#define DataBufferOffsetE8 DataBufferControlAddressE8                         // 数据缓冲区控制地址E8
+
+// 异常恢复处理器额外偏移量常量
+#define ExceptionRecoveryHandlerOffsetC0 ExceptionRecoveryExtraAddressC0       // 异常恢复额外地址C0
+#define ExceptionRecoveryHandlerOffsetD8 ExceptionRecoveryExtraAddressD8       // 异常恢复额外地址D8
+#define ExceptionRecoveryHandlerOffsetE8 ExceptionRecoveryExtraAddressE8       // 异常恢复额外地址E8
+#define ExceptionContextPointerOffsetD0 ExceptionContextPointerAddressD0       // 异常上下文指针地址D0
 
 // 目标上下文偏移量常量
-#define DestinationContextOffset1A0 0x1a0
-#define DestinationContextOffset194 0x194
-#define DestinationContextOffset198 0x198
-#define DestinationContextOffset19C 0x19c
-#define DestinationContextOffset1A4 0x1a4
-#define DestinationContextOffset1A8 0x1a8
-#define DestinationContextOffset1AC 0x1ac
-#define DestinationContextOffset1B4 0x1b4
-#define DestinationContextOffset1B8 0x1b8
-#define DestinationContextOffset1B0 0x1b0
+#define DestinationContextOffset1A0 DestinationContextPrimaryAddress1A0           // 目标上下文主地址1A0
+#define DestinationContextOffset194 DestinationContextSecondaryAddress194        // 目标上下文辅助地址194
+#define DestinationContextOffset198 DestinationContextTertiaryAddress198        // 目标上下文第三地址198
+#define DestinationContextOffset19C DestinationContextQuaternaryAddress19C      // 目标上下文第四地址19C
+#define DestinationContextOffset1A4 DestinationContextControlAddress1A4          // 目标上下文控制地址1A4
+#define DestinationContextOffset1A8 DestinationContextStatusAddress1A8          // 目标上下文状态地址1A8
+#define DestinationContextOffset1AC DestinationContextDataAddress1AC            // 目标上下文数据地址1AC
+#define DestinationContextOffset1B4 DestinationContextConfigAddress1B4          // 目标上下文配置地址1B4
+#define DestinationContextOffset1B8 DestinationContextFlagAddress1B8            // 目标上下文标志地址1B8
+#define DestinationContextOffset1B0 DestinationContextValidationAddress1B0       // 目标上下文验证地址1B0
 
 // 内存管理相关常量
 #define MemoryResourcePointerTableOffset 0x48                    // 内存资源指针表偏移量
