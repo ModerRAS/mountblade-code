@@ -123363,7 +123363,7 @@ LAB_1807393ea:
 
  
 
- void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ void ProcessUIAnimationStateAndBufferOperations(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
 /**
  * @brief 处理UI动画状态和数据缓冲区操作
  * @param uiContext UI上下文句柄
@@ -126089,9 +126089,9 @@ FUN_18073af6d:
 
  
 
- void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
+ void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+                                          UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
 
 {
   int operationResult;
@@ -141585,7 +141585,7 @@ int FUN_180749060(longlong uiContext)
                                                               localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,0,
                                                                                     0,0);
                                                               if (localValidationResult == 0) {
-                                                                eventCode = FUN_180771090();
+                                                                eventCode = InitializeUIConfigMemoryRegion();
                                                                 localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,
                                                                                       0,0,0);
                                                                 if (localValidationResult == 0) {
@@ -183705,12 +183705,23 @@ UIHandle FUN_18076fc90(longlong uiContext,int dataSource)
 
 
 
- void FUN_18076ff30(void)
-void FUN_18076ff30(void)
-
+ /**
+ * @brief 初始化UI系统数据内存区域
+ * 
+ * 清零UI系统数据内存区域，为UI系统数据初始化做准备
+ * 
+ * @details 实现细节：
+ * - 清零地址0x180c0cb24开始的0x5c字节内存区域
+ * - 这个内存区域可能包含UI系统的核心数据和状态信息
+ * - 清零操作确保UI系统数据从一个干净的状态开始初始化
+ * 
+ * @note 原始函数名：FUN_18076ff30
+ * @warning 该函数不返回，通常在系统数据初始化阶段调用
+ * @see InitializeUIMemoryRegion, InitializeUIConfigMemoryRegion
+ */
+void InitializeUIDataMemoryRegion(void)
 {
-                     WARNING: Subroutine does not return
-  memset(0x180c0cb24,0,0x5c);
+  memset(0x180c0cb24, 0, 0x5c);
 }
 
 
@@ -185143,12 +185154,23 @@ UIHandle FUN_180771050(longlong uiContext)
 
 
 
- void FUN_180771090(void)
-void FUN_180771090(void)
-
+ /**
+ * @brief 初始化UI系统配置内存区域
+ * 
+ * 清零UI系统配置内存区域，为UI系统配置初始化做准备
+ * 
+ * @details 实现细节：
+ * - 清零地址0x180c0cc24开始的0x5c字节内存区域
+ * - 这个内存区域可能包含UI系统的配置数据和状态信息
+ * - 清零操作确保UI系统配置从一个干净的状态开始初始化
+ * 
+ * @note 原始函数名：FUN_180771090
+ * @warning 该函数不返回，通常在系统配置初始化阶段调用
+ * @see InitializeUIMemoryRegion
+ */
+void InitializeUIConfigMemoryRegion(void)
 {
-                     WARNING: Subroutine does not return
-  memset(0x180c0cc24,0,0x5c);
+  memset(0x180c0cc24, 0, 0x5c);
 }
 
 
