@@ -101002,8 +101002,19 @@ void SetDefaultExceptionHandlerAtOffset2f0(DataBuffer operationBase,int64_t data
 
 
 
-void SetDefaultExceptionHandlerAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 设置默认异常处理器到偏移量0x350
+ * 
+ * 该函数负责在偏移量0x350位置设置默认异常处理器B
+ * 这是异常处理机制的一部分，用于初始化异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090c4e0
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset350(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset350) = &SystemDefaultExceptionHandlerB;
   return;
