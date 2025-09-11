@@ -235372,7 +235372,23 @@ void TerminateCoreEngineSystem(void)
 
 
 
-934d0(long long ContextHandle,long long OperationBufferSizevoid FUN_1801934d0(long long ContextHandle,long long OperationBufferSize
+// 系统内存完整性验证函数
+#define ValidateSystemMemoryIntegrity FUN_1801934d0
+
+/**
+ * @brief 验证系统内存完整性
+ * 
+ * 该函数负责验证系统内存的完整性，主要功能包括：
+ * - 验证内存地址的有效性
+ * - 检查系统数据的完整性
+ * - 处理系统键值和缓冲区验证
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1801934d0
+ */
+void ValidateSystemMemoryIntegrity(long long ContextHandle,long long OperationBufferSize)
 {
   uint Utf16Char;
   char *SystemValidationFunction;
