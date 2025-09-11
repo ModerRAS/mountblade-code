@@ -125267,8 +125267,7 @@ void ProcessUIBufferDataValidation(void)
 
 
 
- void FUN_18073a47d(void)
-void ReleaseUIMemoryAndExecuteRender(void)
+ void ReleaseUIMemoryAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
@@ -125284,8 +125283,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
 
- void FUN_18073a49f(void)
-void ReleaseUIMemoryAndExecuteRenderTask(void)
+ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong stackParam00000140;
@@ -126365,7 +126363,7 @@ void ProcessUIDataBufferWithValidationAndCopy(void)
 
 
 
- void FUN_18073af6d(void)
+ void ReleaseUIMemoryAndExecuteRenderTask(void)
 /**
  * @brief 释放UI内存资源并执行渲染任务
  * 
