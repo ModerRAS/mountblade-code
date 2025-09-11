@@ -41195,9 +41195,9 @@ ValidationErrorHandler2:
         }
         dataFlags = (int)validationOutcome + 1;
         validationOutcome = (uint64_t)dataFlags;
-        securityCheckResult = *(uint *)(StackFrameContext + 0x77) & -(operationResult & 1);
+        securityCheckResult = *(uint *)(StackFrameContext + StackFrameValidationFlagOffset77) & -(operationResult & 1);
         memoryRegionBase = (uint64_t)securityCheckResult;
-        *(uint *)(StackFrameContext + 0x77) = securityCheckResult;
+        *(uint *)(StackFrameContext + StackFrameValidationFlagOffset77) = securityCheckResult;
         secondaryFloatResult = ValidationResultFloatA;
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
@@ -41249,7 +41249,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   DataWord validationResult;
   float finalValue;
   
-  *(DataWord *)(dataPointer + 0x30) = 10;
+  *(DataWord *)(dataPointer + SystemDataParameterOffset30) = 10;
   if ((int)DestinationContext != 0) {
     return DestinationContext & SystemCleanupFlag;
   }
