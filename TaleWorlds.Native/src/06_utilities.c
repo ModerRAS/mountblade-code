@@ -101043,8 +101043,19 @@ void SetDefaultExceptionHandlerAtOffset188(DataBuffer operationBase,int64_t data
 
 
 
-void InvokeFunctionPointerAtOffset138(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 调用偏移量0x138处的函数指针
+ * 
+ * 该函数负责调用位于偏移量0x138处的函数指针
+ * 用于执行特定位置的回调函数或处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含函数指针信息
+ * 
+ * @note 原始函数名：Unwind_18090c4f0
+ * @note 此函数为异常处理机制的一部分，用于执行回调函数
+ */
+void InvokeFunctionPointerAtOffset138(DataBuffer operationBase, int64_t dataBuffer)
 {
   if (*(int64_t **)(dataBuffer + DataBufferOffset138) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + DataBufferOffset138) + SystemFloatDataOffset38))();
