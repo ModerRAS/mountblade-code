@@ -127445,7 +127445,7 @@ void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
     func_0x00018074b7d0(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957158);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStateData);
   }
 LAB_18073bcb8:
   if (RenderContextSize != 0) {
@@ -127483,7 +127483,7 @@ void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
     func_0x00018074b7d0(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809570f8);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextValidationData);
   }
 LAB_18073bd88:
   if (RenderContextSize != 0) {
@@ -127521,7 +127521,7 @@ void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
     func_0x00018074b7d0(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957188);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextCacheData);
   }
 LAB_18073be58:
   if (RenderContextSize != 0) {
