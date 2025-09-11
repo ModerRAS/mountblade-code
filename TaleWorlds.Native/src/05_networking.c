@@ -1581,7 +1581,7 @@ uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle)
  */
 void ResetConnectionStack(uint32_t *ConnectionStackPointer)
 {
-  uint32_t StackResetResult;
+  uint32_t NetworkStackResetResult;
   
   if (ConnectionStackPointer != NULL) {
     *ConnectionStackPointer = NetworkResetValue;
@@ -1601,7 +1601,7 @@ void ResetConnectionStack(uint32_t *ConnectionStackPointer)
  */
 void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer)
 {
-  uint32_t BufferCopyResult;
+  uint32_t NetworkBufferCopyResult;
   
   if (ConnectionBufferPointer != NULL) {
     // 缓冲区复制操作
@@ -5448,47 +5448,47 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
  * 
  * 该函数负责处理网络连接的状态变化，包括连接建立、维护和断开
  * 
- * @param connectionContext 网络连接上下文指针
- * @param connectionStatus 连接状态指针
- * @param timeoutValue 超时值
+ * @param ConnectionContext 网络连接上下文指针
+ * @param ConnectionStatus 连接状态指针
+ * @param TimeoutValue 超时值
  * @return NetworkHandle 返回网络句柄
  */
-NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectionContext, NetworkConnectionStatus *connectionStatus, uint32_t timeoutValue)
+NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *ConnectionContext, NetworkConnectionStatus *ConnectionStatus, uint32_t TimeoutValue)
 {
-    NetworkHandle processedConnectionHandle;
-    uint32_t connectionValidationStatus;
+    NetworkHandle ProcessedConnectionHandle;
+    uint32_t ConnectionValidationStatus;
     
     // 验证连接上下文有效性
-    if (connectionContext == NULL || connectionStatus == NULL) {
+    if (ConnectionContext == NULL || ConnectionStatus == NULL) {
         return NetworkErrorInvalidHandle;
     }
     
     // 检查连接状态
-    if (*connectionStatus & NetworkStatusConnectedFlag) {
+    if (*ConnectionStatus & NetworkStatusConnectedFlag) {
         // 连接已建立，执行连接维护操作
-        connectionValidationStatus = ValidateConnectionIntegrity(connectionContext);
+        ConnectionValidationStatus = ValidateConnectionIntegrity(ConnectionContext);
         
-        if (connectionValidationStatus == NetworkValidationSuccess) {
+        if (ConnectionValidationStatus == NetworkValidationSuccess) {
             // 连接状态良好，更新连接时间戳
-            UpdateConnectionTimestamp(connectionContext);
-            processedConnectionHandle = connectionContext->connectionHandle;
+            UpdateConnectionTimestamp(ConnectionContext);
+            ProcessedConnectionHandle = ConnectionContext->connectionHandle;
         } else {
             // 连接验证失败，断开连接
-            TerminateNetworkConnection(connectionContext);
-            processedConnectionHandle = NetworkErrorConnectionFailed;
+            TerminateNetworkConnection(ConnectionContext);
+            ProcessedConnectionHandle = NetworkErrorConnectionFailed;
         }
     } else {
         // 连接未建立，尝试建立新连接
-        processedConnectionHandle = EstablishNetworkConnection(connectionContext, timeoutValue);
+        ProcessedConnectionHandle = EstablishNetworkConnection(ConnectionContext, TimeoutValue);
         
-        if (processedConnectionHandle != NetworkErrorConnectionFailed) {
+        if (ProcessedConnectionHandle != NetworkErrorConnectionFailed) {
             // 连接成功，更新状态
-            *connectionStatus |= NetworkStatusConnectedFlag;
-            connectionContext->connectionHandle = processedConnectionHandle;
+            *ConnectionStatus |= NetworkStatusConnectedFlag;
+            ConnectionContext->connectionHandle = ProcessedConnectionHandle;
         }
     }
     
-    return processedConnectionHandle;
+    return ProcessedConnectionHandle;
 }
 
 /**
