@@ -34329,7 +34329,7 @@ ValidationCheckpointB:
     if (2 < validationParameterBuffer[0]) {
       return 0xd;
     }
-    systemDataBuffer = OperateDataO0(DataSequencePointer,dataBuffer + 1,4);
+    systemDataBuffer = ReadDataFromBuffer(DataSequencePointer,dataBuffer + 1,4);
   }
   return systemDataBuffer;
 }
