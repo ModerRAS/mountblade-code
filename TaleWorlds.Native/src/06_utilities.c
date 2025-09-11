@@ -2168,24 +2168,24 @@
 #define ExceptionHandlerContextOffset50 0x50              // 异常处理上下文偏移量50
 #define ExceptionHandlerContextOffsetSecondary 0x60              // 异常处理上下文偏移量60
 #define ExceptionHandlerContextOffset80 0x80              // 异常处理上下文偏移量80
-#define ExceptionHandlerDataBufferOffset68 0x68           // 异常处理数据缓冲区偏移量68
-#define ExceptionHandlerDataBufferOffset78 0x78           // 异常处理数据缓冲区偏移量78
-#define ExceptionHandlerDataBufferOffsetC0 0xc0           // 异常处理数据缓冲区偏移量C0
+#define ExceptionHandlerDataBufferOffset 0x68           // 异常处理数据缓冲区偏移量
+#define ExceptionHandlerCountOffset 0x78           // 异常处理器计数偏移量
+#define ExceptionHandlerSecondaryListOffset 0xc0           // 异常处理器次级列表偏移量
 
 // 异常处理上下文数据偏移量常量
-#define ExceptionContextDataOffset14 0x14                 // 异常上下文数据偏移量14
-#define ExceptionContextDataOffset1C 0x1c                 // 异常上下文数据偏移量1C
-#define ExceptionContextStatusOffset68 0x68               // 异常上下文状态偏移量68
-#define ExceptionContextValidationOffsetC4 0xc4            // 异常上下文验证偏移量C4
+#define ExceptionContextSecurityDataOffset 0x14                 // 异常上下文安全数据偏移量
+#define ExceptionContextResourceDataOffset 0x1c                 // 异常上下文资源数据偏移量
+#define ExceptionContextStatusOffset 0x68               // 异常上下文状态偏移量
+#define ExceptionContextValidationFlagOffset 0xc4            // 异常上下文验证标志偏移量
 
 // 系统数据结构偏移量常量
 #define SystemDataHandleSecondaryOffset 0x4d0                // 系统数据句柄次级偏移量
 #define SystemDataResourceIndexOffset 0x774                  // 系统数据资源索引偏移量
 #define SystemDataBufferPointerOffset 0x2e8                  // 系统数据缓冲区指针偏移量
 #define SystemDataStatusOffset 0x2c                          // 系统数据状态偏移量
-#define SystemDataValidationOffset34 0x34                    // 系统数据验证偏移量34
+#define SystemDataValidationOffset 0x34                    // 系统数据验证偏移量
 #define SystemDataProcessingFlagsOffset 0x2d8                // 系统数据处理标志偏移量
-#define SystemDataSecondaryOffset18 0x18                     // 系统数据次级偏移量18
+#define SystemDataSecondaryOffset 0x18                     // 系统数据次级偏移量
 #define SystemManagementOffset98 0x98                        // 系统管理偏移量98
 #define SystemContextPointerOffsetPrimary 0x90                    // 系统上下文指针偏移量90
 #define SystemParameterValidationOffsetPrimary 0x28               // 系统参数验证偏移量28
