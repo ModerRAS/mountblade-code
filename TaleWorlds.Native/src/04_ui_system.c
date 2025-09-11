@@ -135877,7 +135877,25 @@ void ForceReleaseUIResourceAndExecuteRender(void)
  
 
  void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
-void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
+#define ProcessUIContextWithValidation FUN_180740620
+/**
+ * @brief 处理UI上下文与验证操作
+ * 
+ * 该函数负责处理UI系统的上下文与数据验证操作：
+ * - 验证UI资源
+ * - 初始化UI上下文参数
+ * - 处理数据源验证
+ * - 执行UI上下文数据操作
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180740620
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ProcessUIContextWithValidation(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;

@@ -199989,7 +199989,7 @@ void ValidateAndConvertContextHandleData(long long ContextHandle, uint64_t Opera
   uint64_t TemporaryStackValue58;
   uint64_t StackProcessingParameter60;
   long long StackProcessingParameter0;
-  long long MemoryOffsetStorage;
+  long long MemoryOffsetLimit;
   int FloatValueStorage;
   int StackOffsetE0;
   long long SystemStackLong232;
