@@ -100480,32 +100480,32 @@ void ValidateAndExecuteContextCallbackG0(DataBuffer operationBase,int64_t dataBu
 void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryRegionOffset;
-  uint64_t memoryRegionBase;
+  int *refCount;
+  DataBuffer *memPtr;
+  int64_t regionOffset;
+  uint64_t regionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB8);
-  if (memoryResourcePointer == (DataBuffer *)0x0) {
+  memPtr = *(DataBuffer **)(dataBuffer + DataBufferOffsetB8);
+  if (memPtr == (DataBuffer *)0x0) {
     return;
   }
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
-  if (memoryRegionBase != 0) {
-    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
-      if (*resourceReferenceCount == 0) {
+  regionBase = (uint64_t)memPtr & MemoryRegionMask;
+  if (regionBase != 0) {
+    regionOffset = regionBase + MemoryBaseOffset + ((int64_t)memPtr - regionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    regionOffset = regionOffset - (uint64_t)*(uint *)(regionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(regionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(regionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memPtr = *(DataBuffer *)(regionOffset + MemoryDataOffset);
+      *(DataBuffer **)(regionOffset + MemoryDataOffset) = memPtr;
+      refCount = (int *)(regionOffset + MemoryReferenceOffset);
+      *refCount = *refCount + ResourceReferenceDecrement;
+      if (*refCount == 0) {
         HandleMemoryResourceException();
         return;
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+      ManageMemory(regionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(regionBase + MemoryPointerTableOffset70) == &ExceptionList),
+                          memPtr,regionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100524,38 +100524,38 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
 void ManageResourceContextI0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionContext;
-  int operationResult;
-  int64_t memoryRegionOffset;
-  int64_t *contextPointer;
-  int64_t resourceIterator;
+  int64_t context;
+  int result;
+  int64_t regionOffset;
+  int64_t *ptr;
+  int64_t iterator;
   
   if (0 < *(int *)(dataBuffer + FloatValueOffset0)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
+    iterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemresourcePointer + 0x12e3) != '\0') || (*(char *)(SystemresourcePointer + 0x12dd) != '\0')
        ) {
-      contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
-      exceptionContext = *contextPointer;
-      exceptionContext = *(int64_t *)(exceptionContext + ((int64_t)(int)(contextPointer[1] - exceptionContext >> 3) + -1) * 8);
+      ptr = (int64_t *)(iterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(iterator + ResourceManagementOffset8088) * 0x20);
+      context = *ptr;
+      context = *(int64_t *)(context + ((int64_t)(int)(ptr[1] - context >> 3) + -1) * 8);
       ProcessSystemOperationsA0();
-      if (*(int64_t *)(exceptionContext + ExceptionContextStatusOffset) == 0) {
-        *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionContext;
+      if (*(int64_t *)(context + ExceptionContextStatusOffset) == 0) {
+        *(int64_t *)(iterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(iterator + ResourceManagementOffset8088) * 8) = context;
       }
-      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionContext >> 3) + -1;
-      if (-1 < operationResult) {
-        resourceIterator = (int64_t)operationResult;
+      regionOffset = (int64_t)*(int *)(iterator + ResourceManagementOffset8088) * 0x20;
+      context = *(int64_t *)(regionOffset + MemoryBlockOffset200 + iterator + SystemResourceBaseOffset7F20);
+      result = (int)(*(int64_t *)(regionOffset + MemoryBlockOffsetD0 + iterator + SystemResourceBaseOffset7F20) - context >> 3) + -1;
+      if (-1 < result) {
+        iterator = (int64_t)result;
         do {
-          if (*(char *)(*(int64_t *)(exceptionContext + resourceIterator * 8) + ResourceValidationFlagOffset60) == '\x01') {
-            if (operationResult != -1) {
-              ValidateDataBufferA2(*(DataBuffer *)(exceptionContext + (int64_t)operationResult * 8));
+          if (*(char *)(*(int64_t *)(context + iterator * 8) + ResourceValidationFlagOffset60) == '\x01') {
+            if (result != -1) {
+              ValidateDataBufferA2(*(DataBuffer *)(context + (int64_t)result * 8));
             }
             break;
           }
-          operationResult = operationResult + -1;
-          resourceIterator = resourceIterator + -1;
-        } while (-1 < resourceIterator);
+          result = result + -1;
+          iterator = iterator + -1;
+        } while (-1 < iterator);
       }
     }
   }
