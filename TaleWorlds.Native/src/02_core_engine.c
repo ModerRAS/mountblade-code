@@ -757,6 +757,7 @@
 #define BufferStatus SystemBufferStatus                      // 缓冲区状态
 #define SearchStartIndex SystemSearchStartIndex              // 搜索起始索引
 #define ResourceCheckIndex SystemResourceCheckIndex          // 系统资源检查索引
+#define PathProcessingIndex SystemPathProcessingIndex        // 系统路径处理索引
 
 // 线程本地存储偏移量常量
 #define ThreadLocalStorageStatusOffset2290 0x2290             // 线程本地存储状态偏移量2290
