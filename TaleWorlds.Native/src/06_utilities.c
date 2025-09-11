@@ -143645,10 +143645,17 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SystemExceptionFramePointer UNK_180d498a0
 
 // 系统资源管理相关变量语义化定义
-#define UNK_180985054 SystemResourceTable                   // 系统资源表 - 存储系统资源信息
-#define UNK_180985060 SystemResourceManager                 // 系统资源管理器 - 管理系统资源
-#define UNK_180985070 SystemResourcePool                   // 系统资源池 - 存储系统资源
-#define UNK_180985080 SystemResourceCache                  // 系统资源缓存 - 缓存系统资源
+// 系统资源表指针
+#define SystemResourceTablePointer UNK_180985054
+
+// 系统资源管理器指针
+#define SystemResourceManagerPointer UNK_180985060
+
+// 系统资源池指针
+#define SystemResourcePoolPointer UNK_180985070
+
+// 系统资源缓存指针
+#define SystemResourceCachePointer UNK_180985080
 
 // 系统配置管理相关变量语义化定义
 #define UNK_180985090 SystemConfigurationManager            // 系统配置管理器 - 管理系统配置
