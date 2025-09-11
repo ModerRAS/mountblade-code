@@ -18896,7 +18896,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     return ComponentDataValidationFailure;
   }
   if (*(int32_t *)(SystemContextPointer + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    systemDataQueryStatus = ProcessInputData(systemContextHandle,componentValidationDataBuffer);
+    SystemDataQueryStatus = ProcessInputData(SystemContextPointer,ComponentValidationDataBuffer);
     if ((int32_t)systemDataQueryStatus != 0) {
       return systemDataQueryStatus;
     }
@@ -21770,7 +21770,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   DataBuffer systemContextBuffer;
   DataWord operationParams [2];
   int64_t contextData;
-  int DataCount;
+  int dataItemCount;
   uint conversionStatus;
   
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + systemContextConversionOffset),&systemContextBuffer);
