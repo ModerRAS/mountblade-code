@@ -239140,7 +239140,21 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
 
 
 
-96de0(uint64_t *ContextHandlevoid FUN_180196de0(uint64_t *ContextHandle
+/**
+ * @brief 清理上下文句柄事件和模板
+ * 
+ * 该函数负责清理上下文句柄的事件处理和模板设置，主要功能包括：
+ * - 处理系统事件和清理事件句柄
+ * - 设置系统空模板和线程本地存储模板
+ * - 清理上下文句柄中的各个字段
+ * - 重置相关的状态标志和指针
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180196de0
+ */
+#define CleanupContextHandleEventsAndTemplates FUN_180196de0
+void CleanupContextHandleEventsAndTemplates(uint64_t *ContextHandle)
 {
   if (ContextHandle[0x46] != 0) {
       ProcessSystemEventHandling();
@@ -239252,7 +239266,24 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
 
 
 
-97080(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180197080(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统UTF-8到UTF-16编码转换
+ * 
+ * 该函数负责处理系统级别的UTF-8到UTF-16编码转换，主要功能包括：
+ * - 处理上下文句柄和操作缓冲区
+ * - 管理UTF-8源数据和UTF-16目标数据
+ * - 执行编码转换和字符处理
+ * - 处理转换过程中的异常情况
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180197080
+ */
+#define ProcessSystemUtf8ToUtf16Conversion FUN_180197080
+void ProcessSystemUtf8ToUtf16Conversion(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -239277,7 +239308,21 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
 
 
 
-970a0(long long ContextHandlevoid FUN_1801970a0(long long ContextHandle
+/**
+ * @brief 处理系统上下文初始化和验证
+ * 
+ * 该函数负责处理系统上下文的初始化和验证操作，主要功能包括：
+ * - 验证上下文句柄的有效性
+ * - 初始化系统上下文的数据结构
+ * - 执行系统相关的计算操作
+ * - 处理上下文的状态管理
+ * 
+ * @param ContextHandle 上下文句柄
+ * 
+ * @note 原始函数名：FUN_1801970a0
+ */
+#define ProcessSystemContextInitializationAndValidation FUN_1801970a0
+void ProcessSystemContextInitializationAndValidation(long long ContextHandle)
 {
   long long MainCalculationResult;
   void *SystemContext;
@@ -239310,7 +239355,22 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
 
 
 
-970c0(uint64_t **ContextHandle,float OperationBufferSizevoid FUN_1801970c0(uint64_t **ContextHandle,float OperationBufferSize
+/**
+ * @brief 处理系统矩阵变换和浮点运算
+ * 
+ * 该函数负责处理系统级别的矩阵变换和浮点运算，主要功能包括：
+ * - 处理上下文句柄和操作缓冲区大小
+ * - 执行矩阵变换和浮点数计算
+ * - 管理系统内存分配和数组索引
+ * - 处理短整型数据和状态标志
+ * 
+ * @param ContextHandle 上下文句柄指针的指针
+ * @param OperationBufferSize 操作缓冲区大小（浮点数）
+ * 
+ * @note 原始函数名：FUN_1801970c0
+ */
+#define ProcessSystemMatrixTransformAndFloatingPointOperations FUN_1801970c0
+void ProcessSystemMatrixTransformAndFloatingPointOperations(uint64_t **ContextHandle,float OperationBufferSize
 {
   short *pSystemShortValue1;
   short SystemShortValue2;
