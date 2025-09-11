@@ -143733,14 +143733,14 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SystemExceptionStackPointer SystemExceptionStackData
 
 // 系统异常帧指针
-#define SystemExceptionFramePointer UNK_180d498a0
+#define SystemExceptionFramePointer SystemExceptionFrameData
 
 // 系统资源管理相关变量语义化定义
 // 系统资源表指针
-#define SystemResourceTablePointer UNK_180985054
+#define SystemResourceTablePointer SystemResourceDataTable
 
 // 系统资源管理器指针
-#define SystemResourceManagerPointer UNK_180985060
+#define SystemResourceManagerPointer SystemResourceManagementController
 
 // 系统资源池指针
 #define SystemResourcePoolPointer UNK_180985070
