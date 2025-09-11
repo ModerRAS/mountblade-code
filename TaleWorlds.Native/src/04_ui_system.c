@@ -636,6 +636,7 @@ typedef enum {
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
 #define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
 #define ProcessUIContextDataOperationAndInitialization FUN_180745946 // 处理UI上下文数据操作和初始化
+#define UIEmptyReturnFunction FUN_180745ce1                            // UI系统空返回函数
 #define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
 #define ValidateUIContextAndExecuteRender FUN_18073a98b              // 验证UI上下文并执行渲染
 #define ReleaseUIResourceAndExecuteRender FUN_18073a9b5                // 释放UI资源并执行渲染
@@ -3550,7 +3551,7 @@ typedef enum {
 #define FUN_18073ff3f ResetUITextureSystem
 #define FUN_18073ff60 ProcessUITextureOperation
 #define FUN_180740030 ProcessUIRenderOperation
-#define FUN_180740190 ProcessUIRenderOperationBasic
+#define FUN_180740190 ProcessUIDataBufferOperation
 #define FUN_1807401ad ProcessUIRenderOperationExtended
 #define FUN_18074020b InitializeUIShaderSystem
 #define FUN_180740283 FinalizeUIShaderOperation
@@ -130224,35 +130225,35 @@ void ProcessUIDataSourceAndBuffer(UIHandle uiContext,UIByte *dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionKeyBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong renderContextSize;
+  longlong *contextPointer;
+  UIByte dataBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
   if (dataSource != (UIByte *)0x0) {
     *dataSource = 0;
   }
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext, &contextPointer, &renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0xa8))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073cdb6;
+    operationResult = (**(code **)(*contextPointer + 0xa8))(contextPointer, dataSource);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIBufferDataFill(dataBuffer, 0x100, dataSource);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationLayoutData);
+    ExecuteUIContextDataOperation(operationResult, 4, uiContext, &UIContextOperationLayoutData);
   }
-LAB_18073cdb6:
-  if (RenderContextSize != 0) {
+CleanupAndExit:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
@@ -135047,84 +135048,99 @@ LAB_180740150:
  * @note 该函数使用XOR加密技术保护数据安全
  * @see ValidateUIResource, ProcessUIDataBuffer, ExecuteUIContextDataOperation
  */
-void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-
+void ProcessUIDataBufferOperation(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  int uiValidationResult;
+  int uiCompareResult;
+  UIByte encryptionKeyBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong resourceSize;
+  UIHandle resourceHandle;
+  UIByte dataBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  resourceSize = 0;
+  operationResult = ValidateUIResource(uiContext, &resourceHandle, &resourceSize);
   if (operationResult == 0) {
-    operationResult = ProcessUIDataBuffer(stackUInt140,dataSource,targetBuffer,4);
-    if (operationResult == 0) goto FUN_180740283;
+    operationResult = ProcessUIDataBuffer(resourceHandle, dataSource, targetBuffer, 4);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    uiValidationResult = CopyUIDataBuffer(dataBuffer, 0x100, dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(dataBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957c30);
+    ExecuteUIContextDataOperation(operationResult, 7, uiContext, &UNK_180957c30);
   }
-FUN_180740283:
-  if (stackLong148 != 0) {
+CleanupAndExit:
+  if (resourceSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
 
  
 
- void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-
+ /**
+ * @brief 处理UI渲染操作的扩展版本
+ * 
+ * 该函数负责处理UI系统中的扩展渲染操作，包括：
+ * - 管理UI上下文和事件句柄
+ * - 执行资源验证和数据缓冲区处理
+ * - 处理渲染任务参数和内存管理
+ * - 执行UI上下文数据操作
+ * 
+ * @param uiContext UI上下文句柄，指定操作的UI上下文
+ * @param dataSource 数据源句柄，提供渲染所需的源数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1807401ad
+ * @note 该函数使用XOR加密技术保护数据安全
+ * @see ValidateUIResource, ProcessUIDataBuffer, ExecuteUIContextDataOperation
+ */
+void ProcessUIRenderOperationExtended(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
+  int uiValidationResult;
+  int uiCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
+  longlong resourceSize;
+  UIHandle resourceHandle;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  resourceSize = 0;
+  operationResult = ValidateUIResource(uiContext, &resourceHandle, &resourceSize);
   if (operationResult == 0) {
-    operationResult = ProcessUIDataBuffer(stackParam00000038,dataSource,targetBuffer,4);
-    if (operationResult == 0) goto FUN_180740283;
+    operationResult = ProcessUIDataBuffer(resourceHandle, dataSource, targetBuffer, 4);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    uiValidationResult = CopyUIDataBuffer(&dataBuffer, 0x100, dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(&dataBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(&dataBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957c30,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult, 7, uiContext, &UNK_180957c30, &dataBuffer);
   }
-FUN_180740283:
-  if (lStack0000000000000030 != 0) {
+CleanupAndExit:
+  if (resourceSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&dataBuffer);
 }
 
 
@@ -141316,7 +141332,18 @@ ulonglong ProcessUIContextDataOperationAndInitialization(UIDword uiContext, UIDw
 
 
  void FUN_180745ce1(void)
-void FUN_180745ce1(void)
+/**
+ * @brief UI系统空返回函数
+ * 
+ * 这是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 不执行任何操作，直接返回。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180745ce1
+ * @note 这是一个简单的空函数，可能用作占位符或默认返回
+ */
+void UIEmptyReturnFunction(void)
 
 {
   return;
