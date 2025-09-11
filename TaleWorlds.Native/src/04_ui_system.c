@@ -94622,18 +94622,18 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
       do {
         validationResult = 0x1f;
         if (*(uint *)(param_6 + 0x20) != 0) {
-          for (; *(uint *)(param_6 + 0x20) >> localValidationResult == 0; localValidationResult = localValidationResult + -1) {
+          for (; *(uint *)(param_6 + 0x20) >> validationResult == 0; validationResult = validationResult + -1) {
           }
         }
-        localValidationResult = uiCompareResult * 8 + 1 + (localValidationResult - *(int *)(param_6 + 0x18));
-        if (localValidationResult < 0xf) {
-          if (localValidationResult < 2) {
-            if (localValidationResult < 1) {
+        validationResult = uiCompareResult * 8 + 1 + (validationResult - *(int *)(param_6 + 0x18));
+        if (validationResult < 0xf) {
+          if (validationResult < 2) {
+            if (validationResult < 1) {
               processingFlags = 0xffffffff;
             }
             else {
-              localValidationResult = ProcessUIResourceAllocation(param_6,1);
-              processingFlags = -localValidationResult;
+              validationResult = ProcessUIResourceAllocation(param_6,1);
+              processingFlags = -validationResult;
             }
           }
           else {
@@ -94642,32 +94642,32 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
           }
         }
         else {
-          localValidationResult = 0x14;
+          validationResult = 0x14;
           if (dataSource < 0x14) {
-            localValidationResult = dataSource;
+            validationResult = dataSource;
           }
           processingFlags = AcquireUIFontRecomponentData(param_6,(ulonglong)
-                                        (byte)(&g_uiOffsetTable)[(longlong)(localValidationResult * 2) + allocatedMemory * 0x2a]
+                                        (byte)(&g_uiOffsetTable)[(longlong)(validationResult * 2) + allocatedMemory * 0x2a]
                                         << 7,
                                 (ulonglong)
-                                (byte)(&g_uiOffsetTable)[(longlong)(localValidationResult * 2) + 1 + allocatedMemory * 0x2a] <<
+                                (byte)(&g_uiOffsetTable)[(longlong)(validationResult * 2) + 1 + allocatedMemory * 0x2a] <<
                                 6);
         }
-        transformCoeff1 = *pResultFloatValue;
+        transformCoeff1 = *resultFloatValue;
         normalizedSum0 = (float)(int)processingFlags;
-        contextDataHandle = (longlong)(localInt8 * *(int *)(uiBufferData + 8) + dataSource);
-        localValidationResult = localInt8 + 1;
+        contextDataHandle = (longlong)(iterationIndex * *(int *)(uiBufferData + 8) + dataSource);
+        validationResult = iterationIndex + 1;
         tempFloatValue = *(float *)(bufferSize + contextDataHandle * 4);
         if (tempFloatValue <= -9.0) {
           tempFloatValue = -9.0;
         }
         *(float *)(bufferSize + contextDataHandle * 4) = tempFloatValue;
-        contextDataHandle = (longlong)(localInt8 * *(int *)(uiBufferData + 8) + dataSource);
+        contextDataHandle = (longlong)(iterationIndex * *(int *)(uiBufferData + 8) + dataSource);
         *(float *)(bufferSize + contextDataHandle * 4) = normalizedSum2 * *(float *)(bufferSize + contextDataHandle * 4) + transformCoeff1 + normalizedSum0;
-        *pResultFloatValue = (transformCoeff1 + normalizedSum0) - normalizedSum0 * normalizedSum1;
-        pResultFloatValue = pResultFloatValue + 1;
-        localInt8 = localValidationResult;
-      } while (localValidationResult < param_7);
+        *resultFloatValue = (transformCoeff1 + normalizedSum0) - normalizedSum0 * normalizedSum1;
+        resultFloatValue = resultFloatValue + 1;
+        iterationIndex = validationResult;
+      } while (validationResult < param_7);
       dataSource = dataSource + 1;
     } while (dataSource < targetBuffer);
   }
