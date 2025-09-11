@@ -11216,13 +11216,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SystemValidationDataTableA8 SystemSecurityValidationTable
 
 // 新增常量定义 - 用于替换代码中的硬编码数字
-#define systemContextFunctionPointerOffset800 0x320        // 系统上下文函数指针偏移量800
-#define systemContextFunctionPointerOffset600 0x258        // 系统上下文函数指针偏移量600
+#define SystemContextFunctionPointerOffset800 0x320        // 系统上下文函数指针偏移量800
+#define SystemContextFunctionPointerOffset600 0x258        // 系统上下文函数指针偏移量600
 #define SystemDataBufferOffset200 0xc8                      // 系统数据缓冲区偏移量200
 #define SecurityValidationDataOffset100 0x64                // 安全验证数据偏移量100
 #define SystemMemoryBufferOffset800 0x320                   // 系统内存缓冲区偏移量800
 #define ResourceManagementOffset350 0x15e                   // 资源管理偏移量350
-#define systemContextStatusOffset104 0x68                   // 系统上下文状态偏移量104
+#define SystemContextStatusOffset104 0x68                   // 系统上下文状态偏移量104
 #define DestinationContextDataOffset194 0xc2                // 目标上下文数据偏移量194
 #define DestinationContextDataOffset198 0xc6                // 目标上下文数据偏移量198
 #define DestinationContextDataOffset19c 0xc4                // 目标上下文数据偏移量19c

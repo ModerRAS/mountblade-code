@@ -233789,7 +233789,7 @@ LAB_180190d41:
 
  (ram,0x0001801910ba (ram,0x0001801910c0 (ram,0x0001801910d3 (ram,0x0001801910f7 (ram,0x000180191100 (ram,0x000180191112 (ram,0x000180191115 (ram,0x000180191133 (ram,0x000180191135 (ram,0x000180191148 (ram,0x000180191150 (ram,0x000180191167 (ram,0x00018019117d (ram,0x000180191190 (ram,0x00018019119d
 
-90e00(voidvoid FUN_180190e00(void
+void SystemDataValidationAndProcessing(void)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -267789,7 +267789,7 @@ LAB_18021af9e:
  * @return code*** 返回系统数据结构指针
  * @note 原始函数名: FUN_18021bff0（已重命名为GetSystemDataStructureHandle）
  */
-code*** GetSystemDataStructureHandle(void
+code*** GetSystemDataStructureHandle(void)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
@@ -267850,7 +267850,7 @@ code*** GetSystemDataStructureHandle(void
 
 
 
-1cb50(voidvoid FUN_18021cb50(void
+void SystemCleanupAndTerminateVariantE(void)
 {
     CoreEngineTerminateSystem();
 }
