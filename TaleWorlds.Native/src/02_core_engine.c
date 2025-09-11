@@ -93,6 +93,29 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 上下文句柄结构体偏移量
+#define ContextHandleStatusOffset 0x15
+#define ContextHandleConfigOffset 0xac
+#define ContextHandleExtendedStatusOffset 0xc9
+#define ContextHandleValidationOffset 0xca
+#define ContextHandleProcessingOffset 0xcb
+#define ContextHandleCleanupOffset 0xcc
+#define ContextHandleMemoryPoolOffset 0x178
+#define ContextHandleStackBufferOffset 0x18c
+#define ContextHandleSystemFlagsOffset 0x28
+#define ThreadLocalStorageTemplateOffset 0x10
+
+// 系统字符串处理偏移量
+#define SystemValidationStatusOffset 0x30
+#define SystemStringComparisonOffset 0x28
+#define SystemPrimaryParameterOffset 8
+#define SystemSecondaryParameterOffset 0x10
+
+// 系统事件处理偏移量
+#define SystemEventOffset 4
+#define SystemSecondaryEventOffset 8
+#define SystemNodeDataOffset 0xc
+
 // 系统数据处理函数语义化宏定义
 #define FUN_18019fc79 ProcessSystemContextMatrixTransform        // 处理系统上下文矩阵变换
 #define FUN_180200780 HandleSystemContextDataTransfer            // 处理系统上下文数据传输
@@ -29390,16 +29413,16 @@ CoreEngineCopyDataStructure(uint64_t *ContextHandle,uint64_t *ContextHandleSize,
   *ContextHandle = *ContextHandleSize;
   *(uint32_t *)(ContextHandle + 1) = *(uint32_t *)(OperationBufferSize + 1);
   ProcessCoreEngineParameters(ContextHandle + 2,OperationBufferSize + 2,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  *(uint32_t *)(ContextHandle + 0x15) = *(uint32_t *)(OperationBufferSize + 0x15);
-  *(uint32_t *)((long long)ContextHandle + 0xac) = *(uint32_t *)((long long)OperationBufferSize + 0xac);
+  *(uint32_t *)(ContextHandle + ContextHandleStatusOffset) = *(uint32_t *)(OperationBufferSize + ContextHandleStatusOffset);
+  *(uint32_t *)((long long)ContextHandle + ContextHandleConfigOffset) = *(uint32_t *)((long long)OperationBufferSize + ContextHandleConfigOffset);
   ContextHandle[0x16] = OperationBufferSize[0x16];
   ContextHandle[0x17] = OperationBufferSize[0x17];
   ContextHandle[0x18] = OperationBufferSize[0x18];
   *(uint8_t *)(ContextHandle + SystemNodeStatusOffset) = *(uint8_t *)(OperationBufferSize + SystemNodeStatusOffset);
-  *(uint8_t *)((long long)ContextHandle + 0xc9) = *(uint8_t *)((long long)OperationBufferSize + 0xc9);
-  *(uint8_t *)((long long)ContextHandle + 0xca) = *(uint8_t *)((long long)OperationBufferSize + 0xca);
-  *(uint8_t *)((long long)ContextHandle + 0xcb) = *(uint8_t *)((long long)OperationBufferSize + 0xcb);
-  *(uint8_t *)((long long)ContextHandle + 0xcc) = *(uint8_t *)((long long)OperationBufferSize + 0xcc);
+  *(uint8_t *)((long long)ContextHandle + ContextHandleExtendedStatusOffset) = *(uint8_t *)((long long)OperationBufferSize + ContextHandleExtendedStatusOffset);
+  *(uint8_t *)((long long)ContextHandle + ContextHandleValidationOffset) = *(uint8_t *)((long long)OperationBufferSize + ContextHandleValidationOffset);
+  *(uint8_t *)((long long)ContextHandle + ContextHandleProcessingOffset) = *(uint8_t *)((long long)OperationBufferSize + ContextHandleProcessingOffset);
+  *(uint8_t *)((long long)ContextHandle + ContextHandleCleanupOffset) = *(uint8_t *)((long long)OperationBufferSize + ContextHandleCleanupOffset);
   return ContextHandle;
 }
 
@@ -29420,7 +29443,7 @@ CoreEngineCopyDataStructure(uint64_t *ContextHandle,uint64_t *ContextHandleSize,
  */
 void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
 {
-  *(void **)(ThreadLocalStoragePointer + 0x10) = &ThreadLocalStorageTemplate;
+  *(void **)(ThreadLocalStoragePointer + ThreadLocalStorageTemplateOffset) = &ThreadLocalStorageTemplate;
   return;
 }
 
@@ -29612,12 +29635,12 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
     CoreEngineProcessSystemEvent(&SystemCharacterStatusBufferPointer,MemoryPoolIndex,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
   }
   if (SystemPrimaryReturnCode != 0) {
-      memcpy(SystemMemoryPointer,*(void *)(ContextHandle + 0x178),MemoryPoolIndex);
+      memcpy(SystemMemoryPointer,*(void *)(ContextHandle + ContextHandleMemoryPoolOffset),MemoryPoolIndex);
   }
   if (SystemMemoryPointer != NULL) {
     SystemMemoryPointer[MemoryPoolIndex] = 0;
   }
-  SystemStackRegisterBuffer = CONCAT44(*(uint32_t *)(ContextHandle + 0x18c),(uint32_t)SystemStackRegisterBuffer);
+  SystemStackRegisterBuffer = CONCAT44(*(uint32_t *)(ContextHandle + ContextHandleStackBufferOffset),(uint32_t)SystemStackRegisterBuffer);
   MemoryOffsetValue = SystemPrimaryReturnCode;
   CoreEngineProcessSystemEvent(&SystemCharacterStatusBufferPointer,5);
   *(uint32_t *)(SystemMemoryPointer + MemoryOffsetValue) = 0x73676f6c;
@@ -29628,8 +29651,8 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   *StringProcessingStatus = 0x66726570;
   StringProcessingStatus[1] = 0x616d726f;
   StringProcessingStatus[2] = 0x5f65636e;
-  stringProcessingStatusFlag[3] = 0x2e676f6c;
-  stringProcessingStatusFlag[4] = 0x747874;
+  StringProcessingStatus[3] = 0x2e676f6c;
+  StringProcessingStatus[4] = 0x747874;
   SystemDataRegisterSizeB8 = 0x18;
   memoryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
   TemporaryBuffer = &CoreEngineDataTemplate;
@@ -30274,10 +30297,10 @@ void CoreEngineInitializeThreadLocalStorageDataCompareAndAllocate(long long Cont
   SystemMemoryAllocationFlag = 0xfffffffffffffffe;
   MemoryAllocationFlag = 0;
   if (((char)Utf16EndPointer != '\0') || (Utf8SourcePointer == ContextHandle)) goto MemoryAllocationComplete;
-  if (*(int *)(Utf8SourcePointer + 0x30) != 0) {
-    if (*(int *)(AdditionalParameter1 + 0x10) == 0) goto MemoryAllocationComplete;
-    StringComparisonPointer = *(byte **)(Utf8SourcePointer + 0x28);
-    long long AllocatedMemorySize = *(long long *)(AdditionalParameter1 + 8) - (long long)StringComparisonPointer;
+  if (*(int *)(Utf8SourcePointer + SystemValidationStatusOffset) != 0) {
+    if (*(int *)(AdditionalParameter1 + SystemSecondaryParameterOffset) == 0) goto MemoryAllocationComplete;
+    StringComparisonPointer = *(byte **)(Utf8SourcePointer + SystemStringComparisonOffset);
+    long long AllocatedMemorySize = *(long long *)(AdditionalParameter1 + SystemPrimaryParameterOffset) - (long long)StringComparisonPointer;
     do {
       StringCharacterValue = *StringComparisonPointer;
       StringLength = (uint)StringComparisonPointer[AllocatedMemorySize];
@@ -30288,7 +30311,7 @@ void CoreEngineInitializeThreadLocalStorageDataCompareAndAllocate(long long Cont
   }
   MemoryAllocationFlag = 1;
 MemoryAllocationComplete: // 原始标签：LAB_180048f62，MemoryAllocationComplete
-  AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x68,*(uint8_t *)(ContextHandle + 0x28),Utf16EndPointer,
+  AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x68,*(uint8_t *)(ContextHandle + ContextHandleSystemFlagsOffset),Utf16EndPointer,
                         0xfffffffffffffffe);
   CoreEngineExecuteSystemEvent(AllocatedMemorySize + 0x20,AdditionalParameter1);
   MemoryBlockIndex = (void *)(AllocatedMemorySize + 0x40);
@@ -30340,14 +30363,14 @@ uint64_t * CoreEngineCreateLinkedListDataStructure(long long MemoryContext,long 
   }
   PrimaryProcessingStatusFlag = SystemEventTemplatePointer;
   for (ContextHandle = (long long *)OperationBufferSize[1]; ContextHandle != (long long *)0x0; ContextHandle = (long long *)ContextHandle[1]) {
-    memoryAllocationPointer = (void *)BufferAllocate(MemoryPoolManager,0x68,*(uint8_t *)(ContextHandle + 0x28));
-    CoreEngineExecuteSystemEvent(memoryAllocationPointer + 4,ContextHandle + 4);
-    CoreEngineExecuteSystemEvent(memoryAllocationPointer + 8,ContextHandle + 8);
-    memoryAllocationPointer[0xc] = ContextHandle[0xc];
+    memoryAllocationPointer = (void *)BufferAllocate(MemoryPoolManager,0x68,*(uint8_t *)(ContextHandle + ContextHandleSystemFlagsOffset));
+    CoreEngineExecuteSystemEvent(memoryAllocationPointer + SystemEventOffset,ContextHandle + SystemEventOffset);
+    CoreEngineExecuteSystemEvent(memoryAllocationPointer + SystemSecondaryEventOffset,ContextHandle + SystemSecondaryEventOffset);
+    memoryAllocationPointer[SystemNodeDataOffset] = ContextHandle[SystemNodeDataOffset];
     *memoryAllocationPointer = 0;
     memoryAllocationPointer[1] = 0;
     memoryAllocationPointer[2] = PrimaryProcessingStatusFlag;
-    *(char *)(memoryAllocationPointer + 3) = (char)ContextHandle[3];
+    *(char *)(memoryAllocationPointer + SystemNodeStatusOffset) = (char)ContextHandle[3];
     PrimaryProcessingStatusFlag[1] = memoryAllocationPointer;
     if (*ContextHandle != 0) {
       CalculatedCodePoint = AllocateCharacterStatusBufferWithSize(ContextHandle,*ContextHandle,memoryAllocationPointer);
