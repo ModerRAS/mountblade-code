@@ -232704,23 +232704,23 @@ void ReleaseSystemHandle(long long *ContextHandle)
  */
 void ExecuteSystemByteOperations(long long ContextHandle, long long OperationBufferSize, uint8_t Utf8SourcePointer)
 {
-  byte *CurrentBytePointer;
-  long long BufferStatus;
-  long long SearchStartIndex;
-  long long SystemDataRegistry;
-  byte *SystemBytePointer;
-  int ValidationResult;
-  void *StringProcessingStatus;
-  long long secondaryLoopCounter;
-  uint64_t *TemporaryBuffer;
-  bool StringComparisonByte0;
-  uint8_t SystemArrayBuffer368 [16];
-  void *puStack_358;
-  int iStack_350;
+  byte *CurrentBytePointer;                          // 当前字节指针
+  long long BufferStatus;                           // 缓冲区状态
+  long long SearchStartIndex;                       // 搜索起始索引
+  long long SystemDataRegistry;                     // 系统数据寄存器
+  byte *SystemBytePointer;                         // 系统字节指针
+  int ValidationResult;                            // 验证结果
+  void *StringProcessingStatus;                   // 字符串处理状态
+  long long secondaryLoopCounter;                 // 二级循环计数器
+  uint64_t *TemporaryBuffer;                       // 临时缓冲区
+  bool StringComparisonByte0;                      // 字符串比较字节0
+  uint8_t SystemArrayBuffer368 [16];               // 系统数组缓冲区
+  void *StringComparisonPointer;                   // 字符串比较指针
+  int StringComparisonFlag;                       // 字符串比较标志
   
   if (ContextHandle != OperationBufferSize) {
     ValidationResult = 0;
-    SystemDataTablePointer = (OperationBufferSize - ContextHandle) / 0x348;
+    long long SystemDataTablePointer = (OperationBufferSize - ContextHandle) / 0x348;
     for (BufferStatus = SystemDataTablePointer; BufferStatus != 0; BufferStatus = BufferStatus >> 1) {
       ValidationResult = ValidationResult + 1;
     }
@@ -232739,8 +232739,8 @@ LAB_1801908b0:
         BufferStatus = SystemDataTablePointer;
         do {
           StringProcessingStatus = &CoreEngineDataTemplate;
-          if (puStack_358 != NULL) {
-            StringProcessingStatus = puStack_358;
+          if (StringComparisonPointer != NULL) {
+            StringProcessingStatus = StringComparisonPointer;
           }
           MemoryBlockIndex = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
           StringProcessingStatus = &CoreEngineDataTemplate;
