@@ -240673,12 +240673,12 @@ void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandl
   }
   if (OperationBufferSize[4] == ContextHandle) {
     if (*(long long *)(ContextHandle + 600) != 0) {
-      FUN_1803a00c0(*(long long *)(ContextHandle + 600),OperationBufferSize);
+      ProcessSystemDataOperation(*(long long *)(ContextHandle + 600),OperationBufferSize);
     }
     CharacterTablePointer = OperationBufferSize[0x2d];
     CalculatedCodePoint = 0;
     if (CharacterTablePointer == 0) {
-      FUN_180398550(ContextHandle + 0x607e0,OperationBufferSize);
+      ProcessSystemMemoryOperation(ContextHandle + 0x607e0,OperationBufferSize);
       if (*(long long **)(ContextHandle + 0x81f8) == OperationBufferSize) {
         SystemContextRegister = *(long long **)(ContextHandle + 0x81f8);
         *(void *)(ContextHandle + 0x81f8) = 0;
@@ -240711,10 +240711,10 @@ void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandl
       if (SystemContextPtr != (long long *)0x0) {
         (**(code **)(*SystemContextPtr + 0x20))(SystemContextPtr,OperationBufferSize);
       }
-      FUN_1802eaec0(OperationBufferSize,0,1,1,0,UnsignedValueStorage & 0xffffff00,1,AdditionalParameter1);
+      ProcessSystemEncodingOperation(OperationBufferSize,0,1,1,0,UnsignedValueStorage & 0xffffff00,1,AdditionalParameter1);
     }
     else {
-      FUN_1802ed990(LoopCounter,1);
+      ProcessSystemLockOperation(LoopCounter,1);
       ProcessSystemMemoryAllocationAndValidation(LoopCounter,OperationBufferSize,0,0,1,AdditionalParameter1);
     }
     LockOperationResult = ProcessSystemLockOperation(OperationBufferSize,7);
