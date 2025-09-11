@@ -50072,20 +50072,41 @@ void HandleExceptionCleanup830(DataBuffer operationBase,int64_t dataBuffer,DataB
 /**
  * @brief 异常清理处理器840
  * 
- * 该函数用于处理异常清理操作，调用系统清理函数进行资源释放
+ * 该函数用于处理异常清理操作，调用系统清理函数进行资源释放。
+ * 此处理器专门处理偏移量为840的异常状态清理工作，与830处理器协同工作，
+ * 确保系统在异常情况下能够完整地清理所有相关资源。
  * 
- * @param operationBase 上下文参数1
- * @param dataBuffer 上下文参数2，包含异常状态信息
- * @param operationFlagA 清理参数1
- * @param operationFlagB 清理参数2
+ * @param operationBase 操作基础上下文，提供清理操作的基本环境信息
+ * @param dataBuffer 数据缓冲区，包含异常状态信息和待清理的资源数据
+ * @param operationFlagA 清理标志A，控制清理过程的特定行为
+ * @param operationFlagB 清理标志B，提供额外的清理控制选项
+ * 
+ * @return void 无返回值
  * 
  * @note 原始函数名：Unwind_180902840
+ * 
+ * @details 该函数与830处理器类似，但处理不同的异常状态偏移量。
+ *          它负责清理在异常处理过程中产生的特定资源状态，确保系统
+ *          能够安全地从异常状态中恢复。
+ * 
+ * @warning 调用此函数时确保dataBuffer参数有效，否则可能导致系统崩溃
+ * @see ProcessDataBufferA0 ExceptionHandlerCountOffset ExceptionHandlerCallbackOffset
+ * @see HandleExceptionCleanup830
  */
 void HandleExceptionCleanup840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  ProcessDataBufferA0(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset),*(DataBuffer *)(*(int64_t )(dataBuffer + ExceptionHandlerCountOffset) + ExceptionHandlerCallbackOffset),
-                cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+  // 从数据缓冲区获取异常处理器计数器的地址（用于840偏移量的处理）
+  int64_t exceptionHandlerCountAddress = *(int64_t *)(dataBuffer + ExceptionHandlerCountOffset);
+  
+  // 获取异常处理器回调函数的地址（840偏移量专用）
+  DataBuffer exceptionCallbackAddress = *(DataBuffer *)(exceptionHandlerCountAddress + ExceptionHandlerCallbackOffset);
+  
+  // 调用数据缓冲区处理函数执行840偏移量的清理操作
+  // 传入预定义的清理标志和系统清理标志替代值
+  ProcessDataBufferA0(exceptionHandlerCountAddress, exceptionCallbackAddress,
+                cleanupFlagA, cleanupFlagB, SystemCleanupFlagAlternative);
+  
   return;
 }
 
