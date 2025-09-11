@@ -252628,7 +252628,7 @@ uint64_t *ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle,ui
     if (0 < IntegerValue9) {
       do {
         EnginePointerBuffer = (void *)(*ContextHandlePointer + (long long)ContextHandle1);
-        FUN_18030a2a0(*EnginePointerBuffer,&StackProcessingVariable70,AdditionalParameter1);
+        ManageSystemMemoryAllocation(*EnginePointerBuffer,&StackProcessingVariable70,AdditionalParameter1);
         RemainingSpace = (int)MemoryRangeBoundary;
         if ((int)StackProcessingVariable70 != -1) {
           MemoryPoolSizePointer = (long long *)EnginePointerBuffer[1];
@@ -252646,18 +252646,18 @@ LAB_180204d39:
     StackProcessingVariable70 = CalculationFunctionAddress;
     if (AdditionalParameter2 != '\0') {
       RemainingSpace = IntegerValue9;
-      MemoryPoolIndex = FUN_180206690(AdditionalParameter1,AdditionalParameter1,Utf8SourcePointer);
-      FUN_1802064e0(ContextHandle,&BufferOffset,MemoryPoolIndex,Utf8SourcePointer);
-      SystemEventTemplatePointer = (void *)FUN_18030a2a0(BufferOffset,&EnginePointerBuffer,AdditionalParameter1);
+      MemoryPoolIndex = CalculateSystemChecksum(AdditionalParameter1,AdditionalParameter1,Utf8SourcePointer);
+      TransferCharacterEncodingContext(ContextHandle,&BufferOffset,MemoryPoolIndex,Utf8SourcePointer);
+      SystemEventTemplatePointer = (void *)ManageSystemMemoryAllocation(BufferOffset,&EnginePointerBuffer,AdditionalParameter1);
       Utf16Char = *SystemEventTemplatePointer;
       if ((unsigned long long)ContextHandleTablePointer[1] < (unsigned long long)ContextHandleTablePointer[2]) {
         ContextHandleTablePointer[1] = ContextHandleTablePointer[1] + 0x18;
-        FUN_180204a00();
+        InitializeSystemMemoryAllocation();
       }
       else {
-        FUN_180207840(ContextHandleTablePointer,&BufferOffset);
+        ProcessSystemMemoryAllocation(ContextHandleTablePointer,&BufferOffset);
       }
-      FUN_18004bf50(&BufferOffset);
+      ValidateSystemDataIntegrity(&BufferOffset);
       StackProcessingVariable70 = Utf16Char;
       MemoryPoolSizePointer = pSystemTemporaryValue50;
     }

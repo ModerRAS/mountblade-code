@@ -367157,7 +367157,7 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   sourceDataInt = FUN_18073ab80(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer);
   if ((sourceDataInt != 0) &&
      ((((*(byte *)(uiContext + 0x24) & 1) == 0 ||
-       (sourceDataInt = FUN_18073bcf0(*(UIHandle *)(uiContext + 0x78),2), sourceDataInt != 0)) ||
+       (sourceDataInt = ProcessUIContextWithDataSource(*(UIHandle *)(uiContext + 0x78),2), sourceDataInt != 0)) ||
       (sourceDataInt = FUN_18073ab80(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer), sourceDataInt != 0))))
   goto LAB_18087dbb3;
   isCharacterMatch4 = ~(byte)(dataPointer >> 2) & 1;
