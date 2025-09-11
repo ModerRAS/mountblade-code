@@ -32495,7 +32495,7 @@ void InitializeUIRenderingFunctions(void)
     UIColorProcessorPointer = (UIFunctionPtr *)&UIColorProcessorAlternativeFallbackImplementation;
   }
   UITextureProcessorPointer = InitializeUITextureProcessor;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     UITextureProcessorPointer = (UIFunctionPtr *)&UITextureProcessorFallbackImplementation;
   }
   UIFontRendererPointer = InitializeUIFontRenderer;
@@ -32506,7 +32506,7 @@ void InitializeUIRenderingFunctions(void)
     UIFontRendererPointer = (UIFunctionPtr *)&UIFontRendererAlternativeFallbackImplementation;
   }
   UIShaderProcessorPointer = InitializeUIShaderProcessor;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     UIShaderProcessorPointer = (UIFunctionPtr *)&UIShaderProcessorFallbackImplementation;
   }
   UIAnimationProcessorPointer = (UIFunctionPtr *)&UIAnimationProcessorFallbackImplementation;
@@ -32542,7 +32542,7 @@ void InitializeUIRenderingFunctions(void)
     UISpecialFunctionProcessorPointer1 = (UIFunctionPtr *)&UISystemSpecialFunction1;
   }
   UISpecialFunctionProcessorPointer2 = CalculateImageWeightedAbsoluteDifferenceAdvanced;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     UISpecialFunctionProcessorPointer2 = (UIFunctionPtr *)&UISystemSpecialFunction2;
   }
   UISpecialFunctionProcessorPointer3 = (UIFunctionPtr *)&UISystemSpecialFunction3;
@@ -32570,7 +32570,7 @@ void InitializeUIRenderingFunctions(void)
     UIExtendedFunctionProcessorPointer1 = (UIFunctionPtr *)&UISystemExtendedFunction1;
   }
   UIExtendedFunctionProcessorPointer2 = CalculateImagePixelStandardDeviationAdvanced;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     UIExtendedFunctionProcessorPointer2 = (UIFunctionPtr *)&UISystemExtendedFunction2;
   }
   UIExtendedFunctionProcessorPointer3 = CalculateImagePixelMedianAdvanced;
@@ -32578,7 +32578,7 @@ void InitializeUIRenderingFunctions(void)
     UIExtendedFunctionProcessorPointer3 = (UIFunctionPtr *)&UIUnknownFunctionTable13;
   }
   UIExtendedFunctionProcessorPointer4 = CalculateImagePixelMaximumAdvanced;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     UIExtendedFunctionProcessorPointer4 = (UIFunctionPtr *)&UIUnknownFunctionTable14;
   }
   UIExtendedFunctionProcessorPointer5 = CalculateImagePixelMinimumAdvanced;
@@ -69436,7 +69436,7 @@ uint ProcessUIDataValidation(longlong uiContext,uint dataSource,UIDword *targetB
       processingFlags = *(ulonglong *)(uiContext + 0x10);
       eventCode = (ulonglong)loopCounter << 0x38;
       BufferSizeStatus = eventCodeType <= processingFlags;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         loopCounter = *(int *)(uiBufferData + 0x1c) - loopCounter;
         processingFlags = processingFlags - eventCodeType;
       }
@@ -74288,7 +74288,7 @@ void InitializeUIEventSystem(longlong uiContext)
       loopCounter = *(ulonglong *)(uiContext + 0x42d0);
       processingFlags = (ulonglong)iterationCounter << 0x38;
       bVar9 = processingFlags <= loopCounter;
-      if (bVar9) {
+      if (UIIsSelectedFlag) {
         iterationCounter = *(int *)(uiBufferData + 0x42dc) - iterationCounter;
         loopCounter = loopCounter - processingFlags;
       }
@@ -74312,7 +74312,7 @@ void InitializeUIEventSystem(longlong uiContext)
       loopCounter = *(ulonglong *)(uiContext + 0x42d0);
       processingFlags = (ulonglong)iterationCounter << 0x38;
       bVar9 = processingFlags <= loopCounter;
-      if (bVar9) {
+      if (UIIsSelectedFlag) {
         iterationCounter = *(int *)(uiBufferData + 0x42dc) - iterationCounter;
         loopCounter = loopCounter - processingFlags;
       }
@@ -74334,7 +74334,7 @@ void InitializeUIEventSystem(longlong uiContext)
       loopCounter = *(ulonglong *)(uiContext + 0x42d0);
       processingFlags = (ulonglong)iterationCounter << 0x38;
       bVar9 = processingFlags <= loopCounter;
-      if (bVar9) {
+      if (UIIsSelectedFlag) {
         iterationCounter = *(int *)(uiBufferData + 0x42dc) - iterationCounter;
         loopCounter = loopCounter - processingFlags;
       }
@@ -74356,7 +74356,7 @@ void InitializeUIEventSystem(longlong uiContext)
       loopCounter = *(ulonglong *)(uiContext + 0x42d0);
       processingFlags = (ulonglong)iterationCounter << 0x38;
       bVar9 = processingFlags <= loopCounter;
-      if (bVar9) {
+      if (UIIsSelectedFlag) {
         iterationCounter = *(int *)(uiBufferData + 0x42dc) - iterationCounter;
         loopCounter = loopCounter - processingFlags;
       }
@@ -130138,49 +130138,94 @@ void ReleaseUIResourceAndExecuteRenderB(void)
 
  
 
- void FUN_18073d010(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073d010(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI数据缓冲区操作和资源管理
+ * 
+ * 该函数负责处理UI数据缓冲区的操作，包括数据验证、缓冲区比较、资源管理等。
+ * 它使用加密密钥进行数据保护，并通过多个子函数完成复杂的UI数据处理任务。
+ * 
+ * @param uiContext UI上下文句柄，用于访问UI系统状态和资源
+ * @param dataSource 数据源句柄，包含要处理的输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @return void
+ * 
+ * @note 该函数通过多个辅助函数完成数据处理，包括：
+ * - func_0x00018074fb10: 初始化UI上下文和资源
+ * - ProcessUIDataWithFloatTarget: 处理浮点数目标数据
+ * - ProcessUIBufferDataWithControl: 处理缓冲区控制数据
+ * - ExecuteUIContextDataOperation: 执行上下文数据操作
+ * 
+ * @warning 该函数使用了加密密钥(XorEncryptionKey)进行数据保护
+ * @warning 如果GlobalUIResourceManagerF0的特定标志位被设置，会执行复杂的数据处理流程
+ * 
+ * @see ProcessUIDataWithFloatTarget, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ProcessUIBufferDataAndResources(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  longlong *pstackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte uiBufferStackData [32];
+  UIByte *uiBufferPointer;
+  longlong uiResourceHandle;
+  longlong *uiContextPointer;
+  UIByte uiDataProcessingBuffer [256];
+  ulonglong encryptedDataKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong140,&stackLong148);
+  encryptedDataKey = XorEncryptionKey ^ (ulonglong)uiBufferStackData;
+  uiResourceHandle = 0;
+  operationResult = InitializeUIContextAndResources(uiContext, &uiContextPointer, &uiResourceHandle);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong140 + 0x140))(pstackLong140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073d103;
+    operationResult = (**(code **)(*uiContextPointer + 0x140))(uiContextPointer, dataSource, targetBuffer);
+    if (operationResult == 0) goto CleanupUIResources;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUIDataWithFloatTarget(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataWithFloatTarget(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    uiValidationResult = ProcessUIDataWithFloatTarget(uiDataProcessingBuffer, 0x100, dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(uiDataProcessingBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    ProcessUIDataWithFloatTarget(uiDataProcessingBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
+    uiBufferPointer = uiDataProcessingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578f0);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UNK_1809578f0);
   }
-FUN_18073d103:
-  if (stackLong148 != 0) {
+CleanupUIResources:
+  if (uiResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)uiBufferStackData);
 }
 
 
 
  
 
- void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据操作和事件管理
+ * 
+ * 该函数负责管理UI上下文的数据操作和事件处理，包括上下文初始化、
+ * 数据验证、缓冲区操作和事件调度等功能。它维护多个UI组件的状态，
+ * 并在适当的条件下触发相应的数据处理流程。
+ * 
+ * @param uiContext UI上下文句柄，用于访问UI系统状态和资源
+ * @param dataSource 数据源句柄，包含要处理的输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @return void
+ * 
+ * @note 该函数通过以下步骤执行操作：
+ * 1. 初始化UI上下文和相关组件的句柄
+ * 2. 调用UI初始化函数进行上下文设置
+ * 3. 根据GlobalUIResourceManagerF0的状态决定是否执行数据处理
+ * 4. 处理完成后释放相关资源并执行渲染任务
+ * 
+ * @warning 该函数使用了栈缓冲区(stack0x00000040)进行数据处理
+ * @warning GlobalUIResourceManagerF0的特定标志位控制数据处理的执行
+ * 
+ * @see ProcessUIDataWithFloatTarget, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ProcessUIContextDataAndEvents(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -130188,34 +130233,34 @@ void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  longlong *stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong uiResourceHandle;
+  longlong *uiContextParamPointer;
+  ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  uiResourceHandle = 0;
+  operationResult = InitializeUIContextAndResources(uiContext, &uiContextParamPointer, &uiResourceHandle);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*stackParam00000038 + 0x140))(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073d103;
+    operationResult = (**(code **)(*uiContextParamPointer + 0x140))(uiContextParamPointer, dataSource, targetBuffer);
+    if (operationResult == 0) goto CleanupUIResources;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUIDataWithFloatTarget(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataWithFloatTarget(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    uiValidationResult = ProcessUIDataWithFloatTarget(&stack0x00000040, 0x100, dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    ProcessUIDataWithFloatTarget(&stack0x00000040 + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578f0,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult, 4, uiContext, &UNK_1809578f0, &stack0x00000040);
   }
-FUN_18073d103:
-  if (lStack0000000000000030 != 0) {
+CleanupUIResources:
+  if (uiResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -147396,7 +147441,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
     *(longlong *)(uiContext[2] + (longlong)aiStackX_18[0] * 8) = dataSource;
     contextDataHandle = uiContext[1];
     BufferSizeStatus = contextDataHandle != 0;
-    if (bVar7) {
+    if (UIHasFocusFlag) {
       func_0x000180743c20(contextDataHandle,1);
     }
     eventCode = FUN_1807593d0(allocatedMemory,dataSource,aiStackX_20[0],aiStackX_18[0],1,0);
@@ -169790,7 +169835,7 @@ int FUN_1807623d0(longlong uiContext,char dataSource,char targetBuffer)
     goto LAB_1807625b6;
   }
   bVar9 = allocatedMemory != 0;
-  if (bVar9) {
+  if (UIIsSelectedFlag) {
     func_0x000180743c20(allocatedMemory,7);
     eventDataIndex = *(longlong *)(uiBufferData + 0x210);
   }
@@ -187190,7 +187235,7 @@ int FUN_1807716e0(longlong uiContext,UIHandle **dataSource,UIHandle *targetBuffe
   *(UIDword *)(allocatedMemory0 + 0xe0) = *(UIDword *)(*(longlong *)(uiBufferData + 0x398) + 0x116b8);
   localInt8 = FUN_18075a230(allocatedMemory0,dataSource);
   if (localInt8 == 0) {
-    if (bVar7) {
+    if (UIHasFocusFlag) {
       LOCK();
       *(uint *)(allocatedMemory0 + 100) = *(uint *)(allocatedMemory0 + 100) | 2;
       UNLOCK();
@@ -203904,7 +203949,7 @@ void ProcessUIDataBufferOperation(longlong uiContext,int dataSource,float *targe
   else if ((dataSource != 0x13) && (dataSource == 0x16)) {
     stringCompareIndex = *(longlong *)(uiBufferData + 0xa8);
     BufferSizeStatus = stringCompareIndex != 0;
-    if (bVar7) {
+    if (UIHasFocusFlag) {
       func_0x000180743c20(stringCompareIndex,6);
     }
     if (bufferSize == 8) {
@@ -315270,7 +315315,7 @@ UIHandle FUN_180851740(longlong uiContext)
   
   eventDataIndex = *(longlong *)(*(longlong *)(uiBufferData + 8) + 0x28);
   BufferSizeStatus = eventDataIndex == 0;
-  if (bVar7) {
+  if (UIHasFocusFlag) {
     eventDataIndex = 0;
   }
   else {
@@ -343146,7 +343191,7 @@ FUN_1808690e0(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -343214,7 +343259,7 @@ FUN_180869270(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -343282,7 +343327,7 @@ FUN_180869400(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -343350,7 +343395,7 @@ FUN_180869590(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -343418,7 +343463,7 @@ FUN_180869720(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -343486,7 +343531,7 @@ FUN_1808698b0(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
       loopCounter = sourceDataInt + 1;
       BufferSizeStatus = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         sourceDataInt = loopCounter;
       }
       if (sourceDataInt != (int)dataSource[1]) {
@@ -370813,7 +370858,7 @@ void FUN_180881fbc(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer,
         localValidationResult = localInt8 + 1;
         bVar9 = localInt8 != -1;
         localInt8 = 0;
-        if (bVar9) {
+        if (UIIsSelectedFlag) {
           localInt8 = localValidationResult;
         }
         if (localInt8 != (int)pcontextDataHandle[1]) {
@@ -370965,7 +371010,7 @@ int FUN_180882160(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
       loopCounter = localValidationResult + 1;
       BufferSizeStatus = localValidationResult != -1;
       uiElementIndex = 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         localValidationResult = loopCounter;
       }
       if (localValidationResult != *(int *)(uiBufferData + 0x8a0)) {
@@ -406678,7 +406723,7 @@ LAB_18089ea0f:
         eventCode = 0x1c;
 LAB_18089eaae:
         BufferSizeStatus = eventCode == 0;
-        if (bVar7) {
+        if (UIHasFocusFlag) {
           BufferSizeFlag = *(char *)(uiContextBasePointer + -0x49) != '\0';
           BufferSizeStatus = true;
         }
@@ -406692,7 +406737,7 @@ LAB_18089ea93:
         *(UIDword *)(uiContextBasePointer + -0x45) = 0;
         eventCode = func_0x00018076a7d0(allocatedMemory,uiContextBasePointer + -0x45);
         BufferSizeStatus = eventCode == 0;
-        if (bVar7) {
+        if (UIHasFocusFlag) {
           if ((ulonglong)colorBufferPointer[2] < (ulonglong)*(uint *)(uiContextBasePointer + -0x45) + 1) {
             eventCode = 0x11;
             goto LAB_18089eaae;
@@ -406701,7 +406746,7 @@ LAB_18089ea93:
         }
       }
       loopCounter = (ulonglong)eventCodeType;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         loopCounter = 0;
       }
     }
@@ -406941,7 +406986,7 @@ LAB_18089ea2c:
       eventCode = 0x1c;
 LAB_18089eaae:
       BufferSizeStatus = eventCode == 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         BufferSizeFlag = *(char *)(uiContextBasePointer + -0x49) != '\0';
         BufferSizeStatus = true;
       }
@@ -406955,7 +407000,7 @@ LAB_18089ea93:
       *(int *)(uiContextBasePointer + -0x45) = (int)targetBuffer;
       eventCode = func_0x00018076a7d0(componentIndex,uiContextBasePointer + -0x45);
       BufferSizeStatus = eventCode == 0;
-      if (bVar7) {
+      if (UIHasFocusFlag) {
         if ((ulonglong)uiMemoryPointer[2] < (ulonglong)*(uint *)(uiContextBasePointer + -0x45) + 1) {
           eventCode = 0x11;
           goto LAB_18089eaae;
@@ -406965,7 +407010,7 @@ LAB_18089ea93:
     }
     targetBuffer = 0;
     processingFlags = (ulonglong)eventCodeType;
-    if (bVar7) {
+    if (UIHasFocusFlag) {
       processingFlags = 0;
     }
   }
