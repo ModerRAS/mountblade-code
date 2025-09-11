@@ -116,6 +116,9 @@
 #define SystemSecondaryEventOffset 8
 #define SystemNodeDataOffset 0xc
 
+// 内存分配偏移量
+#define MemoryAllocationHeaderOffset 0x20
+
 // 系统数据处理函数语义化宏定义
 #define FUN_18019fc79 ProcessSystemContextMatrixTransform        // 处理系统上下文矩阵变换
 #define FUN_180200780 HandleSystemContextDataTransfer            // 处理系统上下文数据传输
@@ -180160,41 +180163,41 @@ void ProcessCharacterEncodingDataConversion(long long ContextHandle)
   uint64_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
   void *StringProcessingStatus;
-  uint8_t StackProcessingVariable1B8 [32];
+  uint8_t StackProcessingBuffer[32];
   uint32_t StackProcessingVariable;
-  void *puStack_190;
-  uint64_t *pProcessingStatus;
+  void *SecondaryStackPointer;
+  uint64_t *ProcessingStatusPointer;
   uint32_t SystemUnsignedValue180;
   uint64_t SystemStackOffset178;
-  uint64_t uStack_170;
-  void **ppDataContentStatus;
-  void *ContextHandle;
+  uint64_t StackOffset170;
+  void **DataContentStatusPointer;
+  void *FunctionContextHandle;
   uint8_t *CoreEnginePointerBuffer158;
-  uint32_t uStack_150;
+  uint32_t StackVariable150;
   uint8_t RenderConfigurationData [16];
-  char acStack_138 [256];
+  char InputProcessingBuffer [256];
   unsigned long long FunctionAddress;
   
-  uStack_170 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)StackProcessingVariable1B8;
+  StackOffset170 = 0xfffffffffffffffe;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)StackProcessingBuffer;
   StackProcessingVariable = 0;
   ProcessSystemMemoryDataTransfer(ContextHandle + 0x20,CoreEngineSystemContext + 0x290);
-  ppDataContentStatus = &puStack_190;
-  MemoryAddressMaskPointer = CoreEngineFinalizeSystemEvent(&puStack_190,ContextHandle + 0x20);
+  DataContentStatusPointer = &SecondaryStackPointer;
+  MemoryAddressMaskPointer = CoreEngineFinalizeSystemEvent(&SecondaryStackPointer,ContextHandle + 0x20);
   LockOperationResult = ProcessUtf16CharAndSystemBuffer(ContextHandle,MemoryAddressMaskPointer);
-  if (*(char *)((long long)LockOperationResult + *(long long *)(ContextHandle + 0x8c8)) == '\0') {
-    ProcessSystemMemoryDataTransfer(ContextHandle + 0x438,(long long)LockOperationResult * 0x20 + *(long long *)(ContextHandle + 0x888));
-      CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)StackProcessingVariable1B8);
+  if (*(char *)((long long)LockOperationResult + *(long long)(ContextHandle + 0x8c8)) == '\0') {
+    ProcessSystemMemoryDataTransfer(ContextHandle + 0x438,(long long)LockOperationResult * 0x20 + *(long long)(ContextHandle + 0x888));
+      CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)StackProcessingBuffer);
   }
-  puStack_190 = &SystemNullTemplate;
-  uStack_178 = 0;
-  pProcessingStatus = NULL;
+  SecondaryStackPointer = &SystemNullTemplate;
+  SystemStackOffset178 = 0;
+  ProcessingStatusPointer = NULL;
   SystemUnsignedValue180 = 0;
   ContextHandleTablePointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
   *(uint8_t *)ContextHandleTablePointer = 0;
-  pProcessingStatus = ContextHandleTablePointer;
+  ProcessingStatusPointer = ContextHandleTablePointer;
   UnicodeCodePoint = GetMemoryAllocationInfo(ContextHandleTablePointer);
-  uStack_178 = CONCAT44(uStack_178.HighPart,UnicodeCodePoint);
+  SystemStackOffset178 = CONCAT44(SystemStackOffset178.HighPart,UnicodeCodePoint);
   *ContextHandlePointer = 0x2f73656c75646f4d;
   *(uint8_t *)(ContextHandleTablePointer + 1) = 0;
   SystemUnsignedValue180 = 8;
