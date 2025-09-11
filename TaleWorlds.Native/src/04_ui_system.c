@@ -80006,26 +80006,26 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
   longlong contextDataHandle;
   longlong eventDataIndex;
   int loopCounter;
-  longlong localLong7;
-  UIDword stackUInt278;
-  int stackInt274;
-  longlong *pstackLong270;
-  int stackInt268;
-  int stackInt264;
-  UIDword stackUInt260;
-  int stackInt258;
-  int stackInt250;
-  longlong stackLong248;
-  longlong stackLong240;
-  UIHandle stackUInt238;
-  longlong stackLong230;
-  longlong stackLong228;
-  longlong stackLong220;
-  longlong stackLong218;
-  longlong astackLong178 [4];
-  longlong stackLong158;
-  longlong astackLong140 [17];
-  ulonglong stackUIntb8;
+  longlong contextOffset;
+  UIDword encryptionKeyResult;
+  int bufferDataSize;
+  longlong *bufferDataPointer;
+  int eventDataCount;
+  int validationResult;
+  UIDword iterationResult;
+  int processingFlag;
+  int contextDataSize;
+  longlong resourceData;
+  longlong memoryAddress;
+  UIHandle componentHandle;
+  longlong operationData;
+  longlong contextHandle;
+  longlong dataSourceOffset;
+  longlong eventDataHandle;
+  longlong encryptionDataArray [4];
+  longlong processingData;
+  longlong contextDataArray [17];
+  ulonglong encryptedPointer;
   
   stackUIntb8 = XorEncryptionKey ^ (ulonglong)&stackUInt278;
   stackLong228 = *uiContext;
@@ -124406,8 +124406,18 @@ FUN_180739dad:
 
 
 
- void FUN_180739d35(void)
-void FUN_180739d35(void)
+ /**
+ * @brief 处理UI数据验证和缓冲区操作
+ * 
+ * 该函数负责处理UI数据的验证和缓冲区操作，包括：
+ * - 调用底层处理函数进行数据预处理
+ * - 执行UI数据验证
+ * - 复制UI数据缓冲区
+ * - 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_180739d35
+ */
+void ProcessUIDataValidationAndBufferOperations(void)
 
 {
   int processingResult;
@@ -124425,8 +124435,16 @@ void FUN_180739d35(void)
 
 
 
- void FUN_180739dad(void)
-void FUN_180739dad(void)
+ /**
+ * @brief 执行UI内存资源释放和渲染任务
+ * 
+ * 该函数负责UI内存资源的释放和渲染任务的执行：
+ * - 根据参数决定是否释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_180739dad
+ */
+void ExecuteUIMemoryReleaseAndRenderTask(void)
 
 {
   longlong stackParam00000030;
@@ -124442,8 +124460,16 @@ void FUN_180739dad(void)
 
 
 
- void FUN_180739dcf(void)
-void FUN_180739dcf(void)
+ /**
+ * @brief 执行UI内存资源释放和渲染任务
+ * 
+ * 该函数负责UI内存资源的释放和渲染任务的执行：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_180739dcf
+ */
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong stackParam00000140;
