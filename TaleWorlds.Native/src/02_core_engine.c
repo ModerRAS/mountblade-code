@@ -229425,7 +229425,7 @@ LAB_18018b93a:
  */
 void ProcessSystemCharacterEncoding(long long ContextHandle, long long OperationBufferSize)
 {
-  uint *CharacterStatusBuffer;
+  uint *CharacterProcessingBuffer;
   byte *HighBytePointer;
   uint UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -229433,38 +229433,38 @@ void ProcessSystemCharacterEncoding(long long ContextHandle, long long Operation
   uint32_t *SecondaryProcessingStatusFlag;
   int ProcessIterationCount;
   int ComputedResult;
-  long long *pStringOffset;
-  uint8_t SystemStackFlagArray8 [32];
-  uint64_t uStack_468;
-  void *puStack_458;
-  byte *pbStack_450;
-  int iStack_448;
-  byte abStack_440 [1032];
+  long long *StringOffsetTablePointer;
+  uint8_t SystemStackFlagArray [32];
+  uint64_t EncodingValidationFlag;
+  void *BufferTemplatePointer;
+  byte *CharacterDataBuffer;
+  int ProcessedCharacterCount;
+  byte CharacterProcessingBuffer [1032];
   unsigned long long FunctionAddress;
   
-  uStack_468 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemStackFlagArray8;
+  EncodingValidationFlag = 0xfffffffffffffffe;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemStackFlagArray;
   *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + 4;
   ComputedResult = 0;
-  puStack_458 = &SystemBufferTemplate;
-  pbStack_450 = abStack_440;
-  iStack_448 = 0;
-  abStack_440[0] = 0;
+  BufferTemplatePointer = &SystemBufferTemplate;
+  CharacterDataBuffer = CharacterProcessingBuffer;
+  ProcessedCharacterCount = 0;
+  CharacterProcessingBuffer[0] = 0;
   UnicodeCodePoint = **(uint **)(OperationBufferSize + 8);
-  CharacterStatusBuffer = *(uint **)(OperationBufferSize + 8) + 1;
-  *(uint **)(OperationBufferSize + 8) = CharacterStatusBuffer;
+  CharacterProcessingBuffer = *(uint **)(OperationBufferSize + 8) + 1;
+  *(uint **)(OperationBufferSize + 8) = CharacterProcessingBuffer;
   if (UnicodeCodePoint != 0) {
-    ProcessUnicodeCharacter(&puStack_458,CharacterStatusBuffer,UnicodeCodePoint);
+    ProcessUnicodeCharacter(&BufferTemplatePointer,CharacterProcessingBuffer,UnicodeCodePoint);
     *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
-  pStringOffset = (long long *)0x180bf6740;
+  StringOffsetTablePointer = (long long *)0x180bf6740;
   do {
     SystemDataRegistry = -1;
     do {
       SystemDataRegistry = SystemDataRegistry + 1;
-    } while (*(char *)(*pStringOffset + SystemDataRegistry) != '\0');
+    } while (*(char *)(*StringOffsetTablePointer + SystemDataRegistry) != '\0');
     StringLength = (int)SystemDataRegistry;
-    if (iStack_448 == StringLength) {
+    if (ProcessedCharacterCount == StringLength) {
       if (iStack_448 != 0) {
         SystemBytePointer = pbStack_450;
         do {
@@ -229515,7 +229515,19 @@ LAB_18018baff:
 
 
 
-8bbd0(long long ContextHandle,long long *ContextHandleSizevoid FUN_18018bbd0(long long ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理系统上下文句柄大小和管理
+ * 
+ * 该函数负责管理系统上下文句柄的大小和相关操作，包括：
+ * - 上下文句柄的初始化和验证
+ * - 内存大小的分配和管理
+ * - 系统资源的配置和优化
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return void
+ */
+void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHandleSize)
 {
   uint32_t Utf16Char;
   int *LockOperationResultPointer;
