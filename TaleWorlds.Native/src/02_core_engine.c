@@ -265411,7 +265411,7 @@ PROCESS_STRING_TEMPLATE_FOUND:
       StringProcessingStatus = SystemCharacterStatusBufferPointer;
     }
     ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,StringProcessingStatus);
-    UnicodeCodePoint = FUN_180840c00(*(void *)(ContextHandle + 0x368));
+    UnicodeCodePoint = ReleaseSystemMemoryResources(*(void *)(ContextHandle + 0x368));
     ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,&CoreEngineDataTemplate);
   }
   TemporaryBuffer = *(uint64_t **)(ContextHandle + 0x380);
