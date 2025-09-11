@@ -44602,11 +44602,11 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   if (MemoryPoolIndex != 0) {
     if ((CoreEngineConsoleHandle == (long long *)0x0) ||
        (consoleSystemValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleSystemValidationStatus == '\0')) {
-      SystemCharacterStatusPointer = &CharacterStatusBufferTemplateB8;
+      SystemCharacterStatusPointer = &SystemStatusBufferTemplateB8;
     }
     else {
       StringOffset = (**(code **)(CoreEngineEventHandler + 0x28))();
-      SystemCharacterStatusPointer = &CoreEngineDataTemplate;
+      SystemCharacterStatusPointer = &CoreEngineSystemDataTemplate;
       if (*(void **)(StringOffset + 8) != NULL) {
         SystemCharacterStatusPointer = *(void **)(StringOffset + 8);
       }
@@ -44616,14 +44616,14 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
     DataBufferPointer = NULL;
     BufferSystemValidationStatus = 0;
     BufferTypeFlag = 3;
-    ArrayStackDataBuffer338[0] = 10;
+    SystemDataBufferArray338[0] = 10;
     if (SystemMemoryOffset238 != 0) {
-      ProcessSystemMemoryAllocation(&PointerStackDataBuffer240,&PointerStackDataBuffer260,ArrayStackDataBuffer338);
+      ProcessSystemMemoryAllocation(&SystemDataBuffer240,&SystemDataBuffer260,SystemDataBufferArray338);
     }
-    SystemStatusCode = (long long)PointerStackDataBuffer258 - (long long)PointerStackDataBuffer260 >> SystemEventContextShiftCount;
-    CharacterStatusBuffer9 = PointerStackDataBuffer260;
-    CharacterStatusBuffer8 = PointerStackDataBuffer260;
-    CharacterStatusBufferCurrent = PointerStackDataBuffer258;
+    SystemStatusCode = (long long)SystemDataBuffer258 - (long long)SystemDataBuffer260 >> SystemEventContextShiftCount;
+    CharacterStatusBuffer9 = SystemDataBuffer260;
+    CharacterStatusBuffer8 = SystemDataBuffer260;
+    CharacterStatusBufferCurrent = SystemDataBuffer258;
     if ((int)SystemStatusCode != 0) {
       CharacterTablePointer = SystemStatusCode & 0xffffffff;
       do {
