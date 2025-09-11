@@ -21032,9 +21032,7 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
   UIByte *animationDataPointer;
   float transformCoeff13;
   float transformCoeff14;
-  float extraout_XMM0_Da;
   float transformCoeff15;
-  float extraout_XMM0_Da_00;
   float transformCoeff16;
   float transformCoeff17;
   float transformCoeff18;

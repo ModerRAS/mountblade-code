@@ -217595,7 +217595,7 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long l
 
 
 
-// 函数: void FUN_18017b28d(void)
+// 函数: void UpdateWindowContextHandle(void)
 /**
  * @brief 处理系统数据节点和内存分配
  * 
@@ -217643,7 +217643,7 @@ void ProcessSystemDataNodeAndMemoryAllocation(void)
 
 
 
-// 函数: void FUN_18017b2ed(long long ContextHandle)
+// 函数: void ResetWindowContextState(long long ContextHandle)
 /**
  * @brief 处理字符代码和系统上下文管理
  * 
@@ -217792,7 +217792,7 @@ void ProcessContextHandlePointerOperations(long long *ContextHandle
 
 
 
-// 函数: void FUN_18017b400(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void ProcessWindowContextWithEncoding(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理系统内存分配和事件处理
  * 
@@ -224151,7 +224151,7 @@ void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t O
 
 
 
-// 函数: void FUN_1801864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void AllocateSystemContextAndMemory(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理字符表指针和Unicode码点清理
  * 
@@ -224198,7 +224198,7 @@ void ProcessCharacterTablePointerAndUnicodeCleanup(long long *ContextHandle,uint
 
 
 
-// 函数: void FUN_1801865a0(uint64_t ContextHandle,uint64_t *ContextHandleSize)
+// 函数: void ClearSystemStackData(uint64_t ContextHandle,uint64_t *ContextHandleSize)
 /**
  * @brief 处理上下文句柄大小和系统缓冲区状态
  * 
@@ -225191,7 +225191,7 @@ void ProcessSystemStringIndexAndCharacterTableOperation(long long ContextHandle,
 
 
 
-// 函数: void FUN_1801879d0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void SetupSystemMemoryStack(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理上下文句柄和UTF转换操作
  * 

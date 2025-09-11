@@ -17945,13 +17945,13 @@ int ProcessResourceCleanupOperations(uint64_t ResourceHandle, int64_t SystemRegi
 {
   // 资源管理相关变量
   uint64_t CurrentResourceHandle;           // 当前处理的资源句柄
-  int OperationResult;                      // 操作执行结果
+  uint32_t OperationResult;                 // 操作执行结果
   int64_t ResourceContext;                  // 资源上下文指针
   int64_t SystemConfigurationRegistry;      // 系统配置注册表
   int64_t ResourceProcessingOffset;         // 资源处理偏移量
-  int ProcessedResourceCount;               // 已处理的资源计数
+  uint32_t ProcessedResourceCount;          // 已处理的资源计数
   uint8_t *ResourceProcessingBuffer;        // 资源处理缓冲区
-  int TotalResourceCount;                   // 总资源数量
+  uint32_t TotalResourceCount;              // 总资源数量
   uint32_t ResourceCleanupFlags;             // 资源清理标志
   
   // 安全验证相关变量
@@ -142208,7 +142208,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_18009fb60
  */
-#define MonitorSystemStatusA0 FUN_18009fb60
+#define MonitorSystemStatusA0 MonitorSystemHealthAndPerformance
 
 /**
  * @brief 系统初始化函数A0
@@ -142222,7 +142222,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_1800ad6f0
  */
-#define InitializeSystemEnvironmentA0 FUN_1800ad6f0
+#define InitializeSystemEnvironmentA0 InitializeSystemCoreEnvironment
 
 /**
  * @brief 系统数据加密函数A0
@@ -142238,7 +142238,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_1800f74f0
  */
-#define EncryptSystemDataA0 FUN_1800f74f0
+#define EncryptSystemDataA0 EncryptSystemSensitiveData
 
 /**
  * @brief 系统线程管理函数A0
@@ -142253,7 +142253,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_18005d560
  */
-#define ManageSystemThreadsA0 FUN_18005d560
+#define ManageSystemThreadsA0 ManageSystemThreadPoolAndScheduling
 
 /**
  * @brief 系统日志记录函数A0
@@ -142268,7 +142268,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_1808a5780
  */
-#define LogSystemMessageA0 FUN_1808a5780
+#define LogSystemMessageA0 LogSystemEventsAndMessages
 
 /**
  * @brief 系统资源监控函数A0
@@ -142283,7 +142283,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * 
  * @note 原始函数名：FUN_1808b5430
  */
-#define MonitorSystemResourcesA0 FUN_1808b5430
+#define MonitorSystemResourcesA0 MonitorSystemResourceUsage
 
 /**
  * @brief 系统资源清理和优化函数
