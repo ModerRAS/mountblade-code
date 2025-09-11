@@ -98,6 +98,9 @@
 #define FUN_180193e88 HandleSystemDataEncoding                    // 处理系统数据编码
 #define FUN_1801940f0 InitializeSystemDataProcessing              // 初始化系统数据处理
 #define FUN_180194530 ProcessSystemSignedValue                    // 处理系统有符号值
+#define FUN_180204430 ProcessCharacterStatusBufferAndStringEncoding // 处理字符状态缓冲区和字符串编码转换
+#define FUN_180206260 HandleUtf16CharacterProcessing                  // 处理UTF-16字符处理
+#define FUN_1802062c0 ProcessContextHandleManagement                 // 处理上下文句柄管理
 #define FUN_180194350 FinalizeSystemContextOperation              // 完成系统上下文操作
 
 // 系统状态缓冲区控制常量
@@ -288702,7 +288705,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
     else {
       SystemDataRegistry = BufferAllocate(MemoryPoolManager,UnicodeCodePoint * 0x58,(char)ContextHandle[3]);
     }
-    FUN_18022efb0(OperationBufferSize,Utf8SourcePointer,SystemDataRegistry);
+    ProcessUnicodeCodePointAndCharacterBuffer(OperationBufferSize,Utf8SourcePointer,SystemDataRegistry);
     CharacterStatusBuffer = (void *)ContextHandle[1];
     SecondaryProcessingStatusFlag = (void *)*ContextHandle;
     if (SecondaryProcessingStatusFlag != CharacterStatusBuffer) {
@@ -288724,8 +288727,8 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
     MemoryPoolIndex = (ContextHandle[1] - *ContextHandle) / 0x58;
     if (MemoryPoolIndex < UnicodeCodePoint) {
       SystemDataRegistry = MemoryPoolIndex * 0x58 + OperationBufferSize;
-      FUN_18022ef00(OperationBufferSize,SystemDataRegistry);
-      SystemDataRegistry = FUN_18022efb0(SystemDataRegistry,Utf8SourcePointer,ContextHandle[1]);
+      ProcessMemoryPoolAllocationAndCharacterBuffer(OperationBufferSize,SystemDataRegistry);
+      SystemDataRegistry = ProcessUnicodeCodePointAndCharacterBuffer(SystemDataRegistry,Utf8SourcePointer,ContextHandle[1]);
       ContextHandle[1] = SystemDataRegistry;
     }
     else {

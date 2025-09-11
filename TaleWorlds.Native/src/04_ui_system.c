@@ -254,6 +254,12 @@ typedef enum {
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
 #define ProcessUIContextDataTransferAndValidation FUN_18073a0c0     // 处理UI上下文数据传输和验证
 #define ProcessUIDataWithContextAndRender FUN_18073a3ad               // 处理UI上下文数据并渲染
+#define ProcessUIRenderTaskWithCleanup FUN_18073ba27                     // 执行UI渲染任务并清理
+#define ExecuteUIRenderTaskWithResourceRelease FUN_18073ba9f            // 执行UI渲染任务并释放资源
+#define ExecuteUIRenderTaskWithMemoryCleanup FUN_18073bac1              // 执行UI渲染任务并清理内存
+#define ProcessUIContextWithBufferOperation FUN_18073baf0               // 处理UI上下文和缓冲区操作
+#define ProcessUIComponentEventHandling FUN_18073bb0d                  // 处理UI组件事件处理
+#define ReleaseUIResourceAndExecuteRender FUN_18073a47d                 // 释放UI资源并执行渲染
 #define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
 #define ProcessUIComponentTransform FUN_1807226f0           // 处理UI组件变换
 
@@ -11509,7 +11515,7 @@ int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong 
 
 {
   UIPointer *propertyDataPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong bufferStart;
   uint iterationCounter;
   ulonglong propertyIndex;
@@ -17304,7 +17310,7 @@ LAB_18065a765:
 {
   char localChar1;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle contextRegister;
   longlong contextDataHandle;
   float *transformCoeffPointer;
@@ -19980,7 +19986,7 @@ LAB_18065a765:
 {
   uint8_t UIProcessingResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   int uiProcessingTemp;
   float *contextHandle;
   longlong uiContextBasePointer;
@@ -20273,7 +20279,7 @@ void UpdateUIComponentTransform(UIHandle uiContext,float dataSource,UIHandle tar
 {
   uint8_t UIProcessingResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong uiContextBasePointer;
   char localChar5;
@@ -21864,7 +21870,7 @@ void InitializeUIRenderer(longlong uiContext)
 {
   int operationResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   
   uiCompareResult = 0;
@@ -22020,8 +22026,8 @@ UIHandle GetUIElementData(longlong uiContext,int dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   
   uiCompareResult = 0;
@@ -23958,7 +23964,7 @@ UIHandle GetUIComponentHandle(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   
   pstringCompareIndex = (longlong *)(uiContext + 0x198);
@@ -23987,7 +23993,7 @@ void SetUITransformParameters(UIHandle *uiContext,UIHandle dataSource,UIHandle t
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   float TransformCoefficient2;
   UIDword processingStatus;
   float TransformCoefficient4;
@@ -29073,7 +29079,7 @@ LAB_18066a567:
 
 {
   longlong *allocatedMemoryPtr;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   float TransformCoefficient3;
   float TransformCoefficient4;
@@ -29213,7 +29219,7 @@ LAB_18066a567:
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   uint processingStatus;
   float *transformCoeffPointer;
@@ -30297,8 +30303,8 @@ UIHandle ValidateUIComponentState(longlong uiContext,longlong *dataSource)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   
@@ -30320,8 +30326,8 @@ UIHandle CheckUIComponentAvailability(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   uint *eventHandle;
   
@@ -32916,7 +32922,7 @@ validation_error_handler:
 {
   char localChar1;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   uint maxProcessingCount;
@@ -33067,7 +33073,7 @@ void RenderUIComponentInternal(longlong renderContext, longlong componentData)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   longlong stringCompareIndex;
   longlong contextHandle;
@@ -35149,7 +35155,7 @@ void ValidateUIBufferData(longlong uiBufferData)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   *(UIDword *)(uiBufferData + 0x4380) = 0;
   *(UIDword *)(uiBufferData + 0x4390) = 0;
@@ -35412,7 +35418,7 @@ void UpdateUIResourceStatus(longlong uiContext)
 {
   int operationResult;
   longlong contextHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong uiContextBasePointer;
   uint eventCodeType;
   ulonglong processingStatus;
@@ -36169,7 +36175,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   UIHandle result;
   longlong componentIndex;
   longlong contextHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong uiContextBasePointer;
   ulonglong processingStatus;
   longlong uiTargetHandle;
@@ -36623,7 +36629,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
 {
   short renderContextStatus;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int tempIntegerValue;
   short *componentStatePointer;
   int loopCounter;
@@ -37467,7 +37473,7 @@ void ProcessUIComponentEvent(longlong uiContext,longlong eventData,longlong comp
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   short sVar5;
@@ -37593,7 +37599,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   uint processingStatus;
   short sVar5;
@@ -50364,8 +50370,8 @@ longlong AllocateUIMemoryResources(longlong uiContext,int dataSource,ulonglong t
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50388,8 +50394,8 @@ longlong ManageUIMemoryAllocation(longlong uiContext,int dataSource,ulonglong ta
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50412,8 +50418,8 @@ longlong OptimizeUIMemoryUsage(longlong uiContext,int dataSource,ulonglong targe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50448,8 +50454,8 @@ longlong OptimizeUIMemoryUsage(longlong uiContext,int dataSource,ulonglong targe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50484,8 +50490,8 @@ longlong OptimizeUIMemoryUsage(longlong uiContext,int dataSource,ulonglong targe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50520,8 +50526,8 @@ longlong OptimizeUIMemoryUsage(longlong uiContext,int dataSource,ulonglong targe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int aiStackX_10 [2];
   
@@ -50612,8 +50618,8 @@ longlong ProcessUIDataValidation(longlong uiContext,int dataSource,ulonglong tar
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -50645,8 +50651,8 @@ longlong ProcessUIDataTransformation(longlong uiContext,int dataSource,ulonglong
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -50678,8 +50684,8 @@ longlong ProcessUIDataConversion(longlong uiContext,int dataSource,ulonglong tar
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -50711,8 +50717,8 @@ longlong ProcessUIDataEncoding(longlong uiContext,int dataSource,ulonglong targe
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -51060,7 +51066,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int aiStackX_10 [2];
   
@@ -51091,7 +51097,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int aiStackX_10 [2];
   
@@ -51122,7 +51128,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int aiStackX_10 [2];
   
@@ -51366,8 +51372,8 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -51409,8 +51415,8 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -51451,8 +51457,8 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -63047,8 +63053,8 @@ ulonglong CalculateUIExtendedLayoutOffset(longlong uiContext,UIDword dataSource,
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int iStackX_8;
   
   allocatedMemory = param_8;
@@ -63080,7 +63086,7 @@ ulonglong CalculateUICompositeLayoutOffset(longlong uiContext,UIDword dataSource
 {
   longlong allocatedMemory;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int iStackX_8;
   
@@ -66232,7 +66238,7 @@ void ProcessUIImageConvolution(longlong uiContext,longlong dataSource,longlong t
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   byte *pProcessingFlag;
   short *psVar4;
   longlong eventDataIndex;
@@ -66283,7 +66289,7 @@ void ProcessUIConvolutionFilter(void)
 {
   uint result;
   uint bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   longlong uiTargetHandle;
@@ -66356,7 +66362,7 @@ void ProcessUIImageSharpening(longlong uiContext,longlong dataSource,UIByte *tar
 
 {
   UIByte result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   byte *pbVar4;
   short *psVar5;
@@ -66416,7 +66422,7 @@ void ProcessUIFilterOperation(void)
 
 {
   UIByte result;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong contextRegister;
   longlong uiContextBasePointer;
   longlong uiTargetHandle;
@@ -66737,7 +66743,7 @@ void ProcessUIFilterOperation(void)
   UIDword *contextHandle;
   UIDword unmodifiedEBP;
   int unmodifiedESI;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiTargetHandle;
   UIDword register10D;
   int RegisterPointerD;
@@ -66873,7 +66879,7 @@ void ProcessUIFilterOperation(void)
 {
   int operationResult;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIByte *bufferPtr;
   UIByte *componentContextPtr;
   UIByte *ptrLocal6;
@@ -67019,7 +67025,7 @@ void ProcessUIFilterOperation(void)
 {
   longlong allocatedMemory;
   byte componentType;
-  int uiCompareResult;
+  int bufferCompareResult;
   bool shouldRenderText;
   ulonglong componentIndex;
   int renderCount;
@@ -67961,7 +67967,7 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint unmodifiedEBP;
   longlong componentData;
   int allocationFlags;
@@ -68130,7 +68136,7 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIHandle *componentContextPtr;
@@ -68711,7 +68717,7 @@ uint ProcessUIDataValidation(longlong uiContext,uint dataSource,UIDword *targetB
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   ulonglong processingStatus;
   uint loopCounter;
@@ -68775,7 +68781,7 @@ uint ValidateUISystemStateFlags(longlong uiContext, uint dataSource, UIDword *ta
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong contextDataHandleValue;
   ulonglong contextDataHandleOffset;
   uint processingIndex;
@@ -69084,7 +69090,7 @@ uint SynchronizeUISystemState(void)
 {
   byte isCharacterMatch;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   ulonglong loopCounter;
   uint maxProcessingCount;
@@ -70122,7 +70128,7 @@ LAB_18069b66c:
  void InitializeUIDataTables(longlong uiContext)
 {
   UIWord result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIWord *uiStatusPointer;
   
   uiStatusPointer = (UIWord *)(uiContext + 0x1620);
@@ -70290,7 +70296,7 @@ LAB_18069b66c:
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   uint processingStatus;
   
@@ -70691,7 +70697,7 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if (0 < uiContext[1]) {
                      WARNING: Subroutine does not return
@@ -70728,7 +70734,7 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = uiContext[0x19];
   uiValidationResult = processingResult / 2;
@@ -72305,7 +72311,7 @@ void TransferUIMemoryData(longlong uiContext,UIHandle dataSource,UIHandle target
 {
   longlong allocatedMemory;
   ushort iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   short sVar4;
   uint loopCounter;
   ushort maxProcessingCount;
@@ -72390,7 +72396,7 @@ LAB_18069dd1e:
 void ProcessUIContextRendering(longlong uiContext)
 {
   ushort result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   longlong eventDataIndex;
@@ -72571,7 +72577,7 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
 {
   bool isCharacterMatch;
   byte validationFlag;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint calculatedSize;
   uint stackValue1;
   uint sizeCalculation;
@@ -72693,7 +72699,7 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
 {
   uint *resultPointer;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   uint *ptrLocal6;
@@ -72770,7 +72776,7 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
 {
   int *pprocessingResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   uint maxProcessingCount;
@@ -72819,7 +72825,7 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
 {
   byte in_AL;
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   int *RegisterPointer;
   
   if (((in_AL < 5) ||
@@ -73096,8 +73102,8 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextRegister;
   longlong contextDataHandle;
   UIDword unmodifiedEBX;
@@ -73575,7 +73581,7 @@ void InitializeUIEventSystem(longlong uiContext)
 {
   longlong allocatedMemory;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   ulonglong loopCounter;
   uint maxProcessingCount;
@@ -74398,7 +74404,7 @@ uint GetUIComponentStatus(longlong uiContext,UIByte *dataSource)
 {
   byte isCharacterMatch;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   byte TargetBufferFlag;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -74515,7 +74521,7 @@ uint ValidateAndProcessUIComponentData(longlong uiContext,UIByte *dataSource)
 {
   byte isCharacterMatch;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   byte TargetBufferFlag;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -75346,8 +75352,8 @@ void ProcessUIComponentStateUpdate(longlong uiContext,int dataSource,longlong ta
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   float TransformCoefficient4;
   float LocalFloatValue6;
@@ -76239,7 +76245,7 @@ void ProcessUILayoutData(int uiContext,int dataSource,int targetBuffer,longlong 
 {
   uint result;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   longlong contextDataHandle;
@@ -76361,7 +76367,7 @@ void ProcessUIDataWrite(longlong *uiContext,int dataSource,int targetBuffer)
 {
   int operationResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   
   uiCompareResult = *(int *)((longlong)uiContext + 0x14);
@@ -76401,7 +76407,7 @@ void InitializeUIContext(longlong *uiContext)
 
 {
   longlong *allocatedMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   int bitShiftCount;
   char byteBuffer;
   ulonglong bytesToProcess;
@@ -80066,7 +80072,7 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
 {
   int operationResult;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   int loopCounter;
@@ -80168,7 +80174,7 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
 {
    内存管理相关变量
   longlong allocatedMemory;                   已分配的内存地址
-  int uiValidationResult;                       验证结果
+  int dataValidationResult;                       验证结果
   longlong memoryOffset;                      内存偏移量
   float *floatPointer;                       浮点数指针
   uint bitFieldValue;                        位字段值
@@ -81136,7 +81142,7 @@ uint UpdateUIResourceAllocation(UIHandle uiContext,UIHandle dataSource,int targe
 
 {
   ulonglong dataOffset;
-  int uiValidationResult;
+  int dataValidationResult;
   uint dataHashValue;
   uint dataLength;
   uint dataPosition;
@@ -81187,7 +81193,7 @@ uint UpdateUIResourceAllocation(UIHandle uiContext,UIHandle dataSource,int targe
 
 {
   ulonglong dataOffset;
-  int uiValidationResult;
+  int dataValidationResult;
   uint dataHashValue;
   uint currentByte;
   uint tempRegister;
@@ -87548,7 +87554,7 @@ void ValidateUIContextAndDataSource(longlong uiContext,int dataSource,int target
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   int stackParam00000048;
   int stackParam00000070;
   int stackInt98;
@@ -88176,7 +88182,7 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
 {
   float baseValue;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   byte IsValidationComplete;
   int *ptrLocalInt6;
@@ -88558,7 +88564,7 @@ int CompareUIContextValues(uint uiContext,uint dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   short *dataPointer;
   int bufferIndex;
   short *dataIterator;
@@ -91088,8 +91094,8 @@ uint ProcessUIValidationAndFloatCalculation(UIHandle uiContext, longlong dataSou
 
 {
   float baseValue;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   longlong contextRegister;
@@ -92992,7 +92998,7 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   float TransformCoefficient3;
   int transformOffset;
@@ -93451,7 +93457,7 @@ void AdvancedProcessUIContextData(longlong uiContext,uint dataSource,int targetB
 {
   float *baseValuePointer;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int tempInt5;
   ulonglong maxProcessingCount;
@@ -93533,8 +93539,8 @@ void ProcessUIDataAndOptimizeFloatOperations(longlong uiContext,int dataSource,i
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   int loopCounter;
@@ -93610,8 +93616,8 @@ void UINoOperationHandler(void)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong contextRegister;
   longlong eventDataIndex;
@@ -93789,7 +93795,7 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
 {
   longlong allocatedMemory;
   float transformCoeff1;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   longlong contextDataHandle;
@@ -93891,7 +93897,7 @@ void ProcessUITransformCoefficients(float uiContext)
 {
   float baseValue;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong contextHandle;
   float *transformCoeffPointer;
@@ -94082,7 +94088,7 @@ void ProcessUIDataBufferComparison(longlong uiContext,int dataSource,int targetB
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
@@ -94468,7 +94474,7 @@ UIHandle ValidateUIDataProcessingParameters(longlong uiContext,int dataSource)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDataBuffer *bufferPtr;
   longlong eventDataIndex;
   int loopCounter;
@@ -94784,7 +94790,7 @@ void OptimizeUIMemoryAllocation(longlong uiContext)
 {
   longlong allocatedMemory;
   short sVar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   if (*(char *)(uiContext + 0x11b9) != '\x02') {
@@ -94863,9 +94869,9 @@ void CalculateUIBufferSize(longlong uiContext)
 {
   short sVar1;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   uiValidationResult = GetUIProcessingValue((longlong)bufferSize / (longlong)*(int *)(uiBufferData + 0x11bc) & 0xffffffff,
                               (longlong)bufferSize % (longlong)*(int *)(uiBufferData + 0x11bc) & 0xffffffff);
@@ -94939,9 +94945,9 @@ void ValidateUIMemoryAllocation(longlong uiContext)
 {
   short sVar1;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   uiValidationResult = GetUIProcessingValue((longlong)bufferSize / (longlong)*(int *)(uiBufferData + 0x11bc) & 0xffffffff,
                               (longlong)bufferSize % (longlong)*(int *)(uiBufferData + 0x11bc) & 0xffffffff);
@@ -95015,7 +95021,7 @@ void ProcessUIDataSource(UIHandle uiContext,int dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
   short ContextFirstValue;
   int allocationFlags;
@@ -95085,7 +95091,7 @@ void ProcessUIRenderingParameters(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
   
   processingResult = GetUIProcessingValue(0x3c);
@@ -95437,8 +95443,8 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int eventProcessingResult;
   int stateManagementResult;
   
@@ -95495,8 +95501,8 @@ int InitializeUISystemState(void)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   longlong componentData;
@@ -95549,7 +95555,7 @@ UIDword ProcessUIContextValidationAndBufferState(int uiContext,UIHandle dataSour
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong bufferHandle;
   
   if (uiContext == 0) {
@@ -95589,7 +95595,7 @@ UIDword ProcessUIEventTypeValidationAndStateConfiguration(longlong uiContext,int
 
 {
   undefined *statusPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventTypeCode;
   uint processingStatus;
   
@@ -98925,8 +98931,8 @@ void ProcessUIDataValidationAndComparison(longlong uiContext,uint dataSource,int
 
 {
   ulonglong result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
@@ -98988,13 +98994,13 @@ void ProcessUIDataSourceProcessing(longlong uiContext,int dataSource)
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   int unmodifiedEBX;
   ulonglong uiContextBasePointer;
   uint unmodifiedESI;
   longlong uiTargetHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   int preservedRegister15D;
   uint processingStatus;
   uint loopCounter;
@@ -99672,7 +99678,7 @@ void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
 {
   uint result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   float TransformCoefficient4;
   
@@ -100345,7 +100351,7 @@ void ProcessUIIntArray(UIHandle uiContext,int *dataSource)
 
 {
   UIDword result;
-  int uiValidationResult;
+  int dataValidationResult;
   short *pContextFirstValue;
   longlong contextDataHandle;
   int localValidationResult;
@@ -100405,7 +100411,7 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
 
 {
   UIDword result;
-  int uiValidationResult;
+  int dataValidationResult;
   undefined *uiStatusPointer;
   int sourceDataInt;
   int localValidationResult;
@@ -100805,7 +100811,7 @@ void ProcessUIContextData(void)
 {
   UIByte processingResult;
   short shortCalculationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   int loopCounter;
   UIByte *bufferPtr;
@@ -101970,8 +101976,8 @@ void ProcessUIIntegerDataCalculation(int *uiContext,longlong dataSource,longlong
 
 {
   UIWord result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int scaledInputValue;
   int previousContextValue;
   int iterationCounter;
@@ -102053,8 +102059,8 @@ void ProcessUIIntegerParameterValidation(int *uiContext,longlong dataSource,long
 
 {
   UIWord result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int uiProcessingResult;
   int uiCalculatedValue;
   int loopCounter;
@@ -102148,8 +102154,8 @@ void SynchronizeUIComponentData(int *uiContext, longlong dataSource, longlong ta
 
 {
   UIWord componentResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataValue;
   int calculatedValue;
   int dataProcessingIndex;
@@ -102214,7 +102220,7 @@ int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffe
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventTypeCode;
   byte processingFlag;
   int bitShiftResult;
@@ -102786,8 +102792,8 @@ void ProcessUIIntegerPointerData(UIHandle uiContext,int *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -102867,8 +102873,8 @@ void ProcessUIBufferDataOperation(short *uiContext,longlong dataSource,longlong 
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   byte *pbVar4;
   UIByte *componentContextPtr;
   
@@ -103432,8 +103438,8 @@ void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDwo
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIByte astackUInt78 [32];
   UIHandle stackUInt58;
@@ -103473,7 +103479,7 @@ void ProcessUIComponentResource(longlong uiContext,UIHandle dataSource,UIHandle 
   int operationResult;
   int unmodifiedEBP;
   longlong uiTargetHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong stackParam00000048;
   
   processingResult = *(int *)(uiBufferData + 8);
@@ -103523,7 +103529,7 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
 {
   int operationResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   double ScalingFactorValue;
@@ -103921,7 +103927,7 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
   
   // 浮点数计算相关变量
   float *transformCoefficient;
-  int uiCompareResult;
+  int bufferCompareResult;
   int tempInt4;
   int localValidationResult;
   float *preservedRegister13;
@@ -104125,7 +104131,7 @@ void ProcessUIAnimationUpdate(void)
 {
   int operationResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong componentData;
   longlong uiTargetHandle;
@@ -104265,8 +104271,8 @@ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
 
 {
   float *BaseValuePointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong componentData;
   int RegisterValue;
   float *preservedRegister13;
@@ -104956,7 +104962,7 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
 {
   float *BaseValuePointer;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   UIDword *componentContextPtr;
   int loopCounter;
@@ -105108,7 +105114,7 @@ void ProcessUIDataTransformationAndValidation(longlong uiContext,float *dataSour
 
 {
   float *BaseValuePointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int *ptrLocalInt4;
   int localValidationResult;
@@ -105885,8 +105891,8 @@ void ValidateUIContext(int *uiContext,longlong dataSource)
 
 {
   short sVar1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -106504,7 +106510,7 @@ LAB_180727edb:
 float CalculateUIVectorDistanceAndTargetBuffer(UIHandle uiContext, UIHandle dataSource, float targetBuffer)
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   ushort eventTypeCode;
   uint unmodifiedEBP;
   int *componentData;
@@ -106731,7 +106737,7 @@ void ProcessUIBufferData(longlong uiContext,int dataSource,int targetBuffer,long
 {
   longlong *uiMemoryPointer;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   byte IsValidationComplete;
   int loopCounter;
@@ -106948,7 +106954,7 @@ void ProcessUILayoutCalculation(longlong uiContext,longlong dataSource,UIHandle 
 {
   uint result;
   UIWord iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
   int loopCounter;
@@ -107104,7 +107110,7 @@ void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBu
 {
   byte isCharacterMatch;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   int localValidationResult;
   longlong contextDataHandle;
@@ -107209,7 +107215,7 @@ void ProcessUIInputEvent(longlong uiContext,longlong dataSource)
 {
   uint result;
   UIWord iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
   int loopCounter;
@@ -110030,8 +110036,8 @@ void InitializeUIEventValidationAndMemoryManagement(void)
 
 {
   short uiShortValue1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *pUILocalIntPointer;
   short *pUIShortPointer5;
   ulonglong uiMaxProcessingCount;
@@ -112852,7 +112858,7 @@ void ProcessUIComponentRenderTransform(UIHandle uiContext, UIHandle dataSource, 
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong targetHandle;
   int eventHandle;
   longlong preservedRegister15;
@@ -113308,7 +113314,7 @@ void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longl
 {
   UIByte *resultPointer;
   float transformCoeff1;
-  int uiCompareResult;
+  int bufferCompareResult;
   double TemporalDoubleValue;
   UIByte astackUInt398 [32];
   int stackInt378;
@@ -113725,7 +113731,7 @@ void ExecuteUIBufferDataOperation(UIByte *uiContext, longlong dataSource, uint t
 
 {
   byte *isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiHandlePointer;
   uint processingStatus;
   int *uiResultPointer;
@@ -114124,8 +114130,8 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
 
 {
   short sVar1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIByte *componentContextPtr;
   int loopCounter;
@@ -114890,7 +114896,7 @@ void ProcessUIContextDataBufferOperations(UIHandle uiContext,UIHandle dataSource
 {
   short sVar1;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   uint *ptrLocal6;
@@ -115189,7 +115195,7 @@ void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword
 {
   short sVar1;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int *ptrLocalInt5;
   byte BufferSizeFlag;
@@ -116099,7 +116105,7 @@ void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targe
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIWord eventCodeType;
   int sourceDataInt;
   int localValidationResult;
@@ -116172,7 +116178,7 @@ void ProcessUIEventCodeType(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIWord eventCodeType;
   longlong contextHandle;
   longlong contextDataHandle;
@@ -116835,8 +116841,8 @@ void ProcessUIDataAndValidation(short uiContext,char dataSource,int *targetBuffe
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   undefined *ptrLocal6;
@@ -116935,7 +116941,7 @@ void ProcessUICharacterDataConversion(longlong uiContext, char *dataSource, long
 {
   short sVar1;
   UIWord iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -119872,7 +119878,7 @@ void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   int unmodifiedESI;
   longlong uiTargetHandle;
   short ContextFirstValue;
@@ -120432,8 +120438,8 @@ void ProcessUIComponentDataScalingAndValidation(void)
 
 {
   short *dataIterator;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIWord loopCounter;
   longlong uiContextBasePointer;
@@ -120503,7 +120509,7 @@ void ProcessUIComponentDataScalingSimple(void)
 
 {
   uint scaledResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiContextBasePointer;
   longlong componentData;
   int allocationFlags;
@@ -121834,7 +121840,7 @@ int InitializeUIContextAndDataSource(UIDword *uiContext,UIDword *dataSource,int 
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   
@@ -122215,7 +122221,7 @@ int ProcessUIBufferOperationChain(longlong uiContext,int dataSource,UIHandle tar
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = func_0x00018074b7d0();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -122674,8 +122680,8 @@ void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle data
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionKeyBuffer [32];
   UIByte *dataBufferPointer;
   longlong memoryResourceFlag;
@@ -122888,8 +122894,8 @@ void CleanupUIResourcesAndExecuteRenderTask(void)
 void ProcessUIDataAndExecuteRenderTask(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionBuffer[32];
   UIByte *dataBufferPointer;
   longlong resourceCleanupFlag;
@@ -123077,8 +123083,8 @@ void ReleaseUIResourcesAndExecuteRender(void)
 void ProcessUIDataBuffer(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionBuffer[32];
   UIByte *dataBufferPointer;
   longlong resourceCleanupFlag;
@@ -123377,8 +123383,8 @@ void ProcessUIAnimationStateAndBufferOperation(UIHandle uiContext,UIDword dataSo
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIHandle stackUInt170;
@@ -123519,7 +123525,7 @@ CleanupAndExit:
 void ProcessUIDataBatchValidation(void)
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword ebxRegisterValue;
   UIDword esiRegisterValue;
   
@@ -123628,8 +123634,8 @@ void ReleaseUIMemoryAndExecuteRender(void)
 void ProcessUIDataWithEncryptionAndRender(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte dataEncryptionBuffer[32];
   UIByte *dataBufferPointer;
   longlong memoryResourceHandle;
@@ -123691,8 +123697,8 @@ void ProcessUIDataWithContextManagement(UIHandle uiContext, UIHandle dataSource,
                                         UIHandle resultPointer, UIHandle memoryCleanupFlag, UIHandle contextDataParam)
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle contextBasePointer;
   longlong registerPointer;
@@ -123746,7 +123752,7 @@ CleanupAndRender:
 void HandleUIResourceRelease(void)
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword contextOperationId;
   
   // 第一轮数据处理和验证
@@ -123947,8 +123953,8 @@ void ProcessUIContextWithEventDispatcher(UIHandle uiContext,UIHandle dataSource,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte contextBuffer [32];
   UIByte *dataBufferPointer;
   UIHandle contextHandles [2];
@@ -123989,7 +123995,7 @@ void ProcessUIDataBufferValidationAndCleanup(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword contextData;
   
   processingResult = ProcessUIDataBufferValidation(&SystemDataBuffer,0x100);
@@ -124045,8 +124051,8 @@ void ProcessUIDataFinalWithValidation(UIHandle uiContext,UIHandle dataSource,UIH
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionKeyBuffer [32];
   UIByte *dataBufferPointer;
   longlong resourceHandle;
@@ -124100,8 +124106,8 @@ void ProcessUIDataFinalExWithValidation(UIHandle uiContext,UIHandle dataSource,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong registerPointer;
@@ -124153,7 +124159,7 @@ void CleanupUIBufferResources(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword contextData;
   
   processingResult = ProcessUIBufferData(&stack0x00000040,0x100);
@@ -124230,8 +124236,8 @@ void ProcessUIDataWithLongBuffer(UIHandle uiContext,UIDword dataSource,UIHandle 
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionKeyBuffer [32];
   UIByte *dataBufferPointer;
   longlong resourceHandle;
@@ -124288,8 +124294,8 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle target
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong registerPointer;
@@ -124341,7 +124347,7 @@ void ProcessUIDataBuffer(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword bufferHandle;
   UIDword contextHandle;
   
@@ -124432,8 +124438,8 @@ void ProcessUIDataAndRenderPipeline(UIHandle uiContext,UIDword dataSource,UIHand
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionBuffer [32];
   UIByte *bufferPointer;
   longlong memoryTrackingFlag;
@@ -124474,8 +124480,8 @@ void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -124526,7 +124532,7 @@ void ProcessUIDataValidationAndBufferOperations(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -124772,8 +124778,8 @@ void ProcessUIContextDataTransferAndValidation(UIHandle uiContext, UIHandle data
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte encryptionBuffer [32];
   UIByte *dataBufferPointer;
   UIHandle contextHandle [2];
@@ -124819,7 +124825,7 @@ void ProcessUIStackDataAndExecuteContextOperation(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIDataWithHandleTarget(&stack0x00000040,0x100);
@@ -124970,8 +124976,8 @@ void ProcessUIContextDataTransferOperation(UIHandle uiContext,UIDword dataSource
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -125030,8 +125036,8 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -125072,7 +125078,7 @@ void FUN_18073a405(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -125162,8 +125168,8 @@ void FUN_18073a590(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -125209,8 +125215,8 @@ void FUN_18073a5ad(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -125255,7 +125261,7 @@ void FUN_18073a613(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -125312,8 +125318,8 @@ void FUN_18073a710(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -125354,8 +125360,8 @@ void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -125396,7 +125402,7 @@ void FUN_18073a785(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -125448,8 +125454,8 @@ void FUN_18073a840(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -125501,8 +125507,8 @@ void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -125553,7 +125559,7 @@ void FUN_18073a8dd(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ValidateUIDataWithContext(&stack0x00000040,0x100);
@@ -125684,8 +125690,8 @@ void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle astackUInt158 [2];
@@ -125719,7 +125725,7 @@ void FUN_18073abec(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -125758,8 +125764,8 @@ void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -125800,8 +125806,8 @@ void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -125842,7 +125848,7 @@ void FUN_18073ad35(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -125895,8 +125901,8 @@ void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -125947,8 +125953,8 @@ void FUN_18073ae0d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126001,7 +126007,7 @@ void FUN_18073ae88(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIByte eventHandleB;
   
@@ -126062,8 +126068,8 @@ void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -126114,8 +126120,8 @@ void FUN_18073afdd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126168,7 +126174,7 @@ void FUN_18073b058(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIByte eventHandleB;
   
@@ -126228,8 +126234,8 @@ void FUN_18073b190(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -126275,8 +126281,8 @@ void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126321,7 +126327,7 @@ void FUN_18073b215(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   UIByte eventHandleB;
@@ -126416,8 +126422,8 @@ void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -126458,8 +126464,8 @@ void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126500,7 +126506,7 @@ void FUN_18073b457(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -126598,8 +126604,8 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIHandle stackUInt170;
@@ -126656,8 +126662,8 @@ void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126716,7 +126722,7 @@ void FUN_18073b695(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -126856,8 +126862,8 @@ void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -126898,8 +126904,8 @@ void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -126940,7 +126946,7 @@ void FUN_18073ba27(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   
@@ -126992,8 +126998,8 @@ void FUN_18073baf0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -127034,8 +127040,8 @@ void FUN_18073bb0d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -127076,7 +127082,7 @@ void FUN_18073bb65(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -127319,8 +127325,8 @@ void FUN_18073c020(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -127361,8 +127367,8 @@ void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -127403,7 +127409,7 @@ void FUN_18073c099(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -127455,8 +127461,8 @@ void FUN_18073c160(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -127498,8 +127504,8 @@ void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -127547,7 +127553,7 @@ void FUN_18073c1e0(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = func_0x00018074be80(&stack0x00000040,0x100);
@@ -127636,8 +127642,8 @@ void FUN_18073c380(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -127678,8 +127684,8 @@ void FUN_18073c39d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -127720,7 +127726,7 @@ void FUN_18073c3f9(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -127772,8 +127778,8 @@ void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong *apstackLong148 [2];
@@ -127815,7 +127821,7 @@ void FUN_18073c54f(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = FUN_18074bdf0(&stack0x00000040,0x100);
@@ -127848,8 +127854,8 @@ void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -127890,8 +127896,8 @@ void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -127932,7 +127938,7 @@ void FUN_18073c66b(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -127983,8 +127989,8 @@ void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -128038,8 +128044,8 @@ void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -128092,7 +128098,7 @@ void FUN_18073c7d1(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = FUN_18074bdf0(&stack0x00000040,0x100);
@@ -128407,8 +128413,8 @@ void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -128451,8 +128457,8 @@ void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -128495,7 +128501,7 @@ void FUN_18073cf53(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = func_0x00018074be80(&stack0x00000040,0x100);
@@ -128546,8 +128552,8 @@ void FUN_18073d010(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -128588,8 +128594,8 @@ void FUN_18073d02d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -128630,7 +128636,7 @@ void FUN_18073d08b(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIDataWithFloatTarget(&stack0x00000040,0x100);
@@ -128719,8 +128725,8 @@ void FUN_18073d230(UIHandle uiContext,longlong dataSource,longlong targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -128768,8 +128774,8 @@ void FUN_18073d24d(UIHandle uiContext,longlong dataSource,longlong targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -128816,7 +128822,7 @@ void FUN_18073d2c3(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIByte eventHandleB;
   
@@ -128872,8 +128878,8 @@ void FUN_18073d3c0(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -128915,8 +128921,8 @@ void FUN_18073d3dd(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -128964,7 +128970,7 @@ void FUN_18073d440(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = func_0x00018074be80(&stack0x00000040,0x100);
@@ -129016,8 +129022,8 @@ void FUN_18073d500(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIByte stackUInt160;
@@ -129070,8 +129076,8 @@ void FUN_18073d51d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -129128,7 +129134,7 @@ void FUN_18073d59f(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
@@ -129342,8 +129348,8 @@ void FUN_18073da60(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -129384,8 +129390,8 @@ void FUN_18073da7d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -129432,7 +129438,7 @@ void FUN_18073dad7(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -129598,8 +129604,8 @@ void FUN_18073de20(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong *apstackLong148 [2];
@@ -129638,7 +129644,7 @@ void FUN_18073de94(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = FUN_18074bac0(&stack0x00000040,0x100);
@@ -129672,8 +129678,8 @@ void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong *apstackLong158 [2];
@@ -129721,7 +129727,7 @@ void FUN_18073dfd7(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -129762,8 +129768,8 @@ void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong *pstackLong148;
@@ -129811,8 +129817,8 @@ void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -129858,7 +129864,7 @@ void FUN_18073e1b1(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   
@@ -129909,8 +129915,8 @@ void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong *pstackLong158;
@@ -129967,8 +129973,8 @@ void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -130032,7 +130038,7 @@ void FUN_18073e330(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   UIDword preservedRegister15D;
@@ -130130,8 +130136,8 @@ void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -130183,8 +130189,8 @@ void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -130237,7 +130243,7 @@ void FUN_18073e5ea(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -130294,8 +130300,8 @@ void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong *pstackLong148;
@@ -130347,8 +130353,8 @@ void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt1b8 [32];
   UIByte *pstackUInt198;
   UIHandle stackUInt190;
@@ -130418,8 +130424,8 @@ void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -130494,7 +130500,7 @@ void FUN_18073ea1b(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -130562,7 +130568,7 @@ void FUN_18073ebd0(UIHandle uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
   longlong *apRenderContextSize [2];
@@ -130606,8 +130612,8 @@ void FUN_18073ecb0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong *pstackLong158;
@@ -130655,8 +130661,8 @@ void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
   UIHandle eventHandle;
@@ -130708,7 +130714,7 @@ void FUN_18073ed53(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   
@@ -130803,8 +130809,8 @@ void FUN_18073ef30(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong *pstackLong158;
@@ -130861,8 +130867,8 @@ void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -130926,7 +130932,7 @@ void FUN_18073efed(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   UIDword preservedRegister15D;
@@ -130985,8 +130991,8 @@ void FUN_18073f130(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -131027,8 +131033,8 @@ void FUN_18073f240(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -131069,8 +131075,8 @@ void FUN_18073f25d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -131111,7 +131117,7 @@ void FUN_18073f2b5(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -131163,8 +131169,8 @@ void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -131205,8 +131211,8 @@ void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -131247,7 +131253,7 @@ void FUN_18073f3e5(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -131531,8 +131537,8 @@ void FUN_18073fa70(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -131576,8 +131582,8 @@ void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -131621,7 +131627,7 @@ void FUN_18073faec(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   
@@ -131790,8 +131796,8 @@ void FUN_18073fe30(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -131832,8 +131838,8 @@ void FUN_18073fe4d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -131874,7 +131880,7 @@ void FUN_18073fea5(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -131965,8 +131971,8 @@ void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle stackUInt160;
@@ -132014,8 +132020,8 @@ void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -132056,8 +132062,8 @@ void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -132098,7 +132104,7 @@ void FUN_18074020b(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -132149,8 +132155,8 @@ void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -132191,8 +132197,8 @@ void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -132233,7 +132239,7 @@ void FUN_180740347(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = FUN_18074ba80(&stack0x00000040,0x100);
@@ -132322,8 +132328,8 @@ void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -132364,8 +132370,8 @@ void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -132406,7 +132412,7 @@ void FUN_180740557(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
@@ -132487,8 +132493,8 @@ void FUN_1807406e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIDword stackUInt170;
@@ -132537,7 +132543,7 @@ void FUN_18074076a(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   UIDword RegisterValue;
@@ -132584,8 +132590,8 @@ void FUN_1807408b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   UIHandle stackArray148 [2];
@@ -132615,7 +132621,7 @@ void FUN_180740910(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -132650,8 +132656,8 @@ void FUN_1807409b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle astackUInt158 [2];
@@ -132694,7 +132700,7 @@ void FUN_180740a2b(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   UIDword preservedRegister15D;
@@ -133023,8 +133029,8 @@ void FUN_1807411a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   longlong stackLong158;
@@ -133070,8 +133076,8 @@ void FUN_1807411bd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -133116,7 +133122,7 @@ void FUN_180741223(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -133174,8 +133180,8 @@ void FUN_180741320(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong stackLong148;
@@ -133216,8 +133222,8 @@ void FUN_18074133d(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -133258,7 +133264,7 @@ void FUN_180741399(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte unmodifiedBL;
   UIByte unmodifiedBPL;
   UIDword unmodifiedESI;
@@ -133311,8 +133317,8 @@ void FUN_180741460(UIHandle uiContext,UIDword dataSource,UIByte targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   UIHandle stackArray148 [2];
@@ -133342,7 +133348,7 @@ void FUN_1807414c2(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIByte unmodifiedBPL;
   UIDword unmodifiedESI;
@@ -133377,8 +133383,8 @@ void FUN_180741560(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle astackUInt158 [2];
@@ -133412,7 +133418,7 @@ void FUN_1807415cc(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   UIDword eventHandle;
@@ -133451,8 +133457,8 @@ void FUN_1807416a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   UIHandle stackArray148 [2];
@@ -133482,7 +133488,7 @@ void FUN_180741706(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -133516,8 +133522,8 @@ void FUN_1807417b0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   UIHandle stackArray148 [2];
@@ -133547,7 +133553,7 @@ void FUN_180741810(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -133622,8 +133628,8 @@ void FUN_1807419a0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIDword stackUInt170;
@@ -133677,8 +133683,8 @@ void FUN_1807419bd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong RegisterPointer;
@@ -133737,7 +133743,7 @@ void FUN_180741a43(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   UIDword eventHandle;
@@ -133908,7 +133914,7 @@ ulonglong FUN_180741d10(UIHandle uiContext,int dataSource,int targetBuffer,UIHan
 {
   longlong allocatedMemory;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   uiCompareResult = 8;
   if (0 < targetBuffer) {
@@ -133932,7 +133938,7 @@ void FUN_180741d80(UIHandle uiContext,int dataSource,int targetBuffer,UIHandle b
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = 8;
   if (0 < targetBuffer) {
@@ -133968,7 +133974,7 @@ void FUN_180741e10(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHan
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   int *ptrLocalInt4;
   longlong eventDataIndex;
@@ -134096,7 +134102,7 @@ int FindUIAvailableMemorySlot(longlong *uiContext,uint dataSource,int targetBuff
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int bitMask;
   
   uiCompareResult = 0;
@@ -134376,8 +134382,8 @@ void FUN_180742650(longlong *uiContext,int *dataSource,int targetBuffer,UIHandle
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   int *ptrLocalInt5;
   ulonglong maxProcessingCount;
@@ -134948,7 +134954,7 @@ UIDword FUN_180742e60(longlong uiContext)
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   uiCompareResult = (*(int *)(uiBufferData + 0x107b0) * *(int *)(uiBufferData + 0x6d8) + 8)           *(int *)(uiBufferData + 0x11658);
   allocatedMemory = FUN_180741e10(uiContext + 0x10bd0,uiCompareResult * 4 + 0x200,&UIDefaultDataBuffer,0,0,0,1);
@@ -135991,7 +135997,7 @@ UIHandle FUN_180743940(longlong uiContext,int dataSource,longlong targetBuffer,c
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong *pcontextDataHandle;
   UIHandle uStackX_8;
@@ -136520,7 +136526,7 @@ UIHandle * FUN_180744640(UIHandle *uiContext,ulonglong dataSource)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   
   *uiContext = &UNK_180957fe0;
   FUN_180744d60(uiContext + 0x24fc);
@@ -136646,7 +136652,7 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_20 [2];
   UIHandle *uiStatusPointer;
   ulonglong processingStatus;
@@ -137413,7 +137419,7 @@ UIHandle FUN_1807455f0(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong *peventDataIndex;
   longlong contextDataHandle;
@@ -137607,7 +137613,7 @@ ulonglong ProcessUIDataWithContextHandles(longlong uiContext,longlong dataSource
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -137734,7 +137740,7 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -138461,8 +138467,8 @@ UIHandle ProcessUIContextDataValidationAndEventManagement(longlong uiContext,int
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong eventDataIndex;
   int DataSourceIndex;
@@ -138725,8 +138731,8 @@ ulonglong ProcessUIDataConversion(longlong uiContext,uint dataSource,uint target
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   ulonglong loopCounter;
   longlong *pcontextDataHandle;
@@ -138958,7 +138964,7 @@ ulonglong FUN_180746c35(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   int sourceDataInt;
   longlong eventDataIndex;
@@ -139174,7 +139180,7 @@ int FUN_180746d01(void)
 {
   uint result;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIDword loopCounter;
   int loopCounter;
@@ -139358,7 +139364,7 @@ ulonglong FUN_1807472dd(void)
 {
   char localChar1;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   longlong eventDataIndex;
   longlong *pcontextDataHandle;
@@ -140583,7 +140589,7 @@ UIHandle FUN_1807483a0(longlong uiContext,longlong dataSource,UIDword *targetBuf
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int aiStackX_10 [4];
   UIDword stackBuffer [2];
   UIDword astackUInt68 [2];
@@ -140652,7 +140658,7 @@ UIHandle FUN_180748401(void)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong uiContextBasePointer;
   UIDword *componentData;
   longlong uiTargetHandle;
@@ -141266,7 +141272,7 @@ UIHandle FUN_180748b40(longlong uiContext,int *dataSource)
 {
   float baseValue;
   float transformCoeff1;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if (dataSource != (int *)0x0) {
     uiCompareResult = *dataSource;
@@ -141899,7 +141905,7 @@ int FUN_180749940(longlong uiContext)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if (uiContext != 0) {
     func_0x000180743c20(uiContext,0x10);
@@ -141932,7 +141938,7 @@ int FUN_180749946(longlong uiContext)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if (uiContext != 0) {
     func_0x000180743c20(uiContext,0x10);
@@ -142365,7 +142371,7 @@ void FUN_18074a350(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword auStackX_10 [2];
   UIHandle bufferValidation;
   UIHandle bufferSizeParameter;
@@ -143931,7 +143937,7 @@ uint FUN_18074b970(UIByte *uiContext,int dataSource,uint *targetBuffer,int buffe
 {
   uint result;
   char *threadLocalStorageFlag;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   
@@ -144017,7 +144023,7 @@ uint FUN_18074bb00(UIByte *uiContext,int dataSource,float *targetBuffer,int buff
 {
   float baseValue;
   UIWord *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   
@@ -144753,7 +144759,7 @@ UIHandle FUN_18074c0f3(void)
 {
   longlong *uiMemoryPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   UIHandle loopCounter;
   longlong contextDataHandle;
@@ -147562,7 +147568,7 @@ static UIHandle ProcessUIDataIteration(longlong *uiContext, int dataSource, int 
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong stackBuffer8;
   int stackArray10[2];
   int stackArray18[2];
@@ -147842,7 +147848,7 @@ uint FUN_180750950(UIHandle *uiContext,int *dataSource,UIDword *targetBuffer,byt
 {
   longlong allocatedMemory;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   uint maxProcessingCount;
@@ -148268,7 +148274,7 @@ UIHandle ProcessUIComponentStateLock(void)
 {
   uint *resultPointer;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   ulonglong uiContextBasePointer;
   longlong *componentData;
@@ -148346,7 +148352,7 @@ UIHandle FUN_180750ee0(longlong *uiContext,int dataSource,UIHandle *targetBuffer
 {
   UIHandle result;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int iStackX_8;
   
   result = (**(code **)(*uiContext + 0xe8))();
@@ -149654,7 +149660,7 @@ UIHandle FUN_1807520e0(longlong uiContext,UIDword dataSource)
 {
   UIDword result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIDword auStackX_8 [2];
   
@@ -150253,7 +150259,7 @@ UIHandle FUN_180752af0(longlong *uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_8 [2];
   longlong lStackX_10;
   
@@ -150568,7 +150574,7 @@ int FUN_180752f4e(void)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong uiContextBasePointer;
   longlong *componentData;
   longlong *uiTargetHandle;
@@ -150661,7 +150667,7 @@ void FUN_180753170(longlong *uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_8 [2];
   UIHandle dataSourceParameter;
   UIHandle bufferValidation;
@@ -150880,7 +150886,7 @@ UIHandle FUN_180753680(longlong uiContext,char *dataSource)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int sourceDataInt;
   UIHandle *componentContextPtr;
@@ -151592,7 +151598,7 @@ void FUN_180754120(longlong *uiContext,uint dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   UIHandle uStackX_8;
@@ -151706,7 +151712,7 @@ void FUN_180754259(uint uiContext,uint dataSource)
 {
   uint result;
   uint bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong *contextHandle;
   uint unmodifiedEBP;
@@ -153082,8 +153088,8 @@ UIHandle FUN_180755c70(longlong *uiContext,char dataSource)
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -154533,7 +154539,7 @@ void FUN_180757b50(longlong *uiContext,uint dataSource)
 {
   uint result;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIByte astackUInt58 [32];
   UIDword stackUInt38;
   UIByte stackUInt30;
@@ -154589,7 +154595,7 @@ void FUN_180757b8c(longlong uiContext)
 {
   float baseValue;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextRegister;
   longlong *contextHandle;
   uint allocationFlags;
@@ -155823,7 +155829,7 @@ UIHandle FUN_180758960(longlong uiContext)
 {
   float *BaseValuePointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   UIDword maxProcessingCount;
@@ -155901,7 +155907,7 @@ UIHandle FUN_1807589ac(UIHandle uiContext)
 {
   float *BaseValuePointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   float TransformCoefficient4;
   longlong contextRegister;
@@ -155976,7 +155982,7 @@ UIHandle FUN_1807589bd(void)
 {
   float *BaseValuePointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   UIByte maxProcessingCount;
@@ -156209,7 +156215,7 @@ UIHandle FUN_180758ed0(uint uiContext,longlong *dataSource,longlong *targetBuffe
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   uint loopCounter;
@@ -156257,7 +156263,7 @@ UIHandle FUN_180758f0b(uint uiContext,UIHandle *dataSource)
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   longlong uiContextBasePointer;
@@ -156487,7 +156493,7 @@ ulonglong FUN_1807594d0(ulonglong uiContext,ulonglong dataSource,int targetBuffe
 {
   short sVar1;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -161245,7 +161251,7 @@ UIHandle FUN_18075d600(longlong uiContext,char dataSource,char targetBuffer)
 {
   short sVar1;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong *peventDataIndex;
   UIHandle *ptrLocal6;
@@ -161334,7 +161340,7 @@ UIHandle FUN_18075d62d(longlong uiContext)
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong *pcontextDataHandle;
   UIHandle *componentContextPtr;
@@ -161500,7 +161506,7 @@ UIHandle FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,char
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   short ContextFirstValue;
   uint processingStatus;
   int localValidationResult;
@@ -162563,7 +162569,7 @@ int FUN_18075e410(longlong uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   allocatedMemory = *(longlong *)(uiBufferData + 0xa8);
   if (allocatedMemory != 0) {
@@ -162597,7 +162603,7 @@ int FUN_18075e41d(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
   
   if (componentData != 0) {
@@ -163058,7 +163064,7 @@ ProcessUIContextDataAllocation(longlong uiContext, uint dataSource, int targetBu
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   uint dataArray8 [2];
@@ -163300,7 +163306,7 @@ void FUN_18075f090(longlong uiContext,int dataSource,UIHandle *targetBuffer,UIDw
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte *uiStatusPointer;
   UIByte astackUInt98 [32];
   UIByte *pstackUInt78;
@@ -163351,7 +163357,7 @@ void FUN_18075f1e0(longlong uiContext,int dataSource,UIDword *targetBuffer,longl
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte *uiStatusPointer;
   UIByte astackUInt68 [32];
   UIDword astackUInt48 [2];
@@ -163405,7 +163411,7 @@ ulonglong FUN_18075f4c0(longlong *uiContext,ulonglong dataSource,ulonglong targe
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   longlong eventDataIndex;
   UIHandle *ptrLocal6;
@@ -165548,8 +165554,8 @@ void FUN_180760970(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong *peventDataIndex;
   byte *pbVar6;
@@ -165798,7 +165804,7 @@ void FUN_180760ab7(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   byte unmodifiedSIL;
@@ -165976,7 +165982,7 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
 {
   UIHandle **presultPointer;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   uint maxProcessingCount;
@@ -167795,7 +167801,7 @@ void FUN_1807617cf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   uint loopCounter;
@@ -168746,7 +168752,7 @@ UIHandle FUN_180762b60(longlong uiContext,float dataSource,char targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   char localChar4;
   UIByte *eventDataBuffer;
@@ -168852,7 +168858,7 @@ UIHandle FUN_180762d22(longlong uiContext)
 {
   short sVar1;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle *componentData;
   int sourceDataInt;
   
@@ -169223,7 +169229,7 @@ void FUN_1807632c0(float *uiContext,char dataSource,int targetBuffer,int bufferS
 {
   int operationResult;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   uint maxProcessingCount;
@@ -169373,7 +169379,7 @@ UIHandle FUN_1807657c0(longlong uiContext,uint dataSource)
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   float *transformCoeffPointer;
@@ -169455,7 +169461,7 @@ UIHandle FUN_1807657eb(longlong uiContext,int dataSource,longlong targetBuffer,i
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   float *pTransformCoefficient3;
   float *transformCoeffPointer;
@@ -169662,7 +169668,7 @@ UIHandle FUN_18076593c(UIHandle uiContext,float dataSource,longlong targetBuffer
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   int eventHandle;
   float in_XMM5_Da;
   
@@ -169695,7 +169701,7 @@ UIHandle FUN_18076595e(UIHandle uiContext,float dataSource,longlong targetBuffer
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventHandle;
   float in_XMM5_Da;
   
@@ -170069,7 +170075,7 @@ ulonglong FUN_180765dcd(longlong *uiContext)
   longlong allocatedMemory;
   ulonglong iterationCount;
   longlong *contextHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong uiTargetHandle;
   UIByte *stackParam000000a8;
   char stackParam000000d0;
@@ -171070,7 +171076,7 @@ ulonglong FUN_180766ce1(longlong uiContext,longlong dataSource,longlong targetBu
 {
   longlong allocatedMemory;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int register10D;
   longlong contextDataHandle;
   float TransformCoefficient4;
@@ -171500,7 +171506,7 @@ UIHandle FUN_180767440(longlong *uiContext,uint dataSource,longlong targetBuffer
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int aiStackX_10 [4];
   UIDword stackBuffer [2];
@@ -171579,7 +171585,7 @@ UIHandle FUN_180767457(longlong *uiContext,UIDword dataSource,longlong targetBuf
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *componentData;
   int sourceDataInt;
   bool in_ZF;
@@ -171657,7 +171663,7 @@ UIHandle FUN_18076747d(void)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *componentData;
   int sourceDataInt;
   longlong lStackX_20;
@@ -172018,7 +172024,7 @@ UIHandle FUN_1807679d0(UIHandle *uiContext)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   
   FUN_180768b50(uiContext + 0x22);
@@ -172731,7 +172737,7 @@ UIHandle FUN_18076810a(void)
 {
   longlong *uiMemoryPointer;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextHandle;
   longlong *componentData;
@@ -172931,7 +172937,7 @@ UIHandle FUN_180768280(UIByte *uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   allocatedMemory = _DAT_180c0c6f0;
   if (*(int *)(_DAT_180c0c6f0 + 8) != 0) {
@@ -173872,7 +173878,7 @@ UIDword FUN_180769080(longlong *uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   code *dataPointer;
   UIDword processingStatus;
   
@@ -174937,7 +174943,7 @@ int FUN_18076a0fa(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint *bufferPtr;
   int localValidationResult;
@@ -175942,7 +175948,7 @@ longlong GetUIStringCompareIndex(char *uiContext)
 {
   char localChar1;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   char *plocalChar4;
   
   localChar1 = *uiContext;
@@ -176098,8 +176104,8 @@ char * FUN_18076b7c0(char *uiContext,char *dataSource)
 
 {
   char localChar1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   char *plocalChar5;
   
@@ -176139,7 +176145,7 @@ longlong FUN_18076b802(char *uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   char *dataPointer;
   longlong componentData;
   int allocationFlags;
@@ -176196,7 +176202,7 @@ ulonglong FUN_18076b930(UIByte *uiContext,ulonglong dataSource,UIHandle targetBu
 {
   uint result;
   ulonglong *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   ulonglong loopCounter;
   
@@ -181233,8 +181239,8 @@ UIHandle FUN_18076dd20(short *uiContext,longlong dataSource,int *targetBuffer,in
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   int loopCounter;
@@ -181322,7 +181328,7 @@ UIHandle FUN_18076ddb2(UIDword uiContext,int dataSource,UIHandle targetBuffer,lo
   longlong allocatedMemory;
   int bufferSize;
   int in_ECX;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   longlong componentData;
@@ -181383,7 +181389,7 @@ UIHandle FUN_18076ddf9(int uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   longlong componentData;
@@ -181435,7 +181441,7 @@ UIHandle FUN_18076de0f(UIHandle uiContext,UIDword dataSource,UIDword targetBuffe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   longlong componentData;
@@ -181625,7 +181631,7 @@ void FUN_18076e050(longlong *uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   componentIndex = *uiContext;
   *(UIHandle *)(componentIndex + 0x240) = 0;
@@ -181812,7 +181818,7 @@ int FUN_18076e380(longlong uiContext,ulonglong dataSource,float targetBuffer)
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   longlong eventDataIndex;
   longlong *pcontextDataHandle;
@@ -181898,7 +181904,7 @@ int FUN_18076e38d(UIDword uiContext,ulonglong dataSource,float targetBuffer)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   longlong registerCX;
   longlong contextDataHandle;
@@ -183499,7 +183505,7 @@ void FUN_18076f970(longlong *uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIByte *apuStackX_8 [4];
   
@@ -183641,7 +183647,7 @@ UIHandle FUN_18076fc90(longlong uiContext,int dataSource)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -183765,8 +183771,8 @@ UIHandle FUN_1807700b0(longlong *uiContext,uint *dataSource,UIHandle *targetBuff
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle loopCounter;
   UIHandle *ptrLocal6;
@@ -183856,8 +183862,8 @@ UIHandle FUN_180770102(void)
 {
   uint result;
   int bufferSize;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   int loopCounter;
@@ -184125,7 +184131,7 @@ UIHandle FUN_180770430(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   char acStackX_8 [8];
   char acStackX_18 [16];
@@ -184164,7 +184170,7 @@ UIHandle FUN_1807704e0(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   char acStackX_8 [8];
   char acStackX_18 [8];
   
@@ -184201,7 +184207,7 @@ UIHandle FUN_180770580(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   if (*(longlong *)(uiBufferData + 0x18) != 0) {
@@ -184243,7 +184249,7 @@ UIHandle FUN_180770590(longlong uiContext)
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
   longlong contextHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   uiCompareResult = 0;
@@ -185194,7 +185200,7 @@ FUN_180771250(longlong uiContext,int dataSource,longlong targetBuffer,longlong b
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   UIHandle loopCounter;
@@ -186515,7 +186521,7 @@ void FUN_180772ae2(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   bool bVar4;
   UIHandle *contextHandle;
@@ -186567,7 +186573,7 @@ void FUN_180772b52(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *contextHandle;
   longlong componentData;
   
@@ -187386,7 +187392,7 @@ UIDword FUN_180773305(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   longlong contextHandle;
@@ -187969,7 +187975,7 @@ ulonglong FUN_180773af0(longlong uiContext,uint dataSource,uint targetBuffer,uin
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   longlong eventDataIndex;
@@ -188213,7 +188219,7 @@ UIHandle FUN_180773f20(longlong uiContext,int *dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   ulonglong processingStatus;
   
@@ -188731,7 +188737,7 @@ UIHandle FUN_180774836(UIHandle uiContext,float dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   uint loopCounter;
@@ -188965,7 +188971,7 @@ UIHandle FUN_1807748da(UIHandle uiContext,float dataSource,float targetBuffer,fl
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   float TransformCoefficient2;
   uint processingStatus;
   int localValidationResult;
@@ -189178,7 +189184,7 @@ UIHandle FUN_1807749e9(uint uiContext,uint dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   float TransformCoefficient2;
   uint processingStatus;
   int localValidationResult;
@@ -190337,7 +190343,7 @@ void FUN_180775e3b(longlong uiContext)
   int unmodifiedEBX;
   int unmodifiedEBP;
   int allocationFlags;
-  int uiValidationResult;
+  int dataValidationResult;
   int preservedRegister13D;
   int eventHandle;
   longlong preservedRegister15;
@@ -190884,7 +190890,7 @@ UIHandle FUN_180776880(longlong uiContext,uint dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   
   uiValidationResult = *(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0);
@@ -191861,7 +191867,7 @@ UIHandle FUN_1807786c0(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = 0;
   *(UIDword *)(uiBufferData + 0x2f8) = 0;
@@ -195510,7 +195516,7 @@ FUN_18077abc6(UIHandle uiContext,float dataSource,float targetBuffer,float buffe
 
 {
   short *psVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   ulonglong processingStatus;
   longlong eventDataIndex;
@@ -198568,7 +198574,7 @@ UIHandle FUN_18077e89c(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   uint loopCounter;
@@ -198924,7 +198930,7 @@ UIHandle FUN_18077eb80(longlong uiContext,int dataSource,float targetBuffer,char
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte *apstackUInt18 [2];
   
   uiValidationResult = 0;
@@ -200152,7 +200158,7 @@ UIHandle FUN_180780d10(longlong *uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   allocatedMemory = *uiContext + 0x218;
   uiValidationResult = FUN_1807ed550(allocatedMemory,*(UIDword *)(*(longlong *)(*uiContext + 0xa8) + 0x6d8));
@@ -200315,7 +200321,7 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
 {
   int operationResult;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword *bufferPtr;
   byte IsValidationComplete;
   float LocalFloatValue6;
@@ -200371,7 +200377,7 @@ byte ProcessUIContextDataTransform(longlong uiContext)
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   byte ProcessingFlag;
   int unmodifiedEBX;
   UIDword *bufferPtr;
@@ -200435,7 +200441,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
 {
   int operationResult;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   float unmodifiedEBX;
   UIDword *bufferPtr;
   byte IsValidationComplete;
@@ -200519,7 +200525,7 @@ ulonglong FUN_180781430(longlong uiContext,longlong dataSource)
 {
   int operationResult;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   
   TransformCoefficient3 = _DAT_180c0faf0;
@@ -200870,7 +200876,7 @@ UIHandle FUN_180781a70(longlong uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   longlong eventDataIndex;
@@ -202839,7 +202845,7 @@ void FUN_180784d10(longlong uiContext,int *dataSource,byte targetBuffer,char buf
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   bool bVar4;
   bool IsValidationComplete;
@@ -203314,7 +203320,7 @@ void FUN_180784ebd(UIHandle uiContext,ulonglong dataSource,char targetBuffer)
   bool isCharacterMatch;
   bool IsEventProcessingActive;
   uint bufferSize;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -204258,7 +204264,7 @@ UIDword FUN_180786030(int *uiContext,longlong *dataSource,int targetBuffer,char 
 {
   uint *resultPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   char acStackX_10 [8];
@@ -204325,7 +204331,7 @@ UIHandle ConfigureUIElementVisibilityFlags(int *uiContext,UIHandle dataSource,in
 {
   uint *resultPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int *uiContextBasePointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -204464,7 +204470,7 @@ void ProcessUIContextMemoryRelease(int *uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   allocatedMemory = *(longlong *)(uiBufferData + 6);
@@ -204513,7 +204519,7 @@ void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   int *componentData;
   longlong stringCompareIndex;
   
@@ -204628,7 +204634,7 @@ void FUN_1807863b0(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   UIHandle *bufferPtr;
   longlong eventDataIndex;
@@ -204884,7 +204890,7 @@ int FUN_180786716(UIDword uiContext)
 {
   int operationResult;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong contextHandle;
   int unmodifiedEBP;
@@ -205282,7 +205288,7 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
   longlong *uiMemoryPointer;
   UIHandle *piterationCount;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle contextHandle;
   longlong *pcontextDataHandle;
   UIHandle uiContextBasePointer;
@@ -205430,7 +205436,7 @@ ulonglong FUN_180787080(longlong uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   uint loopCounter;
@@ -206909,7 +206915,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *contextHandle;
   longlong componentData;
   bool isSourceValid;
@@ -207026,7 +207032,7 @@ UIHandle FUN_1807881c0(longlong uiContext,longlong dataSource,uint targetBuffer)
 {
   UIHandle result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   int loopCounter;
@@ -207233,7 +207239,7 @@ UIHandle ProcessUIEventContext(int uiContext,int dataSource)
   int bufferSize;
   longlong allocatedMemory;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -207991,7 +207997,7 @@ UIHandle FUN_180788e60(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_8 [2];
   
   if (*(code **)(uiContext + 0x400) == (UIFunctionPtr *)0x0) {
@@ -209040,7 +209046,7 @@ UIHandle ProcessUIContextValidation(UIHandle uiContext)
 {
   UIHandle result;
   ulonglong contextHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
   int RegisterValue;
   int preservedRegister13D;
@@ -209162,7 +209168,7 @@ ProcessUIComponentLayout(longlong uiContext,longlong dataSource,UIHandle targetB
 {
   UIHandle result;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   float *pLocalFloatValue6;
@@ -209257,7 +209263,7 @@ void FUN_1807897f7(longlong uiContext)
   longlong uiContextBasePointer;
   int unmodifiedESI;
   longlong uiTargetHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   float *pLocalFloatValue6;
@@ -209350,8 +209356,8 @@ ProcessUIDataValidation(longlong uiContext,UIHandle dataSource,UIDword *targetBu
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   int loopCounter;
@@ -209475,8 +209481,8 @@ void FUN_180789a48(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   longlong componentData;
@@ -209653,7 +209659,7 @@ UIDword FUN_180789e60(UIHandle *uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   uint loopCounter;
@@ -210353,7 +210359,7 @@ ulonglong FUN_18078a427(UIHandle uiContext,longlong dataSource,uint targetBuffer
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextHandle;
   ulonglong uiContextBasePointer;
@@ -210456,7 +210462,7 @@ void FUN_18078a600(longlong uiContext,char dataSource)
 {
   longlong allocatedMemory;
   code *threadLocalStorageFlag;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   uint loopCounter;
   ulonglong maxProcessingCount;
@@ -211041,7 +211047,7 @@ void FUN_18078ad10(longlong uiContext,int dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt78 [32];
   UIDword *pstackUInt58;
   UIHandle stackUInt50;
@@ -211106,7 +211112,7 @@ void FUN_18078ad5d(UIDword uiContext)
   longlong contextHandle;
   int unmodifiedEBP;
   int unmodifiedESI;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword extraout_XMM0_Da;
   UIDword extraout_XMM0_Da_00;
   UIDword StackHandle1;
@@ -211221,8 +211227,8 @@ UIHandle FUN_18078ae40(longlong uiContext,int dataSource,int targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   UIDword maxProcessingCount;
@@ -211314,7 +211320,7 @@ UIHandle FUN_18078b010(longlong uiContext,int dataSource)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   UIHandle loopCounter;
@@ -211599,8 +211605,8 @@ UIHandle ProcessUIEventChainValidation(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIHandle loopCounter;
   longlong contextHandle;
@@ -213376,7 +213382,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   longlong *peventDataIndex;
@@ -213556,7 +213562,7 @@ UIHandle ProcessUIDataBuffer(longlong uiContext,int dataSource,UIHandle targetBu
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -213625,7 +213631,7 @@ UIHandle FUN_18078cf50(longlong uiContext,int dataSource,longlong *targetBuffer,
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -213793,7 +213799,7 @@ UIHandle * FUN_18078d220(UIHandle *uiContext,ulonglong dataSource)
 
 {
   UIHandle *processingResultPtr;
-  int uiValidationResult;
+  int dataValidationResult;
   uint operationStatus;
   uint bufferIndex;
   ulonglong processResult;
@@ -216637,7 +216643,7 @@ int FUN_180790500(longlong uiContext,int dataSource,longlong *targetBuffer)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   
@@ -216698,7 +216704,7 @@ int FUN_180790523(UIHandle uiContext)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int unmodifiedEBP;
   int localValidationResult;
@@ -216772,7 +216778,7 @@ FUN_180790610(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,long
 {
   float *BaseValuePointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   float *pLocalFloatValue6;
@@ -216875,7 +216881,7 @@ FUN_180790680(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,UIDw
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   int loopCounter;
@@ -217307,7 +217313,7 @@ UIHandle FUN_180790957(void)
 {
   longlong *contextHandle;
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiTargetHandle;
   
   processingResult = 0;
@@ -217760,7 +217766,7 @@ void FUN_180790ef6(longlong uiContext,UIHandle dataSource)
 {
   int operationResult;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong componentData;
   int sourceDataInt;
   
@@ -217806,7 +217812,7 @@ void FUN_180790f06(void)
   longlong *colorBufferPointer;
   int unmodifiedEBP;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   do {
     processingResult = *(int *)(componentData + 0x1c);
@@ -217900,8 +217906,8 @@ void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int 
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   UIHandle *ptrLocal6;
@@ -218107,8 +218113,8 @@ void FUN_180791277(int uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   UIHandle *ptrLocal6;
@@ -218300,7 +218306,7 @@ void FUN_180791615(UIHandle *uiContext,UIHandle dataSource,UIHandle targetBuffer
 {
   longlong *uiMemoryPointer;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle *componentContextPtr;
   UIHandle *ptrLocal6;
@@ -222725,7 +222731,7 @@ ProcessUIAnimationUpdate(longlong uiContext,longlong dataSource,longlong targetB
 {
   float baseValue;
   float transformCoeff1;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   int loopCounter;
@@ -222887,7 +222893,7 @@ UIHandle FUN_180796875(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   uint result;
   uint iterationCount;
   int unmodifiedEBX;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong uiTargetHandle;
   int sourceDataInt;
   int register9D;
@@ -223092,7 +223098,7 @@ void FUN_180796c70(longlong *uiContext)
 {
   longlong allocatedMemory;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -225194,7 +225200,7 @@ UIHandle FUN_180798800(longlong *uiContext,int dataSource,int *targetBuffer,long
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if (dataSource != 0) {
     return 0x1f;
@@ -225234,8 +225240,8 @@ FUN_1807989b0(longlong uiContext,uint dataSource,UIHandle targetBuffer,longlong 
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
@@ -225604,7 +225610,7 @@ UIHandle FUN_1807989ea(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
 {
   uint result;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   uint *contextRegister;
@@ -225995,7 +226001,7 @@ UIHandle FUN_180798ad8(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   longlong contextHandle;
   uint unmodifiedEBP;
@@ -227683,7 +227689,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
 
 {
   float *BaseValuePointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextHandle;
   float *pTransformCoefficient2;
   int unmodifiedEBP;
@@ -229461,7 +229467,7 @@ UIHandle FUN_18079cfc0(longlong uiContext,int dataSource)
 
 {
   float *BaseValuePointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   code *plocalChar4;
   UIHandle loopCounter;
@@ -230833,7 +230839,7 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
 {
   float *BaseValuePointer;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   float TransformCoefficient4;
   float LocalFloatValue6;
@@ -231957,7 +231963,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   int sourceDataInt;
   float *transformCoeffPointer;
@@ -232839,7 +232845,7 @@ UIHandle FUN_180800c40(longlong uiContext,UIDword dataSource)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if ((*(byte *)(uiContext + 0x3c) & 0x80) == 0) {
     result = FUN_180800f70();
@@ -233774,7 +233780,7 @@ void FUN_1808014e0(longlong uiContext,UIByte dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = FUN_180750240();
   if (uiValidationResult == 0) {
@@ -233915,7 +233921,7 @@ UIHandle FUN_180801692(int uiContext,int dataSource,UIHandle targetBuffer,UIHand
 {
   uint result;
   longlong contextHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   int RegisterPointerD;
@@ -235105,7 +235111,7 @@ FUN_180802d50(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   uint processingStatus;
   
@@ -235165,7 +235171,7 @@ UIHandle FUN_180802e50(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -235235,7 +235241,7 @@ UIHandle FUN_180802ea1(longlong *uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -235460,8 +235466,8 @@ void FUN_180803120(longlong uiContext,int dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int *ptrLocalInt5;
   uint maxProcessingCount;
@@ -235610,8 +235616,8 @@ UIHandle FUN_1808035c0(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   uiCompareResult = 0;
   if (*(longlong *)(uiBufferData + 0x758) != 0) {
@@ -236173,7 +236179,7 @@ void FUN_180803cf0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle *bufferPtr;
   uint loopCounter;
@@ -236940,8 +236946,8 @@ UIHandle FUN_180804500(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   int aiStackX_8 [2];
   UIHandle dataSourceParameter;
@@ -237033,7 +237039,7 @@ UIHandle FUN_18080450a(longlong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong *uiContextBasePointer;
   uint processingStatus;
@@ -237283,7 +237289,7 @@ FUN_1808048d0(ulonglong uiContext,longlong dataSource,UIHandle targetBuffer,uint
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   ulonglong uStackX_8;
@@ -237435,7 +237441,7 @@ UIHandle FUN_180804c20(UIHandle uiContext,longlong dataSource)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   
   uiMemoryPointer = *(longlong **)(*(longlong *)(dataSource + 0x28) + 8);
@@ -237457,8 +237463,8 @@ ValidateUIBufferStructure(UIHandle uiContext,longlong *dataSource,longlong *targ
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   undefined *componentContextPtr;
   int aiStackX_20 [2];
@@ -237555,7 +237561,7 @@ UIHandle FUN_180804d3d(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   longlong *contextHandle;
@@ -237693,7 +237699,7 @@ UIHandle FUN_180804ed0(longlong *uiContext)
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   allocatedMemory = *uiContext;
   uiCompareResult = 0;
@@ -237770,7 +237776,7 @@ UIHandle FUN_180804fa0(UIHandle *uiContext)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong *peventDataIndex;
   
@@ -237860,7 +237866,7 @@ UIHandle FUN_1808051c0(longlong *uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   undefined *componentContextPtr;
@@ -237994,7 +238000,7 @@ UIHandle FUN_1808051df(void)
 {
   UIHandle result;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDataBuffer *bufferPtr;
   longlong contextHandle;
@@ -238121,7 +238127,7 @@ UIHandle FUN_18080525f(void)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDataBuffer *bufferPtr;
   longlong contextHandle;
@@ -238322,7 +238328,7 @@ void FUN_180805640(longlong *uiContext,int dataSource,UIHandle targetBuffer,int 
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword **pbufferPtr;
   longlong eventDataIndex;
   UIHandle *ptrLocal6;
@@ -238697,7 +238703,7 @@ void FUN_180805b10(longlong *uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUIntc8 [32];
   UIDword stackUInta8;
   int astackInta4 [7];
@@ -238863,7 +238869,7 @@ UIHandle FUN_180805fe0(longlong *uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   UIHandle *componentContextPtr;
@@ -239255,7 +239261,7 @@ FUN_1808064f0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint 
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   UIDword auStackX_10 [2];
@@ -239295,7 +239301,7 @@ UIDword FUN_1808065a0(longlong *uiContext,int *dataSource)
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle *bufferPtr;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -239717,8 +239723,8 @@ UIHandle FUN_180806ed9(void)
 
 {
   float baseValue;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextRegister;
   uint processingStatus;
   longlong contextHandle;
@@ -239787,8 +239793,8 @@ UIHandle FUN_180806f08(void)
 
 {
   float baseValue;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong contextHandle;
   int unmodifiedEBP;
@@ -240068,7 +240074,7 @@ UIHandle FUN_180807270(UIHandle uiContext,longlong dataSource,longlong *targetBu
 
 {
   code *plocalChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   
   plocalChar1 = *(code **)(*(longlong *)(dataSource + 8) + 0x10);
@@ -240188,7 +240194,7 @@ UIHandle FUN_180807640(UIHandle uiContext,UIHandle *dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_10 [2];
   
   result = *(uint *)*dataSource;
@@ -240419,7 +240425,7 @@ UIHandle FUN_180807950(UIHandle uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   ulonglong processingStatus;
   uint loopCounter;
@@ -240511,7 +240517,7 @@ UIHandle FUN_180807b60(UIHandle uiContext,UIHandle *dataSource)
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   uint auStackX_10 [2];
   
@@ -240680,7 +240686,7 @@ ProcessUIComponentHierarchy(UIHandle uiContext,UIHandle dataSource,longlong *tar
 {
   code *plocalChar1;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   plocalChar1 = *(code **)(bufferSize[1] + 0x20);
   if (plocalChar1 != (UIFunctionPtr *)0x0) {
@@ -240953,7 +240959,7 @@ void FUN_180808700(UIHandle uiContext,UIHandle *dataSource)
 {
   char localChar1;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   UIHandle maxProcessingCount;
@@ -241415,7 +241421,7 @@ UIHandle FUN_180809930(UIHandle uiContext,UIHandle *dataSource,uint *targetBuffe
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   ulonglong loopCounter;
@@ -242062,7 +242068,7 @@ FUN_18080a830(UIHandle uiContext,UIHandle *dataSource,uint targetBuffer,UIDword 
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   ulonglong loopCounter;
@@ -242623,8 +242629,8 @@ uint FUN_18080b710(UIHandle uiContext,longlong *dataSource)
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
@@ -243238,7 +243244,7 @@ int FUN_18080bff0(longlong *uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   int loopCounter;
@@ -243387,7 +243393,7 @@ UIHandle FUN_18080c230(longlong *uiContext,UIHandle dataSource,int targetBuffer)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   ulonglong maxProcessingCount;
@@ -243490,7 +243496,7 @@ UIHandle FUN_18080c2c7(longlong uiContext)
   int operationResult;
   longlong contextRegister;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong contextHandle;
   longlong eventDataIndex;
@@ -243629,8 +243635,8 @@ void FUN_18080c4a0(longlong *uiContext,int dataSource,int targetBuffer,int *buff
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -243839,7 +243845,7 @@ UIDword FUN_18080c770(longlong uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   int sourceDataInt;
   int localValidationResult;
@@ -244127,7 +244133,7 @@ UIHandle FUN_18080d060(longlong uiContext,char dataSource)
 {
   uint result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   uint loopCounter;
   uint *ptrLocal6;
@@ -244200,7 +244206,7 @@ UIHandle FUN_18080d083(void)
   uint result;
   longlong componentIndex;
   UIDword bufferSize;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong uiTargetHandle;
   uint *componentContextPtr;
@@ -244330,7 +244336,7 @@ ulonglong FUN_18080d310(longlong uiContext,UIHandle *dataSource,longlong targetB
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   ulonglong processingStatus;
   longlong *peventDataIndex;
@@ -245382,7 +245388,7 @@ void FUN_18080e0e0(longlong uiContext,longlong dataSource,int *targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte *uiStatusPointer;
   longlong contextDataHandle;
   UIByte astackUInt878 [32];
@@ -245434,7 +245440,7 @@ void FUN_18080e131(void)
   longlong allocatedMemory;
   longlong uiTargetHandle;
   int *eventHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong stackParam00000830;
   
   uiValidationResult = 0;
@@ -245479,7 +245485,7 @@ void FUN_18080e220(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle stackUInt1d8;
   UIHandle stackUInt1d0;
   UIDword stackUInt1c8;
@@ -251068,7 +251074,7 @@ void FUN_180815080(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if (*(int *)(*(longlong *)(uiBufferData + 0x178) + 0x48c4) == 0) {
     uiValidationResult = FUN_180815200(uiContext,dataSource,0,0,0);
@@ -251260,7 +251266,7 @@ UIHandle FUN_1808156f0(longlong uiContext,longlong dataSource,UIByte *targetBuff
 {
   byte isCharacterMatch;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIHandle loopCounter;
   UIByte *ptrLocal6;
@@ -251766,8 +251772,8 @@ void FUN_1808168c0(longlong uiContext,uint dataSource,char targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -251990,7 +251996,7 @@ void FUN_180816928(void)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextHandle;
   longlong uiContextBasePointer;
@@ -252204,7 +252210,7 @@ void FUN_180816a57(void)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   ulonglong processingStatus;
   longlong contextHandle;
@@ -252400,7 +252406,7 @@ void FUN_180816ee0(UIHandle uiContext,longlong *dataSource)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if (dataSource != (longlong *)0x0) {
     allocatedMemory = *dataSource;
@@ -252445,7 +252451,7 @@ void FUN_180816f01(UIHandle uiContext,longlong dataSource)
 {
   longlong contextHandle;
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = 0;
   if (0 < *(int *)(contextHandle + 0x10)) {
@@ -252530,7 +252536,7 @@ void FUN_180816fb0(UIHandle uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   int sourceDataInt;
   int *ptrLocalInt5;
@@ -252627,7 +252633,7 @@ void FUN_180816fcc(void)
   longlong contextHandle;
   int operationResult;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   
   uiCompareResult = 0;
@@ -252714,7 +252720,7 @@ void FUN_180816fda(void)
   int unmodifiedESI;
   longlong *uiMemoryPointer;
   int allocationFlags;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   
   if (allocationFlags < *(int *)(contextHandle + 8)) {
@@ -252862,7 +252868,7 @@ void FUN_1808171d0(UIHandle uiContext,int *dataSource,longlong targetBuffer,UIHa
 {
   UIByte result;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   int localValidationResult;
   UIByte astackUInt88 [32];
@@ -253014,7 +253020,7 @@ void FUN_18081726f(void)
 {
   int *pprocessingResult;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   int unmodifiedEBP;
   int *componentData;
   longlong preservedRegister12;
@@ -253076,7 +253082,7 @@ void FUN_180817430(UIHandle *uiContext)
 
 {
   UIByte result;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   UIByte astackUInt58 [32];
   UIByte astackUInt38 [32];
@@ -253121,7 +253127,7 @@ void FUN_180817482(void)
   UIByte result;
   int bufferSize;
   UIByte *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIByte stackBuffer [8];
   int iStack0000000000000040;
   short sStack0000000000000044;
@@ -253189,8 +253195,8 @@ int FUN_180817560(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   UIDword maxProcessingCount;
@@ -253339,7 +253345,7 @@ UIHandle FUN_1808178f0(UIHandle uiContext,longlong *dataSource,longlong targetBu
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   ulonglong loopCounter;
@@ -253440,7 +253446,7 @@ UIHandle FUN_180817b30(UIHandle uiContext,longlong *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if (dataSource == (longlong *)0x0) {
     return 0;
@@ -253594,7 +253600,7 @@ ulonglong FUN_180817f70(UIHandle uiContext,UIHandle *dataSource)
 {
   UIDword result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -253660,7 +253666,7 @@ ulonglong FUN_180817fb7(UIHandle uiContext,longlong dataSource)
 {
   UIDword result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIHandle *contextRegister;
   longlong eventDataIndex;
@@ -253739,7 +253745,7 @@ UIHandle FUN_1808181b0(UIHandle uiContext,longlong dataSource,longlong targetBuf
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   UIDword loopCounter;
@@ -253869,7 +253875,7 @@ UIHandle FUN_1808181ef(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   UIDword processingStatus;
   UIHandle loopCounter;
@@ -254008,7 +254014,7 @@ ulonglong FUN_1808184f0(UIHandle uiContext,longlong *dataSource,longlong targetB
 {
   UIDword result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
   longlong contextDataHandle;
@@ -254282,8 +254288,8 @@ ulonglong FUN_180818592(float uiContext,UIHandle dataSource,UIHandle targetBuffe
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   longlong eventDataIndex;
   longlong *contextHandle;
@@ -254659,7 +254665,7 @@ void FUN_180818c50(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   longlong *pcontextDataHandle;
@@ -254834,7 +254840,7 @@ void FUN_180818caf(UIHandle uiContext,longlong dataSource)
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -254999,8 +255005,8 @@ void FUN_180818d15(void)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   longlong contextDataHandle;
@@ -255180,7 +255186,7 @@ void FUN_180818d9a(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   UIHandle loopCounter;
@@ -255350,7 +255356,7 @@ ulonglong FUN_1808190b0(UIHandle uiContext,longlong dataSource,short *targetBuff
 {
   uint result;
   short sVar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   ulonglong loopCounter;
   int loopCounter;
@@ -255762,8 +255768,8 @@ ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIByte *targ
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIHandle loopCounter;
   longlong *componentData;
@@ -255930,7 +255936,7 @@ ulonglong FUN_180819d70(UIHandle uiContext,longlong dataSource,UIHandle targetBu
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   uint processingStatus;
   longlong eventDataIndex;
@@ -256128,8 +256134,8 @@ longlong FUN_18081a260(UIHandle uiContext,longlong *dataSource,int *targetBuffer
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -256209,7 +256215,7 @@ longlong FUN_18081a430(UIHandle uiContext,longlong *dataSource,UIHandle targetBu
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword *uiStatusPointer;
   longlong contextDataHandle;
   longlong eventDataIndex;
@@ -256505,7 +256511,7 @@ ValidateUIComponentState(uint *uiContext,short *dataSource,int targetBuffer,uint
 {
   uint *resultPointer;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   short sVar4;
   int localValidationResult;
   int loopCounter;
@@ -256688,7 +256694,7 @@ UIHandle FUN_18081a9ee(void)
   uint *resultPointer;
   uint iterationCount;
   int bufferSize;
-  int uiCompareResult;
+  int bufferCompareResult;
   short sVar4;
   int localValidationResult;
   short *contextHandle;
@@ -256891,7 +256897,7 @@ UIHandle FUN_18081ad60(uint *uiContext,short *dataSource,int targetBuffer,uint b
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   short ContextFirstValue;
   short sVar4;
   uint loopCounter;
@@ -257541,7 +257547,7 @@ void FUN_18081b670(longlong uiContext)
 {
   UIHandle result;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIByte *componentContextPtr;
   
@@ -257580,7 +257586,7 @@ void FUN_18081b67c(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   UIByte *bufferPtr;
   
@@ -257627,8 +257633,8 @@ void FUN_18081b7c0(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIHandle *)(uiContext + 0x20);
   CleanupUIContextState(result);
@@ -257654,8 +257660,8 @@ void FUN_18081b830(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIHandle *)(uiContext + 0x20);
   CleanupUIContextState(result);
@@ -257679,7 +257685,7 @@ UIHandle FUN_18081b8a0(longlong uiContext,longlong *dataSource,longlong targetBu
 
 {
   ulonglong result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int *ptrLocalInt4;
   longlong eventDataIndex;
@@ -257736,8 +257742,8 @@ void FUN_18081b980(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong *peventDataIndex;
   uint maxProcessingCount;
@@ -257857,7 +257863,7 @@ UIHandle FUN_18081bc60(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   UIByte *componentContextPtr;
@@ -257995,7 +258001,7 @@ void FUN_18081be80(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stackLong58;
   UIHandle stackUInt50;
   UIHandle stackUInt48;
@@ -258031,7 +258037,7 @@ UIHandle FUN_18081c0c0(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   UIByte *componentContextPtr;
@@ -258073,8 +258079,8 @@ UIHandle FUN_18081c0f0(longlong *uiContext,char dataSource,longlong *targetBuffe
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   uint maxProcessingCount;
@@ -258122,7 +258128,7 @@ UIHandle FUN_18081c2d0(longlong *uiContext,int dataSource,char targetBuffer,long
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   int localValidationResult;
@@ -258592,8 +258598,8 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle registerCX;
   ulonglong processingStatus;
   int unmodifiedEBX;
@@ -258991,8 +258997,8 @@ int FUN_18081ccc3(UIDword uiContext)
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   int unmodifiedEBX;
   float *uiContextBasePointer;
@@ -260006,7 +260012,7 @@ void FUN_18081e03c(UIHandle uiContext,float dataSource,UIHandle targetBuffer,int
   uint result;
   int unmodifiedEBX;
   longlong *uiTargetHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   float *register10;
   longlong RegisterPointer;
   longlong *stackParam00000068;
@@ -260053,7 +260059,7 @@ void FUN_18081e1f7(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   int unmodifiedEBX;
   float *register10;
   longlong RegisterPointer;
@@ -262433,7 +262439,7 @@ void FUN_1808232ed(UIHandle uiContext,int dataSource)
   float *uiContextBasePointer;
   int unmodifiedESI;
   longlong uiTargetHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventHandle;
   int preservedRegister15D;
@@ -262603,7 +262609,7 @@ void FUN_180823cf5(UIWord *uiContext,float *dataSource,float targetBuffer,int bu
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   uint eventCodeType;
   UIHandle contextHandle;
@@ -262709,7 +262715,7 @@ void FUN_180823d11(UIWord *uiContext,float *dataSource,float targetBuffer,int bu
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   int unmodifiedEBX;
   UIHandle uiContextBasePointer;
@@ -265380,7 +265386,7 @@ UIHandle FUN_180824be0(UIHandle uiContext,longlong *dataSource,UIByte *targetBuf
 {
   uint result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIByte stackBuffer [8];
   
   if (bufferSize != 0) {
@@ -265453,7 +265459,7 @@ UIHandle FUN_180824d50(UIHandle uiContext,longlong *dataSource,uint *targetBuffe
 {
   uint result;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   byte TargetBufferFlag;
   uint loopCounter;
   uint maxProcessingCount;
@@ -266177,7 +266183,7 @@ UIHandle FUN_180825a20(UIHandle uiContext,longlong *dataSource)
 {
   longlong allocatedMemory;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   longlong contextDataHandle;
@@ -266237,8 +266243,8 @@ void FUN_180825ca0(int *uiContext,uint dataSource,int targetBuffer,longlong buff
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   longlong eventDataIndex;
   
@@ -266315,8 +266321,8 @@ void FUN_180825cbd(longlong uiContext,int dataSource,int targetBuffer,longlong b
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   longlong register10;
   longlong RegisterPointer;
@@ -266385,7 +266391,7 @@ void FUN_180825d2d(longlong uiContext,int dataSource,UIHandle targetBuffer,longl
   int operationResult;
   int *puiValidationResult;
   longlong register10;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong RegisterPointer;
   
   if (0 < dataSource) {
@@ -266414,7 +266420,7 @@ void FUN_180825d87(longlong uiContext,int dataSource,UIHandle targetBuffer,longl
   int *pprocessingResult;
   int *puiValidationResult;
   longlong register10;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong RegisterPointer;
   
   if (0 < dataSource) {
@@ -266508,8 +266514,8 @@ void FUN_180825ef0(int *uiContext,uint dataSource,int *targetBuffer,uint bufferS
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   int *ptrLocalInt5;
   
@@ -266772,8 +266778,8 @@ void FUN_180825eff(UIHandle uiContext,ulonglong dataSource,int *targetBuffer,uin
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   int *register10;
   
@@ -267031,9 +267037,9 @@ void FUN_180826000(UIHandle uiContext,UIHandle dataSource,int *targetBuffer,UIHa
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong register10;
   int *ptrLocalInt4;
@@ -267064,9 +267070,9 @@ void FUN_1808260b7(UIHandle uiContext,UIHandle dataSource,int *targetBuffer,UIHa
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong register10;
   int *ptrLocalInt4;
@@ -267112,9 +267118,9 @@ void FUN_18082616c(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   byte unmodifiedSIL;
   longlong register10;
@@ -267145,8 +267151,8 @@ void FUN_18082620d(UIHandle uiContext,ulonglong dataSource,int *targetBuffer,uin
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   int *register10;
   
@@ -267277,9 +267283,9 @@ void FUN_1808262c2(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   byte unmodifiedSIL;
   longlong register10;
@@ -267308,9 +267314,9 @@ void FUN_180826347(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   byte unmodifiedSIL;
   longlong register10;
@@ -267355,9 +267361,9 @@ void FUN_1808263bf(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   byte unmodifiedSIL;
   longlong register10;
@@ -267387,8 +267393,8 @@ void FUN_180826431(UIHandle uiContext,uint dataSource,int *targetBuffer,uint buf
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   int *ptrLocalInt5;
   int *register10;
@@ -267457,9 +267463,9 @@ void FUN_1808264b6(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   byte unmodifiedSIL;
   longlong register10;
@@ -267488,7 +267494,7 @@ void FUN_18082650b(UIHandle uiContext,ulonglong dataSource,int *targetBuffer,UIH
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   int *register10;
   bool in_ZF;
@@ -268348,7 +268354,7 @@ void FUN_1808273e0(UIHandle uiContext,longlong dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   
   result = *(uint *)(dataSource + 0x50) & 0x3f;
@@ -268371,8 +268377,8 @@ void FUN_1808274c0(int *uiContext,int *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -268982,8 +268988,8 @@ void FUN_180829160(uint uiContext,uint dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   ulonglong loopCounter;
   
@@ -269477,7 +269483,7 @@ void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIH
 {
   char localChar1;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong eventDataIndex;
   ulonglong maxProcessingCount;
@@ -271846,7 +271852,7 @@ void FUN_18082be99(void)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   int unmodifiedEBP;
   uint *register10;
   uint *RegisterPointer;
@@ -272736,7 +272742,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   float *pTransformCoefficient3;
   float TransformCoefficient4;
@@ -273342,7 +273348,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   float *pTransformCoefficient3;
   uint loopCounter;
@@ -273880,7 +273886,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   float *pTransformCoefficient3;
   uint loopCounter;
@@ -274767,7 +274773,7 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
 {
   int operationResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   uint loopCounter;
   UIByte maxProcessingCount [32];
@@ -274941,7 +274947,7 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
 {
   int operationResult;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   uint loopCounter;
   UIByte maxProcessingCount [32];
@@ -275105,7 +275111,7 @@ void FUN_18082d0a6(UIHandle uiContext,int dataSource)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   int allocationFlags;
   uint *register10;
   uint *RegisterPointer;
@@ -276311,7 +276317,7 @@ uint FUN_18082d7f0(int *uiContext,uint dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   byte *pProcessingFlag;
   int sourceDataInt;
   byte IsValidationComplete;
@@ -276359,7 +276365,7 @@ uint FUN_18082d848(UIHandle uiContext,byte dataSource,uint targetBuffer,int *buf
 {
   byte *pisCharacterMatch;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint unmodifiedESI;
   int allocationFlags;
   uint processingStatus;
@@ -276650,7 +276656,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   uint processingStatus;
   int localValidationResult;
@@ -277260,8 +277266,8 @@ FUN_18082f0a0(int *uiContext,longlong dataSource,int targetBuffer,int bufferSize
 
 {
   ulonglong result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   int loopCounter;
@@ -277383,7 +277389,7 @@ UIDword FUN_18082f330(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   UIDword processingStatus;
   longlong eventDataIndex;
@@ -277561,7 +277567,7 @@ uint FUN_18082f650(longlong uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   int sourceDataInt;
   int localValidationResult;
@@ -277846,8 +277852,8 @@ longlong FUN_18082feb0(UIHandle uiContext,longlong *dataSource,int targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   if ((int)dataSource[1] < 0) {
     return 0;
@@ -278347,7 +278353,7 @@ int FUN_180830310(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = 0;
   if (*(UIHandle **)(dataSource + 0x70) != (UIHandle *)0x0) {
@@ -278384,7 +278390,7 @@ int FUN_180830319(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = 0;
   if (*(UIHandle **)(dataSource + 0x70) != (UIHandle *)0x0) {
@@ -278434,7 +278440,7 @@ int FUN_180830370(void)
   longlong allocatedMemory;
   longlong componentData;
   int eventHandle;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle preservedRegister15;
   
   uiValidationResult = (int)preservedRegister15;
@@ -278468,8 +278474,8 @@ int FUN_18083037c(void)
 {
   longlong allocatedMemory;
   longlong componentData;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle preservedRegister15;
   
   allocatedMemory = FUN_1807c4260();
@@ -280084,7 +280090,7 @@ UIHandle FUN_180830e03(void)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong contextHandle;
   longlong componentData;
@@ -280156,7 +280162,7 @@ FUN_180830e10(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,UIHan
 {
   float *BaseValuePointer;
   float transformCoeff1;
-  int uiCompareResult;
+  int bufferCompareResult;
   byte TargetBufferFlag;
   float *transformCoeffPointer;
   UIDword *ptrLocal6;
@@ -280477,7 +280483,7 @@ UIHandle FUN_180830f45(void)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong contextHandle;
   longlong componentData;
@@ -280550,7 +280556,7 @@ UIHandle FUN_180830f89(void)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong contextHandle;
   longlong componentData;
@@ -280616,7 +280622,7 @@ UIHandle FUN_180830fd1(void)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong componentData;
   byte register9B;
@@ -280684,7 +280690,7 @@ int FUN_180831150(longlong *uiContext,longlong *dataSource)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if ((-1 < (int)uiContext[4]) && ((int)uiContext[4] < *(int *)((longlong)uiContext + 0x1c))) {
     if (dataSource != (longlong *)0x0) {
@@ -280713,7 +280719,7 @@ longlong FUN_180831260(UIHandle uiContext,longlong dataSource,int targetBuffer)
 {
   UIHandle *resultPointer;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   
   uiCompareResult = *(int *)(dataSource + 0x60);
@@ -280877,8 +280883,8 @@ UIDword FUN_1808317a0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt28 [32];
   
   allocatedMemory = *(longlong *)(uiBufferData + 0x20);
@@ -280904,7 +280910,7 @@ UIHandle FUN_180831820(UIHandle uiContext,longlong *dataSource,UIHandle *targetB
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   int sourceDataInt;
   UIHandle loopCounter;
@@ -280987,7 +280993,7 @@ UIHandle FUN_18083188e(void)
 {
   int operationResult;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIHandle loopCounter;
   longlong *contextHandle;
@@ -281072,7 +281078,7 @@ UIHandle FUN_1808319c0(UIHandle uiContext,UIHandle *dataSource,UIHandle *targetB
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIHandle loopCounter;
   
@@ -281655,7 +281661,7 @@ void FUN_1808321be(void)
   ulonglong contextRegister;
   longlong contextHandle;
   int allocationFlags;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong *register9;
   int register10D;
   float *RegisterPointer;
@@ -281961,7 +281967,7 @@ void FUN_180832722(void)
   ulonglong contextRegister;
   longlong contextHandle;
   int allocationFlags;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong *register9;
   int register10D;
   float *RegisterPointer;
@@ -288337,7 +288343,7 @@ void FUN_1808389ec(void)
 {
   float baseValue;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   UIByte aprocessingStatus [16];
   UIByte aloopCounter [32];
@@ -289975,7 +289981,7 @@ UIHandle FUN_180839c06(void)
   UIHandle result;
   float *contextHandle;
   int unmodifiedESI;
-  int uiValidationResult;
+  int dataValidationResult;
   float *uiTargetHandle;
   UIHandle eventCodeType;
   uint preservedXMM7;
@@ -292641,7 +292647,7 @@ void FUN_18083b6f0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   byte ProcessingFlag;
   int sourceDataInt;
   uint loopCounter;
@@ -292868,7 +292874,7 @@ void FUN_18083bb80(UIHandle uiContext,UIHandle dataSource,int *targetBuffer)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   int *ptrLocalInt5;
@@ -293066,7 +293072,7 @@ void FUN_18083bbcf(void)
 {
   int operationResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextRegister;
   int sourceDataInt;
   int *ptrLocalInt5;
@@ -293256,8 +293262,8 @@ void FUN_18083be79(void)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int *ptrLocalInt4;
   longlong contextHandle;
   int localValidationResult;
@@ -293467,7 +293473,7 @@ UIHandle FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffer,
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   uint processingStatus;
   longlong eventDataIndex;
@@ -293962,7 +293968,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
 {
   int operationResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   longlong contextDataHandle;
@@ -294095,7 +294101,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int unmodifiedEBX;
   int unmodifiedEBP;
@@ -294201,7 +294207,7 @@ void FUN_18083c6e2(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int unmodifiedEBX;
   int unmodifiedEBP;
   int unmodifiedESI;
@@ -294256,7 +294262,7 @@ void FUN_18083c780(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   if (dataSource == 0) {
     return;
@@ -294285,7 +294291,7 @@ void FUN_18083c794(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = 0;
   if (0 < *(int *)(dataSource + 8)) {
@@ -294356,7 +294362,7 @@ UIDword * FUN_18083c870(UIHandle uiContext,longlong dataSource,UIHandle targetBu
 {
   longlong allocatedMemory;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIDword *componentContextPtr;
   uint maxProcessingCount;
@@ -294604,7 +294610,7 @@ FUN_18083ccd0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 {
   int operationResult;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle *bufferPtr;
   ulonglong loopCounter;
   int astackInt78 [3];
@@ -294662,7 +294668,7 @@ FUN_18083ccea(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   longlong contextHandle;
   int sourceDataInt;
@@ -294711,8 +294717,8 @@ void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int RegisterPointerD;
   UIHandle StackData4;
   UIHandle stackParam00000048;
@@ -294747,7 +294753,7 @@ FUN_18083cd60(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 {
   int operationResult;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle *bufferPtr;
   ulonglong loopCounter;
   int astackInt78 [3];
@@ -294805,7 +294811,7 @@ FUN_18083cd7a(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   longlong contextHandle;
   int sourceDataInt;
@@ -294854,8 +294860,8 @@ void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int RegisterPointerD;
   UIHandle StackData4;
   UIHandle stackParam00000048;
@@ -294887,7 +294893,7 @@ FUN_18083cdf0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   int sourceDataInt;
   int localValidationResult;
@@ -294986,7 +294992,7 @@ void FUN_18083d030(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   int astackInt78 [3];
   int stackInt6c;
   UIHandle *pstackUInt68;
@@ -295229,7 +295235,7 @@ UIHandle FUN_18083e040(UIHandle uiContext,int *dataSource,int targetBuffer)
 {
   char localChar1;
   UIByte aiterationCount [12];
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
@@ -295323,7 +295329,7 @@ UIHandle FUN_18083e119(UIHandle uiContext)
 
 {
   UIByte aresult [12];
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
@@ -295392,7 +295398,7 @@ UIHandle FUN_18083e22a(void)
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
@@ -295550,7 +295556,7 @@ void FUN_18083e510(longlong uiContext,float *dataSource,int targetBuffer)
 {
   longlong allocatedMemory;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float *pTransformCoefficient3;
   float *transformCoeffPointer;
   float *pLocalFloatValue6;
@@ -295646,7 +295652,7 @@ void FUN_18083e528(longlong uiContext,float *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   float *contextRegister;
   float *pTransformCoefficient2;
   float *pTransformCoefficient3;
@@ -295753,7 +295759,7 @@ void FUN_18083e561(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   float *pTransformCoefficient2;
   float *pTransformCoefficient3;
   float *transformCoeffPointer;
@@ -296229,7 +296235,7 @@ void FUN_18083f120(longlong uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   
   uiStatusPointer = (UIHandle *)(uiContext + 0x30);
@@ -296273,7 +296279,7 @@ UIHandle FUN_18083f1c0(longlong uiContext)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   
   uiValidationResult = 0;
@@ -296585,7 +296591,7 @@ int FUN_18083f7b0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296605,7 +296611,7 @@ int FUN_18083f850(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296625,7 +296631,7 @@ int FUN_18083f8f0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296649,7 +296655,7 @@ int FUN_18083f9b0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296669,7 +296675,7 @@ int FUN_18083fa50(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296689,7 +296695,7 @@ int FUN_18083faf0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDwor
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = func_0x00018074b800();
   uiValidationResult = ProcessUIBufferDataWithControl(uiContext + processingResult,dataSource - processingResult,&UIBufferControlData);
@@ -296758,8 +296764,8 @@ UIHandle FUN_18083fc50(UIDword uiContext,char *dataSource,ulonglong *targetBuffe
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong alStackX_18 [2];
   UIHandle *apstackUInt38 [2];
@@ -296810,7 +296816,7 @@ void FUN_18083fd54(void)
 
 {
   UIByte *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   int unmodifiedEBX;
   UIDword unmodified0000001c;
@@ -296856,8 +296862,8 @@ UIHandle FUN_18083fde0(UIDword uiContext,char *dataSource,ulonglong *targetBuffe
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong alStackX_18 [2];
   UIHandle *apstackUInt38 [2];
@@ -296908,7 +296914,7 @@ void FUN_18083fee4(void)
 
 {
   UIByte *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   int unmodifiedEBX;
   UIDword unmodified0000001c;
@@ -296954,8 +296960,8 @@ UIHandle FUN_18083ff70(UIDword uiContext,char *dataSource,ulonglong *targetBuffe
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong alStackX_18 [2];
   UIHandle *apstackUInt38 [2];
@@ -297006,7 +297012,7 @@ void FUN_180840074(void)
 
 {
   UIByte *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   int unmodifiedEBX;
   UIDword unmodified0000001c;
@@ -297110,7 +297116,7 @@ void FUN_1808401c0(UIHandle uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong alStackX_10 [2];
   UIHandle *eventDataBuffer;
   
@@ -297177,8 +297183,8 @@ void FUN_180840330(ulonglong *uiContext,int dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   int astackInt148 [2];
@@ -297243,7 +297249,7 @@ void FUN_180840490(UIHandle uiContext,ulonglong *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong astackLong148 [2];
@@ -297303,7 +297309,7 @@ void FUN_180840600(UIDword uiContext,int dataSource,longlong targetBuffer)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIByte astackUInt88 [32];
@@ -297353,7 +297359,7 @@ void FUN_18084062e(UIHandle uiContext,UIHandle dataSource,UIByte targetBuffer,UI
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword unmodifiedEBP;
   longlong componentData;
@@ -297393,7 +297399,7 @@ void FUN_18084063e(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword unmodifiedEBP;
   longlong componentData;
@@ -297466,7 +297472,7 @@ UIDword FUN_180840790(UIDword uiContext,longlong dataSource,UIHandle *targetBuff
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDataBuffer *bufferPtr;
   undefined *componentContextPtr;
   longlong alStackX_18 [2];
@@ -297555,7 +297561,7 @@ void FUN_1808407ce(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDataBuffer *bufferPtr;
   UIHandle registerCX;
   UIHandle *contextHandle;
@@ -297665,8 +297671,8 @@ void FUN_180840950(UIHandle uiContext,longlong dataSource,longlong targetBuffer,
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   int *ptrLocalInt5;
   undefined *ptrLocal6;
@@ -297741,7 +297747,7 @@ UIHandle FUN_180840a90(UIHandle *uiContext,int *dataSource,int *targetBuffer)
 {
   UIHandle result;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   uiCompareResult = 0;
@@ -297775,7 +297781,7 @@ void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDataBuffer *bufferPtr;
   int localValidationResult;
@@ -297899,8 +297905,8 @@ int FUN_180840d60(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -297929,7 +297935,7 @@ int FUN_180840e00(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIDword stackUInt18;
   UIDword stackUInt14;
@@ -297963,8 +297969,8 @@ int FUN_180840f10(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIHandle *)(uiContext + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -297980,8 +297986,8 @@ int FUN_180840f80(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIByte *)(uiContext + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -297997,8 +298003,8 @@ int FUN_180840ff0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298014,8 +298020,8 @@ int FUN_180841060(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298032,7 +298038,7 @@ int FUN_1808410d0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x1c);
@@ -298055,7 +298061,7 @@ int FUN_180841180(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x1c);
@@ -298077,7 +298083,7 @@ int FUN_180841230(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle stackUInt38;
   UIHandle stackUInt30;
   UIDword stackUInt28;
@@ -298112,8 +298118,8 @@ int FUN_1808412b0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x18);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298130,7 +298136,7 @@ int FUN_180841320(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle uStackX_8;
   
@@ -298158,8 +298164,8 @@ int FUN_180841410(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle uStackX_8;
   
   uStackX_8 = *(UIHandle *)(uiContext + 0x18);
@@ -298186,7 +298192,7 @@ int FUN_1808414f0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIByte *)(uiContext + 0x1c);
@@ -298212,8 +298218,8 @@ int FUN_1808415e0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIByte *)(uiContext + 0x1c);
   uiValidationResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298238,7 +298244,7 @@ int FUN_1808416d0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIDword *)(uiBufferData + 0x18);
@@ -298260,8 +298266,8 @@ int FUN_180841790(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -298285,8 +298291,8 @@ int FUN_180841830(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x14);
   uiValidationResult = func_0x00018074b7d0(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298302,8 +298308,8 @@ int FUN_1808418a0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x14);
   uiValidationResult = func_0x00018074b7d0(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298320,7 +298326,7 @@ int FUN_180841910(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle stackUInt48;
   UIHandle stackUInt40;
@@ -298361,7 +298367,7 @@ int FUN_1808419e0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x10);
@@ -298418,8 +298424,8 @@ int FUN_180841bc0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle stackUInt48;
   UIDword stackUInt40;
   UIHandle stackUInt38;
@@ -298467,8 +298473,8 @@ int FUN_180841cc0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x14);
   uiValidationResult = func_0x00018074b7d0(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -298485,7 +298491,7 @@ int FUN_180841d30(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle uStackX_8;
   
@@ -298509,8 +298515,8 @@ int FUN_180841df0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle uStackX_8;
   
   uStackX_8 = *(UIHandle *)(uiContext + 0x10);
@@ -298533,7 +298539,7 @@ int FUN_180841ea0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIByte *)(uiContext + 0x14);
@@ -298555,8 +298561,8 @@ int FUN_180841f50(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIByte *)(uiContext + 0x14);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,uiContext + 0x20);
@@ -298795,8 +298801,8 @@ int FUN_180842540(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982d28);
@@ -298812,8 +298818,8 @@ int FUN_1808425b0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982e28);
@@ -298829,8 +298835,8 @@ int FUN_180842620(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982da8);
@@ -298847,7 +298853,7 @@ int FUN_180842690(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIHandle *)(uiContext + 0x18);
@@ -298869,8 +298875,8 @@ int FUN_180842750(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_1809841c8);
@@ -298911,7 +298917,7 @@ int FUN_180842820(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIDword *)(uiBufferData + 0x10);
@@ -298934,7 +298940,7 @@ int FUN_1808428d0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -298956,8 +298962,8 @@ int FUN_180842990(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180984248);
@@ -298974,7 +298980,7 @@ int FUN_180842a00(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -298997,7 +299003,7 @@ int FUN_180842ac0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299078,7 +299084,7 @@ int FUN_180842d40(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299100,8 +299106,8 @@ int FUN_180842e00(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180983560);
@@ -299117,8 +299123,8 @@ int FUN_180842e70(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180983710);
@@ -299134,8 +299140,8 @@ int FUN_180842ee0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_1809835f0);
@@ -299152,7 +299158,7 @@ int FUN_180842f50(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIHandle *)(uiContext + 0x18);
@@ -299175,7 +299181,7 @@ int FUN_180843010(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299197,8 +299203,8 @@ int FUN_1808430d0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180983ce0);
@@ -299214,8 +299220,8 @@ int FUN_180843140(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180983d60);
@@ -299231,8 +299237,8 @@ int FUN_1808431b0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle stackUInt38;
   UIHandle stackUInt30;
   UIDword stackUInt28;
@@ -299273,7 +299279,7 @@ int FUN_180843270(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299331,7 +299337,7 @@ int FUN_180843450(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIByte result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle uStackX_8;
   
@@ -299397,7 +299403,7 @@ int FUN_180843690(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIByte result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIByte *)(uiContext + 0x1c);
@@ -299428,7 +299434,7 @@ int FUN_1808437b0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIByte result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIByte *)(uiContext + 0x18);
@@ -299521,7 +299527,7 @@ int FUN_180843a80(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299555,8 +299561,8 @@ int FUN_180843b70(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180983b50);
@@ -299573,7 +299579,7 @@ int FUN_180843be0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x18);
@@ -299595,8 +299601,8 @@ int FUN_180843ce0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299624,8 +299630,8 @@ int FUN_180843d90(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299653,8 +299659,8 @@ int FUN_180843e40(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982878);
@@ -299683,7 +299689,7 @@ int FUN_180843ee0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x14);
@@ -299705,8 +299711,8 @@ int FUN_180843fa0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299734,8 +299740,8 @@ int FUN_180844050(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299763,8 +299769,8 @@ int FUN_180844100(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299792,8 +299798,8 @@ int FUN_1808441b0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299821,8 +299827,8 @@ int FUN_180844260(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982978);
@@ -299850,8 +299856,8 @@ int FUN_180844300(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299879,8 +299885,8 @@ int FUN_1808443b0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIDword stackUInt18;
   UIDword stackUInt14;
   UIDword stackUInt10;
@@ -299909,7 +299915,7 @@ int FUN_180844460(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle stackUInt48;
   UIHandle stackUInt40;
@@ -299954,7 +299960,7 @@ int FUN_180844570(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x10);
@@ -300022,7 +300028,7 @@ int FUN_1808447d0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIByte result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle stackUInt48;
   UIDword stackUInt40;
@@ -300077,7 +300083,7 @@ int FUN_180844910(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIDword *)(uiBufferData + 0x10);
@@ -300099,8 +300105,8 @@ int FUN_1808449c0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_1809823e0);
@@ -300117,7 +300123,7 @@ int FUN_180844a30(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle uStackX_8;
   
@@ -300145,8 +300151,8 @@ int FUN_180844b20(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle uStackX_8;
   
   uStackX_8 = *(UIHandle *)(uiContext + 0x10);
@@ -300173,7 +300179,7 @@ int FUN_180844c00(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIByte iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIByte *)(uiContext + 0x14);
@@ -300199,8 +300205,8 @@ int FUN_180844d00(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIByte *)(uiContext + 0x14);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982350);
@@ -300224,7 +300230,7 @@ int FUN_180844e10(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982770);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -300240,7 +300246,7 @@ int FUN_180844e90(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   iterationCount = *(UIDword *)(uiBufferData + 0x10);
@@ -300336,7 +300342,7 @@ void FUN_180845090(UIHandle uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
@@ -300386,8 +300392,8 @@ void FUN_1808451c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIByte astackUInt138 [256];
@@ -300415,7 +300421,7 @@ void FUN_180845204(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIBufferDataWithControl(&stack0x00000030,0x100);
@@ -300448,8 +300454,8 @@ void FUN_1808452a0(UIHandle uiContext,UIDword *dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong astackLong148 [2];
@@ -300536,7 +300542,7 @@ void FUN_1808453c0(UIHandle uiContext,UIHandle *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong astackLong148 [2];
@@ -300635,7 +300641,7 @@ void FUN_1808455f0(UIHandle uiContext,ulonglong *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong astackLong148 [2];
@@ -300695,8 +300701,8 @@ void FUN_180845c40(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIByte astackUInt138 [256];
@@ -300724,7 +300730,7 @@ void FUN_180845c84(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIBufferDataWithControl(&stack0x00000030,0x100);
@@ -300972,7 +300978,7 @@ void FUN_180846210(UIHandle uiContext,longlong dataSource,UIDword *targetBuffer,
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIDword astackUInt168 [2];
@@ -301041,8 +301047,8 @@ void FUN_180846410(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIByte astackUInt138 [256];
@@ -301070,7 +301076,7 @@ void FUN_180846453(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
   
@@ -301152,7 +301158,7 @@ void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDwo
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt1a8 [32];
   UIDword *pstackUInt188;
   UIHandle stackUInt178;
@@ -301219,7 +301225,7 @@ void FUN_180846730(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
   
@@ -301403,7 +301409,7 @@ void FUN_180846bc0(ulonglong uiContext,uint dataSource,UIDword *targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle stackUInt158;
@@ -301460,7 +301466,7 @@ void FUN_180846d30(UIHandle uiContext,UIDword *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [32];
   UIByte *pstackUInt158;
   longlong astackLong148 [2];
@@ -301677,8 +301683,8 @@ void FUN_180847230(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIByte astackUInt138 [256];
@@ -301706,7 +301712,7 @@ void FUN_180847274(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIBufferDataWithControl(&stack0x00000030,0x100);
@@ -301739,8 +301745,8 @@ void FUN_180847310(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIByte astackUInt138 [256];
@@ -301768,7 +301774,7 @@ void FUN_180847354(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   
   processingResult = ProcessUIBufferDataWithControl(&stack0x00000030,0x100);
@@ -301916,8 +301922,8 @@ void FUN_180847690(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt188 [32];
   UIByte *pstackUInt168;
   UIHandle astackUInt158 [2];
@@ -301960,7 +301966,7 @@ void FUN_180847710(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedEBP;
   UIDword unmodifiedESI;
@@ -302074,7 +302080,7 @@ void FUN_1808479d0(longlong uiContext,longlong *dataSource,byte *targetBuffer)
 {
   char localChar1;
   byte IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   ulonglong loopCounter;
   byte BufferSizeFlag;
@@ -302164,7 +302170,7 @@ void FUN_180847c60(longlong uiContext,longlong *dataSource,byte *targetBuffer)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -302300,7 +302306,7 @@ void FUN_180847f60(UIHandle uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [48];
   longlong astackLong138 [2];
   UIHandle *apstackUInt128 [34];
@@ -302341,8 +302347,8 @@ void FUN_180848090(ulonglong uiContext,longlong dataSource,UIDword targetBuffer,
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIByte astackUInt1a8 [32];
   UIByte *pstackUInt188;
@@ -302409,7 +302415,7 @@ void FUN_1808482f0(UIHandle uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [48];
   longlong astackLong138 [2];
   UIHandle *apstackUInt128 [34];
@@ -303340,7 +303346,7 @@ UIHandle FUN_180849030(longlong *uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = (int)dataSource;
   if (uiValidationResult < (int)uiContext[1]) {
@@ -303422,7 +303428,7 @@ UIHandle FUN_180849120(longlong *uiContext,int dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -303482,7 +303488,7 @@ UIHandle FUN_180849144(UIHandle uiContext,int dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -303552,7 +303558,7 @@ void FUN_180849230(UIHandle uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [48];
   longlong astackLong138 [2];
   UIHandle *apstackUInt128 [34];
@@ -303594,7 +303600,7 @@ void FUN_180849360(ulonglong uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   longlong astackLong138 [4];
@@ -303745,7 +303751,7 @@ void FUN_1808496c0(UIDword uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword eventCodeType;
   UIByte astackUInt188 [48];
   UIHandle stackUInt158;
@@ -303784,7 +303790,7 @@ void FUN_180849782(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   
@@ -303860,7 +303866,7 @@ void FUN_1808498e7(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedESI;
   UIDword eventHandle;
   
@@ -303985,7 +303991,7 @@ void FUN_180849bb0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt198 [48];
   longlong AnimationStateValue;
   UIHandle *pstackUInt160;
@@ -304029,8 +304035,8 @@ void FUN_180849d40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt1a8 [32];
   UIByte *pstackUInt188;
   UIHandle stackUInt178;
@@ -304086,8 +304092,8 @@ void FUN_180849f40(ulonglong uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIByte astackUInt1a8 [32];
   UIByte *pstackUInt188;
   UIHandle stackUInt178;
@@ -304143,7 +304149,7 @@ void FUN_18084a140(UIHandle uiContext,UIByte dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304186,7 +304192,7 @@ void FUN_18084a280(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304229,7 +304235,7 @@ void FUN_18084a3d0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt188 [48];
   longlong astackLong158 [2];
   UIHandle *apstackUInt148 [34];
@@ -304273,7 +304279,7 @@ void FUN_18084a550(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304387,7 +304393,7 @@ void FUN_18084a8c0(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304430,7 +304436,7 @@ void FUN_18084aa10(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304473,7 +304479,7 @@ void FUN_18084ab60(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304516,7 +304522,7 @@ void FUN_18084acb0(UIHandle uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt168 [48];
   longlong astackLong138 [2];
   UIHandle *apstackUInt128 [34];
@@ -304558,7 +304564,7 @@ void FUN_18084ade0(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt178 [48];
   longlong astackLong148 [2];
   UIHandle *apstackUInt138 [34];
@@ -304598,8 +304604,8 @@ void FUN_18084af10(UIDword uiContext,UIDword *dataSource)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle dataSourceParameter;
   longlong lStackX_18;
   UIByte stackBuffer [8];
@@ -304633,7 +304639,7 @@ ulonglong FUN_18084afc0(UIHandle uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   longlong alStackX_10 [2];
   UIHandle *eventDataBuffer;
@@ -304730,7 +304736,7 @@ void FUN_18084b0c0(UIDword uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle dataSourceParameter;
   longlong alStackX_18 [2];
   
@@ -304769,7 +304775,7 @@ void FUN_18084b0db(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword unmodifiedEBX;
   UIHandle StackData3;
   longlong inputString;
@@ -304854,7 +304860,7 @@ void FUN_18084b180(UIHandle uiContext,UIByte dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong alStackX_18 [2];
   UIHandle *apstackUInt18 [2];
   
@@ -305468,7 +305474,7 @@ void FUN_18084be00(longlong *uiContext,longlong dataSource,longlong *targetBuffe
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   ulonglong loopCounter;
@@ -308221,7 +308227,7 @@ UIHandle FUN_18084d3f0(longlong *uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -308284,7 +308290,7 @@ UIHandle FUN_18084d414(UIHandle uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -309239,7 +309245,7 @@ UIHandle FUN_18084df73(void)
   longlong uiContextBasePointer;
   UIDword unmodifiedESI;
   longlong *uiTargetHandle;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   uiCompareResult = 0;
@@ -309689,7 +309695,7 @@ UIHandle FUN_18084e9e0(longlong uiContext)
 
 {
   UIDword result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIHandle uStackX_8;
   
@@ -309765,7 +309771,7 @@ UIHandle FUN_18084ead0(longlong uiContext,char dataSource)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIHandle processingStatus;
   UIHandle loopCounter;
@@ -310203,7 +310209,7 @@ ulonglong FUN_18084f040(longlong *uiContext)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   uint loopCounter;
@@ -310620,7 +310626,7 @@ ulonglong FUN_18084f2da(longlong *uiContext)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   uint loopCounter;
@@ -310909,7 +310915,7 @@ ulonglong FUN_18084f56a(longlong *uiContext)
 
 {
   uint *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   uint loopCounter;
@@ -315159,7 +315165,7 @@ void FUN_18085219c(void)
 {
   char localChar1;
   short sVar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIHandle *componentContextPtr;
   longlong contextDataHandle;
@@ -315590,7 +315596,7 @@ UIHandle FUN_180852b00(longlong *uiContext,uint *dataSource,UIHandle *targetBuff
 {
   UIHandle result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   UIHandle maxProcessingCount;
@@ -315674,7 +315680,7 @@ UIHandle FUN_180852bb0(longlong *uiContext,uint *dataSource,UIHandle *targetBuff
 {
   UIHandle result;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle loopCounter;
   UIHandle maxProcessingCount;
@@ -315765,7 +315771,7 @@ UIHandle FUN_180852bd2(void)
   UIHandle result;
   UIHandle iterationCount;
   int bufferSize;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle loopCounter;
   UIHandle *ptrLocal6;
@@ -316195,7 +316201,7 @@ UIHandle FUN_180853040(longlong *uiContext,longlong *dataSource)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong *bufferPtr;
   longlong eventDataIndex;
   ulonglong stackUInt18;
@@ -316305,7 +316311,7 @@ void FUN_180853230(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
   longlong RenderContextSize;
@@ -316348,7 +316354,7 @@ UIHandle FUN_180853260(longlong *uiContext,UIHandle *dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   
   uiCompareResult = (int)uiContext[1] + 1;
@@ -316460,7 +316466,7 @@ UIHandle FUN_1808533d0(longlong uiContext,int *dataSource)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int aiStackX_8 [2];
   
   uiCompareResult = *(int *)(uiBufferData + 0xf4);
@@ -316672,7 +316678,7 @@ UIHandle FUN_1808538a0(UIHandle *uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   int localValidationResult;
@@ -316717,7 +316723,7 @@ UIHandle FUN_180853980(longlong uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   ulonglong processingStatus;
   longlong *peventDataIndex;
@@ -316927,7 +316933,7 @@ UIHandle FUN_180853d20(UIHandle *uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   float TransformCoefficient2;
   float TransformCoefficient3;
   
@@ -317180,7 +317186,7 @@ UIHandle FUN_180854200(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   uiMemoryPointer = (longlong *)(uiContext + 0x70);
@@ -317767,7 +317773,7 @@ int FUN_180854810(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,U
 {
   longlong *uiMemoryPointer;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   ulonglong *componentContextPtr;
   longlong contextDataHandle;
@@ -317849,7 +317855,7 @@ int FUN_180854818(longlong uiContext,ulonglong dataSource,UIDword targetBuffer,U
 {
   longlong *uiMemoryPointer;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextRegister;
   ulonglong processingStatus;
   ulonglong *componentContextPtr;
@@ -317952,7 +317958,7 @@ UIHandle FUN_1808549c0(longlong *uiContext,int *dataSource,int *targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   
   if ((*targetBuffer == -1) ||
@@ -318663,7 +318669,7 @@ int FUN_1808552ca(longlong uiContext)
 {
   int *pprocessingResult;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *contextRegister;
   longlong contextDataHandle;
   
@@ -319334,7 +319340,7 @@ void FUN_180855810(longlong uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   allocatedMemory = *(longlong *)(uiBufferData + 0x140);
   if (allocatedMemory != 0) {
@@ -319513,7 +319519,7 @@ UIHandle FUN_180855b80(longlong *uiContext)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -319674,7 +319680,7 @@ UIHandle FUN_180855ce0(longlong *uiContext)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -319987,7 +319993,7 @@ UIHandle * FUN_180855fc0(longlong *uiContext,UIHandle *dataSource,uint *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   uint processingStatus;
   int localValidationResult;
@@ -320040,7 +320046,7 @@ UIHandle * FUN_180855fdf(UIHandle uiContext,UIHandle *dataSource,uint *targetBuf
 {
   longlong allocatedMemory;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   uint processingStatus;
   int localValidationResult;
@@ -320087,7 +320093,7 @@ UIHandle FUN_180855ffc(UIHandle uiContext,UIHandle *dataSource,UIHandle targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int unmodifiedEBX;
   int sourceDataInt;
@@ -321002,7 +321008,7 @@ UIHandle FUN_180856c80(longlong uiContext,uint *dataSource,UIHandle *targetBuffe
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   if (((*(int *)(uiBufferData + 0x104) != 0) && (*(int *)(uiBufferData + 0xe8) != 0)) &&
      (uiCompareResult = *(int *)(*(longlong *)(uiBufferData + 0xe0) +
@@ -322241,7 +322247,7 @@ void FUN_180857c8f(UIDword uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   longlong *pcontextDataHandle;
   longlong eventDataIndex;
@@ -323538,7 +323544,7 @@ UIHandle FUN_180859470(longlong *uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -323601,7 +323607,7 @@ UIHandle FUN_180859494(void)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -323671,7 +323677,7 @@ UIHandle FUN_1808595a0(longlong *uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -323734,7 +323740,7 @@ UIHandle FUN_1808595c4(UIHandle uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -324603,7 +324609,7 @@ int FUN_18085a5e5(void)
 {
   int *pprocessingResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   bool bVar4;
   bool IsValidationComplete;
   int loopCounter;
@@ -324913,7 +324919,7 @@ ulonglong FUN_18085ab70(longlong uiContext)
 {
   char localChar1;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong eventDataIndex;
   ulonglong maxProcessingCount;
@@ -324962,7 +324968,7 @@ longlong FUN_18085abf2(longlong uiContext)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextHandle;
   float in_XMM0_Da;
@@ -326367,7 +326373,7 @@ int FUN_18085b595(longlong uiContext,uint dataSource,longlong targetBuffer,longl
 {
   longlong *uiMemoryPointer;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   longlong contextDataHandle;
@@ -326691,7 +326697,7 @@ void FUN_18085bbe0(longlong uiContext,UIDword dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = FUN_18085ef10(*(UIHandle *)(uiContext + 0x160));
   if (uiValidationResult == 0) {
@@ -327206,7 +327212,7 @@ void FUN_18085c620(longlong uiContext,longlong dataSource,uint *targetBuffer)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   ulonglong eventCodeType;
   
   result = *(uint *)(*(longlong *)(uiBufferData + 0x140) + 0xa4);
@@ -327273,7 +327279,7 @@ UIDword * FUN_18085c820(longlong uiContext,UIDword *dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   
   uiValidationResult = FUN_18085ab70();
@@ -327823,7 +327829,7 @@ UIHandle FUN_18085d460(UIHandle uiContext,longlong *dataSource,longlong *targetB
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int sourceDataInt;
   
@@ -327870,7 +327876,7 @@ UIHandle FUN_18085d570(longlong uiContext,longlong *dataSource,longlong *targetB
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int sourceDataInt;
   
@@ -328446,7 +328452,7 @@ void FUN_18085e003(UIHandle *uiContext)
 {
   longlong allocatedMemory;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   longlong *peventDataIndex;
   longlong contextDataHandle;
@@ -328741,7 +328747,7 @@ void FUN_18085e4a0(longlong uiContext)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   longlong *pcontextDataHandle;
   longlong *peventDataIndex;
@@ -329276,7 +329282,7 @@ UIHandle FUN_18085ec90(longlong uiContext,UIHandle dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   
   processStatus = (int)*(uint *)(uiContext + 0x4cc) >> 0x1f;
@@ -329407,7 +329413,7 @@ UIHandle FUN_18085ef10(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong *peventDataIndex;
   longlong *pcontextDataHandle;
@@ -329923,7 +329929,7 @@ void FUN_18085f670(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   longlong *peventDataIndex;
   
@@ -329993,7 +329999,7 @@ FUN_18085f790(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,char 
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   uint loopCounter;
@@ -330420,8 +330426,8 @@ UIHandle FUN_18085fc0e(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   char localChar5;
   int loopCounter;
@@ -330881,7 +330887,7 @@ UIHandle FUN_180860390(longlong uiContext,longlong dataSource,UIHandle *targetBu
 {
   ulonglong *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   int localValidationResult;
   uint maxProcessingCount;
@@ -330936,7 +330942,7 @@ UIHandle FUN_1808603ae(longlong uiContext)
 {
   ulonglong *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   int localValidationResult;
   uint maxProcessingCount;
@@ -330990,7 +330996,7 @@ UIHandle FUN_1808603f6(void)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   longlong *contextHandle;
@@ -333431,7 +333437,7 @@ UIHandle FUN_180861ce0(longlong *uiContext,int dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -333507,7 +333513,7 @@ UIHandle FUN_180861d0b(void)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -334284,7 +334290,7 @@ UIHandle FUN_180862670(longlong uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   
   uiValidationResult = FUN_1808605e0();
@@ -334441,8 +334447,8 @@ UIHandle FUN_180862910(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   
   processingResult = *(int *)(uiBufferData + 0x4c8);
@@ -334480,7 +334486,7 @@ void FUN_1808629a0(longlong uiContext,UIHandle dataSource,char targetBuffer)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   longlong contextDataHandle;
   UIByte astackUInte8 [32];
@@ -334565,7 +334571,7 @@ void FUN_1808629e9(longlong *uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   char preservedRegister13B;
   longlong *eventHandle;
@@ -334618,7 +334624,7 @@ void FUN_1808629f1(longlong *uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   char preservedRegister13B;
   longlong *eventHandle;
@@ -334689,7 +334695,7 @@ void FUN_180862ad1(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong preservedRegister12;
   char preservedRegister13B;
   longlong *eventHandle;
@@ -334731,7 +334737,7 @@ void FUN_180862ae8(void)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *eventHandle;
   longlong preservedRegister15;
   ulonglong stackParam000000a8;
@@ -334799,8 +334805,8 @@ UIHandle FUN_180862c50(UIHandle uiContext,UIDword dataSource)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int aiStackX_18 [2];
   UIHandle bufferSizeParameter;
   
@@ -334900,7 +334906,7 @@ UIHandle FUN_180862d20(longlong uiContext,ulonglong dataSource)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = (int)dataSource;
   if (uiValidationResult != *(int *)(uiBufferData + 0x2e0)) {
@@ -335040,8 +335046,8 @@ UIHandle FUN_180862e90(longlong uiContext,byte dataSource)
 
 {
   char localChar1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -336138,7 +336144,7 @@ void FUN_180863d75(UIDword uiContext,int dataSource,UIHandle targetBuffer)
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   ulonglong registerCX;
   float *pTransformCoefficient3;
@@ -336884,7 +336890,7 @@ UIDword FUN_18086463a(void)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiContextBasePointer;
   UIDword unmodifiedESI;
   UIDword preservedRegister15D;
@@ -336955,7 +336961,7 @@ void FUN_180864780(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   float TransformCoefficient3;
   
@@ -336990,7 +336996,7 @@ void FUN_180864850(longlong uiContext)
 {
   float *BaseValuePointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -339249,7 +339255,7 @@ UIHandle FUN_1808661e0(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIHandle *bufferPtr;
   uint loopCounter;
@@ -339655,7 +339661,7 @@ void FUN_180866c90(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   
   uiValidationResult = FUN_180866d00(uiContext,1,0,1);
   if (uiValidationResult == 0) {
@@ -339793,7 +339799,7 @@ UIHandle FUN_180866e25(void)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int unmodifiedEBX;
   longlong uiContextBasePointer;
@@ -339847,7 +339853,7 @@ UIHandle FUN_180866e97(void)
 
 {
   char localChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong uiContextBasePointer;
   longlong uiTargetHandle;
@@ -340041,7 +340047,7 @@ UIHandle FUN_180867170(longlong uiContext,longlong *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -340247,7 +340253,7 @@ void FUN_1808674e0(longlong *uiContext,longlong dataSource)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   int localValidationResult;
   uint maxProcessingCount;
@@ -340308,7 +340314,7 @@ UIHandle FUN_180867600(UIHandle *uiContext,int *dataSource,int *targetBuffer)
 {
   UIHandle result;
   int *puiValidationResult;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   uiCompareResult = 0;
@@ -340340,7 +340346,7 @@ UIHandle FUN_1808676f0(longlong *uiContext,int dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -340401,7 +340407,7 @@ UIHandle FUN_180867714(UIHandle uiContext,int dataSource)
 
 {
   UIDword *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
   UIDword loopCounter;
@@ -340560,7 +340566,7 @@ void FUN_180867990(longlong uiContext,int dataSource,longlong targetBuffer)
 {
   UIHandle *resultPointer;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   int loopCounter;
@@ -341095,7 +341101,7 @@ void FUN_180868330(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -341165,7 +341171,7 @@ void FUN_180868363(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   longlong *peventDataIndex;
@@ -341449,8 +341455,8 @@ void FUN_180868800(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong *peventDataIndex;
   ulonglong maxProcessingCount;
@@ -341788,7 +341794,7 @@ UIHandle FUN_180868d20(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0xe8))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0xe0) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -341806,7 +341812,7 @@ UIHandle FUN_180868d80(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x1a8))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x1a0) + (longlong)uiValidationResult * 8),targetBuffer
@@ -341824,7 +341830,7 @@ UIHandle FUN_180868de0(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x48))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x40) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -341842,7 +341848,7 @@ UIHandle FUN_180868e40(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x38))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x30) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -341860,7 +341866,7 @@ UIHandle FUN_180868ea0(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x68))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x60) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -341878,7 +341884,7 @@ UIHandle FUN_180868f00(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x198))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 400) + (longlong)uiValidationResult * 8),targetBuffer);
@@ -341895,7 +341901,7 @@ UIHandle FUN_180868f60(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x178))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x170) + (longlong)uiValidationResult * 8),targetBuffer
@@ -341913,7 +341919,7 @@ UIHandle FUN_180868fc0(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x58))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x50) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -341931,7 +341937,7 @@ UIHandle FUN_180869020(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0x168))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0x160) + (longlong)uiValidationResult * 8),targetBuffer
@@ -341949,7 +341955,7 @@ UIHandle FUN_180869080(code *uiContext,longlong dataSource,UIHandle targetBuffer
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   for (uiValidationResult = 0; (-1 < uiValidationResult && (uiValidationResult < *(int *)(dataSource + 0xf8))); uiValidationResult = uiValidationResult + 1) {
     result = (*uiContext)(*(UIHandle *)(*(longlong *)(dataSource + 0xf0) + (longlong)uiValidationResult * 8),targetBuffer)
@@ -342427,7 +342433,7 @@ void FUN_180869b10(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -342509,7 +342515,7 @@ void FUN_180869b4f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -342579,7 +342585,7 @@ void FUN_180869b6c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -342682,7 +342688,7 @@ void FUN_180869d10(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -342764,7 +342770,7 @@ void FUN_180869d52(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -342834,7 +342840,7 @@ void FUN_180869d6f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -342937,7 +342943,7 @@ void FUN_180869f10(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -343019,7 +343025,7 @@ void FUN_180869f52(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -343089,7 +343095,7 @@ void FUN_180869f6f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -343192,7 +343198,7 @@ void FUN_18086a110(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -343274,7 +343280,7 @@ void FUN_18086a14f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -343344,7 +343350,7 @@ void FUN_18086a16c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -343447,7 +343453,7 @@ void FUN_18086a310(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -343529,7 +343535,7 @@ void FUN_18086a34f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -343599,7 +343605,7 @@ void FUN_18086a36c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -343702,7 +343708,7 @@ void FUN_18086a510(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -343784,7 +343790,7 @@ void FUN_18086a552(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -343854,7 +343860,7 @@ void FUN_18086a56f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -343957,7 +343963,7 @@ void FUN_18086a710(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -344039,7 +344045,7 @@ void FUN_18086a752(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -344109,7 +344115,7 @@ void FUN_18086a76f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -344212,7 +344218,7 @@ void FUN_18086a910(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -344294,7 +344300,7 @@ void FUN_18086a94f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -344364,7 +344370,7 @@ void FUN_18086a96c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -344467,7 +344473,7 @@ void FUN_18086ab10(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -344549,7 +344555,7 @@ void FUN_18086ab52(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -344619,7 +344625,7 @@ void FUN_18086ab6c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -344722,7 +344728,7 @@ void FUN_18086acf0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -344804,7 +344810,7 @@ void FUN_18086ad32(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -344874,7 +344880,7 @@ void FUN_18086ad4c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -344977,7 +344983,7 @@ void FUN_18086aed0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -345059,7 +345065,7 @@ void FUN_18086af12(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -345129,7 +345135,7 @@ void FUN_18086af2f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -345232,7 +345238,7 @@ void FUN_18086b0d0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -345314,7 +345320,7 @@ void FUN_18086b10f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -345384,7 +345390,7 @@ void FUN_18086b12c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -345487,7 +345493,7 @@ void FUN_18086b2d0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -345569,7 +345575,7 @@ void FUN_18086b312(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -345639,7 +345645,7 @@ void FUN_18086b32c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -345742,7 +345748,7 @@ void FUN_18086b4b0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -345824,7 +345830,7 @@ void FUN_18086b4ef(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -345894,7 +345900,7 @@ void FUN_18086b50c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -345997,7 +346003,7 @@ void FUN_18086b6b0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -346079,7 +346085,7 @@ void FUN_18086b6f2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -346149,7 +346155,7 @@ void FUN_18086b70f(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -346252,7 +346258,7 @@ void FUN_18086b8b0(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -346334,7 +346340,7 @@ void FUN_18086b8f2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -346404,7 +346410,7 @@ void FUN_18086b90c(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -346507,7 +346513,7 @@ void FUN_18086ba90(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -346589,7 +346595,7 @@ void FUN_18086bacf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -346659,7 +346665,7 @@ void FUN_18086baec(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -346762,7 +346768,7 @@ void FUN_18086bc90(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -346844,7 +346850,7 @@ void FUN_18086bccf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -346914,7 +346920,7 @@ void FUN_18086bcec(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -347017,7 +347023,7 @@ void FUN_18086be90(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -347099,7 +347105,7 @@ void FUN_18086bed2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -347169,7 +347175,7 @@ void FUN_18086beef(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -347272,7 +347278,7 @@ void FUN_18086c090(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -347354,7 +347360,7 @@ void FUN_18086c0d2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -347424,7 +347430,7 @@ void FUN_18086c0ef(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -347527,7 +347533,7 @@ void FUN_18086c290(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -347609,7 +347615,7 @@ void FUN_18086c2d2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -347679,7 +347685,7 @@ void FUN_18086c2ec(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -347782,7 +347788,7 @@ void FUN_18086c470(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -347864,7 +347870,7 @@ void FUN_18086c4b2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -347934,7 +347940,7 @@ void FUN_18086c4cf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -348037,7 +348043,7 @@ void FUN_18086c670(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -348119,7 +348125,7 @@ void FUN_18086c6b2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -348189,7 +348195,7 @@ void FUN_18086c6cf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -348292,7 +348298,7 @@ void FUN_18086c870(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -348374,7 +348380,7 @@ void FUN_18086c8b2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -348444,7 +348450,7 @@ void FUN_18086c8cf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -348547,7 +348553,7 @@ void FUN_18086ca70(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -348629,7 +348635,7 @@ void FUN_18086cab2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -348699,7 +348705,7 @@ void FUN_18086cacf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -348802,7 +348808,7 @@ void FUN_18086cc70(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -348884,7 +348890,7 @@ void FUN_18086ccaf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -348954,7 +348960,7 @@ void FUN_18086cccc(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -349057,7 +349063,7 @@ void FUN_18086ce70(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -349139,7 +349145,7 @@ void FUN_18086ceaf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -349209,7 +349215,7 @@ void FUN_18086cecc(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -349312,7 +349318,7 @@ void FUN_18086d070(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -349394,7 +349400,7 @@ void FUN_18086d0b2(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -349464,7 +349470,7 @@ void FUN_18086d0cf(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -349567,7 +349573,7 @@ void FUN_18086d270(longlong uiContext,UIHandle *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -349649,7 +349655,7 @@ void FUN_18086d2af(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int sourceDataInt;
@@ -349719,7 +349725,7 @@ void FUN_18086d2cc(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong uiContextBasePointer;
   int unmodifiedESI;
@@ -350080,8 +350086,8 @@ UIHandle FUN_18086da90(longlong *uiContext,UIHandle *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   uint loopCounter;
   int loopCounter;
@@ -350167,7 +350173,7 @@ UIHandle FUN_18086daa2(longlong *uiContext)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   longlong eventDataIndex;
@@ -350404,7 +350410,7 @@ UIHandle FUN_18086dc50(longlong uiContext,longlong *dataSource,UIHandle *targetB
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350479,7 +350485,7 @@ UIHandle FUN_18086ddc0(longlong uiContext,longlong *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350535,7 +350541,7 @@ UIHandle FUN_18086ddc8(longlong uiContext,longlong *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350600,7 +350606,7 @@ UIHandle FUN_18086df30(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350670,7 +350676,7 @@ UIHandle FUN_18086e090(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350733,7 +350739,7 @@ UIHandle FUN_18086e1f0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350803,7 +350809,7 @@ UIHandle FUN_18086e330(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350866,7 +350872,7 @@ UIHandle FUN_18086e480(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350936,7 +350942,7 @@ UIHandle FUN_18086e5c0(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -350999,7 +351005,7 @@ UIHandle FUN_18086e710(longlong uiContext,UIHandle dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   UIHandle processingStatus;
   longlong eventDataIndex;
@@ -351066,7 +351072,7 @@ UIHandle FUN_18086e860(longlong uiContext,UIHandle dataSource)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   longlong contextDataHandle;
   longlong eventDataIndex;
@@ -351123,7 +351129,7 @@ UIHandle FUN_18086e9b0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351193,7 +351199,7 @@ UIHandle FUN_18086eb00(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351256,7 +351262,7 @@ UIHandle FUN_18086ec60(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351326,7 +351332,7 @@ UIHandle FUN_18086eda0(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351389,7 +351395,7 @@ UIHandle FUN_18086eef0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351459,7 +351465,7 @@ UIHandle FUN_18086f040(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351522,7 +351528,7 @@ UIHandle FUN_18086f1a0(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351592,7 +351598,7 @@ UIHandle FUN_18086f300(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   int localValidationResult;
@@ -351655,7 +351661,7 @@ UIHandle FUN_18086f460(longlong uiContext,longlong dataSource,UIHandle *targetBu
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   char localChar4;
   int localValidationResult;
@@ -351717,7 +351723,7 @@ UIHandle FUN_18086f4ed(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   char localChar4;
   int localValidationResult;
@@ -351791,7 +351797,7 @@ void FUN_18086f610(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   char localChar4;
   int localValidationResult;
@@ -351861,7 +351867,7 @@ void FUN_18086f69d(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   char localChar4;
   int localValidationResult;
@@ -352234,7 +352240,7 @@ UIHandle FUN_180871220(longlong uiContext,longlong *dataSource)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   for (uiCompareResult = 0; (-1 < uiCompareResult && (uiCompareResult < *(int *)(uiBufferData + 0x1d8))); uiCompareResult = uiCompareResult + 1) {
     if (*(longlong *)(*(longlong *)(uiBufferData + 0x1d0) + (longlong)uiCompareResult * 8) != 0) {
@@ -352255,7 +352261,7 @@ UIHandle FUN_1808712a0(longlong uiContext,longlong *dataSource)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   for (uiCompareResult = 0; (-1 < uiCompareResult && (uiCompareResult < *(int *)(uiBufferData + 0x1e8))); uiCompareResult = uiCompareResult + 1) {
     if (*(longlong *)(*(longlong *)(uiBufferData + 0x1e0) + (longlong)uiCompareResult * 8) != 0) {
@@ -352276,7 +352282,7 @@ UIHandle FUN_180871320(longlong uiContext,longlong *dataSource)
 {
   longlong *uiMemoryPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   for (uiCompareResult = 0; (-1 < uiCompareResult && (uiCompareResult < *(int *)(uiBufferData + 0x1f8))); uiCompareResult = uiCompareResult + 1) {
     if (*(longlong *)(*(longlong *)(uiBufferData + 0x1f0) + (longlong)uiCompareResult * 8) != 0) {
@@ -352864,7 +352870,7 @@ UIHandle FUN_180872630(longlong *uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   
@@ -353095,7 +353101,7 @@ UIHandle FUN_180872cc0(longlong *uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   
@@ -353195,7 +353201,7 @@ void FUN_180872ef0(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   uint loopCounter;
@@ -353422,7 +353428,7 @@ void FUN_180872f02(longlong uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   uint loopCounter;
@@ -353649,7 +353655,7 @@ void FUN_180872f0b(longlong uiContext,uint dataSource,uint targetBuffer)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint bufferSize;
   longlong stringCompareIndex;
   longlong contextDataHandle;
@@ -353877,7 +353883,7 @@ void FUN_18087304a(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextHandle;
   longlong contextDataHandle;
@@ -354041,7 +354047,7 @@ void FUN_18087306d(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong uiContextBasePointer;
   uint processingStatus;
@@ -354197,7 +354203,7 @@ void FUN_18087309b(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong uiContextBasePointer;
   uint processingStatus;
@@ -354433,7 +354439,7 @@ void FUN_180873460(longlong uiContext)
 {
   longlong *uiMemoryPointer;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   
   FUN_180872cc0(uiContext + 0xad8);
   func_0x00018084e310(uiContext + 0xaa8);
@@ -354819,7 +354825,7 @@ UIHandle FUN_180873cd0(longlong *uiContext)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   
@@ -355072,7 +355078,7 @@ UIHandle FUN_1808741f0(longlong *uiContext,int *dataSource,int *targetBuffer)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   int *puiCompareResult;
   
   if ((*targetBuffer == -1) ||
@@ -355168,7 +355174,7 @@ UIHandle FUN_18087439e(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   longlong contextDataHandle;
   UIHandle uiContextBasePointer;
@@ -355556,7 +355562,7 @@ UIHandle FUN_180874940(longlong *uiContext)
 {
   uint *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   UIHandle loopCounter;
   longlong contextDataHandle;
@@ -355637,7 +355643,7 @@ UIHandle FUN_18087494c(longlong *uiContext)
 {
   uint *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextRegister;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -355729,7 +355735,7 @@ void FUN_180874980(UIDword uiContext)
 {
   uint *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   int *ptrLocalInt6;
@@ -356325,7 +356331,7 @@ void FUN_1808753d0(longlong uiContext,UIHandle dataSource)
 
 {
   code *plocalChar1;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   UIDword auStackX_8 [2];
   
@@ -356931,8 +356937,8 @@ void FUN_180875d28(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   longlong contextHandle;
   int unmodifiedEBP;
@@ -357067,7 +357073,7 @@ UIHandle FUN_180876000(longlong *uiContext)
 
 {
   int *pprocessingResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -357252,7 +357258,7 @@ longlong FUN_1808761f0(longlong *uiContext,UIHandle dataSource)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   int loopCounter;
@@ -358283,7 +358289,7 @@ void FUN_180877030(longlong uiContext,longlong *dataSource,longlong targetBuffer
 {
   longlong allocatedMemory;
   ulonglong iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   uint maxProcessingCount;
@@ -358441,8 +358447,8 @@ void FUN_180877560(longlong *uiContext,longlong *dataSource,longlong *targetBuff
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   uint loopCounter;
   int loopCounter;
@@ -358534,7 +358540,7 @@ void FUN_1808775bf(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   longlong contextHandle;
@@ -358627,7 +358633,7 @@ void FUN_180877810(longlong uiContext,longlong *dataSource)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   int localValidationResult;
@@ -358902,7 +358908,7 @@ void FUN_180877f00(longlong uiContext,longlong *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   int sourceDataInt;
   UIDword *componentContextPtr;
@@ -358970,7 +358976,7 @@ void FUN_1808780d0(longlong uiContext,longlong *dataSource)
 {
   longlong *uiMemoryPointer;
   ushort iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong *peventDataIndex;
   uint maxProcessingCount;
@@ -361104,7 +361110,7 @@ int FUN_1808797a0(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIDword stackUInt18;
   UIDword stackUInt14;
@@ -361135,7 +361141,7 @@ int FUN_180879880(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIDword stackUInt18;
   UIDword stackUInt14;
@@ -361708,8 +361714,8 @@ longlong FUN_18087a070(longlong uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   uint loopCounter;
   int loopCounter;
@@ -366475,7 +366481,7 @@ UIHandle FUN_18087dc70(longlong *uiContext,longlong *dataSource)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle loopCounter;
   uint maxProcessingCount;
@@ -366528,7 +366534,7 @@ UIHandle FUN_18087dd70(longlong *uiContext,uint *dataSource,UIHandle *targetBuff
 {
   UIHandle *resultPointer;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle loopCounter;
   UIHandle iterationCounter;
@@ -366757,7 +366763,7 @@ UIHandle FUN_18087df20(longlong *uiContext,int dataSource,UIHandle *targetBuffer
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   
@@ -366820,7 +366826,7 @@ UIHandle FUN_18087df50(int uiContext,uint dataSource)
   longlong componentIndex;
   longlong *contextHandle;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle *eventHandle;
   
   processingResult = (bufferSize ^ dataSource) - dataSource;
@@ -366875,7 +366881,7 @@ UIHandle FUN_18087dfaf(void)
 {
   longlong allocatedMemory;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *contextHandle;
   longlong componentData;
   int allocationFlags;
@@ -366933,7 +366939,7 @@ int FUN_18087e0b0(longlong uiContext,longlong dataSource,longlong targetBuffer,l
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   longlong eventDataIndex;
   longlong contextDataHandle;
@@ -368234,7 +368240,7 @@ int FUN_1808801f0(longlong *uiContext,uint *dataSource,UIHandle targetBuffer,lon
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   longlong eventDataIndex;
@@ -369606,7 +369612,7 @@ UIHandle FUN_180881eb0(longlong uiContext,longlong dataSource)
 {
   longlong allocatedMemory;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   sourceDataInt = 0;
@@ -369841,7 +369847,7 @@ void FUN_180882143(longlong uiContext)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int unmodifiedEBX;
   UIDword *preservedRegister13;
   longlong *eventHandle;
@@ -369907,7 +369913,7 @@ int FUN_180882160(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   int localValidationResult;
   int loopCounter;
@@ -369980,7 +369986,7 @@ int FUN_18088217c(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   longlong stringCompareIndex;
   int sourceDataInt;
@@ -370074,7 +370080,7 @@ int FUN_1808822d5(longlong uiContext)
 {
   int operationResult;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int unmodifiedEBX;
   UIHandle componentData;
   UIDword preservedRegister13D;
@@ -370217,7 +370223,7 @@ void FUN_180882400(longlong uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   bool IsValidationComplete;
   UIByte astackUInt98 [32];
@@ -370789,7 +370795,7 @@ UIHandle FUN_180882c70(longlong *uiContext,int dataSource)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   longlong contextDataHandle;
@@ -370866,7 +370872,7 @@ UIHandle FUN_180882c94(void)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   longlong contextDataHandle;
@@ -370950,7 +370956,7 @@ UIHandle FUN_180882dd0(longlong *uiContext,int dataSource)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   longlong contextDataHandle;
@@ -371010,7 +371016,7 @@ UIHandle FUN_180882df4(UIHandle uiContext,int dataSource)
 {
   UIHandle *resultPointer;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   longlong contextDataHandle;
@@ -371851,7 +371857,7 @@ UIHandle FUN_180883620(longlong *uiContext,int dataSource)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -371915,7 +371921,7 @@ UIHandle FUN_180883644(void)
 {
   UIDword *resultPointer;
   UIDword *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword processingStatus;
   UIDword loopCounter;
   UIDword maxProcessingCount;
@@ -378788,7 +378794,7 @@ UIHandle FUN_180889ff0(longlong *uiContext,int dataSource,longlong *targetBuffer
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   contextDataHandle = (longlong)dataSource;
@@ -378851,7 +378857,7 @@ int FUN_18088a1f0(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   
   allocatedMemory = *(longlong *)(uiBufferData + 0x28);
   if (allocatedMemory != 0) {
@@ -379497,7 +379503,7 @@ UIHandle FUN_18088ad30(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   ushort processingStatus;
   UIHandle dataSourceParameter;
@@ -379566,7 +379572,7 @@ void FUN_18088af30(longlong uiContext,UIHandle dataSource,UIByte targetBuffer)
 
 {
   byte isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *uiStatusPointer;
   longlong contextDataHandle;
   UIHandle loopCounter;
@@ -379943,7 +379949,7 @@ UIHandle FUN_18088b520(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   longlong eventDataIndex;
@@ -380344,7 +380350,7 @@ void FUN_18088bf80(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   int localValidationResult;
   
@@ -381218,7 +381224,7 @@ UIHandle FUN_18088cee0(longlong uiContext,UIHandle dataSource,char targetBuffer)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   
   if ((targetBuffer != '\0') && (*(longlong *)(uiBufferData + 0x208) != 0)) {
@@ -381260,7 +381266,7 @@ UIHandle FUN_18088cf2e(void)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   uint processingStatus;
   char unmodifiedBPL;
   longlong componentData;
@@ -381308,7 +381314,7 @@ int FUN_18088cfc0(longlong uiContext)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   
   resultPointer = (UIHandle *)((longlong)*(int *)(uiBufferData + 0x17c) * 8 + 0x180c4f450);
   FUN_180768b50(resultPointer);
@@ -381387,8 +381393,8 @@ void FUN_18088d2be(void)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int unmodifiedESI;
   longlong uiTargetHandle;
@@ -381562,7 +381568,7 @@ void FUN_18088d575(void)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiTargetHandle;
   UIByte stackParam00000030;
   ulonglong stackParam00000130;
@@ -381686,7 +381692,7 @@ void FUN_18088d850(longlong uiContext)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   
   *(UIByte *)(uiContext + 0x189) = 1;
   uiValidationResult = FUN_180748e20(*(UIHandle *)(*(longlong *)(uiBufferData + 0x158) + 0x78),0,0,0);
@@ -381733,7 +381739,7 @@ void FUN_18088d880(void)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiTargetHandle;
   
   if (*(char *)(uiTargetHandle + 0x188) != '\0') {
@@ -381858,7 +381864,7 @@ UIHandle FUN_18088da50(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   
@@ -381922,7 +381928,7 @@ UIHandle FUN_18088dad3(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   longlong uiContextBasePointer;
@@ -381963,7 +381969,7 @@ UIHandle FUN_18088daf0(longlong uiContext)
 {
   int operationResult;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   int localValidationResult;
   
@@ -382095,8 +382101,8 @@ void FUN_18088dd60(longlong uiContext,longlong *dataSource)
 
 {
   char localChar1;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   int *ptrLocalInt5;
   uint *ptrLocal6;
@@ -382409,7 +382415,7 @@ UIHandle FUN_18088e480(longlong uiContext,longlong dataSource,UIByte targetBuffe
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   float TransformCoefficient4;
@@ -382498,7 +382504,7 @@ UIHandle FUN_18088e4e4(void)
 {
   uint result;
   char in_AL;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextDataHandle;
   longlong contextHandle;
@@ -382596,7 +382602,7 @@ UIHandle FUN_18088e700(longlong uiContext,longlong *dataSource)
 {
   char localChar1;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextDataHandle;
   
   if (((*(int *)(uiBufferData + 0x200) != 0) &&
@@ -382770,8 +382776,8 @@ UIHandle FUN_18088e8b0(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   
   processingResult = *(int *)(uiBufferData + 0x200);
@@ -382935,7 +382941,7 @@ int FUN_18088ebb0(longlong uiContext,int dataSource,longlong targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIHandle uiTargetHandle;
   
@@ -382975,8 +382981,8 @@ int FUN_18088ece0(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   processingResult = func_0x00018074b7b0(uiContext,dataSource,0x7b);
   uiCompareResult = (int)dataSource;
@@ -382997,7 +383003,7 @@ uint FUN_18088ed70(UIByte *uiContext,int dataSource,longlong targetBuffer,int bu
 {
   int operationResult;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   sourceDataInt = 1;
@@ -383718,7 +383724,7 @@ UIHandle FUN_18088f530(UIHandle uiContext,longlong dataSource,int targetBuffer)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIByte stackBuffer [8];
   UIHandle astackUInt18 [2];
   
@@ -383750,7 +383756,7 @@ UIHandle FUN_18088f54e(void)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong componentData;
   int allocationFlags;
   UIHandle bufferSizeParameter;
@@ -383796,7 +383802,7 @@ UIHandle FUN_18088f5c0(UIHandle uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte stackBuffer [8];
   
   result = FUN_18088f710(uiContext,stackBuffer);
@@ -383822,7 +383828,7 @@ UIHandle FUN_18088f5de(void)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong componentData;
   int allocationFlags;
   
@@ -383855,7 +383861,7 @@ UIHandle FUN_18088f620(UIHandle uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int sourceDataInt;
   UIByte stackBuffer [8];
@@ -383904,7 +383910,7 @@ UIHandle FUN_18088f643(void)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   int sourceDataInt;
   int unmodifiedESI;
@@ -383961,7 +383967,7 @@ UIHandle FUN_18088f710(UIHandle *uiContext,UIHandle *dataSource)
 {
   byte isCharacterMatch;
   bool IsEventProcessingActive;
-  int uiCompareResult;
+  int bufferCompareResult;
   byte *pbVar4;
   char localChar5;
   ulonglong maxProcessingCount;
@@ -384425,8 +384431,8 @@ int FUN_18088fb40(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   bool bVar4;
   bool IsValidationComplete;
   bool useFallbackImplementation;
@@ -384528,8 +384534,8 @@ int FUN_18088fb47(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   bool bVar4;
   bool IsValidationComplete;
   bool useFallbackImplementation;
@@ -384631,10 +384637,10 @@ int FUN_18088fb75(longlong uiContext,UIHandle dataSource)
 
 {
   bool isCharacterMatch;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong uiContextBasePointer;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   bool bVar4;
   bool IsValidationComplete;
   bool useFallbackImplementation;
@@ -384818,7 +384824,7 @@ UIHandle FUN_18088fdb0(longlong uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong lStackX_8;
   
@@ -384850,7 +384856,7 @@ UIHandle FUN_18088fdce(void)
 {
   longlong allocatedMemory;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stackParam00000030;
   
   allocatedMemory = stackParam00000030;
@@ -384965,7 +384971,7 @@ UIHandle FUN_18088fea0(longlong uiContext,UIHandle dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong lStackX_8;
   
@@ -385000,7 +385006,7 @@ UIHandle FUN_18088febe(void)
 {
   longlong allocatedMemory;
   int bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stackParam00000030;
   
   allocatedMemory = stackParam00000030;
@@ -385234,7 +385240,7 @@ UIHandle FUN_18088fff0(longlong uiContext)
  void ExecuteUIElementRenderTask(void* elementContext, void* renderTaskContext)
 {
   uint64_t taskResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint64_t index;
   int count;
   uint8_t encryptionBuffer[32];
@@ -385289,7 +385295,7 @@ UIHandle FUN_18088fff0(longlong uiContext)
  void ExecuteUIRenderTaskHandler(void)
 {
   uint64_t taskResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint64_t contextHandleRegister;
   uint64_t taskRegister;
   uint64_t index;
@@ -385376,7 +385382,7 @@ UIHandle FUN_180890270(longlong uiContext)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle loopCounter;
   longlong *pcontextDataHandle;
@@ -385559,7 +385565,7 @@ UIHandle FUN_180890450(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong alStackX_8 [2];
   
@@ -385623,7 +385629,7 @@ UIHandle FUN_180890500(longlong uiContext,UIHandle dataSource)
 {
   longlong allocatedMemory;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong alStackX_8 [2];
   
   iterationCount = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),alStackX_8);
@@ -386033,7 +386039,7 @@ UIHandle FUN_180890900(longlong uiContext)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIDword *bufferPtr;
   ulonglong loopCounter;
@@ -386080,7 +386086,7 @@ UIHandle FUN_180890923(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   UIHandle eventCodeType;
   UIDword *bufferPtr;
@@ -387114,7 +387120,7 @@ void FUN_1808916f0(longlong uiContext,longlong dataSource)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *pstringCompareIndex;
   longlong *pcontextDataHandle;
   longlong *peventDataIndex;
@@ -387493,7 +387499,7 @@ void FUN_180891e40(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   uint loopCounter;
@@ -387561,7 +387567,7 @@ void FUN_180891e7d(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   uint loopCounter;
@@ -387633,7 +387639,7 @@ void FUN_180891ea1(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong contextRegister;
   longlong stringCompareIndex;
   longlong contextDataHandle;
@@ -387702,7 +387708,7 @@ void FUN_180891ec9(int uiContext,int dataSource)
   int operationResult;
   longlong contextHandle;
   longlong componentData;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong eventHandle;
   UIHandle stackParam00000060;
   
@@ -387964,7 +387970,7 @@ UIHandle FUN_180892270(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIDataBuffer *bufferPtr;
   uint loopCounter;
@@ -388023,7 +388029,7 @@ UIHandle FUN_1808922ad(void)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIDataBuffer *bufferPtr;
   uint loopCounter;
@@ -388158,7 +388164,7 @@ void FUN_180892410(longlong uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong *pcontextDataHandle;
   UIByte astackUInt68 [32];
@@ -388756,7 +388762,7 @@ UIHandle FUN_180892bd0(longlong uiContext,longlong dataSource,UIHandle targetBuf
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIHandle processingStatus;
   longlong eventDataIndex;
@@ -388826,7 +388832,7 @@ UIHandle FUN_180892cc0(longlong uiContext,longlong dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   float *pTransformCoefficient3;
   longlong eventDataIndex;
@@ -388908,8 +388914,8 @@ UIHandle FUN_180892ceb(void)
 
 {
   float baseValue;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextRegister;
   float *pTransformCoefficient3;
   longlong contextHandle;
@@ -389601,7 +389607,7 @@ int FUN_180893930(longlong uiContext,longlong dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   longlong lStackX_8;
   
@@ -389761,7 +389767,7 @@ void FUN_180893ddb(void)
 {
   float baseValue;
   UIDword bufferSize;
-  int uiValidationResult;
+  int dataValidationResult;
   UIDword in_register_00000004;
   longlong contextHandle;
   longlong componentData;
@@ -389980,7 +389986,7 @@ void FUN_180893f8e(void)
   float baseValue;
   UIHandle *piterationCount;
   UIDword bufferSize;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIDword in_register_00000004;
   longlong contextHandle;
   longlong uiTargetHandle;
@@ -390187,7 +390193,7 @@ int FUN_180894380(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390212,7 +390218,7 @@ int FUN_180894460(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = func_0x00018074b800(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390241,7 +390247,7 @@ int FUN_180894570(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = func_0x00018074b7d0(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390266,7 +390272,7 @@ int FUN_180894650(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180986298);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390285,7 +390291,7 @@ int FUN_180894700(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180984010);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390304,7 +390310,7 @@ int FUN_1808947b0(longlong *uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   
   processingResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_180982240);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource + processingResult,targetBuffer - processingResult,&UIBufferControlData);
@@ -390327,7 +390333,7 @@ void FUN_180894860(longlong uiContext,UIDword *dataSource,longlong *targetBuffer
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIByte astackUIntc8 [32];
   uint stackUInta8;
@@ -390414,7 +390420,7 @@ void FUN_1808949c0(longlong uiContext,UIDword *dataSource,longlong *targetBuffer
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIByte astackUIntb8 [32];
   uint stackUInt98;
@@ -390520,7 +390526,7 @@ void FUN_180894b00(longlong uiContext,UIDword *dataSource,longlong *targetBuffer
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong stringCompareIndex;
   UIByte astackUIntc8 [32];
   uint stackUInta8;
@@ -390730,7 +390736,7 @@ UIDword FUN_180894dd0(longlong uiContext,UIHandle dataSource,uint targetBuffer,l
 {
   longlong *uiMemoryPointer;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong *pcontextDataHandle;
   int localValidationResult;
   uint maxProcessingCount;
@@ -390837,7 +390843,7 @@ UIHandle FUN_180894fb0(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   uint processingStatus;
   
@@ -391254,7 +391260,7 @@ void FUN_1808953bf(longlong uiContext,UIHandle dataSource,int *targetBuffer)
 {
   longlong allocatedMemory;
   char localChar2;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong contextRegister;
   longlong eventDataIndex;
@@ -391554,8 +391560,8 @@ UIHandle FUN_180895d30(longlong *uiContext,uint *dataSource,UIHandle *targetBuff
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle loopCounter;
   UIHandle *ptrLocal6;
@@ -391638,8 +391644,8 @@ UIHandle FUN_180895d62(UIHandle uiContext,int dataSource)
 {
   longlong allocatedMemory;
   int bufferSize;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle *componentContextPtr;
   int loopCounter;
@@ -392462,8 +392468,8 @@ int FUN_180896a30(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIDword result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIDword *)(uiBufferData + 0x14);
   uiValidationResult = func_0x00018074b7d0(dataSource,targetBuffer,*(UIDword *)(uiBufferData + 0x10));
@@ -392479,8 +392485,8 @@ int FUN_180896aa0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   UIHandle result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   
   result = *(UIHandle *)(uiContext + 0x10);
   uiValidationResult = ProcessUIBufferDataWithControl(dataSource,targetBuffer,&UNK_1809863f8);
@@ -392497,7 +392503,7 @@ int FUN_180896b20(longlong uiContext,longlong dataSource,int targetBuffer)
 {
   UIDword result;
   UIDword iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   
   result = *(UIDword *)(uiBufferData + 0x14);
@@ -392542,7 +392548,7 @@ void FUN_180896c60(UIHandle uiContext,longlong dataSource,uint targetBuffer,char
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   undefined **pptrLocal6;
@@ -393185,7 +393191,7 @@ void FUN_180897520(longlong *uiContext,longlong *dataSource)
 
 {
   longlong allocatedMemory;
-  int uiValidationResult;
+  int dataValidationResult;
   UIByte astackUInt248 [32];
   UIByte astackUInt228 [512];
   ulonglong stackUInt28;
@@ -394010,7 +394016,7 @@ void FUN_180897859(float uiContext)
 
 {
   float baseValue;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   float TransformCoefficient3;
   float *transformCoeffPointer;
@@ -394184,7 +394190,7 @@ void FUN_180897b40(longlong *uiContext,longlong dataSource,UIDword targetBuffer)
 {
   longlong allocatedMemory;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
@@ -394730,8 +394736,8 @@ void FUN_1808986b0(longlong uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint loopCounter;
   int loopCounter;
@@ -394925,7 +394931,7 @@ FUN_180898a50(longlong uiContext,uint *dataSource,UIHandle targetBuffer,UIDword 
 {
   uint result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   UIHandle loopCounter;
   uint *ptrLocal6;
@@ -395228,8 +395234,8 @@ UIDword FUN_180898bc0(UIHandle uiContext,ulonglong dataSource)
 
 {
   UIByte result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   UIByte *componentContextPtr;
   UIByte *ptrLocal6;
@@ -396076,7 +396082,7 @@ UIHandle ProcessUIComponentDataValidationAndHandleAllocation(longlong *uiContext
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   
@@ -396326,7 +396332,7 @@ void FUN_180899950(longlong uiContext,UIDword *dataSource)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   ulonglong processingStatus;
   longlong eventDataIndex;
@@ -396477,8 +396483,8 @@ void FUN_1808999c1(UIHandle *uiContext,UIHandle dataSource)
 
 {
   UIHandle *resultPointer;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   uint processingStatus;
@@ -396635,7 +396641,7 @@ void FUN_180899ae6(UIHandle *uiContext)
 {
   uint result;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   longlong contextHandle;
   longlong uiContextBasePointer;
@@ -396844,7 +396850,7 @@ UIHandle FUN_180899d90(longlong uiContext,longlong dataSource)
 {
   UIHandle result;
   float *TransformCoefficient1;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   UIWord auStackX_8 [4];
   
@@ -396903,7 +396909,7 @@ UIHandle FUN_180899dc7(void)
   float *TransformCoefficient1;
   longlong uiContextBasePointer;
   longlong componentData;
-  int uiCompareResult;
+  int bufferCompareResult;
   float TransformCoefficient3;
   UIWord stackUInt32_70;
   
@@ -397012,8 +397018,8 @@ void FUN_180899fe0(longlong uiContext,UIDword *dataSource)
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   UIHandle processingStatus;
   UIHandle uStackX_8;
   
@@ -397146,7 +397152,7 @@ void FUN_18089a059(UIDword uiContext)
 {
   uint result;
   UIHandle *piterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong contextHandle;
   longlong uiContextBasePointer;
   longlong contextDataHandle;
@@ -397286,7 +397292,7 @@ UIHandle FUN_18089a370(longlong uiContext,longlong dataSource)
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   ushort eventCodeType;
   UIHandle processingStatus;
   ushort loopCounter;
@@ -397406,7 +397412,7 @@ UIHandle FUN_18089a51d(void)
 
 {
   short sVar1;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   longlong contextHandle;
   ulonglong componentData;
@@ -397472,7 +397478,7 @@ UIHandle FUN_18089a690(longlong uiContext,UIDword *dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   UIHandle uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*dataSource);
@@ -397510,7 +397516,7 @@ UIHandle FUN_18089a6e8(UIHandle *uiContext,UIHandle dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   longlong componentData;
   int iStack0000000000000030;
   
@@ -397551,7 +397557,7 @@ void FUN_18089a750(longlong uiContext,uint *dataSource)
 
 {
   uint result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle eventCodeType;
   UIDword uStackX_10;
   
@@ -397614,7 +397620,7 @@ ulonglong FUN_18089a880(longlong uiContext,UIHandle *dataSource)
 {
   ulonglong result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int sourceDataInt;
   uint *componentContextPtr;
   int aiStackX_8 [2];
@@ -397695,7 +397701,7 @@ ulonglong FUN_18089a8b4(void)
 {
   ulonglong result;
   longlong componentIndex;
-  int uiCompareResult;
+  int bufferCompareResult;
   int unmodifiedEBX;
   longlong componentData;
   uint *uiTargetHandle;
@@ -398899,7 +398905,7 @@ void FUN_18089b5fc(void)
 
 {
   longlong *uiMemoryPointer;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *contextHandle;
   longlong uiTargetHandle;
   char stackParam00000030;
@@ -398956,7 +398962,7 @@ UIHandle FUN_18089b630(longlong uiContext,UIHandle *dataSource)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint processingStatus;
   uint bufferValidation [2];
@@ -399015,7 +399021,7 @@ void FUN_18089b6df(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   uint uStack00000000000000a8;
   
@@ -399864,8 +399870,8 @@ void FUN_18089be10(longlong uiContext,UIHandle *dataSource,int targetBuffer)
 
 {
   uint result;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataValidationResult;
+  int bufferCompareResult;
   uint processingStatus;
   uint loopCounter;
   longlong contextDataHandle;
@@ -399977,7 +399983,7 @@ void FUN_18089be41(void)
 {
   uint bufferSize;
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   UIHandle *contextHandle;
   uint processingStatus;
@@ -400109,7 +400115,7 @@ void FUN_18089c019(void)
 
 {
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   uint eventCodeType;
   ulonglong processingStatus;
   uint loopCounter;
@@ -405127,7 +405133,7 @@ ulonglong FUN_18089e624(void)
 {
   UIDword result;
   uint iterationCount;
-  int uiCompareResult;
+  int bufferCompareResult;
   ulonglong processingStatus;
   longlong eventDataIndex;
   UIDword *ptrLocal6;
@@ -406218,7 +406224,7 @@ void FUN_18089ee87(void)
 
 {
   UIHandle result;
-  int uiValidationResult;
+  int dataValidationResult;
   UIHandle *contextHandle;
   longlong uiTargetHandle;
   
@@ -406656,7 +406662,7 @@ void ProcessUIBufferOperation(void)
 {
   int bufferSize;
   int operationResult;
-  int uiValidationResult;
+  int dataValidationResult;
   longlong *contextHandle;
   int unmodifiedEBP;
   longlong componentData;
