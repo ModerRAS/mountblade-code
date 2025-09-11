@@ -244012,8 +244012,8 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
         if (MemoryBlockIndex != (long long *)0x0) {
           (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
         }
-        FUN_18022cd30(MemoryBlockIndex,0,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x38));
-        FUN_18022cd30(MemoryBlockIndex,1,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x40));
+        InitializeBufferDataAndResources(MemoryBlockIndex,0,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x38));
+        InitializeBufferDataAndResources(MemoryBlockIndex,1,*(void *)(*(long long *)(ContextHandle + 0x380) + 0x40));
         if (MemoryBlockIndex != (long long *)0x0) {
           (**(code **)(*MemoryBlockIndex + 0x38))(MemoryBlockIndex);
         }
@@ -288951,7 +288951,17 @@ uint64_t * CopyContextHandleDataStructure(uint64_t *ContextHandle,uint64_t *Cont
 
 
 
-2cd30(long long ContextHandle,int OperationBufferSize,long long *Utf8SourcePointervoid FUN_18022cd30(long long ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer
+/**
+ * @brief 初始化缓冲区数据和资源
+ * 
+ * 该函数负责初始化系统缓冲区的数据和资源，包括内存分配、
+ * 数据验证和资源配置等操作。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ */
+void InitializeBufferDataAndResources(long long ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer
 {
   long long *ContextHandle;
   uint64_t MemoryPoolIndex;

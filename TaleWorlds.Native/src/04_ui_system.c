@@ -386552,8 +386552,13 @@ UIHandle FUN_180890923(void)
 
 
 
- void FUN_1808909b4(void)
-void FUN_1808909b4(void)
+ /**
+ * @brief 执行UI系统空闲操作
+ * 
+ * 该函数执行UI系统的空闲操作，通常用于系统空闲时的处理。
+ */
+void ExecuteUIIdleOperation(void)
+void ExecuteUIIdleOperation(void)
 
 {
   return;
