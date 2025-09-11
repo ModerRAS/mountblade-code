@@ -382037,16 +382037,26 @@ UIHandle InitializeUISystem(UIHandle uiContext,int dataSource,UIHandle targetBuf
 
 
 
-UIHandle FUN_18088eb60(longlong uiContext)
+/**
+ * @brief 处理UI上下文验证
+ * 
+ * 验证UI上下文的状态和缓冲区容量，确保UI系统正常运行
+ * 检查缓冲区是否需要扩展，并更新相关状态
+ * 
+ * @param uiContext UI上下文句柄
+ * @return UIHandle 验证结果，0表示成功，非0表示错误代码
+ */
+UIHandle ProcessUIContextValidation(longlong uiContext)
 
 {
   UIHandle result;
-  int aiStackX_8 [8];
+  int bufferDataArray [8];
   
-  if ((*(char *)(uiContext + 0x188) != '\0') &&
-     (FUN_180768b70(aiStackX_8), 0x32 < aiStackX_8[0] - *(int *)(uiBufferData + 0x178))) {
-    *(int *)(uiBufferData + 0x178) = aiStackX_8[0];
-    result = ValidateUIContextState(*(UIHandle *)(uiContext + 0x170));
+  // 检查UI上下文是否已验证且缓冲区需要扩展
+  if ((uiContextValidationFlag != '\0') &&
+     (FUN_180768b70(bufferDataArray), contextBufferThreshold < bufferDataCapacity - currentBufferDataSize)) {
+    currentBufferDataSize = bufferDataCapacity;
+    result = ValidateUIContextState(uiContextHandle);
     if ((int)result != 0) {
       return result;
     }
