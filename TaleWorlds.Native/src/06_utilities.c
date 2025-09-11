@@ -60038,13 +60038,13 @@ void ResetExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + MemoryPointerOffset);
-  *(DataBuffer *)(exceptionContext + 0x40) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionContext + 0x48) != 0) {
+  *(DataBuffer *)(exceptionContext + ResourceCleanupSecondaryOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContext + SystemDataParameterOffset48) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionContext + 0x48) = 0;
-  *(DataWord *)(exceptionContext + 0x58) = 0;
-  *(DataBuffer *)(exceptionContext + 0x40) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + SystemDataParameterOffset48) = 0;
+  *(DataWord *)(exceptionContext + SystemDataParameterOffset58) = 0;
+  *(DataBuffer *)(exceptionContext + ResourceCleanupSecondaryOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
