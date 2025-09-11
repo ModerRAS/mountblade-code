@@ -12,38 +12,38 @@
  */
 
 // 系统基础常量定义
-#define DefaultSystemDataAddress 0x18
-#define ComponentHandleOffset 0x10
-#define SystemContextOffset 0x8
-#define DataBufferElementSize 4
+#define DefaultSystemDataAddress 24                               // 默认系统数据地址 (0x18 = 24字节)
+#define ComponentHandleOffset 16                                  // 组件句柄偏移量 (0x10 = 16字节)
+#define SystemContextOffset 8                                     // 系统上下文偏移量 (0x8 = 8字节)
+#define DataBufferElementSize 4                                    // 数据缓冲区元素大小 (4字节)
 
 // 数值处理常量
-#define FloatValidationMask 0x7f800000
-#define IntegerMinValue -0x80000000
-#define ProcessingFlagMask 0x80000000
-#define MaxSafeBufferSize SystemFlagBit80000
-#define FloatInfinityValue 0x7f800000
-#define NegativeZeroFloat 0x80000000
+#define FloatValidationMask 0x7f800000                              // 浮点数验证掩码 (用于检测无穷大)
+#define IntegerMinValue -2147483648                                 // 32位整数最小值 (-0x80000000)
+#define ProcessingFlagMask 0x80000000                               // 处理标志掩码 (最高位标志)
+#define MaxSafeBufferSize SystemFlagBit80000                       // 最大安全缓冲区大小
+#define FloatInfinityValue 0x7f800000                               // 浮点数无穷大值
+#define NegativeZeroFloat 0x80000000                               // 负零浮点数值
 
 // 安全和对齐常量
-#define SecurityAlignment 0xf
-#define SecurityAlignmentMask 0xfffffff0
-#define SystemCleanupFlag 0x80000000
-#define SystemCleanupAlignmentMask 0xfffffff8
+#define SecurityAlignment 15                                          // 安全对齐值 (0xf = 15字节)
+#define SecurityAlignmentMask 0xfffffff0                              // 安全对齐掩码 (16字节对齐)
+#define SystemCleanupFlag 0x80000000                                 // 系统清理标志 (最高位)
+#define SystemCleanupAlignmentMask 0xfffffff8                        // 系统清理对齐掩码 (8字节对齐)
 // 内存管理常量
-#define MemoryBlockSizeAdjustment 0x27
-#define MemoryValidationThreshold 0xfff
-#define MemoryOffsetValidationThreshold 0x1f
-#define MemoryOffsetAdjustment 4
-#define MemoryBaseOffset 0x80
-#define MemoryBlockMultiplier 0x50
-#define MemoryReferenceOffset 0x18
-#define MemoryDataOffset 0x20
-#define MemoryExceptionCheckOffset 0xe
-#define MemoryPointerTableOffset 0x70
-#define InvalidMemoryOffset -0x8000000000000000
-#define MemoryAlignmentMask 0xfbffffff
-#define SystemMemoryCleanupMask 0xffc00000
+#define MemoryBlockSizeAdjustment 39                                  // 内存块大小调整值 (0x27 = 39字节)
+#define MemoryValidationThreshold 4095                                // 内存验证阈值 (0xfff = 4095)
+#define MemoryOffsetValidationThreshold 31                           // 内存偏移验证阈值 (0x1f = 31)
+#define MemoryOffsetAdjustment 4                                      // 内存偏移调整值 (4字节)
+#define MemoryBaseOffset 128                                          // 内存基础偏移量 (0x80 = 128字节)
+#define MemoryBlockMultiplier 80                                      // 内存块乘数 (0x50 = 80)
+#define MemoryReferenceOffset 24                                       // 内存引用偏移量 (0x18 = 24字节)
+#define MemoryDataOffset 32                                            // 内存数据偏移量 (0x20 = 32字节)
+#define MemoryExceptionCheckOffset 14                                 // 内存异常检查偏移量 (0xe = 14字节)
+#define MemoryPointerTableOffset 112                                   // 内存指针表偏移量 (0x70 = 112字节)
+#define InvalidMemoryOffset -9223372036854775808                      // 无效内存偏移量 (64位最小值)
+#define MemoryAlignmentMask 0xfbffffff                                // 内存对齐掩码
+#define SystemMemoryCleanupMask 0xffc00000                            // 系统内存清理掩码
 
 // 系统配置常量
 #define SystemBufferConfigMultiplier 0x278
@@ -1065,37 +1065,37 @@ typedef union {
 #define DestinationContextOffset1B0 DestinationContextValidationAddress1B0       // 目标上下文验证地址1B0
 
 // 内存管理相关常量
-#define MemoryResourcePointerTableOffset 0x48                    // 内存资源指针表偏移量
-#define MemoryRegionAlignmentShift 0x10                            // 内存区域对齐位移量
-#define MemoryPointerTableOffset70 0x70                           // 内存指针表偏移量70
-#define MemoryExceptionListCheckOffset 0x0                       // 内存异常列表检查偏移量
+#define MemoryResourcePointerTableOffset MemoryResourcePointerTableAddress48    // 内存资源指针表地址48
+#define MemoryRegionAlignmentShift MemoryRegionAlignmentShift16                 // 内存区域对齐位移量16
+#define MemoryPointerTableOffset70 MemoryPointerTableAddress70                // 内存指针表地址70
+#define MemoryExceptionListCheckOffset MemoryExceptionListCheckAddress0       // 内存异常列表检查地址0
 
 // 句柄管理相关常量
-#define HandleCloseOffset68 0x68                                 // 句柄关闭偏移量68
+#define HandleCloseOffset68 HandleCloseAddress68                                 // 句柄关闭地址68
 
 // 数据上下文偏移量常量
-#define DataContextSystemConfigOffset 0x15d8                     // 数据上下文系统配置偏移量
-#define DataContextConfigIndexOffset 0x15e0                      // 数据上下文配置索引偏移量
-#define DataContextConfigStatusOffset 0x15e8                     // 数据上下文配置状态偏移量
+#define DataContextSystemConfigOffset DataContextSystemConfigAddress15D8        // 数据上下文系统配置地址15D8
+#define DataContextConfigIndexOffset DataContextConfigIndexAddress15E0          // 数据上下文配置索引地址15E0
+#define DataContextConfigStatusOffset DataContextConfigStatusAddress15E8        // 数据上下文配置状态地址15E8
 
 // 异常上下文指针偏移量常量
-#define ExceptionContextPointerOffset1600 0x1600                 // 异常上下文指针偏移量1600
-#define ExceptionContextPointerOffset1698 0x1698                 // 异常上下文指针偏移量1698
+#define ExceptionContextPointerOffset1600 ExceptionContextPointerAddress1600       // 异常上下文指针地址1600
+#define ExceptionContextPointerOffset1698 ExceptionContextPointerAddress1698       // 异常上下文指针地址1698
 
 // 异常处理器回调偏移量常量
-#define ExceptionHandlerCallbackOffset10D0 0x10d0               // 异常处理器回调偏移量10D0
-#define ExceptionHandlerCallbackOffset10C0 0x10c0               // 异常处理器回调偏移量10C0
-#define ExceptionHandlerCallbackOffset400 0x190                 // 异常处理器回调偏移量400
-#define ExceptionHandlerContextOffset160 0x160                 // 异常处理器上下文偏移量160
-#define ExceptionContextStatusOffset168 0x168                   // 异常上下文状态偏移量168
-#define ExceptionContextDataOffset178 0x178                     // 异常上下文数据偏移量178
-#define ExceptionContextStatusOffset128 0x128                   // 异常上下文状态偏移量128
-#define ExceptionContextDataOffset158 0x158                     // 异常上下文数据偏移量158
-#define ExceptionContextStatusOffsetE8 0xe8                      // 异常上下文状态偏移量E8
-#define ExceptionContextDataOffsetF8 0xf8                       // 异常上下文数据偏移量F8
-#define ExceptionHandlerContextOffsetE0 0xe0                     // 异常处理器上下文偏移量E0
-#define ExceptionHandlerTempCallbackOffset1098 0x1098           // 异常处理器临时回调偏移量1098
-#define ExceptionHandlerStatusOffset10A0 0x10a0                 // 异常处理器状态偏移量10A0
+#define ExceptionHandlerCallbackOffset10D0 ExceptionHandlerCallbackAddress10D0   // 异常处理器回调地址10D0
+#define ExceptionHandlerCallbackOffset10C0 ExceptionHandlerCallbackAddress10C0   // 异常处理器回调地址10C0
+#define ExceptionHandlerCallbackOffset400 ExceptionHandlerCallbackAddress190    // 异常处理器回调地址190
+#define ExceptionHandlerContextOffset160 ExceptionHandlerContextAddress160        // 异常处理器上下文地址160
+#define ExceptionContextStatusOffset168 ExceptionContextStatusAddress168          // 异常上下文状态地址168
+#define ExceptionContextDataOffset178 ExceptionContextDataAddress178            // 异常上下文数据地址178
+#define ExceptionContextStatusOffset128 ExceptionContextStatusAddress128          // 异常上下文状态地址128
+#define ExceptionContextDataOffset158 ExceptionContextDataAddress158            // 异常上下文数据地址158
+#define ExceptionContextStatusOffsetE8 ExceptionContextStatusAddressE8            // 异常上下文状态地址E8
+#define ExceptionContextDataOffsetF8 ExceptionContextDataAddressF8              // 异常上下文数据地址F8
+#define ExceptionHandlerContextOffsetE0 ExceptionHandlerContextAddressE0          // 异常处理器上下文地址E0
+#define ExceptionHandlerTempCallbackOffset1098 ExceptionHandlerTempCallbackAddress1098 // 异常处理器临时回调地址1098
+#define ExceptionHandlerStatusOffset10A0 ExceptionHandlerStatusAddress10A0        // 异常处理器状态地址10A0
 #define DestinationContextOffset1BC 0x1bc
 
 // 异常处理回调偏移量常量
