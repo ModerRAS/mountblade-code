@@ -2643,6 +2643,17 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemContextFinalization FUN_1801b02f0    // 处理系统上下文最终化
 #define ProcessSystemEventFinalization FUN_180197a20      // 处理系统事件最终化
 
+// 系统资源清理函数
+#define CleanupSystemThreadLocalStorage FUN_1801ba4d0     // 清理系统线程本地存储
+#define CleanupSystemContextData FUN_180196de0            // 清理系统上下文数据
+#define CleanupSystemMemoryCache FUN_180397ce0            // 清理系统内存缓存
+#define CleanupSystemBufferResources FUN_180196d20       // 清理系统缓冲区资源
+#define CleanupSystemCharacterData FUN_180196c40          // 清理系统字符数据
+#define CleanupSystemMemoryPool FUN_180397770            // 清理系统内存池
+#define CleanupSystemAudioResources FUN_18038bfe0         // 清理系统音频资源
+#define CleanupSystemFileSystem FUN_180389750             // 清理系统文件系统
+#define CleanupSystemNetworkResources FUN_180389000       // 清理系统网络资源
+
 // 系统资源管理函数
 #define ProcessSystemResourceAllocation FUN_180397d70     // 处理系统资源分配
 #define ProcessSystemMemoryDeallocateEx FUN_1802fddb0     // 处理系统内存释放扩展
@@ -239950,8 +239961,8 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   if ((long long *)ContextHandle[0xc181] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0xc181] + 0x38))();
   }
-  FUN_1801ba4d0();
-  FUN_1801ba4d0();
+  CleanupSystemThreadLocalStorage();
+  CleanupSystemThreadLocalStorage();
   CoreEngineReleaseSystemResources();
   ContextHandle[0xc169] = &SystemNullTemplate;
   if (ContextHandle[0xc16a] != 0) {
@@ -239960,15 +239971,15 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   ContextHandle[0xc16a] = 0;
   *(uint32_t *)(ContextHandle + 0xc16c) = 0;
   ContextHandle[0xc169] = &ThreadLocalStorageTemplate;
-  FUN_180196de0(ContextHandle + 0xc11e);
+  CleanupSystemContextData(ContextHandle + 0xc11e);
   if ((code *)ContextHandle[0xc11c] != (code *)0x0) {
     (*(code *)ContextHandle[0xc11c])(ContextHandle + 0xc11a,0,0);
   }
-  FUN_180397ce0(ContextHandle + 0xc0fc);
-  FUN_180196d20(ContextHandle + 0xc0e7);
+  CleanupSystemMemoryCache(ContextHandle + 0xc0fc);
+  CleanupSystemBufferResources(ContextHandle + 0xc0e7);
   ExecuteSystemCleanupRoutine();
   InitializeSystemMemoryBlock(ContextHandle + 0xc061,0x20,0x20,FUN_18004a130);
-  FUN_180196c40(ContextHandle + 0x1045);
+  CleanupSystemCharacterData(ContextHandle + 0x1045);
   if ((long long *)ContextHandle[0x1043] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0x1043] + 0x38))();
   }
@@ -240174,13 +240185,27 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
 
 
 
-982b0(long long ContextHandle,long long OperationBufferSizevoid FUN_1801982b0(long long ContextHandle,long long OperationBufferSize
+/**
+ * @brief 系统上下文缓冲区分配器
+ * 
+ * 该函数负责处理系统上下文的缓冲区分配，包括：
+ * - 管理字符表指针和输入数据长度
+ * - 处理缓冲区分配状态和内存地址掩码
+ * - 执行系统上下文分配操作
+ * - 处理控制台事件处理和字符编码
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1801982b0
+ */
+void ProcessSystemContextBufferAllocator(long long ContextHandle, long long OperationBufferSize)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
   int MemoryComparisonResult;
   unsigned long long MemoryOffsetValue;
-  long long lStackX_10;
+  long long StackAllocationTemp;
   
   CharacterTablePointer = CoreEngineEventHandler;
   InputDataLength = 0;
@@ -240199,16 +240224,16 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
         BufferAllocationState = BufferAllocationState + 1;
       } while ((unsigned long long)(long long)InputDataLength < MemoryAddressMaskPointer);
     }
-    lStackX_10 = OperationBufferSize;
-    ProcessSystemContextAllocation(ContextHandle + 0x2870,&lStackX_10,InputDataLength,MemoryAddressMaskPointer,0,0xfffffffffffffffe);
+    StackAllocationTemp = OperationBufferSize;
+    ProcessSystemContextAllocation(ContextHandle + 0x2870, &StackAllocationTemp, InputDataLength, MemoryAddressMaskPointer, 0, 0xfffffffffffffffe);
   }
   else {
     InputDataLength = *(int *)(OperationBufferSize + 0x50);
-    lStackX_10 = CONCAT44(lStackX_10.HighPart,InputDataLength);
+    StackAllocationTemp = CONCAT44(StackAllocationTemp.HighPart, InputDataLength);
     if ((InputDataLength != 0) && (CoreEngineConsoleHandle != 0)) {
       (**(code **)(CoreEngineConsoleHandle + 0x30))(InputDataLength);
     }
-    (**(code **)(CharacterTablePointer + 0x110))(*(uint32_t *)(ContextHandle + 0x286c),InputDataLength);
+    (**(code **)(CharacterTablePointer + 0x110))(*(uint32_t *)(ContextHandle + 0x286c), InputDataLength);
     if ((InputDataLength != 0) && (CoreEngineConsoleHandle != 0)) {
       (**(code **)(CoreEngineConsoleHandle + 0x18))(InputDataLength);
     }

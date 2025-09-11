@@ -44094,7 +44094,7 @@ ValidationDataHandler2:
         }
       }
       if (validationStatus == 0) {
-        systemStatusBuffer[0] = CONCAT31(systemStatusBuffer[0]._1_3_,validationStatusBuffer[0] != '\0');
+        SystemStatusBuffer = CONCAT31(SystemStatusBuffer.BitField3,validationStatusBuffer[0] != '\0');
       }
       memoryRegionBase = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -45424,7 +45424,7 @@ void ConfigureSystemOptionsC1(void)
       StackFrameRegister = 0;
     }
     else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      systemTemporaryMemoryAllocationBuffer = CONCAT31(systemTemporaryMemoryAllocationBuffer._1_3_,*(ByteFlag *)(systemContext + 0x5c));
+      SystemTemporaryMemoryBuffer = CONCAT31(SystemTemporaryMemoryBuffer.BitField3,*(ByteFlag *)(systemContext + 0x5c));
       StackFrameRegister = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                             (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
