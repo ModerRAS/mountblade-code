@@ -297705,30 +297705,44 @@ ProcessUIComponentWithHandlesEx6(UIHandle uiContext,longlong dataSource,UIHandle
 
  
 
- void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
-void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
+ /**
+ * @brief 处理UI组件与句柄扩展7
+ * 
+ * 该函数处理UI组件与句柄的交互，包括数据处理、缓冲区操作和渲染任务执行。
+ * 它会验证数据源，处理缓冲区操作，并在需要时执行渲染任务。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18083cdb6
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIComponentWithHandlesEx7(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer)
 
 {
-  int *pprocessingResult;
+  int *puiProcessingResult;
   int dataValidationResult;
   int bufferCompareResult;
-  int RegisterPointerD;
-  UIHandle StackData4;
-  UIHandle stackParam00000048;
-  code *pcStack0000000000000068;
+  int operationCounter;
+  UIHandle contextData;
+  UIHandle stackParameter;
+  code *functionPointer;
   
-  pcStack0000000000000068 = FUN_18082e800;
-  StackData4 = stackParam00000048;
-  poperationResult = (int *)*targetBuffer;
-  uiCompareResult = *(int *)(dataSource + 0x34) >> 1;
-  uiValidationResult = pprocessingResult[1];
-  if (uiCompareResult <= pprocessingResult[1]) {
-    uiValidationResult = uiCompareResult;
+  functionPointer = FUN_18082e800;
+  contextData = stackParameter;
+  puiProcessingResult = (int *)*targetBuffer;
+  bufferCompareResult = *(int *)(dataSource + 0x34) >> 1;
+  dataValidationResult = puiProcessingResult[1];
+  if (bufferCompareResult <= puiProcessingResult[1]) {
+    dataValidationResult = bufferCompareResult;
   }
-  if (0 < uiValidationResult - *pprocessingResult) {
+  if (0 < dataValidationResult - *puiProcessingResult) {
                      WARNING: Subroutine does not return
-    ProcessUIBufferOperation((longlong)RegisterPointerD * 8,
-                  (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
+    ProcessUIBufferOperation((longlong)operationCounter * 8,
+                  (longlong)((dataValidationResult - *puiProcessingResult) / puiProcessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                   (longlong)*(int *)targetBuffer[3] & 0xffffffff);
   }
                      WARNING: Subroutine does not return
@@ -297737,8 +297751,26 @@ void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
 
 
 
+/**
+ * @brief 处理UI组件与句柄扩展8
+ * 
+ * 该函数处理UI组件与句柄的交互，包括上下文数据处理、内存管理和迭代操作。
+ * 它会验证数据源，处理上下文数据，并在需要时返回错误状态。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6，用于控制处理逻辑
+ * 
+ * @return UIHandle 返回操作结果句柄或错误状态
+ * 
+ * @note 原始函数名：FUN_18083cdf0
+ * @note 该函数可能在失败时返回0xffffffff
+ */
 UIHandle
-FUN_18083cdf0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle bufferSize,
+ProcessUIComponentWithHandlesEx8(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle bufferSize,
              longlong resultPointer,uint param_6)
 
 {
@@ -299984,8 +300016,19 @@ void FUN_1808401c0(UIHandle uiContext)
 
 
  
-UIHandle FUN_180840270(longlong *uiContext)
-
+/**
+ * @brief 处理UI上下文事件验证和处理
+ * 
+ * 该函数负责验证和处理UI上下文中的事件，包括：
+ * - 事件代码验证和类型检查
+ * - 上下文数据清理和重置
+ * - 缓冲区管理和内存操作
+ * - 事件处理结果返回
+ * 
+ * @param uiContext UI上下文指针
+ * @return UIHandle 处理结果句柄，0表示失败，非0表示成功
+ */
+UIHandle ProcessUIContextEventValidation(longlong *uiContext)
 {
   int operationResult;
   UIHandle iterationCount;

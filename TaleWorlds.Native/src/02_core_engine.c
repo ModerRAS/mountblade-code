@@ -255754,7 +255754,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
       ArraySize = (unsigned long long)ProcessingStatusFlag;
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)(OperationBufferSize[8] - OperationBufferSize[7] >> 4));
   }
-  FUN_180209720(ContextHandle,&SystemContextPointerA8);
+  ConfigureSystemValidationParameters(ContextHandle,&SystemContextPointerA8);
   if ((SystemContextPointerA8 != (long long *)0x0) &&
      (EncodingValidationResult = (int)(SystemContextPointerA8[8] - SystemContextPointerA8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
     do {
@@ -255872,7 +255872,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   SystemUnsignedValue6C = *(uint32_t *)((long long)AdditionalParameter1 + 0x34);
   StackProcessingValue = *(uint32_t *)(AdditionalParameter1 + 7);
   SystemDataValue1 = *(uint32_t *)((long long)AdditionalParameter1 + 0x3c);
-  FUN_180209470(&plStack_b8);
+  InitializeSystemValidationBuffer(&plStack_b8);
   AllocatedMemorySize = CoreEngineMemoryContext;
   SystemChecksum = OperationResult;
   ArraySize = OperationResult;
@@ -255884,7 +255884,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
       ArraySize = (unsigned long long)ProcessingStatusFlag;
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)(OperationBufferSize[8] - OperationBufferSize[7] >> 4));
   }
-  FUN_180209720(ContextHandle,&plStack_b8);
+  ConfigureSystemValidationParameters(ContextHandle,&plStack_b8);
   if ((plStack_b8 != (long long *)0x0) &&
      (EncodingValidationResult = (int)(plStack_b8[8] - plStack_b8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
     do {
