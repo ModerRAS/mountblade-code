@@ -94611,6 +94611,13 @@ void UINoOperationHandler(void)
 #define ProcessUIResourcesFinalize FUN_18073e6ce            // 处理UI资源最终化
 #define ProcessUIContextWithParameters FUN_18073e700       // 处理带参数的UI上下文
 
+// UI系统上下文处理函数宏定义
+#define ProcessUIContextWithDataSource FUN_18073eccd        // 处理带数据源的UI上下文
+#define ProcessUIContextDataOperation FUN_18073ed53        // 处理UI上下文数据操作
+#define ExecuteUISystemCleanup FUN_18073eddb                // 执行UI系统清理
+#define ProcessUIContextWithHandle FUN_18073edfd           // 处理带句柄的UI上下文
+#define ProcessUIContextWithDataSource2 FUN_18073ee30       // 处理带数据源的UI上下文2
+
 // 函数: void FUN_18071ace8(void)
 #define UIReturnEmptyFunction FUN_18071ace8
 /**
@@ -133246,8 +133253,7 @@ void ExecuteUISystemCleanup(void)
 
 
 
- void FUN_18073edfd(UIHandle uiContext)
-void FUN_18073edfd(UIHandle uiContext)
+ void ProcessUIContextWithHandle(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -133258,8 +133264,8 @@ void FUN_18073edfd(UIHandle uiContext)
 
  
 
- void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
-void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
+ #define ProcessUIContextWithDataSource2 FUN_18073ee30      // 处理带数据源的UI上下文2
+void ProcessUIContextWithDataSource2(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
