@@ -250,6 +250,18 @@ typedef enum {
 #define _DAT_180c0d100 UIResourceHandlerFunctionPointer         // UI资源处理函数指针
 #define _DAT_180c0e170 UITransformFunctionPointer              // UI变换函数指针
 #define _DAT_180c108d0 UIRenderFunctionPointer                  // UI渲染函数指针
+
+// UI系统数据变量定义
+#define DAT_180c4ea98 UIEventProcessingThresholdCounter         // UI事件处理阈值计数器
+#define DAT_180be2198 UIPrimarySystemDataTable                   // UI主数据表
+#define DAT_180be2df8 UISecondarySystemDataTable                 // UI次数据表
+#define DAT_180be2288 UITertiarySystemDataTable                  // UI第三数据表
+#define DAT_180be2d08 UIQuaternarySystemDataTable                // UI第四数据表
+#define DAT_180be2ee8 UIQuinarySystemDataTable                   // UI第五数据表
+#define DAT_180980640 UISenarySystemDataTable                    // UI第六数据表
+#define DAT_1809473f0 UIVectorOperationMask3F0                  // UI向量操作掩码3F0
+#define DAT_180947510 UIVectorOperationMask510                  // UI向量操作掩码510
+#define DAT_180947370 UIVectorOperationMask370                  // UI向量操作掩码370
 #define ProcessUIDataWithMultipleParameters FUN_18073a5ad         // 处理带多参数的UI数据
 #define ProcessUIResourceCleanup FUN_18073a613                  // 处理UI资源清理
 #define ProcessUIComponentStateUpdate FUN_18073a6c1              // 处理UI组件状态更新
