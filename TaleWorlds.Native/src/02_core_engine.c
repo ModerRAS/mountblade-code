@@ -2275,11 +2275,11 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define LockOperationResultPointer0 LockOperationResultPointer0 // 字符串比较结果指针0
 #define SystemStackPointer190 SystemStackPointer190            // 系统栈指针190
 // 线程池操作索引值
-#define ThreadPoolOperationIndex lStack_158
-#define SystemMemoryAllocationBlock128 pplStack_128             // 系统内存分配块128
-#define SystemMemoryAllocationBlock298 pplStack_298             // 系统内存分配块298
-#define SystemMemoryAllocationBlock260 pplStack_260             // 系统内存分配块260
-#define SystemMemoryAllocationBlock258 pplStack_258             // 系统内存分配块258
+#define ThreadPoolOperationIndex ThreadOperationStackIndex           // 线程操作栈索引
+#define SystemMemoryAllocationBlock128 SystemMemoryPoolAllocation128   // 系统内存池分配块128
+#define SystemMemoryAllocationBlock298 SystemMemoryPoolAllocation298   // 系统内存池分配块298
+#define SystemMemoryAllocationBlock260 SystemMemoryPoolAllocation260   // 系统内存池分配块260
+#define SystemMemoryAllocationBlock258 SystemMemoryPoolAllocation258   // 系统内存池分配块258
 #define StackValidationData StackValidationData                 // 栈验证数据
 #define StackProcessingVariable1B8 StackProcessingVariable1B8   // 栈处理变量1B8
 #define SystemStackRegisterBuffer SystemStackRegisterBuffer     // 系统栈寄存器标志B0
@@ -2290,19 +2290,19 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 // 系统栈数组副本
 #define SystemStackBufferCopy SystemKeyStackBuffer
 // 系统事件配置索引值
-#define SystemEventConfigIndex uStack_158
+#define SystemEventConfigIndex SystemEventConfigurationStackIndex      // 系统事件配置栈索引
 // 内存块偏移计算值
-#define MemoryBlockOffset uStack_25c
+#define MemoryBlockOffset MemoryBlockCalculatedOffset                // 内存块计算偏移量
 // 数据缓冲区副本
-#define DataBufferCopy SystemEncodingStackBuffer
+#define DataBufferCopy SystemEncodingDataBufferCopy                  // 系统编码数据缓冲区副本
 // 系统栈指针
-#define SystemStackPointer puStack_418
-#define SystemStackArray4d8 apuStack_4d8                    // 系统栈数组4d8
-#define SystemStackUnsigned4d8 uStack_4d8                   // 系统栈无符号4d8
-#define SystemStackUnsigned5a8 uStack_5a8                  // 系统栈无符号5a8
-#define SystemStackPointer5b8 puStack_5b8                  // 系统栈指针5b8
+#define SystemStackPointer SystemContextStackPointer                 // 系统上下文栈指针
+#define SystemStackArray4d8 SystemDataProcessingStackArray4d8        // 系统数据处理栈数组4d8
+#define SystemStackUnsigned4d8 SystemDataProcessingUnsignedValue4d8  // 系统数据处理无符号值4d8
+#define SystemStackUnsigned5a8 SystemMemoryAllocationUnsignedValue5a8 // 系统内存分配无符号值5a8
+#define SystemStackPointer5b8 SystemMemoryBlockStackPointer5b8       // 系统内存块栈指针5b8
 // 系统栈数组5d8
-#define SystemStackArray5d8 auStack_5d8
+#define SystemStackArray5d8 SystemContextManagementStackArray5d8     // 系统上下文管理栈数组5d8
 
 // 扩展系统栈变量语义化映射
 // 系统上下文处理数组190
