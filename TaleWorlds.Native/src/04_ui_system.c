@@ -196,6 +196,33 @@ typedef enum {
 #define processingResult UIProcessingResultValue
 #define EventprocessingFlags UIEventprocessingFlagsValue
 
+// UI系统栈变量语义化定义
+#define astackUInt158 UIDataBufferStack158
+#define pstackUInt138 UIDataBufferPointer138
+#define stackLong120 UIStackLong120
+#define astackUInt118 UIDataBufferStack118
+#define stackUInt18 UIStackUInt18
+#define pRenderContextSize UIRenderContextSizePointer
+#define astackUInt188 UIContextStack188
+#define stackUInt48 UIStackUInt48
+#define lStack0000000000000038 UILongStack38
+#define stackParam00000140 UIStackParam140
+#define RegisterPointer UIRegisterPointer
+#define uiContextBasePointer UIContextBasePointer
+#define eventHandle UIEventHandle
+#define preservedXMM6 UIPreservedXMM6
+#define unmodifiedXMM6_Db UIUnmodifiedXMM6_Db
+#define unmodifiedXMM6_Dc UIUnmodifiedXMM6_Dc
+#define unmodifiedXMM6_Dd UIUnmodifiedXMM6_Dd
+#define operationResult UIOperationResult
+#define dataValidationResult UIDataValidationResult
+#define bufferCompareResult UIBufferCompareResult
+#define uiValidationResult UIValidationResult
+#define uiCompareResult UICompareResult
+#define unmodifiedEBP UIUnmodifiedEBP
+#define unmodifiedESI UIUnmodifiedESI
+#define XorEncryptionKey UIXorEncryptionKey
+
 // UI系统全局变量语义化定义
 #define UNK_18097ecf0 UIEventDataTable            // UI事件数据表
 #define UNK_18097ed30 UIComponentDataTable         // UI组件数据表
