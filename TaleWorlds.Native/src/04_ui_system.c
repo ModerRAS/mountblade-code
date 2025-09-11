@@ -94581,7 +94581,10 @@ void UIReturnEmptyFunction(void)
  * @param param_7 参数7，用于传递额外的分配参数
  * @param param_8 参数8，用于传递额外的分配参数
  * 
+ * @return void 无返回值
+ * 
  * @note 原始函数名：未指定
+ * @note 这是一个简化的实现版本，用于处理UI系统的内存分配操作
  * @see InitializeUISystem, CleanupUISystem, ProcessUIBufferData
  */
 void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,

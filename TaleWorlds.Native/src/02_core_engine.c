@@ -42,6 +42,7 @@
 
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
+#define FUN_180211930 InitializeSystemContextDataNode           // 初始化系统上下文数据节点
 #define FUN_18022b590 ValidateAndInitializeMemoryBlock          // 验证和初始化内存块
 #define FUN_18022c770 ProcessContextHandleAndSystemResources     // 处理上下文句柄和系统资源
 #define FUN_18022bf70 HandleSystemContextValidation              // 处理系统上下文验证
@@ -262709,7 +262710,21 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
 
 
 
-uint64_t * FUN_180211930(uint64_t *ContextHandle
+/**
+ * @brief 初始化系统上下文数据节点
+ * 
+ * 该函数负责初始化系统上下文的数据节点，包括：
+ * - 设置数据节点模板引用
+ * - 初始化验证状态
+ * - 配置系统上下文主节点
+ * - 设置内存保护机制
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @return uint64_t* 初始化后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180211930
+ */
+uint64_t * InitializeSystemContextDataNode(uint64_t *ContextHandle)
 {
   *ContextHandle = &DataNodeTemplateA;
   *ContextHandle = &DataNodeTemplateB;
