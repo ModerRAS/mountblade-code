@@ -41783,7 +41783,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   long long *MemoryRangeBoundary;
   long long *MemoryPoolSizePointer;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   long long *PerformanceCounterPointer;
   
@@ -41797,7 +41797,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockListHead;
   if (MemoryBlockListHead != (long long *)0x0) {
     (**(code **)(*MemoryBlockListHead + 0x28))(MemoryBlockListHead);
@@ -41811,7 +41811,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryRangeBoundary;
   if (MemoryRangeBoundary != (long long *)0x0) {
     (**(code **)(*MemoryRangeBoundary + 0x28))(MemoryRangeBoundary);
@@ -41820,17 +41820,17 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   MemoryAddressMaskPointer = MemoryAllocate(MemoryPoolManager,0x70,8,3);
   MemoryPoolSizePointer = (long long *)GetMemoryBlockInfo(MemoryAddressMaskPointer,0,MemoryBlockIndex);
   if (MemoryPoolSizePointer != (long long *)0x0) {
-    pSystemRegisterPointerX10 = (long long **)MemoryPoolSizePointer;
+    SystemContextOperationPointerReference = (long long **)MemoryPoolSizePointer;
     (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
   }
   SystemContextRegister = MemoryPoolSizePointer;
   if (MemoryBlockListHead != (long long *)0x0) {
-    pSystemRegisterPointerX10 = (long long **)MemoryBlockListHead;
+    SystemContextOperationPointerReference = (long long **)MemoryBlockListHead;
     (**(code **)(*MemoryBlockListHead + 0x38))(MemoryBlockListHead);
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryPoolSizePointer;
   if (MemoryPoolSizePointer != (long long *)0x0) {
     (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
@@ -41860,7 +41860,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   long long *MemoryRangeBoundary;
   long long *MemoryPoolSizePointer;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   long long *PerformanceCounterPointer;
   
@@ -41874,7 +41874,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockListHead;
   if (MemoryBlockListHead != (long long *)0x0) {
     (**(code **)(*MemoryBlockListHead + 0x28))(MemoryBlockListHead);
@@ -41888,7 +41888,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryRangeBoundary;
   if (MemoryRangeBoundary != (long long *)0x0) {
     (**(code **)(*MemoryRangeBoundary + 0x28))(MemoryRangeBoundary);
@@ -41897,17 +41897,17 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
   MemoryAddressMaskPointer = MemoryAllocate(MemoryPoolManager,0x70,8,3);
   MemoryPoolSizePointer = (long long *)GetMemoryBlockInfo(MemoryAddressMaskPointer,0,MemoryBlockIndex);
   if (MemoryPoolSizePointer != (long long *)0x0) {
-    pSystemRegisterPointerX10 = (long long **)MemoryPoolSizePointer;
+    SystemContextOperationPointerReference = (long long **)MemoryPoolSizePointer;
     (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
   }
   SystemContextRegister = MemoryPoolSizePointer;
   if (MemoryBlockListHead != (long long *)0x0) {
-    pSystemRegisterPointerX10 = (long long **)MemoryBlockListHead;
+    SystemContextOperationPointerReference = (long long **)MemoryBlockListHead;
     (**(code **)(*MemoryBlockListHead + 0x38))(MemoryBlockListHead);
   }
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryPoolSizePointer;
   if (MemoryPoolSizePointer != (long long *)0x0) {
     (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
@@ -182089,7 +182089,7 @@ void InitializeContextHandleProcessor(uint64_t *ContextHandle)
 void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
@@ -182097,7 +182097,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
@@ -182108,7 +182108,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
@@ -182119,7 +182119,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0);
   }
@@ -182130,7 +182130,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0);
   }
@@ -182141,7 +182141,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0);
   }
@@ -182152,7 +182152,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle, uint64_t OperationBuf
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x28))();
   }
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
     ProcessRenderDataOperation(SystemContextRegister,0);
   }
@@ -206160,15 +206160,15 @@ void ProcessCharacterEncodingAndSystemContext(long long ***ContextHandle,long lo
         pppSystemContextRegister = (long long ****)ppContextHandle6;
         if (ppContextHandle6 != ppSystemContextPtr) {
           do {
-            pppSystemRegisterPointerX10 = (long long ****)(ppContextHandle6 + 1);
-            *pppSystemRegisterPointerX10 = (long long ***)&SystemNullTemplate;
+            ppSystemContextOperationPointerReference = (long long ****)(ppContextHandle6 + 1);
+            *ppSystemContextOperationPointerReference = (long long ***)&SystemNullTemplate;
             if (ppContextHandle6[2] != (long long **)0x0) {
               pppSystemContextRegister = (long long ****)ppContextHandle6;
                 ProcessSystemEventHandling();
             }
             ppContextHandle6[2] = (long long **)0x0;
             *(uint32_t *)(ppContextHandle6 + 4) = 0;
-            *pppSystemRegisterPointerX10 = (long long ***)&ThreadLocalStorageTemplate;
+            *ppSystemContextOperationPointerReference = (long long ***)&ThreadLocalStorageTemplate;
             pppSystemContextRegister = (long long ****)(ppContextHandle6 + 5);
             ppContextHandle6 = (long long ***)pppSystemContextRegister;
           } while (pppSystemContextRegister != (long long ****)ppSystemContextPtr);
@@ -206368,17 +206368,17 @@ LabelSystemFlagConfiguration:
     }
     if (iStack_b8 != 0) {
       pppContextHandle2 = (long long ****)MemoryAllocate(MemoryPoolManager,0xe8,8,3);
-      pppSystemRegisterPointerX10 = (long long ****)&CoreEngineValueA8;
+      ppSystemContextOperationPointerReference = (long long ****)&CoreEngineValueA8;
       pppSystemContextRegister = pppContextHandle2;
       SystemStatusContext = (void *)CoreEngineExecuteSystemEvent(&CoreEngineValueA8,&SystemCharacterStatusBufferPointer);
       pppplStack_88 = (long long ****)CharacterStatusBuffer3;
       CoreEngineProcessSystemContext(pppContextHandle2);
       *pppContextHandle2 = (long long ***)&SystemEventBufferNonary;
-      pppSystemRegisterPointerX10 = pppContextHandle2 + 0x19;
-      *pppSystemRegisterPointerX10 = (long long ***)&ThreadLocalStorageTemplate;
+      ppSystemContextOperationPointerReference = pppContextHandle2 + 0x19;
+      *ppSystemContextOperationPointerReference = (long long ***)&ThreadLocalStorageTemplate;
       pppContextHandle2[0x1a] = (long long ***)0x0;
       *(uint32_t *)(pppContextHandle2 + 0x1b) = 0;
-      *pppSystemRegisterPointerX10 = (long long ***)&SystemNullTemplate;
+      *ppSystemContextOperationPointerReference = (long long ***)&SystemNullTemplate;
       pppContextHandle2[0x1c] = (long long ***)0x0;
       pppContextHandle2[0x1a] = (long long ***)0x0;
       *(uint32_t *)(pppContextHandle2 + 0x1b) = 0;
@@ -206386,7 +206386,7 @@ LabelSystemFlagConfiguration:
       MemoryAllocationHandle = (unsigned long long)UnicodeCodePoint;
       SystemConfigurationIterator = CharacterStatusBuffer3[1];
       if (SystemConfigurationIterator != 0) {
-        CoreEngineProcessSystemEvent(pppSystemRegisterPointerX10,MemoryAllocationHandle);
+        CoreEngineProcessSystemEvent(ppSystemContextOperationPointerReference,MemoryAllocationHandle);
         SystemConfigurationIterator = CharacterStatusBuffer3[1];
       }
       if (UnicodeCodePoint != 0) {
@@ -206408,18 +206408,18 @@ LabelSystemFlagConfiguration:
       pppplStack_88 = pppContextHandle2;
       (*(code *)(*pppContextHandle2)[5])(pppContextHandle2,SystemConfigurationIterator);
       SystemConfigurationIterator = TimeoutValueStorage;
-      pppSystemRegisterPointerX10 = (long long ****)&pppSystemContextRegister;
+      ppSystemContextOperationPointerReference = (long long ****)&pppSystemContextRegister;
       pppSystemContextRegister = pppContextHandle2;
       (*(code *)(*pppContextHandle2)[5])(pppContextHandle2);
       ppppCoreEngineSignedValue78 = (long long ****)&pppSystemContextRegister;
       SystemStatusContext = (void *)**(uint64_t **)(SystemConfigurationIterator + 8);
       pSystemContextValidationFlag = *(code **)*CharacterStatusBuffer3;
-      SystemCleanupFlagF = &pppSystemRegisterPointerX10;
-      pppSystemRegisterPointerX10 = pppSystemContextRegister;
+      SystemCleanupFlagF = &ppSystemContextOperationPointerReference;
+      ppSystemContextOperationPointerReference = pppSystemContextRegister;
       if (pppSystemContextRegister != (long long ****)0x0) {
         (*(code *)(*pppSystemContextRegister)[5])();
       }
-      (*pSystemContextValidationFlag)(CharacterStatusBuffer3,&pppSystemRegisterPointerX10);
+      (*pSystemContextValidationFlag)(CharacterStatusBuffer3,&ppSystemContextOperationPointerReference);
       if (pppSystemContextRegister != (long long ****)0x0) {
         (*(code *)(*pppSystemContextRegister)[7])();
       }
@@ -210871,7 +210871,7 @@ void ProcessCharacterEncodingConversion(long long ContextHandle)
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -210886,12 +210886,12 @@ void ProcessCharacterEncodingConversion(long long ContextHandle)
   *MemoryBlockIndex = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryBlockIndex + 5) = 2;
   MemoryBlockIndex[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryBlockIndex;
+  SystemContextOperationPointerReference = (long long **)MemoryBlockIndex;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
@@ -210921,7 +210921,7 @@ void ProcessCharacterDataValidation(long long ContextHandle)
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -210936,12 +210936,12 @@ void ProcessCharacterDataValidation(long long ContextHandle)
   *MemoryBlockIndex = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryBlockIndex + 5) = 3;
   MemoryBlockIndex[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryBlockIndex;
+  SystemContextOperationPointerReference = (long long **)MemoryBlockIndex;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
@@ -210971,7 +210971,7 @@ void ProcessCharacterEncodingStatusManagement(long long ContextHandle)
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -210986,12 +210986,12 @@ void ProcessCharacterEncodingStatusManagement(long long ContextHandle)
   *MemoryBlockIndex = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryBlockIndex + 5) = 4;
   MemoryBlockIndex[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryBlockIndex;
+  SystemContextOperationPointerReference = (long long **)MemoryBlockIndex;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
@@ -211022,7 +211022,7 @@ void ProcessCharacterBufferSizeManagement(long long ContextHandle,long long Oper
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -211037,13 +211037,13 @@ void ProcessCharacterBufferSizeManagement(long long ContextHandle,long long Oper
   *MemoryBlockIndex = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryBlockIndex + 5) = 5;
   MemoryBlockIndex[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryBlockIndex;
+  SystemContextOperationPointerReference = (long long **)MemoryBlockIndex;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   MemoryBlockIndex[6] = OperationBufferSize;
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
@@ -211225,7 +211225,7 @@ uint64_t ProcessSystemContextManagement(long long ContextHandle,uint32_t *Contex
   uint32_t CalculatedCodePoint;
   long long *MemoryRangeBoundary;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryRangeBoundary = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -211240,7 +211240,7 @@ uint64_t ProcessSystemContextManagement(long long ContextHandle,uint32_t *Contex
   *MemoryRangeBoundary = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryRangeBoundary + 5) = 8;
   MemoryRangeBoundary[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryRangeBoundary;
+  SystemContextOperationPointerReference = (long long **)MemoryRangeBoundary;
   SystemContextRegister = MemoryRangeBoundary;
   (**(code **)(*MemoryRangeBoundary + 0x28))(MemoryRangeBoundary);
   if (OperationBufferSize == (uint32_t *)0x0) {
@@ -211258,7 +211258,7 @@ uint64_t ProcessSystemContextManagement(long long ContextHandle,uint32_t *Contex
   }
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryRangeBoundary;
   (**(code **)(*MemoryRangeBoundary + 0x28))(MemoryRangeBoundary);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
@@ -213166,7 +213166,7 @@ void ProcessSystemMemoryAllocationAndInitialization(long long ContextHandle,long
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
   long long *SystemContextRegister;
-  long long **pSystemRegisterPointerX10;
+  long long **SystemContextOperationPointerReference;
   long long *SystemContextRegister;
   
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
@@ -213181,13 +213181,13 @@ void ProcessSystemMemoryAllocationAndInitialization(long long ContextHandle,long
   *MemoryBlockIndex = (long long)&SystemResourceArray;
   *(uint32_t *)(MemoryBlockIndex + 5) = 6;
   MemoryBlockIndex[4] = ContextHandle;
-  pSystemRegisterPointerX10 = (long long **)MemoryBlockIndex;
+  SystemContextOperationPointerReference = (long long **)MemoryBlockIndex;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   MemoryBlockIndex[6] = OperationBufferSize;
   CharacterStatusBuffer = *(uint64_t **)(ContextHandle + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  pSystemRegisterPointerX10 = &SystemContextRegister;
+  SystemContextOperationPointerReference = &SystemContextRegister;
   SystemContextRegister = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   (*SystemValidationFunction)(CharacterStatusBuffer,&SystemContextRegister);
