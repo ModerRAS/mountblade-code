@@ -297,6 +297,16 @@
 #define FUN_1808482f0 GetSystemMemoryStatus                       // 获取系统内存状态
 #define FUN_180840c00 ReleaseSystemMemoryResources                 // 释放系统内存资源
 
+// 上下文句柄和系统资源管理函数语义化宏定义
+#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement // 处理上下文句柄和系统资源管理
+#define FUN_180187cd0 ProcessCharacterTableAndDataInitialization     // 处理字符表和数据初始化
+#define FUN_18018bd0d ProcessSystemHandleValidation                  // 处理系统句柄验证
+#define FUN_18018bd5f ResetSystemHandleState                         // 重置系统句柄状态
+#define FUN_180190e30 ProcessSystemMemoryAndDataTransfer            // 处理系统内存和数据传输
+#define FUN_180196bd0 AllocateSystemContextHandle                   // 分配系统上下文句柄
+#define FUN_1801977e0 HandleSystemMemoryAllocation                  // 处理系统内存分配
+#define FUN_180199930 ProcessSystemCharacterEncoding                // 处理系统字符编码
+
 /**
  * @brief 处理系统数据验证和初始化
  * 
@@ -250644,7 +250654,7 @@ LAB_180203b67:
       if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto LAB_180203b67;
     }
   }
-  MemoryBlockIndex = (long long *)FUN_180203ba0();
+  MemoryBlockIndex = (long long *)InitializeSystemFloatProcessor();
   return *MemoryBlockIndex + 0x78;
 }
 
