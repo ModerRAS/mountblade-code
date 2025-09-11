@@ -15622,33 +15622,33 @@ void* MemoryPoolUndenaryBlock;                        // 内存池第十一数�
 void* MemoryPoolDuodenaryBlock;                       // 内存池第十二数据块 - 第十二级内存池数据
 void* MemoryPoolTerdenaryBlock;                       // 内存池第十三数据块 - 第十三级内存池数据
 // 工具系统内存管理标志位 - 系统状态和控制标志
-uint8_t SystemMemoryManagementPrimaryFlag;
-uint8_t SystemMemoryManagementSecondaryFlag;
-uint8_t SystemMemoryManagementTertiaryFlag;
-uint8_t SystemMemoryManagementQuaternaryFlag;
-uint8_t SystemMemoryManagementQuinaryFlag;
-uint8_t SystemMemoryManagementSenaryFlag;
-uint8_t SystemMemoryManagementSeptenaryFlag;
-uint8_t SystemMemoryManagementOctonaryFlag;
-uint8_t SystemMemoryManagementNonaryFlag;
-uint8_t SystemMemoryManagementDenaryFlag;
-uint8_t SystemMemoryManagementUndenaryFlag;
-uint8_t SystemMemoryManagementDuodenaryFlag;
-uint8_t SystemMemoryManagementTerdenaryFlag;
-uint8_t SystemMemoryManagementQuattuordenaryFlag;
-uint8_t SystemMemoryManagementQuindenaryFlag;
-uint8_t SystemMemoryManagementSexdenaryFlag;
-uint8_t SystemMemoryManagementSeptendenaryFlag;
+uint8_t MemoryManagementPrimaryFlag;                   // 内存管理主标志位 - 主要内存管理状态标志
+uint8_t MemoryManagementSecondaryFlag;                 // 内存管理辅助标志位 - 辅助内存管理状态标志
+uint8_t MemoryManagementTertiaryFlag;                  // 内存管理第三标志位 - 第三级内存管理状态标志
+uint8_t MemoryManagementQuaternaryFlag;                // 内存管理第四标志位 - 第四级内存管理状态标志
+uint8_t MemoryManagementQuinaryFlag;                   // 内存管理第五标志位 - 第五级内存管理状态标志
+uint8_t MemoryManagementSenaryFlag;                    // 内存管理第六标志位 - 第六级内存管理状态标志
+uint8_t MemoryManagementSeptenaryFlag;                 // 内存管理第七标志位 - 第七级内存管理状态标志
+uint8_t MemoryManagementOctonaryFlag;                 // 内存管理第八标志位 - 第八级内存管理状态标志
+uint8_t MemoryManagementNonaryFlag;                   // 内存管理第九标志位 - 第九级内存管理状态标志
+uint8_t MemoryManagementDenaryFlag;                    // 内存管理第十标志位 - 第十级内存管理状态标志
+uint8_t MemoryManagementUndenaryFlag;                  // 内存管理第十一标志位 - 第十一级内存管理状态标志
+uint8_t MemoryManagementDuodenaryFlag;                 // 内存管理第十二标志位 - 第十二级内存管理状态标志
+uint8_t MemoryManagementTerdenaryFlag;                 // 内存管理第十三标志位 - 第十三级内存管理状态标志
+uint8_t MemoryManagementQuattuordenaryFlag;            // 内存管理第十四标志位 - 第十四级内存管理状态标志
+uint8_t MemoryManagementQuindenaryFlag;                 // 内存管理第十五标志位 - 第十五级内存管理状态标志
+uint8_t MemoryManagementSexdenaryFlag;                 // 内存管理第十六标志位 - 第十六级内存管理状态标志
+uint8_t MemoryManagementSeptendenaryFlag;              // 内存管理第十七标志位 - 第十七级内存管理状态标志
 // 工具系统内存管理数据块 - 缓存和临时数据
-uint8_t SystemMemoryManagementPrimaryCache;
-uint8_t SystemMemoryManagementSecondaryCache;
-uint8_t SystemMemoryManagementTertiaryCache;
-uint8_t SystemMemoryManagementQuaternaryCache;
-uint8_t SystemMemoryManagementQuinaryCache;
-uint8_t SystemMemoryManagementSenaryCache;
-uint8_t SystemMemoryManagementSeptenaryCache;
-uint8_t SystemMemoryManagementOctonaryCache;
-uint8_t SystemMemoryManagementNonaryCache;
+uint8_t MemoryManagementPrimaryCache;                  // 内存管理主缓存 - 主要内存管理缓存数据
+uint8_t MemoryManagementSecondaryCache;                // 内存管理辅助缓存 - 辅助内存管理缓存数据
+uint8_t MemoryManagementTertiaryCache;                 // 内存管理第三缓存 - 第三级内存管理缓存数据
+uint8_t MemoryManagementQuaternaryCache;               // 内存管理第四缓存 - 第四级内存管理缓存数据
+uint8_t MemoryManagementQuinaryCache;                  // 内存管理第五缓存 - 第五级内存管理缓存数据
+uint8_t MemoryManagementSenaryCache;                   // 内存管理第六缓存 - 第六级内存管理缓存数据
+uint8_t MemoryManagementSeptenaryCache;                // 内存管理第七缓存 - 第七级内存管理缓存数据
+uint8_t MemoryManagementOctonaryCache;                 // 内存管理第八缓存 - 第八级内存管理缓存数据
+uint8_t MemoryManagementNonaryCache;                   // 内存管理第九缓存 - 第九级内存管理缓存数据
 uint8_t SystemMemoryManagementDenaryCache;
 uint8_t SystemMemoryManagementUndenaryCache;
 uint8_t SystemMemoryManagementDuodenaryCache;
