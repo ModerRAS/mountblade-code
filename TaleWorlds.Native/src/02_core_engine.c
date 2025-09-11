@@ -15888,7 +15888,7 @@ void CoreEngineInitializeNetworkMessageQueue(void)
   CurrentNode = RootNode;
   PreviousNode = (void *)RootNode[1];
   while (IsNodeInitialized == '\0') {
-    NodeNodeComparisonResult = memcmp(PreviousNode + 4,&SystemComparisonDataSextenary,0x10);
+    NodeComparisonResult = memcmp(PreviousNode + 4,&SystemComparisonDataSextenary,0x10);
     if (NodeComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
       PreviousNode = CurrentNode;
