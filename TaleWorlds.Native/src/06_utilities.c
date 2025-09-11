@@ -2994,13 +2994,15 @@
 #define MemoryPageSize 0x1000                      // 内存页大小
 #define SystemMemoryAlignment 0x1000               // 系统内存对齐大小
 #define ExceptionHandlerStackSize 0x2000            // 异常处理器栈大小
-#define SystemValidationCode 0xc0000001            // 系统验证代码
-#define SystemErrorCode 0xc0000002                 // 系统错误代码
-#define ResourceValidationCode 0xc0000003           // 资源验证代码
-#define MemoryAccessViolation 0xc0000005            // 内存访问违例
-#define InvalidParameterCode 0xc000000d             // 无效参数代码
-#define SystemResourceExhausted 0xc000009a          // 系统资源耗尽
-#define SecurityValidationFailed 0xc0000409          // 安全验证失败
+// 系统验证状态码
+#define SystemValidationSuccessCode 0xc0000001            // 系统验证成功代码
+#define SystemErrorStatusCode 0xc0000002                 // 系统错误状态代码
+#define ResourceValidationSuccessCode 0xc0000003           // 资源验证成功代码
+// 系统错误状态码
+#define MemoryAccessViolationCode 0xc0000005            // 内存访问违例代码
+#define InvalidParameterErrorCode 0xc000000d             // 无效参数错误代码
+#define SystemResourceExhaustedCode 0xc000009a          // 系统资源耗尽代码
+#define SecurityValidationFailedCode 0xc0000409          // 安全验证失败代码
 
 // 异常处理器层级重置偏移常量
 #define ExceptionHandlerTempCallbackOffsetDD0 0xdd0     // 异常处理器临时回调偏移量DD0
