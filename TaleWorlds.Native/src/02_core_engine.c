@@ -296993,6 +296993,49 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define FUN_18022a8cd GetSystemInitializationStatus
 
 // 根据函数调用上下文推断的其他函数定义
-#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement // 处理上下文句柄和系统资源管理
-#define FUN_180187cd0 ProcessCharacterTableAndDataInitialization     // 处理字符表和数据初始化
+
+/**
+ * @brief 处理上下文句柄和系统资源管理
+ * 
+ * 处理系统上下文句柄的管理操作和系统资源的分配、释放
+ * 
+ * @note 原始函数名：FUN_180187c00
+ */
+#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement
+
+/**
+ * @brief 处理字符表和数据初始化
+ * 
+ * 处理系统字符表的初始化和数据结构的初始化操作
+ * 
+ * @note 原始函数名：FUN_180187cd0
+ */
+#define FUN_180187cd0 ProcessCharacterTableAndDataInitialization
+
+/**
+ * @brief 初始化系统数据处理器
+ * 
+ * 初始化系统数据处理器，设置数据处理的相关参数和状态
+ * 
+ * @note 原始函数名：FUN_18018bd0d
+ */
+#define FUN_18018bd0d InitializeSystemDataProcessor
+
+/**
+ * @brief 执行系统空操作
+ * 
+ * 执行系统的空操作函数，用于系统状态的同步和检查
+ * 
+ * @note 原始函数名：FUN_18018bd5f
+ */
+#define FUN_18018bd5f ExecuteSystemNullOperation
+
+/**
+ * @brief 处理系统上下文转换
+ * 
+ * 处理系统上下文的转换操作，管理上下文状态的变更
+ * 
+ * @note 原始函数名：FUN_180190e30
+ */
+#define FUN_180190e30 ProcessSystemContextTransformation
 
