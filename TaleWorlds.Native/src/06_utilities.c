@@ -15456,19 +15456,19 @@ DataBuffer* UtilityDataBufferInstanceSeptenaryPtr;
 DataBuffer* UtilityDataBufferInstanceOctonaryPtr;
 DataBuffer* UtilityDataBufferInstanceNonaryPtr;
 
-// 函数指针: int32_t UtilityCompareObject(void)
+// 函数指针: int32_t SystemUtilityCompareObjects(void)
 // 
-// 对象比较工具函数指针
-// 用于比较两个对象的属性或状态
+// 系统对象比较工具函数指针
+// 用于比较两个系统对象的属性或状态
 // 
 // 返回值:
 //   int32_t - 比较结果（相等、大于、小于）
-int32_t UtilityCompareObject;
-void* UtilityCompareObjectPointer;
-int32_t UtilityPrimaryCompareData;
-int32_t UtilitySecondaryCompareData;
-int32_t UtilityTertiaryCompareData;
-int32_t UtilityQuaternaryCompareData;
+int32_t SystemUtilityCompareObjects;
+void* SystemUtilityCompareObjectsPointer;
+int32_t SystemUtilityPrimaryCompareData;
+int32_t SystemUtilitySecondaryCompareData;
+int32_t SystemUtilityTertiaryCompareData;
+int32_t SystemUtilityQuaternaryCompareData;
 
 // 函数指针: void* UtilityProcessDataOctonary(void)
 // 
@@ -15717,10 +15717,10 @@ void HandleUtilitySystemSecondaryEvent(void);
 // 工具系统事件处理相关变量
 uint32_t EventStatus;
 void* SystemPointerSecondary;
-void* EventContext;
-void* EventData;
-int32_t EventResult;
-int32_t EventError;
+void* SystemEventContext;
+void* SystemEventData;
+int32_t SystemEventResult;
+int32_t SystemEventError;
 
 /**
  * @brief 处理内存块操作
@@ -40125,11 +40125,11 @@ DataBuffer * ProcessSystemDataValidation(void)
   float *floatArrayPointer;
   uint64_t systemConfiguration;
   DataBuffer *memoryResourcePointer;
-  int64_t exceptionContext1;
+  int64_t primaryExceptionContext;
   int64_t framePointer;
   int64_t systemContext;
   DataBuffer *inputParameter;
-  int64_t exceptionContext2;
+  int64_t secondaryExceptionContext;
   int operationCounter;
   DataWord floatResultA;
   DataWord systemStatus;
