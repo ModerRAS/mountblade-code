@@ -5238,8 +5238,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ConfigureUtilitySystemBufferC FUN_180942930
 #define ProcessUtilitySystemData FUN_180942a20
 #define ValidateUtilitySystemData FUN_1809429f0
-#define ConfigureUtilitySystemCallbacks FUN_180942a60
-#define SetupUtilitySystemConfiguration FUN_180942a80
 #define InitializeUtilitySystemResourceA FUN_180942fa0
 #define ConfigureUtilitySystemSecurityA FUN_180942fc0
 #define DestroyMutexC FUN_180943070
@@ -10424,13 +10422,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证内存操作的有效性
 #define ValidateMemoryOperations FUN_1809429f0
 
-// 原始函数名：FUN_180942a60 - 内存配置函数
-// 功能：配置内存管理参数
-#define ConfigureMemoryManagementParameters FUN_180942a60
 
-// 原始函数名：FUN_180942a80 - 内存初始化函数
-// 功能：初始化内存管理系统
-#define InitializeMemoryManagementSystem FUN_180942a80
 
 // 系统资源管理函数定义
 // 原始函数名：FUN_180942fa0 - 资源管理函数
@@ -21622,12 +21614,8 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 #define GenerateUtilityReportAV0 FUN_180942a40
 
 // 原始函数名：FUN_180942a60 - 工具系统验证函数AW0
-// 功能：验证工具系统配置
-#define ValidateUtilityConfigAW0 FUN_180942a60
 
 // 原始函数名：FUN_180942a80 - 工具系统测试函数AX0
-// 功能：测试工具系统功能
-#define TestUtilityFunctionAX0 FUN_180942a80
 
 // 原始函数名：FUN_180942aa0 - 工具系统部署函数AY0
 // 功能：部署工具系统更新
@@ -21665,13 +21653,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：解压缩工具系统数据
 #define DecompressUtilityDataBG0 FUN_1809425e0
 
-// 原始函数名：FUN_180942a60 - 工具数据哈希函数BH0
-// 功能：计算工具系统数据哈希值
-#define HashUtilityDataBH0 FUN_180942a60
 
-// 原始函数名：FUN_180942a80 - 工具数据校验函数BI0
-// 功能：校验工具系统数据完整性
-#define ChecksumUtilityDataBI0 FUN_180942a80
 
 // 原始函数名：FUN_180942fa0 - 工具数据转换函数BJ0
 // 功能：转换工具系统数据格式
