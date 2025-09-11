@@ -75,7 +75,7 @@
 #define FUN_1801907f0 ExecuteSystemByteOperations
 #define FUN_180190a20 SetupSystemContextTransfer
 #define FUN_180190a35 CompleteSystemContextTransfer
-#define FUN_180190a4d ReinitializeSystemTransferState               // 重置系统传输状态
+#define FUN_180190a4d ReinitializeSystemTransferState
 #define FUN_180190ad0 SetupSystemMemoryAllocator                   // 初始化系统内存管理器
 #define FUN_180190adc ClearSystemMemoryManager                     // 清理系统内存管理器
 #define FUN_180190ae0 TransferSystemMemoryData                    // 处理系统内存传输
@@ -253,8 +253,7 @@
 #define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
 #define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
-#define FUN_180190780 ReleaseSystemHandle                               // 释放系统句柄
-#define FUN_1801907f0 ProcessSystemByteOperation                        // 处理系统字节操作
+#define FUN_180190780 ReleaseSystemHandle              #define FUN_1801907f0 ProcessSystemByteOperation                        // 处理系统字节操作
 #define FUN_180190a20 InitializeSystemContextTransfer                    // 初始化系统上下文传输
 #define FUN_180190a35 FinalizeSystemContextTransfer                      // 完成系统上下文传输
 #define FUN_180190a4d ResetSystemTransferState                           // 重置系统传输状态

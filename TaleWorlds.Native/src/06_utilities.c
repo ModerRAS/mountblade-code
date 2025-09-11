@@ -40403,7 +40403,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   }
   validationStatus = (DataChunk)(DestinationContext >> 8);
   allocatedMemoryBlock = 0;
-  ValidationFloatValue2 = floatResultA;
+  ValidationFloatValue2 = processedNormalizedFloatValue;
   inputParameter1 = allocatedMemoryBlock;
   inputParameter0 = systemContextD;
   if (*(uint *)(registerContext + 8) < 0x70) {
@@ -40660,7 +40660,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   }
   validationStatus = (DataChunk)(DestinationContext >> 8);
   allocatedMemoryBlock = 0;
-  ValidationFloatValue2 = floatResultA;
+  ValidationFloatValue2 = processedNormalizedFloatValue;
   inputParameter1 = allocatedMemoryBlock;
   inputParameter0 = systemContextD;
   if (*(uint *)(registerContext + 8) < 0x70) {
@@ -40889,7 +40889,7 @@ ValidationContextHandler:
       else {
         *(int *)(StackFrameContext + -0x25) = validationErrorCode;
         memoryRegionBase = AllocateMemory(dataContext,StackFrameContext + -0x25);
-        operationBase = floatResultA;
+        operationBase = processedNormalizedFloatValue;
         if (memoryRegionBase == 0) {
           if ((uint64_t)*(uint *)(StackFrameContext + -0x25) + 1 <= (uint64_t)exceptionContextPointer[2])
           goto ProcessCheckpointValidationContext;
@@ -42223,7 +42223,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
   
   inputParameter = ExecuteSecurityValidation(SystemStateParameter,&ValidationDataBuffer,0);
   if (inputParameter == 0) {
-    inputParameter = ValidatePortControlRequest(floatResultA,DestinationContext + ExceptionHandlerCallbackOffset);
+    inputParameter = ValidatePortControlRequest(processedNormalizedFloatValue,DestinationContext + ExceptionHandlerCallbackOffset);
     if (inputParameter == 0) {
       if (*(uint *)(registerContext + 8) < 0x37) {
         inputParameter = 0;
@@ -43584,7 +43584,7 @@ uint64_t InitializeSystemComponentsA0(void)
         return securityCheckResult;
       }
       securityCheckResult = OperateDataO0(systemDataBuffer,StackFrameContext + -0x11,8);
-      systemMemoryBuffer = floatResultA;
+      systemMemoryBuffer = processedNormalizedFloatValue;
     }
     else {
       securityCheckResult = SystemOperationCode0x1c;
