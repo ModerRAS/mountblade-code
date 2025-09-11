@@ -243091,10 +243091,10 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
   long long **pPerformanceCounterPointer;
   void *pMemoryCopyBuffer;
   byte *pSystemValidationFlag;
-  int iStack_258;
+  int CharacterProcessingLoopCounter;
   unsigned long long BufferValidationStatus;
   void *pBufferTypeFlag;
-  byte *pbStack_240;
+  byte *CharacterStatusBuffer;
   int iStack_238;
   unsigned long long uStack_230;
   void *pOperationStatus;
