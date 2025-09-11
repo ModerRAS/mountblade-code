@@ -80316,11 +80316,12 @@ void InitializeSystemCoreComponents(void
           HighByteFlag = 0 < InputDataLength;
           if (InputDataLength < 1) {
             CharacterStatusBuffer = (void *)TemporaryBuffer[1];
-            goto LAB_1800960d8;
+            goto CharacterStatusValidationLabel;
           }
         }
         CharacterStatusBuffer = (void *)*TemporaryBuffer;
       }
+CharacterStatusValidationLabel:
 StringProcessingStatusLabel:
       StringProcessingStatus = TemporaryBuffer;
       if (HighByteFlag) {
