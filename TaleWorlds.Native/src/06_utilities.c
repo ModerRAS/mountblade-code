@@ -29828,13 +29828,13 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   uint64_t colorProcessingData;
   
   // 位域操作变量声明 - 用于处理特定位域操作
-  DataWord BitFieldOperationContext;
-  DataWord FloatingPointProcessingValue;
-  DataWord FloatingPointInputValueA;
-  DataWord FloatingPointStackRegisterB;
-  DataWord SystemParameterArray;
-  DataWord SystemStatusBuffer;
-  DataWord SystemTemporaryMemoryBuffer;
+  BitFieldOperationUnion BitFieldOperationContext;
+  BitFieldOperationUnion FloatingPointProcessingValue;
+  BitFieldOperationUnion FloatingPointInputValueA;
+  BitFieldOperationUnion FloatingPointStackRegisterB;
+  BitFieldOperationUnion SystemParameterArray;
+  BitFieldOperationUnion SystemStatusBuffer;
+  BitFieldOperationUnion SystemTemporaryMemoryBuffer;
   
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
   LoopCounter = 0;
@@ -29934,7 +29934,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -29943,7 +29943,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -29981,7 +29981,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -29990,7 +29990,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30028,7 +30028,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -30037,7 +30037,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30075,7 +30075,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
@@ -30084,7 +30084,7 @@ SecurityValidationLabel:
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
-          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7,1);
+          BitFieldOperationContext = SetBitFlag(BitFieldOperationContext.BitField7Struct.BitField7,1);
           allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (allocatedMemoryBlock != 0) GOTO_SecurityCheckFailed;
         }
@@ -30211,7 +30211,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           validationSizeResult = ValidateDataIntegrityA0(processedFloatValue,&ValidationDataBuffer);
           processedFloatValue = calculatedFloatValue;
           if (validationSizeResult != 0) goto SizeValidationCheckpoint;
@@ -30220,7 +30220,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30264,7 +30264,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = interpolatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30273,7 +30273,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30317,7 +30317,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = accumulatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30326,7 +30326,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30370,7 +30370,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = transformedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30379,7 +30379,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3Struct.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30836,7 +30836,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorB;
                 SystemTemporaryDataWordC = TemporaryDataWord;
-                FloatingPointInputValueA = (float)CONCAT31(FloatingPointInputValueA.BitField3,1);
+                FloatingPointInputValueA = (float)CONCAT31(FloatingPointInputValueA.BitField3Struct.BitField3,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -31109,7 +31109,7 @@ void ProcessDataTypes(void)
             if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
               StackInputParameterC = &DataIntegrityValidationErrorB;
               operationResult = SystemOperationResult;
-              FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
+              FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
               ValidationDataBuffer = dataPointerD;
               resourceValidationStatus = ValidateDataIntegrityA0(OperationResultQuaternary,&StackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -31355,7 +31355,7 @@ SystemDataValidationCheckpoint:
         if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
           StackInputParameterC = &DataIntegrityValidationErrorB;
           operationResult = SystemOperationResult;
-          FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
+          FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
           ValidationDataBuffer = dataPointerD;
           resourceValidationStatus = ValidateDataIntegrityA0(OperationResultTertiary,&StackValidationBuffer);
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
@@ -31518,7 +31518,7 @@ void ProcessFloatingPointData(float inputValue)
     if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
       StackInputParameterC = &DataIntegrityValidationErrorB;
       operationResult = SystemOperationResult;
-      FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
+      FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
       ValidationDataBuffer = dataPointerD;
       operationResult = ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
@@ -35457,7 +35457,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 if ((int)memoryRegionBase != 0) {
                   return memoryRegionBase;
                 }
-                SystemParameterArray = CONCAT31(SystemParameterArray.BitField3,statusFlag != 0);
+                SystemParameterArray = CONCAT31(SystemParameterArray.BitField3Struct.BitField3,statusFlag != 0);
                 memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackParameterArray,1);
                 if ((int)memoryRegionBase != 0) {
@@ -44048,7 +44048,7 @@ ValidationStartHandler:
   }
   dataBufferSizeValid = *(uint *)(dataBuffer + 8) < 0x34;
   hasValidSystemName = (char)memoryRegionBase;
-  SystemStatusBuffer = CONCAT31(SystemStatusBuffer.BitField3,hasValidSystemName);
+  SystemStatusBuffer = CONCAT31(SystemStatusBuffer.BitField3Struct.BitField3,hasValidSystemName);
   isMemoryAllocationComplete = false;
   if (0x37 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
