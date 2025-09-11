@@ -270014,7 +270014,22 @@ void SystemCleanupAndTerminateVariantE(void)
 
 
 
-1dbed(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_18021dbed(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 系统上下文缓冲区清理函数
+ * 
+ * 该函数负责清理系统上下文中的缓冲区，执行相关的回调函数。
+ * 主要功能包括：
+ * - 遍历系统上下文中的缓冲区
+ * - 执行缓冲区清理回调函数
+ * - 更新操作缓冲区大小
+ * 
+ * @param ContextHandle 上下文句柄，指定要清理的系统上下文
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18021dbed
+ * @return 无返回值
+ */
+void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBufferSize)
 {
   long long SystemContext;
   uint CharacterTablePointer;
