@@ -253785,7 +253785,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
                                  *(void *)(ReferenceCountPointer5 + 1),ReferenceCountPointer5[-3] * IntegerValue,
                                  (int)uStack_218 * IntegerValue,CharacterEncodingFlags);
                       ProcessSystemDataTable(SystemDataTablePointer + (long long)iStackX_18 * 0x18);
-                      FUN_1802075c0(SystemDataTablePointer,&uStack_218,iStackX_18,*CharacterStatusBuffer2,IntegerValue);
+                      HandleCharacterBufferData(SystemDataTablePointer,&uStack_218,iStackX_18,*CharacterStatusBuffer2,IntegerValue);
                       if (SystemPointer208 != (long long *)0x0) {
                         (**(code **)(*SystemPointer208 + 0x38))();
                       }
