@@ -128642,17 +128642,7 @@ void ProcessUIContextEventHandling(void)
 
 
 
- void FUN_18073c27a(void)
-/**
- * @brief 释放UI内存资源并执行渲染任务
- * 
- * 该函数负责释放UI系统占用的内存资源，并在清理完成后执行渲染任务。
- * 这是一个关键的资源管理函数，确保在资源释放后系统能够正常继续渲染操作。
- * 
- * @note 此函数不返回值，执行完成后会调用渲染任务
- * @warning 子函数不返回，确保调用上下文正确处理
- */
-void ReleaseUIMemoryResourceAndExecuteRender(void)
+ void ReleaseUIMemoryResourceAndExecuteRender(void)
 
 {
   ulonglong encryptedStackParameter;
