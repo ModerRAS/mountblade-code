@@ -1408,9 +1408,9 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemContext SystemContextPointer                 // 系统上下文（系统上下文指针）
 #define BufferOffset SystemBufferOffset                     // 系统缓冲区偏移量
 #define ThreadPriorityComparisonResult ThreadPriorityComparison // 线程优先级比较结果
-#define ThreadConfigurationFlags1 ThreadConfigFlags1       // 线程配置标志1
-#define ThreadConfigurationFlags2 ThreadConfigFlags2       // 线程配置标志2
-#define ThreadConfigurationFlags3 ThreadConfigFlags3       // 线程配置标志3
+#define ThreadConfigurationFlags1 PrimaryThreadConfigFlags       // 线程配置标志1
+#define ThreadConfigurationFlags2 SecondaryThreadConfigFlags     // 线程配置标志2
+#define ThreadConfigurationFlags3 TertiaryThreadConfigFlags      // 线程配置标志3
 #define MemoryOffsetValue SystemMemoryOffsetValue         // 系统内存偏移值
 #define ThreadMemoryOffset ThreadMemoryBaseOffset          // 线程内存基础偏移量
 #define ThreadMemoryPointer ThreadMemoryBasePointer        // 线程内存基础指针
