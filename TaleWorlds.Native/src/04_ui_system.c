@@ -309,6 +309,28 @@ typedef enum {
 #define FUN_18073cf53 ExecuteUIFinalization              // 执行UI最终化操作
 #define FUN_18073cfcb CompleteUIShutdown                 // 完成UI关闭操作
 #define FUN_18073cfed ValidateUICleanupComplete          // 验证UI清理完成
+
+// 未美化的函数定义
+#define FUN_18010cbc0 ValidateUIBufferData               // 验证UI缓冲区数据
+#define FUN_18004c890 HandleUIInputEvent                  // 处理UI输入事件
+#define FUN_18004c9a0 ProcessUIContextUpdate              // 处理UI上下文更新
+#define FUN_180655f24 InitializeUIComponent               // 初始化UI组件
+#define FUN_18066c4b8 ProcessUIRenderOperation            // 处理UI渲染操作
+#define FUN_18066c4d0 ValidateUIComponentState           // 验证UI组件状态
+#define FUN_18066c770 ExecuteUILayoutCalculation         // 执行UI布局计算
+#define FUN_18066c7a0 ProcessUIAnimationUpdate            // 处理UI动画更新
+#define FUN_18066c7e0 HandleUIEventDispatch               // 处理UI事件分发
+#define FUN_18066cdf0 ValidateUIResourceAccess           // 验证UI资源访问
+#define FUN_18066d230 ProcessUITextureLoading             // 处理UI纹理加载
+#define FUN_18066e230 UpdateUIComponentTransform         // 更新UI组件变换
+#define FUN_18066e246 ValidateUIInputHandling            // 验证UI输入处理
+#define FUN_18066e2a3 ProcessUIBufferAllocation           // 处理UI缓冲区分配
+#define FUN_18066e300 ExecuteUIMemoryOperation           // 执行UI内存操作
+#define FUN_18066e730 ValidateUIDataTransfer             // 验证UI数据传输
+#define FUN_18066e90c ProcessUIComponentLifecycle        // 处理UI组件生命周期
+#define FUN_18066e938 HandleUIResourceCleanup            // 处理UI资源清理
+#define FUN_18066e9b0 ValidateUIRenderingPipeline         // 验证UI渲染管线
+#define FUN_18066e9db ProcessUIEventQueue                 // 处理UI事件队列
 #define UNK_18097ed40 UILayoutDataTable           // UI布局数据表
 #define UNK_18097ed50 UIFontResourceTable          // UI字体资源表
 #define UNK_18098b9b8 UIShaderDataTable           // UI着色器数据表
