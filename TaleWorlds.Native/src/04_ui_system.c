@@ -258,6 +258,7 @@ typedef enum {
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
 #define FUN_18089d557 ValidateUIDataAndContextStructure          // 验证UI数据和上下文结构
 #define FUN_18073e270 ProcessUIDataWithMultipleBuffers           // 处理多缓冲区UI数据
+#define FUN_18073e330 ProcessUIStaticDataValidation              // 处理UI静态数据验证
 #define FUN_18089dcd6 UIReturnEmptyFunctionB                      // UI系统空返回函数B
 #define FUN_18089dcf0 ProcessUIEventDataWithValidation             // 处理UI事件数据与验证
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
@@ -132083,54 +132084,77 @@ void ProcessUIContextWithDataSource(UIHandle uiContext)
 
  
 
- void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIDword resultPointer)
+ /**
+ * @brief 处理UI上下文数据传输操作
+ * 
+ * 该函数负责处理UI上下文的数据传输操作，包括数据验证、缓冲区管理和资源处理。
+ * 主要功能：
+ * - 管理UI上下文资源
+ * - 执行数据传输操作
+ * - 处理缓冲区比较和验证
+ * - 执行清理操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区标识
+ * @param bufferSize 缓冲区大小句柄
+ * @param resultPointer 结果指针标识
+ */
+void ProcessUIContextDataTransferOperation(UIHandle uiContext, UIHandle dataSource, UIDword targetBuffer, UIHandle bufferSize,
+                                        UIDword resultPointer)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong *pstackLong158;
-  longlong stackLong150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionKeyStorage[32];
+  UIByte *dataProcessingBuffer;
+  longlong *contextResourcePointer;
+  longlong resourceCleanupHandle;
+  UIByte dataProcessingArray[256];
+  ulonglong encryptionKeyXor;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong150 = 0;
-  operationResult = ManageUIContextResources(uiContext,&pstackLong158,&stackLong150);
+  // 初始化加密密钥和资源句柄
+  encryptionKeyXor = XorEncryptionKey ^ (ulonglong)encryptionKeyStorage;
+  resourceCleanupHandle = 0;
+  
+  // 管理UI上下文资源
+  operationResult = ManageUIContextResources(uiContext, &contextResourcePointer, &resourceCleanupHandle);
   if (operationResult == 0) {
-    if (((int)pstackLong158[0x22] == 0) || ((int)pstackLong158[0x22] == 7)) {
-      pstackUInt168 = (UIByte *)CONCAT44(pstackUInt168._4_4_,resultPointer);
-      operationResult = (**(code **)(*pstackLong158 + 0x140))(pstackLong158,dataSource,targetBuffer,bufferSize);
-      if (operationResult == 0) goto FUN_18073e414;
+    // 检查上下文状态是否有效
+    if (((int)contextResourcePointer[0x22] == 0) || ((int)contextResourcePointer[0x22] == 7)) {
+      dataProcessingBuffer = (UIByte *)CONCAT44(dataProcessingBuffer._4_4_, resultPointer);
+      // 执行数据传输操作
+      operationResult = (**(code **)(*contextResourcePointer + 0x140))(contextResourcePointer, dataSource, targetBuffer, bufferSize);
+      if (operationResult == 0) goto ProcessUIResourceCleanup;
     }
     else {
-      operationResult = 0x2e;
+      operationResult = 0x2e; // 返回错误码
     }
   }
+  
+  // 检查是否需要处理纹理数据
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIDataAndCompare(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUITextureDataWithSize(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataAndCompare(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
-    pstackUInt168 = stackArray148;
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_180957a30);
+    dataValidationResult = ProcessUITextureDataWithSize(dataProcessingArray, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataProcessingArray + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIDataAndCompare(dataProcessingArray + dataValidationResult, 0x100 - dataValidationResult, targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataProcessingArray + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUITextureDataWithSize(dataProcessingArray + dataValidationResult, 0x100 - dataValidationResult, bufferSize);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataProcessingArray + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    ProcessUIDataAndCompare(dataProcessingArray + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), resultPointer);
+    dataProcessingBuffer = dataProcessingArray;
+    // 执行UI上下文数据操作
+    ExecuteUIContextDataOperation(operationResult, 5, uiContext, &UNK_180957a30);
   }
-FUN_18073e414:
-  if (stackLong150 != 0) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackLong150,0xc);
+  
+ProcessUIResourceCleanup:
+  if (resourceCleanupHandle != 0) {
+    // 执行UI系统清理操作
+    ProcessUISystemCleanup(resourceCleanupHandle, 0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -132232,29 +132256,40 @@ FUN_18073e414:
 
 
 
- void FUN_18073e330(void)
-void FUN_18073e330(void)
+ /**
+ * @brief 处理UI系统初始化操作
+ * 
+ * 该函数负责UI系统的初始化操作，包括纹理数据处理和缓冲区管理。
+ * 主要功能：
+ * - 处理纹理数据
+ * - 执行缓冲区控制操作
+ * - 进行数据比较和验证
+ * - 执行UI上下文数据操作
+ */
+void ProcessUISystemInitialization(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBP;
-  UIDword unmodifiedESI;
+  UIDword stackPointerEBP;
+  UIDword systemParameterESI;
   UIDword preservedRegister15D;
+  UIByte dataProcessingBuffer[256];
   
-  operationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIDataAndCompare(&stack0x00000040 + processingResult,0x100 - processingResult,unmodifiedEBP);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUITextureDataWithSize(&stack0x00000040 + processingResult,0x100 - processingResult);
-  operationResult = processingResult + uiValidationResult;
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataAndCompare(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),preservedRegister15D);
-                     WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,5);
+  // 处理纹理数据
+  operationResult = ProcessUITextureDataWithSize(dataProcessingBuffer, 0x100);
+  dataValidationResult = ProcessUIBufferDataWithControl(dataProcessingBuffer + operationResult, 0x100 - operationResult, &UIBufferControlData);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUIDataAndCompare(dataProcessingBuffer + operationResult, 0x100 - operationResult, stackPointerEBP);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUIBufferDataWithControl(dataProcessingBuffer + operationResult, 0x100 - operationResult, &UIBufferControlData);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUITextureDataWithSize(dataProcessingBuffer + operationResult, 0x100 - operationResult);
+  operationResult = operationResult + dataValidationResult;
+  dataValidationResult = ProcessUIBufferDataWithControl(dataProcessingBuffer + operationResult, 0x100 - operationResult, &UIBufferControlData);
+  ProcessUIDataAndCompare(dataProcessingBuffer + (operationResult + dataValidationResult), 0x100 - (operationResult + dataValidationResult), preservedRegister15D);
+  // 执行UI上下文数据操作
+  ExecuteUIContextDataOperation(systemParameterESI, 5);
 }
 
 
