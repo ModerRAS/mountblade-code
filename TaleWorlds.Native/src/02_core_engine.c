@@ -253313,7 +253313,7 @@ void ProcessSystemContextAndUtf8Encoding(uint64_t ContextHandle, long long *Cont
   long long AllocatedMemorySize = *(long long *)(*ContextHandleSize + 0x20);
   if (AllocatedMemorySize != 0) {
     if (SystemCheckResult == '\x01') {
-      FUN_18029b390(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(pComputedResult + 6),AllocatedMemorySize);
+      ProcessSystemQueueManagement(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(pComputedResult + 6),AllocatedMemorySize);
       pErrorCode = &SystemConfigurationHandler;
       pSystemFlagE = aSystemCleanupFlagG;
       aSystemCleanupFlagG[0] = 0;
@@ -253328,7 +253328,7 @@ void ProcessSystemContextAndUtf8Encoding(uint64_t ContextHandle, long long *Cont
     }
     iStack_158 = LoopCounter * EncodingValidationResult;
     uStack_150 = 1;
-    FUN_18029b1d0(*(void *)(CoreEngineRenderContext + 0x1cd8),
+    ProcessSystemQueueOperations(*(void *)(CoreEngineRenderContext + 0x1cd8),
                   *(void *                   (*(long long *)(((long long)pComputedResult[5] + 0x25) * 0x20 + MemoryPoolBlockSize) + 8 +
                    (long long)pComputedResult[4] * 0x18),*ReferenceCountPointer * LoopCounter,AllocatedMemorySize);
   }
@@ -253346,7 +253346,7 @@ void ProcessSystemContextAndUtf8Encoding(uint64_t ContextHandle, long long *Cont
                   *(uint32_t *)(MemoryPoolBlockSize + 0x48));
     if ((char)TemporaryFlag != '\0') {
       MemoryPoolIndex = (unsigned long long)pComputedResult % (unsigned long long)TemporaryFlag.HighPart;
-      FUN_180207c90(MemoryPoolBlockSize + 0x30,TemporaryFlag.HighPart);
+      ConvertSystemCharacterValue(MemoryPoolBlockSize + 0x30,TemporaryFlag.HighPart);
     }
     TemporaryBuffer[1] = *(void *)(*(long long *)(MemoryPoolBlockSize + 0x38) + MemoryPoolIndex * 8);
     *(uint64_t **)(*(long long *)(MemoryPoolBlockSize + 0x38) + MemoryPoolIndex * 8) = TemporaryBuffer;

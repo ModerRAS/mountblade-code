@@ -129260,8 +129260,9 @@ FUN_18073c87f:
 
  
 
- void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize,
-void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize,
+ void ProcessUIDataWithExtendedParams(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer,UIHandle bufferSize,
+// 处理带扩展参数的UI数据
+// 这个函数处理带扩展参数的UI数据，支持多个结果指针和复杂的参数传递
                   UIHandle resultPointer,UIHandle param_6,longlong *param_7)
 
 {
@@ -129315,8 +129316,9 @@ FUN_18073c87f:
 
 
 
- void FUN_18073c7d1(void)
-void FUN_18073c7d1(void)
+ void ExecuteUIPostProcessing(void)
+// 执行UI后处理操作
+// 这个函数执行UI的后处理操作，包括数据缓冲区处理和控制操作
 
 {
   int operationResult;
@@ -129337,8 +129339,9 @@ void FUN_18073c7d1(void)
 
 
 
- void FUN_18073c87f(void)
-void FUN_18073c87f(void)
+ void CompleteUIContextOperation(void)
+// 完成UI上下文操作
+// 这个函数完成UI上下文的操作，包括内存资源释放和渲染任务执行
 
 {
   longlong stackParam00000030;
@@ -129354,8 +129357,16 @@ void FUN_18073c87f(void)
 
 
 
- void FUN_18073c8a9(void)
-void FUN_18073c8a9(void)
+ /**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源，然后执行渲染任务。
+ * 使用XOR加密保护栈参数以确保操作安全性。
+ * 
+ * @note 此函数不返回值，直接调用渲染任务执行
+ * @warning 此函数中的子函数不返回，确保调用上下文正确处理
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
   ulonglong stackParam00000140;

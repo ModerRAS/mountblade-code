@@ -25450,31 +25450,42 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
  * 
  * @param SystemResourceHandle 系统资源指针的指针
  * @param TemplateParameter 模板参数，包含配置信息
- * @param UnusedParameter3 未使用的参数3
- * @param UnusedParameter4 未使用的参数4
+ * @param UnusedParameter3 未使用的参数3（保留参数）
+ * @param UnusedParameter4 未使用的参数4（保留参数）
  * @return 返回初始化后的系统资源指针
  * 
  * @note 这是系统资源管理的重要函数，用于从模板创建系统资源
+ * @note 简化实现：原始函数应该包含更多变量美化和详细注释
  */
 void* *
 CreateSystemResourceFromTemplate(void** SystemResourceHandle, long long TemplateParameter, void* UnusedParameter3, void* UnusedParameter4)
 
 {
-  void* *resultPointer;
+  void* *ResourceResultPointer;  // 资源结果指针（替代原始 resultPointer）
   
+  // 第一步：初始化系统资源句柄
   *SystemResourceHandle = &SystemMemoryAllocatorPointer;
   SystemResourceHandle[1] = 0;
   *(uint32_t *)(SystemResourceHandle + 2) = 0;
+  
+  // 第二步：配置系统内存模板
   *SystemResourceHandle = &SystemMemoryTemplateQuinary;
   SystemResourceHandle[1] = SystemResourceHandle + 3;
   *(uint32_t *)(SystemResourceHandle + 2) = 0;
   *(uint8_t *)(SystemResourceHandle + 3) = 0;
+  
+  // 第三步：从模板参数复制资源大小信息
   *(uint32_t *)(SystemResourceHandle + 2) = *(uint32_t *)(TemplateParameter + 0x10);
-  resultPointer = &SystemStringTemplate;
+  
+  // 第四步：设置字符串模板处理器
+  ResourceResultPointer = &SystemStringTemplate;
   if (*(void* **)(TemplateParameter + 8) != (void* *)0x0) {
-    resultPointer = *(void* **)(TemplateParameter + 8);
+    ResourceResultPointer = *(void* **)(TemplateParameter + 8);
   }
-  strcpy_s(SystemResourceHandle[1], 0x20, resultPointer, ReservedParameter4, 0xfffffffffffffffe);
+  
+  // 第五步：复制字符串资源到资源句柄
+  strcpy_s(SystemResourceHandle[1], 0x20, ResourceResultPointer, ReservedParameter4, 0xfffffffffffffffe);
+  
   return SystemResourceHandle;
 }
 
