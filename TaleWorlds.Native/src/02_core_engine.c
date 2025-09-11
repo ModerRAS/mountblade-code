@@ -251820,9 +251820,9 @@ void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long 
         CharacterStatusBuffer[1] = SystemChecksum;
         EncodingConversionResult = ProcessedCharacter - 1;
       }
-      if (LoopIndex < EncodingConversionResult) {
-        iStack_c = (int)((unsigned long long)OperationResult >> 0x20);
-        iStack_10 = (int)OperationResult;
+      if (MainLoopIndex < EncodingConversionResult) {
+        StackVariable12 = (int)((unsigned long long)OperationResult >> 0x20);
+        StackVariable10 = (int)OperationResult;
         do {
           StringOffset = EncodingConversionResult + -1 >> 1;
           InputDataLength = *(int *)(ContextHandle + 8 + StringOffset * 0x10);
