@@ -45221,9 +45221,9 @@ void ProcessCoreEngineMemoryBufferManagement(long long *ContextHandle,uint64_t O
   CoreEngineProcessSystemEvent(&systemPointer1,1);
   *(uint16_t *)((unsigned long long)systemStatusFlag + memoryOffset2) = 0x5c;
   systemStatusFlag = 1;
-  ProcessSystemConfigurationHandle(&systemPointer70,&systemPointer50,Utf8SourcePointer);
-  systemPointer70 = &SystemNullTemplate;
-  if (memoryOffset68 != 0) {
+  ProcessSystemConfigurationHandle(&systemPointer1,&systemPointer2,Utf8SourcePointer);
+  systemPointer1 = &SystemNullTemplate;
+  if (memoryOffset2 != 0) {
       ProcessSystemEventHandling();
   }
   StackMemoryBuffer68 = 0;
