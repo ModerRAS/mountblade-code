@@ -249475,7 +249475,18 @@ void ProcessOptimizedFloatArraySorting(float *ContextHandle,float *ContextHandle
 
 
 
-void FUN_180202d4d(uint32_t ContextHandle,float *ContextHandleSize)
+/**
+ * @brief 验证系统上下文浮点值
+ * 
+ * 该函数负责验证系统上下文中的浮点值，执行排序和验证操作。
+ * 函数实现了浮点数比较和排序算法，确保数据的正确性。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * 
+ * @note 原始函数名：FUN_180202d4d
+ */
+void ValidateSystemContextFloatValues(uint32_t ContextHandle,float *ContextHandleSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
