@@ -173,6 +173,12 @@
 #define DataBufferOffset390 0x390                              // 数据缓冲区偏移量390 - 用于数据块处理
 #define DataBufferOffset2F0 0x2f0                              // 数据缓冲区偏移量2F0 - 用于临时异常处理器设置
 #define DataBufferOffset2F8 0x2f8                              // 数据缓冲区偏移量2F8 - 用于数据清理操作
+#define DataBufferOffset198 0x198                              // 数据缓冲区偏移量198 - 用于异常处理器设置
+#define DataBufferOffset330 0x330                              // 数据缓冲区偏移量330 - 用于异常处理器设置
+#define DataBufferOffset410 0x410                              // 数据缓冲区偏移量410 - 用于异常处理器设置
+#define DataBufferOffset51 0x51                                // 数据缓冲区偏移量51 - 用于字符检查
+#define DataBufferOffset158 0x158                              // 数据缓冲区偏移量158 - 用于函数指针操作
+#define DataBufferOffset350 0x350                              // 数据缓冲区偏移量350 - 用于异常处理器设置
 
 // 位操作掩码常量
 #define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000 - 用于高位位操作 masking
@@ -87779,7 +87785,7 @@ void SetDefaultExceptionHandlerBOffset1F8(DataBuffer operationBase,int64_t dataB
 void SetDefaultExceptionHandlerBOffset198(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x198) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset198) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -89227,7 +89233,7 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
 void SetDefaultExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x330) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset330) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -89247,7 +89253,7 @@ void SetDefaultExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 void SetDefaultExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x410) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset410) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -89385,7 +89391,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 void SetDefaultExceptionHandlerBInBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x410) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset410) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -97109,7 +97115,7 @@ void SetDefaultExceptionHandlerZ1(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupExceptionHandlerStateZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(char *)(dataBuffer + 0x51) == '\0') {
+  if (*(char *)(dataBuffer + DataBufferOffset51) == '\0') {
     if ((*(char *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) == '\0') && (*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) != 0)) {
         TerminateSystemExecutionAndCleanupResources();
     }
@@ -104475,7 +104481,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x330);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset330);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -113075,7 +113081,7 @@ void ProcessDataValidationFlagCA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + DataBufferOffsetD0) & 1) != 0) {
     *(uint *)(dataBuffer + DataBufferOffsetD0) = *(uint *)(dataBuffer + DataBufferOffsetD0) & 0xfffffffe;
-    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x198));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + DataBufferOffset198));
   }
   return;
 }

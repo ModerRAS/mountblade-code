@@ -71360,18 +71360,16 @@ void SystemNullOperation(void
 
 
 
-SystemDataStructureSorter(long long *ContextHandle,long long *ContextHandleSize/**
+/**
  * @brief 排序系统数据结构
  * 
  * 该函数负责对系统数据结构进行排序操作
  * 用于数据结构整理和优化
  * 
  * @param ContextHandle 目标数据结构指针
- * @param OperationBufferSize 源数据结构指针
- * 
- 18008e460，SortSystemDataStructure
+ * @param ContextHandleSize 上下文句柄大小指针
  */
-void SortSystemDataStructure(long long *ContextHandle,long long *ContextHandleSize
+void SortSystemDataStructure(long long *ContextHandle,long long *ContextHandleSize)
 {
   byte StringComparisonByte;
   bool ShouldInsert;
