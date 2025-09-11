@@ -247155,48 +247155,48 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     *(uint8_t *)(AllocatedMemorySize + 0xd8) = 0;
     *(void *)(AllocatedMemorySize + 0x70) = *(void *)(AllocatedMemorySize + 0x68);
     *(void *)(AllocatedMemorySize + 0x90) = *(void *)(AllocatedMemorySize + 0x88);
-    *(void *)(AllocatedMemorySize + 0xc0) = 0;
-    *(void *)(AllocatedMemorySize + 0xb8) = 0;
-    *(uint32_t *)(AllocatedMemorySize + 0x60) = 1;
-    if ((*(int *)(Utf8SourcePointer + 2) != 0) && (*Utf8SourcePointer[1] == '#')) {
-      *(uint8_t *)(AllocatedMemorySize + 0xd9) = 1;
-      FUN_1806289a0(Utf8SourcePointer);
+    *(void *)(SystemAllocatedMemorySize + 0xc0) = 0;
+    *(void *)(SystemAllocatedMemorySize + 0xb8) = 0;
+    *(uint32_t *)(SystemAllocatedMemorySize + 0x60) = 1;
+    if ((*(int *)(SystemUtf8SourcePointer + 2) != 0) && (*SystemUtf8SourcePointer[1] == '#')) {
+      *(uint8_t *)(SystemAllocatedMemorySize + 0xd9) = 1;
+      FUN_1806289a0(SystemUtf8SourcePointer);
     }
-    CoreEngineInitializeSystemEvent(AllocatedMemorySize,Utf8SourcePointer);
+    CoreEngineInitializeSystemEvent(SystemAllocatedMemorySize,SystemUtf8SourcePointer);
     goto LAB_180202111;
   }
-  Utf16Character = 0;
-  if (OperationBufferSize == 2) {
-    pfStack_1e0 = (float *)0x0;
-    pfStack_1d8 = (float *)0x0;
-    uStack_1d0 = 0;
-    SystemValue1c8 = CONCAT44(SystemValue1c8.HighPart,3);
-    ProcessSystemStatusUpdate(&pfStack_1e0,
+  SystemUtf16CharacterValue = 0;
+  if (SystemOperationBufferSize == 2) {
+    SystemStackFloatPointer1E0 = (float *)0x0;
+    SystemStackFloatPointer1D8 = (float *)0x0;
+    SystemStackVariable1D0 = 0;
+    SystemValue1C8 = CONCAT44(SystemValue1C8.HighPart,3);
+    ProcessSystemStatusUpdate(&SystemStackFloatPointer1E0,
                   *(long long *)(SystemMemoryAllocatorA + 0x70) - *(long long *)(SystemMemoryAllocatorA + 0x68) >> 2);
-    SystemStringIndex = *(long long *)(AllocatedMemorySize + 0x70);
-    pContextSecondaryFloat2 = pfStack_1e0;
-    FloatVariablePointer4 = pfStack_1d8;
-    for (BufferValidationStatus = *(long long *)(AllocatedMemorySize + 0x68); pfStack_1e0 = pContextSecondaryFloat2, pfStack_1d8 = FloatVariablePointer4,
-        BufferValidationStatus != SystemStringIndex; BufferValidationStatus = BufferValidationStatus + 4) {
-      CoreEngineProcessDynamicArrayInsert(&pfStack_1e0,BufferValidationStatus);
-      pContextSecondaryFloat2 = pfStack_1e0;
-      FloatVariablePointer4 = pfStack_1d8;
+    SystemStringEncodingIndex = *(long long *)(SystemAllocatedMemorySize + 0x70);
+    SystemSecondaryContextFloatPointer2 = SystemStackFloatPointer1E0;
+    SystemSecondaryFloatPointer = SystemStackFloatPointer1D8;
+    for (SystemBufferValidationStatus = *(long long *)(SystemAllocatedMemorySize + 0x68); SystemStackFloatPointer1E0 = SystemSecondaryContextFloatPointer2, SystemStackFloatPointer1D8 = SystemSecondaryFloatPointer,
+        SystemBufferValidationStatus != SystemStringEncodingIndex; SystemBufferValidationStatus = SystemBufferValidationStatus + 4) {
+      CoreEngineProcessDynamicArrayInsert(&SystemStackFloatPointer1E0,SystemBufferValidationStatus);
+      SystemSecondaryContextFloatPointer2 = SystemStackFloatPointer1E0;
+      SystemSecondaryFloatPointer = SystemStackFloatPointer1D8;
     }
-    if (pContextSecondaryFloat2 != FloatVariablePointer4) {
-      BufferValidationStatus = (long long)FloatVariablePointer4 - (long long)pContextSecondaryFloat2 >> 2;
-      MemoryAllocationOffset = Utf16Char4;
-      for (SystemStringIndex = BufferValidationStatus; SystemStringIndex != 0; SystemStringIndex = SystemStringIndex >> 1) {
-        MemoryAllocationHandle = (int)MemoryAllocationOffset + 1;
-        MemoryAllocationOffset = (unsigned long long)MemoryAllocationHandle;
+    if (SystemSecondaryContextFloatPointer2 != SystemSecondaryFloatPointer) {
+      SystemBufferValidationStatus = (long long)SystemSecondaryFloatPointer - (long long)SystemSecondaryContextFloatPointer2 >> 2;
+      SystemMemoryAllocationOffset = SystemUtf16CharacterCode;
+      for (SystemStringEncodingIndex = SystemBufferValidationStatus; SystemStringEncodingIndex != 0; SystemStringEncodingIndex = SystemStringEncodingIndex >> 1) {
+        SystemMemoryAllocationHandle = (int)SystemMemoryAllocationOffset + 1;
+        SystemMemoryAllocationOffset = (unsigned long long)SystemMemoryAllocationHandle;
       }
-      FUN_180202c00(pContextSecondaryFloat2,FloatVariablePointer4,(long long)(int)(MemoryAllocationHandle - 1) * 2,DataProcessingStatus);
-      if (BufferValidationStatus < 0x1d) {
-        ProcessFloatingPointData(pContextSecondaryFloat2,FloatVariablePointer4);
+      FUN_180202c00(SystemSecondaryContextFloatPointer2,SystemSecondaryFloatPointer,(long long)(int)(SystemMemoryAllocationHandle - 1) * 2,SystemDataProcessingStatus);
+      if (SystemBufferValidationStatus < 0x1d) {
+        ProcessFloatingPointData(SystemSecondaryContextFloatPointer2,SystemSecondaryFloatPointer);
       }
       else {
-        pMatrixTransformElementB = pContextSecondaryFloat2 + 0x1c;
-        ProcessFloatingPointData(pContextSecondaryFloat2);
-        for (; pMatrixTransformElementB != FloatVariablePointer4; pMatrixTransformElementB = pMatrixTransformElementB + 1) {
+        SystemMatrixTransformElementPointer = SystemSecondaryContextFloatPointer2 + 0x1c;
+        ProcessFloatingPointData(SystemSecondaryContextFloatPointer2);
+        for (; SystemMatrixTransformElementPointer != SystemSecondaryFloatPointer; SystemMatrixTransformElementPointer = SystemMatrixTransformElementPointer + 1) {
           FilterInputValue5 = *pMatrixTransformElementB;
           SystemContextPrimaryFloat = pMatrixTransformElementB[-1];
           pSystemContextPrimaryFloat2 = pMatrixTransformElementB + -1;
@@ -249730,7 +249730,23 @@ void ProcessSystemFloatTransformOperations(float *ContextHandle,float *ContextHa
 
 
 
-void FUN_180203100(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
+/**
+ * @brief 处理浮点数数组的排序和插入操作
+ * 
+ * 该函数实现了对浮点数数组的排序和插入操作，主要功能包括：
+ * 1. 对传入的浮点数数组进行排序操作
+ * 2. 在排序后的数组中插入新的浮点数值
+ * 3. 管理内存分配和数据移动
+ * 4. 处理数组边界条件和特殊情况
+ * 
+ * @param ContextHandle 浮点数数组指针，用于存储和处理浮点数据
+ * @param ContextHandleSize 数组大小指针，表示数组的容量大小
+ * @param Utf8SourcePointer 数据源指针，包含要插入的浮点数据
+ * 
+ * @note 原始函数名：FUN_180203100
+ * @note 这是一个简化的实现，原始实现包含复杂的内存管理和排序逻辑
+ */
+void ProcessFloatArraySortingAndInsertion(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   unsigned long long MemoryPoolIndex;
