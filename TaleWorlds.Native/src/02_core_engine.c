@@ -290346,7 +290346,7 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long 
   uint8_t ProcessingCounter [32];
   uint32_t ErrorCode;
   uint64_t SystemFlagE;
-  long long *plStack_d8;
+  long long *OperationSizePointer;
   void *SystemCharacterStatusBufferPointer;
   void *SystemMemoryPointer;
   uint MemoryOffsetValue;
@@ -290354,9 +290354,9 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long 
   unsigned long long StackValidationFlag;
   
   SystemFlagE = 0xfffffffffffffffe;
-  StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)aProcessingCounter;
+  StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)ProcessingCounter;
   ErrorCode = 0;
-  plStack_d8 = OperationBufferSize;
+  OperationSizePointer = OperationBufferSize;
   Utf16Char = MemoryAllocate(MemoryPoolManager,0x470,0x10,0x15);
   BufferAllocationState = (long long *)FUN_18022b590(Utf16Char);
   *ContextHandleSize = (long long)BufferAllocationState;
@@ -290388,13 +290388,42 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long 
   (**(code **)(*(long long *)(*ContextHandleSize + 0x10) + 0x10))((long long *)(*ContextHandleSize + 0x10),MemoryAddressMaskPointer);
   FUN_18022c770(*ContextHandleSize,ContextHandle);
   SystemCharacterStatusBufferPointer = &ThreadLocalStorageTemplate;
-    CoreEngineExecuteUtilityFunction(StackValidationFlag ^ (unsigned long long)aProcessingCounter);
+    CoreEngineExecuteUtilityFunction(StackValidationFlag ^ (unsigned long long)ProcessingCounter);
 }
 
 
 
 
-2ccc0(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18022ccc0(long long ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理上下文验证和UTF编码转换
+ * 
+ * 该函数负责处理系统上下文的验证操作和UTF编码转换，主要功能包括：
+ * - 验证上下文句柄状态
+ * - 执行UTF编码转换操作
+ * - 处理系统状态标志
+ * - 清理和验证系统资源
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束数据指针
+ * 
+ * @note 原始函数名：FUN_18022ccc0
+ * @note 系统标志：0xfffffffffffffffe
+ */
+#define ProcessContextValidationAndUtfEncoding FUN_18022ccc0
+
+/**
+ * @brief 处理上下文验证和UTF编码转换
+ * 
+ * 该函数负责处理系统上下文的验证操作和UTF编码转换。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束数据指针
+ */
+void ProcessContextValidationAndUtfEncoding(long long ContextHandle, uint64_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   code *ValidationStatus;
   void *PrimaryProcessingStatusFlag;
