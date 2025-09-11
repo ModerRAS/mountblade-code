@@ -124230,6 +124230,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+ #define ProcessUIDataWithLongBuffer FUN_180739b90
  void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 /**
  * @brief 处理UI数据与Long缓冲区
@@ -124609,6 +124610,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+ #define ValidateAndProcessUIContextData FUN_180739df0
  void FUN_180739df0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
 /**
  * @brief 验证和处理UI上下文数据
@@ -407956,6 +407958,13 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_180749e60 InitializeUIContextAndHandles     // 初始化UI上下文和句柄 - 初始化UI上下文并分配相关句柄
 #define FUN_180745870 ProcessUIDataTransferOperation    // 处理UI数据传输操作 - 执行UI数据在不同缓冲区间的传输
 #define FUN_180739270 ProcessUIContextDataWithEncryption  // 处理UI上下文数据加密 - 处理UI上下文数据的加密传输操作
+
+// 补充缺失的UI系统函数定义
+#define FUN_180742190 FindUIAvailableMemorySlot              // 查找UI可用内存槽 - 查找UI系统中可用的内存槽位
+#define FUN_180742af0 SetupUIComponentMemoryAllocation       // 设置UI组件内存分配 - 设置UI组件的内存分配参数
+#define FUN_18076c8c0 ProcessUIComponentIndexAndDataSource   // 处理UI组件索引和数据源 - 处理UI组件的索引操作和数据源
+#define FUN_18074b880 ValidateUIBufferDataOperation         // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
+#define FUN_1807c41d0 CalculateUILayoutMetrics               // 计算UI布局度量 - 计算UI组件的布局度量信息
 
 
 
