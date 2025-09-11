@@ -246588,7 +246588,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                          + fStack_350;
             fStack_3fc = fStack_328 * fStack_37c + fStack_324 * fStack_36c + fStack_320 * fStack_35c
                          + fStack_34c;
-            FUN_1801c1140(&fStack_1f8,&fStack_318,Utf8SourcePointer);
+            ExecuteSystemStringProcessing(&fStack_1f8,&fStack_318,Utf8SourcePointer);
             LoopIndex = MemoryBufferC * 0x1b0 + *(long long *)(*(long long *)(CharacterTablePointer + 0x208) + 0x140);
             MatrixTransformElementB = *(float *)(LoopIndex + 0x30);
             ContextSecondaryFloat6 = *(float *)(LoopIndex + 0x34);
@@ -246605,7 +246605,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             fStack_258 = MatrixTransformElementB;
             fStack_254 = ContextSecondaryFloat6;
             fStack_250 = ContextSecondaryFloat7;
-            pSystemFloatValue = (float *)FUN_1801c0fb0(&fStack_268,aSystemValue1a8,&fStack_408);
+            pSystemFloatValue = (float *)ConvertSystemCharacterData(&fStack_268,aSystemValue1a8,&fStack_408);
             LoopIndex = lStack_438;
             MatrixTransformElementB = MatrixTransformElementB + *pSystemFloatValue;
             uStack_418 = CONCAT44(ContextSecondaryFloat6,ContextSecondaryFloat6 + pSystemFloatValue[1]);

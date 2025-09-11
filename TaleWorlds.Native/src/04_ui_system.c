@@ -130604,7 +130604,17 @@ void ProcessUIRenderTaskWithMemoryCheck(void)
 
 
 
- void ProcessUIRenderTaskWithResourceRelease(void)
+ /**
+ * @brief 处理带资源释放的UI渲染任务
+ * 
+ * 该函数执行UI渲染任务，并在执行前释放相关资源：
+ * - 释放UI内存资源
+ * - 执行渲染任务操作
+ * - 确保资源正确清理
+ * 
+ * @note 这是一个资源管理函数，确保渲染前资源被正确释放
+ */
+void ProcessUIRenderTaskWithResourceRelease(void)
 
 {
   ulonglong stackParam00000140;
