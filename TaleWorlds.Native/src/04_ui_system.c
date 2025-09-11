@@ -128306,7 +128306,7 @@ void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ProcessUIBufferDataFill(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809577f0,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextLogData,&stack0x00000040);
   }
 FUN_18073c87f:
   if (param_6 != 0) {
@@ -128396,7 +128396,7 @@ void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
     ProcessUITextureDataWithSize(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957758);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationControlData);
   }
 LAB_18073c96e:
   if (RenderContextSize != 0) {
@@ -128433,7 +128433,7 @@ void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
     ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957620);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationTransformData);
   }
 LAB_18073ca4b:
   if (RenderContextSize != 0) {
