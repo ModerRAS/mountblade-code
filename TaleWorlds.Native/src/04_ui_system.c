@@ -249,6 +249,8 @@ typedef enum {
 #define FUN_180739b90 ProcessUIDataWithTargetBuffer              // 处理带目标缓冲区的UI数据
 #define FUN_18073a3ad ProcessUIDataWithTargetValidation          // 处理带目标验证的UI数据
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
+#define FUN_18089d557 ValidateUIDataAndContextStructure          // 验证UI数据和上下文结构
+#define FUN_18089dcd6 UIReturnEmptyFunctionB                      // UI系统空返回函数B
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
 
 /**
@@ -384,6 +386,18 @@ typedef enum {
 #define FUN_18073c87f CompleteUIContextOperation        // 完成UI上下文操作
 #define FUN_18073c8a9 ValidateUIOperationComplete       // 验证UI操作完成
 #define FUN_18073c8d0 ProcessUIDataWithValidation       // 处理带验证的UI数据
+#define FUN_18005d390 FreeUIMemoryAllocation           // 释放UI内存分配
+#define FUN_18004b9a0 GetUIStandardIOFunctionPointer   // 获取标准I/O函数指针
+#define FUN_18069c2d0 InitializeUIRenderingSystem      // 初始化UI渲染系统
+#define FUN_18066ecc0 ProcessUIDataConversion          // 处理UI数据转换
+#define FUN_18069d1c0 CleanupUIDataSource              // 清理UI数据源
+#define FUN_18066c060 CompareUIStringsWithPrefix       // 比较带前缀的UI字符串
+#define FUN_18066c000 CompareUIStringsWithComponent    // 比较UI组件相关的字符串
+#define FUN_18069cbb0 ProcessUIRenderCallback          // 处理UI渲染回调
+#define FUN_18069c8f0 ProcessUIRenderResult            // 处理UI渲染结果
+#define FUN_18069cbd0 BindUIRenderData                  // 绑定UI渲染数据
+#define FUN_18001c253 TransformUIElement               // 变换UI元素
+#define FUN_18001c10b ScaleUIElement                    // 缩放UI元素
 #define FUN_18073c9b0 ExecuteUIComponentValidation      // 执行UI组件验证
 #define FUN_18073ca90 ProcessUIComponentData            // 处理UI组件数据
 #define FUN_18073cb70 ExecuteUIEventHandling            // 执行UI事件处理
@@ -130894,8 +130908,8 @@ void ProcessUIContextStateReset(void)
 
  
 
- void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
-void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
+ void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIDword dataSource)
+void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
@@ -130931,8 +130945,8 @@ LAB_18073d77c:
 
  
 
- void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
-void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
+ void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,UIByte dataSource)
+void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,UIByte dataSource)
 
 {
   int operationResult;
@@ -404891,8 +404905,23 @@ void FUN_18089d520(longlong uiContext,UIHandle *dataSource)
 
 
  void FUN_18089d557(UIDword uiContext)
-void FUN_18089d557(UIDword uiContext)
+void ValidateUIDataAndContextStructure(UIDword uiContext)
 
+/**
+ * @brief 验证UI数据和上下文结构
+ * 
+ * 该函数负责验证UI数据的完整性和上下文结构的正确性，包括：
+ * - 验证UI数据签名和格式
+ * - 验证UI上下文数据的完整性
+ * - 验证UI事件数据结构和完整性
+ * - 处理验证错误和恢复操作
+ * 
+ * @param uiContext UI上下文标识符
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18089d557
+ * @note 该函数不返回，执行完毕后会跳转到错误处理流程
+ */
 {
   int operationResult;
   UIHandle *contextHandle;
