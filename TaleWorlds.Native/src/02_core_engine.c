@@ -239899,7 +239899,22 @@ LAB_18019797c:
 
 
 
-97a20(uint64_t *ContextHandlevoid FUN_180197a20(uint64_t *ContextHandle
+/**
+ * @brief 系统配置和资源管理器
+ * 
+ * 该函数负责系统的完整初始化和清理过程，包括：
+ * - 初始化系统配置模板
+ * - 处理字符状态缓冲区
+ * - 管理系统内存块和资源
+ * - 执行系统状态更新和清理
+ * - 处理线程本地存储和事件处理
+ * - 管理系统互斥锁和条件变量
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180197a20
+ */
+void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
