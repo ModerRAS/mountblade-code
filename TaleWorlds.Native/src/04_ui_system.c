@@ -129110,8 +129110,9 @@ FUN_18073c6e3:
 
  
 
- void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ void ProcessUIDataWithDualBuffersEx2(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+// 处理带双缓冲区的UI数据扩展版本2
+// 这个函数是双缓冲区数据处理的第二个版本，包含更复杂的验证逻辑
 
 {
   int operationResult;

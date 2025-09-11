@@ -261311,16 +261311,35 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
 
 
 
-long long * FUN_1802117b0(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 分配和初始化系统上下文内存块
+ * 
+ * 该函数负责分配和初始化系统上下文的内存块，主要功能包括：
+ * - 计算所需的内存块大小
+ * - 分配内存池空间
+ * - 初始化内存块的结构和指针
+ * - 设置系统配置和线程本地存储
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 返回分配的内存块指针
+ * 
+ * @note 原始函数名：FUN_1802117b0
+ */
+long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint Utf16Char;
+  uint Utf16CharacterValue;
   void *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   uint64_t *MemoryAddressMaskPointer;
-  long long AllocatedMemorySize;
+  long long CalculatedMemorySize;
   void *SecondaryProcessingStatusFlag;
+  long long *MemoryBlockIndex;
+  long long *OperationBuffer;
   
-  MemoryBlockHandle = 0;
+  MemoryBlockIndex = 0;
   long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x3a0) - *(long long *)(ContextHandle + 0x398);
   AllocatedMemorySize = AllocatedMemorySize / 0x26 + (AllocatedMemorySize >> 0x3f);
   AllocatedMemorySize = (AllocatedMemorySize >> 2) - (AllocatedMemorySize >> 0x3f);
