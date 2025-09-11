@@ -261714,9 +261714,22 @@ uint64_t ProcessSystemContextHandleAndManageMemory(uint64_t ContextHandle,unsign
 
 
 
-0e3f0(long long *ContextHandlevoid FUN_18020e3f0(long long *ContextHandle
+/**
+ * @brief 处理系统上下文清理和资源释放
+ * 
+ * 该函数负责清理系统上下文并释放相关资源，主要功能包括：
+ * - 遍历并清理缓冲区分配状态
+ * - 释放内存块和相关资源
+ * - 处理字符表指针清理
+ * - 执行系统事件处理
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_18020e3f0
+ */
+#define CleanupSystemContextAndReleaseResources FUN_18020e3f0
+void CleanupSystemContextAndReleaseResources(long long *ContextHandle)
 {
-  long long MainCalculationResult;
   long long *BufferAllocationState;
   long long *MemoryBlockIndex;
   uint64_t *MemoryAllocationMaskPointer;
