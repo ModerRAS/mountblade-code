@@ -237586,7 +237586,14 @@ void FUN_180195184(void
 
 
 
-95190(long long ContextHandle,uint64_t *ContextHandleSizevoid FUN_180195190(long long ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 初始化系统数据结构变体
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * 该函数负责初始化系统数据结构的变体。
+ */
+void FUN_180195190(long long ContextHandle, uint64_t *ContextHandleSize
 {
   long long MainCalculationResult;
   
