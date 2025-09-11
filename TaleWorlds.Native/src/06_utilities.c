@@ -22108,9 +22108,6 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：处理数据并返回处理后的数据块，支持大数据处理
 #define ExecuteDataProcessingAndReturnDataBlock FUN_18089cc80
 
-// 原始函数名：FUN_1808ddf80 - 清理系统状态并释放资源
-// 功能：清理系统状态并释放所有占用的资源
-#define ExecuteSystemCleanupAndReleaseResources FUN_1808ddf80
 
 // 原始函数名：FUN_1808b0010 - 检查系统完整性并返回状态码
 // 功能：检查系统的完整性并返回详细的状态码

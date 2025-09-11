@@ -121793,7 +121793,7 @@ int InitializeUIContextAndDataSource(UIDword *uiContext,UIDword *dataSource,int 
     do {
       allocatedMemory = *(longlong *)(contextDataHandle + _DAT_180be12f0);
       if ((allocatedMemory != 0) && (*(char *)(allocatedMemory + 8) != '\0')) {
-        uiValidationResult = FUN_180743c40(allocatedMemory);
+        uiValidationResult = ValidateUIResourceAllocation(allocatedMemory);
         stringCompareIndex = 0;
         if ((uiValidationResult != 0) ||
            ((uiValidationResult = ValidateUIMemoryOperation(allocatedMemory,1), stringCompareIndex = allocatedMemory, uiValidationResult != 0 ||
