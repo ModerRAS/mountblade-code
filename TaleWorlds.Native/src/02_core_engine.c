@@ -48169,7 +48169,21 @@ void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBuffer
 
 
 
-3730(uint64_t ContextHandle,uint64_t OperationBufferSize/**
+/**
+ * @brief 处理系统数据流和数据传输
+ * 
+ * 该函数负责处理系统数据流和数据传输，包括：
+ * - 管理数据流的传输和处理
+ * - 处理数据缓冲区和配置
+ * 
+ * @param ContextHandle 目标数据结构指针
+ * @param OperationBufferSize 源数据结构指针
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18013730
+ */
+void ProcessSystemDataStreamAndTransfer(uint64_t ContextHandle, uint64_t OperationBufferSize)/**
  * @brief 处理系统数据流和数据传输
  * 
  * 该函数负责处理系统数据流和数据传输，包括：
