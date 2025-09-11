@@ -263364,7 +263364,7 @@ uint64_t * InitializeSystemContextDataNode(uint64_t *ContextHandle)
   *ContextHandle = &DataNodeTemplateB;
   *(uint32_t *)(ContextHandle + 1) = 0;
   *ContextHandle = &SystemValidationStatusTertiary;
-  FUN_18015c2b0(ContextHandle + 2);
+  ManageSystemBufferAllocation(ContextHandle + 2);
   *ContextHandle = &SystemContextPrimary;
   ContextHandle[0x11] = 0;
   *(uint32_t *)(ContextHandle + 0x12) = 0xffffffff;
