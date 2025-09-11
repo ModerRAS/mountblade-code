@@ -141037,100 +141037,99 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
 ulonglong ProcessUIContextDataOperationAndInitialization(UIDword uiContext, UIDword dataSource)
 
 {
-  UIDword result;
-  UIDword iterationCount;
+  UIDword operationResult;
+  UIDword eventCounter;
   UIDword eventCodeType;
-  int sourceDataInt;
-  uint loopCounter;
-  longlong contextDataHandle;
-  longlong *componentData;
-  ulonglong iterationCount;
-  UIHandle eventStatus;
-  longlong allocatedMemory0;
-  int ProcessingResult1;
-  longlong uiContextBasePointer;
+  int sourceDataIndex;
+  uint processCounter;
+  longlong memoryContextHandle;
+  longlong *uiComponentData;
+  ulonglong iterationResult;
+  UIHandle uiEventStatus;
+  longlong allocatedMemoryBlock;
+  int memoryAllocationSize;
+  longlong contextBasePointer;
   UIHandle *uiTargetHandle;
-  longlong preservedRegister12;
-  longlong *eventHandle;
-  uint preservedRegister15D;
-  UIDword StackData4;
-  longlong *stackParam00000048;
-  UIHandle stackParam00000130;
-  UIHandle stackParam00000138;
-  UIHandle stackParam00000140;
-  UIHandle stackParam00000148;
-  UIHandle stackParam00000150;
-  UIHandle stackParam00000158;
-  UIHandle stackParam00000160;
-  UIHandle stackParam00000168;
-  UIHandle stackParam00000170;
-  UIHandle stackParam00000178;
-  UIHandle stackParam00000180;
-  UIHandle stackParam00000188;
-  UIHandle stackParam00000190;
-  UIHandle stackParam00000198;
-  UIHandle stackParam000001a0;
-  UIHandle stackParam000001a8;
-  UIHandle stackParam000001b0;
-  UIHandle stackParam000001b8;
-  UIHandle stackParam000001c0;
-  UIHandle stackParam000001c8;
-  UIHandle stackParam000001d0;
-  UIHandle stackParam000001d8;
-  UIHandle stackParam000001e0;
-  UIHandle stackParam000001e8;
-  UIDword uStack00000000000001f0;
-  UIDword uStack00000000000001f4;
-  UIDword uStack00000000000001f8;
-  UIDword uStack00000000000001fc;
-  UIDword uStack0000000000000200;
-  UIDword uStack0000000000000204;
-  UIDword uStack0000000000000208;
-  UIDword uStack000000000000020c;
-  int ProcessingResult2;
+  longlong registerPreservedData;
+  longlong *uiEventHandle;
+  uint operationFlags;
+  UIDword stackDataSource;
+  longlong *memoryPoolPointer;
+  UIHandle uiTargetData1;
+  UIHandle uiTargetData2;
+  UIHandle uiTargetData3;
+  UIHandle uiTargetData4;
+  UIHandle uiTargetData5;
+  UIHandle uiTargetData6;
+  UIHandle uiTargetData7;
+  UIHandle uiTargetData8;
+  UIHandle uiTargetData9;
+  UIHandle uiTargetData10;
+  UIHandle uiTargetData11;
+  UIHandle uiTargetData12;
+  UIHandle uiTargetData13;
+  UIHandle uiTargetData14;
+  UIHandle uiTargetData15;
+  UIHandle uiTargetData16;
+  UIHandle uiTargetData17;
+  UIHandle uiTargetData18;
+  UIHandle uiTargetData19;
+  UIHandle uiTargetData20;
+  UIHandle uiTargetData21;
+  UIHandle uiTargetData22;
+  UIHandle uiTargetData23;
+  UIHandle uiTargetData24;
+  UIDword contextDataSource;
+  UIDword contextDataParam1;
+  UIDword contextDataParam2;
+  UIDword contextDataParam3;
+  UIDword contextDataParam4;
+  UIDword contextDataParam5;
+  UIDword contextDataParam6;
+  int secondaryAllocationSize;
   
-  sourceDataInt = 0;
-  *eventHandle = 0;
-  if ((preservedRegister15D >> 0x10 & 1) != 0) {
-    StackData4 = 0;
-    if ((char)preservedRegister15D < '\0') {
-      contextDataHandle = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x198,&UIGlobalData000,0xf59,0);
-      if (contextDataHandle == 0) {
+  sourceDataIndex = 0;
+  *uiEventHandle = 0;
+  if ((operationFlags >> 0x10 & 1) != 0) {
+    stackDataSource = 0;
+    if ((char)operationFlags < '\0') {
+      memoryContextHandle = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x198,&UIGlobalData000,0xf59,0);
+      if (memoryContextHandle == 0) {
         return 0x26;
       }
-      componentData = (longlong *)FUN_180773a80(contextDataHandle);
-      if (componentData == (longlong *)0x0) {
+      uiComponentData = (longlong *)FUN_180773a80(memoryContextHandle);
+      if (uiComponentData == (longlong *)0x0) {
         return 0x26;
       }
-      *eventHandle = (longlong)componentData;
+      *uiEventHandle = (longlong)uiComponentData;
     }
     else {
-      stackParam00000048 = (longlong *)0x0;
-      iterationCount = FUN_1807aaba0(*(UIHandle *)(uiContextBasePointer + 0x6b8),0,0,&stack0x00000048);
-      if ((int)iterationCount != 0) {
-        return iterationCount;
+      memoryPoolPointer = (longlong *)0x0;
+      eventCounter = FUN_1807aaba0(*(UIHandle *)(contextBasePointer + 0x6b8),0,0,&memoryPoolPointer);
+      if ((int)eventCounter != 0) {
+        return eventCounter;
       }
-      *eventHandle = (longlong)stackParam00000048;
-      componentData = stackParam00000048;
+      *uiEventHandle = (longlong)memoryPoolPointer;
+      uiComponentData = memoryPoolPointer;
     }
-    ProcessingResult2 = 0;
-    ProcessingResult1 = 0x128;
+    secondaryAllocationSize = 0;
+    memoryAllocationSize = 0x128;
     if (uiTargetHandle != (UIHandle *)0x0) {
-      ProcessingResult1 = *(int *)(uiTargetHandle + 6) * 4 + 0x128;
+      memoryAllocationSize = *(int *)(uiTargetHandle + 6) * 4 + 0x128;
       if (uiTargetHandle[10] != 0) {
-        sourceDataInt = func_0x00018076b690();
-        sourceDataInt = sourceDataInt + 1;
-        ProcessingResult1 = ProcessingResult1 + sourceDataInt;
+        sourceDataIndex = func_0x00018076b690();
+        sourceDataIndex = sourceDataIndex + 1;
+        memoryAllocationSize = memoryAllocationSize + sourceDataIndex;
       }
       if (uiTargetHandle[0xb] != 0) {
-        ProcessingResult2 = func_0x00018076b690();
-        ProcessingResult2 = ProcessingResult2 + 1;
-        ProcessingResult1 = ProcessingResult1 + ProcessingResult2;
+        secondaryAllocationSize = func_0x00018076b690();
+        secondaryAllocationSize = secondaryAllocationSize + 1;
+        memoryAllocationSize = memoryAllocationSize + secondaryAllocationSize;
       }
     }
-    contextDataHandle = FUN_180742050(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),ProcessingResult1,&UIContextDataController000,0xf89,0);
-    componentData[0x21] = contextDataHandle;
-    if (contextDataHandle == 0) {
+    memoryContextHandle = FUN_180742050(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),memoryAllocationSize,&UIContextDataController000,0xf89,0);
+    uiComponentData[0x21] = memoryContextHandle;
+    if (memoryContextHandle == 0) {
       return 0x26;
     }
     if ((preservedRegister15D & 0x10000800) == 0) {
