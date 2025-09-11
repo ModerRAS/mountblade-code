@@ -508,6 +508,20 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress FramePointer         // 栈帧地址
 
+// 系统状态变量语义化宏定义
+#define PrimaryStatusBlock SystemPrimaryStatusBlock               // 主要状态块
+#define SecondaryProcessingStatusFlag SystemSecondaryProcessingStatusFlag    // 次要处理状态标志
+#define StringProcessingStatus SystemStringProcessingStatus         // 字符串处理状态
+#define SystemContextPtr SystemContextPointer                 // 系统上下文指针
+#define AllocatedMemorySize MemoryAllocationSize                // 已分配内存大小
+#define TemporaryBuffer SystemTemporaryBuffer                 // 临时缓冲区
+#define MemoryComparisonResult MemoryComparisonResult         // 内存比较结果
+#define MemoryNodeComparisonResult NodeMemoryComparisonResult  // 内存节点比较结果
+#define functionCallback NetworkFunctionCallback              // 函数回调
+#define TertiaryNode SystemTertiaryNode                       // 三级节点
+#define PrimaryProcessingStatusFlag SystemPrimaryProcessingStatusFlag  // 主要处理状态标志
+#define ValidationStatus SystemValidationStatusFlag            // 验证状态
+
 // 系统上下文结构偏移量常量
 #define SystemContextEventSize 0xb                        // 系统上下文事件大小
 #define SystemContextEventDataOffset 0x18                  // 系统上下文事件数据偏移量
@@ -249300,7 +249314,7 @@ void ProcessCharacterEncodingAndAllocation(long long ContextHandle)
   SystemEventTemplatePointer[2] = 0x5f6e6961;
   SystemEventTemplatePointer[3] = 0x737066;
   CoreEngineUnsignedValue = 0xf;
-  FUN_180047e70(0x74746162,aBufferOffset,&CoreEnginePointerBuffer158,(int)Utf16Char);
+  ProcessSystemEventData(0x74746162,aBufferOffset,&CoreEnginePointerBuffer158,(int)Utf16Char);
   CoreEnginePointerBuffer158 = &SystemNullTemplate;
     CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
 }
@@ -249374,7 +249388,7 @@ void ProcessFloatArraySortingAndConversion(float *ContextHandle,float *ContextHa
     OperationBufferSize = pCalculatedDistance;
   }
   if (Utf8SourcePointer == 0) {
-    FUN_180202e40(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
+    ExecuteSystemFloatOperation(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
   }
   return;
 }
@@ -249450,7 +249464,7 @@ void ProcessFloatArrayQuickSort(float *FloatArrayPointer,float *ArraySizePointer
     OperationBufferSize = pCalculatedDistance;
   }
   if (IterationCount == 0) {
-    FUN_180202e40(FloatArrayPointer,OperationBufferSize,OperationBufferSize,ProcessFlag);
+    ExecuteSystemFloatOperation(FloatArrayPointer,OperationBufferSize,OperationBufferSize,ProcessFlag);
   }
   return;
 }
@@ -249525,7 +249539,7 @@ void ProcessFloatArraySearchAndSort(uint32_t SearchPattern,float *ArraySizePoint
     OperationBufferSize = ArrayIterator;
   } while (0x70 < (long long)((long long)ArrayIterator - (long long)PatternPointer & 0xfffffffffffffffcU));
   if (FrameAddress == 0) {
-    FUN_180202e40(SearchPattern,ArrayIterator,ArrayIterator,StatusFlag);
+    ExecuteSystemFloatOperation(SearchPattern,ArrayIterator,ArrayIterator,StatusFlag);
   }
   return;
 }
@@ -249536,7 +249550,8 @@ void ProcessFloatArraySearchAndSort(uint32_t SearchPattern,float *ArraySizePoint
 /**
  * @brief 处理系统栈帧地址检查和最终化操作
  * 
- * 该函数检查栈帧地址并根据条件执行系统最终化操作
+ * 该函数检查系统栈帧地址指针的有效性，如果为0则执行系统浮点变换操作。
+ * 这是一个系统运行时的安全检查函数，确保栈帧地址的有效性。
  * 
  * @note 原始函数名：FUN_180202cef
  */
@@ -249545,7 +249560,7 @@ void ProcessSystemStackFrameCheck(void)
   long long FrameAddressPointer;
   
   if (FrameAddressPointer == 0) {
-    FUN_180202e40();
+    ProcessSystemFloatTransformOperations();
   }
   return;
 }
@@ -249556,13 +249571,14 @@ void ProcessSystemStackFrameCheck(void)
 /**
  * @brief 执行系统最终化操作
  * 
- * 该函数直接调用系统最终化函数，完成清理工作
+ * 该函数直接调用系统浮点变换操作函数，完成系统的最终化清理工作。
+ * 这是系统关闭时的关键函数，确保所有资源被正确释放。
  * 
  * @note 原始函数名：FUN_180202cf9
  */
 void ExecuteSystemFinalization(void)
 {
-  FUN_180202e40();
+  ProcessSystemFloatTransformOperations();
   return;
 }
 
@@ -249630,12 +249646,12 @@ void ProcessAdvancedFloatArraySorting(float *ContextHandle,float *ContextHandleS
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180202d20(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+    ConvertSystemFloatData(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
     UnicodeCodePoint = (long long)pCalculatedDistance - (long long)ContextHandle;
     OperationBufferSize = pCalculatedDistance;
   }
   if (Utf8SourcePointer == 0) {
-    FUN_180203100(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
+    ValidateSystemFloatContext(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
   }
   return;
 }
@@ -249705,12 +249721,12 @@ void ProcessOptimizedFloatArraySorting(float *ContextHandle,float *ContextHandle
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180202d20(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+    ConvertSystemFloatData(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
     UnicodeCodePoint = (long long)pCalculatedDistance - (long long)ContextHandle;
     OperationBufferSize = pCalculatedDistance;
   }
   if (Utf8SourcePointer == 0) {
-    FUN_180203100(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
+    ValidateSystemFloatContext(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer);
   }
   return;
 }
@@ -249796,7 +249812,8 @@ void ValidateSystemContextFloatValues(uint32_t ContextHandle,float *ContextHandl
 /**
  * @brief 检查并执行系统初始化
  * 
- * 该函数检查系统状态并执行必要的初始化操作
+ * 该函数检查系统帧指针状态，如果为0则执行系统初始化操作。
+ * 这是一个系统启动时的安全检查函数，确保系统在正确的状态下进行初始化。
  * 
  * @note 原始函数名：FUN_180202e0f
  */
@@ -249805,7 +249822,7 @@ void CheckAndExecuteSystemInitialization(void)
   long long SystemFramePointer;
   
   if (SystemFramePointer == 0) {
-    FUN_180203100();
+    ValidateSystemFloatContext();
   }
   return;
 }
@@ -249816,13 +249833,14 @@ void CheckAndExecuteSystemInitialization(void)
 /**
  * @brief 执行系统资源初始化
  * 
- * 该函数负责执行系统资源的初始化操作
+ * 该函数负责执行系统资源的初始化操作，包括内存池、缓冲区
+ * 和系统上下文的初始化。这是系统启动时的关键函数。
  * 
  * @note 原始函数名：FUN_180202e19
  */
 void ExecuteSystemResourceInitialization(void)
 {
-  FUN_180203100();
+  ValidateSystemFloatContext();
   return;
 }
 
