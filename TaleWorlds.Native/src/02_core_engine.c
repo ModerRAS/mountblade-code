@@ -40,6 +40,10 @@
 #define DestroyBasicIostreamFinal DestroyInputOutputStreamObjectFinal
 #define InitializeBasicIostream InitializeInputOutputStreamObject
 
+// 核心引擎临时缓冲区语义化定义
+#define aProcessingConfigurationFlag ProcessingConfigurationBuffer   // 处理配置标志缓冲区
+#define aStackParameterUnsigned20 StackParameterBuffer20             // 堆栈参数缓冲区20
+
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
 #define FUN_180211930 InitializeSystemContextDataNode           // 初始化系统上下文数据节点
@@ -75082,22 +75086,45 @@ void ProcessSystemEventTemplateData(void
 
 
 
- void CoreEngineAllocateMemory(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointervoid CoreEngineAllocateMemory(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer
+ /**
+ * @brief 核心引擎内存分配函数
+ * 
+ * 该函数负责为核心引擎系统分配内存资源，包括上下文句柄、
+ * 操作缓冲区和UTF-8源指针的处理。
+ * 
+ * @param ContextHandle 上下文句柄 - 系统上下文的标识符
+ * @param OperationBufferSize 操作缓冲区大小 - 需要分配的内存大小
+ * @param Utf8SourcePointer UTF-8源指针 - 指向UTF-8数据的指针
+ * 
+ * @note 函数会初始化内存缓冲区并设置相关状态
+ * @note 内存分配后需要进行相应的数据结构设置
+ */
+void CoreEngineAllocateMemory(uint64_t ContextHandle, uint64_t OperationBufferSize, long long *Utf8SourcePointer)
 {
-  uint64_t Utf16Char;
-  long long BufferStatus;
+  uint64_t Utf16Char;                    // UTF-16字符变量
+  long long BufferStatus;                // 缓冲区状态变量
   
+  // 处理系统数据结构搜索操作
   BufferStatus = ProcessSystemDataStructureSearch();
+  
+  // 初始化缓冲区状态字段
   *(uint16_t *)(BufferStatus + 0x18) = 0;
+  
+  // 获取UTF-16字符数据
   Utf16Char = ((void *)*Utf8SourcePointer)[1];
-  *(void *)(BufferStatus + 0x20) = *(void *)*Utf8SourcePointer;
-  *(void *)(BufferStatus + 0x28) = Utf16Char;
-  *(void *)(BufferStatus + 0x30) = 0;
-  *(void *)(BufferStatus + 0x38) = 0;
-  *(void *)(BufferStatus + 0x40) = 0;
+  
+  // 设置缓冲区数据字段
+  *(void **)(BufferStatus + 0x20) = *(void **)Utf8SourcePointer;
+  *(void **)(BufferStatus + 0x28) = (void *)Utf16Char;
+  *(void **)(BufferStatus + 0x30) = NULL;
+  *(void **)(BufferStatus + 0x38) = NULL;
+  *(void **)(BufferStatus + 0x40) = NULL;
+  
+  // 设置缓冲区标识字段
   *(uint32_t *)(BufferStatus + 0x48) = 0xffffffff;
-  *(uint32_t *)(BufferStatus + 0x4c) = 0xffffffff;
-  *(void *)(BufferStatus + 0x50) = 0;
+  *(uint32_t *)(BufferStatus + 0x50) = 0xffffffff;
+  *(void **)(BufferStatus + 0x58) = NULL;
+  
   return;
 }
 
@@ -173047,6 +173074,17 @@ char ProcessSystemDataStructureMemory(long long ContextHandle, long long Operati
 
 
 
+/**
+ * @brief 获取系统字符串编码状态
+ * 
+ * 此函数负责获取和处理系统字符串的编码状态信息，
+ * 包括UTF-16字符处理、内存池管理、事件模板处理等功能。
+ * 
+ * @return uint8_t 系统字符串编码状态标志
+ * 
+ * @note 此函数处理字符串编码相关的状态检查和参数设置
+ * @note 涉及浮点数运算、内存池索引管理和字符状态缓冲区操作
+ */
 uint8_t GetSystemStringEncodingStatus(void)
 {
   uint32_t Utf16Char;
