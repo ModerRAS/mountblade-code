@@ -50109,7 +50109,7 @@ void HandleSystemExceptionAtOffset7A0(DataBuffer operationBase,int64_t dataBuffe
  * @param operationFlagA 异常代码参数
  * @param operationFlagB 异常处理标志
  */
-void HandleSystemException7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleSystemExceptionAtOffset7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *systemresourcePointer;
@@ -50132,7 +50132,7 @@ void HandleSystemException7B0(DataBuffer operationBase,int64_t dataBuffer,DataBu
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
  */
-void HandleSystemException7C0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleSystemExceptionAtOffset7C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
@@ -50158,7 +50158,7 @@ void HandleSystemException7C0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
  */
-void HandleSystemException7D0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleSystemExceptionAtOffset7D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionContext;
