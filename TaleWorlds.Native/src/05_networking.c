@@ -5519,8 +5519,8 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectio
         
         if (processedConnectionHandle != NetworkErrorConnectionFailed) {
             // 连接成功，更新状态
-            *ConnectionStatus |= NetworkStatusConnectedFlag;
-            NetworkConnectionContext->connectionHandle = processedConnectionHandle;
+            *connectionStatus |= NetworkStatusConnectedFlag;
+            connectionContext->connectionHandle = processedConnectionHandle;
         }
     }
     
