@@ -263643,7 +263643,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle, long long *Context
  * @note 原始函数名：FUN_18020f790
  */
 #define CleanupSystemMemoryAndSyncObjects FUN_18020f790
-void FUN_18020f790(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
+void CleanupSystemMemoryAndSyncObjects(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
@@ -263682,7 +263682,7 @@ void FUN_18020f790(long long ContextHandle, uint64_t OperationBufferSize, uint64
  * @note 原始函数名：FUN_18020f7d0
  */
 #define HandleSystemContextReleaseAndThreadSignal FUN_18020f7d0
-void FUN_18020f7d0(long long ContextHandle)
+void HandleSystemContextReleaseAndThreadSignal(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
@@ -263713,7 +263713,7 @@ void FUN_18020f7d0(long long ContextHandle)
 
 
 
-0f870(char *ContextHandlevoid FUN_18020f870(char *ContextHandle
+void DestroyConditionVariableObject(char *ContextHandle)
 {
   if (*ContextHandle != '\0') {
     _Cnd_destroy(*(void *)(ContextHandle + 8));
@@ -263724,7 +263724,7 @@ void FUN_18020f7d0(long long ContextHandle)
 
 
 
-0f8a0(char *ContextHandlevoid FUN_18020f8a0(char *ContextHandle
+void DestroyMutexObject(char *ContextHandle)
 {
   if (*ContextHandle != '\0') {
     _Mtx_destroy(*(void *)(ContextHandle + 8));
@@ -263735,7 +263735,7 @@ void FUN_18020f7d0(long long ContextHandle)
 
 
 
-0f8d0(long long ContextHandlevoid FUN_18020f8d0(long long ContextHandle
+void ReleaseSystemMutexAndResources(long long ContextHandle)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
