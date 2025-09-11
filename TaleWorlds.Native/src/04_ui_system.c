@@ -126019,6 +126019,7 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
   longlong memoryCleanupFlag;
   UIHandle cleanupBufferHandle;
   ulonglong renderTaskParameter;
+  UIByte uiDataProcessingBuffer[256];
   
   *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
