@@ -2759,6 +2759,14 @@ typedef enum {
 #define maxProcessingCount UIMaxProcessingCount
 #define sizeData UISizeData
 #define stackParamfffffffffffffe80 UIStackParamFe80
+
+// UI系统内存管理变量美化补充
+#define allocatedMemory UIAllocatedMemory        // UI分配内存 - 用于内存管理
+#define calculatedMemorySize UICalculatedMemorySize // UI计算内存大小 - 用于内存计算
+#define componentData UIComponentData             // UI组件数据 - 用于组件数据访问
+#define datacomponentData UIDataComponentData     // UI数据组件数据 - 用于组件数据访问
+#define RegisterValue UIRegisterValue             // UI寄存器值 - 用于寄存器操作
+#define bufferIterationCount UIBufferIterationCount // UI缓冲区迭代计数 - 用于迭代操作
 #define resultPointer5 UIPtrResult5
 #define uiTargetHandle UIuiTargetHandle
 #define bufferSize UIBufferSize
@@ -124432,7 +124440,8 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
  #define ProcessUIDataWithLongBuffer FUN_180739b90
- void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIDataWithLongBuffer FUN_180739b90
 /**
  * @brief 处理UI数据与Long缓冲区
  * 
