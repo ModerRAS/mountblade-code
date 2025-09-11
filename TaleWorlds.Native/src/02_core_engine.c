@@ -167,6 +167,14 @@
 #define FUN_1802143e0 HandleSystemContextCleanup                       // 处理系统上下文清理
 #define FUN_1802147c0 InitializeSystemEventHandling                    // 初始化系统事件处理
 #define FUN_180215e10 ProcessSystemDataValidation                      // 处理系统数据验证
+
+// 系统缓冲区和内存池操作函数语义化宏定义
+#define FUN_18020d310 ProcessSystemBufferValidation                     // 处理系统缓冲区验证
+#define FUN_1802f5440 InitializeSystemMemoryPool                       // 初始化系统内存池
+#define FUN_1802f1890 ConfigureMemoryPoolAllocation                     // 配置内存池分配
+#define FUN_1802f1930 ProcessMemoryBlockValidation                    // 处理内存块验证
+#define FUN_1803bb5f0 ConfigureStringProcessingParameters              // 配置字符串处理参数
+#define FUN_1803ba550 ProcessSystemBufferOperation                     // 处理系统缓冲区操作
 #define FUN_180215ea0 ValidateSystemDataTransfer                       // 验证系统数据传输
 #define FUN_180216508 TransferSystemMemoryData                         // 传输系统内存数据
 #define FUN_180216522 ProcessSystemMemoryTransfer                      // 处理系统内存传输

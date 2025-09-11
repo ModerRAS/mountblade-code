@@ -314,6 +314,7 @@
 // 字符验证常量
 #define CharacterValidationOffset 0x57                          // 字符验证偏移量 - 用于字符验证操作
 #define SystemDataRecordHeaderOffset 0x14                        // 系统数据记录头偏移量 - 用于数据记录头部访问
+#define SystemDataRecordOffset30 0x30                           // 系统数据记录偏移量30 - 用于数据记录操作
 
 // 系统数据大小常量
 #define SystemDataSizeMinimumThreshold 0x34                      // 系统数据最小大小阈值 - 用于数据大小验证的最小阈值
@@ -67998,7 +67999,7 @@ void ExecuteDeepResourceCleanup(DataBuffer cleanupContext, int64_t deepResourceM
 void SetDefaultExceptionHandler(DataBuffer exceptionContext, int64_t handlerPointer)
 
 {
-  **(DataBuffer **)(handlerPointer + 0x2e0) = &DefaultExceptionHandler;
+  **(DataBuffer **)(handlerPointer + ExceptionHandlerCleanupOffset2e0) = &DefaultExceptionHandler;
   return;
 }
 
