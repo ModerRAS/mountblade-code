@@ -3861,6 +3861,15 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
 #define InitializeSystemCharacterEncodingValidation FUN_1801659e0  // 初始化系统字符编码验证
 #define ProcessSystemTimeoutHandler FUN_18005e630  // 处理系统超时处理器
+#define ProcessSystemCharacterDataValidation FUN_18020975a            // 处理系统字符数据验证
+#define ExecuteSystemBufferReset FUN_18020980e                        // 执行系统缓冲区重置
+#define ProcessSystemCharacterEncoding FUN_180209b00                 // 处理系统字符编码
+#define InitializeSystemBuffer FUN_18023c450                          // 初始化系统缓冲区
+#define ProcessSystemMemoryBlockList FUN_1800bb630                  // 处理系统内存块列表
+#define CalculateSystemValidationChecksum FUN_18020d6c0              // 计算系统验证校验和
+#define ExecuteSystemPriorityProcessing FUN_18009ec20                // 执行系统优先级处理
+#define ProcessSystemPriorityData FUN_1800c4800                     // 处理系统优先级数据
+#define ExecuteSystemConfigurationProcessing FUN_180631420          // 执行系统配置处理
 
 // 系统渲染和状态管理函数语义化映射
 #define ProcessSystemRenderState FUN_1801c93c0                 // 处理系统渲染状态

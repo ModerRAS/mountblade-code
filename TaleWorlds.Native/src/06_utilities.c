@@ -18900,15 +18900,15 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     if ((int32_t)SystemDataQueryStatus != 0) {
       return SystemDataQueryStatus;
     }
-    componentValidationStatus = ValidateInputData(componentValidationDataBuffer);
-    if ((int32_t)componentValidationStatus != 0) {
-      return componentValidationStatus;
+    ComponentValidationStatus = ValidateInputData(ComponentValidationDataBuffer);
+    if ((int32_t)ComponentValidationStatus != 0) {
+      return ComponentValidationStatus;
     }
-    if ((int8_t)systemDataQueryStatus == (int8_t)componentValidationStatus) {
-      if (componentValidationDataBuffer[PrimaryComponentValidationIndex] == (int8_t)componentValidationStatus) {
-        componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
-        componentSearchIndex = 0;
-        registeredComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
+    if ((int8_t)SystemDataQueryStatus == (int8_t)ComponentValidationStatus) {
+      if (ComponentValidationDataBuffer[PrimaryComponentValidationIndex] == (int8_t)ComponentValidationStatus) {
+        ComponentListPointer = (int64_t *)(ComponentDataPointer + COMPONENT_LIST_OFFSET);
+        ComponentSearchIndex = 0;
+        RegisteredComponentCount = *(int32_t *)(ComponentDataPointer + COMPONENT_COUNT_OFFSET);
         if (0 < registeredComponentCount) {
           activeComponentContext = (int64_t *)*componentListPointer;
           componentIterationCounter = componentSearchIndex;
