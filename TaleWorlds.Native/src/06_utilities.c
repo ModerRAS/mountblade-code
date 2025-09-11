@@ -29947,9 +29947,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               StackBufferFlag = FloatOneValue;
               ValidateDataIntegrityA1(&StackValidationPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackDataPointer = &SystemValidationDataTableA4;
-              StackProcessingData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
-              StackProcessingOffset = 0;
-              StackProcessingFlag = 0;
+              ProcessingDataStack = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
+              ProcessingOffsetStack = 0;
+              ProcessingFlagStack = 0;
               ProcessDataBlockA0(&StackDataPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackEventPointer = &SystemValidationDataTableA5;
               StackEventData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
