@@ -876,8 +876,8 @@
 #define ExceptionHandlerContextOffset290 0x290
 
 // 系统数据参数偏移量常量
-#define SystemParameterValidationOffsetPrimary 0x28
 #define SystemDataSecondaryOffset18 0x18
+#define SystemParameterValidationOffsetPrimary 0x28
 #define SystemDataParameterOffsetPrimary 0x20
 #define ValidationResultOffset0 0x0
 #define MemoryPointerOffset0 0x0
@@ -1676,7 +1676,6 @@
 #define SystemContextValidationOffsetBC 0xbc
 #define SystemContextValidationOffsetC0 0xc0
 #define systemContextIndexOffset10 0x10
-#define SystemDataSecondaryOffset18 0x18
 
 // 异常处理器数据偏移量常量
 #define ExceptionHandlerContextDataOffset68 0x68
