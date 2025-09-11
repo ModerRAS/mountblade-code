@@ -243099,12 +243099,25 @@ LAB_180198da7:
 
 /**
  * @brief 系统数据处理和编码转换函数
- * @param ContextHandle 系统上下文指针
- * @param OperationBufferSize UTF-8缓冲区大小
- * @param Utf8SourcePointer UTF-16输入指针
- * @param Utf16EndPointer UTF-16结束指针
- * @return 处理结果状态码
- * @note 负责数据编码转换、系统事件处理和缓冲区管理
+ * 
+ * 该函数负责处理系统数据的编码转换和事件管理，主要功能包括：
+ * - 处理UTF-8到UTF-16的字符编码转换
+ * - 管理系统内存缓冲区和数据分配
+ * - 执行系统事件处理和回调函数
+ * - 验证系统数据完整性和状态检查
+ * - 管理系统上下文和资源清理
+ * 
+ * @param ContextHandle 系统上下文指针，用于管理系统状态和资源
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的大小限制
+ * @param Utf8SourcePointer UTF-8源数据指针，指向需要转换的字符串数据
+ * @param Utf16EndPointer UTF-16结束指针，标记转换操作的结束位置
+ * 
+ * @return void 无返回值，处理结果通过系统状态和回调函数返回
+ * 
+ * @note 函数内部包含复杂的内存管理和事件处理逻辑
+ * @warning 请勿修改函数内部的内存分配逻辑，可能导致系统不稳定
+ * 
+ * @see ProcessSystemDataProcessing, CoreEngineProcessSystemEvent
  */
 void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint8_t Utf16EndPointer)
 {
