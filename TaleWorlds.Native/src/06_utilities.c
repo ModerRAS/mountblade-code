@@ -10077,10 +10077,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
 
 // 数据处理和验证函数组
-#define InitializeDataValidation FUN_1808a5630
-#define ExecuteDataProcessing FUN_1808afe30
-#define ValidateSystemMemoryAccess FUN_180748010
-#define CheckOperationStatus FUN_1808dde10
+#define InitializeDataValidation InitializeSystemDataValidationRoutine
+#define ExecuteDataProcessing ExecuteSystemDataProcessingOperation
+#define ValidateSystemMemoryAccess ValidateSystemMemoryAccessPermissions
+#define CheckOperationStatus VerifySystemOperationStatusCode
 #define FinalizeDataProcessing FUN_1808de0e0
 #define ValidateDataSecurity FUN_1808a6150
 #define AllocateMemoryWithContext AllocateMemoryWithContextualData    // 带上下文数据的内存分配函数

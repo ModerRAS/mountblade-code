@@ -154,11 +154,11 @@
  * - 处理错误码和状态标志
  * - 管理系统缓冲区配置
  * 
- * @param StackPointer190 栈指针190 - 指向系统数据结构的指针
+ * @param SystemDataStructurePointer 系统数据结构指针 - 指向系统数据结构的指针
  * @param ErrorCode 错误代码 - 用于存储和传递错误状态
  * @param CoreEngineUnsignedValue 核心引擎无符号值 - 系统内部使用的数据值
- * @param StackValue150 栈值150 - 系统处理过程中的临时数据
- * @param StackValue158 栈值158 - 系统处理过程中的临时数据
+ * @param SystemTemporaryData150 系统临时数据150 - 系统处理过程中的临时数据
+ * @param SystemTemporaryData158 系统临时数据158 - 系统处理过程中的临时数据
  * @param ProcessingConfigurationFlag 处理配置标志 - 控制处理行为的标志位
  * 
  * @note 原始函数名：FUN_1802356b0
