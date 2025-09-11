@@ -18008,16 +18008,16 @@ uint8_t SecurityValidationFlagInfiniteOmega;    // 安全验证标志InfiniteOme
 uint8_t SecurityValidationFlagPerpetualOmega;   // 安全验证标志PerpetualOmega - 永久终极安全验证标志
 uint8_t SecurityValidationFlagEternalOmega;    // 安全验证标志EternalOmega - 永恒终极安全验证标志
 uint8_t SecurityValidationFlagEndlessOmega;    // 安全验证标志EndlessOmega - 无尽终极安全验证标志
-uint8_t SecurityValidationFlagA53;    // 系统安全验证标志b68
-uint8_t SecurityValidationFlagA54;    // 系统安全验证标志b78
-uint8_t SecurityValidationFlagA55;    // 系统安全验证标志b88
-uint8_t SecurityValidationFlagA56;    // 系统安全验证标志ba0
-uint8_t SecurityValidationFlagA57;    // 系统安全验证标志bc0
-uint8_t SecurityValidationFlagA58;    // 系统安全验证标志bd8
-uint8_t SecurityValidationFlagA59;    // 系统安全验证标志bf0
-uint8_t SecurityValidationFlagA60;    // 系统安全验证标志c10
-uint8_t SecurityValidationFlagA61;    // 系统安全验证标志c30
-uint8_t SecurityValidationFlagA62;    // 系统安全验证标志c50
+uint8_t SecurityValidationFlagBufferB68;    // 系统安全验证标志b68
+uint8_t SecurityValidationFlagBufferB78;    // 系统安全验证标志b78
+uint8_t SecurityValidationFlagBufferB88;    // 系统安全验证标志b88
+uint8_t SecurityValidationFlagBufferBA0;    // 系统安全验证标志ba0
+uint8_t SecurityValidationFlagBufferBC0;    // 系统安全验证标志bc0
+uint8_t SecurityValidationFlagBufferBD8;    // 系统安全验证标志bd8
+uint8_t SecurityValidationFlagBufferBF0;    // 系统安全验证标志bf0
+uint8_t SecurityValidationFlagBufferC10;    // 系统安全验证标志c10
+uint8_t SecurityValidationFlagBufferC30;    // 系统安全验证标志c30
+uint8_t SecurityValidationFlagBufferC50;    // 系统安全验证标志c50
 uint8_t SecurityValidationFlagA63;    // 系统安全验证标志c60
 uint8_t SecurityValidationFlagA64;    // 系统安全验证标志c80
 uint8_t SecurityValidationFlagA65;    // 系统安全验证标志c98

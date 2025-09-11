@@ -129992,7 +129992,7 @@ ReleaseUIResources:
 
  
 
- void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+ void ProcessUIDataWithLongParamsEx(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 /**
  * @brief UI系统数据验证处理器
  * 
@@ -130052,7 +130052,7 @@ ReleaseUIResources:
 
 
 
- void FUN_18073cf53(void)
+ void ProcessUIBufferDataValidation(void)
 #define ProcessUIBufferDataValidation FUN_18073cf53
 /**
  * @brief 处理UI缓冲区数据验证
@@ -130082,7 +130082,7 @@ void ProcessUIBufferDataValidation(void)
 
 
 
- void FUN_18073cfcb(void)
+ void ReleaseUIResourceAndExecuteRender(void)
 #define ReleaseUIResourceAndExecuteRender FUN_18073cfcb
 /**
  * @brief 释放UI资源并执行渲染
@@ -130111,7 +130111,7 @@ void ReleaseUIResourceAndExecuteRender(void)
 
 
 
- void FUN_18073cfed(void)
+ void ReleaseUIResourceAndExecuteRenderB(void)
 #define ReleaseUIResourceAndExecuteRenderB FUN_18073cfed
 /**
  * @brief 释放UI资源并执行渲染（版本B）
