@@ -133717,70 +133717,100 @@ void ProcessUIContextWithDataTransfer(UIHandle uiContext,UIDword dataSource,UIHa
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong memoryResourceHandle;
+  UIHandle contextDataHandle;
+  ulonglong encryptionKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = FUN_180754f10(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  memoryResourceHandle = 0;
+  operationResult = FUN_180754f10(uiContext,&contextDataHandle,&memoryResourceHandle);
   if (operationResult == 0) {
-    operationResult = func_0x0001807533d0(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073f32d;
+    operationResult = func_0x0001807533d0(contextDataHandle,dataSource,targetBuffer);
+    if (operationResult == 0) goto CleanupUIContextDataTransfer;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(&stack0x00000040 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957af0,&stack0x00000040);
+    ExecuteUIContextDataOperation(dataValidationResult,3,uiContext,&UNK_180957af0,&stack0x00000040);
   }
-FUN_18073f32d:
-  if (lStack0000000000000030 != 0) {
+CleanupUIContextDataTransfer:
+  if (memoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_18073f2b5(void)
-void FUN_18073f2b5(void)
+ // 函数: void FUN_18073f2b5(void)
+#define ProcessUIDataValidationAndCopy FUN_18073f2b5
+/**
+ * @brief 处理UI数据验证和复制操作
+ * 
+ * 该函数负责处理UI系统中的数据验证和复制操作，包括：
+ * - 验证和初始化UI数据
+ * - 处理数据缓冲区的控制操作
+ * - 复制数据到目标位置
+ * - 执行UI上下文数据操作
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f2b5
+ * @note 该函数执行UI数据的验证、处理和复制操作
+ * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ProcessUIDataValidationAndCopy(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword dataSourceId;
+  UIDword contextHandle;
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSourceId);
+  dataValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  CopyUIDataBuffer(&stack0x00000040 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,3);
+  ExecuteUIContextDataOperation(contextHandle,3);
 }
 
 
 
 
- void FUN_18073f32d(void)
-void FUN_18073f32d(void)
+ // 函数: void FUN_18073f32d(void)
+#define CleanupUIContextDataTransfer FUN_18073f32d
+/**
+ * @brief 清理UI上下文数据传输资源
+ * 
+ * 该函数负责清理UI上下文数据传输过程中使用的资源，包括：
+ * - 释放内存资源
+ * - 执行最终的渲染任务
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f32d
+ * @note 该函数用于UI数据传输后的清理工作
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void CleanupUIContextDataTransfer(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryResourceHandle;
+  ulonglong encryptionKey;
   
-  if (stackParam00000030 != 0) {
+  if (memoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
