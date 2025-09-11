@@ -290309,7 +290309,35 @@ uint64_t * CopyContextHandleDataStructure(uint64_t *ContextHandle,uint64_t *Cont
 
 
 
-2cb40(long long ContextHandle,long long *ContextHandleSizevoid FUN_18022cb40(long long ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理上下文句柄和内存分配
+ * 
+ * 该函数负责处理系统上下文句柄的内存分配和缓冲区操作，主要功能包括：
+ * - 分配UTF-16字符内存块
+ * - 验证缓冲区分配状态
+ * - 处理系统事件模板
+ * - 执行上下文句柄操作
+ * - 清理和验证系统资源
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @note 原始函数名：FUN_18022cb40
+ * @note 内存分配大小：0x470字节
+ * @note 栈缓冲区大小：136字节
+ * @note 系统标志：0xfffffffffffffffe
+ */
+#define ProcessContextHandleAndMemoryAllocation FUN_18022cb40
+
+/**
+ * @brief 处理上下文句柄和内存分配
+ * 
+ * 该函数负责处理系统上下文句柄的内存分配和缓冲区操作。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ */
+void ProcessContextHandleAndMemoryAllocation(long long ContextHandle, long long *ContextHandleSize)
 {
   uint64_t Utf16Char;
   long long *BufferAllocationState;
