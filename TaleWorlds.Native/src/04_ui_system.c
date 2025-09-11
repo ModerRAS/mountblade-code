@@ -110089,7 +110089,7 @@ void ProcessUIDataTransform(longlong uiContext,longlong dataSource,int targetBuf
   longlong allocatedMemory7;
   ulonglong result8;
   float *pFloatValue2;
-  double dVar20;
+  double DataTransformScale;
   float afStack_4c4 [239];
   UIByte astackUInt108 [32];
   int stackInte8;
