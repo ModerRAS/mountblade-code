@@ -10360,7 +10360,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：FUN_18089f571 - 系统状态检查函数
 // 功能：检查系统状态并返回状态码
-#define CheckSystemStatusCode FUN_18089f571
+#define CheckSystemStatusCodeWithValidation FUN_18089f571
 
 // 原始函数名：FUN_18089f970 - 数据处理和指针操作函数
 // 功能：处理数据和执行指针操作
@@ -10376,7 +10376,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：FUN_18089fa3c - 数据验证函数
 // 功能：验证数据的有效性和完整性
-#define ValidateDataIntegrity FUN_18089fa3c
+#define ValidateDataIntegrityWithSecurity FUN_18089fa3c
 
 // 原始函数名：FUN_18089fac2 - 系统清理函数
 // 功能：清理系统资源和释放内存
@@ -10392,7 +10392,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：FUN_1808af700 - 数组索引验证函数
 // 功能：验证数组索引的有效性并返回索引值
-#define ValidateArrayIndex FUN_1808af700
+#define ValidateArrayIndexWithBounds FUN_1808af700
 
 // 原始函数名：ManageSystemMemory - 系统内存管理函数
 // 功能：管理系统内存分配和初始化
@@ -10400,7 +10400,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：FUN_180847820 - 资源指针获取函数
 // 功能：获取系统资源指针，用于访问和管理资源
-#define GetResourcePointer FUN_180847820
+#define GetResourcePointerWithValidation FUN_180847820
 
 
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
@@ -15125,21 +15125,21 @@ uint32_t SystemMemoryBlockCount;             // 系统内存块计数 - 存储�
  */
 bool ValidateUtilityMemoryAccessPermissions(void);
 // 工具系统内存验证相关变量
-void *MemoryValidationContext;
-int32_t MemoryValidationResultCode;
-int32_t MemoryValidationErrorCode;
-int32_t UtilityMemoryValidateTertiary;
-int32_t UtilityMemoryValidateQuaternary;
-int32_t UtilityMemoryValidateQuinary;
-int32_t UtilityMemoryValidateSenary;
-int32_t UtilityMemoryValidateSeptenary;
-int32_t UtilityMemoryValidateOctonary;
-int32_t UtilityMemoryValidateNonary;
-int32_t UtilityMemoryValidateDenary;
+void *systemMemoryValidationContext;
+int32_t memoryValidationResultCode;
+int32_t memoryValidationErrorCode;
+int32_t utilityMemoryValidationTertiary;
+int32_t utilityMemoryValidationQuaternary;
+int32_t utilityMemoryValidationQuinary;
+int32_t utilityMemoryValidationSenary;
+int32_t utilityMemoryValidationSeptenary;
+int32_t utilityMemoryValidationOctonary;
+int32_t utilityMemoryValidationNonary;
+int32_t utilityMemoryValidationDenary;
 // 工具系统内存验证数据块11-13
-void* UtilityMemoryValidationDataUndenary;
-void* UtilityMemoryValidationDataDuodenary;
-void* UtilityMemoryValidationDataTerdenary;
+void* utilityMemoryValidationDataUndenary;
+void* utilityMemoryValidationDataDuodenary;
+void* utilityMemoryValidationDataTerdenary;
 // 工具系统内存管理数据块Fourteen-FortyThree
 void* UtilityMemoryManagementPrimaryBlock;
 void* UtilityMemoryManagementSecondaryBlock;
@@ -47032,13 +47032,13 @@ void UnwindExceptionHandling040(DataBuffer exceptionContext,int64_t unwindParam)
 
 {
   uint32_t *statusFlags;
-  void *resourceData;
+  void *systemResourceData;
   
   statusFlags = (uint32_t *)(unwindParam + SystemDataParameterOffset20);
   if ((*statusFlags & ExceptionStatusFlag2) != 0) {
     *statusFlags = *statusFlags & ExceptionStatusFlagMask2;
-    resourceData = (void *)(unwindParam + SystemDataParameterOffset30);
-    CleanupResourceHandler(resourceData);
+    systemResourceData = (void *)(unwindParam + SystemDataParameterOffset30);
+    CleanupResourceHandler(systemResourceData);
   }
   return;
 }
@@ -136237,9 +136237,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
 void *AllocateBufferEN0(void *bufferParams, size_t allocationSize)
 {
     // 缓冲区分配相关变量
-    void *allocatedBuffer;
-    uint32_t allocationStatus;
-    uint32_t validationFlags;
+    void *systemAllocatedBuffer;
+    uint32_t bufferAllocationStatus;
+    uint32_t memoryValidationFlags;
     
     // 验证输入参数
     if (bufferParams == NULL || allocationSize == 0) {
