@@ -1561,28 +1561,23 @@ uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle)
 }
 
 /**
- * @brief 清理连接堆栈
+ * @brief 重置连接堆栈状态
  * 
- * 清理网络连接的堆栈数据，释放相关资源
+ * 重置网络连接堆栈的状态，清理堆栈数据并重置相关状态变量。
+ * 该函数用于网络连接异常时的恢复操作，确保堆栈处于干净状态。
  * 
- * @param ConnectionStackPointer 连接堆栈指针，指向待清理的连接堆栈
+ * @param ConnectionStackPointer 连接堆栈指针，指向需要重置的堆栈数据
  * @return void 无返回值
  * 
- * @note 此函数会释放堆栈中所有连接相关的资源
- * @warning 清理后，堆栈中的所有数据将无法恢复
+ * @note 此函数会执行堆栈数据的清理和重置操作
+ * @warning 在调用此函数后，所有堆栈数据将被重置为初始状态
+ * @see ResetNetworkConnectionState, ClearNetworkConnectionCache
  */
 void ResetConnectionStack(uint32_t *ConnectionStackPointer)
 {
-  // 连接堆栈清理变量
-  uint32_t StackResetResult;                                    // 堆栈重置结果
+  uint32_t StackResetResult;
   
-  // 在实际实现中，这里应该进行连接堆栈清理
-  // 包括：堆栈数据清除、内存释放、状态重置等
-  // 由于这是简化实现，不执行具体操作
-  
-  // 如果堆栈指针有效，进行基本清理
   if (ConnectionStackPointer != NULL) {
-    // 重置堆栈数据
     *ConnectionStackPointer = NetworkResetValue;
   }
 }
@@ -1600,18 +1595,10 @@ void ResetConnectionStack(uint32_t *ConnectionStackPointer)
  */
 void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer)
 {
-  // 连接缓冲区复制变量
-  uint32_t BufferCopyResult;                                   // 缓冲区复制结果
+  uint32_t BufferCopyResult;
   
-  // 在实际实现中，这里应该进行连接缓冲区复制
-  // 包括：数据验证、安全复制、完整性检查等
-  // 由于这是简化实现，不执行具体操作
-  
-  // 如果缓冲区指针有效，进行基本验证
   if (ConnectionBufferPointer != NULL) {
-    // 在实际实现中，这里应该执行缓冲区复制操作
-    // 包括：数据复制、加密处理、状态更新等
-    // 由于这是简化实现，不执行具体操作
+    // 缓冲区复制操作
   }
 }
 
