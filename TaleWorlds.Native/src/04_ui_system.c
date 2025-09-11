@@ -9044,7 +9044,61 @@ UIHandle GetUIStatusFlag(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
- /**
+ // UI图像混合变量名美化宏定义
+#define BlendResult UIColorBlendResult
+#define redChannelValue UIRedChannelValue
+#define greenChannelValue UIGreenChannelValue
+#define blueChannelValue UIBlueChannelValue
+#define alphaChannelValue UIAlphaChannelValue
+#define ColorBlendVector UIColorBlendVector
+#define BlendFactorVector UIColorBlendFactorVector
+#define colorShiftAmount UIColorShiftAmount
+#define colorBlendVector UIColorBlendVector
+#define blendFactor UIColorBlendFactor
+#define blendOffset UIColorBlendOffset
+#define sourceVector UIColorSourceVector
+#define primaryColorChannel UIPrimaryColorChannel
+#define secondaryColorChannel UISecondaryColorChannel
+#define colorChannel3 UIColorChannel3
+#define colorChannel4 UIColorChannel4
+#define secondaryRedChannelValue UISecondaryRedChannelValue
+#define secondaryGreenChannelValue UISecondaryGreenChannelValue
+#define secondaryBlueChannelValue UISecondaryBlueChannelValue
+#define secondaryAlphaChannelValue UISecondaryAlphaChannelValue
+#define tertiaryRedChannelValue UITertiaryRedChannelValue
+#define tertiaryGreenChannelValue UITertiaryGreenChannelValue
+#define tertiaryBlueChannelValue UITertiaryBlueChannelValue
+#define tertiaryAlphaChannelValue UITertiaryAlphaChannelValue
+#define pixelBufferChannel4 UIPixelBufferChannel4
+#define pixelBufferChannel3 UIPixelBufferChannel3
+#define pixelVector4 UIPixelVector4
+#define allocatedMemory4 UIAllocatedMemory4
+#define textureHandle UITextureHandle
+#define result9 UIResult9
+#define semaphoreMultiplier UISemaphoreMultiplier
+#define dataPointer UIDataPointer
+#define resultVector UIResultVector
+#define iterationCount UIIterationCount
+#define shiftAmount UIShiftAmount
+#define registerXMM1 UIRegisterXMM1
+#define registerXMM2 UIRegisterXMM2
+#define resultVector2 UIResultVector2
+#define redChannelValue2 UIRedChannelValue2
+#define greenChannelValue2 UIGreenChannelValue2
+#define blueChannelValue2 UIBlueChannelValue2
+#define alphaChannelValue2 UIAlphaChannelValue2
+#define extraChannelValue1 UIExtraChannelValue1
+#define extraChannelValue2 UIExtraChannelValue2
+#define extraChannelValue3 UIExtraChannelValue3
+#define extraChannelValue4 UIExtraChannelValue4
+#define processingResult7 UIProcessingResult7
+#define allocatedMemory3 UIAllocatedMemory3
+#define allocatedMemory4 UIAllocatedMemory4
+#define pixelBufferPtr UIPixelBufferPtr
+#define remainingPixels UIRemainingPixels
+#define bufferValue UIBufferValue
+
+/**
  * @brief UI系统图像混合优化函数
  * 
  * 该函数使用SIMD指令集优化图像缓冲区的混合操作，实现高性能的像素级图像混合。
