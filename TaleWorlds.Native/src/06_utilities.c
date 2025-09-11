@@ -42808,7 +42808,7 @@ uint64_t ValidateSystemMemoryStatus(void)
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    if (*(uint *)(memoryBufferContext + 8) < 0x3d) {
+    if (*(uint *)(memoryBufferContext + 8) < MemoryBufferMaximumSize) {
       memoryValidationStatus = 0;
     }
     else if (*(int *)(memoryBufferContext[1] + SystemDataSecondaryOffset18) == 0) {

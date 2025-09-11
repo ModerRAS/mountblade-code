@@ -756,6 +756,7 @@
 #define ValidationStatus SystemValidationStatus              // 验证状态
 #define BufferStatus SystemBufferStatus                      // 缓冲区状态
 #define SearchStartIndex SystemSearchStartIndex              // 搜索起始索引
+#define ResourceCheckIndex SystemResourceCheckIndex          // 系统资源检查索引
 
 // 线程本地存储偏移量常量
 #define ThreadLocalStorageStatusOffset2290 0x2290             // 线程本地存储状态偏移量2290
@@ -256939,7 +256940,8 @@ LAB_180208d4a:
  * @note 根据不同的操作缓冲区大小选择不同的数据源
  * @note 函数内部包含迭代处理和边界检查
  */
-void FUN_180208f20(long long ContextHandle, long long OperationBufferSize, int *Utf8SourcePointer, long long Utf16EndPointer, float AdditionalParameter1)
+#define ProcessSystemFloatDataOperation FUN_180208f20
+void ProcessSystemFloatDataOperation(long long SystemContextHandle, long long MemoryOperationSize, int *CharacterDataPointer, long long EncodingEndPointer, float ScalingParameter)
 {
   bool CharacterComparisonFlag;              // 字符比较标志
   long long ProcessingBufferStatus;          // 处理缓冲区状态
