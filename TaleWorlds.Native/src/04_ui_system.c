@@ -131501,7 +131501,7 @@ void ProcessUIContextDataWithEncryptionAndCleanup(UIHandle uiContext,UIDword dat
   operationResult = func_0x00018074fb10(uiContext,&renderDataAlignment,&memoryAllocationStatus);
   if (operationResult == 0) {
     operationResult = (**(code **)(*renderDataAlignment + 0x20))(renderDataAlignment,dataSource,0);
-    if (operationResult == 0) goto LAB_18073dc41;
+    if (operationResult == 0) goto UILabel_CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     func_0x00018074b830(contextDataBuffer,0x100,dataSource);
@@ -131509,7 +131509,7 @@ void ProcessUIContextDataWithEncryptionAndCleanup(UIHandle uiContext,UIDword dat
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&GlobalUIResourceManager40);
   }
-LAB_18073dc41:
+UILabel_CleanupAndExit:
   if (memoryAllocationStatus != 0) {
     ReleaseUIMemoryResource();
   }
