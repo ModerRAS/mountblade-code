@@ -69,11 +69,6 @@
 #define HandleSystemStringEncodingEx ProcessExtendedStringEncoding                 // 处理系统字符串编码扩展
 #define ProcessSystemContextOperationEx ManageExtendedSystemContext              // 处理系统上下文操作扩展
 #define InitializeSystemDataProcessorEx SetupExtendedSystemDataProcessor              // 初始化系统数据处理器扩展
-#define FUN_1801911b1 ResetSystemStringEncoding                   // 重置系统字符串编码
-#define FUN_1801912b0 ProcessSystemStringEncodingConversion        // 处理系统字符串编码
-#define FUN_180191d40 ValidateSystemDataIntegrity                  // 执行系统数据验证
-#define FUN_180191df0 VerifySystemContextValidity                  // 验证系统上下文
-#define FUN_180191ea0 InitializeSystemValidator                    // 初始化系统验证器
 #define FUN_1801934d0 ValidateSystemMemoryIntegrity                // 处理系统内存验证
 #define FUN_18013f220 CreateSystemContextInstance                  // 创建系统上下文
 #define FUN_180193de0 ResetSystemDataValidator                     // 重置系统数据验证器
