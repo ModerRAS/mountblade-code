@@ -28979,7 +28979,7 @@ ResourceCleanupLabel:
         stackDataBuffer[0] = CONCAT31(stackDataBuffer[0].HighPart,1);
         stackUIntBuffer[0] = 0;
         do {
-          dataFlags = ProcessSystemDataA1(operationBase,stackDataBuffer,stackUIntBuffer);
+          dataFlags = ValidateResourceA0(operationBase,stackDataBuffer,stackUIntBuffer);
           if ((int)dataFlags != 0) {
             return dataFlags;
           }
@@ -74134,7 +74134,7 @@ void ValidatesystemContextH(DataBuffer operationBase, int64_t dataBuffer)
 void ProcessSystemDataWithValidationB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ProcessSystemDataA1(dataBuffer + DataBufferOffsetD8);
+  ValidateResourceA0(dataBuffer + DataBufferOffsetD8);
   return;
 }
 
