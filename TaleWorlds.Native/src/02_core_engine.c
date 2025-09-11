@@ -597,6 +597,8 @@
 #define CoreEngineSystemContextOffset 0xe78                 // 核心引擎系统上下文偏移量
 #define CharacterTableRowSize 0x128                        // 字符表行大小
 #define CharacterDataBlockSize 0x40                        // 字符数据块大小
+#define AudioTableBlockSize 0x40                           // 音频表块大小
+#define AudioTableMaxSize 0x40                             // 音频表最大大小
 #define ContextHandleTablePointerOffset 0x10               // 字符代码表指针偏移量
 #define ContextHandleTableTertiaryOffset 0x30              // 字符代码表第三偏移量
 #define CalculatedDistanceOffset 0x374                     // 计算距离偏移量
