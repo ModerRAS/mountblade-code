@@ -263037,7 +263037,7 @@ uint64_t ProcessSystemLockOperationResult(long long ContextHandle,char Operation
   pPerformanceFrequencyDoublePointer = (long long ***)0x0;
   if ((OperationBufferSize == '\0') || (*(int *)(ContextHandle + 0x140) < 1)) {
     pppMemoryPoolSizePointer = (long long ****)0x0;
-    OperationStatus = FUN_18020ee40();
+    OperationStatus = CheckSystemOperationResult();
     if (OperationStatus != '\0') {
       ProcessingStatusFlag = 1;
       goto LAB_18020ed62;

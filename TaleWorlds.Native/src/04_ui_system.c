@@ -272,7 +272,6 @@ typedef enum {
 // UI系统资源句柄定义
 #define UNK_180957790 UIResourceHandle790           // UI资源句柄790
 #define UNK_1809577d0 UIResourceHandle7D0           // UI资源句柄7D0
-#define UNK_180957830 UIResourceHandle830           // UI资源句柄830
 #define UNK_180957858 UIResourceHandle858           // UI资源句柄858
 #define UNK_1809578b0 UIResourceHandle8B0           // UI资源句柄8B0
 #define UNK_1809578f0 UIResourceHandle8F0           // UI资源句柄8F0
@@ -6218,27 +6217,27 @@ void* UIGestureCoordinates;
 #define UIContextOperationLogTable UIContextLogData    // UI上下文操作日志表 - 存储上下文操作的日志数据
 
 // UI上下文操作数据表实际地址定义
-#define UIContextConfigData UNK_1809571c8     // UI上下文配置数据表
-#define UIContextStateData UNK_180957158     // UI上下文状态数据表
-#define UIContextValidationData UNK_1809570f8  // UI上下文验证数据表
-#define UIContextCacheData UNK_180957188      // UI上下文缓存数据表
-#define UIContextResultData UNK_180957260     // UI上下文结果数据表
-#define UIContextAdvancedData UNK_180957310   // UI上下文高级数据表
-#define UIContextExtendedData UNK_180957898   // UI上下文扩展数据表
-#define UIContextIndexData UNK_180957810      // UI上下文索引数据表
-#define UIContextTemporaryData UNK_1809576a0  // UI上下文临时数据表
-#define UIContextBufferData UNK_180957880     // UI上下文缓冲区数据表
-#define UIContextMetadata UNK_1809577b0       // UI上下文元数据表
-#define UIContextStatisticsData UNK_1809578d0  // UI上下文统计数据表
-#define UIContextLogData UNK_1809577f0        // UI上下文日志数据表
+#define UIContextConfigData UIConfigurationDataTable     // UI上下文配置数据表
+#define UIContextStateData UIStateDataTable             // UI上下文状态数据表
+#define UIContextValidationData UIValidationDataBuffer   // UI上下文验证数据表
+#define UIContextCacheData UICacheDataBuffer           // UI上下文缓存数据表
+#define UIContextResultData UIResultDataBuffer          // UI上下文结果数据表
+#define UIContextAdvancedData UIAdvancedDataBuffer       // UI上下文高级数据表
+#define UIContextExtendedData UIExtendedDataBuffer       // UI上下文扩展数据表
+#define UIContextIndexData UIIndexDataTable              // UI上下文索引数据表
+#define UIContextTemporaryData UITemporaryDataBuffer     // UI上下文临时数据表
+#define UIContextBufferData UIBufferDataPool            // UI上下文缓冲区数据表
+#define UIContextMetadata UIMetadataTable               // UI上下文元数据表
+#define UIContextStatisticsData UIStatisticsBuffer       // UI上下文统计数据表
+#define UIContextLogData UILogDataBuffer               // UI上下文日志数据表
 
 // UI上下文操作扩展数据表定义
-#define UIContextOperationControlData UNK_180957758    // UI上下文操作控制数据表 - 存储上下文操作的控制数据
-#define UIContextOperationTransformData UNK_180957620   // UI上下文操作变换数据表 - 存储上下文操作的变换数据
-#define UIContextOperationRenderData UNK_1809576e0      // UI上下文操作渲染数据表 - 存储上下文操作的渲染数据
-#define UIContextOperationEventData UNK_1809575c8        // UI上下文操作事件数据表 - 存储上下文操作的事件数据
-#define UIContextOperationAnimationData UNK_180957680    // UI上下文操作动画数据表 - 存储上下文操作的动画数据
-#define UIContextOperationLayoutData UNK_180957770      // UI上下文操作布局数据表 - 存储上下文操作的布局数据
+#define UIContextOperationControlData UIOperationControlBuffer     // UI上下文操作控制数据表 - 存储上下文操作的控制数据
+#define UIContextOperationTransformData UIOperationTransformBuffer // UI上下文操作变换数据表 - 存储上下文操作的变换数据
+#define UIContextOperationRenderData UIOperationRenderBuffer       // UI上下文操作渲染数据表 - 存储上下文操作的渲染数据
+#define UIContextOperationEventData UIOperationEventBuffer         // UI上下文操作事件数据表 - 存储上下文操作的事件数据
+#define UIContextOperationAnimationData UIOperationAnimationBuffer // UI上下文操作动画数据表 - 存储上下文操作的动画数据
+#define UIContextOperationLayoutData UIOperationLayoutBuffer      // UI上下文操作布局数据表 - 存储上下文操作的布局数据
 
 // UI上下文扩展数据表定义
 #define UIContextExtendedDataA UNK_1809578b0            // UI上下文扩展数据A - 用于扩展操作的数据表
