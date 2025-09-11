@@ -124327,7 +124327,7 @@ CleanupAndExit:
 
 
  void FUN_180739cdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_180739cdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
