@@ -11570,32 +11570,32 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089923e - 系统信息获取函数A0
 // 功能：获取系统信息并返回信息数据
-#define GetSystemInformationA0 FUN_18089923e
+#define GetSystemInformationA0 GetSystemInformationAndStatus
 
 // 原始函数名：FUN_1808993e0 - 数据处理函数A0
 // 功能：处理数据并返回处理结果
-#define ProcessDataA0 FUN_1808993e0
+#define ProcessDataA0 ProcessDataWithValidation
 
 // 原始函数名：FUN_180899650 - 数据同步函数A0
 // 功能：同步数据并返回同步结果
-#define SynchronizeDataA0 FUN_180899650
+#define SynchronizeDataA0 SynchronizeSystemDataWithValidation
 
 // 原始函数名：FUN_180899740 - 系统状态设置函数A0
 // 功能：设置系统状态并返回设置结果
-#define SetSystemStatusA0 FUN_180899740
+#define SetSystemStatusA0 SetSystemStatusWithValidation
 
 
 // 原始函数名：FUN_1808997f0 - 系统重置函数A0
 // 功能：重置系统并返回重置结果
-#define ResetSystemA0 FUN_1808997f0
+#define ResetSystemA0 ResetSystemStateAndResources
 
 // 原始函数名：FUN_180899816 - 系统初始化函数A0
 // 功能：初始化系统并返回初始化结果
-#define InitializeSystemA0 FUN_180899816
+#define InitializeSystemA0 InitializeSystemWithDefaults
 
 // 原始函数名：FUN_1808998a0 - 系统配置函数A0
 // 功能：配置系统并返回配置结果
-#define ConfigureSystemA0 FUN_1808998a0
+#define ConfigureSystemA0 ConfigureSystemWithValidation
 
 // 数据配置表A1
 // 功能：存储系统数据配置的第一级配置表和参数
@@ -11620,7 +11620,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 系统资源处理函数A0
 // 功能：处理系统资源和异常状态
-#define ProcessSystemResourcesA0 FUN_1800587d0
+#define ProcessSystemResourcesA0 ProcessSystemResourcesWithManagement
 
 // 资源释放函数A0
 // 功能：释放系统资源和清理内存
@@ -11628,7 +11628,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 数据处理函数A0
 // 功能：处理数据缓冲区和异常状态
-#define ProcessDataBufferA0 FUN_1801fef10
+#define ProcessDataBufferA0 ProcessSystemDataBufferWithExceptionHandling
 
 // 数据验证函数A0
 // 功能：验证数据完整性和安全性
@@ -11640,7 +11640,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 偏移量处理函数A0
 // 功能：处理内存偏移量和地址计算
-#define ProcessMemoryOffsetA0 FUN_18004bf50
+#define ProcessMemoryOffsetA0 CalculateMemoryOffsetWithValidation
 
 // 数据处理函数A1
 // 功能：处理数据缓冲区和状态管理
@@ -11648,15 +11648,15 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 字符处理函数A0
 // 功能：处理字符数据和编码转换
-#define ProcessCharacterDataA0 FUN_18020eba0
+#define ProcessCharacterDataA0 ProcessCharacterDataWithEncodingConversion
 
 // 系统状态更新函数A0
 // 功能：更新系统状态和标志位
-#define UpdateSystemStatusA0 FUN_18020f530
+#define UpdateSystemStatusA0 UpdateSystemStatusWithFlagValidation
 
 // 系统初始化函数A0
 // 功能：初始化系统组件和资源
-#define InitializeSystemComponentsA0 FUN_180057010
+#define InitializeSystemComponentsA0 InitializeSystemComponentsWithResources
 
 // 系统清理函数A0
 // 功能：清理系统资源和状态
