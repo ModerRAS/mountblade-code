@@ -224149,7 +224149,7 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   }
 LAB_180183f13:
   *(void *)(MemoryBlockIndex + 0x40) = BufferMemoryOffset;
-  NVGSDK_RequestPermissionsAsync(*(void *)(ContextHandle + 8),&CoreEngineSignedValueC8,FUN_1801842a0,MemoryBlockIndex);
+  NVGSDK_RequestPermissionsAsync(*(void *)(ContextHandle + 8),&CoreEngineSignedValueC8,HandleAsyncCallback,MemoryBlockIndex);
   SystemCleanupFlagF = 1;
   pSystemTemporaryValueD0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
