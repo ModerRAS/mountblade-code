@@ -147713,7 +147713,7 @@ void FUN_18074cec0(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
 
 
 
-ulonglong FUN_18074cf30(longlong *uiContext,float *dataSource,float *targetBuffer)
+ulonglong ValidateUIFloatDataParameters(longlong *uiContext,float *dataSource,float *targetBuffer)
 
 {
   ulonglong result;
