@@ -781,6 +781,57 @@
 #define FUN_180626eb0 ProcessSystemDataValidation                  // 处理系统数据验证
 #define FUN_1802e8c60 ConvertSystemDataEncoding                   // 转换系统数据编码
 
+// 系统高级操作函数
+#define FUN_18020b790 InitializeSystemAdvancedProcessing          // 初始化系统高级处理
+#define FUN_18020c8f0 ExecuteSystemAdvancedProcessing              // 执行系统高级处理
+#define FUN_180217b00 ProcessSystemAdvancedData                    // 处理系统高级数据
+#define FUN_180218920 ValidateSystemAdvancedData                   // 验证系统高级数据
+#define FUN_180218a80 ConfigureSystemAdvancedProcessing            // 配置系统高级处理
+#define FUN_1802199b0 InitializeSystemAdvancedTransfer            // 初始化系统高级传输
+#define FUN_180219260 ExecuteSystemAdvancedTransfer                // 执行系统高级传输
+#define FUN_180219e30 ProcessSystemAdvancedValidation              // 处理系统高级验证
+#define FUN_180219d60 ValidateSystemAdvancedOperation              // 验证系统高级操作
+#define FUN_18015c2b0 ProcessSystemStringValidation                // 处理系统字符串验证
+#define FUN_18021a140 AllocateSystemAdvancedBuffer                 // 分配系统高级缓冲区
+#define FUN_180623fd0 ConfigureSystemAdvancedContext              // 配置系统高级上下文
+#define FUN_180738730 InitializeSystemResourceManager             // 初始化系统资源管理器
+#define FUN_180840330 ConfigureSystemResourceManager               // 配置系统资源管理器
+#define FUN_180849600 ExecuteSystemResourceManagement              // 执行系统资源管理
+#define FUN_180845520 ProcessSystemResourceAllocation              // 处理系统资源分配
+#define FUN_18073bdc0 ValidateSystemResourceAllocation             // 验证系统资源分配
+#define FUN_180211720 ReleaseSystemResources                       // 释放系统资源
+#define FUN_180846fe0 InitializeSystemResourceTransfer             // 初始化系统资源传输
+#define FUN_1808496c0 ExecuteSystemResourceTransfer                // 执行系统资源传输
+#define FUN_180840490 ValidateSystemResourceTransfer               // 验证系统资源传输
+#define FUN_1808482f0 ProcessSystemResourceCleanup                 // 处理系统资源清理
+#define FUN_1808451c0 ConfigureSystemResourceContext              // 配置系统资源上下文
+#define FUN_1808453c0 ValidateSystemResourceContext                // 验证系统资源上下文
+#define FUN_180849230 ProcessSystemResourceOperation               // 处理系统资源操作
+#define FUN_18084b410 FinalizeSystemResourceOperation              // 完成系统资源操作
+#define FUN_180213700 InitializeSystemResourceValidation          // 初始化系统资源验证
+#define FUN_180213440 ValidateSystemResourceData                  // 验证系统资源数据
+#define FUN_180159210 ConfigureSystemResourceProcessing           // 配置系统资源处理
+#define FUN_180406a00 ProcessSystemResourceTransfer                // 处理系统资源传输
+#define FUN_180407630 InitializeSystemResourceBuffer               // 初始化系统资源缓冲区
+#define FUN_18084a280 ExecuteSystemResourceBuffer                 // 执行系统资源缓冲区
+#define FUN_180406800 FinalizeSystemResourceBuffer                 // 完成系统资源缓冲区
+#define FUN_180846050 ProcessSystemResourceAllocation              // 处理系统资源分配
+#define FUN_1802164f0 InitializeSystemVectorProcessing            // 初始化系统向量处理
+#define FUN_180628570 ConfigureSystemVectorProcessing             // 配置系统向量处理
+#define FUN_18084acb0 ValidateSystemVectorProcessing              // 验证系统向量处理
+#define FUN_1801597a0 ProcessSystemVectorOperation               // 处理系统向量操作
+#define FUN_1801595d0 InitializeSystemVectorBuffer                // 初始化系统向量缓冲区
+#define FUN_180628f30 ConfigureSystemVectorBuffer                 // 配置系统向量缓冲区
+#define FUN_1802195b0 ProcessSystemVectorData                     // 处理系统向量数据
+#define FUN_1802187b0 FinalizeSystemVectorOperation               // 完成系统向量操作
+#define FUN_18073ebd0 InitializeSystemEventProcessing             // 初始化系统事件处理
+#define FUN_180211930 ConfigureSystemEventProcessing               // 配置系统事件处理
+#define FUN_180754f10 ProcessSystemEventData                      // 处理系统事件数据
+#define FUN_180749ef0 ExecuteSystemEventManagement                // 执行系统事件管理
+#define FUN_180048980 InitializeSystemDebugProcessing             // 初始化系统调试处理
+#define FUN_180217bb0 ProcessSystemDebugData                      // 处理系统调试数据
+#define FUN_180218a80 ValidateSystemDebugData                     // 验证系统调试数据
+
 /**
  * @brief 配置核心引擎指针
  * 
@@ -156814,7 +156865,7 @@ void ValidateCharacterEncodingData(uint64_t ContextHandle)
   long long SystemDataNode;
   long long CharacterLimit;
   uint64_t VectorCalculationResult;
-  uint64_t VectorCalculationResult_00;
+  uint64_t VectorCalculationResultSecondary;
   uint64_t VectorCalculationResult_01;
   uint64_t VectorCalculationResult_02;
   uint64_t VectorCalculationResult_03;
@@ -225868,11 +225919,11 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
     if (BufferStatus != CurrentMemoryBlockIndex) {
       do {
         ProcessSystemStackData(BufferStatus);
-        BufferStatus = BufferStatus + 0x28;
+        BufferStatus = BufferStatus + SystemContextMemoryIndexOffset;
       } while (BufferStatus != CurrentMemoryBlockIndex);
       BufferStatus = *ContextHandle;
     }
-    Utf16Char = ((ContextHandle[2] - BufferStatus) / 0x28) * 0x28;
+    Utf16Char = ((ContextHandle[2] - BufferStatus) / SystemContextMemoryIndexOffset) * SystemContextMemoryIndexOffset;
     CurrentMemoryBlockIndex = BufferStatus;
     if (0xfff < Utf16Char) {
       CurrentMemoryBlockIndex = *(long long *)(BufferStatus + -8);
@@ -243792,7 +243843,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
   long long SystemStringIndex;
   long long SystemContextValue;
   uint64_t VectorCalculationResult;
-  uint64_t VectorCalculationResult_00;
+  uint64_t VectorCalculationResultSecondary;
   float SystemContextPrimaryFloat3;
   float SystemContextPrimaryFloat4;
   float PrimaryScalingFactor;
@@ -254641,7 +254692,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   bool HighByte8;
   float MatrixTransformElementC;
   uint64_t VectorCalculationResult;
-  uint64_t VectorCalculationResult_00;
+  uint64_t VectorCalculationResultSecondary;
   float FilterInputValue0;
   unsigned long long uStackX_10;
   uint StackProcessingValue;
@@ -255034,7 +255085,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
   uint *PrimaryProcessingStatusFlag4;
   bool HighByte5;
   uint64_t VectorCalculationResult;
-  uint64_t VectorCalculationResult_00;
+  uint64_t VectorCalculationResultSecondary;
   unsigned long long MemoryPoolIndexAdditional;
   unsigned long long MemoryPoolIndex7;
   long long StringProcessingOffset;
