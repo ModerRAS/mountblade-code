@@ -143879,11 +143879,11 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define QuerySystemResourceHandleStatus FUN_18090a0e0       // 查询系统资源句柄状态 - 查询系统资源句柄的状态信息
 
 // 系统线程管理函数
-#define FUN_18090a0f0 CreateSystemWorkerThread             // 创建系统工作线程 - 创建系统的工作线程
-#define FUN_18090a100 DestroySystemWorkerThread            // 销毁系统工作线程 - 销毁系统的工作线程
-#define FUN_18090a110 SuspendSystemWorkerThread             // 挂起系统工作线程 - 挂起系统的工作线程
-#define FUN_18090a120 ResumeSystemWorkerThread              // 恢复系统工作线程 - 恢复系统的工作线程
-#define FUN_18090a130 SetSystemWorkerThreadPriority         // 设置系统工作线程优先级 - 设置系统工作线程的优先级
+#define CreateSystemWorkerThread FUN_18090a0f0              // 创建系统工作线程 - 创建系统的工作线程
+#define DestroySystemWorkerThread FUN_18090a100             // 销毁系统工作线程 - 销毁系统的工作线程
+#define SuspendSystemWorkerThread FUN_18090a110             // 挂起系统工作线程 - 挂起系统的工作线程
+#define ResumeSystemWorkerThread FUN_18090a120              // 恢复系统工作线程 - 恢复系统的工作线程
+#define SetSystemWorkerThreadPriority FUN_18090a130         // 设置系统工作线程优先级 - 设置系统工作线程的优先级
 
 // 系统异常处理函数
 #define FUN_18090a140 HandleSystemException                // 处理系统异常 - 处理系统的异常情况
