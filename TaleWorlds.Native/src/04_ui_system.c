@@ -131242,20 +131242,20 @@ FUN_18073db4f:
 
 
 
- void FUN_18073dad7(void)
-void FUN_18073dad7(void)
+ void ProcessUIContextDataOperationSimple(void)
+void ProcessUIContextDataOperationSimple(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword ebxRegisterValue;
+  UIDword esiRegisterValue;
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
+  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,ebxRegisterValue);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   func_0x00018074b830(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,4);
+  ExecuteUIContextDataOperation(esiRegisterValue,4);
 }
 
 

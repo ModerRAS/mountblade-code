@@ -1047,6 +1047,15 @@ typedef union {
 // 异常处理器回调偏移量常量
 #define ExceptionHandlerCallbackOffset10D0 0x10d0               // 异常处理器回调偏移量10D0
 #define ExceptionHandlerCallbackOffset10C0 0x10c0               // 异常处理器回调偏移量10C0
+#define ExceptionHandlerCallbackOffset400 0x190                 // 异常处理器回调偏移量400
+#define ExceptionHandlerContextOffset160 0x160                 // 异常处理器上下文偏移量160
+#define ExceptionContextStatusOffset168 0x168                   // 异常上下文状态偏移量168
+#define ExceptionContextDataOffset178 0x178                     // 异常上下文数据偏移量178
+#define ExceptionContextStatusOffset128 0x128                   // 异常上下文状态偏移量128
+#define ExceptionContextDataOffset158 0x158                     // 异常上下文数据偏移量158
+#define ExceptionContextStatusOffsetE8 0xe8                      // 异常上下文状态偏移量E8
+#define ExceptionContextDataOffsetF8 0xf8                       // 异常上下文数据偏移量F8
+#define ExceptionHandlerContextOffsetE0 0xe0                     // 异常处理器上下文偏移量E0
 #define ExceptionHandlerTempCallbackOffset1098 0x1098           // 异常处理器临时回调偏移量1098
 #define ExceptionHandlerStatusOffset10A0 0x10a0                 // 异常处理器状态偏移量10A0
 #define DestinationContextOffset1BC 0x1bc
@@ -60018,10 +60027,10 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
-  if (*(FunctionPointer**)(exceptionContext + 400) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + 400))(exceptionContext + SystemDataSecondaryOffset180,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400))(exceptionContext + SystemDataSecondaryOffset180,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionContext + 0x160) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset160) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContext + 0x168) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
