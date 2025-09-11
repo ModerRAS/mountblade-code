@@ -266393,7 +266393,7 @@ LAB_180211d03:
   *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2022;
   *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   SystemPriorityLevel = ProcessingStatusFlag;
-  SystemDataRegistry = FUN_18021a140(InputDataLength);
+  SystemDataRegistry = RetrieveSystemContextInfo(InputDataLength);
   MemoryBoundaryEnd = -1;
   if (SystemDataRegistry != 0) {
     do {
@@ -270134,7 +270134,7 @@ LAB_1802190a9:
       ContextHandleTablePointer = ContextHandleTablePointer + 0x18;
     } while (CharacterStatusBuffer != SystemCharacterStatusBuffer);
   }
-  FUN_180218a80(StringProcessingStatus,OperationBufferSize);
+  FinalizeSystemDataOperation(StringProcessingStatus,OperationBufferSize);
   MemoryAllocationIndex = ContextHandle[1];
   SystemDataTablePointer = *ContextHandle;
   if (SystemDataTablePointer != MemoryAllocationIndex) {
@@ -270261,7 +270261,7 @@ LAB_18021943e:
       ContextHandle = MemoryPoolSizePointer;
     }
     else {
-      FUN_180219260(plStack_30,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+      ExecuteSystemDataTransformation(plStack_30,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
     }
     OperationBufferSize = SystemDataTablePointer;
     MemoryBlockIndex = (long long)SystemDataTablePointer - (long long)ContextHandle;
@@ -300578,5 +300578,18 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define UNK_180a0b780 SystemDebugDataFlags
 #define UNK_180a0b794 SystemDebugConfiguration
 #define UNK_180a0b7a8 SystemDebugValidationFlags
+
+// 额外的FUN_函数语义化定义
+#define FUN_180849230 ProcessSystemCharacterBufferOperation              // 处理系统字符缓冲区操作
+#define FUN_1808452a0 ConfigureSystemMatrixTransform                   // 配置系统矩阵变换
+#define FUN_180845090 ProcessSystemPriorityLevel                        // 处理系统优先级
+#define FUN_18084a280 ValidateSystemStringEncoding                    // 验证系统字符串编码
+#define FUN_180849600 ExecuteSystemCleanupOperation                    // 执行系统清理操作
+
+// 系统核心函数语义化定义补充
+#define FUN_180211720 ValidateSystemContextHandle                    // 验证系统上下文句柄
+#define FUN_180846fe0 ProcessSystemStringEncodingAndTransfer         // 处理系统字符串编码和传输
+#define FUN_18073bc20 InitializeSystemMemoryContext                   // 初始化系统内存上下文
+#define FUN_18073bdc0 ConfigureSystemMemoryAllocation                 // 配置系统内存分配
 
 
