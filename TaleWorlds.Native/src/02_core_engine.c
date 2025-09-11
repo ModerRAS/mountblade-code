@@ -217,6 +217,7 @@
 #define FUN_180627ce0 AllocateSystemMemoryPool                              // 处理系统内存池分配
 #define FUN_180629b30 ClearSystemBuffer                                    // 清理系统缓冲区
 #define FUN_180139060 ValidateExtendedCharacter                            // 处理字符验证扩展
+#define FUN_18040d990 ReleaseSystemMemoryResources                          // 释放系统内存资源
 #define FUN_180138fc0 UpdatePerformanceCounters                            // 处理性能计数器更新
 #define FUN_18011ce30 ConvertFloatValue                                    // 处理浮点值转换
 #define FUN_180138e60 LookupCharacterCode                                  // 处理字符代码查找
@@ -75102,16 +75103,16 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
       *(float *)(AllocatedMemorySize + 0x23c) = (float)(SystemChecksum >> 8 & 0xff) * 0.003921569;
       *(float *)(AllocatedMemorySize + 0x240) = (float)(MemoryAddressMaskPointer & 0xff) * 0.003921569;
       *(float *)(AllocatedMemorySize + 0x244) = (float)(SystemChecksum >> 0x18) * 0.003921569;
-      uStack_178 = 0;
-      uStack_170 = 0xffffffff;
-      uStack_16c = 0xff00;
-      DataContentStatus = 0;
-      SystemUnsignedValue160 = 0xffffffffffffffff;
-      uStack_158 = 0xffffffff;
-      uStack_154 = 0xff;
-      uStack_150 = 0xffffffff;
-      uStack_14c = 0;
-      uStack_144 = 0x400;
+      StackValidationStatus178 = 0;
+      StackProcessingFlags170 = 0xffffffff;
+      StackOperationMask16c = 0xff00;
+      StackDataContentStatus = 0;
+      StackValidationFlags160 = 0xffffffffffffffff;
+      StackProcessingStatus158 = 0xffffffff;
+      StackValidationMask154 = 0xff;
+      StackAllocationFlags150 = 0xffffffff;
+      StackMemoryPointer14c = 0;
+      StackResourceFlags144 = 0x400;
       SystemStatusValue = 0;
       uStack_138 = 0;
       TemporaryFlag = 0;
