@@ -125475,8 +125475,16 @@ void ProcessUIAnimationData(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a710(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073a710(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * 处理UI数据缓冲区传输
+ * 
+ * 该函数处理UI数据的缓冲区传输操作，包括数据验证和资源管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ */
+void ProcessUIDataBufferTransfer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
