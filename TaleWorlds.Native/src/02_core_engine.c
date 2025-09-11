@@ -258190,7 +258190,7 @@ void ProcessSystemDataValidationAndInitialization(uint64_t ContextHandle, uint64
   long long SystemRegisterValue;
   long long DataStorageValue;
   
-  SystemDataRegistry = SUB168(SEXT816(ProcessingResult) * SEXT816(Utf8SourcePointer - SystemRegisterR10),8) + (Utf8SourcePointer - SystemRegisterR10);
+  SystemDataRegistry = SUB168(SEXT816(ProcessingResult) * SEXT816(Utf8SourcePointer - SystemRegisterValue),8) + (Utf8SourcePointer - SystemRegisterValue);
   SystemDataRegistry = (SystemDataRegistry >> 6) - (SystemDataRegistry >> 0x3f);
   if (SystemDataRegistry == 0) {
     SystemDataRegistry = 1;
@@ -258198,16 +258198,16 @@ void ProcessSystemDataValidationAndInitialization(uint64_t ContextHandle, uint64
   else {
     SystemDataRegistry = SystemDataRegistry * 2;
     if (SystemDataRegistry == 0) {
-      MemoryBlockHandle = 0;
+      MemoryBlockIndex = 0;
       goto LAB_1802097bc;
     }
   }
   MemoryBlockIndex = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 0x78,(char)SystemDataNode[3]);
   Utf8SourcePointer = SystemDataNode[1];
-  SystemRegisterR10 = *SystemDataNode;
+  SystemRegisterValue = *SystemDataNode;
 LAB_1802097bc:
-  ProcessSystemDataTransfer(&TertiaryDataBuffer,SystemRegisterR10,Utf8SourcePointer,MemoryBlockIndex);
-  BufferStatus = DataStorageValue;
+  ProcessSystemDataTransfer(&TertiaryDataBuffer,SystemRegisterValue,Utf8SourcePointer,MemoryBlockIndex);
+  SystemBufferStatus = DataStorageValue;
   FinalizeSystemDataTransfer(DataStorageValue);
   CharacterTablePointer = SystemDataNode[1];
   AllocatedMemorySize = *SystemDataNode;
@@ -258222,7 +258222,7 @@ LAB_1802097bc:
       CoreEngineFreeSystemMemory(AllocatedMemorySize);
   }
   *SystemDataNode = MemoryBlockIndex;
-  SystemDataNode[1] = BufferStatus + 0x78;
+  SystemDataNode[1] = SystemBufferStatus + 0x78;
   SystemDataNode[2] = SystemDataRegistry * 0x78 + MemoryBlockIndex;
   return;
 }
