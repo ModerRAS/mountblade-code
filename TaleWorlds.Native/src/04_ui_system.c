@@ -239,6 +239,7 @@ typedef enum {
 #define ClearUISystemMemory FUN_180776090                    // 清理UI系统内存
 #define ProcessUIVectorTransformationAndInterpolation FUN_1807762e0 // 处理UI向量变换和插值
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
+#define ProcessUIContextDataTransferAndValidation FUN_18073a0c0     // 处理UI上下文数据传输和验证
 #define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
 #define ProcessUIComponentTransform FUN_1807226f0           // 处理UI组件变换
 
@@ -124664,23 +124665,36 @@ LAB_18073a089:
 
 
  void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+/**
+ * @brief 处理UI上下文数据传输和验证
+ * 
+ * 处理UI上下文的数据传输，包括数据验证和缓冲区操作
+ * 支持多种数据传输模式和验证机制
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小句柄
+ * 
+ * @note 原始函数名：FUN_18073a0c0
+ */
+void ProcessUIContextDataTransferAndValidation(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  UIHandle astackUInt158 [2];
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  UIHandle contextHandle [2];
   UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  ulonglong encryptionKey;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  processingResult = ProcessUIContextWithCleanup(uiContext,astackUInt158,0);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  processingResult = ProcessUIContextWithCleanup(uiContext,contextHandle,0);
   if (((processingResult != 0) ||
-      (processingResult = func_0x000180746640(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0)) &&
-     ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+      (processingResult = ProcessUIContextTransferData(contextHandle[0],dataSource,targetBuffer,bufferSize), processingResult != 0)) &&
+     ((*(byte *)(UIConfigurationDataTable + 0x10) & 0x80) != 0)) {
     uiValidationResult = ProcessUIDataWithHandleTarget(stackArray148,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
@@ -124688,12 +124702,12 @@ void FUN_18073a0c0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ProcessUIDataWithHandleTarget(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    pstackUInt168 = stackArray148;
+    dataBufferPointer = stackArray148;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStyleManager);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
