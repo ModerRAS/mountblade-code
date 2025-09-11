@@ -129993,44 +129993,60 @@ ReleaseUIResources:
  
 
  void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
-void FUN_18073ceed(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+/**
+ * @brief UI系统数据验证处理器
+ * 
+ * 该函数负责处理UI系统中的数据验证操作，主要功能包括：
+ * - 初始化UI上下文句柄和事件句柄
+ * - 验证数据源和目标缓冲区的有效性
+ * - 执行数据缓冲区的处理和验证
+ * - 管理UI资源的生命周期
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18073ceed
+ */
+#define ValidateUIDataOperation FUN_18073ceed
+void ValidateUIDataOperation(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
+  int uiValidationResult;
+  int uiCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  longlong *stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong resourceHandle;
+  longlong *contextDataPointer;
+  ulonglong encryptionKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  resourceHandle = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextDataPointer,&resourceHandle);
   if (operationResult == 0) {
     dataSource = dataSource << 0x14;
     targetBuffer = targetBuffer << 0x14;
-    operationResult = (**(code **)(*stackParam00000038 + 0x100))(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073cfcb;
+    operationResult = (**(code **)(*contextDataPointer + 0x100))(contextDataPointer,dataSource,targetBuffer);
+    if (operationResult == 0) goto ReleaseUIResources;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074be80(&stack0x00000040,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     func_0x00018074be80(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957858,&stack0x00000040);
+    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UNK_180957858,&stack0x00000040);
   }
-FUN_18073cfcb:
-  if (lStack0000000000000030 != 0) {
+ReleaseUIResources:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 
