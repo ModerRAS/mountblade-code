@@ -80284,7 +80284,7 @@ void InitializeSystemCoreComponents(void
   uint64_t *CharacterStatusBuffer;
   long long SystemStringIndex;
   void *LocalProcessingStatusFlag;
-  byte *ByteStack28;
+  byte *StringEncodingBuffer;
   int CoreEngineLoopCounter0;
   uint32_t uStack_18;
   
@@ -236821,7 +236821,7 @@ uint32_t ProcessNetworkConnection(long long ContextHandle
   uint64_t *SystemCharacterStatusBuffer;
   long long SystemContextValue;
   void *LocalProcessingStatusFlag;
-  byte *ByteStack28;
+  byte *StringEncodingBuffer;
   int CoreEngineLoopCounter0;
   
   PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x30);
