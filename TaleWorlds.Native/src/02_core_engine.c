@@ -2110,6 +2110,8 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define SystemCharacterStatusBufferPointer488 SecondarySystemCharacterStatusBuffer // 次系统字符状态缓冲区指针
 #define CharacterStatusBufferPointer488 PrimaryCharacterStatusBuffer             // 主字符状态缓冲区指针
 #define CharacterStatusBufferPointer428 SecondaryCharacterStatusBuffer           // 次字符状态缓冲区指针
+#define CharacterStatusBufferPointer538 SystemDataComparisonBuffer             // 系统数据比较缓冲区
+#define CharacterStatusBufferPointer558 SystemResourceProcessingBuffer          // 系统资源处理缓冲区
 #define ExceptionList SystemExceptionList                  // 系统异常列表
 #define BufferAllocationComplete MemoryAllocationCompleteLabel // 内存分配完成标签
 #define CoreEngineDataTemplate CoreEngineSystemDataTemplate    // 核心引擎系统数据模板
