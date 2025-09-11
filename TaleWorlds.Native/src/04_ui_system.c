@@ -430,7 +430,7 @@ typedef enum {
 #define ProcessUIContextDataRelease FUN_180748dd0            // 处理UI上下文数据释放
 #define ProcessUIResourceDataCleanup FUN_180748ea0           // 处理UI资源数据清理
 #define ProcessUIBufferDataTransfer FUN_1807498f0            // 处理UI缓冲区数据传输
-#define ProcessUIMemoryDataCopy FUN_18074bdf0                 // 处理UI内存数据复制
+#define ProcessUIMemoryDataCopy ProcessUIDataBufferWithSize                 // 处理UI内存数据复制
 #define ProcessUIBufferDataClear ProcessUIDataBufferClear               // 处理UI缓冲区数据清除
 #define ProcessUITextureDataClear ProcessUITextureDataWithSize               // 处理UI纹理数据清除
 #define ProcessUIBufferDataFill ProcessUIBufferDataFill                // 处理UI缓冲区数据填充
@@ -128174,9 +128174,9 @@ void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
     if (operationResult == 0) goto LAB_18073c5c9;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bdf0(astackUInt138,0x100,dataSource);
+    uiValidationResult = ProcessUIDataBufferWithSize(astackUInt138,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bdf0(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    ProcessUIDataBufferWithSize(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextMetadata);
@@ -128197,9 +128197,9 @@ void FUN_18073c54f(void)
   int dataValidationResult;
   UIDword unmodifiedESI;
   
-  operationResult = FUN_18074bdf0(&stack0x00000040,0x100);
+  operationResult = ProcessUIDataBufferWithSize(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074bdf0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ProcessUIDataBufferWithSize(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
   ExecuteUIContextDataOperation(unmodifiedESI,4);
 }
@@ -128387,10 +128387,10 @@ void FUN_18073c730(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
     }
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bdf0(stackArray148,0x100,dataSource);
+    uiValidationResult = ProcessUIDataBufferWithSize(stackArray148,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bdf0(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ProcessUIDataBufferWithSize(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ProcessUIBufferDataFill(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
@@ -128445,10 +128445,10 @@ void FUN_18073c74d(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuf
     }
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bdf0(&stack0x00000040,0x100,dataSource);
+    uiValidationResult = ProcessUIDataBufferWithSize(&stack0x00000040,0x100,dataSource);
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bdf0(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ProcessUIDataBufferWithSize(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ProcessUIBufferDataFill(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
@@ -128474,10 +128474,10 @@ void FUN_18073c7d1(void)
   int dataValidationResult;
   UIDword unmodifiedESI;
   
-  operationResult = FUN_18074bdf0(&stack0x00000040,0x100);
+  operationResult = ProcessUIDataBufferWithSize(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   operationResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bdf0(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ProcessUIDataBufferWithSize(&stack0x00000040 + processingResult,0x100 - processingResult);
   operationResult = processingResult + uiValidationResult;
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   ProcessUIBufferDataFill(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
@@ -144607,8 +144607,8 @@ void ProcessUIDataWithHandleTarget(UIHandle uiContext,UIHandle dataSource,UIHand
 
 
 
- void FUN_18074bdf0(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
-void FUN_18074bdf0(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
+ void ProcessUIDataBufferWithSize(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
+void ProcessUIDataBufferWithSize(UIHandle uiContext,UIHandle dataSource,UIHandle *targetBuffer)
 
 {
   if (targetBuffer != (UIHandle *)0x0) {
@@ -405133,7 +405133,25 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2be(void)
+/**
+ * @brief 处理UI组件数据验证和布局计算
+ * 
+ * 该函数负责UI组件数据的验证和布局计算。它执行以下主要功能：
+ * - 验证UI事件数据结构和完整性
+ * - 处理UI组件指标计算
+ * - 执行UI组件变换和渲染
+ * - 处理UI组件布局计算
+ * - 验证UI数据缓冲区完整性和安全性
+ * - 处理循环迭代和状态更新
+ * 
+ * @return ulonglong 返回处理状态码，0表示成功，非0表示错误码
+ * 
+ * @note 这是一个简化实现，与ProcessUIComponentDataValidationAndRendering功能类似
+ * @see ValidateUIEventDataStructureAndIntegrity, ProcessUIComponentMetricsCalculation
+ * @see ProcessUIComponentTransformationAndRendering, ProcessUIComponentLayoutCalculation
+ * @see ValidateUIDataBufferIntegrityAndSecurity
+ */
+ulonglong ProcessUIComponentDataValidationAndLayout(void)
 
 {
   longlong *uiMemoryPointer;
