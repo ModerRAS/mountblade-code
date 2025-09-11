@@ -258181,13 +258181,13 @@ LAB_1802097bc:
 void ProcessSystemDataValidationAndInitialization(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer)
 {
   long long MainCalculationResult;
-  long long BufferStatus;
+  long long SystemBufferStatus;
   long long ProcessingResult;
   long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long *SystemDataNode;
-  long long SystemRegisterR10;
+  long long SystemRegisterValue;
   long long DataStorageValue;
   
   SystemDataRegistry = SUB168(SEXT816(ProcessingResult) * SEXT816(Utf8SourcePointer - SystemRegisterR10),8) + (Utf8SourcePointer - SystemRegisterR10);

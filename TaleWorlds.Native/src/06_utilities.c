@@ -130,19 +130,19 @@
 #define SystemStateValidationFailed 0x5
 
 // 系统标志常量
-#define SystemFlagBit8 SystemFlagBit8
-#define SystemFlagBit11 0x800
-#define StandardMemoryBlockSize StandardMemoryBlockSize
-#define SmallMemoryBlockSize 0x20
-#define MediumMemoryBlockSize 0x28
+#define SystemFlagBit8 0x100                                          // 系统标志位8 - 第八位系统状态标志
+#define SystemFlagBit11 0x800                                         // 系统标志位11 - 第十一位系统状态标志
+#define StandardMemoryBlockSize 0x30                                   // 标准内存块大小 - 默认内存分配块大小
+#define SmallMemoryBlockSize 0x20                                       // 小内存块大小 - 小型内存分配块大小
+#define MediumMemoryBlockSize 0x28                                       // 中等内存块大小 - 中型内存分配块大小
 
 // 系统数据偏移常量
-#define SystemDataOffset218 0x218
-#define SystemDataOffset8b0 0x8b0
-#define SecurityBufferOffset8 8
-#define SystemContextOffset4 4
-#define SystemDataOffset30 0x30
-#define ExceptionHandlerOffset868 0x868
+#define SystemDataOffset218 0x218                                      // 系统数据偏移218 - 系统数据结构偏移量
+#define SystemDataOffset8b0 0x8b0                                      // 系统数据偏移8b0 - 大型系统数据结构偏移量
+#define SecurityBufferOffset8 8                                        // 安全缓冲区偏移8 - 安全验证缓冲区偏移量
+#define SystemContextOffset4 4                                         // 系统上下文偏移4 - 小型系统上下文偏移量
+#define SystemDataOffset30 0x30                                        // 系统数据偏移30 - 标准系统数据偏移量
+#define ExceptionHandlerOffset868 0x868                                // 异常处理器偏移868 - 异常处理程序偏移量
 
 // 资源管理常量
 #define ResourceReferenceDecrement -1
@@ -213,10 +213,10 @@
 #define MemorySystemContextOffset64 0x40                      // 内存系统上下文偏移量 (64字节)
 
 // 异常状态标志位常量
-#define ExceptionStatusFlag1 0x1
-#define ExceptionStatusFlag2 0x2
-#define ExceptionStatusFlagMask1 0xfffffffe
-#define ExceptionStatusFlagMask2 0xfffffffd
+#define ExceptionStatusFlag1 0x1                                       // 异常状态标志1 - 第一位异常状态标志
+#define ExceptionStatusFlag2 0x2                                       // 异常状态标志2 - 第二位异常状态标志
+#define ExceptionStatusFlagMask1 0xfffffffe                            // 异常状态标志掩码1 - 用于清除第一位标志
+#define ExceptionStatusFlagMask2 0xfffffffd                            // 异常状态标志掩码2 - 用于清除第二位标志
 
 // 异常处理器偏移量常量
 #define TemporaryExceptionHandlerOffset68 0x68                  // 临时异常处理器偏移量68
@@ -26833,14 +26833,14 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
 int ProcessSystemResourceByCondition(DataBuffer inputCondition,DataBuffer dataSize)
 
 {
-  int cpuRegister;
+  int systemOperationFlag;
   int processResult;
   int64_t memoryBuffer;
   int64_t systemContext;
   int64_t resourcePointer;
   int64_t systemDataBuffer;
   
-  if (cpuRegister == 0) {
+  if (systemOperationFlag == 0) {
     memoryBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize,MemoryAlignmentSize32,&SystemMemoryPoolB,0xdd);
     if (memoryBuffer != 0) {
         memcpy(memoryBuffer,*(DataBuffer *)(systemContext + ComponentHandleOffset),(int64_t)*(int *)(systemContext + SystemDataSecondaryOffset18));
@@ -44242,7 +44242,7 @@ uint64_t ProcessSystemValidation(void)
   int64_t *systemDataManager;
   uint64_t validationResult;
   uint64_t systemValidationStatus;
-  int64_t *cpuRegisterContext;
+  int64_t *registerContextPointer;
   uint memoryAllocationBase;
   int64_t systemExecutionContext;
   uint operationResultCode;
@@ -44254,13 +44254,13 @@ uint64_t ProcessSystemValidation(void)
   if (*(int *)(systemDataManager + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationResult = OperateDataO0(*cpuRegisterContext,systemExecutionContext + 0x44,4);
+  validationResult = OperateDataO0(*registerContextPointer,systemExecutionContext + 0x44,4);
   if ((int)validationResult != 0) {
     return validationResult;
   }
   validationResultCode = 0;
   ValidationDataBuffer = 0;
-  validationResult = ExecuteDataValidationOperation(*cpuRegisterContext,&SystemStackBuffer);
+  validationResult = ExecuteDataValidationOperation(*registerContextPointer,&SystemStackBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -44287,17 +44287,17 @@ uint64_t ProcessSystemValidation(void)
       TemporaryMemoryBuffer = TemporaryMemoryBuffer & -memoryAllocationBase;
     } while ((int)validationResult < (int)processingFlags);
   }
-  if (*(int *)(cpuRegisterContext[1] + RegisterContextDataSizeOffset) != 0) {
+  if (*(int *)(registerContextPointer[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryAllocationBase = GetMemoryAddressA0(*cpuRegisterContext,systemExecutionContext + 0x48);
+  memoryAllocationBase = GetMemoryAddressA0(*registerContextPointer,systemExecutionContext + 0x48);
   if (memoryAllocationBase != 0) {
     return (uint64_t)memoryAllocationBase;
   }
-  if (*(int *)(cpuRegisterContext[1] + RegisterContextDataSizeOffset) != 0) {
+  if (*(int *)(registerContextPointer[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  exceptionContext = (int64_t *)*cpuRegisterContext;
+  exceptionContext = (int64_t *)*registerContextPointer;
   if (*exceptionContext == 0) {
     validationResult = ValidationErrorCode;
   }
@@ -44324,8 +44324,8 @@ ValidationCompleteHandler2:
     }
     if ((int)validationResult == 0) {
       validationResult = validationResultCode;
-      if ((0x32 < *(uint *)(cpuRegisterContext + 8)) && (validationResult = ValidationErrorCode, *(int *)(cpuRegisterContext[1] + SystemDataSecondaryOffset18) == 0)) {
-        memoryAllocationBase = ValidateDataWithSecurityCheckA2(*cpuRegisterContext,systemExecutionContext + 0x40);
+      if ((0x32 < *(uint *)(registerContextPointer + 8)) && (validationResult = ValidationErrorCode, *(int *)(registerContextPointer[1] + SystemDataSecondaryOffset18) == 0)) {
+        memoryAllocationBase = ValidateDataWithSecurityCheckA2(*registerContextPointer,systemExecutionContext + 0x40);
         validationResult = (uint64_t)memoryAllocationBase;
       }
       if ((int)validationResult == 0) {
