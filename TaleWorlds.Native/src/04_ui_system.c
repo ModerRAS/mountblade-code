@@ -105342,7 +105342,7 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
   longlong componentData;
   UIByte *piterationCounter;
   UIDword iterationCount;
-  double dVar9;
+  double RenderScaleFactor;
   float normalizedSum0;
   UIDword result1;
   UIDword stackParam00000840;
