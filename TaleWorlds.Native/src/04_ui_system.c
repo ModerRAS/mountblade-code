@@ -133261,7 +133261,7 @@ void ExecuteUIContextResourceManagement(UIHandle uiContext)
       uiValidationResult = 0x1c;
     }
     else {
-      uiValidationResult = FUN_180743c40(allocatedMemory);
+      uiValidationResult = ValidateUIMemoryAllocation(allocatedMemory);
       if (uiValidationResult == 0) {
         uiValidationResult = (**(code **)(*apRenderContextSize[0] + 0x18))(apRenderContextSize[0],1);
         ReleaseUIMemoryResource(allocatedMemory);
@@ -133793,7 +133793,7 @@ void ProcessUIContextWithDataBuffer(UIHandle uiContext,UIHandle dataSource,UIByt
   
   encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   memoryHandle = 0;
-  operationResult = FUN_180754f10(uiContext,&contextHandle,&memoryHandle);
+  operationResult = InitializeUIRenderContext(uiContext,&contextHandle,&memoryHandle);
   if (operationResult == 0) {
     operationResult = ValidateUIContext(contextHandle,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto LAB_18073f20b;
@@ -133834,7 +133834,7 @@ void ProcessUIContextWithDataTarget(UIHandle uiContext,UIDword dataSource,UIHand
   
   encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   memoryHandle = 0;
-  operationResult = FUN_180754f10(uiContext,&contextHandle,&memoryHandle);
+  operationResult = InitializeUIRenderContext(uiContext,&contextHandle,&memoryHandle);
   if (operationResult == 0) {
     operationResult = func_0x0001807533d0(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073f32d;
