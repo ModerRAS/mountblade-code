@@ -12353,19 +12353,19 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 工具系统数据处理函数宏定义
 // 原始函数名：FUN_1808d73b0 - 数据验证和处理函数A0
 // 功能：验证数据有效性并执行相应的处理操作
-#define ValidateAndProcessDataA0 FUN_1808d73b0
+#define ValidateAndProcessDataA0 ValidateDataAndExecuteProcessing
 
 // 原始函数名：FUN_1808d7020 - 资源清理函数A0
 // 功能：清理系统资源，释放内存
-#define CleanupResourceA0 FUN_1808d7020
+#define CleanupResourceA0 CleanupSystemResourceAndMemory
 
 // 原始函数名：FUN_1808681d0 - 数据块处理函数A0
 // 功能：处理数据块，执行数据转换和验证
-#define ProcessDataBlocksA0 FUN_1808681d0
+#define ProcessDataBlocksA0 ProcessDataBlocksWithConversion
 
 // 原始函数名：FUN_180875fc0 - 回调执行函数A0
 // 功能：执行系统回调函数
-#define ExecuteCallbackA0 FUN_180875fc0
+#define ExecuteCallbackA0 ExecuteSystemCallbackWithValidation
 
 // 原始函数名：ReleaseSystemMemoryA0 - 资源分配函数A0
 // 功能：分配系统资源

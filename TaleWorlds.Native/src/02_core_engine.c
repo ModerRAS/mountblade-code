@@ -232686,7 +232686,23 @@ void ReleaseSystemHandle(long long *ContextHandle)
 
 
 
-907f0(long long ContextHandle,long long OperationBufferSize,uint8_t Utf8SourcePointervoid FUN_1801907f0(long long ContextHandle,long long OperationBufferSize,uint8_t Utf8SourcePointer
+/**
+ * @brief 执行系统字节操作和字符编码处理
+ * 
+ * 该函数负责处理系统字节操作和字符编码处理。
+ * 主要功能包括：
+ * - 处理上下文句柄和操作缓冲区
+ * - 执行字符编码转换和缓冲区配置
+ * - 管理系统数据表和字符串处理
+ * - 执行内存块比较和初始化操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定缓冲区容量
+ * @param Utf8SourcePointer UTF8源指针，指向UTF8编码数据
+ * 
+ * @note 原始函数名：FUN_1801907f0
+ */
+void ExecuteSystemByteOperations(long long ContextHandle, long long OperationBufferSize, uint8_t Utf8SourcePointer)
 {
   byte *CurrentBytePointer;
   long long BufferStatus;
