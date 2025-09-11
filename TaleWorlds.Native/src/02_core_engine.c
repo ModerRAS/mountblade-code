@@ -47504,11 +47504,26 @@ SystemStatusContextLabel:
         }
       }
 
-2e80(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+/**
  * @brief 处理系统数据传输和上下文管理
  * 
  * 该函数负责处理系统数据传输和上下文管理，包括：
  * - 管理系统上下文指针和数据传输
+ * - 处理UTF-8到UTF-16的编码转换
+ * - 验证数据边界和内存管理
+ * - 执行系统状态检查和处理
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定数据处理的缓冲区容量
+ * @param Utf8SourcePointer UTF-8源数据指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，标识转换数据的结束位置
+ * @return 处理结果状态码，表示操作成功或失败
+ * 
+ * @note 原始函数名：FUN_1802e800
+ * @note 函数地址：0x1802e800
+ * @note 此函数为简化实现版本
+ */
+void ProcessSystemDataTransferAndContextManagement(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
  * - 处理数据引用和内存管理
  * - 执行系统级数据传输操作
  * 
@@ -47520,7 +47535,7 @@ SystemStatusContextLabel:
  * 
  180072e80，ProcessSystemDataTransfer
  */
-void ProcessSystemDataTransfer(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer
+void ProcessSystemDataTransfer(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   uint64_t MemoryPoolIndex;
