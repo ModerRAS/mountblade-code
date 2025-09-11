@@ -2227,52 +2227,98 @@ void* GetSystemInitializationFunction;
  * @note 游戏核心系统标识符为 GameCoreSystemIdentifier1 和 GameCoreSystemIdentifier2
  * @note 节点状态设置为非活动状态（SystemNodeInactiveFlag）
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 此函数负责初始化Mount & Blade游戏的核心系统组件。它会：
+ * - 获取系统根表并遍历节点树
+ * - 查找或创建游戏核心系统节点
+ * - 设置游戏核心系统的标识符和回调函数
+ * - 配置系统内存和数据结构
+ * 
+ * 工作流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 遍历节点树查找游戏核心系统节点
+ * 3. 如果找不到合适的节点，则分配新的内存节点
+ * 4. 配置节点的标识符、数据指针和处理器
+ * 5. 设置节点为活跃状态并完成初始化
+ * 
+ * @note 此函数是游戏引擎启动时的关键初始化步骤
+ * @warning 必须在系统根表初始化完成后调用
+ * @see GetSystemRootTable, GetGameCoreSystemInitializationFunction
+ */
 void InitializeGameCoreSystem(void)
 {
-  bool IsGameCoreNodeInitialized;                           // 游戏核心节点是否已初始化
-  void** RootNodeReference;                                // 根节点引用
-  int GameCoreIdentifierComparisonResult;                  // 游戏核心标识符比较结果
-  long long* MainSystemTablePointer;                        // 主系统表指针
-  long long SystemRequiredMemorySize;                       // 系统所需内存大小
-  void** CurrentNodePointer;                               // 当前节点指针
-  void** PreviousNodePointer;                              // 前一个节点指针
-  void** NextNodePointer;                                  // 下一个节点指针
-  void** AllocatedNodePointer;                             // 已分配节点指针
-  void* GameCoreInitializer;                               // 游戏核心初始化器
+  // 系统状态和节点管理变量
+  bool IsGameCoreSystemNodeActive;                              // 游戏核心系统节点是否已激活
+  void** SystemRootNodeReference;                               // 系统根节点引用指针
+  int SystemIdentifierComparisonResult;                          // 系统标识符比较结果
+  long long* SystemGlobalTablePointer;                          // 系统全局表指针
+  long long RequiredSystemMemoryAllocation;                     // 需要分配的系统内存大小
   
-  MainSystemTablePointer = (long long*)GetSystemRootTable();
-  RootNodeReference = (void**)*MainSystemTablePointer;
-  IsGameCoreNodeInitialized = *(bool*)((long long)RootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
-  GameCoreInitializer = GetGameCoreSystemInitializationFunction;
-  PreviousNodePointer = RootNodeReference;
-  CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentIndex];
+  // 节点遍历和管理指针
+  void** CurrentSystemNodePointer;                             // 当前系统节点指针
+  void** PreviousSystemNodePointer;                            // 前一个系统节点指针
+  void** NextSystemNodePointer;                                // 下一个系统节点指针
+  void** AllocatedSystemNodePointer;                           // 已分配的系统节点指针
   
-  while (!IsGameCoreNodeInitialized) {
-    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, SystemIdentifierSize);
-    if (GameCoreIdentifierComparisonResult < 0) {
-      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
-      CurrentNodePointer = PreviousNodePointer;
+  // 系统初始化函数指针
+  void* GameCoreSystemInitializerFunction;                     // 游戏核心系统初始化函数指针
+  
+  // 获取系统全局表和根节点引用
+  SystemGlobalTablePointer = (long long*)GetSystemRootTable();
+  SystemRootNodeReference = (void**)*SystemGlobalTablePointer;
+  
+  // 检查游戏核心系统节点是否已经激活
+  IsGameCoreSystemNodeActive = *(bool*)((long long)SystemRootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 获取游戏核心系统初始化函数
+  GameCoreSystemInitializerFunction = GetGameCoreSystemInitializationFunction;
+  
+  // 初始化节点遍历指针
+  PreviousSystemNodePointer = SystemRootNodeReference;
+  CurrentSystemNodePointer = (void**)SystemRootNodeReference[RootNodeCurrentIndex];
+  
+  // 遍历节点树查找游戏核心系统节点
+  while (!IsGameCoreSystemNodeActive) {
+    // 比较当前节点标识符与游戏核心系统标识符
+    SystemIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, SystemIdentifierSize);
+    
+    if (SystemIdentifierComparisonResult < 0) {
+      // 当前节点标识符较小，移动到下一个节点
+      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
+      CurrentSystemNodePointer = PreviousSystemNodePointer;
     }
     else {
-      NextNodePointer = (void**)CurrentNodePointer[NodeHeadPointerOffset];
+      // 当前节点标识符较大或相等，移动到头节点
+      NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeHeadPointerOffset];
     }
-    PreviousNodePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNodePointer;
-    IsGameCoreNodeInitialized = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    
+    // 更新遍历指针
+    PreviousSystemNodePointer = CurrentSystemNodePointer;
+    CurrentSystemNodePointer = NextSystemNodePointer;
+    
+    // 检查下一个节点是否为激活的游戏核心系统节点
+    IsGameCoreSystemNodeActive = *(bool*)((long long)NextSystemNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((PreviousNodePointer == RootNodeReference) || 
-      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, SystemIdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
-    SystemRequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
-    PreviousNodePointer = AllocatedNodePointer;
+  // 检查是否需要创建新的游戏核心系统节点
+  if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
+      (SystemIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierComparisonResult < 0)) {
+    
+    // 计算需要的系统内存大小并分配内存
+    RequiredSystemMemoryAllocation = GetSystemMemorySize(SystemGlobalTablePointer);
+    AllocateSystemMemory(SystemGlobalTablePointer, &AllocatedSystemNodePointer, PreviousSystemNodePointer, RequiredSystemMemoryAllocation + NodeAllocationExtraSize, RequiredSystemMemoryAllocation);
+    PreviousSystemNodePointer = AllocatedSystemNodePointer;
   }
   
-  PreviousNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
-  PreviousNodePointer[NodeIdentifier2Index] = GameCoreSystemIdentifier2;
-  PreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
-  PreviousNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  PreviousNodePointer[NodeHandlerIndex] = GameCoreInitializer;
+  // 配置游戏核心系统节点的属性
+  PreviousSystemNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
+  PreviousSystemNodePointer[NodeIdentifier2Index] = GameCoreSystemIdentifier2;
+  PreviousSystemNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
+  PreviousSystemNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  PreviousSystemNodePointer[NodeHandlerIndex] = GameCoreSystemInitializerFunction;
+  
   return;
 }
 
