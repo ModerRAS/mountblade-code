@@ -3892,10 +3892,10 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define IdentifySystemIdentifierByPatternVariantO IdentifySystemIdentifierByPatternVariantO  // 识别系统标识符模式O (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantP IdentifySystemIdentifierByPatternVariantP  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantQ IdentifySystemIdentifierByPatternVariantQ  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
-#define IdentifySystemIdentifierByPatternVariantR FUN_180225727  // 识别系统标识符模式R (字符串模式匹配和标识符识别)
-#define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)
-#define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
-#define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7  // 识别系统标识符模式U (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantR MatchStringPatternAndIdentifyVariantR  // 匹配字符串模式并识别变体R
+#define IdentifySystemIdentifierByPatternVariantS MatchStringPatternAndIdentifyVariantS  // 匹配字符串模式并识别变体S
+#define IdentifySystemIdentifierByPatternVariantT MatchStringPatternAndIdentifyVariantT  // 匹配字符串模式并识别变体T
+#define IdentifySystemIdentifierByPatternVariantU MatchStringPatternAndIdentifyVariantU  // 匹配字符串模式并识别变体U
 
 // 原始函数名：FUN_180169350 - 核心引擎字符代码处理函数
 #define ProcessCoreEngineContextHandle FUN_180169350
@@ -299022,22 +299022,22 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 
 // 系统核心功能函数语义化宏定义 - 新发现的需要美化的函数
 #define FUN_180081480 AllocateSystemMemoryBlockAndInitialize                // 分配并初始化系统内存块
-#define FUN_18029ea30 ProcessCharacterEncodingConversion                    // 处理字符编码转换
-#define FUN_1802075c0 ExecuteCharacterEncodingValidation                    // 执行字符编码验证
-#define FUN_1800e81f0 GetSystemContextPointer                              // 获取系统上下文指针
-#define FUN_180204e40 ProcessSystemFloatTransform                          // 处理系统浮点变换
-#define FUN_180207d70 ValidateIntegerValue                                  // 验证整数值
-#define FUN_180204a00 ProcessMemoryAddressMask                             // 处理内存地址掩码
-#define FUN_18004bf50 CleanMemoryBoundary                                  // 清理内存边界
-#define FUN_1802063e0 HandleLockOperation                                    // 处理锁定操作
-#define FUN_180209470 InitializeSystemContextBuffer                         // 初始化系统上下文缓冲区
-#define FUN_180209720 ConfigureSystemContextData                           // 配置系统上下文数据
-#define FUN_180208f20 ProcessMatrixTransformAndCharacterData              // 处理矩阵变换和字符数据
-#define FUN_1801efdb0 ConvertCharacterTableData                            // 转换字符表数据
-#define FUN_1801ef300 ValidateCharacterTableData                           // 验证字符表数据
-#define FUN_1801ef620 ProcessVectorCalculationAndData                      // 处理向量计算和数据
-#define FUN_18007f0e0 HandleCharacterDataProcessing                         // 处理字符数据处理
-#define FUN_1800b6de0 ValidateSystemMemoryManager                          // 验证系统内存管理器
-#define FUN_180079240 GetSystemMemoryBlockIndex                             // 获取系统内存块索引
+#define FUN_18029ea30 ConvertStringEncodingAndProcessData                  // 转换字符串编码并处理数据
+#define FUN_1802075c0 ValidateCharacterEncodingAndProcess                  // 验证字符编码并处理
+#define FUN_1800e81f0 RetrieveSystemContextAndValidate                     // 检索系统上下文并验证
+#define FUN_180204e40 TransformSystemFloatAndProcess                        // 变换系统浮点数并处理
+#define FUN_180207d70 ValidateIntegerRangeAndProcess                       // 验证整数范围并处理
+#define FUN_180204a00 ApplyMemoryAddressMaskAndProcess                     // 应用内存地址掩码并处理
+#define FUN_18004bf50 ClearMemoryBoundaryAndReset                         // 清除内存边界并重置
+#define FUN_1802063e0 ManageSystemLockAndProcess                           // 管理系统锁定并处理
+#define FUN_180209470 SetupSystemContextBufferAndInitialize                // 设置系统上下文缓冲区并初始化
+#define FUN_180209720 ConfigureSystemContextAndProcessData                 // 配置系统上下文并处理数据
+#define FUN_180208f20 ProcessMatrixTransformAndCharacterEncoding          // 处理矩阵变换和字符编码
+#define FUN_1801efdb0 ConvertCharacterTableToInternalFormat               // 转换字符表为内部格式
+#define FUN_1801ef300 ValidateCharacterTableAndProcess                    // 验证字符表并处理
+#define FUN_1801ef620 CalculateVectorAndProcessData                        // 计算向量并处理数据
+#define FUN_18007f0e0 ProcessCharacterDataStream                           // 处理字符数据流
+#define FUN_1800b6de0 ValidateSystemMemoryManagerState                    // 验证系统内存管理器状态
+#define FUN_180079240 RetrieveSystemMemoryBlockIndex                      // 检索系统内存块索引
 
 

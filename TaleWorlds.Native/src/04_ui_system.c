@@ -906,6 +906,10 @@ typedef enum {
 #define UIContextResourceManager430 (void*)0x18095b430     // UI上下文资源管理器430 - 资源管理操作
 #define UIContextDataValidatorD90 (void*)0x180958d90        // UI上下文数据验证器D90 - 数据验证功能
 
+// UI系统变换处理函数
+#define FUN_18077d1a0 ProcessUITransformWithAngleCalculation      // 处理UI变换与角度计算
+#define FUN_18077d2b0 GetUIEventHandleFromContext                  // 从UI上下文获取事件句柄
+
 // UI系统函数指针语义化定义
 #define UIEventDispatchFunction (*UIEventDispatchFunctionPointer)            // UI事件调度函数指针
 #define UIMemoryAllocatorFunction (*UIMemoryAllocatorFunctionPointer)          // UI内存分配器函数指针
@@ -137592,7 +137596,7 @@ InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UI
 
 
  
-UIHandle FUN_180742d90(longlong uiContext,int dataSource)
+UIHandle AllocateUIMemoryAndIterate(longlong uiContext,int dataSource)
 
 {
   longlong allocatedMemory;
@@ -137712,7 +137716,22 @@ void FUN_180742ff0(void)
 
 
  
-UIHandle FUN_180743010(longlong uiContext)
+/**
+ * @brief 初始化UI颜色缓冲区池
+ * 
+ * 该函数负责初始化UI系统的颜色缓冲区池，包括：
+ * - 分配UI内存池
+ * - 初始化颜色缓冲区
+ * - 设置字符串比较索引
+ * - 建立内存池之间的链接关系
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统上下文
+ * 
+ * @return UIHandle 返回0表示成功，0x26表示失败
+ * 
+ * @note 原始函数名：FUN_180743010
+ */
+UIHandle InitializeUIColorBufferPool(longlong uiContext)
 
 {
   longlong *uiMemoryPointer;
