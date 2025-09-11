@@ -15900,7 +15900,7 @@ void CoreEngineInitializeNetworkMessageQueue(void)
     PreviousNode = NextNode;
     IsNodeInitialized = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == RootNode) || (NodeComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentNode + SystemNodeHeaderSize,SystemDataStructureSize), ComparisonResult < 0)) {
+  if ((CurrentNode == RootNode) || (NodeComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentNode + SystemNodeHeaderSize,SystemDataStructureSize), NodeComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
     CoreEngineSetupNetworkQueue(SystemHandle,&NewNode,CurrentNode,MemoryOffset + NetworkMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNode;
