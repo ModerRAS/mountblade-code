@@ -19592,53 +19592,53 @@ void CoreEngineInitializeAudioSystemManager(void
  */
 void CoreEngineCalculateAudioAttenuationCoefficients(void
 {
-  unsigned long long DistanceIndex;
-  float *AttenuationTablePointer;
-  int AttenuationFactor;
-  unsigned long long TableSize;
-  uint IndexCounter;
-  unsigned long long BaseIndex;
-  int DistanceOffset;
-  float *CurrentTablePointer;
-  float AttenuationValue;
+  unsigned long long AudioDistanceIndex;
+  float *AudioAttenuationTablePointer;
+  int AudioAttenuationFactor;
+  unsigned long long AudioTableSize;
+  uint AudioTableIndexCounter;
+  unsigned long long AudioBaseIndex;
+  int AudioDistanceOffset;
+  float *AudioCurrentTablePointer;
+  float AudioAttenuationValue;
   
-  CurrentTablePointer = (float *)SystemDataTableStartAddress;
-  BaseIndex = 0;
-  DistanceOffset = -3;
-  TableSize = BaseIndex;
+  AudioCurrentTablePointer = (float *)SystemDataTableStartAddress;
+  AudioBaseIndex = 0;
+  AudioDistanceOffset = -3;
+  AudioTableSize = AudioBaseIndex;
   do {
-    if (0 < (long long)TableSize) {
-      AttenuationFactor = -3;
-      DistanceIndex = BaseIndex;
-      AttenuationTablePointer = CurrentTablePointer;
+    if (0 < (long long)AudioTableSize) {
+      AudioAttenuationFactor = -3;
+      AudioDistanceIndex = AudioBaseIndex;
+      AudioAttenuationTablePointer = AudioCurrentTablePointer;
       do {
-        AttenuationValue = 0.0;
-        if (-1 < (long long)DistanceIndex) {
-          if ((long long)DistanceIndex < 3) {
-            AttenuationValue = 0.75;
+        AudioAttenuationValue = 0.0;
+        if (-1 < (long long)AudioDistanceIndex) {
+          if ((long long)AudioDistanceIndex < 3) {
+            AudioAttenuationValue = 0.75;
           }
           else {
-            AttenuationValue = 1.0 - (float)AttenuationFactor / (float)DistanceOffset;
-            AttenuationValue = SQRT(AttenuationValue) * AttenuationValue;
+            AudioAttenuationValue = 1.0 - (float)AudioAttenuationFactor / (float)AudioDistanceOffset;
+            AudioAttenuationValue = SQRT(AudioAttenuationValue) * AudioAttenuationValue;
           }
         }
-        *AttenuationTablePointer = AttenuationValue;
-        AttenuationFactor = AttenuationFactor + 1;
-        AttenuationTablePointer = AttenuationTablePointer + 1;
-        DistanceIndex = DistanceIndex + 1;
-      } while ((long long)DistanceIndex < (long long)TableSize);
+        *AudioAttenuationTablePointer = AudioAttenuationValue;
+        AudioAttenuationFactor = AudioAttenuationFactor + 1;
+        AudioAttenuationTablePointer = AudioAttenuationTablePointer + 1;
+        AudioDistanceIndex = AudioDistanceIndex + 1;
+      } while ((long long)AudioDistanceIndex < (long long)AudioTableSize);
     }
-    DistanceOffset = DistanceOffset + 1;
-    TableSize = TableSize + 1;
-    CurrentTablePointer = CurrentTablePointer + 0x40;
-  } while ((long long)CurrentTablePointer < (long long)DataTableEndAddress);
-  CurrentTablePointer = (float *)DataTableSecondaryAddress;
+    AudioDistanceOffset = AudioDistanceOffset + 1;
+    AudioTableSize = AudioTableSize + 1;
+    AudioCurrentTablePointer = AudioCurrentTablePointer + AudioTableBlockSize;
+  } while ((long long)AudioCurrentTablePointer < (long long)DataTableEndAddress);
+  AudioCurrentTablePointer = (float *)DataTableSecondaryAddress;
   do {
-    IndexCounter = (int)BaseIndex + 1;
-    *CurrentTablePointer = 1.0 / SQRT((float)BaseIndex) + 1.0 / SQRT((float)BaseIndex);
-    CurrentTablePointer = CurrentTablePointer + 1;
-    BaseIndex = (unsigned long long)IndexCounter;
-  } while (IndexCounter < 0x40);
+    AudioTableIndexCounter = (int)AudioBaseIndex + 1;
+    *AudioCurrentTablePointer = 1.0 / SQRT((float)AudioBaseIndex) + 1.0 / SQRT((float)AudioBaseIndex);
+    AudioCurrentTablePointer = AudioCurrentTablePointer + 1;
+    AudioBaseIndex = (unsigned long long)AudioTableIndexCounter;
+  } while (AudioTableIndexCounter < AudioTableMaxSize);
   return;
 }
 
@@ -80273,7 +80273,7 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t ContextHandle, long lon
 void InitializeSystemCoreComponents(void
 {
   byte StringComparisonByte;
-  bool HighByte;
+  bool HighByteFlag;
   int MemoryComparisonResult;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
