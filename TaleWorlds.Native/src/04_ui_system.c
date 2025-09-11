@@ -297641,42 +297641,58 @@ FUN_18083cd60(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
 
 
  
+/**
+ * @brief 处理UI组件与句柄扩展6
+ * 
+ * 该函数处理UI组件与句柄的交互，包括事件代码处理、上下文管理和缓冲区操作。
+ * 它会验证数据源，处理组件上下文，并在需要时执行渲染任务。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小指针
+ * 
+ * @return UIHandle 返回操作结果句柄
+ * 
+ * @note 原始函数名：FUN_18083cd7a
+ * @note 该函数可能不返回，会跳转到其他任务执行
+ */
 UIHandle
-FUN_18083cd7a(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
+ProcessUIComponentWithHandlesEx6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHandle *bufferSize)
 
 {
-  int *pprocessingResult;
+  int *puiProcessingResult;
   int dataValidationResult;
-  ulonglong eventCodeType;
+  ulonglong eventCode;
   longlong contextHandle;
-  int sourceDataInt;
+  int sourceDataValue;
   UIHandle *componentContextPtr;
-  uint RegisterPointerD;
-  longlong stackParam00000060;
-  code *pcStack0000000000000068;
+  uint eventCounter;
+  longlong stackBufferOffset;
+  code *functionPointer;
   
-  eventCode = (ulonglong)RegisterPointerD;
+  eventCode = (ulonglong)eventCounter;
   componentContextPtr = bufferSize;
   do {
-    if (*(int *)(stackParam00000060 + eventCodeType * 4) != 0) {
-      RegisterPointerD = RegisterPointerD + 1;
-      *componentContextPtr = bufferSize[eventCodeType];
+    if (*(int *)(stackBufferOffset + eventCode * 4) != 0) {
+      eventCounter = eventCounter + 1;
+      *componentContextPtr = bufferSize[eventCode];
       componentContextPtr = componentContextPtr + 1;
     }
-    eventCode = eventCodeType + 1;
-  } while ((longlong)eventCodeType < contextHandle);
-  if (RegisterPointerD != 0) {
-    pcStack0000000000000068 = FUN_18082e800;
-    poperationResult = (int *)*targetBuffer;
-    sourceDataInt = *(int *)(dataSource + 0x34) >> 1;
-    uiValidationResult = pprocessingResult[1];
-    if (sourceDataInt <= pprocessingResult[1]) {
-      uiValidationResult = sourceDataInt;
+    eventCode = eventCode + 1;
+  } while ((longlong)eventCode < contextHandle);
+  if (eventCounter != 0) {
+    functionPointer = FUN_18082e800;
+    puiProcessingResult = (int *)*targetBuffer;
+    sourceDataValue = *(int *)(dataSource + 0x34) >> 1;
+    dataValidationResult = puiProcessingResult[1];
+    if (sourceDataValue <= puiProcessingResult[1]) {
+      dataValidationResult = sourceDataValue;
     }
-    if (0 < uiValidationResult - *pprocessingResult) {
+    if (0 < dataValidationResult - *puiProcessingResult) {
                      WARNING: Subroutine does not return
-      ProcessUIBufferOperation((longlong)(int)RegisterPointerD * 8,
-                    (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
+      ProcessUIBufferOperation((longlong)(int)eventCounter * 8,
+                    (longlong)((dataValidationResult - *puiProcessingResult) / puiProcessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                     (longlong)*(int *)targetBuffer[3] & 0xffffffff);
     }
                      WARNING: Subroutine does not return

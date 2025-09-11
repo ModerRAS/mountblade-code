@@ -255005,7 +255005,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
     StringLength = (int *)(MemoryBoundaryEnd + 0xe8);
     do {
       if (CoreEngineCharArray58[SystemDataRegistry] != '\0') {
-        MemoryBlockIndex = (long long *)FUN_180081480(CoreEngineSystemState,&pSystemTemporaryValue90,*StringLength * LockOperationResult);
+        MemoryBlockIndex = (long long *)ProcessSystemDataCalculation(CoreEngineSystemState,&pSystemTemporaryValue90,*StringLength * LockOperationResult);
         SystemOperationValidationFlag = 1;
         MemoryBlockIndex = (long long *)*MemoryBlockIndex;
         if (MemoryBlockIndex != (long long *)0x0) {
@@ -255068,9 +255068,9 @@ void ProcessSystemContextLocking(uint64_t ContextHandle, long long OperationBuff
         else {
           InputDataLength = CharacterStatusBuffer[-0x40];
           ProcessFloatingPointContextHandleAndEncoding(_SystemFloatTableAddress,CharacterEncodingParameters,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
-          FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,CharacterEncodingParameters[0] * InputDataLength,
+          ProcessMatrixTransformOperation(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,CharacterEncodingParameters[0] * InputDataLength,
                         *(void *)(*(long long *)(Utf8SourcePointer + SystemChecksum * 8) + 0x10),InputDataLength * IntegerValue,0);
-          FUN_1802075c0(OperationBufferSize,CharacterEncodingParameters,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
+          HandleCharacterBufferData(OperationBufferSize,CharacterEncodingParameters,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
           if (SecondaryContextPointer != (long long *)0x0) {
             (**(code **)(*SecondaryContextPointer + 0x38))();
           }
@@ -255124,7 +255124,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
       ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemMutexLock);
     }
     *(void *)(AdditionalParameter1 + 8) = SystemOperationParameters[0];
-    SystemContextPtr = (long long *)FUN_1800e81f0();
+    SystemContextPtr = (long long *)GetSystemMemoryBlockIndex();
     SystemContextPtr = (long long *)*SystemContextPtr;
     if (SystemContextPtr != (long long *)0x0) {
       SystemContextRegister = SystemContextPtr;
@@ -255137,7 +255137,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
     }
   }
   else {
-    CalculatedCodePoint = FUN_180081480(CoreEngineSystemState,&SystemContextRegister,
+    CalculatedCodePoint = ProcessSystemDataCalculation(CoreEngineSystemState,&SystemContextRegister,
                           ((*(byte *)(OperationBufferSize + 1) & 1) + 1) * *ContextHandleSize * 2);
     ProcessSystemCharacterData(Utf8SourcePointer,CalculatedCodePoint);
     SystemRegisterPointerX10 = SystemContextRegister;
@@ -255172,7 +255172,7 @@ void ValidateSystemContextSize(uint64_t ContextHandle, int *ContextHandleSize, l
     (*pOperationStatus)(MemoryBlockIndex,*(void *)(BufferStatus + 0x10),0);
   }
   else {
-    FUN_180204e40(_SystemFloatTableAddress,OperationBufferSize + 2);
+    ProcessUnicodeCharacterConversion(_SystemFloatTableAddress,OperationBufferSize + 2);
     IntegerValue = (*(byte *)(OperationBufferSize + 1) & 1) * 2 + 2;
     CalculatedCodePoint = ProcessFloatingPointContextHandleAndEncoding(CalculatedCodePoint,aProcessingCounter,(*(byte *)(OperationBufferSize + 1) & 1) + 0xe,(char)OperationBufferSize[8],
                           *ContextHandleSize,1,1);
@@ -255180,7 +255180,7 @@ void ValidateSystemContextSize(uint64_t ContextHandle, int *ContextHandleSize, l
     if (plStack_10 != (long long *)0x0) {
       (**(code **)(*plStack_10 + 0x38))();
     }
-    FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(OperationBufferSize + 6),
+    ProcessMatrixTransformOperation(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(OperationBufferSize + 6),
                   OperationBufferSize[2] * IntegerValue,*(void *)(*Utf8SourcePointer + 0x10),*ContextHandleSize * IntegerValue,0);
   }
   return;
@@ -255249,7 +255249,7 @@ void ProcessSystemCharacterEncoding(long long ContextHandle, int *ContextHandleS
   MemoryPoolBlockSize = (long long)Utf16EndPointer;
   MemoryBoundaryEnd = ContextHandle + (long long)Utf8SourcePointer * 0x18;
   if (*(int *)(ContextHandle + (long long)Utf8SourcePointer * 0x18) != -1) {
-    FUN_180204e40(_SystemFloatTableAddress,MemoryBoundaryEnd);
+    ProcessUnicodeCharacterConversion(_SystemFloatTableAddress,MemoryBoundaryEnd);
   }
   ProcessContextHandleManagement(MemoryBoundaryEnd,OperationBufferSize);
   MemoryBoundaryEnd = CoreEngineSystemContext;
@@ -255273,7 +255273,7 @@ void ProcessSystemCharacterEncoding(long long ContextHandle, int *ContextHandleS
     *(int *)(ContextHandle + 0x2b4) = LockOperationResult * AdditionalParameter1;
     MemoryBoundaryEnd = (long long)OperationBufferSize[2];
     *(uint8_t *)(ContextHandle + 0x19d) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 0x193) = CalculatedCodePoint;
     goto code_r0x0001802077e2;
   case 4:
@@ -255286,34 +255286,34 @@ void ProcessSystemCharacterEncoding(long long ContextHandle, int *ContextHandleS
     *(int *)(ContextHandle + 0x2b0) = LockOperationResult * AdditionalParameter1;
     MemoryBoundaryEnd = (long long)OperationBufferSize[2] + 1;
     *(uint8_t *)(ContextHandle + 0x198) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 400) = CalculatedCodePoint;
     *(unsigned long long *)(ContextHandle + 0x198) = *(unsigned long long *)(ContextHandle + 0x198) | MemoryBoundaryEnd << (hasComparisonResult & 0x3f);
     break;
   case 8:
     MemoryBoundaryEnd = (long long)OperationBufferSize[2] + 1;
     *(uint8_t *)(ContextHandle + 0x19b) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 0x194) = CalculatedCodePoint;
     *(unsigned long long *)(ContextHandle + 0x198) = *(unsigned long long *)(ContextHandle + 0x198) | MemoryBoundaryEnd << (hasComparisonResult & 0x3f);
     break;
   case 9:
     MemoryBoundaryEnd = (long long)OperationBufferSize[2] + 1;
     *(uint8_t *)(ContextHandle + 0x19a) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 0x195) = CalculatedCodePoint;
     *(unsigned long long *)(ContextHandle + 0x198) = *(unsigned long long *)(ContextHandle + 0x198) | MemoryBoundaryEnd << (hasComparisonResult & 0x3f);
     break;
   case 10:
     MemoryBoundaryEnd = (long long)OperationBufferSize[2];
     *(uint8_t *)(ContextHandle + 0x19c) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 0x191) = CalculatedCodePoint;
     goto code_r0x0001802077e2;
   case 0xb:
     MemoryBoundaryEnd = (long long)OperationBufferSize[2];
     *(uint8_t *)(ContextHandle + 0x19e) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 0x192) = CalculatedCodePoint;
 code_r0x0001802077e2:
     *(unsigned long long *)(ContextHandle + 0x198) = *(unsigned long long *)(ContextHandle + 0x198) | MemoryBoundaryEnd + 1 << (hasComparisonResult & 0x3f);
@@ -255321,7 +255321,7 @@ code_r0x0001802077e2:
   case 0xc:
     MemoryBoundaryEnd = (long long)OperationBufferSize[2] + 1;
     *(uint8_t *)(ContextHandle + 0x199) = 0;
-    hasNodeComparisonResult = FUN_180207d70(IntegerValue);
+    hasNodeComparisonResult = CompareSystemDataNodes(IntegerValue);
     *(uint8_t *)(ContextHandle + 400) = CalculatedCodePoint;
     *(unsigned long long *)(ContextHandle + 0x198) = *(unsigned long long *)(ContextHandle + 0x198) | MemoryBoundaryEnd << (hasComparisonResult & 0x3f);
   }
@@ -255397,12 +255397,12 @@ LAB_1802078c3:
       MemoryAddressMaskPointer = MemoryAddressMaskPointer + 3;
     } while (MemoryBoundaryEnd + (long long)MemoryAddressMaskPointer != AllocatedMemorySize);
   }
-  FUN_180204a00(MemoryAddressMaskPointer,OperationBufferSize);
+  ProcessSystemMemoryAllocation(MemoryAddressMaskPointer,OperationBufferSize);
   AllocatedMemorySize = ContextHandle[1];
   MemoryBoundaryEnd = *ContextHandle;
   if (MemoryBoundaryEnd != AllocatedMemorySize) {
     do {
-      FUN_18004bf50(MemoryBoundaryEnd);
+      ValidateSystemDataIntegrity(MemoryBoundaryEnd);
       MemoryBoundaryEnd = MemoryBoundaryEnd + 0x18;
     } while (MemoryBoundaryEnd != AllocatedMemorySize);
     MemoryBoundaryEnd = *ContextHandle;
@@ -255446,7 +255446,7 @@ void ReleaseSystemContextResources(uint64_t *ContextHandle)
                  );
     lStackX_10 = (long long)LockOperationResult;
     if (0 < LockOperationResult) {
-      LockOperationResult = FUN_1802063e0(iStackX_8);
+      LockOperationResult = ConvertUtf16ToUtf8Character(iStackX_8);
       EncodingConversionResult = 0;
       do {
         ReferenceCountPointer = *(int **)(EncodingConversionResult + *(long long *)(StringOffset + ContextHandle[3]));
@@ -255742,7 +255742,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   SystemDataValue2 = 0;
   BufferOffset = 0;
   SystemUnsignedValue54 = 0x3f800000;
-  FUN_180209470(&SystemContextPointerA8);
+  InitializeSystemValidationBuffer(&SystemContextPointerA8);
   AllocatedMemorySize = CoreEngineMemoryContext;
   SystemChecksum = OperationResult;
   ArraySize = OperationResult;
