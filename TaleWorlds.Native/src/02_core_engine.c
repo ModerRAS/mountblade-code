@@ -252239,7 +252239,24 @@ uint64_t * ProcessUtf16CharacterConversionAndContextCopy(uint64_t *ContextHandle
 
 
 
-uint64_t * FUN_1802062c0(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 管理上下文句柄操作
+ * 
+ * 该函数负责管理系统上下文句柄的生命周期，包括初始化、配置和资源清理。
+ * 主要功能包括：
+ * - 复制上下文句柄大小信息
+ * - 配置上下文句柄的属性和参数
+ * - 处理缓冲区分配状态
+ * - 管理系统资源的分配和释放
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return uint64_t* 返回处理后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_1802062c0
+ * @note 该函数是核心引擎中上下文管理的关键组件
+ */
+uint64_t * ManageContextHandleOperations(uint64_t *ContextHandle,uint64_t *ContextHandleSize
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -252262,7 +252279,27 @@ uint64_t * FUN_1802062c0(uint64_t *ContextHandle,uint64_t *ContextHandleSize
 
 
 
-uint64_t * FUN_1802064e0(long long ContextHandle,uint64_t *ContextHandleSize,uint32_t Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief 传输字符编码和上下文数据
+ * 
+ * 该函数负责处理字符编码转换和上下文数据传输，支持UTF-8和UTF-16之间的转换。
+ * 主要功能包括：
+ * - 处理UTF-16字符的编码转换
+ * - 管理内存池索引和分配
+ * - 初始化系统上下文和同步机制
+ * - 配置上下文句柄表和数据处理
+ * - 执行系统内存状态检查和处理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理后的操作缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1802064e0
+ * @note 该函数涉及复杂的字符编码处理和内存管理操作
+ */
+uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t *ContextHandleSize,uint32_t Utf8SourcePointer,int Utf16EndPointer
 {
   uint64_t Utf16Char;
   uint32_t MemoryPoolIndex;
