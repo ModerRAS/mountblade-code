@@ -245674,7 +245674,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
           if (pSystemStackPointer2e0 != (long long **)0x0) {
             (*(code *)(*pSystemStackPointer2e0)[5])();
           }
-          FUN_180275cf0(SystemDataTablePointer,0,&SystemInitializationMode,1);
+          ProcessSystemDataTableOperation(SystemDataTablePointer,0,&SystemInitializationMode,1);
           ContextSecondaryFloat4 = fStack_128;
           FilterInputValue0 = fStack_318;
           ScalingFactor = fStack_308;
