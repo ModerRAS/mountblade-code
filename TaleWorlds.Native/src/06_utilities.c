@@ -9241,7 +9241,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数负责初始化线程本地存储区域，为多线程环境下的数据存储提供支持
  * 初始化第三个线程本地存储区域
  * 
- * @note 原始函数名：FUN_180943180 - 线程本地存储初始化函数A7
+ * @note 原始函数名：FUN_180943180
  */
 #define InitializeThreadLocalStorageA7 FUN_180943180
 
@@ -9704,24 +9704,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证数据块的完整性和有效性
 #define ValidateDataBlockA0 ValidateDataBlockIntegrity
 
-// 原始函数名：FUN_180898fc0 - 多段数据处理函数A0
+// 多段数据处理函数
 // 功能：处理多段数据，包括不同大小的数据块
 #define ProcessMultiSegmentDataA0 ProcessMultiSegmentDataBlocks
 
-// 原始函数名：FUN_180899040 - 数据验证处理函数A0
+// 数据验证处理函数
 // 功能：验证并处理数据，包含多个验证阶段
 #define ValidateAndProcessDataA0 ProcessMultiStageDataValidation
 
-// 原始函数名：FUN_180899090 - 数据处理函数A1
+// 数据处理函数
 // 功能：处理数据块，支持多种数据格式
 #define ProcessDataBlocksA1 ProcessMultiFormatDataBlocks
 
-// 原始函数名：FUN_180899100 - 数据验证函数A1
+// 数据验证函数
 // 功能：验证数据并执行相应的操作
 #define ValidateAndExecuteOperationsA1 ValidateDataAndExecuteOperations
 
-// 原始函数名：FUN_180942380 - 全局指针设置函数A32
-// 功能：设置全局数据指针A32到指定地址
+// 全局指针设置函数
+// 功能：设置全局数据指针到指定地址
 #define SetGlobalDataPointerA32 ConfigureGlobalDataPointerAtOffset32
 
 // 新增的偏移量宏定义
@@ -9903,40 +9903,45 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：处理数据操作，管理操作标志和系统状态
 #define ProcessDataOperationsWithFlagsA3 Unwind_18090ed40
 
-// 原始函数名：FUN_180942460 - 数据压缩函数A1
+// 数据压缩函数
 // 功能：压缩数据并返回压缩结果
 #define CompressDataAndReturnResult ProcessDataCompression
 
-// 原始函数名：FUN_180942480 - 数据解压缩函数A1
+// 数据解压缩函数
 // 功能：解压缩数据并返回解压缩结果
 #define DecompressDataAndReturnResult ProcessDataDecompression
 
-// 原始函数名：FUN_1809424a0 - 数据加密函数A1
+// 数据加密函数
 // 功能：加密数据并返回加密结果
 #define EncryptDataAndReturnResult ProcessDataEncryption
 
-// 系统配置函数B系列语义化宏定义
-// 原始函数名：FUN_180941820 - 系统配置加载函数B1
-// 功能：加载系统配置B1并返回加载结果
+// 系统配置函数
+// 原始函数名：FUN_180941820
+// 功能：加载系统配置并返回加载结果
 #define LoadSystemConfigurationB1 LoadSystemConfigurationAndSettings
 
-// 原始函数名：FUN_180941840 - 系统配置验证函数B2
-// 功能：验证系统配置B2并返回验证结果
+// 系统配置验证函数
+// 原始函数名：FUN_180941840
+// 功能：验证系统配置并返回验证结果
 #define ValidateSystemConfigurationB2 ValidateSystemConfigurationAndSettings
 
-// 原始函数名：FUN_180941860 - 系统配置保存函数B3
-// 功能：保存系统配置B3并返回保存结果
+// 系统配置保存函数
+// 原始函数名：FUN_180941860
+// 功能：保存系统配置并返回保存结果
 #define SaveSystemConfigurationB3 SaveSystemConfigurationAndSettings
 
-// 原始函数名：FUN_180941880 - 系统配置重置函数B4
-// 功能：重置系统配置B4并返回重置结果
+// 系统配置重置函数
+// 原始函数名：FUN_180941880
+// 功能：重置系统配置并返回重置结果
 #define ResetSystemConfigurationB4 ResetSystemConfigurationAndSettings
 
-// 原始函数名：FUN_1809418a0 - 系统状态监控函数B5
+// 系统状态监控函数
+// 原始函数名：FUN_1809418a0
 // 功能：监控系统状态并返回监控结果
 #define MonitorSystemStatusB5 MonitorSystemStateAndPerformance
 
-// 原始函数名：FUN_1809418c0 - 系统性能分析函数B6
+// 系统性能分析函数
+// 原始函数名：FUN_1809418c0
 // 功能：分析系统性能并返回分析结果
 #define AnalyzeSystemPerformanceB6 AnalyzeSystemPerformanceMetrics
 
