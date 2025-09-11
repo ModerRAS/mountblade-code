@@ -239689,7 +239689,19 @@ LAB_1801974aa:
 
 
 
-977ff(voidvoid FUN_1801977ff(void
+/**
+ * @brief 执行系统字符处理和编码转换
+ * 
+ * 该函数负责执行系统级别的字符处理和编码转换操作，主要功能包括：
+ * - 处理UTF-16字符和字符编码转换
+ * - 管理系统内存块和数据注册表
+ * - 执行系统上下文验证和处理
+ * - 处理字符限制和模式匹配
+ * 
+ * @note 原始函数名：FUN_1801977ff
+ */
+#define ExecuteSystemCharacterProcessingAndEncodingConversion FUN_1801977ff
+void ExecuteSystemCharacterProcessingAndEncodingConversion(void)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
