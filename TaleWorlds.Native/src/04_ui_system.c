@@ -217,6 +217,8 @@ typedef enum {
 #define FUN_180791d40 ClearUIContextDataBuffer
 #define FUN_180791db0 ProcessUIDataSourceAndBuffer
 #define FUN_180791e20 ResetUISystemGlobalState
+#define FUN_180739b61 ProcessUIContextInitializationB61
+#define FUN_180746bf0 ProcessUIDataBufferOperation
 #define UILookupTableF70 DAT_180956f70                    // UI查找表F70 - 存储UI组件的查找表数据
 #define UIComponentDataTableB8 DAT_1809536b8              // UI组件数据表B8 - 存储UI组件的基础数据
 #define UIContextDataTableB0 DAT_1809542b0                // UI上下文数据表B0 - 存储UI上下文相关数据
