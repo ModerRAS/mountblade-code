@@ -268,6 +268,7 @@ typedef enum {
 #define ProcessUIComponentStateUpdate FUN_18073a6c1              // 处理UI组件状态更新
 #define ProcessUIAnimationData FUN_18073a6eb                      // 处理UI动画数据
 #define ProcessUIDataBufferTransfer FUN_18073a710                 // 处理UI数据缓冲区传输
+#define ProcessUIContextDataWithValidation FUN_18073a72d           // 处理UI上下文数据验证
 
 // 未美化函数名语义化定义
 #define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
@@ -125538,7 +125539,22 @@ ReleaseUIMemoryAndExecuteRenderTask:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据验证和传输
+ * 
+ * 该函数负责处理UI上下文数据的验证和传输操作，包括：
+ * - 上下文数据的清理和验证
+ * - 数据缓冲区的比较和控制
+ * - 渲染任务的执行
+ * - 内存资源的管理和释放
+ * 
+ * @param uiContext UI上下文句柄，指向UI系统的上下文数据
+ * @param dataSource 数据源标识符，指定要处理的数据源
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @note 该函数会调用多个子函数来完成数据处理任务
+ * @warning 函数包含不返回的子程序调用，使用时需要注意
+ */
 void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
