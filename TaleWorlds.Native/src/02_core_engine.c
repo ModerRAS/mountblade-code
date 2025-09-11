@@ -248223,7 +248223,7 @@ LAB_1802016f7:
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueVigintenary,pSystemStatusValue);
-      StringLength = FUN_1802033f0();
+      StringLength = ReleaseSystemMemoryResources();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -248243,7 +248243,7 @@ LAB_1802016f7:
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueOctovigintenary,pSystemStatusValue);
-      StringLength = FUN_1802033c0();
+      StringLength = CleanupSystemMemoryOperations();
       if (StringLength != 0) {
         if (StringLength == 1) {
           PrimaryProcessingStatusFlag8 = &SystemStatusValueTertiary;
