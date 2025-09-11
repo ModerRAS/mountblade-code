@@ -30064,7 +30064,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   DataWord systemDataOffsetNonary;
   DataWord systemDataOffsetDenary;
   int systemMemoryIndex;
-  int dataFlagCounter;
+  int dataProcessingFlagCount;
   int arrayIterationIndex;
   
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6c);
@@ -30239,7 +30239,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
             exceptionContextPointer = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
-          dataFlagCounter = (int)dataFlags;
+          dataProcessingFlagCount = (int)dataFlags;
         } while ((stackIndexBuffer[0] != -1) &&
                 (stackIndexBuffer[0] = *(int *)(exceptionContextPointer[2] + 4 + exceptionContextIndex * AddressCalculationMultiplier), stackIndexBuffer[0] != -1));
         allocatedMemoryBlock = arrayIterationIndex + 1;
@@ -30266,8 +30266,8 @@ MemoryAllocationLabel:
       stackIndexBuffer[0] = -1;
       dataFlags = memoryOperationCounter;
     }
-    resourceIterator = (int64_t)(dataFlagCounter + -1);
-    if (-1 < dataFlagCounter + -1) {
+    resourceIterator = (int64_t)(dataProcessingFlagCount + -1);
+    if (-1 < dataProcessingFlagCount + -1) {
       do {
         SecurityCheckValue = SecurityCheckValue & ZeroValue;
         systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
@@ -30281,7 +30281,7 @@ MemoryAllocationLabel:
       arrayIterationIndex = -arrayIndex;
     }
     if (arrayIterationIndex < 0) {
-      if (0 < dataFlagCounter) goto ProcessCheckpointParameterValidation;
+      if (0 < dataProcessingFlagCount) goto ProcessCheckpointParameterValidation;
       if ((0 < arrayIndex) && (dataFlags != 0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataFlags,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
