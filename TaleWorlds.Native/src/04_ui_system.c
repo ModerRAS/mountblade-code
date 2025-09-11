@@ -129564,37 +129564,48 @@ void CopyUIDataBufferAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
  
 
- void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI动画数据并执行渲染任务
+ * 
+ * 该函数负责处理UI动画数据，包括数据验证、动画数据处理和渲染任务执行。
+ * 使用XOR加密保护栈参数，确保数据操作的安全性。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识动画数据来源
+ * 
+ * @note 此函数使用加密栈保护参数安全
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ProcessUIAnimationDataAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *animationDataPointer;
+  longlong renderContextSize;
+  longlong *contextDataPointer;
+  UIByte animationProcessingData [256];
+  ulonglong encryptedStackKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptedStackKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextDataPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x38))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073cccb;
+    operationResult = (**(code **)(*contextDataPointer + 0x38))(contextDataPointer,dataSource);
+    if (operationResult == 0) goto CleanupAndRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIBufferDataFill(animationProcessingData,0x100,dataSource);
+    animationDataPointer = animationProcessingData;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationAnimationData);
   }
-LAB_18073cccb:
-  if (RenderContextSize != 0) {
+CleanupAndRender:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedStackKey ^ (ulonglong)encryptionBuffer);
 }
 
 
