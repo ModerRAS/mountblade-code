@@ -28457,10 +28457,10 @@ CleanupContextAndExit:
 //   4. 重置数据结构状态
 //   5. 返回验证结果状态码
 /**
- * @brief 初始化系统组件DL0
+ * @brief 初始化具有双链接的系统组件
  * 
- * 该函数负责初始化系统组件，设置组件状态，验证数据完整性。
- * 执行数据验证、内存清理和状态重置操作。
+ * 该函数负责初始化具有双链接结构的系统组件，设置组件状态，验证数据完整性。
+ * 执行数据验证、内存清理和状态重置操作，特别处理双链接数据结构的初始化。
  * 
  * @param componentContext 组件上下文指针
  * @return 初始化状态码，0表示成功，其他值表示错误状态
@@ -143606,34 +143606,34 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SystemResourceCachePointer SystemResourceCacheData
 
 // 系统配置管理相关变量语义化定义
-#define SystemConfigurationManager UNK_180985090            // 系统配置管理器 - 管理系统配置
-#define SystemConfigurationData UNK_1809850a0              // 系统配置数据 - 存储系统配置数据
-#define SystemConfigurationValidator UNK_1809850b0         // 系统配置验证器 - 验证系统配置
-#define SystemConfigurationCache UNK_1809850c0            // 系统配置缓存 - 缓存系统配置
+#define SystemConfigurationManager SystemConfigurationManagerInstance            // 系统配置管理器 - 管理系统配置
+#define SystemConfigurationData SystemConfigurationDataStorage              // 系统配置数据 - 存储系统配置数据
+#define SystemConfigurationValidator SystemConfigurationValidatorInstance         // 系统配置验证器 - 验证系统配置
+#define SystemConfigurationCache SystemConfigurationCacheBuffer            // 系统配置缓存 - 缓存系统配置
 
 // 系统性能监控相关变量语义化定义
-#define SystemPerformanceMonitor UNK_1809850d0             // 系统性能监控器 - 监控系统性能
-#define SystemPerformanceCounter UNK_1809850e0             // 系统性能计数器 - 计数系统性能
-#define SystemPerformanceLogger UNK_1809850f0              // 系统性能日志器 - 记录系统性能
-#define SystemPerformanceAnalyzer UNK_180985100            // 系统性能分析器 - 分析系统性能
+#define SystemPerformanceMonitor SystemPerformanceMonitorInstance             // 系统性能监控器 - 监控系统性能
+#define SystemPerformanceCounter SystemPerformanceCounterInstance             // 系统性能计数器 - 计数系统性能
+#define SystemPerformanceLogger SystemPerformanceLoggerInstance              // 系统性能日志器 - 记录系统性能
+#define SystemPerformanceAnalyzer SystemPerformanceAnalyzerInstance            // 系统性能分析器 - 分析系统性能
 
 // 系统日志记录相关变量语义化定义
-#define SystemLoggerManager UNK_180985110                  // 系统日志管理器 - 管理系统日志
-#define SystemLogBuffer UNK_180985120                      // 系统日志缓冲区 - 存储系统日志
-#define SystemLogFormatter UNK_180985130                   // 系统日志格式化器 - 格式化系统日志
-#define SystemLogWriter UNK_180985140                      // 系统日志写入器 - 写入系统日志
+#define SystemLoggerManager SystemLoggerManagerInstance                  // 系统日志管理器 - 管理系统日志
+#define SystemLogBuffer SystemLogBufferStorage                      // 系统日志缓冲区 - 存储系统日志
+#define SystemLogFormatter SystemLogFormatterInstance                   // 系统日志格式化器 - 格式化系统日志
+#define SystemLogWriter SystemLogWriterInstance                      // 系统日志写入器 - 写入系统日志
 
 // 系统数据验证相关变量语义化定义
-#define SystemDataValidator UNK_180985150                  // 系统数据验证器 - 验证系统数据
-#define SystemDataIntegrityChecker UNK_180985160          // 系统数据完整性检查器 - 检查系统数据完整性
-#define SystemDataVerificationTable UNK_180985170          // 系统数据验证表 - 存储系统数据验证信息
-#define SystemDataErrorLogger UNK_180985180                // 系统数据错误日志器 - 记录系统数据错误
+#define SystemDataValidator SystemDataValidatorInstance                  // 系统数据验证器 - 验证系统数据
+#define SystemDataIntegrityChecker SystemDataIntegrityCheckerInstance          // 系统数据完整性检查器 - 检查系统数据完整性
+#define SystemDataVerificationTable SystemDataVerificationTableInstance          // 系统数据验证表 - 存储系统数据验证信息
+#define SystemDataErrorLogger SystemDataErrorLoggerInstance                // 系统数据错误日志器 - 记录系统数据错误
 
 // 系统状态管理相关变量语义化定义
-#define SystemStateManager UNK_180985190                   // 系统状态管理器 - 管理系统状态
-#define SystemStatusMonitor UNK_1809851a0                  // 系统状态监控器 - 监控系统状态
-#define SystemHealthChecker UNK_1809851b0                  // 系统健康检查器 - 检查系统健康状态
-#define SystemDiagnosticsManager UNK_1809851c0            // 系统诊断管理器 - 管理系统诊断
+#define SystemStateManager SystemStateManagerInstance                   // 系统状态管理器 - 管理系统状态
+#define SystemStatusMonitor SystemStatusMonitorInstance                  // 系统状态监控器 - 监控系统状态
+#define SystemHealthChecker SystemHealthCheckerInstance                  // 系统健康检查器 - 检查系统健康状态
+#define SystemDiagnosticsManager SystemDiagnosticsManagerInstance            // 系统诊断管理器 - 管理系统诊断
 
 // === 新增的系统功能函数语义化定义 ===
 

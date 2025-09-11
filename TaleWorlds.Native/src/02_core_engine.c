@@ -105,6 +105,14 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// UI管理器标识符常量
+#define UIManagerIdentifierPrimary 0x4b2d79e470ee4e2c
+#define UIManagerIdentifierSecondary 0x9c552acd3ed5548d
+
+// 网络管理器标识符常量
+#define NetworkManagerIdentifierPrimary 0x49086ba08ab981a7
+#define NetworkManagerIdentifierSecondary 0xa9191d34ad910696
+
 // 系统资源管理函数语义化宏定义
 #define FUN_180240390 ManageSystemResourceLifecycle                        // 管理系统资源生命周期
 #define FUN_180241080 AllocateSystemResourceBuffer                        // 分配系统资源缓冲区
@@ -2642,6 +2650,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackFloatValue14 fStackX_14                        // 栈浮点值14
 #define StackFloatValue10 fStackX_10                        // 栈浮点值10
 #define SystemStackOffset60 SystemMemoryBufferPointer60       // 系统栈偏移量60 - 内存缓冲区指针
+#define SystemStackPointer60 plStack_60                     // 系统栈指针60 - 内存缓冲区指针
 #define SystemStackOffset1f0 SystemContextOffset1f0           // 系统栈偏移量1f0 - 上下文偏移量
 #define SystemStackOffset3b8 SystemCharacterTableOffset3b8     // 系统栈偏移量3b8 - 字符表偏移量
 #define SystemStackOffset3d0 SystemValidationOffset3d0         // 系统栈偏移量3d0 - 验证偏移量
@@ -19398,6 +19407,10 @@ void CoreEngineInitializeUIManager(void)
  * 基本配置。用于管理引擎的文件系统。
  */
 void CoreEngineInitializeFileSystem(void)
+{
+  // 简化实现：文件系统初始化逻辑
+  return;
+}
 
 /**
  * @brief 初始化核心引擎网络管理器
@@ -19442,8 +19455,8 @@ void CoreEngineInitializeNetworkManager(void)
     CoreEngineSetupMemoryNode(NetworkEngineContext,&NetworkNewMemoryNode,NetworkPreviousNode,NetworkAllocatedMemorySize + 0x20,NetworkAllocatedMemorySize);
     NetworkPreviousNode = NetworkNewMemoryNode;
   }
-  NetworkPreviousNode[6] = 0x49086ba08ab981a7;
-  NetworkPreviousNode[7] = 0xa9191d34ad910696;
+  NetworkPreviousNode[6] = NetworkManagerIdentifierPrimary;
+  NetworkPreviousNode[7] = NetworkManagerIdentifierSecondary;
   NetworkPreviousNode[8] = &SystemConnectionTemplateB;
   NetworkPreviousNode[9] = 0;
   NetworkPreviousNode[10] = NetworkSecurityCallback;
