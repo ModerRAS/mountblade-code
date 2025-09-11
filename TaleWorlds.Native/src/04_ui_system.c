@@ -382083,42 +382083,66 @@ UIHandle ProcessUIContextValidation(longlong uiContext)
  WARNING: Removing unreachable block (ram,0x00018074b8ee)
  WARNING: Removing unreachable block (ram,0x00018074b908)
 
-int FUN_18088ebb0(longlong uiContext,int dataSource,longlong targetBuffer)
+/**
+ * @brief 处理UI事件和组件数据
+ * 
+ * 处理UI系统的事件和组件数据，包括事件验证、数据处理和内存管理
+ * 根据不同的数据源类型执行相应的操作和验证
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源类型
+ * @param targetBuffer 目标缓冲区指针
+ * @return int 操作结果，0表示成功，非0表示错误代码
+ */
+int ProcessUIEventAndComponentData(longlong uiContext,int dataSource,longlong targetBuffer)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIHandle eventCodeType;
-  UIHandle uiTargetHandle;
+  UIHandle eventCodeSignature;
+  UIHandle uiComponentTarget;
   
+  // 获取事件代码签名并进行内存比较
   eventCode = func_0x00018085fa80();
-  operationResult = memcmp(targetBuffer,eventCodeType,0x30);
+  operationResult = memcmp(targetBuffer,eventCodeSignature,memoryCompareSize);
   if (processingResult != 0) {
-    operationResult = func_0x00018074b7b0(uiContext,dataSource,0x7b);
+    // 处理数据块分隔符
+    operationResult = func_0x00018074b7b0(uiContext,dataSource,dataBlockSeparator);
     uiValidationResult = FUN_18074b6f0(uiContext + processingResult,dataSource - processingResult,targetBuffer);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,0x2c);
+    
+    // 处理组件数据偏移量1
+    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,dataBlockPadding);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + 0xc);
+    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + componentDataOffset1);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,0x2c);
+    
+    // 处理组件数据偏移量2
+    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,dataBlockPadding);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + 0x18);
+    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + componentDataOffset2);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,0x2c);
+    
+    // 处理组件数据偏移量3
+    uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,dataBlockPadding);
     operationResult = processingResult + uiValidationResult;
-    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + 0x24);
+    uiValidationResult = FUN_18074b6f0(processingResult + uiContext,dataSource - processingResult,targetBuffer + componentDataOffset3);
     operationResult = processingResult + uiValidationResult;
+    
+    // 最终验证
     uiValidationResult = func_0x00018074b7b0(processingResult + uiContext,dataSource - processingResult,0x7d);
     return uiValidationResult + processingResult;
   }
-  operationResult = func_0x00018076b690(&UNK_180986218);
+  
+  // 处理系统事件处理器
+  operationResult = func_0x00018076b690(&systemEventHandler);
   if (dataSource < processingResult + 1) {
-                     WARNING: Subroutine does not return
-    FUN_18076b390(uiContext,dataSource,&UNK_1809fe7f8,&UNK_180986218,uiTargetHandle);
+    // 调用系统内存管理器处理数据
+    FUN_18076b390(uiContext,dataSource,&systemMemoryManager,&systemEventHandler,uiComponentTarget);
   }
-                     WARNING: Subroutine does not return
-  memcpy(uiContext,&UNK_180986218,(longlong)(processingResult + 1));
+  
+  // 复制系统事件处理器数据到UI上下文
+  memcpy(uiContext,&systemEventHandler,(longlong)(processingResult + 1));
 }
 
 

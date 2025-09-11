@@ -200059,7 +200059,7 @@ LAB_180161f28:
  */
 long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer)
 {
-  long long *ContextHandlePointer;
+  long long *SystemContextPointer;
   long long BufferValidationStatus;
   long long *MemoryBlockIndex;
   uint8_t *MemoryAddressMaskPointer;
@@ -200071,7 +200071,7 @@ long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,
   unsigned long long ProcessedCharacter;
   unsigned long long SystemStatusCode;
   uint32_t ValidationResult;
-  uint64_t Utf16Char4;
+  uint64_t OperationResult;
   void *BufferOffset;
   uint8_t *SystemValidationPointer;
   uint SystemStackFlag;
