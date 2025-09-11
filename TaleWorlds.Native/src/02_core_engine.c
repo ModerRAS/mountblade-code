@@ -248306,7 +248306,7 @@ LAB_1802016f7:
       }
       ProcessSystemFloatData(&pCoreEngineUnsignedValue208,
                     *(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x88) + -4 + (long long)StringLength * 4));
-      FUN_1800ba4b0(StackProcessingVariable1B8,&SystemMemoryAllocationParameter);
+      ValidateSystemFloatData(StackProcessingVariable1B8,&SystemMemoryAllocationParameter);
       MemoryAllocationHandle = SystemValue1a8 + 6;
       CoreEngineProcessSystemEvent(StackProcessingVariable1B8,MemoryAllocationHandle);
       PrimaryProcessingStatusFlag4 = (uint32_t *)(stackPointer1B0 + SystemValue1a8);
@@ -248492,7 +248492,7 @@ LAB_1802020ad:
     CoreEngineInitializeSystemEvent(SystemMemoryAllocatorA,Utf8SourcePointer);
   }
   else if (OperationBufferSize == 4) {
-    FUN_180202660(SystemMemoryAllocatorA);
+    CleanupSystemFloatResources(SystemMemoryAllocatorA);
     *(uint32_t *)(AllocatedMemorySize + 0xdc) = 1;
   }
 LAB_180202111:
@@ -248524,7 +248524,7 @@ LAB_180201ee2:
       PrimaryProcessingStatusFlag8 = UnsignedProcessingStatusFlag;
     }
     fwrite(PrimaryProcessingStatusFlag8,(long long)(int)uStack_1f8,1,PrimaryProcessingStatusFlag3[1]);
-    FUN_18062de90(PrimaryProcessingStatusFlag3);
+    ReleaseSystemFloatResources(PrimaryProcessingStatusFlag3);
     ProcessingContextPointer = &SystemNullTemplate;
     if (puStack_190 == (uint8_t *)0x0) {
       puStack_190 = (uint8_t *)0x0;
