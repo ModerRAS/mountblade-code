@@ -260970,13 +260970,13 @@ LAB_18020f107:
                 if (MemoryRangeBoundary != (long long *)0x0) {
                   (**(code **)(*MemoryRangeBoundary + 0x38))();
                 }
-                *(uint8_t *)((AllocatedMemorySize - ProcessedCharacter) + 0x12f) = 1;
+                *(uint8_t *)((ExtendedMemoryAddress - ProcessedCharacter) + 0x12f) = 1;
                 isSystemContextNull = true;
                 goto LAB_18020f0e4;
               }
 LAB_18020f0d2:
               LOCK();
-              ContextHandle2[7] = ContextHandle2[7] + 1;
+              SecondaryContextHandle[7] = SecondaryContextHandle[7] + 1;
               UNLOCK();
             }
 LAB_18020f0dd:
@@ -260989,12 +260989,12 @@ LAB_18020f0e4:
           if (isSystemContextNull) goto LAB_18020f107;
         }
         SystemContextRegister = MemoryRangeBoundary;
-        ConversionContext = ContextHandle2 + 1;
-        ContextHandle2 = (long long *)(*ContextHandle5 + -8);
+        ConversionContext = SecondaryContextHandle + 1;
+        SecondaryContextHandle = (long long *)(*QuinaryContextHandle + -8);
         ContextHandleData = SystemContextRegister;
         MemoryRangeBoundary = SystemContextRegister;
-        if (*ContextHandle5 == 0) {
-          ContextHandle2 = ContextHandle7;
+        if (*QuinaryContextHandle == 0) {
+          SecondaryContextHandle = SeptenaryContextHandle;
           ContextHandleData = SystemContextRegister;
         }
       }
@@ -261004,7 +261004,7 @@ LAB_18020f0e4:
   ProcessedCharacter = 0;
 LAB_18020f126:
   if (ContextHandleTablePointer != (long long *)0x0) {
-    (**(code **)(*ContextHandlePointer + 0x38))(ContextHandleTablePointer);
+    (**(code **)(*MainContextPointer + 0x38))(ContextHandleTablePointer);
   }
   return ProcessedCharacter;
 }
