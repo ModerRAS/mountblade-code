@@ -27662,17 +27662,25 @@ void CoreEngineSetThreadLocalStorageTemplate(uint64_t *ThreadLocalStoragePointer
 
 
 
- void CoreEngineInitializeSystemNodeO(void/**
+ /**
  * @brief 初始化系统信息和配置处理器
  * 
  * 该函数负责初始化系统信息和配置处理器，包括计算机名称和用户名获取，
  * 系统配置设置，以及相关内存分配和数据处理。
+ * 
+ * 该函数执行以下主要操作：
+ * 1. 初始化系统上下文和内存管理
+ * 2. 获取计算机名称和用户名信息
+ * 3. 配置系统参数和网络组件
+ * 4. 设置线程本地存储和栈指针
+ * 5. 处理系统编码转换和验证
  * 
  * @param 无
  * @return 无
  * 
  * @note 此函数会调用Windows API获取计算机信息
  * @note 涉及编码解码和系统配置处理
+ * @note 包含网络组件初始化和系统事件处理
  */
 void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
 {
@@ -27817,12 +27825,12 @@ CheckSystemInfoBounds:
     if (StackSecurityFlag != 0) {
         ProcessSystemEventHandling();
     }
-    SystemInfoStackSecurityFlag = 0;
-    SystemInfoStackCleanupFlag = 0;
-    SystemInfoStackThreadLocalStoragePointer = &ThreadLocalStorageTemplate;
+    StackSecurityFlag = 0;
+    StackCleanupFlag = 0;
+    StackThreadLocalStoragePointer = &ThreadLocalStorageTemplate;
   }
-  SystemInfoStackProcessingInitializationFlag = 0;
-    CoreEngineProcessEncodedSystemInfo(SystemInfoEncodedValue ^ (uint64_t)SystemInfoEncodingBuffer);
+  StackProcessingInitializationFlag = 0;
+    CoreEngineProcessEncodedSystemInfo(EncodedValue ^ (uint64_t)EncodingBuffer);
 }
 
 
