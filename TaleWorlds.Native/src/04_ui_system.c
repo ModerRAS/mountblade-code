@@ -129068,8 +129068,9 @@ void ExecuteUIRenderTaskWithEncryption(void)
 
  
 
- void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ void ProcessUIDataWithDualBuffersEx(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+// 处理带双缓冲区的UI数据扩展版本
+// 这个函数处理双缓冲区的UI数据，包括加密解密操作和内存管理
 
 {
   int operationResult;

@@ -68898,21 +68898,21 @@ MemoryAddressProcessing:
           uStack_560 = 0;
           puStack_570 = NULL;
           uStack_568 = uStack_568 & 0xffffffff00000000;
-          CoreEngineProcessSystemEvent(&puStack_578,iStack_268);
-          if (0 < iStack_268) {
+          CoreEngineProcessSystemEvent(&SystemEventQueueNode,SystemMemoryCounter);
+          if (0 < SystemMemoryCounter) {
             ProcessingStatusPointer = &CoreEngineDataTemplate;
-            if (puStack_270 != NULL) {
-              ProcessingStatusPointer = puStack_270;
+            if (SystemMemoryBuffer != NULL) {
+              ProcessingStatusPointer = SystemMemoryBuffer;
             }
-              memcpy(puStack_570,ProcessingStatusPointer,(long long)(iStack_268 + 1));
+              memcpy(SystemEventQueueData,ProcessingStatusPointer,(long long)(SystemMemoryCounter + 1));
           }
-          if ((puStack_270 != NULL) &&
-             (uStack_568 = uStack_568 & 0xffffffff00000000, puStack_570 != NULL)) {
-            *(uint8_t *)puStack_570 = 0;
+          if ((SystemMemoryBuffer != NULL) &&
+             (SystemEventQueueSize = SystemEventQueueSize & 0xffffffff00000000, SystemEventQueueData != NULL)) {
+            *(uint8_t *)SystemEventQueueData = 0;
           }
-          puStack_5b8 = (void *)CONCAT71(puStack_5b8.FullPart,MemoryAddressMaskPointer);
-          ValidationStatus = ProcessSystemContextData(&lStack_450,&puStack_578,&puStack_518,&puStack_538);
-          LoopIndex = lStack_450;
+          SystemDataBufferPointer = (void *)CONCAT71(SystemDataBufferPointer.FullPart,MemoryAddressMaskPointer);
+          ValidationStatus = ProcessSystemContextData(&SystemContextHandle,&SystemEventQueueNode,&SystemDataBufferPointer2,&CharacterStatusBufferPointer538);
+          LoopIndex = SystemContextHandle;
           if (ValidationStatus == '\0') {
             CharacterStatusBuffer9 = &CoreEngineDataTemplate;
             if (puStack_530 != (uint8_t *)0x0) {
