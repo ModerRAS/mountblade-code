@@ -152812,7 +152812,7 @@ int ValidateUIContext(longlong *uiContext,longlong *dataSource,char targetBuffer
       sourceDataInt = (**(code **)(*pstringCompareIndex + 0x120))(pstringCompareIndex,0xfffffffd,&lStackX_10);
       if (sourceDataInt != 0) goto LAB_1807530cb;
       if ((*(uint *)(lStackX_10 + 100) >> 10 & 1) == 0) {
-        sourceDataInt = FUN_18075dbf0(lStackX_10,stackLong38,0,0);
+        sourceDataInt = ProcessUIDataBuffer(lStackX_10,stackLong38,0,0);
         if (sourceDataInt != 0) goto LAB_1807530cb;
       }
     }
