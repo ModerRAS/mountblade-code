@@ -10509,9 +10509,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 #define ConfigureDataProcessingOptions FUN_180840270
 
-// 原始函数名：FUN_18089752 - 数据处理优化函数
-// 功能：优化数据处理性能和效率
-#define OptimizeDataProcessingPerformance FUN_18089752
+#define OptimizeDataProcessingPerformance FUN_180897520
 
 // 原始函数名：FUN_180891d4 - 数据处理验证函数
 // 功能：验证数据处理操作的有效性
