@@ -238512,7 +238512,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
  */
 uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long OperationBufferSize)
 {
-  FUN_180197a20();
+  InitializeSystemResources();
   if ((OperationBufferSize & 1) != 0) {
     free(ContextHandle,0x60d30);
   }
