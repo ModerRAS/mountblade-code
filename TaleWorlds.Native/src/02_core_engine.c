@@ -3807,6 +3807,15 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemAnimationSequencing FUN_1801acb30                 // 处理系统动画序列
 #define HandleSystemTextureMapping FUN_180316460                        // 处理系统纹理映射
 #define ProcessSystemShaderCompilation FUN_18031a470                    // 处理系统着色器编译
+
+// 系统资源初始化和处理函数
+#define InitializeSystemResourcePool FUN_180207e00                     // 初始化系统资源池
+#define ProcessSystemContextValidation FUN_180206740                   // 处理系统上下文验证
+#define CalculateSystemChecksum FUN_180206690                          // 计算系统校验和
+#define ValidateSystemContextData FUN_1802064e0                        // 验证系统上下文数据
+#define ExecuteSystemCleanupOperation FUN_180204a00                    // 执行系统清理操作
+#define ProcessSystemContextTransfer FUN_180207840                     // 处理系统上下文传输
+#define ProcessSystemConfiguration FUN_18004bf50                        // 处理系统配置
 #define ExecuteSystemRenderPipeline FUN_180460970                       // 执行系统渲染管线
 #define InitializeSystemRenderState FUN_18045ff20                      // 初始化系统渲染状态
 #define ProcessSystemMemoryAllocation FUN_180303b70                    // 处理系统内存分配
