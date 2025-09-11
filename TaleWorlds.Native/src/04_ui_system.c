@@ -126940,8 +126940,8 @@ ExecuteUIRenderTaskWithResourceRelease:
 
 
 
- void FUN_18073ba27(void)
-void FUN_18073ba27(void)
+ void ProcessUIRenderTaskWithCleanup(void)
+void ProcessUIRenderTaskWithCleanup(void)
 
 {
   int operationResult;
@@ -126959,8 +126959,8 @@ void FUN_18073ba27(void)
 
 
 
- void FUN_18073ba9f(void)
-void FUN_18073ba9f(void)
+ void ExecuteUIRenderTaskWithResourceRelease(void)
+void ExecuteUIRenderTaskWithResourceRelease(void)
 
 {
   longlong stackParam00000030;
@@ -126976,8 +126976,8 @@ void FUN_18073ba9f(void)
 
 
 
- void FUN_18073bac1(void)
-void FUN_18073bac1(void)
+ void ExecuteUIRenderTaskWithMemoryCleanup(void)
+void ExecuteUIRenderTaskWithMemoryCleanup(void)
 
 {
   ulonglong stackParam00000140;
@@ -126992,8 +126992,8 @@ void FUN_18073bac1(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073baf0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
-void FUN_18073baf0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+ void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;

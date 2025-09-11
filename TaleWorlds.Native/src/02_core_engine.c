@@ -157,6 +157,7 @@
 #define FUN_180137e56 ProcessSystemValidation                             // 处理系统验证
 #define FUN_180137ef1 ProcessSystemFinalization                          // 处理系统最终化
 #define FUN_180137f90 ProcessUtf8BufferFinalization                      // 处理UTF-8缓冲区最终化
+#define FUN_1801842a0 ProcessAsyncCallback                                // 处理异步回调函数
 #define FUN_18012eff0 ValidateSystemConfiguration                        // 验证系统配置
 #define FUN_180174340 ProcessUtf8InputBuffer                             // 处理UTF-8输入缓冲区
 #define FUN_180170380 ProcessCharacterEncodingAndDataValidation          // 处理字符编码和数据验证
@@ -252124,7 +252125,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
     IntegerValue = (*(byte *)(OperationBufferSize + 1) & 1) * 2 + 2;
     CalculatedCodePoint = ProcessFloatingPointContextHandleAndEncoding(CalculatedCodePoint,aProcessingCounter,(*(byte *)(OperationBufferSize + 1) & 1) + 0xe,(char)OperationBufferSize[8],
                           *ContextHandleSize,1,1);
-    FUN_180206260(OperationBufferSize + 2,CalculatedCodePoint);
+    HandleUtf16CharacterProcessing(OperationBufferSize + 2,CalculatedCodePoint);
     if (plStack_10 != (long long *)0x0) {
       (**(code **)(*plStack_10 + 0x38))();
     }
@@ -252197,7 +252198,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
   if (*(int *)(ContextHandle + (long long)Utf8SourcePointer * 0x18) != -1) {
     FUN_180204e40(_SystemFloatTableAddress,MemoryBoundaryEnd);
   }
-  FUN_1802062c0(MemoryBoundaryEnd,OperationBufferSize);
+  ProcessContextHandleManagement(MemoryBoundaryEnd,OperationBufferSize);
   MemoryBoundaryEnd = CoreEngineSystemContext;
   if (Utf16EndPointer != -1) {
     MemoryBlockIndex = *(long long *)(OperationBufferSize + 4);
@@ -286711,7 +286712,7 @@ LAB_18022c3ff:
       }
       plStack_290 = ContextHandle1;
       plStack_258 = ContextHandle1;
-      FUN_18022ebe0(pStringOffset);
+      InitializeCharacterTransformationData(pStringOffset);
       AllocatedMemorySize = (long long)ContextHandle1 - (long long)ContextHandleTablePointer >> 0x3f;
       StringIndexCounter = ((long long)ContextHandle1 - (long long)ContextHandleTablePointer) / 0x58 + AllocatedMemorySize;
       LockOperationResult5 = 0;
