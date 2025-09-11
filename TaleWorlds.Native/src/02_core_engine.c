@@ -255161,25 +255161,42 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
 
 
 
-08390(uint64_t ContextHandle,uint64_t OperationBufferSize,uint8_t Utf8SourcePointervoid FUN_180208390(uint64_t ContextHandle,uint64_t OperationBufferSize,uint8_t Utf8SourcePointer
+// 函数: void FUN_180208390(uint64_t ContextHandle,uint64_t OperationBufferSize,uint8_t Utf8SourcePointer)
+/**
+ * @brief 处理系统上下文和性能计数器操作
+ * 
+ * 该函数负责处理系统上下文和性能计数器的相关操作，主要功能包括：
+ * - 初始化系统上下文和性能计数器
+ * - 处理UTF-8到UTF-16的字符转换
+ * - 执行系统缓冲区操作
+ * - 管理性能计数器的状态
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180208390
+ */
+#define ProcessSystemContextAndPerformanceCounterOperation FUN_180208390
+void ProcessSystemContextAndPerformanceCounterOperation(uint64_t SystemContextHandle,uint64_t MemoryOperationSize,uint8_t Utf8SourceDataPointer)
 {
   uint64_t Utf16Char;
   void *SystemContext;
   long long *PerformanceCounterPointer;
   
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b3590(ContextHandle,&PerformanceCounterPointer,OperationBufferSize,0);
-  Utf16Char = *PrimaryProcessingStatusFlag;
+  SystemContext = (void *)CreateSystemContextInstance(SystemContextHandle,&PerformanceCounterPointer,MemoryOperationSize,0);
+  Utf16Char = *SystemContext;
   if (PerformanceCounterPointer != (long long *)0x0) {
     (**(code **)(*PerformanceCounterPointer + 0x38))();
   }
-  FUN_180208400(ContextHandle,Utf16Char,Utf8SourcePointer);
+  HandleSystemContextDataTransfer(SystemContextHandle,Utf16Char,Utf8SourceDataPointer);
   return;
 }
 
 
 
 
-08400(long long ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180208400(long long ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180208400(long long ContextHandle,long long *ContextHandleSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   

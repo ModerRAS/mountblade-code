@@ -33298,7 +33298,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     nodeDescriptorArray = *(NodeDescriptor *)((int64_t)itemIndex * 3 + dataContext[6]);
     while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != InvalidDataIndex) {
       dataBufferValue = *(uint *)(*dataContext + (uint64_t)currentNodeIndex * 8);
-      if ((dataBufferValue & DataValidationMask) != 0xffffff) {
+      if ((dataBufferValue & DataValidationMask) != InvalidDataIndex) {
         stringDataAddress = (uint64_t)(dataBufferValue & DataValidationMask) + dataContext[4];
         stringDataLength = GetStringLength(stringDataAddress);
         if (bufferSize != 0) {
@@ -33429,9 +33429,9 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   systemHashBuffer = 0;
   resourceValidationStatus = (int)StackFrameContext;
   memoryRegionBase = *(NodeDescriptor *)((int64_t)dataBuffer * 3 + systemContext[6]);
-  while (validationOutcome = (uint)memoryRegionBase, validationOutcome != 0xffffff) {
+  while (validationOutcome = (uint)memoryRegionBase, validationOutcome != InvalidDataIndex) {
     validationStatus = *(uint *)(*systemContext + (uint64_t)validationOutcome * 8);
-    if ((validationStatus & DataValidationMask) != 0xffffff) {
+    if ((validationStatus & DataValidationMask) != InvalidDataIndex) {
       exceptionContext4 = (uint64_t)(validationStatus & DataValidationMask) + systemContext[4];
       calculatedSize = ValidateSystemDataIntegrityB0(exceptionContext4);
       if (resourceValidationStatus != 0) {
@@ -33551,7 +33551,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   do {
     memoryRegionAddress = *(uint *)(*systemContext + dataBuffer * 8);
     memoryAllocationSize = (int)StackFrameContext;
-    if ((memoryRegionAddress & DataValidationMask) != 0xffffff) {
+    if ((memoryRegionAddress & DataValidationMask) != InvalidDataIndex) {
       dataBufferAddress = (uint64_t)(memoryRegionAddress & DataValidationMask) + systemContext[4];
       memoryOperationResult = ValidateSystemDataIntegrityB0(dataBufferAddress);
       if (memoryAllocationSize != 0) {
@@ -41854,7 +41854,7 @@ uint64_t ProcessDataWithValidation(int64_t inputData,int64_t *dataPointer)
   uint stackByteBuffer [2];
   ByteFlag systemBufferA [32];
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,systemBufferA,0,0x46454d50);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,systemBufferA,0,SecurityValidationFEMP);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -42080,7 +42080,7 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
   uint stackByteBuffer [2];
   ByteFlag inputValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x54534c50);
+  operationResult = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,SecurityValidationTSLP);
   if ((int)operationResult != 0) {
     return operationResult;
   }
