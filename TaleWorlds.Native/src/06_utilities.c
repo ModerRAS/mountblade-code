@@ -25422,6 +25422,19 @@ void UtilityNoOperationH(void)
 
 
 
+/**
+ * @brief 处理带上下文的系统数据
+ * 
+ * 该函数根据系统上下文处理数据，执行数据验证、转换和输出操作。
+ * 函数会处理浮点数运算、数组操作和资源管理。
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态和配置信息
+ * @param dataBuffer 数据缓冲区指针，包含待处理的数据
+ * @return DataBuffer 处理结果状态码
+ * 
+ * @note 原始函数名：ProcessSystemDataWithContext
+ * @note 函数包含复杂的浮点数运算和内存管理操作
+ */
 DataBuffer ProcessSystemDataWithContext(int64_t systemContext,int64_t dataBuffer)
 
 {
