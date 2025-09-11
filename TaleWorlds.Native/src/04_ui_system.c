@@ -129819,8 +129819,27 @@ CleanupAndRender:
 
  
 
- void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
-void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
+ // 函数: void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
+#define ProcessUIDataSourceAndBuffer FUN_18073cd10
+/**
+ * @brief 处理UI数据源和缓冲区操作
+ * 
+ * 该函数负责处理UI数据源的初始化和缓冲区管理操作。主要功能包括：
+ * - 初始化数据源指针
+ * - 处理UI上下文数据
+ * - 管理渲染上下文大小
+ * - 执行数据缓冲区填充操作
+ * - 释放UI内存资源
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源指针，用于存储和传递UI数据
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073cd10
+ * @note 该函数执行完毕后会跳转到渲染任务
+ */
+void ProcessUIDataSourceAndBuffer(UIHandle uiContext,UIByte *dataSource)
 
 {
   int operationResult;
@@ -129859,8 +129878,26 @@ LAB_18073cdb6:
 
  
 
- void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
+ // 函数: void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
+#define ProcessUIContextAndDataSource FUN_18073cdf0
+/**
+ * @brief 处理UI上下文和数据源操作
+ * 
+ * 该函数负责处理UI上下文和数据源的管理操作。主要功能包括：
+ * - 处理UI上下文和数据源的交互
+ * - 管理数据缓冲区和验证操作
+ * - 执行数据复制和处理
+ * - 管理内存资源的分配和释放
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源句柄，提供处理所需的数据
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073cdf0
+ * @note 该函数执行完毕后会跳转到渲染任务
+ */
+void ProcessUIContextAndDataSource(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
