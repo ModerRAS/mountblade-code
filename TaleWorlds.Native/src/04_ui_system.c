@@ -133579,8 +133579,22 @@ void ExecuteUIRenderTaskWithCleanup(void)
 
 
 
- void FUN_18073f103(UIHandle uiContext)
-void FUN_18073f103(UIHandle uiContext)
+ // 函数: void FUN_18073f103(UIHandle uiContext)
+#define CleanupUIContextAndExecuteTask FUN_18073f103
+/**
+ * @brief 清理UI上下文并执行任务
+ * 
+ * 该函数负责清理指定的UI上下文并执行相关任务，包括：
+ * - 执行UI系统清理操作
+ * - 释放UI资源
+ * - 确保上下文正确清理
+ * 
+ * @param uiContext UI上下文句柄，指定要清理的UI上下文
+ * 
+ * @note 原始函数名：FUN_18073f103
+ * @note 该函数确保UI上下文正确清理
+ */
+void CleanupUIContextAndExecuteTask(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
