@@ -98,6 +98,11 @@
 // === 浮点数验证地址常量 ===
 #define FloatValidationDataAddress 0x180985054                   // 浮点数验证数据地址 - 浮点数验证数据的存储地址
 
+// === 系统异常处理地址常量 ===
+#define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
+#define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
+#define ExceptionDataTable2Address 0x180a21690                   // 异常数据表2地址 - 异常处理数据表的第二个地址
+
 // === 异常处理地址常量 ===
 #define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
 #define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
