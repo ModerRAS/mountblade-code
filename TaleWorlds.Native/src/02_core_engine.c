@@ -268348,7 +268348,23 @@ ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHa
 
 
 
-long long * FUN_180218620(long long *ContextHandle,unsigned long long *ContextHandleSize
+/**
+ * @brief 处理内存块和上下文句柄管理
+ * 
+ * 该函数负责处理内存块分配和上下文句柄管理，包括：
+ * - 内存块索引遍历和验证
+ * - 上下文句柄大小检查
+ * - 内存边界管理
+ * - 内存块链表操作
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return long long* 处理后的内存块指针
+ * 
+ * @note 原始函数名：FUN_180218620
+ */
+#define ProcessMemoryBlockAndContextHandleManagement FUN_180218620
+long long * ProcessMemoryBlockAndContextHandleManagement(long long *ContextHandle,unsigned long long *ContextHandleSize
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -268466,7 +268482,23 @@ LAB_1802186de:
 
 
 
-long long * FUN_180218675(uint64_t ContextHandle,unsigned long long *ContextHandleSize
+/**
+ * @brief 处理系统上下文和数据节点管理
+ * 
+ * 该函数负责处理系统上下文和数据节点的管理，包括：
+ * - 系统数据节点遍历
+ * - 上下文句柄验证
+ * - 字符限制检查
+ * - 内存块索引管理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return long long* 处理后的系统上下文指针
+ * 
+ * @note 原始函数名：FUN_180218675
+ */
+#define ProcessSystemContextAndDataNodeManagement FUN_180218675
+long long * ProcessSystemContextAndDataNodeManagement(uint64_t ContextHandle,unsigned long long *ContextHandleSize
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -270364,7 +270396,23 @@ LAB_18021a863:
 
 
 
-long long * FUN_18021ad90(long long ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理上下文句柄和大小管理
+ * 
+ * 该函数负责处理上下文句柄和大小管理，包括：
+ * - 上下文句柄指针获取
+ * - 上下文大小设置
+ * - 上下文验证
+ * - 函数指针调用
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return long long* 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18021ad90
+ */
+#define ProcessContextHandleAndSizeManagement FUN_18021ad90
+long long * ProcessContextHandleAndSizeManagement(long long ContextHandle,long long *ContextHandleSize)
 {
   long long *ContextHandle;
   
@@ -288653,7 +288701,24 @@ uint64_t * HandleCharacterEncodingAndSystemRegistry(long long ContextHandle,long
 
 
 
-uint64_t * FUN_18022a5ca(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF8源指针和字符状态缓冲区
+ * 
+ * 该函数负责处理UTF8源指针和字符状态缓冲区，包括：
+ * - 字符状态缓冲区管理
+ * - Unicode码点处理
+ * - 系统数据注册表操作
+ * - 内存池索引处理
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return uint64_t* 字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18022a5ca
+ */
+#define ProcessUtf8SourcePointerAndCharacterStatusBuffer FUN_18022a5ca
+uint64_t * ProcessUtf8SourcePointerAndCharacterStatusBuffer(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -288761,7 +288826,23 @@ uint64_t * FUN_18022a5ca(uint64_t ContextHandle,uint64_t OperationBufferSize,lon
 
 
 
-uint64_t * FUN_18022a720(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 处理上下文句柄和大小数据复制
+ * 
+ * 该函数负责处理上下文句柄和大小数据的复制操作，包括：
+ * - 字符表指针处理
+ * - 缓冲区状态管理
+ * - Unicode码点复制
+ * - 系统事件初始化
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return uint64_t* 处理后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_18022a720
+ */
+#define ProcessContextHandleAndSizeDataCopy FUN_18022a720
+uint64_t * ProcessContextHandleAndSizeDataCopy(uint64_t *ContextHandle,uint64_t *ContextHandleSize)
 {
   long long MainCalculationResult;
   long long BufferStatus;
