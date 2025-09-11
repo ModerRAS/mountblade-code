@@ -3708,49 +3708,49 @@
 #define BitMaskFFFFC000 0xffffc000                 // 位掩码FFFFC000
 
 // 系统状态和错误码相关常量
-#define SystemStatusB 0xb                          // 系统状态B
-#define SystemStatusC 0xc                          // 系统状态C
-#define SystemStatusD 0xd                          // 系统状态D
-#define SystemStatusE 0xe                          // 系统状态E
-#define SystemStatusF 0xf                          // 系统状态F
-#define SystemStatus10 0x10                        // 系统状态10
-#define SystemStatus11 0x11                        // 系统状态11
-#define SystemStatus12 0x12                        // 系统状态12
-#define SystemStatus13 0x13                        // 系统状态13
-#define SystemStatus14 0x14                        // 系统状态14
-#define SystemStatus15 0x15                        // 系统状态15
-#define SystemStatus16 0x16                        // 系统状态16
-#define SystemStatus17 0x17                        // 系统状态17
-#define SystemStatus18 0x18                        // 系统状态18
-#define SystemStatus19 0x19                        // 系统状态19
-#define SystemStatus1A 0x1a                        // 系统状态1A
-#define SystemStatus1B 0x1b                        // 系统状态1B
-#define SystemStatus1C 0x1c                        // 系统状态1C
-#define SystemStatus1D 0x1d                        // 系统状态1D
-#define SystemStatus1E 0x1e                        // 系统状态1E
-#define SystemStatus1F 0x1f                        // 系统状态1F
-#define SystemStatus20 0x20                        // 系统状态20
-#define SystemStatus21 0x21                        // 系统状态21
-#define SystemStatus22 0x22                        // 系统状态22
-#define SystemStatus23 0x23                        // 系统状态23
-#define SystemStatus24 0x24                        // 系统状态24
+#define SystemStatusInitializing 0xb               // 系统正在初始化
+#define SystemStatusRunning 0xc                    // 系统正在运行
+#define SystemStatusPaused 0xd                     // 系统已暂停
+#define SystemStatusStopping 0xe                   // 系统正在停止
+#define SystemStatusStopped 0xf                    // 系统已停止
+#define SystemStatusErrorMemory 0x10               // 内存错误状态
+#define SystemStatusErrorThread 0x11               // 线程错误状态
+#define SystemStatusErrorResource 0x12             // 资源错误状态
+#define SystemStatusErrorNetwork 0x13              // 网络错误状态
+#define SystemStatusErrorSecurity 0x14             // 安全错误状态
+#define SystemStatusErrorValidation 0x15           // 验证错误状态
+#define SystemStatusErrorConfiguration 0x16        // 配置错误状态
+#define SystemStatusErrorTimeout 0x17              // 超时错误状态
+#define SystemStatusErrorOverflow 0x18             // 溢出错误状态
+#define SystemStatusErrorUnderflow 0x19            // 下溢错误状态
+#define SystemStatusErrorAlignment 0x1a            // 对齐错误状态
+#define SystemStatusErrorPermission 0x1b           // 权限错误状态
+#define SystemStatusErrorNotFound 0x1c             // 未找到错误状态
+#define SystemStatusErrorBusy 0x1d                 // 忙碌错误状态
+#define SystemStatusErrorUnavailable 0x1e          // 不可用错误状态
+#define SystemStatusErrorCorrupted 0x1f            // 损坏错误状态
+#define SystemStatusMaintenanceMode 0x20           // 维护模式状态
+#define SystemStatusDebugMode 0x21                 // 调试模式状态
+#define SystemStatusRecoveryMode 0x22              // 恢复模式状态
+#define SystemStatusEmergencyMode 0x23             // 紧急模式状态
+#define SystemStatusShutdownMode 0x24              // 关机模式状态
 
 // 资源和内存管理相关常量
-#define ResourceOffsetD 0xd                         // 资源偏移量D
-#define ResourceOffsetE 0xe                         // 资源偏移量E
-#define ResourceOffsetF 0xf                         // 资源偏移量F
-#define ResourceOffset10 0x10                       // 资源偏移量10
-#define ResourceOffset11 0x11                       // 资源偏移量11
-#define ResourceTableIndex1049 0x1049               // 资源表索引1049
-#define SystemDataOffset1049 0x1049                // 系统数据偏移量1049
-#define MemoryResourcePointerOffsetD 0xd           // 内存资源指针偏移量D
-#define MemoryResourcePointerOffsetE 0xe           // 内存资源指针偏移量E
-#define MemoryResourcePointerOffset10 0x10         // 内存资源指针偏移量10
-#define MemoryResourcePointerIndex11 0x11          // 内存资源指针索引11
-#define MemoryBlockDataOffset200 0x200             // 内存块数据偏移量200
-#define MemoryBlockDataOffsetD0 0xd0               // 内存块数据偏移量D0
-#define OperationResultIndex3D 0x3d                // 操作结果索引3D
-#define SystemCleanupOffset 0x27                   // 系统清理偏移量
+#define ResourceHeaderOffset 0xd                    // 资源头偏移量
+#define ResourceDataOffset 0xe                      // 资源数据偏移量
+#define ResourceMetadataOffset 0xf                 // 资源元数据偏移量
+#define ResourceSizeOffset 0x10                    // 资源大小偏移量
+#define ResourceRefCountOffset 0x11                // 资源引用计数偏移量
+#define ResourceTableIndexBase 0x1049               // 资源表索引基准值
+#define SystemDataSegmentOffset 0x1049             // 系统数据段偏移量
+#define MemoryResourceHeaderOffset 0xd             // 内存资源头偏移量
+#define MemoryResourceDataOffset 0xe                // 内存资源数据偏移量
+#define MemoryResourceSizeOffset 0x10              // 内存资源大小偏移量
+#define MemoryResourceFlagsIndex 0x11              // 内存资源标志索引
+#define MemoryBlockSizeOffset 0x200                 // 内存块大小偏移量
+#define MemoryBlockFlagsOffset 0xd0                // 内存块标志偏移量
+#define OperationResultStatusIndex 0x3d            // 操作结果状态索引
+#define SystemCleanupDataOffset 0x27               // 系统清理数据偏移量
 
 // 上下文和验证相关常量
 #define ExceptionContextStatusOffset60 0x60         // 异常上下文状态偏移量60
@@ -13229,7 +13229,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define inputParameter6 dataProcessingSize    // 数据处理大小
 #define inputParameterTertiary totalProcessedDataSize    // 总处理数据大小
 #define inputParameter9 validationParameter9    // 验证参数9
-#define exceptionDataBuffer exceptionBuffer2    // 异常缓冲区2
+#define systemExceptionBuffer exceptionBuffer2    // 系统异常缓冲区
 #define exceptionBuffer3 exceptionBuffer3    // 异常缓冲区3
 #define exceptionBuffer6 exceptionBuffer6    // 异常缓冲区6
 #define exceptionContext7 exceptionContext7    // 异常上下文7
@@ -94064,7 +94064,7 @@ void ExecuteExceptionHandlerCallbackB3(DataBuffer operationBase,int64_t dataBuff
   int64_t *exceptionContextPointer;
   
   // 获取0x58偏移处的异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x58);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(systemExceptionBuffer + ExceptionHandlerContextOffset50) + 0x58);
   
   // 如果上下文指针有效，则执行回调函数
   if (exceptionContextPointer != NULL) {
@@ -95003,7 +95003,7 @@ void CheckDataIntegrityAndCallback(DataBuffer operationBase, int64_t dataBuffer)
   int64_t *exceptionContextPointer;
   
   // 获取异常处理上下文指针，偏移量0x338用于定位数据完整性检查相关的上下文
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x338);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(systemExceptionBuffer + ExceptionHandlerContextOffset50) + 0x338);
   if (exceptionContextPointer != NULL) {
     // 调用异常处理上下文中的回调函数来执行数据完整性检查
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
@@ -95032,7 +95032,7 @@ void ExecuteExceptionHandlerCallbackB130(DataBuffer operationBase,int64_t dataBu
 {
   int64_t *exceptionContextPointer;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + SystemDataValidationOffset340);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(systemExceptionBuffer + ExceptionHandlerContextOffset50) + SystemDataValidationOffset340);
   if (exceptionContextPointer != NULL) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
