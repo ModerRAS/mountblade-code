@@ -30983,7 +30983,7 @@ void CoreEngineInitializeThreadLocalStorageDataCompareAndAllocate(long long Cont
     if (0 < (int)(StringCharacterValue - StringLength)) goto MemoryAllocationComplete;
   }
   MemoryAllocationFlag = 1;
-MemoryAllocationComplete: // 原始标签：LAB_180048f62，MemoryAllocationComplete
+MemoryAllocationCompleteLabel: // 内存分配完成标签
   AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x68,*(uint8_t *)(ContextHandle + ContextHandleSystemFlagsOffset),Utf16EndPointer,
                         0xfffffffffffffffe);
   CoreEngineExecuteSystemEvent(AllocatedMemorySize + 0x20,AdditionalParameter1);
@@ -32826,7 +32826,7 @@ bool CoreEngineCheckCharacterStatusBufferStatus(long long ContextHandle
         }
         TemporaryBuffer = (void *)*StringProcessingStatus;
       }
-CharacterStatusBufferProcessingComplete: // 原始标签：LAB_180051f8b，CharacterStatusBufferProcessingComplete
+CharacterStatusBufferProcessingCompleteLabel: // 字符状态缓冲区处理完成标签
       CharacterStatusBuffer = StringProcessingStatus;
       if (DataValidationResult) {
         CharacterStatusBuffer = SystemCharacterStatusBuffer;
