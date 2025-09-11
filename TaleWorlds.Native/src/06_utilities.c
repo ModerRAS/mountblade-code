@@ -12127,11 +12127,11 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18005a050 - 系统数据清理函数A0
 // 功能：清理系统数据和临时资源
-#define CleanupSystemDataA0 FUN_18005a050
+#define CleanupSystemDataA0 CleanupSystemDataAndTempResources
 
 // 原始函数名：FUN_180059ee0 - 系统内存清理函数A0
 // 功能：清理系统内存和重置内存状态
-#define CleanupSystemMemoryA0 FUN_180059ee0
+#define CleanupSystemMemoryA0 CleanupSystemMemoryAndResetState
 
 // 原始函数名：Unwind_180907900 - 异常处理函数B5
 // 功能：调用异常处理函数并传递参数
