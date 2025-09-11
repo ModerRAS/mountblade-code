@@ -1420,7 +1420,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackValidationData ThreadStackValidationData      // 线程栈验证数据
 #define ThreadMemoryPoolBlockSize ThreadMemoryBlockSize   // 线程内存块大小
 #define ThreadMemoryHandle ThreadMemoryAllocationHandle   // 线程内存分配句柄
-#define pppTemporaryBuffer TemporaryBufferPointer          // 临时缓冲区指针
+#define pppTemporaryBuffer MultiLevelTemporaryBufferPointer   // 多级临时缓冲区指针
 
 // 系统模板和异常处理变量语义化宏定义
 #define SystemNullTemplate SystemNullDataTemplate          // 系统空数据模板
