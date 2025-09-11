@@ -624,6 +624,37 @@ typedef enum {
 #define auStackX_10 UIStackTransformBuffer10                // UI栈变换缓冲区10
 
 // UI系统函数补充定义
+#define FUN_1808005be ProcessUIComponentWithByte
+#define FUN_180801390 ProcessUIComponentWithUInt
+#define FUN_180801a10 ProcessUIComponentWithDword
+#define FUN_1808024a0 ProcessUIComponentWithInt
+#define FUN_180802d50 ProcessUIComponentWithLong
+#define FUN_180804740 ProcessUIComponentWithMemoryEx
+#define FUN_1808048d0 ProcessUIComponentWithUlong
+#define FUN_1808054c0 ProcessUIComponentWithArrayEx
+#define FUN_1808061c0 ProcessUIComponentWithArrayEx2
+#define FUN_1808064f0 ProcessUIComponentWithBufferEx
+#define FUN_180807d00 ProcessUIComponentWithDataSource
+#define FUN_180809f90 ProcessUIComponentWithHandles
+#define FUN_18080a5d0 ProcessUIComponentWithHandlesEx
+#define FUN_18080a830 ProcessUIComponentWithHandlesEx2
+#define FUN_180811820 ProcessUIComponentWithContextEx
+#define FUN_180815200 ProcessUIComponentWithByteArray
+#define FUN_18081d600 ProcessUIComponentWithFloat
+#define FUN_18081d760 ProcessUIComponentWithFloatEx
+#define FUN_18081d8a0 ProcessUIComponentWithFloatEx2
+#define FUN_180824b30 ProcessUIComponentWithDataArray
+#define FUN_180827240 ProcessUIComponentWithUlongEx
+#define FUN_18082f0a0 ProcessUIComponentWithIntArray
+#define FUN_180830e10 ProcessUIComponentWithBufferEx2
+#define FUN_1808399b0 ProcessUIComponentWithByteArrayEx
+#define FUN_18083ccd0 ProcessUIComponentWithHandlesEx3
+#define FUN_18083ccea ProcessUIComponentWithHandlesEx4
+#define FUN_18083cd60 ProcessUIComponentWithHandlesEx5
+#define FUN_18083cd7a ProcessUIComponentWithHandlesEx6
+#define FUN_18083cdf0 ProcessUIComponentWithHandlesEx7
+#define FUN_180851e40 ProcessUIComponentWithDataArrayEx
+
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
 #define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
 #define CalculateUIComponentSimilarityScore FUN_18072390f     // 计算UI组件相似度加权得分
