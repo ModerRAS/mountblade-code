@@ -92,6 +92,7 @@
 #define ProcessUtf16CharacterData ProcessUtf16CharacterData                          // 处理UTF-16字符处理
 #define ManageContextHandleOperations ManageContextHandleOperations                     // 处理上下文句柄管理
 #define CompleteSystemContextTask CompleteSystemContextTask                          // 完成系统上下文操作
+#define ProcessSystemDataRegistryAndStackParameters FUN_1802e8c60                   // 处理系统数据注册和堆栈参数 - 管理系统数据注册表并处理相关堆栈参数
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -260074,10 +260075,13 @@ LAB_18020c2f3:
               if (StackParameter108 != (long long *)0x0) {
                   ProcessSystemEventHandling();
               }
+              // 处理系统数据注册和堆栈参数
+              // 此函数负责管理系统数据注册表，处理相关的堆栈参数传递
+              // 确保数据在系统注册表中的正确性和一致性
               PreviousContextPointer = SystemDataTablePointer + 1;
               StackParameter108 = SystemDataTablePointer;
               StackParameter100 = SystemDataTablePointer + 1;
-              FUN_1802e8c60(SystemDataRegistry, &StackParameter108);
+              ProcessSystemDataRegistryAndStackParameters(SystemDataRegistry, &StackParameter108);
               SystemStackRegisterBuffer = NULL;
               SystemEventDispatcher = NULL;
               StringProcessingStatus = NULL;

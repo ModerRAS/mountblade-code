@@ -607,6 +607,14 @@ typedef union {
 #define FloatOneValue 0x3f800000                           // 浮点数1.0的十六进制表示
 #define ByteMask 0xffffff00                                // 字节掩码，用于保留高3字节
 
+// 系统魔数常量
+#define SystemInitializationMagicNumber -0x1f928c9d       // 系统初始化魔数 - 用于验证系统初始化的完整性
+#define SystemContextActiveStatus -0x3ffffffb             // 系统上下文激活状态 - 表示系统上下文处于活跃状态
+
+// 事件数据上下文偏移量常量
+#define EventDataContextPrimaryParamOffset 0x50            // 事件数据上下文主参数偏移量
+#define EventDataContextSecondaryParamOffset 0x70           // 事件数据上下文次参数偏移量
+
 // 内存操作掩码常量
 #define MemoryOperationMask 0xfbffffff                       // 内存操作掩码，用于清除特定位
 #define MemoryRegionMask 0xffffc000                         // 内存区域掩码，用于地址对齐
@@ -133292,7 +133300,7 @@ void ExecuteUtilityOperation(DataBuffer *systemContextHandle, int64_t dataContex
 bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 
 {
-  return *(int *)*systemContextHandle == -0x3ffffffb;
+  return *(int *)*systemContextHandle == SystemContextActiveStatus;
 }
 
 
@@ -133317,8 +133325,8 @@ void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataConte
 
 {
   if (*(char *)(eventDataContext + MemoryPointerOffset) == '\0') {
-    ValidateDataWithParams(*(DataBuffer *)(eventDataContext + 0x50),*(DataBuffer *)(eventDataContext + ExceptionHandlerContextOffset58),
-                  *(DataBuffer *)(eventDataContext + ValidationResultOffset),*(DataBuffer *)(eventDataContext + 0x70));
+    ValidateDataWithParams(*(DataBuffer *)(eventDataContext + EventDataContextPrimaryParamOffset),*(DataBuffer *)(eventDataContext + ExceptionHandlerContextOffset58),
+                  *(DataBuffer *)(eventDataContext + ValidationResultOffset),*(DataBuffer *)(eventDataContext + EventDataContextSecondaryParamOffset));
   }
   return;
 }
