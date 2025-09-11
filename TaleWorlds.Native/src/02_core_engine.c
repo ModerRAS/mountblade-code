@@ -260145,7 +260145,7 @@ LAB_18020b488:
       pcStack_4c0 = SystemValidationFunction8;
       uStack_4a8 = memoryBlockListHead;
       SystemChecksum = MemoryAllocate(MemoryPoolManager,0x2f0,0x10,0xd);
-      ContextHandleTablePointer = (long long *)FUN_1802e6b00(SystemChecksum,4);
+      ContextHandleTablePointer = (long long *)ValidateSystemChecksum(SystemChecksum,4);
       plStack_490 = ContextHandleTablePointer;
       if (ContextHandleTablePointer != (long long *)0x0) {
         (**(code **)(*ContextHandlePointer + 0x28))(ContextHandleTablePointer);
@@ -260224,7 +260224,7 @@ LAB_18020b539:
         BufferAllocationState4 = ContextHandleTablePointer;
       }
       else {
-        FUN_18020d8a0(lStack_428,&pcStack_4c0);
+        ProcessSystemMemoryAllocation(lStack_428,&pcStack_4c0);
         BufferAllocationState4 = plStack_4b0;
       }
       SystemValidationFunction9 = "game_entity";
@@ -260353,7 +260353,7 @@ void ValidateSystemDataAndHandleContext(uint64_t ContextHandle,long long *Contex
       if (pcStack_2a0 != (char *)0x0) {
         CharacterPointer = pcStack_2a0;
       }
-      FUN_180626eb0(acStack_238,0x200,&SystemMemoryBufferTertiary,CharacterPointer);
+      ConvertUtf8ToUtf16WithValidation(acStack_238,0x200,&SystemMemoryBufferTertiary,CharacterPointer);
       SystemCharacterStatusBufferPointer = &SystemNullTemplate;
       uStack_270 = 0;
       pSystemConfigurationMode = (uint8_t *)0x0;
