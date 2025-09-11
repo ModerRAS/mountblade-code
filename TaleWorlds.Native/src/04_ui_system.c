@@ -100003,12 +100003,17 @@ void ProcessUITransformDataWithCoefficients(float *uiContext,int dataSource,int 
  * - 简单的变换系数应用
  * - 支持正向和反向数据变换
  * - 处理小规模数据块
+ * - 使用SIMD优化处理
+ * - 支持批量处理和剩余元素处理
  * 
- * @param uiContext UI上下文数据指针
- * @param dataSource 数据源索引
- * @param targetBuffer 目标缓冲区索引
+ * @param uiContext UI上下文数据指针，包含待处理的浮点数据
+ * @param dataSource 数据源索引，用于确定变换的输入源
+ * @param targetBuffer 目标缓冲区索引，用于确定变换的输出目标
  * 
  * @note 原始函数名：FUN_18072182d
+ * @note 该函数使用xmm寄存器进行浮点运算优化
+ * @note 支持正向和反向数据流处理
+ * @note 采用循环展开和批处理优化技术
  */
 void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int targetBuffer)
 void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int targetBuffer)
@@ -100016,94 +100021,94 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
 {
   float baseValue;
   float transformCoeff1;
-  float TransformCoefficient2;
+  float transformCoeff2;
   int bufferSize;
   uint processingFlags;
   float *transformCoeffPointer;
   ulonglong maxProcessingCount;
   longlong contextOffset;
-  float *pTemporaryFloatValue;
-  int RegisterPointerD;
-  int localInt9;
-  float in_XMM5_Da;
-  float normalizedSum0;
+  float *temporaryFloatValue;
+  int registerPointerD;
+  int remainingElements;
+  float xmm5Value;
+  float normalizedSum;
   float preservedXMM7;
   
-  normalizedSum0 = -preservedXMM7;
+  normalizedSum = -preservedXMM7;
   contextOffset = (longlong)targetBuffer;
-  localInt9 = RegisterPointerD - targetBuffer;
-  pTemporaryFloatValue = uiContext;
-  if (3 < localInt9) {
+  remainingElements = registerPointerD - targetBuffer;
+  temporaryFloatValue = uiContext;
+  if (3 < remainingElements) {
     transformCoeffPointer = uiContext + contextOffset;
-    processingFlags = (localInt9 - 4U >> 2) + 1;
+    processingFlags = (remainingElements - 4U >> 2) + 1;
     maxProcessingCount = (ulonglong)processingFlags;
     bufferSize = processingFlags * 4;
     do {
-      baseValue = *pTemporaryFloatValue;
+      baseValue = *temporaryFloatValue;
       transformCoeff1 = *transformCoeffPointer;
-      *transformCoeffPointer = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
-      TransformCoefficient2 = transformCoeffPointer[1 - contextOffset];
-      *pTemporaryFloatValue = transformCoeff1 * normalizedSum0 + baseValue * in_XMM5_Da;
+      *transformCoeffPointer = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+      transformCoeff2 = transformCoeffPointer[1 - contextOffset];
+      *temporaryFloatValue = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
       baseValue = transformCoeffPointer[1];
-      pTemporaryFloatValue = pTemporaryFloatValue + 4;
-      transformCoeffPointer[1] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
+      temporaryFloatValue = temporaryFloatValue + 4;
+      transformCoeffPointer[1] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
       transformCoeff1 = transformCoeffPointer[2 - contextOffset];
-      transformCoeffPointer[1 - contextOffset] = baseValue * normalizedSum0 + TransformCoefficient2 * in_XMM5_Da;
+      transformCoeffPointer[1 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
       baseValue = transformCoeffPointer[2];
-      transformCoeffPointer[2] = baseValue * in_XMM5_Da + transformCoeff1 * preservedXMM7;
-      TransformCoefficient2 = transformCoeffPointer[3 - contextOffset];
-      transformCoeffPointer[2 - contextOffset] = baseValue * normalizedSum0 + transformCoeff1 * in_XMM5_Da;
+      transformCoeffPointer[2] = baseValue * xmm5Value + transformCoeff1 * preservedXMM7;
+      transformCoeff2 = transformCoeffPointer[3 - contextOffset];
+      transformCoeffPointer[2 - contextOffset] = baseValue * normalizedSum + transformCoeff1 * xmm5Value;
       baseValue = transformCoeffPointer[3];
-      transformCoeffPointer[3] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
-      transformCoeffPointer[3 - contextOffset] = baseValue * normalizedSum0 + TransformCoefficient2 * in_XMM5_Da;
+      transformCoeffPointer[3] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
+      transformCoeffPointer[3 - contextOffset] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
       transformCoeffPointer = transformCoeffPointer + 4;
       maxProcessingCount = maxProcessingCount - 1;
     } while (maxProcessingCount != 0);
   }
-  if (bufferSize < localInt9) {
-    maxProcessingCount = (ulonglong)(uint)(localInt9 - bufferSize);
+  if (bufferSize < remainingElements) {
+    maxProcessingCount = (ulonglong)(uint)(remainingElements - bufferSize);
     do {
-      baseValue = *pTemporaryFloatValue;
-      transformCoeff1 = pTemporaryFloatValue[contextOffset];
-      pTemporaryFloatValue[contextOffset] = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
-      *pTemporaryFloatValue = transformCoeff1 * normalizedSum0 + baseValue * in_XMM5_Da;
-      pTemporaryFloatValue = pTemporaryFloatValue + 1;
+      baseValue = *temporaryFloatValue;
+      transformCoeff1 = temporaryFloatValue[contextOffset];
+      temporaryFloatValue[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+      *temporaryFloatValue = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
+      temporaryFloatValue = temporaryFloatValue + 1;
       maxProcessingCount = maxProcessingCount - 1;
     } while (maxProcessingCount != 0);
   }
   processingFlags = dataSource + targetBuffer * -2;
-  localInt9 = processingFlags - 1;
-  uiContext = uiContext + localInt9;
-  if (-1 < localInt9) {
+  remainingElements = processingFlags - 1;
+  uiContext = uiContext + remainingElements;
+  if (-1 < remainingElements) {
     if (3 < (int)processingFlags) {
       maxProcessingCount = (ulonglong)(processingFlags >> 2);
-      localInt9 = localInt9 + (processingFlags >> 2) * -4;
+      remainingElements = remainingElements + (processingFlags >> 2) * -4;
       do {
         baseValue = *uiContext;
         transformCoeff1 = uiContext[contextOffset];
-        uiContext[contextOffset] = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
-        TransformCoefficient2 = uiContext[-1];
-        *uiContext = transformCoeff1 * normalizedSum0 + baseValue * in_XMM5_Da;
+        uiContext[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+        transformCoeff2 = uiContext[-1];
+        *uiContext = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
         baseValue = uiContext[contextOffset + -1];
-        uiContext[contextOffset + -1] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
+        uiContext[contextOffset + -1] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
         transformCoeff1 = uiContext[-2];
-        uiContext[-1] = baseValue * normalizedSum0 + TransformCoefficient2 * in_XMM5_Da;
+        uiContext[-1] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
         baseValue = uiContext[contextOffset + -2];
-        uiContext[contextOffset + -2] = baseValue * in_XMM5_Da + transformCoeff1 * preservedXMM7;
-        TransformCoefficient2 = uiContext[-3];
-        uiContext[-2] = baseValue * normalizedSum0 + transformCoeff1 * in_XMM5_Da;
+        uiContext[contextOffset + -2] = baseValue * xmm5Value + transformCoeff1 * preservedXMM7;
+        transformCoeff2 = uiContext[-3];
+        uiContext[-2] = baseValue * normalizedSum + transformCoeff1 * xmm5Value;
         baseValue = uiContext[contextOffset + -3];
-        uiContext[contextOffset + -3] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
-        uiContext[-3] = baseValue * normalizedSum0 + TransformCoefficient2 * in_XMM5_Da;
+        uiContext[contextOffset + -3] = baseValue * xmm5Value + transformCoeff2 * preservedXMM7;
+        uiContext[-3] = baseValue * normalizedSum + transformCoeff2 * xmm5Value;
         uiContext = uiContext + -4;
         maxProcessingCount = maxProcessingCount - 1;
       } while (maxProcessingCount != 0);
     }
-    for (; -1 < localInt9; localInt9 = localInt9 + -1) {
+    for (; -1 < remainingElements; remainingElements = remainingElements + -1) {
       baseValue = *uiContext;
       transformCoeff1 = uiContext[contextOffset];
-      uiContext[contextOffset] = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
-      *uiContext = transformCoeff1 * normalizedSum0 + baseValue * in_XMM5_Da;
+      uiContext[contextOffset] = transformCoeff1 * xmm5Value + baseValue * preservedXMM7;
+      *uiContext = transformCoeff1 * normalizedSum + baseValue * xmm5Value;
       uiContext = uiContext + -1;
     }
   }
@@ -131079,8 +131084,35 @@ LAB_18073d85d:
 
  
 
- void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
-void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
+ /**
+ * @brief 处理UI上下文数据源操作
+ * 
+ * 该函数负责处理UI上下文与数据源的交互操作，包括：
+ * - 数据源的验证和处理
+ * - 上下文状态更新
+ * - 资源分配和释放
+ * - 错误处理和异常管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @return 操作结果状态码
+ * 
+ * @note 该函数使用内存加密技术保护敏感数据
+ * @warning 函数包含不返回的子程序调用
+ * 
+ * 原始函数名: FUN_18073d8a0
+ */
+#define ProcessUIContextDataSourceOperation FUN_18073d8a0
+
+// 函数内部变量名美化宏定义
+#define astackUInt158 encryptionBuffer
+#define pstackUInt138 textureDataPointer
+#define RenderContextSize renderContextSize
+#define pstackLong120 renderDataPointer
+#define astackUInt118 textureBuffer
+#define stackUInt18 encryptionKey
+
+void ProcessUIContextDataSourceOperation(UIHandle uiContext,UIByte dataSource)
 
 {
   int operationResult;
@@ -131116,8 +131148,35 @@ LAB_18073d93d:
 
  
 
- void FUN_18073d980(UIHandle uiContext,UIDword dataSource)
-void FUN_18073d980(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 处理UI上下文数据源操作（双字版本）
+ * 
+ * 该函数负责处理UI上下文与双字数据源的交互操作，包括：
+ * - 双字数据源的验证和处理
+ * - 渲染数据对齐
+ * - 上下文状态更新
+ * - 资源分配和释放
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 双字数据源标识符
+ * @return 操作结果状态码
+ * 
+ * @note 该函数使用内存加密技术保护敏感数据
+ * @warning 函数包含不返回的子程序调用
+ * 
+ * 原始函数名: FUN_18073d980
+ */
+#define ProcessUIContextDataSourceOperationDword FUN_18073d980
+
+// 函数内部变量名美化宏定义
+#define astackUInt168 encryptionBufferDword
+#define pstackUInt148 textureDataPointerDword
+#define stackLong138 renderContextSizeDword
+#define pRenderDataAlignment renderDataAlignmentPointer
+#define astackUInt128 textureBufferDword
+#define stackUInt28 encryptionKeyDword
+
+void ProcessUIContextDataSourceOperationDword(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
@@ -131153,8 +131212,36 @@ LAB_18073da1e:
 
  
 
- void FUN_18073da60(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
-void FUN_18073da60(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+ /**
+ * @brief 处理UI上下文数据源操作（带目标缓冲区）
+ * 
+ * 该函数负责处理UI上下文与数据源的交互操作，包括：
+ * - 数据源的验证和处理
+ * - 目标缓冲区的操作
+ * - 数据验证和比较
+ * - 上下文状态更新
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 双字数据源标识符
+ * @param targetBuffer 目标缓冲区标识符
+ * @return 操作结果状态码
+ * 
+ * @note 该函数使用内存加密技术保护敏感数据
+ * @warning 函数包含不返回的子程序调用
+ * 
+ * 原始函数名: FUN_18073da60
+ */
+#define ProcessUIContextDataSourceWithTargetBuffer FUN_18073da60
+
+// 函数内部变量名美化宏定义
+#define astackUInt178 encryptionBufferWithTarget
+#define pstackUInt158 textureDataPointerWithTarget
+#define stackLong148 renderContextSizeWithTarget
+#define pstackLong140 renderDataPointerWithTarget
+#define astackUInt138 textureBufferWithTarget
+#define stackUInt38 encryptionKeyWithTarget
+
+void ProcessUIContextDataSourceWithTargetBuffer(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
