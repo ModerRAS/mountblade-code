@@ -171893,33 +171893,49 @@ PerformanceCalculationComplete:
  * @note 原始函数名：FUN_18013a1b0
  * @warning 该函数涉及复杂的内存管理和字符编码转换，需要谨慎处理
  */
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责将UTF-8编码的字符串转换为UTF-16编码格式，同时处理相关的内存分配和系统状态管理。
+ * 函数包含复杂的内存管理、字符编码转换和系统状态验证逻辑。
+ * 
+ * @param ContextHandle 系统上下文句柄，用于系统状态管理
+ * @param OperationBufferSize 操作缓冲区大小，用于内存分配
+ * @param Utf8SourcePointer UTF-8源数据指针，指向要转换的数据
+ * @param Utf16EndPointer UTF-16结束指针，用于转换控制
+ * @param AdditionalParameter1 额外参数1，用于转换计算的浮点参数
+ * @param AdditionalParameter2 额外参数2，指向验证值的指针
+ * 
+ * @note 原始函数名：FUN_18013a1b0
+ * @warning 该函数涉及复杂的内存管理和字符编码转换，需要谨慎处理
+ */
 void ProcessUtf8ToUtf16Conversion(long long ContextHandle,long long OperationBufferSize,int Utf8SourcePointer,int Utf16EndPointer,float AdditionalParameter1,
                                   uint32_t *AdditionalParameter2)
 {
-  float SystemContextPrimaryFloat;
-  long long BufferAllocationState;
-  byte StatusByte;
-  uint32_t MemoryAddressMaskPointer;
-  uint32_t *ContextHandlePointer;
-  uint32_t *SecondaryProcessingStatusFlag;
-  long long MemoryPoolBlockSize;
-  long long SecondaryLoopCounter;
-  uint32_t MemoryPoolIndex;
-  uint32_t ProcessedCharacter;
-  uint8_t SystemVariableArray [16];
-  uint32_t SystemStatusCode;
-  float SystemContextPrimaryFloat3;
-  float SystemContextPrimaryFloat4;
-  float SystemFloatValue;
-  float SystemCoreScaleX;
-  uint32_t MemoryAllocationHandle;
-  uint8_t Utf16CharArray [16];
-  uint32_t Utf16Character;
-  uint64_t StackProcessingVariableX;
-  uint64_t BufferOffset;
-  unsigned long long SystemKeyPointer [3];
-  uint64_t FunctionAddress;
-  long long StackProcessingVariable30;
+  float SystemContextPrimaryFloat;                  // 系统上下文主浮点值
+  long long BufferAllocationState;                  // 缓冲区分配状态
+  byte StatusByte;                                  // 状态字节
+  uint32_t MemoryAddressMaskPointer;                // 内存地址掩码指针
+  uint32_t *ContextHandlePointer;                   // 上下文句柄指针
+  uint32_t *SecondaryProcessingStatusFlag;          // 次要处理状态标志
+  long long MemoryPoolBlockSize;                    // 内存池块大小
+  long long SecondaryLoopCounter;                   // 次要循环计数器
+  uint32_t MemoryPoolIndex;                         // 内存池索引
+  uint32_t ProcessedCharacter;                      // 已处理的字符
+  uint8_t SystemVariableArray [16];                 // 系统变量数组
+  uint32_t SystemStatusCode;                        // 系统状态码
+  float SystemContextPrimaryFloat3;                 // 系统上下文主浮点值3
+  float SystemContextPrimaryFloat4;                 // 系统上下文主浮点值4
+  float SystemFloatValue;                           // 系统浮点值
+  float SystemCoreScaleX;                           // 系统核心缩放X值
+  uint32_t MemoryAllocationHandle;                  // 内存分配句柄
+  uint8_t Utf16CharArray [16];                      // UTF-16字符数组
+  uint32_t Utf16Character;                          // UTF-16字符
+  uint64_t StackProcessingVariableX;                // 栈处理变量X
+  uint64_t BufferOffset;                             // 缓冲区偏移量
+  unsigned long long SystemKeyPointer [3];          // 系统密钥指针数组
+  uint64_t FunctionAddress;                         // 函数地址
+  long long StackProcessingVariable30;               // 栈处理变量30
   
   FunctionAddress = 0xfffffffffffffffe;
   SystemDataTablePointer = (long long)Utf8SourcePointer;
@@ -172075,8 +172091,8 @@ LAB_18013a7a6:
       MemoryPoolIndex = (uint32_t)((unsigned long long)BufferOffset >> 0x20);
       ProcessedCharacter = 0;
       SystemStatusCode = 0;
-      *(float *)(&stack0x00000008 + MemoryPoolBlockSize * 4) =
-           SystemContextPrimaryFloat4 + 2.0 + *(float *)(&stack0x00000008 + MemoryPoolBlockSize * 4);
+      *(float *)(&StackFloatBuffer08 + MemoryPoolBlockSize * 4) =
+           SystemContextPrimaryFloat4 + 2.0 + *(float *)(&StackFloatBuffer08 + MemoryPoolBlockSize * 4);
       MemoryAllocationHandle = 0;
       Utf16Character = 0;
     }
@@ -198174,7 +198190,7 @@ LAB_1801604e5:
   StackUintValue60 = CharacterLimit[5];
   MemoryPoolIndex = CharacterLimit[6];
   SystemStackInteger224 = LoopCounter;
-  ProcessCharacterEncodingAndDataConversion(ProcessingResult,&InputDataLengthStackBuffer,Utf8SourcePointer,&stack0x000000e0,(long long)CharacterTablePointer);
+  ProcessCharacterEncodingAndDataConversion(ProcessingResult,&InputDataLengthStackBuffer,Utf8SourcePointer,&StackCharacterBufferE0,(long long)CharacterTablePointer);
   *(void *)(StackProcessingParameter0 + 4) = SystemUnsignedValue38;
   *(void *)(StackProcessingParameter0 + 0xc) = StackProcessedData40;
   *(void *)(StackProcessingParameter0 + 0x14) = StackProcessedData48;
