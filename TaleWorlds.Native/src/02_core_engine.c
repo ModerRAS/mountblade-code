@@ -284664,6 +284664,17 @@ uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 
 
 
+/**
+ * @brief 处理系统字符编码和缓冲区初始化
+ * 
+ * 此函数负责初始化系统字符编码处理相关的缓冲区，
+ * 包括UTF-16字符处理、内存缓冲区分配和编码键设置。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @note 原始函数名：FUN_1802265d0
+ */
 void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
   uint Utf16Char;
@@ -284705,6 +284716,19 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
 
 
 
+/**
+ * @brief 释放上下文句柄并清理相关资源
+ * 
+ * 此函数负责释放系统上下文句柄占用的资源，
+ * 包括字符状态缓冲区、内存块和相关系统资源的清理。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180226750
+ */
 void ReleaseContextHandleAndCleanupResources(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
@@ -284735,13 +284759,13 @@ void InitializeContextHandleAndSystemResources(long long *ContextHandle)
   long long BufferStatus;
   void *SystemEventTemplatePointer;
   uint8_t SystemProcessFlagBuffer [32];
-  uint64_t SystemFlagH;
+  uint64_t SystemResourceFlag;
   uint64_t *SystemMemoryPointer;
-  void *apMemoryOffsetValue [20];
-  unsigned long long uStack_18;
+  void *MemoryOffsetArray [20];
+  unsigned long long EncodingKey;
   
-  SystemFlagH = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)SystemProcessFlagBuffer;
+  SystemResourceFlag = 0xfffffffffffffffe;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)SystemProcessFlagBuffer;
   if (*ContextHandle == 0) {
     SystemMemoryPointer = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3);
     *SystemMemoryPointer = &ThreadLocalStorageTemplate;
@@ -284752,7 +284776,7 @@ void InitializeContextHandleAndSystemResources(long long *ContextHandle)
     *(uint32_t *)(SystemMemoryPointer + 2) = 0;
     *(uint8_t *)(SystemMemoryPointer + 3) = 0;
     *ContextHandle = (long long)SystemMemoryPointer;
-    BufferStatus = FUN_1806393b0(SystemMemoryPointer,apMemoryOffsetValue,ContextHandle[1]);
+    BufferStatus = FUN_1806393b0(SystemMemoryPointer,MemoryOffsetArray,ContextHandle[1]);
     CharacterTablePointer = *ContextHandle;
     *(uint32_t *)(ThreadLocalStorageData + 0x10) = *(uint32_t *)(BufferStatus + 0x10);
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
@@ -284760,16 +284784,16 @@ void InitializeContextHandleAndSystemResources(long long *ContextHandle)
       SystemEventTemplatePointer = *(void **)(BufferStatus + 8);
     }
     strcpy_s(*(void *)(ThreadLocalStorageData + 8),0x80,SystemEventTemplatePointer);
-    apMemoryOffsetValue[0] = &ThreadLocalStorageTemplate;
+    MemoryOffsetArray[0] = &ThreadLocalStorageTemplate;
   }
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemProcessFlagBuffer);
+    CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)SystemProcessFlagBuffer);
 }
 
 
 
 
 
-268c0(long long *ContextHandle,long long OperationBufferSizevoid FUN_1802268c0(long long *ContextHandle,long long OperationBufferSize
+void ProcessSystemMemoryAllocationAndContextManagement(long long *ContextHandle, long long OperationBufferSize)
 {
   long long MainCalculationResult;
   void *SystemContext;

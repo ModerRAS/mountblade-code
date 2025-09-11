@@ -125279,6 +125279,7 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle target
   longlong memoryTrackingFlag;
   UIHandle contextParam;
   ulonglong encryptionKey;
+  UIByte uiDataBuffer[256];
   
   *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
@@ -125290,18 +125291,18 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle target
     if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = InitializeUIBuffer(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ValidateUIBufferData(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    int bufferInitializationResult = InitializeUIBuffer(&uiDataBuffer,0x100,dataSource);
+    int bufferValidationResult = ValidateUIBufferData(&uiDataBuffer + bufferInitializationResult,0x100 - bufferInitializationResult,&UIBufferControlData);
+    CopyUIDataBuffer(&uiDataBuffer + (bufferInitializationResult + bufferValidationResult),0x100 - (bufferInitializationResult + bufferValidationResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextMemoryAllocator,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextMemoryAllocator,&uiDataBuffer);
   }
 CleanupAndExit:
   if (memoryTrackingFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&uiDataBuffer);
 }
 
 
