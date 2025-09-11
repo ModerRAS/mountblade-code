@@ -259657,7 +259657,7 @@ void FinalizeSystemCharacterHandler(uint64_t ContextHandle,long long OperationBu
   plStack_438 = memoryBlockListHead;
   (**(code **)(*memoryBlockListHead + 0x10))(memoryBlockListHead,OperationBufferSize);
   SystemChecksum = *CoreEngineSystemContext;
-  OperationResult = FUN_1800bb630(&pcStack_4c0,memoryBlockListHead);
+  OperationResult = ProcessSystemMemoryValidation(&pcStack_4c0,memoryBlockListHead);
   MemoryAllocationMaskPointer = InitializeSystemMemoryPool(SystemChecksum,OperationResult);
   *(uint32_t *)(memoryBlockListHead + 4) = MemoryAllocationMaskPointer;
   pcStack_4c0 = &SystemNullTemplate;
@@ -259667,7 +259667,7 @@ void FinalizeSystemCharacterHandler(uint64_t ContextHandle,long long OperationBu
   puStack_4b8 = NULL;
   uStack_4a8 = (long long *)((unsigned long long)uStack_4a8.HighPart << 0x20);
   pcStack_4c0 = &ThreadLocalStorageTemplate;
-  SystemChecksum = FUN_18020d6c0(SystemValidationFunction8,memoryBlockListHead + 4);
+  SystemChecksum = ValidateSystemMemoryIntegrity(SystemValidationFunction8,memoryBlockListHead + 4);
   ProcessSystemContextAllocation(SystemChecksum,&plStack_450);
   uStack_460 = 3;
   ppppppContextDataPointer8 = &ppppppContextDataPointer8;
@@ -259715,8 +259715,8 @@ void FinalizeSystemCharacterHandler(uint64_t ContextHandle,long long OperationBu
          &SystemStringTertiaryTemplate;
     *(int *)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4) + -4) =
          *(int *)(apuStack_418[0] + 4) + -0xb8;
-    FUN_18009ec20(aSystemPriorityLevel0);
-    StringOffset = FUN_1800c4800(aSystemPriorityLevel0,PrimaryProcessingStatusFlag3,1);
+    InitializeSystemStreamProcessor(aSystemPriorityLevel0);
+    StringOffset = ProcessSystemStringEncoding(aSystemPriorityLevel0,PrimaryProcessingStatusFlag3,1);
     if (StringOffset == 0) {
       _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
                 ((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4),2,0);
