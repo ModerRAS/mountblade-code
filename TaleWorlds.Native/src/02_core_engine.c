@@ -236057,13 +236057,13 @@ MemoryBufferProcessingCompleteLabel:
         }
       }
     }
-    ProcessCharacterEncodingAndSystemBufferConfiguration(SystemProcessingBuffer368,MemoryBlockIndex);
-    MemoryBlockIndex = ProcessSystemMemoryIndex(ContextHandle,OperationBufferSize,SystemProcessingBuffer368);
-    ProcessCharacterInitializeSystem(SystemProcessingBuffer368);
+    ProcessCharacterEncodingAndSystemBufferConfiguration(CharacterEncodingProcessingBuffer,MemoryBlockProcessingIndex);
+    MemoryBlockProcessingIndex = ProcessSystemMemoryIndex(ContextHandle,OperationBufferSize,CharacterEncodingProcessingBuffer);
+    ProcessCharacterInitializeSystem(CharacterEncodingProcessingBuffer);
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    ProcessSystemMemoryBufferAndCharacterEncoding(MemoryBlockIndex,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
-    PatternMatchStatus = SystemSearchStartIndex - ContextHandle;
-    OperationBufferSize = MemoryBlockIndex;
+    ProcessSystemMemoryBufferAndCharacterEncoding(MemoryBlockProcessingIndex,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+    CharacterPatternMatchResult = MemorySearchStartPosition - ContextHandle;
+    OperationBufferSize = MemoryBlockProcessingIndex;
   } while( true );
 }
 

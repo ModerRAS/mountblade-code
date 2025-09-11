@@ -34774,7 +34774,7 @@ SecurityCheckpointA:
       case 0x12:
       case 0x30:
         dataContext = 4;
-        stackIndexBuffer[0] = stackIndexBuffer[0] + -4;
+        stackIndexTrackingBuffer[0] = stackIndexTrackingBuffer[0] + -4;
         break;
       default:
         goto ProcessCheckpointDataProcessingLoop;
