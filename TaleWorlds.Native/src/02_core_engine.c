@@ -581,6 +581,9 @@
 #define FUN_18022ce40 CleanupContextHandleResources                       // 清理上下文句柄资源
 #define FUN_18020b790 HandleSystemEventCleanup                            // 处理系统事件清理
 #define FUN_18020bb70 ValidateSystemDataAndHandleContext                  // 验证系统数据和上下文句柄
+#define FUN_18020c911 ProcessSystemEventQueueAndData                        // 处理系统事件队列和数据
+#define FUN_18020d310 HandleSystemDataValidation                             // 处理系统数据验证
+#define FUN_18020ccb0 ProcessSystemCharacterEncoding                         // 处理系统字符编码
 
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
@@ -259731,7 +259734,7 @@ void HandleSystemEventCleanup(void)
 
 
 
-0bb70(uint64_t ContextHandle,long long *ContextHandleSizevoid FUN_18020bb70(uint64_t ContextHandle,long long *ContextHandleSize
+void ValidateSystemDataAndHandleContext(uint64_t ContextHandle,long long *ContextHandleSize
 {
   char *ValidationStatus;
   char SystemCheckResult;
@@ -260475,7 +260478,7 @@ LAB_18020c9db:
 
 
 
-0c911(voidvoid FUN_18020c911(void
+void ProcessSystemEventQueueAndData(void)
 {
   uint64_t Utf16Char;
   long long ProcessingResult;
@@ -260663,7 +260666,7 @@ void ProcessSystemContextMemoryManagement(long long ContextHandle,uint64_t Opera
 
 
 
-0ccb0(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,long long *Utf16EndPointervoid FUN_18020ccb0(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,long long *Utf16EndPointer
+void ProcessSystemCharacterEncoding(uint64_t ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer,long long *Utf16EndPointer
 {
   byte StringComparisonByte;
   void *PrimaryProcessingStatusFlag;
