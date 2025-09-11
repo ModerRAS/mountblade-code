@@ -236340,10 +236340,10 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
   void *PreviousNode;
   long long secondaryLoopCounter;
   bool BooleanValidationFlag9;
-  uint32_t uStackX_10;
-  uint32_t uStackX_14;
+  uint32_t SystemStatusValue;
+  uint32_t SecondaryStatusValue;
   uint32_t StackParameterUnsigned20;
-  uint32_t uStackX_24;
+  uint32_t TertiaryStatusValue;
   
   SystemDataTablePointer = (long long)OperationBufferSize - (long long)ContextHandle >> 3;
   if (1 < SystemDataTablePointer) {
@@ -236380,7 +236380,7 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
         MemoryBlockIndex = SystemDataRegistry;
       }
       StackParameterUnsigned20 = (uint32_t)Utf16Char;
-      uStackX_24 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+      TertiaryStatusValue = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
       *(uint32_t *)(ContextHandle + MemoryBlockIndex) = StackParameterUnsigned20;
       *(uint32_t *)((long long)ContextHandle + MemoryBlockIndex * 8 + 4) = uStackX_24;
     } while (MemoryBoundaryEnd != 0);
@@ -236428,7 +236428,7 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
           AllocatedMemorySize = MemoryBoundaryEnd;
         }
         StackParameterUnsigned20 = (uint32_t)Utf16Char;
-        uStackX_24 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+        TertiaryStatusValue = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
         *(uint32_t *)(ContextHandle + AllocatedMemorySize) = StackParameterUnsigned20;
         *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = uStackX_24;
       }

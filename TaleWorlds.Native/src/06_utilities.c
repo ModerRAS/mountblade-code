@@ -31868,7 +31868,7 @@ void ProcessDataTypes(void)
       dataSize = (int64_t)*(int *)(contextPointer + SystemParameterValidationOffset);
       if (0 < dataSize) {
         OperationResultTertiary = (uint64_t)(uint)inputFloatValue;
-        OperationResultPrimary = (uint64_t)(uint)dataPointerD;
+        OperationResultPrimary = (uint64_t)(uint)inputFloatValue;
         do {
           ExceptionContext = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
           dataContext = *(int64_t *)(OperationResultPrimary + OperationResult0Offset10 + exceptionContext5);
@@ -31947,7 +31947,7 @@ void ProcessDataTypes(void)
             StackFloatRegisterB = StackFloatRegisterD;
             stackInputParameterC = &FloatingPointValidationErrorA;
             operationResult = SystemOperationResult;
-            ValidationDataBuffer = dataPointerD;
+            ValidationDataBuffer = inputFloatValue;
             resourceValidationStatus = ValidateDataIntegrityA0(StackFloatRegisterD,&stackInputParameterC);
             StackFloatRegisterD = validationFloatValue;
             if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -31958,18 +31958,18 @@ void ProcessDataTypes(void)
               StackFloatRegisterB = StackInputParameterB;
               stackInputParameterC = &FloatingPointValidationErrorB;
               operationResult = SystemOperationResult;
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               resourceValidationStatus = ValidateDataIntegrityA0(StackInputParameterB,&stackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
             }
             floatDataPointer = (float *)(contextPointer + ContextFloatDataPointerOffset94);
-            floatLoopCounter = dataPointerD;
+            floatLoopCounter = inputFloatValue;
             do {
               floatCurrentValue = *floatDataPointer;
               if (floatCurrentValue != 0.0) {
                 operationResult = SystemOperationResult;
                 stackInputParameterC = &SystemValidationDataTableA1;
-                ValidationDataBuffer = dataPointerD;
+                ValidationDataBuffer = inputFloatValue;
                 StackFloatRegisterB = floatLoopCounter;
                 StackFloatRegisterC = floatCurrentValue;
                 resourceValidationStatus = ValidateDataIntegrityA0(floatCurrentValue,&stackInputParameterC);
@@ -31979,13 +31979,13 @@ void ProcessDataTypes(void)
               floatDataPointer = floatDataPointer + 1;
             } while ((int)floatLoopCounter < 4);
             floatDataPointer = (float *)&SystemValidationDataTableA2;
-            floatLoopCounter = dataPointerD;
+            floatLoopCounter = inputFloatValue;
             do {
               floatCurrentValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)floatDataPointer);
               if (floatCurrentValue != *floatDataPointer) {
                 operationResult = SystemOperationResult;
                 stackInputParameterC = &SystemValidationDataTableA3;
-                ValidationDataBuffer = dataPointerD;
+                ValidationDataBuffer = inputFloatValue;
                 StackFloatRegisterB = floatLoopCounter;
                 StackFloatRegisterC = floatCurrentValue;
                 resourceValidationStatus = ValidateDataIntegrityA0(floatCurrentValue,&stackInputParameterC);
@@ -31999,7 +31999,7 @@ void ProcessDataTypes(void)
             if ((float)(systemDataBuffer4 / 0x30) != 0.0) {
               stackInputParameterC = &SystemValidationDataTableA8;
               operationResult = SystemOperationResult;
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               StackFloatRegisterB = (float)(systemDataBuffer4 / 0x30);
               resourceValidationStatus = ValidateDataIntegrityA0(accumulatedFloatValue,&stackInputParameterC);
               operationResultQuaternary = processedFloatValue;
@@ -32009,7 +32009,7 @@ void ProcessDataTypes(void)
               stackInputParameterC = &DataIntegrityValidationErrorB;
               operationResult = SystemOperationResult;
               FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               resourceValidationStatus = ValidateDataIntegrityA0(operationResultQuaternary,&stackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
             }
@@ -32017,7 +32017,7 @@ void ProcessDataTypes(void)
             if (resourceValidationStatus != 2) {
               stackInputParameterC = &DataIntegrityValidationErrorC;
               operationResult = SystemOperationResult;
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               resourceValidationStatus = ValidateDataIntegrityA0(transformedFloatValue,&stackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
             }
@@ -32026,7 +32026,7 @@ void ProcessDataTypes(void)
             if (resourceValidationStatus == 4) {
               stackInputParameterC = &DataIntegrityValidationErrorD;
               operationResult = SystemOperationResult;
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               StackFloatRegisterB = dataPointerD;
               resourceValidationStatus = ValidateDataIntegrityA0(secondaryFloatResultA,&stackInputParameterC);
               operationResultQuaternary = tertiaryFloatResultA;
@@ -32035,7 +32035,7 @@ void ProcessDataTypes(void)
             if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 3 & 1) != 0) {
               StackValidationParameterA = &DataIntegrityValidationErrorE;
               operationResult = SystemOperationResult;
-              ValidationDataBuffer = dataPointerD;
+              ValidationDataBuffer = inputFloatValue;
               ValidateDataIntegrityA0(operationResultQuaternary,&StackValidationBuffer);
             }
           }
@@ -32113,7 +32113,7 @@ SystemDataValidationCheckpoint:
   
   if (0 < systemInputAccumulator) {
     operationResult2 = (uint64_t)(uint)dataPointerD;
-    OperationResultPrimary = (uint64_t)(uint)dataPointerD;
+    OperationResultPrimary = (uint64_t)(uint)inputFloatValue;
     StackLoopCounter = systemInputAccumulator;
     do {
       ExceptionContext = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
@@ -32141,7 +32141,7 @@ SystemDataValidationCheckpoint:
         resourceValidationStatus = ValidateDataIntegrityA0(OperationResultTertiary,StackFrameContext + -4);
         if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
       }
-      dataPointerD = 0.0;
+      inputFloatValue = 0.0;
       operationResult2 = operationResult2 + 1;
       OperationResultPrimary = OperationResultPrimary + SystemDataSecondaryOffset18;
       systemContext = SystemStackInputParameterA;
@@ -32193,7 +32193,7 @@ SystemDataValidationCheckpoint:
         StackFloatRegisterB = ProcessedFloatValue.lowWord;
         stackInputParameterC = &FloatingPointValidationErrorA;
         operationResult = SystemOperationResult;
-        ValidationDataBuffer = dataPointerD;
+        ValidationDataBuffer = inputFloatValue;
         resourceValidationStatus = ValidateDataIntegrityA0(ProcessedFloatValue.lowWord,&StackValidationBuffer);
         ProcessedFloatValue.lowWord = interpolatedFloatValue;
         if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
@@ -32204,7 +32204,7 @@ SystemDataValidationCheckpoint:
           StackFloatRegisterB = StackInputParameterB;
           stackInputParameterC = &FloatingPointValidationErrorB;
           operationResult = SystemOperationResult;
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           resourceValidationStatus = ValidateDataIntegrityA0(StackInputParameterB,&stackInputParameterC);
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
         }
@@ -32215,7 +32215,7 @@ SystemDataValidationCheckpoint:
           if (floatValidationValue != 0.0) {
             operationResult = SystemOperationResult;
             StackValidationParameterA = &DataProcessingValidationError;
-            ValidationDataBuffer = dataPointerD;
+            ValidationDataBuffer = inputFloatValue;
             StackFloatRegisterB = loopCounterFloat;
             StackFloatRegisterC = floatValidationValue;
             resourceValidationStatus = ValidateDataIntegrityA0(floatValidationValue,&StackValidationBuffer);
@@ -32231,7 +32231,7 @@ SystemDataValidationCheckpoint:
           if (floatValidationValue != *pcalculatedFloatValue) {
             operationResult = SystemOperationResult;
             StackValidationParameterA = &DataProcessingContextA0;
-            ValidationDataBuffer = dataPointerD;
+            ValidationDataBuffer = inputFloatValue;
             StackFloatRegisterB = loopCounterFloat;
             StackFloatRegisterC = floatValidationValue;
             resourceValidationStatus = ValidateDataIntegrityA0(floatValidationValue,&StackValidationBuffer);
@@ -32245,7 +32245,7 @@ SystemDataValidationCheckpoint:
         if ((float)(systemDataBuffer4 / 0x30) != 0.0) {
           stackInputParameterC = &SystemValidationDataTableA8;
           operationResult = SystemOperationResult;
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           StackFloatRegisterB = (float)(systemDataBuffer4 / 0x30);
           resourceValidationStatus = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
           OperationResultTertiary = accumulatedFloatValue;
@@ -32255,7 +32255,7 @@ SystemDataValidationCheckpoint:
           stackInputParameterC = &DataIntegrityValidationErrorB;
           operationResult = SystemOperationResult;
           FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           resourceValidationStatus = ValidateDataIntegrityA0(OperationResultTertiary,&StackValidationBuffer);
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
         }
@@ -32263,7 +32263,7 @@ SystemDataValidationCheckpoint:
         if (resourceValidationStatus != 2) {
           stackInputParameterC = &DataIntegrityValidationErrorC;
           operationResult = SystemOperationResult;
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           resourceValidationStatus = ValidateDataIntegrityA0(processedFloatValue,&StackValidationBuffer);
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
         }
@@ -32272,7 +32272,7 @@ SystemDataValidationCheckpoint:
         if (resourceValidationStatus == 4) {
           stackInputParameterC = &DataIntegrityValidationErrorD;
           operationResult = SystemOperationResult;
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           StackFloatRegisterB = dataPointerD;
           resourceValidationStatus = ValidateDataIntegrityA0(transformedFloatValue,&stackInputParameterC);
           OperationResultTertiary = secondaryFloatResultA;
@@ -32281,7 +32281,7 @@ SystemDataValidationCheckpoint:
         if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 3 & 1) != 0) {
           StackValidationParameterA = &DataIntegrityValidationErrorE;
           operationResult = SystemOperationResult;
-          ValidationDataBuffer = dataPointerD;
+          ValidationDataBuffer = inputFloatValue;
           ValidateDataIntegrityA0(OperationResultTertiary,&StackValidationBuffer);
         }
       }
@@ -32408,7 +32408,7 @@ void ProcessFloatingPointData(float inputValue)
     if ((float)(validationStatus / 0x30) != 0.0) {
       stackInputParameterC = &SystemValidationDataTableA8;
       operationResult = SystemOperationResult;
-      ValidationDataBuffer = dataPointerD;
+      ValidationDataBuffer = inputFloatValue;
       StackFloatRegisterB = (float)(validationStatus / 0x30);
       operationResult = ValidateDataIntegrityA0(calculatedFloatValue,&StackValidationBuffer);
       dataFlags = normalizedFloatValue;
@@ -32418,7 +32418,7 @@ void ProcessFloatingPointData(float inputValue)
       stackInputParameterC = &DataIntegrityValidationErrorB;
       operationResult = SystemOperationResult;
       FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3Struct.BitField3,1);
-      ValidationDataBuffer = dataPointerD;
+      ValidationDataBuffer = inputFloatValue;
       operationResult = ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
@@ -32426,7 +32426,7 @@ void ProcessFloatingPointData(float inputValue)
     if (operationResult != 2) {
       stackInputParameterC = &DataIntegrityValidationErrorC;
       operationResult = SystemOperationResult;
-      ValidationDataBuffer = dataPointerD;
+      ValidationDataBuffer = inputFloatValue;
       operationResult = ValidateDataIntegrityA0(interpolatedFloatValue,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
@@ -32435,7 +32435,7 @@ void ProcessFloatingPointData(float inputValue)
     if (operationResult == 4) {
       stackInputParameterC = &DataIntegrityValidationErrorD;
       operationResult = SystemOperationResult;
-      ValidationDataBuffer = dataPointerD;
+      ValidationDataBuffer = inputFloatValue;
       StackFloatRegisterB = dataPointerD;
       operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
       dataFlags = accumulatedFloatValue;
@@ -32444,7 +32444,7 @@ void ProcessFloatingPointData(float inputValue)
     if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 3 & 1) != 0) {
       StackValidationParameterA = &DataIntegrityValidationErrorE;
       operationResult = SystemOperationResult;
-      ValidationDataBuffer = dataPointerD;
+      ValidationDataBuffer = inputFloatValue;
       ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
     }
   }

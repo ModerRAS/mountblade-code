@@ -33604,7 +33604,7 @@ uint64_t GetUIDefaultStatusFlag(void)
 {
   if (g_uiSystemInitialized == 0) {
     ProcessUIEventQueue();
-    func_0x00018069c2d0();
+    InitializeUIComponentState();
     g_uiSystemInitialized = 1;
   }
   return;
@@ -33934,7 +33934,7 @@ ulonglong UISystemInitializeComponent(longlong uiContext,UIHandle dataSource,UIH
       }
     }
     else {
-      sourceDataInt = func_0x00018066ecc0(pstackUInt10);
+      sourceDataInt = ProcessUIComponentDataValidation(pstackUInt10);
       if (sourceDataInt == 0) {
         PerformUIMemoryCleanup();
         if (resultPointer[0x2ea] != 0) {
