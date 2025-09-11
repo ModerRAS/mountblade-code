@@ -1009,11 +1009,11 @@ typedef enum {
 #define SetUIData SetUIDataValue                     // 设置UI数据 - 设置UI数据到指定位置
 
 // UI系统额外函数美化定义
-#define FUN_18089e811 UIEmptyOperationFunction                      // UI空操作函数 - 执行空操作的函数
+#define UIEmptyOperationFunction FUN_18089e811                      // UI空操作函数 - 执行空操作的函数
 #define ValidateUIDataSignatureAndFormat ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式 - 验证UI数据的签名和格式
-#define FUN_1807395df CleanupUIAnimationStateAndExecuteRenderTask    // 清理UI动画状态并执行渲染任务 - 在动画状态非零时释放UI内存资源，然后执行渲染任务
+#define CleanupUIAnimationStateAndExecuteRenderTask FUN_1807395df    // 清理UI动画状态并执行渲染任务 - 在动画状态非零时释放UI内存资源，然后执行渲染任务
 #define ValidateUIContextDataAndIntegrity ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
-#define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
+#define ProcessUIDataValidationAndVerification FUN_1808ad130       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
 #define FUN_1808a2740 ProcessUIComponentDataValidation              // 处理UI组件数据验证 - 验证UI组件数据的完整性和安全性
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
 #define FUN_180759220 ProcessUIComponentRegistration              // UI组件注册处理函数 - 处理UI组件的注册和配置
