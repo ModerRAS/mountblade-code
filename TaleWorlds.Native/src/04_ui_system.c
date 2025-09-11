@@ -153023,7 +153023,7 @@ void FUN_180753170(longlong *uiContext)
   if ((operationResult == 0) &&
      (operationResult = (**(code **)(*(longlong *)uiContext[4] + 0x120))
                         ((longlong *)uiContext[4],0xfffffffd,astackLong30), operationResult == 0)) {
-    FUN_18075ec10(uStackX_10,aiStackX_8,0,1);
+    ProcessUIEvent(uStackX_10,aiStackX_8,0,1);
     if (0 < aiStackX_8[0]) {
       do {
         FUN_18075ef40(uStackX_10,uiValidationResult,&lStackX_20,&bufferValidation,0,1);
