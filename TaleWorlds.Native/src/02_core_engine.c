@@ -7360,7 +7360,14 @@ const void* const SystemMemoryBufferSecondary = (void*)0x180a0ffb0;
 const void* const SystemMemoryBufferTertiary = (void*)0x180a0ffc0;
 const void* const SystemMemoryBufferQuaternary = (void*)0x180a0fff8;
 
-// 系统状态数据常量 - 用于替换UNK_180059b80等变量
+#define SystemMemoryPoolOperationCompleteLabel LAB_18008f669  // 系统内存池操作完成标签
+#define SystemDataValidationLabel LAB_18008f88c                // 系统数据验证标签
+#define SystemResourceReleaseLabel LAB_18008f8a4              // 系统资源释放标签
+#define SystemStateResetLabel LAB_18008f5c4                   // 系统状态重置标签
+#define StringProcessingCompleteLabel LAB_18009abab              // 字符串处理完成标签
+#define StringComparisonResultLabel LAB_18009abec               // 字符串比较结果标签
+#define SystemEventHandlerCompletionLabel LAB_18009ac35          // 系统事件处理完成标签
+#define StringProcessingStatusLabel LAB_18009abe9                 // 字符串处理状态标签
 const void* const SystemStatusDataTemplate = (void*)0x180059b80;
 
 // 系统配置数据常量 - 用于替换UNK_180a0b680等变量
@@ -73373,7 +73380,7 @@ SystemStateResetLabel:
           }
         }
         *MemoryPoolSizePointer = (long long)MemoryRangeBoundary;
-        goto LAB_18008f669;
+        goto SystemMemoryPoolOperationCompleteLabel;
       }
       *(uint8_t *)(MemoryRangeBoundary + 3) = 1;
       *(uint8_t *)(MemoryPoolSizePointer + 3) = 1;
@@ -81115,7 +81122,7 @@ MemoryValidationComplete:
         SecondaryProcessingStatusFlag = OperationBufferSize;
         CurrentBytePointer2 = CharacterDataBufferPointer;
         if (StringProcessingStatus == NULL) {
-LAB_18009abe9:
+StringProcessingStatusLabel:
           StringProcessingStatus = OperationBufferSize;
         }
         else {
@@ -81145,7 +81152,7 @@ LAB_18009abe9:
               }
               CharacterStatusBufferCurrent = (void *)*StringProcessingStatus;
             }
-LAB_18009abab:
+StringProcessingCompleteLabel:
             StringProcessingStatus = StringProcessingStatus;
             if (HighByte) {
               StringProcessingStatus = SecondaryProcessingStatusFlag;
@@ -81165,14 +81172,14 @@ LAB_18009abab:
                 if (StringComparisonByte != ProcessedCharacter) break;
                 CurrentBytePointer0 = CurrentBytePointer0 + 1;
               } while (ProcessedCharacter != 0);
-              if ((int)(StringComparisonByte - ProcessedCharacter) < 1) goto LAB_18009abec;
+              if ((int)(StringComparisonByte - ProcessedCharacter) < 1) goto StringComparisonResultLabel;
             }
             goto LAB_18009abe9;
           }
         }
-LAB_18009abec:
+StringComparisonResultLabel:
         if (AdditionalParameter1 == -1) {
-LAB_18009ac35:
+SystemEventHandlerCompletionLabel:
           ContextHandleTablePointer[0xd] = PerformanceCounterPointer;
           ProcessSystemEventHandler(ContextHandle,OperationBufferSize,&StackTempPointer,ContextHandleTablePointer,AdditionalParameter1);
           ProcessSystemContextAllocation(MemoryBlockIndex + 9,&TemporaryBuffer);
@@ -81190,7 +81197,7 @@ LAB_18009ac35:
                 StringProcessingStatus = (void *)StringProcessingStatus[1];
               }
             } while (StringProcessingStatus != NULL);
-            if ((SecondaryProcessingStatusFlag != StringProcessingStatus + 8) && (*(int *)(SecondaryProcessingStatusFlag + 4) <= AdditionalParameter1)) goto LAB_18009ac35;
+            if ((SecondaryProcessingStatusFlag != StringProcessingStatus + 8) && (*(int *)(SecondaryProcessingStatusFlag + 4) <= AdditionalParameter1)) goto SystemEventHandlerCompletionLabel;
           }
           CoreEngineProcessSystemEventAndCleanupResources(ContextHandleTablePointer,CurrentBytePointer2);
         }
@@ -237317,7 +237324,7 @@ uint64_t *ConfigureSystemPhysicsSystemFunctionPointers(uint64_t *ContextHandle,u
  * @return uint32_t* 返回初始化后的UTF-8缓冲区指针
  * 
  * @note 此函数设置缓冲区的特定值：0x7f7fffff 是最大的32位浮点数
- * @note 调用 FUN_1800b9f60(0) 进行额外的初始化操作
+ * @note 调用 InitializeSystemConfiguration(0) 进行额外的初始化操作
  */
 uint32_t *InitializeUtf8Buffer(uint64_t ContextHandle,uint32_t *ContextHandleSize) {
   *ContextHandleSize = 0;
@@ -239677,7 +239684,24 @@ LAB_1801974aa:
 
 
 
-977e0(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointervoid FUN_1801977e0(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointer
+// 函数: void FUN_1801977e0(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointer)
+/**
+ * @brief 处理系统数据编码和内存管理
+ * 
+ * 该函数负责处理系统数据编码和内存管理操作，主要功能包括：
+ * - 处理上下文句柄和操作缓冲区
+ * - 管理UTF-8源数据指针
+ * - 执行系统内存分配和释放
+ * - 验证数据完整性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_1801977e0
+ */
+#define ProcessSystemDataEncodingAndMemoryManagement FUN_1801977e0
+void ProcessSystemDataEncodingAndMemoryManagement(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointer)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
@@ -239706,7 +239730,7 @@ LAB_1801974aa:
         } while (MemoryPoolBlockSize < ValidationResult);
       }
       if (((*(long long *)(BufferStatus + 0x260) != 0) &&
-          (FUN_1802fa820(*(long long *)(BufferStatus + 0x260),Utf16Char,BufferStatus + 0x70),
+          (ProcessSystemDataCleanup(*(long long *)(BufferStatus + 0x260),Utf16Char,BufferStatus + 0x70),
           (*(byte *)(*(long long *)(BufferStatus + 0x260) + 0xa8) >> 2 & 1) != 0)) &&
          (*(short *)(BufferStatus + 0x2b0) = *(short *)(BufferStatus + 0x2b0) + 1,
          *(long long *)(BufferStatus + 0x168) != 0)) {
@@ -239812,7 +239836,7 @@ void ExecuteSystemCharacterProcessingAndEncodingConversion(void)
         } while (MemoryPoolBlockSize < ValidationResult);
       }
       if (*(long long *)(BufferStatus + 0x260) != 0) {
-        FUN_1802fa820(*(long long *)(BufferStatus + 0x260),Utf16Char,BufferStatus + 0x70);
+        ProcessSystemDataCleanup(*(long long *)(BufferStatus + 0x260),Utf16Char,BufferStatus + 0x70);
         if ((*(byte *)(*(long long *)(BufferStatus + 0x260) + 0xa8) >> 2 & 1) != 0) {
           *(short *)(BufferStatus + 0x2b0) = *(short *)(BufferStatus + 0x2b0) + 1;
           if (*(long long *)(BufferStatus + 0x168) != 0) {
