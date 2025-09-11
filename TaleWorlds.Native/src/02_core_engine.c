@@ -240537,7 +240537,7 @@ LAB_180198827:
   *(uint32_t *)(ContextHandle + 0x3868) = 0;
   *(uint32_t *)(ContextHandle + 0x386c) = 0x7f7fffff;
   ProcessSystemMathOperation(ContextHandle);
-  FUN_1801983b0(ContextHandle,ContextHandle + 0x3830);
+  ProcessSystemDataCalculation(ContextHandle,ContextHandle + 0x3830);
   *(int *)(ContextHandle + 0x28b4) = *(int *)(ContextHandle + 0x28b4) + 1;
   *(uint32_t *)(ContextHandle + 0x3860) = 0;
   *(uint32_t *)(ContextHandle + 0x3864) = 0;
