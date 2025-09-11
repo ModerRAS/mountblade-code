@@ -10081,11 +10081,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExecuteDataProcessing ExecuteSystemDataProcessingOperation
 #define ValidateSystemMemoryAccess ValidateSystemMemoryAccessPermissions
 #define CheckOperationStatus VerifySystemOperationStatusCode
-#define FinalizeDataProcessing FUN_1808de0e0
-#define ValidateDataSecurity FUN_1808a6150
+#define FinalizeDataProcessing CompleteSystemDataProcessingOperation
+#define ValidateDataSecurity VerifySystemDataSecurityParameters
 #define AllocateMemoryWithContext AllocateMemoryWithContextualData    // 带上下文数据的内存分配函数
-#define GetContextData FUN_1808afc70
-#define ExecuteSecurityValidation FUN_1808ddc20
+#define GetContextData RetrieveSystemContextInformation
+#define ExecuteSecurityValidation PerformSystemSecurityValidationCheck
 
 // 原始函数名：FUN_1808a5d60 - 内存分配验证函数
 // 功能：验证内存分配状态和访问权限
