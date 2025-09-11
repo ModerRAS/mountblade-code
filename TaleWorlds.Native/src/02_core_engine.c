@@ -173671,6 +173671,9 @@ void ExecuteUtf8SystemInitialization(void)
 
 
 
+// 原始函数名：FUN_18013bea0 - 处理UTF-8缓冲区数据扩展
+#define ProcessUtf8BufferDataEx FUN_18013bea0
+
 /**
  * @brief 处理UTF-8缓冲区数据扩展
  * 
@@ -173679,43 +173682,45 @@ void ExecuteUtf8SystemInitialization(void)
  * 
  * @param ContextHandle 字符代码，包含字符的编码信息和缓冲区数据
  * @return void 无返回值
+ * 
+ * @note 该函数实现了复杂的UTF-8字符处理逻辑，包括内存管理、编码转换和状态验证
  */
-void ProcessUtf8BufferDataEx(long long ContextHandle
+void ProcessUtf8BufferDataEx(long long ContextHandle)
 {
-  char *ValidationStatus;
+  char *Utf8ValidationStatus;
   void *SystemContext;
   uint32_t *SystemEventTemplatePointer;
-  uint64_t MemoryAddressMaskPointer;
-  bool shouldReturnSource;
+  uint64_t MemoryAddressMask;
+  bool ShouldReturnSourceData;
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
-  bool BooleanValidationStatus8;
+  bool SystemValidationStatus;
   char SystemValidationChar;
-  int ArrayIndex;
-  int MatchCounter;
+  int CharacterArrayIndex;
+  int CharacterMatchCounter;
   long long SystemContextValue;
-  long long OperationResult13;
-  int IntegerValue4;
+  long long ValidationOperationResult;
+  int IntegerCalculationResult;
   long long CharacterTablePointer;
-  char *ValidationStatus6;
+  char *SecondaryValidationStatus;
   uint8_t UnicodeContextHandle;
-  uint8_t aSystemInitializationFlags [32];
+  uint8_t SystemInitializationFlags [32];
   uint8_t SystemStateFlag;
-  uint8_t SystemValue2d0;
-  uint64_t LoopCounter;
+  uint8_t SystemOperationByte;
+  uint64_t ProcessingLoopCounter;
   uint64_t MemoryBlockCount;
   uint32_t SystemValue2b8;
-  uint32_t uStack_2b4;
-  long long lStack_2b0;
+  uint32_t StackValue2b4;
+  long long StackValue2b0;
   uint64_t SystemValue2a8;
   uint64_t SystemStackOffset2A0;
-  uint32_t uStack_298;
-  uint32_t uStack_294;
-  uint32_t uStack_290;
-  uint32_t StackValidationFlagc;
-  uint64_t StackValidationFlag278;
-  char acStack_268 [168];
-  char acStack_1c0 [376];
+  uint32_t StackValue298;
+  uint32_t StackValue294;
+  uint32_t StackValue290;
+  uint32_t StackValidationFlag;
+  uint64_t SystemStackValidationMask;
+  char SystemStackBuffer268 [168];
+  char SystemStackBuffer1c0 [376];
   unsigned long long SystemStackFlag;
   
   CharacterTablePointer = SystemConfigurationHandle;
