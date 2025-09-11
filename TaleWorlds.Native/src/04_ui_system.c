@@ -125555,7 +125555,7 @@ void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *
  
 
  #define ExtractUIDataFromContextWithResult FUN_18073a85d
-void FUN_18073a85d(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize,
+void ExtractUIDataFromContextWithResult(UIHandle uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong param_7)
 
 {
