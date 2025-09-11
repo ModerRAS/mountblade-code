@@ -20007,13 +20007,13 @@ void InitializeNetworkEventHandlerNode(void)
 
 
 
- void CoreEngineInitializeTransformSystem(void/**
+ /**
  * @brief 初始化系统连接管理器
  * 
  * 该函数负责初始化系统连接管理器，设置系统间的连接模板和数据结构。
  * 通过内存分配和节点设置来建立系统间的通信通道。
  */
-void SystemConnectionManagerInitialize(void
+void SystemConnectionManagerInitialize(void)
 {
   char ValidationStatus;
   void *SystemContext;
@@ -20062,13 +20062,13 @@ void SystemConnectionManagerInitialize(void
 
 
 
- void CoreEngineInitializeCameraSystem(void/**
+ /**
  * @brief 初始化系统配置处理器
  * 
  * 该函数负责初始化系统配置处理器，设置配置模板和处理器回调。
  * 通过字符串复制和回调设置来建立配置处理机制。
  */
-void SystemConfigurationHandlerInitialize(void
+void SystemConfigurationHandlerInitialize(void)
 {
   uint64_t ConfigurationParameter;
   void *SystemConfigurationStackPointer;
@@ -20088,7 +20088,7 @@ void SystemConfigurationHandlerInitialize(void
 
 
 
- int CoreEngineInitializeLightingSystem(void/**
+ /**
  * @brief 初始化系统数据模板
  * 
  * 该函数负责初始化系统数据模板，设置数据模板和相关指针。
@@ -20102,13 +20102,13 @@ int SystemDataTemplateInitialize(void)
   SystemDataTemplatePointer = &SystemDataTemplateAudio;
   SystemDataSecondaryTemplatePointer = &SystemDataTemplateSession;
 
- void CoreEngineInitializeMaterialSystem(void/**
+ /**
  * @brief 初始化数据缓冲池
  * 
  * 该函数负责初始化数据缓冲池，设置缓冲池配置和处理器回调。
  * 通过字符串复制和回调设置来建立数据缓冲机制。
  */
-void CharacterStatusBufferPoolInitialize(void
+void CharacterStatusBufferPoolInitialize(void)
 {
   uint64_t BufferParameter;
   void *SystemConfigurationStackPointer;
@@ -20129,13 +20129,13 @@ void CharacterStatusBufferPoolInitialize(void
 
 
 
- void CoreEngineInitializeTextureSystem(void/**
+ /**
  * @brief 初始化数据缓冲池C
  * 
  * 该函数负责初始化数据缓冲池C，设置缓冲池配置和处理器回调。
  * 通过字符串复制和回调设置来建立数据缓冲机制。
  */
-void CharacterStatusBufferPoolCInitialize(void
+void CharacterStatusBufferPoolCInitialize(void)
 {
   uint64_t SystemParameter;
   void *SystemConfigurationStackPointer;
@@ -20155,13 +20155,13 @@ void CharacterStatusBufferPoolCInitialize(void
 
 
 
- void CoreEngineInitializeShaderSystem(void/**
+ /**
  * @brief 初始化网络状态处理器
  * 
  * 该函数负责初始化网络状态处理器，设置网络状态监控和回调机制。
  * 通过内存分配和节点设置来建立网络状态处理系统。
  */
-void NetworkStatusProcessorInitialize(void
+void NetworkStatusProcessorInitialize(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -236684,7 +236684,7 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
  * 该函数负责完成系统上下文的操作，包括缓冲区分配状态处理
  * 和系统事件处理。
  */
-void FUN_180194350(long long *ContextHandle
+void FUN_180194350(long long *ContextHandle)
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -236775,7 +236775,7 @@ void FUN_180194370(void
  * 该函数负责配置系统上下文句柄，包括缓冲区分配状态处理
  * 和系统事件处理。
  */
-void FUN_1801944b0(long long *ContextHandle
+void FUN_1801944b0(long long *ContextHandle)
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -236807,7 +236807,7 @@ void FUN_1801944b0(long long *ContextHandle
  * 该函数负责处理系统有符号值，包括字符状态缓冲区、
  * 内存块索引和内存范围边界等操作。
  */
-void FUN_180194530(long long *ContextHandle, long long *ContextHandleSize
+void FUN_180194530(long long *ContextHandle, long long *ContextHandleSize)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
@@ -237007,7 +237007,7 @@ void FUN_1801946e0(uint64_t *ContextHandle)
  * 
  * 该函数负责处理系统上下文句柄的数据操作。
  */
-void FUN_1801948b0(long long *ContextHandle
+void FUN_1801948b0(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long BufferStatus;

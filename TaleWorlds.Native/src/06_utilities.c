@@ -12,6 +12,8 @@
  * 
  * 美化历史：
  * - 2025-09-11: 美化了异常清理函数名，将地址后缀替换为版本号标识
+ * - 2025-09-11: 清理了重复的地址常量定义，优化了常量组织结构
+ * - 2025-09-11: 为系统资源清理函数添加了详细的文档注释
  * - 之前已经完成了其他函数和变量的语义化命名
  */
 
@@ -3421,7 +3423,7 @@
 #define DataBufferOffsetF8 0xf8                              // 数据缓冲区偏移量f8
 
 // 系统计算相关常量
-#define SystemCalculationBaseAddress 0x180c919f0             // 系统计算基地址
+// 注意：SystemCalculationBaseAddress 已在文件前面定义
 
 // 系统值计算相关常量
 #define SystemCalculationValue18 0x18                       // 系统计算值18
@@ -3890,10 +3892,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DATA_STRUCTURE_EXCEPTION_HANDLER_OFFSET 0x10  // 数据结构异常处理器偏移量
 
 // 系统内存地址常量定义
-#define FloatValidationDataAddress 0x180985054          // 浮点数验证数据地址
-#define SystemMutexObjectAddress 0x180c91970            // 系统互斥对象地址
-#define ExceptionCriticalSectionAddress 0x180c82210      // 异常临界区地址
-#define SystemMutexObjectSecondaryAddress 0x180c91f70   // 系统互斥对象辅助地址
+// 注意：以下地址常量已在文件前面定义
+// FloatValidationDataAddress, SystemMutexObjectAddress, ExceptionCriticalSectionAddress, SystemMutexObjectSecondaryAddress
 
 // 系统数据偏移量常量定义
 #define systemContextDataOffset 0x18                    // 系统上下文数据偏移量
@@ -4500,7 +4500,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 线程本地存储相关常量
 #define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBaseAddress 0x180c4f450
 
 // 异常处理上下文状态常量
 #define ExceptionHandlerContextStateOffset 0x58                    // 异常处理上下文状态偏移量
@@ -4552,12 +4551,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CallbackExecutionFunctionAddress 0x0001808fd024
 
 // 系统对象地址常量
-#define SystemMutexObjectSecondaryAddress 0x180c91f70
-#define SystemExceptionInitializerAddressA 0x180d49e70
-#define SystemExceptionInitializerAddressB 0x180d49f10
-#define SystemMutexCleanupAddressA 0x180c96690
-#define SystemMutexCleanupAddressB 0x180c966f0
-#define SystemMutexCleanupAddressC 0x180c96740
+// 注意：以下地址常量已在文件前面定义
+// SystemMutexObjectSecondaryAddress, SystemExceptionInitializerAddressA, SystemExceptionInitializerAddressB
+// SystemMutexCleanupAddressA, SystemMutexCleanupAddressB, SystemMutexCleanupAddressC
 
 
 // Goto 标签宏定义 - 用于美化代码
@@ -10511,9 +10507,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：控制数据处理流程和操作
 #define ControlDataProcessingFlow FUN_18088c74
 
-// 原始函数名：FUN_18084027 - 数据处理配置函数
-// 功能：配置数据处理参数和选项
-#define ConfigureDataProcessingOptions FUN_18084027
+#define ConfigureDataProcessingOptions FUN_180840270
 
 // 原始函数名：FUN_18089752 - 数据处理优化函数
 // 功能：优化数据处理性能和效率
@@ -142475,3 +142469,21 @@ int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlag
         return ResourceCleanupFailure;
     }
 }
+
+/**
+ * @brief 系统资源清理和优化函数
+ * 
+ * 该函数负责清理和优化系统资源，包括内存和缓存的清理操作。
+ * 
+ * @param ResourceHandle 资源句柄指针，指向需要清理的资源
+ * @param CleanupFlags 清理标志位，指定需要执行的清理操作类型
+ * @param OptimizationLevel 优化级别，控制优化操作的强度
+ * 
+ * @return int 返回操作状态码：
+ *         - ResourceCleanupSuccess: 清理成功
+ *         - ResourceCleanupFailure: 清理失败
+ *         - InvalidResourceHandle: 无效的资源句柄
+ * 
+ * @note 这是一个简化的实现，用于演示资源清理和优化的基本流程
+ * @note 实际的清理操作会调用相应的内部函数来执行具体的清理任务
+ */
