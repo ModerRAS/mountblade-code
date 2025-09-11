@@ -5852,7 +5852,7 @@ static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *NetworkConne
  * @param NetworkConnectionContext 网络连接上下文指针
  * @return uint32_t 验证结果
  */
-static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConnectionContext)
+static uint32_t PerformSecurityValidation(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：返回成功状态
     return NetworkValidationSuccess;
@@ -5890,6 +5890,6 @@ static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConne
 static uint64_t GetCurrentSystemTime(void)
 {
     // 简化实现：返回递增时间戳
-    static uint64_t systemTimeCounter = 1000000;
-    return systemTimeCounter++;
+    static uint64_t timestampCounter = 1000000;
+    return timestampCounter++;
 }
