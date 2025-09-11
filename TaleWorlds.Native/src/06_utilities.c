@@ -15101,6 +15101,14 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackDataBuffer74 TemporaryDataBufferI    // 栈数据缓冲区74 - 用于ValidateMemoryStatus函数
 #define StackDataBuffer70 TemporaryDataBufferJ    // 栈数据缓冲区70 - 用于ValidateMemoryStatus函数
 
+// 系统栈数据管理变量定义
+#define SystemStackDataPointer systemStackDataPointer    // 系统栈数据指针
+#define SystemStackDataBuffer systemStackDataBuffer      // 系统栈数据缓冲区
+#define DataFlags dataFlags                              // 数据标志
+#define ResourceValidationStatus resourceValidationStatus // 资源验证状态
+#define StatusCounter statusCounter                     // 状态计数器
+#define LoopCounter ploopCounter                        // 循环计数器指针
+
 // 系统数据管理变量语义化定义
 #define TemporaryMemoryAllocationBuffer TemporaryMemoryAllocationBuffer    // 临时内存分配缓冲区
 #define SystemContextBuffer50 SystemValidationContextBuffer    // 系统验证上下文缓冲区
@@ -39448,12 +39456,12 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   DataBuffer StackDataBuffer70;              // 栈数据缓冲区70
   
   // 系统栈数据管理变量
-  DataBuffer *systemStackDataPointer;        // 系统栈数据指针
-  DataBuffer systemStackDataBuffer;          // 系统栈数据缓冲区
-  uint dataFlags;                            // 数据标志
-  int resourceValidationStatus;               // 资源验证状态
-  int statusCounter;                         // 状态计数器
-  DataBuffer *ploopCounter;                  // 循环计数器指针
+  DataBuffer *SystemStackDataPointer;        // 系统栈数据指针
+  DataBuffer SystemStackDataBuffer;          // 系统栈数据缓冲区
+  uint DataFlags;                            // 数据标志
+  int ResourceValidationStatus;               // 资源验证状态
+  int StatusCounter;                         // 状态计数器
+  DataBuffer *LoopCounter;                  // 循环计数器指针
   
   validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,SecurityValidationCodeLMPO);
   if ((int)validationResult != 0) {
