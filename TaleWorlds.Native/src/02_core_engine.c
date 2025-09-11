@@ -30281,7 +30281,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   long long SecondaryCalculationResult;
   uint32_t *stringProcessingStatusFlag;
   void *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long ContextHandle;
   unsigned long long SystemStatusCode;
   long long TertiaryCalculationResult;
@@ -33120,7 +33120,7 @@ uint64_t CoreEngineProcessModuleConfiguration(uint64_t ContextHandle,uint64_t Op
  */
 void CoreEngineProcessFloatingPointOperations(long long ContextHandle,float OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   float FilterCoeffientA;
   float CalculatedFilterValue;
   unsigned long long MemoryOffsetValue;
@@ -40721,7 +40721,7 @@ void InitializeSystemMemoryManager(uint64_t *MemoryManagerPointer
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   bool StringComparisonByte2;
   
@@ -40881,7 +40881,7 @@ void ProcessMemoryReferenceCountAndBlockManagement(uint64_t *ContextHandle
   long long MemoryPoolBlockSize;
   long long SecondaryLoopCounter;
   long long SystemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   bool IsMemoryBlockProcessed;
   
   *ContextHandle = &SecondaryDataStructureTemplate;
@@ -45963,7 +45963,7 @@ void SynchronizeDataStructures(long long ContextHandle,long long OperationBuffer
  */
 uint64_t ProcessDataValidation(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   char SystemCheckResult;
   int MemoryComparisonResult;
   uint64_t MemoryAllocationMaskPointer;
@@ -46307,7 +46307,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *ContextHandle,uint64_t
   unsigned long long SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   unsigned long long SystemStatusCode;
   unsigned long long ValidationResult;
@@ -47074,7 +47074,7 @@ void ProcessSystemMemoryReferenceManagement(uint64_t *ContextHandle
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   bool BooleanVariable11;
   
   *ContextHandle = &SystemBufferIndexllocationData;
@@ -47381,7 +47381,7 @@ MemoryComparisonComplete: // 原始标签：LAB_180069c2b，MemoryComparisonComp
  */
 unsigned long long ProcessMemoryBlockDataCopy(uint64_t ContextHandle, uint64_t *SourceProcessingStatusFlag
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long *BufferAllocationState;
   uint64_t AllocatedMemorySize;
   long long SystemDataRegistry;
@@ -70799,7 +70799,7 @@ void ValidateSystemDataIntegrity(uint64_t ContextHandle,long long OperationBuffe
   long long MemoryPoolBlockSize;
   uint ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   uint8_t auStack_328 [32];
   void *StackCharacterStatusBuffer308;
@@ -76437,7 +76437,7 @@ void CoreEngineUpdateSystemStatus(void
   char CharacterStatus2;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint64_t ProcessedCharacter;
   uint8_t SystemCleanupFlagF [32];
   uint8_t MemoryOffsetValue;
@@ -78593,7 +78593,7 @@ void ProcessSystemMemoryAllocation(long long targetDataStructure
   uint SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint ProcessedCharacter;
   
   MemoryBlockIndex = *(long long *)(CoreEngineSystemContext + 8);
@@ -80394,7 +80394,7 @@ void CoreEngineProcessDataBuffer(uint64_t ContextHandle,long long OperationBuffe
   byte *ProcessingStatusFlag;
   uint64_t *TertiaryCharacterStatusBuffer;
   uint SystemPrimaryReturnCode;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int SystemStatusValue;
   long long LoopCounter;
   uint64_t *PrimaryProcessingStatusFlag;
@@ -80792,7 +80792,7 @@ bool ValidateSystemDataStructureIntegrity(long long *ContextHandle, long long Op
  */
 void InitializeSystemDataStructureAndCoreEngineParameters(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,char Utf16EndPointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   uint64_t *MemoryAllocationMaskPointer;
@@ -83322,7 +83322,7 @@ void ProcessSystemConfigurationHandle(uint32_t *DataConfigurationPointer
   unsigned long long LoopCounter;
   unsigned long long ProcessingStatusFlag;
   int *ReferenceCountPointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint16_t *CharacterStatusBufferPointer;
   
   SystemMemoryBase = SystemConfigurationHandle;
@@ -88402,7 +88402,7 @@ dcd0(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8Source
   unsigned long long SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   long long *pStringOffset;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   bool BooleanVariable11;
   
   MemoryPoolIndex = (long long)OperationBufferSize - (long long)ContextHandle >> 3;
@@ -88547,7 +88547,7 @@ dcde(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8Source
   unsigned long long SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   long long *pStringOffset;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   bool BooleanVariable11;
   
   MemoryPoolIndex = (long long)OperationBufferSize - (long long)ContextHandle >> 3;
@@ -90044,7 +90044,7 @@ void Process64BitDataStructureByteOperation(uint64_t *ContextHandle,uint8_t Oper
  */
 void Process64BitDataStructureByteOperation(uint64_t *ContextHandle,uint8_t OperationBufferSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   unsigned long long UnicodeCodePoint;
   code *pOperationStatus;
@@ -90096,7 +90096,7 @@ f069(void/**
  */
 void SystemCheckAndMemoryAllocation(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   code *SystemValidationFunction;
   uint64_t UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -90136,7 +90136,7 @@ void SystemCheckAndMemoryAllocation(void
  */
 void InitializeSystemDataStreamProcessing(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint64_t MemoryPoolIndex;
   unsigned long long UnicodeCodePoint;
   uint64_t *SystemContext;
@@ -90665,7 +90665,7 @@ uint64_t * CopySystemDataStructureException(uint64_t *ContextHandle,long long Op
  */
 long long * ProcessSystemDataStreamEncodingAndMemoryAllocation(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   uint8_t SystemRegisterFlagBuffer [8];
@@ -98191,7 +98191,7 @@ af70(uint64_t *ContextHandle,long long OperationBufferSize,long long Utf8SourceP
   uint8_t *StringProcessingStatus;
   void *NextNode;
   uint ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   uint64_t *CharacterStatusBuffer2;
   void *SystemStatusContext;
@@ -107559,7 +107559,7 @@ unsigned long long ProcessSystemMemoryAllocationAndFloatCalculation(uint64_t *Co
   byte BooleanByteFlag7;
   int ComputedResult;
   uint32_t ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   float *pSecondaryFloatValue;
   long long SystemContextValue;
   int IntegerValue;
@@ -111632,7 +111632,7 @@ void CoreEngineConvertUtf16ToUtf8(long long ContextHandle,int *ContextHandleSize
   int ProcessIterationCount;
   int *pComputedResult;
   int *ReferenceCountPointer9;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   bool StringComparisonByte2;
   bool ValidationByteFlag3;
@@ -121096,7 +121096,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *ContextHandle,char *Co
   uint SystemStatusCode;
   int SecondaryIntegerValue;
   uint32_t ResultCode;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long LoopCounter1;
   long long LoopCounter2;
   int IntegerValue9;
@@ -126114,7 +126114,7 @@ void ProcessStringOperationHandler(long long ContextHandle, unsigned long long *
 
 unsigned long long ProcessSystemContextWithLongParameters(long long ContextHandle,int OperationBufferSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint MemoryPoolIndex;
   
   Utf16Char = ValidateSystemAndInitialize();
@@ -131302,7 +131302,7 @@ LAB_180124eff:
   unsigned long long SystemChecksum;
   long long secondaryLoopCounter;
   unsigned long long *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   bool StringComparisonByte2;
   
@@ -132182,7 +132182,7 @@ LAB_180125a82:
   int ProcessIterationCount;
   uint ProcessingStatusFlag;
   byte *ByteBufferPointer9;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint64_t *pSystemRegisterFlag;
   void *TemporaryStackPointer;
   uint64_t **ppProcessingConfigurationFlag;
@@ -135668,7 +135668,7 @@ void ProcessSystemCharacterStatusBuffer(void)
   int ProcessIterationCount;
   int *pComputedResult;
   uint64_t ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint32_t *SystemCharacterStatusBuffer;
   unsigned long long *CharacterStatusBuffer2;
   int IntegerValue;
@@ -137317,7 +137317,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t ContextHandle,uint64_t OperationBu
   uint8_t SystemChecksum;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint32_t StackValidationFlag;
   uint32_t uStack_24;
   uint32_t ProcessingCounter;
@@ -137409,7 +137409,7 @@ unsigned long long ConvertSystemDataAndParameters(uint64_t ContextHandle,uint64_
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   int LoopCounter;
   int *ReferenceCountPointer3;
@@ -153450,7 +153450,7 @@ void InitializeSystemCharacterProcessor(void)
   int in_EAX;
   uint InputDataLength;
   long long FramePointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int *SystemDataNode;
   uint32_t RenderingContextHandle;
   
@@ -156761,7 +156761,7 @@ void InitializeSystemEx(void)
   uint16_t SystemChecksum;
   void *NextNode;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   unsigned long long SystemStatusCode;
   int IntegerValue;
@@ -157613,7 +157613,7 @@ LAB_180130808:
 
 void ProcessSystemContextAndUnicodeCodePoint(void)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -163959,7 +163959,7 @@ void CoreEngineProcessSystemBufferStatus(void)
   uint8_t *StringProcessingStatus;
   long long SystemContext;
   long long PatternMatchStatus;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemDataNode;
   char ValidationStatus1;
   uint RegisterR12ValueD;
@@ -164152,7 +164152,7 @@ void CoreEngineProcessContextHandle(float ContextHandle)
   unsigned long long NullPointerValue;
   float SystemCoreScaleX;
   float FloatingPointRegisterA;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   
   ValidationStatus3 = (char)RegisterR12ValueD;
   if (ContextHandle == FloatingPointRegisterA) {
@@ -173279,7 +173279,7 @@ void ProcessCharacterEncodingValidation(long long ContextHandle,uint32_t *Contex
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   byte IsSystemContextValidationResult;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint ProcessedCharacter;
   unsigned long long SystemStatusCode;
   
@@ -174111,7 +174111,7 @@ void ProcessMemoryAllocationMaskPointer(int ContextHandle)
   uint SystemChecksum;
   int *pComputedResult;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint64_t *SystemCharacterStatusBuffer;
   uint SystemStatusCode;
   int IntegerValue;
@@ -174813,7 +174813,7 @@ void ProcessContextHandleUtf8Encoding(long long ContextHandle)
   long long MemoryPoolBlockSize;
   int *pComputedResult;
   uint ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   uint64_t *SystemContext;
   int LoopCounter;
@@ -175031,7 +175031,7 @@ void ValidateCharacterEncodingSystemConfiguration(void)
   uint64_t *SystemContext;
   int IntegerValue9;
   unsigned long long FramePointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long PatternMatchStatus;
   long long SystemDataNode;
   byte IsMemoryBlockEqual;
@@ -175147,7 +175147,7 @@ void ProcessContextHandleUtf16Conversion(long long ContextHandle)
   uint64_t *SystemContext;
   int IntegerValue9;
   unsigned long long FramePointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long PatternMatchStatus;
   long long SystemDataNode;
   byte IsMemoryBlockEqual;
@@ -178093,7 +178093,7 @@ void ProcessCharacterEncodingAndStringFormatting(uint64_t ContextHandle)
   unsigned long long SystemChecksum;
   long long secondaryLoopCounter;
   int IntegerValue9;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long SystemContextValue;
   uint ValidationResult;
@@ -183013,7 +183013,7 @@ void ProcessContextHandleMemoryAllocationAndEncodingValidation(long long Context
   unsigned long long SystemChecksum;
   uint ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long SystemContextValue;
   uint64_t *pSystemRegisterFlag;
@@ -185020,7 +185020,7 @@ void ProcessUtf8ToUtf16ConversionEx(long long ContextHandle,uint64_t OperationBu
   unsigned long long SystemChecksum;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long FramePointer;
   long long PatternMatchStatus;
   float *in_R8;
@@ -187179,7 +187179,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
   long long MemoryPoolBlockSize;
   int ComputedResult;
   int IntegerValue9;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   uint64_t SystemStatusCode;
   long long OperationResult13;
@@ -189042,7 +189042,7 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *ContextHandle,unsigned lon
  */
 void ProcessContextHandleWithUtf8Conversion(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -194409,7 +194409,7 @@ void ProcessSystemDataFinalization(uint64_t ContextHandle,long long OperationBuf
   byte *ByteBufferPointer7;
   int ComputedResult;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   void *CoreEnginePointerBuffer78;
   long long CoreEngineSignedValue70;
   uint StackProcessingDataPointer;
@@ -194527,7 +194527,7 @@ void ProcessCharacterResourceRelease(uint64_t *ContextHandle)
   int *pValidationResult;
   long long *MemoryPoolSizePointer;
   uint ProcessingStatusFlag;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long *SystemRegisterPointerX10;
   long long *SystemContextRegister;
@@ -195842,7 +195842,7 @@ void ProcessSystemCharacterEncodingAdvanced(uint64_t ContextHandle,long long Ope
   long long *MemoryPoolSizePointer;
   long long *SystemDataTablePointer;
   long long *pStringOffset;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint ProcessedCharacter;
   long long *ContextHandle2;
   long long *ContextHandle3;
@@ -196827,7 +196827,7 @@ SetupSystemEnvironment(unsigned long long ContextHandle,uint64_t OperationBuffer
  */
 void ProcessContextHandleAndFreeMemory(long long ContextHandle)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   unsigned long long UnicodeCodePoint;
   
@@ -196917,7 +196917,7 @@ void ReleaseSystemResourcesAndCleanupMemory(long long ContextHandle)
 
 void ReleaseSystemMemoryAndCleanup(long long ContextHandle)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
@@ -199261,7 +199261,7 @@ void ValidateAndConvertContextHandleData(long long ContextHandle, uint64_t Opera
   long long systemLoopCounter;
   uint RegisterR13ValueD;
   uint64_t *CharacterLimit;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint64_t SystemUnsignedValue38;
   uint64_t StackProcessedData40;
   uint64_t StackProcessedData48;
@@ -201412,7 +201412,7 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
   void *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint8_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint8_t ProcessedCharacter;
   long long SystemContextValue;
   int OperationMode;
@@ -201838,7 +201838,7 @@ long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,
   long long MemoryBoundaryEnd;
   void *StringProcessingStatus;
   long long *StringOffsetPointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   unsigned long long SystemStatusCode;
   uint32_t ValidationResult;
@@ -202511,7 +202511,7 @@ ProcessUtf8ToUtf16AdvancedStringConverter(uint64_t ContextHandle,uint64_t *Conte
   void *StringProcessingBuffer;
   void *StringComparisonBuffer;
   int IntegerValue9;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long *ContextHandle2;
   unsigned long long ValidationResult;
@@ -204194,7 +204194,7 @@ ProcessUtf8ToUtf16CharacterEncodingExtended2(uint64_t ContextHandle, uint64_t *C
   unsigned long long SystemChecksum;
   long long secondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   void *ContextDataPointer;
   unsigned long long SystemPriorityLevel;
   uint FunctionAddress;
@@ -206719,7 +206719,7 @@ void ProcessUtf8ToUtf16ConversionAndBufferManagement(long long ContextHandle,uin
   unsigned long long SystemChecksum;
   int ComputedResult;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   uint16_t SystemRegisterFlagBuffer [4];
   uint64_t *SystemValidationPointer;
@@ -211865,7 +211865,7 @@ void ValidateSystemCharacterData(long long ContextHandle, uint64_t OperationBuff
   uint SystemChecksum;
   uint ProcessingStatusFlag;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   int *ReferenceCountPointer2;
   int IntegerValue;
@@ -212754,7 +212754,7 @@ LAB_1801736de:
  */
 void ProcessSystemCharacterStatusBufferControl(uint64_t ContextHandle)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   char RegisterValueBL;
   long long FramePointer;
   
@@ -212973,7 +212973,7 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
   int RegisterEBPValue;
   int IntegerValue9;
   long long *PatternIndex;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   long long RegisterR13Value;
   int *CharacterLimit;
@@ -213311,7 +213311,7 @@ void ProcessCharacterEncodingAndWindowManagement(long long ContextHandle)
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   uint ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int MatchCounter;
   uint64_t SystemStatusCode;
   int IntegerValue;
@@ -214555,7 +214555,7 @@ uint64_t * FinalizeCharacterDataProcessing(uint64_t *ContextHandle)
  */
 void ProcessContextHandleWithOperationBufferSize(long long ContextHandle,long long OperationBufferSize)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   code *pOperationStatus;
@@ -214921,7 +214921,7 @@ void GetSystemMemoryInfo(uint64_t *ContextHandle)
   long long *MemoryPoolSizePointer;            // 内存池块大小指针
   void *NextNode;                                   // 下一个节点
   uint64_t *TemporaryBuffer;                        // 临时缓冲区
-  unsigned long long Utf16Char;                     // UTF-16字符
+  unsigned long long Utf16Character;                     // UTF-16字符
   uint8_t SystemProcessFlagBuffer [32];                    // 系统标志缓冲区
   uint64_t *SystemEventDispatcher;                  // 系统事件调度器
   uint64_t *StackTempPointer;                       // 栈临时指针
@@ -224798,7 +224798,7 @@ void ProcessDualPointerCharacterEncoding(uint64_t ContextHandle, int OperationBu
  */
 void ProcessDualContextCharacterEncoding(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   long long SearchStartIndex;
   uint64_t MemoryAllocationMaskPointer;
@@ -224852,7 +224852,7 @@ void ProcessMixedTypeContextHandle(long long ContextHandle, uint64_t *ContextHan
   uint64_t SystemChecksum;
   long long *SystemDataTablePointer;
   uint32_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint8_t aBufferInitializationFlag [32];
   uint32_t ProcessingCounter;
   long long lStack_100;
@@ -225669,7 +225669,7 @@ void ProcessUtf16CharacterEncodingAndSystemBufferStatus(uint64_t ContextHandle,l
  */
 void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long *BufferAllocationState;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -226443,7 +226443,7 @@ LAB_18018728e:
  */
 void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationBufferSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint8_t *PrimaryProcessingStatusFlag;
   int MemoryComparisonResult;
   uint64_t *MemoryAllocationMaskPointer;
@@ -227329,7 +227329,7 @@ uint64_t * ProcessUnicodeCodePointAndManageCharacterEncoding(long long *ContextH
   void *PreviousNode;
   void *NextNode;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long alStackX_18 [2];
   
@@ -227410,7 +227410,7 @@ LAB_18018802f:
  */
 uint64_t * ProcessUtf16CharacterAndManageMemoryAllocation(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   int MemoryComparisonResult;
   long long SystemDataRegistry;
@@ -227478,7 +227478,7 @@ LAB_18018802f:
  */
 uint64_t * ProcessUtf16CharacterWithEngineContext(uint64_t ContextHandle,long long OperationBufferSize)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -227539,7 +227539,7 @@ LAB_18018802f:
  */
 long long ProcessSystemCharacterDataAndMemoryManagement(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   int MemoryComparisonResult;
   long long SystemContext;
@@ -227578,7 +227578,7 @@ LAB_18018802f:
  */
 long long ProcessSystemCharacterDataValidationAndConversion(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   int MemoryComparisonResult;
   long long SystemContext;
@@ -230455,7 +230455,7 @@ uint64_t *
 ProcessCharacterStringComparison(long long *ContextHandle,uint64_t *ContextHandleSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              long long AdditionalParameter1
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAllocationMaskPointer;
@@ -232947,7 +232947,7 @@ long long ProcessSystemCharacterEncodingAndMemoryAllocation(uint64_t ContextHand
   int ProcessIterationCount;
   long long secondaryLoopCounter;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   
   MemoryPoolIndex = 0;
@@ -239590,7 +239590,7 @@ void ReleaseSystemMemoryResources(long long ContextHandle)
  */
 void ReleaseSystemUtf16MemoryResources(void)
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   unsigned long long UnicodeCodePoint;
   long long SystemDataNode;
@@ -242768,7 +242768,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   uint ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   float SystemContextPrimaryFloat2;
   uint aProcessingConfigurationFlag [4];
@@ -245518,7 +245518,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   uint SystemChecksum;
   long long secondaryLoopCounter;
   void *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   uint8_t *SystemCharacterStatusBuffer;
   void *CharacterStatusBuffer2;
   uint64_t ValidationResult;
@@ -251703,7 +251703,7 @@ long long * ExecuteSystemMemoryAllocation(void
 
 void ProcessSystemMemoryOperation(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   int LockOperationResult;
   uint64_t UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -254717,7 +254717,7 @@ void ProcessSystemContextAndUtf8Encoding(uint64_t ContextHandle, long long *Cont
   long long MemoryPoolBlockSize;
   int *pComputedResult;
   uint64_t *TemporaryBuffer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   void *SystemCharacterStatusBuffer;
   int LoopCounter;
   uint8_t CoreSystemStatusContext [32];
@@ -259688,7 +259688,7 @@ LAB_18020b6e6:
   long long MemoryPoolBlockSize;
   int ComputedResult;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   uint SystemStatusCode;
   unsigned long long ValidationResult;
@@ -260830,7 +260830,7 @@ LAB_18020d04f:
   uint SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long *plStack_38;
   long long *plStack_30;
   uint64_t SystemStackOffset28;
@@ -260910,7 +260910,7 @@ LAB_18020d04f:
   uint SystemChecksum;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long *plStack_38;
   long long *plStack_30;
   uint64_t SystemStackOffset28;
@@ -263519,7 +263519,7 @@ uint64_t ProcessSystemContextMemoryRelease(uint64_t ContextHandle, unsigned long
   int *pValidationResult;
   long long *MemoryPoolSizePointer;
   uint ProcessingStatusFlag;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long ProcessedCharacter;
   long long *SystemRegisterPointerX10;
   long long *SystemContextRegister;
@@ -266371,7 +266371,7 @@ unsigned long long ProcessSystemUnicodeValidation(void
  */
 unsigned long long ValidateSystemUnicodeConversion(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemContext;
   long long SystemDataNode;
   long long SystemStackLong40;
@@ -266787,7 +266787,7 @@ LAB_18040698e:
 
 unsigned long long GetSystemUtf16Char(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemDataNode;
   void *StackDataTemplate;
   
@@ -266993,7 +266993,7 @@ LAB_18040698e:
 
 unsigned long long ValidateSystemUtf16Configuration(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
   return Utf16CharacterValue & 0xffffffffffffff00;
@@ -267258,7 +267258,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
 
 16860(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180216860(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   uint64_t MemoryAllocationMaskPointer;
@@ -267637,7 +267637,7 @@ LAB_180216e0c:
 
 16ec0(long long ContextHandle,int OperationBufferSizevoid FUN_180216ec0(long long ContextHandle,int OperationBufferSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long *BufferAllocationState;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -268814,7 +268814,7 @@ LAB_18021878d:
  */
 long long ProcessUtf16CharacterEncoding(long long *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   code *SystemValidationFunction;
   long long SearchStartIndex;
   uint64_t *MemoryAllocationMaskPointer;
@@ -270374,7 +270374,7 @@ LAB_18021a863:
 
 1aa60(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18021aa60(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   uint64_t MemoryAllocationMaskPointer;
@@ -270977,7 +270977,7 @@ void CleanupSystemContextBuffers(uint64_t ContextHandle, long long OperationBuff
 {
   long long SystemContext;
   uint CharacterTablePointer;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   
   Utf16Char = (unsigned long long)LoopCounter;
   do {
@@ -273154,7 +273154,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t ContextHandle,uint64_t *Conte
   void *SecondaryProcessingStatusFlag;
   uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   long long SystemContextValue;
   uint8_t StackDataBuffer1B8 [32];
@@ -287824,7 +287824,7 @@ LAB_1802297eb:
   uint32_t *StringProcessingStatus;
   void *NextNode;
   long long systemLoopCounter;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long SystemStringIndex;
   uint32_t *CharacterStatusBuffer2;
   uint32_t *CharacterStatusBuffer3;
@@ -288057,7 +288057,7 @@ void ProcessContextHandleData(long long *ContextHandle,unsigned long long Operat
   uint64_t SystemChecksum;                           // 系统校验和
   uint8_t *StringProcessingStatus;                    // 字符串处理状态指针
   long long systemLoopCounter;                       // 系统循环计数器
-  unsigned long long Utf16Char;                       // UTF-16字符值
+  unsigned long long Utf16Character;                       // UTF-16字符值
   long long SystemStringIndex;                       // 系统字符串索引
   uint8_t *CharacterStatusBuffer2;                   // 字符状态缓冲区2
   uint8_t *CharacterStatusBuffer3;                   // 字符状态缓冲区3
@@ -288539,7 +288539,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
 
 2a310(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_18022a310(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long BufferStatus;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -288842,7 +288842,7 @@ uint64_t * ProcessUtf8SourcePointerAndCharacterStatusBuffer(uint64_t ContextHand
   uint32_t SystemChecksum;
   uint32_t ProcessingStatusFlag;
   uint64_t ArraySize;
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   long long RegisterR12Value;
   uint64_t *CharacterLimit;
   long long NullPointerValue;
@@ -292292,7 +292292,7 @@ uint8_t ValidateContextHandle(char ContextHandle)
  */
 void ProcessContextHandleHash(unsigned long long *ContextHandle,long long OperationBufferSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16Character;
   unsigned long long MemoryPoolIndex;
   
   MemoryPoolIndex = 0;
