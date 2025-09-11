@@ -241872,17 +241872,17 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
   byte *Utf8OutputBufferPointer;            // UTF-8输出缓冲区指针
   long long *MemoryPoolSize;                // 内存池大小指针
   uint64_t *******ppppppStringProcessingStatus;
-  int IntegerValue9;
-  uint64_t *CharacterStatusBuffer;
-  uint64_t *******ppppppSystemCharacterStatusBuffer;
-  long long *ContextHandle2;
-  uint64_t *******ppppppCharacterStatusBuffer3;
-  uint32_t *ConfigurationString;
-  uint Utf16ConversionContext;
-  uint64_t ******ppppSystemCharacterStatusPointerReference;
-  byte *CurrentBytePointer7;
-  void *CharacterStatusBuffer8;
-  unsigned long long Utf16Character;
+  int LoopCounter;                         // 循环计数器
+  uint64_t *CharacterStatusBuffer;        // 字符状态缓冲区指针
+  uint64_t *******SystemStringProcessingStatus;  // 系统字符串处理状态指针
+  long long *SecondaryContextHandle;       // 次要上下文句柄指针
+  uint64_t *******CharacterProcessingBuffer;  // 字符处理缓冲区指针
+  uint32_t *SystemConfigurationString;     // 系统配置字符串指针
+  uint Utf16EncodingContext;               // UTF-16编码上下文
+  uint64_t ******SystemCharacterStatusReference;  // 系统字符状态引用指针
+  byte *CurrentByteProcessingPointer;     // 当前字节处理指针
+  void *CharacterDataBuffer;               // 字符数据缓冲区
+  unsigned long long Utf16CharacterCode;   // UTF-16字符代码
   int LockOperationResult0;
   uint *ProcessingStatusPointer;
   long long MemoryBufferC;
