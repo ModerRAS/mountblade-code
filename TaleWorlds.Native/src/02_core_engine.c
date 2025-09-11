@@ -234270,7 +234270,24 @@ void ProcessSystemDataSortingAndInsertion(uint64_t *ContextHandle,uint64_t *Cont
 
 
 
-void FUN_180190fbb(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
+// 函数: void ProcessSystemDataOptimizationAndValidation(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
+/**
+ * @brief 处理系统数据优化和验证操作
+ * 
+ * 该函数负责处理系统数据的优化和验证操作，主要功能包括：
+ * - 优化数据结构的内存布局
+ * - 验证数据的完整性和有效性
+ * - 处理UTF-16字符的转换和验证
+ * - 维护系统的数据一致性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180190fbb
+ */
+#define ProcessSystemDataOptimizationAndValidation FUN_180190fbb
+void ProcessSystemDataOptimizationAndValidation(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -239221,7 +239238,7 @@ LAB_1801974aa:
           (*(byte *)(*(long long *)(BufferStatus + 0x260) + 0xa8) >> 2 & 1) != 0)) &&
          (*(short *)(BufferStatus + 0x2b0) = *(short *)(BufferStatus + 0x2b0) + 1,
          *(long long *)(BufferStatus + 0x168) != 0)) {
-        FUN_1802eeba0();
+        FinalizeSystemStringEncoding();
       }
       ValidationResult = (int)(*(long long *)(BufferStatus + 0x1c8) - *(long long *)(BufferStatus + 0x1c0) >> 3);
       if ((0 < ValidationResult) &&
@@ -239315,7 +239332,7 @@ LAB_1801974aa:
         if ((*(byte *)(*(long long *)(BufferStatus + 0x260) + 0xa8) >> 2 & 1) != 0) {
           *(short *)(BufferStatus + 0x2b0) = *(short *)(BufferStatus + 0x2b0) + 1;
           if (*(long long *)(BufferStatus + 0x168) != 0) {
-            FUN_1802eeba0();
+            FinalizeSystemStringEncoding();
           }
         }
       }
