@@ -243,6 +243,7 @@ typedef enum {
 #define ReleaseUIMemoryAndExecuteRenderTask FUN_18073a49f          // 释放UI内存并执行渲染任务
 #define ProcessUIContextAndBufferData FUN_18073a4c0              // 处理UI上下文和缓冲区数据
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
+#define ProcessUIContextDataValidationAndTransfer FUN_18073a72d    // 处理UI上下文数据验证和传输
 
 // UI系统函数指针变量定义
 #define _DAT_180d4a958 UIEventDispatchFunctionPointer           // UI事件调度函数指针
@@ -125026,8 +125027,8 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
   lStack0000000000000030 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = FUN_180746780(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073a47d;
+    operationResult = ProcessUIBufferDataCopy(stackParam00000038,dataSource,targetBuffer);
+    if (operationResult == 0) goto ReleaseUIMemoryAndExecuteRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
@@ -125036,7 +125037,7 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager,&stack0x00000040);
   }
-FUN_18073a47d:
+ReleaseUIMemoryAndExecuteRender:
   if (lStack0000000000000030 != 0) {
     ReleaseUIMemoryResource();
   }
