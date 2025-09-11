@@ -224,6 +224,8 @@ typedef enum {
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
 #define FUN_18073c471 ProcessUIContextShutdown
 #define FUN_18073c493 ProcessUIContextFinalization
+#define FUN_18073c54f ProcessUIDataBufferSequential      // 处理UI数据缓冲区顺序操作
+#define FUN_18073c5c7 ExecuteUIRenderTaskWithParameter   // 执行带参数的UI渲染任务
 #define FUN_18073c4c0 ProcessUIDataBufferWithSize        // 处理带大小的UI数据缓冲区
 #define FUN_18073c5f0 ProcessUIDataWithDualBuffers       // 处理带双缓冲区的UI数据
 #define FUN_18073c60d ProcessUIDataWithDualBuffersEx     // 处理带双缓冲区的UI数据扩展版本
@@ -232,6 +234,21 @@ typedef enum {
 #define FUN_18073c705 ValidateUIContextState           // 验证UI上下文状态
 #define FUN_18073c730 ProcessUIDataWithBufferParams    // 处理带缓冲区参数的UI数据
 #define FUN_18073c74d ProcessUIDataWithExtendedParams  // 处理带扩展参数的UI数据
+#define FUN_18073c7d1 ExecuteUIPostProcessing           // 执行UI后处理操作
+#define FUN_18073c87f CompleteUIContextOperation        // 完成UI上下文操作
+#define FUN_18073c8a9 ValidateUIOperationComplete       // 验证UI操作完成
+#define FUN_18073c8d0 ProcessUIDataWithValidation       // 处理带验证的UI数据
+#define FUN_18073c9b0 ExecuteUIComponentValidation      // 执行UI组件验证
+#define FUN_18073ca90 ProcessUIComponentData            // 处理UI组件数据
+#define FUN_18073cb70 ExecuteUIEventHandling            // 执行UI事件处理
+#define FUN_18073cc30 ProcessUIControlData               // 处理UI控制数据
+#define FUN_18073cd10 ProcessUIByteData                  // 处理UI字节数据
+#define FUN_18073cdf0 ExecuteUIDataProcessing           // 执行UI数据处理
+#define FUN_18073ced0 ProcessUIDataWithLongParams       // 处理带长参数的UI数据
+#define FUN_18073ceed ProcessUIDataWithLongParamsEx      // 处理带长参数的UI数据扩展版本
+#define FUN_18073cf53 ExecuteUIFinalization              // 执行UI最终化操作
+#define FUN_18073cfcb CompleteUIShutdown                 // 完成UI关闭操作
+#define FUN_18073cfed ValidateUICleanupComplete          // 验证UI清理完成
 #define UNK_18097ed40 UILayoutDataTable           // UI布局数据表
 #define UNK_18097ed50 UIFontResourceTable          // UI字体资源表
 #define UNK_18098b9b8 UIShaderDataTable           // UI着色器数据表
