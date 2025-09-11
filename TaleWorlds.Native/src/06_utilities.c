@@ -12545,7 +12545,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_1808fc050
  */
-#define ExecuteSecurityCheck ExecuteSystemSecurityValidation
+#define ExecuteSystemSecurityValidation FUN_1808fc050
 
 /**
  * @brief 分配内存块并进行大小和对齐验证
@@ -12558,7 +12558,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089b7d0
  */
-#define AllocateMemoryBlockA0 AllocateMemoryWithSizeAndAlignment
+#define AllocateMemoryWithSizeAndAlignment FUN_18089b7d0
 
 /**
  * @brief 释放内存块并进行安全检查
@@ -143948,10 +143948,10 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define ProcessSystemDataCompression FUN_180080870             // 处理系统数据压缩 - 处理系统数据的压缩操作
 #define InitializeSystemEventHandling FUN_1800809a0            // 初始化系统事件处理 - 初始化系统事件的处理
 #define HandleSystemMemoryDeallocation FUN_180085530           // 处理系统内存释放 - 处理系统内存的释放操作
-#define FUN_180089640 ValidateSystemPerformanceMetrics          // 验证系统性能指标 - 验证系统性能的指标
-#define FUN_18008e9f0 ProcessSystemResourceAllocation          // 处理系统资源分配 - 处理系统资源的分配操作
-#define FUN_18008f7f0 ManageSystemNetworkOperations              // 管理系统网络操作 - 管理系统的网络操作
-#define FUN_180090b80 InitializeSystemDataProcessing           // 初始化系统数据处理 - 初始化系统数据的处理
+#define ValidateSystemPerformanceMetrics FUN_180089640         // 验证系统性能指标 - 验证系统性能的指标
+#define ProcessSystemResourceAllocation FUN_18008e9f0          // 处理系统资源分配 - 处理系统资源的分配操作
+#define ManageSystemNetworkOperations FUN_18008f7f0             // 管理系统网络操作 - 管理系统的网络操作
+#define InitializeSystemDataProcessing FUN_180090b80           // 初始化系统数据处理 - 初始化系统数据的处理
 
 /**
  * @brief 重置系统异常处理器指针实现
