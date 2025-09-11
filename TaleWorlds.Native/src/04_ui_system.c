@@ -126191,13 +126191,13 @@ UIResourceCleanupAndRenderTask:
  * @note 原始函数名：FUN_18073ae88
  * @warning 此函数不返回，会调用ExecuteUIContextDataOperation
  */
-void FUN_18073ae88(void)
+void ProcessUIDataBufferWithValidationAndCopy(void)
 
 {
-  int operationResult;
+  int bufferOperationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
-  UIByte eventHandleB;
+  UIDword contextDataHandle;
+  UIByte textureEventHandle;
   
   operationResult = CopyUIDataBuffer(&stack0x00000040,0x100);
   uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
@@ -126939,13 +126939,18 @@ void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutEngine,&stack0x00000040);
   }
-FUN_18073b7af:
-  if (param_6 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
-}
+/**
+ * @brief 执行UI渲染任务和布局引擎
+ * 
+ * 该函数负责执行UI渲染任务并管理布局引擎：
+ * - 检查参数6并释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param param6 参数6，用于判断是否需要释放内存资源
+ * @param stackParameter140 栈参数，用于计算渲染任务地址
+ * @param stackBaseAddr 栈基址指针
+ */
+void ExecuteUIRenderTaskWithLayoutEngine(uint32_t param6, uint64_t stackParameter140, uint64_t* stackBaseAddr)
 
 
 
