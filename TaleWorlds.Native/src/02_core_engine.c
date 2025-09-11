@@ -129,6 +129,9 @@
 #define SystemPrimaryParameterOffset 8
 #define SystemSecondaryParameterOffset 0x10
 
+// 系统浮点数处理函数语义化宏定义
+#define FUN_180208f20 ProcessSystemFloatDataOperation                    // 处理系统浮点数数据操作
+
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
 #define SystemNodeIdentifierSecondary 0x9c552acd3ed5548d   // 系统节点次标识符

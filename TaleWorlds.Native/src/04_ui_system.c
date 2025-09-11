@@ -134331,37 +134331,50 @@ ExitPoint:
 
  
 
- void FUN_18073f710(UIHandle uiContext)
-void FUN_18073f710(UIHandle uiContext)
-
+ /**
+ * @brief UI渲染上下文清理和资源释放函数
+ * 
+ * 该函数负责清理UI渲染上下文并释放相关资源，主要功能包括：
+ * - 初始化UI渲染上下文并获取大小信息
+ * - 释放UI内存资源
+ * - 处理数据加密和安全操作
+ * - 执行渲染任务清理
+ * - 管理异常情况和错误状态
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * 
+ * @note 此函数会处理加密密钥操作，确保数据安全
+ * @warning 函数执行后可能会调用不返回的子函数
+ */
+void CleanupUIRenderContextAndReleaseResources(UIHandle uiContext)
 {
-  int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  int cleanupResult;
+  UIByte encryptionBuffer [32];
+  UIByte *dataOperationBuffer;
+  longlong renderContextSize;
+  UIHandle renderContextHandle;
+  UIByte securityBuffer [256];
+  ulonglong encryptedKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
-  if (operationResult == 0) {
-    operationResult = FreeUIMemory(stackUInt120);
-    if (operationResult == 0) goto LAB_18073f792;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  cleanupResult = InitializeUIRenderContext(uiContext,&renderContextHandle,&renderContextSize);
+  if (cleanupResult == 0) {
+    cleanupResult = FreeUIMemory(renderContextHandle);
+    if (cleanupResult == 0) goto cleanup_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    pstackUInt138 = astackUInt118;
-    astackUInt118[0] = 0;
+    dataOperationBuffer = securityBuffer;
+    securityBuffer[0] = 0;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957a48);
   }
-LAB_18073f792:
-  if (RenderContextSize != 0) {
+cleanup_complete:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
 }
 
 
