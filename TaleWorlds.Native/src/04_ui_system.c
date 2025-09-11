@@ -150081,27 +150081,43 @@ LAB_18074e6e3:
 
 
 
- void FUN_18074f865(void)
-void FUN_18074f865(void)
-
+ /**
+ * @brief UI渲染任务执行函数
+ * 
+ * 该函数执行UI渲染任务，通过执行渲染任务来完成UI系统的渲染操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18074f865
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ExecuteUIRenderTaskWrapper(void)
 {
   longlong uiContextBasePointer;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(uiContextBasePointer + 0xca0) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(uiContextBasePointer + 0xca0) ^ (ulonglong)&UIStackBasePointer);
 }
 
 
 
 
- void FUN_18074f89e(void)
-void FUN_18074f89e(void)
-
+ /**
+ * @brief UI系统渲染任务分发函数
+ * 
+ * 该函数负责分发UI渲染任务，通过调用渲染任务函数来完成UI系统的渲染操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18074f89e
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void DispatchUIRenderTask(void)
 {
   longlong uiContextBasePointer;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(uiContextBasePointer + 0xca0) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(uiContextBasePointer + 0xca0) ^ (ulonglong)&UIStackBasePointer);
 }
 
 
@@ -400016,8 +400032,14 @@ UIHandle FUN_18089a51d(void)
 
 
 
- void FUN_18089a685(void)
-void FUN_18089a685(void)
+ /**
+ * @brief 初始化UI组件数据
+ * 
+ * 该函数用于初始化UI组件的基本数据结构。
+ * 
+ * @note 原始函数名：FUN_18089a685
+ */
+void InitializeUIComponentData(void)
 
 {
   return;
@@ -400025,24 +400047,35 @@ void FUN_18089a685(void)
 
 
 
-UIHandle FUN_18089a690(longlong uiContext,UIDword *dataSource)
-
+/**
+ * @brief 处理UI数据源查找操作
+ * 
+ * 该函数负责在UI上下文中查找指定的数据源，并返回对应的句柄。
+ * 它会通过多级查找策略来定位目标数据源。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @return UIHandle 找到的UI组件句柄，如果未找到则返回0
+ * 
+ * @note 原始函数名：FUN_18089a690
+ */
+UIHandle ProcessUIDataSourceLookup(longlong uiContext, UIDword *dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
   int bufferCompareResult;
-  UIHandle uStackX_8;
+  UIHandle tempHandle;
   
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,*dataSource);
-  iterationCount = (**(code **)**(UIHandle **)(uiContext + 8))(*(UIHandle **)(uiContext + 8),&uStackX_8,4);
+  tempHandle = CONCAT44(tempHandle._4_4_, *dataSource);
+  iterationCount = (**(code **)**(UIHandle **)(uiContext + 8))(*(UIHandle **)(uiContext + 8), &tempHandle, 4);
   if ((int)iterationCount == 0) {
-    uStackX_8 = *(UIHandle *)(dataSource + 2);
-    iterationCount = (**(code **)**(UIHandle **)(uiContext + 8))(*(UIHandle **)(uiContext + 8),&uStackX_8,8);
+    tempHandle = *(UIHandle *)(dataSource + 2);
+    iterationCount = (**(code **)**(UIHandle **)(uiContext + 8))(*(UIHandle **)(uiContext + 8), &tempHandle, 8);
     if ((int)iterationCount == 0) {
       operationResult = dataSource[6];
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,processingResult);
+      tempHandle = CONCAT44(tempHandle._4_4_, processingResult);
       iterationCount = (**(code **)**(UIHandle **)(uiContext + 8))
-                        (*(UIHandle **)(uiContext + 8),&uStackX_8,4);
+                        (*(UIHandle **)(uiContext + 8), &tempHandle, 4);
       if ((int)iterationCount == 0) {
         uiCompareResult = 0;
         if (0 < processingResult) {
