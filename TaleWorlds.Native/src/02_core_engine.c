@@ -258041,9 +258041,9 @@ LAB_1802097bc:
   Utf8SourcePointer = SystemDataNode[1];
   SystemRegisterR10 = *SystemDataNode;
 LAB_1802097bc:
-  FUN_180209980(&TertiaryDataBuffer,SystemRegisterR10,Utf8SourcePointer,MemoryBlockIndex);
+  ProcessSystemDataTransfer(&TertiaryDataBuffer,SystemRegisterR10,Utf8SourcePointer,MemoryBlockIndex);
   BufferStatus = DataStorageValue;
-  FUN_180209840(DataStorageValue);
+  FinalizeSystemDataTransfer(DataStorageValue);
   CharacterTablePointer = SystemDataNode[1];
   AllocatedMemorySize = *SystemDataNode;
   if (AllocatedMemorySize != CharacterTablePointer) {
