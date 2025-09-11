@@ -288108,8 +288108,20 @@ LAB_18022d28d:
 
 
 
-uint64_t * FUN_18022cab0(uint64_t *ContextHandle,uint64_t *ContextHandleSize
-{
+/**
+ * @brief 复制上下文句柄数据结构
+ * 
+ * 该函数负责复制上下文句柄数据结构，包括：
+ * - 复制基本数据字段
+ * - 复制状态标志位
+ * - 复制字符串数据
+ * - 处理内存地址映射
+ * 
+ * @param ContextHandle 目标上下文句柄指针
+ * @param ContextHandleSize 源上下文句柄指针
+ * @return uint64_t* 返回处理后的目标上下文句柄指针
+ */
+uint64_t * CopyContextHandleDataStructure(uint64_t *ContextHandle,uint64_t *ContextHandleSize) {
   void *CharacterStatusBuffer;
   void *SystemContext;
   long long SearchStartIndex;

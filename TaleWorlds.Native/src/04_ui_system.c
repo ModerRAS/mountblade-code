@@ -258645,17 +258645,17 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
   sVar4 = *(short *)(uiContext + 7);
   sVar5 = *(short *)(uiContext + 10);
   sVar6 = *(short *)((longlong)uiContext + 0x52);
-  eventStatus = FUN_18081d250(*(UIWord *)((longlong)uiContext + 0x54));
+  eventStatus = CalculateUIContextValue(*(UIWord *)((longlong)uiContext + 0x54));
   contextValue = eventStatus & 0xffffffff;
   if ((int)eventStatus < 1) {
     if (dataSource == 0) {
-      FUN_18081d600(baseScaleFactor,BufferCapacityValue,baseValuePointer7,sVar5,_DAT_180d4ab70,&DAT_180d4ab10,ContextFirstValue);
-      FUN_18081d8a0(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab68,&DAT_180d4aaf0,ContextFirstValue);
+      CalculateUIFloatDataBase(baseScaleFactor,BufferCapacityValue,baseValuePointer7,sVar5,_DAT_180d4ab70,&DAT_180d4ab10,ContextFirstValue);
+      CalculateUIFloatDataAdvanced(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab68,&DAT_180d4aaf0,ContextFirstValue);
       baseScaleFactor = baseValuePointer7;
       BufferCapacityValue = sVar5;
     }
-    FUN_18081d760(baseScaleFactor,BufferCapacityValue,baseValuePointer7,sVar5,_DAT_180d4ab60,&DAT_180d4aac8,ContextFirstValue);
-    FUN_18081d760(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab58,&DAT_180d4aab0,ContextFirstValue);
+    CalculateUIFloatDataIntermediate(baseScaleFactor,BufferCapacityValue,baseValuePointer7,sVar5,_DAT_180d4ab60,&DAT_180d4aac8,ContextFirstValue);
+    CalculateUIFloatDataIntermediate(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab58,&DAT_180d4aab0,ContextFirstValue);
     FUN_18081d760(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab50,&DAT_180d4aa98,ContextFirstValue);
     FUN_18081d760(baseValuePointer7,sVar5,baseValuePointer7,sVar5,_DAT_180d4ab48,&DAT_180d4aa80,ContextFirstValue);
     if (dataSource == 0) {
