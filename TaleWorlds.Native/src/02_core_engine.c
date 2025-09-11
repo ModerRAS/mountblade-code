@@ -238424,7 +238424,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
     UNLOCK();
     ProcessingStatusFlag = ProcessingStatusFlag + 1;
   } while (ProcessingStatusFlag < 8);
-  ProcessSystemResourceInitialization(ContextHandle + 0x7f7,0x908,2,&SystemDataTemplatePointer,FUN_1800e7d00);
+  ProcessSystemResourceInitialization(ContextHandle + 0x7f7,0x908,2,&SystemDataTemplatePointer,InitializeSystemDataTemplate);
   *(uint32_t *)(ContextHandle + 0xa39) = 0;
   LOCK();
   *(uint32_t *)(ContextHandle + 0xa3a) = 0;
@@ -239005,7 +239005,7 @@ void InitializeSystemDataTemplateWithMemoryBlock(long long ContextHandle)
   
   Utf16Char = 0xfffffffffffffffe;
   ProcessSystemDataTemplateInitialization(ContextHandle + 0x1218);
-  InitializeSystemMemoryBlock(ContextHandle,0x908,2,FUN_1800e7d00,Utf16Char);
+  InitializeSystemMemoryBlock(ContextHandle,0x908,2,InitializeSystemDataTemplate,Utf16Char);
   return;
 }
 
@@ -239915,7 +239915,7 @@ LAB_18019797c:
   }
   ProcessSystemDataTemplate(ContextHandle + 0xb5b);
   ProcessSystemDataTemplateInitialization(ContextHandle + 0xa3a);
-  InitializeSystemMemoryBlock(ContextHandle + 0x7f7,0x908,2,FUN_1800e7d00);
+  InitializeSystemMemoryBlock(ContextHandle + 0x7f7,0x908,2,InitializeSystemDataTemplate);
   ProcessSystemDataTemplate(ContextHandle + 0x7ed);
   ContextHandle[0x7da] = &SystemNullTemplate;
   if (ContextHandle[0x7db] != 0) {
