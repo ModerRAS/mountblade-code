@@ -39488,7 +39488,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer70,8);
+      validationOutcome = OperateDataO0(systemDataBuffer,&StackDataBuffer70,8);
     }
     else {
       validationOutcome = SecurityValidationFlag0x1C;
