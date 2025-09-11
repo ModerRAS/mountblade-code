@@ -251539,7 +251539,20 @@ joined_r0x0001802045de:
 
 
 
-void FUN_1802044e0(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer)
+/**
+ * @brief 处理UTF-8字符串排序和插入操作
+ * 
+ * 该函数负责对UTF-8字符串进行排序和插入操作，主要用于处理字符编码转换过程中的
+ * 字符串整理和排序功能。函数通过比较和交换字符来实现字符串的有序排列。
+ * 
+ * @param ContextHandle 上下文句柄，用于管理系统状态和资源
+ * @param OperationBufferSize 操作缓冲区大小，指定处理的数据块大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向需要处理的UTF-8字符串数据
+ * 
+ * @note 原始函数名：FUN_1802044e0
+ * @note 这是一个简化实现，仅修改变量名和函数名，不改变程序逻辑
+ */
+void ProcessUtf8StringSortingAndInsertion(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t *Utf8SourcePointer)
 {
   int LockResult;
   int LockOperationResult;
