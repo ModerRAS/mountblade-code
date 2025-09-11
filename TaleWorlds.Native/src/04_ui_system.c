@@ -156786,7 +156786,25 @@ UIHandle FUN_1807563c0(longlong uiContext,uint *dataSource)
 
 
 
-UIHandle FUN_180756450(longlong uiContext,uint *dataSource,uint targetBuffer)
+/**
+ * @brief 处理UI纹理数据与参数
+ * 
+ * 该函数负责处理UI系统中的纹理数据和相关参数，包括：
+ * - 纹理数据的读取和处理
+ * - 参数验证和数据转换
+ * - 浮点数计算和比例调整
+ * - 数据源和目标缓冲区的管理
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文环境
+ * @param dataSource 数据源指针，指向要处理的纹理数据
+ * @param targetBuffer 目标缓冲区参数，指定数据处理的目标位置和方式
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0值表示错误代码
+ * 
+ * @note 原始函数名：FUN_180756450
+ * @note 该函数在UI纹理处理和参数计算中起到关键作用
+ */
+UIHandle ProcessUITextureDataWithParameters(longlong uiContext,uint *dataSource,uint targetBuffer)
 
 {
   longlong *uiMemoryPointer;
