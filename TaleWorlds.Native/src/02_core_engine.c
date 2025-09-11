@@ -243178,11 +243178,11 @@ LAB_180198f21:
   if ((int)(OperationStatus - 2) < 0) {
     ArraySize = OperationStatus;
   }
-  pSystemFlagE = &SystemNullTemplate;
+  SystemFlagEPointer = &SystemNullTemplate;
   SystemFlagH = 0;
-  pbStack_d8 = (byte *)0x0;
+  StackBytePointerD8 = (byte *)0x0;
   SystemCleanupFlagG = 0;
-  uStack_104 = SystemChecksum | 2;
+  StackUnsigned104 = SystemChecksum | 2;
   OperationResult = OperationStatus;
   if ((int)ArraySize < (int)OperationStatus) {
     OperationResult = ArraySize;
