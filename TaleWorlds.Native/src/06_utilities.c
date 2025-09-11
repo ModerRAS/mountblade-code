@@ -10618,11 +10618,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899180 - 数据状态检查函数A0
 // 功能：检查数据状态并返回状态码
-#define CheckDataStatusA0 FUN_180899180
+#define CheckDataStatusA0 CheckDataStatusAndIntegrity
 
 // 原始函数名：FUN_180892780 - 浮点数验证和处理函数A0
 // 功能：验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作
-#define ValidateAndProcessFloatingPointNumberA0 FUN_180892780
+#define ValidateAndProcessFloatingPointNumberA0 ValidateAndProcessFloatingPointNumberWithChecks
 
 // 原始函数名：FUN_180892880 - 浮点数验证和处理函数A1
 // 功能：验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作
@@ -10630,23 +10630,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1808928d3 - 系统状态查询函数A0
 // 功能：查询系统状态并返回状态信息
-#define QuerySystemStatusA0 FUN_1808928d3
+#define QuerySystemStatusA0 QuerySystemStatusAndInformation
 
 // 原始函数名：FUN_1808928f1 - 系统配置获取函数A0
 // 功能：获取系统配置信息
-#define GetSystemConfigurationA0 FUN_1808928f1
+#define GetSystemConfigurationA0 GetSystemConfigurationParameters
 
 // 原始函数名：FUN_180892909 - 系统参数验证函数A0
 // 功能：验证系统参数的有效性
-#define ValidateSystemParameterA0 FUN_180892909
+#define ValidateSystemParameterA0 ValidateSystemParameterAndRange
 
 // 原始函数名：FUN_180892920 - 系统参数设置函数A0
 // 功能：设置系统参数
-#define SetSystemParameterA0 FUN_180892920
+#define SetSystemParameterA0 SetSystemParameterWithValidation
 
 // 原始函数名：FUN_180892974 - 系统初始化状态检查函数A0
 // 功能：检查系统初始化状态
-#define CheckSystemInitializationStatusA0 FUN_180892974
+#define CheckSystemInitializationStatusA0 CheckSystemInitializationAndReadyStatus
 
 // 原始函数名：FUN_180892990 - 系统数据处理函数A0
 // 功能：处理系统数据，执行验证和更新操作
@@ -10658,15 +10658,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180892bd0 - 复杂数据处理函数A0
 // 功能：处理复杂数据结构，执行多层验证和更新操作
-#define ProcessComplexDataStructureA0 FUN_180892bd0
+#define ProcessComplexDataStructureA0 ProcessComplexDataStructureWithValidation
 
 // 原始函数名：FUN_180892cc0 - 浮点数数组处理函数A0
 // 功能：处理浮点数数组，执行批量验证和更新操作
-#define ProcessFloatingPointArrayA0 FUN_180892cc0
+#define ProcessFloatingPointArrayA0 ProcessFloatingPointArrayWithValidation
 
 // 原始函数名：FUN_180892ceb - 系统状态获取函数A0
 // 功能：获取系统状态信息
-#define GetSystemStatusA0 FUN_180892ceb
+#define GetSystemStatusA0 GetSystemStatusAndInformation
 
 // 原始函数名：FUN_180892e35 - 系统配置验证函数A0（替代版本）
 // 功能：验证系统配置的有效性，提供替代的验证方法

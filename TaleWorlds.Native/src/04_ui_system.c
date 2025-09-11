@@ -125836,8 +125836,7 @@ LAB_18073ab4a:
 
 
 
- void FUN_18073abec(void)
-void ProcessUIBufferDataAndControl(void)
+ void ProcessUIBufferDataAndControl(void)
 
 {
   int operationResult;
@@ -125860,22 +125859,36 @@ void ProcessUIBufferDataAndControl(void)
 
 
 
- void FUN_18073ac9a(void)
-void FUN_18073ac9a(void)
+ /**
+ * @brief 执行UI渲染任务与XOR加密
+ * 
+ * 该函数执行UI渲染任务，使用XOR加密算法处理参数。
+ * 用于安全地执行渲染操作。
+ */
+void ExecuteUIRenderTaskWithXor(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong xorEncryptedParam;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(xorEncryptedParam ^ (ulonglong)&stack0x00000000);
 }
 
 
 
  
 
- void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文和目标缓冲区操作
+ * 
+ * 该函数处理UI上下文与目标缓冲区之间的数据操作。
+ * 包括数据验证、缓冲区处理和资源管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ */
+void ProcessUIContextAndTargetBuffer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -125915,8 +125928,17 @@ FUN_18073adad:
 
  
 
- void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据传输操作
+ * 
+ * 该函数处理UI上下文中的数据传输操作，包括上下文清理、
+ * 数据验证和缓冲区填充等功能。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ */
+void ProcessUIContextDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
