@@ -261626,7 +261626,7 @@ void HandleSystemContextValidation(long long ContextHandle
   SystemTemporaryValue50 = 0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 3;
-  FUN_18020c8f0(CoreEngineConfigurationData,&BufferMemoryOffset,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
+  InitializeCoreEngineConfiguration(CoreEngineConfigurationData,&BufferMemoryOffset,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
   ValidationResult = 0;
   MemoryPoolIndex = SystemTemporaryValue50 - (long long)BufferMemoryOffset >> 3;
   StringProcessingStatus = BufferMemoryOffset;
