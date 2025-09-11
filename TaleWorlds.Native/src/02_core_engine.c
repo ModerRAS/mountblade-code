@@ -26980,8 +26980,8 @@ uint32_t SystemShutdownAndCleanup(void
     SystemValidationStatus = (long long ****)0x0;
     WaitForSingleObject(SemaphoreHandle,0xffffffff);
     do {
-      CharacterTablePointer = ReleaseSemaphore(SemaphoreHandle,1);
-    } while (CharacterTablePointer == 0);
+      long long SemaphoreReleaseStatus = ReleaseSemaphore(SemaphoreHandle,1);
+    } while (SemaphoreReleaseStatus == 0);
     CleanupFlags = __acrt_iob_func(1);
     fflush(CleanupFlags);
     CleanupFlags = __acrt_iob_func(2);

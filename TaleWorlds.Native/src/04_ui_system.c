@@ -317,6 +317,17 @@ typedef enum {
 
 // UI上下文管理函数
 #define ManageUIContextResources FUN_180752c80              // 管理UI上下文资源
+
+// UI高级处理函数
+#define ProcessUIContextDataWithEncryption FUN_18073b1ad   // 处理带加密的UI上下文数据
+#define PerformUIContextCleanup FUN_18073b215               // 执行UI上下文清理
+#define ProcessUIContextWithExtendedParameters FUN_18073b5f0 // 处理带扩展参数的UI上下文
+#define ProcessUIContextWithResourceManagement FUN_18073b60d // 处理带资源管理的UI上下文
+#define ProcessUIContextWithDataSource FUN_18073b8e0         // 处理带数据源的UI上下文
+#define ProcessUIContextWithTargetBuffer FUN_18073b9b0       // 处理带目标缓冲区的UI上下文
+#define ProcessUIContextWithValidation FUN_18073b9cd        // 处理带验证的UI上下文
+#define PerformUIResourceOptimization FUN_18073bb65          // 执行UI资源优化
+#define PerformUIContextFinalCleanup FUN_18073bbdd          // 执行UI上下文最终清理
 #define ValidateAndProcessUIData FUN_180739085           // 验证和处理UI数据
 #define CleanupUIResourcesAndExecuteRender FUN_1807390fd  // 清理UI资源并执行渲染
 #define ProcessUIDataBuffer FUN_18073915d                 // 处理UI数据缓冲区
@@ -127052,7 +127063,7 @@ void ProcessUIContextWithAnimationData(UIHandle uiContext,UIHandle dataSource,UI
   lStack0000000000000030 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = FUN_1807483a0(stackParam00000038,dataSource,targetBuffer);
+    operationResult = ProcessUIDataWithTarget(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073b4cf;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -127197,7 +127208,7 @@ LAB_18073b573:
       operationResult = ReleaseUIMemoryResource();
       if (operationResult == 0) goto LAB_18073b573;
     }
-    operationResult = FUN_180748500(stackUInt120);
+    operationResult = ProcessUIDataCleanup(stackUInt120);
     if (operationResult == 0) goto LAB_18073b5be;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -127240,7 +127251,7 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   if (operationResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
-    operationResult = FUN_1807485c0(stackUInt160,dataSource,targetBuffer,bufferSize);
+    operationResult = ProcessUIDataWithParameters(stackUInt160,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto FUN_18073b7af;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -127303,7 +127314,7 @@ void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   param_6 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&param_7,&param_6);
   if (operationResult == 0) {
-    operationResult = FUN_1807485c0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001c0);
+    operationResult = ProcessUIDataWithParameters(param_7,dataSource,targetBuffer,bufferSize,stackParam000001c0);
     if (operationResult == 0) goto FUN_18073b7af;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -127516,7 +127527,7 @@ void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180748b40(stackUInt120,dataSource);
+    operationResult = ProcessUIDataWithValidation(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073b97a;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
