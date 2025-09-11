@@ -256255,46 +256255,46 @@ void ProcessSystemContextFloatOperations(long long SystemContextHandle,float Flo
  * @param Utf16EndPointer UTF-16结束指针
  * @return void
  */
-void ProcessSystemFloatDataOperation(long long *ContextHandle, unsigned long long OperationBufferSize, float *Utf8SourcePointer, int Utf16EndPointer)
+void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned long long OperationBufferSize, float *Utf8SourcePointer, int Utf16EndPointer)
 {
-  float SystemContextPrimaryFloat;
+  float ContextPrimaryFloatValue;
   uint32_t MemoryPoolIndex;
   uint32_t UnicodeCodePoint;
-  uint64_t MemoryAllocationMaskPointer;
-  char SystemContextHandle;
-  byte BooleanByteFlag6;
-  void *PreviousNode;
-  long long secondaryLoopCounter;
-  float *NormalizedParameterPointer;
+  uint64_t MemoryAllocationMask;
+  char ContextStatusFlag;
+  byte BooleanProcessingFlag;
+  void *PreviousMemoryNode;
+  long long SecondaryLoopCounter;
+  float *NormalizedParameterValue;
   long long MemoryAllocationIndex;
   long long SystemStringIndex;
   unsigned long long SystemStatusCode;
-  float *SystemContextPrimaryFloatPointer;
-  int IntegerValue4;
+  float *ContextPrimaryFloatPointer;
+  int IntegerValue;
   char *StringCodeBuffer;
   long long MemoryAllocationOffset;
   uint32_t UnicodeContextHandle;
-  uint *CharacterStatusBuffer8;
+  uint *CharacterStatusBuffer;
   uint Utf16Character;
   long long BufferIndex;
-  int LockOperationResult1;
-  unsigned long long MemoryAllocationOffset;
+  int LockOperationResult;
+  unsigned long long MemoryAllocationSize;
   unsigned long long InputDataLength;
   unsigned long long MemoryAllocationBase;
-  unsigned long long MemoryPoolIndexSecondary;
-  uint MemoryPoolIndexAdditional;
-  uint *PrimaryProcessingStatusFlag7;
-  bool HighByte8;
-  float MatrixTransformElementC;
+  unsigned long long SecondaryMemoryPoolIndex;
+  uint AdditionalMemoryPoolIndex;
+  uint *PrimaryProcessingStatusFlag;
+  bool HighByteFlag;
+  float MatrixTransformElement;
   uint64_t VectorCalculationResult;
-  uint64_t VectorCalculationResultSecondary;
-  float FilterInputValue0;
-  unsigned long long uStackX_10;
+  uint64_t SecondaryVectorCalculationResult;
+  float FilterInputValue;
+  unsigned long long SystemStackValue;
   uint StackProcessingDataPointer;
-  uint SystemDataValue1;
-  long long lStack_60;
-  long long SystemStackRegisterValue58;
-  long long CoreEngineSignedValue48;
+  uint SystemDataValue;
+  long long StackRegisterValue;
+  long long SystemStackRegisterValue;
+  long long CoreEngineSignedValue;
   
   if (((*(char *)((long long)ContextHandle + 0x41) != '\0') ||
       (SystemStringIndex = SUB168(SEXT816(-0x7777777777777777) * SEXT816(ContextHandle[1] - *ContextHandle),8) +
@@ -256980,25 +256980,25 @@ void FUN_180208f20(long long ContextHandle, long long OperationBufferSize, int *
     SystemOperationResult = *(int *)(ProcessingBufferStatus + (long long)ValidationResult * 0x28);
     ContextPrimaryFloatValue = (float)*ComputedResultPointer;
     if (ScaledFloatValue <= ContextPrimaryFloatValue) {
-      SystemContextPrimaryFloat2 = SecondaryFloatValue;
+      ContextPrimaryFloatValue = ScaledFloatValue;
     }
-    SecondaryFloatValue = (SystemContextPrimaryFloat2 - (float)IntegerValue9) / (float)(*pComputedResult - IntegerValue9);
-    StringLength = (int *)(BufferStatus + (long long)EncodingValidationResult * 0x28);
+    ScaledFloatValue = (ContextPrimaryFloatValue - (float)ArrayIndex) / (float)(*ComputedResultPointer - ArrayIndex);
+    StringLengthPointer = (int *)(ProcessingBufferStatus + (long long)ValidationResult * 0x28);
   }
-  if ((StringLength != (int *)0x0) && (pComputedResult != (int *)0x0)) {
-    if (0.0 <= SecondaryFloatValue) {
-      if (1.0 <= SecondaryFloatValue) {
-        SecondaryFloatValue = 1.0;
+  if ((StringLengthPointer != (int *)0x0) && (ComputedResultPointer != (int *)0x0)) {
+    if (0.0 <= ScaledFloatValue) {
+      if (1.0 <= ScaledFloatValue) {
+        ScaledFloatValue = 1.0;
       }
     }
     else {
-      SecondaryFloatValue = 0.0;
+      ScaledFloatValue = 0.0;
     }
-    SystemContextPrimaryFloat2 = SecondaryFloatValue * AdditionalParameter1;
-    AdditionalParameter1 = (1.0 - SecondaryFloatValue) * AdditionalParameter1;
+    ContextPrimaryFloatValue = ScaledFloatValue * AdditionalParameter1;
+    AdditionalParameter1 = (1.0 - ScaledFloatValue) * AdditionalParameter1;
     if (0.0 < AdditionalParameter1) {
-      BufferStatus = *(long long *)(StringLength + 2);
-      EncodingValidationResult = 0;
+      ProcessingBufferStatus = *(long long *)(StringLengthPointer + 2);
+      ValidationResult = 0;
       if (0 < (int)(*(long long *)(StringLength + 4) - BufferStatus >> 3)) {
         MemoryAllocationIndex = 0;
         do {
