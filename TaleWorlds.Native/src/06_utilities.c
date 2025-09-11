@@ -15042,9 +15042,7 @@ uint32_t UtilitySystemInitializationStatus;
 
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
-// 系统异常处理状态变量声明
-uint8_t SystemExceptionHandlerState;      // 系统异常处理状态
-uint8_t SystemExceptionCleanupFlag;       // 系统异常清理标志
+// 系统异常处理状态变量声明 - 统一使用32位无符号整数
 uint8_t SystemTerminationFlag;           // 系统终止标志
 uint8_t SystemResetInProgressFlag;        // 系统重置进行中标志
 uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
@@ -15243,7 +15241,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define SystemContextBuffer50 SystemValidationContextBuffer    // 系统验证上下文缓冲区
 #define SystemOperationCount SystemOperationProcessingCounter    // 系统操作处理计数器
 
-// 异常处理系统全局变量
+// 异常处理系统全局变量 - 统一使用32位无符号整数
 ExceptionHandlerTable* ExceptionHandlerTablePtr;        // 异常处理器表指针
 uint32_t SystemExceptionHandlerState;      // 系统异常处理状态
 uint32_t SystemExceptionCleanupFlag;       // 系统异常清理标志

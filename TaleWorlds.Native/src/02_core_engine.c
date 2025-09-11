@@ -45083,7 +45083,7 @@ void InitializeCoreEngineSystemConfiguration(void
  */
 void ProcessCoreEngineSystemEventsAndCallbacks(uint64_t ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  code *ValidationStatusPointer;
+  code *validationStatusPointer;
   char systemStatusChar;
   uint64_t systemHandle;
   long long memoryBaseAddress;
@@ -45094,13 +45094,13 @@ void ProcessCoreEngineSystemEventsAndCallbacks(uint64_t ContextHandle,long long 
   uint systemStatusValue;
   void *systemResourcePointer;
   long long systemResourceOffset;
-  uint32_t systemConfiguration70;
-  void **systemProcessingStatusFlag68;
-  long long **systemCallbackPointer60;
-  uint32_t systemStatus50;
-  uint64_t systemConfiguration48;
+  uint32_t systemConfigurationData;
+  void **systemProcessingStatusFlagPtr;
+  long long **systemCallbackPointerPtr;
+  uint32_t systemStatusFlag;
+  uint64_t systemConfigurationValue;
   
-  systemConfiguration48 = 0xfffffffffffffffe;
+  systemConfigurationValue = 0xfffffffffffffffe;
   systemCallbackPointer = *(long long **)(SystemCallbackTable + 0x18);
   CoreEngineExecuteSystemEvent(&systemProcessingStatusFlag,CoreEngineSystemContext + SystemContextSecondaryOffset170,Utf8SourcePointer,Utf16EndPointer,0);
   systemOperationCode = systemStatusValue + 3;
@@ -45185,42 +45185,42 @@ void ProcessCoreEngineSystemEventsAndCallbacks(uint64_t ContextHandle,long long 
 void ProcessCoreEngineMemoryBufferManagement(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint operationResult;
-  long long BufferStatus;
+  long long bufferStatus;
   void *dataPointer;
   unsigned long long dataSize;
-  uint64_t systemConfiguration88;
-  long long memoryOffset80;
-  void *systemPointer70;
-  long long memoryOffset68;
-  uint systemStatus60;
-  uint64_t systemHandle58;
-  void *systemPointer50;
-  void *systemPointer48;
-  uint32_t systemStatus38;
+  uint64_t systemConfigurationData;
+  long long memoryOffset1;
+  void *systemPointer1;
+  long long memoryOffset2;
+  uint systemStatusFlag;
+  uint64_t systemHandle;
+  void *systemPointer2;
+  void *systemPointer3;
+  uint32_t systemStatusFlag1;
   
-  systemConfiguration88 = 0;
-  memoryOffset80 = 0;
-  BufferStatus = *ContextHandle;
-  systemPointer70 = &SystemNullTemplate;
-  systemHandle58 = 0;
-  memoryOffset68 = 0;
-  systemStatus60 = 0;
-  operationResult = *(uint *)(BufferStatus + 0x10);
+  systemConfigurationData = 0;
+  memoryOffset1 = 0;
+  bufferStatus = *ContextHandle;
+  systemPointer1 = &SystemNullTemplate;
+  systemHandle = 0;
+  memoryOffset2 = 0;
+  systemStatusFlag = 0;
+  operationResult = *(uint *)(bufferStatus + 0x10);
   dataSize = (unsigned long long)operationResult;
-  if (*(long long *)(BufferStatus + 8) != 0) {
-    CoreEngineProcessSystemEvent(&systemPointer70,dataSize,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
+  if (*(long long *)(bufferStatus + 8) != 0) {
+    CoreEngineProcessSystemEvent(&systemPointer1,dataSize,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
   }
   if (operationResult != 0) {
-      memcpy(memoryOffset68,*(void *)(BufferStatus + 8),dataSize);
+      memcpy(memoryOffset2,*(void *)(bufferStatus + 8),dataSize);
   }
-  if (memoryOffset68 != 0) {
-    *(uint8_t *)(dataSize + memoryOffset68) = 0;
+  if (memoryOffset2 != 0) {
+    *(uint8_t *)(dataSize + memoryOffset2) = 0;
   }
-  systemStatus60 = operationResult;
-  systemHandle58.HighPart = *(uint *)(BufferStatus + 0x1c);
-  CoreEngineProcessSystemEvent(&systemPointer70,1);
-  *(uint16_t *)((unsigned long long)systemStatus60 + memoryOffset68) = 0x5c;
-  systemStatus60 = 1;
+  systemStatusFlag = operationResult;
+  systemHandle = *(uint *)(bufferStatus + 0x1c);
+  CoreEngineProcessSystemEvent(&systemPointer1,1);
+  *(uint16_t *)((unsigned long long)systemStatusFlag + memoryOffset2) = 0x5c;
+  systemStatusFlag = 1;
   ProcessSystemConfigurationHandle(&systemPointer70,&systemPointer50,Utf8SourcePointer);
   systemPointer70 = &SystemNullTemplate;
   if (memoryOffset68 != 0) {
