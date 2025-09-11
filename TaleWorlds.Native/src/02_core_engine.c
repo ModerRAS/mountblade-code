@@ -262313,23 +262313,23 @@ void InitializeSystemDataTransfer(uint64_t ContextHandle,long long OperationBuff
 {
   long long MainCalculationResult;
   void *PrimaryProcessingStatusFlag;
-  uint8_t auStack_838 [32];
-  uint8_t *puStack_818;
-  uint32_t uStack_810;
+  uint8_t StackCharacterBuffer838 [32];
+  uint8_t *StackCharacterBuffer818;
+  uint32_t StackUnsignedBuffer810;
   uint32_t CalculationFunctionAddress8;
-  uint8_t *puStack_7f8;
-  void **ppuStack_7f0;
-  uint64_t uStack_7e8;
-  int iStack_7dc;
-  void *puStack_7d8;
-  uint8_t auStack_7d0 [8];
-  uint8_t auStack_7c8 [152];
-  uint8_t auStack_730 [104];
-  uint8_t aSystemUnsignedValue6C8 [16];
-  void *puStack_6b8;
-  uint8_t *puStack_6b0;
-  uint32_t uStack_6a8;
-  uint8_t auStack_6a0 [264];
+  uint8_t *StackCharacterBuffer7f8;
+  void **StackPointerBuffer7f0;
+  uint64_t StackUnsignedBuffer7e8;
+  int StackIntegerBuffer7dc;
+  void *StackPointerBuffer7d8;
+  uint8_t StackCharacterBuffer7d0 [8];
+  uint8_t StackCharacterBuffer7c8 [152];
+  uint8_t StackCharacterBuffer730 [104];
+  uint8_t SystemUnsignedValue6C8 [16];
+  void *StackPointerBuffer6b8;
+  uint8_t *StackCharacterBuffer6b0;
+  uint32_t StackUnsignedBuffer6a8;
+  uint8_t StackCharacterBuffer6a0 [264];
   void *StackPointer598;
   uint8_t *StackPointer590;
   uint32_t BufferMemoryOffset8;
@@ -262338,13 +262338,13 @@ void InitializeSystemDataTransfer(uint64_t ContextHandle,long long OperationBuff
   uint8_t SystemUintBuffer258 [560];
   unsigned long long StackValidationFlag;
   
-  uStack_7e8 = 0xfffffffffffffffe;
-  StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)auStack_838;
+  StackUnsignedBuffer7e8 = 0xfffffffffffffffe;
+  StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)StackCharacterBuffer838;
   CalculationFunctionAddress8 = 0;
-  puStack_6b8 = &SystemContextTemplate;
-  puStack_6b0 = auStack_6a0;
-  uStack_6a8 = 0;
-  auStack_6a0[0] = 0;
+  StackPointerBuffer6b8 = &SystemContextTemplate;
+  StackCharacterBuffer6b0 = StackCharacterBuffer6a0;
+  StackUnsignedBuffer6a8 = 0;
+  StackCharacterBuffer6a0[0] = 0;
   if (OperationBufferSize != 0) {
     CharacterTablePointer = -1;
     do {
@@ -262810,7 +262810,25 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
 
 
 
-0e8e0(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020e8e0(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统上下文数据传输
+ * 
+ * 该函数负责系统上下文数据的传输操作，包括：
+ * - 字符状态缓冲区管理
+ * - 内存分配掩码操作
+ * - 信号量释放和锁定
+ * - 系统上下文清理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020e8e0
+ */
+#define TransferSystemContextDataAndHandleResources FUN_18020e8e0
+void TransferSystemContextDataAndHandleResources(long long ContextHandle, long long *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
@@ -262848,7 +262866,25 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
 
 
 
-0e9b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020e9b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统上下文初始化和线程管理
+ * 
+ * 该函数负责系统上下文的初始化和线程管理，包括：
+ * - 线程本地存储设置
+ * - 系统事件处理
+ * - 线程优先级设置
+ * - 线程ID管理
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020e9b0
+ */
+#define InitializeSystemContextAndManageThreads FUN_18020e9b0
+void InitializeSystemContextAndManageThreads(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
