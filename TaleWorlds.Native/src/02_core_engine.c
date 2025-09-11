@@ -245930,7 +245930,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
             fStack_1c4 = MatrixTransformElementB;
             fStack_188 = MatrixTransformElementB;
             if (*(long long *)(SystemCharacterStatusBufferPointerA + 0x350) == 0) {
-              CharacterStatusBuffer = (void *                        FUN_180094e80(aInputDataLength.Low64Part,&SystemMemoryPointer168,&SystemEventDataTable,fStack_184,SystemEventTemplatePointer5,
+              CharacterStatusBuffer = (void *                        ProcessSystemBufferAllocation(aInputDataLength.Low64Part,&SystemMemoryPointer168,&SystemEventDataTable,fStack_184,SystemEventTemplatePointer5,
                                       TemporaryBuffer,IntegerValue);
               SystemChecksum = *CharacterStatusBuffer;
               *CharacterStatusBuffer = 0;
