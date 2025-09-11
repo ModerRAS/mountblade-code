@@ -60031,12 +60031,12 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
     (**(FunctionPointer**)(exceptionContext + ExceptionHandlerCallbackOffset400))(exceptionContext + SystemDataSecondaryOffset180,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset160) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionContext + 0x168) != 0) {
+  if (*(int64_t *)(exceptionContext + ExceptionContextStatusOffset168) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionContext + 0x168) = 0;
-  *(DataWord *)(exceptionContext + 0x178) = 0;
-  *(DataBuffer *)(exceptionContext + 0x160) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + ExceptionContextStatusOffset168) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffset178) = 0;
+  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset160) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset140) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContext + ExceptionContextDataOffset148) != 0) {
       TerminateSystemExecutionAndCleanupResources();
