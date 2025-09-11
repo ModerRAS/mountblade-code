@@ -78537,8 +78537,8 @@ void ExecuteExceptionHandlerCallbacksA30(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbacksA40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x2a0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + DataBufferOffset2A0) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + DataBufferOffset2A0))(dataBuffer + DataBufferOffset290,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + ValidationResultOffset0))(dataBuffer + 0x270,0,0);
@@ -87332,10 +87332,10 @@ void ConfigureTemporaryExceptionHandlerAndResetStatus(DataBuffer operationBase,i
 
 {
   *(DataBuffer *)(dataBuffer + 0x298) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x2a0) != 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffset2A0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x2a0) = 0;
+  *(DataBuffer *)(dataBuffer + DataBufferOffset2A0) = 0;
   *(DataWord *)(dataBuffer + 0x2b0) = 0;
   *(DataBuffer *)(dataBuffer + 0x298) = &SystemDefaultExceptionHandlerB;
   return;
@@ -87385,7 +87385,7 @@ void ConfigureTemporaryExceptionHandlerAndResetValidation(DataBuffer operationBa
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ValidationResultOffset0) = 0;
-  *(DataWord *)(dataBuffer + 0x290) = 0;
+  *(DataWord *)(dataBuffer + DataBufferOffset290) = 0;
   *(DataBuffer *)(dataBuffer + 0x278) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -97730,7 +97730,7 @@ void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x2a0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset2A0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -99717,7 +99717,7 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x2a0)) {
+  if (0 < *(int *)(dataBuffer + DataBufferOffset2A0)) {
     resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemresourcePointer + 0x12e3) != '\0') || (*(char *)(SystemresourcePointer + 0x12dd) != '\0')
        ) {
@@ -99746,7 +99746,7 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x290) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DataBufferOffset290) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -104745,7 +104745,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset290);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -107232,7 +107232,7 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset290);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -107268,7 +107268,7 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset290);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
