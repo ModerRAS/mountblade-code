@@ -100001,42 +100001,42 @@ void ProcessDataBufferA2AtOffset70(DataBuffer operationBase,int64_t dataBuffer)
  */
 void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryRegionOffset;
-  uint64_t memoryRegionBase;
+  int *referenceCount;
+  DataBuffer *resourcePointer;
+  int64_t blockOffset;
+  uint64_t regionBase;
   
   // 获取内存资源指针
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryResourceManagementOffset) + MemoryresourcePointerOffset);
-  if (memoryResourcePointer == (DataBuffer *)0x0) {
+  resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryResourceManagementOffset) + MemoryresourcePointerOffset);
+  if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
   
   // 计算内存区域基地址
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
-  if (memoryRegionBase != 0) {
+  regionBase = (uint64_t)resourcePointer & MemoryRegionMask;
+  if (regionBase != 0) {
     // 计算内存块偏移量
-    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
-    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    blockOffset = regionBase + MemoryBaseOffset + ((int64_t)resourcePointer - regionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
+    blockOffset = blockOffset - (uint64_t)*(uint *)(blockOffset + MemoryOffsetAdjustment);
     
     // 检查内存区域是否有效且未处于异常状态
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(regionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(blockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
-      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount - 1;
+      *resourcePointer = *(DataBuffer *)(blockOffset + MemoryDataOffset);
+      *(DataBuffer **)(blockOffset + MemoryDataOffset) = resourcePointer;
+      referenceCount = (int *)(blockOffset + MemoryReferenceOffset);
+      *referenceCount = *referenceCount - 1;
       
       // 如果引用计数降为0，调用异常处理函数
-      if (*resourceReferenceCount == 0) {
+      if (*referenceCount == 0) {
         HandleMemoryResourceException();
         return;
       }
     }
     else {
       // 如果内存区域无效，调用内存管理函数
-      ManageMemory(memoryRegionBase, SetBitFlag(MemoryManagementFlagMask, *(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList),
-                  memoryResourcePointer, memoryRegionBase, SystemCleanupFlagAlternative);
+      ManageMemory(regionBase, SetBitFlag(MemoryManagementFlagMask, *(void ***)(regionBase + MemoryPointerTableOffset) == &ExceptionList),
+                  resourcePointer, regionBase, SystemCleanupFlagAlternative);
     }
   }
   return;
