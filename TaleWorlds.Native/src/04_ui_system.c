@@ -2093,7 +2093,17 @@ typedef enum {
  */
 #define CalculateUIDataMinProcessing FUN_1807213f0
 
- // UI系统函数宏定义 - 处理UI渲染缓冲区
+ // UI系统函数宏定义 - 处理UI上下文事件验证
+/**
+ * @brief 处理UI上下文事件验证
+ * 
+ * 该函数负责验证和处理UI上下文中的事件。
+ * 
+ * @note 原始函数名：FUN_180840270
+ */
+#define ProcessUIContextEventValidation FUN_180840270
+
+// UI系统函数宏定义 - 处理UI渲染缓冲区
 /**
  * @brief 处理UI渲染缓冲区
  * 
@@ -300035,51 +300045,76 @@ UIHandle ProcessUIContextEventValidation(longlong *uiContext)
   uint eventCodeType;
   
   eventCode = *(uint *)((longlong)uiContext + 0xc);
+  
+  // 验证事件代码类型的有效性
   if ((int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f)) < 0) {
+    // 检查UI上下文大小是否有效
     if (0 < (int)uiContext[1]) {
-      return 0x1c;
+      return 0x1c; // 返回错误代码
     }
+    // 如果事件类型有效且上下文非空，处理上下文数据
     if ((0 < (int)eventCodeType) && (*uiContext != 0)) {
                      WARNING: Subroutine does not return
       ProcessUIContextDataWithFlags(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),*uiContext,&UIResourceBuffer180957f70,0x100,1);
     }
+    // 重置上下文数据
     *uiContext = 0;
     eventCode = 0;
     *(UIDword *)((longlong)uiContext + 0xc) = 0;
   }
+  
+  // 获取操作结果并验证处理结果
   operationResult = (int)uiContext[1];
   if (processingResult < 0) {
                      WARNING: Subroutine does not return
     memset((longlong)processingResult + *uiContext,0,(longlong)-processingResult);
   }
+  
+  // 重置缓冲区数据
   *(UIDword *)(uiBufferData + 1) = 0;
+  
+  // 验证事件代码类型并处理迭代
   if ((0 < (int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f))) &&
      (iterationCount = FUN_180849030(uiContext,0), (int)iterationCount != 0)) {
     return iterationCount;
   }
-  return 0;
+  
+  return 0; // 返回失败结果
 }
 
 
 
  
 
- void FUN_180840330(ulonglong *uiContext,int dataSource)
-void FUN_180840330(ulonglong *uiContext,int dataSource)
+ /**
+ * @brief 处理UI上下文数据源初始化和验证
+ * 
+ * 该函数负责初始化和验证UI上下文数据源，包括：
+ * - 数据源验证和初始化
+ * - 加密密钥处理
+ * - 缓冲区管理和数据处理
+ * - 错误处理和状态管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ */
+void ProcessUIContextDataSourceInitialization(ulonglong *uiContext,int dataSource)
+void ProcessUIContextDataSourceInitialization(ulonglong *uiContext,int dataSource)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  int astackInt148 [2];
-  longlong stackLong140;
-  uint astackUInt138 [4];
-  UIByte astackUInt128 [256];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer [32];          // 加密缓冲区
+  UIByte *dataBufferPointer;            // 数据缓冲区指针
+  int validationResultArray [2];         // 验证结果数组
+  longlong contextHandle;               // 上下文句柄
+  uint uiComponentIds [4];               // UI组件ID数组
+  UIByte processingBuffer [256];         // 处理缓冲区
+  ulonglong encryptionKey;              // 加密密钥
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt178;
+  // 初始化加密密钥
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   func_0x000180741c10(&DAT_180be12f0);
   if (uiContext == (ulonglong *)0x0) {
     uiCompareResult = 0x1f;
