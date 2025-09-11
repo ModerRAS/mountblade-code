@@ -1339,6 +1339,7 @@ typedef enum {
 #define extraout_XMM0_Da UIXMM0Data
 #define uStack0000000000000050 UIStackBuffer50
 #define stackParam00000090 UIStackParam90
+#define stackParam00000020 UIStackParam20
 #define lStackX_8 UILocalStackX8
 #define stack0x00000090 UIStackParam90
 
@@ -5651,6 +5652,15 @@ void* UIRenderTarget;
  * @note 原始函数名：FUN_18070e950
  */
 #define FUN_18070e950 ProcessUIRenderDataWithTransform
+
+/**
+ * @brief 验证UI上下文数据
+ * 
+ * 该函数负责验证UI上下文数据的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_1808a7b00
+ */
+#define FUN_1808a7b00 ValidateUIContextData
 
 /**
  * @brief 获取UI元素数量
@@ -133442,39 +133452,39 @@ void ProcessUIDataBufferOperationExtended(UIHandle uiContext,UIHandle dataSource
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle preservedRegister12;
   UIHandle eventHandle;
   UIHandle preservedRegister15;
   UIHandle stackParam00000020;
   UIDword processingFlags;
-  longlong lStack0000000000000038;
+  longlong cleanupHandle;
   ulonglong stackParam00000140;
   UIDword stackParam000001b0;
   
   processingFlags = (UIDword)((ulonglong)stackParam00000020 >> 0x20);
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
-  *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
-  *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
-  lStack0000000000000038 = 0;
-  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = preservedRegister12;
+  *(UIHandle *)(registerPointer + -0x30) = eventHandle;
+  *(UIHandle *)(registerPointer + -0x38) = preservedRegister15;
+  cleanupHandle = 0;
+  operationResult = ManageUIContextResources(uiContext,&param_6,&cleanupHandle);
   if (operationResult == 0) {
     if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
       operationResult = (**(code **)(*param_6 + 0x30))
                         (param_6,dataSource,targetBuffer,bufferSize,CONCAT44(processingFlags,stackParam000001b0));
-      if (operationResult == 0) goto FUN_18073f0d1;
+      if (operationResult == 0) goto CleanupAndExit;
     }
     else {
       operationResult = 0x2e;
     }
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    dataValidationResult = CopyUIDataBuffer(&processingBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&processingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(&processingBuffer + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
