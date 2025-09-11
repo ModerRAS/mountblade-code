@@ -236028,32 +236028,32 @@ void ProcessSystemMemoryBufferAndCharacterEncoding(long long ContextHandle,long 
   MemoryAddressMask = 0xfffffffffffffffe;
   MemoryBufferOperationStatus = OperationBufferSize - ContextHandle;
   do {
-    if ((SystemBufferStatus < 0x5f28) || (Utf8SourcePointer < 1)) {
+    if ((MemoryBufferOperationStatus < 0x5f28) || (Utf8SourcePointer < 1)) {
       if (Utf8SourcePointer == 0) {
-        ProcessSystemCharacterEncodingAndMemoryValidation(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer,SystemMemoryAllocationMaskPointer);
+        ProcessSystemCharacterEncodingAndMemoryValidation(ContextHandle,OperationBufferSize,OperationBufferSize,Utf16EndPointer,MemoryAddressMask);
       }
       return;
     }
-    SystemBufferStatus = ((OperationBufferSize - ContextHandle) / 0x690) * 0x348 + ContextHandle;
-    SystemSystemValidationStatus = ValidateSystemOperationStatus(OperationBufferSize - ContextHandle,ContextHandle,SystemBufferStatus);
-    if (SystemSystemValidationStatus == '\0') {
-      SystemSystemValidationStatus = ValidateSystemOperationStatus();
-      MemoryBlockIndex = ContextHandle;
-      if (SystemSystemValidationStatus == '\0') {
-        SystemSystemValidationStatus = ValidateSystemOperationStatus();
-        goto LAB_180190f00;
+    MemoryBufferOperationStatus = ((OperationBufferSize - ContextHandle) / 0x690) * 0x348 + ContextHandle;
+    SystemOperationValidationResult = ValidateSystemOperationStatus(OperationBufferSize - ContextHandle,ContextHandle,MemoryBufferOperationStatus);
+    if (SystemOperationValidationResult == '\0') {
+      SystemOperationValidationResult = ValidateSystemOperationStatus();
+      MemoryBlockProcessingIndex = ContextHandle;
+      if (SystemOperationValidationResult == '\0') {
+        SystemOperationValidationResult = ValidateSystemOperationStatus();
+        goto MemoryBufferProcessingCompleteLabel;
       }
     }
     else {
-      SystemSystemValidationStatus = ValidateSystemOperationStatus();
-      MemoryBlockIndex = SystemBufferStatus;
-      if (SystemSystemValidationStatus == '\0') {
-        SystemSystemValidationStatus = ValidateSystemOperationStatus();
-        SystemBufferStatus = ContextHandle;
-LAB_180190f00:
-        MemoryBlockIndex = SystemBufferStatus;
-        if (SystemValidationStatus != '\0') {
-          MemoryBlockIndex = OperationBufferSize + -0x348;
+      SystemOperationValidationResult = ValidateSystemOperationStatus();
+      MemoryBlockProcessingIndex = MemoryBufferOperationStatus;
+      if (SystemOperationValidationResult == '\0') {
+        SystemOperationValidationResult = ValidateSystemOperationStatus();
+        MemoryBufferOperationStatus = ContextHandle;
+MemoryBufferProcessingCompleteLabel:
+        MemoryBlockProcessingIndex = MemoryBufferOperationStatus;
+        if (CharacterEncodingValidationStatus != '\0') {
+          MemoryBlockProcessingIndex = OperationBufferSize + -0x348;
         }
       }
     }
