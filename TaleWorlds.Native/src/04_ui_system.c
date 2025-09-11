@@ -232,6 +232,68 @@ typedef enum {
 #define FUN_18073c380 ProcessUIContextBufferOperationC
 #define FUN_18073c39d ProcessUIContextBufferOperationD
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
+#define FUN_180739b90 ProcessUIDataWithTargetBuffer              // 处理带目标缓冲区的UI数据
+#define FUN_18073a3ad ProcessUIDataWithTargetValidation          // 处理带目标验证的UI数据
+#define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
+#define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
+
+/**
+ * @brief 处理带目标缓冲区的UI数据
+ * 
+ * 该函数处理UI数据并将其复制到目标缓冲区，支持数据格式转换和验证。
+ * 确保数据在传输过程中的完整性和安全性。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180739b90
+ */
+#define FUN_180739b90 ProcessUIDataWithTargetBuffer
+
+/**
+ * @brief 处理带目标验证的UI数据
+ * 
+ * 该函数处理UI数据并在目标位置进行验证，包括数据完整性检查和权限验证。
+ * 确保数据处理的安全性和可靠性。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18073a3ad
+ */
+#define FUN_18073a3ad ProcessUIDataWithTargetValidation
+
+/**
+ * @brief 初始化UI上下文全局状态
+ * 
+ * 该函数初始化UI上下文的全局状态，包括系统配置、资源管理和状态标志。
+ * 为UI系统的正常运行提供基础保障。
+ * 
+ * @return 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_18073c099
+ */
+#define FUN_18073c099 InitializeUIContextGlobalState
+
+/**
+ * @brief 验证UI上下文系统状态
+ * 
+ * 该函数验证UI上下文的系统状态，包括配置完整性、资源可用性和状态一致性。
+ * 确保UI系统处于稳定可靠的状态。
+ * 
+ * @return 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_18073c111
+ */
+#define FUN_18073c111 ValidateUIContextSystemState
 
 // 额外的UI系统函数语义化定义
 /**
@@ -11038,8 +11100,8 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
   crossProductZ = bufferXCoord * targetZCoord - targetBaseValue * bufferZCoord;
   finalCrossProductZ = targetBaseValue * bufferYCoord - bufferXCoord * targetYCoord;
   determinantValue = crossProductZ * dataSource[5] + crossProductY * dataSource[4] + finalCrossProductZ * sourceZCoord;
-  if (normalizedSum3 != 0.0) {
-    finalResult = dataSource[5] * dataSource[1] + dataSource[4] * *dataSource + sourceZ * dataSource[2];
+  if (determinantValue != 0.0) {
+    scalingFactor = dataSource[5] * dataSource[1] + dataSource[4] * *dataSource + sourceZCoord * dataSource[2];
     vectorComponentX = 1.0 / normalizedSum3;
     sourceY = dataSource[4];
     normalizedSum5 = targetY * targetBuffer[1] + baseValue * *targetBuffer + targetZ * targetBuffer[2];
