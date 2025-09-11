@@ -27317,7 +27317,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
       processedOperationFlags = operationFlags;
     }
     operationResult = ExecuteSystemOperation(requestContext,requestData,processedOperationFlags,&operationResultData);
-    if ((operationResult == 0) && (exceptionContextPointer = (int64_t *)(exceptionContext + ExceptionHandlerContextPointerOffset), exceptionContextPointer != (int64_t *)0x0)) {
+    if ((operationResult == 0) && (exceptionContextPointer = (int64_t *)(exceptionContext + ExceptionHandlerContextPointerOffset), exceptionContextPointer != NULL)) {
       contextIterator = (int64_t *)*exceptionContextPointer;
       if (contextIterator != exceptionContextPointer) {
         do {
@@ -31903,7 +31903,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
   uint64_t securityValidationValue;
   
   securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
-  nullPointer = (int64_t *)0x0;
+  nullPointer = NULL;
   contextProcessingBuffer[1] = 0;
   operationResult = InitializeBufferA0(contextProcessingBuffer + 1,dataContext[1]);
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
@@ -31917,13 +31917,13 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
         contextPointer = nullPointer;
       }
       resourceIterator = nullPointer;
-      if (contextPointer != (int64_t *)0x0) {
+      if (contextPointer != NULL) {
         resourceIterator = contextPointer + 1;
       }
       if (resourceIterator != resourceList) {
         do {
           contextPointer = resourceIterator + -1;
-          if (resourceIterator == (int64_t *)0x0) {
+          if (resourceIterator == NULL) {
             contextPointer = nullPointer;
           }
           currentResource = contextPointer[3];
@@ -31939,7 +31939,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
             contextPointer = nullPointer;
           }
           resourceIterator = nullPointer;
-          if (contextPointer != (int64_t *)0x0) {
+          if (contextPointer != NULL) {
             resourceIterator = contextPointer + 1;
           }
         } while (resourceIterator != resourceList);
@@ -46076,9 +46076,9 @@ void ExceptionUnwindHandler1(DataBuffer exceptionContext, int64_t unwindContext)
   int64_t *exceptionHandlerChain;
   
   exceptionHandlerChain = *(int64_t **)(unwindContext + 0xc0);
-  if (exceptionHandlerChain != (int64_t *)0x0) {
+  if (exceptionHandlerChain != NULL) {
     exceptionHandlerPointer = (int64_t *)*exceptionHandlerChain;
-    if (exceptionHandlerPointer != (int64_t *)0x0) {
+    if (exceptionHandlerPointer != NULL) {
       (**(FunctionPointer**)(exceptionHandlerPointer + SystemFloatDataOffset38))();
     }
   }
@@ -46136,7 +46136,7 @@ void ExceptionUnwindHandler3(DataBuffer exceptionContext, int64_t unwindContext)
   int64_t *exceptionHandler;
   
   exceptionHandlerChain = *(int64_t **)(unwindContext + ExceptionCleanupOffset48);
-  if (exceptionHandlerChain != (int64_t *)0x0) {
+  if (exceptionHandlerChain != NULL) {
     exceptionHandler = (int64_t *)*exceptionHandlerChain;
     if (exceptionHandler != (int64_t *)0x0) {
       (**(FunctionPointer**)(exceptionHandler + SystemFloatDataOffset38))();
@@ -66575,7 +66575,7 @@ void ExecuteValidationContextCleanup(DataBuffer cleanupContext, int64_t exceptio
   int64_t *contextPointer;
   
   contextPointer = *(int64_t **)(*(int64_t *)(exceptionContext + 0x2e0) + SystemDataParameterOffset20);
-  if (contextPointer != (int64_t *)0x0) {
+  if (contextPointer != NULL) {
     (**(FunctionPointer**)(*contextPointer + SystemFloatDataOffset38))();
   }
   return;

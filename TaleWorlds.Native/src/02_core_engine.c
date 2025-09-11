@@ -237553,7 +237553,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   *(void *)((long long)ContextHandle + 0x300c) = 0;
   ProcessSystemFunctionCall(ContextHandle + 0x603);
   ProcessSystemFunctionCall(ContextHandle + 0x66d);
-  FUN_180397660(ContextHandle + 0x6d6);
+  InitializeSystemAudio(ContextHandle + 0x6d6);
   ContextHandle[0x7ce] = 0;
   ContextHandle[1999] = 0;
   ContextHandle[2000] = 0;
