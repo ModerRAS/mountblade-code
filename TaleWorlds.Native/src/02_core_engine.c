@@ -258086,22 +258086,22 @@ long long * ProcessContextHandleBoundaryAndMemoryAllocation(long long *ContextHa
     MemoryRangeBoundary[6] = SystemDataTablePointer;
     UnicodeCodePoint = *(uint32_t *)((long long)OperationBufferSize + 0x3c);
     SystemDataTablePointer = OperationBufferSize[8];
-    MemoryAllocationMaskPointer = *(uint32_t *)((long long)OperationBufferSize + 0x44);
+    MemoryAllocationMask = *(uint32_t *)((long long)OperationBufferSize + 0x44);
     *(int *)(MemoryRangeBoundary + 7) = (int)OperationBufferSize[7];
     *(uint32_t *)((long long)MemoryRangeBoundary + 0x3c) = UnicodeCodePoint;
     *(int *)(MemoryRangeBoundary + 8) = (int)SystemDataTablePointer;
-    *(uint32_t *)((long long)MemoryRangeBoundary + 0x44) = MemoryAllocationMaskPointer;
+    *(uint32_t *)((long long)MemoryRangeBoundary + 0x44) = MemoryAllocationMask;
     UnicodeCodePoint = *(uint32_t *)((long long)OperationBufferSize + 0x4c);
     SystemDataTablePointer = OperationBufferSize[10];
-    MemoryAllocationMaskPointer = *(uint32_t *)((long long)OperationBufferSize + 0x54);
+    MemoryAllocationMask = *(uint32_t *)((long long)OperationBufferSize + 0x54);
     *(int *)(MemoryRangeBoundary + 9) = (int)OperationBufferSize[9];
     *(uint32_t *)((long long)MemoryRangeBoundary + 0x4c) = UnicodeCodePoint;
     *(int *)(MemoryRangeBoundary + 10) = (int)SystemDataTablePointer;
-    *(uint32_t *)((long long)MemoryRangeBoundary + 0x54) = MemoryAllocationMaskPointer;
+    *(uint32_t *)((long long)MemoryRangeBoundary + 0x54) = MemoryAllocationMask;
     SystemDataTablePointer = (OperationBufferSize[0xc] - OperationBufferSize[0xb]) / 6 + (OperationBufferSize[0xc] - OperationBufferSize[0xb] >> 0x3f);
     SystemDataTablePointer = (SystemDataTablePointer >> 1) - (SystemDataTablePointer >> 0x3f);
-    Utf16Char = *(uint *)(OperationBufferSize + 0xe);
-    *(uint *)(MemoryRangeBoundary + 0xe) = Utf16Char;
+    Utf16CharacterValue = *(uint *)(OperationBufferSize + 0xe);
+    *(uint *)(MemoryRangeBoundary + 0xe) = Utf16CharacterValue;
     if (SystemDataTablePointer == 0) {
       MemoryPoolBlockSize = 0;
     }
