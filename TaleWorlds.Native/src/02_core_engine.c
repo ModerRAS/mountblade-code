@@ -262545,7 +262545,7 @@ void ValidateSystemContextHandle(long long *ContextHandle)
  * @note 原始函数名：FUN_18020e3d0
  */
 #define HandleSystemContextCleanupAndMemoryBlocks FUN_18020e3d0
-void FUN_18020e3d0(long long *ContextHandle)
+void HandleSystemContextCleanupAndMemoryBlocks(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
