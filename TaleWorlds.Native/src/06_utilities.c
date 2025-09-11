@@ -6687,23 +6687,23 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：Unwind_180904830 - 默认异常处理器设置函数
 // 功能：设置默认异常处理器B到异常上下文中
-#define SetDefaultExceptionHandlerB Unwind_180904830
+#define SetDefaultExceptionHandlerB SetDefaultExceptionHandlerAtOffset48
 
 // 原始函数名：Unwind_180904840 - 异常处理状态清理函数
 // 功能：清理异常处理状态标志，处理数据缓冲区状态
-#define ClearExceptionHandlingState Unwind_180904840
+#define ClearExceptionHandlingState ClearExceptionHandlingFlags
 
 // 原始函数名：Unwind_180904870 - 异常上下文重置函数偏移量0x50
 // 功能：重置异常上下文处理器状态（偏移量0x50），设置临时异常处理器并清理状态标志
-#define ResetExceptionContextOffset50 Unwind_180904870
+#define ResetExceptionContextOffset50 ResetExceptionContextAtOffset80
 
 // 原始函数名：Unwind_180904880 - 默认异常处理器设置函数偏移量0x40
 // 功能：设置默认异常处理器B到指定偏移量0x40的位置
-#define SetDefaultExceptionHandlerBOffset40 Unwind_180904880
+#define SetDefaultExceptionHandlerBOffset40 SetDefaultExceptionHandlerAtOffset64
 
 // 原始函数名：Unwind_180904890 - 默认异常处理器设置函数偏移量0x50
 // 功能：设置默认异常处理器B到指定偏移量0x50的位置
-#define SetDefaultExceptionHandlerBOffset50 Unwind_180904890
+#define SetDefaultExceptionHandlerBOffset50 SetDefaultExceptionHandlerAtOffset80
 
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
@@ -6870,15 +6870,15 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
 // 功能：在偏移量0x38处调用异常处理器
-#define InvokeExceptionHandlerAtPrimaryPosition Unwind_180906b80
+#define InvokeExceptionHandlerAtPrimaryPosition InvokeExceptionHandlerAtOffset56
 
 // 原始函数名：Unwind_180906b90 - 系统资源初始化和异常处理器调用函数B90
 // 功能：初始化系统资源并在偏移量0x58处调用异常处理器
-#define InitializeSystemResourcesAndInvokeHandler Unwind_180906b90
+#define InitializeSystemResourcesAndInvokeHandler InitializeSystemResourcesAndInvokeExceptionHandler
 
 // 原始函数名：Unwind_180906d00 - 异常处理器调用函数D00
 // 功能：在偏移量0x28处调用异常处理器
-#define InvokeExceptionHandlerAtSecondaryPosition Unwind_180906d00
+#define InvokeExceptionHandlerAtSecondaryPosition InvokeExceptionHandlerAtOffset40
 
 /**
  * @brief 异常处理器调用函数（偏移量D10）
@@ -6895,7 +6895,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * @note 此函数用于异常处理机制中的关键调用点
  * @see InvokeExceptionHandlerAtPrimaryPosition, InvokeExceptionHandlerAtSecondaryPosition
  */
-#define InvokeExceptionHandlerAtTertiaryPosition Unwind_180906d10
+#define InvokeExceptionHandlerAtTertiaryPosition InvokeExceptionHandlerAtOffset48
 
 /**
  * @brief 异常处理器调用函数（偏移量D20）
@@ -6912,7 +6912,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * @note 此函数用于异常处理机制中的关键调用点
  * @see InvokeExceptionHandlerAtTertiaryPosition, InvokeExceptionHandlerAtPentaPosition
  */
-#define InvokeExceptionHandlerAtQuadPosition Unwind_180906d20
+#define InvokeExceptionHandlerAtQuadPosition InvokeExceptionHandlerAtOffset56
 
 /**
  * @brief 异常处理器调用函数（偏移量D30）
@@ -6921,7 +6921,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：Unwind_180906d30
  */
-#define InvokeExceptionHandlerAtPentaPosition Unwind_180906d30
+#define InvokeExceptionHandlerAtPentaPosition InvokeExceptionHandlerAtOffset64
 
 /**
  * @brief 异常上下文清理函数（偏移量A0）
@@ -6930,7 +6930,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：Unwind_1809092e0
  */
-#define CleanupExceptionContextA0 Unwind_1809092e0
+#define CleanupExceptionContextA0 CleanupExceptionContextAtOffset160
 
 /**
  * @brief 异常上下文清理函数（偏移量A1）
