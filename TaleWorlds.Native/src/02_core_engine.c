@@ -252487,49 +252487,49 @@ ProcessOperationBufferSizeAndMemoryBlockIndexManagement:
 // 函数: void ProcessUtf16CharacterEncodingAndMemoryPoolAllocation(long long ContextHandle,uint32_t OperationBufferSize)
 void ProcessUtf16CharacterEncodingAndMemoryPoolAllocation(long long ContextHandle,uint32_t OperationBufferSize)
 {
-  uint32_t Utf16Char;
-  uint32_t MemoryPoolIndex;
+  uint32_t Utf16CharacterCode;
+  uint32_t MemoryPoolEntryIndex;
   long long *MemoryBlockIndex;
-  long long ProcessingResult;
+  long long ContextProcessingResult;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   unsigned long long *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  uint64_t *PatternIndex;
-  void *NextNode;
+  uint64_t *CharacterPatternIndex;
+  void *DataNode;
   
-  SecondaryProcessingStatusFlag = (unsigned long long *)(ContextHandle + 0x98 + ProcessingResult * 0x20);
-  StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
-  if (StringProcessingStatus < (void *)SecondaryProcessingStatusFlag[2]) {
-    Utf16Char = *(uint32_t *)((long long)PatternIndex + 0xc);
-    *StringProcessingStatus = *PatternIndex;
-    *(uint32_t *)(StringProcessingStatus + 1) = OperationBufferSize;
-    *(uint32_t *)((long long)StringProcessingStatus + 0xc) = Utf16Char;
+  SecondaryProcessingStatusFlag = (unsigned long long *)(ContextHandle + 0x98 + ContextProcessingResult * 0x20);
+  void *StringDataBuffer = (void *)SecondaryProcessingStatusFlag[1];
+  if (StringDataBuffer < (void *)SecondaryProcessingStatusFlag[2]) {
+    Utf16CharacterCode = *(uint32_t *)((long long)CharacterPatternIndex + 0xc);
+    *StringDataBuffer = *CharacterPatternIndex;
+    *(uint32_t *)(StringDataBuffer + 1) = OperationBufferSize;
+    *(uint32_t *)((long long)StringDataBuffer + 0xc) = Utf16CharacterCode;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
     goto ProcessPatternIndexCleanupAndMemoryRelease;
   }
-  ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
-  MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)ContextHandleTablePointer >> 4;
+  void *ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
+  MemoryPoolBlockSize = (long long)StringDataBuffer - (long long)ContextHandleTablePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
 MemoryPoolAllocationLabel:
     MemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
-    StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
+    StringDataBuffer = (void *)SecondaryProcessingStatusFlag[1];
   }
   else {
     MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
     if (MemoryPoolBlockSize != 0) goto LAB_180204eca;
     MemoryAddressMaskPointer = NULL;
   }
-  if (ContextHandleTablePointer != StringProcessingStatus) {
-      memmove(MemoryAddressMaskPointer,ContextHandleTablePointer,(long long)StringProcessingStatus - (long long)ContextHandleTablePointer);
+  if (ContextHandleTablePointer != StringDataBuffer) {
+      memmove(MemoryAddressMaskPointer,ContextHandleTablePointer,(long long)StringDataBuffer - (long long)ContextHandleTablePointer);
   }
-  Utf16Char = *(uint32_t *)(PatternIndex + 1);
-  MemoryPoolIndex = *(uint32_t *)((long long)PatternIndex + 0xc);
-  *MemoryAddressMaskPointer = *PatternIndex;
-  *(uint32_t *)(MemoryAddressMaskPointer + 1) = Utf16Char;
-  *(uint32_t *)((long long)MemoryAddressMaskPointer + 0xc) = MemoryPoolIndex;
+  Utf16CharacterCode = *(uint32_t *)(CharacterPatternIndex + 1);
+  MemoryPoolEntryIndex = *(uint32_t *)((long long)CharacterPatternIndex + 0xc);
+  *MemoryAddressMaskPointer = *CharacterPatternIndex;
+  *(uint32_t *)(MemoryAddressMaskPointer + 1) = Utf16CharacterCode;
+  *(uint32_t *)((long long)MemoryAddressMaskPointer + 0xc) = MemoryPoolEntryIndex;
   if (*SecondaryProcessingStatusFlag != 0) {
       ProcessSystemEventHandling();
   }
