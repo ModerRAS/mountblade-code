@@ -128293,7 +128293,27 @@ CleanupAndRender:
 
  
 
- void ProcessUIContextWithDataSource(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理带数据源的UI上下文
+ * 
+ * 该函数负责处理UI上下文与数据源的交互操作，包括：
+ * - 初始化UI上下文和数据源的连接
+ * - 执行数据验证和处理操作
+ * - 管理内存资源的分配和释放
+ * - 处理加密数据的安全操作
+ * - 执行渲染任务的后处理
+ * 
+ * @param uiContext UI上下文句柄，标识要处理的UI上下文
+ * @param dataSource 数据源句柄，提供处理所需的数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: FUN_18073bcc0
+ * @note 该函数包含加密操作和内存管理
+ * @warning 函数包含不返回的子程序调用
+ * 
+ * @see ProcessUIContextWithCleanup, ProcessUIDataWithValidation, ExecuteUIContextDataOperation
+ */
 void ProcessUIContextWithDataSource(UIHandle uiContext,UIHandle dataSource)
 
 {
@@ -133322,7 +133342,31 @@ FUN_18073eddb:
 
  
 
- #define ProcessUIContextWithDataSource FUN_18073eccd          // 处理带数据源的UI上下文
+ /**
+ * @brief 处理带数据源的UI上下文（扩展版本）
+ * 
+ * 该函数是ProcessUIContextWithDataSource的扩展版本，提供更完整的参数控制和处理能力：
+ * - 支持更详细的缓冲区大小控制
+ * - 提供结果指针用于返回操作状态
+ * - 支持额外的参数传递
+ * - 包含完整的数据验证和处理流程
+ * - 实现安全的内存管理和资源清理
+ * 
+ * @param uiContext UI上下文句柄，标识要处理的UI上下文
+ * @param dataSource 数据源标识符，提供处理所需的数据
+ * @param targetBuffer 目标缓冲区标识符，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定数据处理的容量
+ * @param resultPointer 结果指针，用于返回操作结果和状态信息
+ * @param param_6 额外参数指针，用于传递额外的处理参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: FUN_18073eccd
+ * @note 该函数是ProcessUIContextWithDataSource的扩展版本
+ * @warning 函数包含不返回的子程序调用和系统清理操作
+ * 
+ * @see ProcessUIContextWithDataSource, ProcessUIBufferDataWithControl, ValidateUIDataAndInitialize
+ */
 void ProcessUIContextWithDataSource(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,longlong *param_6)
 

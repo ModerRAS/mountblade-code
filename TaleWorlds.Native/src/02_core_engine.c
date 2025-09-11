@@ -256461,7 +256461,7 @@ void ProcessSystemCharacterBufferAndStatusManagement(void)
   uint *CharacterStatusBuffer;
   long long BufferStatus;
   long long SearchStartIndex;
-  int RegisterEBPValue;
+  int LoopCounter;
   uint MemoryAllocationMaskPointer;
   unsigned long long CalculatedCodePoint;
   unsigned long long OperationResult;
@@ -256496,9 +256496,9 @@ void ProcessSystemCharacterBufferAndStatusManagement(void)
                (unsigned long long)(*(long long *)(MemoryBlockIndex + 0x40) - BufferStatus >> 4));
     }
     SystemParameter = *CharacterLimit;
-    RegisterEBPValue = RegisterEBPValue + 1;
+    LoopCounter = LoopCounter + 1;
     SystemChecksum = SystemChecksum + 0x78;
-    MemoryBlockIndex = SUB168(SEXT816(RegisterR13Value) * SEXT816(CharacterLimit[1] - SystemParameter),8) + (CharacterLimit[1] - SystemParameter);
+    MemoryBlockIndex = CalculateSystemBufferDifference(CharacterLimit[1] - SystemParameter);
   } while ((unsigned long long)(long long)RegisterEBPValue < (unsigned long long)((MemoryBlockIndex >> 6) - (MemoryBlockIndex >> 0x3f)));
   *(uint8_t *)((long long)CharacterLimit + 0x41) = 1;
   return;
