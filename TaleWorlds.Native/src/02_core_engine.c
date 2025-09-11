@@ -244493,9 +244493,9 @@ LAB_18019d50f:
   ProcessSystemEventQueueData(&SystemEventQueueF,*(uint32_t *)((long long)ContextHandle + 0x607cc));
   ProcessSystemEventQueueData(&SystemEventQueueG,(double)*(float *)(ContextHandle + 0x87),
                 (double)*(float *)((long long)ContextHandle + 0x43c),(double)*(float *)(ContextHandle + 0x88));
-  FUN_1801c1720(ContextHandle + 0x81,&SystemCleanupFlagG);
+  FinalizeSystemCleanupOperation(ContextHandle + 0x81,&SystemCleanupFlagG);
   ContextPrimaryFloat9 = MatrixElementA * 57.29578;
-  FUN_1801c1720(ContextHandle + 0x81,&SystemCleanupFlagG);
+  FinalizeSystemCleanupOperation(ContextHandle + 0x81,&SystemCleanupFlagG);
   if ((SystemCleanupFlagG.HighPart <= -0.01) || (0.01 <= SystemCleanupFlagG.HighPart)) {
     ContextPrimaryFloat9 = ContextPrimaryFloat9 + 180.0;
   }
@@ -245170,20 +245170,33 @@ LAB_18019e833:
 
 
 
-9eb00(long long ContextHandlevoid FUN_18019eb00(long long ContextHandle
+/**
+ * @brief 清理上下文句柄缓冲区
+ * 
+ * 该函数负责清理上下文句柄中的缓冲区数据，将所有相关位置零。
+ * 主要功能包括：
+ * - 获取UTF-16字符数量
+ * - 遍历并清空缓冲区
+ * - 重置上下文状态
+ * 
+ * @param ContextHandle 上下文句柄 - 指向需要清理的上下文
+ * 
+ * @note 原始函数名：FUN_18019eb00
+ */
+void ClearContextHandleBuffer(long long ContextHandle)
 {
-  unsigned long long Utf16Char;
-  long long BufferStatus;
-  unsigned long long UnicodeCodePoint;
+  unsigned long long Utf16CharCount;
+  long long BufferPointer;
+  unsigned long long BufferIndex;
   
-  Utf16Char = *(unsigned long long *)(ContextHandle + 0x10);
-  BufferStatus = *(long long *)(ContextHandle + 8);
-  UnicodeCodePoint = 0;
-  if (Utf16Char != 0) {
+  Utf16CharCount = *(unsigned long long *)(ContextHandle + 0x10);
+  BufferPointer = *(long long *)(ContextHandle + 8);
+  BufferIndex = 0;
+  if (Utf16CharCount != 0) {
     do {
-      *(void *)(BufferStatus + UnicodeCodePoint * 8) = 0;
-      UnicodeCodePoint = UnicodeCodePoint + 1;
-    } while (UnicodeCodePoint < Utf16Char);
+      *(void *)(BufferPointer + BufferIndex * 8) = 0;
+      BufferIndex = BufferIndex + 1;
+    } while (BufferIndex < Utf16CharCount);
   }
   *(void *)(ContextHandle + 0x18) = 0;
   return;
@@ -245192,20 +245205,33 @@ LAB_18019e833:
 
 
 
-9eb40(long long ContextHandlevoid FUN_18019eb40(long long ContextHandle
+/**
+ * @brief 重置上下文句柄数据
+ * 
+ * 该函数负责重置上下文句柄中的数据，将所有相关位置零。
+ * 主要功能包括：
+ * - 获取UTF-16字符数量
+ * - 遍历并重置缓冲区数据
+ * - 清理上下文状态标记
+ * 
+ * @param ContextHandle 上下文句柄 - 指向需要重置的上下文
+ * 
+ * @note 原始函数名：FUN_18019eb40
+ */
+void ResetContextHandleData(long long ContextHandle)
 {
-  unsigned long long Utf16Char;
-  long long BufferStatus;
-  unsigned long long UnicodeCodePoint;
+  unsigned long long Utf16CharCount;
+  long long BufferPointer;
+  unsigned long long DataIndex;
   
-  Utf16Char = *(unsigned long long *)(ContextHandle + 0x10);
-  BufferStatus = *(long long *)(ContextHandle + 8);
-  UnicodeCodePoint = 0;
-  if (Utf16Char != 0) {
+  Utf16CharCount = *(unsigned long long *)(ContextHandle + 0x10);
+  BufferPointer = *(long long *)(ContextHandle + 8);
+  DataIndex = 0;
+  if (Utf16CharCount != 0) {
     do {
-      *(void *)(BufferStatus + UnicodeCodePoint * 8) = 0;
-      UnicodeCodePoint = UnicodeCodePoint + 1;
-    } while (UnicodeCodePoint < Utf16Char);
+      *(void *)(BufferPointer + DataIndex * 8) = 0;
+      DataIndex = DataIndex + 1;
+    } while (DataIndex < Utf16CharCount);
   }
   *(void *)(ContextHandle + 0x18) = 0;
   return;
