@@ -410130,6 +410130,14 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // 原始函数名: FUN_18073ee30
 #define ProcessUIDataWithValidation FUN_18073ee30
 
+// UI系统数据表变量定义
+#define UNK_1809578b0 UIEventDataOperationTable       // UI事件数据操作表
+#define UNK_180957858 UIContextOperationTable          // UI上下文操作表
+#define UNK_1809578f0 UIResourceOperationTable         // UI资源操作表
+#define UNK_1809577d0 UIStateOperationTable            // UI状态操作表
+#define UNK_180957830 UIMemoryOperationTable           // UI内存操作表
+#define UNK_180957790 UIComponentOperationTable        // UI组件操作表
+
 
 
 
