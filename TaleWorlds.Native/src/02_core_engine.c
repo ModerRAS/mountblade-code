@@ -3847,6 +3847,15 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define FUN_180196b10 ProcessSystemEventHandlingWithTimeout           // 处理系统事件超时
 #define FUN_180196b30 ResetSystemEventHandling                         // 重置系统事件处理
 #define FUN_180196b80 InitializeSystemDataTemplateWithMemoryBlock      // 初始化系统数据模板和内存块
+#define ValidateSystemIntegerRange FUN_1802090ff                       // 验证系统整数范围
+#define ProcessSystemFloatOperation FUN_18020902a                     // 处理系统浮点操作
+#define ProcessSystemPatternMatching FUN_18007f0e0                    // 处理系统模式匹配
+#define ValidateSystemMemoryManager FUN_1800b6de0                     // 验证系统内存管理器
+#define GetMemoryBlockIndex FUN_180079240                             // 获取内存块索引
+#define ProcessSystemMemoryBlock FUN_1800b32c0                        // 处理系统内存块
+#define ExecuteSystemMemoryValidation FUN_180209980                   // 执行系统内存验证
+#define ProcessSystemMemoryOperation FUN_180209840                    // 处理系统内存操作
+#define ExecuteSystemStringProcessing FUN_180207ea0                  // 执行系统字符串处理
 
 // 系统内存和线程本地存储管理函数语义化映射
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
