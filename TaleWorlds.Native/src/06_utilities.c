@@ -131,7 +131,11 @@
 #define BoundaryCheckFailed -3                                     // 边界检查失败错误码
 
 // === 浮点数数据偏移量常量 ===
-#define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
+#define FloatingPointPrimaryDataOffset 0x20                    // 浮点数主数据偏移量 - 用于存储浮点数的主要数据
+#define FloatingPointSecondaryDataOffset 4                     // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
+#define FloatingPointMaxRangeOffset 0x38                      // 浮点数最大范围偏移量 - 用于存储浮点数的最大范围值
+#define FloatingPointMinRangeOffset 0x3c                      // 浮点数最小范围偏移量 - 用于存储浮点数的最小范围值
+#define FloatingPointValidationStatusOffset 0x34               // 浮点数验证状态偏移量 - 用于存储浮点数验证状态
 #define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
 #define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
 #define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
@@ -4686,6 +4690,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * @warning 参数验证是确保系统安全的重要步骤
  */
 #define ProcessCheckpointParameterValidation ValidateCheckpointParameters
+#define DataFlowValidationCheckpoint SystemDataFlowValidationCheckpoint
 
 /**
  * @brief 内存分配标签
@@ -25051,8 +25056,8 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t 
   int64_t SystemQueryArray [2];
   
   // 从上下文指针中提取浮点数值并初始化系统上下文值
-  systemContextValue = MergeHighLowWords(systemContextValue.HighPart, *(uint *)(ContextPointer + FloatingPointDataOffset20));
-  if ((*(uint *)(ContextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
+  systemContextValue = MergeHighLowWords(systemContextValue.HighPart, *(uint *)(ContextPointer + FloatingPointPrimaryDataOffset));
+  if ((*(uint *)(ContextPointer + FloatingPointPrimaryDataOffset) & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
   ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(ContextPointer + ExceptionHandlerCallbackOffset),SystemQueryArray);
@@ -25064,7 +25069,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t 
       SystemQueryArray[0] = SystemQueryArray[0] + -8;
     }
     systemContextValue = 0;
-    ValidationResult = ValidateSystemDataRange(SystemQueryArray[0],ContextPointer + FloatingPointDataOffset18,&systemContextValue);
+    ValidationResult = ValidateSystemDataRange(SystemQueryArray[0],ContextPointer + FloatingPointSecondaryDataOffset,&systemContextValue);
     if ((int)ValidationResult == 0) {
       if (systemContextValue == 0) {
         return OperationSuccessCode;
@@ -25073,16 +25078,16 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t 
       if (TargetDataPointer == 0) {
         return ResourceNotFoundCode;
       }
-      if ((*(SystemByteType *)(TargetDataPointer + FloatingPointDataOffset34) & FloatingPointValidationMask11) != 0) {
+      if ((*(SystemByteType *)(TargetDataPointer + FloatingPointValidationStatusOffset) & FloatingPointValidationMask11) != 0) {
         return ComponentDataValidationFailure;
       }
-      InputFloatValue = *(float *)(ContextPointer + FloatingPointDataOffset20);
-      MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointDataOffset38);
-      if ((*(float *)(TargetDataPointer + FloatingPointDataOffset38) <= InputFloatValue) &&
-         (MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointDataOffset3c), InputFloatValue <= *(float *)(TargetDataPointer + FloatingPointDataOffset3c))) {
+      InputFloatValue = *(float *)(ContextPointer + FloatingPointPrimaryDataOffset);
+      MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointMaxRangeOffset);
+      if ((*(float *)(TargetDataPointer + FloatingPointMaxRangeOffset) <= InputFloatValue) &&
+         (MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointMinRangeOffset), InputFloatValue <= *(float *)(TargetDataPointer + FloatingPointMinRangeOffset))) {
         MaxRangeValue = InputFloatValue;
       }
-      *(float *)(ContextPointer + FloatingPointDataOffset20) = MaxRangeValue;
+      *(float *)(ContextPointer + FloatingPointPrimaryDataOffset) = MaxRangeValue;
       *(float *)(systemContextValue + FloatingPointSecondaryDataOffset) = MaxRangeValue;
         UpdateSystemFloatingPointValue(*(DataBuffer *)(SystemDataPointer + SystemResourceOffset98),ContextPointer);
     }
@@ -30036,7 +30041,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           do {
             if (*(int *)(*exceptionContextPointer + resourceIterator * 4) != -1) {
               stackIndexBuffer[0] = *(int *)(*exceptionContextPointer + (int64_t)arrayIterationIndex * 4);
-              goto DataFlowValidationCheckpoint;
+              goto SystemDataFlowValidationCheckpoint;
             }
             arrayIterationIndex = arrayIterationIndex + 1;
             resourceIterator = resourceIterator + 1;
