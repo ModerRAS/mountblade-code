@@ -126540,13 +126540,18 @@ void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextDisplayController,&stack0x00000040);
   }
-FUN_18073b2c4:
-  if (param_6 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
-}
+/**
+ * @brief 执行UI渲染任务和显示控制
+ * 
+ * 该函数负责执行UI渲染任务并控制显示：
+ * - 检查参数6并释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param param6 参数6，用于判断是否需要释放内存资源
+ * @param stackParameter140 栈参数，用于计算渲染任务地址
+ * @param stackBaseAddr 栈基址指针
+ */
+void ExecuteUIRenderTaskWithDisplayControl(uint32_t param6, uint64_t stackParameter140, uint64_t* stackBaseAddr)
 
 
 
@@ -126716,13 +126721,18 @@ void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextAnimationManager,&stack0x00000040);
   }
-FUN_18073b4cf:
-  if (lStack0000000000000030 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
-}
+/**
+ * @brief 执行UI渲染任务和内存清理
+ * 
+ * 该函数负责执行UI渲染任务并进行内存清理：
+ * - 检查栈参数并释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param stackParameter30 栈参数，用于判断是否需要释放内存资源
+ * @param stackParameter140 栈参数，用于计算渲染任务地址
+ * @param stackBaseAddr 栈基址指针
+ */
+void ExecuteUIRenderTaskWithMemoryCleanup(uint32_t stackParameter30, uint64_t stackParameter140, uint64_t* stackBaseAddr)
 
 
 
