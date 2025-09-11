@@ -12584,7 +12584,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089b86d
  */
-#define CopyMemoryBlockA0 CopyMemoryBlockWithBoundsChecking
+#define CopyMemoryBlockWithBoundsChecking FUN_18089b86d
 
 /**
  * @brief 移动内存块并提供重叠保护
