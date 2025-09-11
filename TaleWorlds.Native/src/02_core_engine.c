@@ -32026,7 +32026,7 @@ void CoreEngineInitializeSystemThreadDataAndBuffers(long long ContextHandle)
   double TimeElapsedValue;
   double PerformanceTimeDelta;
   long long **systemContextRegisterPointerX8;
-  long long *SystemRegisterPointerX10;
+  long long *SystemContextOperationPointer;
   long long *SystemContextRegister;
   long long PerformanceCounterValue;
   long long StackMemoryDataOffset90;
@@ -254898,11 +254898,11 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
     BufferStatus = *(long long *)(OperationBufferSize + 6);
     *(uint32_t *)(BufferStatus + 0x16c) = *(uint32_t *)(CoreEngineSystemContext + 0x224);
     SystemContextPtr = *(long long **)(CharacterTablePointer + 0x8400);
-    InputDataLength = (**(code **)(*SystemContextPtr + 0x70)                      (SystemContextPtr,*(void *)(BufferStatus + 0x10),0,4,0,auStack_18,0,0xfffffffffffffffe);
+    InputDataLength = (**(code **)(*SystemContextPtr + 0x70)                      (SystemContextPtr,*(void *)(BufferStatus + 0x10),0,4,0,SystemOperationParameters,0,0xfffffffffffffffe);
     if (MemoryComparisonResult < 0) {
       ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemMutexLock);
     }
-    *(void *)(AdditionalParameter1 + 8) = auStack_18[0];
+    *(void *)(AdditionalParameter1 + 8) = SystemOperationParameters[0];
     SystemContextPtr = (long long *)FUN_1800e81f0();
     SystemContextPtr = (long long *)*SystemContextPtr;
     if (SystemContextPtr != (long long *)0x0) {
