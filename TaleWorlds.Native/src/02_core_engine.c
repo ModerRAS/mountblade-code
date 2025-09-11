@@ -41,7 +41,7 @@
 #define InitializeBasicIostream InitializeInputOutputStreamObject
 
 // 核心引擎函数语义化宏定义
-#define FUN_18017b070 ProcessSystemBufferAllocation              // 处理系统缓冲区分配
+#define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
 #define FUN_18017b240 InitializeSystemContext                    // 初始化系统上下文
 #define FUN_18017b259 CleanupSystemContext                       // 清理系统上下文
 #define FUN_18017b28d ResetSystemMemoryManager                   // 重置系统内存管理器

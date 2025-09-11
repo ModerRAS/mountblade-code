@@ -674,6 +674,9 @@ typedef enum {
 #define stackUInt194 UIVertexOffsetBuffer194
 #define stackUInt164 UIShaderHandle164
 #define stackUInt154 UIComponentData154
+#define stackUInt118 UIBufferSize118
+#define stackUInt140 UIProcessingCounter140
+#define stackUInte8 UIResourceHandleE8
 #define localChar34 UIPreviousComponentContext
 #define localChar26 UIComponentContextBackup
 #define localChar23 UIComponentContextCurrent
