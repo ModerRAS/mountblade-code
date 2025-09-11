@@ -19162,51 +19162,51 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
   uint32_t messageProcessingStatus;           // 消息处理状态
   uint64_t moduleOperationResult;             // 模块操作结果
   int64_t *resourceInfoContext;               // 资源信息上下文指针
-  int64_t *contextDataContext;                // 上下文数据指针
+  int64_t *systemContextDataPointer;           // 系统上下文数据指针
   int64_t *moduleDataContext;                 // 模块数据上下文指针
-  int64_t *validationContext;                  // 验证上下文指针
+  int64_t *systemValidationContext;           // 系统验证上下文指针
   int64_t systemStackContext;                  // 系统栈上下文
   int64_t temporarySystemStackContext;        // 临时系统栈上下文
   int64_t systemMemoryContext;                // 系统内存上下文
-  int64_t *baseValidationContext;              // 基础验证上下文指针
-  int64_t *exceptionContextPointer;           // 异常上下文指针
+  int64_t *baseSystemValidationContext;        // 基础系统验证上下文指针
+  int64_t *systemExceptionContextPointer;     // 系统异常上下文指针
   uint64_t systemModuleOperationResult;        // 系统模块操作结果
   int32_t moduleInitializationStatus;          // 模块初始化状态
   uint32_t gameMessageProcessingStatus;        // 游戏消息处理状态
-  int64_t stackMemoryContext;                  // 栈内存上下文
+  int64_t systemStackMemoryContext;            // 系统栈内存上下文
   int64_t systemResourceContext;              // 系统资源上下文
   
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_SECONDARY_CONFIG_OFFSET),&temporarySystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
   if (initializationStatus == 0) {
-    validationContext = (int64_t *)NullPointer;
-    moduleDataContext = validationContext;
-    baseValidationContext = (int64_t *)NullPointer;
+    systemValidationContext = (int64_t *)NullPointer;
+    moduleDataContext = systemValidationContext;
+    baseSystemValidationContext = (int64_t *)NullPointer;
     if (temporarySystemStackContext != 0) {
       moduleDataContext = (int64_t *)(temporarySystemStackContext + StackFrameNegativeOffset8);
     }
     systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_PRIMARY_CONFIG_OFFSET),&temporarySystemStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
-      stackMemoryContext = 0;
+      systemStackMemoryContext = 0;
       gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleDataParam + MODULE_DATA_OFFSET_1),*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_TERTIARY_DATA_OFFSET,
-                            &stackMemoryContext);
+                            &systemStackMemoryContext);
       if (gameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(moduleDataContext);
         return (uint64_t)gameMessageProcessingStatus;
       }
       if (((*(uint32_t *)(*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemModuleOperationResult = ValidateSystemOperationContextA0(stackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(systemStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
-      exceptionContextPointer = (int64_t *)(stackMemoryContext + MODULE_CONTEXT_OFFSET);
-      resourceInfoContext = (int64_t *)(*exceptionContextPointer + MODULE_RESOURCE_OFFSET);
-      if (*exceptionContextPointer == 0) {
-        resourceInfoContext = baseValidationContext;
+      systemExceptionContextPointer = (int64_t *)(systemStackMemoryContext + MODULE_CONTEXT_OFFSET);
+      resourceInfoContext = (int64_t *)(*systemExceptionContextPointer + MODULE_RESOURCE_OFFSET);
+      if (*systemExceptionContextPointer == 0) {
+        resourceInfoContext = baseSystemValidationContext;
       }
-      contextDataContext = baseValidationContext;
-      componentDataContext = baseValidationContext;
-      componentInfoContext = baseValidationContext;
+      systemContextDataPointer = baseSystemValidationContext;
+      componentDataContext = baseSystemValidationContext;
+      componentInfoContext = baseSystemValidationContext;
       if (resourceInfoContext != (int64_t *)NullPointer) {
         contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }

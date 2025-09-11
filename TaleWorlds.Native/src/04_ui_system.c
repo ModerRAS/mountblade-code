@@ -134558,8 +134558,25 @@ texture_validation_complete:
 
  
 
- void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
-void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
+ /**
+ * @brief UI数据源处理和事件处理函数
+ * 
+ * 该函数负责处理UI数据源并执行事件处理操作，主要功能包括：
+ * - 初始化UI数据源并设置初始值
+ * - 创建和配置事件处理上下文
+ * - 执行数据验证和缓冲区比较
+ * - 处理UI事件和用户交互
+ * - 管理数据源的复制和传输到目标缓冲区
+ * - 执行渲染任务和事件处理
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * @param dataSource 数据源指针，用于存储和操作数据源
+ * @param targetBuffer 目标缓冲区，用于存储处理后的数据
+ * 
+ * @note 此函数会处理事件处理和加密密钥操作，确保数据安全和事件响应
+ * @warning 函数执行后可能会调用不返回的子函数
+ */
+void ProcessUIDataSourceWithEventHandling(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -134567,37 +134584,37 @@ void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
+  longlong contextSize;
+  UIHandle dataSourceHandle;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
   if (dataSource != (UIDword *)0x0) {
     *dataSource = 0;
   }
-  lStack0000000000000030 = 0;
-  operationResult = FUN_180758ed0(uiContext,&stack0x00000038,&stack0x00000030);
+  contextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext,&dataSourceHandle,&contextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180756450(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073fb64;
+    operationResult = ProcessUIDataSourceCopy(dataSourceHandle,dataSource,targetBuffer);
+    if (operationResult == 0) goto event_handling_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataAndCompare(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = ProcessUITextureDataWithSize(&validationBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&validationBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ProcessUIDataAndCompare(&validationBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b58,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b58,&validationBuffer);
   }
-FUN_18073fb64:
-  if (lStack0000000000000030 != 0) {
+event_handling_complete:
+  if (contextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&validationBuffer);
 }
 
 
