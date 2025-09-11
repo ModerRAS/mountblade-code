@@ -1301,7 +1301,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 新增栈变量语义化宏定义
 #define StackFloatValue14 fStackX_14                        // 栈浮点值14
 #define StackFloatValue10 fStackX_10                        // 栈浮点值10
-#define StackFloatValue4c fStack_4c                         // 栈浮点值4c
+#define StackMatrixOperand fStack_4c                         // 栈浮点值4c
 #define StackUnsignedValueCC uStack_cc                      // 栈无符号值CC
 #define StackProcessingValue9c uStack_9c                    // 栈处理值9c
 #define StackCharacterValueA4 StackCharacterValueA4         // 栈字符值A4
@@ -1310,7 +1310,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackProcessingValueA8 CoreEngineValueA8            // 栈处理值A8
 
 // 新增栈变量语义化宏定义
-#define StackFloatValue30 fStack0000000000000030             // 栈浮点值30
+#define StackTransformMatrix fStack0000000000000030             // 栈浮点值30
 #define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
 
 // InitializeCoreEngineDataStructure函数变量语义化宏定义
@@ -53692,7 +53692,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   byte HighByte7;
   long long SystemContext;
   byte HighByte8;
-  float *pContextSecondaryFloat9;
+  float *pMatrixTransformElementC;
   long long RegisterR13Value;
   uint32_t UnsignedStackProcessingParameter30;
   uint64_t MemoryPoolIndexAdditional0;
@@ -53732,7 +53732,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   
   StackValidationFlag = 0xffffffff;
   ProcessSystemMemoryAllocation(RegisterR13Value + 0x3388,&SystemStackBuffer);
-  pContextSecondaryFloat9 = InputParameterArray;
+  pMatrixTransformElementC = InputParameterArray;
   if ((*(uint *)(SystemContext + SystemContextMemoryOffset0) & 0x4000000) != 0) {
     FloatOffsetValue = *InputParameterArray;
     ProcessedFloatValue8 = InputParameterArray[1];
@@ -53778,9 +53778,9 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
          MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xe];
     StackFloatValue220 =
          MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier * PrimaryFloatValue + SystemContextPrimaryFloat * SystemCoreScaleY + InputParameterArray[0xf];
-    pContextSecondaryFloat9 = &SecondaryFloatStackBuffer;
+    pMatrixTransformElementC = &SecondaryFloatStackBuffer;
   }
-  ProcessSystemDataTransfer(&DataTransferStackBuffer,RegisterR13Value + 0x30,*(uint8_t *)(SystemContext + 0xf7),pContextSecondaryFloat9);
+  ProcessSystemDataTransfer(&DataTransferStackBuffer,RegisterR13Value + 0x30,*(uint8_t *)(SystemContext + 0xf7),pMatrixTransformElementC);
   MemoryPoolIndexAdditional = StackProcessingParameter6;
   MemoryPoolIndexSecondary = StackProcessingParameter3;
   MemoryAllocationBase = StackProcessingParameter4;
@@ -55140,20 +55140,20 @@ void ProcessContextHandle(uint64_t *ContextHandle,long long OperationBufferSize
     *(uint32_t *)((long long)ContextHandle + 0xec) = 0;
     MatrixTransformElementA = MatrixTransformElementA * SystemCoreScaleX - SecondaryFloatValue * SystemCoreScaleY;
     *(float *)(ContextHandle + 0x1d) = MatrixTransformElementA;
-    SystemCoreScaleX = (ContextSecondaryFloat1 * pMatrixTransformMultiplier[8] - ContextSecondaryFloat4 * pMatrixTransformMultiplier[4]) - ContextSecondaryFloat9 * pMatrixTransformMultiplier[0xc];
+    SystemCoreScaleX = (ContextSecondaryFloat1 * pMatrixTransformMultiplier[8] - ContextSecondaryFloat4 * pMatrixTransformMultiplier[4]) - MatrixTransformElementC * pMatrixTransformMultiplier[0xc];
     *(float *)(ContextHandle + 0x1e) = SystemCoreScaleX;
     MatrixTransformElementB = (ContextSecondaryFloat4 * *pMatrixTransformMultiplier - ContextSecondaryFloat2 * pMatrixTransformMultiplier[8]) + ContextSecondaryFloat0 * pMatrixTransformMultiplier[0xc];
     *(float *)((long long)ContextHandle + 0xf4) = MatrixTransformElementB;
     ContextSecondaryFloat3 = (ContextSecondaryFloat2 * pMatrixTransformMultiplier[4] - ContextSecondaryFloat1 * *pMatrixTransformMultiplier) - ContextPrimaryFloat9 * pMatrixTransformMultiplier[0xc];
     *(float *)(ContextHandle + 0x1f) = ContextSecondaryFloat3;
-    SecondaryFloatValue = (ContextSecondaryFloat9 * *pMatrixTransformMultiplier - ContextSecondaryFloat0 * pMatrixTransformMultiplier[4]) + ContextPrimaryFloat9 * pMatrixTransformMultiplier[8];
+    SecondaryFloatValue = (MatrixTransformElementC * *pMatrixTransformMultiplier - ContextSecondaryFloat0 * pMatrixTransformMultiplier[4]) + ContextPrimaryFloat9 * pMatrixTransformMultiplier[8];
     *(float *)((long long)ContextHandle + 0xfc) = SecondaryFloatValue;
-    SystemCoreScaleY = FilterInputValue0 * pMatrixTransformMultiplier[4] + ContextSecondaryFloat9 * *pMatrixTransformMultiplier + FilterInputValue1 * pMatrixTransformMultiplier[8];
+    SystemCoreScaleY = FilterInputValue0 * pMatrixTransformMultiplier[4] + MatrixTransformElementC * *pMatrixTransformMultiplier + FilterInputValue1 * pMatrixTransformMultiplier[8];
     if (SystemCoreScaleY != 1.0) {
       SystemCoreScaleY = 1.0 / SystemCoreScaleY;
       *(float *)(ContextHandle + 0x1a) = SystemContextPrimaryFloat4 * SystemCoreScaleY;
       *(float *)(ContextHandle + 0x1c) = SystemFloatValue * SystemCoreScaleY;
-      *(float *)(ContextHandle + 0x18) = ContextSecondaryFloat9 * SystemCoreScaleY;
+      *(float *)(ContextHandle + 0x18) = MatrixTransformElementC * SystemCoreScaleY;
       *(float *)((long long)ContextHandle + 0xc4) = FilterInputValue0 * SystemCoreScaleY;
       *(float *)(ContextHandle + SystemNodeStatusOffset) = FilterInputValue1 * SystemCoreScaleY;
       *(float *)((long long)ContextHandle + 0xd4) = ContextSecondaryFloat7 * SystemCoreScaleY;
@@ -55584,7 +55584,7 @@ void ProcessMatrixTransformationAndMemoryManagement(long long ContextHandle,long
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   uint64_t SystemStatusValue;
   uint32_t UnicodeCharacterValue;
@@ -55659,7 +55659,7 @@ void ProcessMatrixTransformationAndMemoryManagement(long long ContextHandle,long
     ContextSecondaryFloat6 = pSystemCoreScaleY[3];
     ContextSecondaryFloat7 = pSystemCoreScaleY[4];
     MatrixTransformElementA = pSystemCoreScaleY[5];
-    ContextSecondaryFloat9 = pSystemCoreScaleY[6];
+    MatrixTransformElementC = pSystemCoreScaleY[6];
     FilterInputValue0 = pSystemCoreScaleY[7];
     CalculatedDistance = *(float *)(SystemConfigurationIterator + 0x374);
     FloatOffsetValue = *(float *)(SystemConfigurationIterator + SecondaryProcessingStatusOffset);
@@ -55672,15 +55672,15 @@ void ProcessMatrixTransformationAndMemoryManagement(long long ContextHandle,long
     SystemContextPrimaryFloat4 = *(float *)(SystemConfigurationIterator + 0x398);
     *pSystemCoreScaleY = CalculatedDistance * ContextSecondaryFloat7 + FloatOffsetValue * ContextSecondaryFloat3 + ProcessedFloatValue8 * ContextPrimaryFloat9;
     pSystemCoreScaleY[1] = CalculatedDistance * MatrixTransformElementA + FloatOffsetValue * ContextSecondaryFloat4 + ProcessedFloatValue8 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[2] = CalculatedDistance * ContextSecondaryFloat9 + FloatOffsetValue * MatrixTransformElementB + ProcessedFloatValue8 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[2] = CalculatedDistance * MatrixTransformElementC + FloatOffsetValue * MatrixTransformElementB + ProcessedFloatValue8 * ContextSecondaryFloat1;
     pSystemCoreScaleY[3] = CalculatedDistance * FilterInputValue0 + FloatOffsetValue * ContextSecondaryFloat6 + ProcessedFloatValue8 * ContextSecondaryFloat2;
     pSystemCoreScaleY[4] = NormalizedParameterValue * ContextSecondaryFloat7 + SecondaryFloatValue * ContextSecondaryFloat3 + SystemContextPrimaryFloat2 * ContextPrimaryFloat9;
     pSystemCoreScaleY[5] = NormalizedParameterValue * MatrixTransformElementA + SecondaryFloatValue * ContextSecondaryFloat4 + SystemContextPrimaryFloat2 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[6] = NormalizedParameterValue * ContextSecondaryFloat9 + SecondaryFloatValue * MatrixTransformElementB + SystemContextPrimaryFloat2 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[6] = NormalizedParameterValue * MatrixTransformElementC + SecondaryFloatValue * MatrixTransformElementB + SystemContextPrimaryFloat2 * ContextSecondaryFloat1;
     pSystemCoreScaleY[7] = NormalizedParameterValue * FilterInputValue0 + SecondaryFloatValue * ContextSecondaryFloat6 + SystemContextPrimaryFloat2 * ContextSecondaryFloat2;
     pSystemCoreScaleY[8] = PrimaryFloatValue * ContextSecondaryFloat7 + SystemContextPrimaryFloat3 * ContextSecondaryFloat3 + SystemContextPrimaryFloat4 * ContextPrimaryFloat9;
     pSystemCoreScaleY[9] = PrimaryFloatValue * MatrixTransformElementA + SystemContextPrimaryFloat3 * ContextSecondaryFloat4 + SystemContextPrimaryFloat4 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[10] = PrimaryFloatValue * ContextSecondaryFloat9 + SystemContextPrimaryFloat3 * MatrixTransformElementB + SystemContextPrimaryFloat4 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[10] = PrimaryFloatValue * MatrixTransformElementC + SystemContextPrimaryFloat3 * MatrixTransformElementB + SystemContextPrimaryFloat4 * ContextSecondaryFloat1;
     pSystemCoreScaleY[0xb] = PrimaryFloatValue * FilterInputValue0 + SystemContextPrimaryFloat3 * ContextSecondaryFloat6 + SystemContextPrimaryFloat4 * ContextSecondaryFloat2;
   }
   SystemConfigurationIterator = *(long long *)(ContextHandle + 600);
@@ -55897,7 +55897,7 @@ void ProcessDataStructureTransformation(long long ContextHandle
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   uint64_t SystemStatusValue;
   uint32_t UnicodeCharacterValue;
@@ -55974,7 +55974,7 @@ void ProcessDataStructureTransformation(long long ContextHandle
     ContextSecondaryFloat6 = pSystemCoreScaleY[3];
     ContextSecondaryFloat7 = pSystemCoreScaleY[4];
     MatrixTransformElementA = pSystemCoreScaleY[5];
-    ContextSecondaryFloat9 = pSystemCoreScaleY[6];
+    MatrixTransformElementC = pSystemCoreScaleY[6];
     FilterInputValue0 = pSystemCoreScaleY[7];
     CalculatedDistance = *(float *)(SystemConfigurationIterator + 0x374);
     FloatOffsetValue = *(float *)(SystemConfigurationIterator + SecondaryProcessingStatusOffset);
@@ -55987,15 +55987,15 @@ void ProcessDataStructureTransformation(long long ContextHandle
     SystemContextPrimaryFloat4 = *(float *)(SystemConfigurationIterator + 0x398);
     *pSystemCoreScaleY = CalculatedDistance * ContextSecondaryFloat7 + FloatOffsetValue * ContextSecondaryFloat3 + ProcessedFloatValue8 * ContextPrimaryFloat9;
     pSystemCoreScaleY[1] = CalculatedDistance * MatrixTransformElementA + FloatOffsetValue * ContextSecondaryFloat4 + ProcessedFloatValue8 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[2] = CalculatedDistance * ContextSecondaryFloat9 + FloatOffsetValue * MatrixTransformElementB + ProcessedFloatValue8 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[2] = CalculatedDistance * MatrixTransformElementC + FloatOffsetValue * MatrixTransformElementB + ProcessedFloatValue8 * ContextSecondaryFloat1;
     pSystemCoreScaleY[3] = CalculatedDistance * FilterInputValue0 + FloatOffsetValue * ContextSecondaryFloat6 + ProcessedFloatValue8 * ContextSecondaryFloat2;
     pSystemCoreScaleY[4] = NormalizedParameterValue * ContextSecondaryFloat7 + SecondaryFloatValue * ContextSecondaryFloat3 + SystemContextPrimaryFloat2 * ContextPrimaryFloat9;
     pSystemCoreScaleY[5] = NormalizedParameterValue * MatrixTransformElementA + SecondaryFloatValue * ContextSecondaryFloat4 + SystemContextPrimaryFloat2 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[6] = NormalizedParameterValue * ContextSecondaryFloat9 + SecondaryFloatValue * MatrixTransformElementB + SystemContextPrimaryFloat2 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[6] = NormalizedParameterValue * MatrixTransformElementC + SecondaryFloatValue * MatrixTransformElementB + SystemContextPrimaryFloat2 * ContextSecondaryFloat1;
     pSystemCoreScaleY[7] = NormalizedParameterValue * FilterInputValue0 + SecondaryFloatValue * ContextSecondaryFloat6 + SystemContextPrimaryFloat2 * ContextSecondaryFloat2;
     pSystemCoreScaleY[8] = PrimaryFloatValue * ContextSecondaryFloat7 + SystemContextPrimaryFloat3 * ContextSecondaryFloat3 + SystemContextPrimaryFloat4 * ContextPrimaryFloat9;
     pSystemCoreScaleY[9] = PrimaryFloatValue * MatrixTransformElementA + SystemContextPrimaryFloat3 * ContextSecondaryFloat4 + SystemContextPrimaryFloat4 * ContextSecondaryFloat0;
-    pSystemCoreScaleY[10] = PrimaryFloatValue * ContextSecondaryFloat9 + SystemContextPrimaryFloat3 * MatrixTransformElementB + SystemContextPrimaryFloat4 * ContextSecondaryFloat1;
+    pSystemCoreScaleY[10] = PrimaryFloatValue * MatrixTransformElementC + SystemContextPrimaryFloat3 * MatrixTransformElementB + SystemContextPrimaryFloat4 * ContextSecondaryFloat1;
     pSystemCoreScaleY[0xb] = PrimaryFloatValue * FilterInputValue0 + SystemContextPrimaryFloat3 * ContextSecondaryFloat6 + SystemContextPrimaryFloat4 * ContextSecondaryFloat2;
   }
   SystemConfigurationIterator = *(long long *)(ContextHandle + 600);
@@ -78795,15 +78795,15 @@ MemoryBlockListProcessingLabel:
   FindMatchingDataNode(StringProcessingStatus,&pStackProcessingConfigurationFlag,SystemStringIndex);
   TimeDifferenceInSeconds7 = 0.0;
   if (pStackProcessingConfigurationFlag == StringProcessingStatus) {
-    ContextSecondaryFloat9 = (float)*(double *)(OperationBufferSize + 0x40);
+    MatrixTransformElementC = (float)*(double *)(OperationBufferSize + 0x40);
     pFloatOffsetValue = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
   }
   else {
-    ContextSecondaryFloat9 = *(float *)(pStackProcessingConfigurationFlag + 8);
-    pStackProcessingConfigurationFlag = (void *)CONCAT44(pStackProcessingConfigurationFlag.HighPart,ContextSecondaryFloat9);
+    MatrixTransformElementC = *(float *)(pStackProcessingConfigurationFlag + 8);
+    pStackProcessingConfigurationFlag = (void *)CONCAT44(pStackProcessingConfigurationFlag.HighPart,MatrixTransformElementC);
     SystemShortValue4 = _fdtest(&pStackProcessingConfigurationFlag);
     if (SystemShortValue4 == 2) {
-      ContextSecondaryFloat9 = 0.0;
+      MatrixTransformElementC = 0.0;
     }
     pStackProcessingConfigurationFlag = *(uint64_t **)(OperationBufferSize + 0x40);
     SystemShortValue4 = _dtest(&pStackProcessingConfigurationFlag);
@@ -78814,39 +78814,39 @@ MemoryBlockListProcessingLabel:
     else {
       TimeDifferenceInSeconds6 = *(double *)(OperationBufferSize + 0x40);
     }
-    MatrixTransformElementA = ContextSecondaryFloat9;
+    MatrixTransformElementA = MatrixTransformElementC;
     if (*(char *)((long long)CharacterStatusBuffer2 + 0x124) != '\0') {
       MatrixTransformElementA = (float)TimeDifferenceInSeconds6;
     }
     pStackProcessingConfigurationFlag = (void *)CONCAT44(pStackProcessingConfigurationFlag.HighPart,MatrixTransformElementA);
     SystemShortValue4 = _fdtest(&pStackProcessingConfigurationFlag);
     if (SystemShortValue4 == 2) {
-      MatrixTransformElementA = ContextSecondaryFloat9;
+      MatrixTransformElementA = MatrixTransformElementC;
     }
     pFloatOffsetValue = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
-    ContextSecondaryFloat9 = (MatrixTransformElementA - ContextSecondaryFloat9) * 0.02 + ContextSecondaryFloat9;
+    MatrixTransformElementC = (MatrixTransformElementA - MatrixTransformElementC) * 0.02 + MatrixTransformElementC;
   }
-  *pFloatOffsetValue = ContextSecondaryFloat9;
+  *pFloatOffsetValue = MatrixTransformElementC;
   StringProcessingStatus = CharacterStatusBuffer2 + 0x12;
   if ((void *)CharacterStatusBuffer2[0x13] == StringProcessingStatus) {
     if (0.0 < *(float *)(CharacterStatusBuffer2 + 0x24)) {
       TimeDifferenceInSeconds7 = *(double *)(OperationBufferSize + 0x40) / (double)*(float *)(CharacterStatusBuffer2 + 0x24);
     }
-    ContextSecondaryFloat9 = (float)TimeDifferenceInSeconds7;
+    MatrixTransformElementC = (float)TimeDifferenceInSeconds7;
   }
   else {
     pFloatOffsetValue = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
-    ContextSecondaryFloat9 = *pFloatOffsetValue;
+    MatrixTransformElementC = *pFloatOffsetValue;
     if ((*(char *)((long long)CharacterStatusBuffer2 + 0x124) == '\0') || (*(float *)(CharacterStatusBuffer2 + 0x24) == 0.0)) {
-      TimeDifferenceInSeconds7 = (double)ContextSecondaryFloat9;
+      TimeDifferenceInSeconds7 = (double)MatrixTransformElementC;
     }
     else {
       TimeDifferenceInSeconds7 = *(double *)(OperationBufferSize + 0x40) / (double)*(float *)(CharacterStatusBuffer2 + 0x24);
     }
-    ContextSecondaryFloat9 = ((float)TimeDifferenceInSeconds7 - ContextSecondaryFloat9) * 0.02 + ContextSecondaryFloat9;
+    MatrixTransformElementC = ((float)TimeDifferenceInSeconds7 - MatrixTransformElementC) * 0.02 + MatrixTransformElementC;
   }
   pFloatOffsetValue = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
-  *pFloatOffsetValue = ContextSecondaryFloat9;
+  *pFloatOffsetValue = MatrixTransformElementC;
   StringProcessingStatus = CharacterStatusBuffer2;
   if ((void *)CharacterStatusBuffer2[2] != NULL) {
     PrimaryProcessingStatusFlag0 = (void *)CharacterStatusBuffer2[2];
@@ -120212,7 +120212,7 @@ char CoreEngineValidateSystemStatus(void
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float AuxiliaryCalculationFloat10;
@@ -120243,22 +120243,22 @@ char CoreEngineValidateSystemStatus(void
   FilterInputValue1 = FilterInputValue + *(float *)(FramePointer + 0x74);
   MemoryAddressMaskPointer = *(uint32_t *)(DataStorageValue + 0x100);
   CalculatedCodePoint = *(uint32_t *)(DataStorageValue + 0x104);
-  ContextSecondaryFloat9 = ((float)(int)(float)NullPointerValue[6] - (float)SystemContext[0x11]) + (float)SystemContext[10];
+  MatrixTransformElementC = ((float)(int)(float)NullPointerValue[6] - (float)SystemContext[0x11]) + (float)SystemContext[10];
   *(float *)(DataStorageValue + 0x104) = FilterInputValue;
-  *(float *)(DataStorageValue + 0x100) = ContextSecondaryFloat9;
+  *(float *)(DataStorageValue + 0x100) = MatrixTransformElementC;
   ContextSecondaryFloat6 = (float)SystemContext[10];
-  FilterInputValue0 = ContextSecondaryFloat9 + FilterInputValue0;
-  StackProcessingVariable38 = ContextSecondaryFloat9;
+  FilterInputValue0 = MatrixTransformElementC + FilterInputValue0;
+  StackProcessingVariable38 = MatrixTransformElementC;
   StackProcessedFloat3c = FilterInputValue;
   StackFloatValue40 = FilterInputValue0;
   TemporaryFloatStack44 = FilterInputValue1;
-  if ((ContextSecondaryFloat9 < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
+  if ((MatrixTransformElementC < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
     *(int *)(FramePointer + 0x70) = SystemContext[0xc];
     *(float *)(FramePointer + 0x74) = FilterInputValue1;
     TemporaryFloatStack64 = FilterInputValue - 1.0;
     cStack0000000000000031 = '\x01';
-    StackFloatValue60 = ContextSecondaryFloat9;
-    if (ContextSecondaryFloat9 <= ContextSecondaryFloat6) {
+    StackFloatValue60 = MatrixTransformElementC;
+    if (MatrixTransformElementC <= ContextSecondaryFloat6) {
       StackFloatValue60 = ContextSecondaryFloat6;
     }
     ProcessSystemParameters(&DataTransferStackBuffer,FramePointer + 0x70,1);
@@ -120268,7 +120268,7 @@ char CoreEngineValidateSystemStatus(void
     cStack0000000000000031 = '\0';
   }
   MemoryAllocationHandle = *(uint32_t *)(PatternIndex + 0x1660);
-  *(float *)(FramePointer + 0x70) = FilterInputValue0 - ContextSecondaryFloat9;
+  *(float *)(FramePointer + 0x70) = FilterInputValue0 - MatrixTransformElementC;
   *(float *)(FramePointer + 0x74) = FilterInputValue1 - FilterInputValue;
   ProcessSystemBuffer(FramePointer + 0x70,MemoryAllocationHandle);
   ValidationStatus4 = ValidateSystemData(&SystemChecksumStackBuffer,SystemDataNode & 0xffffffff,0);
@@ -120344,11 +120344,11 @@ LAB_18011c9d6:
 LAB_18011c9d9:
     if ((MemoryAllocationBase >> 0x14 & 1) == 0) goto LAB_18011cbeb;
     if ((*(char *)(PatternIndex + 0x1dd0) == '\0') || (*(int *)(PatternIndex + 0x1dec) != LockOperationResult2)) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x19f8);
-      FilterInputValue1 = (ABS(*(float *)(PatternIndex + 0x44c)) - (ContextSecondaryFloat9 + ContextSecondaryFloat9)) * 0.2;
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x19f8);
+      FilterInputValue1 = (ABS(*(float *)(PatternIndex + 0x44c)) - (MatrixTransformElementC + MatrixTransformElementC)) * 0.2;
       if (AuxiliaryCalculationFloat10 <= FilterInputValue1) {
-        MatrixTransformElementA = ContextSecondaryFloat9 * 4.0;
-        if (FilterInputValue1 <= ContextSecondaryFloat9 * 4.0) {
+        MatrixTransformElementA = MatrixTransformElementC * 4.0;
+        if (FilterInputValue1 <= MatrixTransformElementC * 4.0) {
           MatrixTransformElementA = FilterInputValue1;
         }
       }
@@ -120360,8 +120360,8 @@ LAB_18011c9d9:
       if (FilterInputValue1 <= ContextSecondaryFloat7) {
         FilterInputValue1 = ContextSecondaryFloat7;
       }
-      if (FilterInputValue1 < ContextSecondaryFloat9 * 1.5 + MatrixTransformElementA) {
-        if (ContextSecondaryFloat6 <= ContextSecondaryFloat9 * 2.2) goto LAB_18011cbeb;
+      if (FilterInputValue1 < MatrixTransformElementC * 1.5 + MatrixTransformElementA) {
+        if (ContextSecondaryFloat6 <= MatrixTransformElementC * 2.2) goto LAB_18011cbeb;
         if (((-1 < SystemContext[0x15]) ||
             (IntegerValue6 = (int)((long long)NullPointerValue - *(long long *)(SystemContext + 2) >> 0x3f),
             (int)(((long long)NullPointerValue - *(long long *)(SystemContext + 2)) / 0x28) + IntegerValue6 != IntegerValue6)           && ((SystemContext[0x15] < 1 ||
@@ -120547,7 +120547,7 @@ char ManageSystemResourceAndRelease(void)
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float AuxiliaryCalculationFloat10;
@@ -120578,22 +120578,22 @@ char ManageSystemResourceAndRelease(void)
   FilterInputValue1 = FilterInputValue + *(float *)(FramePointer + 0x74);
   MemoryAddressMaskPointer = *(uint32_t *)(DataStorageValue + 0x100);
   CalculatedCodePoint = *(uint32_t *)(DataStorageValue + 0x104);
-  ContextSecondaryFloat9 = ((float)(int)(float)NullPointerValue[6] - (float)SystemContext[0x11]) + (float)SystemContext[10];
+  MatrixTransformElementC = ((float)(int)(float)NullPointerValue[6] - (float)SystemContext[0x11]) + (float)SystemContext[10];
   *(float *)(DataStorageValue + 0x104) = FilterInputValue;
-  *(float *)(DataStorageValue + 0x100) = ContextSecondaryFloat9;
+  *(float *)(DataStorageValue + 0x100) = MatrixTransformElementC;
   ContextSecondaryFloat6 = (float)SystemContext[10];
-  FilterInputValue0 = ContextSecondaryFloat9 + FilterInputValue0;
-  StackProcessingVariable38 = ContextSecondaryFloat9;
+  FilterInputValue0 = MatrixTransformElementC + FilterInputValue0;
+  StackProcessingVariable38 = MatrixTransformElementC;
   StackProcessedFloat3c = FilterInputValue;
   StackFloatValue40 = FilterInputValue0;
   TemporaryFloatStack44 = FilterInputValue1;
-  if ((ContextSecondaryFloat9 < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
+  if ((MatrixTransformElementC < ContextSecondaryFloat6) || ((float)SystemContext[0xc] <= FilterInputValue0)) {
     *(int *)(FramePointer + 0x70) = SystemContext[0xc];
     *(float *)(FramePointer + 0x74) = FilterInputValue1;
     TemporaryFloatStack64 = FilterInputValue - 1.0;
     cStack0000000000000031 = '\x01';
-    StackFloatValue60 = ContextSecondaryFloat9;
-    if (ContextSecondaryFloat9 <= ContextSecondaryFloat6) {
+    StackFloatValue60 = MatrixTransformElementC;
+    if (MatrixTransformElementC <= ContextSecondaryFloat6) {
       StackFloatValue60 = ContextSecondaryFloat6;
     }
     ProcessSystemParameters(&DataTransferStackBuffer,FramePointer + 0x70,1);
@@ -120603,7 +120603,7 @@ char ManageSystemResourceAndRelease(void)
     cStack0000000000000031 = '\0';
   }
   MemoryAllocationHandle = *(uint32_t *)(PatternIndex + 0x1660);
-  *(float *)(FramePointer + 0x70) = FilterInputValue0 - ContextSecondaryFloat9;
+  *(float *)(FramePointer + 0x70) = FilterInputValue0 - MatrixTransformElementC;
   *(float *)(FramePointer + 0x74) = FilterInputValue1 - FilterInputValue;
   ProcessSystemBuffer(FramePointer + 0x70,MemoryAllocationHandle);
   ValidationStatus4 = ValidateSystemData(&SystemChecksumStackBuffer,SystemDataNode & 0xffffffff,0);
@@ -120679,11 +120679,11 @@ LAB_18011c9d6:
 LAB_18011c9d9:
     if ((MemoryAllocationBase >> 0x14 & 1) == 0) goto LAB_18011cbeb;
     if ((*(char *)(PatternIndex + 0x1dd0) == '\0') || (*(int *)(PatternIndex + 0x1dec) != LockOperationResult2)) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x19f8);
-      FilterInputValue1 = (ABS(*(float *)(PatternIndex + 0x44c)) - (ContextSecondaryFloat9 + ContextSecondaryFloat9)) * 0.2;
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x19f8);
+      FilterInputValue1 = (ABS(*(float *)(PatternIndex + 0x44c)) - (MatrixTransformElementC + MatrixTransformElementC)) * 0.2;
       if (AuxiliaryCalculationFloat10 <= FilterInputValue1) {
-        MatrixTransformElementA = ContextSecondaryFloat9 * 4.0;
-        if (FilterInputValue1 <= ContextSecondaryFloat9 * 4.0) {
+        MatrixTransformElementA = MatrixTransformElementC * 4.0;
+        if (FilterInputValue1 <= MatrixTransformElementC * 4.0) {
           MatrixTransformElementA = FilterInputValue1;
         }
       }
@@ -120695,8 +120695,8 @@ LAB_18011c9d9:
       if (FilterInputValue1 <= ContextSecondaryFloat7) {
         FilterInputValue1 = ContextSecondaryFloat7;
       }
-      if (FilterInputValue1 < ContextSecondaryFloat9 * 1.5 + MatrixTransformElementA) {
-        if (ContextSecondaryFloat6 <= ContextSecondaryFloat9 * 2.2) goto LAB_18011cbeb;
+      if (FilterInputValue1 < MatrixTransformElementC * 1.5 + MatrixTransformElementA) {
+        if (ContextSecondaryFloat6 <= MatrixTransformElementC * 2.2) goto LAB_18011cbeb;
         if (((-1 < SystemContext[0x15]) ||
             (IntegerValue6 = (int)((long long)NullPointerValue - *(long long *)(SystemContext + 2) >> 0x3f),
             (int)(((long long)NullPointerValue - *(long long *)(SystemContext + 2)) / 0x28) + IntegerValue6 != IntegerValue6)           && ((SystemContext[0x15] < 1 ||
@@ -141688,7 +141688,7 @@ void InitializeSystemStringProcessing(void)
   uint32_t CharacterLimitD;
   float NullPointerD;
   bool ZeroFlagRegister;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float FilterInputValue2;
@@ -141741,20 +141741,20 @@ void InitializeSystemStringProcessing(void)
   uint32_t StackParameter218;
   
   if (in_ZF) {
-    ContextSecondaryFloat9 = FramePointer[-0x10];
-    if (RenderingContextHandle != ContextSecondaryFloat9) {
+    MatrixTransformElementC = FramePointer[-0x10];
+    if (RenderingContextHandle != MatrixTransformElementC) {
       RenderingContextHandle[0xd] = 0;
     }
   }
   else {
     RenderingContextHandle[0xd] = *(long long *)(PatternIndex + 0x1c0c);
     if (AuxiliaryFloat13 != *(float *)((long long)RenderingContextHandle + 0x6c)) {
-      ContextSecondaryFloat9 = (float)GetSystemTime();
+      MatrixTransformElementC = (float)GetSystemTime();
       FilterInputValue0 = (float)ReadSystemStatus(RenderingContextHandle);
       *(float *)((long long)RenderingContextHandle + 0x6c) =
-           ContextSecondaryFloat9 + FilterInputValue0 + *(float *)((long long)RenderingContextHandle + 0x6c);
+           MatrixTransformElementC + FilterInputValue0 + *(float *)((long long)RenderingContextHandle + 0x6c);
     }
-    ContextSecondaryFloat9 = FramePointer[-0x10];
+    MatrixTransformElementC = FramePointer[-0x10];
   }
   FilterInputValue0 = RenderingContextHandle;
   Utf16Char4 = *(void *)(PatternIndex + 0x1c4c);
@@ -141773,7 +141773,7 @@ void InitializeSystemStringProcessing(void)
   if (*(char *)((long long)RenderingContextHandle + 0xb5) != '\0') {
     ProcessSystemBufferOperation(RenderingContextHandle,8);
   }
-  if (FilterInputValue0 == ContextSecondaryFloat9) {
+  if (FilterInputValue0 == MatrixTransformElementC) {
     ProcessSystemStateHandler(RenderingContextHandle,RenderingContextHandle[5]);
     ProcessSystemResourceHandler(RenderingContextHandle);
     SystemContextValue = *(long long *)(FramePointer + 8);
@@ -141830,9 +141830,9 @@ void InitializeSystemStringProcessing(void)
   if (*(char *)((long long)RenderingContextHandle + 0xb2) == '\0') {
     if (((*(char *)((long long)RenderingContextHandle + 0xb6) == '\0') ||
         (*(int *)((long long)RenderingContextHandle + 0xdc) != 0)) || ((int)RenderingContextHandle[0x1b] < 1)    {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xd);
-      if (ContextSecondaryFloat9 == AuxiliaryFloat13) {
-        ContextSecondaryFloat9 = (*(float *)(RenderingContextHandle + 0x23) - *(float *)(RenderingContextHandle + 8)) +
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xd);
+      if (MatrixTransformElementC == AuxiliaryFloat13) {
+        MatrixTransformElementC = (*(float *)(RenderingContextHandle + 0x23) - *(float *)(RenderingContextHandle + 8)) +
                  *(float *)((long long)RenderingContextHandle + 0x8c);
       }
       FilterInputValue0 = *(float *)((long long)RenderingContextHandle + 0x6c);
@@ -141841,19 +141841,19 @@ void InitializeSystemStringProcessing(void)
                  *(float *)((long long)RenderingContextHandle + 0x44)) +
                  *(float *)(RenderingContextHandle + 0x12);
       }
-      ContextSecondaryFloat9 = (float)(int)ContextSecondaryFloat9 + *(float *)(RenderingContextHandle + 0xe);
+      MatrixTransformElementC = (float)(int)MatrixTransformElementC + *(float *)(RenderingContextHandle + 0xe);
       FilterInputValue0 = (float)(int)FilterInputValue0 + *(float *)((long long)RenderingContextHandle + 0x74);
     }
     else {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xc);
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xc);
       FilterInputValue0 = *(float *)((long long)RenderingContextHandle + 100);
     }
   }
   else {
-    ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xc);
+    MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xc);
     FilterInputValue0 = *(float *)((long long)RenderingContextHandle + 100);
   }
-  *(float *)(RenderingContextHandle + 0xc) = ContextSecondaryFloat9;
+  *(float *)(RenderingContextHandle + 0xc) = MatrixTransformElementC;
   *(float *)((long long)RenderingContextHandle + 100) = FilterInputValue0;
   if (0 < (int)RenderingContextHandle[0x1b]) {
     *(int *)(RenderingContextHandle + 0x1b) = (int)RenderingContextHandle[0x1b] + -1;
@@ -141922,14 +141922,14 @@ void InitializeSystemStringProcessing(void)
   else {
     RenderingContextHandle[0xe] = *(long long *)(PatternIndex + 0x162c);
   }
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xe);
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xe);
   if (*(float *)(RenderingContextHandle + 0xe) <= *(float *)(PatternIndex + 0x166c)) {
-    ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x166c);
+    MatrixTransformElementC = *(float *)(PatternIndex + 0x166c);
   }
-  if (ContextSecondaryFloat9 <= *(float *)(PatternIndex + 0x1c58)) {
-    ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x1c58);
+  if (MatrixTransformElementC <= *(float *)(PatternIndex + 0x1c58)) {
+    MatrixTransformElementC = *(float *)(PatternIndex + 0x1c58);
   }
-  *(float *)(RenderingContextHandle + 0x30) = ContextSecondaryFloat9;
+  *(float *)(RenderingContextHandle + 0x30) = MatrixTransformElementC;
   *(uint32_t *)((long long)RenderingContextHandle + 0x184) = *(uint32_t *)(PatternIndex + 0x1c5c);
   if ((((uint)NullPointerD & 0x21) == 0) &&
      ((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) == 0)) {
@@ -141963,20 +141963,20 @@ void InitializeSystemStringProcessing(void)
       CharacterStatusBufferCurrent = (void *                CreateSystemBuffer(FramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloat1 = *CharacterStatusBufferCurrent;
     }
-    ContextSecondaryFloat9 = *(float *)(ContextHandle8[5] + 0x10);
+    MatrixTransformElementC = *(float *)(ContextHandle8[5] + 0x10);
     FilterInputValue0 = *(float *)(ContextHandle8[5] + 0x14);
     if (*(char *)((long long)ContextHandle8 + 0xae) != '\0') {
-      ContextSecondaryFloat9 = 3.4028235e+38;
+      MatrixTransformElementC = 3.4028235e+38;
       FilterInputValue0 = 3.4028235e+38;
     }
     LockOperationResult4 = *(int *)((long long)ContextHandle8 + 0x3c);
     if ((-1 < LockOperationResult4) && (LockOperationResult4 < *(int *)(SystemContextValue + 0x1600))) {
-      ContextSecondaryFloat9 = *(float *)(*(long long *)(SystemContextValue + 0x1608) + 0x18 + (long long)LockOperationResult4 * 0x24);
+      MatrixTransformElementC = *(float *)(*(long long *)(SystemContextValue + 0x1608) + 0x18 + (long long)LockOperationResult4 * 0x24);
       FilterInputValue0 = *(float *)(*(long long *)(SystemContextValue + 0x1608) + 0x1c + (long long)LockOperationResult4 * 0x24);
     }
     _StackFloatValue50 =
          CONCAT44(FilterInputValue0 - (*(float *)(SystemContextValue + 0x16b8) + *(float *)(SystemContextValue + 0x16b8)),
-                  ContextSecondaryFloat9 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
+                  MatrixTransformElementC - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
     CharacterStatusBufferCurrent = (void *)ProcessSystemBuffer(FramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,ContextHandle8 + 0xc,&MemoryAllocationStackBuffer,*CharacterStatusBufferCurrent);
     ProcessBufferData(FramePointer + 2,ContextHandle8,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
@@ -141987,7 +141987,7 @@ void InitializeSystemStringProcessing(void)
     }
     MemoryBufferC = SystemConfigurationHandle;
     FilterInputValue0 = StackFloatValue60;
-    ContextSecondaryFloat9 = TemporaryFloatStack64;
+    MatrixTransformElementC = TemporaryFloatStack64;
     if ((FramePointer[3] < *(float *)((long long)ContextHandle8 + 100)) &&
        ((*(byte *)((long long)ContextHandle8 + 0xc) & 8) == 0)) {
       StackFloatValue60 = StackFloatValue60 + *(float *)(SystemContextValue + 0x168c);
@@ -141997,10 +141997,10 @@ void InitializeSystemStringProcessing(void)
   else {
     MemoryBufferC = SystemContextValue;
     FilterInputValue0 = *(float *)(RenderingContextHandle + 0xc);
-    ContextSecondaryFloat9 = *(float *)((long long)RenderingContextHandle + 100);
+    MatrixTransformElementC = *(float *)((long long)RenderingContextHandle + 100);
   }
   FilterInputValue2 = 3.4028235e+38;
-  _StackFloatValue50 = CONCAT44(ContextSecondaryFloat9,FilterInputValue0);
+  _StackFloatValue50 = CONCAT44(MatrixTransformElementC,FilterInputValue0);
   FilterInputValue5 = 3.4028235e+38;
   if ((((uint)NullPointerD & 0x40) == 0) || (*(char *)((long long)RenderingContextHandle + 0xb2) != '\0')) {
     if ((0 < *(int *)((long long)RenderingContextHandle + 0xc4)) || (0 < (int)RenderingContextHandle[0x19])) {
@@ -142014,11 +142014,11 @@ void InitializeSystemStringProcessing(void)
         *(float *)(RenderingContextHandle + 10) = FilterInputValue2;
       }
       if ((RegisterR13ValueB == '\0') && (0 < (int)RenderingContextHandle[0x19])) {
-        FilterInputValue5 = ContextSecondaryFloat9;
+        FilterInputValue5 = MatrixTransformElementC;
         if ((*(char *)((long long)RenderingContextHandle + 0xcc) != '\0') &&
            (FilterInputValue5 = *(float *)((long long)RenderingContextHandle + 0x54),
-           *(float *)((long long)RenderingContextHandle + 0x54) <= ContextSecondaryFloat9)) {
-          FilterInputValue5 = ContextSecondaryFloat9;
+           *(float *)((long long)RenderingContextHandle + 0x54) <= MatrixTransformElementC)) {
+          FilterInputValue5 = MatrixTransformElementC;
         }
         *(float *)((long long)RenderingContextHandle + 0x54) = FilterInputValue5;
       }
@@ -142035,8 +142035,8 @@ void InitializeSystemStringProcessing(void)
       FilterInputValue2 = FilterInputValue0;
     }
     if (RegisterR13ValueB == '\0') {
-      *(float *)((long long)RenderingContextHandle + 0x54) = ContextSecondaryFloat9;
-      FilterInputValue5 = ContextSecondaryFloat9;
+      *(float *)((long long)RenderingContextHandle + 0x54) = MatrixTransformElementC;
+      FilterInputValue5 = MatrixTransformElementC;
     }
   }
   SystemStatusContext = (uint32_t *)ProcessBufferData(FramePointer + -0x18,RenderingContextHandle,RenderingContextHandle[10]);
@@ -142056,10 +142056,10 @@ void InitializeSystemStringProcessing(void)
   RenderingContextHandle[9] = *(long long *)pSystemFloatValue;
   if (*(char *)((long long)RenderingContextHandle + 0xb2) == '\0') {
     if (FilterInputValue2 == 3.4028235e+38) {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xb);
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xb);
     }
     else {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 10);
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 10);
     }
     if (FilterInputValue5 == 3.4028235e+38) {
       FilterInputValue0 = *(float *)((long long)RenderingContextHandle + 0x5c);
@@ -142080,7 +142080,7 @@ void InitializeSystemStringProcessing(void)
       if (CharacterStatus2 != '\0') {
         FilterInputValue2 = *(float *)(PatternIndex + 0x168c);
       }
-      if ((ContextSecondaryFloat9 - FilterInputValue2 < *(float *)(RenderingContextHandle + 0xc)) &&
+      if ((MatrixTransformElementC - FilterInputValue2 < *(float *)(RenderingContextHandle + 0xc)) &&
          (((uint)NullPointerD & 0x808) == 0x800)) goto LAB_18012a70f;
       CharacterStatus2 = '\0';
     }
@@ -142098,16 +142098,16 @@ LAB_18012a70f:
       }
       *(uint8_t *)((long long)RenderingContextHandle + 0xad) = MemoryAllocationOffset;
     }
-    ContextSecondaryFloat9 = AuxiliaryFloat13;
+    MatrixTransformElementC = AuxiliaryFloat13;
     if (*(char *)((long long)RenderingContextHandle + 0xac) != '\0') {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x168c);
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x168c);
     }
     FilterInputValue0 = AuxiliaryFloat13;
     if (*(char *)((long long)RenderingContextHandle + 0xad) != '\0') {
       FilterInputValue0 = *(float *)(PatternIndex + 0x168c);
     }
     *(float *)((long long)RenderingContextHandle + 0xa4) = FilterInputValue0;
-    *(float *)(RenderingContextHandle + 0x15) = ContextSecondaryFloat9;
+    *(float *)(RenderingContextHandle + 0x15) = MatrixTransformElementC;
   }
   FramePointer[0xc] = -NAN;
   if (((SystemParameterRangeCheck != '\0') &&
@@ -142120,9 +142120,9 @@ LAB_18012a70f:
           );
     *(uint32_t *)((long long)RenderingContextHandle + 0x44) = SystemMemoryAllocationResult;
   }
-  ContextSecondaryFloat9 = (float)((uint)NullPointerD & 0x1000000);
-  FramePointer[0x16] = ContextSecondaryFloat9;
-  if (ContextSecondaryFloat9 == 0.0) {
+  MatrixTransformElementC = (float)((uint)NullPointerD & 0x1000000);
+  FramePointer[0x16] = MatrixTransformElementC;
+  if (MatrixTransformElementC == 0.0) {
     FilterInputValue0 = FramePointer[-4];
   }
   else {
@@ -142232,7 +142232,7 @@ LAB_18012aa45:
     *(uint *)(RenderingContextHandle[5] + 4) = InputDataLength | 0x10;
   }
   ProcessSystemConfiguration(RenderingContextHandle[5],FramePointer + 4);
-  if ((((CharacterDataValidationResult == '\0') && (ContextSecondaryFloat9 == 0.0)) && (*(int *)((long long)RenderingContextHandle + 0xc4) < 1)     && ((int)RenderingContextHandle[0x19] < 1)) {
+  if ((((CharacterDataValidationResult == '\0') && (MatrixTransformElementC == 0.0)) && (*(int *)((long long)RenderingContextHandle + 0xc4) < 1)     && ((int)RenderingContextHandle[0x19] < 1)) {
     ProcessSystemBuffer(&DataTransferStackBuffer,PatternIndex + 0x16ac,PatternIndex + 0x16b4);
     if (*(char *)((long long)RenderingContextHandle + 0xae) == '\0') {
       if ((AuxiliaryFloat13 < FramePointer[6] - FramePointer[4]) &&
@@ -142268,7 +142268,7 @@ LAB_18012ac57:
   *(float *)(RenderingContextHandle + 8) = (float)(int)*(float *)(RenderingContextHandle + 8);
   *(float *)((long long)RenderingContextHandle + 0x44) =
        (float)(int)*(float *)((long long)RenderingContextHandle + 0x44);
-  if (ContextSecondaryFloat9 == 0.0) {
+  if (MatrixTransformElementC == 0.0) {
     if (((uint)NullPointerD & 0xc000000) == 0x4000000) {
       SystemMemoryAllocationResult = *(uint32_t *)(PatternIndex + 0x1654);
     }
@@ -142315,7 +142315,7 @@ LAB_18012ac57:
   *(uint32_t *)(eventDataStructureHandle + 0x13) = 0x7f7fffff;
   if ((SystemParameterRangeCheck != '\0') && (((uint)NullPointerD >> 0xc & 1) == 0)) {
     if (((uint)NullPointerD >> 0x1a & 1) == 0) {
-      if (((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) != 0) || (ContextSecondaryFloat9 == 0.0)) {
+      if (((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) != 0) || (MatrixTransformElementC == 0.0)) {
         StackProcessingParameter0 = (uint)(((uint)NullPointerD >> 0x19 & 1) == 0);
       }
     }
@@ -142324,20 +142324,20 @@ LAB_18012ac57:
       StackProcessingParameter0 = CONCAT31((int3)MemoryAllocationCounter,1);
     }
   }
-  ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x19f8);
+  MatrixTransformElementC = *(float *)(PatternIndex + 0x19f8);
   FilterInputValue0 = *(float *)(RenderingContextHandle + 0xf);
   CharacterDataValidationResult = *(char *)(PatternIndex + 0xcb);
   FramePointer[0x20] = 0.0;
   FramePointer[0x21] = 0.0;
   FramePointer[0x22] = 0.0;
   FramePointer[0x23] = 0.0;
-  FilterInputValue2 = ContextSecondaryFloat9 * 1.35;
-  ContextSecondaryFloat9 = ContextSecondaryFloat9 * 0.2 + FilterInputValue0 + 1.0;
-  if (ContextSecondaryFloat9 <= FilterInputValue2) {
-    ContextSecondaryFloat9 = FilterInputValue2;
+  FilterInputValue2 = MatrixTransformElementC * 1.35;
+  MatrixTransformElementC = MatrixTransformElementC * 0.2 + FilterInputValue0 + 1.0;
+  if (MatrixTransformElementC <= FilterInputValue2) {
+    MatrixTransformElementC = FilterInputValue2;
   }
   CharacterStatus2 = *(char *)((long long)RenderingContextHandle + 0xb2);
-  ContextSecondaryFloat9 = (float)(int)ContextSecondaryFloat9;
+  MatrixTransformElementC = (float)(int)MatrixTransformElementC;
   *(unsigned long long *)(FramePointer + -0xe) = (unsigned long long)(CharacterDataValidationResult != '\0') + 1;
   SystemContextValue = SystemConfigurationHandle;
   StackParameter200 = unaff_XMM9_Qa;
@@ -142856,13 +142856,13 @@ LAB_18012b465:
                  + FilterInputValue1;
         if (HighByte8) {
           FramePointer[2] = FilterInputValue2;
-          FramePointer[3] = ContextSecondaryFloat9;
+          FramePointer[3] = MatrixTransformElementC;
           ScalingFactor = FilterInputValue2;
         }
         else {
           TemporaryFloatStack64 = FilterInputValue2;
-          StackFloatValue60 = ContextSecondaryFloat9;
-          ScalingFactor = ContextSecondaryFloat9;
+          StackFloatValue60 = MatrixTransformElementC;
+          ScalingFactor = MatrixTransformElementC;
         }
         pSystemCoreScaleX = (float *)((long long)&DataTransferStackBuffer + 4);
         if (HighByte8) {
@@ -142873,13 +142873,13 @@ LAB_18012b465:
         ProcessSystemDataAndConfiguration(MemoryBufferC + 0x80,FramePointer + -4);
         MemoryBufferC = RenderingContextHandle[0x5d];
         if (HighByte8) {
-          FramePointer[0x1c] = ContextSecondaryFloat9;
+          FramePointer[0x1c] = MatrixTransformElementC;
           FramePointer[0x1d] = FilterInputValue2;
-          ScalingFactor = ContextSecondaryFloat9;
+          ScalingFactor = MatrixTransformElementC;
         }
         else {
           FramePointer[-0x1c] = FilterInputValue2;
-          FramePointer[-0x1b] = ContextSecondaryFloat9;
+          FramePointer[-0x1b] = MatrixTransformElementC;
           ScalingFactor = FilterInputValue2;
         }
         pSystemCoreScaleX = FramePointer + -0x1b;
@@ -142942,15 +142942,15 @@ LAB_18012b465:
     }
     if (FramePointer[0xc] != -NAN) {
       Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
-      CleanupSystemEventHandling(FramePointer + -0x14,RenderingContextHandle,FramePointer[0xc],ContextSecondaryFloat9,Utf16Char4);
+      CleanupSystemEventHandling(FramePointer + -0x14,RenderingContextHandle,FramePointer[0xc],MatrixTransformElementC,Utf16Char4);
       MemoryBufferC = SystemConfigurationHandle;
       ProcessingStatusFlag = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
       SystemContextValue = RenderingContextHandle[0x5d];
-      ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x189c);
+      MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x189c);
       FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x18a0);
       FilterInputValue5 = *(float *)(SystemConfigurationHandle + 0x18a4);
       FramePointer[-0xe] = *(float *)(SystemConfigurationHandle + 0x1898);
-      FramePointer[-0xd] = ContextSecondaryFloat9;
+      FramePointer[-0xd] = MatrixTransformElementC;
       FramePointer[-0xc] = FilterInputValue0;
       FramePointer[-0xb] = FilterInputValue5;
       FramePointer[-0xb] = FilterInputValue5 * *(float *)(MemoryBufferC + 0x1628);
@@ -142963,9 +142963,9 @@ LAB_18012b465:
       SystemMemoryAllocationResult = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
     }
     SystemContextValue = SystemConfigurationHandle;
-    ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x1668);
+    MatrixTransformElementC = *(float *)(PatternIndex + 0x1668);
     InputDataLength = StackProcessingParameter0;
-    if (((AuxiliaryFloat13 < ContextSecondaryFloat9) && (((uint)NullPointerD & 1) == 0)) &&
+    if (((AuxiliaryFloat13 < MatrixTransformElementC) && (((uint)NullPointerD & 1) == 0)) &&
        ((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) == 0)) {
       MemoryBufferC = RenderingContextHandle[0x5d];
       FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x171c);
@@ -142978,7 +142978,7 @@ LAB_18012b465:
       FramePointer[0x1b] = FilterInputValue5 * *(float *)(SystemContextValue + 0x1628);
       ProcessingStatusFlag = ValidateSystemData(FramePointer + 0x18);
       FilterInputValue0 = *(float *)(PatternIndex + 0x1638);
-      Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,ContextSecondaryFloat9);
+      Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,MatrixTransformElementC);
       FramePointer[-0xe] = *FramePointer - FilterInputValue0;
       FramePointer[-0xd] = FramePointer[1] - 1.0;
       FramePointer[-0x13] = FramePointer[1] - 1.0;
@@ -142996,11 +142996,11 @@ LAB_18012b465:
       MemoryBufferC = 0x160;
     }
     pSystemFloatValue = (float *)(MemoryBufferC + 0x1628 + SystemConfigurationHandle);
-    ContextSecondaryFloat9 = pSystemFloatValue[1];
+    MatrixTransformElementC = pSystemFloatValue[1];
     FilterInputValue2 = pSystemFloatValue[2];
     FilterInputValue5 = pSystemFloatValue[3];
     FramePointer[0x20] = *pSystemFloatValue;
-    FramePointer[0x21] = ContextSecondaryFloat9;
+    FramePointer[0x21] = MatrixTransformElementC;
     FramePointer[0x22] = FilterInputValue2;
     FramePointer[0x23] = FilterInputValue5;
     FramePointer[0x23] = FilterInputValue5 * *(float *)(SystemContextValue + 0x1628);
@@ -143016,25 +143016,25 @@ LAB_18012b465:
        (*(float *)(RenderingContextHandle + 8) - *(float *)((long long)RenderingContextHandle + 0x8c)) +
        *(float *)(RenderingContextHandle + 0xe);
   FilterInputValue5 = (float)ReadSystemStatus(RenderingContextHandle);
-  ContextSecondaryFloat9 = *(float *)((long long)RenderingContextHandle + 0x44);
+  MatrixTransformElementC = *(float *)((long long)RenderingContextHandle + 0x44);
   FilterInputValue0 = *(float *)(RenderingContextHandle + 0x12);
   FilterInputValue2 = *(float *)((long long)RenderingContextHandle + 0x74);
   FilterInputValue1 = (float)GetSystemTime();
-  *(float *)((long long)RenderingContextHandle + 0x274) = FilterInputValue1 + FilterInputValue5 + (ContextSecondaryFloat9 - FilterInputValue0) + FilterInputValue2;
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xd);
-  if (ContextSecondaryFloat9 == AuxiliaryFloat13) {
-    ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 9) - *(float *)((long long)RenderingContextHandle + 0xa4);
+  *(float *)((long long)RenderingContextHandle + 0x274) = FilterInputValue1 + FilterInputValue5 + (MatrixTransformElementC - FilterInputValue0) + FilterInputValue2;
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xd);
+  if (MatrixTransformElementC == AuxiliaryFloat13) {
+    MatrixTransformElementC = *(float *)(RenderingContextHandle + 9) - *(float *)((long long)RenderingContextHandle + 0xa4);
   }
   *(float *)(RenderingContextHandle + 0x4f) =
        ((*(float *)(RenderingContextHandle + 8) - *(float *)((long long)RenderingContextHandle + 0x8c)) -
-       *(float *)(RenderingContextHandle + 0xe)) + ContextSecondaryFloat9;
-  ContextSecondaryFloat9 = *(float *)((long long)RenderingContextHandle + 0x6c);
-  if (ContextSecondaryFloat9 == AuxiliaryFloat13) {
-    ContextSecondaryFloat9 = *(float *)((long long)RenderingContextHandle + 0x4c) - *(float *)(RenderingContextHandle + 0x15);
+       *(float *)(RenderingContextHandle + 0xe)) + MatrixTransformElementC;
+  MatrixTransformElementC = *(float *)((long long)RenderingContextHandle + 0x6c);
+  if (MatrixTransformElementC == AuxiliaryFloat13) {
+    MatrixTransformElementC = *(float *)((long long)RenderingContextHandle + 0x4c) - *(float *)(RenderingContextHandle + 0x15);
   }
   *(float *)((long long)RenderingContextHandle + 0x27c) =
        ((*(float *)((long long)RenderingContextHandle + 0x44) - *(float *)(RenderingContextHandle + 0x12)) -
-       *(float *)((long long)RenderingContextHandle + 0x74)) + ContextSecondaryFloat9;
+       *(float *)((long long)RenderingContextHandle + 0x74)) + MatrixTransformElementC;
   *(float *)((long long)RenderingContextHandle + 0x204) =
        *(float *)(RenderingContextHandle + 0xe) - *(float *)((long long)RenderingContextHandle + 0x8c);
   MemoryPoolIndex = 0;
@@ -143060,8 +143060,8 @@ LAB_18012b465:
   *(uint32_t *)((long long)RenderingContextHandle + 0x134) = 0;
   *(uint32_t *)(eventDataStructureHandle + 0x25) = 0;
   *(uint8_t *)((long long)RenderingContextHandle + 0x17c) = 0;
-  ContextSecondaryFloat9 = (float)CalculateSystemFloatValue(RenderingContextHandle);
-  *(bool *)((long long)RenderingContextHandle + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat9;
+  MatrixTransformElementC = (float)CalculateSystemFloatValue(RenderingContextHandle);
+  *(bool *)((long long)RenderingContextHandle + 0x17d) = AuxiliaryFloat13 < MatrixTransformElementC;
   *(int *)((long long)RenderingContextHandle + 0x174) = (int)RenderingContextHandle[0x2f];
   *(uint32_t *)(eventDataStructureHandle + 0x2f) = 0;
   *(uint8_t *)((long long)RenderingContextHandle + 0x17e) = 0;
@@ -143131,13 +143131,13 @@ LAB_18012b465:
       }
     }
     if (*(long long *)(FramePointer + 10) != 0) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x19f8) * 0.5;
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x19f8) * 0.5;
       Utf16Char4 = ValidateSystemDataStructure(FramePointer + -0x18,
                                    ((*(float *)(RenderingContextHandle + 9) +
                                     *(float *)(RenderingContextHandle + 8)) -
-                                   *(float *)(PatternIndex + 0x165c)) - ContextSecondaryFloat9,
+                                   *(float *)(PatternIndex + 0x165c)) - MatrixTransformElementC,
                                    *(float *)((long long)RenderingContextHandle + 0x44) +
-                                   *(float *)(PatternIndex + 0x1660) + ContextSecondaryFloat9);
+                                   *(float *)(PatternIndex + 0x1660) + MatrixTransformElementC);
       ProcessingStatusFlag = AllocateSystemMemory(RenderingContextHandle,SystemDataTablePointerD0,0);
       CharacterDataValidationResult = ProcessSystemStatus(ProcessingStatusFlag,Utf16Char4);
       if (CharacterDataValidationResult != '\0') {
@@ -143147,12 +143147,12 @@ LAB_18012b465:
     *(uint32_t *)((long long)RenderingContextHandle + 0x16c) = 0;
     *(uint32_t *)(eventDataStructureHandle + 0x2e) = 1;
     *(uint *)(RenderingContextHandle + 0x35) = InputDataLength;
-    ContextSecondaryFloat9 = AuxiliaryFloat13;
+    MatrixTransformElementC = AuxiliaryFloat13;
     if (((uint)NullPointerD & 0x100000) != 0) {
       Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,0xbf800000);
       pSystemCoreScaleX = (float *)ProcessSystemConfigurationAndParameters(FramePointer + -0x18,&NameTemplateBuffer,0,0,Utf16Char4);
       SystemMemoryAllocationResult = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
-      ContextSecondaryFloat9 = *pSystemCoreScaleX;
+      MatrixTransformElementC = *pSystemCoreScaleX;
     }
     Utf16Char4 = ValidateSystemDataStructure(FramePointer + -0x18);
     Utf16Character = ProcessSystemConfigurationAndParameters(FramePointer + -0xe,*(void *)(FramePointer + 0x1e),0,1,
@@ -143203,7 +143203,7 @@ LAB_18012b465:
     ProcessSystemDataValidation(FramePointer + -0x1c,FramePointer + -0x1a,*(void *)(FramePointer + 0x1e),0,
                   &TertiaryDataBuffer);
     if (((uint)NullPointerD & 0x100000) != 0) {
-      Utf16Char4 = ValidateSystemDataStructure(FramePointer + -0x14,2.0 - ContextSecondaryFloat9);
+      Utf16Char4 = ValidateSystemDataStructure(FramePointer + -0x14,2.0 - MatrixTransformElementC);
       ExecuteSystemFloatingPointStackOperationAndCleanup(FramePointer + -0x1c);
       FinalizeSystemFloatOperation();
       Utf16Character = ValidateSystemDataStructure(FramePointer + 0x18);
@@ -143222,9 +143222,9 @@ LAB_18012b465:
   RenderingContextHandle[0x47] = *ContextHandle8;
   RenderingContextHandle[0x48] = MemoryBufferC;
   if ((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) != 0) {
-    ContextSecondaryFloat9 = (float)GetSystemFloatValue();
+    MatrixTransformElementC = (float)GetSystemFloatValue();
     *(float *)((long long)RenderingContextHandle + 0x23c) =
-         ContextSecondaryFloat9 + *(float *)((long long)RenderingContextHandle + 0x23c);
+         MatrixTransformElementC + *(float *)((long long)RenderingContextHandle + 0x23c);
   }
   ProcessFloatCalculation(RenderingContextHandle + 0x47,RenderingContextHandle + 0x45);
   *(float *)(RenderingContextHandle + 0x49) =
@@ -143232,9 +143232,9 @@ LAB_18012b465:
   if (((uint)NullPointerD & 0x401) == 1) {
     pSystemFloatValue = (float *)((long long)RenderingContextHandle + 0x7c);
   }
-  ContextSecondaryFloat9 = *pSystemFloatValue;
+  MatrixTransformElementC = *pSystemFloatValue;
   FilterInputValue0 = (float)GetSystemTime();
-  *(float *)((long long)RenderingContextHandle + 0x24c) = FilterInputValue0 + FramePointer[1] + ContextSecondaryFloat9;
+  *(float *)((long long)RenderingContextHandle + 0x24c) = FilterInputValue0 + FramePointer[1] + MatrixTransformElementC;
   *(float *)(RenderingContextHandle + 0x4a) =
        ((*(float *)(RenderingContextHandle + 9) + *(float *)(RenderingContextHandle + 8)) -
        *(float *)((long long)RenderingContextHandle + 0xa4)) -
@@ -143243,14 +143243,14 @@ LAB_18012b465:
        ((*(float *)((long long)RenderingContextHandle + 0x4c) +
         *(float *)((long long)RenderingContextHandle + 0x44)) - *(float *)(RenderingContextHandle + 0x15)) -
        *(float *)((long long)RenderingContextHandle + 0x7c);
-  ContextSecondaryFloat9 = (float)FinalizeSystemFloatOperation();
+  MatrixTransformElementC = (float)FinalizeSystemFloatOperation();
   *(float *)(RenderingContextHandle + 0x4b) =
-       (float)(int)(ContextSecondaryFloat9 + *(float *)(RenderingContextHandle + 0x49) + 0.5);
+       (float)(int)(MatrixTransformElementC + *(float *)(RenderingContextHandle + 0x49) + 0.5);
   *(float *)((long long)RenderingContextHandle + 0x25c) =
        (float)(int)(*(float *)((long long)RenderingContextHandle + 0x24c) + 0.5);
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x4a);
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x4a);
   FilterInputValue0 = (float)FinalizeSystemFloatOperation();
-  *(float *)(RenderingContextHandle + 0x4c) = (float)(int)((ContextSecondaryFloat9 + 0.5) - FilterInputValue0);
+  *(float *)(RenderingContextHandle + 0x4c) = (float)(int)((MatrixTransformElementC + 0.5) - FilterInputValue0);
   *(float *)((long long)RenderingContextHandle + 0x264) =
        (float)(int)(*(float *)((long long)RenderingContextHandle + 0x254) + 0.5);
   if ((*(byte *)(PatternIndex + 8) & 0x40) != 0) {
@@ -143271,7 +143271,7 @@ LAB_18012b465:
     *(uint32_t *)((long long)RenderingContextHandle + 0x144) =
          *(uint32_t *)((long long)RenderingContextHandle + 0x84);
     CharacterDataValidationResult = ValidateAndProcessSystemFlags(FramePointer + -2);
-    ContextSecondaryFloat9 = FramePointer[-0x10];
+    MatrixTransformElementC = FramePointer[-0x10];
     *(uint *)(RenderingContextHandle + 0x29) = (uint)(CharacterDataValidationResult != '\0');
     Utf16Char4 = *(void *)FramePointer;
     *(void *)((long long)RenderingContextHandle + 0x14c) = *(void *)(FramePointer + -2);
@@ -143279,7 +143279,7 @@ LAB_18012b465:
     FilterInputValue0 = RenderingContextHandle;
   }
   else {
-    ContextSecondaryFloat9 = FramePointer[-0x10];
+    MatrixTransformElementC = FramePointer[-0x10];
     *(int *)((long long)RenderingContextHandle + 0x144) = (int)RenderingContextHandle[1];
     *(uint32_t *)(eventDataStructureHandle + 0x29) = *(uint32_t *)((long long)RenderingContextHandle + 0x41c    ;
     *(long long *)((long long)RenderingContextHandle + 0x14c) = RenderingContextHandle[0x84];
@@ -143290,7 +143290,7 @@ LAB_18012ce0f:
   if (((uint)NullPointerD >> 0x1d & 1) == 0) {
     ProcessSystemParameters(RenderingContextHandle + 0x4b,RenderingContextHandle + 0x4c,1);
   }
-  if (FilterInputValue0 != ContextSecondaryFloat9) {
+  if (FilterInputValue0 != MatrixTransformElementC) {
     *(uint8_t *)((long long)RenderingContextHandle + 0xb1) = 0;
   }
   *(short *)(RenderingContextHandle + 0x17) = (short)RenderingContextHandle[0x17] + 1;
@@ -146852,18 +146852,18 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
       _StackFloat1 = *CharacterValidationBuffer;
     }
     MatrixTransformElementB = *(float *)(*(long long *)(BufferIndex + 0x28) + 0x10);
-    ContextSecondaryFloat9 = *(float *)(*(long long *)(BufferIndex + 0x28) + 0x14);
+    MatrixTransformElementC = *(float *)(*(long long *)(BufferIndex + 0x28) + 0x14);
     if (*(char *)(BufferIndex + 0xae) != '\0') {
       MatrixTransformElementB = 3.4028235e+38;
-      ContextSecondaryFloat9 = 3.4028235e+38;
+      MatrixTransformElementC = 3.4028235e+38;
     }
     LockOperationResult2 = *(int *)(BufferIndex + 0x3c);
     if ((-1 < LockOperationResult2) && (LockOperationResult2 < *(int *)(CharacterTablePointer6 + 0x1600))) {
       MatrixTransformElementB = *(float *)(*(long long *)(CharacterTablePointer6 + 0x1608) + 0x18 + (long long)LockOperationResult2 * 0x24);
-      ContextSecondaryFloat9 = *(float *)(*(long long *)(CharacterTablePointer6 + 0x1608) + 0x1c + (long long)LockOperationResult2 * 0x24);
+      MatrixTransformElementC = *(float *)(*(long long *)(CharacterTablePointer6 + 0x1608) + 0x1c + (long long)LockOperationResult2 * 0x24);
     }
     _StackFloatValue50 =
-         CONCAT44(ContextSecondaryFloat9 - (*(float *)(CharacterTablePointer6 + 0x16b8) + *(float *)(CharacterTablePointer6 + 0x16b8)),
+         CONCAT44(MatrixTransformElementC - (*(float *)(CharacterTablePointer6 + 0x16b8) + *(float *)(CharacterTablePointer6 + 0x16b8)),
                   MatrixTransformElementB - (*(float *)(CharacterTablePointer6 + 0x16b4) + *(float *)(CharacterTablePointer6 + 0x16b4)));
     CharacterValidationBuffer = (void *)ProcessSystemBuffer(FramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,BufferIndex + 0x60,&MemoryAllocationStackBuffer,*CharacterValidationBuffer);
@@ -146873,29 +146873,29 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(CharacterTablePointer6 + 0x168c);
     }
     BufferStatus6 = SystemConfigurationHandle;
-    ContextSecondaryFloat9 = StackFloatValue60;
+    MatrixTransformElementC = StackFloatValue60;
     MatrixTransformElementB = TemporaryFloatStack64;
     if ((FramePointer[3] < *(float *)(BufferIndex + 100)) && ((*(byte *)(BufferIndex + 0xc) & 8) == 0)) {
       StackFloatValue60 = StackFloatValue60 + *(float *)(CharacterTablePointer6 + 0x168c);
-      ContextSecondaryFloat9 = StackFloatValue60;
+      MatrixTransformElementC = StackFloatValue60;
     }
   }
   else {
     BufferStatus6 = CharacterTablePointer6;
-    ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x60);
+    MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x60);
     MatrixTransformElementB = *(float *)(RenderingContextHandle + 100);
   }
   FilterInputValue0 = 3.4028235e+38;
-  _StackFloatValue50 = CONCAT44(MatrixTransformElementB,ContextSecondaryFloat9);
+  _StackFloatValue50 = CONCAT44(MatrixTransformElementB,MatrixTransformElementC);
   FilterInputValue4 = 3.4028235e+38;
   if ((((uint)MatrixTransformElementA & 0x40) == 0) || (*(char *)(RenderingContextHandle + 0xb2) != '\0')) {
     if ((0 < *(int *)(RenderingContextHandle + 0xc4)) || (0 < *(int *)(RenderingContextHandle + 200))) {
       if ((RegisterR12ValueB == '\0') && (0 < *(int *)(RenderingContextHandle + 0xc4))) {
-        FilterInputValue0 = ContextSecondaryFloat9;
+        FilterInputValue0 = MatrixTransformElementC;
         if ((*(char *)(RenderingContextHandle + 0xcc) != '\0') &&
            (FilterInputValue0 = *(float *)(RenderingContextHandle + 0x50),
-           *(float *)(RenderingContextHandle + 0x50) <= ContextSecondaryFloat9)) {
-          FilterInputValue0 = ContextSecondaryFloat9;
+           *(float *)(RenderingContextHandle + 0x50) <= MatrixTransformElementC)) {
+          FilterInputValue0 = MatrixTransformElementC;
         }
         *(float *)(RenderingContextHandle + 0x50) = FilterInputValue0;
       }
@@ -146917,8 +146917,8 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
   }
   else {
     if (RegisterR12ValueB == '\0') {
-      *(float *)(RenderingContextHandle + 0x50) = ContextSecondaryFloat9;
-      FilterInputValue0 = ContextSecondaryFloat9;
+      *(float *)(RenderingContextHandle + 0x50) = MatrixTransformElementC;
+      FilterInputValue0 = MatrixTransformElementC;
     }
     if (RegisterR13ValueB == '\0') {
       *(float *)(RenderingContextHandle + 0x54) = MatrixTransformElementB;
@@ -146948,13 +146948,13 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
       MatrixTransformElementB = *(float *)(RenderingContextHandle + 0x50);
     }
     if (FilterInputValue4 == 3.4028235e+38) {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x5c);
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x5c);
     }
     else {
-      ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x54);
+      MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x54);
     }
     if ((((uint)MatrixTransformElementA >> 0xe & 1) != 0) ||
-       ((ContextSecondaryFloat9 < *(float *)(RenderingContextHandle + 100) && (((uint)MatrixTransformElementA & 8) == 0)))) {
+       ((MatrixTransformElementC < *(float *)(RenderingContextHandle + 100) && (((uint)MatrixTransformElementA & 8) == 0)))) {
       CharacterStatus2 = '\x01';
     }
     else {
@@ -146976,7 +146976,7 @@ LAB_18012a70f:
     }
     *(char *)(RenderingContextHandle + 0xac) = CharacterStatus2;
     if ((CharacterStatus2 != '\0') && (*(char *)(RenderingContextHandle + 0xad) == '\0')) {
-      if ((*(float *)(RenderingContextHandle + 100) <= ContextSecondaryFloat9 - *(float *)(PatternIndex + 0x168c)) ||
+      if ((*(float *)(RenderingContextHandle + 100) <= MatrixTransformElementC - *(float *)(PatternIndex + 0x168c)) ||
          (((uint)MatrixTransformElementA & 8) != 0)) {
         MemoryAllocationHandle = 0;
       }
@@ -146989,11 +146989,11 @@ LAB_18012a70f:
     if (*(char *)(RenderingContextHandle + 0xac) != '\0') {
       MatrixTransformElementB = *(float *)(PatternIndex + 0x168c);
     }
-    ContextSecondaryFloat9 = AuxiliaryFloat13;
+    MatrixTransformElementC = AuxiliaryFloat13;
     if (*(char *)(RenderingContextHandle + 0xad) != '\0') {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x168c);
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x168c);
     }
-    *(float *)(RenderingContextHandle + 0xa4) = ContextSecondaryFloat9;
+    *(float *)(RenderingContextHandle + 0xa4) = MatrixTransformElementC;
     *(float *)(RenderingContextHandle + 0xa8) = MatrixTransformElementB;
   }
   FramePointer[0xc] = -NAN;
@@ -147010,15 +147010,15 @@ LAB_18012a70f:
   MatrixTransformElementB = (float)((uint)MatrixTransformElementA & 0x1000000);
   FramePointer[0x16] = MatrixTransformElementB;
   if (MatrixTransformElementB == 0.0) {
-    ContextSecondaryFloat9 = FramePointer[-4];
+    MatrixTransformElementC = FramePointer[-4];
   }
   else {
     CharacterTablePointer6 = *(long long *)(FramePointer + 8);
     CharacterStatusBuffer = (uint16_t *)(CharacterTablePointer6 + 0x188);
     *(uint16_t *)(RenderingContextHandle + 0xba) = *CharacterStatusBuffer;
     ProcessSystemDataAndConfiguration(CharacterStatusBuffer,&DataStackBuffer);
-    ContextSecondaryFloat9 = FramePointer[-4];
-    if (((((uint)MatrixTransformElementA >> 0x1a & 1) == 0) && (CharacterDataValidationResult == '\0')) && (ContextSecondaryFloat9 != 3.761582e-37)) {
+    MatrixTransformElementC = FramePointer[-4];
+    if (((((uint)MatrixTransformElementA >> 0x1a & 1) == 0) && (CharacterDataValidationResult == '\0')) && (MatrixTransformElementC != 3.761582e-37)) {
       *(void *)(RenderingContextHandle + 0x40) = *(void *)(CharacterTablePointer6 + 0x100);
     }
   }
@@ -147028,7 +147028,7 @@ LAB_18012a70f:
       if ((((((uint)MatrixTransformElementA >> 0x1a & 1) != 0) && (TertiaryStatusFlag == '\0')) &&
           (0 < (int)StackProcessingParameter0)) ||
          (((CharacterDataValidationResult = cStack0000000000000048, ((uint)MatrixTransformElementA >> 0x19 & 1) != 0 &&
-           (TertiaryStatusFlag == '\0')) && (ContextSecondaryFloat9 != 3.761582e-37)))) {
+           (TertiaryStatusFlag == '\0')) && (MatrixTransformElementC != 3.761582e-37)))) {
         SystemCharacterStatusBuffer = (uint32_t *)GetSystemDataPointer(FramePointer + -0x18,RenderingContextHandle);
         SystemMemoryAllocationResult = SystemCharacterStatusBuffer[1];
         *(uint32_t *)(eventDataStructureHandle + 0x40) = *SystemCharacterStatusBuffer;
@@ -147046,15 +147046,15 @@ LAB_18012a70f:
   else {
     FilterInputValue0 = *(float *)(RenderingContextHandle + 0xf0) -
              *(float *)(RenderingContextHandle + SystemMemoryFunctionOffsetF8) * *(float *)(RenderingContextHandle + 0x50);
-    ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0xf4) -
+    MatrixTransformElementC = *(float *)(RenderingContextHandle + 0xf4) -
              *(float *)(RenderingContextHandle + 0x54) * *(float *)(RenderingContextHandle + 0xfc);
     if (FilterInputValue0 <= *(float *)(PatternIndex + 0x16b4)) {
       FilterInputValue0 = *(float *)(PatternIndex + 0x16b4);
     }
-    if (ContextSecondaryFloat9 <= *(float *)(PatternIndex + 0x16b8)) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x16b8);
+    if (MatrixTransformElementC <= *(float *)(PatternIndex + 0x16b8)) {
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x16b8);
     }
-    _StackFloat1 = CONCAT44(ContextSecondaryFloat9,FilterInputValue0);
+    _StackFloat1 = CONCAT44(MatrixTransformElementC,FilterInputValue0);
     CopySystemData(RenderingContextHandle,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)(RenderingContextHandle + 0x3c) < 0) {
@@ -147138,13 +147138,13 @@ LAB_18012ac57:
         BufferIndex = (long long)SystemShortValue4;
         SystemContextPrimaryFloatPointer = FramePointer + -8;
         CharacterTablePointer6 = *(long long *)(PatternIndex + 0x1608);
-        ContextSecondaryFloat9 = *(float *)(CharacterTablePointer6 + 0x10 + BufferIndex * 0x24);
+        MatrixTransformElementC = *(float *)(CharacterTablePointer6 + 0x10 + BufferIndex * 0x24);
         FilterInputValue0 = *(float *)(CharacterTablePointer6 + 0x14 + BufferIndex * 0x24);
         FilterInputValue4 = *(float *)(CharacterTablePointer6 + 0x18 + BufferIndex * 0x24);
-        FramePointer[-8] = ContextSecondaryFloat9;
+        FramePointer[-8] = MatrixTransformElementC;
         FilterInputValue1 = *(float *)(CharacterTablePointer6 + 0x1c + BufferIndex * 0x24);
         FramePointer[-7] = FilterInputValue0;
-        FramePointer[-6] = ContextSecondaryFloat9 + FilterInputValue4;
+        FramePointer[-6] = MatrixTransformElementC + FilterInputValue4;
         FramePointer[-5] = FilterInputValue0 + FilterInputValue1;
         goto LAB_18012ac57;
       }
@@ -147215,14 +147215,14 @@ LAB_18012ac57:
     }
   }
   MatrixTransformElementB = *(float *)(PatternIndex + 0x19f8);
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x78);
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x78);
   CharacterDataValidationResult = *(char *)(PatternIndex + 0xcb);
   FramePointer[0x20] = 0.0;
   FramePointer[0x21] = 0.0;
   FramePointer[0x22] = 0.0;
   FramePointer[0x23] = 0.0;
   FilterInputValue0 = MatrixTransformElementB * 1.35;
-  MatrixTransformElementB = MatrixTransformElementB * 0.2 + ContextSecondaryFloat9 + 1.0;
+  MatrixTransformElementB = MatrixTransformElementB * 0.2 + MatrixTransformElementC + 1.0;
   if (MatrixTransformElementB <= FilterInputValue0) {
     MatrixTransformElementB = FilterInputValue0;
   }
@@ -147235,12 +147235,12 @@ LAB_18012ac57:
      ((0 < *(int *)(RenderingContextHandle + 200) || (*(char *)(RenderingContextHandle + 0xb0) == '\0')))  goto LAB_18012b510;
   CharacterDataValidationResult = *(char *)(SystemConfigurationHandle + 0xcb);
   FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x19f8) * 1.35;
-  MatrixTransformElementA = ContextSecondaryFloat9 + 1.0 + *(float *)(SystemConfigurationHandle + 0x19f8) * 0.2;
+  MatrixTransformElementA = MatrixTransformElementC + 1.0 + *(float *)(SystemConfigurationHandle + 0x19f8) * 0.2;
   FramePointer[2] = (float)(-(uint)(CharacterDataValidationResult != '\0') & 4);
   if (MatrixTransformElementA <= FilterInputValue0) {
     MatrixTransformElementA = FilterInputValue0;
   }
-  ContextSecondaryFloat9 = (float)(int)((float)(int)MatrixTransformElementA * 0.75);
+  MatrixTransformElementC = (float)(int)((float)(int)MatrixTransformElementA * 0.75);
   MatrixTransformElementA = AuxiliaryFloat13;
   if (CharacterDataValidationResult != '\0') {
     MatrixTransformElementA = 4.0;
@@ -147258,9 +147258,9 @@ LAB_18012ac57:
          CONCAT44(*(float *)(CharacterTablePointer6 + 0x4c) + *(float *)(CharacterTablePointer6 + 0x44),
                   *(float *)(CharacterTablePointer6 + 0x40) + *(float *)(CharacterTablePointer6 + 0x48));
     ExecuteSystemFloatOperation(FramePointer + 0xe,CharacterTablePointer6 + 0x40,&TertiaryDataBuffer,SystemContextPrimaryFloatPointer + -2);
-    FilterInputValue1 = ContextSecondaryFloat9 * *SystemContextPrimaryFloatPointer + FramePointer[0xe];
+    FilterInputValue1 = MatrixTransformElementC * *SystemContextPrimaryFloatPointer + FramePointer[0xe];
     FilterInputValue0 = SystemContextPrimaryFloatPointer[1];
-    FilterInputValue4 = ContextSecondaryFloat9 * SystemContextPrimaryFloatPointer[1] + FramePointer[0xf];
+    FilterInputValue4 = MatrixTransformElementC * SystemContextPrimaryFloatPointer[1] + FramePointer[0xf];
     FilterInputValue2 = FramePointer[0xe] - MatrixTransformElementA * *SystemContextPrimaryFloatPointer;
     FramePointer[-0x1a] = FilterInputValue1;
     FilterInputValue0 = FramePointer[0xf] - MatrixTransformElementA * FilterInputValue0;
@@ -147290,8 +147290,8 @@ LAB_18012b18f:
       if ((*(char *)(BufferIndex + 0x415) == '\0') || (MemoryAllocationCounter != 0)) {
         FilterInputValue0 = *SystemContextPrimaryFloatPointer;
         FilterInputValue4 = SystemContextPrimaryFloatPointer[1];
-        FramePointer[0x10] = FilterInputValue0 * -ContextSecondaryFloat9;
-        FramePointer[0x11] = FilterInputValue4 * -ContextSecondaryFloat9;
+        FramePointer[0x10] = FilterInputValue0 * -MatrixTransformElementC;
+        FramePointer[0x11] = FilterInputValue4 * -MatrixTransformElementC;
         FramePointer[0x12] = MatrixTransformElementA * FilterInputValue0;
         FramePointer[0x13] = MatrixTransformElementA * FilterInputValue4;
         pSystemContextPrimaryFloat4 = (float *)ExecuteSystemFloatOperation(FramePointer + 0x1c,FramePointer + 0x12,FramePointer + 0x10,
@@ -147331,7 +147331,7 @@ LAB_18012b0d0:
   if (FilterInputValue0 != 0.0) {
     do {
       SystemStatusCode = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),0x40800000);
-      CleanupSystemEventHandling(FramePointer + -0x20,CharacterTablePointer6,FilterInputValue4,ContextSecondaryFloat9,SystemStatusCode);
+      CleanupSystemEventHandling(FramePointer + -0x20,CharacterTablePointer6,FilterInputValue4,MatrixTransformElementC,SystemStatusCode);
       ProcessingStatusFlag = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
       SystemMemoryAllocationResult = SystemCallResourceOperation(CharacterTablePointer6,(long long)((int)FilterInputValue4 + 4));
       SystemParameter1 = (void *)CONCAT44(ProcessingStatusFlag,0x20);
@@ -147370,14 +147370,14 @@ LAB_18012b2d2:
   if ((*(long long *)(BufferIndex + 0x1cd8) != 0) &&
      (*(long long *)(*(long long *)(BufferIndex + 0x1cd8) + 0x3a0) == CharacterTablePointer6)) {
     LockOperationResult2 = *(int *)(BufferIndex + 0x1cc0);
-    ContextSecondaryFloat9 = AuxiliaryFloat13;
+    MatrixTransformElementC = AuxiliaryFloat13;
     FilterInputValue0 = AuxiliaryFloat13;
     if (LockOperationResult2 == 3) {
       if (*(char *)(BufferIndex + 0x135) == '\0') goto LAB_18012b465;
       SystemParameter1 =
            (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
       SystemContextPrimaryFloatPointer = (float *)AllocateSystemFloatArray(FramePointer + -0x14,1,0);
-      ContextSecondaryFloat9 = *SystemContextPrimaryFloatPointer;
+      MatrixTransformElementC = *SystemContextPrimaryFloatPointer;
       FilterInputValue0 = SystemContextPrimaryFloatPointer[1];
       LockOperationResult2 = *(int *)(BufferIndex + 0x1cc0);
     }
@@ -147385,10 +147385,10 @@ LAB_18012b2d2:
       SystemParameter1 =
            (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
       SystemContextPrimaryFloatPointer = (float *)AllocateSystemFloatArray(FramePointer + 0x18,2,0);
-      ContextSecondaryFloat9 = *SystemContextPrimaryFloatPointer;
+      MatrixTransformElementC = *SystemContextPrimaryFloatPointer;
       FilterInputValue0 = SystemContextPrimaryFloatPointer[1];
     }
-    if ((ContextSecondaryFloat9 != AuxiliaryFloat13) || (FilterInputValue0 != AuxiliaryFloat13)) {
+    if ((MatrixTransformElementC != AuxiliaryFloat13) || (FilterInputValue0 != AuxiliaryFloat13)) {
       FilterInputValue4 = *(float *)(BufferIndex + 0xbc);
       if (*(float *)(BufferIndex + 0xb8) <= *(float *)(BufferIndex + 0xbc)) {
         FilterInputValue4 = *(float *)(BufferIndex + 0xb8);
@@ -147400,7 +147400,7 @@ LAB_18012b2d2:
       FramePointer[0x20] = FilterInputValue4;
       SystemContextPrimaryFloatPointer = (float *)ProcessSystemMemoryOffset(FramePointer + -0x18,CharacterTablePointer6,
                                        CONCAT44(FilterInputValue0 * FilterInputValue1 + *(float *)(CharacterTablePointer6 + 0x54),
-                                                ContextSecondaryFloat9 * FilterInputValue1 + *(float *)(CharacterTablePointer6 + 0x50)));
+                                                MatrixTransformElementC * FilterInputValue1 + *(float *)(CharacterTablePointer6 + 0x50)));
       StackFloatValue60 = *SystemContextPrimaryFloatPointer;
       TemporaryFloatStack64 = SystemContextPrimaryFloatPointer[1];
     }
@@ -147444,12 +147444,12 @@ LAB_18012b510:
   *(void *)(RenderingContextHandle + 0x34) =
        *(void *)(*(long long *)(RenderingContextHandle + 0x28) + 8);
   if ((*(float *)(RenderingContextHandle + 0x48) <= AuxiliaryFloat13) || (((uint)MatrixTransformElementA & 0x2000040) != 0)  {
-    ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x19f8) * 16.0;
+    MatrixTransformElementC = *(float *)(PatternIndex + 0x19f8) * 16.0;
   }
   else {
-    ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x48) * 0.65;
+    MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x48) * 0.65;
   }
-  *(float *)(RenderingContextHandle + 0x284) = (float)(int)ContextSecondaryFloat9;
+  *(float *)(RenderingContextHandle + 0x284) = (float)(int)MatrixTransformElementC;
   ExecuteSystemComponentInitializationAndConfiguration(*(void *)(RenderingContextHandle + 0x2e8));
   *(uint *)(*(long long *)(RenderingContextHandle + 0x2e8) + 0x30) =
        -(uint)(*(char *)(PatternIndex + 0x16c1) != '\0') & 2 |
@@ -147487,7 +147487,7 @@ LAB_18012b510:
     HighByte7 = true;
   }
   if ((HighByte4 != 0) || (HighByte7)) {
-    ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x1dc8);
+    MatrixTransformElementC = *(float *)(PatternIndex + 0x1dc8);
     FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x1628);
     pSystemContextPrimaryFloat4 = (float *)(SystemConfigurationHandle + 0x1628 + ((unsigned long long)HighByte4 + 0x3a) * 0x10);
     FilterInputValue4 = pSystemContextPrimaryFloat4[1];
@@ -147497,7 +147497,7 @@ LAB_18012b510:
     FramePointer[-0x1f] = FilterInputValue4;
     FramePointer[-0x1e] = FilterInputValue1;
     FramePointer[-0x1d] = FilterInputValue2;
-    FramePointer[-0x1d] = FilterInputValue2 * ContextSecondaryFloat9 * FilterInputValue0;
+    FramePointer[-0x1d] = FilterInputValue2 * MatrixTransformElementC * FilterInputValue0;
     ProcessingStatusFlag = ValidateSystemData(FramePointer + -0x20);
     SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
     ProcessSystemDataAndConfigure(*(void *)(RenderingContextHandle + 0x2e8),FramePointer + 4,FramePointer + 6,ProcessingStatusFlag,
@@ -147509,7 +147509,7 @@ LAB_18012b510:
       if ((((FramePointer[4] < FramePointer[-0x18]) || (FramePointer[5] < FramePointer[-0x17])) ||
           (FramePointer[-0x16] <= FramePointer[6] && FramePointer[6] != FramePointer[-0x16])) ||
          (FramePointer[-0x15] <= FramePointer[7] && FramePointer[7] != FramePointer[-0x15])) {
-        ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x1cf4);
+        MatrixTransformElementC = *(float *)(PatternIndex + 0x1cf4);
         SystemStatusCode = *(void *)(RenderingContextHandle + 0x2e8);
         ProcessingStatusFlag = *(uint32_t *)(PatternIndex + 0x1634);
         FilterInputValue4 = *(float *)(SystemConfigurationHandle + 0x19bc);
@@ -147520,7 +147520,7 @@ LAB_18012b510:
         FramePointer[-0x1f] = FilterInputValue4;
         FramePointer[-0x1e] = FilterInputValue1;
         FramePointer[-0x1d] = FilterInputValue2;
-        FramePointer[-0x1d] = FilterInputValue2 * ContextSecondaryFloat9 * 0.25 * FilterInputValue0;
+        FramePointer[-0x1d] = FilterInputValue2 * MatrixTransformElementC * 0.25 * FilterInputValue0;
         MemoryPoolIndex = ValidateSystemData(FramePointer + -0x20);
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,ProcessingStatusFlag);
         ProcessSystemDataAndConfigure(SystemStatusCode,FramePointer + -0x18,FramePointer + -0x16,MemoryPoolIndex,SystemParameter1);
@@ -147529,7 +147529,7 @@ LAB_18012b510:
   }
   MemoryAllocationCounter = StackProcessingParameter0;
   CharacterTablePointer6 = *(long long *)(PatternIndex + 0x1cd8);
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x78);
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x78);
   FilterInputValue0 = *(float *)(RenderingContextHandle + 0x7c);
   if (CharacterTablePointer6 == 0) {
     CharacterTablePointer6 = *(long long *)(PatternIndex + 0x1c98);
@@ -147610,7 +147610,7 @@ LAB_18012b510:
       FilterInputValue1 = (float)ReadSystemStatus(RenderingContextHandle);
       FilterInputValue4 = *(float *)(RenderingContextHandle + 0x44);
       FramePointer[0x12] = *(float *)(RenderingContextHandle + 0x40);
-      SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,ContextSecondaryFloat9);
+      SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,MatrixTransformElementC);
       FramePointer[0x13] = FilterInputValue1 + FilterInputValue4;
       ProcessSystemDataAndConfigure(SystemStatusCode,FramePointer + 0x12,FramePointer + 0x14,MemoryAllocationCounter,SystemParameter1);
     }
@@ -147629,7 +147629,7 @@ LAB_18012b510:
       FramePointer[-0x1d] = FilterInputValue2;
       FramePointer[-0x1d] = FilterInputValue2 * *(float *)(CharacterTablePointer6 + 0x1628);
       ValidateSystemData(FramePointer + -0x20);
-      SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,ContextSecondaryFloat9);
+      SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,MatrixTransformElementC);
       ProcessSystemDataAndConfigure(*(void *)(RenderingContextHandle + 0x2e8),FramePointer + -2);
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
@@ -147641,7 +147641,7 @@ LAB_18012b510:
       SystemStatusCode = *(void *)(RenderingContextHandle + 0x2e8);
       FilterInputValue4 = AuxiliaryFloat13;
       if (((uint)MatrixTransformElementA & 1) != 0) {
-        FilterInputValue4 = ContextSecondaryFloat9;
+        FilterInputValue4 = MatrixTransformElementC;
       }
       FilterInputValue1 = *(float *)(SystemConfigurationHandle + 0x179c);
       FilterInputValue2 = *(float *)(SystemConfigurationHandle + 0x17a0);
@@ -147779,8 +147779,8 @@ LAB_18012b510:
         FilterInputValue2 = SystemContextPrimaryFloatPointer[1];
         SystemStatusCode = *(void *)(RenderingContextHandle + 0x2e8);
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,SystemContextPrimaryFloatPointer[3]);
-        FramePointer[-0x14] = (FilterInputValue0 + ContextSecondaryFloat9) * *SystemContextPrimaryFloatPointer + FilterInputValue4;
-        FramePointer[-0x13] = (FilterInputValue0 + ContextSecondaryFloat9) * FilterInputValue2 + FilterInputValue1;
+        FramePointer[-0x14] = (FilterInputValue0 + MatrixTransformElementC) * *SystemContextPrimaryFloatPointer + FilterInputValue4;
+        FramePointer[-0x13] = (FilterInputValue0 + MatrixTransformElementC) * FilterInputValue2 + FilterInputValue1;
         ConfigureSystemDataEx(SystemStatusCode,FramePointer + -0x14);
         BufferIndex = *(long long *)(RenderingContextHandle + 0x2e8);
         CheckSystemStatusAndProcess(BufferIndex,*(void *)(BufferIndex + 0x88),*(uint32_t *)(BufferIndex + 0x80),
@@ -147822,7 +147822,7 @@ LAB_18012b510:
         }
         FramePointer[-0xe] = FilterInputValue1;
         FramePointer[-0xd] = FilterInputValue2;
-        ProcessSystemParametersAndConfiguration(BufferIndex,FramePointer + -0x14,FramePointer + -0xe,ContextSecondaryFloat9,SystemStatusCode);
+        ProcessSystemParametersAndConfiguration(BufferIndex,FramePointer + -0x14,FramePointer + -0xe,MatrixTransformElementC,SystemStatusCode);
         SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
         ProcessSystemDataWithValidation(BufferIndex,MemoryAllocationCounter,1,FilterInputValue0);
       }
@@ -147834,11 +147834,11 @@ LAB_18012b510:
       ProcessingStatusFlag = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
       SystemStatusCode = *(void *)(RenderingContextHandle + 0x2e8);
       MatrixTransformElementB = *(float *)(SystemConfigurationHandle + 0x189c);
-      ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x18a0);
+      MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x18a0);
       FilterInputValue4 = *(float *)(SystemConfigurationHandle + 0x18a4);
       FramePointer[-0xe] = *(float *)(SystemConfigurationHandle + 0x1898);
       FramePointer[-0xd] = MatrixTransformElementB;
-      FramePointer[-0xc] = ContextSecondaryFloat9;
+      FramePointer[-0xc] = MatrixTransformElementC;
       FramePointer[-0xb] = FilterInputValue4;
       FramePointer[-0xb] = FilterInputValue4 * *(float *)(CharacterTablePointer6 + 0x1628);
       SystemMemoryAllocationResult = ValidateSystemData(FramePointer + -0xe);
@@ -147855,21 +147855,21 @@ LAB_18012b510:
     if (((AuxiliaryFloat13 < MatrixTransformElementB) && (((uint)MatrixTransformElementA & 1) == 0)) &&
        ((*(byte *)(RenderingContextHandle + 0x432) & 1) == 0)) {
       SystemStatusCode = *(void *)(RenderingContextHandle + 0x2e8);
-      ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x171c);
+      MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x171c);
       FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x1720);
       FilterInputValue4 = *(float *)(SystemConfigurationHandle + 0x1724);
       FramePointer[0x18] = *(float *)(SystemConfigurationHandle + 0x1718);
-      FramePointer[0x19] = ContextSecondaryFloat9;
+      FramePointer[0x19] = MatrixTransformElementC;
       FramePointer[0x1a] = FilterInputValue0;
       FramePointer[0x1b] = FilterInputValue4;
       FramePointer[0x1b] = FilterInputValue4 * *(float *)(CharacterTablePointer6 + 0x1628);
       ProcessingStatusFlag = ValidateSystemData(FramePointer + 0x18);
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x1638);
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x1638);
       UnicodeContextHandle = CONCAT44(SystemMemoryAllocationResult,MatrixTransformElementB);
-      FramePointer[-0xe] = *FramePointer - ContextSecondaryFloat9;
+      FramePointer[-0xe] = *FramePointer - MatrixTransformElementC;
       FramePointer[-0xd] = FramePointer[1] - 1.0;
       FramePointer[-0x13] = FramePointer[1] - 1.0;
-      FramePointer[-0x14] = FramePointer[-2] + ContextSecondaryFloat9;
+      FramePointer[-0x14] = FramePointer[-2] + MatrixTransformElementC;
       AllocateMemoryAndConfigure(SystemStatusCode,FramePointer + -0x14,FramePointer + -0xe,ProcessingStatusFlag,UnicodeContextHandle);
       SystemMemoryAllocationResult = (uint32_t)((unsigned long long)UnicodeContextHandle >> 0x20);
       MemoryAllocationCounter = StackProcessingParameter0;
@@ -147892,7 +147892,7 @@ LAB_18012b510:
     FramePointer[0x23] = FilterInputValue4;
     FramePointer[0x23] = FilterInputValue4 * *(float *)(CharacterTablePointer6 + 0x1628);
     MemoryPoolIndex = ValidateSystemData(FramePointer + 0x20);
-    SystemStatusCode = CONCAT44(SystemMemoryAllocationResult,ContextSecondaryFloat9);
+    SystemStatusCode = CONCAT44(SystemMemoryAllocationResult,MatrixTransformElementC);
     ProcessSystemDataConcatenation(*(void *)(FramePointer + -2),*(void *)FramePointer,MemoryPoolIndex,1,SystemStatusCode);
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
     *(uint32_t *)(PatternIndex + 0x1668) = ProcessingStatusFlag;
@@ -147904,10 +147904,10 @@ LAB_18012b510:
        *(float *)(RenderingContextHandle + 0x70);
   FilterInputValue4 = (float)ReadSystemStatus(RenderingContextHandle);
   MatrixTransformElementB = *(float *)(RenderingContextHandle + 0x44);
-  ContextSecondaryFloat9 = *(float *)(RenderingContextHandle + 0x90);
+  MatrixTransformElementC = *(float *)(RenderingContextHandle + 0x90);
   FilterInputValue0 = *(float *)(RenderingContextHandle + 0x74);
   FilterInputValue1 = (float)GetSystemTime();
-  *(float *)(RenderingContextHandle + 0x274) = FilterInputValue1 + FilterInputValue4 + (MatrixTransformElementB - ContextSecondaryFloat9) + FilterInputValue0;
+  *(float *)(RenderingContextHandle + 0x274) = FilterInputValue1 + FilterInputValue4 + (MatrixTransformElementB - MatrixTransformElementC) + FilterInputValue0;
   MatrixTransformElementB = *(float *)(RenderingContextHandle + 0x68);
   if (MatrixTransformElementB == AuxiliaryFloat13) {
     MatrixTransformElementB = *(float *)(RenderingContextHandle + 0x48) - *(float *)(RenderingContextHandle + 0xa4);
@@ -148044,11 +148044,11 @@ LAB_18012b510:
                            CONCAT44(SystemMemoryAllocationResult,0xbf800000));
     ProcessSystemDataStructure(&TertiaryDataBuffer,UnicodeContextHandle,SystemStatusCode);
     FilterInputValue1 = FramePointer[-2];
-    ContextSecondaryFloat9 = FramePointer[-1];
+    MatrixTransformElementC = FramePointer[-1];
     FilterInputValue4 = *FramePointer;
     FilterInputValue0 = FramePointer[1];
     FramePointer[-0x1c] = FilterInputValue1;
-    FramePointer[-0x1b] = ContextSecondaryFloat9;
+    FramePointer[-0x1b] = MatrixTransformElementC;
     FramePointer[-0x1a] = FilterInputValue4;
     FramePointer[-0x19] = FilterInputValue0;
     if (((uint)MatrixTransformElementA & 0x20) == 0) {
@@ -148067,24 +148067,24 @@ LAB_18012b510:
       FilterInputValue2 = (float)ProcessSystemSpecialData();
       FilterInputValue0 = FramePointer[-0x19];
       FilterInputValue4 = FramePointer[-0x1a];
-      ContextSecondaryFloat9 = FramePointer[-0x1b];
+      MatrixTransformElementC = FramePointer[-0x1b];
       FilterInputValue1 = FramePointer[-0x1c];
     }
-    FramePointer[-7] = ContextSecondaryFloat9;
+    FramePointer[-7] = MatrixTransformElementC;
     FramePointer[-5] = FilterInputValue0;
     FramePointer[-0x1c] = FilterInputValue1 + ScalingFactor;
     FramePointer[-0x1a] = FilterInputValue4 - FilterInputValue2;
     FramePointer[-8] = FilterInputValue1 + ScalingFactor;
     FramePointer[-6] = FilterInputValue4 - FilterInputValue2;
     if (BufferIndex == 0) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x165c);
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x165c);
     }
     else {
-      ContextSecondaryFloat9 = (float)ProcessSystemFloatCalculation(FramePointer + -2);
-      ContextSecondaryFloat9 = ContextSecondaryFloat9 - 3.0;
+      MatrixTransformElementC = (float)ProcessSystemFloatCalculation(FramePointer + -2);
+      MatrixTransformElementC = MatrixTransformElementC - 3.0;
     }
     FramePointer[-6] =
-         (*(float *)(RenderingContextHandle + 0x48) + *(float *)(RenderingContextHandle + 0x40)) - ContextSecondaryFloat9;
+         (*(float *)(RenderingContextHandle + 0x48) + *(float *)(RenderingContextHandle + 0x40)) - MatrixTransformElementC;
     ProcessSystemDataValidation(FramePointer + -0x1c,FramePointer + -0x1a,*(void *)(FramePointer + 0x1e),0,
                   &TertiaryDataBuffer);
     if (((uint)MatrixTransformElementA & 0x100000) != 0) {
@@ -148116,8 +148116,8 @@ LAB_18012b510:
     SystemContextPrimaryFloatPointer = (float *)(RenderingContextHandle + 0x7c);
   }
   MatrixTransformElementB = *SystemContextPrimaryFloatPointer;
-  ContextSecondaryFloat9 = (float)GetSystemTime();
-  *(float *)(RenderingContextHandle + 0x24c) = ContextSecondaryFloat9 + FramePointer[1] + MatrixTransformElementB;
+  MatrixTransformElementC = (float)GetSystemTime();
+  *(float *)(RenderingContextHandle + 0x24c) = MatrixTransformElementC + FramePointer[1] + MatrixTransformElementB;
   *(float *)(RenderingContextHandle + 0x250) =
        ((*(float *)(RenderingContextHandle + 0x48) + *(float *)(RenderingContextHandle + 0x40)) -
        *(float *)(RenderingContextHandle + 0xa4)) - *(float *)(RenderingContextHandle + 0x7c);
@@ -148129,8 +148129,8 @@ LAB_18012b510:
        (float)(int)(MatrixTransformElementB + *(float *)(RenderingContextHandle + 0x248) + 0.5);
   *(float *)(RenderingContextHandle + 0x25c) = (float)(int)(*(float *)(RenderingContextHandle + 0x24c) + 0.5);
   MatrixTransformElementB = *(float *)(RenderingContextHandle + 0x250);
-  ContextSecondaryFloat9 = (float)FinalizeSystemFloatOperation();
-  *(float *)(RenderingContextHandle + 0x260) = (float)(int)((MatrixTransformElementB + 0.5) - ContextSecondaryFloat9);
+  MatrixTransformElementC = (float)FinalizeSystemFloatOperation();
+  *(float *)(RenderingContextHandle + 0x260) = (float)(int)((MatrixTransformElementB + 0.5) - MatrixTransformElementC);
   *(float *)(RenderingContextHandle + 0x264) = (float)(int)(*(float *)(RenderingContextHandle + 0x254) + 0.5);
   if ((*(byte *)(PatternIndex + 8) & 0x40) != 0) {
     if ((*(int *)(PatternIndex + 0x1b2c) == *(int *)(RenderingContextHandle + 0x84)) &&
@@ -148162,11 +148162,11 @@ LAB_18012b510:
     *(void *)(RenderingContextHandle + 0x14c) = *(void *)(RenderingContextHandle + 0x420);
     *(void *)(RenderingContextHandle + 0x154) = *(void *)(RenderingContextHandle + 0x428);
   }
-  ContextSecondaryFloat9 = RenderingContextHandle;
+  MatrixTransformElementC = RenderingContextHandle;
   if (((uint)MatrixTransformElementA >> 0x1d & 1) == 0) {
     ProcessSystemParameters(RenderingContextHandle + 600,RenderingContextHandle + 0x260,1);
   }
-  if (ContextSecondaryFloat9 != MatrixTransformElementB) {
+  if (MatrixTransformElementC != MatrixTransformElementB) {
     *(uint8_t *)(RenderingContextHandle + 0xb1) = 0;
   }
   *(short *)(RenderingContextHandle + 0xb8) = *(short *)(RenderingContextHandle + 0xb8) + 1;
@@ -148253,7 +148253,7 @@ void ProcessSystemFloatVectorOperation(float ContextHandle,float OperationBuffer
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
   float FloatXMM4;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float AuxiliaryFloatValue11;
@@ -148326,17 +148326,17 @@ void ProcessSystemFloatVectorOperation(float ContextHandle,float OperationBuffer
     aMemoryAllocationBase.High32Part = XMM13RegisterD;
     aMemoryPoolIndexSecondary._4_12_ = aMemoryAllocationBase._4_12_;
     aMemoryPoolIndexSecondary.LowPart = ContextSecondaryFloat7 * *RegisterR12Value;
-    ContextSecondaryFloat9 = ContextSecondaryFloat6 * *RegisterR12Value + FramePointer[0xe];
+    MatrixTransformElementC = ContextSecondaryFloat6 * *RegisterR12Value + FramePointer[0xe];
     FilterInputValue0 = RegisterR12Value[1];
     MatrixTransformElementA = ContextSecondaryFloat6 * RegisterR12Value[1] + FramePointer[0xf];
     FilterInputValue1 = FramePointer[0xe] - aMemoryPoolIndexSecondary.LowPart;
-    FramePointer[-0x1a] = ContextSecondaryFloat9;
+    FramePointer[-0x1a] = MatrixTransformElementC;
     FilterInputValue0 = FramePointer[0xf] - ContextSecondaryFloat7 * FilterInputValue0;
     FramePointer[-0x19] = MatrixTransformElementA;
     FramePointer[-0x1c] = FilterInputValue1;
     FramePointer[-0x1b] = FilterInputValue0;
-    if (ContextSecondaryFloat9 < FilterInputValue1) {
-      FramePointer[-0x1c] = ContextSecondaryFloat9;
+    if (MatrixTransformElementC < FilterInputValue1) {
+      FramePointer[-0x1c] = MatrixTransformElementC;
       FramePointer[-0x1a] = FilterInputValue1;
     }
     if (MatrixTransformElementA < FilterInputValue0) {
@@ -148561,12 +148561,12 @@ LAB_18012b510:
     pSecondaryFloatValue = (float *)(SystemConfigurationHandle + 0x1628 + ((unsigned long long)StringComparisonByte9 + 0x3a) * 0x10);
     FilterInputValue0 = pSecondaryFloatValue[1];
     MatrixTransformElementA = pSecondaryFloatValue[2];
-    ContextSecondaryFloat9 = pSecondaryFloatValue[3];
+    MatrixTransformElementC = pSecondaryFloatValue[3];
     FramePointer[-0x20] = *pSecondaryFloatValue;
     FramePointer[-0x1f] = FilterInputValue0;
     FramePointer[-0x1e] = MatrixTransformElementA;
-    FramePointer[-0x1d] = ContextSecondaryFloat9;
-    FramePointer[-0x1d] = ContextSecondaryFloat9 * ContextSecondaryFloat7 * ContextSecondaryFloat6;
+    FramePointer[-0x1d] = MatrixTransformElementC;
+    FramePointer[-0x1d] = MatrixTransformElementC * ContextSecondaryFloat7 * ContextSecondaryFloat6;
     CalculatedCodePoint = ValidateSystemData(FramePointer + -0x20);
     SystemParameter1 = (void *)CONCAT44(OperationResult,AuxiliaryFloat13);
     ProcessSystemDataAndConfigure(*(void *)(RenderingContextHandle + 0x2e8),FramePointer + 4,FramePointer + 6,CalculatedCodePoint,
@@ -148583,13 +148583,13 @@ LAB_18012b510:
         CalculatedCodePoint = *(uint32_t *)(PatternIndex + 0x1634);
         FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x19bc);
         MatrixTransformElementA = *(float *)(SystemConfigurationHandle + 0x19c0);
-        ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x19c4);
+        MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x19c4);
         ContextSecondaryFloat6 = *(float *)(SystemConfigurationHandle + 0x1628);
         FramePointer[-0x20] = *(float *)(SystemConfigurationHandle + 0x19b8);
         FramePointer[-0x1f] = FilterInputValue0;
         FramePointer[-0x1e] = MatrixTransformElementA;
-        FramePointer[-0x1d] = ContextSecondaryFloat9;
-        FramePointer[-0x1d] = ContextSecondaryFloat9 * ContextSecondaryFloat7 * 0.25 * ContextSecondaryFloat6;
+        FramePointer[-0x1d] = MatrixTransformElementC;
+        FramePointer[-0x1d] = MatrixTransformElementC * ContextSecondaryFloat7 * 0.25 * ContextSecondaryFloat6;
         SystemChecksum = ValidateSystemData(FramePointer + -0x20);
         SystemParameter1 = (void *)CONCAT44(OperationResult,CalculatedCodePoint);
         ProcessSystemDataAndConfigure(MemoryAllocationOffset,FramePointer + -0x18,FramePointer + -0x16,SystemChecksum,SystemParameter1);
@@ -148640,12 +148640,12 @@ LAB_18012b510:
       pSecondaryFloatValue = (float *)(BufferIndex + 0x1628 + SystemConfigurationHandle);
       FilterInputValue0 = pSecondaryFloatValue[1];
       MatrixTransformElementA = pSecondaryFloatValue[2];
-      ContextSecondaryFloat9 = pSecondaryFloatValue[3];
+      MatrixTransformElementC = pSecondaryFloatValue[3];
       FramePointer[-0x20] = *pSecondaryFloatValue;
       FramePointer[-0x1f] = FilterInputValue0;
       FramePointer[-0x1e] = MatrixTransformElementA;
-      FramePointer[-0x1d] = ContextSecondaryFloat9;
-      FramePointer[-0x1d] = ContextSecondaryFloat9 * *(float *)(SystemDataTablePointer + 0x1628);
+      FramePointer[-0x1d] = MatrixTransformElementC;
+      FramePointer[-0x1d] = MatrixTransformElementC * *(float *)(SystemDataTablePointer + 0x1628);
       MemoryPoolIndex = ValidateSystemData(FramePointer + -0x20);
       if (*(char *)(RenderingContextHandle + 0xae) == '\0') {
         FilterInputValue0 = XMM15RegisterA;
@@ -148690,12 +148690,12 @@ LAB_18012b510:
       pSecondaryFloatValue = (float *)(SystemConfigurationHandle + 0x1628 + ((unsigned long long)StringComparisonByte9 + 0x14) * 0x10);
       FilterInputValue0 = pSecondaryFloatValue[1];
       MatrixTransformElementA = pSecondaryFloatValue[2];
-      ContextSecondaryFloat9 = pSecondaryFloatValue[3];
+      MatrixTransformElementC = pSecondaryFloatValue[3];
       FramePointer[-0x20] = *pSecondaryFloatValue;
       FramePointer[-0x1f] = FilterInputValue0;
       FramePointer[-0x1e] = MatrixTransformElementA;
-      FramePointer[-0x1d] = ContextSecondaryFloat9;
-      FramePointer[-0x1d] = ContextSecondaryFloat9 * *(float *)(SystemDataTablePointer + 0x1628);
+      FramePointer[-0x1d] = MatrixTransformElementC;
+      FramePointer[-0x1d] = MatrixTransformElementC * *(float *)(SystemDataTablePointer + 0x1628);
       ValidateSystemData(FramePointer + -0x20);
       SystemParameter1 = (void *)CONCAT44(OperationResult,ContextSecondaryFloat7);
       ProcessSystemDataAndConfigure(*(void *)(RenderingContextHandle + 0x2e8),FramePointer + -2);
@@ -148712,11 +148712,11 @@ LAB_18012b510:
         FilterInputValue0 = ContextSecondaryFloat7;
       }
       MatrixTransformElementA = *(float *)(SystemConfigurationHandle + 0x179c);
-      ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x17a0);
+      MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x17a0);
       FilterInputValue1 = *(float *)(SystemConfigurationHandle + 0x17a4);
       FramePointer[-0x20] = *(float *)(SystemConfigurationHandle + 0x1798);
       FramePointer[-0x1f] = MatrixTransformElementA;
-      FramePointer[-0x1e] = ContextSecondaryFloat9;
+      FramePointer[-0x1e] = MatrixTransformElementC;
       FramePointer[-0x1d] = FilterInputValue1;
       FramePointer[-0x1d] = FilterInputValue1 * *(float *)(SystemDataTablePointer + 0x1628);
       CalculatedCodePoint = ValidateSystemData(FramePointer + -0x20);
@@ -148730,11 +148730,11 @@ LAB_18012b510:
           *(float *)(RenderingContextHandle + 0x4c) + *(float *)(RenderingContextHandle + 0x44))) {
         MemoryAllocationOffset = *(void *)(RenderingContextHandle + 0x2e8);
         MatrixTransformElementA = *(float *)(SystemConfigurationHandle + 0x171c);
-        ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x1720);
+        MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x1720);
         FilterInputValue1 = *(float *)(SystemConfigurationHandle + 0x1724);
         FramePointer[-0x20] = *(float *)(SystemConfigurationHandle + 0x1718);
         FramePointer[-0x1f] = MatrixTransformElementA;
-        FramePointer[-0x1e] = ContextSecondaryFloat9;
+        FramePointer[-0x1e] = MatrixTransformElementC;
         FramePointer[-0x1d] = FilterInputValue1;
         FramePointer[-0x1d] = FilterInputValue1 * *(float *)(SystemDataTablePointer + 0x1628);
         CalculatedCodePoint = ValidateSystemData(FramePointer + -0x20);
@@ -148750,14 +148750,14 @@ LAB_18012b510:
     if ((SystemDataTablePointer != 0) && ((*(byte *)(SystemDataTablePointer + 0xa0) & 0x40) != 0)) {
       FilterInputValue0 = *(float *)(SystemDataTablePointer + 0x38);
       MatrixTransformElementA = *(float *)(PatternIndex + 0x19f8);
-      ContextSecondaryFloat9 = *(float *)(SystemDataTablePointer + 0x3c);
+      MatrixTransformElementC = *(float *)(SystemDataTablePointer + 0x3c);
       _StackFloatValue50 = *(void *)(SystemDataTablePointer + 0x38);
       FramePointer[-0x20] = FilterInputValue0;
-      FramePointer[-0x1f] = ContextSecondaryFloat9;
+      FramePointer[-0x1f] = MatrixTransformElementC;
       FilterInputValue1 = (float)(int)(MatrixTransformElementA * 0.7);
       MatrixTransformElementA = (float)(int)(MatrixTransformElementA * 0.55);
       FramePointer[-0x1e] = FilterInputValue0 + MatrixTransformElementA;
-      FramePointer[-0x1d] = ContextSecondaryFloat9 + MatrixTransformElementA;
+      FramePointer[-0x1d] = MatrixTransformElementC + MatrixTransformElementA;
       CalculatedCodePoint = AllocateSystemMemory(RenderingContextHandle,SystemDataTablePointerC0,0);
       MemoryAllocationOffset = CONCAT44(OperationResult,0x20);
       OperationStatus = ProcessSystemParameters(FramePointer + -0x20,CalculatedCodePoint,(long long)&StackBuffer58 + 1,&StackBuffer58,
@@ -148779,12 +148779,12 @@ LAB_18012b510:
       pSecondaryFloatValue = (float *)(SystemConfigurationHandle + 0x1628 + (BufferIndex + 10) * 0x10);
       FilterInputValue0 = pSecondaryFloatValue[1];
       MatrixTransformElementA = pSecondaryFloatValue[2];
-      ContextSecondaryFloat9 = pSecondaryFloatValue[3];
+      MatrixTransformElementC = pSecondaryFloatValue[3];
       FramePointer[-0x14] = *pSecondaryFloatValue;
       FramePointer[-0x13] = FilterInputValue0;
       FramePointer[-0x12] = MatrixTransformElementA;
-      FramePointer[-0x11] = ContextSecondaryFloat9;
-      FramePointer[-0x11] = ContextSecondaryFloat9 * *(float *)(SystemDataTablePointer + 0x1628);
+      FramePointer[-0x11] = MatrixTransformElementC;
+      FramePointer[-0x11] = MatrixTransformElementC * *(float *)(SystemDataTablePointer + 0x1628);
       CalculatedCodePoint = ValidateSystemData(FramePointer + -0x14);
       SystemParameter1 = (void *)CONCAT44(OperationResult,CalculatedCodePoint);
       MemoryAllocationOffset = *(void *)(RenderingContextHandle + 0x2e8);
@@ -148815,43 +148815,43 @@ LAB_18012b510:
         if (HighByte1) {
           FramePointer[2] = ContextSecondaryFloat6;
           FramePointer[3] = FilterInputValue2;
-          ContextSecondaryFloat9 = ContextSecondaryFloat6;
+          MatrixTransformElementC = ContextSecondaryFloat6;
         }
         else {
           TemporaryFloatStack64 = ContextSecondaryFloat6;
           StackFloatValue60 = FilterInputValue2;
-          ContextSecondaryFloat9 = FilterInputValue2;
+          MatrixTransformElementC = FilterInputValue2;
         }
         pSecondaryFloatValue = (float *)((long long)&DataTransferStackBuffer + 4);
         if (HighByte1) {
           pSecondaryFloatValue = FramePointer + 3;
         }
-        FramePointer[-4] = ContextSecondaryFloat9 * *RegisterR12Value + FilterInputValue0;
+        FramePointer[-4] = MatrixTransformElementC * *RegisterR12Value + FilterInputValue0;
         FramePointer[-3] = *pSecondaryFloatValue * RegisterR12Value[1] + MatrixTransformElementA;
         ProcessSystemDataAndConfiguration(BufferIndex + 0x80,FramePointer + -4);
         BufferIndex = *(long long *)(RenderingContextHandle + 0x2e8);
         if (HighByte1) {
           FramePointer[0x1c] = FilterInputValue2;
           FramePointer[0x1d] = ContextSecondaryFloat6;
-          ContextSecondaryFloat9 = FilterInputValue2;
+          MatrixTransformElementC = FilterInputValue2;
         }
         else {
           FramePointer[-0x1c] = ContextSecondaryFloat6;
           FramePointer[-0x1b] = FilterInputValue2;
-          ContextSecondaryFloat9 = ContextSecondaryFloat6;
+          MatrixTransformElementC = ContextSecondaryFloat6;
         }
         pSecondaryFloatValue = FramePointer + -0x1b;
         if (HighByte1) {
           pSecondaryFloatValue = FramePointer + 0x1d;
         }
-        FramePointer[0x18] = ContextSecondaryFloat9 * *RegisterR12Value + FilterInputValue0;
+        FramePointer[0x18] = MatrixTransformElementC * *RegisterR12Value + FilterInputValue0;
         FramePointer[0x19] = *pSecondaryFloatValue * RegisterR12Value[1] + MatrixTransformElementA;
         ProcessSystemDataAndConfiguration(BufferIndex + 0x80,FramePointer + 0x18);
-        ContextSecondaryFloat9 = RegisterR12Value[1];
+        MatrixTransformElementC = RegisterR12Value[1];
         MemoryAllocationOffset = *(void *)(RenderingContextHandle + 0x2e8);
         SystemParameter1 = (void *)CONCAT44(OperationResult,RegisterR12Value[3]);
         FramePointer[-0x14] = (ContextSecondaryFloat6 + ContextSecondaryFloat7) * *RegisterR12Value + FilterInputValue0;
-        FramePointer[-0x13] = (ContextSecondaryFloat6 + ContextSecondaryFloat7) * ContextSecondaryFloat9 + MatrixTransformElementA;
+        FramePointer[-0x13] = (ContextSecondaryFloat6 + ContextSecondaryFloat7) * MatrixTransformElementC + MatrixTransformElementA;
         ConfigureSystemDataEx(MemoryAllocationOffset,FramePointer + -0x14);
         BufferIndex = *(long long *)(RenderingContextHandle + 0x2e8);
         CheckSystemStatusAndProcess(BufferIndex,*(void *)(BufferIndex + 0x88),*(uint32_t *)(BufferIndex + 0x80),
@@ -148868,16 +148868,16 @@ LAB_18012b510:
       BufferIndex = *(long long *)(RenderingContextHandle + 0x2e8);
       FilterInputValue0 = *(float *)(SystemConfigurationHandle + 0x171c);
       MatrixTransformElementA = *(float *)(SystemConfigurationHandle + 0x1720);
-      ContextSecondaryFloat9 = *(float *)(SystemConfigurationHandle + 0x1724);
+      MatrixTransformElementC = *(float *)(SystemConfigurationHandle + 0x1724);
       FramePointer[0x20] = *(float *)(SystemConfigurationHandle + 0x1718);
       FramePointer[0x21] = FilterInputValue0;
       FramePointer[0x22] = MatrixTransformElementA;
-      FramePointer[0x23] = ContextSecondaryFloat9;
-      FramePointer[0x23] = ContextSecondaryFloat9 * *(float *)(SystemDataTablePointer + 0x1628);
+      FramePointer[0x23] = MatrixTransformElementC;
+      FramePointer[0x23] = MatrixTransformElementC * *(float *)(SystemDataTablePointer + 0x1628);
       MemoryPoolIndex = ValidateSystemData(FramePointer + 0x20);
       FilterInputValue0 = *(float *)(RenderingContextHandle + 0x44);
       MatrixTransformElementA = *(float *)(RenderingContextHandle + 0x40) + *(float *)(RenderingContextHandle + 0x48);
-      ContextSecondaryFloat9 = FilterInputValue0 + *(float *)(RenderingContextHandle + 0x4c);
+      MatrixTransformElementC = FilterInputValue0 + *(float *)(RenderingContextHandle + 0x4c);
       if ((MemoryPoolIndex & 0xff000000) != 0) {
         StringComparisonByte9 = *(byte *)(BufferIndex + 0x30);
         MemoryAllocationOffset = CONCAT44(CalculatedCodePoint,0xf);
@@ -148885,14 +148885,14 @@ LAB_18012b510:
         FramePointer[-0x13] = FilterInputValue0 + 0.5;
         if ((StringComparisonByte9 & 1) == 0) {
           MatrixTransformElementA = MatrixTransformElementA - 0.49;
-          ContextSecondaryFloat9 = ContextSecondaryFloat9 - 0.49;
+          MatrixTransformElementC = MatrixTransformElementC - 0.49;
         }
         else {
           MatrixTransformElementA = MatrixTransformElementA - 0.5;
-          ContextSecondaryFloat9 = ContextSecondaryFloat9 - 0.5;
+          MatrixTransformElementC = MatrixTransformElementC - 0.5;
         }
         FramePointer[-0xe] = MatrixTransformElementA;
-        FramePointer[-0xd] = ContextSecondaryFloat9;
+        FramePointer[-0xd] = MatrixTransformElementC;
         ProcessSystemParametersAndConfiguration(BufferIndex,FramePointer + -0x14,FramePointer + -0xe,ContextSecondaryFloat7,MemoryAllocationOffset);
         CalculatedCodePoint = (uint32_t)((unsigned long long)MemoryAllocationOffset >> 0x20);
         ProcessSystemDataWithValidation(BufferIndex,MemoryPoolIndex,1,ContextSecondaryFloat6);
@@ -149123,19 +149123,19 @@ LAB_18012b510:
     FramePointer[-0x1a] = FilterInputValue0;
     FramePointer[-0x19] = ContextSecondaryFloat6;
     if (((uint)NullPointerD & 0x20) == 0) {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x165c);
-      FilterInputValue1 = ContextSecondaryFloat9 + *(float *)(PatternIndex + 0x19f8) + *(float *)(PatternIndex + 0x1674);
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x165c);
+      FilterInputValue1 = MatrixTransformElementC + *(float *)(PatternIndex + 0x19f8) + *(float *)(PatternIndex + 0x1674);
     }
     else {
-      ContextSecondaryFloat9 = *(float *)(PatternIndex + 0x165c);
-      FilterInputValue1 = ContextSecondaryFloat9;
+      MatrixTransformElementC = *(float *)(PatternIndex + 0x165c);
+      FilterInputValue1 = MatrixTransformElementC;
     }
     BufferIndex = *(long long *)(FramePointer + 10);
     if (BufferIndex != 0) {
-      ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(PatternIndex + 0x19f8) + *(float *)(PatternIndex + 0x1674);
+      MatrixTransformElementC = MatrixTransformElementC + *(float *)(PatternIndex + 0x19f8) + *(float *)(PatternIndex + 0x1674);
     }
     if (AuxiliaryFloat13 < *(float *)(PatternIndex + 0x1644)) {
-      ContextSecondaryFloat9 = (float)ProcessSystemSpecialData();
+      MatrixTransformElementC = (float)ProcessSystemSpecialData();
       ContextSecondaryFloat6 = FramePointer[-0x19];
       FilterInputValue0 = FramePointer[-0x1a];
       ContextSecondaryFloat7 = FramePointer[-0x1b];
@@ -149144,9 +149144,9 @@ LAB_18012b510:
     FramePointer[-7] = ContextSecondaryFloat7;
     FramePointer[-5] = ContextSecondaryFloat6;
     FramePointer[-0x1c] = MatrixTransformElementA + FilterInputValue1;
-    FramePointer[-0x1a] = FilterInputValue0 - ContextSecondaryFloat9;
+    FramePointer[-0x1a] = FilterInputValue0 - MatrixTransformElementC;
     FramePointer[-8] = MatrixTransformElementA + FilterInputValue1;
-    FramePointer[-6] = FilterInputValue0 - ContextSecondaryFloat9;
+    FramePointer[-6] = FilterInputValue0 - MatrixTransformElementC;
     if (BufferIndex == 0) {
       ContextSecondaryFloat7 = *(float *)(PatternIndex + 0x165c);
     }
@@ -155264,7 +155264,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t XMM8RegisterD;
   uint32_t AuxiliaryCalculationFloat9;
   uint32_t XMM9RegisterC;
-  float StackFloatValue30;
+  float StackTransformMatrix;
   float StackProcessedFloat34;
   float StackProcessingVariable38;
   float StackProcessedFloat3c;
@@ -155384,9 +155384,9 @@ void ProcessSystemBufferStatus(void)
             *(void *)(CharacterTablePointer6 + 0x10) = Utf16Char;
           }
         }
-        StackFloatValue30 = *(float *)(CharacterTablePointer6 + 8);
+        StackTransformMatrix = *(float *)(CharacterTablePointer6 + 8);
         StackProcessedFloat34 = *(float *)(CharacterTablePointer6 + 0xc);
-        StackProcessingVariable38 = StackFloatValue30 + *(float *)(CharacterTablePointer6 + 0x10);
+        StackProcessingVariable38 = StackTransformMatrix + *(float *)(CharacterTablePointer6 + 0x10);
         StackProcessedFloat3c = StackProcessedFloat34 + *(float *)(CharacterTablePointer6 + 0x14);
         SystemStatusCode = ProcessContextHandleAndMatchCharacter(&SystemStackBuffer);
         *(uint16_t *)(CharacterTablePointer6 + 0x74) = SystemStatusCode;
@@ -155580,7 +155580,7 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
   float SystemFloatValue;
   float SystemCoreScaleX;
   float SecondaryFloatValue;
-  float StackFloatValue30;
+  float StackTransformMatrix;
   float StackProcessedFloat34;
   float StackProcessingVariable38;
   float StackProcessedFloat3c;
@@ -155635,9 +155635,9 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
           *(void *)(BufferStatus + 0x10) = Utf16Char;
         }
       }
-      StackFloatValue30 = *(float *)(BufferStatus + 8);
+      StackTransformMatrix = *(float *)(BufferStatus + 8);
       StackProcessedFloat34 = *(float *)(BufferStatus + 0xc);
-      StackProcessingVariable38 = StackFloatValue30 + *(float *)(BufferStatus + 0x10);
+      StackProcessingVariable38 = StackTransformMatrix + *(float *)(BufferStatus + 0x10);
       StackProcessedFloat3c = StackProcessedFloat34 + *(float *)(BufferStatus + 0x14);
       CalculatedCodePoint = ProcessContextHandleAndMatchCharacter(&SystemStackBuffer);
       *(uint16_t *)(BufferStatus + 0x74) = CalculatedCodePoint;
@@ -158740,11 +158740,11 @@ LAB_180132de6:
      (*(int *)(MemoryPoolBlockSize + 0x1cfc) == 0)) {
     CharacterTablePointer = *(long long *)(MemoryPoolBlockSize + 0x1c98);
     FilterInputValue0 = *(float *)(CharacterTablePointer + 0x3d0);
-    ContextSecondaryFloat9 = (*(float *)(CharacterTablePointer + 0x248) - *(float *)(CharacterTablePointer + 0x40)) - 1.0;
+    MatrixTransformElementC = (*(float *)(CharacterTablePointer + 0x248) - *(float *)(CharacterTablePointer + 0x40)) - 1.0;
     ContextSecondaryFloat1 = (*(float *)(CharacterTablePointer + 0x250) - *(float *)(CharacterTablePointer + 0x40)) + 1.0;
     MatrixTransformElementA = (*(float *)(CharacterTablePointer + 0x254) - *(float *)(CharacterTablePointer + 0x44)) + 1.0;
     ContextSecondaryFloat0 = (*(float *)(CharacterTablePointer + 0x24c) - *(float *)(CharacterTablePointer + 0x44)) - 1.0;
-    if (((FilterInputValue0 < ContextSecondaryFloat9) ||
+    if (((FilterInputValue0 < MatrixTransformElementC) ||
         (*(float *)(CharacterTablePointer + 0x3d4) <= ContextSecondaryFloat0 && ContextSecondaryFloat0 != *(float *)(CharacterTablePointer + 0x3d4))) ||
        ((ContextSecondaryFloat1 < *(float *)(CharacterTablePointer + 0x3d8) || (MatrixTransformElementA < *(float *)(CharacterTablePointer + 0x3dc))))) {
       ContextSecondaryFloat2 = *(float *)(StringIndexCounter + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc               * 0.5;
@@ -158752,22 +158752,22 @@ LAB_180132de6:
       if (ContextSecondaryFloat2 <= MatrixTransformElementA - ContextSecondaryFloat0) {
         ContextSecondaryFloat7 = ContextSecondaryFloat2;
       }
-      ContextSecondaryFloat6 = ContextSecondaryFloat1 - ContextSecondaryFloat9;
-      if (ContextSecondaryFloat2 <= ContextSecondaryFloat1 - ContextSecondaryFloat9) {
+      ContextSecondaryFloat6 = ContextSecondaryFloat1 - MatrixTransformElementC;
+      if (ContextSecondaryFloat2 <= ContextSecondaryFloat1 - MatrixTransformElementC) {
         ContextSecondaryFloat6 = ContextSecondaryFloat2;
       }
       ContextSecondaryFloat0 = ContextSecondaryFloat0 - -ContextSecondaryFloat7;
-      ContextSecondaryFloat9 = ContextSecondaryFloat9 - -ContextSecondaryFloat6;
+      MatrixTransformElementC = MatrixTransformElementC - -ContextSecondaryFloat6;
       ContextSecondaryFloat1 = ContextSecondaryFloat1 + -ContextSecondaryFloat6;
       MatrixTransformElementA = MatrixTransformElementA + -ContextSecondaryFloat7;
       if (ContextSecondaryFloat0 <= *(float *)(CharacterTablePointer + 0x3d4)) {
         ContextSecondaryFloat0 = *(float *)(CharacterTablePointer + 0x3d4);
       }
-      if (ContextSecondaryFloat9 <= FilterInputValue0) {
-        ContextSecondaryFloat9 = FilterInputValue0;
+      if (MatrixTransformElementC <= FilterInputValue0) {
+        MatrixTransformElementC = FilterInputValue0;
       }
       *(float *)(CharacterTablePointer + 0x3d4) = ContextSecondaryFloat0;
-      *(float *)(CharacterTablePointer + 0x3d0) = ContextSecondaryFloat9;
+      *(float *)(CharacterTablePointer + 0x3d0) = MatrixTransformElementC;
       if (*(float *)(CharacterTablePointer + 0x3d8) <= ContextSecondaryFloat1) {
         ContextSecondaryFloat1 = *(float *)(CharacterTablePointer + 0x3d8);
       }
@@ -158872,12 +158872,12 @@ void ProcessSystemStateAndResourceAllocation(void)
   uint32_t unaff_XMM6_Db;
   uint32_t FloatingPointRegisterC;
   uint32_t unaff_XMM6_Dd;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   uint32_t AuxiliaryCalculationFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t XMM9RegisterC;
   uint32_t unaff_XMM9_Dd;
-  float StackFloatValue30;
+  float StackTransformMatrix;
   float StackProcessedFloat34;
   float StackProcessingVariable38;
   float StackProcessedFloat3c;
@@ -158971,226 +158971,226 @@ void ProcessSystemStateAndResourceAllocation(void)
   SystemPrimaryReturnCode = SystemStatusCode;
   do {
     ContextSecondaryFloat4 = -1.0;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x338 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x1488 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x1488 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x1488 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x1488 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x33c + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x148c + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x148c + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x148c + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x148c + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x340 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x1490 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x1490 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x1490 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x1490 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x344 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x1494 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x1494 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x1494 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x1494 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x348 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x1498 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x1498 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x1498 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x1498 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x34c + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x149c + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x149c + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x149c + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x149c + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x350 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14a0 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14a0 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14a0 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14a0 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x354 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14a4 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14a4 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14a4 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14a4 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x358 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14a8 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14a8 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14a8 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14a8 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x35c + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14ac + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14ac + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14ac + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14ac + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x360 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14b0 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14b0 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14b0 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14b0 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x364 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14b4 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14b4 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14b4 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14b4 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x368 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14b8 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14b8 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14b8 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14b8 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x36c + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14bc + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14bc + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14bc + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14bc + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + SecondaryProcessingStatusOffset + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14c0 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14c0 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14c0 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14c0 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x374 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14c4 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14c4 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14c4 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14c4 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x378 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14c8 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14c8 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14c8 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14c8 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x37c + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14cc + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14cc + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14cc + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14cc + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 0x380 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14d0 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14d0 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14d0 + SystemStatusCode * 4) = ContextSecondaryFloat9;
-    ContextSecondaryFloat9 = ContextSecondaryFloat4;
+    *(float *)(SystemContext + 0x14d0 + SystemStatusCode * 4) = MatrixTransformElementC;
+    MatrixTransformElementC = ContextSecondaryFloat4;
     if (0.0 < *(float *)(SystemContext + 900 + SystemStatusCode * 4)) {
-      ContextSecondaryFloat9 = *(float *)(SystemContext + 0x14d4 + SystemStatusCode * 4);
-      if (0.0 <= ContextSecondaryFloat9) {
-        ContextSecondaryFloat9 = ContextSecondaryFloat9 + *(float *)(SystemContext + 0x18);
+      MatrixTransformElementC = *(float *)(SystemContext + 0x14d4 + SystemStatusCode * 4);
+      if (0.0 <= MatrixTransformElementC) {
+        MatrixTransformElementC = MatrixTransformElementC + *(float *)(SystemContext + 0x18);
       }
       else {
-        ContextSecondaryFloat9 = 0.0;
+        MatrixTransformElementC = 0.0;
       }
     }
-    *(float *)(SystemContext + 0x14d4 + SystemStatusCode * 4) = ContextSecondaryFloat9;
+    *(float *)(SystemContext + 0x14d4 + SystemStatusCode * 4) = MatrixTransformElementC;
     if (0.0 < *(float *)(SystemContext + 0x388 + SystemStatusCode * 4)) {
       ContextSecondaryFloat4 = *(float *)(SystemContext + 0x14d8 + SystemStatusCode * 4);
       if (0.0 <= ContextSecondaryFloat4) {
@@ -159410,13 +159410,13 @@ LAB_1801327bd:
         }
         if (0.0 <= *(float *)(CharacterTablePointer + 0x14cc)) {
           MatchCounter = CalculateFloatValue();
-          ContextSecondaryFloat9 = (float)MatchCounter;
+          MatrixTransformElementC = (float)MatchCounter;
         }
         else {
-          ContextSecondaryFloat9 = 0.0;
+          MatrixTransformElementC = 0.0;
         }
         MemoryPoolIndex = *(uint32_t *)(SystemContext + 0x1d2c);
-        if (0.0 < ContextSecondaryFloat9 + ContextSecondaryFloat4) {
+        if (0.0 < MatrixTransformElementC + ContextSecondaryFloat4) {
           MemoryPoolIndex = 0;
         }
         *(uint32_t *)(SystemContext + 0x1d2c) = MemoryPoolIndex;
@@ -159431,13 +159431,13 @@ LAB_1801327bd:
         }
         if (0.0 <= *(float *)(CharacterTablePointer + 0x14d0)) {
           MatchCounter = CalculateFloatValue();
-          ContextSecondaryFloat9 = (float)MatchCounter;
+          MatrixTransformElementC = (float)MatchCounter;
         }
         else {
-          ContextSecondaryFloat9 = 0.0;
+          MatrixTransformElementC = 0.0;
         }
         MemoryPoolIndex = *(uint32_t *)(SystemContext + 0x1d2c);
-        if (0.0 < ContextSecondaryFloat9 + ContextSecondaryFloat4) {
+        if (0.0 < MatrixTransformElementC + ContextSecondaryFloat4) {
           MemoryPoolIndex = 1;
         }
         *(uint32_t *)(SystemContext + 0x1d2c) = MemoryPoolIndex;
@@ -159452,13 +159452,13 @@ LAB_1801327bd:
         }
         if (0.0 <= *(float *)(CharacterTablePointer + 0x14d4)) {
           MatchCounter = CalculateFloatValue();
-          ContextSecondaryFloat9 = (float)MatchCounter;
+          MatrixTransformElementC = (float)MatchCounter;
         }
         else {
-          ContextSecondaryFloat9 = 0.0;
+          MatrixTransformElementC = 0.0;
         }
         MemoryPoolIndex = *(uint32_t *)(SystemContext + 0x1d2c);
-        if (0.0 < ContextSecondaryFloat9 + ContextSecondaryFloat4) {
+        if (0.0 < MatrixTransformElementC + ContextSecondaryFloat4) {
           MemoryPoolIndex = 2;
         }
         *(uint32_t *)(SystemContext + 0x1d2c) = MemoryPoolIndex;
@@ -159473,13 +159473,13 @@ LAB_1801327bd:
         }
         if (0.0 <= *(float *)(CharacterTablePointer + 0x14d8)) {
           MatchCounter = CalculateFloatValue();
-          ContextSecondaryFloat9 = (float)MatchCounter;
+          MatrixTransformElementC = (float)MatchCounter;
         }
         else {
-          ContextSecondaryFloat9 = 0.0;
+          MatrixTransformElementC = 0.0;
         }
         MemoryPoolIndex = *(uint32_t *)(SystemContext + 0x1d2c);
-        if (0.0 < ContextSecondaryFloat9 + ContextSecondaryFloat4) {
+        if (0.0 < MatrixTransformElementC + ContextSecondaryFloat4) {
           MemoryPoolIndex = 3;
         }
         *(uint32_t *)(SystemContext + 0x1d2c) = MemoryPoolIndex;
@@ -159517,13 +159517,13 @@ SystemContextProcessingComplete:
   LoopIndex = *(long long *)(SystemContext + 0x1c98);
   if (((LoopIndex == 0) || ((*(uint *)(LoopIndex + 0xc) & 0x40000) != 0)) ||
      (*(long long *)(SystemContext + 0x1cd8) != 0)) goto SystemContextCalculationComplete;
-  ContextSecondaryFloat9 = (float)(int)(*(float *)(CharacterTablePointer + 0x19fc) * *(float *)(LoopIndex + 0x2d8) *
+  MatrixTransformElementC = (float)(int)(*(float *)(CharacterTablePointer + 0x19fc) * *(float *)(LoopIndex + 0x2d8) *
                         *(float *)(LoopIndex + 0x2dc) * 100.0 * *(float *)(SystemContext + 0x18) + 0.5);
   if (((*(int *)(LoopIndex + 0x174) == 0) && (*(char *)(LoopIndex + 0x17d) != '\0')) &&
      (*(char *)(SystemContext + 0x1d21) != '\0')) {
     MatchCounter = *(int *)(SystemContext + 0x1d2c);
     if (MatchCounter == 0) {
-      ContextPrimaryFloat9 = -ContextSecondaryFloat9;
+      ContextPrimaryFloat9 = -MatrixTransformElementC;
 SystemContextValueAdjustment:
       ContextSecondaryFloat0 = *(float *)(LoopIndex + 0x8c);
       ContextPrimaryFloat9 = (float)(int)(ContextPrimaryFloat9 + ContextSecondaryFloat0);
@@ -159532,14 +159532,14 @@ SystemContextValueAdjustment:
       MatchCounter = *(int *)(SystemContext + 0x1d2c);
     }
     else {
-      ContextPrimaryFloat9 = ContextSecondaryFloat9;
+      ContextPrimaryFloat9 = MatrixTransformElementC;
       if (MatchCounter == 1) goto SystemContextValueAdjustment;
     }
     if (MatchCounter == 2) {
-      ContextPrimaryFloat9 = -ContextSecondaryFloat9;
+      ContextPrimaryFloat9 = -MatrixTransformElementC;
     }
     else {
-      ContextPrimaryFloat9 = ContextSecondaryFloat9;
+      ContextPrimaryFloat9 = MatrixTransformElementC;
       if (MatchCounter != 3) goto SystemContextSecondaryValueAdjustment;
     }
     ContextSecondaryFloat0 = *(float *)(LoopIndex + 0x90);
@@ -159551,16 +159551,16 @@ LAB_180132d15:
   AllocateSystemFloatArray(&StackBuffer0B0,4,0,0x3dcccccd,0x41200000);
   if ((MatrixRow2Col1 != 0.0) && (*(char *)(LoopIndex + 0xac) != '\0')) {
     ContextPrimaryFloat9 = *(float *)(LoopIndex + 0x8c);
-    ContextSecondaryFloat0 = (float)(int)(MatrixRow2Col1 * ContextSecondaryFloat9 + ContextPrimaryFloat9);
+    ContextSecondaryFloat0 = (float)(int)(MatrixRow2Col1 * MatrixTransformElementC + ContextPrimaryFloat9);
     *(float *)(LoopIndex + 0x8c) = ContextSecondaryFloat0;
     *(float *)(LoopIndex + 0x118) = (ContextPrimaryFloat9 + *(float *)(LoopIndex + 0x118)) - ContextSecondaryFloat0;
     *(uint8_t *)(SystemContext + 0x1d20) = 1;
   }
   if (MatrixRow2Col2 != 0.0) {
     ContextPrimaryFloat9 = *(float *)(LoopIndex + 0x90);
-    ContextSecondaryFloat9 = (float)(int)(MatrixRow2Col2 * ContextSecondaryFloat9 + ContextPrimaryFloat9);
-    *(float *)(LoopIndex + 0x90) = ContextSecondaryFloat9;
-    *(float *)(LoopIndex + 0x11c) = (ContextPrimaryFloat9 + *(float *)(LoopIndex + 0x11c)) - ContextSecondaryFloat9;
+    MatrixTransformElementC = (float)(int)(MatrixRow2Col2 * MatrixTransformElementC + ContextPrimaryFloat9);
+    *(float *)(LoopIndex + 0x90) = MatrixTransformElementC;
+    *(float *)(LoopIndex + 0x11c) = (ContextPrimaryFloat9 + *(float *)(LoopIndex + 0x11c)) - MatrixTransformElementC;
     *(uint8_t *)(SystemContext + 0x1d20) = 1;
   }
 LAB_180132de6:
@@ -159588,12 +159588,12 @@ LAB_180132de6:
   if (((*(char *)(SystemContext + 0x1d21) != '\0') && (*(char *)(SystemContext + 0x1d20) != '\0')) &&
      (*(int *)(SystemContext + 0x1cfc) == 0)) {
     LoopIndex = *(long long *)(SystemContext + 0x1c98);
-    ContextSecondaryFloat9 = *(float *)(LoopIndex + 0x3d0);
+    MatrixTransformElementC = *(float *)(LoopIndex + 0x3d0);
     MatrixTransformElementA = (*(float *)(LoopIndex + 0x248) - *(float *)(LoopIndex + 0x40)) - 1.0;
     ContextSecondaryFloat0 = (*(float *)(LoopIndex + 0x250) - *(float *)(LoopIndex + 0x40)) + 1.0;
     ContextSecondaryFloat7 = (*(float *)(LoopIndex + 0x254) - *(float *)(LoopIndex + 0x44)) + 1.0;
     ContextPrimaryFloat9 = (*(float *)(LoopIndex + 0x24c) - *(float *)(LoopIndex + 0x44)) - 1.0;
-    if (((ContextSecondaryFloat9 < MatrixTransformElementA) ||
+    if (((MatrixTransformElementC < MatrixTransformElementA) ||
         (*(float *)(LoopIndex + 0x3d4) <= ContextPrimaryFloat9 && ContextPrimaryFloat9 != *(float *)(LoopIndex + 0x3d4))) ||
        ((ContextSecondaryFloat0 < *(float *)(LoopIndex + 0x3d8) || (ContextSecondaryFloat7 < *(float *)(LoopIndex + 0x3dc))))) {
       ContextSecondaryFloat1 = *(float *)(CharacterTablePointer + 0x19fc) * *(float *)(LoopIndex + 0x2d8) * *(float *)(LoopIndex + 0x2dc               * 0.5;
@@ -159612,8 +159612,8 @@ LAB_180132de6:
       if (ContextPrimaryFloat9 <= *(float *)(LoopIndex + 0x3d4)) {
         ContextPrimaryFloat9 = *(float *)(LoopIndex + 0x3d4);
       }
-      if (MatrixTransformElementA <= ContextSecondaryFloat9) {
-        MatrixTransformElementA = ContextSecondaryFloat9;
+      if (MatrixTransformElementA <= MatrixTransformElementC) {
+        MatrixTransformElementA = MatrixTransformElementC;
       }
       *(float *)(LoopIndex + 0x3d4) = ContextPrimaryFloat9;
       *(float *)(LoopIndex + 0x3d0) = MatrixTransformElementA;
@@ -159643,22 +159643,22 @@ LAB_180132de6:
     InputDataLength = CharacterStatusBuffer[1];
   }
   if (CharacterTablePointer == 0) {
-    _StackFloatValue30 = 0;
+    _StackTransformMatrix = 0;
     _StackProcessingVariable38 = 0;
   }
   else {
     StackProcessingVariable38 = (float)InputDataLength;
-    StackFloatValue30 = (float)MemoryAllocationOffset;
+    StackTransformMatrix = (float)MemoryAllocationOffset;
     StackProcessedFloat3c = (float)((unsigned long long)InputDataLength >> 0x20);
     StackProcessedFloat34 = (float)((unsigned long long)MemoryAllocationOffset >> 0x20);
     _StackProcessingVariable38 =
          CONCAT44(*(float *)(CharacterTablePointer + 0x44) + StackProcessedFloat3c,
                   *(float *)(CharacterTablePointer + 0x40) + StackProcessingVariable38);
-    _StackFloatValue30 =
+    _StackTransformMatrix =
          CONCAT44(*(float *)(CharacterTablePointer + 0x44) + StackProcessedFloat34,
-                  *(float *)(CharacterTablePointer + 0x40) + StackFloatValue30);
+                  *(float *)(CharacterTablePointer + 0x40) + StackTransformMatrix);
   }
-  *(void *)(SystemContext + 0x1cc4) = _StackFloatValue30;
+  *(void *)(SystemContext + 0x1cc4) = _StackTransformMatrix;
   *(void *)(SystemContext + 0x1ccc) = _StackProcessingVariable38;
   *(float *)(SystemContext + 0x1cd0) = ContextSecondaryFloat4 + *(float *)(SystemContext + 0x1cd0);
   *(float *)(SystemContext + 0x1cc8) = ContextSecondaryFloat4 + *(float *)(SystemContext + 0x1cc8);
@@ -165032,7 +165032,7 @@ void InitializeSystemStateAndMemoryManagement(void
   float SystemContextPrimaryFloat2;
   float BaseFloatValue;
   float TertiaryFloatValue;
-  float StackFloatValue30;
+  float StackTransformMatrix;
   float StackFloatValue34;
   float StackFloatValue38;
   float StackFloatValue40;
@@ -165096,7 +165096,7 @@ void InitializeSystemStateAndMemoryManagement(void
       StackValue4c = CharacterStatusBuffer[1];
       StackUnsignedValue50 = CharacterStatusBuffer[2];
       StackFloatValue54 = (float)CharacterStatusBuffer[3] * *(float *)(MemoryPoolBlockSize + 0x1628);
-      StackFloatValue30 = (float)(int)SystemContextPrimaryFloat2;
+      StackTransformMatrix = (float)(int)SystemContextPrimaryFloat2;
       StackFloatValue11c = *(float *)(FramePointer + 0x234);
       if (BaseFloatValue <= *(float *)(FramePointer + 0x234)) {
         StackFloatValue11c = BaseFloatValue;
@@ -165105,7 +165105,7 @@ void InitializeSystemStateAndMemoryManagement(void
       if (SecondaryFloatValue + 1.0 <= *(float *)(FramePointer + 0x22c)) {
         StackProcessedFloat34 = *(float *)(FramePointer + 0x22c);
       }
-      StackFloatValue118 = StackFloatValue30;
+      StackFloatValue118 = StackTransformMatrix;
       MemoryAddressMaskPointer = ValidateSystemData(&SecondaryDataBuffer);
       AllocateMemoryAndConfigure(*(void *)(FramePointer + 0x2e8),&SystemStackBuffer,StackValidationFlag118,MemoryAddressMaskPointer,
                     0x3f800000);
@@ -165199,7 +165199,7 @@ void ProcessSystemCharacterAndStatusManagement(void
   float SecondaryFloatValue;
   float BaseFloatValue;
   float SecondaryFloatValue;
-  float StackFloatValue30;
+  float StackTransformMatrix;
   float StackProcessedFloat34;
   float StackProcessingVariable38;
   float StackFloatValue40;
@@ -165260,7 +165260,7 @@ void ProcessSystemCharacterAndStatusManagement(void
       StackValue4c = CharacterStatusBuffer[1];
       StackUnsignedValue50 = CharacterStatusBuffer[2];
       StackFloatValue54 = (float)CharacterStatusBuffer[3] * *(float *)(SystemDataNode + 0x1628);
-      StackFloatValue30 = (float)(int)SecondaryFloatValue;
+      StackTransformMatrix = (float)(int)SecondaryFloatValue;
       StackFloatValue11c = *(float *)(FramePointer + 0x234);
       if (BaseFloatValue <= *(float *)(FramePointer + 0x234)) {
         StackFloatValue11c = BaseFloatValue;
@@ -165269,7 +165269,7 @@ void ProcessSystemCharacterAndStatusManagement(void
       if (SecondaryFloatValue + 1.0 <= *(float *)(FramePointer + 0x22c)) {
         StackProcessedFloat34 = *(float *)(FramePointer + 0x22c);
       }
-      StackFloatValue118 = StackFloatValue30;
+      StackFloatValue118 = StackTransformMatrix;
       MemoryAddressMaskPointer = ValidateSystemData(&SecondaryDataBuffer);
       AllocateMemoryAndConfigure(*(void *)(FramePointer + 0x2e8),&SystemStackBuffer,StackValidationFlag118,MemoryAddressMaskPointer,
                     0x3f800000);
@@ -169721,7 +169721,7 @@ void ProcessUtf8BufferFinalization(int *ContextHandle,long long OperationBufferS
   long long BufferStatus6;
   bool HighByte7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float FilterInputValue2;
@@ -169912,9 +169912,9 @@ LAB_18013802c:
     }
     FilterInputValue2 = (float)ContextHandle[0xe];
     FilterInputValue1 = FilterInputValue2 + (float)ContextHandle[0x10];
-    ContextSecondaryFloat9 = (float)ContextHandle[0xf];
+    MatrixTransformElementC = (float)ContextHandle[0xf];
     BufferInitializationFlag = *(int **)(ContextHandle + 0xe);
-    FilterInputValue0 = *(float *)(BufferStatus5 + 0x1660) + *(float *)(BufferStatus5 + 0x1660) + *(float *)(BufferStatus5 + 0x19f8             + ContextSecondaryFloat9;
+    FilterInputValue0 = *(float *)(BufferStatus5 + 0x1660) + *(float *)(BufferStatus5 + 0x1660) + *(float *)(BufferStatus5 + 0x19f8             + MatrixTransformElementC;
     if (*(char *)(OperationBufferSize + 0xb2) == '\0') {
       CharacterTablePointer6 = (unsigned long long)(HighByte7 != false) + 10;
     }
@@ -170129,7 +170129,7 @@ LAB_180138724:
       BufferStatus6 = lStackX_10;
       MatrixTransformElementA = *(float *)(BufferStatus5 + 0x19f8) * 0.5;
       PrimaryScalingFactor = FilterInputValue1 - (MatrixTransformElementA + *(float *)(BufferStatus5 + 0x165c));
-      SecondaryScalingFactor = MatrixTransformElementA + *(float *)(BufferStatus5 + 0x1660) + ContextSecondaryFloat9;
+      SecondaryScalingFactor = MatrixTransformElementA + *(float *)(BufferStatus5 + 0x1660) + MatrixTransformElementC;
       IntegerValue = ValidateSystemDataAndProcessOperation(SystemDataTablePointerD0,0,
                              *(uint32_t *                              (*(long long *)(lStackX_10 + 0x220) + -4 +
                               (long long)*(int *)(lStackX_10 + 0x218) * 4));
@@ -170202,23 +170202,23 @@ LAB_180138724:
         FilterInputValue2 = *(float *)(BufferStatus5 + 0x228);
       }
       MatrixTransformElementA = *(float *)(BufferStatus5 + 0x22c);
-      if (*(float *)(BufferStatus5 + 0x22c) <= ContextSecondaryFloat9) {
-        MatrixTransformElementA = ContextSecondaryFloat9;
+      if (*(float *)(BufferStatus5 + 0x22c) <= MatrixTransformElementC) {
+        MatrixTransformElementA = MatrixTransformElementC;
       }
       if (*(float *)(BufferStatus5 + 0x230) <= FilterInputValue1) {
         FilterInputValue1 = *(float *)(BufferStatus5 + 0x230);
       }
-      ContextSecondaryFloat9 = *(float *)(BufferStatus5 + 0x234);
+      MatrixTransformElementC = *(float *)(BufferStatus5 + 0x234);
       if (FilterInputValue0 <= *(float *)(BufferStatus5 + 0x234)) {
-        ContextSecondaryFloat9 = FilterInputValue0;
+        MatrixTransformElementC = FilterInputValue0;
       }
       if ((((FilterInputValue2 - *(float *)(MemoryBufferC + 0x167c) <= *(float *)(MemoryBufferC + 0x118)) &&
            (MatrixTransformElementA - *(float *)(MemoryBufferC + 0x1680) <= *(float *)(MemoryBufferC + 0x11c))) &&
           (*(float *)(MemoryBufferC + 0x118) < FilterInputValue1 + *(float *)(MemoryBufferC + 0x167c))) &&
-         (*(float *)(MemoryBufferC + 0x11c) < ContextSecondaryFloat9 + *(float *)(MemoryBufferC + 0x1680))) {
+         (*(float *)(MemoryBufferC + 0x11c) < MatrixTransformElementC + *(float *)(MemoryBufferC + 0x1680))) {
         BufferStatus5 = *(long long *)(MemoryBufferC + 0x1c80);
         if (((MatrixTransformElementA < *(float *)(BufferStatus5 + 0xc) + *(float *)(BufferStatus5 + 0x14)) &&
-            (*(float *)(BufferStatus5 + 0xc) < ContextSecondaryFloat9)) &&
+            (*(float *)(BufferStatus5 + 0xc) < MatrixTransformElementC)) &&
            ((((FilterInputValue2 < *(float *)(BufferStatus5 + 8) + *(float *)(BufferStatus5 + 0x10) &&
               ((*(float *)(BufferStatus5 + 8) < FilterInputValue1 && (*(float *)(MemoryBufferC + 0x424) == 0.0)))) &&
              (iStack_138 = LockOperationResultPointer3[5], iStack_138 != 0)) && (0 < *LockOperationResultPointer3)))) {
@@ -221218,7 +221218,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
   uint8_t aInputDataLength [16];
   uint8_t aMemoryAllocationBase [16];
   uint8_t aMemoryPoolIndexAdditional [16];
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   uint32_t UnicodeCodePoint0;
   long long *pCoreEngineSignedValueC8;
   uint64_t CoreEngineValueC0;
@@ -221233,7 +221233,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
   SystemContextPtr = AdditionalParameter1;
   CoreEngineValueC0 = 0xfffffffffffffffe;
   UnicodeCodePoint0 = 0;
-  ContextSecondaryFloat9 = 0.0;
+  MatrixTransformElementC = 0.0;
   LowByte = false;
   Utf16Character = (unsigned long long)*Utf16EndPointer;
   SystemOperationResult = (int)*AdditionalParameter1;
@@ -221336,7 +221336,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
             (**(code **)(*AdditionalParameter1 + 0x38))();
           }
           if (SystemStringIndex != 0) {
-            ContextSecondaryFloat9 = ContextSecondaryFloat9 + ((*(float *)(SystemStringIndex + 0x284) - *(float *)(SystemStringIndex + 0x274)) * *AdditionalParameter2                              / (*(float *)(SystemStringIndex + 0x288) - *(float *)(SystemStringIndex + 0x278));
+            MatrixTransformElementC = MatrixTransformElementC + ((*(float *)(SystemStringIndex + 0x284) - *(float *)(SystemStringIndex + 0x274)) * *AdditionalParameter2                              / (*(float *)(SystemStringIndex + 0x288) - *(float *)(SystemStringIndex + 0x278));
           }
           pMemoryOffsetValue = &SystemNullTemplate;
           if (pSystemStackRegisterBuffer != NULL) {
@@ -221352,7 +221352,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
           aMemoryAllocationOffset.Low64Part = VectorCalculationResult;
           aMemoryAllocationOffset.High32Part = (int)((unsigned long long)VectorResultB >> 0x20);
           aInputDataLength._4_12_ = aMemoryAllocationOffset._4_12_;
-          aInputDataLength.LowPart = ((float)VectorCalculationResult + ContextSecondaryFloat9) * 5.0;
+          aInputDataLength.LowPart = ((float)VectorCalculationResult + MatrixTransformElementC) * 5.0;
           SystemOperationResult = (int)aInputDataLength.LowPart;
           MemoryPoolIndex8 = (uint32_t)((unsigned long long)VectorCalculationResult >> 0x20);
           aMemoryPoolIndexSecondary.Low64Part = aInputDataLength.Low64Part;
@@ -221367,7 +221367,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
               Utf16Char4 = movmskps(MemoryPoolIndex,aMemoryPoolIndexAdditional);
               aInputDataLength = ZEXT416((uint)(float)(int)(IntegerValue9 + (Utf16Char4 & 1 ^ 1)));
             }
-            ContextSecondaryFloat9 = aInputDataLength.LowPart - 1e-08;
+            MatrixTransformElementC = aInputDataLength.LowPart - 1e-08;
           }
           else {
             if ((IntegerValue9 != -0x80000000) && ((float)IntegerValue9 != aInputDataLength.LowPart)) {
@@ -221379,13 +221379,13 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
               Utf16Char4 = movmskps(MemoryPoolIndex,aMemoryAllocationBase);
               aInputDataLength = ZEXT416((uint)(float)(int)(IntegerValue9 + (Utf16Char4 & 1 ^ 1)));
             }
-            ContextSecondaryFloat9 = aInputDataLength.LowPart + 1e-08;
+            MatrixTransformElementC = aInputDataLength.LowPart + 1e-08;
           }
-          ContextSecondaryFloat9 = (float)(int)ContextSecondaryFloat9 * 0.2;
+          MatrixTransformElementC = (float)(int)MatrixTransformElementC * 0.2;
         }
         else {
           ContextSecondaryFloat1 = (float)ProcessSystemMemoryAllocationAdvanced();
-          ContextSecondaryFloat9 = ContextSecondaryFloat9 + ContextSecondaryFloat1 * MatrixTransformMultiplier;
+          MatrixTransformElementC = MatrixTransformElementC + ContextSecondaryFloat1 * MatrixTransformMultiplier;
         }
         SystemPrimaryReturnCode = Utf8SourcePointer & 0xffffffff;
         isSystemContextNull = LowByte;
@@ -243956,10 +243956,10 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
           fStack_2d0 = (SystemInitializationMode.HighPart + SystemValue2a8.HighPart) * 0.5;
           ContextSecondaryFloat4 = (float)SystemInitializationMode;
           FilterInputValue2 = ((float)SystemInitializationMode + (float)SystemValue2a8) * 0.5;
-          ContextSecondaryFloat9 = ((float)uStack_298 + ContextSecondaryFloat7) * 0.5;
+          MatrixTransformElementC = ((float)uStack_298 + ContextSecondaryFloat7) * 0.5;
           FilterInputValue1 = ((float)SystemValue2b8 + fStack_2f8) * 0.5;
           fStack_2cc = ((float)EventValidationStatus + ScalingFactor) * 0.5;
-          ScalingFactor = fStack_2c4 - ContextSecondaryFloat9;
+          ScalingFactor = fStack_2c4 - MatrixTransformElementC;
           fStack_244 = fStack_2d0 - FilterInputValue1;
           fStack_248 = FilterInputValue2 - fStack_2cc;
           SystemUintBuffer23c = 0x7f7fffff;
@@ -243999,7 +243999,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
           if (ContextHandle1 != (long long *)0x0) {
             (**(code **)(*ContextHandle1 + 0x38))(ContextHandle1);
           }
-          fStack_1a0 = (ContextSecondaryFloat9 + fStack_2c4) * 0.5;
+          fStack_1a0 = (MatrixTransformElementC + fStack_2c4) * 0.5;
           fStack_324 = (FilterInputValue1 + fStack_2d0) * 0.5;
           fStack_328 = (FilterInputValue2 + fStack_2cc) * 0.5;
           uStack_19c = 0x7f7fffff;
@@ -244123,7 +244123,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
             SystemConfigurationIterator = SystemCharacterStatusBufferPointerA;
             FilterInputValue4 = (*(float *)(lStack_150 + 8 + LoopIndex) + *(float *)(SystemTemporaryRegister118 + 8 + LoopIndex)) *
                      0.5;
-            ContextSecondaryFloat9 = (*(float *)(lStack_150 + 4 + LoopIndex) + *(float *)(SystemTemporaryRegister118 + 4 + LoopIndex)) *
+            MatrixTransformElementC = (*(float *)(lStack_150 + 4 + LoopIndex) + *(float *)(SystemTemporaryRegister118 + 4 + LoopIndex)) *
                      0.5;
             MatrixTransformElementA = (*(float *)(lStack_150 + LoopIndex) + *(float *)(SystemTemporaryRegister118 + LoopIndex)) * 0.5;
             ContextSecondaryFloat6 = (*(float *)(lStack_150 + 0x18 + LoopIndex) +
@@ -244133,7 +244133,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
             FilterInputValue1 = (*(float *)(lStack_150 + 0x10 + LoopIndex) +
                      *(float *)(SystemTemporaryRegister118 + 0x10 + LoopIndex)) * 0.5;
             fStack_1c0 = FilterInputValue4 - ContextSecondaryFloat6;
-            MatrixTransformElementB = ContextSecondaryFloat9 - ContextSecondaryFloat7;
+            MatrixTransformElementB = MatrixTransformElementC - ContextSecondaryFloat7;
             fStack_1c8 = MatrixTransformElementA - FilterInputValue1;
             ContextSecondaryFloat1 = fStack_1c8 * fStack_1c8 + MatrixTransformElementB * MatrixTransformElementB + fStack_1c0 * fStack_1c0;
             aMemoryAllocationOffset = rsqrtss(ZEXT416((uint)ContextSecondaryFloat1),ZEXT416((uint)ContextSecondaryFloat1));
@@ -244174,7 +244174,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
               (**(code **)(*ContextHandle1 + 0x38))(ContextHandle1);
             }
             fStack_1d0 = (ContextSecondaryFloat6 + FilterInputValue4) * 0.5;
-            fStack_324 = (ContextSecondaryFloat7 + ContextSecondaryFloat9) * 0.5;
+            fStack_324 = (ContextSecondaryFloat7 + MatrixTransformElementC) * 0.5;
             fStack_328 = (MatrixTransformElementA + FilterInputValue1) * 0.5;
             uStack_31c = uStack_1cc;
             uStack_33c = uStack_1bc;
@@ -244314,7 +244314,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float MatrixTransformElementA;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float FilterInputValue2;
@@ -244590,7 +244590,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                   else {
                     pSystemFloatValue = (float *)(**(code **)(*MemoryBlockIndex + 0x158))(MemoryBlockIndex);
                   }
-                  ContextSecondaryFloat9 = *(float *)(LoopIndex + 0x80);
+                  MatrixTransformElementC = *(float *)(LoopIndex + 0x80);
                   FilterInputValue0 = *(float *)(LoopIndex + 0x84);
                   FilterInputValue1 = *(float *)(LoopIndex + 0x88);
                   FilterInputValue2 = *(float *)(LoopIndex + 0x8c);
@@ -244609,24 +244609,24 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                   SystemContextPrimaryFloat = pSystemFloatValue[9];
                   ScalingFactor = pSystemFloatValue[0xd];
                   ContextSecondaryFloat = pSystemFloatValue[4];
-                  fStack_198 = MatrixTransformElementB * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat7 * MatrixTransformMultiplier1;
+                  fStack_198 = MatrixTransformElementB * MatrixTransformElementC + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat7 * MatrixTransformMultiplier1;
                   fStack_194 = MatrixTransformElementB * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + ContextSecondaryFloat7 * MatrixTransformMultiplier;
                   fStack_190 = MatrixTransformElementB * FilterInputValue1 + ContextSecondaryFloat6 * PrimaryFloatValue + ContextSecondaryFloat7 * CalculatedDistance;
                   fStack_18c = MatrixTransformElementB * FilterInputValue2 + ContextSecondaryFloat6 * SecondaryFloatValue + ContextSecondaryFloat7 * FloatOffsetValue;
                   MatrixTransformElementB = pSystemFloatValue[6];
                   ContextSecondaryFloat6 = pSystemFloatValue[8];
-                  fStack_188 = MatrixTransformElementA * ContextSecondaryFloat9 + ContextSecondaryFloat * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1;
+                  fStack_188 = MatrixTransformElementA * MatrixTransformElementC + ContextSecondaryFloat * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1;
                   fStack_184 = MatrixTransformElementA * FilterInputValue0 + ContextSecondaryFloat * NormalizedParameterValue + MatrixTransformElementB * MatrixTransformMultiplier;
                   fStack_180 = MatrixTransformElementA * FilterInputValue1 + ContextSecondaryFloat * PrimaryFloatValue + MatrixTransformElementB * CalculatedDistance;
                   fStack_17c = MatrixTransformElementA * FilterInputValue2 + ContextSecondaryFloat * SecondaryFloatValue + MatrixTransformElementB * FloatOffsetValue;
                   MatrixTransformElementB = pSystemFloatValue[10];
                   ContextSecondaryFloat7 = pSystemFloatValue[0xc];
-                  NormalizationResult = SystemContextPrimaryFloat * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1;
+                  NormalizationResult = SystemContextPrimaryFloat * MatrixTransformElementC + ContextSecondaryFloat6 * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1;
                   VectorLength = SystemContextPrimaryFloat * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + MatrixTransformElementB * MatrixTransformMultiplier;
                   fStack_170 = SystemContextPrimaryFloat * FilterInputValue1 + ContextSecondaryFloat6 * PrimaryFloatValue + MatrixTransformElementB * CalculatedDistance;
                   fStack_16c = SystemContextPrimaryFloat * FilterInputValue2 + ContextSecondaryFloat6 * SecondaryFloatValue + MatrixTransformElementB * FloatOffsetValue;
                   MatrixTransformElementB = pSystemFloatValue[0xe];
-                  fStack_168 = ScalingFactor * ContextSecondaryFloat9 + ContextSecondaryFloat7 * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1 +
+                  fStack_168 = ScalingFactor * MatrixTransformElementC + ContextSecondaryFloat7 * ProcessedFloatValue8 + MatrixTransformElementB * MatrixTransformMultiplier1 +
                                *(float *)(LoopIndex + 0xa0);
                   fStack_164 = ScalingFactor * FilterInputValue0 + ContextSecondaryFloat7 * NormalizedParameterValue + MatrixTransformElementB * MatrixTransformMultiplier +
                                *(float *)(LoopIndex + 0xa4);
@@ -244740,7 +244740,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             SystemContextPrimaryFloat = *(float *)(LoopIndex + 0x74);
             ScalingFactor = *(float *)(LoopIndex + 0x78);
             ContextSecondaryFloat = *(float *)(LoopIndex + 0x7c);
-            ContextSecondaryFloat9 = *(float *)(LoopIndex + 0x80);
+            MatrixTransformElementC = *(float *)(LoopIndex + 0x80);
             FilterInputValue0 = *(float *)(LoopIndex + 0x84);
             FilterInputValue1 = *(float *)(LoopIndex + 0x88);
             FilterInputValue2 = *(float *)(LoopIndex + 0x8c);
@@ -244760,19 +244760,19 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             fStack_134 = fStack_204;
             fStack_130 = fStack_200;
             uStack_12c = uStack_1fc;
-            fStack_3c8 = fStack_228 * MatrixTransformElementA + fStack_224 * ContextSecondaryFloat9 + fStack_220 * MatrixTransformMultiplier1;
+            fStack_3c8 = fStack_228 * MatrixTransformElementA + fStack_224 * MatrixTransformElementC + fStack_220 * MatrixTransformMultiplier1;
             fStack_3c4 = fStack_228 * SystemContextPrimaryFloat + fStack_224 * FilterInputValue0 + fStack_220 * MatrixTransformMultiplier;
             fStack_3c0 = fStack_228 * ScalingFactor + fStack_224 * FilterInputValue1 + fStack_220 * CalculatedDistance;
             fStack_1ec = fStack_228 * ContextSecondaryFloat + fStack_224 * FilterInputValue2 + fStack_220 * FloatOffsetValue;
-            fStack_3b8 = fStack_218 * MatrixTransformElementA + fStack_214 * ContextSecondaryFloat9 + fStack_210 * MatrixTransformMultiplier1;
+            fStack_3b8 = fStack_218 * MatrixTransformElementA + fStack_214 * MatrixTransformElementC + fStack_210 * MatrixTransformMultiplier1;
             fStack_3b4 = fStack_218 * SystemContextPrimaryFloat + fStack_214 * FilterInputValue0 + fStack_210 * MatrixTransformMultiplier;
             fStack_3b0 = fStack_218 * ScalingFactor + fStack_214 * FilterInputValue1 + fStack_210 * CalculatedDistance;
             fStack_1dc = fStack_218 * ContextSecondaryFloat + fStack_214 * FilterInputValue2 + fStack_210 * FloatOffsetValue;
-            fStack_3a8 = fStack_208 * MatrixTransformElementA + fStack_204 * ContextSecondaryFloat9 + fStack_200 * MatrixTransformMultiplier1;
+            fStack_3a8 = fStack_208 * MatrixTransformElementA + fStack_204 * MatrixTransformElementC + fStack_200 * MatrixTransformMultiplier1;
             fStack_3a4 = fStack_208 * SystemContextPrimaryFloat + fStack_204 * FilterInputValue0 + fStack_200 * MatrixTransformMultiplier;
             fStack_3a0 = fStack_208 * ScalingFactor + fStack_204 * FilterInputValue1 + fStack_200 * CalculatedDistance;
             fStack_1cc = fStack_208 * ContextSecondaryFloat + fStack_204 * FilterInputValue2 + fStack_200 * FloatOffsetValue;
-            fStack_398 = MatrixTransformElementB * MatrixTransformElementA + ContextSecondaryFloat6 * ContextSecondaryFloat9 + ContextSecondaryFloat7 * MatrixTransformMultiplier1 +
+            fStack_398 = MatrixTransformElementB * MatrixTransformElementA + ContextSecondaryFloat6 * MatrixTransformElementC + ContextSecondaryFloat7 * MatrixTransformMultiplier1 +
                          *(float *)(LoopIndex + 0xa0);
             fStack_394 = MatrixTransformElementB * SystemContextPrimaryFloat + ContextSecondaryFloat6 * FilterInputValue0 + ContextSecondaryFloat7 * MatrixTransformMultiplier +
                          *(float *)(LoopIndex + 0xa4);
@@ -244834,12 +244834,12 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             uStack_428 = CONCAT44(ContextSecondaryFloat7,ContextSecondaryFloat7 + pSystemFloatValue[2]);
             FilterInputValue0 = FilterInputValue0 + FilterInputValue0;
             FilterInputValue2 = fStack_318 * ContextSecondaryFloat - fStack_310 * SystemContextPrimaryFloat;
-            ContextSecondaryFloat9 = fStack_314 * SystemContextPrimaryFloat - fStack_318 * ScalingFactor;
+            MatrixTransformElementC = fStack_314 * SystemContextPrimaryFloat - fStack_318 * ScalingFactor;
             FilterInputValue2 = FilterInputValue2 + FilterInputValue2;
-            ContextSecondaryFloat9 = ContextSecondaryFloat9 + ContextSecondaryFloat9;
-            FilterInputValue1 = FilterInputValue0 * MatrixTransformElementA + fStack_318 + (ContextSecondaryFloat9 * ScalingFactor - FilterInputValue2 * ContextSecondaryFloat);
-            ScalingFactor = (FilterInputValue2 * SystemContextPrimaryFloat - FilterInputValue0 * ScalingFactor) + ContextSecondaryFloat9 * MatrixTransformElementA + fStack_310;
-            MatrixTransformElementA = (FilterInputValue0 * ContextSecondaryFloat - ContextSecondaryFloat9 * SystemContextPrimaryFloat) + FilterInputValue2 * MatrixTransformElementA + fStack_314;
+            MatrixTransformElementC = MatrixTransformElementC + MatrixTransformElementC;
+            FilterInputValue1 = FilterInputValue0 * MatrixTransformElementA + fStack_318 + (MatrixTransformElementC * ScalingFactor - FilterInputValue2 * ContextSecondaryFloat);
+            ScalingFactor = (FilterInputValue2 * SystemContextPrimaryFloat - FilterInputValue0 * ScalingFactor) + MatrixTransformElementC * MatrixTransformElementA + fStack_310;
+            MatrixTransformElementA = (FilterInputValue0 * ContextSecondaryFloat - MatrixTransformElementC * SystemContextPrimaryFloat) + FilterInputValue2 * MatrixTransformElementA + fStack_314;
             fStack_420 = ContextSecondaryFloat7;
             fStack_41c = ContextSecondaryFloat7;
             fStack_410 = ContextSecondaryFloat6;
@@ -244922,7 +244922,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
   uint64_t NullPointerValue;
   unsigned long long MemoryPoolIndex7;
   long long BufferStatusRegister8;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   float FilterInputValue0;
   float FilterInputValue1;
   float FilterInputValue2;
@@ -245105,14 +245105,14 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                 SystemContextPrimaryFloat3 = *(float *)(CharacterTablePointer + 0x7c);
                 FilterInputValue5 = pContextPrimaryFloat9[1];
                 FilterInputValue0 = *pContextPrimaryFloat9;
-                ContextSecondaryFloat9 = pContextPrimaryFloat9[2];
+                MatrixTransformElementC = pContextPrimaryFloat9[2];
                 FilterInputValue4 = pContextPrimaryFloat9[5];
                 MatrixTransformMultiplier11 = pContextPrimaryFloat9[9];
                 ScalingFactor = pContextPrimaryFloat9[0xd];
                 FilterInputValue1 = pContextPrimaryFloat9[4];
-                MatrixTransformMultiplier17 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * PrimaryFloatValue + ContextSecondaryFloat9 * CalculatedDistance;
-                MatrixTransformMultiplier18 = FilterInputValue5 * FilterInputValue + FilterInputValue0 * SecondaryFloatValue + ContextSecondaryFloat9 * FloatOffsetValue;
-                MatrixTransformMultiplier19 = FilterInputValue5 * MatrixTransformMultiplier1 + FilterInputValue0 * SystemContextPrimaryFloat2 + ContextSecondaryFloat9 * ProcessedFloatValue8;
+                MatrixTransformMultiplier17 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * PrimaryFloatValue + MatrixTransformElementC * CalculatedDistance;
+                MatrixTransformMultiplier18 = FilterInputValue5 * FilterInputValue + FilterInputValue0 * SecondaryFloatValue + MatrixTransformElementC * FloatOffsetValue;
+                MatrixTransformMultiplier19 = FilterInputValue5 * MatrixTransformMultiplier1 + FilterInputValue0 * SystemContextPrimaryFloat2 + MatrixTransformElementC * ProcessedFloatValue8;
                 FilterInputValue6 = pContextPrimaryFloat9[6];
                 MatrixTransformMultiplier12 = pContextPrimaryFloat9[8];
                 MatrixTransformMultiplier14 = FilterInputValue4 * ContextSecondaryFloat + FilterInputValue1 * PrimaryFloatValue + FilterInputValue6 * CalculatedDistance;
@@ -245128,7 +245128,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                 FramePointer[0x80] = MatrixTransformMultiplier17;
                 FramePointer[0x81] = MatrixTransformMultiplier18;
                 FramePointer[0x82] = MatrixTransformMultiplier19;
-                FramePointer[0x83] = FilterInputValue5 * MatrixTransformMultiplier + FilterInputValue0 * SystemContextPrimaryFloat3 + ContextSecondaryFloat9 * NormalizedParameterValue;
+                FramePointer[0x83] = FilterInputValue5 * MatrixTransformMultiplier + FilterInputValue0 * SystemContextPrimaryFloat3 + MatrixTransformElementC * NormalizedParameterValue;
                 FilterInputValue5 = pContextPrimaryFloat9[0xe];
                 MatrixTransformMultiplier11 = *(float *)(CharacterTablePointer + 0xa0);
                 MatrixTransformMultiplier12 = *(float *)(CharacterTablePointer + 0xa4);
@@ -245142,7 +245142,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                 MatrixTransformMultiplier11 = ScalingFactor * ContextSecondaryFloat + MatrixTransformMultiplier0 * PrimaryFloatValue + FilterInputValue5 * CalculatedDistance + MatrixTransformMultiplier11;
                 MatrixTransformMultiplier12 = ScalingFactor * FilterInputValue + MatrixTransformMultiplier0 * SecondaryFloatValue + FilterInputValue5 * FloatOffsetValue + MatrixTransformMultiplier12;
                 MatrixTransformMultiplier13 = ScalingFactor * MatrixTransformMultiplier1 + MatrixTransformMultiplier0 * SystemContextPrimaryFloat2 + FilterInputValue5 * ProcessedFloatValue8 + MatrixTransformMultiplier13;
-                ContextSecondaryFloat9 = RegisterR12Value[1];
+                MatrixTransformElementC = RegisterR12Value[1];
                 FramePointer[0x88] = FilterInputValue7;
                 FramePointer[0x89] = FilterInputValue8;
                 FramePointer[0x8a] = FilterInputValue9;
@@ -245152,13 +245152,13 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                 FramePointer[0x8d] = MatrixTransformMultiplier12;
                 FramePointer[0x8e] = MatrixTransformMultiplier13;
                 FramePointer[0x8f] = ScalingFactor * MatrixTransformMultiplier + MatrixTransformMultiplier0 * SystemContextPrimaryFloat3 + FilterInputValue5 * NormalizedParameterValue + SystemContextPrimaryFloat4;
-                ContextSecondaryFloat9 = ContextSecondaryFloat9 - MatrixTransformMultiplier12;
+                MatrixTransformElementC = MatrixTransformElementC - MatrixTransformMultiplier12;
                 FilterInputValue0 = FilterInputValue0 - MatrixTransformMultiplier13;
                 MatrixTransformMultiplier11 = *RegisterR13Value - MatrixTransformMultiplier11;
-                FramePointer[0x14] = FilterInputValue2 * MatrixTransformMultiplier17 + ContextSecondaryFloat9 * MatrixTransformMultiplier18 + FilterInputValue0 * MatrixTransformMultiplier19;
-                FramePointer[0x15] = FilterInputValue2 * MatrixTransformMultiplier14 + ContextSecondaryFloat9 * MatrixTransformMultiplier15 + FilterInputValue0 * MatrixTransformMultiplier16;
-                FramePointer[0x16] = FilterInputValue2 * FilterInputValue7 + ContextSecondaryFloat9 * FilterInputValue8 + FilterInputValue0 * FilterInputValue9;
-                FramePointer[0x17] = FilterInputValue2 * MatrixTransformMultiplier10 + ContextSecondaryFloat9 * MatrixTransformMultiplier10 + FilterInputValue0 * MatrixTransformMultiplier10;
+                FramePointer[0x14] = FilterInputValue2 * MatrixTransformMultiplier17 + MatrixTransformElementC * MatrixTransformMultiplier18 + FilterInputValue0 * MatrixTransformMultiplier19;
+                FramePointer[0x15] = FilterInputValue2 * MatrixTransformMultiplier14 + MatrixTransformElementC * MatrixTransformMultiplier15 + FilterInputValue0 * MatrixTransformMultiplier16;
+                FramePointer[0x16] = FilterInputValue2 * FilterInputValue7 + MatrixTransformElementC * FilterInputValue8 + FilterInputValue0 * FilterInputValue9;
+                FramePointer[0x17] = FilterInputValue2 * MatrixTransformMultiplier10 + MatrixTransformElementC * MatrixTransformMultiplier10 + FilterInputValue0 * MatrixTransformMultiplier10;
                 MatrixTransformMultiplier12 = RegisterR13Value[1] - MatrixTransformMultiplier12;
                 BufferStatus1 = *(long long *)(CharacterTablePointer + 0x20);
                 MatrixTransformMultiplier13 = RegisterR13Value[2] - MatrixTransformMultiplier13;
@@ -245209,16 +245209,16 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
       BufferStatusRegister8 = _StackFloat1;
       FilterInputValue5 = *RegisterR12Value;
       FilterInputValue0 = RegisterR13Value[2];
-      ContextSecondaryFloat9 = RegisterR12Value[2];
+      MatrixTransformElementC = RegisterR12Value[2];
       FilterInputValue4 = RegisterR12Value[1];
       MatrixTransformMultiplier11 = *RegisterR13Value;
       ScalingFactor = RegisterR13Value[1];
       FramePointer[-0x11] = 3.4028235e+38;
       FramePointer[-0xd] = 3.4028235e+38;
-      MatrixTransformMultiplier12 = ContextSecondaryFloat9 + FilterInputValue0 * 0.2;
+      MatrixTransformMultiplier12 = MatrixTransformElementC + FilterInputValue0 * 0.2;
       FramePointer[0x3a] = 0.05;
       FilterInputValue1 = FilterInputValue5 - MatrixTransformMultiplier11 * 0.2;
-      ContextSecondaryFloat9 = ContextSecondaryFloat9 - FilterInputValue0 * 0.2;
+      MatrixTransformElementC = MatrixTransformElementC - FilterInputValue0 * 0.2;
       FilterInputValue5 = FilterInputValue5 + MatrixTransformMultiplier11 * 0.2;
       FilterInputValue6 = FilterInputValue4 + ScalingFactor * 0.2;
       FilterInputValue4 = FilterInputValue4 - ScalingFactor * 0.2;
@@ -245226,7 +245226,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
       MatrixTransformMultiplier11 = FramePointer[-0xd];
       FramePointer[-0x14] = FilterInputValue1;
       FramePointer[-0x13] = FilterInputValue4;
-      FramePointer[-0x12] = ContextSecondaryFloat9;
+      FramePointer[-0x12] = MatrixTransformElementC;
       FramePointer[-0x11] = FilterInputValue0;
       FramePointer[-0x10] = FilterInputValue5;
       FramePointer[-0xf] = FilterInputValue6;
@@ -245238,7 +245238,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
       FramePointer[0x39] = MatrixTransformMultiplier11;
       FramePointer[0x32] = FilterInputValue1;
       FramePointer[0x33] = FilterInputValue4;
-      FramePointer[0x34] = ContextSecondaryFloat9;
+      FramePointer[0x34] = MatrixTransformElementC;
       FramePointer[0x35] = FilterInputValue0;
       if ((BufferStatus4 != 0) &&
          (SystemCheckResult6 = FUN_1802edfe0(CharacterTablePointer,FramePointer + 0x32,FramePointer + 0x1c,FramePointer + 0x78,
@@ -245255,20 +245255,20 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         SystemPrimaryReturnCode = *(void *)(PrimaryProcessingStatusFlag0 + 3);
         FilterInputValue5 = (float)PrimaryProcessingStatusFlag0[5];
         FilterInputValue0 = (float)PrimaryProcessingStatusFlag0[6];
-        ContextSecondaryFloat9 = (float)PrimaryProcessingStatusFlag0[7];
+        MatrixTransformElementC = (float)PrimaryProcessingStatusFlag0[7];
         FilterInputValue4 = (float)PrimaryProcessingStatusFlag0[8];
         *(void *)(FramePointer + 0xa0) = Utf16ConversionContext;
         *(void *)(FramePointer + 0xa2) = SystemPrimaryReturnCode;
         FramePointer[0xa4] = FilterInputValue5;
         FramePointer[0xa5] = FilterInputValue0;
-        FramePointer[0xa6] = ContextSecondaryFloat9;
+        FramePointer[0xa6] = MatrixTransformElementC;
         FramePointer[0xa7] = FilterInputValue4;
         *PrimaryProcessingStatusFlag0 = 0;
         *(void *)(FramePointer + 0x44) = Utf16ConversionContext;
         *(void *)(FramePointer + 0x46) = SystemPrimaryReturnCode;
         FramePointer[0x48] = FilterInputValue5;
         FramePointer[0x49] = FilterInputValue0;
-        FramePointer[0x4a] = ContextSecondaryFloat9;
+        FramePointer[0x4a] = MatrixTransformElementC;
         FramePointer[0x4b] = FilterInputValue4;
         FUN_18063b5f0(FramePointer + 0x5c,FramePointer + 0x44);
         MatrixTransformMultiplier11 = FramePointer[0x5c];
@@ -245306,7 +245306,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         FramePointer[0x9b] = FramePointer[0x67];
         FramePointer[0x9c] = FilterInputValue5;
         FramePointer[0x9d] = FilterInputValue0;
-        FramePointer[0x9e] = ContextSecondaryFloat9;
+        FramePointer[0x9e] = MatrixTransformElementC;
         FramePointer[0x9f] = FilterInputValue4;
         FilterInputValue4 = MatrixTransformMultiplier11 * FilterInputValue2 + ScalingFactor * MatrixTransformMultiplier1 + FilterInputValue1 * SecondaryFloatValue;
         MatrixTransformMultiplier10 = MatrixTransformMultiplier11 * MatrixTransformMultiplier0 + ScalingFactor * MatrixTransformMultiplier + FilterInputValue1 * SystemContextPrimaryFloat2;
@@ -245331,13 +245331,13 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         FramePointer[0x72] = MatrixTransformMultiplier13;
         FramePointer[0x73] = ProcessedFloatValue8 * FilterInputValue + NormalizedParameterValue * FloatOffsetValue + PrimaryFloatValue * SystemContextPrimaryFloat4;
         FilterInputValue4 = *(float *)(CharacterTablePointer + 0xac);
-        MatrixTransformMultiplier11 = FilterInputValue5 * FilterInputValue2 + FilterInputValue0 * MatrixTransformMultiplier1 + ContextSecondaryFloat9 * SecondaryFloatValue + *(float *)(CharacterTablePointer + 0xa0);
-        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier0 + FilterInputValue0 * MatrixTransformMultiplier + ContextSecondaryFloat9 * SystemContextPrimaryFloat2 + *(float *)(CharacterTablePointer + 0xa4);
-        FilterInputValue1 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * CalculatedDistance + ContextSecondaryFloat9 * SystemContextPrimaryFloat3 + *(float *)(CharacterTablePointer + 0xa8);
+        MatrixTransformMultiplier11 = FilterInputValue5 * FilterInputValue2 + FilterInputValue0 * MatrixTransformMultiplier1 + MatrixTransformElementC * SecondaryFloatValue + *(float *)(CharacterTablePointer + 0xa0);
+        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier0 + FilterInputValue0 * MatrixTransformMultiplier + MatrixTransformElementC * SystemContextPrimaryFloat2 + *(float *)(CharacterTablePointer + 0xa4);
+        FilterInputValue1 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * CalculatedDistance + MatrixTransformElementC * SystemContextPrimaryFloat3 + *(float *)(CharacterTablePointer + 0xa8);
         FramePointer[0x74] = MatrixTransformMultiplier11;
         FramePointer[0x75] = ScalingFactor;
         FramePointer[0x76] = FilterInputValue1;
-        FramePointer[0x77] = FilterInputValue5 * FilterInputValue + FilterInputValue0 * FloatOffsetValue + ContextSecondaryFloat9 * SystemContextPrimaryFloat4 + FilterInputValue4;
+        FramePointer[0x77] = FilterInputValue5 * FilterInputValue + FilterInputValue0 * FloatOffsetValue + MatrixTransformElementC * SystemContextPrimaryFloat4 + FilterInputValue4;
         FramePointer[-0xb] = MatrixTransformMultiplier10;
         FramePointer[-8] = FilterInputValue7;
         FramePointer[-7] = FilterInputValue8;
@@ -245356,18 +245356,18 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         ProcessMemoryAddressMaskPointer(FramePointer + -0xc,FramePointer + 4);
         FilterInputValue5 = FramePointer[0x1d];
         FilterInputValue0 = FramePointer[0x1e];
-        ContextSecondaryFloat9 = FramePointer[0x1c];
+        MatrixTransformElementC = FramePointer[0x1c];
         FramePointer[-0x1c] =
-             ContextSecondaryFloat9 * FramePointer[4] + FilterInputValue5 * FramePointer[8] + FilterInputValue0 * FramePointer[0xc] +
+             MatrixTransformElementC * FramePointer[4] + FilterInputValue5 * FramePointer[8] + FilterInputValue0 * FramePointer[0xc] +
              FramePointer[0x10];
         FramePointer[-0x1b] =
-             ContextSecondaryFloat9 * FramePointer[5] + FilterInputValue5 * FramePointer[9] + FilterInputValue0 * FramePointer[0xd] +
+             MatrixTransformElementC * FramePointer[5] + FilterInputValue5 * FramePointer[9] + FilterInputValue0 * FramePointer[0xd] +
              FramePointer[0x11];
         FramePointer[-0x1a] =
-             ContextSecondaryFloat9 * FramePointer[6] + FilterInputValue5 * FramePointer[10] + FilterInputValue0 * FramePointer[0xe] +
+             MatrixTransformElementC * FramePointer[6] + FilterInputValue5 * FramePointer[10] + FilterInputValue0 * FramePointer[0xe] +
              FramePointer[0x12];
         FramePointer[-0x19] =
-             ContextSecondaryFloat9 * FramePointer[7] + FilterInputValue5 * FramePointer[0xb] + FilterInputValue0 * FramePointer[0xf] +
+             MatrixTransformElementC * FramePointer[7] + FilterInputValue5 * FramePointer[0xb] + FilterInputValue0 * FramePointer[0xf] +
              FramePointer[0x13];
         FUN_1801c1140(FramePointer + 0x68,FramePointer + 0x20);
         CharacterTablePointer = BufferStatus1 * 0x1b0 + *(long long *)(*(long long *)(BufferStatus4 + 0x208) + 0x140);
@@ -245391,23 +245391,23 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         CharacterTablePointer = FunctionReturnValue;
         FilterInputValue5 = FramePointer[0x22];
         FilterInputValue0 = FramePointer[0x20];
-        ContextSecondaryFloat9 = FramePointer[0x21];
+        MatrixTransformElementC = FramePointer[0x21];
         MatrixTransformMultiplier11 = MatrixTransformMultiplier11 + *pContextPrimaryFloat9;
         FilterInputValue4 = pContextPrimaryFloat9[2];
         FramePointer[-0x20] = ScalingFactor + pContextPrimaryFloat9[1];
         FramePointer[-0x1f] = ScalingFactor;
         FramePointer[-0x1e] = ScalingFactor;
         FramePointer[-0x1d] = ScalingFactor;
-        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier13 - ContextSecondaryFloat9 * FilterInputValue2;
+        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier13 - MatrixTransformElementC * FilterInputValue2;
         _StackFloat1 = CONCAT44(FilterInputValue1,FilterInputValue1 + FilterInputValue4);
         ScalingFactor = ScalingFactor + ScalingFactor;
         MatrixTransformMultiplier0 = FilterInputValue0 * FilterInputValue2 - FilterInputValue5 * MatrixTransformMultiplier12;
-        FilterInputValue4 = ContextSecondaryFloat9 * MatrixTransformMultiplier12 - FilterInputValue0 * MatrixTransformMultiplier13;
+        FilterInputValue4 = MatrixTransformElementC * MatrixTransformMultiplier12 - FilterInputValue0 * MatrixTransformMultiplier13;
         MatrixTransformMultiplier0 = MatrixTransformMultiplier0 + MatrixTransformMultiplier0;
         FilterInputValue4 = FilterInputValue4 + FilterInputValue4;
         FilterInputValue0 = ScalingFactor * FilterInputValue6 + FilterInputValue0 + (FilterInputValue4 * MatrixTransformMultiplier13 - MatrixTransformMultiplier0 * FilterInputValue2);
         MatrixTransformMultiplier13 = (MatrixTransformMultiplier0 * MatrixTransformMultiplier12 - ScalingFactor * MatrixTransformMultiplier13) + FilterInputValue4 * FilterInputValue6 + FilterInputValue5;
-        FilterInputValue5 = (ScalingFactor * FilterInputValue2 - FilterInputValue4 * MatrixTransformMultiplier12) + MatrixTransformMultiplier0 * FilterInputValue6 + ContextSecondaryFloat9;
+        FilterInputValue5 = (ScalingFactor * FilterInputValue2 - FilterInputValue4 * MatrixTransformMultiplier12) + MatrixTransformMultiplier0 * FilterInputValue6 + MatrixTransformElementC;
         fStack0000000000000078 = FilterInputValue1;
         StackFloatValue7c = FilterInputValue1;
         if (*(int *)(BufferStatus4 + 0x170) == -1) {
@@ -253072,7 +253072,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   uint MemoryPoolIndexAdditional;
   uint *PrimaryProcessingStatusFlag7;
   bool HighByte8;
-  float ContextSecondaryFloat9;
+  float MatrixTransformElementC;
   uint64_t VectorCalculationResult;
   uint64_t VectorCalculationResult_00;
   float FilterInputValue0;
@@ -253131,8 +253131,8 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
     uStackX_10 = OperationBufferSize & 0xffffffff00000000;
     MemoryAllocationBase = MemoryPoolIndexSecondary;
     if (SystemStringIndex != 0) {
-      ContextSecondaryFloat9 = 1.0 - *(float *)((long long)ContextHandle + 0x2c);
-      FUN_180208f20(ContextSecondaryFloat9,SystemStringIndex,&uStackX_10,(long long)ContextHandle + 0x44,ContextSecondaryFloat9);
+      MatrixTransformElementC = 1.0 - *(float *)((long long)ContextHandle + 0x2c);
+      FUN_180208f20(MatrixTransformElementC,SystemStringIndex,&uStackX_10,(long long)ContextHandle + 0x44,MatrixTransformElementC);
       MemoryAllocationBase = uStackX_10 & 0xffffffff;
     }
     if (ContextHandle[4] != 0) {
@@ -253158,10 +253158,10 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
             break;
           }
           if (NormalizedParameterPointer[-1] == *Utf8SourcePointer) {
-            ContextSecondaryFloat9 = Utf8SourcePointer[1];
+            MatrixTransformElementC = Utf8SourcePointer[1];
             SystemContextPrimaryFloat = *NormalizedParameterPointer;
-            *NormalizedParameterPointer = ContextSecondaryFloat9 + SystemContextPrimaryFloat;
-            if (FilterInputValue0 < ContextSecondaryFloat9 + SystemContextPrimaryFloat) {
+            *NormalizedParameterPointer = MatrixTransformElementC + SystemContextPrimaryFloat;
+            if (FilterInputValue0 < MatrixTransformElementC + SystemContextPrimaryFloat) {
               *NormalizedParameterPointer = 1.0;
             }
             HighByte8 = true;
@@ -289894,8 +289894,8 @@ uint64_t CalculateVectorNormalizationFactor(void
           VectorProcessingStatusFlag = VectorProcessingStatusFlag + 8;
           WeightedValueX = (float)((uint)((float)ComponentIndex * (float)RegisterXMM12_Da * 0.5 * IntermediateY * ComponentX +
                                  WeightedValueX) & BitMask | ~BitMask & (uint)WeightedValueX);
-          ContextSecondaryFloat9 = (float)((uint)((float)(IntegerValue4 + 1) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat2 * ContextSecondaryFloat
-                                 + ContextSecondaryFloat9) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)ContextSecondaryFloat9);
+          MatrixTransformElementC = (float)((uint)((float)(IntegerValue4 + 1) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat2 * ContextSecondaryFloat
+                                 + MatrixTransformElementC) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)MatrixTransformElementC);
           FilterInputValue1 = (float)((uint)((float)(IntegerValue4 + 2) * (float)XMM12RegisterC * 0.5 * ContextSecondaryFloat3 * FilterInputValue
                                  + FilterInputValue1) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue1);
           ContextPrimaryFloat9 = (float)((uint)((float)(IntegerValue4 + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat4 * MatrixTransformMultiplier1
@@ -289923,34 +289923,34 @@ uint64_t CalculateVectorNormalizationFactor(void
           IntegerValue4 = MatchCounter;
         } while (MatchCounter < (int)(SystemParameterD - ValidationResult));
         FloatingPointRegisterA = ContextSecondaryFloat7 + FilterInputValue7 + MatrixTransformElementB + FilterInputValue5 + MatrixTransformElementA + FilterInputValue8 + ContextSecondaryFloat6 + FilterInputValue6;
-        SecondaryFloatValue = FilterInputValue1 + ScalingFactor + SecondaryFloatValue + FilterInputValue0 + ContextPrimaryFloat9 + FilterInputValue4 + ContextSecondaryFloat9 + FilterInputValue2;
+        SecondaryFloatValue = FilterInputValue1 + ScalingFactor + SecondaryFloatValue + FilterInputValue0 + ContextPrimaryFloat9 + FilterInputValue4 + MatrixTransformElementC + FilterInputValue2;
       }
       if (MatchCounter < (int)SystemParameterD) {
         if (3 < (int)(SystemParameterD - MatchCounter)) {
           IntegerValue4 = MatchCounter + 2;
-          ContextSecondaryFloat9 = (float)InputDataLength;
+          MatrixTransformElementC = (float)InputDataLength;
           pSystemContextPrimaryFloat2 = SystemDataNode + (long long)MatchCounter + 2;
           FilterInputValue1 = (float)(int)SystemParameterD;
           do {
             ContextPrimaryFloat9 = pSystemContextPrimaryFloat2[-2];
             if (0.0001 < ContextPrimaryFloat9) {
               FloatingPointRegisterA = FloatingPointRegisterA + ContextPrimaryFloat9;
-              SecondaryFloatValue = SecondaryFloatValue + ((ContextSecondaryFloat9 * 0.5 * (float)MatchCounter) / FilterInputValue1) * ContextPrimaryFloat9;
+              SecondaryFloatValue = SecondaryFloatValue + ((MatrixTransformElementC * 0.5 * (float)MatchCounter) / FilterInputValue1) * ContextPrimaryFloat9;
             }
             ContextPrimaryFloat9 = pSystemContextPrimaryFloat2[-1];
             if (0.0001 < ContextPrimaryFloat9) {
               FloatingPointRegisterA = FloatingPointRegisterA + ContextPrimaryFloat9;
-              SecondaryFloatValue = SecondaryFloatValue + (((float)(IntegerValue4 + -1) * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
+              SecondaryFloatValue = SecondaryFloatValue + (((float)(IntegerValue4 + -1) * MatrixTransformElementC * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
             }
             ContextPrimaryFloat9 = *pSystemContextPrimaryFloat2;
             if (0.0001 < ContextPrimaryFloat9) {
               FloatingPointRegisterA = FloatingPointRegisterA + ContextPrimaryFloat9;
-              SecondaryFloatValue = SecondaryFloatValue + (((float)IntegerValue4 * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
+              SecondaryFloatValue = SecondaryFloatValue + (((float)IntegerValue4 * MatrixTransformElementC * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
             }
             ContextPrimaryFloat9 = pSystemContextPrimaryFloat2[1];
             if (0.0001 < ContextPrimaryFloat9) {
               FloatingPointRegisterA = FloatingPointRegisterA + ContextPrimaryFloat9;
-              SecondaryFloatValue = SecondaryFloatValue + (((float)(IntegerValue4 + 1) * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
+              SecondaryFloatValue = SecondaryFloatValue + (((float)(IntegerValue4 + 1) * MatrixTransformElementC * 0.5) / FilterInputValue1) * ContextPrimaryFloat9;
             }
             pSystemContextPrimaryFloat2 = pSystemContextPrimaryFloat2 + 4;
             MatchCounter = MatchCounter + 4;
@@ -289960,11 +289960,11 @@ uint64_t CalculateVectorNormalizationFactor(void
         if (MatchCounter < (int)SystemParameterD) {
           pSystemContextPrimaryFloat2 = SystemDataNode + MatchCounter;
           do {
-            ContextSecondaryFloat9 = *pSystemContextPrimaryFloat2;
-            if (0.0001 < ContextSecondaryFloat9) {
-              FloatingPointRegisterA = FloatingPointRegisterA + ContextSecondaryFloat9;
+            MatrixTransformElementC = *pSystemContextPrimaryFloat2;
+            if (0.0001 < MatrixTransformElementC) {
+              FloatingPointRegisterA = FloatingPointRegisterA + MatrixTransformElementC;
               SecondaryFloatValue = SecondaryFloatValue + (((float)InputDataLength * 0.5 * (float)MatchCounter) / (float)(int)SystemParameterD) *
-                                ContextSecondaryFloat9;
+                                MatrixTransformElementC;
             }
             pSystemContextPrimaryFloat2 = pSystemContextPrimaryFloat2 + 1;
             MatchCounter = MatchCounter + 1;
@@ -290063,7 +290063,7 @@ uint64_t ProcessVectorNormalizationCalculation(void
       aUnicodeContextHandle.High32Part = (float)aMemoryAllocationOffset.High32Part;
       aMemoryAllocationOffset = rcpps(aMemoryAllocationOffset,aUnicodeContextHandle);
       MatrixTransformElementB = 0.0;
-      ContextSecondaryFloat9 = 0.0;
+      MatrixTransformElementC = 0.0;
       FilterInputValue1 = 0.0;
       SystemCoreScaleY = 0.0;
       ContextPrimaryFloat9 = aMemoryAllocationOffset.LowPart;
@@ -290105,8 +290105,8 @@ uint64_t ProcessVectorNormalizationCalculation(void
         pSecondaryFloatValue = pSecondaryFloatValue + 8;
         MatrixTransformElementB = (float)((uint)((float)LoopCounter * (float)AuxiliaryFloat12 * 0.5 * ContextPrimaryFloat9 * SystemContextPrimaryFloat +
                                MatrixTransformElementB) & ValidationResult | ~ValidationResult & (uint)MatrixTransformElementB);
-        ContextSecondaryFloat9 = (float)((uint)((float)(LoopCounter + 1) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat1 * ContextSecondaryFloat +
-                               ContextSecondaryFloat9) & Utf16Char4 | ~Utf16Char4 & (uint)ContextSecondaryFloat9);
+        MatrixTransformElementC = (float)((uint)((float)(LoopCounter + 1) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat1 * ContextSecondaryFloat +
+                               MatrixTransformElementC) & Utf16Char4 | ~Utf16Char4 & (uint)MatrixTransformElementC);
         FilterInputValue1 = (float)((uint)((float)(LoopCounter + 2) * (float)XMM12RegisterC * 0.5 * ContextSecondaryFloat2 * FilterInputValue +
                                FilterInputValue1) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue1);
         SystemCoreScaleY = (float)((uint)((float)(LoopCounter + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat3 * MatrixTransformMultiplier1 +
@@ -290134,34 +290134,34 @@ uint64_t ProcessVectorNormalizationCalculation(void
         LoopCounter = ArrayIndex;
       } while (ArrayIndex < (int)(SystemParameterD - SystemMemoryAllocationResult));
       FloatingPointRegisterA = ContextSecondaryFloat7 + FilterInputValue7 + ContextSecondaryFloat4 + FilterInputValue5 + MatrixTransformElementA + FilterInputValue8 + ContextSecondaryFloat6 + FilterInputValue6;
-      MatrixTransformElementB = FilterInputValue1 + ScalingFactor + MatrixTransformElementB + FilterInputValue0 + SystemCoreScaleY + FilterInputValue4 + ContextSecondaryFloat9 + FilterInputValue2;
+      MatrixTransformElementB = FilterInputValue1 + ScalingFactor + MatrixTransformElementB + FilterInputValue0 + SystemCoreScaleY + FilterInputValue4 + MatrixTransformElementC + FilterInputValue2;
     }
     if (ArrayIndex < (int)SystemParameterD) {
       if (3 < (int)(SystemParameterD - ArrayIndex)) {
         LoopCounter = ArrayIndex + 2;
-        ContextSecondaryFloat9 = (float)InputDataLength;
+        MatrixTransformElementC = (float)InputDataLength;
         pSecondaryFloatValue = SystemDataNode + (long long)ArrayIndex + 2;
         FilterInputValue1 = (float)(int)SystemParameterD;
         do {
           SystemCoreScaleY = pSecondaryFloatValue[-2];
           if (0.0001 < SystemCoreScaleY) {
             FloatingPointRegisterA = FloatingPointRegisterA + SystemCoreScaleY;
-            MatrixTransformElementB = MatrixTransformElementB + ((ContextSecondaryFloat9 * 0.5 * (float)ArrayIndex) / FilterInputValue1) * SystemCoreScaleY;
+            MatrixTransformElementB = MatrixTransformElementB + ((MatrixTransformElementC * 0.5 * (float)ArrayIndex) / FilterInputValue1) * SystemCoreScaleY;
           }
           SystemCoreScaleY = pSecondaryFloatValue[-1];
           if (0.0001 < SystemCoreScaleY) {
             FloatingPointRegisterA = FloatingPointRegisterA + SystemCoreScaleY;
-            MatrixTransformElementB = MatrixTransformElementB + (((float)(LoopCounter + -1) * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * SystemCoreScaleY;
+            MatrixTransformElementB = MatrixTransformElementB + (((float)(LoopCounter + -1) * MatrixTransformElementC * 0.5) / FilterInputValue1) * SystemCoreScaleY;
           }
           SystemCoreScaleY = *pSecondaryFloatValue;
           if (0.0001 < SystemCoreScaleY) {
             FloatingPointRegisterA = FloatingPointRegisterA + SystemCoreScaleY;
-            MatrixTransformElementB = MatrixTransformElementB + (((float)LoopCounter * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * SystemCoreScaleY;
+            MatrixTransformElementB = MatrixTransformElementB + (((float)LoopCounter * MatrixTransformElementC * 0.5) / FilterInputValue1) * SystemCoreScaleY;
           }
           SystemCoreScaleY = pSecondaryFloatValue[1];
           if (0.0001 < SystemCoreScaleY) {
             FloatingPointRegisterA = FloatingPointRegisterA + SystemCoreScaleY;
-            MatrixTransformElementB = MatrixTransformElementB + (((float)(LoopCounter + 1) * ContextSecondaryFloat9 * 0.5) / FilterInputValue1) * SystemCoreScaleY;
+            MatrixTransformElementB = MatrixTransformElementB + (((float)(LoopCounter + 1) * MatrixTransformElementC * 0.5) / FilterInputValue1) * SystemCoreScaleY;
           }
           pSecondaryFloatValue = pSecondaryFloatValue + 4;
           ArrayIndex = ArrayIndex + 4;
@@ -290171,11 +290171,11 @@ uint64_t ProcessVectorNormalizationCalculation(void
       if (ArrayIndex < (int)SystemParameterD) {
         pSecondaryFloatValue = SystemDataNode + ArrayIndex;
         do {
-          ContextSecondaryFloat9 = *pSecondaryFloatValue;
-          if (0.0001 < ContextSecondaryFloat9) {
-            FloatingPointRegisterA = FloatingPointRegisterA + ContextSecondaryFloat9;
+          MatrixTransformElementC = *pSecondaryFloatValue;
+          if (0.0001 < MatrixTransformElementC) {
+            FloatingPointRegisterA = FloatingPointRegisterA + MatrixTransformElementC;
             MatrixTransformElementB = MatrixTransformElementB + (((float)InputDataLength * 0.5 * (float)ArrayIndex) / (float)(int)SystemParameterD) *
-                              ContextSecondaryFloat9;
+                              MatrixTransformElementC;
           }
           pSecondaryFloatValue = pSecondaryFloatValue + 1;
           ArrayIndex = ArrayIndex + 1;

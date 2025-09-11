@@ -10254,37 +10254,46 @@ void ValidateUIState(void)
 
 
 
-  刷新UI显示
- 刷新UI系统的显示内容，检查渲染器初始化状态
+  /**
+ * @brief 刷新UI显示
+ * 
+ * 刷新UI系统的显示内容，检查渲染器初始化状态
  * 并执行相应的渲染任务
  * 
-  原始函数名: RefreshUIDisplay
- void RefreshUIDisplay(void)
+ * @return 无返回值
+ * @note 原始函数名: RefreshUIDisplay
+ */
 void RefreshUIDisplay(void)
 
 {
-  longlong stackFramePtr;
-  longlong contextHandlePtr;
+  longlong uiStackFramePointer;
+  longlong uiContextHandlePointer;
   
   if (UIRendererInitialized == '\0') {
-    *(UIDword *)(contextHandlePtr + 4) = 1;
+    *(UIDword *)(uiContextHandlePointer + 4) = 1;
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(stackFramePtr + 0x47) ^ (ulonglong)UIStackBufferBase);
+  ExecuteUIRenderTask(*(ulonglong *)(uiStackFramePointer + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
 
 
- 执行UI系统软件中断处理
+ /**
+ * @brief 执行UI系统软件中断处理
+ * 
+ * 处理UI系统的软件中断，调用错误处理器和中断处理程序
+ * 
+ * @return 无返回值
+ */
 void ExecuteUISoftwareInterrupt(void)
 
 {
-  code *interruptHandler;
+  code *uiInterruptHandler;
   
   TriggerUIErrorHandler();
-  interruptHandler = (UIFunctionPtr *)swi(3);
-  (*interruptHandler)();
+  uiInterruptHandler = (UIFunctionPtr *)swi(3);
+  (*uiInterruptHandler)();
   return;
 }
 
