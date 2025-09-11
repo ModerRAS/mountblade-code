@@ -231940,7 +231940,7 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0xc);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0xc);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -231948,7 +231948,7 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x10);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -231956,7 +231956,7 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x14);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -231964,7 +231964,7 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x18);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -232010,7 +232010,7 @@ void ReinitializeSystemHandleAndBufferData(void)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x10);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -232018,7 +232018,7 @@ void ReinitializeSystemHandleAndBufferData(void)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x14);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
@@ -232026,7 +232026,7 @@ void ReinitializeSystemHandleAndBufferData(void)
   *BufferTargetPointer = Utf16CodeValue;
   SystemContextController[1] = SystemContextController[1] + 4;
   BufferTargetPointer = (uint32_t *)SystemContextController[1];
-  Utf16CodeValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
+  Utf16CodeValue = *(uint32_t *)(DataSourceMemoryNode + 0x18);
   if ((unsigned long long)((*SystemContextController - (long long)BufferTargetPointer) + SystemContextController[2]) < 5) {
     AllocateBufferIndex();
     BufferTargetPointer = (uint32_t *)SystemContextController[1];
