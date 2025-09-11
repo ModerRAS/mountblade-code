@@ -263851,7 +263851,7 @@ void SystemCoreEngineTermination(void)
 
 
 
-11520(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180211520(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+11520(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemDataAndContext(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -263940,7 +263940,7 @@ void SystemCoreEngineTermination(void)
 
 
 
-11720(uint64_t *ContextHandlevoid FUN_180211720(uint64_t *ContextHandle
+11720(uint64_t *ContextHandlevoid InitializeSystemResourceAllocation(uint64_t *ContextHandle
 {
   ExecuteSystemContextCleanup();
   *ContextHandle = &SystemNullTemplate;
@@ -264660,7 +264660,7 @@ LAB_1801571ef:
     do {
       PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterTablePointer + MemoryAllocationMaskPointer * 8);
       if (PrimaryProcessingStatusFlag != NULL) {
-        FUN_180211720(PrimaryProcessingStatusFlag + 4);
+        InitializeSystemResourceAllocation(PrimaryProcessingStatusFlag + 4);
         *PrimaryProcessingStatusFlag = &SystemNullTemplate;
         if (PrimaryProcessingStatusFlag[1] == 0) {
           PrimaryProcessingStatusFlag[1] = 0;
@@ -264692,7 +264692,7 @@ LAB_1801571ef:
   
   CharacterTablePointer = ContextHandle[1];
   for (BufferStatus = *ContextHandle; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_180211720(BufferStatus);
+    InitializeSystemResourceAllocation(BufferStatus);
   }
   if (*ContextHandle == 0) {
     return;
@@ -264717,7 +264717,7 @@ LAB_1801571ef:
     do {
       PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterTablePointer + MemoryAllocationMaskPointer * 8);
       if (PrimaryProcessingStatusFlag != NULL) {
-        FUN_180211720(PrimaryProcessingStatusFlag + 4);
+        InitializeSystemResourceAllocation(PrimaryProcessingStatusFlag + 4);
         *PrimaryProcessingStatusFlag = &SystemNullTemplate;
         if (PrimaryProcessingStatusFlag[1] == 0) {
           PrimaryProcessingStatusFlag[1] = 0;
@@ -269276,7 +269276,7 @@ LAB_18021800d:
     do {
       PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterTablePointer + MemoryAllocationMaskPointer * 8);
       if (PrimaryProcessingStatusFlag != NULL) {
-        FUN_180211720(PrimaryProcessingStatusFlag + 4);
+        InitializeSystemResourceAllocation(PrimaryProcessingStatusFlag + 4);
         *PrimaryProcessingStatusFlag = &SystemNullTemplate;
         if (PrimaryProcessingStatusFlag[1] == 0) {
           PrimaryProcessingStatusFlag[1] = 0;
@@ -269352,7 +269352,7 @@ ProcessContextHandleTableAllocation(long long ContextHandle,long long *ContextHa
   
   CharacterTablePointer = ContextHandle[1];
   for (BufferStatus = *ContextHandle; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_180211720(BufferStatus);
+    InitializeSystemResourceAllocation(BufferStatus);
   }
   if (*ContextHandle == 0) {
     return;
@@ -270139,7 +270139,7 @@ LAB_1802190a9:
   SystemDataTablePointer = *ContextHandle;
   if (SystemDataTablePointer != MemoryAllocationIndex) {
     do {
-      FUN_180211720(SystemDataTablePointer);
+      InitializeSystemResourceAllocation(SystemDataTablePointer);
       SystemDataTablePointer = SystemDataTablePointer + 0x60;
     } while (SystemDataTablePointer != MemoryAllocationIndex);
     SystemDataTablePointer = *ContextHandle;
@@ -271055,7 +271055,7 @@ LAB_180219fcf:
 
 19ff0(uint64_t *ContextHandlevoid FUN_180219ff0(uint64_t *ContextHandle
 {
-  FUN_180211720(ContextHandle + 4);
+  InitializeSystemResourceAllocation(ContextHandle + 4);
   *ContextHandle = &SystemNullTemplate;
   if (ContextHandle[1] != 0) {
       ProcessSystemEventHandling();
