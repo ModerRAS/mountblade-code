@@ -200125,11 +200125,11 @@ long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,
       if (SystemValidationPointer != (uint8_t *)0x0) {
         MemoryAddressMaskPointer = SystemValidationPointer;
       }
-      BufferStatus = strstr(MemoryAddressMaskPointer,StringProcessingResult,MemoryPoolIndex,SystemValidationPointer,ValidationResult,Utf16Char4);
+      BufferStatus = strstr(MemoryAddressMaskPointer,StringProcessingResult,MemoryPoolIndex,SystemValidationPointer,ValidationResult,OperationResult);
       if (BufferStatus != 0) {
-        pStringOffset = (long long *)OperationBufferSize[1];
-        if (pStringOffset < (long long *)OperationBufferSize[2]) {
-          OperationBufferSize[1] = (long long)(pStringOffset + 1);
+        pStringOffset = (long long *)ContextHandleSize[1];
+        if (pStringOffset < (long long *)ContextHandleSize[2]) {
+          ContextHandleSize[1] = (long long)(pStringOffset + 1);
           *pStringOffset = MemoryBoundaryEnd;
         }
         else {
