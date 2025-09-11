@@ -253573,7 +253573,8 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
 
 
 
-07110(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180207110(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 处理系统上下文锁定和操作缓冲区管理
+void ProcessSystemContextLocking(uint64_t ContextHandle, long long OperationBufferSize, long long Utf8SourcePointer)
 {
   int LockResult;
   int LockOperationResult;
@@ -253691,7 +253692,8 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
 
 
 
-07400(uint64_t ContextHandle,int *ContextHandleSize,long long *Utf8SourcePointervoid FUN_180207400(uint64_t ContextHandle,int *ContextHandleSize,long long *Utf8SourcePointer
+// 执行系统上下文大小验证和UTF-8指针处理
+void ValidateSystemContextSize(uint64_t ContextHandle, int *ContextHandleSize, long long *Utf8SourcePointer)
 {
   int LockResult;
   long long BufferStatus;
@@ -253728,7 +253730,8 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
 
 
 
-07530(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180207530(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 管理系统缓冲区操作和字符编码转换
+void ManageSystemBufferOperations(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint32_t SystemKeyPointer;
@@ -253772,7 +253775,8 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
 
 
 
-075c0(long long ContextHandle,int *ContextHandleSize,int Utf8SourcePointer,int Utf16EndPointer,int AdditionalParameter1void FUN_1802075c0(long long ContextHandle,int *ContextHandleSize,int Utf8SourcePointer,int Utf16EndPointer,int AdditionalParameter1
+// 处理系统字符编码转换和缓冲区管理
+void ProcessSystemCharacterEncoding(long long ContextHandle, int *ContextHandleSize, int Utf8SourcePointer, int Utf16EndPointer, int AdditionalParameter1)
 {
   int LockResult;
   int LockOperationResult;
@@ -261365,18 +261369,18 @@ long long * AllocateAndInitializeSystemContextMemoryBlock(long long ContextHandl
       MemoryAddressMaskPointer[1] = MemoryAddressMaskPointer + 3;
       *(uint32_t *)(MemoryAddressMaskPointer + 2) = 0;
       *(uint8_t *)(MemoryAddressMaskPointer + 3) = 0;
-      *(uint32_t *)(MemoryAddressMaskPointer + 2) = *(uint32_t *)(AllocatedMemorySize + 0x10 + (long long)MemoryAddressMaskPointer);
-      PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)MemoryAddressMaskPointer);
+      *(uint32_t *)(MemoryAddressMaskPointer + 2) = *(uint32_t *)(MemoryRangeEnd + 0x10 + (long long)MemoryAddressMaskPointer);
+      PrimaryProcessingStatusFlag = *(void **)(MemoryRangeEnd + 8 + (long long)MemoryAddressMaskPointer);
       SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
         SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
       }
-      strcpy_s(MemoryAddressMaskPointer[1],0x80,SecondaryProcessingStatusFlag);
+      strcpy_s((char *)MemoryAddressMaskPointer[1],0x80,(char *)SecondaryProcessingStatusFlag);
       MemoryAddressMaskPointer = MemoryAddressMaskPointer + 0x13;
-    } while (AllocatedMemorySize + (long long)MemoryAddressMaskPointer != MemoryBlockIndex);
+    } while (MemoryRangeEnd + (long long)MemoryAddressMaskPointer != (long long)MemoryBlockIndex);
   }
-  OperationBufferSize[1] = (long long)MemoryAddressMaskPointer;
-  return OperationBufferSize;
+  OperationBuffer[1] = (long long)MemoryAddressMaskPointer;
+  return OperationBuffer;
 }
 
 
