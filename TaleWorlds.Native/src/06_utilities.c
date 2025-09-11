@@ -10497,15 +10497,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_18089513 - 数据验证函数
 // 功能：验证系统数据块的完整性
-#define ValidateDataBlockIntegrity FUN_18089513
+#define ValidateDataBlockIntegrity FUN_180895130
 
-// 原始函数名：FUN_18088c79 - 数据处理状态函数
-// 功能：检查数据处理状态和进度
-#define CheckDataProcessingStatus FUN_18088c79
+#define CheckDataProcessingStatus FUN_18088c790
 
-// 原始函数名：FUN_18088c74 - 数据处理控制函数
-// 功能：控制数据处理流程和操作
-#define ControlDataProcessingFlow FUN_18088c74
+#define ControlDataProcessingFlow FUN_18088c740
 
 #define ConfigureDataProcessingOptions FUN_180840270
 
