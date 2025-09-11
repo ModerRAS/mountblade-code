@@ -137068,7 +137068,7 @@ UIHandle ThunkUIDataProcess(longlong *uiContext)
     bufferPointer = bufferPointer + 1;
     iterationCount = iterationCount + -1;
   } while (iterationCount != 0);
-  uiContext[0x6b] = (longlong)&UNK_180741cf0;
+  uiContext[0x6b] = (longlong)&UIContextBufferTable;
   uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
   uiContext[0x6d] = (longlong)&UIContextDataPointer;
   result = *(uint *)(uiContext + 0x66);
@@ -137270,7 +137270,7 @@ UIHandle CleanupUIContextResources(longlong *uiContext)
     bufferPointer = bufferPointer + 1;
     iterationCount = iterationCount + -1;
   } while (iterationCount != 0);
-  uiContext[0x6b] = (longlong)&UNK_180741cf0;
+  uiContext[0x6b] = (longlong)&UIContextBufferTable;
   uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
   uiContext[0x6d] = (longlong)&UIContextDataPointer;
   result = *(uint *)(uiContext + 0x66);
@@ -188123,7 +188123,7 @@ LAB_18077086b:
                 *(UIHandle *)(CharacterDataOffset + 0x100) = targetBuffer[0x1a];
                 *(UIHandle *)(CharacterDataOffset + 0x108) = processingFlags;
                 *(int *)(globalDataPointer[99] + 0xa4) = dataSource;
-                *(undefined **)(globalDataPointer[99] + 0x88) = &UNK_180770640;
+                *(undefined **)(globalDataPointer[99] + 0x88) = &UIResourceBufferTable;
                 *(longlong **)(globalDataPointer[99] + 8) = globalDataPointer + 0x5c;
                 *(longlong **)(globalDataPointer[99] + 0x170) = globalDataPointer + 0x66;
                 *(UIDword *)(globalDataPointer[99] + 0x110) = 0;

@@ -2877,6 +2877,12 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackUnsigned9c CoreEngineValueStack                        // 核心引擎值栈
 #define StackPointer88 SystemDataPointerStack                       // 系统数据指针栈
 #define StackBuffer80 CharacterProcessingBuffer                     // 字符处理缓冲区
+#define StackBuffer58 SystemDataValidationBuffer                   // 系统数据验证缓冲区58
+#define StackBuffer18 SystemMemoryAllocationBuffer                 // 系统内存分配缓冲区18
+#define StackBuffer20 SystemConfigurationBuffer                   // 系统配置缓冲区20
+#define StackBuffer50 SystemSecondaryConfigBuffer                 // 系统次要配置缓冲区50
+#define StackBuffer70 SystemTertiaryConfigBuffer                  // 系统第三配置缓冲区70
+#define StackBuffer678 SystemEventProcessingStackBuffer           // 系统事件处理栈缓冲区678
 #define StackUnsigned60 StackProcessingDataPointer                        // 栈处理值
 #define StackUnsigned54 SystemUnsignedValueStack                    // 系统无符号值栈
 #define StackPointer50 SystemTemporaryValueStack                    // 系统临时值栈
@@ -261638,7 +261644,7 @@ void HandleSystemContextValidation(long long ContextHandle
       EnginePointerBuffer = NULL;
       StackProcessingDataFlags = 3;
       ProcessingStatusFlag = 1;
-      FUN_1802e8c60(Utf16Char,&CoreEnginePointerBuffer78);
+      FinalizeStringEncodingOperation(Utf16Char,&CoreEnginePointerBuffer78);
       if (StackProcessingVariableBuffer < EnginePointerBuffer) {
         *StackProcessingVariableBuffer = Utf16Char;
         MemoryAllocationMaskPointer = StackProcessingVariableBuffer;
@@ -261734,7 +261740,7 @@ uint64_t * HandleCharacterStatusAndEvents(uint64_t *ContextHandle,int *ContextHa
   if ((SystemEventTemplatePointer != ContextHandle) && (*(int *)(SystemEventTemplatePointer + 4) <= *ContextHandleSize)) {
     return SystemEventTemplatePointer + 5;
   }
-  BufferAllocationState = (long long *)FUN_18020d730(ContextHandle,SystemRegisterFlagBuffer,Utf8SourcePointer,SystemEventTemplatePointer,OperationBufferSize);
+  BufferAllocationState = (long long *)AllocateSystemContextBuffer(ContextHandle,SystemRegisterFlagBuffer,Utf8SourcePointer,SystemEventTemplatePointer,OperationBufferSize);
   return (void *)(*BufferAllocationState + 0x28);
 }
 
@@ -261781,7 +261787,7 @@ LAB_18020d79f:
       Utf16EndPointer = MemoryBlockIndex;
 LAB_18020d7a2:
       if (Utf16EndPointer != (long long *)0x0) {
-        FUN_18020da10(ContextHandle,OperationBufferSize,Utf16EndPointer,OperationResult,AdditionalParameter1);
+        ProcessSystemContextOperation(ContextHandle,OperationBufferSize,Utf16EndPointer,OperationResult,AdditionalParameter1);
         return OperationBufferSize;
       }
     }
