@@ -314434,7 +314434,7 @@ LAB_180850d95:
       if (localValidationResult == 0) {
         localValidationResult = FUN_180739140(result,0x19,&stackLongd0);
         if ((localValidationResult != 0) || (localValidationResult = FUN_180740f10(stackLongd0,1), localValidationResult != 0)) goto LAB_180850d9b;
-        localValidationResult = FUN_18073c020(stackLong108,0xfffffffd,stackLongd0);
+        localValidationResult = ProcessUIContextBufferOperation(stackLong108,0xfffffffd,stackLongd0);
         goto LAB_180850d95;
       }
 LAB_180850d9b:
@@ -314551,7 +314551,7 @@ LAB_180850eb0:
             colorBufferPointer0 = pstackLong88;
             if (localInt7 != 0) goto LAB_1808513ac;
             FUN_180853260(pstackLong118 + 0x10,&stackLong110);
-            localInt7 = FUN_18073c020(pstackLong118[0xf],stackInt100 + 1,*(UIHandle *)(stackLong110 + 0x30)
+            localInt7 = ProcessUIContextBufferOperation(pstackLong118[0xf],stackInt100 + 1,*(UIHandle *)(stackLong110 + 0x30)
                                  );
             allocatedMemory3 = stackLongb0;
             allocatedMemory5 = stackLongd8;
