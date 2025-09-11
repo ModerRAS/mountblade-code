@@ -3460,6 +3460,8 @@ typedef enum {
 #define pcStack0000000000000088 UIStackCharacterBuffer
 #define piStack0000000000000030 UIStackIntegerPointer
 #define puStack0000000000000050 UIStackPointerBuffer
+#define pStackData1 UIStackDataPointer
+#define tempStackBuffer UITemporaryStackBuffer
 #define pcStack0000000000000038 UIStackCharacterPointer
 
 // UI系统寄存器变量美化
