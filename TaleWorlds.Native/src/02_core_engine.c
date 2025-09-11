@@ -256400,8 +256400,7 @@ void ProcessContextHandleAndCharacterBufferManagement(long long *SystemContextHa
   
   MemoryPoolBlockSize = *SystemContextHandle;
   ProcessingStatusFlag = 0;
-  BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - MemoryPoolBlockSize),8) +
-          (SystemContextHandle[1] - MemoryPoolBlockSize);
+  BufferStatus = CalculateSystemBufferDifference(SystemContextHandle[1] - MemoryPoolBlockSize);
   UnicodeCodePoint = ProcessingStatusFlag;
   DataArraySize = ProcessingStatusFlag;
   if (BufferStatus >> 6 == BufferStatus >> 0x3f) {
@@ -292911,21 +292910,26 @@ void InitializeCharacterTransformationData(long long *ContextHandle)
 #define ProcessSystemDataTransferEx FUN_18022ec40
 void ProcessSystemDataTransferEx(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
-  uint64_t *CharacterStatusBuffer;
-  unsigned long long MemoryPoolIndex;
-  unsigned long long UnicodeCodePoint;
-  long long SystemDataRegistry;
-  uint64_t *ContextHandlePointer;
-  void *CurrentNode;
+  uint64_t *CharacterStatusBuffer;           // 字符状态缓冲区指针，用于存储字符处理状态
+  unsigned long long MemoryPoolIndex;         // 内存池索引，用于标识内存块位置
+  unsigned long long UnicodeCodePoint;        // Unicode码点，表示字符的Unicode编码值
+  long long SystemDataRegistry;               // 系统数据注册表，管理系统数据结构
+  uint64_t *ContextHandlePointer;             // 上下文句柄指针，用于访问上下文数据
+  void *CurrentNode;                          // 当前节点指针，用于链表或树形结构遍历
   
+  // 计算Unicode码点：基于UTF-8源指针和操作缓冲区大小的差值除以块大小
   UnicodeCodePoint = (Utf8SourcePointer - OperationBufferSize) / 0x58;
+  
+  // 检查上下文句柄是否有足够的空间处理Unicode码点
   if ((unsigned long long)((ContextHandle[2] - *ContextHandle) / 0x58) < UnicodeCodePoint) {
     if (UnicodeCodePoint == 0) {
-      SystemDataRegistry = 0;
+      SystemDataRegistry = 0;  // 零码点特殊情况处理
     }
     else {
+      // 为系统数据注册表分配内存池
       SystemDataRegistry = BufferAllocate(MemoryPoolManager,UnicodeCodePoint * 0x58,(char)ContextHandle[3]);
     }
+    // 处理Unicode码点和字符缓冲区
     ProcessUnicodeCodePointAndCharacterBuffer(OperationBufferSize,Utf8SourcePointer,SystemDataRegistry);
     CharacterStatusBuffer = (void *)ContextHandle[1];
     SecondaryProcessingStatusFlag = (void *)*ContextHandle;
