@@ -242,79 +242,81 @@
 #define ResourceValidationCheckOffset 0x2c                     // 资源验证检查偏移 - 用于验证状态
 #define ValidationStatusPointerE0Offset 0xe0                   // 验证状态指针E0偏移 - 用于内存区域验证
 #define ValidationStatusPointerOffset 0x28                     // 验证状态指针偏移 - 用于状态验证
-#define DataBufferOffset1B8 0x1b8
-#define DataBufferOffsetB1 0xb1
-#define DataBufferOffset2B0 0x2b0
-#define DataBufferOffset4B0 0x4b0
-#define DataBufferOffset278 0x278
-#define DataBufferOffset5D0 0x5d0
-#define DataBufferOffset390 0x390
-#define DataBufferOffset2F0 0x2f0
-#define DataBufferOffset2F8 0x2f8
-#define DataBufferOffset198 0x198
-#define DataBufferOffset330 0x330
-#define DataBufferOffset410 0x410
-#define DataBufferOffset51 0x51
-#define DataBufferOffset158 0x158
-#define DataBufferOffset350 0x350
+
+// 数据缓冲区偏移常量
+#define DataBufferOffsetPrimary 0x1b8                         // 数据缓冲区主偏移量 - 用于主要数据缓冲区
+#define DataBufferOffsetSecondary 0xb1                        // 数据缓冲区次偏移量 - 用于次要数据缓冲区
+#define DataBufferOffsetTertiary 0x2b0                        // 数据缓冲区第三偏移量 - 用于第三数据缓冲区
+#define DataBufferOffsetQuaternary 0x4b0                      // 数据缓冲区第四偏移量 - 用于第四数据缓冲区
+#define DataBufferOffsetQuinary 0x278                          // 数据缓冲区第五偏移量 - 用于第五数据缓冲区
+#define DataBufferOffsetSenary 0x5d0                           // 数据缓冲区第六偏移量 - 用于第六数据缓冲区
+#define DataBufferOffsetSeptenary 0x390                        // 数据缓冲区第七偏移量 - 用于第七数据缓冲区
+#define DataBufferOffsetOctonary 0x2f0                        // 数据缓冲区第八偏移量 - 用于第八数据缓冲区
+#define DataBufferOffsetNonary 0x2f8                          // 数据缓冲区第九偏移量 - 用于第九数据缓冲区
+#define DataBufferOffsetDenary 0x198                           // 数据缓冲区第十偏移量 - 用于第十数据缓冲区
+#define DataBufferOffsetUndenary 0x330                        // 数据缓冲区第十一偏移量 - 用于第十一数据缓冲区
+#define DataBufferOffsetDuodenary 0x410                       // 数据缓冲区第十二偏移量 - 用于第十二数据缓冲区
+#define DataBufferOffsetTerdenary 0x51                         // 数据缓冲区第十三偏移量 - 用于第十三数据缓冲区
+#define DataBufferOffsetQuattuordenary 0x158                   // 数据缓冲区第十四偏移量 - 用于第十四数据缓冲区
+#define DataBufferOffsetQuindenary 0x350                       // 数据缓冲区第十五偏移量 - 用于第十五数据缓冲区
 
 // 位操作掩码常量
-#define BitOperationMaskC000 0xffffc000
-#define BitOperationValue4000 0x4000
-#define BitOperationMask7fff 0x7fff
+#define BitOperationMaskC000 0xffffc000                        // 位操作掩码C000 - 用于高位屏蔽操作
+#define BitOperationValue4000 0x4000                            // 位操作值4000 - 用于特定位设置
+#define BitOperationMask7fff 0x7fff                            // 位操作掩码7fff - 用于低位保留操作
 
 // 字符验证常量
-#define CharacterValidationOffset 0x57
-#define SystemDataRecordHeaderOffset 0x14
+#define CharacterValidationOffset 0x57                          // 字符验证偏移量 - 用于字符验证操作
+#define SystemDataRecordHeaderOffset 0x14                        // 系统数据记录头偏移量 - 用于数据记录头部访问
 
 // 系统数据大小常量
-#define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值 - 用于数据大小验证的最小阈值
+#define SystemDataSizeMinimumThreshold 0x34                      // 系统数据最小大小阈值 - 用于数据大小验证的最小阈值
 #define SystemDataBufferMinimumSize 0x70                         // 系统数据缓冲区最小尺寸 - 数据缓冲区的最小分配大小
-#define SystemDataSizeOffset 8                                   // 系统数据大小偏移量 - 数据大小字段的偏移位置
-#define SystemDataBufferArrayIndex 1                             // 系统数据缓冲区数组索引 - 缓冲区数组的第一索引
+#define SystemDataSizeFieldOffset 8                              // 系统数据大小字段偏移量 - 数据大小字段的偏移位置
+#define SystemDataBufferPrimaryIndex 1                           // 系统数据缓冲区主索引 - 缓冲区数组的第一索引
 #define StatusCounterMaximumValue 0x6d                           // 状态计数器最大值 - 状态计数器的最大计数值
-#define SystemDataBufferSizeMaximum 0x81                          // 系统数据缓冲区最大尺寸 - 数据缓冲区的最大分配大小
-#define SystemDataBufferArrayIndex2 2                            // 系统数据缓冲区数组索引2 - 缓冲区数组的第二索引
-#define SystemDataBufferArrayIndex3 3                            // 系统数据缓冲区数组索引3 - 缓冲区数组的第三索引
-#define SystemDataSizeThreshold6A 0x6a                           // 系统数据大小阈值6A - 用于数据大小验证的第二阈值
+#define SystemDataBufferMaximumSize 0x81                          // 系统数据缓冲区最大尺寸 - 数据缓冲区的最大分配大小
+#define SystemDataBufferSecondaryIndex 2                         // 系统数据缓冲区次索引 - 缓冲区数组的第二索引
+#define SystemDataBufferTertiaryIndex 3                          // 系统数据缓冲区第三索引 - 缓冲区数组的第三索引
+#define SystemDataSizeSecondaryThreshold 0x6a                    // 系统数据次级大小阈值 - 用于数据大小验证的第二阈值
 
 // 系统内存管理常量
-#define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48 - 用于内存区域管理的主偏移量
-#define SystemMemoryRegionOffset50 0x50                         // 系统内存区域偏移量50 - 用于内存区域管理的辅助偏移量
-#define SystemMemoryRegionSize1C 0x1c                           // 系统内存区域大小1C - 内存区域的标准大小
-#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14 - 主数据缓冲区偏移量
-#define SystemMemoryDataBufferOffset2 0x2                        // 系统内存数据缓冲区偏移量2 - 辅助数据缓冲区偏移量
-#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30 - 浮点数据缓冲区偏移量
-#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C - 扩展数据缓冲区偏移量
+#define SystemMemoryRegionPrimaryOffset 0x48                    // 系统内存区域主偏移量 - 用于内存区域管理的主要偏移量
+#define SystemMemoryRegionSecondaryOffset 0x50                  // 系统内存区域次偏移量 - 用于内存区域管理的辅助偏移量
+#define SystemMemoryRegionStandardSize 0x1c                     // 系统内存区域标准大小 - 内存区域的标准大小
+#define SystemMemoryMainDataBufferOffset 0x14                   // 系统内存主数据缓冲区偏移量 - 主要数据缓冲区的偏移量
+#define SystemMemoryAuxiliaryDataBufferOffset 0x2               // 系统内存辅助数据缓冲区偏移量 - 辅助数据缓冲区的偏移量
+#define SystemMemoryFloatingPointBufferOffset 0x30              // 系统内存浮点数据缓冲区偏移量 - 浮点数据缓冲区的偏移量
+#define SystemMemoryExtendedDataBufferOffset 0x4c               // 系统内存扩展数据缓冲区偏移量 - 扩展数据缓冲区的偏移量
 
 // 数据处理相关常量
 #define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C - 用于数据大小计算的乘数常量
 
 // 数据验证阈值常量
-#define DataValidationThreshold55 0x55                           // 数据验证阈值55 - 用于数据大小验证
-#define DataValidationThreshold6A 0x6a                           // 数据验证阈值6A - 用于数据大小验证
-#define DataValidationThreshold81 0x81                           // 数据验证阈值81 - 用于数据大小验证
-#define DataValidationThreshold8A 0x8a                           // 数据验证阈值8A - 用于数据大小验证
-#define DataValidationThreshold8E 0x8e                           // 数据验证阈值8E - 用于数据大小验证
+#define DataValidationMinimumThreshold 0x55                      // 数据验证最小阈值 - 用于数据大小验证的最小阈值
+#define DataValidationSecondaryThreshold 0x6a                    // 数据验证次级阈值 - 用于数据大小验证的次级阈值
+#define DataValidationTertiaryThreshold 0x81                     // 数据验证第三阈值 - 用于数据大小验证的第三阈值
+#define DataValidationQuaternaryThreshold 0x8a                   // 数据验证第四阈值 - 用于数据大小验证的第四阈值
+#define DataValidationMaximumThreshold 0x8e                      // 数据验证最大阈值 - 用于数据大小验证的最大阈值
 
 // 系统配置常量
-#define SystemConfigurationOffsetD8 0xd8                         // 系统配置偏移量D8 - 用于系统配置数据访问
-#define SystemConfigurationOffset1C 0x1c                         // 系统配置偏移量1C - 用于系统配置数据访问
+#define SystemConfigurationPrimaryOffset 0xd8                   // 系统配置主偏移量 - 用于系统配置数据的主要访问
+#define SystemConfigurationSecondaryOffset 0x1c                 // 系统配置次偏移量 - 用于系统配置数据的辅助访问
 
 // 数据处理大小常量
 #define LargeDataSizeThreshold 0x40000                            // 大数据量阈值 - 超过此值需要特殊处理
 #define SystemDataBufferThreshold 0x8000                          // 系统数据缓冲区阈值 - 用于数据大小验证
 
 // 数据验证掩码常量
-#define DataValidationMask 0xffffff                                // 数据验证掩码 - 用于数据完整性验证
-#define InvalidDataIndex 0xffffff                                  // 无效数据索引 - 表示数据索引无效
+#define DataValidationMask 0xffffff                              // 数据验证掩码 - 用于数据完整性验证
+#define InvalidDataIndex 0xffffff                                // 无效数据索引 - 表示数据索引无效
 
 // 安全验证标识常量
-#define SecurityValidationFEMP 0x46454d50                         // 安全验证标识FEMP - 用于前端内存保护验证
-#define SecurityValidationTSLP 0x54534c50                         // 安全验证标识TSLP - 用于线程安全锁定保护验证
+#define SecurityValidationCodeFEMP 0x46454d50                    // 安全验证码FEMP - 用于前端内存保护验证
+#define SecurityValidationCodeTSLP 0x54534c50                    // 安全验证码TSLP - 用于线程安全锁定保护验证
 
 // 内存操作标志常量
-#define MemoryOperationFlagMask SystemFlagBit80000                        // 内存操作标志掩码 - 用于标识内存操作状态
+#define MemoryOperationFlagMask SystemFlagBit80000                // 内存操作标志掩码 - 用于标识内存操作状态
 
 // 位域操作联合体定义 - 用于处理特定位域操作
 typedef union {
@@ -354,13 +356,13 @@ typedef union {
 
 // 安全验证码常量
 #define SecurityValidationCodeLRTC 0x4c525443                    // 安全验证码LRTC - 用于端口控制请求验证
-#define SecurityValidationCodeTIVE 0x54495645                    // 安全验证码TIVE - 用于数据完整性验证  
-#define SecurityValidationCodeBIVE 0x42495645                    // 安全验证码BIVE - 用于备份数据验证
-#define SecurityValidationCodeTSNI 0x54534e49                    // 安全验证码TSNI - 用于线程安全验证
+#define SecurityValidationCodeTIVE 0x54495645                    // 安全验证码TIVE - 用于数据完整性验证
+#define SecurityValidationCodeBIVE 0x42495645                    // 安全验证码BIVE - 用于备份数据完整性验证
+#define SecurityValidationCodeTSNI 0x54534e49                    // 安全验证码TSNI - 用于线程安全完整性验证
 #define SecurityValidationCodePAM  0x2050414d                    // 安全验证码PAM - 用于参数访问管理验证
-#define SecurityValidationCodeMRAP 0x4d524150                    // 安全验证码MRAP - 用于内存资源访问验证
+#define SecurityValidationCodeMRAP 0x4d524150                    // 安全验证码MRAP - 用于内存资源访问权限验证
 #define SecurityValidationCodeBMRP 0x424d5250                    // 安全验证码BMRP - 用于备份内存资源处理验证
-#define SecurityValidationCodeTSIL 0x5453494c                    // 安全验证码TSIL - 用于数据缓冲区操作验证
+#define SecurityValidationCodeTSIL 0x5453494c                    // 安全验证码TSIL - 用于线程安全完整性锁定验证
 
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
@@ -373,10 +375,10 @@ typedef union {
 #define DataValidationMask 0xffffff                            // 数据验证掩码 - 用于数据地址验证的掩码
 #define DataBufferValidationSize 0x5a                         // 数据缓冲区验证大小 - 用于验证数据缓冲区大小的阈值
 #define InputValidationValue 0x12                              // 输入验证值 - 用于输入验证的特定值
-#define MinimumBufferSize 0x34                                 // 最小缓冲区大小 - 用于验证缓冲区的最小大小
-#define MediumBufferSize 0x46                                   // 中等缓冲区大小 - 用于验证缓冲区的中等大小
-#define LargeBufferSize 0x47                                    // 大缓冲区大小 - 用于验证缓冲区的大小区分
-#define MaximumBufferSize 0x4f                                 // 最大缓冲区大小 - 用于验证缓冲区的最大大小
+#define BufferSizeMinimum 0x34                                 // 缓冲区最小大小 - 用于验证缓冲区的最小大小
+#define BufferSizeMedium 0x46                                   // 缓冲区中等大小 - 用于验证缓冲区的中等大小
+#define BufferSizeLarge 0x47                                    // 缓冲区大小区分 - 用于验证缓冲区的大小区分
+#define BufferSizeMaximum 0x4f                                 // 缓冲区最大大小 - 用于验证缓冲区的最大大小
 
 #define ExceptionHandlerCleanupOffsetF08 0xf08          // 异常处理器清理偏移量F08 - 用于异常处理器清理操作
 #define ExceptionHandlerStatusOffsetF10 0xf10           // 异常处理器状态偏移量F10 - 用于异常处理器状态检查

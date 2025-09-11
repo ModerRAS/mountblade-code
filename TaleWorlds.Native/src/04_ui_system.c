@@ -328,7 +328,7 @@ typedef enum {
 #define FUN_18073fb64 ProcessUIContextInitialization                // 处理UI上下文初始化
 #define FUN_18073fb86 ProcessUIContextFinalization                 // 处理UI上下文最终化
 #define FUN_18073fbb0 ProcessUIContextWithDataEncryption           // 处理UI上下文数据加密
-#define FUN_18073fc90 ProcessUIContextWithDataTransfer             // 处理UI上下文数据传输
+#define FUN_18073fc90 InitializeUIRenderContextAndProcessDataSource  // 初始化UI渲染上下文并处理数据源
 #define FUN_18073fd60 ProcessUIContextWithDataValidationB          // 处理UI上下文数据验证B
 #define FUN_18073fe30 ProcessUIContextWithDataOperationB           // 处理UI上下文数据操作B
 #define FUN_18073fe4d ProcessUIContextWithDataOperationC           // 处理UI上下文数据操作C
@@ -3547,7 +3547,6 @@ typedef enum {
 #define FUN_18073fb64 FinalizeUIEventSystem
 #define FUN_18073fb86 ResetUIEventSystem
 #define FUN_18073fbb0 ProcessUIEventData
-#define FUN_18073fc90 ProcessUIComponentCreation
 #define FUN_18073fd60 ProcessUIComponentDestruction
 #define FUN_18073fe30 ProcessUILayoutCalculation
 #define FUN_18073fe4d ProcessUILayoutCalculationExtended
