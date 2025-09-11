@@ -263876,7 +263876,7 @@ void SystemCoreEngineTermination(void)
       (*SystemFunctionPointer)();
       return;
     }
-    FUN_180217b00(&lStack_30,OperationResult,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeUtf8Conversion(&lStack_30,OperationResult,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   }
   ContextHandle = *(long long **)(ContextHandle + 8);
   AllocatedMemorySize = *ContextHandle;
@@ -263893,7 +263893,7 @@ void SystemCoreEngineTermination(void)
   while (AllocatedMemorySize != BufferStatus) {
     SystemRegisterFlag = AllocatedMemorySize + 0x20;
     if (pProcessingCounter == pStackValidationFlag) {
-      FUN_180218920(&lStack_30,pStackValidationFlag,&SystemRegisterFlag);
+      ValidateUnicodeConversion(&lStack_30,pStackValidationFlag,&SystemRegisterFlag);
     }
     else {
       *pStackValidationFlag = SystemRegisterFlag;
@@ -263905,7 +263905,7 @@ void SystemCoreEngineTermination(void)
       AllocatedMemorySize = *SystemContextPtr;
     }
   }
-  FUN_180219260(lStack_30,pStackValidationFlag,(long long)pStackValidationFlag - lStack_30 >> 3,SystemRegisterFlag & 0xff);
+  FinalizeUnicodeConversion(lStack_30,pStackValidationFlag,(long long)pStackValidationFlag - lStack_30 >> 3,SystemRegisterFlag & 0xff);
   StringLength = 0;
   if (0 < (long long)OperationResult) {
     AllocatedMemorySize = 0;
@@ -263913,10 +263913,10 @@ void SystemCoreEngineTermination(void)
       *(int *)(*(long long *)(lStack_30 + AllocatedMemorySize * 8) + 0x54) = *(int *)(ContextHandle + 0x50) + StringLength;
       if (*(unsigned long long *)(ContextHandle + 0x38) < *(unsigned long long *)(ContextHandle + 0x40)) {
         *(unsigned long long *)(ContextHandle + 0x38) = *(unsigned long long *)(ContextHandle + 0x38) + 0x60;
-        FUN_180218a80();
+        ResetSystemConversionState();
       }
       else {
-        FUN_180219020(ContextHandle + 0x30,*(void *)(lStack_30 + AllocatedMemorySize * 8));
+        ProcessSystemContextData(ContextHandle + 0x30,*(void *)(lStack_30 + AllocatedMemorySize * 8));
       }
       StringLength = StringLength + 1;
       AllocatedMemorySize = AllocatedMemorySize + 1;
@@ -264213,7 +264213,7 @@ LAB_180211d03:
   *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2022;
   *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   SystemPriorityLevel = SystemChecksum;
-  MemoryBlockIndex = FUN_18021a140(ContextHandle);
+  MemoryBlockIndex = GetMemoryBlockIndex(ContextHandle);
   MemoryBoundaryEnd = -1;
   if (MemoryBlockIndex != 0) {
     do {
@@ -264304,7 +264304,7 @@ uint64_t ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle, int OperationBuffe
   
   if (OperationBufferSize == 8) {
     ProcessTemporaryBuffer(&LocalProcessingStatusFlag, Utf16EndPointer, Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
-    FUN_180623fd0(Utf8SourcePointer, &LocalProcessingStatusFlag);
+    HandleSystemEventProcessing(Utf8SourcePointer, &LocalProcessingStatusFlag);
     LocalProcessingStatusFlag = &SystemNullTemplate;
     if (SystemEventFlag != 0) {
         ProcessSystemEventHandling();
@@ -264345,7 +264345,7 @@ uint64_t * InitializeSystemContextSecondaryConfiguration(uint64_t *ContextHandle
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
   
-  FUN_1801566b0();
+  InitializeSystemProcessing();
   *ContextHandle = &SystemContextSecondary;
   _Mtx_init_in_situ(ContextHandle + 0x4c,0x102);
   ContextHandle[0x56] = 0;
@@ -264420,7 +264420,7 @@ uint64_t * InitializeSystemContextSecondaryConfiguration(uint64_t *ContextHandle
  */
 uint64_t ProcessSystemContextMemoryRelease(uint64_t ContextHandle, unsigned long long OperationBufferSize)
 {
-  FUN_1802121b0();
+  CleanupSystemProcessing();
   if ((OperationBufferSize & 1) != 0) {
     free(ContextHandle, 0x4d8);
   }
@@ -299111,6 +299111,7 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define SetContextHandleSize FUN_18017b259
 
 // 原始函数名：FUN_18017b28d - 系统清理函数
+#define CleanupSystemResourcesFinal FUN_18017b28d
 
 // 原始函数名：FUN_18017b2ed - 上下文释放函数
 #define ReleaseContextHandle FUN_18017b2ed

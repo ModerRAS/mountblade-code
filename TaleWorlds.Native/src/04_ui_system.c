@@ -6243,13 +6243,14 @@ void* UIGestureCoordinates;
 #define UIContextExtendedDataA UIExtendedDataBufferA         // UI上下文扩展数据A - 用于扩展操作的数据表
 #define UIContextExtendedDataB UIExtendedDataBufferB         // UI上下文扩展数据B - 用于扩展操作的数据表
 #define UIContextExtendedDataC UIExtendedDataBufferC         // UI上下文扩展数据C - 用于扩展操作的数据表
-#define UIRenderStateManager UNK_180957910            // UI渲染状态管理器 - 管理UI渲染状态
-#define UIContextExtendedDataE UNK_1809577d0            // UI上下文扩展数据E - 用于扩展操作的数据表
-#define UIContextExtendedDataF UNK_180957830            // UI上下文扩展数据F - 用于扩展操作的数据表
-#define UIContextExtendedDataG UNK_180957790            // UI上下文扩展数据G - 用于扩展操作的数据表
-#define UIContextExtendedDataH UNK_180957740            // UI上下文扩展数据H - 用于扩展操作的数据表
-#define UIContextExtendedDataI UNK_180957700            // UI上下文扩展数据I - 用于扩展操作的数据表
-#define UIContextExtendedDataJ UNK_180957600            // UI上下文扩展数据J - 用于扩展操作的数据表
+#define UIContextExtendedDataD UIExtendedDataBufferD         // UI上下文扩展数据D - 用于扩展操作的数据表
+#define UIRenderStateManager UIRenderStateManager         // UI渲染状态管理器 - 管理UI渲染状态
+#define UIContextExtendedDataE UIExtendedDataBufferE         // UI上下文扩展数据E - 用于扩展操作的数据表
+#define UIContextExtendedDataF UIMemoryOperationTable        // UI上下文扩展数据F - 用于扩展操作的数据表
+#define UIContextExtendedDataG UIExtendedDataBufferG         // UI上下文扩展数据G - 用于扩展操作的数据表
+#define UIContextExtendedDataH UIExtendedDataBufferH         // UI上下文扩展数据H - 用于扩展操作的数据表
+#define UIContextExtendedDataI UIExtendedDataBufferI         // UI上下文扩展数据I - 用于扩展操作的数据表
+#define UIContextExtendedDataJ UIExtendedDataBufferJ         // UI上下文扩展数据J - 用于扩展操作的数据表
 #define UIContextExtendedDataK UNK_1809576c0            // UI上下文扩展数据K - 用于扩展操作的数据表
 #define UIContextExtendedDataL UNK_180957718            // UI上下文扩展数据L - 用于扩展操作的数据表
 #define UIContextExtendedDataM UNK_180957640            // UI上下文扩展数据M - 用于扩展操作的数据表
@@ -131089,7 +131090,7 @@ void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,longlong dataSource,
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     func_0x00018074b830(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957830,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIMemoryOperationTable,&stack0x00000040);
   }
 FUN_18073d4b8:
   if (cleanupFlag != 0) {
@@ -131191,7 +131192,7 @@ void ProcessUIDataBufferOperationA(UIHandle uiContext,UIHandle dataSource,UIDwor
     ValidateUIDataAndInitialize(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957790);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIExtendedDataBufferG);
   }
 FUN_18073d683:
   if (stackLong158 != 0) {
@@ -131250,7 +131251,7 @@ FUN_18073d683:
     ValidateUIDataAndInitialize(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),stackParam000001b0
                        );
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957790,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIExtendedDataBufferG,&stack0x00000040);
   }
 FUN_18073d683:
   if (param_6 != 0) {
@@ -131347,7 +131348,7 @@ void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIDword dataSource)
     ProcessUIDataAndCompare(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957740);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIExtendedDataBufferH);
   }
 LAB_18073d77c:
   if (RenderContextSize != 0) {
@@ -131384,7 +131385,7 @@ void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,UIByte dataSource)
     ProcessUITextureDataFill(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957700);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIExtendedDataBufferI);
   }
 LAB_18073d85d:
   if (RenderContextSize != 0) {
@@ -131448,7 +131449,7 @@ void ProcessUIContextDataSourceOperation(UIHandle uiContext,UIByte dataSource)
     ProcessUITextureDataFill(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957600);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIExtendedDataBufferJ);
   }
 LAB_18073d93d:
   if (RenderContextSize != 0) {
