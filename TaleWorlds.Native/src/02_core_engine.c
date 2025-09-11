@@ -242258,7 +242258,27 @@ LAB_18019a44a:
 
 
 
-9aac0(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18019aac0(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统数据转换和内存管理
+ * 
+ * 该函数负责处理系统数据的转换、内存分配和事件处理。
+ * 主要功能包括：
+ * - 执行系统事件和上下文配置
+ * - 管理内存块和缓冲区
+ * - 处理字符状态缓冲区
+ * - 执行系统清理和资源管理
+ * 
+ * @param ContextHandle 上下文句柄指针 - 指向系统上下文的句柄
+ * @param OperationBufferSize 操作缓冲区大小 - 缓冲区的大小参数
+ * @param Utf8SourcePointer UTF-8源指针 - 指向UTF-8数据的指针
+ * @param Utf16EndPointer UTF-16结束指针 - 指向UTF-16数据结束位置的指针
+ * 
+ * @return void
+ * 
+ * @note 该函数会调用多个系统级函数进行数据处理
+ * @note 涉及内存分配和释放操作
+ */
+void ProcessSystemDataTransformationAndMemoryManagement(long long *ContextHandle, long long OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
