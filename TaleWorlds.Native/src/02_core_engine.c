@@ -19380,8 +19380,8 @@ void CoreEngineInitializeUIManager(void)
     CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,SearchStartIndex + SystemMemoryAllocationOffset,SearchStartIndex);
     PreviousNodePointer = ResultNodePointer;
   }
-  PreviousNodePointer[6] = 0x4b2d79e470ee4e2c;
-  PreviousNodePointer[7] = 0x9c552acd3ed5548d;
+  PreviousNodePointer[6] = UIManagerIdentifierPrimary;
+  PreviousNodePointer[7] = UIManagerIdentifierSecondary;
   PreviousNodePointer[8] = &SystemConnectionTemplateA;
   PreviousNodePointer[9] = 0;
   PreviousNodePointer[10] = NodeConfigurationValue;
