@@ -332,6 +332,18 @@ typedef enum {
 #define ReleaseUIDataParameters FUN_180737de4                // 释放UI数据参数
 #define ProcessUIDataWithCharParameters FUN_180737df0       // 处理UI数据与Char参数
 
+// UI系统数据操作相关函数
+#define ProcessUIBufferDataWithValidation FUN_180737c30       // 处理UI缓冲区数据与验证
+#define ValidateUIResourceAllocation FUN_180743c40            // 验证UI资源分配
+#define InitializeUIContextHandle FUN_180742460               // 初始化UI上下文句柄
+#define AllocateUIContextMemory FUN_180743e90                 // 分配UI上下文内存
+#define ProcessUIContextDataWithFlags FUN_180742250           // 处理UI上下文数据与标志
+#define ProcessUIBufferDataWithControl FUN_18074b880          // 处理UI缓冲区数据与控制
+#define ProcessUIContextWithCleanup FUN_180749e60             // 处理UI上下文与清理
+#define ProcessUIDataWithSourceBuffer FUN_180745640           // 处理UI数据与源缓冲区
+#define ProcessUIDataWithContextHandles FUN_180745870         // 处理UI数据与上下文句柄
+#define ProcessUIDataWithProcessingArray FUN_180738b40        // 处理UI数据与处理数组
+
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
 #define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0

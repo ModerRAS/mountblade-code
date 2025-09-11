@@ -127745,7 +127745,7 @@ void Unwind_ExceptionContextCleanupC2(DataBuffer operationBase,int64_t dataBuffe
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 2) != 0) {
     *(uint *)(dataBuffer + DataBufferOffset30) = *(uint *)(dataBuffer + DataBufferOffset30) & 0xfffffffd;
-    ValidateDataA0(dataBuffer + ExceptionHandlerDataBufferOffset78);
+    ProcessAndValidateDataBlock(dataBuffer + ExceptionHandlerDataBufferOffset78);
   }
   return;
 }
