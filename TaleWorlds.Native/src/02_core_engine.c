@@ -75,8 +75,8 @@
 #define ValidateSystemMemoryIntegrity ValidateSystemMemoryIntegrity                // 处理系统内存验证
 #define CreateSystemContextInstance CreateSystemContextInstance                  // 创建系统上下文
 #define ResetSystemDataValidator ResetSystemDataValidator                     // 重置系统数据验证器
-#define FUN_180193e88 HandleSystemDataEncodingProcess             // 处理系统数据编码
-#define FUN_1801940f0 InitializeSystemDataProcessor                // 初始化系统数据处理
+#define HandleSystemDataEncodingProcess HandleSystemDataEncodingProcess             // 处理系统数据编码
+#define InitializeSystemDataProcessor InitializeSystemDataProcessor                // 初始化系统数据处理
 #define FUN_1801998a0 ProcessContextMemoryPoolIteration           // 处理系统上下文内存池迭代
 #define FUN_1801998ce ExecuteSystemContextCallbacks                // 执行系统上下文回调函数
 #define FUN_18019991c SystemNullOperation                          // 系统空操作函数
@@ -253327,11 +253327,11 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
         SystemChecksum = CalculateSystemChecksum(StringOffset,0,IntegerValue9);
         ValidateSystemContextData(ContextHandle,&lStack_178,SystemChecksum,IntegerValue9);
         if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
-          FUN_180204a00();
+          InitializeSystemMemoryAllocation();
           ContextHandle8[1] = ContextHandle8[1] + 0x18;
         }
         else {
-          FUN_180207840(ContextHandle8,&lStack_178);
+          ProcessSystemMemoryAllocation(ContextHandle8,&lStack_178);
         }
         IntegerValue6 = 0;
         StringOffset = SystemDataTablePointer;
