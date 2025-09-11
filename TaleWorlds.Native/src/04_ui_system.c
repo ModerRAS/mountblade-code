@@ -80027,26 +80027,26 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
   longlong contextDataArray [17];
   ulonglong encryptedPointer;
   
-  stackUIntb8 = XorEncryptionKey ^ (ulonglong)&stackUInt278;
-  stackLong228 = *uiContext;
-  stackInt250 = *(int *)((longlong)uiContext + 0xc);
-  stackLong218 = (longlong)stackInt250;
+  encryptedPointer = XorEncryptionKey ^ (ulonglong)&encryptionKeyResult;
+  contextHandle = *uiContext;
+  contextDataSize = *(int *)((longlong)uiContext + 0xc);
+  eventDataHandle = (longlong)contextDataSize;
   eventDataIndex = 0;
-  stackInt268 = *(int *)(stackLong228 + 4);
-  stackUInt238 = *(UIHandle *)(stackLong228 + 0x20);
-  stackUInt278 = *(UIDword *)(stackLong228 + 8);
-  stackLong220 = (longlong)dataSource * 4;
-  localLong7 = (longlong)dataSource * -4 + 0x2000;
+  eventDataCount = *(int *)(contextHandle + 4);
+  componentHandle = *(UIHandle *)(contextHandle + 0x20);
+  encryptionKeyResult = *(UIDword *)(contextHandle + 8);
+  dataSourceOffset = (longlong)dataSource * 4;
+  contextOffset = (longlong)dataSource * -4 + 0x2000;
   loopCounter = 0;
-  stackLong158 = localLong7;
+  processingData = contextOffset;
   do {
     contextDataHandle = (longlong)loopCounter;
-    loopCounter = loopCounter + stackInt268 + 0x800;
+    loopCounter = loopCounter + eventDataCount + 0x800;
     contextDataHandle = (longlong)uiContext + (contextDataHandle + 0x18) * 4;
-    astackLong140[eventDataIndex] = contextDataHandle;
-    astackLong178[eventDataIndex] = contextDataHandle + localLong7;
+    contextDataArray[eventDataIndex] = contextDataHandle;
+    encryptionDataArray[eventDataIndex] = contextDataHandle + contextOffset;
     eventDataIndex = eventDataIndex + 1;
-  } while (eventDataIndex < stackLong218);
+  } while (eventDataIndex < eventDataHandle);
   stackLong240 = (longlong)uiContext + (longlong)((stackInt268 + 0x800) * stackInt250) * 4 + 0x60;
   stackLong230 = stackLong240 + (longlong)(stackInt250 * 0x18) * 4;
   stackInt264 = (int)uiContext[7];
@@ -124672,8 +124672,14 @@ void FUN_18073a12e(void)
 
 
 
- void FUN_18073a1dc(void)
-void FUN_18073a1dc(void)
+ /**
+ * @brief 执行UI渲染任务
+ * 
+ * 该函数负责执行UI渲染任务，使用XOR加密和参数处理
+ * 
+ * @note 原始函数名：FUN_18073a1dc
+ */
+void ExecuteUIRenderTaskWithEncryption(void)
 
 {
   ulonglong stackParam00000140;
@@ -124687,8 +124693,22 @@ void FUN_18073a1dc(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a200(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073a200(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI上下文数据和主题渲染
+ * 
+ * 该函数负责处理UI上下文数据和主题渲染，包括：
+ * - 执行XOR加密操作
+ * - 调用UI数据处理函数
+ * - 复制UI数据缓冲区
+ * - 执行UI上下文数据操作
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * 
+ * @note 原始函数名：FUN_18073a200
+ */
+void ProcessUIContextDataAndThemeRendering(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
@@ -124716,8 +124736,23 @@ void FUN_18073a200(UIHandle uiContext,UIHandle dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI上下文数据和字体渲染
+ * 
+ * 该函数负责处理UI上下文数据和字体渲染，包括：
+ * - 执行XOR加密操作
+ * - 调用UI数据处理函数
+ * - 验证UI数据
+ * - 执行UI上下文数据操作
+ * - 管理渲染上下文大小
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * 
+ * @note 原始函数名：FUN_18073a2c0
+ */
+void ProcessUIContextDataAndFontRendering(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
