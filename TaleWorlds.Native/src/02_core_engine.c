@@ -51046,7 +51046,7 @@ void InitializeSystemDataStructure(uint32_t *ContextHandle
   long long AllocatedMemorySize;
   long long *SystemContext;
   unsigned long long OperationResult;
-  uint32_t RegisterR13ValueD;
+  uint32_t DataLength;
   long long NullPointerValue;
   
   if ((unsigned long long)((*SystemContext - (long long)ContextHandle) + SystemContext[2]) < 5) {
@@ -51142,7 +51142,7 @@ void ExecuteSystemCleanup(void
   long long AllocatedMemorySize;
   long long *SystemContext;
   unsigned long long OperationResult;
-  uint32_t RegisterR13ValueD;
+  uint32_t DataLength;
   long long NullPointerValue;
   
   ProcessBufferIndexllocation();
@@ -119312,7 +119312,7 @@ void SystemDataProcessor(void)
   unsigned long long Utf16Char4;
   long long SystemRegisterR10;
   uint64_t RegisterR12Value;
-  int RegisterR13ValueD;
+  int DataLength;
   long long NullPointerValue;
   float SystemFloatValue;
   float SystemCoreScaleX;
@@ -166881,7 +166881,7 @@ void InitializeSystemFloatValues(void
   unsigned long long SystemDataNode;
   unsigned long long ValidationResult;
   uint Utf16Char4;
-  int RegisterR13ValueD;
+  int DataLength;
   long long CharacterLimit;
   float SystemFloatValue;
   float SystemCoreScaleX;
@@ -167010,7 +167010,7 @@ void ProcessSystemFloatInitialization(void
   unsigned long long SystemDataNode;
   unsigned long long SystemStatusCode;
   uint ValidationResult;
-  int RegisterR13ValueD;
+  int DataLength;
   long long CharacterLimit;
   float SystemContextPrimaryFloat4;
   float SystemFloatValue;
@@ -294568,7 +294568,7 @@ uint64_t CalculateVectorNormalizationFactor(void
   int ComponentIndex;
   uint MaxComponents;
   uint CurrentIndex;
-  int RegisterR13ValueD;
+  int DataLength;
   long long CharacterLimit;
   uint WeightSumX;
   uint WeightSumY;

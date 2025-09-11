@@ -135553,7 +135553,21 @@ void ProcessUITextureDataBuffer(void)
 
 
  void FUN_1807403bf(void)
-void FUN_1807403bf(void)
+#define ProcessUIResourceAndExecuteRender FUN_1807403bf
+/**
+ * @brief 处理UI资源并执行渲染任务
+ * 
+ * 该函数负责处理UI系统的资源管理和渲染任务执行：
+ * - 检查内存资源状态
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807403bf
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ProcessUIResourceAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
@@ -135570,7 +135584,20 @@ void FUN_1807403bf(void)
 
 
  void FUN_1807403e1(void)
-void FUN_1807403e1(void)
+#define ReleaseUIResourceAndExecuteRender FUN_1807403e1
+/**
+ * @brief 释放UI资源并执行渲染任务
+ * 
+ * 该函数负责释放UI系统的内存资源并执行渲染任务：
+ * - 强制释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807403e1
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
   ulonglong renderTaskParameter;
@@ -135585,7 +135612,23 @@ void FUN_1807403e1(void)
  
 
  void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
-void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
+#define ProcessUIContextAndDataSource FUN_180740410
+/**
+ * @brief 处理UI上下文和数据源
+ * 
+ * 该函数负责处理UI系统的上下文和数据源交互：
+ * - 初始化UI上下文参数
+ * - 处理数据源验证
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180740410
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ProcessUIContextAndDataSource(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
