@@ -247769,7 +247769,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterOctonary,pSystemStatusValue);
-      StringLength = FUN_180203610();
+      StringLength = ValidateSystemStringEncoding();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -247809,7 +247809,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemConfigurationParameterDenary,pSystemStatusValue);
-      StringLength = FUN_1802035d0();
+      StringLength = ProcessSystemMemoryAllocation();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
