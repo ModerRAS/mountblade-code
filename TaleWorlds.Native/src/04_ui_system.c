@@ -135156,48 +135156,66 @@ CleanupAndExecuteRender:
  * @note 该函数使用XOR加密技术保护数据安全
  * @see ValidateUIResource, ProcessUIComponentRegistration, ExecuteUIContextDataOperation
  */
-void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
-void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
-
+/**
+ * @brief 处理UI组件注册和数据缓冲区操作
+ * 
+ * 该函数负责处理UI组件的注册和数据缓冲区的操作，主要功能包括：
+ * - 验证UI资源和数据完整性
+ * - 处理UI组件的注册过程
+ * - 执行数据缓冲区的复制和控制
+ * - 处理数据验证和初始化
+ * - 管理内存资源的分配和释放
+ * 
+ * @param uiContext UI上下文句柄，指定操作的UI上下文
+ * @param dataSource 数据源句柄，提供数据缓冲区的源数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，指定数据处理的缓冲区容量
+ * 
+ * @note 原始函数名：FUN_180740030
+ * @note 加密操作：使用XOR加密技术保护数据安全
+ * @note 内存管理：通过stackLong158跟踪内存使用情况
+ * @note 异常处理：使用UNK_180957c20处理异常情况
+ */
+void ProcessUIComponentRegistrationAndDataBuffer(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  UIHandle stackUInt160;
-  longlong stackLong158;
-  UIHandle stackUInt150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionBuffer [32];
+  UIByte *dataProcessingPointer;
+  UIHandle componentHandle;
+  longlong resourceSize;
+  UIHandle resourceHandle;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong158 = 0;
-  operationResult = ValidateUIResource(uiContext,&stackUInt150,&stackLong158);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceSize = 0;
+  operationResult = ValidateUIResource(uiContext,&resourceHandle,&resourceSize);
   if (operationResult == 0) {
-    stackUInt160 = 0;
-    pstackUInt168 = (UIByte *)CONCAT71(pstackUInt168._1_7_,1);
-    operationResult = ProcessUIComponentRegistration(stackUInt150,dataSource,targetBuffer,bufferSize);
-    if (operationResult == 0) goto LAB_180740150;
+    componentHandle = 0;
+    dataProcessingPointer = (UIByte *)CONCAT71(dataProcessingPointer._1_7_,1);
+    operationResult = ProcessUIComponentRegistration(resourceHandle,dataSource,targetBuffer,bufferSize);
+    if (operationResult == 0) goto operation_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ValidateUIDataAndInitialize(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    pstackUInt168 = stackArray148;
+    dataValidationResult = CopyUIDataBuffer(dataBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(dataBuffer + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(dataBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ValidateUIDataAndInitialize(dataBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),bufferSize);
+    dataProcessingPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957c20);
+    ExecuteUIContextDataOperation(processingResult,7,uiContext,&GlobalUIExceptionHandlerC20);
   }
-LAB_180740150:
-  if (stackLong158 != 0) {
+operation_complete:
+  if (resourceSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
