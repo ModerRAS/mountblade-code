@@ -1748,6 +1748,21 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackProcessingValue98 SystemOperationValidationFlag        // 栈处理值98
 #define StackProcessingValueA8 CoreEngineValueA8            // 栈处理值A8
 
+// 核心引擎处理函数栈变量语义化定义
+#define StackNormalizedParameter fStack_17c                 // 栈标准化参数值
+#define StackProcessingStatus184 uStack_184                  // 栈处理状态184
+#define StackSystemValue180 SystemUnsignedValue180          // 栈系统值180
+#define StackValidationStatus178 uStack_178                  // 栈验证状态178
+#define StackProcessingFlags170 uStack_170                  // 栈处理标志170
+#define StackOperationMask16c uStack_16c                    // 栈操作掩码16c
+#define StackDataContentStatus DataContentStatus             // 栈数据内容状态
+#define StackValidationFlags160 SystemUnsignedValue160       // 栈验证标志160
+#define StackProcessingStatus158 uStack_158                  // 栈处理状态158
+#define StackValidationMask154 uStack_154                    // 栈验证掩码154
+#define StackAllocationFlags150 uStack_150                  // 栈分配标志150
+#define StackMemoryPointer14c uStack_14c                    // 栈内存指针14c
+#define StackResourceFlags144 uStack_144                    // 栈资源标志144
+
 // 新增栈变量语义化宏定义
 #define StackTransformMatrix fStack0000000000000030             // 栈浮点值30
 #define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
@@ -241817,15 +241832,35 @@ void SystemNullOperation(void)
 /**
  * @brief 处理系统字符编码和验证操作
  * 
- * 该函数负责处理系统字符编码和验证的核心操作，包括：
- * - 字符串比较和字节处理
- * - 内存块索引和管理
- * - UTF-8和UTF-16字符转换
- * - 系统上下文和内存池管理
+ * 该函数是系统字符处理的核心组件，负责处理复杂的字符编码转换和验证操作。
+ * 函数执行多阶段的字符数据处理，包括编码转换、内存管理和状态验证。
  * 
- * @param ContextHandle 系统上下文句柄指针
+ * @details 函数执行流程：
+ * 1. 初始化字符编码处理所需的内存池和缓冲区
+ * 2. 设置UTF-8到UTF-16的转换上下文
+ * 3. 执行字符编码验证和转换操作
+ * 4. 管理内存块的分配和释放
+ * 5. 更新系统状态和处理结果
+ * 
+ * @主要功能模块：
+ * - 字符串比较和字节处理引擎
+ * - 内存块索引和管理系统
+ * - UTF-8和UTF-16字符转换器
+ * - 系统上下文和内存池管理器
+ * - 字符状态验证和错误处理
+ * 
+ * @param ContextHandle 系统上下文句柄指针 - 指向包含系统状态和配置的上下文结构
+ * 
+ * @return void 无返回值 - 处理结果通过上下文句柄和系统状态返回
  * 
  * @note 原始函数名：FUN_180199930
+ * @warning 此函数涉及复杂的内存管理操作，需要确保传入的上下文句柄有效
+ * @see ValidateCharacterEncodingAndData, TransformUtf16ToUtf8Encoding
+ * 
+ * @异常处理：
+ * - 内存分配失败：通过系统异常处理机制处理
+ * - 编码转换错误：记录到系统错误日志并返回错误状态
+ * - 缓冲区溢出：通过边界检查机制预防
  */
 void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
 {
@@ -245706,7 +245741,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         SystemValue2b0 = CalculatedCodePoint;
         MemoryCopyBuffer = SystemChecksum;
         SystemUintBuffer260 = UnicodeCodePoint;
-        FUN_1801a20e0();
+        ResetSystemProcessingState();
         EventValidationStatus = CONCAT44(fStack_1f4,fStack_1f8);
         SystemConfigurationMode = CONCAT44(uStack_1ec,fStack_1f0);
         uStack_298 = CONCAT44(fStack_1e4,fStack_1e8);
@@ -245717,7 +245752,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         SystemValue2b0 = CalculatedCodePoint;
         MemoryCopyBuffer = SystemChecksum;
         SystemUintBuffer260 = UnicodeCodePoint;
-        FUN_1801a20e0();
+        ResetSystemProcessingState();
         if (*(long long *)(SystemConfigurationIterator + SystemMemoryFunctionOffsetF8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
           (**(code **)(*(long long *)**(uint64_t **)(SystemConfigurationIterator + 0xf0) + 0x178))();
         }
@@ -245848,7 +245883,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
             if (pSystemStackOffset2d8 != (long long *)0x0) {
               (**(code **)(*pSystemStackOffset2d8 + 0x28))();
             }
-            FUN_180275cf0(SystemDataTablePointer,0,&plStack_270,1);
+            ProcessSystemDataTableOperation(SystemDataTablePointer,0,&plStack_270,1);
             if (pSystemStackOffset2d8 != (long long *)0x0) {
               (**(code **)(*pSystemStackOffset2d8 + 0x38))();
             }
@@ -246265,7 +246300,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                   fStack_2d4 = ContextSecondaryFloat7 * fStack_16c + ContextSecondaryFloat6 * fStack_16c + MatrixTransformElementB * fStack_16c;
                   if ((int)MemoryBlockIndex[99] == -1) {
                     *(uint32_t *)((long long)MemoryBlockIndex + 0x314) = 0x10;
-                    ValidationResult = FUN_1801b9a40(CharacterTablePointer6 + 0x51d0,0x10);
+                    ValidationResult = InitializeSystemUnicodeContext(CharacterTablePointer6 + 0x51d0,0x10);
                     *(uint32_t *)(MemoryBlockIndex + 99) = ValidationResult;
                     LOCK();
                     *(uint32_t *)(MemoryBlockIndex + 0x62) = 0;
@@ -246288,7 +246323,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                   fStack_294 = fStack_2dc;
                   fStack_290 = fStack_2d8;
                   fStack_28c = fStack_32c;
-                  FUN_18020a7b0(MemoryBlockIndex + 0x61,CharacterTablePointer6 + 0x3fb8,&fStack_2a8);
+                  ProcessSystemUnicodeConversion(MemoryBlockIndex + 0x61,CharacterTablePointer6 + 0x3fb8,&fStack_2a8);
                 }
                 CharacterTablePointer6 = *(long long *)(LoopIndex + 0xf0);
                 MemoryAllocationOffset = (int)MemoryAllocationCounter + 1;
@@ -246321,7 +246356,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
         Utf16EndPointer = iStack_448;
         if (uStack_418 != 0) {
           pcStack_478 = acStack_443;
-          SystemCheckResult3 = FUN_1802edfe0(LoopIndex,&fStack_2d0,&fStack_328,StackProcessingVariable1B8);
+          SystemCheckResult3 = ValidateSystemDataParameters(LoopIndex,&fStack_2d0,&fStack_328,StackProcessingVariable1B8);
           Utf16EndPointer = iStack_448;
           if (SystemCheckResult3 != '\0') {
             MemoryBufferC = (long long)acStack_443[0];
@@ -246460,7 +246495,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             fStack_40c = ContextSecondaryFloat6;
             if (*(int *)(CharacterTablePointer + 0x170) == -1) {
               *(uint32_t *)(CharacterTablePointer + 0x16c) = 0x10;
-              ValidationResult = FUN_1801b9a40(lStack_438 + 0x51d0,0x10);
+              ValidationResult = InitializeSystemUnicodeContext(lStack_438 + 0x51d0,0x10);
               *(uint32_t *)(CharacterTablePointer + 0x170) = ValidationResult;
               LOCK();
               *(uint32_t *)(CharacterTablePointer + 0x168) = 0;
@@ -246482,7 +246517,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             fStack_234 = MatrixTransformElementA;
             fStack_230 = ScalingFactor;
             fStack_22c = fStack_2ec;
-            FUN_18020a7b0(CharacterTablePointer + 0x160,LoopIndex + 0x3fb8,&fStack_248);
+            ProcessSystemUnicodeConversion(CharacterTablePointer + 0x160,LoopIndex + 0x3fb8,&fStack_248);
             Utf16EndPointer = iStack_448;
           }
         }
@@ -246795,7 +246830,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
                 FramePointer[0x31] = MatrixTransformMultiplier12 * MatrixTransformMultiplier10 + MatrixTransformMultiplier11 * MatrixTransformMultiplier10 + MatrixTransformMultiplier13 * MatrixTransformMultiplier10;
                 if ((int)BufferStatus4 == -1) {
                   *(uint32_t *)((long long)ContextHandle + 0x314) = 0x10;
-                  UnicodeContextHandle = FUN_1801b9a40(BufferStatus1 + 0x51d0,0x10);
+                  UnicodeContextHandle = InitializeSystemUnicodeContext(BufferStatus1 + 0x51d0,0x10);
                   *(uint32_t *)(ContextHandle + 99) = UnicodeContextHandle;
                   LOCK();
                   *(uint32_t *)(ContextHandle + 0x62) = 0;
@@ -246820,7 +246855,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
                 FramePointer[0x41] = FramePointer[0x2f];
                 FramePointer[0x42] = FramePointer[0x30];
                 FramePointer[0x43] = (float)iStack0000000000000050;
-                FUN_18020a7b0(ContextHandle + 0x61,BufferStatus1 + 0x3fb8,FramePointer + 0x3c);
+                ProcessSystemUnicodeConversion(ContextHandle + 0x61,BufferStatus1 + 0x3fb8,FramePointer + 0x3c);
               }
               BufferStatus1 = *(long long *)(CharacterTablePointer + 0xf0);
               InputDataLength = (int)MemoryPoolIndexSecondary + 1;
@@ -246867,7 +246902,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
       FramePointer[0x34] = MatrixTransformElementC;
       FramePointer[0x35] = FilterInputValue0;
       if ((BufferStatus4 != 0) &&
-         (SystemCheckResult6 = FUN_1802edfe0(CharacterTablePointer,FramePointer + 0x32,FramePointer + 0x1c,FramePointer + 0x78,
+         (SystemCheckResult6 = ValidateSystemDataParameters(CharacterTablePointer,FramePointer + 0x32,FramePointer + 0x1c,FramePointer + 0x78,
                                  (long long)&TertiaryDataBuffer + 5), SystemCheckResult6 != '\0')) {
         BufferStatus1 = (long long)cStack0000000000000055;
         PrimaryProcessingStatusFlag0 = (uint *)(BufferStatus1 * 0x100 + *(long long *)(BufferStatus4 + 0x18));
@@ -247038,7 +247073,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
         StackFloatValue7c = FilterInputValue1;
         if (*(int *)(BufferStatus4 + 0x170) == -1) {
           *(uint32_t *)(BufferStatus4 + 0x16c) = 0x10;
-          UnicodeContextHandle = FUN_1801b9a40(FunctionReturnValue + 0x51d0,0x10);
+          UnicodeContextHandle = InitializeSystemUnicodeContext(FunctionReturnValue + 0x51d0,0x10);
           *(uint32_t *)(BufferStatus4 + 0x170) = UnicodeContextHandle;
           LOCK();
           *(uint32_t *)(BufferStatus4 + 0x168) = 0;
@@ -247060,7 +247095,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
         FramePointer[0x59] = FilterInputValue5;
         FramePointer[0x5a] = MatrixTransformMultiplier13;
         FramePointer[0x5b] = (float)iStack0000000000000050;
-        FUN_18020a7b0(BufferStatus4 + 0x160,CharacterTablePointer + 0x3fb8,FramePointer + 0x54);
+        ProcessSystemUnicodeConversion(BufferStatus4 + 0x160,CharacterTablePointer + 0x3fb8,FramePointer + 0x54);
       }
     }
     _StackFloat1 = BufferStatusRegister8 + 8;
@@ -257495,7 +257530,7 @@ LAB_180209c13:
 
 
 
-0a7b0(long long ContextHandle,long long OperationBufferSize,float *Utf8SourcePointervoid FUN_18020a7b0(long long ContextHandle,long long OperationBufferSize,float *Utf8SourcePointer
+0a7b0(long long ContextHandle,long long OperationBufferSize,float *Utf8SourcePointervoid ProcessSystemUnicodeConversion(long long ContextHandle,long long OperationBufferSize,float *Utf8SourcePointer
 {
   int *ReferenceCountPointer;
   void *SystemContext;
