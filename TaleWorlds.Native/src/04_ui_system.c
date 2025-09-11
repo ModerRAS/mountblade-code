@@ -127229,8 +127229,8 @@ LAB_18073b5be:
 
  
 
- void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ void ProcessUIContextWithExtendedParameters(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+void ProcessUIContextWithExtendedParameters(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,UIHandle param_6)
 
 {
@@ -127286,8 +127286,8 @@ FUN_18073b7af:
 
  
 
- void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ void ProcessUIContextWithResourceManagement(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+void ProcessUIContextWithResourceManagement(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
 
 {
@@ -127511,8 +127511,8 @@ CleanupAndRender:
 
  
 
- void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
+ void ProcessUIContextWithDataSource(UIHandle uiContext,UIHandle dataSource)
+void ProcessUIContextWithDataSource(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;

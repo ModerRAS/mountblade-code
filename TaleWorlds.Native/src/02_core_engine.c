@@ -30318,12 +30318,12 @@ void CoreEngineExecuteSafeStringCopyOperation(long long ContextHandle, long long
     **(uint8_t **)(ContextHandle + 8) = 0;
     return;
   }
-  CharacterTablePointer = -1;
+  long long StringLength = -1;
   do {
-    CharacterTablePointer = CharacterTablePointer + 1;
-  } while (*(char *)(OperationBufferSize + CharacterTablePointer) != '\0');
-  if ((int)CharacterTablePointer < 0x40) {
-    *(int *)(ContextHandle + 0x10) = (int)CharacterTablePointer;
+    StringLength = StringLength + 1;
+  } while (*(char *)(OperationBufferSize + StringLength) != '\0');
+  if ((int)StringLength < 0x40) {
+    *(int *)(ContextHandle + 0x10) = (int)StringLength;
                     // WARNING: Could not recover jumptable at 0x000180049c27. Too many branches
                     // WARNING: Treating indirect jump as call
     strcpy_s(*(void *)(ContextHandle + 8),0x40);
@@ -30673,13 +30673,13 @@ void CoreEngineInitializeSystemDataStructures(void
   characterTableIndex = 0xfffffffffffffffe;
   *(void *)(CoreEngineSystemDataTable + 0x2038) = *(void *)(CoreEngineSystemDataTable + 0x2030);
   CharacterStatusBuffer = (uint16_t *)(SystemDataTablePointer + 0x14);
-  CharacterTablePointer = 0x100;
+  long long CharacterTableCounter = 0x100;
   systemStatus = 0;
   do {
     *CharacterStatusBuffer = 0;
     CharacterStatusBuffer = CharacterStatusBuffer + 0xc;
-    CharacterTablePointer = CharacterTablePointer + -1;
-  } while (CharacterTablePointer != 0);
+    CharacterTableCounter = CharacterTableCounter + -1;
+  } while (CharacterTableCounter != 0);
   ProcessSystemResourceHandler(CoreEngineDataTableReference + 0x48);
   CoreEngineSystemStatusFlag = 0;
   SystemStatusIndicator = 0;

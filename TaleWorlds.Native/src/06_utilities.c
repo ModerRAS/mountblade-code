@@ -10067,14 +10067,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180941f40 - 全局指针设置函数B25
 // 功能：设置全局数据指针B25到指定地址
-#define SetGlobalDataPointerB25 FUN_180941f40
+#define SetGlobalDataPointerB25 ConfigureGlobalDataPointerAtOffsetB25
 
 // 原始函数名：FUN_180941f60 - 全局指针设置函数B26
 // 功能：设置全局数据指针B26到指定地址
-#define SetGlobalDataPointerB26 FUN_180941f60
+#define SetGlobalDataPointerB26 ConfigureGlobalDataPointerAtOffsetB26
 
 // 全局指针设置函数B27-B30
-#define SetGlobalDataPointerB27 FUN_180941f80
+#define SetGlobalDataPointerB27 ConfigureGlobalDataPointerAtOffsetB27
 #define SetGlobalDataPointerB28 FUN_180941fa0
 #define SetGlobalDataPointerB29 InitializeGlobalDataPointerA2
 #define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
@@ -142461,20 +142461,3 @@ int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlag
     }
 }
 
-/**
- * @brief 系统资源清理和优化函数
- * 
- * 该函数负责清理和优化系统资源，包括内存和缓存的清理操作。
- * 
- * @param ResourceHandle 资源句柄指针，指向需要清理的资源
- * @param CleanupFlags 清理标志位，指定需要执行的清理操作类型
- * @param OptimizationLevel 优化级别，控制优化操作的强度
- * 
- * @return int 返回操作状态码：
- *         - ResourceCleanupSuccess: 清理成功
- *         - ResourceCleanupFailure: 清理失败
- *         - InvalidResourceHandle: 无效的资源句柄
- * 
- * @note 这是一个简化的实现，用于演示资源清理和优化的基本流程
- * @note 实际的清理操作会调用相应的内部函数来执行具体的清理任务
- */
