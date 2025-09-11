@@ -14117,15 +14117,35 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * @post 如果初始化成功，UtilitySystemInitializationStatus设置为SystemInitializationSuccess
  * @post 如果初始化失败，UtilitySystemInitializationStatus设置为相应的错误代码
  */
+/**
+ * @brief 初始化系统工具模块
+ * 
+ * 该函数负责初始化Mount & Blade Native API的工具模块，包括：
+ * - 系统内存结构的初始化
+ * - 系统配置参数的设置
+ * - 内存管理器的初始化
+ * - 异常处理机制的配置
+ * - 系统状态的验证
+ * 
+ * @return void
+ * 
+ * @note 该函数是系统启动时的重要初始化步骤
+ * @note 所有初始化步骤必须按顺序执行，前一步失败则终止后续步骤
+ * @note 初始化结果通过UtilitySystemInitializationStatus变量记录
+ * 
+ * @see InitializeSystemMemoryStructure, ConfigureSystemParameters, InitializeMemoryManager
+ * @see ConfigureExceptionHandler, ValidateSystemState
+ */
 void InitializeUtilityModule(void)
 {
     // 系统初始化状态变量
-    uint32_t SystemInitializationStatus;
-    uint32_t ResourceConfigurationStatus;
-    uint32_t MemoryManagementStatus;
-    uint32_t ExceptionHandlerStatus;
+    uint32_t SystemInitializationStatus;           // 系统初始化状态码
+    uint32_t ResourceConfigurationStatus;        // 资源配置状态码
+    uint32_t MemoryManagementStatus;              // 内存管理状态码
+    uint32_t ExceptionHandlerStatus;              // 异常处理器状态码
     
     // 初始化系统工具模块的内存结构
+    // 第一步：建立系统的内存管理基础结构
     SystemInitializationStatus = InitializeSystemMemoryStructure();
     if (SystemInitializationStatus != 0) {
         // 初始化失败，记录错误状态
@@ -14134,6 +14154,7 @@ void InitializeUtilityModule(void)
     }
     
     // 设置初始配置参数
+    // 第二步：配置系统的各项参数，包括性能和安全参数
     ResourceConfigurationStatus = ConfigureSystemParameters();
     if (ResourceConfigurationStatus != 0) {
         // 配置失败，记录错误状态
@@ -14142,6 +14163,7 @@ void InitializeUtilityModule(void)
     }
     
     // 初始化资源指针和内存管理器
+    // 第三步：建立内存管理机制，处理动态内存分配
     MemoryManagementStatus = InitializeMemoryManager();
     if (MemoryManagementStatus != 0) {
         // 内存管理器初始化失败
@@ -14150,6 +14172,7 @@ void InitializeUtilityModule(void)
     }
     
     // 配置异常处理机制
+    // 第四步：设置系统异常捕获和处理机制
     ExceptionHandlerStatus = ConfigureExceptionHandler();
     if (ExceptionHandlerStatus != 0) {
         // 异常处理配置失败
@@ -14158,6 +14181,7 @@ void InitializeUtilityModule(void)
     }
     
     // 验证系统状态
+    // 第五步：验证所有系统组件的状态是否正常
     if (ValidateSystemState() != 0) {
         // 系统状态验证失败
         UtilitySystemInitializationStatus = SystemStateValidationFailed;
@@ -14165,6 +14189,7 @@ void InitializeUtilityModule(void)
     }
     
     // 所有初始化步骤成功完成
+    // 设置成功状态，系统工具模块已准备好处理请求
     UtilitySystemInitializationStatus = SystemInitializationSuccess;
     
     return;
