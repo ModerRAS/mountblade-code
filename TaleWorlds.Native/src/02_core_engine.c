@@ -221868,8 +221868,8 @@ void ProcessUtf8ToUtf16CharacterConversion(uint64_t ContextHandle, uint64_t Oper
   long long SystemDataNode;
   long long RegisterR13Value;
   uint64_t *NullPointerValue;
-  char cStack0000000000000060;
-  uint uStack0000000000000064;
+  char CharacterValidationFlag;
+  uint UnicodeCodePointSize;
   
   ProcessEngineDataTransfer(ContextHandle,&DataTransferStackBuffer,Utf8SourcePointer,Utf16EndPointer,1);
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x28,*(uint8_t *)(SystemDataNode + 0x2c));
@@ -241027,7 +241027,7 @@ LAB_180198f21:
     } while (SystemBuffer60[PatternMatchStatus] != '\0');
     if ((int)CharacterTablePointer < 1) {
 LAB_18019914b:
-      FUN_1803986d0(StackLongValue);
+      ProcessSystemMemoryPoolOperation(StackLongValue);
       ContextHandleTablePointer = plStack_b8;
       CharacterTablePointer6 = *(long long *)(SystemTemporaryValue90 + 0x60858);
       MemoryAllocationHandle = *(long long *)(SystemTemporaryValue90 + 0x60860) - CharacterTablePointer6 >> 3;
@@ -241344,7 +241344,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
     (**(code **)(**(long long **)(ContextHandle + 0x318) + 0x30)              (*(long long **)(ContextHandle + 0x318),*(uint8_t *)(ContextHandle + 0x2a62),OperationBufferSize,
                *(uint32_t *)(ContextHandle + 0x8220));
   }
-  FUN_1803986d0(ContextHandle + 0x607e0);
+  ProcessSystemMemoryPoolOperation(ContextHandle + 0x607e0);
   ProcessedCharacter = MemoryPoolIndex;
   if (*(long long *)(ContextHandle + 0xe8) - *(long long *)(ContextHandle + 0xe0) >> 3 != 0) {
     do {
@@ -244407,7 +244407,7 @@ void ValidateSystemContext(long long ContextHandle
   
   SystemFlagH = 0xfffffffffffffffe;
   SystemTemporaryRegister118 = ContextHandle;
-  FUN_1803986d0(ContextHandle + 0x607e0);
+  ProcessSystemMemoryPoolOperation(ContextHandle + 0x607e0);
   PrimaryProcessingStatusFlag0 = (unsigned long long *)0x0;
   alStack_148[0] = 0;
   alStack_148[0] = BufferAllocate(MemoryPoolManager,0x100000,0xd);
@@ -296012,4 +296012,16 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  * @note 原始函数名：FUN_180187bd0
  */
 #define MonitorAndReportSystemStatus FUN_180187bd0
+
+// 新发现的FUN_函数语义化宏定义 - 基于函数调用上下文推断
+#define ProcessSystemMemoryPoolOperation FUN_1803986d0            // 处理系统内存池操作
+#define ProcessSystemDataValidation FUN_1801993a0                // 处理系统数据验证
+#define ProcessSystemEventConfiguration FUN_1801a0860             // 处理系统事件配置
+#define ProcessSystemBufferEncoding FUN_180275cf0                 // 处理系统缓冲区编码
+#define ProcessSystemContextTransfer FUN_180276f30                // 处理系统上下文传输
+#define ProcessSystemMemoryValidation FUN_1801970c0              // 处理系统内存验证
+#define ProcessSystemDataIntegrityCheck FUN_1801998a0             // 处理系统数据完整性检查
+#define ProcessSystemMemoryBuffer FUN_1801c2360                   // 处理系统内存缓冲区
+#define ProcessSystemEncodingValidation FUN_1802e92b0             // 处理系统编码验证
+#define ProcessSystemDataStructure FUN_18019aac0                 // 处理系统数据结构
 
