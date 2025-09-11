@@ -620,6 +620,7 @@
 #define SystemContextProcessingStatusOffset 0x1e14           // 系统上下文处理状态偏移量
 #define SystemContextSecondaryBooleanFlagOffset 0x1e18       // 系统上下文辅助布尔标志偏移量
 #define SystemContextDataPointerOffset 0x1e20                // 系统上下文数据指针偏移量
+#define SystemContextProcessingPtr SystemContextProcessingPointer       // 系统上下文处理指针
 #define SystemContextOperationModeOffset 0x1e30              // 系统上下文操作模式偏移量
 #define SystemContextValidationOffset3 0x1e38                // 系统上下文验证偏移量3
 #define SystemContextBooleanFlagOffset 0x1e40                 // 系统上下文布尔标志偏移量
