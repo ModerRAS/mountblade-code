@@ -71406,7 +71406,7 @@ void SortSystemDataStructure(long long *ContextHandle,long long *ContextHandleSi
             do {
               StringComparisonByte = *StringPointer;
               StringLength = (uint)StringPointer[StringOffset];
-              if (StringComparisonByte != *(byte*)0x180c82847) break;
+              if (StringComparisonByte != *(byte*)SystemSecondaryValidationAddress) break;
               StringPointer = StringPointer + 1;
             } while (StringLength != 0);
             ShouldInsert = 0 < (int)(StringComparisonByte - StringLength);
