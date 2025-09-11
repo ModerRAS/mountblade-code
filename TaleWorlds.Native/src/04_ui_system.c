@@ -314591,7 +314591,7 @@ LAB_180850eb0:
               colorBufferPointer0 = pstackLong88;
               if (localValidationResult != 0) goto LAB_1808513ac;
               FUN_180853260(pstackLong118 + 0x12,&stackLong110);
-              localValidationResult = FUN_18073c020(pstackLong118[0xf],stackInt100,*(UIHandle *)(stackLong110 + 0x30));
+              localValidationResult = ProcessUIContextBufferOperation(pstackLong118[0xf],stackInt100,*(UIHandle *)(stackLong110 + 0x30));
               allocatedMemory3 = stackLongb0;
               allocatedMemory5 = stackLongd8;
               allocatedMemory7 = stackLongb8;
