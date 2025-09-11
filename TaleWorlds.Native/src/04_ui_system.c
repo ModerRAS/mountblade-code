@@ -3315,7 +3315,6 @@ typedef enum {
  * @note 该函数在UI事件分发处理器中使用
  * @see UIEventDispatchProcessor
  */
-#define FUN_18068f150 CalculateUIDataDifferenceWithAlpha
 
 /**
  * @brief 计算UI数据差异并应用Beta混合
@@ -4239,7 +4238,6 @@ typedef enum {
 #define FUN_180736a70 RenderUIComponentAndDisplayA70                // 渲染UI组件和显示A70
 #define FUN_180734160 ValidateUIComponentContextAndState4160        // 验证UI组件上下文和状态4160
 #define FUN_180736a10 ProcessUIBufferDataAndTransferA10            // 处理UI缓冲区数据和传输A10
-#define FUN_180741e10 InitializeUIComponentAndResources1E10        // 初始化UI组件和资源1E10
 
 // UI系统高级功能函数美化
 #define FUN_180722340 GetFontRenderDataAndInformation               // 获取字体渲染数据和信息
@@ -407849,11 +407847,9 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 
 // 新增UI系统核心函数定义
 #define FUN_18074b880 ValidateUIBufferDataOperation     // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
-#define FUN_180741e10 InitializeUIComponentAndResources  // 初始化UI组件和资源 - 初始化UI系统组件和相关资源
 #define FUN_18074bc50 ProcessUIDataWithHandleAndBuffer  // 处理带句柄和缓冲区的UI数据 - 处理UI数据与句柄和缓冲区的交互
 #define ValidateUIDataWithContext ValidateUIDataWithContext        // 验证带上下文的UI数据 - 验证UI数据并处理上下文信息
 #define FUN_180744cc0 ProcessUIRenderPipelineOperation   // 处理UI渲染管道操作 - 执行UI渲染管道的各个阶段
-#define FUN_18088c790 ExecuteUIEventDispatch            // 执行UI事件调度 - 分发和处理UI系统事件
 #define FUN_180742050 ManageUIMemoryPoolAllocation      // 管理UI内存池分配 - 管理UI系统的内存池分配操作
 #define FUN_18084b240 ProcessUIAnimationStateUpdate      // 处理UI动画状态更新 - 更新UI组件的动画状态
 #define FUN_1807c41d0 CalculateUILayoutMetrics          // 计算UI布局度量 - 计算UI组件的布局度量信息
@@ -407870,8 +407866,6 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_180742190 FindUIAvailableMemorySlot              // 查找UI可用内存槽 - 查找UI系统中可用的内存槽位
 #define FUN_180742af0 SetupUIComponentMemoryAllocation       // 设置UI组件内存分配 - 设置UI组件的内存分配参数
 #define FUN_18076c8c0 ProcessUIComponentIndexAndDataSource   // 处理UI组件索引和数据源 - 处理UI组件的索引操作和数据源
-#define FUN_18074b880 ValidateUIBufferDataOperation         // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
-#define FUN_1807c41d0 CalculateUILayoutMetrics               // 计算UI布局度量 - 计算UI组件的布局度量信息
 
 // UI系统数据缓冲区处理函数宏定义
 #define FUN_18073ae88 ProcessUIDataBufferWithValidation      // 处理UI数据缓冲区验证 - 处理UI数据缓冲区的验证和复制操作
