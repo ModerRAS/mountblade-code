@@ -79905,7 +79905,7 @@ SystemMemoryRelease:
     MemoryAddressMaskPointer[4] = UnicodeCodePoint - 4;
     CoreEngineMemoryManagementFunction(&CoreEngineNetworkBuffer);
     SystemFloatConstant = (float)MemoryAllocationConstant;
-    CoreEngineProcessDynamicArrayInsert(MemoryAddressMaskPointer + 3,&fStack_8f8);
+    CoreEngineProcessDynamicArrayInsert(MemoryAddressMaskPointer + 3,&StackFloatValue8f8);
     pSystemUnsignedValue548 = &CoreEngineNetworkConfiguration;
     uStack_3a8 = 0x3f4ccccd3e4ccccd;
     uStack_3a0 = 0x3f8000003f000000;
@@ -296046,6 +296046,25 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180187950
  */
 #define ProcessSystemStringIndexAndCharacterTableOperation FUN_180187950
+
+/**
+ * @brief 处理字符数据验证和编码转换
+ * 
+ * 该函数负责处理字符数据的验证和编码转换操作，包括：
+ * - 字符数据的有效性验证
+ * - UTF-8到UTF-16的编码转换
+ * - 字符上下文的处理
+ * - 数据缓冲区的管理
+ * 
+ * @param CharacterContextHandle 字符上下文句柄指针
+ * @param ThreadLocalStorageData 线程本地存储数据指针
+ * @param Utf8SourceDataPointer UTF-8源数据指针
+ * @param Utf16TargetDataPointer UTF-16目标数据指针
+ * @param AddressMask 地址掩码，用于地址计算
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_180187a00
+ */
+#define ProcessCharacterDataAndValidation FUN_180187a00
 
 // 高频调用FUN_函数语义化宏定义
 /**
