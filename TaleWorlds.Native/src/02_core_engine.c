@@ -239715,7 +239715,7 @@ LAB_18019797c:
   if ((long long *)ContextHandle[0xc18e] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0xc18e] + 0x38))();
   }
-  FUN_180319840(ContextHandle + 0xc182);
+  ProcessSystemConfigurationUpdate(ContextHandle + 0xc182);
   if ((long long *)ContextHandle[0xc181] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0xc181] + 0x38))();
   }
