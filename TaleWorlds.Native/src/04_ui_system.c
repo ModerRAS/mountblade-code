@@ -400096,18 +400096,28 @@ UIHandle ProcessUIDataSourceLookup(longlong uiContext, UIDword *dataSource)
 
 
 
-UIHandle FUN_18089a6e8(UIHandle *uiContext,UIHandle dataSource)
-
+/**
+ * @brief 处理UI组件搜索操作
+ * 
+ * 该函数负责在UI上下文中搜索指定的组件，并返回对应的句柄。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @return UIHandle 找到的UI组件句柄，如果未找到则返回0
+ * 
+ * @note 原始函数名：FUN_18089a6e8
+ */
+UIHandle ProcessUIComponentSearch(UIHandle *uiContext, UIHandle dataSource)
 {
   int operationResult;
   UIHandle iterationCount;
   int bufferCompareResult;
   longlong componentData;
-  int iStack0000000000000030;
+  int stackIndex;
   
   operationResult = *(int *)(componentData + 0x18);
-  iStack0000000000000030 = processingResult;
-  iterationCount = (**(code **)*uiContext)(uiContext,dataSource,4);
+  stackIndex = processingResult;
+  iterationCount = (**(code **)*uiContext)(uiContext, dataSource, 4);
   if ((int)iterationCount == 0) {
     uiCompareResult = 0;
     if (0 < processingResult) {
@@ -400127,8 +400137,14 @@ UIHandle FUN_18089a6e8(UIHandle *uiContext,UIHandle dataSource)
 
 
 
- void FUN_18089a73c(void)
-void FUN_18089a73c(void)
+ /**
+ * @brief 完成UI组件数据处理
+ * 
+ * 该函数用于完成UI组件的数据处理操作。
+ * 
+ * @note 原始函数名：FUN_18089a73c
+ */
+void FinalizeUIComponentData(void)
 
 {
   return;
