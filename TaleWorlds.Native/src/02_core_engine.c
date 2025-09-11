@@ -48,6 +48,9 @@
 #define ReleaseSystemContext FreeSystemContext                   // 释放系统上下文
 #define ProcessSystemMemoryOperation ExecuteMemoryOperation       // 处理系统内存操作
 #define HandleSystemContextTransfer TransferSystemContext         // 处理系统上下文传输
+
+// UTF字符处理偏移量
+#define Utf16CharAdjustmentOffset 0x27                           // UTF-16字符调整偏移量
 #define ConvertUtf8ToUtf16Context TransformUtf8ToUtf16Encoding       // 转换UTF-8到UTF-16上下文
 #define ProcessSystemOperationBuffer HandleSystemOperationBuffer    // 处理系统操作缓冲区
 #define ProcessCharacterTablePointerAndUnicodeCleanup CleanupCharacterTableAndUnicodeData  // 处理字符表指针和Unicode码点清理
@@ -223615,7 +223618,7 @@ void ProcessDualContextCharacterEncoding(long long *ContextHandle, uint64_t Oper
     if (0xfff < Utf16Char) {
       MemoryBlockIndex = *(long long *)(BufferStatus + -8);
       if (0x1f < (BufferStatus - MemoryBlockIndex) - 8U) {
-          _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + 0x27,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
+          _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + Utf16CharAdjustmentOffset,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
       }
     }
     free(MemoryBlockIndex);
@@ -224485,7 +224488,7 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
     if (0xfff < Utf16Char) {
       SystemDataRegistry = *(long long *)(MemoryBlockIndex + -8);
       if (0x1f < (MemoryBlockIndex - SystemDataRegistry) - 8U) {
-          _invalid_parameter_noinfo_noreturn(MemoryBlockIndex - SystemDataRegistry,Utf16Char + 0x27,SystemDataRegistry,Utf16EndPointer,CalculatedCodePoint);
+          _invalid_parameter_noinfo_noreturn(MemoryBlockIndex - SystemDataRegistry,Utf16Char + Utf16CharAdjustmentOffset,SystemDataRegistry,Utf16EndPointer,CalculatedCodePoint);
       }
     }
     free(SystemDataRegistry);
@@ -225928,7 +225931,7 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
     if (0xfff < Utf16Char) {
       CurrentMemoryBlockIndex = *(long long *)(BufferStatus + -8);
       if (0x1f < (BufferStatus - CurrentMemoryBlockIndex) - 8U) {
-          _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + 0x27,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
+          _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + Utf16CharAdjustmentOffset,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
       }
     }
     free(CurrentMemoryBlockIndex);
