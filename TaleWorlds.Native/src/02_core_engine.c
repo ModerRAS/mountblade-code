@@ -262829,7 +262829,7 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
   *(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + 0xc) =
        (int)ContextHandle[10];
   CoreEngineFinalizeSystemEvent(&LocalProcessingStatusFlag,ContextHandle + 2,Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint);
-  FUN_180623fd0(ContextHandle[8],&LocalProcessingStatusFlag);
+  HandleSystemEventProcessing(ContextHandle[8],&LocalProcessingStatusFlag);
   LocalProcessingStatusFlag = &SystemNullTemplate;
   if (SystemEventFlag != 0) {
       ProcessSystemEventHandling();
