@@ -58145,7 +58145,7 @@ void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,Da
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextStatusOffsetE8) = 0;
-  *(DataWord *)(exceptionContext + 0xf8) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffsetF8) = 0;
   *(DataBuffer *)(exceptionContext + 0xe0) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -60105,7 +60105,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextStatusOffsetE8) = 0;
-  *(DataWord *)(exceptionContext + 0xf8) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffsetF8) = 0;
   *(DataBuffer *)(exceptionContext + 0xe0) = &SystemDefaultExceptionHandlerB;
   return;
 }
