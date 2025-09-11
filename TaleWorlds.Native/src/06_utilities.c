@@ -5299,51 +5299,26 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 /**
  * @brief 数据验证处理函数
  * 
- * 该函数负责验证数据的完整性和有效性，通过多种验证机制确保数据的一致性和可靠性。
- * 它支持校验和验证、数据结构验证和业务逻辑验证等多种验证方式。
+ * 验证数据的完整性和有效性，确保数据的一致性和可靠性。
  * 
  * @param dataBuffer 指向待验证数据的缓冲区
  * @param bufferSize 数据缓冲区的大小
  * @param validationFlags 验证标志位，指定验证类型和严格程度
  * @param expectedChecksum 期望的校验和值（可选）
  * @return int 验证结果状态码，0表示验证成功，非0表示验证失败
- * 
- * @details 验证机制包括：
- * - CRC32校验和验证
- * - 数据结构完整性检查
- * - 内存边界验证
- * - 业务逻辑规则验证
- * - 安全性验证
- * 
- * @note 原始函数名：ValidateData
- * @see EncryptSensitiveDataWithAES, RepairCorruptedData
- * @warning 验证失败时可能导致数据访问拒绝或系统终止
  */
 #define ValidateDataIntegrity ValidateDataIntegrity
 
 /**
  * @brief 内存分配处理函数
  * 
- * 该函数为系统分配内存池，提供高效的内存管理和分配机制。它支持多种内存分配策略，
- * 包括固定大小分配、动态扩展分配和内存池管理等，以满足不同场景下的内存需求。
+ * 为系统分配内存池，提供高效的内存管理和分配机制。
  * 
  * @param poolSize 内存池的大小（字节）
  * @param allocationFlags 分配标志位，指定分配类型和属性
  * @param alignmentRequirement 内存对齐要求（字节）
  * @param memoryAttributes 内存属性标志，设置内存的访问权限和缓存策略
  * @return void* 分配的内存池指针，失败时返回NULL
- * 
- * @details 内存分配特性：
- * - 支持固定大小和可变大小分配
- * - 提供内存对齐和填充控制
- * - 支持内存保护机制
- * - 包含内存使用统计和监控
- * - 支持内存压缩和优化
- * 
- * @note 原始函数名：AllocateMemory
- * @see FreeSystemMemoryPool, ReallocateMemoryPool, GetMemoryPoolStatistics
- * @warning 内存分配失败可能导致系统功能受限，应检查返回值
- * @note 分配的内存必须在使用完毕后通过FreeSystemMemoryPool释放
  */
 #define AllocateSystemMemoryPool AllocateSystemMemoryPool
 
