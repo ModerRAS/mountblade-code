@@ -24626,7 +24626,7 @@ void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
   int64_t *dataContextPointer;
   int64_t resourceContext;
   uint64_t stackGuardValue;
-  ByteFlag stackBuffer [40];
+  ByteFlag systemBuffer [40];
   
   // 执行资源操作并获取异常上下文
   exceptionContext = (**(FunctionPointer**)(*resourceHandle + ResourceFunctionTableOffset))(resourceHandle,operationOffset + OperationValidationOffset);
@@ -24654,7 +24654,7 @@ void ExecuteSecurityValidation(void)
 
 {
   uint64_t stackGuardValue;
-  ByteFlag stackBuffer [40];
+  ByteFlag systemBuffer [40];
   
   stackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)stackBuffer;
     ExecuteSecurityCheck(stackGuardValue);
@@ -25306,7 +25306,7 @@ DataBuffer ProcessSystemDataWithContext(int64_t systemContext,int64_t dataBuffer
       return memoryRegionBase;
     }
     ResourceTraversalIndex = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
-    MemoryAllocationOffset = *(int64_t *)(ResourceTraversalIndex + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
+    MemoryAllocationOffset = *(int64_t *)(ResourceTraversalIndex + ResourceIteratorOffset + (int64_t)(int)systemBuffer[0] * ResourceIteratorStep);
     if ((*(SystemByteType *)(memoryRegionOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
       inputValue = *(float *)(dataBuffer + FloatValueOffset);
       resultValue = *(float *)(memoryRegionOffset + SystemFloatDataOffset38);
@@ -25316,8 +25316,8 @@ DataBuffer ProcessSystemDataWithContext(int64_t systemContext,int64_t dataBuffer
       }
       *(float *)(dataBuffer + FloatValueOffset) = resultValue;
       dataContext = *(int64_t *)(dataContext + systemContextPointerOffset90);
-      *(float *)(ResourceTraversalIndex + 4 + (int64_t)(int)stackBuffer[0] * SystemDataRecordMultiplier) = resultValue;
-      *(DataBuffer *)(dataBuffer + MemoryPointerOffset) = *(DataBuffer *)(dataContext + (int64_t)(int)stackBuffer[0] * 8);
+      *(float *)(ResourceTraversalIndex + 4 + (int64_t)(int)systemBuffer[0] * SystemDataRecordMultiplier) = resultValue;
+      *(DataBuffer *)(dataBuffer + MemoryPointerOffset) = *(DataBuffer *)(dataContext + (int64_t)(int)systemBuffer[0] * 8);
         CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + SystemManagementOffset98),dataBuffer);
     }
   }
@@ -27056,7 +27056,7 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
   DataBuffer operationResult;
   int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
-  ByteFlag stackBuffer [8];
+  ByteFlag systemBuffer [8];
   DataWord operationFlags [2];
   
   operationFlags[0] = 0;
@@ -28852,7 +28852,7 @@ void ExecuteSecurityCheck(void)
 
 {
   int64_t securityContext;
-  ByteFlag stackBuffer [40];
+  ByteFlag systemBuffer [40];
   
   securityContext = GetSecurityContext();
     ExecuteSecurityCheck(*(uint64_t *)(securityContext + SecurityContextValidationOffset5F0) ^ (uint64_t)stackBuffer);
@@ -43519,7 +43519,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
   DataBuffer validationData;                            // 验证数据缓冲区
   DataBuffer validationStatus;                          // 验证状态返回值
   ByteFlag inputDataBuffer [32];                        // 输入数据缓冲区
-  ByteFlag stackBuffer [32];                            // 栈缓冲区
+  ByteFlag systemBuffer [32];                            // 栈缓冲区
   
   validationStatus = ExecuteSecurityValidation(dataBuffer,stackBuffer,1,SecurityValidationFfcOperationSecurity);
   if (((((int)validationStatus == 0) &&
