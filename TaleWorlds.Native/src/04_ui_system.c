@@ -3350,6 +3350,15 @@ typedef enum {
 #define bufferSize UIBufferSize
 #define operationResult UIOperationResult
 #define dataValidationResult UIDataValidationResult
+#define func_0x000180748d70 ProcessUIEventWithDataTarget
+#define func_0x00018005d390 InitializeUIMemoryBlock
+#define func_0x00018066c060 CompareUIStringWithContext
+#define func_0x00018066c000 CompareUIStringWithComponent
+#define func_0x00018004b9a0 GetUIResultPointer
+#define func_0x00018069c2d0 ProcessUIValidationOperation
+#define func_0x00018066ecc0 ExtractUIntFromUIContext
+#define func_0x00018069d1c0 ProcessUIDataSource
+#define func_0x00018069ba40 ProcessUIContextWithDataSource
 #define eventCodeType UIEventCodeType
 #define contextHandle UIContextHandle
 #define processingFlags UIProcessingFlags
