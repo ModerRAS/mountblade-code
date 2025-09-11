@@ -998,6 +998,28 @@ typedef union {
 #define MemoryPointerOffset8 0x8
 #define ResourceManagementOffset1D8 0x1d8
 
+// 系统异常处理函数语义化宏定义
+#define HandleSystemException790 HandleSystemExceptionAtOffset790    // 处理偏移量790的系统异常
+#define HandleSystemException7A0 HandleSystemExceptionAtOffset7A0    // 处理偏移量7A0的系统异常  
+#define HandleSystemException7B0 HandleSystemExceptionAtOffset7B0    // 处理偏移量7B0的系统异常
+#define HandleSystemException7C0 HandleSystemExceptionAtOffset7C0    // 处理偏移量7C0的系统异常
+
+// 系统资源管理函数语义化宏定义
+#define ManageSystemMemory ManageSystemMemoryAndResources           // 管理系统内存和资源
+#define SetBitFlag SetSystemBitFlag                                 // 设置系统位标志
+#define ResourceReferenceDecrement -1                              // 资源引用计数递减值
+
+// 系统数据处理函数语义化宏定义
+#define ProcessSystemOperationsA1 ExecuteSystemOperationsA1        // 执行系统操作A1
+#define TerminateSystemExecutionAndCleanupResources CleanupSystemAndTerminate  // 清理系统并终止执行
+
+// 异常处理相关函数语义化宏定义
+#define SystemDefaultExceptionHandlerB DefaultSystemExceptionHandlerB  // 默认系统异常处理器B
+#define HandleSystemExceptionRecovery RecoverFromSystemException    // 从系统异常中恢复
+
+// 系统内存管理函数语义化宏定义
+#define ManageSystemMemoryAndResources ManageMemoryAllocationAndCleanup  // 管理内存分配和清理
+
 // 对象和资源管理偏移量常量
 #define ObjectDestructorCallbackOffset 0xc8
 
