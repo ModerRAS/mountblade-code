@@ -284753,6 +284753,16 @@ void ReleaseContextHandleAndCleanupResources(long long *ContextHandle, uint64_t 
 
 
 
+/**
+ * @brief 初始化上下文句柄和系统资源
+ * 
+ * 此函数负责初始化系统上下文句柄和相关资源，
+ * 包括内存分配、系统事件模板设置和本地线程存储配置。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_1802267d0
+ */
 void InitializeContextHandleAndSystemResources(long long *ContextHandle)
 {
   long long MainCalculationResult;
@@ -284793,6 +284803,17 @@ void InitializeContextHandleAndSystemResources(long long *ContextHandle)
 
 
 
+/**
+ * @brief 处理系统内存分配和上下文管理
+ * 
+ * 此函数负责管理系统内存分配和上下文管理操作，
+ * 包括内存边界检查、节点遍历和资源分配掩码处理。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1802268c0
+ */
 void ProcessSystemMemoryAllocationAndContextManagement(long long *ContextHandle, long long OperationBufferSize)
 {
   long long MainCalculationResult;
