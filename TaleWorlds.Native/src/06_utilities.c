@@ -34077,9 +34077,9 @@ void ProcessMultiSegmentDataPrimary(DataBuffer systemContext,int64_t DataBuffer)
     if (OperationResult == 0) {
       OperationResult = ReadDataFromBuffer(systemContext,DataBuffer + 6,2);
       if (OperationResult == 0) {
-        OperationResult = OperateDataO0(systemContext,DataBuffer + 8,8);
+        OperationResult = ReadDataFromBuffer(systemContext,DataBuffer + 8,8);
         if (OperationResult == 0) {
-          OperateDataO0(systemContext,DataBuffer + DataBufferOffset10,4);
+          ReadDataFromBuffer(systemContext,DataBuffer + DataBufferOffset10,4);
         }
       }
     }
