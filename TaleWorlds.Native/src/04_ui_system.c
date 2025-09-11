@@ -137957,7 +137957,7 @@ UIHandle ValidateUIMemoryOperation(longlong uiContext,char dataSource)
 
 
 
-UIHandle FUN_180743166(longlong uiContext,char dataSource)
+UIHandle ValidateAndCleanupUIElements(longlong uiContext,char dataSource)
 
 {
   int operationResult;
