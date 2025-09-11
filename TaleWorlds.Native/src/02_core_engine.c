@@ -236849,7 +236849,7 @@ LAB_1801945bb:
 
 
 
-946c0(long long *ContextHandlevoid FUN_1801946c0(long long *ContextHandle
+void FUN_1801946c0(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long BufferStatus;
@@ -236876,7 +236876,7 @@ LAB_1801945bb:
 
 
 
-946e0(uint64_t *ContextHandlevoid FUN_1801946e0(uint64_t *ContextHandle
+void FUN_1801946e0(uint64_t *ContextHandle)
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
