@@ -251844,7 +251844,7 @@ void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long 
       CharacterStatusBuffer = (void *)(ContextHandle + EncodingConversionResult * 0x10);
       *CharacterStatusBuffer = CalculatedCodePoint;
       CharacterStatusBuffer[1] = OperationResult;
-    } while (0 < LoopIndex);
+    } while (0 < MainLoopIndex);
   }
   return;
 }
@@ -260805,7 +260805,24 @@ LAB_18020ed62:
 
 
 
-unsigned long long FUN_18020ee40(long long ContextHandle
+/**
+ * @brief 处理系统内存上下文管理
+ * 
+ * 该函数负责管理系统内存上下文的分配、验证和清理操作。
+ * 主要功能包括：
+ * - 验证系统内存上下文的有效性
+ * - 管理内存地址掩码和边界检查
+ * - 处理内存分配和释放操作
+ * - 执行字符状态缓冲区操作
+ * - 处理系统上下文句柄管理
+ * 
+ * @param ContextHandle 系统上下文句柄 - 指向系统上下文结构的指针
+ * 
+ * @return 处理结果 - 返回操作执行的状态码，0表示失败，1表示成功
+ * 
+ * @note 原始函数名：FUN_18020ee40
+ */
+unsigned long long HandleSystemMemoryContextManagement(long long ContextHandle)
 {
   unsigned long long *CharacterStatusBuffer;
   long long BufferStatus;
@@ -260813,29 +260830,29 @@ unsigned long long FUN_18020ee40(long long ContextHandle
   uint64_t *MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   long long *MemoryRangeBoundary;
-  bool BooleanValidationFlag7;
+  bool IsContextValid;
   char SystemStatusChar;
   unsigned long long ProcessingResult;
-  long long *pStringOffset;
-  long long *ContextHandlePointer;
+  long long *StringOffsetPointer;
+  long long *MainContextPointer;
   unsigned long long ProcessedCharacter;
-  long long *ContextHandle2;
-  long long *ContextHandle3;
-  long long *ContextHandle4;
-  long long *ContextHandle5;
-  long long *ContextHandle6;
-  long long *ContextHandle7;
+  long long *SecondaryContextHandle;
+  long long *TertiaryContextHandle;
+  long long *QuaternaryContextHandle;
+  long long *QuinaryContextHandle;
+  long long *SenaryContextHandle;
+  long long *SeptenaryContextHandle;
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
-  long long *SystemContextRegister;
+  long long *SystemContextRegisterBackup;
   
   if (*(long long *)(ContextHandle + 0x148) == 0) {
     return ProcessingResult & 0xffffffffffffff00;
   }
-  ContextHandle7 = (long long *)0x0;
+  SeptenaryContextHandle = (long long *)0x0;
   SystemContextRegister = (long long *)0x0;
   MemoryAddressMaskPointer = *(uint64_t **)(ContextHandle + 0x68);
-  ContextHandleTablePointer = ContextHandle7;
+  ContextHandleTablePointer = SeptenaryContextHandle;
   MemoryRangeBoundary = SystemContextRegister;
   if (MemoryAddressMaskPointer != NULL) {
     ContextHandle2 = (long long *)*MemoryAddressMaskPointer;
