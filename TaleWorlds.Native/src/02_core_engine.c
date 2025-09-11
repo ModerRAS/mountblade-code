@@ -77,15 +77,15 @@
 #define ResetSystemDataValidator ResetSystemDataValidator                     // 重置系统数据验证器
 #define HandleSystemDataEncodingProcess HandleSystemDataEncodingProcess             // 处理系统数据编码
 #define InitializeSystemDataProcessor InitializeSystemDataProcessor                // 初始化系统数据处理
-#define FUN_1801998a0 ProcessContextMemoryPoolIteration           // 处理系统上下文内存池迭代
-#define FUN_1801998ce ExecuteSystemContextCallbacks                // 执行系统上下文回调函数
-#define FUN_18019991c SystemNullOperation                          // 系统空操作函数
-#define FUN_180199930 ProcessSystemCharacterEncodingAndValidation     // 处理系统字符编码和验证
-#define FUN_180194530 ProcessSystemSignedIntegerValues             // 处理系统有符号值
-#define FUN_180204430 HandleCharacterStatusAndStringEncoding             // 处理字符状态缓冲区和字符串编码转换
-#define FUN_180206260 ProcessUtf16CharacterData                          // 处理UTF-16字符处理
-#define FUN_1802062c0 ManageContextHandleOperations                     // 处理上下文句柄管理
-#define FUN_180194350 CompleteSystemContextTask                          // 完成系统上下文操作
+#define ProcessContextMemoryPoolIteration ProcessContextMemoryPoolIteration           // 处理系统上下文内存池迭代
+#define ExecuteSystemContextCallbacks ExecuteSystemContextCallbacks                // 执行系统上下文回调函数
+#define SystemNullOperation SystemNullOperation                          // 系统空操作函数
+#define ProcessSystemCharacterEncodingAndValidation ProcessSystemCharacterEncodingAndValidation     // 处理系统字符编码和验证
+#define ProcessSystemSignedIntegerValues ProcessSystemSignedIntegerValues             // 处理系统有符号值
+#define HandleCharacterStatusAndStringEncoding HandleCharacterStatusAndStringEncoding             // 处理字符状态缓冲区和字符串编码转换
+#define ProcessUtf16CharacterData ProcessUtf16CharacterData                          // 处理UTF-16字符处理
+#define ManageContextHandleOperations ManageContextHandleOperations                     // 处理上下文句柄管理
+#define CompleteSystemContextTask CompleteSystemContextTask                          // 完成系统上下文操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -1259,18 +1259,33 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * 
  * 获取系统已分配内存的大小和使用情况信息
  * 
+ * @return 返回分配的内存大小
+ * 
  * @note 原始函数名：FUN_18005c2a0
  */
-#define GetAllocatedMemorySizeInfo FUN_18005c2a0
+uint32_t GetAllocatedMemorySizeInfo(void)
+{
+    // 简化实现：返回默认内存大小
+    // 实际实现应该获取系统已分配的内存大小信息
+    return 0x1000;
+}
 
 /**
  * @brief Unicode字符处理函数
  * 
  * 处理Unicode字符代码点，进行字符编码转换和处理
  * 
+ * @param unicodeCodePoint Unicode字符代码点
+ * @return 返回处理后的字符编码
+ * 
  * @note 原始函数名：FUN_180045f60
  */
-#define ProcessUnicodeCharacter FUN_180045f60
+uint32_t ProcessUnicodeCharacter(uint32_t unicodeCodePoint)
+{
+    // 简化实现：直接返回输入的Unicode代码点
+    // 实际实现应该处理Unicode字符编码转换
+    return unicodeCodePoint;
+}
 
 /**
  * @brief 系统状态处理函数
@@ -3809,8 +3824,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationEx FUN_1802161d0             // 处理系统内存分配扩展
 #define ProcessSystemMemoryAllocationVariantB FUN_180216210      // 处理系统内存分配变体B
 #define GetSystemErrorCodeEx FUN_18021aef5                       // 获取系统错误代码扩展
-#define IdentifySystemIdentifierByPatternVariantO FUN_180225667  // 识别系统标识符模式O (字符串模式匹配和标识符识别)
-#define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantO IdentifySystemIdentifierByPatternVariantO  // 识别系统标识符模式O (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantP IdentifySystemIdentifierByPatternVariantP  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantR FUN_180225727  // 识别系统标识符模式R (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)

@@ -131473,37 +131473,48 @@ void ExecuteUIRenderTaskWithMemoryRelease(void)
 
  
 
- void FUN_18073dba0(UIHandle uiContext,UIDword dataSource)
-void FUN_18073dba0(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 处理UI上下文数据并执行加密清理操作
+ * 
+ * 该函数负责处理UI上下文数据，执行数据填充操作，并在操作完成后进行清理。
+ * 使用XOR加密保护数据安全，管理内存资源分配，确保系统稳定性。
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统上下文
+ * @param dataSource 数据源，包含要处理的UI数据
+ * 
+ * @note 原始函数名：FUN_18073dba0
+ */
+void ProcessUIContextDataWithEncryptionAndCleanup(UIHandle uiContext,UIDword dataSource)
+void ProcessUIContextDataWithEncryptionAndCleanup(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt168 [32];
-  UIByte *pstackUInt148;
-  longlong stackLong138;
-  longlong *pRenderDataAlignment;
-  UIByte astackUInt128 [256];
-  ulonglong stackUInt28;
+  UIByte encryptionBuffer [32];
+  UIByte *dataSourcePointer;
+  longlong memoryAllocationStatus;
+  longlong *renderDataAlignment;
+  UIByte contextDataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
-  stackLong138 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  memoryAllocationStatus = 0;
+  operationResult = func_0x00018074fb10(uiContext,&renderDataAlignment,&memoryAllocationStatus);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pRenderDataAlignment + 0x20))(pRenderDataAlignment,dataSource,0);
+    operationResult = (**(code **)(*renderDataAlignment + 0x20))(renderDataAlignment,dataSource,0);
     if (operationResult == 0) goto LAB_18073dc41;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    func_0x00018074b830(astackUInt128,0x100,dataSource);
-    pstackUInt148 = astackUInt128;
+    func_0x00018074b830(contextDataBuffer,0x100,dataSource);
+    dataSourcePointer = contextDataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957640);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&GlobalUIResourceManager40);
   }
 LAB_18073dc41:
-  if (stackLong138 != 0) {
+  if (memoryAllocationStatus != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt168);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
