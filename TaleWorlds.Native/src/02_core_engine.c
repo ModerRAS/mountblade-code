@@ -265552,7 +265552,7 @@ LAB_180214064:
 LAB_18021428b:
       if (pValidationResult != *(int **)(BufferStatus + AllocatedMemorySize * 8)) {
         BufferStatus = *(long long *)(pValidationResult + 2);
-        FUN_180849230(*(void *)(BufferStatus + 0x80));
+        HandleSystemStringTransfer(*(void *)(BufferStatus + 0x80));
         *(void *)(BufferStatus + 0x80) = 0;
         BufferStatus = *(long long *)(pValidationResult + 4);
         ContextHandle = MemoryPoolSizePointer;
@@ -265659,7 +265659,7 @@ LAB_180214378:
   unsigned long long uStack_18;
   
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)aCoreEngineValueA8;
-  FUN_1808452a0(*(void *)(ContextHandle + 0x368),&fStack_5c,&CalculationFloat58);
+  ProcessSystemFloatCalculation(*(void *)(ContextHandle + 0x368),&fStack_5c,&CalculationFloat58);
   ProcessSystemEventQueueData(&SystemEventQueueDataTable);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSecondary,(double)CalculationFloat58);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableTertiary,(double)CalculationFloat54);
@@ -265818,7 +265818,7 @@ LAB_180214378:
     TemporaryBuffer = PrimaryProcessingStatusFlag;
     if (SystemStatusCode != 0) {
       do {
-        OperationResult = FUN_180849230(*TemporaryBuffer);
+        OperationResult = HandleSystemStringTransfer(*TemporaryBuffer);
         ProcessCoreEngineDataAndTemplate(OperationResult,&CoreEngineDataTemplate);
         ArrayIndex = ArrayIndex + 1;
         TemporaryBuffer = TemporaryBuffer + 1;
@@ -267012,7 +267012,7 @@ void CleanupSystemCharacterStatusBufferAndMemory(long long ContextHandle
   ContextHandleTablePointer = CharacterStatusBuffer;
   if (OperationResult != 0) {
     do {
-      MemoryAllocationMaskPointer = FUN_180849230(*ContextHandlePointer);
+      MemoryAllocationMaskPointer = HandleSystemStringTransfer(*ContextHandlePointer);
       ProcessCoreEngineDataAndTemplate(MemoryAllocationMaskPointer,&CoreEngineDataTemplate);
       StringLength = StringLength + 1;
       ContextHandleTablePointer = ContextHandleTablePointer + 1;
