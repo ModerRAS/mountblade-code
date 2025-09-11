@@ -251826,11 +251826,11 @@ void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long 
         do {
           StringOffset = EncodingConversionResult + -1 >> 1;
           InputDataLength = *(int *)(ContextHandle + 8 + StringOffset * 0x10);
-          if (InputDataLength == iStack_10) {
-            IsSystemContextValidationResult = *(int *)(ContextHandle + 0xc + StringOffset * 0x10) < iStack_c;
+          if (InputDataLength == StackVariable10) {
+            IsSystemContextValidationResult = *(int *)(ContextHandle + 0xc + StringOffset * 0x10) < StackVariable12;
           }
           else {
-            IsSystemContextValidationResult = iStack_10 < InputDataLength;
+            IsSystemContextValidationResult = StackVariable10 < InputDataLength;
           }
           if (!IsSystemContextValidationResult) break;
           CharacterStatusBuffer = (void *)(ContextHandle + StringOffset * 0x10);
@@ -251839,7 +251839,7 @@ void ProcessSystemMemoryBufferSortingAndInsertion(long long ContextHandle, long 
           *PrimaryProcessingStatusFlag = *CharacterStatusBuffer;
           PrimaryProcessingStatusFlag[1] = SystemChecksum;
           EncodingConversionResult = StringOffset;
-        } while (LoopIndex < StringOffset);
+        } while (MainLoopIndex < StringOffset);
       }
       CharacterStatusBuffer = (void *)(ContextHandle + EncodingConversionResult * 0x10);
       *CharacterStatusBuffer = CalculatedCodePoint;
