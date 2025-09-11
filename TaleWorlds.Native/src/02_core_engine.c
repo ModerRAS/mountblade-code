@@ -236019,14 +236019,14 @@ void ProcessSystemDataTableAndSort(void)
 #define ProcessSystemMemoryBufferAndCharacterEncoding FUN_180190e30
 void ProcessSystemMemoryBufferAndCharacterEncoding(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
-  char SystemValidationStatus;
-  long long SystemBufferStatus;
-  long long SystemSearchStartIndex;
-  uint64_t SystemMemoryAllocationMaskPointer;
-  uint8_t SystemProcessingBuffer368 [848];
+  char CharacterEncodingValidationStatus;
+  long long MemoryBufferOperationStatus;
+  long long MemorySearchStartPosition;
+  uint64_t MemoryAddressMask;
+  uint8_t CharacterEncodingProcessingBuffer [848];
   
-  SystemMemoryAllocationMaskPointer = 0xfffffffffffffffe;
-  SystemBufferStatus = OperationBufferSize - ContextHandle;
+  MemoryAddressMask = 0xfffffffffffffffe;
+  MemoryBufferOperationStatus = OperationBufferSize - ContextHandle;
   do {
     if ((SystemBufferStatus < 0x5f28) || (Utf8SourcePointer < 1)) {
       if (Utf8SourcePointer == 0) {
@@ -289592,12 +289592,12 @@ long long ExecuteMatrixTransformAndFloatCalculations(void)
 {
   uint64_t *CharacterStatusBuffer;
   float *TransformMatrixBuffer;
-  float CalculatedFilterValue;
-  float MatrixTransformMultiplier1;
-  float MatrixTransformMultiplier;
+  float FilterValue;
+  float TransformMultiplierX;
+  float TransformMultiplierY;
   float CalculatedDistance;
-  char CharacterStatus2;
-  float ProcessedFloatValue8;
+  char CharacterValidationStatus;
+  float ProcessedTransformValue;
   uint64_t ArraySize;
   uint64_t *CharacterStatusBuffer;
   long long SystemStringIndex;
