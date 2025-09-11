@@ -599,7 +599,7 @@ typedef enum {
 
 // UI系统数据变量定义
 #define UIEventThresholdCounter UIEventProcessingThresholdCounter         // UI事件处理阈值计数器
-#define DAT_180be2198 UIPrimarySystemDataTable                   // UI主数据表
+#define UIPrimarySystemDataTable UIPrimarySystemDataTable                   // UI主数据表
 #define DAT_180be2df8 UISecondarySystemDataTable                 // UI次数据表
 #define DAT_180be2288 UITertiarySystemDataTable                  // UI第三数据表
 #define DAT_180be2d08 UIQuaternarySystemDataTable                // UI第四数据表
@@ -133619,27 +133619,27 @@ void ProcessUIContextWithDataBuffer(UIHandle uiContext,UIHandle dataSource,UIByt
   UIByte dataBuffer [256];
   ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt140,&stackLong148);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  memoryHandle = 0;
+  operationResult = FUN_180754f10(uiContext,&contextHandle,&memoryHandle);
   if (operationResult == 0) {
-    operationResult = ValidateUIContext(stackUInt140,dataSource,targetBuffer,bufferSize);
+    operationResult = ValidateUIContext(contextHandle,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto LAB_18073f20b;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUITextureDataFill(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    uiValidationResult = CopyUIDataBuffer(dataBuffer,0x100,dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    ProcessUITextureDataFill(dataBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957a60);
   }
 LAB_18073f20b:
-  if (stackLong148 != 0) {
+  if (memoryHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
@@ -198679,8 +198679,8 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
       eventStatus = (ulonglong)eventCodeType;
       processingFlags = (ulonglong)(eventCodeType * 4);
       do {
-        AccumulatedFloat = _DAT_180be2198 + *(float *)(contextOffset + -4 + (longlong)pLocalFloatValue6);
-        _DAT_180be2198 = -_DAT_180be2198;
+        AccumulatedFloat = _UIPrimarySystemDataTable + *(float *)(contextOffset + -4 + (longlong)pLocalFloatValue6);
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         transformCoeff17 = *(float *)(uiContext + 0x224);
         normalizedSum6 = *(float *)(uiContext + 0x324);
         normalizedSum5 = (((transformCoeff17 * *(float *)(uiContext + 0x434) + AccumulatedFloat * *(float *)(uiContext + 0x430) +
@@ -198693,7 +198693,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x2a4) = transformCoeff17;
         *(float *)(uiContext + 0x3a4) = normalizedSum6;
         pLocalFloatValue6[-1] = normalizedSum5;
-        AccumulatedFloat = _DAT_180be2198 + *(float *)(contextOffset + (longlong)pLocalFloatValue6);
+        AccumulatedFloat = _UIPrimarySystemDataTable + *(float *)(contextOffset + (longlong)pLocalFloatValue6);
         transformCoeff17 = *(float *)(uiContext + 0x224);
         normalizedSum6 = *(float *)(uiContext + 0x324);
         normalizedSum5 = (((transformCoeff17 * *(float *)(uiContext + 0x434) + AccumulatedFloat * *(float *)(uiContext + 0x430) +
@@ -198706,7 +198706,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x2a4) = transformCoeff17;
         *(float *)(uiContext + 0x3a4) = normalizedSum6;
         *pLocalFloatValue6 = normalizedSum5;
-        AccumulatedFloat = *(float *)(contextOffset + 4 + (longlong)pLocalFloatValue6) - _DAT_180be2198;
+        AccumulatedFloat = *(float *)(contextOffset + 4 + (longlong)pLocalFloatValue6) - _UIPrimarySystemDataTable;
         transformCoeff17 = *(float *)(uiContext + 0x224);
         normalizedSum6 = *(float *)(uiContext + 0x324);
         normalizedSum5 = (((AccumulatedFloat * *(float *)(uiContext + 0x430) + transformCoeff17 * *(float *)(uiContext + 0x434) +
@@ -198719,9 +198719,9 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x2a4) = transformCoeff17;
         *(float *)(uiContext + 0x3a4) = normalizedSum6;
         pLocalFloatValue6[1] = normalizedSum5;
-        normalizedSum5 = _DAT_180be2198 + *(float *)(contextOffset + 8 + (longlong)pLocalFloatValue6);
+        normalizedSum5 = _UIPrimarySystemDataTable + *(float *)(contextOffset + 8 + (longlong)pLocalFloatValue6);
         transformCoeff17 = *(float *)(uiContext + 0x324);
-        _DAT_180be2198 = -_DAT_180be2198;
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         normalizedSum6 = (((*(float *)(uiContext + 0x224) * *(float *)(uiContext + 0x434) +
                     normalizedSum5 * *(float *)(uiContext + 0x430) +
                    *(float *)(uiContext + 0x438) * *(float *)(uiContext + 0x2a4)) -
@@ -198741,8 +198741,8 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
       pLocalFloatValue6 = (float *)(targetBuffer + processingFlags * 4);
       processingFlags = (ulonglong)(bufferSize - (uint)processingFlags);
       do {
-        normalizedSum5 = _DAT_180be2198 + *(float *)((longlong)pLocalFloatValue6 + (dataSource - targetBuffer));
-        _DAT_180be2198 = -_DAT_180be2198;
+        normalizedSum5 = _UIPrimarySystemDataTable + *(float *)((longlong)pLocalFloatValue6 + (dataSource - targetBuffer));
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         transformCoeff17 = *(float *)(uiContext + 0x324);
         normalizedSum6 = (((*(float *)(uiContext + 0x224) * *(float *)(uiContext + 0x434) +
                     normalizedSum5 * *(float *)(uiContext + 0x430) +
@@ -198767,11 +198767,11 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         bufferValue = ProcessingResult1 * 2;
         transformCoeff14 = 1.0 / *(float *)(uiContext + 0x424);
         transformCoeff17 = *(float *)(uiContext + 0x2a4);
-        TransformCoefficient23 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)bufferValue * 4);
+        TransformCoefficient23 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)bufferValue * 4);
         normalizedSum6 = *(float *)(uiContext + 0x224);
-        TransformCoefficient22 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(bufferValue + 1) * 4);
+        TransformCoefficient22 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(bufferValue + 1) * 4);
         normalizedSum5 = *(float *)(uiContext + 0x2a8);
-        transformMatrix24 = -_DAT_180be2198;
+        transformMatrix24 = -_UIPrimarySystemDataTable;
         *(float *)(uiContext + 0x2a4) = normalizedSum6;
         *(float *)(uiContext + 0x224) = TransformCoefficient23;
         AccumulatedFloat = *(float *)(uiContext + 0x3a4);
@@ -198853,7 +198853,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         transformCoeff17 = *(float *)(uiContext + 0x2a4);
         normalizedSum6 = *(float *)(uiContext + 0x224);
         normalizedSum5 = *(float *)(uiContext + 0x2a8);
-        _DAT_180be2198 = -transformMatrix24;
+        _UIPrimarySystemDataTable = -transformMatrix24;
         transformMatrix24 = transformMatrix24 + *(float *)(dataSource + (ulonglong)(bufferValue + 7) * 4);
         *(float *)(uiContext + 0x2a4) = normalizedSum6;
         *(float *)(uiContext + 0x224) = transformCoeff14;
@@ -198881,14 +198881,14 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
     eventCode = (uint)processingFlags;
     while (eventCodeType < bufferSize) {
       bufferValue = (int)processingFlags * 2;
-      transformMatrix24 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)bufferValue * 4);
+      transformMatrix24 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)bufferValue * 4);
       transformCoeff14 = 1.0 / *(float *)(uiContext + 0x424);
       eventCode = (int)processingFlags + 1;
       processingFlags = (ulonglong)eventCodeType;
       transformCoeff17 = *(float *)(uiContext + 0x2a4);
       normalizedSum6 = *(float *)(uiContext + 0x224);
       normalizedSum5 = *(float *)(uiContext + 0x2a8);
-      TransformCoefficient22 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(bufferValue + 1) * 4);
+      TransformCoefficient22 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(bufferValue + 1) * 4);
       *(float *)(uiContext + 0x2a4) = normalizedSum6;
       *(float *)(uiContext + 0x224) = transformMatrix24;
       AccumulatedFloat = *(float *)(uiContext + 0x3a4);
@@ -198910,12 +198910,12 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
       *(float *)(uiContext + 0x328) = transformCoeff14;
       *(float *)(targetBuffer + (ulonglong)bufferValue * 4) = transformCoeff17;
       *(float *)(targetBuffer + (ulonglong)(bufferValue + 1) * 4) = transformCoeff14;
-      _DAT_180be2198 = -_DAT_180be2198;
+      _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
     }
   }
   else if (resultPointer == 6) {
     if (bufferSize != 0) {
-      fStack_e0 = _DAT_180be2198;
+      fStack_e0 = _UIPrimarySystemDataTable;
       do {
         transformCoeff17 = *(float *)(uiContext + 0x434);
         normalizedSum6 = *(float *)(uiContext + 0x438);
@@ -198978,7 +198978,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x3b4) = *(float *)(uiContext + 0x334);
         *(float *)(uiContext + 0x334) = normalizedSum5;
         *(float *)(uiContext + 0x338) = transformCoefficient;
-        _DAT_180be2198 = fStack_e0;
+        _UIPrimarySystemDataTable = fStack_e0;
         *(float *)(targetBuffer + (ulonglong)eventCodeType * 4) = transformCoeff13;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 1) * 4) = transformCoeff12;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 2) * 4) = TransformCoefficient20;
@@ -198995,17 +198995,17 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         eventCode = (int)processingFlags * 8;
         normalizedSum6 = *(float *)(uiContext + 0x434);
         normalizedSum5 = *(float *)(uiContext + 0x438);
-        TransformCoefficient21 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 1) * 4);
+        TransformCoefficient21 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 1) * 4);
         AccumulatedFloat = *(float *)(uiContext + 0x428);
         baseValue = *(float *)(uiContext + 0x42c);
-        transformCoeff15 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)eventCodeType * 4);
+        transformCoeff15 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)eventCodeType * 4);
         transformCoeff1 = *(float *)(uiContext + 0x22c);
-        transformCoeff19 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 2) * 4);
-        transformCoeff16 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 3) * 4);
-        vectorComponentX = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 4) * 4);
-        transformCoefficient = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 5) * 4);
-        transformCoeff12 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 6) * 4);
-        transformCoeff13 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 7) * 4);
+        transformCoeff19 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 2) * 4);
+        transformCoeff16 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 3) * 4);
+        vectorComponentX = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 4) * 4);
+        transformCoefficient = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 5) * 4);
+        transformCoeff12 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 6) * 4);
+        transformCoeff13 = _UIPrimarySystemDataTable + *(float *)(dataSource + (ulonglong)(eventCodeType + 7) * 4);
         transformCoeff18 = 1.0 / *(float *)(uiContext + 0x424);
         finalResult = (((transformCoeff17 * transformCoeff15 + *(float *)(uiContext + 0x224) * normalizedSum6 +
                    normalizedSum5 * *(float *)(uiContext + 0x2a4)) - *(float *)(uiContext + 0x324) * AccumulatedFloat) -
@@ -199080,7 +199080,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 5) * 4) = AccumulatedFloat;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 6) * 4) = normalizedSum5;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 7) * 4) = normalizedSum6;
-        _DAT_180be2198 = -_DAT_180be2198;
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         eventCode = (int)processingFlags + 1;
         processingFlags = (ulonglong)eventCodeType;
       } while (eventCodeType < bufferSize);
@@ -199089,7 +199089,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
   else if (0 < resultPointer) {
     pLocalFloatValue6 = (float *)(uiContext + 0x224);
     eventStatus = processingFlags;
-    transformCoeff17 = _DAT_180be2198;
+    transformCoeff17 = _UIPrimarySystemDataTable;
     do {
       ProcessingResult1 = (int)eventStatus;
       eventStatus = processingFlags;
@@ -199149,7 +199149,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
           pLocalFloatValue6[0x60] = normalizedSum6;
           *(float *)(targetBuffer + loopCounter * 4) = normalizedSum5;
           processedCount = processedCount + 4;
-          _DAT_180be2198 = transformCoeff17;
+          _UIPrimarySystemDataTable = transformCoeff17;
         } while (eventCodeType < bufferSize - 3);
       }
       eventCode = (uint)eventStatus;
@@ -199157,7 +199157,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         processedCount = (int)eventStatus;
         eventCode = processedCount + 1;
         eventStatus = (ulonglong)eventCodeType;
-        _DAT_180be2198 = -transformCoeff17;
+        _UIPrimarySystemDataTable = -transformCoeff17;
         normalizedSum6 = pLocalFloatValue6[0x40];
         loopCounter = (ulonglong)(uint)(processedCount * resultPointer + ProcessingResult1);
         transformCoeff17 = transformCoeff17 + *(float *)(dataSource + loopCounter * 4);
@@ -199170,7 +199170,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *pLocalFloatValue6 = transformCoeff17;
         pLocalFloatValue6[0x60] = normalizedSum6;
         *(float *)(targetBuffer + loopCounter * 4) = normalizedSum5;
-        transformCoeff17 = _DAT_180be2198;
+        transformCoeff17 = _UIPrimarySystemDataTable;
       }
       eventStatus = (ulonglong)(ProcessingResult1 + 1U);
       pLocalFloatValue6 = pLocalFloatValue6 + 1;
@@ -199229,11 +199229,11 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         iterationCount = RegisterValue * 2;
         epsilonValue = 1.0 / *(float *)(uiContext + 0x424);
         transformCoeff12 = *(float *)(uiContext + 0x2a4);
-        transformCoeff19 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
+        transformCoeff19 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
         transformCoeff15 = *(float *)(uiContext + 0x224);
-        transformCoeff18 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
+        transformCoeff18 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
         normalizedSum5 = *(float *)(uiContext + 0x2a8);
-        TransformCoefficient20 = -_DAT_180be2198;
+        TransformCoefficient20 = -_UIPrimarySystemDataTable;
         *(float *)(uiContext + 0x2a4) = transformCoeff15;
         *(float *)(uiContext + 0x224) = transformCoeff19;
         AccumulatedFloat = *(float *)(uiContext + 0x3a4);
@@ -199315,7 +199315,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         transformCoeff12 = *(float *)(uiContext + 0x2a4);
         transformCoeff15 = *(float *)(uiContext + 0x224);
         normalizedSum5 = *(float *)(uiContext + 0x2a8);
-        _DAT_180be2198 = -TransformCoefficient20;
+        _UIPrimarySystemDataTable = -TransformCoefficient20;
         TransformCoefficient20 = TransformCoefficient20 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 7) * 4);
         *(float *)(uiContext + 0x2a4) = transformCoeff15;
         *(float *)(uiContext + 0x224) = epsilonValue;
@@ -199342,12 +199342,12 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
     }
     for (; RegisterValue < preservedRegister15D; RegisterValue = RegisterValue + 1) {
       iterationCount = RegisterValue * 2;
-      TransformCoefficient20 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
+      TransformCoefficient20 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
       epsilonValue = 1.0 / *(float *)(uiContext + 0x424);
       transformCoeff12 = *(float *)(uiContext + 0x2a4);
       transformCoeff15 = *(float *)(uiContext + 0x224);
       normalizedSum5 = *(float *)(uiContext + 0x2a8);
-      transformCoeff18 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
+      transformCoeff18 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
       *(float *)(uiContext + 0x2a4) = transformCoeff15;
       *(float *)(uiContext + 0x224) = TransformCoefficient20;
       AccumulatedFloat = *(float *)(uiContext + 0x3a4);
@@ -199369,12 +199369,12 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
       *(float *)(uiContext + 0x328) = epsilonValue;
       *(float *)(eventHandle + (ulonglong)iterationCount * 4) = transformCoeff12;
       *(float *)(eventHandle + (ulonglong)(iterationCount + 1) * 4) = epsilonValue;
-      _DAT_180be2198 = -_DAT_180be2198;
+      _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
     }
   }
   else if (RegisterPointerD == 6) {
     if (preservedRegister15D != 0) {
-      fStackX_8 = _DAT_180be2198;
+      fStackX_8 = _UIPrimarySystemDataTable;
       do {
         transformCoeff12 = *(float *)(componentData + 0x434);
         transformCoeff15 = *(float *)(componentData + 0x438);
@@ -199438,7 +199438,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(componentData + 0x3b4) = *(float *)(componentData + 0x334);
         *(float *)(componentData + 0x334) = normalizedSum5;
         *(float *)(componentData + 0x338) = vectorComponentX;
-        _DAT_180be2198 = fStackX_8;
+        _UIPrimarySystemDataTable = fStackX_8;
         *(float *)(eventHandle + (ulonglong)iterationCount * 4) = finalResult;
         *(float *)(eventHandle + (ulonglong)(iterationCount + 1) * 4) = normalizedSum6;
         *(float *)(eventHandle + (ulonglong)(iterationCount + 2) * 4) = transformCoeff16;
@@ -199455,17 +199455,17 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         iterationCount = RegisterValue * 8;
         transformCoeff15 = *(float *)(componentData + 0x434);
         normalizedSum5 = *(float *)(componentData + 0x438);
-        transformCoeff17 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
+        transformCoeff17 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 1) * 4);
         AccumulatedFloat = *(float *)(componentData + 0x428);
         baseValue = *(float *)(componentData + 0x42c);
-        FloatValue2 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
+        FloatValue2 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)iterationCount * 4);
         transformCoeff1 = *(float *)(componentData + 0x22c);
-        transformCoeff14 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 2) * 4);
-        transformCoefficient = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 3) * 4);
-        normalizedSum0 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 4) * 4);
-        vectorComponentX = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 5) * 4);
-        normalizedSum6 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 6) * 4);
-        finalResult = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 7) * 4);
+        transformCoeff14 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 2) * 4);
+        transformCoefficient = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 3) * 4);
+        normalizedSum0 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 4) * 4);
+        vectorComponentX = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 5) * 4);
+        normalizedSum6 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 6) * 4);
+        finalResult = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(iterationCount + 7) * 4);
         transformCoeff13 = 1.0 / *(float *)(componentData + 0x424);
         normalizedSum1 = (((transformCoeff12 * FloatValue2 + *(float *)(componentData + 0x224) * transformCoeff15 +
                    normalizedSum5 * *(float *)(componentData + 0x2a4)) - *(float *)(componentData + 0x324) * AccumulatedFloat)
@@ -199540,14 +199540,14 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(eventHandle + (ulonglong)(iterationCount + 5) * 4) = AccumulatedFloat;
         *(float *)(eventHandle + (ulonglong)(iterationCount + 6) * 4) = normalizedSum5;
         *(float *)(eventHandle + (ulonglong)(iterationCount + 7) * 4) = transformCoeff15;
-        _DAT_180be2198 = -_DAT_180be2198;
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         RegisterValue = RegisterValue + 1;
       } while (RegisterValue < preservedRegister15D);
     }
   }
   else if (0 < RegisterPointerD) {
     pResultFloatValue = (float *)(uiContext + 0x224);
-    transformCoeff12 = _DAT_180be2198;
+    transformCoeff12 = _UIPrimarySystemDataTable;
     iterationCount = RegisterValue;
     do {
       eventCode = RegisterValue;
@@ -199606,11 +199606,11 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
           pResultFloatValue[0x60] = transformCoeff15;
           *(float *)(eventHandle + processingFlags * 4) = normalizedSum5;
           loopCounter = loopCounter + 4;
-          _DAT_180be2198 = transformCoeff12;
+          _UIPrimarySystemDataTable = transformCoeff12;
         } while (eventCodeType < preservedRegister15D - 3);
       }
       for (; eventCodeType < preservedRegister15D; eventCode = eventCodeType + 1) {
-        _DAT_180be2198 = -transformCoeff12;
+        _UIPrimarySystemDataTable = -transformCoeff12;
         transformCoeff15 = pResultFloatValue[0x40];
         processingFlags = (ulonglong)(eventCodeType * RegisterPointerD + iterationCount);
         transformCoeff12 = transformCoeff12 + *(float *)(uiContextBasePointer + processingFlags * 4);
@@ -199623,7 +199623,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *pResultFloatValue = transformCoeff12;
         pResultFloatValue[0x60] = transformCoeff15;
         *(float *)(eventHandle + processingFlags * 4) = normalizedSum5;
-        transformCoeff12 = _DAT_180be2198;
+        transformCoeff12 = _UIPrimarySystemDataTable;
       }
       iterationCount = iterationCount + 1;
       pResultFloatValue = pResultFloatValue + 1;
@@ -199682,17 +199682,17 @@ UIHandle FUN_18077c38b(longlong uiContext)
         eventStatus = RegisterValue * 8;
         transformCoeff14 = *(float *)(componentData + 0x434);
         transformCoeff16 = *(float *)(componentData + 0x438);
-        TransformCoefficient20 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 1) * 4);
+        TransformCoefficient20 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 1) * 4);
         transformCoeff18 = *(float *)(componentData + 0x428);
         baseValue = *(float *)(componentData + 0x42c);
-        epsilonValue = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)eventStatus * 4);
+        epsilonValue = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)eventStatus * 4);
         transformCoeff1 = *(float *)(componentData + 0x22c);
-        transformCoeff19 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 2) * 4);
-        transformCoeff17 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 3) * 4);
-        vectorComponentX = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 4) * 4);
-        normalizedSum5 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 5) * 4);
-        normalizedSum6 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 6) * 4);
-        finalResult = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 7) * 4);
+        transformCoeff19 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 2) * 4);
+        transformCoeff17 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 3) * 4);
+        vectorComponentX = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 4) * 4);
+        normalizedSum5 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 5) * 4);
+        normalizedSum6 = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 6) * 4);
+        finalResult = _UIPrimarySystemDataTable + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 7) * 4);
         FloatValue2 = 1.0 / *(float *)(componentData + 0x424);
         transformCoefficient = (((transformCoeff15 * epsilonValue + *(float *)(componentData + 0x224) * transformCoeff14 +
                    transformCoeff16 * *(float *)(componentData + 0x2a4)) - *(float *)(componentData + 0x324) * transformCoeff18)
@@ -199767,14 +199767,14 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(eventHandle + (ulonglong)(eventStatus + 5) * 4) = transformCoeff18;
         *(float *)(eventHandle + (ulonglong)(eventStatus + 6) * 4) = transformCoeff16;
         *(float *)(eventHandle + (ulonglong)(eventStatus + 7) * 4) = transformCoeff14;
-        _DAT_180be2198 = -_DAT_180be2198;
+        _UIPrimarySystemDataTable = -_UIPrimarySystemDataTable;
         RegisterValue = RegisterValue + 1;
       } while (RegisterValue < preservedRegister15D);
     }
   }
   else if (0 < RegisterPointerD) {
     baseValuePointer2 = (float *)(uiContext + 0x224);
-    transformCoeff15 = _DAT_180be2198;
+    transformCoeff15 = _UIPrimarySystemDataTable;
     eventStatus = RegisterValue;
     do {
       contextValue = RegisterValue;
@@ -199833,11 +199833,11 @@ UIHandle FUN_18077c38b(longlong uiContext)
           baseValuePointer2[0x60] = transformCoeff14;
           *(float *)(eventHandle + iterationCount * 4) = transformCoeff16;
           ProcessingResult1 = ProcessingResult1 + 4;
-          _DAT_180be2198 = transformCoeff15;
+          _UIPrimarySystemDataTable = transformCoeff15;
         } while (contextValue < preservedRegister15D - 3);
       }
       for (; contextValue < preservedRegister15D; contextValue = contextValue + 1) {
-        _DAT_180be2198 = -transformCoeff15;
+        _UIPrimarySystemDataTable = -transformCoeff15;
         transformCoeff14 = baseValuePointer2[0x40];
         iterationCount = (ulonglong)(contextValue * RegisterPointerD + eventStatus);
         transformCoeff15 = transformCoeff15 + *(float *)(uiContextBasePointer + iterationCount * 4);
@@ -199850,7 +199850,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *baseValuePointer2 = transformCoeff15;
         baseValuePointer2[0x60] = transformCoeff14;
         *(float *)(eventHandle + iterationCount * 4) = transformCoeff16;
-        transformCoeff15 = _DAT_180be2198;
+        transformCoeff15 = _UIPrimarySystemDataTable;
       }
       eventStatus = eventStatus + 1;
       baseValuePointer2 = baseValuePointer2 + 1;
