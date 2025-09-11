@@ -407132,6 +407132,13 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_18074b880 ValidateUIBufferDataOperation         // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
 #define FUN_1807c41d0 CalculateUILayoutMetrics               // 计算UI布局度量 - 计算UI组件的布局度量信息
 
+// UI系统数据缓冲区处理函数宏定义
+#define FUN_18073ae88 ProcessUIDataBufferWithValidation      // 处理UI数据缓冲区验证 - 处理UI数据缓冲区的验证和复制操作
+#define FUN_18073af6d ReleaseUIMemoryAndExecuteRenderTask     // 释放UI内存并执行渲染任务 - 释放UI内存资源并执行渲染任务
+#define FUN_18073af9f ReleaseUIMemoryAndExecuteRender         // 释放UI内存并执行渲染 - 释放UI内存资源并执行渲染操作
+#define FUN_18073afc0 ProcessUIDataBufferWithParameters       // 处理带参数的UI数据缓冲区 - 处理带参数的UI数据缓冲区操作
+#define FUN_18073afdd ProcessUIDataBufferWithExtendedParams  // 处理带扩展参数的UI数据缓冲区 - 处理带扩展参数的UI数据缓冲区操作
+
 // 补充缺失的UI系统变量定义
 #define astackUIntf8 UITransformFactorStackF8                // UI变换因子栈F8 - 用于存储UI变换的因子数据
 #define astackUInt48 UIAnimationStateStack48                 // UI动画状态栈48 - 用于存储UI动画状态数据
