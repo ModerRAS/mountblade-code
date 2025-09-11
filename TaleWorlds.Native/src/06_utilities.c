@@ -139,7 +139,10 @@
 #define NULL_DATA_WORD (DataWord *)0x0
 #define NULL_BYTE_PAIR (BytePair *)0x0
 #define NULL_INT64_POINTER (int64_t *)0x0
-#define NULL_FUNCTION_POINTER_TYPE NULL_FUNCTION_POINTER_TYPE
+#define NULL_FUNCTION_POINTER_TYPE (FunctionPointer *)0x0
+#define NULL_EXCEPTION_HANDLER_CONTEXT (ExceptionHandlerContext *)0x0
+#define NULL_DATA_BUFFER_POINTER NULL_DATA_BUFFER_POINTER
+#define NULL_FUNCTION_POINTER_POINTER NULL_FUNCTION_POINTER_POINTER
 
 // 浮点数数据偏移量常量
 #define FloatingPointPrimaryDataOffset 0x20
@@ -72930,7 +72933,7 @@ void ExecuteExceptionHandlerContextA(DataBuffer operationBase, int64_t dataBuffe
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x118);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -72955,7 +72958,7 @@ void ExecuteExceptionHandlerContextB(DataBuffer operationBase, int64_t dataBuffe
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b0);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -72980,7 +72983,7 @@ void ExecuteExceptionHandlerContextC(DataBuffer operationBase, int64_t dataBuffe
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b8);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -73005,7 +73008,7 @@ void ExecuteExceptionHandlerContextD(DataBuffer operationBase, int64_t dataBuffe
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1c0);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -73054,7 +73057,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffe
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x210);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -73103,7 +73106,7 @@ void CleanupExceptionContextAtOffset720(DataBuffer operationBase, int64_t dataBu
   ExceptionHandlerContext *exceptionContext;
   
   exceptionContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x268);
-  if (exceptionContext != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContext != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -105202,7 +105205,7 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
   uint64_t ExceptionMemoryMask;
   
   ExceptionPointerArray = *(DataBuffer ***)(ExceptionOffset + 0x150);
-  if (ExceptionPointerArray == (DataBuffer **)0x0) {
+  if (ExceptionPointerArray == NULL_DATA_BUFFER_POINTER) {
     return;
   }
   ExceptionMemoryMask = (uint64_t)ExceptionPointerArray & MemoryRegionMask;
@@ -105252,7 +105255,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
   uint64_t ExceptionMemoryMask;
   
   ExceptionPointerArray = *(DataBuffer ***)(ExceptionOffset + ExceptionHandlerOffset170);
-  if (ExceptionPointerArray == (DataBuffer **)0x0) {
+  if (ExceptionPointerArray == NULL_DATA_BUFFER_POINTER) {
     return;
   }
   ExceptionMemoryMask = (uint64_t)ExceptionPointerArray & MemoryRegionMask;
@@ -112249,7 +112252,7 @@ void ExecuteExceptionHandlerCallbackE660(DataBuffer operationBase, int64_t dataB
   ExceptionHandlerContext *exceptionContextPointer;
   
   exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + DataBufferOffsetE8) + 8);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
+  if (exceptionContextPointer != NULL_EXCEPTION_HANDLER_CONTEXT) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -120486,7 +120489,7 @@ void ExecuteExceptionHandlerCallbacks(DataBuffer operationBase,int64_t dataBuffe
   // 遍历多个偏移量的回调函数指针并执行
   for (callbackOffset = 0x68; callbackOffset >= 8; callbackOffset -= 8) {
     callbackPointer = *(FunctionPointer***)(exceptionContext + callbackOffset);
-    if (callbackPointer != (FunctionPointer**)0x0) {
+    if (callbackPointer != NULL_FUNCTION_POINTER_POINTER) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
   }
@@ -120596,7 +120599,7 @@ void TraverseMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase,int64_t da
   // 遍历内存块链表并执行回调函数
   for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
     callbackPointer = *(FunctionPointer***)(memoryRegionOffset + 8);
-    if (callbackPointer != (FunctionPointer**)0x0) {
+    if (callbackPointer != NULL_FUNCTION_POINTER_POINTER) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
   }
@@ -120638,7 +120641,7 @@ void TraverseDataContextMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase
   // 遍历内存块链表并执行回调函数
   for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
     callbackPointer = *(FunctionPointer***)(memoryRegionOffset + 8);
-    if (callbackPointer != (FunctionPointer**)0x0) {
+    if (callbackPointer != NULL_FUNCTION_POINTER_POINTER) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
   }
@@ -120678,7 +120681,7 @@ void ExecuteExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffe
   // 遍历多个偏移量的回调函数指针并执行
   for (callbackOffset = 0x68; callbackOffset >= 8; callbackOffset -= 8) {
     callbackPointer = *(FunctionPointer***)(exceptionContext + callbackOffset);
-    if (callbackPointer != (FunctionPointer**)0x0) {
+    if (callbackPointer != NULL_FUNCTION_POINTER_POINTER) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
   }

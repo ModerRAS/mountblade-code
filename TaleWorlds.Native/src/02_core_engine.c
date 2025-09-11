@@ -49928,7 +49928,7 @@ void ProcessSystemConfigurationData(long long ContextHandle, long long *ContextH
       *MemoryAllocationMaskPointer = 0x10;
       OperationBufferSize[1] = OperationBufferSize[1] + 4;
       ContextHandleTablePointer = (uint *)OperationBufferSize[1];
-      Utf16Char = *(ushort *)(MemoryPoolBlockSize + 0x22);
+      Utf16Character = *(ushort *)(MemoryPoolBlockSize + 0x22);
       if ((unsigned long long)((*ContextHandleSize - (long long)ContextHandleTablePointer) + OperationBufferSize[2]) < 5) {
         ProcessBufferIndexllocation(OperationBufferSize,(long long)ContextHandleTablePointer + (4 - *ContextHandleSize));
         ContextHandleTablePointer = (uint *)OperationBufferSize[1];
@@ -49937,15 +49937,15 @@ void ProcessSystemConfigurationData(long long ContextHandle, long long *ContextH
       MemoryAllocationMaskPointer = (uint32_t *)(OperationBufferSize[1] + 4);
       OperationBufferSize[1] = (long long)MemoryAllocationMaskPointer;
       if (*(ushort *)(MemoryPoolBlockSize + 0x22) != 0) {
-        MemoryPoolIndex = *(void *)(MemoryPoolBlockSize + 0x1a);
-        ArraySize = (unsigned long long)*(ushort *)(MemoryPoolBlockSize + 0x22) * 4;
+        MemoryPoolDataPointer = *(void *)(MemoryPoolBlockSize + 0x1a);
+        DataArraySize = (unsigned long long)*(ushort *)(MemoryPoolBlockSize + 0x22) * 4;
         if ((unsigned long long)((*ContextHandleSize - (long long)MemoryAllocationMaskPointer) + OperationBufferSize[2]) <= ArraySize) {
           ProcessBufferIndexllocation(OperationBufferSize,(long long)MemoryAllocationMaskPointer + (ArraySize - *ContextHandleSize));
           MemoryAllocationMaskPointer = (uint32_t *)OperationBufferSize[1];
         }
           memcpy(MemoryAllocationMaskPointer,MemoryPoolDataPointer,DataArraySize);
       }
-      MemoryAllocationIndex = MemoryAllocationIndex + 0x24;
+      MemoryBlockIndex = MemoryBlockIndex + 0x24;
       MemoryBoundaryEnd = MemoryBoundaryEnd + -1;
     } while (MemoryBoundaryEnd != 0);
   }
@@ -50104,7 +50104,7 @@ void ProcessMemoryBoundaryValidation(long long ContextHandle
       *MemoryAllocationMaskPointer = 0x10;
       SystemContext[1] = SystemContext[1] + 4;
       ContextHandleTablePointer = (uint *)SystemContext[1];
-      Utf16Char = *(ushort *)(MemoryPoolBlockSize + 0x22);
+      Utf16Character = *(ushort *)(MemoryPoolBlockSize + 0x22);
       if ((unsigned long long)((*SystemContext - (long long)ContextHandleTablePointer) + SystemContext[2]) < 5) {
         ProcessBufferIndexllocation();
         ContextHandleTablePointer = (uint *)SystemContext[1];
@@ -50113,15 +50113,15 @@ void ProcessMemoryBoundaryValidation(long long ContextHandle
       MemoryAllocationMaskPointer = (uint32_t *)(SystemContext[1] + 4);
       SystemContext[1] = (long long)MemoryAllocationMaskPointer;
       if (*(ushort *)(MemoryPoolBlockSize + 0x22) != 0) {
-        MemoryPoolIndex = *(void *)(MemoryPoolBlockSize + 0x1a);
-        ArraySize = (unsigned long long)*(ushort *)(MemoryPoolBlockSize + 0x22) * 4;
+        MemoryPoolDataPointer = *(void *)(MemoryPoolBlockSize + 0x1a);
+        DataArraySize = (unsigned long long)*(ushort *)(MemoryPoolBlockSize + 0x22) * 4;
         if ((unsigned long long)((*SystemContext - (long long)MemoryAllocationMaskPointer) + SystemContext[2]) <= ArraySize) {
           ProcessBufferIndexllocation();
           MemoryAllocationMaskPointer = (uint32_t *)SystemContext[1];
         }
           memcpy(MemoryAllocationMaskPointer,MemoryPoolDataPointer,DataArraySize);
       }
-      MemoryAllocationIndex = MemoryAllocationIndex + 0x24;
+      MemoryBlockIndex = MemoryBlockIndex + 0x24;
       MemoryBoundaryEnd = MemoryBoundaryEnd + -1;
     } while (MemoryBoundaryEnd != 0);
   }
