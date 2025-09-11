@@ -70177,30 +70177,30 @@ void ProcessSystemEventTemplate(uint64_t ContextHandle,long long OperationBuffer
  * 该函数负责初始化系统状态缓冲区，包括内存分配、状态验证和系统配置。
  * 它会设置系统的初始状态，并验证各个组件的可用性。
  * 
- * @param ContextHandle 目标数据结构指针，包含系统配置信息
+ * @param SystemContextHandle 目标数据结构指针，包含系统配置信息
  * 
  * @note 此函数是系统初始化过程的重要组成部分，确保系统状态正确设置
  */
-void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
+void InitializeSystemCharacterStatusBuffer(uint64_t *SystemContextHandle
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  uint64_t **pSystemEventTemplatePointer;
+  uint64_t **SystemEventTemplatePointer;
   uint8_t MemoryAllocationMaskPointer;
   unsigned long long *ContextHandlePointer;
-  bool BooleanValidationStatus6;
+  bool BooleanValidationStatus;
   void *PreviousNode;
   void *NextNode;
   uint64_t *TemporaryBuffer;
-  uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
+  uint64_t *CharacterStatusBufferSecondary;
   char SystemValidationStatus;
   int IntegerValue;
   long long LoopIndex;
   long long CharacterTablePointer;
-  long long *ContextHandle6;
+  long long *SecondaryContextHandle;
   unsigned long long UnicodeContextHandle;
-  char *ValidationStatus8;
+  char *ValidationStatus;
   uint8_t *CharacterStatusBuffer9;
   int LockOperationResult0;
   void *ProcessingStatusPointer;

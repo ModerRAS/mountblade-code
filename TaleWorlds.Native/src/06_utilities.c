@@ -138224,7 +138224,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 功能：验证操作参数的有效性并执行相应的系统操作
 // 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
-// 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
 /**
  * @brief 销毁互斥锁清理函数A12
  * 
