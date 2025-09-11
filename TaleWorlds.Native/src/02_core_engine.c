@@ -245078,7 +245078,7 @@ LAB_18019e833:
                   (**(code **)(*plStack_110 + 0x38))();
                 }
               }
-              SystemStatusContext = (void *)FUN_1801a4e70(BufferStatus,aStackProcessingUnsignedValue60);
+              SystemStatusContext = (void *)AllocateSystemMemoryBuffer(BufferStatus,aStackProcessingUnsignedValue60);
               MemoryAddressMaskPointer = CharacterStatusBuffer3[1];
               *(void *)(BufferStatus + 0x454) = *CharacterStatusBuffer3;
               *(void *)(BufferStatus + 0x45c) = MemoryAddressMaskPointer;
