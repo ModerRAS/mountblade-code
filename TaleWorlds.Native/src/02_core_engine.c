@@ -254246,7 +254246,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   *ContextHandleSize = SystemContextPtr;
   ProcessingStatusFlag = 1;
   OperationResult = *(uint32_t *)*ContextHandleSize;
-  UnicodeCodePoint = ConvertUtf8ToUtf16Character(Utf16EndPointer);
+  UnicodeCodePoint = ConvertUtf16ToUtf8Character(Utf16EndPointer);
   ContextHandleTablePointer = (void *           ProcessSystemMemoryStatus(&SystemUnknownProcessingStatusFlagB,&pSystemTemporaryValue50,*(uint32_t *)(ContextHandle + 0x298),
                          &SystemUnknownProcessingStatusFlagB + (long long)Utf16EndPointer * 0x98,SystemChecksum | 4,0,MemoryPoolIndex,UnicodeCodePoint,OperationResult,0,0
                          ,1,ProcessingStatusFlag);
@@ -254671,7 +254671,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
             ProcessSystemDataWithRemainingSpace(LockOperationResult,&SystemMutexLock);
           }
           *StringProcessingStatus = aStackProcessingValue[0];
-          MemoryBlockIndex = (long long *)FUN_1800e81f0();
+          MemoryBlockIndex = (long long *)GetSystemMemoryBlockPointer();
           MemoryBlockIndex = (long long *)*MemoryBlockIndex;
           if (MemoryBlockIndex != (long long *)0x0) {
             pSystemTemporaryValue90 = MemoryBlockIndex;
