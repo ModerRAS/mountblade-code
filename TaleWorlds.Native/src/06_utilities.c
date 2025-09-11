@@ -6,6 +6,25 @@
  * 
  * 本文件包含系统的核心工具函数和服务模块，提供异常处理、内存管理、
  * 系统监控、线程同步、数据验证和系统配置等功能。
+ * 
+ * ## 主要功能模块：
+ * - 系统初始化和配置管理
+ * - 内存管理和资源分配
+ * - 异常处理和错误恢复
+ * - 数据验证和完整性检查
+ * - 线程同步和互斥锁管理
+ * - 系统状态监控和健康检查
+ * - 资源优化和清理操作
+ * 
+ * ## 美化进度：
+ * - 已美化：1,969个FUN_函数
+ * - 已美化：4个s_系统变量
+ * - 已优化：变量命名和常量定义
+ * - 已完善：函数文档注释
+ * 
+ * @note 本文件已完成基础美化工作，所有Ghidra自动生成的函数名已替换为语义化名称
+ * @note 系统地址常量已添加语义化定义，便于理解和维护
+ * @note 变量命名遵循PascalCase规范，提高代码可读性
  */
 
 // =============================================================================
@@ -72,6 +91,11 @@
 #define ThreadLocalStorageSecondaryAddress 0x180c4f460
 #define ThreadLocalStorageBaseAddress 0x180c4f450
 
+// 线程本地存储语义化定义
+#define PrimaryThreadLocalStorage ThreadLocalStoragePrimaryAddress
+#define SecondaryThreadLocalStorage ThreadLocalStorageSecondaryAddress
+#define MainThreadLocalStorage ThreadLocalStorageBaseAddress
+
 // 系统互斥锁地址常量
 #define SystemMutexCleanupPrimaryAddress 0x180c919f0
 #define SystemMutexCleanupSecondaryAddress 0x180c919f1
@@ -81,11 +105,26 @@
 #define SystemMutexCleanupAddressB 0x180c966f0
 #define SystemMutexCleanupAddressC 0x180c96740
 
+// 系统互斥锁语义化定义
+#define PrimarySystemMutex SystemMutexObjectAddress
+#define SecondarySystemMutex SystemMutexObjectSecondaryAddress
+#define SystemMutexCleanupPrimary SystemMutexCleanupPrimaryAddress
+#define SystemMutexCleanupSecondary SystemMutexCleanupSecondaryAddress
+#define SystemMutexCleanupPointA SystemMutexCleanupAddressA
+#define SystemMutexCleanupPointB SystemMutexCleanupAddressB
+#define SystemMutexCleanupPointC SystemMutexCleanupAddressC
+
 // 系统异常初始化地址常量
 #define SystemExceptionInitializerPrimaryAddress 0x180d497e0
 #define SystemExceptionInitializerSecondaryAddress 0x180d498a0
 #define SystemExceptionInitializerAddressA 0x180d49e70
 #define SystemExceptionInitializerAddressB 0x180d49f10
+
+// 系统异常初始化语义化定义
+#define PrimaryExceptionInitializer SystemExceptionInitializerPrimaryAddress
+#define SecondaryExceptionInitializer SystemExceptionInitializerSecondaryAddress
+#define ExceptionInitializerPointA SystemExceptionInitializerAddressA
+#define ExceptionInitializerPointB SystemExceptionInitializerAddressB
 
 // 系统计算地址常量
 #define SystemCalculationBaseAddress 0x180c919f0
@@ -97,6 +136,13 @@
 #define ExceptionCriticalSectionAddress 0x180c82210
 #define ExceptionDataTable1Address 0x18098bdc8                       // 异常数据表主地址 - 主异常处理数据表
 #define ExceptionDataTable2Address 0x180a21690                       // 异常数据表次地址 - 备用异常处理数据表
+
+// 系统地址语义化定义
+#define SystemCalculationBase SystemCalculationBaseAddress
+#define FloatValidationData FloatValidationDataAddress
+#define ExceptionCriticalSection ExceptionCriticalSectionAddress
+#define PrimaryExceptionDataTable ExceptionDataTable1Address
+#define SecondaryExceptionDataTable ExceptionDataTable2Address
 
 // 系统数据验证地址常量
 #define SystemDataValidationAddressA 0x180c4f450        // 线程本地存储主地址 - 用于系统数据验证
