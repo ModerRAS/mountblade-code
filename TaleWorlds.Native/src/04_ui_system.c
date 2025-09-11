@@ -263,7 +263,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_180748dd0
  */
-#define FUN_180748dd0 ValidateUIDataSource
+#define FUN_180748dd0 ProcessUIContextDataValidationAndEventRender
 
 /**
  * @brief 处理UI数据源验证
@@ -450,7 +450,7 @@ typedef enum {
 #define ProcessUIDataCleanup FUN_180748500                 // 处理UI数据清理
 #define ProcessUIDataWithParameters FUN_1807485c0          // 处理带参数的UI数据
 #define ProcessUIDataWithValidation FUN_180748b40          // 处理带验证的UI数据
-#define ProcessUIDataWithSecurity FUN_180748dd0            // 处理带安全的UI数据
+#define ProcessUIDataWithSecurity ProcessUIContextDataValidationAndEventRender
 #define ProcessUIDataWithCompression FUN_180748ea0         // 处理带压缩的UI数据
 #define ProcessUIDataWithOptimization FUN_1807498f0        // 处理带优化的UI数据
 
@@ -649,7 +649,7 @@ typedef enum {
 #define ProcessUIRenderDataValidation FUN_180748500          // 处理UI渲染数据验证
 #define ProcessUITextureDataUpload FUN_1807485c0             // 处理UI纹理数据上传
 #define ProcessUIComponentDataSync FUN_180748b40             // 处理UI组件数据同步
-#define ProcessUIContextDataRelease FUN_180748dd0            // 处理UI上下文数据释放
+#define ProcessUIContextDataRelease ProcessUIContextDataValidationAndEventRender
 #define ProcessUIResourceDataCleanup FUN_180748ea0           // 处理UI资源数据清理
 #define ProcessUIBufferDataTransfer FUN_1807498f0            // 处理UI缓冲区数据传输
 #define ProcessUIDataWithAnimationState FUN_180739420        // 处理带动画状态的UI数据
@@ -142604,8 +142604,23 @@ UIHandle FUN_180748b40(longlong uiContext,int *dataSource)
 
 
 
- void FUN_180748dd0(longlong uiContext)
-void FUN_180748dd0(longlong uiContext)
+ /**
+ * @brief 处理UI上下文数据验证和事件渲染
+ * 
+ * 该函数负责处理UI上下文数据验证和事件渲染操作，包括：
+ * - 执行数据验证
+ * - 处理UI事件和渲染数据
+ * - 管理UI上下文状态
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的上下文信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180748dd0
+ * @note 该函数是UI事件处理和渲染系统的核心组件
+ * @see ProcessUIEventAndRenderData, FUN_18078ad10
+ */
+void ProcessUIContextDataValidationAndEventRender(longlong uiContext)
 
 {
   int operationResult;
@@ -366704,8 +366719,8 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
   iterationCounter = *(UIHandle *)(uiContext + 0x90);
   componentContextPtr[1] = uiContext + 0x328;
   componentContextPtr[2] = iterationCounter;
-  componentContextPtr[3] = &UNK_180873e4c;
-  *componentContextPtr = &UNK_180985548;
+  componentContextPtr[3] = &UILayoutComponentTable;
+  *componentContextPtr = &UIResourceHandleTable;
   *(UIHandle **)(uiContext + 0x8c8) = componentContextPtr;
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
