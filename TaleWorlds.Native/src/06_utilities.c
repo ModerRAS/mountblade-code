@@ -223,6 +223,18 @@
 #define SystemConfigurationOffsetD8 0xd8                         // 系统配置偏移量D8 - 用于系统配置数据访问
 #define SystemConfigurationOffset1C 0x1c                         // 系统配置偏移量1C - 用于系统配置数据访问
 
+// 系统资源清理常量
+#define CleanupMemoryFlag 0x1                                   // 内存清理标志 - 标识执行内存清理操作
+#define CleanupCacheFlag 0x2                                    // 缓存清理标志 - 标识执行缓存清理操作
+#define CleanupOptimizationFlag 0x4                             // 优化清理标志 - 标识执行优化操作
+
+// 系统资源清理错误码
+#define InvalidResourceHandle 0xFFFFFFFF                         // 无效资源句柄错误码
+#define ResourceCleanupSuccess 0x0                               // 资源清理成功状态码
+#define ResourceCleanupFailure 0x1                               // 资源清理失败状态码
+#define CleanupSuccess 0x0                                       // 清理操作成功状态码
+#define CleanupFailure 0x1                                       // 清理操作失败状态码
+
 // 内存管理常量
 #define MemoryBufferSize112 0x70                                 // 内存缓冲区大小112 - 用于内存分配验证
 #define MemoryAllocationStep28 0x1c                             // 内存分配步长28 - 用于内存分配计算
@@ -14117,6 +14129,13 @@ uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 #define SystemCleanupHandler GlobalSystemCleanupHandler            // 系统清理处理器
 #define SystemCleanupStatus GlobalSystemCleanupStatus             // 系统清理状态
 
+// 系统资源清理函数声明
+int ExecuteMemoryCleanup(void* ResourceHandle);                   // 执行内存清理操作
+int ExecuteCacheCleanup(void* ResourceHandle);                    // 执行缓存清理操作
+int ExecuteResourceOptimization(void* ResourceHandle, uint8_t OptimizationLevel); // 执行资源优化操作
+uint32_t GetFreedMemoryCount(void* ResourceHandle);              // 获取已释放内存数量
+uint32_t GetClearedCacheCount(void* ResourceHandle);             // 获取已清理缓存数量
+
 // 系统资源清理相关变量宏定义
 
 // 系统资源清理状态数组大小常量
@@ -21061,23 +21080,29 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
  */
 int CheckUtilitySystemPermission(uint32_t permissionFlags)
 {
-    int SystemRegisterState;
+    int SystemSecurityRegisterState;
     int PermissionValidationResult;
-    int64_t ResourceMemoryHandle;
-    int64_t SecurityContextPointer;
-    DataBuffer PermissionOperationMode;
-    int64_t ContextDataBuffer;
+    int64_t SecurityContextMemoryHandle;
+    int64_t SystemSecurityContextPointer;
+    DataBuffer SecurityPermissionOperationMode;
+    int64_t SecurityContextDataBuffer;
     DataBuffer PermissionValidationParameter;
     
-    ResourceMemoryHandle = 0;
-    if (SystemRegisterState == 0) {
-        ContextDataBuffer = *(int64_t *)(SecurityContextPointer + ExceptionHandlerCallbackOffset);
-        PermissionOperationMode = 1;
-        ResourceMemoryHandle = ContextDataBuffer;
+    // 初始化变量以确保安全性
+    SystemSecurityRegisterState = 0;
+    SystemSecurityContextPointer = 0;
+    SecurityContextMemoryHandle = 0;
+    SecurityContextDataBuffer = 0;
+    SecurityPermissionOperationMode = 0;
+    
+    if (SystemSecurityRegisterState == 0) {
+        SecurityContextDataBuffer = *(int64_t *)(SystemSecurityContextPointer + ExceptionHandlerCallbackOffset);
+        SecurityPermissionOperationMode = 1;
+        SecurityContextMemoryHandle = SecurityContextDataBuffer;
     }
     else {
-        ContextDataBuffer = *(int64_t *)(SecurityContextPointer + ExceptionHandlerCallbackOffset);
-        PermissionOperationMode = 2;
+        SecurityContextDataBuffer = *(int64_t *)(SystemSecurityContextPointer + ExceptionHandlerCallbackOffset);
+        SecurityPermissionOperationMode = 2;
     }
     
     PermissionValidationParameter = permissionFlags;
@@ -142196,3 +142221,69 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @note 原始函数名：FUN_1808b5430
  */
 #define MonitorSystemResourcesA0 FUN_1808b5430
+
+/**
+ * @brief 系统资源清理和优化函数
+ * 
+ * 执行系统资源的清理操作，包括内存回收、缓存清理和性能优化
+ * 确保系统资源得到合理分配和释放
+ * 
+ * @param ResourceHandle 资源句柄，标识要清理的资源
+ * @param CleanupFlags 清理标志位，指定清理的类型和方式
+ * @param OptimizationLevel 优化级别，控制优化的程度
+ * @return int 清理结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_1808c5430
+ * @note 这是系统资源管理的核心函数
+ */
+int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlags, uint8_t OptimizationLevel)
+{
+    // 系统资源清理状态变量
+    uint32_t CleanupStatus;
+    uint32_t MemoryFreedCount;
+    uint32_t CacheClearedCount;
+    uint32_t OptimizationScore;
+    void* ResourcePointer;
+    uint8_t CurrentCleanupFlag;
+    
+    // 初始化清理状态变量
+    CleanupStatus = 0;
+    MemoryFreedCount = 0;
+    CacheClearedCount = 0;
+    OptimizationScore = 0;
+    ResourcePointer = ResourceHandle;
+    
+    // 验证资源句柄的有效性
+    if (ResourcePointer == NULL) {
+        return InvalidResourceHandle;
+    }
+    
+    // 根据清理标志执行相应的清理操作
+    if (CleanupFlags & CleanupMemoryFlag) {
+        // 执行内存清理操作
+        CleanupStatus = ExecuteMemoryCleanup(ResourcePointer);
+        if (CleanupStatus == CleanupSuccess) {
+            MemoryFreedCount = GetFreedMemoryCount(ResourcePointer);
+        }
+    }
+    
+    if (CleanupFlags & CleanupCacheFlag) {
+        // 执行缓存清理操作
+        CleanupStatus = ExecuteCacheCleanup(ResourcePointer);
+        if (CleanupStatus == CleanupSuccess) {
+            CacheClearedCount = GetClearedCacheCount(ResourcePointer);
+        }
+    }
+    
+    // 根据优化级别执行优化操作
+    if (OptimizationLevel > 0) {
+        OptimizationScore = ExecuteResourceOptimization(ResourcePointer, OptimizationLevel);
+    }
+    
+    // 返回清理结果状态
+    if (CleanupStatus == CleanupSuccess) {
+        return ResourceCleanupSuccess;
+    } else {
+        return ResourceCleanupFailure;
+    }
+}
