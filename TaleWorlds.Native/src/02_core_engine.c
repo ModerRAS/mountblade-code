@@ -99053,8 +99053,8 @@ void ProcessSystemDataStructureConfigurationAndEventInitialization(long long Con
   uint32_t ParameterStackBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x1bf0) != 0) &&
-     (ParameterStackDataBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1bf8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackDataBuffer[0], ValidationStatus == '\0')) {
+     (ParameterStackBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1bf8))(ParameterStackBuffer),
+     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1ba0) != NULL) {
@@ -99089,7 +99089,7 @@ void ProcessSystemDataStructureSecondaryConfigurationAndEventInitialization(long
   
   if ((*(long long *)(ContextHandle + 0x1fe0) != 0) &&
      (ParameterStackDataBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1fe8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackDataBuffer[0], ValidationStatus == '\0')) {
+     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1f90) != NULL) {
@@ -99124,7 +99124,7 @@ void ProcessSystemDataStructureTertiaryConfigurationAndEventInitialization(long 
   
   if ((*(long long *)(ContextHandle + 0x20c0) != 0) &&
      (ParameterStackDataBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x20c8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackDataBuffer[0], ValidationStatus == '\0')) {
+     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x2070) != NULL) {
@@ -99159,7 +99159,7 @@ void ProcessSystemDataStructureQuaternaryConfigurationAndEventInitialization(lon
   
   if ((*(long long *)(ContextHandle + 0x2210) != 0) &&
      (ParameterStackDataBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x2218))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackDataBuffer[0], ValidationStatus == '\0')) {
+     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x21c0) != NULL) {
