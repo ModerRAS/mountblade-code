@@ -241382,7 +241382,6 @@ void InitializeSystemDataTemplateWithMemoryBlock(long long ContextHandle)
 
 
 
-// 函数: uint64_t * FUN_180196bd0(uint64_t *ContextHandle)
 /**
  * @brief 初始化上下文句柄数据结构
  * 
@@ -241394,8 +241393,6 @@ void InitializeSystemDataTemplateWithMemoryBlock(long long ContextHandle)
  * 
  * @param ContextHandle 要初始化的上下文句柄指针
  * @return uint64_t* 初始化后的上下文句柄指针
- * 
- * @note 原始函数名：FUN_180196bd0
  */
 #define InitializeContextHandleDataStructure FUN_180196bd0
 uint64_t * InitializeContextHandleDataStructure(uint64_t *ContextHandle)
@@ -241993,7 +241990,6 @@ LAB_1801974aa:
 
 
 
-// 函数: void FUN_1801977e0(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointer)
 /**
  * @brief 处理系统数据编码和内存管理
  * 
@@ -242006,8 +242002,6 @@ LAB_1801974aa:
  * @param ContextHandle 上下文句柄指针
  * @param OperationBufferSize 操作缓冲区大小
  * @param Utf8SourcePointer UTF-8源数据指针
- * 
- * @note 原始函数名：FUN_1801977e0
  */
 #define ProcessSystemDataEncodingAndMemoryManagement FUN_1801977e0
 void ProcessSystemDataEncodingAndMemoryManagement(long long *ContextHandle,int OperationBufferSize,int Utf8SourcePointer)
