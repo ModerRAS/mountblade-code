@@ -130545,7 +130545,18 @@ FUN_18073d372:
 
 
 
- void ProcessUIBufferDataWithTextureFill(void)
+ /**
+ * @brief 处理带纹理填充的UI缓冲区数据
+ * 
+ * 该函数处理UI缓冲区数据，并使用纹理填充操作：
+ * - 分配并初始化缓冲区
+ * - 处理数据验证和控制
+ * - 执行纹理数据填充
+ * - 执行上下文数据操作
+ * 
+ * @note 这是一个关键的数据处理函数，涉及内存分配和纹理操作
+ */
+void ProcessUIBufferDataWithTextureFill(void)
 
 {
   int operationResult;
@@ -130567,7 +130578,17 @@ FUN_18073d372:
 
 
 
- void ProcessUIRenderTaskWithMemoryCheck(void)
+ /**
+ * @brief 处理带内存检查的UI渲染任务
+ * 
+ * 该函数执行UI渲染任务，并在执行前进行内存检查：
+ * - 检查内存参数有效性
+ * - 必要时释放内存资源
+ * - 执行渲染任务操作
+ * 
+ * @note 这是一个重要的内存安全检查函数，确保渲染操作的安全性
+ */
+void ProcessUIRenderTaskWithMemoryCheck(void)
 
 {
   longlong stackParam00000030;
