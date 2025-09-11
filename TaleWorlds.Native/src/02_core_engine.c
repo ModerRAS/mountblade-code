@@ -107,6 +107,7 @@
 #define FUN_18017b400 ProcessSystemMemoryAllocation                        // 处理系统内存分配
 #define FUN_180123c00 HandleSystemStringEncoding                          // 处理系统字符串编码
 #define FUN_180320050 CleanSystemMemoryResources                         // 执行系统内存清理
+#define FUN_1801b65d0 ConfigureSystemDataValidation                     // 配置系统数据验证
 #define FUN_1801601c0 HandleContextHandleTableOperations                 // 处理上下文句柄表操作
 #define FUN_18015c190 TransformUtf16ToUtf8Encoding                       // 转换UTF-16到UTF-8编码
 #define FUN_1801601a0 SetupContextHandleData                             // 初始化上下文句柄数据
