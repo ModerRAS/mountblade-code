@@ -39447,6 +39447,14 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   DataBuffer StackDataBuffer74;              // 栈数据缓冲区74
   DataBuffer StackDataBuffer70;              // 栈数据缓冲区70
   
+  // 系统栈数据管理变量
+  DataBuffer *systemStackDataPointer;        // 系统栈数据指针
+  DataBuffer systemStackDataBuffer;          // 系统栈数据缓冲区
+  uint dataFlags;                            // 数据标志
+  int resourceValidationStatus;               // 资源验证状态
+  int statusCounter;                         // 状态计数器
+  DataBuffer *ploopCounter;                  // 循环计数器指针
+  
   validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,SecurityValidationCodeLMPO);
   if ((int)validationResult != 0) {
     return validationResult;
