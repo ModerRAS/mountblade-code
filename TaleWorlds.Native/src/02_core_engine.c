@@ -266160,7 +266160,7 @@ LAB_1802158f5:
       *(uint32_t *)(pStringOffset + 1) = 0;
       *pStringOffset = (long long)&SystemValidationStatusTertiary;
       ContextHandle2 = pStringOffset;
-      FUN_18015c2b0(pStringOffset + 2);
+      ManageSystemBufferAllocation(pStringOffset + 2);
       *(uint32_t *)(pStringOffset + 10) = Utf16EndPointer;
       pStringOffset[0xb] = AdditionalParameter1;
       if (*(int *)(SystemConfigData + 0x9a0) != 0) {
