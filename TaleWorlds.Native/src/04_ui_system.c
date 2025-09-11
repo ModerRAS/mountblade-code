@@ -128912,7 +128912,7 @@ LAB_18073c471:
 
 
 
- void FUN_18073c3f9(void)
+ void ProcessUIContextFinalCleanup(void)
 /**
  * @brief 处理UI上下文最终清理操作
  * 
@@ -128940,8 +128940,8 @@ void ProcessUIContextFinalCleanup(void)
 
 
 
- void FUN_18073c471(void)
-void FUN_18073c471(void)
+ void ReleaseUIResourceAndExecuteRender(void)
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
@@ -128957,8 +128957,8 @@ void FUN_18073c471(void)
 
 
 
- void FUN_18073c493(void)
-void FUN_18073c493(void)
+ void ReleaseUIResourceAndExecuteRenderB(void)
+void ReleaseUIResourceAndExecuteRenderB(void)
 
 {
   ulonglong stackParam00000140;
@@ -128972,8 +128972,8 @@ void FUN_18073c493(void)
 
  
 
- void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
-void FUN_18073c4c0(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
+ void ProcessUIContextDataWithEncryptedHandles(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
+void ProcessUIContextDataWithEncryptedHandles(UIHandle uiContext,ulonglong *dataSource,ulonglong *targetBuffer)
 
 {
   int operationResult;
