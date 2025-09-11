@@ -10511,21 +10511,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 #define OptimizeDataProcessingPerformance FUN_180897520
 
-// 原始函数名：FUN_180891d4 - 数据处理验证函数
-// 功能：验证数据处理操作的有效性
-#define ValidateDataProcessingOperation FUN_180891d4
+#define ValidateDataProcessingOperation FUN_180891d40
 
-// 原始函数名：FUN_180891cf - 数据处理辅助函数
-// 功能：辅助处理数据操作和验证
-#define ProcessDataOperationAuxiliary FUN_180891cf
+#define ProcessDataOperationAuxiliary FUN_180891cf0
 
-// 原始函数名：FUN_180891ca - 数据处理管理函数
-// 功能：管理数据处理操作和资源
-#define ManageDataProcessingOperations FUN_180891ca
+#define ManageDataProcessingOperations FUN_180891ca0
 
-// 原始函数名：FUN_18088aca - 数据处理监控函数
-// 功能：监控数据处理性能和状态
-#define MonitorDataProcessingPerformance FUN_18088aca
+#define MonitorDataProcessingPerformance FUN_18088aca0
 
 // 原始函数名：FUN_18085300 - 数据处理恢复函数
 // 功能：恢复数据处理操作和状态
