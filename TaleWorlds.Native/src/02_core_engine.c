@@ -246514,7 +246514,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             FloatStackValue104 = ContextSecondaryFloat6;
             fStack_100 = ContextSecondaryFloat7;
             uStack_fc = MemoryAllocationOffset;
-            FUN_18063b5f0(&fStack_228,&EventValidationStatus);
+            ProcessSystemEventData(&fStack_228,&EventValidationStatus);
             MatrixTransformElementA = *(float *)(LoopIndex + 0x70);
             SystemContextPrimaryFloat = *(float *)(LoopIndex + 0x74);
             ScalingFactor = *(float *)(LoopIndex + 0x78);
@@ -247061,7 +247061,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
         FramePointer[0x49] = FilterInputValue0;
         FramePointer[0x4a] = MatrixTransformElementC;
         FramePointer[0x4b] = FilterInputValue4;
-        FUN_18063b5f0(FramePointer + 0x5c,FramePointer + 0x44);
+        ProcessSystemEventData(FramePointer + 0x5c,FramePointer + 0x44);
         MatrixTransformMultiplier11 = FramePointer[0x5c];
         ScalingFactor = FramePointer[0x5d];
         FilterInputValue1 = FramePointer[0x5e];
