@@ -134089,23 +134089,23 @@ void ProcessUIContextAndDataSource(UIHandle uiContext, UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte tempBuffer[32];
+  UIByte *bufferPointer;
+  longlong renderContextSize;
+  UIHandle contextHandle;
+  UIByte dataBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)tempBuffer;
+  renderContextSize = 0;
+  operationResult = FUN_180754f10(uiContext, &contextHandle, &renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180753560(stackUInt120,dataSource);
-    if (operationResult == 0) goto LAB_18073f53a;
+    operationResult = func_0x000180753560(contextHandle, dataSource);
+    if (operationResult == 0) goto DataValidationComplete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ValidateUIDataWithContext(dataBuffer, 0x100, dataSource);
+    bufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957ad0);
   }
