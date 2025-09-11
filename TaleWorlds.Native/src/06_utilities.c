@@ -21667,16 +21667,6 @@ void UtilityErrorHandlerF(void)
 
 
 
-// 函数: void UtilityErrorHandlerG(void)
-// 
-// 调用系统错误处理函数
-// 处理工具系统的错误情况
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
 /**
  * @brief 工具系统错误处理器G
  * 
