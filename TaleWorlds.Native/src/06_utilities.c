@@ -132,7 +132,7 @@
 
 // 空指针常量定义
 #define NULL_FUNCTION_POINTER NULL_FUNCTION_POINTER
-#define NULL_INT_POINTER (int *)0x0
+#define NULL_INT_POINTER NULL_INT_POINTER
 #define NULL_VOID_POINTER (void *)0x0
 
 // 浮点数数据偏移量常量
@@ -29133,7 +29133,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + (int64_t)searchIndex * DataStructureElementSize) +
                                 *(int64_t *)(dataStructure + DataStructurePointerOffset8)) + DataStructureCallbackOffset50))();
-  if (dataPointer == (int *)0x0) {
+  if (dataPointer == NULL_INT_POINTER) {
     targetValue = 0;
   }
   else {
@@ -29185,7 +29185,7 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
   int hashIndex;
   DataWord resultValue;
   
-  if (validationFlags != (uint *)0x0) {
+  if (validationFlags != NULL_UINT_POINTER) {
     flagValue = *validationFlags;
     if (flagValue != 0) {
       if (((*(int *)(dataContext + DataOperationOffset94) != 0) && (*(int *)(dataContext + DataOperationOffset78) != 0)) &&
@@ -33618,7 +33618,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
         processingResult = 0x41;
       }
     }
-    if (processedCount != (int *)0x0) {
+    if (processedCount != NULL_INT_POINTER) {
       *processedCount = totalProcessedLength + 1;
     }
     return processingResult;
@@ -33751,7 +33751,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
       SystemDataBufferTertiary = 0x41;
     }
   }
-  if (outputParameter != (int *)0x0) {
+  if (outputParameter != NULL_INT_POINTER) {
     *outputParameter = inputParameterTertiary + 1;
   }
   return SystemDataBufferTertiary;
@@ -33870,7 +33870,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       memoryDataValue = 0x41;
     }
   }
-  if (outputParameter != (int *)0x0) {
+  if (outputParameter != NULL_INT_POINTER) {
     *outputParameter = memoryContextIndex + 1;
   }
   return memoryDataValue;
@@ -33939,7 +33939,7 @@ DataWord QuerySystemStatusWithValidation(void)
       statusDataPointer = 0x41;
     }
   }
-  if (outputParameter != (int *)0x0) {
+  if (outputParameter != NULL_INT_POINTER) {
     *outputParameter = statusContextPointer + 1;
   }
   return statusDataPointer;
@@ -67597,10 +67597,10 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
     do {
       systemHashBuffer = systemMemoryBuffer % (uint64_t)*(uint *)(operationResult + SystemDataBufferSizeOffset);
       iterationCount = (int)loopCounter;
-      for (allocatedMemoryBlock = *(int **)(operationResult[7] + systemHashBuffer * 8); allocatedMemoryBlock != (int *)0x0;
+      for (allocatedMemoryBlock = *(int **)(operationResult[7] + systemHashBuffer * 8); allocatedMemoryBlock != NULL_INT_POINTER;
           allocatedMemoryBlock = *(int **)(allocatedMemoryBlock + SystemDataNextPointerOffset)) {
         if (iterationCount == *allocatedMemoryBlock) {
-          if (allocatedMemoryBlock != (int *)0x0) goto ProcessCheckpointValidationData3;
+          if (allocatedMemoryBlock != NULL_INT_POINTER) goto ProcessCheckpointValidationData3;
           break;
         }
       }
@@ -68418,10 +68418,10 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
     do {
       systemHashBuffer = systemMemoryBuffer % (uint64_t)*(uint *)(operationResult + 8);
       iterationCount = (int)loopCounter;
-      for (allocatedMemoryBlock = *(int **)(operationResult[7] + systemHashBuffer * 8); allocatedMemoryBlock != (int *)0x0;
+      for (allocatedMemoryBlock = *(int **)(operationResult[7] + systemHashBuffer * 8); allocatedMemoryBlock != NULL_INT_POINTER;
           allocatedMemoryBlock = *(int **)(allocatedMemoryBlock + 4)) {
         if (iterationCount == *allocatedMemoryBlock) {
-          if (allocatedMemoryBlock != (int *)0x0) goto ProcessCheckpointValidationData3;
+          if (allocatedMemoryBlock != NULL_INT_POINTER) goto ProcessCheckpointValidationData3;
           break;
         }
       }
