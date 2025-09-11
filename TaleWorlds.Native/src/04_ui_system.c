@@ -134026,6 +134026,19 @@ UIHandle ProcessUIContextCleanup(int *uiContext)
 
 
 
+/**
+ * @brief 处理UI上下文初始化操作
+ * 
+ * 该函数负责UI上下文的初始化工作：
+ * - 初始化UI上下文状态
+ * - 调用系统初始化函数
+ * - 递增上下文引用计数
+ * 
+ * @param uiContext UI上下文指针，包含当前UI系统的状态信息
+ * @return 返回操作结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_180741c20
+ */
 UIHandle ProcessUIContextInitialization(int *uiContext)
 
 {
