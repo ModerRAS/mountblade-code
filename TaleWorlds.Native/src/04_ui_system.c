@@ -197,6 +197,12 @@ typedef enum {
 #define EventprocessingStatus UIEventprocessingStatusValue
 
 // 未美化变量名语义化定义
+#define stack0x00000000 UIStackBasePointer
+#define stack0x00000040 UIStackDataBuffer
+#define RegisterPointer UIRegisterContext
+#define stackParam00000140 UIStackEncryptionKey
+#define stackParam00000030 UIStackMemoryFlag
+
 // UI查找表和数据表
 
 // UI系统渲染上下文变量语义化定义
@@ -372,6 +378,11 @@ typedef enum {
 // UI系统数据操作相关函数
 #define ProcessUIBufferDataWithValidation FUN_180737c30       // 处理UI缓冲区数据与验证
 #define ValidateUIResourceAllocation FUN_180743c40            // 验证UI资源分配
+
+// UI系统数据处理函数补充定义
+#define ProcessUIDataBufferWithParameters FUN_180746880        // 处理UI数据缓冲区与参数
+#define ProcessUIDataSourceCopy FUN_18074b7d0                 // 处理UI数据源复制
+#define ProcessUITextureDataWithSize FUN_18074ba80             // 处理UI纹理数据与大小
 #define InitializeUIContextHandle FUN_180742460               // 初始化UI上下文句柄
 #define AllocateUIContextMemory FUN_180743e90                 // 分配UI上下文内存
 #define ProcessUIContextDataWithFlags FUN_180742250           // 处理UI上下文数据与标志
@@ -26175,15 +26186,15 @@ void ProcessUIAnimation(longlong uiContext,longlong dataSource,UIHandle targetBu
   UIHandle componentFinalHandle;
   ulonglong encryptionKey;
   
-  stackUInte8 = XorEncryptionKey ^ (ulonglong)astackUIntb38;
-  iterationCount3 = 0;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderIterationCount = 0;
   *(UIByte *)(uiContext + 0x1e0) = 0;
-  fStack_a88 = param_9;
-  stackLong968 = resultPointer;
-  stackUInta28 = (UIHandle *)0x0;
-  stackUIntb04 = 0;
-  stackLongae0 = dataSource;
-  stackLongab8 = uiContext;
+  animationParameter = param_9;
+  renderContext = resultPointer;
+  transformHandle = (UIHandle *)0x0;
+  tempUInt1 = 0;
+  tempLong2 = dataSource;
+  tempLong3 = uiContext;
   TransformCoefficient32 = (float)GetUIComponentScaleFactor(resultPointer);
   fStack_934 = TransformCoefficient32;
   componentTransformData = (UIHandle *)AllocateUIResource(resultPointer,&stackUInt7b8);

@@ -5495,7 +5495,7 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectio
     uint32_t connectionValidationStatus;
     
     // 验证连接上下文有效性
-    if (NetworkConnectionContext == NULL || ConnectionStatus == NULL) {
+    if (connectionContext == NULL || connectionStatus == NULL) {
         return NetworkErrorInvalidHandle;
     }
     

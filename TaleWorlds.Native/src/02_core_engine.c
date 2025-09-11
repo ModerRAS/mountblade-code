@@ -229337,7 +229337,19 @@ void InitializeSystemBufferAndEventHandling(long long ContextHandle)
 
 
 
-8b8c0(long long ContextHandlevoid FUN_18018b8c0(long long ContextHandle
+/**
+ * @brief 处理系统内存块清理和释放
+ * 
+ * 该函数负责清理和释放系统内存块，包括：
+ * - 查找和遍历内存块链表
+ * - 释放关联的系统资源
+ * - 清理内存块数据结构
+ * - 维护内存管理器的完整性
+ * 
+ * @param ContextHandle 系统上下文句柄，包含内存管理相关的状态信息
+ * @return void
+ */
+void CleanupSystemMemoryBlocks(long long ContextHandle)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
@@ -229398,7 +229410,20 @@ LAB_18018b93a:
 
 
 
-8b9e0(long long ContextHandle,long long OperationBufferSizevoid FUN_18018b9e0(long long ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理系统字符编码转换和缓冲区操作
+ * 
+ * 该函数负责处理系统中的字符编码转换和缓冲区操作，包括：
+ * - Unicode字符的处理和转换
+ * - 字符编码的验证和标准化
+ * - 缓冲区数据的读写操作
+ * - 系统字符表的管理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @return void
+ */
+void ProcessSystemCharacterEncoding(long long ContextHandle, long long OperationBufferSize)
 {
   uint *CharacterStatusBuffer;
   byte *HighBytePointer;
