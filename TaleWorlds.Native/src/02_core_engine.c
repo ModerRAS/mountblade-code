@@ -237776,7 +237776,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   FUN_180397bc0(ContextHandle + 0xc0fc,ContextHandle,*(uint8_t *)(OperationBufferSize + 0x28));
   ContextHandle[0xc11c] = 0;
   ContextHandle[0xc11d] = _guard_check_icall;
-  FUN_1803996b0(ContextHandle + 0xc11e);
+  InitializeSystemNetwork(ContextHandle + 0xc11e);
   ContextHandle[0xc169] = &ThreadLocalStorageTemplate;
   ContextHandle[0xc16a] = 0;
   *(uint32_t *)(ContextHandle + 0xc16b) = 0;
@@ -238016,7 +238016,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   MemoryAddressMaskPointer = _Thrd_id();
   *(uint32_t *)(ContextHandle + 0x9a) = MemoryAddressMaskPointer;
   ContextHandle[0x532] = ContextHandle;
-  FUN_1801b6020(ContextHandle);
+  InitializeSystemThreading(ContextHandle);
   SecondaryProcessingStatusFlag = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x10,4,3);
   *(void *)(SecondaryProcessingStatusFlag + 1) = 0x3f800000;
   SecondaryProcessingStatusFlag[3] = 0x3f800000;
