@@ -133362,57 +133362,78 @@ void ProcessUIDataBufferOperation(UIHandle uiContext,UIHandle dataSource,UIHandl
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong *pstackLong158;
-  longlong stackLong150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong *contextResourcePointer;
+  longlong cleanupHandle;
+  UIByte processingBuffer [256];
+  ulonglong encryptedStackValue;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  stackLong150 = 0;
-  operationResult = ManageUIContextResources(uiContext,&pstackLong158,&stackLong150);
+  encryptedStackValue = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  cleanupHandle = 0;
+  operationResult = ManageUIContextResources(uiContext,&contextResourcePointer,&cleanupHandle);
   if (operationResult == 0) {
-    if (((int)pstackLong158[0x22] == 0) || ((int)pstackLong158[0x22] == 7)) {
-      pstackUInt168 = (UIByte *)CONCAT44(pstackUInt168._4_4_,resultPointer);
-      operationResult = (**(code **)(*pstackLong158 + 0x30))(pstackLong158,dataSource,targetBuffer,bufferSize);
-      if (operationResult == 0) goto FUN_18073f0d1;
+    if (((int)contextResourcePointer[0x22] == 0) || ((int)contextResourcePointer[0x22] == 7)) {
+      dataBufferPointer = (UIByte *)CONCAT44(dataBufferPointer._4_4_,resultPointer);
+      operationResult = (**(code **)(*contextResourcePointer + 0x30))(contextResourcePointer,dataSource,targetBuffer,bufferSize);
+      if (operationResult == 0) goto CleanupAndExit;
     }
     else {
       operationResult = 0x2e;
     }
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIDataAndCompare(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataAndCompare(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
-    pstackUInt168 = stackArray148;
+    dataValidationResult = CopyUIDataBuffer(processingBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(processingBuffer + dataValidationResult,0x100 - dataValidationResult,targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIDataAndCompare(processingBuffer + dataValidationResult,0x100 - dataValidationResult,bufferSize);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ProcessUIDataAndCompare(processingBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),resultPointer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_180957958);
+    ExecuteUIContextDataOperation(operationResult,5,uiContext,&SystemUIValidationData);
   }
-FUN_18073f0d1:
-  if (stackLong150 != 0) {
+CleanupAndExit:
+  if (cleanupHandle != 0) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackLong150,0xc);
+    ProcessUISystemCleanup(cleanupHandle,0xc);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptedStackValue ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
 
  
 
- void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
-void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
+ /**
+ * @brief UI数据缓冲区扩展处理函数
+ * 
+ * 该函数是ProcessUIDataBufferOperation的扩展版本，提供了额外的参数支持
+ * 用于处理更复杂的UI数据缓冲区操作。除了基本的数据处理功能外，还支持：
+ * - 扩展的参数传递
+ * - 更灵活的上下文管理
+ * - 增强的错误处理机制
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文
+ * @param dataSource 数据源句柄，提供要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定要处理的数据大小
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 扩展参数指针，提供额外的处理参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073ef4d
+ * @note 这是一个扩展的实现版本，用于处理更复杂的UI数据缓冲区操作
+ * @see ProcessUIDataBufferOperation, ManageUIContextResources, CopyUIDataBuffer
+ */
+void ProcessUIDataBufferOperationExtended(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
                   UIHandle resultPointer,longlong *param_6)
 
 {
