@@ -200078,12 +200078,12 @@ long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,
   unsigned long long SystemPriorityLevel;
   unsigned long long SystemChecksum;
   
-  Utf16Char4 = 0xfffffffffffffffe;
+  OperationResult = 0xfffffffffffffffe;
   ProcessedCharacter = 0;
   *ContextHandleSize = 0;
-  OperationBufferSize[1] = 0;
-  OperationBufferSize[2] = 0;
-  *(uint32_t *)(OperationBufferSize + 3) = 3;
+  ContextHandleSize[1] = 0;
+  ContextHandleSize[2] = 0;
+  *(uint32_t *)(ContextHandleSize + 3) = 3;
   ValidationResult = 1;
   MemoryBoundaryEnd = *(long long *)(ContextHandle + 0x28);
   SystemStatusCode = ProcessedCharacter;
