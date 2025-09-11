@@ -15689,26 +15689,26 @@ uint8_t ProcessData;                                    // 进程数据 - 系统
 uint8_t SecurityData;                                   // 安全数据 - 系统安全信息数据
 uint8_t NetworkData;                                    // 网络数据 - 系统网络信息数据
 uint8_t FileData;                                       // 文件数据 - 系统文件信息数据
-uint8_t SystemThreadData;
-uint8_t SystemEventData;
-uint8_t SystemTimerData;
-uint8_t SystemInputData;
-uint8_t SystemOutputData;
-uint8_t SystemDebugData;
-uint8_t SystemLogData;
-uint8_t SystemConfigData;
-uint8_t SystemResourceData;
-uint8_t SystemCleanupData;
-uint8_t SystemValidationData;
-uint8_t SystemInitializationData;
-uint8_t SystemOperationData;
-uint8_t SystemControlData;
+uint8_t ThreadData;                                     // 线程数据 - 系统线程信息数据
+uint8_t EventData;                                      // 事件数据 - 系统事件信息数据
+uint8_t TimerData;                                      // 计时器数据 - 系统计时器信息数据
+uint8_t InputData;                                      // 输入数据 - 系统输入信息数据
+uint8_t OutputData;                                     // 输出数据 - 系统输出信息数据
+uint8_t DebugData;                                      // 调试数据 - 系统调试信息数据
+uint8_t LogData;                                        // 日志数据 - 系统日志信息数据
+uint8_t ConfigData;                                     // 配置数据 - 系统配置信息数据
+uint8_t ResourceData;                                   // 资源数据 - 系统资源信息数据
+uint8_t CleanupData;                                    // 清理数据 - 系统清理信息数据
+uint8_t ValidationData;                                 // 验证数据 - 系统验证信息数据
+uint8_t InitializationData;                             // 初始化数据 - 系统初始化信息数据
+uint8_t OperationData;                                  // 操作数据 - 系统操作信息数据
+uint8_t ControlData;                                    // 控制数据 - 系统控制信息数据
 // 工具系统数据区域(续) - 系统扩展数据缓冲区
-uint8_t SystemExtendedDataPrimary;
-uint8_t SystemExtendedDataSecondary;
-uint8_t SystemExtendedDataTertiary;
-uint8_t SystemExtendedDataQuaternary;
-uint8_t SystemExtendedDataQuinary;
+uint8_t ExtendedDataPrimary;                            // 扩展数据主缓冲区 - 主要扩展数据存储
+uint8_t ExtendedDataSecondary;                          // 扩展数据辅助缓冲区 - 辅助扩展数据存储
+uint8_t ExtendedDataTertiary;                           // 扩展数据第三缓冲区 - 第三级扩展数据存储
+uint8_t ExtendedDataQuaternary;                         // 扩展数据第四缓冲区 - 第四级扩展数据存储
+uint8_t ExtendedDataQuinary;                            // 扩展数据第五缓冲区 - 第五级扩展数据存储
 uint8_t SystemExtendedDataSenary;
 uint8_t SystemExtendedDataSeptenary;
 uint8_t SystemExtendedDataOctonary;
