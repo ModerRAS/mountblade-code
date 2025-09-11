@@ -130267,18 +130267,39 @@ CleanupUIResources:
 
 
  void FUN_18073d08b(void)
-void FUN_18073d08b(void)
+/**
+ * @brief 执行UI数据处理的简化操作
+ * 
+ * 该函数是UI数据处理的一个简化版本，主要执行以下操作：
+ * 1. 使用ProcessUIDataWithFloatTarget处理浮点数目标数据
+ * 2. 使用ProcessUIBufferDataWithControl处理缓冲区控制数据
+ * 3. 再次调用ProcessUIDataWithFloatTarget处理组合数据
+ * 4. 最后执行上下文数据操作
+ * 
+ * 这是一个无参数的函数，使用固定的栈缓冲区进行数据处理。
+ * 
+ * @return void
+ * 
+ * @note 该函数使用了固定的栈缓冲区(stack0x00000040)大小为256字节
+ * @note 函数执行过程不可中断，会直接跳转到ExecuteUIContextDataOperation
+ * 
+ * @warning 该函数没有显式的错误处理机制
+ * @warning 使用了未经修改的ESI寄存器值作为操作参数
+ * 
+ * @see ProcessUIDataWithFloatTarget, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ExecuteUIDataProcessingSimplified(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextOperationParameter;
   
-  operationResult = ProcessUIDataWithFloatTarget(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataWithFloatTarget(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ProcessUIDataWithFloatTarget(&stack0x00000040, 0x100);
+  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult, 0x100 - operationResult, &UIBufferControlData);
+  ProcessUIDataWithFloatTarget(&stack0x00000040 + (operationResult + uiValidationResult), 0x100 - (operationResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,4);
+  ExecuteUIContextDataOperation(contextOperationParameter, 4);
 }
 
 
