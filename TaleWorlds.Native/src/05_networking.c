@@ -4061,8 +4061,11 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t NetworkPacketProcessingIndex = 0;                                           // 网络数据包处理索引
   int32_t NetworkMaximumPacketProcessingIndex = NetworkMaximumSignedInt32Value;         // 网络数据包处理最大索引值
   int64_t *NetworkOperationBuffer = NULL;                               // 连接操作缓冲区
+  
+  // 检查网络处理状态码，如果为0则进行主要处理流程
   if (NetworkProcessingStatusCode == 0) {
 PrimaryNetworkProcessingComplete:
+    // 验证网络操作缓冲区并处理连接认证
     if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkOperationBuffer)) && (*NetworkOperationBuffer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
@@ -4070,6 +4073,8 @@ PrimaryNetworkProcessingComplete:
     *(int *)CalculateConnectionParameterOffset(NetworkOperationBuffer) = NetworkProcessingStatusCode;
     return NetworkOperationSuccess;
   }
+  
+  // 处理网络数据包索引范围内的连接请求
   if (NetworkPacketProcessingIndex * ConnectionEntrySize - 1U < NetworkMaximumPacketProcessingIndex) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketProcessingIndex * ConnectionEntrySize, &SecurityValidationBuffer,
