@@ -56823,7 +56823,7 @@ void ProcessContextHandle(uint64_t *ContextHandle,long long OperationBufferSize
     ProcessSystemDataStructureB(*(long long *)(OperationBufferSize + 0x3c8),&StackParameterUnsigned20);
   }
   else {
-    StackParameterUnsigned20 = *(void *)(OperationBufferSize + 0x324);
+    SystemStackParameter = *(void *)(OperationBufferSize + 0x324);
   }
   if ((*(char *)(OperationBufferSize + 800) == '\0') && (*(long long *)(OperationBufferSize + 0x3c8) != 0)) {
     ProcessSystemDataStructureC(*(long long *)(OperationBufferSize + 0x3c8),&BufferMemoryOffset);
