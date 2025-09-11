@@ -410450,6 +410450,18 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define UNK_180957830 UIMemoryOperationTable           // UI内存操作表
 #define UNK_180957790 UIComponentOperationTable        // UI组件操作表
 
+// UI系统处理函数定义
+#define UNK_180957800 UIProcessHandlerTable           // UI处理函数表
+#define UNK_180957850 UIValidationHandlerTable        // UI验证处理表
+#define UNK_1809578a0 UIRenderHandlerTable            // UI渲染处理表
+#define UNK_1809578c0 UIEventProcessorTable           // UI事件处理器表
+#define UNK_1809578e0 UIResourceManagerTable         // UI资源管理表
+#define UNK_180957820 UIComponentManagerTable        // UI组件管理表
+#define UNK_180957840 UIStateManagerTable            // UI状态管理表
+#define UNK_180957860 UIAnimationManagerTable        // UI动画管理表
+#define UNK_180957880 UITextureManagerTable         // UI纹理管理表
+#define UNK_1809578a0 UILayoutManagerTable           // UI布局管理表
+
 
 
 
