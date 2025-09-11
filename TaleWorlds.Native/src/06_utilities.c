@@ -10103,7 +10103,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 系统处理和验证函数组
 #define ProcesssystemContext ExecuteSystemContextProcessing
-#define ValidateSystemState FUN_18089dd78
+#define ValidateSystemState VerifySystemOperationalState
 
 /**
  * @brief 数据缓冲区处理函数
@@ -10113,7 +10113,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089dda2
  */
-#define ProcessDataBuffer FUN_18089dda2
+#define ProcessDataBuffer ExecuteDataBufferProcessingOperation
 
 // 异常处理器回调函数组
 #define CleanupExceptionContextMemoryResources Unwind_18090af70
@@ -10130,7 +10130,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089de39
  */
-#define ValidateMemoryAddress FUN_18089de39
+#define ValidateMemoryAddress VerifyMemoryAddressValidity
 
 /**
  * @brief 系统配置处理函数
@@ -10140,7 +10140,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089de72
  */
-#define ProcessSystemConfiguration FUN_18089de72
+#define ProcessSystemConfiguration ExecuteSystemConfigurationManagement
 
 /**
  * @brief 系统数据传输函数
