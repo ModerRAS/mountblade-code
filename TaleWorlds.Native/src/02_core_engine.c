@@ -297540,6 +297540,7 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
 // 系统验证状态语义化宏定义
 #define SystemValidationStatus30 CurrentSystemCharacter30    // 系统当前字符30
+#define SystemValidationStatusA SecondarySystemValidationStatus  // 次系统验证状态
 
 // 数据存储语义化宏定义
 #define TertiaryDataStorage TertiaryDataBuffer               // 第三数据存储

@@ -160,6 +160,12 @@
 #define OperationSuccess 0
 #define MemoryValidationFailed -3
 #define MemoryProcessingFailed -4
+#define MemoryAllocationSizeExceeded 0x11
+#define MemoryValidationStatusFailed 0x1c
+
+// 内存边界检查常量
+#define MemoryBufferMinimumSize 0x36                          // 内存缓冲区最小尺寸 (54字节)
+#define MemoryBufferMaximumSize 0x3d                          // 内存缓冲区最大尺寸 (61字节)
 
 // 异常状态标志位常量
 #define ExceptionStatusFlag1 0x1
@@ -42790,7 +42796,7 @@ uint64_t ValidateSystemMemoryStatus(void)
   memoryValidationStatus = (uint64_t)memoryDataValue;
   if (memoryDataValue == 0) {
     memoryValidationStatus = MemoryValidationStatusFailed;
-    if (*(uint *)(memoryBufferContext + 8) < 0x36) {
+    if (*(uint *)(memoryBufferContext + 8) < MemoryBufferMinimumSize) {
       operationResult = 0;
     }
     else {
