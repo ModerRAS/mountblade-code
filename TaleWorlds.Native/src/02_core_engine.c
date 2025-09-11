@@ -262176,7 +262176,24 @@ void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int Operation
 
 
 
-0dc20(int ContextHandle,int OperationBufferSize,long long *Utf8SourcePointervoid FUN_18020dc20(int ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer
+/**
+ * @brief 处理系统缓冲区操作和字符状态管理
+ * 
+ * 该函数负责处理系统缓冲区操作和字符状态管理，主要功能包括：
+ * - 遍历字符状态缓冲区
+ * - 处理内存块的分配和释放
+ * - 管理系统优先级和处理标志
+ * - 执行缓冲区操作函数
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020dc20
+ */
+#define ProcessSystemBufferAndCharacterStatus FUN_18020dc20
+void ProcessSystemCharacterBuffer(int ContextHandle, int OperationBufferSize, long long *Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
@@ -262188,7 +262205,7 @@ void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int Operation
   uint64_t ProcessingFlags;
   long long *SystemPointer20;
   uint64_t SystemStackOffset18;
-  uint16_t uStack_10;
+  uint16_t StackCharacterBuffer10;
   
   MemoryAllocationMaskPointer = 0xfffffffffffffffe;
   CharacterStatusBuffer = (void *)*Utf8SourcePointer;
@@ -262204,8 +262221,8 @@ void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int Operation
       if (SystemPointer20 != (long long *)0x0) {
         (**(code **)(*SystemPointer20 + 0x28))();
       }
-      uStack_18 = 0;
-      uStack_10 = 1;
+      StackBuffer18 = 0;
+      StackCharacterBuffer10 = 1;
       *(byte *)(SystemPointer20 + 0x5d) = *(byte *)(SystemPointer20 + 0x5d) | 0x80;
       ProcessingFlags = 0;
       ProcessSystemBufferOperation(&SystemStackFlag,*(void *)(*(long long *)*CharacterStatusBuffer + MemoryBlockIndex),CharacterStatusBuffer[1],
@@ -262511,7 +262528,22 @@ void ValidateSystemContextHandle(long long *ContextHandle)
 
 
 
-0e3d0(long long *ContextHandlevoid FUN_18020e3d0(long long *ContextHandle
+/**
+ * @brief 处理系统上下文清理和内存块管理
+ * 
+ * 该函数负责处理系统上下文的清理和内存块管理，主要功能包括：
+ * - 遍历和清理内存块
+ * - 处理缓冲区分配状态
+ * - 管理内存分配掩码指针
+ * - 执行系统事件处理
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020e3d0
+ */
+#define HandleSystemContextCleanupAndMemoryBlocks FUN_18020e3d0
+void FUN_18020e3d0(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
