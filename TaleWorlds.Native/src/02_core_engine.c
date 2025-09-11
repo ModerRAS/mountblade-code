@@ -1598,6 +1598,26 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 系统事件和标志变量定义
 #define SystemEventValidationStatus SystemEventCurrentCharacterStatus      // 系统事件当前字符
 
+// 额外的栈变量语义化宏定义
+#define StackUnsigned170 uStack_170                             // 栈无符号值170 - 内存分配标志
+#define StackUnsigned16c uStack_16c                             // 栈无符号值16c - 缓冲区大小
+#define StackUnsigned164 uStack_164                             // 栈无符号值164 - 验证状态
+#define StackSigned148 lStack_148                               // 栈有符号值148 - 字符数据偏移
+#define StackUnsigned138 uStack_138                             // 栈无符号值138 - 系统状态标志
+#define StackPointer120 plStack_120                             // 栈指针120 - 上下文指针数组
+#define StackTemporary118 pSystemTemporaryRegister118           // 栈临时118 - 系统临时寄存器
+#define StackUnsigned110 uStack_110                             // 栈无符号值110 - 内存偏移量
+#define StackUnsignedcc uStack_cc                               // 栈无符号值cc - 处理计数器
+#define StackUnsignedc4 uStack_c4                               // 栈无符号值c4 - 系统标志
+#define StackPointerc0 plStack_c0                               // 栈指针c0 - 上下文指针
+#define StackUnsigned9c uStack_9c                               // 栈无符号值9c - 核心引擎值
+#define StackPointer88 plStack_88                               // 栈指针88 - 系统数据指针
+#define StackBuffer80 StackBuffer80                             // 栈缓冲区80 - 字符处理缓冲区
+#define StackUnsigned60 uStack_60                               // 栈无符号值60 - 栈处理值
+#define StackUnsigned54 uStack_54                               // 栈无符号值54 - 系统无符号值
+#define StackPointer50 pSystemTemporaryValue50                  // 栈指针50 - 系统临时值
+#define StackUnsigned48 uStack_48                               // 栈无符号值48 - 内存偏移值
+
 // 循环和计数变量语义化宏定义
 #define LoopIterationCounter LoopIndex                             // 循环迭代计数器 - 循环索引
 #define LockOperationResult0 StringComparisonResult               // 锁操作结果0 - 字符串比较结果
@@ -1624,6 +1644,16 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemProcessingVariable70 StackProcessingVariable70        // 系统处理变量70
 #define SystemMemoryPointer68 SystemMemoryPointer68                 // 系统内存指针68
 #define SystemProcessingValue60 StackProcessingUnsignedValue60      // 系统处理值60
+#define StackProcessingValue9c StackProcessingUnsignedValue9c       // 栈处理值9c - 操作状态值
+#define StackProcessingValueac StackProcessingUnsignedValueac       // 栈处理值ac - 浮点运算值
+#define StackFloatValue98 StackFloatValue98                       // 栈浮点值98 - 浮点处理状态
+#define StackLong88 StackLong88                                   // 栈长整型88 - 系统数据指针
+#define StackProcessingValue78 StackProcessingValue78               // 栈处理值78 - 系统处理变量
+#define StackProcessingVariable70 StackProcessingVariableValue70    // 栈处理变量70 - 系统处理变量值
+#define StackFloatValue58 StackFloatValue58                       // 栈浮点值58 - 浮点运算值
+#define StackFloatValue54 StackFloatValue54                       // 栈浮点值54 - 浮点运算值
+#define StackFloatValue50 StackFloatValue50                       // 栈浮点值50 - 浮点运算值
+#define StackFloatValue4C StackFloatValue4C                       // 栈浮点值4C - 浮点运算值
 #define SystemDataBufferOffset BufferOffset                         // 系统数据缓冲区偏移量
 #define SystemContextValidationPointer SystemValidationPointer     // 系统上下文验证指针
 #define SystemContextDataPointer ContextDataPointer                 // 系统上下文数据指针
