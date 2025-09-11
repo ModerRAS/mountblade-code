@@ -132703,6 +132703,16 @@ void InitializeUtilityModule(void)
  * 
  * @note 原始函数名：ResetUtilityPointers1
  */
+/**
+ * @brief 重置系统异常处理器指针
+ * 
+ * 该函数负责重置系统的异常处理器指针，将其指向默认的异常处理器。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetUtilityPointers1
+ * @warning 调用此函数会清除所有当前的异常处理配置
+ * @see ResetSystemResourceManagerPointers, InitializeUtilityModule
+ */
 void ResetSystemExceptionHandlerPointers(void)
 
 {

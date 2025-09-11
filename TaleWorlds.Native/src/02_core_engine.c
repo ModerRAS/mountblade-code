@@ -53718,10 +53718,10 @@ void ProcessFloatCalculationAndDataFiltering(void)
   uint32_t stackData110;  // 栈数据110，用于存储数据
   uint32_t StackProcessingParameter6;
   uint32_t SystemValidationStatus170;
-  long long StackData190;
-  float *FloatDataArray180;
-  uint64_t StackData188;
-  long long StackData190;
+  long long SystemEventStackMemory190;
+  float *SystemTransformMatrixArray180;
+  uint64_t SystemEventStackMemory188;
+  long long SystemEventStackMemory190;
   
   MemoryBlockIndex3 = *(long long *)(SystemContext + 0x1b8);
   LowByte0 = *(byte *)(MemoryBlockIndex3 + 0x38c);
@@ -243035,7 +243035,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     *(uint8_t *)((long long)OperationBufferSize + 0x11cf4) = 0;
   }
   else {
-    FUN_1801c1c40(OperationBufferSize + 0x23a0);
+    ProcessSystemDataBufferOperation(OperationBufferSize + 0x23a0);
     *(uint8_t *)((long long)OperationBufferSize + 0x11cf4) = 1;
   }
   BufferIndex = ContextHandle[0x103e];
@@ -250264,7 +250264,7 @@ LAB_1802042b6:
     Utf8SourcePointer = (Utf8SourcePointer >> 1) + (Utf8SourcePointer >> 2);
     if ((long long)(aFunctionAddress.Low64Part - (long long)ContextHandle & 0xfffffffffffffff0U) <
         (long long)((long long)OperationBufferSize - aFunctionAddress.High64Part & 0xfffffffffffffff0U)) {
-      FUN_1802041f0(ContextHandle,aFunctionAddress.Low64Part,Utf8SourcePointer,Utf16EndPointer);
+      HandleSystemDataConversion(ContextHandle,aFunctionAddress.Low64Part,Utf8SourcePointer,Utf16EndPointer);
       paOperationResult = OperationBufferSize;
       ContextHandle = (uint8_t (*) [16])MemoryPoolIndex;
     }

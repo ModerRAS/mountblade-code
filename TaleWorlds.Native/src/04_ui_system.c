@@ -1016,8 +1016,8 @@ typedef enum {
 #define ProcessUIComponentDataSourceAndValidation ValidateUIComponentDataSource        // 处理UI组件数据源和验证 - 验证UI组件数据源的有效性
 #define ProcessUIComponentResourceAllocation AllocateUIComponentResources            // 处理UI组件资源分配 - 为UI组件分配必要的资源
 #define ValidateUIComponentHandleWithBounds ValidateUIComponentHandleBounds             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
-#define ProcessUIComponentHandleWithEventDispatch FUN_180744ae0      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
-#define SetupUIContextEventHandle FUN_180786104                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
+#define ProcessUIComponentHandleWithEventDispatch DispatchUIComponentEvents      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
+#define SetupUIContextEventHandle SetupUIContextEventHandler                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
 #define InitializeUIContextDataBuffer FUN_1807861b0                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
 #define ProcessUIContextMemoryRelease FUN_180786250                 // 处理UI上下文内存释放 - 释放UI上下文占用的内存资源
 #define ProcessUIContextDataSourceValidation FUN_180786262           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
@@ -126242,7 +126242,13 @@ void ProcessUIContextAndTargetBuffer(UIHandle uiContext,UIDword dataSource,UIHan
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextGraphicsRenderer);
   }
-FUN_18073adad:
+/**
+ * @brief 执行UI资源清理和渲染任务
+ * 
+ * 该函数负责在特定条件下释放UI内存资源并执行渲染任务。
+ * 主要用于UI系统的资源管理和任务调度。
+ */
+void ExecuteUICleanupAndRenderTask():
   if (stackLong148 != 0) {
     ReleaseUIMemoryResource();
   }
@@ -127097,7 +127103,13 @@ void ProcessUIContextWithTextureData(UIHandle uiContext,UIHandle dataSource,UIHa
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextAnimationManager);
   }
-FUN_18073b4cf:
+/**
+ * @brief 执行UI动画资源清理和渲染任务
+ * 
+ * 该函数负责在动画处理完成后释放UI内存资源并执行渲染任务。
+ * 主要用于UI动画系统的资源管理和任务调度。
+ */
+void ExecuteUIAnimationCleanupAndRenderTask():
   if (stackLong148 != 0) {
     ReleaseUIMemoryResource();
   }
@@ -127357,7 +127369,13 @@ void ProcessUIContextWithExtendedParameters(UIHandle uiContext,UIDword dataSourc
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutEngine);
   }
-FUN_18073b7af:
+/**
+ * @brief 执行UI布局引擎资源清理和渲染任务
+ * 
+ * 该函数负责在布局引擎处理完成后根据动画状态释放UI内存资源并执行渲染任务。
+ * 主要用于UI布局系统的资源管理和任务调度。
+ */
+void ExecuteUILayoutEngineCleanupAndRenderTask():
   if (AnimationStateValue != 0) {
     ReleaseUIMemoryResource();
   }
@@ -137182,7 +137200,7 @@ UIHandle FUN_180743cc0(longlong uiContext,UIByte dataSource)
       return 0x1c;
     }
     *(UIByte *)(uiContext + 0x11930) = dataSource;
-    result = FUN_180744ae0(uiContext,0x100002,*(longlong *)(uiBufferData + 0x11928),dataSource);
+    result = DispatchUIComponentEvents(uiContext,0x100002,*(longlong *)(uiBufferData + 0x11928),dataSource);
     if ((int)result != 0) {
       return result;
     }
@@ -137248,7 +137266,7 @@ UIHandle FUN_180743da0(longlong uiContext)
     }
     *(UIHandle *)(uiContext + 0x11928) = 0;
     *(UIByte *)(uiContext + 0x11930) = 0;
-    iterationCount = FUN_180744ae0(uiContext,0x100004,allocatedMemory,0);
+    iterationCount = DispatchUIComponentEvents(uiContext,0x100004,allocatedMemory,0);
     if ((int)iterationCount == 0) {
                      WARNING: Subroutine does not return
       ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x115a8));
@@ -158292,7 +158310,7 @@ UIHandle ProcessUIContextAndDataSource(longlong uiContext,UIHandle *dataSource)
 LAB_18075a2e8:
     *(code **)(uiContext + 0x128) = plocalChar9;
   }
-  dataPointer = FUN_180744ae0(*(UIHandle *)(uiContext + 0xa8),0x100010,uiContext,0);
+  dataPointer = DispatchUIComponentEvents(*(UIHandle *)(uiContext + 0xa8),0x100010,uiContext,0);
   if ((int)dataPointer != 0) {
     return dataPointer;
   }
@@ -205231,7 +205249,7 @@ UIHandle ConfigureUIElementVisibilityFlags(int *uiContext,UIHandle dataSource,in
  * 
  * @return UIHandle 返回操作结果句柄
  * 
- * @note 原始函数名：FUN_180786104
+ * @note 原始函数名：SetupUIContextEventHandler
  * @note 该函数主要处理UI上下文的事件句柄设置
  */
 UIHandle SetupUIContexteventHandle(void)
@@ -207616,7 +207634,7 @@ LAB_180787ee9:
       if (operationResult == 0) {
         iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
         *(UIHandle *)((longlong)register0x00000020 + -8) = 0x18078801b;
-        FUN_180744ae0(iterationCount, 0x100001, 0, 0);
+        DispatchUIComponentEvents(iterationCount, 0x100001, 0, 0);
         contextDataHandle = *(longlong *)(memoryAllocationFlag + 0x48);
         validationFunction = *(UIFunctionPtr **)(contextDataHandle + 0x11838);
         
@@ -207721,7 +207739,7 @@ int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSo
     if (sourceDataInt == 0) {
       sourceDataInt = ValidateUIComponentHandleBounds(*(UIHandle *)(uiContext + 0x48));
       if (sourceDataInt == 0) {
-        FUN_180744ae0(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
+        DispatchUIComponentEvents(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
         componentHandle = *(longlong *)(uiBufferData + 0x48);
         if ((*(code **)(componentIndex + 0x11838) != (UIFunctionPtr *)0x0) &&
            ((*(uint *)(componentIndex + 0x11840) & 0x100) != 0)) {
@@ -207796,7 +207814,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
     if (uiCompareResult == 0) {
       uiCompareResult = ValidateUIComponentHandleBounds(*(UIHandle *)(uiContext + 0x48));
       if (uiCompareResult == 0) {
-        FUN_180744ae0(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
+        DispatchUIComponentEvents(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
         EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
         if ((*(code **)(allocatedMemory + 0x11838) != (UIFunctionPtr *)0x0) &&
            ((*(uint *)(allocatedMemory + 0x11840) & 0x100) != 0)) {
@@ -215698,7 +215716,7 @@ LAB_18078e7f1:
                 pstringCompareIndex2 = *(longlong **)(allocatedMemory6 + 0x68);
               }
               *(longlong **)(allocatedMemory4 + 200) = pstringCompareIndex2;
-              FUN_180744ae0(lStack0000000000000070,0x100008,allocatedMemory4,0);
+              DispatchUIComponentEvents(lStack0000000000000070,0x100008,allocatedMemory4,0);
               *pstringCompareIndex1 = allocatedMemory4;
               pstringCompareIndex3 = (longlong *)uiContextBasePointer[-0xe];
             }
@@ -215967,7 +215985,7 @@ LAB_18078f7d7:
                 pstringCompareIndex0[0x19] = (longlong)pstringCompareIndex1;
                 *(uint *)((longlong)pstringCompareIndex0 + 0x2c) = uStack000000000000005c;
                 *(float *)((longlong)pstringCompareIndex0 + 0x6c) = (float)*(int *)(uiContextBasePointer + 1);
-                FUN_180744ae0(lStack0000000000000070,0x100008);
+                DispatchUIComponentEvents(lStack0000000000000070,0x100008);
                 allocatedMemory4 = uiContextBasePointer[-0xf];
                 pstringCompareIndex3 = colorBufferPointer9;
               }
@@ -216067,7 +216085,7 @@ LAB_18078fa18:
                        colorBufferPointer9 = pstringCompareIndex2, stackParam00000050 != 0)) goto LAB_18078fe1a;
                     UIRenderParameter2 = 0;
                     if ((uiContextBasePointer[-0xf] == 0) && (iStack0000000000000060 == 0)) {
-                      FUN_180744ae0(lStack0000000000000070,0x100008,pstringCompareIndex1,0);
+                      DispatchUIComponentEvents(lStack0000000000000070,0x100008,pstringCompareIndex1,0);
                       allocatedMemory5 = uiContextBasePointer[-0xd];
                       allocatedMemory4 = 0;
                       allocatedMemory6 = allocatedMemory4;
@@ -216489,7 +216507,7 @@ void FUN_18078ea55(void)
       uiMemoryPointer0 = *(longlong **)(CharacterDataOffset + 0x68);
     }
     *(longlong **)(contextDataHandle + 200) = uiMemoryPointer0;
-    FUN_180744ae0(stackParam00000070,0x100008,contextDataHandle,0);
+    DispatchUIComponentEvents(stackParam00000070,0x100008,contextDataHandle,0);
     *componentData = contextDataHandle;
     componentData = (longlong *)uiContextBasePointer[-0xe];
   }
@@ -216746,7 +216764,7 @@ LAB_18078f7d7:
       colorBufferPointer3[0x19] = (longlong)componentData;
       *(uint *)((longlong)colorBufferPointer3 + 0x2c) = RegisterPointerD;
       *(float *)((longlong)colorBufferPointer3 + 0x6c) = (float)*(int *)(uiContextBasePointer + 1);
-      FUN_180744ae0(stackParam00000070,0x100008);
+      DispatchUIComponentEvents(stackParam00000070,0x100008);
       contextDataHandle = uiContextBasePointer[-0xf];
       componentData = preservedRegister12;
       RegisterPointerD = uStack000000000000005c;
@@ -216835,7 +216853,7 @@ LAB_18078fa18:
                                 (colorBufferPointer3,*(UIHandle *)(stackParam00000070 + 0x11720)),
              preservedRegister12 = uiMemoryPointer7, sourceDataInt != 0)) goto LAB_18078fe1a;
           if ((uiContextBasePointer[-0xf] == 0) && (iStack0000000000000060 == 0)) {
-            FUN_180744ae0(stackParam00000070,0x100008,colorBufferPointer3,0);
+            DispatchUIComponentEvents(stackParam00000070,0x100008,colorBufferPointer3,0);
             contextDataHandle = uiContextBasePointer[-0xd];
             CharacterDataOffset = 0;
             contextOffset = CharacterDataOffset;
