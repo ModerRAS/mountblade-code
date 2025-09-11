@@ -284676,15 +284676,15 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
   uint8_t CharacterProcessingBuffer [512];
   unsigned long long EncodingKey;
   
-  uStack_230 = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aMemoryCopyBuffer;
+  Utf16CharEndMarker = 0xfffffffffffffffe;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)MemoryCopyBuffer;
   BufferTypeFlag = 0;
-  SystemUintBuffer240 = 0;
-  SystemUintBuffer238 = 0;
-  pOperationStatus = OperationBufferSize;
-  Utf16Char = (*SystemSystemFunctionPointerA)(1,&SystemUnknownProcessingStatusFlagI,&SystemUintBuffer240);
+  SystemDataBuffer240 = 0;
+  SystemDataBuffer238 = 0;
+  OperationStatusPointer = OperationBufferSize;
+  Utf16Char = (*SystemSystemFunctionPointerA)(1,&SystemUnknownProcessingStatusFlagI,&SystemDataBuffer240);
   if ((Utf16CharacterValue & 0xfff00000) != 0xbad00000) {
-      memset(SystemStackArray218,0,0x200);
+      memset(CharacterProcessingBuffer,0,0x200);
   }
   *ContextHandleSize = &ThreadLocalStorageTemplate;
   OperationBufferSize[1] = 0;
@@ -284699,7 +284699,7 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
     *(uint8_t *)OperationBufferSize[1] = 0;
   }
   BufferTypeFlag = 1;
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aMemoryCopyBuffer);
+    CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)MemoryCopyBuffer);
 }
 
 
