@@ -254849,7 +254849,7 @@ void ProcessSystemContextLocking(uint64_t ContextHandle, long long OperationBuff
           ProcessFloatingPointContextHandleAndEncoding(_SystemFloatTableAddress,CharacterEncodingParameters,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
           FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,CharacterEncodingParameters[0] * InputDataLength,
                         *(void *)(*(long long *)(Utf8SourcePointer + SystemChecksum * 8) + 0x10),InputDataLength * IntegerValue,0);
-          FUN_1802075c0(OperationBufferSize,aiStack_50,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
+          FUN_1802075c0(OperationBufferSize,CharacterEncodingParameters,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
           if (SecondaryContextPointer != (long long *)0x0) {
             (**(code **)(*SecondaryContextPointer + 0x38))();
           }
@@ -254890,7 +254890,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
   uint64_t CalculatedCodePoint;
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
-  uint64_t auStack_18 [2];
+  uint64_t SystemOperationParameters [2];
   
   SystemContextRegister = ContextHandle;
   if ((char)OperationBufferSize[8] == '\x01') {
