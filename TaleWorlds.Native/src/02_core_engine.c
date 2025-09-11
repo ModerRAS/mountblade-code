@@ -1421,7 +1421,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackPointer110 ProgramCounterStack110                        // 栈指针110
 #define StackPointerF0 pcStack_f0                          // 栈指针F0
 #define StackPointerF8 pcStack_f8                          // 栈指针F8
-#define StackPointerE0 lStack_e0                          // 栈指针E0
+#define StackPointerE0 SystemMemoryAllocationPointer            // 栈指针E0
 #define StackPointerD8 pfStack_d8                          // 栈指针D8
 #define StackPointerB0 pcStack_b0                          // 栈指针B0
 #define StackPointerA8 pcStack_a8                          // 栈指针A8
@@ -1432,8 +1432,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 新增栈变量语义化宏定义
 #define SystemStackOffset170 LongStackOffset170                    // 系统栈偏移量170
 #define SystemStackOffset1e8 IntegerStackOffset1e8                    // 系统栈偏移量1e8
-#define SystemStackOffset1d0 lStack_1d0                    // 系统栈偏移量1d0
-#define SystemStackPointer218 plStack_218                  // 系统栈指针218
+#define SystemStackOffset1d0 SystemContextDataOffset            // 系统栈偏移量1d0
+#define SystemStackPointer218 SystemValidationPointer           // 系统栈指针218
 #define SystemStackPointerB0 SystemContextPointerB0                    // 系统栈指针B0
 #define SystemStackPointerA8 SystemContextPointerA8                    // 系统栈指针A8
 #define ValidationBytePointer48 ValidationBytePointer48                 // 验证字节指针48
@@ -1442,12 +1442,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackInteger2e8 SystemStackInteger2e8                   // 系统栈整数2e8
 #define SystemStackPointer2e0 SystemStackPointer2e0                   // 系统栈指针2e0
 #define SystemStackOffset2d8 SystemStackOffset2d8                     // 系统栈偏移量2d8
-#define SystemStackUnsigned270 uStack_270                  // 系统栈无符号270
+#define SystemStackUnsigned270 SystemUnicodeValidationStatus     // 系统栈无符号270
 #define SystemStackOffset268 lStack_268                     // 系统栈偏移量268
 #define SystemStackOffset258 lStack_258                     // 系统栈偏移量258
 #define SystemStackOffset248 lStack_248                     // 系统栈偏移量248
-#define SystemStackUnsigned1e0 uStack_1e0                   // 系统栈无符号1e0
-#define SystemStackUnsigned1d0 uStack_1d0                   // 系统栈无符号1d0
+#define SystemStackUnsigned1e0 SystemMemoryAllocationStatus      // 系统栈无符号1e0
+#define SystemStackUnsigned1d0 SystemContextHandleStatus         // 系统栈无符号1d0
 
 // 扩展栈变量语义化宏定义
 #define SystemStackPointer3f8 SystemThreadLocalStoragePointer     // 系统栈指针3f8
@@ -1458,7 +1458,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackUnsigned3c8 SystemValidationResultCount      // 系统栈无符号3c8
 #define SystemStackUnsigned3c0 SystemOperationStatusCode        // 系统栈无符号3c0
 #define SystemStackOffset3b8 lStack_3b8                     // 系统栈偏移量3b8
-#define SystemStackPointer3b0 puStack_3b0                   // 系统栈指针3b0
+#define SystemStackPointer3b0 SystemCharacterEncodingPointer     // 系统栈指针3b0
 #define SystemStackPointer3a8 SystemUnicodeConversionPointer      // 系统栈指针3a8
 #define SystemStackUnsigned3a0 SystemStringEncodingStatus         // 系统栈无符号3a0
 #define SystemStackUnsigned398 SystemMemoryAlignmentStatus        // 系统栈无符号398
