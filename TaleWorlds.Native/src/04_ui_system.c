@@ -206342,8 +206342,22 @@ UIHandle * FUN_180786350(UIHandle *uiContext)
 
 
 
- void FUN_1807863b0(longlong uiContext)
-void FUN_1807863b0(longlong uiContext)
+ /**
+ * @brief 验证UI上下文和事件数据
+ * 
+ * 该函数负责验证UI上下文和事件数据的有效性，包括：
+ * - 分配内存并初始化验证参数
+ * - 遍历缓冲区并重置状态标志
+ * - 验证事件数据的完整性和一致性
+ * - 调用相关的验证回调函数
+ * 
+ * @param uiContext UI上下文句柄，指向需要验证的UI上下文
+ * 
+ * @note 原始函数名：FUN_1807863b0
+ * @warning 此函数不返回，会直接跳转到其他处理函数
+ * @warning 涉及复杂的内存操作，调用前需确保上下文有效
+ */
+void ValidateUIContextAndEventData(longlong uiContext)
 
 {
   longlong allocatedMemory;
