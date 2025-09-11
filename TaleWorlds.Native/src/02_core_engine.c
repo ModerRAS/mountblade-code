@@ -1466,7 +1466,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackPointer370 puStack_370                   // 系统栈指针370
 #define SystemStackPointer368 puStack_368                   // 系统栈指针368
 #define SystemStackUnsigned360 uStack_360                   // 系统栈无符号360
-#define SystemStackUnsigned358 uStack_358                   // 系统栈无符号358
+#define SystemStackUnsigned358 SystemDataTransferStatus          // 系统栈无符号358
 #define SystemStackPointer350 SystemEventHandlerPointer          // 系统栈指针350
 #define SystemStackInteger340 SystemOperationResultCode          // 系统栈整数340
 #define SystemStackUnsigned338 SystemContextSwitchStatus         // 系统栈无符号338
