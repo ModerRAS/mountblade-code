@@ -181,6 +181,122 @@
 #define FUN_18019cf00 ProcessStringDataWithOffset                          // 处理字符串数据和偏移量
 #define FUN_18022d470 CalculateStringLengthAndValidate                     // 计算字符串长度并验证
 #define FUN_18022cd30 InitializeBufferDataAndResources                     // 初始化缓冲区数据和资源
+
+// 系统内存处理函数语义化宏定义
+#define FUN_180203aa0 AllocateSystemMemoryBuffer                    // 分配系统内存缓冲区
+#define FUN_180203ba0 CreateSystemContextInstance                   // 创建系统上下文实例
+#define FUN_180203e30 ExecuteSystemMemoryAllocation                // 执行系统内存分配
+#define FUN_180204420 ProcessSystemContextTransfer                 // 处理系统上下文传输
+
+// 字符编码处理函数语义化宏定义
+#define FUN_1802063e0 ConvertUtf16ToUtf8Character                 // 转换UTF-16到UTF-8字符
+#define FUN_180206330 GetCharacterMemoryPoolIndex                  // 获取字符内存池索引
+#define FUN_1802064e0 TransferCharacterEncodingContext             // 传输字符编码上下文
+#define FUN_180225e50 ValidateCharacterMemoryAllocation            // 验证字符内存分配
+
+// 系统操作函数语义化宏定义
+#define FUN_180206690 CalculateSystemChecksum                      // 计算系统校验和
+#define FUN_180206740 ConfigureSystemOperationParameters           // 配置系统操作参数
+#define FUN_180207e40 ProcessSystemDataTable                       // 处理系统数据表
+#define FUN_1802075c0 HandleCharacterBufferData                    // 处理字符缓冲区数据
+#define FUN_18030a2a0 ManageSystemMemoryAllocation                 // 管理系统内存分配
+
+// 数据处理函数语义化宏定义
+#define FUN_180207d70 CompareSystemDataNodes                       // 比较系统数据节点
+#define FUN_18029ea30 ProcessMatrixTransformOperation              // 处理矩阵变换操作
+#define FUN_1800e81f0 GetSystemMemoryBlockIndex                   // 获取系统内存块索引
+#define FUN_180081480 ProcessSystemDataCalculation                 // 处理系统数据计算
+
+// 系统初始化函数语义化宏定义
+#define FUN_1800b3590 InitializeSystemProcessingContext           // 初始化系统处理上下文
+#define FUN_180208400 ProcessUtf16EncodingConversion              // 处理UTF-16编码转换
+#define FUN_180080810 HandleStringEncodingTransfer                 // 处理字符串编码传输
+
+// 系统验证函数语义化宏定义
+#define FUN_18004bf50 ValidateSystemDataIntegrity                 // 验证系统数据完整性
+#define FUN_180209470 InitializeSystemValidationBuffer           // 初始化系统验证缓冲区
+#define FUN_180209720 ConfigureSystemValidationParameters          // 配置系统验证参数
+
+// 系统缓冲区管理函数语义化宏定义
+#define FUN_1800b6de0 InitializeSystemMemoryManager                // 初始化系统内存管理器
+#define FUN_180079240 GetSystemMemoryBlockPointer                  // 获取系统内存块指针
+#define FUN_1800b32c0 ConfigureSystemMemoryAllocation              // 配置系统内存分配
+#define FUN_180209980 ProcessSystemDataTransfer                    // 处理系统数据传输
+#define FUN_180209840 FinalizeSystemDataTransfer                   // 完成系统数据传输
+#define FUN_180207ea0 CleanupSystemMemoryResources                 // 清理系统内存资源
+
+// 系统配置管理函数语义化宏定义
+#define FUN_18020d6c0 ProcessSystemConfigurationData              // 处理系统配置数据
+#define FUN_1802e6b00 GetSystemConfigurationIndex                  // 获取系统配置索引
+#define FUN_18020d8a0 ConfigureSystemDataTable                    // 配置系统数据表
+
+// 系统优先级处理函数语义化宏定义
+#define FUN_18009ec20 HandleSystemPriorityLevel                   // 处理系统优先级
+#define FUN_1800c4800 ProcessSystemPriorityAllocation             // 处理系统优先级分配
+#define FUN_180631420 ConfigureSystemPriorityParameters           // 配置系统优先级参数
+#define FUN_180631000 GetSystemPriorityIndex                       // 获取系统优先级索引
+
+// 系统注册表处理函数语义化宏定义
+#define FUN_18020b790 ProcessSystemRegistryData                    // 处理系统注册表数据
+#define FUN_180626eb0 InitializeSystemRegistry                    // 初始化系统注册表
+#define FUN_1802e8c60 HandleSystemRegistryOperation               // 处理系统注册表操作
+
+// 系统转换函数语义化宏定义
+#define FUN_18020c8f0 ConvertSystemDataFormat                     // 转换系统数据格式
+#define FUN_1802f5440 InitializeSystemConversionContext            // 初始化系统转换上下文
+#define FUN_1802f1890 ExecuteSystemDataConversion                  // 执行系统数据转换
+#define FUN_1802f1930 FinalizeSystemConversionProcess              // 完成系统转换过程
+
+// 系统数据验证函数语义化宏定义
+#define FUN_18020d730 ValidateSystemDataFormat                     // 验证系统数据格式
+#define FUN_18020da10 ProcessSystemDataValidation                  // 处理系统数据验证
+
+// 系统字符串处理函数语义化宏定义
+#define FUN_1803bb5f0 ProcessSystemStringEncoding                 // 处理系统字符串编码
+#define FUN_1803ba550 ConfigureStringProcessingParameters          // 配置字符串处理参数
+
+// 系统资源管理函数语义化宏定义
+#define FUN_18005ee30 AllocateSystemResourceBuffer                // 分配系统资源缓冲区
+#define FUN_18020f620 ReleaseSystemResourceBuffer                  // 释放系统资源缓冲区
+#define FUN_180060fc0 ConfigureSystemResourceParameters           // 配置系统资源参数
+
+// 系统事件处理函数语义化宏定义
+#define FUN_180623fd0 HandleSystemEventProcessing                  // 处理系统事件处理
+#define FUN_18020ee40 ProcessSystemEventQueue                      // 处理系统事件队列
+
+// 系统上下文管理函数语义化宏定义
+#define FUN_180217b00 InitializeSystemContextTransfer              // 初始化系统上下文传输
+#define FUN_180218920 ConfigureSystemContextValidation            // 配置系统上下文验证
+#define FUN_180219260 ExecuteSystemContextSynchronization          // 执行系统上下文同步
+#define FUN_180218a80 ReleaseSystemContextResources                 // 释放系统上下文资源
+#define FUN_180219020 FinalizeSystemContextTransfer                // 完成系统上下文传输
+
+// 系统指针处理函数语义化宏定义
+#define FUN_18021a140 GetSystemContextPointer                      // 获取系统上下文指针
+#define FUN_1802185b0 ResetSystemPointerState                     // 重置系统指针状态
+
+// 系统编码处理函数语义化宏定义
+#define FUN_180738730 InitializeSystemEncodingProcessor           // 初始化系统编码处理器
+#define FUN_180840330 ConfigureSystemEncodingParameters            // 配置系统编码参数
+#define FUN_180849600 SetupSystemEncodingContext                   // 设置系统编码上下文
+#define FUN_180845520 HandleSystemEncodingTransfer                 // 处理系统编码传输
+#define FUN_18073bc20 ValidateSystemEncodingFormat                 // 验证系统编码格式
+#define FUN_18073bdc0 FinalizeSystemEncodingProcess                // 完成系统编码过程
+
+// 系统缓冲区处理函数语义化宏定义
+#define FUN_180211720 ProcessSystemBufferOperation                 // 处理系统缓冲区操作
+#define FUN_1802121b0 InitializeSystemBufferTransfer               // 初始化系统缓冲区传输
+
+// 系统内存验证函数语义化宏定义
+#define FUN_180845c40 ValidateSystemMemoryContext                  // 验证系统内存上下文
+#define FUN_180846fe0 ProcessSystemMemoryValidation                // 处理系统内存验证
+#define FUN_1808496c0 FinalizeSystemMemoryValidation              // 完成系统内存验证
+#define FUN_180845d20 InitializeSystemMemoryValidation            // 初始化系统内存验证
+#define FUN_180840490 ExecuteSystemMemoryValidation              // 执行系统内存验证
+#define FUN_180848090 HandleSystemMemoryManagement                // 处理系统内存管理
+#define FUN_1808482f0 GetSystemMemoryStatus                       // 获取系统内存状态
+#define FUN_180840c00 ReleaseSystemMemoryResources                 // 释放系统内存资源
+
 /**
  * @brief 处理系统数据验证和初始化
  * 
