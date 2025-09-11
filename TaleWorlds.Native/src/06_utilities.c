@@ -30194,7 +30194,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           validationSizeResult = ValidateDataIntegrityA0(processedFloatValue,&ValidationDataBuffer);
           processedFloatValue = calculatedFloatValue;
           if (validationSizeResult != 0) goto SizeValidationCheckpoint;
@@ -30203,7 +30203,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30247,7 +30247,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = interpolatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30256,7 +30256,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30300,7 +30300,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = accumulatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30309,7 +30309,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30353,7 +30353,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = transformedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
@@ -30362,7 +30362,7 @@ void ProcessFloatingPointDataWithValidation(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
+          FloatingPointProcessingValue = (float)CONCAT31(FloatingPointProcessingValue.BitField3,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
@@ -30819,7 +30819,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
                 SystemTemporaryDataWordB = 0;
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorB;
                 SystemTemporaryDataWordC = TemporaryDataWord;
-                FloatInputValueA = (float)CONCAT31(FloatInputValueA._1_3_,1);
+                FloatingPointInputValueA = (float)CONCAT31(FloatingPointInputValueA.BitField3,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -31092,7 +31092,7 @@ void ProcessDataTypes(void)
             if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
               StackInputParameterC = &DataIntegrityValidationErrorB;
               operationResult = SystemOperationResult;
-              FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
+              FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
               ValidationDataBuffer = dataPointerD;
               resourceValidationStatus = ValidateDataIntegrityA0(OperationResultQuaternary,&StackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -31338,7 +31338,7 @@ SystemDataValidationCheckpoint:
         if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
           StackInputParameterC = &DataIntegrityValidationErrorB;
           operationResult = SystemOperationResult;
-          FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
+          FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
           ValidationDataBuffer = dataPointerD;
           resourceValidationStatus = ValidateDataIntegrityA0(OperationResultTertiary,&StackValidationBuffer);
           if (resourceValidationStatus != 0) goto SecurityTerminationCheckpointA1;
@@ -31501,7 +31501,7 @@ void ProcessFloatingPointData(float inputValue)
     if ((*(uint *)(systemContext + SystemDataProcessingFlagsOffset) >> 1 & 1) != 0) {
       StackInputParameterC = &DataIntegrityValidationErrorB;
       operationResult = SystemOperationResult;
-      FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
+      FloatingPointStackRegisterB = (float)CONCAT31(FloatingPointStackRegisterB.BitField3,1);
       ValidationDataBuffer = dataPointerD;
       operationResult = ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
@@ -35440,7 +35440,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 if ((int)memoryRegionBase != 0) {
                   return memoryRegionBase;
                 }
-                systemParameterArray[0] = CONCAT31(systemParameterArray[0]._1_3_,statusFlag != 0);
+                SystemParameterArray = CONCAT31(SystemParameterArray.BitField3,statusFlag != 0);
                 memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackParameterArray,1);
                 if ((int)memoryRegionBase != 0) {
