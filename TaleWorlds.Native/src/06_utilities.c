@@ -20855,22 +20855,22 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
   uint8_t systemQueryBuffer[8];
   uint8_t resourceDataBuffer[72];
   
-  ResourceTargetPointer = 0;
+  resourceTargetPointer = 0;
   if (0 < *(int *)(ResourceOperationContext + SystemOperationStatusOffset)) {
-    ResourceTargetPointer = *(int64_t *)(ResourceOperationContext + SystemOperationTargetOffset);
+    resourceTargetPointer = *(int64_t *)(ResourceOperationContext + SystemOperationTargetOffset);
   }
-  CopyOperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceOperationContext + SystemOperationContextOffset),SystemQueryBuffer);
-  if (CopyOperationStatus == 0) {
-    CopyOperationStatus = *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset);
+  copyOperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceOperationContext + SystemOperationContextOffset),systemQueryBuffer);
+  if (copyOperationStatus == 0) {
+    copyOperationStatus = *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset);
     if (MaxCopyOperationSize < *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset)) {
-      CopyOperationStatus = MaxCopyOperationSize;
+      copyOperationStatus = MaxCopyOperationSize;
     }
-      memcpy(ResourceDataBuffer,ResourceOperationContext + SystemOperationDataOffset,(int64_t)CopyOperationStatus);
+      memcpy(resourceDataBuffer,ResourceOperationContext + SystemOperationDataOffset,(int64_t)copyOperationStatus);
   }
-  if (ResourceTargetPointer != 0) {
-      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),ResourceTargetPointer,&SystemMemoryPoolA,ResourceAllocationSizeB8,1);
+  if (resourceTargetPointer != 0) {
+      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),resourceTargetPointer,&SystemMemoryPoolA,ResourceAllocationSizeB8,1);
   }
-  return CopyOperationStatus;
+  return copyOperationStatus;
 }
 
 
