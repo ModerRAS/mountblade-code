@@ -139701,7 +139701,7 @@ void FUN_1807479a0(UIHandle uiContext,UIDword dataSource,uint targetBuffer,UIHan
 
 
 
-ulonglong FUN_1807479e0(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIByte bufferSize,
+ulonglong ProcessUIBufferDataTransfer(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIByte bufferSize,
                        UIHandle *resultPointer)
 
 {
