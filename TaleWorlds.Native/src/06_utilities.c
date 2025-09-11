@@ -142305,15 +142305,25 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @brief 系统资源清理和优化函数
  * 
  * 执行系统资源的清理操作，包括内存回收、缓存清理和性能优化
- * 确保系统资源得到合理分配和释放
+ * 确保系统资源得到合理分配和释放。该函数是系统资源管理的核心组件，
+ * 负责协调各种清理操作并返回详细的执行状态。
  * 
  * @param ResourceHandle 资源句柄，标识要清理的资源
- * @param CleanupFlags 清理标志位，指定清理的类型和方式
- * @param OptimizationLevel 优化级别，控制优化的程度
- * @return int 清理结果状态码，0表示成功，非0表示失败
+ * @param CleanupFlags 清理标志位，指定清理的类型和方式：
+ *                     - CleanupMemoryFlag (0x1): 执行内存清理
+ *                     - CleanupCacheFlag (0x2): 执行缓存清理
+ * @param OptimizationLevel 优化级别，控制优化的程度：
+ *                          - 0: 不执行优化
+ *                          - 1-255: 不同级别的优化强度
+ * 
+ * @return int 清理结果状态码：
+ *         - ResourceCleanupSuccess (0x0): 清理成功
+ *         - ResourceCleanupFailure (0x1): 清理失败
+ *         - InvalidResourceHandle (0xFFFFFFFF): 无效的资源句柄
  * 
  * @note 原始函数名：FUN_1808c5430
  * @note 这是系统资源管理的核心函数
+ * @see ExecuteMemoryCleanup, ExecuteCacheCleanup, ExecuteResourceOptimization
  */
 int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlags, uint8_t OptimizationLevel)
 {
