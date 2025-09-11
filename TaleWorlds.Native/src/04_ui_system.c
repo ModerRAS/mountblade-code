@@ -10322,26 +10322,25 @@ void ExecuteUISoftwareInterrupt(void)
 bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,float *bufferSize)
 
 {
-  float baseValue;
-  float sourceZ;
-  float bufferZ;
-  float targetY;
-  float bufferY;
-  float targetZ;
-  float bufferX;
-  float sourceY;
-  float sourceZ2;
-  float baseValue0;
-  float baseValue1;
-  float baseValue2;
-  float baseValue3;
-  float vectorComponentX;
-  float baseValue5;
-  float baseValue6;
-  float finalResult;
-  float FloatValue1;
-  float FloatValue2;
-  float crossProductZ;
+  float targetBaseValue;
+  float sourceZCoord;
+  float bufferZCoord;
+  float targetYCoord;
+  float bufferYCoord;
+  float targetZCoord;
+  float bufferXCoord;
+  float sourceYCoord;
+  float sourceZSecondary;
+  float targetXCoord;
+  float sourceXCoord;
+  float targetMatrixX;
+  float targetMatrixY;
+  float vectorXComponent;
+  float targetMatrixZ;
+  float finalCrossProductZ;
+  float determinantValue;
+  float scalingFactor;
+  float crossProductY;
   
   baseValue = targetBuffer[4];
   sourceZ = dataSource[6];
