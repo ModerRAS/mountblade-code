@@ -18928,23 +18928,23 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         if (*(int32_t *)(ComponentDataPointer + COMPONENT_CAPACITY_OFFSET) < RegisteredComponentCount) {
           ComponentListCapacity = (int32_t)((float)*(int32_t *)(ComponentDataPointer + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
           ComponentDataBufferSize = RegisteredComponentCount;
-          if (registeredComponentCount <= componentListCapacity) {
-            componentBufferSize = componentListCapacity;
+          if (RegisteredComponentCount <= ComponentListCapacity) {
+            ComponentDataBufferSize = ComponentListCapacity;
           }
-          if (componentBufferSize < MinimumCapacityThreshold) {
-            componentListCapacity = MinimumCapacityThreshold;
+          if (ComponentDataBufferSize < MinimumCapacityThreshold) {
+            ComponentListCapacity = MinimumCapacityThreshold;
           }
-          else if (componentListCapacity < registeredComponentCount) {
-            componentListCapacity = registeredComponentCount;
+          else if (ComponentListCapacity < RegisteredComponentCount) {
+            ComponentListCapacity = RegisteredComponentCount;
           }
-          componentBufferSize = ValidateComponentMemory(componentListPointer,componentListCapacity);
-          if (componentBufferSize != 0) {
+          ComponentDataBufferSize = ValidateComponentMemory(ComponentListPointer, ComponentListCapacity);
+          if (ComponentDataBufferSize != 0) {
             return 0;
           }
         }
-        *(int64_t *)(*componentListPointer + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = componentValidationDataBuffer;
-        *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
-        *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
+        *(int64_t *)(*ComponentListPointer + (int64_t)*(int32_t *)(ComponentDataPointer + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = ComponentValidationDataBuffer;
+        *(int32_t *)(ComponentDataPointer + COMPONENT_COUNT_OFFSET) = *(int32_t *)(ComponentDataPointer + COMPONENT_COUNT_OFFSET) + 1;
+        *(int32_t *)(ComponentDataPointer + COMPONENT_ACTIVE_OFFSET) = *(int32_t )(ComponentDataPointer + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
         systemDataQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationDataBuffer);
