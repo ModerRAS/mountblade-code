@@ -5438,6 +5438,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_1808fc914
  */
+#define ValidateSystemDataIntegrityAndFormat ValidateSystemDataAndFormat
 
 // 系统状态验证器 - 验证系统状态的正确性
 
