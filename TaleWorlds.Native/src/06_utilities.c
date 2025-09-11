@@ -12625,7 +12625,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089c030
  */
-#define InitializeMemoryBlockA0 InitializeMemoryBlockWithPattern
+#define InitializeMemoryBlockWithPattern FUN_18089c030
 
 /**
  * @brief 使用零模式清空内存块
@@ -12638,7 +12638,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089c190
  */
-#define ClearMemoryBlockA0 ClearMemoryBlockWithZeroPattern
+#define ClearMemoryBlockWithZeroPattern FUN_18089c190
 
 /**
  * @brief 使用优化算法比较内存块
@@ -12652,7 +12652,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089c2d8
  */
-#define CompareMemoryBlocksA0 CompareMemoryBlocksWithOptimizedAlgorithm
+#define CompareMemoryBlocksWithOptimizedAlgorithm FUN_18089c2d8
 
 /**
  * @brief 使用Boyer-Moore算法查找内存模式
@@ -12667,7 +12667,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089c630
  */
-#define FindMemoryPatternA0 FindMemoryPatternWithBoyerMooreAlgorithm
+#define FindMemoryPatternWithBoyerMooreAlgorithm FUN_18089c630
 
 // 内存管理函数宏定义
 #define AllocateMemoryA0 AllocateMemoryWithSizeValidation    // 带大小验证的内存分配函数
