@@ -124485,48 +124485,23 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 
  void FUN_180739df0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_180739df0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIDword resultPointer)
+/**
+ * @brief 验证和处理UI上下文数据
+ * 
+ * 该函数负责验证UI上下文数据的有效性，并执行相应的数据处理操作。
+ * 包含数据加密验证、内存分配和错误处理等功能。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针地址
+ */
+void ValidateAndProcessUIContextData(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize,
+                               UIDword resultPointer)
 
 {
   int processingResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
-  
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
-  if (processingResult == 0) {
-    pstackUInt158 = (UIByte *)CONCAT44(pstackUInt158._4_4_,resultPointer);
-    processingResult = FUN_18074a420(stackUInt140,dataSource,targetBuffer,bufferSize);
-    if (processingResult == 0) goto LAB_180739e8e;
-  }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    pstackUInt158 = astackUInt138;
-    astackUInt138[0] = 0;
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextAnimationController);
-  }
-LAB_180739e8e:
-  if (stackLong148 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
-}
-
-
-
- WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
- void UIContextValidateAndProcessData(UIHandle contextHandle,UIHandle dataSource)
-{
-  int validationResult;
   UIByte encryptionBuffer [32];
   UIByte *validationPointer;
   longlong contextSize;
@@ -124536,18 +124511,19 @@ LAB_180739e8e:
   
   encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   contextSize = 0;
-  validationResult = FUN_180749e60(contextHandle,&renderContextHandle,&contextSize);
-  if (validationResult == 0) {
-    validationResult = func_0x000180746440(renderContextHandle,dataSource);
-    if (validationResult == 0) goto LAB_180739f5a;
+  processingResult = ProcessUIContextData(uiContext,&renderContextHandle,&contextSize);
+  if (processingResult == 0) {
+    validationPointer = (UIByte *)CONCAT44(validationPointer._4_4_,resultPointer);
+    processingResult = ProcessUIBufferDataTransfer(renderContextHandle,dataSource,targetBuffer,bufferSize);
+    if (processingResult == 0) goto ValidationComplete;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    ValidateUIDataWithContext(validationDataBuffer,0x100,dataSource);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     validationPointer = validationDataBuffer;
+    validationDataBuffer[0] = 0;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(validationResult,1,contextHandle,&UIContextLayoutCalculator);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextAnimationController);
   }
-LAB_180739f5a:
+ValidationComplete:
   if (contextSize != 0) {
     ReleaseUIMemoryResource();
   }
@@ -124560,15 +124536,74 @@ LAB_180739f5a:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739f90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIDword bufferSize,
-void FUN_180739f90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIDword bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7,UIHandle param_8)
+ /**
+ * @brief 验证和处理UI上下文数据
+ * 
+ * 该函数负责验证UI上下文数据的有效性，并执行相应的数据处理操作。
+ * 包含数据加密验证、内存分配和错误处理等功能。
+ * 
+ * @param contextHandle UI上下文句柄
+ * @param dataSource 数据源地址
+ */
+void UIContextValidateAndProcessData(UIHandle contextHandle,UIHandle dataSource)
+{
+  int validationResult;
+  UIByte encryptionBuffer [32];
+  UIByte *validationPointer;
+  longlong contextSize;
+  UIHandle renderContextHandle;
+  UIByte validationDataBuffer [256];
+  ulonglong encryptedKey;
+  
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  contextSize = 0;
+  validationResult = ProcessUIContextData(contextHandle,&renderContextHandle,&contextSize);
+  if (validationResult == 0) {
+    validationResult = ValidateUIResourceHandle(renderContextHandle,dataSource);
+    if (validationResult == 0) goto ValidationComplete;
+  }
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    ValidateUIDataWithContext(validationDataBuffer,0x100,dataSource);
+    validationPointer = validationDataBuffer;
+                     WARNING: Subroutine does not return
+    ExecuteUIContextDataOperation(validationResult,1,contextHandle,&UIContextLayoutCalculator);
+  }
+ValidationComplete:
+  if (contextSize != 0) {
+    ReleaseUIMemoryResource();
+  }
+                     WARNING: Subroutine does not return
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
+}
+
+
+
+ WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+ /**
+ * @brief 处理UI数据传输和渲染
+ * 
+ * 该函数负责处理UI数据的传输和渲染操作，包括数据验证、内存分配
+ * 和渲染任务的执行。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针地址
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 额外参数8
+ */
+void ProcessUIDataTransferAndRender(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIDword bufferSize,
+                            UIHandle resultPointer,UIHandle param_6,UIHandle param_7,UIHandle param_8)
 
 {
   int processingResult;
-  UIByte astackUInt1c8 [32];
-  UIByte *pstackUInt1a8;
-  UIHandle stackUInt1a0;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataTransferPointer;
+  UIHandle renderContextHandle;
   UIHandle stackUInt198;
   UIHandle stackUInt190;
   UIHandle stackUInt188;
