@@ -92731,7 +92731,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     StackProcessingVariableArray[0] = 0;
     MemoryPoolIndex = 0;
     if ((*(long long *)(ContextHandle + 0x1f00) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(aStackProcessingVariable), MemoryPoolIndex = StackProcessingVariableArray[0], ValidationStatus == '\0'       ) {
+       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(StackProcessingVariable), MemoryPoolIndex = StackProcessingVariableArray[0], ValidationStatus == '\0'       ) {
       if (CoreEngineThreadStatus == '\0') {
         MemoryAddressMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1eb0) != NULL) {

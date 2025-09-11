@@ -33098,7 +33098,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       }
       memoryContextIndex = memoryContextIndex + memoryOperationResult;
     }
-    memoryRegionAddress = (uint)*(uint3 *)((dataBuffer & SystemCleanupFlag) * 3 + systemContext[8]);
+    memoryRegionAddress = (uint)*(NodeDescriptor *)((dataBuffer & SystemCleanupFlag) * 3 + systemContext[8]);
     dataBuffer = (uint64_t)memoryRegionAddress;
   } while (memoryRegionAddress != 0xffffff);
   if (memoryAllocationSize != 0) {

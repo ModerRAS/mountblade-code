@@ -128324,7 +128324,23 @@ FUN_18073c111:
 
 
  void FUN_18073c099(void)
-void FUN_18073c099(void)
+/**
+ * @brief UI上下文全局重置函数
+ * 
+ * 重置UI上下文的状态，包括数据验证、缓冲区处理和上下文数据操作
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 初始化并验证UI数据
+ * 2. 处理UI缓冲区数据和控制信息
+ * 3. 复制UI数据缓冲区
+ * 4. 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18073c099
+ */
+void ProcessUIContextGlobalReset(void)
 
 {
   int operationResult;
