@@ -2103,6 +2103,26 @@ typedef enum {
  */
 #define ProcessUIContextEventValidation FUN_180840270
 
+// UI系统函数宏定义 - 处理UI上下文数据源初始化
+/**
+ * @brief 处理UI上下文数据源初始化和验证
+ * 
+ * 该函数负责初始化和验证UI上下文数据源。
+ * 
+ * @note 原始函数名：FUN_180840330
+ */
+#define ProcessUIContextDataSourceInitialization FUN_180840330
+
+// UI系统函数宏定义 - 处理UI上下文和数据源的验证与操作
+/**
+ * @brief 处理UI上下文和数据源的验证与操作
+ * 
+ * 该函数负责验证和操作UI上下文及数据源。
+ * 
+ * @note 原始函数名：FUN_180840490
+ */
+#define ProcessUIContextAndDataSourceValidation FUN_180840490
+
 // UI系统函数宏定义 - 处理UI渲染缓冲区
 /**
  * @brief 处理UI渲染缓冲区
