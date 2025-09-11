@@ -256432,8 +256432,7 @@ void ProcessContextHandleAndCharacterBufferManagement(long long *SystemContextHa
     }
     MemoryPoolBlockSize = *SystemContextHandle;
     MemoryAllocationMaskPointer = (int)UnicodeCodePoint + 1;
-    BufferStatus = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - MemoryPoolBlockSize),8) +
-            (SystemContextHandle[1] - MemoryPoolBlockSize);
+    BufferStatus = CalculateSystemBufferDifference(SystemContextHandle[1] - MemoryPoolBlockSize);
     UnicodeCodePoint = (unsigned long long)MemoryAllocationMaskPointer;
     ArraySize = ArraySize + 0x78;
   } while ((unsigned long long)(long long)(int)MemoryAllocationMaskPointer < (unsigned long long)((BufferStatus >> 6) - (BufferStatus >> 0x3f)));
