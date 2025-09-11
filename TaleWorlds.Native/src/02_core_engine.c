@@ -97,6 +97,7 @@
 #define ProcessSystemContextFloatConversion FUN_18020902a                          // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
 #define SystemNullOperation FUN_18020cad4                                        // 系统空操作函数 - 执行空操作
 #define SystemCoreEngineTermination FUN_18020fb10                              // 系统核心引擎终止函数 - 执行引擎终止操作
+#define ProcessSystemContextMemoryManagement FUN_18020cae0                     // 处理系统上下文内存管理 - 执行内存块遍历和释放操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -256416,11 +256417,11 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
     MemoryAllocationBase = SecondaryMemoryPoolIndex;
     if (SystemStringIndex != 0) {
       MatrixTransformElement = 1.0 - *(float *)((long long)SystemContextHandle + 0x2c);
-      FUN_180208f20(MatrixTransformElement,SystemStringIndex,&SystemStackValue,(long long)SystemContextHandle + 0x44,MatrixTransformElement);
+      ProcessSystemFloatDataOperation(MatrixTransformElement,SystemStringIndex,&SystemStackValue,(long long)SystemContextHandle + 0x44,MatrixTransformElement);
       MemoryAllocationBase = SystemStackValue & 0xffffffff;
     }
     if (SystemContextHandle[4] != 0) {
-      FUN_180208f20(SystemContextHandle,SystemContextHandle[4],&SystemStackValue,(long long)SystemContextHandle + 0x44,
+      ProcessSystemFloatDataOperation(SystemContextHandle,SystemContextHandle[4],&SystemStackValue,(long long)SystemContextHandle + 0x44,
                     *(uint32_t *)((long long)SystemContextHandle + 0x2c));
       MemoryAllocationBase = SystemStackValue & 0xffffffff;
     }
@@ -271255,7 +271256,7 @@ void SystemTerminateFunction(void)
     ppCoreEngineUnsignedValue318 = (uint32_t **)CoreEngineConfigurationData;
     StackValidationFlag278 = CoreEngineConfigurationData;
   }
-  FUN_18020cae0(CoreEngineConfigurationData);
+  ProcessSystemContextMemoryManagement(CoreEngineConfigurationData);
   ppCoreEngineUnsignedValue318 = (uint32_t **                 (*(long long *)(*CoreEngineSystemContext + SystemEventContextPrimaryOffset) - *(long long *)(*CoreEngineSystemContext + SystemEventContextSecondaryOffset) >>
                  5);
   lStack_270 = 0;
