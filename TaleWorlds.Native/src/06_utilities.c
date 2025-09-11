@@ -186,37 +186,37 @@
 #define ExceptionHandlerOffset4D0 0x4d0
 
 // 数据缓冲区偏移量常量
-#define DataBufferOffsetA8 0xa8                                // 数据缓冲区偏移量A8 - 用于数据缓冲区操作
-#define DataBufferOffsetD0 0xd0                                // 数据缓冲区偏移量D0 - 用于数据缓冲区操作
-#define DataBufferOffsetD8 0xd8                                // 数据缓冲区偏移量D8 - 用于数据缓冲区操作
-#define DataBufferOffsetE0 0xe0                                // 数据缓冲区偏移量E0 - 用于数据缓冲区操作
-#define DataBufferOffset290 0x290                              // 数据缓冲区偏移量290 - 用于数据缓冲区操作
-#define DataBufferOffset2A0 0x2a0                              // 数据缓冲区偏移量2A0 - 用于数据缓冲区操作
-#define DataBufferOffset260 0x260                              // 数据缓冲区偏移量260 - 用于数据缓冲区操作
-#define DataBufferOffset270 0x270                              // 数据缓冲区偏移量270 - 用于数据缓冲区操作
-#define DataBufferOffset298 0x298                              // 数据缓冲区偏移量298 - 用于异常处理器设置
-#define DataBufferOffset360 0x360                              // 数据缓冲区偏移量360 - 用于异常处理器设置
-#define DataBufferOffsetF0 0xf0                                // 数据缓冲区偏移量F0 - 用于函数指针操作
-#define DataBufferOffset1B8 0x1b8                              // 数据缓冲区偏移量1B8 - 用于异常上下文指针
-#define DataBufferOffsetB1 0xb1                                // 数据缓冲区偏移量B1 - 用于字符检查
-#define DataBufferOffset2B0 0x2b0                              // 数据缓冲区偏移量2B0 - 用于数据字操作
-#define DataBufferOffset4B0 0x4b0                              // 数据缓冲区偏移量4B0 - 用于异常处理器设置
-#define DataBufferOffset278 0x278                              // 数据缓冲区偏移量278 - 用于异常处理器设置
-#define DataBufferOffset5D0 0x5d0                              // 数据缓冲区偏移量5D0 - 用于异常处理器设置
-#define DataBufferOffset390 0x390                              // 数据缓冲区偏移量390 - 用于数据块处理
-#define DataBufferOffset2F0 0x2f0                              // 数据缓冲区偏移量2F0 - 用于临时异常处理器设置
-#define DataBufferOffset2F8 0x2f8                              // 数据缓冲区偏移量2F8 - 用于数据清理操作
-#define DataBufferOffset198 0x198                              // 数据缓冲区偏移量198 - 用于异常处理器设置
-#define DataBufferOffset330 0x330                              // 数据缓冲区偏移量330 - 用于异常处理器设置
-#define DataBufferOffset410 0x410                              // 数据缓冲区偏移量410 - 用于异常处理器设置
-#define DataBufferOffset51 0x51                                // 数据缓冲区偏移量51 - 用于字符检查
-#define DataBufferOffset158 0x158                              // 数据缓冲区偏移量158 - 用于函数指针操作
-#define DataBufferOffset350 0x350                              // 数据缓冲区偏移量350 - 用于异常处理器设置
+#define DataBufferOffsetA8 0xa8
+#define DataBufferOffsetD0 0xd0
+#define DataBufferOffsetD8 0xd8
+#define DataBufferOffsetE0 0xe0
+#define DataBufferOffset290 0x290
+#define DataBufferOffset2A0 0x2a0
+#define DataBufferOffset260 0x260
+#define DataBufferOffset270 0x270
+#define DataBufferOffset298 0x298
+#define DataBufferOffset360 0x360
+#define DataBufferOffsetF0 0xf0
+#define DataBufferOffset1B8 0x1b8
+#define DataBufferOffsetB1 0xb1
+#define DataBufferOffset2B0 0x2b0
+#define DataBufferOffset4B0 0x4b0
+#define DataBufferOffset278 0x278
+#define DataBufferOffset5D0 0x5d0
+#define DataBufferOffset390 0x390
+#define DataBufferOffset2F0 0x2f0
+#define DataBufferOffset2F8 0x2f8
+#define DataBufferOffset198 0x198
+#define DataBufferOffset330 0x330
+#define DataBufferOffset410 0x410
+#define DataBufferOffset51 0x51
+#define DataBufferOffset158 0x158
+#define DataBufferOffset350 0x350
 
 // 位操作掩码常量
-#define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000 - 用于高位位操作 masking
-#define BitOperationValue4000 0x4000                            // 位操作值4000 - 用于位操作验证
-#define BitOperationMask7fff 0x7fff                              // 位操作掩码7fff - 用于低位位操作 masking
+#define BitOperationMaskC000 0xffffc000
+#define BitOperationValue4000 0x4000
+#define BitOperationMask7fff 0x7fff
 
 // 字符验证常量
 #define CharacterValidationOffset 0x57                           // 字符验证偏移量 - 用于字符编码验证的偏移位置

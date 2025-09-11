@@ -3852,6 +3852,25 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define GetSystemStatusRegister FUN_180225cc6                    // 获取系统状态寄存器
 #define ProcessSystemStackDataAndCleanup FUN_1802c2c40          // 处理系统栈数据和清理
 #define ProcessSystemMemoryValidation FUN_1802c4c30             // 处理系统内存验证
+
+// 新增栈变量语义化宏定义
+#define fStack_8f8 StackTemporaryFloatValue                // 栈临时浮点值（使用25次）
+#define fStack_e8 StackMatrixOperationResult                // 栈矩阵运算结果（使用52次）
+#define fStack_e0 StackDataValidationResult                  // 栈数据验证结果（使用46次）
+#define fStack_f0 StackSystemProcessingValue                // 栈系统处理值（使用50次）
+#define fStack_f8 StackSystemStatusFlag                     // 栈系统状态标志（使用47次）
+#define fStack_dc StackMemoryOperationData                  // 栈内存操作数据（使用52次）
+#define fStack_d4 StackMemoryAllocationOffset               // 栈内存分配偏移量（使用40次）
+#define fStack_1e0 StackCharacterProcessingResult          // 栈字符处理结果（使用36次）
+#define fStack_ec StackEncodingConversionData               // 栈编码转换数据（使用35次）
+#define fStack_128 StackUnicodeProcessingValue              // 栈Unicode处理值（使用35次）
+#define fStack_100 StackSystemConfigurationValue            // 栈系统配置值（使用35次）
+#define fStack_40 StackBufferDataOperation                  // 栈缓冲区数据操作（使用34次）
+#define fStack_194 StackFloatValue194                       // 栈浮点值194
+#define fStack_198 StackFloatValue198                       // 栈浮点值198
+#define fStack_240 StackFloatValue240                       // 栈浮点值240
+#define fStack_244 StackFloatValue244                       // 栈浮点值244
+#define fStack_248 StackFloatValue248                       // 栈浮点值248
 #define GetSystemControlRegister FUN_180225cf2                  // 获取系统控制寄存器
 #define GetSystemInterruptRegister FUN_180225d1e                // 获取系统中断寄存器
 #define GetSystemErrorRegister FUN_180225d4a                    // 获取系统错误寄存器
