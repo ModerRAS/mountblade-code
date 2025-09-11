@@ -451,7 +451,7 @@ typedef enum {
 #define ProcessUIDataWithParameters FUN_1807485c0          // 处理带参数的UI数据
 #define ProcessUIDataWithValidation FUN_180748b40          // 处理带验证的UI数据
 #define ProcessUIDataWithSecurity ProcessUIContextDataValidationAndEventRender
-#define ProcessUIDataWithCompression FUN_180748ea0         // 处理带压缩的UI数据
+#define ProcessUIDataWithCompression ProcessUIDataSourceValidationAndBufferOperation
 #define ProcessUIDataWithOptimization FUN_1807498f0        // 处理带优化的UI数据
 
 // UI上下文管理函数
@@ -142652,8 +142652,24 @@ UIHandle FUN_180748e20(longlong uiContext,int dataSource,UIHandle targetBuffer,U
 
 
 
- void FUN_180748ea0(longlong uiContext,UIDword dataSource)
-void FUN_180748ea0(longlong uiContext,UIDword dataSource)
+ /**
+ * @brief 处理UI数据源验证和缓冲区操作
+ * 
+ * 该函数负责处理UI数据源验证和缓冲区操作，包括：
+ * - 执行数据验证
+ * - 更新UI缓冲区数据
+ * - 管理数据源状态
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的上下文信息
+ * @param dataSource 数据源标识符，标识要处理的数据源
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180748ea0
+ * @note 该函数是UI数据验证和缓冲区管理的重要组件
+ * @see FUN_18078ae40, ProcessUIBufferDataTransfer
+ */
+void ProcessUIDataSourceValidationAndBufferOperation(longlong uiContext,UIDword dataSource)
 
 {
   int operationResult;

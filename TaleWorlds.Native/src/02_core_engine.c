@@ -121,6 +121,8 @@
 #define FUN_180160af0 ExecuteAdvancedContextHandleOperations              // 处理上下文句柄高级操作
 #define FUN_180204700 ProcessSystemContextMemoryAllocation                  // 处理系统上下文内存分配
 #define FUN_180204870 ExecuteSystemContextMemoryManagement                // 执行系统上下文内存管理
+#define FUN_18019fc79 ProcessMatrixTransformAndBufferOperations           // 处理矩阵变换和缓冲区操作
+#define FUN_180200780 ProcessSystemMemoryAndCharacterEncoding             // 处理系统内存和字符编码
 
 // 核心引擎数据处理函数语义化宏定义
 #define FUN_180173c40 ValidateSystemContextIntegrity                     // 处理系统上下文验证
@@ -246454,7 +246456,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
 
 
 
-9fc79(long long ContextHandle,long long OperationBufferSizevoid FUN_18019fc79(long long ContextHandle,long long OperationBufferSize
+void FUN_18019fc79(long long ContextHandle,long long OperationBufferSize)
 {
   long long *ContextHandle;
   float ContextSecondaryFloat;
@@ -247019,7 +247021,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
 
 
 
-00780(uint64_t ContextHandle,int OperationBufferSize,void **Utf8SourcePointervoid FUN_180200780(uint64_t ContextHandle,int OperationBufferSize,void **Utf8SourcePointer
+void FUN_180200780(uint64_t ContextHandle,int OperationBufferSize,void **Utf8SourcePointer
 {
   float SystemContextPrimaryFloat;
   uint8_t aMemoryPoolIndex [16];
@@ -265699,14 +265701,25 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
 
 
 
-16bb0(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointervoid FUN_180216bb0(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理系统操作状态更新
+ * 
+ * 该函数根据系统状态更新操作标志并执行相应的处理逻辑
+ * 
+ * @param ContextHandle 上下文句柄 - 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小 - 操作缓冲区的大小参数
+ * @param Utf8SourcePointer UTF-8源指针 - UTF-8编码数据的源指针
+ * 
+ * @note 原始函数名：FUN_180216bb0
+ */
+void ProcessSystemOperationStatusUpdate(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer)
 {
-  long long *ContextHandle;
+  long long *SystemContextHandle;
   
   if (*(char *)(ContextHandle + 0x430) != '\0') {
-    ContextHandle = (long long *)(*(long long *)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x18);
-    (**(code **)(*ContextHandle + 0x10))(ContextHandle,Utf8SourcePointer);
-    *(uint8_t *)((long long)OperationBufferSize + 0x3f8 + ContextHandle) = 1;
+    SystemContextHandle = (long long *)(*(long long *)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x18);
+    (**(code **)(*SystemContextHandle + 0x10))(SystemContextHandle,Utf8SourcePointer);
+    *(uint8_t *)((long long)OperationBufferSize + 0x3f8 + SystemContextHandle) = 1;
   }
   return;
 }
