@@ -32883,12 +32883,12 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
   int64_t offsetStackData;
   uint arrayIndexStackData;
   ByteFlag flagStackData;
-  ByteFlag dataTransferBuffer [512];
-  uint64_t systemSecurityValidationData;
-  
   // 美化后的变量名
   uint64_t securityValidationValue;
+  DataBuffer dataTransferBuffer [512];
+  uint64_t systemSecurityValidationData;
   
+  // 执行安全验证操作
   securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
   nullPointer = NULL;
   contextProcessingBuffer[1] = 0;
