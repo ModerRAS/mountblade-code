@@ -5489,7 +5489,7 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
  * @param TimeoutValue 超时值
  * @return NetworkHandle 返回网络句柄
  */
-NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkConnectionContext, NetworkConnectionStatus *ConnectionStatus, uint32_t TimeoutValue)
+NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectionContext, NetworkConnectionStatus *connectionStatus, uint32_t timeoutValue)
 {
     NetworkHandle processedConnectionHandle;
     uint32_t connectionValidationStatus;
@@ -5545,7 +5545,7 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkCo
  * 
  * 原始实现：简化实现，通过组合数据完整性检查和安全验证来完成验证
  */
-static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkConnectionContext)
+static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *connectionContext)
 {
     uint32_t dataIntegrityCheckResult;
     uint32_t securityValidationResult;
@@ -5572,7 +5572,7 @@ static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkCon
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
  */
-static void UpdateConnectionTimestamp(NetworkConnectionContext *NetworkConnectionContext)
+static void UpdateConnectionTimestamp(NetworkConnectionContext *connectionContext)
 {
     // 获取当前系统时间
     uint64_t currentSystemTime = GetCurrentSystemTime();
@@ -5589,13 +5589,13 @@ static void UpdateConnectionTimestamp(NetworkConnectionContext *NetworkConnectio
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
  */
-static void TerminateNetworkConnection(NetworkConnectionContext *NetworkConnectionContext)
+static void TerminateNetworkConnection(NetworkConnectionContext *connectionContext)
 {
     // 发送连接终止通知
-    SendConnectionTerminationNotification(NetworkConnectionContext);
+    SendConnectionTerminationNotification(connectionContext);
     
     // 释放连接资源
-    ReleaseConnectionResources(NetworkConnectionContext);
+    ReleaseConnectionResources(connectionContext);
     
     // 清理连接状态
     NetworkConnectionContext->connectionStatus = 0;
@@ -5611,7 +5611,7 @@ static void TerminateNetworkConnection(NetworkConnectionContext *NetworkConnecti
  * @param TimeoutValue 超时值
  * @return NetworkHandle 返回网络句柄
  */
-static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
+static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *connectionContext, uint32_t timeoutValue)
 {
     NetworkHandle newConnectionHandle;
     uint32_t connectionEstablishmentResult;
@@ -5646,7 +5646,7 @@ static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *Networ
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
  */
-static void SendConnectionTerminationNotification(NetworkConnectionContext *NetworkConnectionContext)
+static void SendConnectionTerminationNotification(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：仅更新连接状态
     // 实际实现应该发送终止数据包并等待确认
@@ -5662,7 +5662,7 @@ static void SendConnectionTerminationNotification(NetworkConnectionContext *Netw
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
  */
-static void ReleaseConnectionResources(NetworkConnectionContext *NetworkConnectionContext)
+static void ReleaseConnectionResources(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：仅重置连接句柄
     // 实际实现应该释放所有相关资源
@@ -5695,7 +5695,7 @@ static void ReleaseConnectionResources(NetworkConnectionContext *NetworkConnecti
  * // 现在可以安全地调用EstablishNetworkConnection
  * ```
  */
-static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConnectionContext)
+static void InitializeConnectionParameters(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：设置基本连接参数
     if (NetworkConnectionContext) {
@@ -5735,7 +5735,7 @@ static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConn
  * }
  * ```
  */
-static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
+static uint32_t PerformConnectionHandshake(NetworkConnectionContext *connectionContext, uint32_t timeoutValue)
 {
     // 简化实现：直接返回成功
     // 实际实现应该执行完整的握手过程，包括：
@@ -5777,7 +5777,7 @@ static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConn
  * }
  * ```
  */
-static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkConnectionContext)
+static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：生成简单句柄
     // 实际实现应该：
@@ -5816,7 +5816,7 @@ static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkC
  * // 现在连接已经配置了基本的安全参数
  * ```
  */
-static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectionContext)
+static void InitializeSecurityContext(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：设置基本安全参数
     // 实际实现应该：
@@ -5838,7 +5838,7 @@ static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectio
  * @param NetworkConnectionContext 网络连接上下文指针
  * @return uint32_t 检查结果
  */
-static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *NetworkConnectionContext)
+static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *connectionContext)
 {
     // 简化实现：返回成功状态
     return NetworkValidationSuccess;
