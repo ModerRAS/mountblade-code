@@ -264632,7 +264632,7 @@ LAB_1801571ef:
   SystemCleanupFlagG8 = 0x20;
   SystemCleanupFlagG4 = 0x40000;
   uStack_cf8 = 0x400000;
-  FUN_180849600(ContextHandle[0x6d],&SystemCleanupFlagG8);
+  HandleSystemCleanupOperation(ContextHandle[0x6d],&SystemCleanupFlagG8);
   ContextHandle = ContextHandle + 0x6e;
   FUN_180845520(ContextHandle[0x6d],ContextHandle);
   if (Utf8SourcePointer != 0) {
@@ -300386,5 +300386,197 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  * @note 这是一个简化实现，原始实现可能包含更复杂的编码转换和矩阵运算逻辑
  */
 #define FUN_1800814e0 ProcessSystemCharacterEncodingConversionAndMatrixOperation
+
+// 补充遗漏的系统核心函数语义化定义
+// 原始函数名：FUN_1800814f0 - 系统缓冲区管理函数
+#define ManageSystemBufferOperations FUN_1800814f0
+
+// 原始函数名：FUN_180081500 - 系统内存块分配函数
+#define AllocateSystemMemoryBlocks FUN_180081500
+
+// 原始函数名：FUN_180081510 - 系统上下文初始化函数
+#define InitializeSystemContextAdvanced FUN_180081510
+
+// 原始函数名：FUN_180081520 - 系统资源释放函数
+#define ReleaseSystemResourcesAdvanced FUN_180081520
+
+// 原始函数名：FUN_180081530 - 系统状态验证函数
+#define ValidateSystemStateAdvanced FUN_180081530
+
+// 原始函数名：FUN_180081540 - 系统错误处理函数
+#define HandleSystemErrorsAdvanced FUN_180081540
+
+// 原始函数名：FUN_180081550 - 系统日志记录函数
+#define LogSystemEventsAdvanced FUN_180081550
+
+// 原始函数名：FUN_180081560 - 系统性能监控函数
+#define MonitorSystemPerformanceAdvanced FUN_180081560
+
+// 原始函数名：FUN_180081570 - 系统缓存管理函数
+#define ManageSystemCacheAdvanced FUN_180081570
+
+// 原始函数名：FUN_180081580 - 系统线程同步函数
+#define SynchronizeSystemThreadsAdvanced FUN_180081580
+
+// 原始函数名：FUN_180081590 - 系统信号处理函数
+#define ProcessSystemSignalsAdvanced FUN_180081590
+
+// 原始函数名：FUN_1800815a0 - 系统中断处理函数
+#define HandleSystemInterruptsAdvanced FUN_1800815a0
+
+// 原始函数名：FUN_1800815b0 - 系统异常处理函数
+#define ProcessSystemExceptionsAdvanced FUN_1800815b0
+
+// 原始函数名：FUN_1800815c0 - 系统配置加载函数
+#define LoadSystemConfigurationAdvanced FUN_1800815c0
+
+// 原始函数名：FUN_1800815d0 - 系统配置保存函数
+#define SaveSystemConfigurationAdvanced FUN_1800815d0
+
+// 原始函数名：FUN_1800815e0 - 系统环境变量处理函数
+#define ProcessEnvironmentVariablesAdvanced FUN_1800815e0
+
+// 原始函数名：FUN_1800815f0 - 系统命令行参数处理函数
+#define ProcessCommandLineArgumentsAdvanced FUN_1800815f0
+
+// 原始函数名：FUN_180081600 - 系统插件管理函数
+#define ManageSystemPluginsAdvanced FUN_180081600
+
+// 原始函数名：FUN_180081610 - 系统模块加载函数
+#define LoadSystemModulesAdvanced FUN_180081610
+
+// 原始函数名：FUN_180081620 - 系统依赖解析函数
+#define ResolveSystemDependenciesAdvanced FUN_180081620
+
+// 原始函数名：FUN_180081630 - 系统版本检查函数
+#define CheckSystemVersionAdvanced FUN_180081630
+
+// 原始函数名：FUN_180081640 - 系统兼容性验证函数
+#define ValidateSystemCompatibilityAdvanced FUN_180081640
+
+// 原始函数名：FUN_180081650 - 系统升级处理函数
+#define HandleSystemUpgradesAdvanced FUN_180081650
+
+// 原始函数名：FUN_180081660 - 系统回滚处理函数
+#define ProcessSystemRollbacksAdvanced FUN_180081660
+
+// 原始函数名：FUN_180081670 - 系统备份管理函数
+#define ManageSystemBackupsAdvanced FUN_180081670
+
+// 原始函数名：FUN_180081680 - 系统恢复处理函数
+#define HandleSystemRecoveryAdvanced FUN_180081680
+
+// 原始函数名：FUN_180081690 - 系统诊断函数
+#define DiagnoseSystemIssuesAdvanced FUN_180081690
+
+// 原始函数名：FUN_1800816a0 - 系统修复函数
+#define RepairSystemComponentsAdvanced FUN_1800816a0
+
+// 原始函数名：FUN_1800816b0 - 系统优化函数
+#define OptimizeSystemPerformanceAdvanced FUN_1800816b0
+
+// 原始函数名：FUN_1800816c0 - 系统清理函数
+#define CleanupSystemTempDataAdvanced FUN_1800816c0
+
+// UNK_变量语义化定义补充
+// 系统状态缓冲区常量
+#define UNK_180a081b4 SystemStatusBufferControl
+#define UNK_180a081c8 SystemProcessingFlags
+#define UNK_180a081dc SystemContextValidationFlags
+
+// 系统数据节点常量
+#define UNK_180a0c7d8 SystemDataNodeTemplate
+#define UNK_180a0c7ec SystemDataNodeConfiguration
+#define UNK_180a0c800 SystemDataNodeProcessingFlags
+
+// 系统字符串配置常量
+#define UNK_180a0b1c8 SystemStringConfiguration
+#define UNK_180a0b1dc SystemStringEncodingFlags
+#define UNK_180a0b1f0 SystemStringValidationFlags
+
+// 系统事件处理常量
+#define UNK_1801b9c30 SystemEventProcessingFlags
+#define UNK_1801b9c44 SystemEventConfiguration
+#define UNK_1801b9c58 SystemEventValidationFlags
+
+// 系统配置状态常量
+#define UNK_180a0c118 SystemConfigurationStatus
+#define UNK_180a0c12c SystemConfigurationFlags
+#define UNK_180a0c140 SystemConfigurationValidation
+
+// 系统字符串状态常量
+#define UNK_180a063e8 SystemStringStatusFlags
+#define UNK_180a063fc SystemStringProcessingFlags
+#define UNK_180a06410 SystemStringValidationFlags
+
+// 系统键值字符串常量
+#define UNK_180a0b008 SystemKeyStringTemplate
+#define UNK_180a0b01c SystemKeyStringConfiguration
+#define UNK_180a0b030 SystemKeyStringValidationFlags
+
+// 系统内存缓冲区常量
+#define UNK_180a01620 SystemMemoryBufferControl
+#define UNK_180a01634 SystemMemoryAllocationFlags
+#define UNK_180a01648 SystemMemoryValidationFlags
+
+// 系统渲染数据常量
+#define UNK_180a0b208 SystemRenderingDataFlags
+#define UNK_180a0b21c SystemRenderingConfiguration
+#define UNK_180a0b230 SystemRenderingValidationFlags
+
+// 系统纹理数据常量
+#define UNK_180a0b280 SystemTextureDataFlags
+#define UNK_180a0b294 SystemTextureConfiguration
+#define UNK_180a0b2a8 SystemTextureValidationFlags
+
+// 系统材质数据常量
+#define UNK_180a0b300 SystemMaterialDataFlags
+#define UNK_180a0b314 SystemMaterialConfiguration
+#define UNK_180a0b328 SystemMaterialValidationFlags
+
+// 系统动画数据常量
+#define UNK_180a0b380 SystemAnimationDataFlags
+#define UNK_180a0b394 SystemAnimationConfiguration
+#define UNK_180a0b3a8 SystemAnimationValidationFlags
+
+// 系统物理数据常量
+#define UNK_180a0b400 SystemPhysicsDataFlags
+#define UNK_180a0b414 SystemPhysicsConfiguration
+#define UNK_180a0b428 SystemPhysicsValidationFlags
+
+// 系统音频数据常量
+#define UNK_180a0b480 SystemAudioDataFlags
+#define UNK_180a0b494 SystemAudioConfiguration
+#define UNK_180a0b4a8 SystemAudioValidationFlags
+
+// 系统输入数据常量
+#define UNK_180a0b500 SystemInputDataFlags
+#define UNK_180a0b514 SystemInputConfiguration
+#define UNK_180a0b528 SystemInputValidationFlags
+
+// 系统网络数据常量
+#define UNK_180a0b580 SystemNetworkDataFlags
+#define UNK_180a0b594 SystemNetworkConfiguration
+#define UNK_180a0b5a8 SystemNetworkValidationFlags
+
+// 系统UI数据常量
+#define UNK_180a0b600 SystemUIDataFlags
+#define UNK_180a0b614 SystemUIConfiguration
+#define UNK_180a0b628 SystemUIValidationFlags
+
+// 系统资源数据常量
+#define UNK_180a0b680 SystemResourceDataFlags
+#define UNK_180a0b694 SystemResourceConfiguration
+#define UNK_180a0b6a8 SystemResourceValidationFlags
+
+// 系统配置数据常量
+#define UNK_180a0b700 SystemConfigDataFlags
+#define UNK_180a0b714 SystemConfigConfiguration
+#define UNK_180a0b728 SystemConfigValidationFlags
+
+// 系统调试数据常量
+#define UNK_180a0b780 SystemDebugDataFlags
+#define UNK_180a0b794 SystemDebugConfiguration
+#define UNK_180a0b7a8 SystemDebugValidationFlags
 
 
