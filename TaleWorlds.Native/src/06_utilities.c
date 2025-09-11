@@ -41444,7 +41444,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
       }
       else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationContextHandler:
-        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
         ValidationFloatValue2 = normalizedFloatValue;
       }
       else {
@@ -41459,8 +41459,8 @@ ValidationContextHandler:
       }
       if (memoryRegionBase == 0) {
         operationResult = DestinationContext & SystemCleanupFlag;
-        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-        inputParameter0 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+        inputParameter0 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
       }
       else {
         operationResult = (uint64_t)memoryRegionBase;
@@ -41511,7 +41511,7 @@ ValidationContextHandler:
   }
   else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationRetryHandler:
-    memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+    memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
     ValidationFloatValue2 = processedFloatValue;
   }
   else {
@@ -41524,8 +41524,8 @@ ValidationRetryHandler:
     }
   }
   if (memoryRegionBase == 0) {
-    allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-    systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+    allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+    systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
   }
   operationResult = (uint64_t)memoryRegionBase;
   if (memoryRegionBase == 0) {
@@ -41581,15 +41581,15 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = ExecuteSystemCleanupOperation(systemDataBuffer3,StackFrameContext + 0x77);
+        dataFlags = ExecuteSystemCleanupOperation(systemDataBuffer3,StackFrameContext + StackFrameValidationOffset);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (uint64_t)securityCheckResult;
-        statusCounter = *(uint *)(StackFrameContext + 0x77) & -(memoryRegionBase & 1);
+        statusCounter = *(uint *)(StackFrameContext + StackFrameValidationOffset) & -(memoryRegionBase & 1);
         DestinationContext = (uint64_t)statusCounter;
-        *(uint *)(StackFrameContext + 0x77) = statusCounter;
+        *(uint *)(StackFrameContext + StackFrameValidationOffset) = statusCounter;
         ValidationFloatValue2 = ValidationResultFloatA;
       } while ((int)securityCheckResult < (int)(memoryRegionBase >> 1));
     }
@@ -41701,7 +41701,7 @@ uint64_t ValidateSystemDataIntegrity(void)
       }
       else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationContextHandler:
-        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
         ValidationFloatValue2 = normalizedFloatValue;
       }
       else {
@@ -41716,8 +41716,8 @@ ValidationContextHandler:
       }
       if (memoryRegionBase == 0) {
         operationResult = DestinationContext & SystemCleanupFlag;
-        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-        inputParameter0 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+        inputParameter0 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
       }
       else {
         operationResult = (uint64_t)memoryRegionBase;
@@ -41768,7 +41768,7 @@ ValidationContextHandler:
   }
   else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationRetryHandler:
-    memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+    memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
     ValidationFloatValue2 = processedFloatValue;
   }
   else {
@@ -41781,8 +41781,8 @@ ValidationRetryHandler:
     }
   }
   if (memoryRegionBase == 0) {
-    allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-    systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+    allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+    systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
   }
   operationResult = (uint64_t)memoryRegionBase;
   if (memoryRegionBase == 0) {
@@ -41838,15 +41838,15 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = ExecuteSystemCleanupOperation(systemDataBuffer3,StackFrameContext + 0x77);
+        dataFlags = ExecuteSystemCleanupOperation(systemDataBuffer3,StackFrameContext + StackFrameValidationOffset);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (uint64_t)securityCheckResult;
-        statusCounter = *(uint *)(StackFrameContext + 0x77) & -(memoryRegionBase & 1);
+        statusCounter = *(uint *)(StackFrameContext + StackFrameValidationOffset) & -(memoryRegionBase & 1);
         DestinationContext = (uint64_t)statusCounter;
-        *(uint *)(StackFrameContext + 0x77) = statusCounter;
+        *(uint *)(StackFrameContext + StackFrameValidationOffset) = statusCounter;
         ValidationFloatValue2 = ValidationResultFloatA;
       } while ((int)securityCheckResult < (int)(memoryRegionBase >> 1));
     }
@@ -41912,7 +41912,7 @@ uint64_t ProcessFloatDataValidation(float inputValue)
       }
       else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationContextHandler:
-        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
         operationBase = calculatedFloatValue;
       }
       else {
@@ -41927,8 +41927,8 @@ ValidationContextHandler:
       }
       if (memoryRegionBase == 0) {
         dataFlags = DestinationContext & SystemCleanupFlag;
-        inputParameter2 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+        inputParameter2 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+        inputParameter1 = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
       }
       else {
         dataFlags = (uint64_t)memoryRegionBase;
@@ -41974,7 +41974,7 @@ ValidationContextHandler:
       }
       else if (exceptionContextPointer[2] == DestinationContext) {
 ValidationRetryHandler:
-        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD);
+        memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD);
         operationBase = accumulatedFloatValue;
       }
       else {
@@ -41988,8 +41988,8 @@ ValidationRetryHandler:
         }
       }
       if (memoryRegionBase == 0) {
-        allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) != '\0');
-        systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + 0x77) == '\0');
+        allocatedMemoryBlock = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+        systemContextD = (int)SetBitFlag(validationStatus,*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
       }
       dataFlags = (uint64_t)memoryRegionBase;
       if (memoryRegionBase == 0) {
@@ -42028,7 +42028,7 @@ DataProcessingHandler:
       memoryRegionBase = *(uint *)(StackFrameContext + StackFrameSecondaryValidationFlagOffset7F);
       dataFlags = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,memoryRegionBase >> 1);
       if ((int)dataFlags == 0) {
-        *(int *)(StackFrameContext + 0x77) = validationErrorCode;
+        *(int *)(StackFrameContext + StackFrameValidationOffset) = validationErrorCode;
         dataFlags = DestinationContext & SystemCleanupFlag;
         operationBase = processedFloatValue;
         ValidationFloatValue3 = processedFloatValue;
@@ -42050,15 +42050,15 @@ DataProcessingHandler:
             if ((int)operationResult != 0) {
               return operationResult;
             }
-            operationResult = ExecuteSystemCleanupOperation(systemDataBuffer4,StackFrameContext + 0x77);
+            operationResult = ExecuteSystemCleanupOperation(systemDataBuffer4,StackFrameContext + StackFrameValidationOffset);
             if ((int)operationResult != 0) {
               return operationResult;
             }
             securityCheckResult = (int)dataFlags + 1;
             dataFlags = (uint64_t)securityCheckResult;
-            loopCounter = *(uint *)(StackFrameContext + 0x77) & -(memoryRegionBase & 1);
+            loopCounter = *(uint *)(StackFrameContext + StackFrameValidationOffset) & -(memoryRegionBase & 1);
             DestinationContext = (uint64_t)loopCounter;
-            *(uint *)(StackFrameContext + 0x77) = loopCounter;
+            *(uint *)(StackFrameContext + StackFrameValidationOffset) = loopCounter;
             operationBase = tertiaryFloatResultA;
             ValidationFloatValue3 = tertiaryFloatResultA;
           } while ((int)securityCheckResult < (int)(memoryRegionBase >> 1));
@@ -45217,9 +45217,9 @@ ValidationStartHandler:
   }
   else {
     *(DataWord *)(StackFrameContext + StackFrameValidationOffset) = 0;
-    memoryRegionBase = AllocateMemory(exceptionContext,StackFrameContext + 0x77);
+    memoryRegionBase = AllocateMemory(exceptionContext,StackFrameContext + StackFrameValidationOffset);
     if ((int)memoryRegionBase == 0) {
-      if ((uint64_t)*(uint *)(StackFrameContext + 0x77) + 4 <= (uint64_t)dataContext[2]) goto ProcessCheckpointValidationStart2;
+      if ((uint64_t)*(uint *)(StackFrameContext + StackFrameValidationOffset) + 4 <= (uint64_t)dataContext[2]) goto ProcessCheckpointValidationStart2;
       memoryRegionBase = 0x11;
     }
   }
@@ -45228,7 +45228,7 @@ ValidationStartHandler:
     return memoryRegionBase;
   }
   hasValidIndex = *(uint *)(DestinationContext + 8) < 0x34;
-  *(char *)(StackFrameContext + 0x77) = (char)memoryRegionBase;
+  *(char *)(StackFrameContext + StackFrameValidationOffset) = (char)memoryRegionBase;
   *(char *)(StackFrameContext + 0x7f) = (char)memoryRegionBase;
   isDataReady = false;
   if (0x37 < *(uint *)(DestinationContext + 8)) {
@@ -45295,7 +45295,7 @@ ValidationDataHandler2:
         }
       }
       if (validationStatus == 0) {
-        *(bool *)(StackFrameContext + 0x77) = *(char *)(StackFrameContext + -0x49) != '\0';
+        *(bool *)(StackFrameContext + StackFrameValidationOffset) = *(char *)(StackFrameContext + -0x49) != '\0';
       }
       memoryRegionBase = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -45417,7 +45417,7 @@ ProcessCheckpointValidationState5:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if ((((!isFirstValidation) && (*(char *)(StackFrameContext + 0x77) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
+  if ((((!isFirstValidation) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
      && (!isThirdValidation)) {
     loopCounter = 0;
   }
@@ -45480,11 +45480,11 @@ ValidationStartHandler:
       memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionContextPointer,StackFrameContext + -0x41,loopCounter,4,operationFlagA);
     }
     else {
-      *(int *)(StackFrameContext + 0x77) = (int)operationFlagA;
+      *(int *)(StackFrameContext + StackFrameValidationOffset) = (int)operationFlagA;
       memoryRegionBase = AllocateMemory(dataContext,StackFrameContext + StackFrameValidationOffset);
       if ((int)memoryRegionBase == 0) {
         operationFlagA = 0;
-        if ((uint64_t)exceptionContextPointer[2] < (uint64_t)*(uint *)(StackFrameContext + 0x77) + 4) {
+        if ((uint64_t)exceptionContextPointer[2] < (uint64_t)*(uint *)(StackFrameContext + StackFrameValidationOffset) + 4) {
           memoryRegionBase = 0x11;
           goto ProcessCheckpointValidationContext3;
         }
@@ -45498,7 +45498,7 @@ ProcessCheckpointValidationContext3:
     return memoryRegionBase;
   }
   hasValidIndex = *(uint *)(DestinationContext + 8) < 0x34;
-  *(char *)(StackFrameContext + 0x77) = (char)memoryRegionBase;
+  *(char *)(StackFrameContext + StackFrameValidationOffset) = (char)memoryRegionBase;
   *(char *)(StackFrameContext + 0x7f) = (char)memoryRegionBase;
   isDataReady = false;
   if (*(uint *)(DestinationContext + 8) < 0x38) {
@@ -45575,7 +45575,7 @@ ValidationDataHandler2:
     }
 ValidationErrorHandler7:
     if (validationStatus == 0) {
-      *(bool *)(StackFrameContext + 0x77) = *(char *)(StackFrameContext + -0x49) != '\0';
+      *(bool *)(StackFrameContext + StackFrameValidationOffset) = *(char *)(StackFrameContext + -0x49) != '\0';
     }
     memoryRegionBase = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -45717,7 +45717,7 @@ ProcessCheckpointValidationError9:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if ((((!isBufferValid) && (*(char *)(StackFrameContext + 0x77) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
+  if ((((!isBufferValid) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
      && (!isValidationComplete)) {
     loopCounter = (DataWord)operationFlagA;
   }
@@ -143865,18 +143865,18 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define MarkSystemStartupAsComplete FUN_18090a040          // 标记系统启动完成 - 标志系统启动完成
 
 // 系统内存管理函数
-#define FUN_18090a050 AllocateSystemMemoryPool             // 分配系统内存池 - 分配系统的内存池
-#define FUN_18090a060 FreeSystemMemoryPool                 // 释放系统内存池 - 释放系统的内存池
-#define FUN_18090a070 ResizeSystemMemoryPool              // 调整系统内存池大小 - 调整系统内存池的大小
-#define FUN_18090a080 ValidateSystemMemoryAccess           // 验证系统内存访问 - 验证系统内存的访问权限
-#define FUN_18090a090 OptimizeSystemMemoryUsage            // 优化系统内存使用 - 优化系统的内存使用效率
+#define AllocateSystemMemoryPool FUN_18090a050             // 分配系统内存池 - 分配系统的内存池
+#define FreeSystemMemoryPool FUN_18090a060                 // 释放系统内存池 - 释放系统的内存池
+#define ResizeSystemMemoryPool FUN_18090a070               // 调整系统内存池大小 - 调整系统内存池的大小
+#define ValidateSystemMemoryAccess FUN_18090a080           // 验证系统内存访问 - 验证系统内存的访问权限
+#define OptimizeSystemMemoryUsage FUN_18090a090            // 优化系统内存使用 - 优化系统的内存使用效率
 
 // 系统资源管理函数
-#define FUN_18090a0a0 CreateSystemResourceHandle            // 创建系统资源句柄 - 创建系统的资源句柄
-#define FUN_18090a0b0 DestroySystemResourceHandle           // 销毁系统资源句柄 - 销毁系统的资源句柄
-#define FUN_18090a0c0 LockSystemResourceHandle              // 锁定系统资源句柄 - 锁定系统的资源句柄
-#define FUN_18090a0d0 UnlockSystemResourceHandle            // 解锁系统资源句柄 - 解锁系统的资源句柄
-#define FUN_18090a0e0 QuerySystemResourceHandleStatus       // 查询系统资源句柄状态 - 查询系统资源句柄的状态信息
+#define CreateSystemResourceHandle FUN_18090a0a0            // 创建系统资源句柄 - 创建系统的资源句柄
+#define DestroySystemResourceHandle FUN_18090a0b0           // 销毁系统资源句柄 - 销毁系统的资源句柄
+#define LockSystemResourceHandle FUN_18090a0c0              // 锁定系统资源句柄 - 锁定系统的资源句柄
+#define UnlockSystemResourceHandle FUN_18090a0d0            // 解锁系统资源句柄 - 解锁系统的资源句柄
+#define QuerySystemResourceHandleStatus FUN_18090a0e0       // 查询系统资源句柄状态 - 查询系统资源句柄的状态信息
 
 // 系统线程管理函数
 #define FUN_18090a0f0 CreateSystemWorkerThread             // 创建系统工作线程 - 创建系统的工作线程

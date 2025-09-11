@@ -134577,6 +134577,7 @@ texture_validation_complete:
  * @warning 函数执行后可能会调用不返回的子函数
  */
 void ProcessUIDataSourceWithEventHandling(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
+void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
