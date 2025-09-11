@@ -139005,7 +139005,7 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
             processingFlags = CONCAT71((int7)((ulonglong)uiStatusPointer >> 8),1);
             ProcessUIComponentRegistration(stackUInt38,stackUInt40,&stackUInt28,0,processingFlags,0);
             func_0x000180766510(stackUInt28,stackUInt48 | 0xfeed0000);
-            if ((resultPointer == '\0') && (FUN_18075ec10(stackUInt40,aiStackX_20,0,1), 0 < aiStackX_20[0]))
+            if ((resultPointer == '\0') && (ProcessUIEvent(stackUInt40,aiStackX_20,0,1), 0 < aiStackX_20[0]))
             {
               do {
                 processingFlags = processingFlags & 0xffffffffffffff00;
@@ -139076,7 +139076,7 @@ UIHandle ProcessUIHandleAllocationAndValidation(void)
       func_0x000180766510(ValidationHandle,ContextData | 0xfeed0000);
       AllocationStatusFlag = MemoryAllocationFlag;
       if ((MemoryAllocationFlag == '\0') &&
-         (FUN_18075ec10(0,&MaxIterations,0,1), 0 < MaxIterations)) {
+         (ProcessUIEvent(0,&MaxIterations,0,1), 0 < MaxIterations)) {
         do {
           processingFlags = processingFlags & 0xffffffffffffff00;
           FUN_18075ef40(0,ComparisonResult,&ProcessingContext,&ResultBuffer,processingFlags);
