@@ -257566,7 +257566,7 @@ void ProcessContextHandleDataValidationAndMemoryManagement(long long *ContextHan
           if (((*(byte *)(*(long long *)(MemoryBlockIndex + 0x38) + 8 + SystemDataRegistry) & 1) != 0) &&
              (CharacterTablePointer = *(long long *)(*(long long *)(MemoryBlockIndex + 0x38) + SystemDataRegistry),
              (*(uint *)(CharacterTablePointer + 0x100) & 0x800) != 0)) {
-            FUN_18007f0e0(LoopCounter,(long long)ContextHandle + 0x44,*(uint32_t *)((long long)ContextHandle + 0x844)            ;
+            ProcessSystemMemoryAllocationAndValidation(LoopCounter,(long long)ContextHandle + 0x44,*(uint32_t *)((long long)ContextHandle + 0x844)            ;
             MemoryBlockIndex = *(long long *)(BufferStatus + AllocatedMemorySize);
           }
           ValidationResult = ValidationResult + 1;
