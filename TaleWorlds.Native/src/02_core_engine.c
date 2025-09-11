@@ -249586,7 +249586,19 @@ void ExecuteSystemResourceInitialization(void)
 
 
 
-void FUN_180202e40(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
+/**
+ * @brief 处理系统浮点变换操作
+ * 
+ * 该函数负责处理系统浮点变换操作，包括内存池管理和数据变换。
+ * 函数实现了堆排序算法，用于对浮点数数组进行排序操作。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180202e40
+ */
+void ProcessSystemFloatTransformOperations(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   unsigned long long MemoryPoolIndex;
