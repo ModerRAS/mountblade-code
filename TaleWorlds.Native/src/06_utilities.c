@@ -3037,10 +3037,11 @@
 #define SystemContextPrimaryPointerOffset 0x90                 // 系统上下文主指针偏移量
 #define SystemMainValidationDataOffset 0x790                  // 系统主验证数据偏移量
 #define DataProcessingBufferNegativeOffset -0x78         // 数据处理缓冲区负偏移量
-#define StackFrameContextOffsetNegative10 -0x10            // 栈帧上下文负偏移量10
-#define StackFrameContextOffsetNegative68 -0x68            // 栈帧上下文负偏移量68
-#define StackFrameContextOffsetNegative80 -0x80            // 栈帧上下文负偏移量80
-#define StackFrameContextOffsetNegative54 -0x54            // 栈帧上下文负偏移量54
+// 栈帧上下文偏移常量
+#define StackFrameContextOffset10 -0x10            // 栈帧上下文偏移量10
+#define StackFrameContextOffset68 -0x68            // 栈帧上下文偏移量68
+#define StackFrameContextOffset80 -0x80            // 栈帧上下文偏移量80
+#define StackFrameContextOffset54 -0x54            // 栈帧上下文偏移量54
 #define StackFrameContextOffsetNegative70 -0x70            // 栈帧上下文负偏移量70
 #define StackFrameContextOffsetNegative64 -0x64            // 栈帧上下文负偏移量64
 #define SystemDataSecondaryOffset18 0x18                  // 系统数据二级偏移量18
