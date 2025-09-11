@@ -23942,11 +23942,11 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   uint vectorZRawData;
   uint vectorWRawData;
   DataBuffer validationResult;
-  int isDataOffset20Infinity;
-  int isDataOffset1cInfinity;
-  int isDataOffset18Infinity;
-  int isDataOffset2cInfinity;
-  int isDataOffset28Infinity;
+  int isVectorComponent20Infinity;
+  int isVectorComponent1cInfinity;
+  int isVectorComponent18Infinity;
+  int isVectorComponent2cInfinity;
+  int isVectorComponent28Infinity;
   int64_t targetDataBuffer;
   int64_t systemContextArray [2];
   uint colorData;
@@ -23956,44 +23956,44 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int isVectorComponentZInfinity;
   
   targetDataBuffer = 0;
-  isDataOffset18Infinity = 0;
-  isDataOffset2cInfinity = isDataOffset18Infinity;
+  isVectorComponent18Infinity = 0;
+  isVectorComponent2cInfinity = isVectorComponent18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset2cInfinity = FloatInfinityValidationResult;
+    isVectorComponent2cInfinity = FloatInfinityValidationResult;
   }
-  isDataOffset1cInfinity = isDataOffset18Infinity;
+  isVectorComponent1cInfinity = isVectorComponent18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset1cInfinity = FloatInfinityValidationResult;
+    isVectorComponent1cInfinity = FloatInfinityValidationResult;
   }
-  isDataOffset20Infinity = isDataOffset18Infinity;
+  isVectorComponent20Infinity = isVectorComponent18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset20Infinity = FloatInfinityValidationResult;
+    isVectorComponent20Infinity = FloatInfinityValidationResult;
   }
-  if ((isDataOffset2cInfinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isVectorComponent2cInfinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   isVectorComponentZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset28Infinity = FloatInfinityValidationResult;
+    isVectorComponent28Infinity = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset1cInfinity = FloatInfinityValidationResult;
+    isVectorComponent1cInfinity = FloatInfinityValidationResult;
   }
   isVectorComponentYInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset20Infinity = FloatInfinityValidationResult;
+    isVectorComponent20Infinity = FloatInfinityValidationResult;
   }
-  if ((isDataOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isVectorComponent28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  isDataOffset28Infinity = isVectorComponentZInfinity;
+  isVectorComponent28Infinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset28Infinity = FloatInfinityValidationResult;
+    isVectorComponent28Infinity = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isDataOffset1cInfinity = FloatInfinityValidationResult;
+    isVectorComponent1cInfinity = FloatInfinityValidationResult;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
     isDataOffset2cInfinity = FloatInfinityValidationResult;
