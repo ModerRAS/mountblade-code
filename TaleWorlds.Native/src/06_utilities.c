@@ -516,6 +516,19 @@ typedef union {
 #define ExceptionHandlerPointerOffset570 0x570
 #define ExceptionHandlerPointerOffset580 0x580
 
+// 异常上下文处理偏移量常量
+#define ExceptionContextFunctionPointerOffset2440 0x2440         // 异常上下文函数指针偏移量2440 - 用于存储异常处理函数指针
+#define ExceptionContextFunctionParameterOffset2430 0x2430       // 异常上下文函数参数偏移量2430 - 用于传递给异常处理函数的参数
+#define ExceptionContextTempHandlerOffset2408 0x2408             // 异常上下文临时处理器偏移量2408 - 用于存储临时异常处理器指针
+#define ExceptionContextStatusOffset2410 0x2410                   // 异常上下文状态偏移量2410 - 用于验证异常上下文状态
+#define ExceptionContextStatusWordOffset2420 0x2420               // 异常上下文状态字偏移量2420 - 用于存储异常上下文状态字
+#define ExceptionContextTempHandlerOffset23E8 0x23e8             // 异常上下文临时处理器偏移量23E8 - 用于存储第二组临时异常处理器指针
+#define ExceptionContextSecondaryStatusOffset23F0 0x23f0          // 异常上下文辅助状态偏移量23F0 - 用于验证第二组异常上下文状态
+#define ExceptionContextSecondaryStatusWordOffset2400 0x2400      // 异常上下文辅助状态字偏移量2400 - 用于存储第二组异常上下文状态字
+#define ExceptionContextSecondaryFunctionPointerOffset24B0 0x24b0 // 异常上下文辅助函数指针偏移量24B0 - 用于存储第二组异常处理函数指针
+#define ExceptionContextSecondaryFunctionParameterOffset24A0 0x24a0 // 异常上下文辅助函数参数偏移量24A0 - 用于传递给第二组异常处理函数的参数
+#define ExceptionContextTertiaryTempHandlerOffset2478 0x2478     // 异常上下文第三临时处理器偏移量2478 - 用于存储第三组临时异常处理器指针
+
 // 扩展异常处理器偏移量常量
 #define ExceptionHandlerContextOffset560 0x560
 #define ExceptionHandlerContextOffset568 0x568
