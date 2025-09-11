@@ -1019,8 +1019,8 @@ typedef enum {
 #define ProcessUIComponentHandleWithEventDispatch DispatchUIComponentEvents      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
 #define SetupUIContextEventHandle SetupUIContextEventHandler                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
 #define InitializeUIContextDataBuffer InitializeUIContextDataBuffer                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
-#define ProcessUIContextMemoryRelease FUN_180786250                 // 处理UI上下文内存释放 - 释放UI上下文占用的内存资源
-#define ProcessUIContextDataSourceValidation FUN_180786262           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
+#define ProcessUIContextMemoryRelease ReleaseUIContextMemory                 // 处理UI上下文内存释放 - 释放UI上下文占用的内存资源
+#define ProcessUIContextDataSourceValidation ValidateUIContextDataSource           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
 
 // UI系统函数宏定义 - 变换数据处理
 #define ProcessUITransformDataScaling FUN_18072e5f4                  // 处理UI变换数据缩放 - 对UI变换数据进行缩放操作
@@ -205321,7 +205321,7 @@ UIHandle InitializeUIContextDataBuffer(int *uiContext,UIHandle dataSource,UIHand
  * 
  * @param uiContext UI上下文指针数组，包含要处理的上下文信息
  * 
- * @note 原始函数名：FUN_180786250
+ * @note 原始函数名：ReleaseUIContextMemory
  * @note 该函数会调用组件的清理函数进行资源释放
  */
 void ProcessUIContextMemoryRelease(int *uiContext)
@@ -205370,7 +205370,7 @@ void ProcessUIContextMemoryRelease(int *uiContext)
  * @param uiContext UI上下文指针数组，包含要处理的上下文信息
  * @param dataSource 数据源指针，包含要验证的数据源信息
  * 
- * @note 原始函数名：FUN_180786262
+ * @note 原始函数名：ValidateUIContextDataSource
  * @note 该函数会调用数据源的清理函数进行资源释放
  */
 void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
