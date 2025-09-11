@@ -262177,20 +262177,22 @@ void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int Operation
 
 
 /**
- * @brief 处理系统缓冲区操作和字符状态管理
+ * @brief 处理系统字符缓冲区和状态管理
  * 
- * 该函数负责处理系统缓冲区操作和字符状态管理，主要功能包括：
- * - 遍历字符状态缓冲区
- * - 处理内存块的分配和释放
- * - 管理系统优先级和处理标志
- * - 执行缓冲区操作函数
+ * 该函数负责处理系统字符缓冲区的状态管理和缓冲区操作，主要功能包括：
+ * - 遍历字符状态缓冲区并执行批量操作
+ * - 处理内存块的分配和释放操作
+ * - 管理系统优先级和处理标志位
+ * - 执行系统缓冲区操作函数并处理回调
+ * - 维护字符状态缓冲区的完整性
  * 
- * @param ContextHandle 上下文句柄
- * @param OperationBufferSize 操作缓冲区大小
- * @param Utf8SourcePointer UTF-8源数据指针
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，定义处理范围
+ * @param Utf8SourcePointer UTF-8源数据指针，指向字符数据
  * @return 无返回值
  * 
  * @note 原始函数名：FUN_18020dc20
+ * @warning 确保Utf8SourcePointer指向有效的内存区域
  */
 #define ProcessSystemBufferAndCharacterStatus FUN_18020dc20
 void ProcessSystemCharacterBuffer(int ContextHandle, int OperationBufferSize, long long *Utf8SourcePointer)
