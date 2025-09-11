@@ -125383,43 +125383,67 @@ ReleaseUIMemoryAndExecuteRenderTask:
  * @note 该函数会调用多个子函数来完成数据处理任务
  * @warning 函数包含不返回的子程序调用，使用时需要注意
  */
-void FUN_18073a72d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-
+/**
+ * @brief 处理UI上下文数据转换和渲染操作
+ * 
+ * 该函数负责处理UI上下文的数据转换操作，包括颜色数据变换、纹理数据处理和渲染任务执行。
+ * 它执行数据验证、缓冲区操作，并根据处理结果调用相应的UI渲染函数。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_18073a72d
+ */
+void ProcessUIContextDataTransformAndRender(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong memoryCleanupFlag;
+  UIHandle renderParameter;
+  ulonglong renderTaskKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
+  // 初始化变量
+  contextHandle = 0;
+  uiContextBasePointer = 0;
+  eventHandle = 0;
+  memoryCleanupFlag = 0;
+  
+  // 设置寄存器指针上下文
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  
+  memoryCleanupFlag = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext, &renderParameter, &memoryCleanupFlag);
   if (operationResult == 0) {
-    operationResult = ProcessUIColorDataTransform(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073a7fd;
+    operationResult = ProcessUIColorDataTransform(renderParameter, dataSource, targetBuffer);
+    if (operationResult == 0) goto RenderTaskCompleteLabel;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUITextureDataWithSize(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    UIHandle tempBuffer;
+    dataValidationResult = ValidateUIDataWithBuffer(&tempBuffer, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&tempBuffer + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    ProcessUITextureDataWithSize(&tempBuffer + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextRenderController,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult, 1, uiContext, &UIContextRenderController, &tempBuffer);
   }
 ProcessUITextureDataCompleteLabel2:
-  if (lStack0000000000000030 != 0) {
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskKey ^ (ulonglong)&memoryCleanupFlag);
 }
+
+RenderTaskCompleteLabel:
+  // 渲染任务完成标签
+  return;
 
 
 
