@@ -296919,14 +296919,78 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define FUN_180128840 ValidateSystemResources                       // 验证系统资源
 
 // 遗漏的FUN_函数语义化定义 - 2025年9月11日添加
-#define FUN_18018bd0d ProcessSystemHandleValidation                   // 处理系统句柄验证
-#define FUN_18018bd5f FinalizeSystemContextInitialization            // 完成系统上下文初始化
-#define FUN_180190e30 ProcessSystemMemoryAndDataTransfer             // 处理系统内存和数据传输
-#define FUN_180196bd0 AllocateSystemContextHandle                    // 分配系统上下文句柄
-#define FUN_1801977e0 HandleSystemMemoryAllocation                   // 处理系统内存分配
-#define FUN_180199930 ProcessSystemCharacterEncoding                 // 处理系统字符编码
-#define FUN_180209980 ProcessSystemDataStructureManagement           // 处理系统数据结构管理
-#define FUN_18022a8cd GetSystemInitializationStatus                  // 获取系统初始化状态
+
+/**
+ * @brief 处理系统句柄验证
+ * 
+ * 验证系统句柄的有效性和状态，确保句柄可以正常使用
+ * 
+ * @note 原始函数名：FUN_18018bd0d
+ */
+#define FUN_18018bd0d ProcessSystemHandleValidation
+
+/**
+ * @brief 完成系统上下文初始化
+ * 
+ * 完成系统上下文的初始化过程，确保所有必要的系统组件都已正确初始化
+ * 
+ * @note 原始函数名：FUN_18018bd5f
+ */
+#define FUN_18018bd5f FinalizeSystemContextInitialization
+
+/**
+ * @brief 处理系统内存和数据传输
+ * 
+ * 处理系统内存的分配和数据传输操作，确保数据的正确性和完整性
+ * 
+ * @note 原始函数名：FUN_180190e30
+ */
+#define FUN_180190e30 ProcessSystemMemoryAndDataTransfer
+
+/**
+ * @brief 分配系统上下文句柄
+ * 
+ * 为系统上下文分配句柄，用于管理和跟踪系统资源
+ * 
+ * @note 原始函数名：FUN_180196bd0
+ */
+#define FUN_180196bd0 AllocateSystemContextHandle
+
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 处理系统内存的分配操作，包括内存池管理和资源分配
+ * 
+ * @note 原始函数名：FUN_1801977e0
+ */
+#define FUN_1801977e0 HandleSystemMemoryAllocation
+
+/**
+ * @brief 处理系统字符编码
+ * 
+ * 处理系统字符编码转换和验证，确保字符数据的正确性
+ * 
+ * @note 原始函数名：FUN_180199930
+ */
+#define FUN_180199930 ProcessSystemCharacterEncoding
+
+/**
+ * @brief 处理系统数据结构管理
+ * 
+ * 管理系统数据结构的创建、维护和销毁操作
+ * 
+ * @note 原始函数名：FUN_180209980
+ */
+#define FUN_180209980 ProcessSystemDataStructureManagement
+
+/**
+ * @brief 获取系统初始化状态
+ * 
+ * 获取系统当前的初始化状态，用于检查系统是否已经正确初始化
+ * 
+ * @note 原始函数名：FUN_18022a8cd
+ */
+#define FUN_18022a8cd GetSystemInitializationStatus
 
 // 根据函数调用上下文推断的其他函数定义
 #define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement // 处理上下文句柄和系统资源管理
