@@ -14821,4 +14821,48 @@ int RegisterSystemNetworkModule(void);
 #define SystemMemoryPoolBlockSize 0x1000        // 内存池块大小 - 4KB池块大小
 #define SystemMemoryPoolMaxBlocks 0x1000         // 内存池最大块数 - 4096个池块限制
 
+// =============================================================================
+// 系统数据流处理变量定义
+// =============================================================================
+
+/**
+ * @brief 系统数据流处理变量
+ * 
+ * 定义了系统数据流处理过程中使用的各种变量名称，
+ * 提高了数据流处理代码的可读性和维护性。
+ */
+
+#define dataStreamBuffer SystemDataStreamBuffer           // 数据流缓冲区 - 存储处理中的数据流
+#define dataStreamSize SystemDataStreamSize               // 数据流大小 - 当前数据流的大小
+#define dataStreamPointer SystemDataStreamPointer         // 数据流指针 - 指向当前数据流位置
+#define dataStreamStatus SystemDataStreamStatus           // 数据流状态 - 数据流处理状态
+#define dataStreamFlags SystemDataStreamFlags             // 数据流标志 - 控制数据流处理行为
+#define dataStreamOffset SystemDataStreamOffset           // 数据流偏移量 - 当前数据流的偏移位置
+#define dataStreamCounter SystemDataStreamCounter         // 数据流计数器 - 数据流处理的计数器
+#define dataStreamHandler SystemDataStreamHandler         // 数据流处理器 - 处理数据流的函数指针
+#define dataStreamContext SystemDataStreamContext         // 数据流上下文 - 数据流处理的上下文信息
+#define dataStreamConfig SystemDataStreamConfig           // 数据流配置 - 数据流处理的配置参数
+
+// =============================================================================
+// 系统资源管理变量定义
+// =============================================================================
+
+/**
+ * @brief 系统资源管理变量
+ * 
+ * 定义了系统资源管理过程中使用的各种变量名称，
+ * 提高了资源管理代码的可读性和维护性。
+ */
+
+#define resourcePool SystemResourcePool                   // 资源池 - 系统资源池
+#define resourceHandle SystemResourceHandle               // 资源句柄 - 资源的标识符
+#define resourcePointer SystemResourcePointer             // 资源指针 - 指向资源的指针
+#define resourceSize SystemResourceSize                   // 资源大小 - 资源的大小
+#define resourceType SystemResourceType                   // 资源类型 - 资源的类型
+#define resourceStatus SystemResourceStatus               // 资源状态 - 资源的状态
+#define resourceFlags SystemResourceFlags                 // 资源标志 - 资源的属性标志
+#define resourceCounter SystemResourceCounter             // 资源计数器 - 资源使用计数器
+#define resourceAllocator SystemResourceAllocator         // 资源分配器 - 资源分配函数
+#define resourceDeallocator SystemResourceDeallocator     // 资源释放器 - 资源释放函数
+
 #endif // DATA_DEFINITIONS_H
