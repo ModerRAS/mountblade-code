@@ -141810,24 +141810,27 @@ int InitializeUIComponentContext(void)
     dataPointer = FUN_180742050(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),
                            *(int *)(*(longlong *)(uiContext + 0x107b8) + 8) * 8 + 0x10,
                            &UIContextDataController000,0xac4,bufferValue);
-    *(UIHandle *)(*(longlong *)(uiContext + 0x107b8) + 0x18) = dataPointer;
-    contextOffset = *(longlong *)(*(longlong *)(uiContext + 0x107b8) + 0x18);
-    if (contextOffset != 0) {
-      *(ulonglong *)(*(longlong *)(uiContext + 0x107b8) + 0x20) = contextOffset + 0xfU & 0xfffffffffffffff0;
-      loopCounter = (UIDword)((ulonglong)bufferValue >> 0x20);
-      sourceDataInt = func_0x00018078a4e0(uiTargetHandle + 0x720);
-      if ((((sourceDataInt != 0) ||
-           (sourceDataInt = FUN_180742460(uiTargetHandle + 0x10bd0,0,0x40000,2,CONCAT44(loopCounter,result1)),
-           sourceDataInt != 0)) ||
-          (sourceDataInt = FUN_180742460(uiTargetHandle + 0x10848,0,0x2000,2,componentData & 0xffffffff), sourceDataInt != 0)
-          ) || (sourceDataInt = FUN_18074a350(), sourceDataInt != 0)) goto LAB_180747287;
-      componentHandle = (UIHandle *)(uiTargetHandle + 0x684);
-      *componentHandle = 0xffffffffffffffff;
-      *(UIHandle *)(uiTargetHandle + 0x68c) = 0xffffffffffffffff;
+    *(UIHandle *)(*(longlong *)(uiContext + 0x107b8) + 0x18) = contextDataPointer;
+    memoryContextOffset = *(longlong *)(*(longlong *)(uiContext + 0x107b8) + 0x18);
+    if (memoryContextOffset != 0) {
+      *(ulonglong *)(*(longlong *)(uiContext + 0x107b8) + 0x20) = memoryContextOffset + 0xfU & 0xfffffffffffffff0;
+      contextLoopCounter = (UIDword)((ulonglong)dataBufferValue >> 0x20);
+      systemStatusFlag = func_0x00018078a4e0(componentTargetHandle + 0x720);
+      if ((((systemStatusFlag != 0) ||
+           (systemStatusFlag = FUN_180742460(componentTargetHandle + 0x10bd0,0,0x40000,2,CONCAT44(contextLoopCounter,componentResultValue)),
+           systemStatusFlag != 0)) ||
+          (systemStatusFlag = FUN_180742460(componentTargetHandle + 0x10848,0,0x2000,2,componentHandleData & 0xffffffff), systemStatusFlag != 0)
+          ) || (systemStatusFlag = FUN_18074a350(), systemStatusFlag != 0)) goto LAB_180747287;
+      
+      // 初始化组件实例句柄
+      componentInstanceHandle = (UIHandle *)(componentTargetHandle + 0x684);
+      *componentInstanceHandle = 0xffffffffffffffff;
+      *(UIHandle *)(componentTargetHandle + 0x68c) = 0xffffffffffffffff;
       ProcessUIEventAndRenderData();
-      loopCounter = (UIDword)((ulonglong)componentHandle >> 0x20);
-      result = *(uint *)(uiTargetHandle + 0x6dc);
-      iterationCount = *(uint *)(uiTargetHandle + 0x6d8);
+      
+      contextLoopCounter = (UIDword)((ulonglong)componentInstanceHandle >> 0x20);
+      operationResult = *(uint *)(componentTargetHandle + 0x6dc);
+      processingIterationCount = *(uint *)(componentTargetHandle + 0x6d8);
       contextOffset = *(longlong *)(uiContext + 0x670);
       *(UIDword *)(uiContextBasePointer + 3) = result1;
       *(uint *)(uiContextBasePointer + 7) = result / iterationCount;
