@@ -240039,10 +240039,10 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   if (ContextHandle[0x7ce] != 0) {
       ProcessSystemEventHandling();
   }
-  FUN_180397770(ContextHandle + 0x6d6);
+  CleanupSystemMemoryPool(ContextHandle + 0x6d6);
   ProcessCharacterInitializeSystem(ContextHandle + 0x66d);
   ProcessCharacterInitializeSystem(ContextHandle + 0x603);
-  FUN_18038bfe0(ContextHandle + 0x54d);
+  CleanupSystemAudioResources(ContextHandle + 0x54d);
   _Mtx_destroy_in_situ();
   if (ContextHandle[0x53e] != 0) {
       ProcessSystemEventHandling();
