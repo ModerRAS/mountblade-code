@@ -45441,7 +45441,7 @@ void ConfigureSystemOptionsC1(void)
       StackFrameRegister = 0;
     }
     else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      SystemTemporaryMemoryBuffer = CONCAT31(SystemTemporaryMemoryBuffer.BitField3,*(ByteFlag *)(systemContext + 0x5c));
+      SystemTemporaryMemoryBuffer = CONCAT31(SystemTemporaryMemoryBuffer.BitField3Struct.BitField3,*(ByteFlag *)(systemContext + 0x5c));
       StackFrameRegister = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                             (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
