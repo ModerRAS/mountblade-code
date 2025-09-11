@@ -34759,9 +34759,9 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *operationBase,int64_t *dataBuffer
   }
 SecurityCheckpointA:
   if ((int)systemDataBuffer == 0) {
-    UpdateSystemStateO0(operationBase,stackIndexBuffer[0]);
+    UpdateSystemStateO0(operationBase,stackIndexTrackingBuffer[0]);
     validationStatusPointer = (uint *)*operationBase;
-    while (0 < stackIndexBuffer[0]) {
+    while (0 < stackIndexTrackingBuffer[0]) {
       systemDataBuffer = OperateDataO0(dataBuffer,validationStatusPointer,4);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;

@@ -114,6 +114,9 @@ typedef enum {
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define FUN_18073fe4d ProcessUIDataSourceToTargetBuffer  // 处理UI数据源到目标缓冲区的数据传输
+#define FUN_18073fea5 ProcessUIDataValidationAndBufferControl  // 处理UI数据验证和缓冲区控制操作
+#define FUN_18073ff1d CleanupUIMemoryAndExecuteRender  // 清理UI内存资源并执行渲染任务
+#define FUN_18073ff3f ReleaseUIMemoryAndExecuteRender  // 释放UI内存资源并执行渲染任务
 #define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
 #define func_0x000180756330 ProcessUIDataSourceExtract // 处理UI数据源提取
 
@@ -135017,15 +135020,24 @@ void CleanupUIMemoryAndExecuteRender(void)
 
 
 
- void FUN_18073ff3f(void)
-void FUN_18073ff3f(void)
-
+ /**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务操作。
+ * 主要功能包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073ff3f
+ * @warning 包含非返回子程序调用，请谨慎使用
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 {
   ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&GlobalUIRenderBuffer);
 }
 
 
