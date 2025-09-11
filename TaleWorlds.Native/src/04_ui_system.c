@@ -132413,8 +132413,25 @@ ProcessUIRenderTask:
 
  
 
- void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 处理UI缓冲区数据加密操作
+ * 
+ * 该函数处理UI系统中的缓冲区数据加密操作，包括：
+ * - 资源管理和上下文初始化
+ * - 数据验证和缓冲区操作
+ * - 纹理数据处理
+ * - 异常处理和清理操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @note 原始函数名：FUN_18073e550
+ * @note 该函数包含XOR加密操作
+ */
+void ProcessUIBufferDataWithEncryption(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer)
 
 {
@@ -132465,8 +132482,27 @@ FUN_18073e6ce:
 
  
 
- void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 处理UI缓冲区数据加密高级操作
+ * 
+ * 该函数处理UI系统中的缓冲区数据加密高级操作，包括：
+ * - 上下文管理和资源分配
+ * - 寄存器保存和状态管理
+ * - 数据缓冲区处理
+ * - 事件处理和异常管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * @param param_7 长整型参数指针
+ * 
+ * @note 原始函数名：FUN_18073e56d
+ * @note 该函数是FUN_18073e550的高级版本，支持更多参数
+ */
+void ProcessUIBufferDataWithEncryptionAdvanced(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong *param_7)
 
 {
