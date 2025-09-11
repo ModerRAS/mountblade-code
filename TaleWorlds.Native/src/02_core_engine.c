@@ -248103,7 +248103,7 @@ LAB_1802016d3:
       }
 LAB_1802016f7:
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueDuovigintenary,pSystemStatusValue);
-      StringLength = FUN_180203500();
+      StringLength = ExecuteSystemMemoryValidation();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -248143,7 +248143,7 @@ LAB_1802016f7:
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueQuattuorvigintenary,pSystemStatusValue);
-      StringLength = FUN_1802034c0();
+      StringLength = ProcessSystemMemoryTransfer();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
@@ -248183,7 +248183,7 @@ LAB_1802016f7:
         }
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSexvigintenary,pSystemStatusValue);
-      StringLength = FUN_180203470();
+      StringLength = ValidateSystemMemoryTransfer();
       if (StringLength == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
       }
