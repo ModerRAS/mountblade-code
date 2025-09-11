@@ -2103,7 +2103,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackFloatValue14 fStackX_14                        // 栈浮点值14
 #define StackFloatValue10 fStackX_10                        // 栈浮点值10
 #define StackMatrixOperand fStack_4c                         // 栈浮点值4c
-#define StackUnsignedValueCC uStack_cc                      // 栈无符号值CC
+// 无符号栈变量
+#define UnsignedStackVariable uStack_cc
 #define StackProcessingValue9c uStack_9c                    // 栈处理值9c
 #define StackCharacterValueA4 StackCharacterValueA4         // 栈字符值A4
 #define StackUnsignedValueA0 CoreEngineUnsignedValueA0      // 栈无符号值A0
@@ -2206,13 +2207,16 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 系统栈变量语义化映射
 #define SystemStackUnsigned110 UnsignedStackValue110                  // 系统栈无符号110
-#define SystemStackArray158 auStack_158                     // 系统栈数组158
+// 系统栈数组副本
+#define SystemStackBufferCopy auStack_158
 // 系统事件配置索引值
 #define SystemEventConfigIndex uStack_158
 // 内存块偏移计算值
 #define MemoryBlockOffset uStack_25c
-#define SystemStackArray418 auStack_418                     // 系统栈数组418
-#define SystemStackPointer418 puStack_418                   // 系统栈指针418
+// 数据缓冲区副本
+#define DataBufferCopy auStack_418
+// 系统栈指针
+#define SystemStackPointer puStack_418
 #define SystemStackArray4d8 apuStack_4d8                    // 系统栈数组4d8
 #define SystemStackUnsigned4d8 uStack_4d8                   // 系统栈无符号4d8
 #define SystemStackUnsigned5a8 uStack_5a8                  // 系统栈无符号5a8
@@ -226317,20 +226321,25 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
 
 // 函数: void FUN_180187c00(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
- * @brief 处理上下文句柄和系统资源管理操作
+ * @brief UTF-16字符处理和内存块管理函数
  * 
- * 该函数负责处理上下文句柄、操作缓冲区大小和系统资源管理操作。
+ * 该函数负责处理UTF-16字符数据和内存块的分配与释放操作。
  * 主要功能包括：
- * - 处理上下文句柄的内存管理
- * - 管理系统资源的分配和释放
- * - 验证数据缓冲区的有效性
+ * - 验证和处理UTF-16字符代码
+ * - 计算内存块索引和搜索起始位置
+ * - 执行系统栈数据处理
+ * - 验证内存边界并释放内存块
+ * - 重置上下文句柄状态
  * 
- * @param ContextHandle 上下文句柄指针
- * @param OperationBufferSize 操作缓冲区大小
- * @param Utf8SourcePointer UTF-8源数据指针
- * @param Utf16EndPointer UTF-16结束指针
+ * @param SystemContextHandle 系统上下文句柄指针，包含内存管理信息
+ * @param MemoryOperationSize 内存操作大小参数
+ * @param Utf8SourceDataPointer UTF-8源数据指针
+ * @param Utf16EndDataPointer UTF-16结束数据指针
  * 
  * @note 原始函数名：FUN_180187c00
+ * @note 内存边界检查：0xfff(4095字节)和0x1f(31字节)
+ * @note 地址掩码：0xfffffffffffffffe
+ * @note 内存索引偏移：0x28(SystemContextMemoryIndexOffset)
  */
 #define ProcessContextHandleAndSystemResourceManagement FUN_180187c00
 /**
@@ -230656,17 +230665,20 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
 
 // 函数: void FUN_18018bd0d(uint32_t *ContextHandle)
 /**
- * @brief 处理系统句柄验证
+ * @brief 系统句柄验证和数据提取函数
  * 
- * 该函数负责处理系统句柄的验证操作，主要功能包括：
- * - 验证句柄的有效性和状态
- * - 处理字符编码和缓冲区管理
- * - 执行系统数据的完整性检查
- * - 返回验证结果状态
+ * 该函数负责验证系统句柄的有效性并从系统数据节点中提取UTF-16字符数据。
+ * 主要功能包括：
+ * - 验证句柄指针的有效性和内存边界
+ * - 从系统数据节点的多个偏移位置提取UTF-16字符
+ * - 管理系统上下文和内存分配
+ * - 处理缓冲区索引分配和数据复制
  * 
- * @param ContextHandle 要验证的句柄指针
+ * @param ContextHandle uint32_t指针，用于存储提取的UTF-16字符数据
  * 
  * @note 原始函数名：FUN_18018bd0d
+ * @note 系统数据节点偏移：0x20, 0x1c, 0x0c
+ * @note 内存边界检查：5字节
  */
 #define ProcessSystemHandleValidation FUN_18018bd0d
 void ProcessSystemHandleValidation(uint32_t *ContextHandle)
