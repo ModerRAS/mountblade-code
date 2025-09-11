@@ -236808,13 +236808,22 @@ void ReleaseSystemContextAndResources(void)
  * 该函数负责配置系统上下文句柄，包括缓冲区分配状态处理
  * 和系统事件处理。
  */
-void FUN_1801944b0(long long *ContextHandle)
+/**
+ * @brief 释放系统缓冲区资源
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * 该函数负责释放系统缓冲区资源，包括：
+ * 1. 遍历缓冲区分配状态
+ * 2. 调用资源释放回调函数
+ * 3. 处理系统事件清理
+ */
+void ReleaseSystemBufferResources(long long *ContextHandle)
 {
-  long long *ContextHandle;
+  long long *SystemContext;
   long long *BufferAllocationState;
   
-  ContextHandle = (long long *)ContextHandle[1];
-  for (BufferAllocationState = (long long *)*ContextHandle; BufferAllocationState != ContextHandle; BufferAllocationState = BufferAllocationState + 3) {
+  SystemContext = (long long *)ContextHandle[1];
+  for (BufferAllocationState = (long long *)*SystemContext; BufferAllocationState != SystemContext; BufferAllocationState = BufferAllocationState + 3) {
     if ((long long *)BufferAllocationState[1] != (long long *)0x0) {
       (**(code **)(*(long long *)BufferAllocationState[1] + 0x38))();
     }
@@ -236822,7 +236831,7 @@ void FUN_1801944b0(long long *ContextHandle)
       (**(code **)(*(long long *)*BufferAllocationState + 0x38))();
     }
   }
-  if (*ContextHandle == 0) {
+  if (*SystemContext == 0) {
     return;
   }
     ProcessSystemEventHandling();
@@ -236840,7 +236849,7 @@ void FUN_1801944b0(long long *ContextHandle)
  * 该函数负责处理系统有符号值，包括字符状态缓冲区、
  * 内存块索引和内存范围边界等操作。
  */
-void FUN_180194530(long long *ContextHandle, long long *ContextHandleSize)
+void ProcessSystemSignedValues(long long *ContextHandle, long long *ContextHandleSize)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
@@ -236949,7 +236958,7 @@ void ProcessSystemMemoryBlockRelease(long long *SystemContext)
       (**(code **)(**(long long **)(BufferStatus + 0x40) + 0x38))();
     }
     if (*(long long *)(BufferStatus + 0x20) != 0) break;
-    ProcessSystemMemoryBlockRelease((long long)BufferStatus);
+    CoreEngineProcessMemoryBlockRelease((long long)BufferStatus);
     BufferStatus = BufferStatus + 0x48;
   }
     ProcessSystemEventHandling();
@@ -236958,9 +236967,24 @@ void ProcessSystemMemoryBlockRelease(long long *SystemContext)
 
 
 
-void FUN_1801946e0(uint64_t *ContextHandle)
+/**
+ * @brief 处理系统上下文验证和内存管理
+ * 
+ * 该函数负责处理系统上下文的验证和内存管理操作，包括：
+ * - 验证系统上下文的完整性
+ * - 管理内存块的分配和释放
+ * - 处理系统状态和校验和
+ * - 执行相应的清理操作
+ * 
+ * @param SystemContext 系统上下文指针 - 包含系统状态和内存管理信息的上下文
+ * 
+ * @note 该函数会遍历所有相关的内存块和上下文结构
+ * @note 如果遇到错误状态会调用系统事件处理函数
+ * @note 原始函数名：FUN_1801946e0
+ */
+void ProcessSystemContextValidationAndMemoryManagement(uint64_t *SystemContext)
 {
-  long long *ContextHandle;
+  long long *ContextData;
   long long *BufferAllocationState;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -236974,10 +236998,10 @@ void FUN_1801946e0(uint64_t *ContextHandle)
   unsigned long long SystemStatusCode;
   
   ProcessedCharacter = 0;
-  *ContextHandle = 0;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  EncodingConversionResult = ContextHandle[3];
-  AllocatedMemorySize = ContextHandle[2];
+  *SystemContext = 0;
+  *(uint32_t *)(SystemContext + 1) = 0;
+  EncodingConversionResult = SystemContext[3];
+  AllocatedMemorySize = SystemContext[2];
   MemoryBlockIndex = EncodingConversionResult - AllocatedMemorySize >> 0x3f;
   OperationResult = ProcessedCharacter;
   SystemStatusCode = ProcessedCharacter;
@@ -236987,21 +237011,21 @@ void FUN_1801946e0(uint64_t *ContextHandle)
       SystemMemoryAllocationResult = ProcessedCharacter;
       if (*(long long *)(SystemStatusCode + 8 + AllocatedMemorySize) - *(long long *)(SystemStatusCode + AllocatedMemorySize) >> 3 != 0) {
         do {
-          ContextHandle = *(long long **)(SystemMemoryAllocationResult + *(long long *)(SystemStatusCode + AllocatedMemorySize));
+          ContextData = *(long long **)(SystemMemoryAllocationResult + *(long long *)(SystemStatusCode + AllocatedMemorySize));
           *(void *)(SystemMemoryAllocationResult + *(long long *)(SystemStatusCode + AllocatedMemorySize)) = 0;
-          if (ContextHandle != (long long *)0x0) {
-            (**(code **)(*ContextHandle + 0x38))();
+          if (ContextData != (long long *)0x0) {
+            (**(code **)(*ContextData + 0x38))();
           }
           SystemChecksum = (int)ProcessingStatusFlag + 1;
-          AllocatedMemorySize = ContextHandle[2];
+          AllocatedMemorySize = ContextData[2];
           ProcessingStatusFlag = (unsigned long long)SystemChecksum;
           SystemMemoryAllocationResult = SystemMemoryAllocationResult + 8;
         } while ((unsigned long long)(long long)(int)SystemChecksum <
                  (unsigned long long)(*(long long *)(SystemStatusCode + 8 + AllocatedMemorySize) - *(long long *)(SystemStatusCode + AllocatedMemorySize) >> 3                );
       }
-      ContextHandle = (long long *)(SystemStatusCode + AllocatedMemorySize);
-      BufferAllocationState = (long long *)ContextHandle[1];
-      SystemContextPtr = (long long *)*ContextHandle;
+      ContextData = (long long *)(SystemStatusCode + AllocatedMemorySize);
+      BufferAllocationState = (long long *)ContextData[1];
+      SystemContextPtr = (long long *)*ContextData;
       if (SystemContextPtr != BufferAllocationState) {
         do {
           if ((long long *)*SystemContextPtr != (long long *)0x0) {
@@ -237009,23 +237033,23 @@ void FUN_1801946e0(uint64_t *ContextHandle)
           }
           SystemContextPtr = SystemContextPtr + 1;
         } while (SystemContextPtr != BufferAllocationState);
-        SystemContextPtr = (long long *)*ContextHandle;
+        SystemContextPtr = (long long *)*ContextData;
       }
-      ContextHandle[1] = (long long)SystemContextPtr;
-      ContextHandle = *(long long **)(SystemStatusCode + 0x40 + ContextHandle[2]);
-      *(void *)(SystemStatusCode + 0x40 + ContextHandle[2]) = 0;
-      if (ContextHandle != (long long *)0x0) {
-        (**(code **)(*ContextHandle + 0x38))();
+      ContextData[1] = (long long)SystemContextPtr;
+      ContextData = *(long long **)(SystemStatusCode + 0x40 + ContextData[2]);
+      *(void *)(SystemStatusCode + 0x40 + ContextData[2]) = 0;
+      if (ContextData != (long long *)0x0) {
+        (**(code **)(*ContextData + 0x38))();
       }
       SystemChecksum = (int)OperationResult + 1;
-      EncodingConversionResult = ContextHandle[3];
-      AllocatedMemorySize = ContextHandle[2];
+      EncodingConversionResult = ContextData[3];
+      AllocatedMemorySize = ContextData[2];
       OperationResult = (unsigned long long)SystemChecksum;
       SystemStatusCode = SystemStatusCode + 0x48;
     } while ((unsigned long long)(long long)(int)SystemChecksum < (unsigned long long)((EncodingConversionResult - AllocatedMemorySize) / 0x48));
   }
   if (AllocatedMemorySize == EncodingConversionResult) {
-    ContextHandle[3] = AllocatedMemorySize;
+    SystemContext[3] = AllocatedMemorySize;
   }
   else {
     do {
@@ -237038,7 +237062,7 @@ void FUN_1801946e0(uint64_t *ContextHandle)
       ProcessSystemMemoryBlockRelease(AllocatedMemorySize);
       AllocatedMemorySize = AllocatedMemorySize + 0x48;
     } while (AllocatedMemorySize != EncodingConversionResult);
-    ContextHandle[3] = ContextHandle[2];
+    SystemContext[3] = SystemContext[2];
   }
   return;
 }
@@ -237052,16 +237076,27 @@ void FUN_1801946e0(uint64_t *ContextHandle)
  * 
  * 该函数负责处理系统上下文句柄的数据操作。
  */
-void FUN_1801948b0(long long *ContextHandle)
+/**
+ * @brief 处理系统上下文句柄数据
+ * 
+ * 该函数负责处理系统上下文句柄的数据操作，遍历句柄链表并执行相应的清理函数。
+ * 
+ * @param SystemContext 系统上下文指针 - 包含上下文句柄管理信息的系统上下文
+ * 
+ * @note 该函数会遍历所有上下文句柄并调用相应的处理函数
+ * @note 如果遇到错误状态会调用系统事件处理函数
+ * @note 原始函数名：FUN_1801948b0
+ */
+void ProcessSystemContextHandleData(long long *SystemContext)
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
+  long long *CharacterTablePointer;
+  long long *BufferStatus;
   
-  CharacterTablePointer = ContextHandle[1];
-  BufferStatus = *ContextHandle;
+  CharacterTablePointer = (long long *)SystemContext[1];
+  BufferStatus = (long long *)*SystemContext;
   while( true ) {
     if (BufferStatus == CharacterTablePointer) {
-      if (*ContextHandle == 0) {
+      if (*SystemContext == 0) {
         return;
       }
         ProcessSystemEventHandling();
@@ -237070,7 +237105,7 @@ void FUN_1801948b0(long long *ContextHandle)
       (**(code **)(**(long long **)(BufferStatus + 0x40) + 0x38))();
     }
     if (*(long long *)(BufferStatus + 0x20) != 0) break;
-    ProcessSystemMemoryBlockRelease(BufferStatus);
+    CoreEngineProcessMemoryBlockRelease((long long)BufferStatus);
     BufferStatus = BufferStatus + 0x48;
   }
     ProcessSystemEventHandling();
