@@ -156,6 +156,7 @@
 // 系统事件处理函数语义化宏定义
 #define FUN_180623fd0 HandleSystemEventProcessing                        // 处理系统事件处理
 #define FUN_1803ba550 ConfigureStringProcessingParameters                 // 配置字符串处理参数
+#define FUN_1803bb5f0 ProcessSystemBufferOperation                        // 处理系统缓冲区操作
 
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符

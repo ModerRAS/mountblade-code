@@ -1214,6 +1214,7 @@ typedef union {
 #define ValidationStatusIncrement 0x10
 #define DestinationContextOffsetC0 0xc0
 #define SystemDataPointerOffset48 0x48
+#define SystemDataPointerOffset44 0x44
 #define SystemDataPointerOffset40 0x40
 #define ExceptionHandlerDataPointerOffset68 0x68
 #define ExceptionHandlerDataPointerOffsetC4 0xc4
@@ -143886,25 +143887,25 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SetSystemWorkerThreadPriority FUN_18090a130         // 设置系统工作线程优先级 - 设置系统工作线程的优先级
 
 // 系统异常处理函数
-#define FUN_18090a140 HandleSystemException                // 处理系统异常 - 处理系统的异常情况
-#define FUN_18090a150 LogSystemException                   // 记录系统异常 - 记录系统的异常信息
-#define FUN_18090a160 RecoverSystemFromException           // 从异常中恢复系统 - 从异常情况中恢复系统
-#define FUN_18090a170 ValidateSystemExceptionHandling      // 验证系统异常处理 - 验证系统异常处理的正确性
-#define FUN_18090a180 ConfigureSystemExceptionHandler      // 配置系统异常处理器 - 配置系统的异常处理器
+#define HandleSystemException FUN_18090a140                // 处理系统异常 - 处理系统的异常情况
+#define LogSystemException FUN_18090a150                   // 记录系统异常 - 记录系统的异常信息
+#define RecoverSystemFromException FUN_18090a160           // 从异常中恢复系统 - 从异常情况中恢复系统
+#define ValidateSystemExceptionHandling FUN_18090a170       // 验证系统异常处理 - 验证系统异常处理的正确性
+#define ConfigureSystemExceptionHandler FUN_18090a180       // 配置系统异常处理器 - 配置系统的异常处理器
 
 // 系统配置管理函数
-#define FUN_18090a190 LoadSystemConfiguration              // 加载系统配置 - 加载系统的配置信息
-#define FUN_18090a1a0 SaveSystemConfiguration              // 保存系统配置 - 保存系统的配置信息
-#define FUN_18090a1b0 ValidateSystemConfiguration          // 验证系统配置 - 验证系统配置的正确性
-#define FUN_18090a1c0 ApplySystemConfiguration             // 应用系统配置 - 应用系统的配置信息
-#define FUN_18090a1d0 ResetSystemConfiguration              // 重置系统配置 - 重置系统的配置信息
+#define LoadSystemConfiguration FUN_18090a190               // 加载系统配置 - 加载系统的配置信息
+#define SaveSystemConfiguration FUN_18090a1a0               // 保存系统配置 - 保存系统的配置信息
+#define ValidateSystemConfiguration FUN_18090a1b0           // 验证系统配置 - 验证系统配置的正确性
+#define ApplySystemConfiguration FUN_18090a1c0              // 应用系统配置 - 应用系统的配置信息
+#define ResetSystemConfiguration FUN_18090a1d0              // 重置系统配置 - 重置系统的配置信息
 
 // 系统性能监控函数
-#define FUN_18090a1e0 StartSystemPerformanceMonitoring     // 开始系统性能监控 - 开始监控系统的性能
-#define FUN_18090a1f0 StopSystemPerformanceMonitoring      // 停止系统性能监控 - 停止监控系统的性能
-#define FUN_18090a200 CollectSystemPerformanceMetrics      // 收集系统性能指标 - 收集系统的性能指标
-#define FUN_18090a210 AnalyzeSystemPerformanceData         // 分析系统性能数据 - 分析系统的性能数据
-#define FUN_18090a220 GenerateSystemPerformanceReport     // 生成系统性能报告 - 生成系统的性能报告
+#define StartSystemPerformanceMonitoring FUN_18090a1e0     // 开始系统性能监控 - 开始监控系统的性能
+#define StopSystemPerformanceMonitoring FUN_18090a1f0      // 停止系统性能监控 - 停止监控系统的性能
+#define CollectSystemPerformanceMetrics FUN_18090a200      // 收集系统性能指标 - 收集系统的性能指标
+#define AnalyzeSystemPerformanceData FUN_18090a210         // 分析系统性能数据 - 分析系统的性能数据
+#define GenerateSystemPerformanceReport FUN_18090a220     // 生成系统性能报告 - 生成系统的性能报告
 
 // 系统资源清理函数
 #define FUN_180044a30 CleanupSystemDataResources           // 清理系统数据资源 - 清理系统中的数据资源
