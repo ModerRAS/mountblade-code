@@ -15522,7 +15522,7 @@ void InitializeCoreEngineDataStructure(void) {
   // 遍历系统节点链表，查找合适的插入位置
   while (SystemNodeInitializedFlag == '\0') {
     // 比较节点数据以确定插入位置
-    DataNodeComparisonResult = memcmp(SystemSearchNode + SystemNodeHeaderSize, &SystemComparisonDataPrimary, SystemDataStructureSize);
+    DataComparisonResult = memcmp(SystemSearchNode + SystemNodeHeaderSize, &SystemComparisonDataPrimary, SystemDataStructureSize);
     if (DataComparisonResult < 0) {
       // 向左子树移动
       SystemNextNodeInChain = (void *)SystemSearchNode[2];
@@ -242671,7 +242671,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
       (cStack_308 = '\x01', *(long long **)(OperationBufferSize[0x6b0] + 0x588) != ContextHandle)))) {
     cStack_308 = '\0';
   }
-  FUN_1801b65d0(ContextHandle,OperationBufferSize);
+  ConfigureSystemDataValidation(ContextHandle,OperationBufferSize);
   SystemValidationChar = ProcessSystemCharacterValidation(OperationBufferSize[0x6b0] + 0x560,ContextHandle);
   if (SystemValidationChar != '\0') {
     *(uint32_t *)(OperationBufferSize[0x6b0] + 0x5e4) = 0xffffffff;
@@ -242735,11 +242735,11 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
       HighByte4 = (byte)(int)OperationBufferSize[3];
     }
     *(byte *)((long long)OperationBufferSize + 0x1c62) = HighByte4 & 1;
-    SystemStatusCode = FUN_18024c420(OperationBufferSize);
+    SystemStatusCode = ValidateMemoryBlock(OperationBufferSize);
     *(uint32_t *)((long long)OperationBufferSize + 0x1c64) = SystemStatusCode;
   }
   else {
-    FUN_180304010(OperationBufferSize[0x6b0]);
+    ProcessSystemBufferDataValidation(OperationBufferSize[0x6b0]);
   }
   pContextHandle3 = (long long **)MemoryAllocate(MemoryPoolManager,0xd0,8,3);
   ProcessingFlags0 = pContextHandle3;
@@ -242791,7 +242791,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
           *(float *)(SystemDataRegistry + 0x11ccc) = SystemContextPrimaryFloat * *(float *)(MemoryBufferC + 4);
           *(float *)(SystemDataRegistry + 0x11cd0) = SystemContextPrimaryFloat * ContextSecondaryFloat;
         }
-        FUN_180304010(OperationBufferSize[0x6b0],*(void *)(SystemEventFlag0 + BufferIndex * 8));
+        ProcessSystemBufferDataValidation(OperationBufferSize[0x6b0],*(void *)(SystemEventFlag0 + BufferIndex * 8));
         MemoryBufferC = *(long long *)(BufferStatus5 + BufferIndex * 8);
         LOCK();
         ContextHandleData = OperationBufferSize + 0x2349;
@@ -243042,7 +243042,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
         HighByte4 = (byte)*(uint32_t *)(BufferIndex + 0x18);
       }
       *(byte *)(BufferIndex + 0x1c62) = HighByte4 & 1;
-      SystemStatusCode = FUN_18024c420(BufferIndex);
+      SystemStatusCode = ValidateMemoryBlock(BufferIndex);
       *(uint32_t *)(BufferIndex + 0x1c64) = SystemStatusCode;
       MemoryAllocationHandle = MemoryAllocationHandle + 1;
       MemoryBufferC = MemoryBufferC + 8;
