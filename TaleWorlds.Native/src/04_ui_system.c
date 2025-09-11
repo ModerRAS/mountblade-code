@@ -132055,8 +132055,23 @@ void ProcessUISystemCleanup(void)
 
 
 
- void FUN_18073e24b(UIHandle uiContext)
-void FUN_18073e24b(UIHandle uiContext)
+ /**
+ * @brief 处理带数据源的UI上下文
+ * 
+ * 该函数负责处理UI上下文的清理操作，包括：
+ * - 执行UI系统清理
+ * - 释放上下文资源
+ * - 管理数据源的清理
+ * 
+ * @param uiContext UI上下文句柄，用于标识要清理的UI上下文
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e24b
+ * @note 该函数主要处理UI上下文的清理和资源释放
+ * @see ProcessUISystemCleanup
+ */
+void ProcessUIContextWithDataSource(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
