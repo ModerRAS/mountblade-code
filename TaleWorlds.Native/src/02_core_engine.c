@@ -27621,17 +27621,34 @@ ValidateDataLinkNode:
 
 
 
+/**
+ * @brief 处理系统数据节点
+ * 
+ * 该函数负责处理系统数据节点的初始化和内存管理。
+ * 它会按照特定的顺序设置数据节点模板，并根据处理标志
+ * 决定是否释放相关内存。
+ * 
+ * @param DataNode 数据节点指针的引用，用于存储处理后的数据节点
+ * @param ProcessingFlags 处理标志位，控制处理行为
+ * @param MemorySize 分配的内存大小
+ * @param Flags 分配标志位
+ * @return uint64_t* 返回处理后的数据节点指针
+ * 
+ * @note 函数会依次设置D、C、B、A四个数据模板
+ * @note 当ProcessingFlags的第0位为1时，会释放内存
+ * @note 内存释放大小为0x28字节
+ */
 uint64_t *
-CoreEngineProcessDataNode(uint64_t *SystemDataNode,unsigned long long ProcessingFlags,uint64_t AllocatedMemorySize,uint64_t AllocationFlags
+CoreEngineProcessDataNode(uint64_t *DataNode,unsigned long long ProcessingFlags,uint64_t MemorySize,uint64_t Flags
 {
-  *SystemDataNode = &DataNodeTemplateD;
-  *SystemDataNode = &DataNodeTemplateC;
-  *SystemDataNode = &DataNodeTemplateB;
-  *SystemDataNode = &DataNodeTemplateA;
+  *DataNode = &DataNodeTemplateD;
+  *DataNode = &DataNodeTemplateC;
+  *DataNode = &DataNodeTemplateB;
+  *DataNode = &DataNodeTemplateA;
   if ((ProcessingFlags & 1) != 0) {
-    free(SystemDataNode,0x28,AllocatedMemorySize,AllocationFlags,0xfffffffffffffffe);
+    free(DataNode,0x28,MemorySize,Flags,0xfffffffffffffffe);
   }
-  return SystemDataNode;
+  return DataNode;
 }
 
 
