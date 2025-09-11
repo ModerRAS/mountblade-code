@@ -221879,10 +221879,10 @@ void ProcessUtf8ToUtf16CharacterConversion(uint64_t ContextHandle, uint64_t Oper
   *(void *)(PrimaryProcessingStatusFlag + 3) = 0;
   *(void *)(PrimaryProcessingStatusFlag + 6) = 0;
   *(void *)(PrimaryProcessingStatusFlag + 8) = 0;
-  if (cStack0000000000000060 != '\0') {
-    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)uStack0000000000000064 * 8 + 8,8,
+  if (CharacterValidationFlag != '\0') {
+    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)UnicodeCodePointSize * 8 + 8,8,
                           *(uint8_t *)(SystemDataNode + 0x2c));
-      memset(UnicodeCodePoint,0,(unsigned long long)uStack0000000000000064 * 8);
+      memset(UnicodeCodePoint,0,(unsigned long long)UnicodeCodePointSize * 8);
   }
   *(void *)(PrimaryProcessingStatusFlag + 8) = *(void *)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8);
   *(uint32_t **)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8) = PrimaryProcessingStatusFlag;
@@ -241193,7 +241193,7 @@ long long * ProcessSystemMemoryBlockAndContextData(uint64_t ContextHandle,long l
     *ContextHandleSize = (long long)MemoryBlockIndex;
   }
   else {
-    FUN_1801a0860(ContextHandle,&SystemEventFlagPointer);
+    ProcessSystemEventConfiguration(ContextHandle,&SystemEventFlagPointer);
     MemoryPoolIndex = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
     MemoryBlockIndex = (long long *)InitializeSystemMemoryPool(MemoryPoolIndex);
     if (MemoryBlockIndex != (long long *)0x0) {
@@ -241211,10 +241211,10 @@ long long * ProcessSystemMemoryBlockAndContextData(uint64_t ContextHandle,long l
     if (SystemEventFlagPointer != (long long *)0x0) {
       (**(code **)(*SystemEventFlagPointer + 0x28))();
     }
-    FUN_180275cf0(LoopCounter,0,&StackProcessingBuffer,1);
+    ProcessSystemBufferEncoding(LoopCounter,0,&StackProcessingBuffer,1);
     (**(code **)(*(long long *)*ContextHandleSize + 0x100))((long long *)*ContextHandleSize,0);
     (**(code **)(*(long long *)(*ContextHandleSize + 0x1f0) + 0x10)              ((long long *)(*ContextHandleSize + 0x1f0),&SystemEventTemplateQuinary);
-    FUN_180276f30(*ContextHandleSize,*ContextHandleSize + 0x214,1);
+    ProcessSystemContextTransfer(*ContextHandleSize,*ContextHandleSize + 0x214,1);
     (**(code **)(*(long long *)*ContextHandleSize + 0x148))((long long *)*ContextHandleSize,&SystemDataTemplate); /* 系统数据模板 - 用于数据结构初始化 */
   }
   if (SystemEventFlagPointer != (long long *)0x0) {
