@@ -195880,42 +195880,56 @@ void RenderUIComponentEx;
 // UI系统组件状态管理函数
 #define FUN_180876fb0 ManageUIComponentStateEx
 void ManageUIComponentStateEx;
-undefined UIUnknownSystemData;
-undefined UIUnknownDataPointer;
-undefined UIUnknownDataArray1;
-undefined UIUnknownDataArray2;
-undefined UIUnknownDataArray3;
-undefined UIUnknownDataArray4;
-undefined UNK_180873e6c;
-undefined UNK_180873e74;
-undefined UNK_180873e7c;
-undefined UNK_180873e84;
-undefined UIUnknownDataArray9;
-undefined UIUnknownDataArray10;
-undefined UNK_180873eac;
-undefined UNK_180873eb4;
-undefined UNK_180985548;
-undefined UNK_180985578;
-undefined UNK_1809855a0;
-undefined UNK_1809855d0;
-undefined UNK_180985620;
-undefined UNK_180985648;
-undefined UNK_1809856c8;
-undefined UNK_1809856f0;
-undefined UNK_180985f78;
-undefined DAT_180c4eaf8;
-undefined UNK_180985a80;
-UIDword UNK_180c4eafc;
-UIDword UNK_180c4eb00;
-UIDword UNK_180c4eb04;
-undefined UNK_180985f90;
-undefined UNK_180986010;
-undefined UNK_180986090;
-undefined UNK_180986190;
-undefined UNK_180986208;
-undefined UNK_180986108;
-undefined UNK_18088d500;
-undefined UNK_180986170;
+// UI系统未知数据语义化定义
+UIHandle UIUnknownSystemData;                  // UI系统未知数据 - 用于系统内部数据存储
+UIPointer UIUnknownDataPointer;               // UI未知数据指针 - 指向未知数据的指针
+UIHandle UIUnknownDataArray1[4];              // UI未知数据数组1 - 用于批量数据存储
+UIHandle UIUnknownDataArray2[4];              // UI未知数据数组2 - 用于批量数据存储
+UIHandle UIUnknownDataArray3[4];              // UI未知数据数组3 - 用于批量数据存储
+UIHandle UIUnknownDataArray4[4];              // UI未知数据数组4 - 用于批量数据存储
+
+// UI系统内部状态数据
+UIHandle UIInternalStateData1;                // UI内部状态数据1 - 系统状态管理
+UIHandle UIInternalStateData2;                // UI内部状态数据2 - 系统状态管理
+UIHandle UIInternalStateData3;                // UI内部状态数据3 - 系统状态管理
+UIHandle UIInternalStateData4;                // UI内部状态数据4 - 系统状态管理
+UIHandle UIUnknownDataArray9[4];              // UI未知数据数组9 - 扩展数据存储
+UIHandle UIUnknownDataArray10[4];             // UI未知数据数组10 - 扩展数据存储
+
+// UI系统渲染资源数据
+UIHandle UIRenderResourceData1;               // UI渲染资源数据1 - 渲染资源管理
+UIHandle UIRenderResourceData2;               // UI渲染资源数据2 - 渲染资源管理
+UIHandle UIUnknownDataArray13[4];             // UI未知数据数组13 - 渲染相关数据
+UIHandle UIUnknownDataArray14[4];             // UI未知数据数组14 - 渲染相关数据
+UIHandle UIUnknownDataArray15[4];             // UI未知数据数组15 - 渲染相关数据
+UIHandle UIUnknownDataArray16[4];             // UI未知数据数组16 - 渲染相关数据
+UIHandle UIUnknownDataArray17[4];             // UI未知数据数组17 - 渲染相关数据
+UIHandle UIUnknownDataArray18[4];             // UI未知数据数组18 - 渲染相关数据
+UIHandle UIUnknownDataArray19[4];             // UI未知数据数组19 - 渲染相关数据
+UIHandle UIUnknownDataArray20[4];             // UI未知数据数组20 - 渲染相关数据
+UIHandle UIUnknownDataArray21[4];             // UI未知数据数组21 - 渲染相关数据
+UIHandle UIUnknownDataArray22[4];             // UI未知数据数组22 - 渲染相关数据
+UIHandle UIUnknownDataArray23[4];             // UI未知数据数组23 - 渲染相关数据
+UIHandle UIUnknownDataArray24[4];             // UI未知数据数组24 - 渲染相关数据
+UIHandle UIUnknownDataArray25[4];             // UI未知数据数组25 - 渲染相关数据
+UIHandle UIUnknownDataArray26[4];             // UI未知数据数组26 - 渲染相关数据
+UIHandle UIUnknownDataArray27[4];             // UI未知数据数组27 - 渲染相关数据
+UIHandle UIUnknownDataArray28[4];             // UI未知数据数组28 - 渲染相关数据
+
+// UI系统配置数据
+UIDword UIConfigurationData1;                  // UI配置数据1 - 系统配置参数
+UIDword UIConfigurationData2;                  // UI配置数据2 - 系统配置参数
+UIDword UIConfigurationData3;                  // UI配置数据3 - 系统配置参数
+
+// UI系统未知指针数据
+UIHandle UIUnknownPointerData1;               // UI未知指针数据1 - 指针型数据
+UIHandle UIUnknownPointerData2;               // UI未知指针数据2 - 指针型数据
+UIHandle UIUnknownPointerData3;               // UI未知指针数据3 - 指针型数据
+UIHandle UIUnknownPointerData4;               // UI未知指针数据4 - 指针型数据
+UIHandle UIUnknownPointerData5;               // UI未知指针数据5 - 指针型数据
+UIHandle UIUnknownPointerData6;               // UI未知指针数据6 - 指针型数据
+UIHandle UIUnknownPointerData7;               // UI未知指针数据7 - 指针型数据
+UIHandle UIUnknownPointerData8;               // UI未知指针数据8 - 指针型数据
 
  /**
  * @brief UI系统初始化器
