@@ -30158,7 +30158,7 @@ MemoryAllocationLabel:
         resourceIterator = resourceIterator + -1;
       } while (-1 < resourceIterator);
     }
-    validationParameter1 = arrayIndex;
+    arrayValidationParameter = arrayIndex;
     if (arrayIndex < 0) {
       arrayIterationIndex = -arrayIndex;
     }
