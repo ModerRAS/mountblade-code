@@ -141132,56 +141132,56 @@ ulonglong ProcessUIContextDataOperationAndInitialization(UIDword uiContext, UIDw
     if (memoryContextHandle == 0) {
       return 0x26;
     }
-    if ((preservedRegister15D & 0x10000800) == 0) {
-      if (preservedRegister12 != 0) {
-        sourceDataInt = func_0x00018076b690();
-        eventStatus = FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),sourceDataInt + 1,&UIContextDataController000,0xf97
+    if ((operationFlags & 0x10000800) == 0) {
+      if (registerPreservedData != 0) {
+        sourceDataIndex = func_0x00018076b690();
+        uiEventStatus = FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),sourceDataIndex + 1,&UIContextDataController000,0xf97
                               ,0);
-        *(UIHandle *)componentData[0x21] = eventStatus;
+        *(UIHandle *)uiComponentData[0x21] = uiEventStatus;
                      WARNING: Subroutine does not return
-        memcpy(*(UIHandle *)componentData[0x21]);
+        memcpy(*(UIHandle *)uiComponentData[0x21]);
       }
     }
     else {
-      *(longlong *)(contextDataHandle + 0x30) = preservedRegister12;
+      *(longlong *)(memoryContextHandle + 0x30) = registerPreservedData;
     }
-    *(UIDword *)(componentData[0x21] + 8) = *(UIDword *)(uiContextBasePointer + 0x11934);
-    *(UIDword *)(componentData[0x21] + 0xc) = *(UIDword *)(uiContextBasePointer + 0x11938);
-    *(uint *)((longlong)componentData + 0x2c) = preservedRegister15D;
-    componentData[0x1b] = uiContextBasePointer;
+    *(UIDword *)(uiComponentData[0x21] + 8) = *(UIDword *)(contextBasePointer + 0x11934);
+    *(UIDword *)(uiComponentData[0x21] + 0xc) = *(UIDword *)(contextBasePointer + 0x11938);
+    *(uint *)((longlong)uiComponentData + 0x2c) = operationFlags;
+    uiComponentData[0x1b] = contextBasePointer;
     LOCK();
-    *(UIDword *)(componentData + 0x22) = 1;
+    *(UIDword *)(uiComponentData + 0x22) = 1;
     UNLOCK();
     if (uiTargetHandle == (UIHandle *)0x0) {
-      contextDataHandle = 0;
+      memoryContextHandle = 0;
     }
     else {
-      contextDataHandle = uiTargetHandle[0xd];
+      memoryContextHandle = uiTargetHandle[0xd];
     }
-    componentData[0x19] = contextDataHandle;
-    contextDataHandle = componentData[0x21];
+    uiComponentData[0x19] = memoryContextHandle;
+    memoryContextHandle = uiComponentData[0x21];
     if (uiTargetHandle == (UIHandle *)0x0) {
-      *(UIByte *)(contextDataHandle + 0x118) = 0;
+      *(UIByte *)(memoryContextHandle + 0x118) = 0;
     }
     else {
-      eventStatus = uiTargetHandle[1];
-      *(UIHandle *)(contextDataHandle + 0x38) = *uiTargetHandle;
-      *(UIHandle *)(contextDataHandle + 0x40) = eventStatus;
-      eventStatus = uiTargetHandle[3];
-      *(UIHandle *)(contextDataHandle + 0x48) = uiTargetHandle[2];
-      *(UIHandle *)(contextDataHandle + 0x50) = eventStatus;
-      eventStatus = uiTargetHandle[5];
-      *(UIHandle *)(contextDataHandle + 0x58) = uiTargetHandle[4];
-      *(UIHandle *)(contextDataHandle + 0x60) = eventStatus;
-      eventStatus = uiTargetHandle[7];
-      *(UIHandle *)(contextDataHandle + 0x68) = uiTargetHandle[6];
-      *(UIHandle *)(contextDataHandle + 0x70) = eventStatus;
-      eventStatus = uiTargetHandle[9];
-      *(UIHandle *)(contextDataHandle + 0x78) = uiTargetHandle[8];
-      *(UIHandle *)(contextDataHandle + 0x80) = eventStatus;
-      eventStatus = uiTargetHandle[0xb];
-      *(UIHandle *)(contextDataHandle + 0x88) = uiTargetHandle[10];
-      *(UIHandle *)(contextDataHandle + 0x90) = eventStatus;
+      uiEventStatus = uiTargetHandle[1];
+      *(UIHandle *)(memoryContextHandle + 0x38) = *uiTargetHandle;
+      *(UIHandle *)(memoryContextHandle + 0x40) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[3];
+      *(UIHandle *)(memoryContextHandle + 0x48) = uiTargetHandle[2];
+      *(UIHandle *)(memoryContextHandle + 0x50) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[5];
+      *(UIHandle *)(memoryContextHandle + 0x58) = uiTargetHandle[4];
+      *(UIHandle *)(memoryContextHandle + 0x60) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[7];
+      *(UIHandle *)(memoryContextHandle + 0x68) = uiTargetHandle[6];
+      *(UIHandle *)(memoryContextHandle + 0x70) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[9];
+      *(UIHandle *)(memoryContextHandle + 0x78) = uiTargetHandle[8];
+      *(UIHandle *)(memoryContextHandle + 0x80) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0xb];
+      *(UIHandle *)(memoryContextHandle + 0x88) = uiTargetHandle[10];
+      *(UIHandle *)(memoryContextHandle + 0x90) = uiEventStatus;
       eventStatus = uiTargetHandle[0xd];
       *(UIHandle *)(contextDataHandle + 0x98) = uiTargetHandle[0xc];
       *(UIHandle *)(contextDataHandle + 0xa0) = eventStatus;
