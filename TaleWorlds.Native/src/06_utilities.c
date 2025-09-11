@@ -21775,8 +21775,8 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + systemContextConversionOffset),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
-    DataCount = *(int *)(contextHandle + SystemDataCountOffset);
-    if ((0 < DataCount) && (*(uint *)(contextHandle + resourceDescriptorValidationOffset) < 2)) {
+    dataItemCount = *(int *)(contextHandle + SystemDataCountOffset);
+    if ((0 < dataItemCount) && (*(uint *)(contextHandle + resourceDescriptorValidationOffset) < 2)) {
       dataPointer = 0;
       if (*(uint *)(contextHandle + resourceDescriptorValidationOffset) == 0) {
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
