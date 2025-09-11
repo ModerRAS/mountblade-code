@@ -39276,8 +39276,8 @@ void ProcessContextHandle(long long *ContextHandle
                    (unsigned long long)(*(long long *)(SystemStackOffset310 + 200) - CharacterTablePointer >> 3));
         }
         if (!HighByte6) {
-          ArraySize = ProcessMemoryAllocation(&MemoryCopyBuffer,ppppppConfigurationString + 8);
-          CoreEngineFinalizeSystemEvent(&ContextHandle,ArraySize);
+          DataArraySize = ProcessMemoryAllocation(&MemoryCopyBuffer,ppppppConfigurationString + 8);
+          CoreEngineFinalizeSystemEvent(&ContextHandle,DataArraySize);
           MemoryCopyBuffer = &ThreadLocalStorageTemplate;
           pppppCharacterStatusBuffer9 = (uint64_t ******)&CoreEngineDataTemplate;
           if (ppppppConfigurationString[5] != (uint64_t ******)0x0) {
