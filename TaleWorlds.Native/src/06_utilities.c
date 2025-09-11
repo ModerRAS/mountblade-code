@@ -5072,8 +5072,27 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 内存分配处理函数
+ * 
+ * 该函数为系统分配内存池，提供高效的内存管理和分配机制。它支持多种内存分配策略，
+ * 包括固定大小分配、动态扩展分配和内存池管理等，以满足不同场景下的内存需求。
+ * 
+ * @param poolSize 内存池的大小（字节）
+ * @param allocationFlags 分配标志位，指定分配类型和属性
+ * @param alignmentRequirement 内存对齐要求（字节）
+ * @param memoryAttributes 内存属性标志，设置内存的访问权限和缓存策略
+ * @return void* 分配的内存池指针，失败时返回NULL
+ * 
+ * @details 内存分配特性：
+ * - 支持固定大小和可变大小分配
+ * - 提供内存对齐和填充控制
+ * - 支持内存保护机制
+ * - 包含内存使用统计和监控
+ * - 支持内存压缩和优化
+ * 
  * @note 原始函数名：AllocateMemory
- * 功能：为系统分配内存池
+ * @see FreeSystemMemoryPool, ReallocateMemoryPool, GetMemoryPoolStatistics
+ * @warning 内存分配失败可能导致系统功能受限，应检查返回值
+ * @note 分配的内存必须在使用完毕后通过FreeSystemMemoryPool释放
  */
 #define AllocateSystemMemoryPool AllocateSystemMemoryPool
 
