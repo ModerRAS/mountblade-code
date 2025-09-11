@@ -27738,16 +27738,16 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
     StackProcessingStatusFlag = EngineContext;
     (**(code **)(*EngineContext + 0x28))(EngineContext);
     (*CallbackHandler)(SystemContext,&StackProcessingStatusFlag);
-    (**(code **)(*SystemInfoEngineContext + 0x38))(SystemInfoEngineContext);
+    (**(code **)(*EngineContext + 0x38))(EngineContext);
     CoreEngineConfigureSystemSettings();
-    SystemInfoSecurityContext = &SystemNullTemplate;
-    SystemInfoProcessIdentifier = 0;
-    SystemInfoSecurityContext = NULL;
-    SystemInfoThreadPriority = 0;
-    SystemInfoExecutionContext = &SystemNullTemplate;
-    SystemInfoProcessIdentifier = 0;
-    SystemInfoMemoryContext = NULL;
-    SystemInfoOperationStatus = 0;
+    SecurityContext = &SystemNullTemplate;
+    ProcessIdentifier = 0;
+    SecurityContext = NULL;
+    ThreadPriority = 0;
+    ExecutionContext = &SystemNullTemplate;
+    ProcessIdentifier = 0;
+    MemoryContext = NULL;
+    OperationStatus = 0;
     SystemInfoStackProcessingStatusFlag = (int64_t *)CONCAT44(SystemInfoStackProcessingStatusFlag.HighPart,0x10);
     SystemInfoValidationStatus = GetComputerNameA(SystemInfoApplicationHandle,&SystemInfoStackProcessingStatusFlag);
     if (SystemInfoValidationStatus == 0) {
