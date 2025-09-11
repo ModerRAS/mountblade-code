@@ -224047,26 +224047,26 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
-  uint8_t SystemFlagH [32];
-  long long **pSystemContextPointerA8;
-  uint64_t CoreEngineUnsignedValueA0;
-  uint64_t *pSystemOperationValidationFlag;
-  uint8_t SystemOperationStatusMask [16];
-  uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
-  long long *CoreEngineSignedValue70;
-  uint64_t StackProcessingValue;
-  void *EncodingBuffer;
-  long long SystemStackRegisterValue58;
-  uint64_t SystemKeyPointer;
-  unsigned long long SystemStackFlag;
-  void **ppStackValidationFlag;
-  unsigned long long ProcessingCounter;
+  uint8_t SystemOperationFlags [32];
+  long long **pSystemContextHandle;
+  uint64_t SystemValidationFlag;
+  uint64_t *pSystemValidationFlagPointer;
+  uint8_t SystemStatusBuffer [16];
+  uint64_t FunctionAddressPointer;
+  uint64_t StackProcessingValueA;
+  long long *SystemContextHandle;
+  uint64_t StackProcessingValueB;
+  void *SystemEncodingBuffer;
+  long long SystemStackRegister;
+  uint64_t SystemEncryptionKey;
+  unsigned long long SystemStackStatusFlag;
+  void **ppStackValidationFlagPointer;
+  unsigned long long SystemProcessingCounter;
   
   BufferStatus = SystemBufferStatusA;
-  CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  ProcessingCounter = EncodingDecodingKey ^ (unsigned long long)SystemFlagH;
-  pSystemOperationValidationFlag = OperationBufferSize;
+  SystemValidationFlag = 0xfffffffffffffffe;
+  SystemProcessingCounter = EncodingDecodingKey ^ (unsigned long long)SystemOperationFlags;
+  pSystemValidationFlagPointer = OperationBufferSize;
   if (*(long long *)(SystemBufferStatusA + 8) == 0) {
     *ContextHandleSize = &SystemNullTemplate;
     if (OperationBufferSize[1] != 0) {
@@ -224076,13 +224076,13 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
     *(uint32_t *)(OperationBufferSize + 3) = 0;
   }
   else {
-    CalculationFunctionAddress = 0;
-    StackProcessingValue78 = 0xf;
-    SystemOperationStatusMask[0] = 0;
-    pSystemContextPointerA8 = &CoreEngineSignedValue70;
-    CoreEngineSignedValue70 = (long long *)0x0;
-    StackProcessingValue = 0;
-    CoreEngineSignedValue70 = (long long *)GetSystemMemoryHandle();
+    FunctionAddressPointer = 0;
+    StackProcessingValueA = 0xf;
+    SystemStatusBuffer[0] = 0;
+    pSystemContextHandle = &SystemContextHandle;
+    SystemContextHandle = (long long *)0x0;
+    StackProcessingValueB = 0;
+    SystemContextHandle = (long long *)GetSystemMemoryHandle();
     MemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if ((void *)OperationBufferSize[1] != NULL) {
       MemoryAddressMaskPointer = (void *)OperationBufferSize[1];
