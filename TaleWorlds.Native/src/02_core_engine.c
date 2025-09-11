@@ -19339,7 +19339,7 @@ void CoreEngineInitializeAnimationManager(void
  * 该函数负责初始化核心引擎的UI管理器，设置用户界面和交互的
  * 基本配置。用于管理引擎的UI系统。
  */
-void CoreEngineInitializeUIManager(void
+void CoreEngineInitializeUIManager(void)
 {
   char LockOperationResult;
   void **ContextHandle;
@@ -19359,7 +19359,7 @@ void CoreEngineInitializeUIManager(void
   PreviousNodePointer = ContextHandle;
   CurrentNodePointer = (void **)ContextHandle[1];
   while (LockOperationResult == '\0') {
-    MemoryNodeComparisonResult = memcmp(CurrentNodePointer + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
+    MemoryComparisonResult = memcmp(CurrentNodePointer + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
     if (MemoryComparisonResult < 0) {
       NextNodePointer = (void **)CurrentNodePointer[2];
       CurrentNodePointer = PreviousNodePointer;
@@ -19372,8 +19372,8 @@ void CoreEngineInitializeUIManager(void
     LockOperationResult = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
   if ((PreviousNodePointer == ContextHandle) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary, PreviousNodePointer + SystemNodeHeaderSize, SystemDataStructureSize), MemoryComparisonResult < 0)) {
-    MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
+    SearchStartIndex = CoreEngineAllocateMemory(SystemHandle);
+    CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,SearchStartIndex + SystemMemoryAllocationOffset,SearchStartIndex);
     PreviousNodePointer = ResultNodePointer;
   }
   PreviousNodePointer[6] = 0x4b2d79e470ee4e2c;
@@ -69860,8 +69860,8 @@ StringLengthValidation:
       SystemValue2d0 = 0;
       ThreadSystemContext = (uint8_t *)0x0;
       SystemStateFlag = 0;
-      CoreEngineProcessSystemEvent(&ProcessInfoPointer,iStack_148);
-      if (0 < iStack_148) {
+      CoreEngineProcessSystemEvent(&ProcessInfoPointer,SystemEventDataSize);
+      if (0 < SystemEventDataSize) {
         ConfigurationString = &CoreEngineDataTemplate;
         if (CharacterDataBuffer != NULL) {
           ConfigurationString = CharacterDataBuffer;
