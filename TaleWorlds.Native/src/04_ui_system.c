@@ -257,6 +257,7 @@ typedef enum {
 #define FUN_18073a3ad ProcessUIDataWithTargetValidation          // 处理带目标验证的UI数据
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
 #define FUN_18089d557 ValidateUIDataAndContextStructure          // 验证UI数据和上下文结构
+#define FUN_18073e270 ProcessUIDataWithMultipleBuffers           // 处理多缓冲区UI数据
 #define FUN_18089dcd6 UIReturnEmptyFunctionB                      // UI系统空返回函数B
 #define FUN_18089dcf0 ProcessUIEventDataWithValidation             // 处理UI事件数据与验证
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
