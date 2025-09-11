@@ -360,6 +360,20 @@ typedef enum {
 
 // UI事件处理相关函数
 #define ProcessUIEventDispatch FUN_18072edd0               // UI事件调度处理函数
+
+// UI系统函数表事件处理函数定义
+#define FUN_18068f150 ProcessUIEventDispatchCore          // UI事件分发核心处理
+#define FUN_18068f240 ProcessUIEventDispatchFallback       // UI事件分发回退处理
+#define FUN_18068f330 ProcessUIEventPrimaryHandler         // UI主要事件处理
+#define FUN_18068f3a0 ProcessUIEventSecondaryHandler       // UI次要事件处理
+#define FUN_18068f410 ProcessUIEventTertiaryHandler        // UI第三事件处理
+#define FUN_18068f480 ProcessUIEventQuaternaryHandler      // UI第四事件处理
+#define FUN_18068f4f0 ProcessUIEventQuinaryHandler         // UI第五事件处理
+#define FUN_18068f680 ProcessUIEventSenaryHandler          // UI第六事件处理
+#define FUN_18068f810 ProcessUIEventSeptenaryHandler       // UI第七事件处理
+#define FUN_18068f9a0 ProcessUIEventOctonaryHandler        // UI第八事件处理
+#define FUN_180695750 ProcessUIEventNonaryHandler          // UI第九事件处理
+#define FUN_18068fb30 ProcessUIEventDenaryHandler          // UI第十事件处理
 #define ResetUIEventSystem FUN_18072f60f                    // 重置UI事件系统
 #define ProcessUIEventWithValidation FUN_18072f7ec          // 处理UI事件与验证
 #define ProcessUIEventWithContext FUN_180730040             // 处理带上下文的UI事件
@@ -1095,6 +1109,11 @@ typedef enum {
 
  // UI系统函数宏定义 - 设置UI数据
 #define SetUIData SetUIDataValue                     // 设置UI数据 - 设置UI数据到指定位置
+
+// UI系统函数宏定义 - 系统清理和状态处理
+#define FUN_18076ade0 CleanupUIResourceHandles       // 清理UI资源句柄
+#define FUN_18076a6f0 ReleaseUIContextData           // 释放UI上下文数据
+#define FUN_180780360 InitializeUIContextBuffer      // 初始化UI上下文缓冲区
 
 // UI系统额外函数美化定义
 #define UIEmptyOperationFunction FUN_18089e811                      // UI空操作函数 - 执行空操作的函数
@@ -126229,17 +126248,28 @@ void ProcessUIDataBufferWithValidationAndCopy(void)
  * @note 原始函数名：FUN_18073af6d
  * @warning 此函数不返回，会调用ExecuteUIRenderTask
  */
-void FUN_18073af6d(void)
+/**
+ * @brief 条件性释放UI内存资源并执行渲染操作
+ * 
+ * 该函数根据条件参数决定是否释放UI内存资源，然后执行渲染操作：
+ * - 检查条件参数以决定是否释放内存
+ * - 执行UI渲染任务
+ * - 处理渲染任务的上下文和参数
+ * 
+ * @note 原始函数名：FUN_18073af6d
+ * @warning 此函数不返回，会调用ExecuteUIRenderTask
+ */
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong conditionFlag;
+  ulonglong renderContext;
   
-  if (stackParam00000030 != 0) {
+  if (conditionFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -126257,10 +126287,10 @@ void FUN_18073af6d(void)
  * @note 原始函数名：FUN_18073af9f
  * @warning 此函数不返回，会调用ExecuteUIRenderTask
  */
-void FUN_18073af9f(void)
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderContext;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
@@ -175304,7 +175334,21 @@ UIDword FUN_18076a5d0(longlong *uiContext)
 
 
  
-UIHandle FUN_18076a6f0(void)
+/**
+ * @brief 释放UI上下文数据
+ * 
+ * 该函数负责释放UI上下文相关的数据，包括：
+ * - 更新内存指针链表
+ * - 重置上下文状态
+ * - 清理资源句柄
+ * - 调用资源释放函数
+ * 
+ * @return 返回操作结果，0表示成功
+ * 
+ * @note 原始函数名：FUN_18076a6f0
+ * @warning 此函数可能不返回，在某些情况下会调用其他函数
+ */
+UIHandle ReleaseUIContextData(void)
 
 {
   longlong *uiMemoryPointer;
