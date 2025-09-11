@@ -126030,18 +126030,18 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
     if (operationResult == 0) goto ReleaseUIMemoryAndExecuteRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    dataValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
-    bufferCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
-    ValidateUIDataWithContext(&stack0x00000040 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
+    int bufferInitResult = ValidateUIDataAndInitialize(&uiDataProcessingBuffer,0x100,dataSource);
+    int bufferControlResult = ProcessUIBufferDataWithControl(&uiDataProcessingBuffer + bufferInitResult,0x100 - bufferInitResult,&UIBufferControlData);
+    ValidateUIDataWithContext(&uiDataProcessingBuffer + (bufferInitResult + bufferControlResult),0x100 - (bufferInitResult + bufferControlResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult,1,uiContext,&UIContextBufferManager,&uiDataProcessingBuffer);
   }
 ReleaseUIMemoryAndExecuteRender:
   if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&uiDataProcessingBuffer);
 }
 
 
