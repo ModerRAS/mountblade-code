@@ -137239,12 +137239,13 @@ void *AllocateBufferEN0(void *bufferParams, size_t allocationSize)
 #define CheckSystemStatusEP0 FUN_18088aca0
 
 /**
- * @brief 检查系统状态EP0
+ * @brief 使用增强参数检查系统状态
  * 
- * 该函数负责检查系统的运行状态，监控系统的健康状况
+ * 该函数负责使用增强参数检查系统的运行状态，监控系统的健康状况，
+ * 提供更详细的系统性能和资源使用情况分析。
  * 
- * @param systemContext 系统上下文
- * @return 系统状态码
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * @return 系统状态码，0表示正常，非0值表示各种异常状态
  * 
  * @note 原始函数名：FUN_18088aca0
  */
@@ -137309,13 +137310,14 @@ int CheckSystemStatusWithEnhancedParameters(void *systemContext)
 #define SynchronizeDataEQ0 FUN_18088c970
 
 /**
- * @brief 同步数据EQ0
+ * @brief 使用相等性检查同步数据
  * 
- * 该函数负责同步数据，确保数据在不同系统间的一致性
+ * 该函数负责同步数据，确保数据在不同系统间的一致性，通过相等性检查
+ * 验证同步操作的正确性，保证数据传输的完整性。
  * 
- * @param dataSource 数据源
- * @param dataTarget 数据目标
- * @return 同步操作的状态码
+ * @param dataSource 数据源指针，包含要同步的源数据
+ * @param dataTarget 数据目标指针，用于存储同步后的数据
+ * @return 同步操作的状态码，0表示成功，非0值表示各种错误状态
  * 
  * @note 原始函数名：FUN_18088c970
  */
