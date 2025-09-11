@@ -262632,7 +262632,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint64_t *ContextHandle,
   *(uint32_t *)(ContextHandle + 9) = 0;
   ContextHandle[0xc] = AdditionalParameter1;
   ContextHandle[0xd] = AdditionalParameter2;
-  SystemDataRegistry = FUN_18005ee30(AdditionalParameter1,1,&AdditionalParameter1,Utf16EndPointer,0xfffffffffffffffe);
+  SystemDataRegistry = ConvertSystemDataWithParameters(AdditionalParameter1,1,&AdditionalParameter1,Utf16EndPointer,0xfffffffffffffffe);
   if (SystemDataRegistry != 0) {
     AllocatedMemorySize = SystemDataRegistry + 8;
   }
@@ -262756,7 +262756,7 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
   MemoryBlockIndex = (long long *)AllocateSystemMemoryPool(0x10);
   *MemoryBlockIndex = ContextHandle;
   MemoryBlockIndex[1] = (long long)&SystemDataTablePrimary;
-  FUN_18020f620(Utf16Char);
+  ProcessSystemDataOperation(Utf16Char);
   if (MemoryBlockIndex != (long long *)0x0) {
     free();
   }
@@ -262791,7 +262791,7 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
     __Throw_C_error_std__YAXH_Z(LockOperationResult);
   }
   CalculatedCodePoint = 1;
-  FUN_180060fc0(ContextHandle + 0x98,OperationBufferSize);
+  ValidateSystemContextConfiguration(ContextHandle + 0x98,OperationBufferSize);
   LOCK();
   *(int *)(ContextHandle + 0x140) = *(int *)(ContextHandle + 0x140) + 1;
   UNLOCK();
@@ -263555,7 +263555,25 @@ OperationCompleteLabel:
 
 
 
-0f790(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020f790(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 清理系统内存和同步对象
+ * 
+ * 该函数负责清理系统内存和同步对象，主要功能包括：
+ * - 释放上下文中的内存资源
+ * - 解锁并销毁互斥锁对象
+ * - 销毁条件变量对象
+ * - 验证操作的正确性
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020f790
+ */
+#define CleanupSystemMemoryAndSyncObjects FUN_18020f790
+void FUN_18020f790(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
