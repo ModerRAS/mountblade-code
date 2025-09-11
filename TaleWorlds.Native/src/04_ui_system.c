@@ -2947,10 +2947,48 @@ typedef enum {
 #define astackUInt188 UIDataEncryptionBuffer    // UI数据加密缓冲区 - 用于存储加密处理的数据
 #define pstackUInt168 UIDataBufferPointer        // UI数据缓冲区指针 - 指向当前处理的数据位置
 #define stackLong158 UIMemoryResourceHandle     // UI内存资源句柄 - 用于管理UI内存资源
+
+// UI系统处理变量美化
+#define bufferSize UIBufferSize
+#define operationResult UIOperationResult
+#define dataValidationResult UIDataValidationResult
+#define eventCodeType UIEventCodeType
+#define contextHandle UIContextHandle
+#define processingFlags UIProcessingFlags
+#define eventDataIndex UIEventDataIndex
+#define RegisterValue UIRegisterValue
+#define preservedRegister15 UIPreservedRegister15
+#define stackParam00000050 UIStackParam50
+#define stackUInt32_68 UIStackUInt32_68
+#define eventCode UIEventCode
+#define uiValidationResult UIValidationResult
+#define UIRenderParameter2 UIRenderParameter2
+#define processingResult UIProcessingResult
 #define stackUInt150 UITemporaryHandle          // UI临时句柄 - 用于存储临时UI对象
 #define stackArray148 UIProcessingBuffer         // UI处理缓冲区 - 用于存储UI处理过程中的数据
 #define stackUInt48 UIEncryptionKey             // UI加密密钥 - 用于数据加密和解密操作
 #define result7 UIProcessingResult7              // UI处理结果7
+
+// UI系统事件数据变量美化
+#define eventData UIEventData
+#define uiContext UIContext
+#define local_16 UILocalVariable16
+#define local_20 UILocalVariable20
+#define local_24 UILocalVariable24
+#define local_28 UILocalVariable28
+#define local_32 UILocalVariable32
+#define local_36 UILocalVariable36
+#define local_40 UILocalVariable40
+#define local_44 UILocalVariable44
+#define local_48 UILocalVariable48
+#define local_52 UILocalVariable52
+#define local_56 UILocalVariable56
+#define local_60 UILocalVariable60
+#define local_64 UILocalVariable64
+#define local_68 UILocalVariable68
+#define local_72 UILocalVariable72
+#define local_76 UILocalVariable76
+#define local_80 UILocalVariable80
 #define result8 UIProcessingResult8              // UI处理结果8
 #define componentData UIcomponentData               // UI源句柄
 #define allocationFlags UIAllocationFlags         // UI分配标志
