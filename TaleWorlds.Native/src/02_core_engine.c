@@ -240244,7 +240244,21 @@ void ProcessSystemContextBufferAllocator(long long ContextHandle, long long Oper
 
 
 
-983b0(long long ContextHandle,float *ContextHandleSizevoid FUN_1801983b0(long long ContextHandle,float *ContextHandleSize
+/**
+ * @brief 系统上下文浮点数计算器
+ * 
+ * 该函数负责处理系统上下文的浮点数计算，包括：
+ * - 初始化浮点数数值和Unicode码点处理
+ * - 执行平方根倒数快速计算
+ * - 处理向量和矩阵运算
+ * - 管理浮点数数组和数据转换
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @note 原始函数名：FUN_1801983b0
+ */
+void ProcessSystemContextFloatingPointCalculator(long long ContextHandle, float *ContextHandleSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;

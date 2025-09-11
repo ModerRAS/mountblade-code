@@ -227,6 +227,23 @@
 #define SystemConfigurationOffsetD8 0xd8                         // 系统配置偏移量D8 - 用于系统配置数据访问
 #define SystemConfigurationOffset1C 0x1c                         // 系统配置偏移量1C - 用于系统配置数据访问
 
+// 位域操作联合体定义 - 用于处理特定位域操作
+typedef union {
+    DataWord FullValue;
+    struct {
+        uint32_t LowPart;
+        uint32_t HighPart;
+    } Parts;
+    struct {
+        uint32_t BitField3 : 1;     // 第3位域 - 用于浮点数处理
+        uint32_t Reserved3 : 31;    // 保留位
+    } BitField3Struct;
+    struct {
+        uint32_t BitField7 : 1;     // 第7位域 - 用于数据处理上下文
+        uint32_t Reserved7 : 31;    // 保留位
+    } BitField7Struct;
+} BitFieldOperationUnion;
+
 // 系统资源清理常量
 #define CleanupMemoryFlag 0x1                                   // 内存清理标志 - 标识执行内存清理操作
 #define CleanupCacheFlag 0x2                                    // 缓存清理标志 - 标识执行缓存清理操作
