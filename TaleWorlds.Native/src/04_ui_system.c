@@ -126033,9 +126033,8 @@ void ExecuteUIRenderContextTask(void)
 
  
 
- void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-void FUN_18073adf0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
-                  UIHandle resultPointer)
+ void ProcessUIRenderContextWithResultPointer(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+                                          UIHandle resultPointer)
 
 {
   int operationResult;

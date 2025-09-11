@@ -10710,7 +10710,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存资源
-#define ManageMemoryA0 FUN_180899891
+#define ManageMemoryA0 ManageMemoryWithAllocationAndCleanup
 
 /**
  * @brief 系统状态设置函数A0
@@ -10724,7 +10724,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089b218
  * @note 这是系统状态管理的核心函数
  */
-#define SetSystemStatusA0 FUN_18089b218
+#define SetSystemStatusA0 SetSystemStatusWithValidation
 
 /**
  * @brief 系统状态获取函数A1
@@ -10766,7 +10766,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808992c4
  * @note 这是系统启动过程中的关键函数
  */
-#define InitializeSystemComponentsA0 FUN_1808992c4
+#define InitializeSystemComponentsA0 InitializeSystemComponentsWithDefaults
 
 // 原始函数名：FUN_1808995c0 - 数据验证函数A2
 // 功能：验证数据并执行安全检查
