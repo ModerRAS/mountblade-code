@@ -34472,7 +34472,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
   int64_t memoryPointer;
   int64_t systemContext;
   int64_t memoryOffset;
-  DataWord floatResultA;
+  DataWord processedNormalizedFloatValue;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   DataWord securityCheckResult;
