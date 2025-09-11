@@ -3447,6 +3447,35 @@ typedef enum {
 #define stackParam00000110 UIStackParameter110   // UI栈参数110
 #define finalRotation UIFinalRotation            // UI最终旋转值
 #define animationTime UIAnimationTime            // UI动画时间
+
+// UI系统函数名美化 - 新增的函数定义
+#define FUN_18089a370 ProcessUIComponentLookup
+#define FUN_18073f570 InitializeUIRenderContext
+#define FUN_18073f640 ProcessUIComponentValidation
+#define FUN_18073f710 FinalizeUIRenderContext
+#define FUN_18073f8b0 ProcessUIComponentData
+#define FUN_18073f990 ProcessUIResourceAllocation
+#define FUN_18073fa70 ProcessUIBufferOperation
+#define FUN_18073fa8d ProcessUIBufferOperationExtended
+#define FUN_18073faec InitializeUIEventSystem
+#define FUN_18073fb64 FinalizeUIEventSystem
+#define FUN_18073fb86 ResetUIEventSystem
+#define FUN_18073fbb0 ProcessUIEventData
+#define FUN_18073fc90 ProcessUIComponentCreation
+#define FUN_18073fd60 ProcessUIComponentDestruction
+#define FUN_18073fe30 ProcessUILayoutCalculation
+#define FUN_18073fe4d ProcessUILayoutCalculationExtended
+#define FUN_18073fea5 InitializeUITextureSystem
+#define FUN_18073ff1d FinalizeUITextureSystem
+#define FUN_18073ff3f ResetUITextureSystem
+#define FUN_18073ff60 ProcessUITextureOperation
+#define FUN_180740030 ProcessUIRenderOperation
+#define FUN_180740190 ProcessUIRenderOperationBasic
+#define FUN_1807401ad ProcessUIRenderOperationExtended
+#define FUN_18074020b InitializeUIShaderSystem
+#define FUN_180740283 FinalizeUIShaderOperation
+#define FUN_1807402a5 ResetUIShaderSystem
+#define FUN_1807402d0 ProcessUIShaderOperation
 #define animationDataPtr UIAnimationDataPointer  // UI动画数据指针
 #define animationCount UIAnimationCount           // UI动画计数
 #define animationElementPtr UIAnimationElementPointer  // UI动画元素指针
