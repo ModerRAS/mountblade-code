@@ -237001,7 +237001,13 @@ void FUN_1801946e0(uint64_t *ContextHandle)
 
 
 
-948b0(long long *ContextHandlevoid FUN_1801948b0(long long *ContextHandle
+/**
+ * @brief 处理系统上下文句柄数据
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * 该函数负责处理系统上下文句柄的数据操作。
+ */
+void FUN_1801948b0(long long *ContextHandle
 {
   long long MainCalculationResult;
   long long BufferStatus;
