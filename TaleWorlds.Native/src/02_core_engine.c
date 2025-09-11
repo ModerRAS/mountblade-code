@@ -6654,7 +6654,7 @@ const void* const MutexInitializationAddress = (void*)0x180c962c0;
 const void* const MemoryAllocationAddress = (void*)0x180c96690;
 
 // 系统数据常量
-const char SystemValidationStatus = *(const char*)0x180c82846;
+const char SystemSystemValidationStatus = *(const char*)0x180c82846;
 const void* const RenderParameterData = (void*)0x180d49210;
 const void* const RenderParameterCallbackData = (void*)0x180d49218;
 const void* const SystemStringData = (void*)0x180a01440;
@@ -6663,9 +6663,9 @@ const void* const SystemFunctionTable = (void*)0x180a0649c;
 const void* const SystemSecondaryStatusData = (void*)0x180d49270;
 const void* const SystemTertiaryStatusData = (void*)0x180d49288;
 const void* const SystemValidationStatusData = (void*)0x180d49290;
-const void* const SystemSecondaryValidationStatus = (void*)0x180d49298;
-const void* const SystemTertiaryValidationStatus = (void*)0x180d492a8;
-const void* const SystemMemoryValidationStatus = (void*)0x180c8ecee;
+const void* const SystemSecondarySystemValidationStatus = (void*)0x180d49298;
+const void* const SystemTertiarySystemValidationStatus = (void*)0x180d492a8;
+const void* const SystemMemorySystemValidationStatus = (void*)0x180c8ecee;
 const void* const SystemCharacterStatusBufferPointer = (void*)0x18098c090;
 
 // 系统数据配置常量
@@ -8962,7 +8962,7 @@ const void* const SystemTargetDataSecondaryBuffer = (void*)0x180a07b48;
 const void* const SystemMemoryAllocationMask = (void*)0x180a3c313;
 const void* const SystemMemoryTablePointer = (void*)0x18098d6d0;
 const void* const SystemMemorySecondaryTable = (void*)0x18098d6b0;
-const void* const SystemMemoryValidationStatus = (void*)0x180a078fc;
+const void* const SystemMemorySystemValidationStatus = (void*)0x180a078fc;
 const void* const SystemMemoryDataBuffer = (void*)0x180a07804;
 const void* const SystemMemoryStackPointer = (void*)0x18015c090;
 const void* const SystemMemoryStackSecondary = (void*)0x18015c180;
@@ -8974,7 +8974,7 @@ const void* const SystemMemoryReferenceCounter = (void*)0x18098d770;
 const void* const SystemMemoryByteTable = (void*)0x18098d780;
 
 // 系统搜索和比较常量
-const void* const SystemSearchValidationStatus = (void*)0x180a07f10;
+const void* const SystemSearchSystemValidationStatus = (void*)0x180a07f10;
 const void* const SystemSearchSecondaryBuffer = (void*)0x180a07420;
 const void* const SystemSystemPriorityBuffer = (void*)0x180a08110;
 const void* const SystemSystemStackBuffer = (void*)0x180a08108;
@@ -11891,7 +11891,7 @@ const void* const SystemDataTableSexsexagesimal = (void*)0x180a06890;
 const void* const SystemDataTableSeptensexagesimal = (void*)0x180a068a8;
 const void* const SystemDataTableOctosexagesimal = (void*)0x180a068b8;
 
-const void* const SystemDataTableValidationStatus = (void*)0x180a06410;
+const void* const SystemDataTableSystemValidationStatus = (void*)0x180a06410;
 const void* const SystemDataTableMemoryBuffer = (void*)0x180a01ff0;
 const void* const SystemDataTableEventTemplate = (void*)0x180a06599;
 const void* const SystemDataTableConfigData = (void*)0x180a064a8;
@@ -19996,7 +19996,7 @@ void CoreEngineInitializeConnectionPoolManager(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20007,7 +20007,7 @@ void CoreEngineInitializeConnectionPoolManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20040,7 +20040,7 @@ void CoreEngineInitializeConnectionPoolManager(void
  */
 void CoreEngineInitializeNetworkResourceManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -20057,7 +20057,7 @@ void CoreEngineInitializeNetworkResourceManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20068,7 +20068,7 @@ void CoreEngineInitializeNetworkResourceManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20543,7 +20543,7 @@ void CoreEngineInitializeConnectionManager(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20554,7 +20554,7 @@ void CoreEngineInitializeConnectionManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20650,7 +20650,7 @@ void CoreEngineInitializeQueueManager(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20661,7 +20661,7 @@ void CoreEngineInitializeQueueManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20697,7 +20697,7 @@ void CoreEngineInitializeQueueManager(void
  */
 void CoreEngineInitializeNetworkingSystem(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -20714,7 +20714,7 @@ void CoreEngineInitializeNetworkingSystem(void)
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20725,7 +20725,7 @@ void CoreEngineInitializeNetworkingSystem(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20763,7 +20763,7 @@ void CoreEngineInitializeNetworkingSystem(void)
  */
 void CoreEngineInitializeGameSystem(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long AllocatedMemorySize;
@@ -20775,11 +20775,11 @@ void CoreEngineInitializeGameSystem(void)
   
   SystemContext = CoreEngineGetSystemContext();
   PrimaryStatusBlock = (void **)*SystemContext;
-  ValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   FileSystemConfigurationFlag = &SystemFileSystemHandler;
   GameSystemNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20790,7 +20790,7 @@ void CoreEngineInitializeGameSystem(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
@@ -20955,7 +20955,7 @@ void InitializeNetworkConfigurationNode(void
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20966,7 +20966,7 @@ void InitializeNetworkConfigurationNode(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21009,7 +21009,7 @@ void InitializeNetworkAuthenticationNode(void
   functionCallback = CoreEngineProcessNetworkAuthentication;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21020,7 +21020,7 @@ void InitializeNetworkAuthenticationNode(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataNonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21063,7 +21063,7 @@ void InitializeNetworkValidationNode(void
   functionCallback = CoreEngineProcessNetworkValidation;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataDenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21074,7 +21074,7 @@ void InitializeNetworkValidationNode(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataDenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21276,7 +21276,7 @@ void InitializeNetworkConnectionNode(void)
  */
 void InitializeNetworkProtocolNode(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long AllocatedMemorySize;
@@ -21288,11 +21288,11 @@ void InitializeNetworkProtocolNode(void)
   
   SystemContext = CoreEngineGetSystemContext();
   PrimaryStatusBlock = (void **)*SystemContext;
-  ValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   ProcessingConfigurationFlag = 0;
   ProtocolNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)StringProcessingStatus[2];
@@ -21303,7 +21303,7 @@ void InitializeNetworkProtocolNode(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
@@ -21346,7 +21346,7 @@ void InitializeNetworkSecurityNode(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21357,7 +21357,7 @@ void InitializeNetworkSecurityNode(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21384,7 +21384,7 @@ void InitializeNetworkSecurityNode(void
  */
 void InitializeNetworkBufferNode(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -21401,7 +21401,7 @@ void InitializeNetworkBufferNode(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21412,7 +21412,7 @@ void InitializeNetworkBufferNode(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21439,7 +21439,7 @@ void InitializeNetworkBufferNode(void
  */
 void InitializeNetworkEventHandlerNode(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long AllocatedMemorySize;
@@ -21451,11 +21451,11 @@ void InitializeNetworkEventHandlerNode(void)
   
   SystemContext = CoreEngineGetSystemContext();
   PrimaryStatusBlock = (void **)*SystemContext;
-  ValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemValidationStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   EventConfigurationFlag = &SystemFileSystemHandler;
   EventHandlerNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21466,7 +21466,7 @@ void InitializeNetworkEventHandlerNode(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
@@ -21492,7 +21492,7 @@ void InitializeNetworkEventHandlerNode(void)
  */
 void SystemConnectionManagerInitialize(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -21509,7 +21509,7 @@ void SystemConnectionManagerInitialize(void)
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21520,7 +21520,7 @@ void SystemConnectionManagerInitialize(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21656,7 +21656,7 @@ void NetworkStatusProcessorInitialize(void)
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21667,7 +21667,7 @@ void NetworkStatusProcessorInitialize(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21709,7 +21709,7 @@ void ConnectionManagerInitialize(void)
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21720,7 +21720,7 @@ void ConnectionManagerInitialize(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21746,7 +21746,7 @@ void ConnectionManagerInitialize(void)
  */
 void SystemConnectionTemplateAInitialize(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -21763,7 +21763,7 @@ void SystemConnectionTemplateAInitialize(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21774,7 +21774,7 @@ void SystemConnectionTemplateAInitialize(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21816,7 +21816,7 @@ void NetworkSecurityProcessorInitialize(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21827,7 +21827,7 @@ void NetworkSecurityProcessorInitialize(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21853,7 +21853,7 @@ void NetworkSecurityProcessorInitialize(void
  */
 void SystemConnectionTemplateCInitialize(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -21870,7 +21870,7 @@ void SystemConnectionTemplateCInitialize(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21881,7 +21881,7 @@ void SystemConnectionTemplateCInitialize(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21907,7 +21907,7 @@ void SystemConnectionTemplateCInitialize(void
  */
 void FileSystemProcessorInitialize(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -21924,7 +21924,7 @@ void FileSystemProcessorInitialize(void
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -21935,7 +21935,7 @@ void FileSystemProcessorInitialize(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -21974,11 +21974,11 @@ void CoreEngineInitializeSystemConnectionNode(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   SystemNodePointer = (uint64_t *)*SystemContext;
-  SystemValidationStatus = *(char *)((long long)SystemNodePointer[1] + SystemNodeStatusOffset);
+  SystemSystemValidationStatus = *(char *)((long long)SystemNodePointer[1] + SystemNodeStatusOffset);
   ConnectionFlags = 0;
   CurrentNodePointer = SystemNodePointer;
   TargetNodePointer = (uint64_t *)SystemNodePointer[1];
-  while (SystemValidationStatus == '\0') {
+  while (SystemSystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(TargetNodePointer + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNodePointer = (uint64_t *)TargetNodePointer[2];
@@ -21989,7 +21989,7 @@ void CoreEngineInitializeSystemConnectionNode(void
     }
     CurrentNodePointer = TargetNodePointer;
     TargetNodePointer = NextNodePointer;
-    SystemValidationStatus = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
+    SystemSystemValidationStatus = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -22721,7 +22721,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -22732,7 +22732,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23466,7 +23466,7 @@ void CoreEngineInitializeSystemDataTemplateUI(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23477,7 +23477,7 @@ void CoreEngineInitializeSystemDataTemplateUI(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23510,7 +23510,7 @@ void CoreEngineInitializeSystemDataTemplateUI(void
  */
 void CoreEngineInitializeSystemConnectionTemplateA(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -23527,7 +23527,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23538,7 +23538,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23589,7 +23589,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
   NetworkSecurityCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23600,7 +23600,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemory = CoreEngineAllocateMemory(SystemContext);
@@ -23643,7 +23643,7 @@ void CoreEngineInitializeSystemManager(void)
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23654,7 +23654,7 @@ void CoreEngineInitializeSystemManager(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23680,7 +23680,7 @@ void CoreEngineInitializeSystemManager(void)
  */
 void CoreEngineInitializeSystemConnectionTemplateG(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -23697,7 +23697,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23708,7 +23708,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23734,7 +23734,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
  */
 void CoreEngineInitializeConfigurationManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -23751,7 +23751,7 @@ void CoreEngineInitializeConfigurationManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23762,7 +23762,7 @@ void CoreEngineInitializeConfigurationManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23804,7 +23804,7 @@ void CoreEngineInitializeResourceManager(void
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23815,7 +23815,7 @@ void CoreEngineInitializeResourceManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23857,7 +23857,7 @@ void CoreEngineInitializeMemoryAllocator(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23868,7 +23868,7 @@ void CoreEngineInitializeMemoryAllocator(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23894,7 +23894,7 @@ void CoreEngineInitializeMemoryAllocator(void
  */
 void CoreEngineInitializeThreadScheduler(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -23911,7 +23911,7 @@ void CoreEngineInitializeThreadScheduler(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23922,7 +23922,7 @@ void CoreEngineInitializeThreadScheduler(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -23964,7 +23964,7 @@ void CoreEngineInitializeEventManager(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -23975,7 +23975,7 @@ void CoreEngineInitializeEventManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24001,7 +24001,7 @@ void CoreEngineInitializeEventManager(void
  */
 void CoreEngineInitializeRenderManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24018,7 +24018,7 @@ void CoreEngineInitializeRenderManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24029,7 +24029,7 @@ void CoreEngineInitializeRenderManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24055,7 +24055,7 @@ void CoreEngineInitializeRenderManager(void
  */
 void CoreEngineInitializePhysicsManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24072,7 +24072,7 @@ void CoreEngineInitializePhysicsManager(void
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24083,7 +24083,7 @@ void CoreEngineInitializePhysicsManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24109,7 +24109,7 @@ void CoreEngineInitializePhysicsManager(void
  */
 void CoreEngineInitializeAudioManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24126,7 +24126,7 @@ void CoreEngineInitializeAudioManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24137,7 +24137,7 @@ void CoreEngineInitializeAudioManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24179,7 +24179,7 @@ void CoreEngineInitializeNetworkManager(void
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24190,7 +24190,7 @@ void CoreEngineInitializeNetworkManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24232,7 +24232,7 @@ void CoreEngineInitializeInputManager(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24243,7 +24243,7 @@ void CoreEngineInitializeInputManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24269,7 +24269,7 @@ void CoreEngineInitializeInputManager(void
  */
 void CoreEngineInitializeFileSystemManager(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24286,7 +24286,7 @@ void CoreEngineInitializeFileSystemManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24297,7 +24297,7 @@ void CoreEngineInitializeFileSystemManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24339,7 +24339,7 @@ void CoreEngineInitializeSecurityManager(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24350,7 +24350,7 @@ void CoreEngineInitializeSecurityManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24376,7 +24376,7 @@ void CoreEngineInitializeSecurityManager(void
  */
 void CoreEngineInitializeDatabaseManager(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24393,7 +24393,7 @@ void CoreEngineInitializeDatabaseManager(void)
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24404,7 +24404,7 @@ void CoreEngineInitializeDatabaseManager(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24641,7 +24641,7 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplateSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24652,7 +24652,7 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConfigTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24692,7 +24692,7 @@ void CoreEngineInitializeMemoryNodeA(void
   uint64_t *PrimaryProcessingStatusFlag;
   uint64_t *SecondaryProcessingStatusFlag;
   uint64_t *StringProcessingStatus;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int ProcessingConfigurationFlag;
   int MemoryComparisonResult;
   long long AllocatedMemorySize;
@@ -24704,7 +24704,7 @@ void CoreEngineInitializeMemoryNodeA(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemDataTemplateTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24715,7 +24715,7 @@ void CoreEngineInitializeMemoryNodeA(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemDataTemplateTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24755,7 +24755,7 @@ void CoreEngineInitializeMemoryNodeB(void
   uint64_t *PrimaryProcessingStatusFlag;
   uint64_t *SecondaryProcessingStatusFlag;
   uint64_t *StringProcessingStatus;
-  char ValidationStatus;
+  char SystemValidationStatus;
   void (*FunctionCallback)(void);
   int MemoryComparisonResult;
   long long AllocatedMemorySize;
@@ -24767,7 +24767,7 @@ void CoreEngineInitializeMemoryNodeB(void
   FunctionCallback = ThreadManagementCallback;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplatePrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24778,7 +24778,7 @@ void CoreEngineInitializeMemoryNodeB(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemThreadTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24804,7 +24804,7 @@ void CoreEngineInitializeMemoryNodeB(void
  */
 void CoreEngineInitializeThreadSystem(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24821,7 +24821,7 @@ void CoreEngineInitializeThreadSystem(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24832,7 +24832,7 @@ void CoreEngineInitializeThreadSystem(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24858,7 +24858,7 @@ void CoreEngineInitializeThreadSystem(void
  */
 void CoreEngineProcessThreadQueue(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24875,7 +24875,7 @@ void CoreEngineProcessThreadQueue(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24886,7 +24886,7 @@ void CoreEngineProcessThreadQueue(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -24912,7 +24912,7 @@ void CoreEngineProcessThreadQueue(void
  */
 void CoreEngineManageThreadResources(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -24929,7 +24929,7 @@ void CoreEngineManageThreadResources(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -24940,7 +24940,7 @@ void CoreEngineManageThreadResources(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25095,7 +25095,7 @@ void CoreEngineSetupThreadPriorities(void
   functionCallback = CoreEngineProcessNetworkEvent;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25106,7 +25106,7 @@ void CoreEngineSetupThreadPriorities(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25142,7 +25142,7 @@ void CoreEngineSetupThreadPriorities(void
   functionCallback = CoreEngineProcessNetworkConnection;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25153,7 +25153,7 @@ void CoreEngineSetupThreadPriorities(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25195,7 +25195,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25206,7 +25206,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25242,7 +25242,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25253,7 +25253,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25273,7 +25273,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
 
  void CoreEngineInitializeThreadDebugging(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -25290,7 +25290,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25301,7 +25301,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25337,7 +25337,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25348,7 +25348,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25482,7 +25482,7 @@ void CoreEngineInitializeFileSystemManager(void
  */
 void CoreEngineInitializeSystemConnectionTemplateE(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -25499,7 +25499,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25510,7 +25510,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25536,7 +25536,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
  */
 void CoreEngineInitializeSystemDataTemplateSession(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -25553,7 +25553,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25564,7 +25564,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemFileSystemComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25584,7 +25584,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 
  void CoreEngineInitializeThreadErrorHandling(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -25601,7 +25601,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25612,7 +25612,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25632,7 +25632,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 
  void CoreEngineInitializeThreadRecovery(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -25649,7 +25649,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -25660,7 +25660,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -25695,7 +25695,7 @@ int CoreEngineCheckThreadStatus(void
   SystemStatusCounterG = 0;
   SystemStatusCounterH = 3;
   SystemStatusCounterI = 0;
-  SystemMemoryValidationStatus = 0;
+  SystemMemorySystemValidationStatus = 0;
   SystemStatusCounterJ = 0;
   SystemStatusCounterK = 3;
   CoreEngineInitializeSystemComponents();
@@ -26113,7 +26113,7 @@ void CoreEngineInitializeDataStreamManager(void
 
  void CoreEngineInitializeThreadCache(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26130,7 +26130,7 @@ void CoreEngineInitializeDataStreamManager(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26141,7 +26141,7 @@ void CoreEngineInitializeDataStreamManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26177,7 +26177,7 @@ void CoreEngineInitializeDataStreamManager(void
   functionCallback = CoreEngineProcessNetworkEvent;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26188,7 +26188,7 @@ void CoreEngineInitializeDataStreamManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26224,7 +26224,7 @@ void CoreEngineInitializeDataStreamManager(void
   functionCallback = CoreEngineProcessNetworkConnection;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26235,7 +26235,7 @@ void CoreEngineInitializeDataStreamManager(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26573,7 +26573,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadStack(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26590,7 +26590,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26601,7 +26601,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26637,7 +26637,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   functionCallback = ConfigurationManagementCallback;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplatePrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26648,7 +26648,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConfigurationTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26668,7 +26668,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadPerformanceCounters(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26685,7 +26685,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplateSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26696,7 +26696,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConfigurationTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26716,7 +26716,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadSecurity(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26733,7 +26733,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemStateTemplatePrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26744,7 +26744,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemStateTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26764,7 +26764,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadMemoryManagement(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26781,7 +26781,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplatePrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26792,7 +26792,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemMemoryTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26812,7 +26812,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadContextSwitching(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26829,7 +26829,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplateSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26840,7 +26840,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemMemoryTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -26860,7 +26860,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
  void CoreEngineInitializeThreadAffinityManagement(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -26877,7 +26877,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplatePrimary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -26888,7 +26888,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemConfigTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -27108,7 +27108,7 @@ void CoreEngineInitializeSystemThreadNodeI(void)
  */
 void CoreEngineInitializeSystemThreadNodeJ(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   int MemoryComparisonResult;
   long long *EngineContext;
@@ -27125,7 +27125,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
   ProcessingConfigurationFlag = 0;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
+  while (SystemValidationStatus == '\0') {
     MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
     if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -27136,7 +27136,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryNodeComparisonResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -27303,7 +27303,7 @@ int CoreEngineInitializeSystemGlobalState(void
 {
   long long InitializationResult;
   
-  SystemGlobalValidationStatus = 3;
+  SystemGlobalSystemValidationStatus = 3;
   SystemDataTablePointerA = &SystemDataTableA;
   SystemDataTablePointerB = &SystemDataTableA;
   SystemMemoryPointerA = 0;
@@ -27495,7 +27495,7 @@ int CoreEngineGetThreadSystemStatus(void
     SystemIterationCounter = SystemIterationCounter + 1;
   } while (SystemIterationCounter < 0xd);
   *(uint *)(SystemGlobalConfigData + SystemGlobalConfigFlagOffset) = *(uint *)(SystemGlobalConfigData + SystemGlobalConfigFlagOffset) | 4;
-  SystemGlobalValidationStatus = 0xffffffff;
+  SystemGlobalSystemValidationStatus = 0xffffffff;
   StatusCheckResult = SystemStatusCheck(&SystemInitializationCheckerA);
   return (StatusCheckResult != 0) - 1;
 }
@@ -28066,8 +28066,8 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
     MemoryContext = NULL;
     OperationStatus = 0;
     StackProcessingStatusFlag = (int64_t *)CONCAT44(StackProcessingStatusFlag.HighPart,0x10);
-    ValidationStatus = GetComputerNameA(ApplicationHandle,&StackProcessingStatusFlag);
-    if (ValidationStatus == 0) {
+    SystemValidationStatus = GetComputerNameA(ApplicationHandle,&StackProcessingStatusFlag);
+    if (SystemValidationStatus == 0) {
       CoreEngineInitializeNetworkComponent(&NetworkComponentConfigTemplate);
     }
     else {
@@ -28076,8 +28076,8 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
       (**(code **)(SecurityContext + 0x10))(&SecurityContext,ApplicationHandle);
     }
     StackProcessingStatusFlag = (int64_t *)CONCAT44(StackProcessingStatusFlag.HighPart,0x101);
-    ValidationStatus = GetUserNameA(ProcessingBuffer,&StackProcessingStatusFlag);
-    if (ValidationStatus == 0) {
+    SystemValidationStatus = GetUserNameA(ProcessingBuffer,&StackProcessingStatusFlag);
+    if (SystemValidationStatus == 0) {
       CoreEngineInitializeNetworkComponent(&NetworkComponentConfigTemplateSecondary);
     }
     else {
@@ -28491,7 +28491,7 @@ uint32_t SystemShutdownAndCleanup(void
   *(uint32_t *)(SystemValidationStatus + 0x2d) = 2;
   PrimaryCleanupContext = FinalContext;
   if (FinalContext == (long long ****)0x0) {
-    SystemValidationStatus = (long long ****)0x0;
+    SystemSystemValidationStatus = (long long ****)0x0;
     WaitForSingleObject(SemaphoreHandle,0xffffffff);
     do {
       long long SemaphoreReleaseStatus = ReleaseSemaphore(SemaphoreHandle,1);
@@ -29186,7 +29186,7 @@ void CoreEngineResetSystemValidationStatus(uint8_t *SystemValidationStatus)
 {
   long long BufferMemoryOffset;
   
-  *SystemValidationStatus = 0;
+  *SystemSystemValidationStatus = 0;
   *(uint32_t *)(BufferMemoryOffset + 0x10) = 0;
   return;
 }
@@ -30409,9 +30409,9 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
         SystemStringIndex = SystemStringIndex + 1;
         CharacterNodeComparisonResult = StringProcessingBuffer[SystemStringIndex];
       }
-      SystemStringValidationStatus = "";
+      SystemStringSystemValidationStatus = "";
       if (StringProcessingBuffer != (char *)0x0) {
-        SystemStringValidationStatus = StringProcessingBuffer;
+        SystemStringSystemValidationStatus = StringProcessingBuffer;
       }
       ValidateEngineConfiguration(ContextHandleTablePointer,&SystemConfigDataA,SystemStringValidationStatus);
       ConfigurationParamA = *(double *)(SystemDataTablePointer + 0xa0 + MemoryPoolIndex);
@@ -30538,9 +30538,9 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
           MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
           CharacterNodeComparisonResult = SystemSystemFunctionPointer[MemoryBoundaryEnd];
         }
-        SystemStringValidationStatus = "";
+        SystemStringSystemValidationStatus = "";
         if (SystemSystemFunctionPointer != (char *)0x0) {
-          SystemStringValidationStatus = SystemSystemFunctionPointer;
+          SystemStringSystemValidationStatus = SystemSystemFunctionPointer;
         }
         ValidateEngineConfiguration(ContextHandleTablePointer,&SystemConfigDataB,SystemStringValidationStatus,*(void *)(SystemStringIndex + 0x60));
         SystemEventDispatcher = &SystemNullTemplate;
@@ -30573,7 +30573,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
     do {
       MemoryBoundaryEnd = SystemConfigDataTablePointer;
       SystemDataTablePointer = 0;
-      SystemStringValidationStatus = *(char **)(SystemConfigDataTablePointer + 8 + SystemStringIndex);
+      SystemStringSystemValidationStatus = *(char **)(SystemConfigDataTablePointer + 8 + SystemStringIndex);
       CharacterNodeComparisonResult = *SystemStringValidationStatus;
       while (CharacterComparisonResult != '\0') {
         MemoryPoolBlockSize = strchr(&SystemStringPattern,(int)SystemStringValidationStatus[SystemDataTablePointer]);
@@ -30581,7 +30581,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
           *(uint8_t *)(SystemDataTablePointer + *(long long *)(MemoryBoundaryEnd + 8 + SystemStringIndex)) = 0x5f;
         }
         SystemDataTablePointer = SystemDataTablePointer + 1;
-        SystemStringValidationStatus = *(char **)(MemoryBoundaryEnd + 8 + SystemStringIndex);
+        SystemStringSystemValidationStatus = *(char **)(MemoryBoundaryEnd + 8 + SystemStringIndex);
         CharacterNodeComparisonResult = SystemStringValidationStatus[SystemDataTablePointer];
       }
       TemporaryBuffer = *(void **)(SystemConfigDataTablePointer + 8 + SystemStringIndex);
@@ -31431,7 +31431,7 @@ uint8_t CoreEngineNotifyConditionVariableAndProcessSyncState(long long ContextHa
   }
   MutexLockStatus = '\x01';
   if (*(char *)(ContextHandle + 0x98) == '\x01') {
-    ConditionValidationStatus = 1;
+    ConditionSystemValidationStatus = 1;
   }
   else {
     WaitTimeoutParameter = 1;
@@ -31718,7 +31718,7 @@ void CoreEngineProcessStringSearchAndCopy(int64_t SourcePointer, int64_t SearchP
   StackProcessingParameter = 0xfffffffffffffffe;
   EncodedValue = EncodingDecodingKey ^ (uint64_t)StackBuffer;
   StringReference = &SystemConfigurationHandler;
-  ValidationStatus = StringCharacterStatusBuffer;
+  SystemValidationStatus = StringCharacterStatusBuffer;
   StringFlags = 0;
   StringCharacterStatusBuffer[0] = 0;
   StringSearchResult = strstr(*(uint64_t *)(SourcePointer + 8));
@@ -33034,7 +33034,7 @@ void CoreEngineProcessConfigurationBatchData(void* SystemConfigPointer, void* Ch
     SecondaryConfigPointer = &SystemNullTemplate;
     ConfigProcessingStatusFlag = (void*)0;
     ConfigProcessingStatusFlag = (void**)0x0;
-    ConfigValidationStatus = 0;
+    ConfigSystemValidationStatus = 0;
     BufferProcessingStatusFlag = (void**)BufferAllocate(MemoryPoolManager,0x10,0x13,MemoryContext,SystemFlags);
     *(uint8_t*)BufferProcessingStatusFlag = 0;
     ConfigProcessingStatusFlag = BufferProcessingStatusFlag;
@@ -33043,7 +33043,7 @@ void CoreEngineProcessConfigurationBatchData(void* SystemConfigPointer, void* Ch
     *BufferProcessingStatusFlag = 0x454c55444f4d5f2a;  // "*MODULES" 字符串
     *(uint16_t*)(BufferProcessingStatusFlag + 1) = 0x5f53;
     *(uint8_t*)((int64_t)BufferProcessingStatusFlag + 10) = 0;
-    ConfigValidationStatus = 10;
+    ConfigSystemValidationStatus = 10;
     ProcessSystemConfigurationData((int64_t)SystemConfigPointer + 0x2c0,&SecondaryConfigPointer);
     SecondaryConfigPointer = &SystemNullTemplate;
     SystemBufferValidate(BufferProcessingStatusFlag);
@@ -33606,14 +33606,14 @@ void CoreEngineProcessSystemCommand(uint64_t ContextHandle, uint64_t OperationBu
   SystemEventPointer = &SystemNullTemplate;
   SystemProcessingFlag = 0;
   EncodingLoopCounter = 0;
-  SystemValidationStatus = 0;
+  SystemSystemValidationStatus = 0;
   CoreEngineProcessSystemEvent(&SystemEventPointer,6);
   CharacterTablePointer = EncodingLoopCounter;
   ProcessingStatusFlag = (unsigned long long)SystemValidationStatus;
   *(uint32_t *)(ProcessingStatusFlag + EncodingLoopCounter) = 0x44495020;
   *(uint16_t *)(ProcessingStatusFlag + 4 + EncodingLoopCounter) = 0x203a;
   *(uint8_t *)(ProcessingStatusFlag + 6 + EncodingLoopCounter) = 0;
-  SystemValidationStatus = 6;
+  SystemSystemValidationStatus = 6;
   ProcessSystemInfo(CharacterProcessingBuffer,&SystemInfoHandler,UnicodeCodePoint);
   BufferStatus = -1;
   do {
@@ -33796,12 +33796,12 @@ EventProcessingStart:
     StringPointer = (char *)*DataStreamBuffer;
     SystemContextData = MemoryEndAddress - (long long)StringPointer;
     do {
-      SystemValidationStatus = *StringPointer;
+      SystemSystemValidationStatus = *StringPointer;
       CharacterNodeComparisonResult = StringPointer[SystemContextData];
       if (SystemValidationStatus != CharacterComparisonResult) break;
       StringPointer = StringPointer + 1;
     } while (CharacterComparisonResult != '\0');
-    if (SystemValidationStatus == CharacterComparisonResult) break;
+    if (SystemSystemValidationStatus == CharacterComparisonResult) break;
     DataStreamBuffer = DataStreamBuffer + 1;
     if (0x1809fde87 < (long long)DataStreamBuffer) {
       MemoryContext = &SystemNullTemplate;
@@ -33899,7 +33899,7 @@ EventProcessingStart:
   systemContextData = 0;
   systemContextFlags = 0;
   systemEventStatus = 0x100;
-  systemValidationStatus = 0;
+  systemSystemValidationStatus = 0;
   systemEventId = 0;
   coreEngineDataTemplate = &CoreEngineDataTemplate;
   if (*(void **)(OperationBufferSize + 8) != NULL) {
@@ -34052,7 +34052,7 @@ void ProcessEngineSystemEventQueue(void
   uint EventCounter;
   long long *EventQueuePointer;
   uint64_t *EventCharacterStatusBuffer;
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint64_t *EventHandle;
   uint8_t *SecondaryEventProcessingStatusFlag;
   uint32_t *TertiaryEventProcessingStatusFlag;
@@ -34115,7 +34115,7 @@ void ProcessEngineSystemEventQueue(void
   if (0 < (int)LoopIndex) {
     do {
       EventProcessIndex = CoreEngineIntegerValueF8;
-      EventValidationStatus = 0;
+      EventSystemValidationStatus = 0;
       if (CoreEngineIntegerValueF8 < 0) {
 QueueProcessingLoop:
         MemoryAllocationIndex = CoreEngineGetSystemContext();
@@ -34171,7 +34171,7 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
       *(void *)(PrimaryTertiaryStackPointer0 + StackAllocationValue) = 0x6a624f656e656353;
       *(uint8_t *)((long long)(PrimaryTertiaryStackPointer0 + StackAllocationValue) + 8) = 0;
       StackAllocationValue = ProcessIndex;
-      ValidationStatus = CoreEngineValidateSystemStatus(&PrimaryTertiaryStackPointer);
+      SystemValidationStatus = CoreEngineValidateSystemStatus(&PrimaryTertiaryStackPointer);
       if (OperationStatus == '\0') {
         ThreadLocalStorageBuffer = &SystemNullTemplate;
         if (CoreEnginePointerBuffer != (uint8_t *)0x0) {
@@ -34756,7 +34756,7 @@ void CoreEngineCleanupThreadLocalStorageDataDuplicate(long long ThreadLocalStora
   }
   Sleep(2000);
   SystemExit(OperationBufferSize);
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -34883,12 +34883,12 @@ InputDataLengthCheck:
               StringDataPointer = *(char **)(*(long long *)(LoopIndex + SystemContextValue) + 8);
               SystemStringIndex = *(long long *)(*(long long *)(MemoryAllocationHandle + SystemContextValue) + 8) - (long long)StringDataPointer;
               do {
-                ValidationStatus = *StringDataPointer;
+                SystemValidationStatus = *StringDataPointer;
                 SystemCheckResult = StringDataPointer[SystemStringIndex];
                 if (ValidationStatus != SystemCheckResult) break;
                 StringDataPointer = StringDataPointer + 1;
               } while (SystemCheckResult != '\0');
-              ValidationSuccessFlag = ValidationStatus == SystemCheckResult;
+              ValidationSuccessFlag = SystemValidationStatus == SystemCheckResult;
             }
           }
           else {
@@ -41045,14 +41045,14 @@ uint64_t * SetContextHandleWithMemoryManagement(uint64_t *ContextHandle,unsigned
  */
 void InitializeSystemThreadLocalStorage(uint64_t *ThreadLocalStoragePointer,uint64_t StorageSize,uint64_t StorageFlags,uint64_t StorageAttributes
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint64_t MemoryPoolIndex;
   
   MemoryPoolIndex = 0xfffffffffffffffe;
   *ContextHandle = &FinalDataStructureTemplate;
-  ValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  SystemValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   while (ValidationStatus != '\0') {
-    ValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,MemoryPoolIndex);
+    SystemValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,MemoryPoolIndex);
   }
   if (ContextHandle[1] == 0) {
     ContextHandle[1] = 0;
@@ -41652,14 +41652,14 @@ uint8_t GetSystemValidationStatus(void
  */
 uint64_t ValidateDataStructureStatus(uint64_t *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long *BufferAllocationState;
   long long SearchStartIndex;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
   long long *MemoryRangeBoundary;
   
-  if (((*(long long *)(OperationBufferSize + 0x18) == 0) || (*(int *)(OperationBufferSize + 4) != *(int *)(ContextHandle + 0x4c))     && (ValidationStatus = CheckSystemValidationStatus(), ValidationStatus == '\0')) {
+  if (((*(long long *)(OperationBufferSize + 0x18) == 0) || (*(int *)(OperationBufferSize + 4) != *(int *)(ContextHandle + 0x4c))     && (SystemValidationStatus = CheckSystemValidationStatus(), SystemValidationStatus == '\0')) {
     return 0;
   }
   MemoryRangeBoundary = (long long *)0x0;
@@ -41667,8 +41667,8 @@ uint64_t ValidateDataStructureStatus(uint64_t *ContextHandle,long long Operation
   if (*(long long *)(OperationBufferSize + 0x10) == 0) {
     SystemContextPtr = MemoryRangeBoundary;
   }
-  ValidationStatus = ProcessSystemMemoryOperation(SystemContextPtr,Utf8SourcePointer);
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = ProcessSystemMemoryOperation(SystemContextPtr,Utf8SourcePointer);
+  if (SystemValidationStatus == '\0') {
     SystemContextPtr = (long long *)*ContextHandle;
     BufferAllocationState = *(long long **)(OperationBufferSize + 0x10);
     if (BufferAllocationState == (long long *)0x0) {
@@ -41691,7 +41691,7 @@ uint64_t ValidateDataStructureStatus(uint64_t *ContextHandle,long long Operation
       if (MemoryBlockListHead == BufferAllocationState) {
         return 0;
       }
-      ValidationStatus = ProcessSystemMemoryOperation(MemoryBlockListHead,Utf8SourcePointer);
+      SystemValidationStatus = ProcessSystemMemoryOperation(MemoryBlockListHead,Utf8SourcePointer);
       if (ValidationStatus != '\0') break;
       MemoryBlockIndex = MemoryBlockListHead[1];
     }
@@ -42014,7 +42014,7 @@ void CoreEngineInitializeSystemConfiguration(uint64_t SystemConfigHandle,long lo
   EncodedKey = EncodingDecodingKey ^ (unsigned long long)EncryptionBuffer;
   ConfigPointer = SystemConfigHandle;
   GlobalConfigPtr = &GlobalConfigurationData;
-  ValidationStatus = LocalConfigBuffer;
+  SystemValidationStatus = LocalConfigBuffer;
   LocalConfigBuffer[0] = 0;
   StringLength = 6;
   strcpy_s(LocalConfigBuffer,0x10,&SystemConfigTemplate);
@@ -42390,7 +42390,7 @@ void InitializeSystemDataProcessor(void
  */
 void ProcessIntegerDataStructure(int *ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char ValidationFlag;
   uint32_t SystemDataNode;
   long long SystemDataRegistry;
@@ -42466,12 +42466,12 @@ void ProcessIntegerDataStructure(int *ContextHandle
         CharacterBufferPointer = (char *)*StringProcessingStatus;
         MemoryOffsetValue = (long long)ContextHandleTablePointer - (long long)CharacterBufferPointer;
         do {
-          CharacterValidationStatus = *CharacterBufferPointer;
+          CharacterSystemValidationStatus = *CharacterBufferPointer;
           CharacterDataValidationResult = CharacterBufferPointer[MemoryOffsetValue];
           if (CharacterValidationStatus != CharacterDataValidationResult) break;
           CharacterBufferPointer = CharacterBufferPointer + 1;
         } while (CharacterDataValidationResult != '\0');
-        if (CharacterValidationStatus == CharacterDataValidationResult) break;
+        if (CharacterSystemValidationStatus == CharacterDataValidationResult) break;
       }
       ComputedResult = ComputedResult + 1;
       StringProcessingStatus = StringProcessingStatus + 4;
@@ -43443,10 +43443,10 @@ unsigned long long ProcessSystemDataStreamAndMemoryManagement(uint64_t targetDat
   secondaryBufferPointer = NULL;
   validationData = 0;
   operationMode = 3;
-  systemValidationStatus = TerminateSystemProcess(&primaryBufferPointer);
+  systemSystemValidationStatus = TerminateSystemProcess(&primaryBufferPointer);
   StringProcessingStatus = secondaryBufferPointer;
   SecondaryProcessingStatusFlag = primaryBufferPointer;
-  if ((systemValidationStatus == '\0') || (primaryBufferPointer == secondaryBufferPointer)) {
+  if ((systemSystemValidationStatus == '\0') || (primaryBufferPointer == secondaryBufferPointer)) {
     ConfigureSystemMemoryManagement(SystemConfigHandle,5,3,&SystemSystemFunctionPointerL);
     operationResult = PerformSystemCleanupOperation();
     dataIterator = SecondaryProcessingStatusFlag;
@@ -44005,7 +44005,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   // 原始函数名为ExecuteEngineInitialization，ProcessEngineInitialization
   ExecuteEngineInitialization(EngineInitializationResult,&unsignedProcessingStatusFlag);
   if ((CoreEngineConsoleHandle == (long long *)0x0) ||
-     (consoleValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleValidationStatus == '\0')) {
+     (consoleSystemValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleSystemValidationStatus == '\0')) {
     SystemCharacterStatusPointer = &systemSystemFunctionPointerO;
   }
   else {
@@ -44017,7 +44017,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   }
   ProcessTemporaryBuffer(&pointerStackDataBufferTertiary,SystemCharacterStatusPointer);
   if ((CoreEngineConsoleHandle == (long long *)0x0) ||
-     (consoleValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleValidationStatus == '\0')) {
+     (consoleSystemValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleSystemValidationStatus == '\0')) {
     SystemCharacterStatusPointer = &SystemSystemFunctionPointerP;
   }
   else {
@@ -44170,7 +44170,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   MemoryPoolIndex = (long long)MemoryPoolBlockSize - (long long)MemoryAllocationMaskPointer >> SystemEventContextShiftCount;
   if (MemoryPoolIndex != 0) {
     if ((CoreEngineConsoleHandle == (long long *)0x0) ||
-       (consoleValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleValidationStatus == '\0')) {
+       (consoleSystemValidationStatus = (**(code **)(*CoreEngineConsoleHandle + 0x28))(), consoleSystemValidationStatus == '\0')) {
       SystemCharacterStatusPointer = &CharacterStatusBufferTemplateB8;
     }
     else {
@@ -44183,7 +44183,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
     ProcessTemporaryBuffer(&TemporaryBufferPointer,SystemCharacterStatusPointer);
     ValidationBufferPointer = NULL;
     DataBufferPointer = NULL;
-    BufferValidationStatus = 0;
+    BufferSystemValidationStatus = 0;
     BufferTypeFlag = 3;
     ArrayStackDataBuffer338[0] = 10;
     if (SystemMemoryOffset238 != 0) {
@@ -44213,7 +44213,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
             CharacterCounter = 0;
             LoopIndex = 0;
             StringOffset = 0;
-            characterValidationStatus = *characterStringPointer;
+            characterSystemValidationStatus = *characterStringPointer;
             while (characterValidationStatus != '\0') {
               if (' ' < characterStringPointer[StringOffset]) {
                 if (LoopIndex != StringOffset) {
@@ -44223,7 +44223,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
                 LoopIndex = LoopIndex + 1;
               }
               StringOffset = StringOffset + 1;
-              ValidationStatus = characterStringPointer[StringOffset];
+              SystemValidationStatus = characterStringPointer[StringOffset];
             }
             characterStringPointer[LoopIndex] = '\0';
           }
@@ -44268,7 +44268,7 @@ SystemMemoryValidation: // 原始标签：LAB_180065a3e
               ProcessSystemEventHandling();
           }
           characterStringPointer = (char *)0x0;
-          EventValidationStatus = 0;
+          EventSystemValidationStatus = 0;
           EventBufferPointer = &ThreadLocalStorageTemplate;
           for (CharacterStatusBuffer8 = CharacterStatusBufferCurrent; CharacterStatusBuffer8 != ContextHandleTablePointer; CharacterStatusBuffer8 = CharacterStatusBuffer8 + 4) {
             (**(code **)*CharacterStatusBuffer8)(CharacterStatusBuffer8,0);
@@ -44440,7 +44440,7 @@ void InitializeCoreEngineSystemConfiguration(void
   unsigned long long EncodedKeyResult;
   
   EncodedKeyResult = EncodingDecodingKey ^ (unsigned long long)aLoopCounter;
-  OperationValidationStatus = 0x22657865;
+  OperationSystemValidationStatus = 0x22657865;
   SystemUintBuffer260 = 0x736172435c2e2e22;
   SystemUintBuffer258 = 0x6564616f6c705568;
   EncodingValidationByte = 0;
@@ -44448,7 +44448,7 @@ void InitializeCoreEngineSystemConfiguration(void
   SystemUintBuffer23c = 0x2e726564;
   SystemUintBuffer238 = 0x6c627550;
   SystemUintBuffer234 = 0x2e687369;
-  BufferValidationStatus = 0x75502e72;
+  BufferSystemValidationStatus = 0x75502e72;
   SystemUnsignedValue24C = 0x73696c62;
   BufferTypeFlag = 0x72435c68;
   SystemUnsignedValue244 = 0x55687361;
@@ -44683,7 +44683,7 @@ void ProcessCoreEngineMemoryBufferManagement(long long *ContextHandle,uint64_t O
 void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t configurationData, char initializationFlag, char processingFlag,
                                           uint64_t additionalParameter
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   uint32_t UnicodeCodePoint;
   int EncodingValidationResult;
@@ -44728,7 +44728,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
   
   SystemStackRegisterFlag = 0xfffffffffffffffe;
   SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)CoreSystemStatusContext;
-  ValidationStatus = (**(code **)**(uint64_t **)(SystemCallbackTable + 0x18))();
+  SystemValidationStatus = (**(code **)**(uint64_t **)(SystemCallbackTable + 0x18))();
   EncodingValidationResult = 0;
   if (ValidationStatus != '\0') {
     ProcessTemporaryBuffer(&SystemTemplatePointer,&EngineDataTemplate);
@@ -45225,7 +45225,7 @@ void HandleSystemOutOfRangeException(void)
   code *ValidationStatus;
   
   __Xout_of_range_std__YAXPEBD_Z(&SystemErrorHandlingTableA);
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -45292,7 +45292,7 @@ void HandleSystemLengthErrorException(void
   code *ValidationStatus;
   
   __Xlength_error_std__YAXPEBD_Z(&SystemErrorHandlingTableB);
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -45518,7 +45518,7 @@ void SystemCallHandler(void)
   code *ValidationStatus;
   
   InitializeEngineCore();
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -47490,10 +47490,10 @@ ProcessMemoryBoundaryOperation(uint64_t *ContextHandle,uint64_t *ContextHandleSi
   ContextHandle[6] = 0;
   ContextHandle[7] = _guard_check_icall;
   if (ContextHandle + 4 != OperationBufferSize) {
-    ValidationStatus = (code *)OperationBufferSize[2];
+    SystemValidationStatus = (code *)OperationBufferSize[2];
     if (ValidationStatus != (code *)0x0) {
       (*ValidationStatus)(ContextHandle + 4,OperationBufferSize,1,Utf16EndPointer,0xfffffffffffffffe);
-      ValidationStatus = (code *)OperationBufferSize[2];
+      SystemValidationStatus = (code *)OperationBufferSize[2];
     }
     ContextHandle[6] = ValidationStatus;
     ContextHandle[7] = OperationBufferSize[3];
@@ -48193,17 +48193,17 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
         CoreEngineUnsignedValue = 1;
       }
       else if (EngineInitializationFlag == '\0') {
-        ValidationStatus = (code *)swi(3);
+        SystemValidationStatus = (code *)swi(3);
         (*ValidationStatus)();
         return;
       }
     }
-    if ((SystemValidationStatus == 0) || (*(int *)(SystemValidationStatus + 0x168) == 2)) {
+    if ((SystemSystemValidationStatus == 0) || (*(int *)(SystemValidationStatus + 0x168) == 2)) {
       ConfigureSystemMemory(SystemConfigHandle,4,0xffffffff00000000,&SystemNetworkConfiguration);
       FinalizeSystemConfiguration();
       EncodingValidationResult = IsDebuggerPresent();
       if ((EncodingValidationResult != 0) && (EngineInitializationFlag == '\0')) {
-        ValidationStatus = (code *)swi(3);
+        SystemValidationStatus = (code *)swi(3);
         (*ValidationStatus)();
         return;
       }
@@ -48269,7 +48269,7 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
       }
       else if (((AdditionalParameter2 == '\0') || (*(int *)(CoreEngineSystemContext + SystemContextEventOffset340) == 2)) &&
               (EngineInitializationFlag == '\0')) {
-        ValidationStatus = (code *)swi(3);
+        SystemValidationStatus = (code *)swi(3);
         (*ValidationStatus)();
         return;
       }
@@ -48283,7 +48283,7 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
     }
     if (SystemContextFlag != '\0') {
       EmergencySystemExitHandler(OperationStatus,5);
-      ValidationStatus = (code *)swi(3);
+      SystemValidationStatus = (code *)swi(3);
       (*ValidationStatus)();
       return;
     }
@@ -48839,7 +48839,7 @@ SystemMemoryManagerProcessing:
       }
       if (SystemCheckResult != '\0') {
         if ((AdditionalParameter2 == '\0') || (*(int *)(CoreEngineSystemContext + SystemContextEventOffset340) == 2)) {
-          ValidationStatus = (code *)swi(3);
+          SystemValidationStatus = (code *)swi(3);
           (*ValidationStatus)();
           return;
         }
@@ -52671,7 +52671,7 @@ void UpdateTargetDataContext(long long ContextHandle,long long *ContextHandleSiz
     if (*ContextHandleSize == 0) {
       contextHandlerPointer = (long long *)0x0;
       contextStateBuffer[0] = 0;
-      contextValidationStatus = 0;
+      contextSystemValidationStatus = 0;
       targetProcessingStatusFlag = ContextHandle;
       InitializeContextState(contextStateBuffer);
       if ((*(int *)(ContextHandle + 0x208) != 0) || (*(int *)(ContextHandle + 0x204) != 0)) {
@@ -52722,16 +52722,16 @@ long long CalculateDataStructureCapacity(long long ContextHandle{
   long long BufferStatus;
   byte MemoryValidationStatus;
   
-  MemoryValidationStatus = *(byte *)(ContextHandle + 0xfd) & 0x20;
+  MemorySystemValidationStatus = *(byte *)(ContextHandle + 0xfd) & 0x20;
   CharacterTablePointer = ContextHandle;
-  if (MemoryValidationStatus == 0) {
+  if (MemorySystemValidationStatus == 0) {
     CharacterTablePointer = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
   }
   BufferStatus = 2;
   if (0xffff < *(int *)(CharacterTablePointer + 0x200)) {
     BufferStatus = 4;
   }
-  if (MemoryValidationStatus == 0) {
+  if (MemorySystemValidationStatus == 0) {
     ContextHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
   }
   return (*(int *)(ContextHandle + 0x1fc) * 3) * BufferStatus;
@@ -53487,7 +53487,7 @@ void ValidateAndUpdateBufferConfiguration(long long ContextHandle,long long *Con
     if (SystemBufferHandle != 0) {
       PoolIterationIndex = 0;
       SystemConfigurationFlags = 0;
-      SystemValidationStatus = *(byte *)(ContextHandle + 0xfd);
+      SystemSystemValidationStatus = *(byte *)(ContextHandle + 0xfd);
       SystemModeFlag = (byte)((uint)*(uint32_t *)(*(long long *)(SystemBufferHandle + 0x1e0) + 0x1588) >> 0x1b) << 7;
       *(byte *)(ContextHandle + 0xfd) = SystemModeFlag | SystemValidationStatus & 0x7f;
       SystemValidationResult = *(uint *)(SystemBufferHandle + 0x138) & 0x3000;
@@ -53629,7 +53629,7 @@ uint64_t ValidateContextHandleIntegrity(long long ContextHandle
   long long SystemBufferHandle;
   byte SystemByteValidationStatus;
   
-  SystemByteValidationStatus = *(byte *)(ContextHandle + 0xfd);
+  SystemByteSystemValidationStatus = *(byte *)(ContextHandle + 0xfd);
   SystemBufferHandle = ContextHandle;
   if ((SystemByteValidationStatus & 0x20) == 0) {
     SystemBufferHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
@@ -53640,7 +53640,7 @@ uint64_t ValidateContextHandleIntegrity(long long ContextHandle
     if (SystemValidationCode == 9) {
       SystemValidationCode = GetSystemValidationStatus();
       *(byte *)(SystemBufferHandle + 0x38c) = SystemValidationCode;
-      SystemByteValidationStatus = *(byte *)(ContextHandle + 0xfd);
+      SystemByteSystemValidationStatus = *(byte *)(ContextHandle + 0xfd);
     }
     if ((SystemByteValidationStatus & 0x20) == 0) {
       ContextHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
@@ -53671,7 +53671,7 @@ int CopyContextHandleToSource(long long ContextHandle,long long *ContextHandleSi
   long long *ContextHandle;
   long long *bufferAllocationPointer;
   unsigned long long *eventTemplatePointer;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int operationResult;
   uint dataSize;
   long long memoryBlockSize;
@@ -54084,9 +54084,9 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long ContextHandle,long long 
     SystemDataTablePointer = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
   }
   SystemContextValue = *(long long *)(ContextHandle + 0x1b8);
-  SystemValidationStatus = *(byte *)(SystemContextValue + 0x38c);
-  if (SystemValidationStatus == 9) {
-    SystemValidationStatus = GetSystemValidationStatus();
+  SystemSystemValidationStatus = *(byte *)(SystemContextValue + 0x38c);
+  if (SystemSystemValidationStatus == 9) {
+    SystemSystemValidationStatus = GetSystemValidationStatus();
     *(byte *)(SystemContextValue + 0x38c) = SystemValidationStatus;
   }
   if ((*(long long *)(SystemDataTablePointer + 0x1e0) == 0) ||
@@ -54340,7 +54340,7 @@ unsigned long long ProcessSystemEventAndDataStructure(long long ContextHandle,ui
     *(void *)(ContextHandle + 0x2a8) = *(void *)(BufferAllocationState7 + 0x288);
     *(void *)(ContextHandle + 0x2b0) = AllocatedMemorySize;
     MemoryPoolIndex = *(uint32_t *)(BufferAllocationState7 + 0x29c);
-    SystemValidationStatus = *(uint32_t *)(BufferAllocationState7 + 0x2a0);
+    SystemSystemValidationStatus = *(uint32_t *)(BufferAllocationState7 + 0x2a0);
     ProcessingStatusFlag = *(uint32_t *)(BufferAllocationState7 + 0x2a4);
     *(uint32_t *)(ContextHandle + 0x2b8) = *(uint32_t *)(BufferAllocationState7 + 0x298);
     *(uint32_t *)(ContextHandle + 700) = MemoryPoolIndex;
@@ -54380,7 +54380,7 @@ SystemBufferValidationError:
       if ((*(byte *)(ContextHandle + 0xfe) & 4) == 0) {
         AllocatedMemorySize = ProcessDataStructureValidation(ContextHandle,OperationBufferSize);
         SystemProcessingFlag = (char)AllocatedMemorySize << 2;
-        SystemProcessingValidationStatus = SystemProcessingFlag | *(byte *)(ContextHandle + 0xfe) & 0xfb;
+        SystemProcessingSystemValidationStatus = SystemProcessingFlag | *(byte *)(ContextHandle + 0xfe) & 0xfb;
         ProcessingResult = CONCAT71((int7)((unsigned long long)AllocatedMemorySize >> 8),SystemProcessingValidationStatus);
         *(byte *)(ContextHandle + 0xfe) = SystemProcessingValidationStatus;
         if ((SystemProcessingFlag & 4) == 0) goto SystemProcessingContinue;
@@ -54462,10 +54462,10 @@ SystemBufferValidationError:
             } while ((long long)(SystemFunctionPointer2 + (-0x808 - (long long)SystemEventTemplatePointer0)) <= (long long)MemoryPoolIndexSecondary);
             ProcessingStatusFlagPointer6 = (void *                      (*(long long *                        ((long long)*(int *)(SystemTemporaryRegister118 + 0x1210) * 0x908 + SystemTemporaryRegister118 + 8 +
                         MemoryPoolIndexSecondary * 8) + (unsigned long long)(OperationResult - (OperationResult & 0xfffffe00)) * 0x60);
-            BufferValidationStatus = ContextHandle;
+            BufferSystemValidationStatus = ContextHandle;
             BufferInitializationPointerArray[0] = ProcessingStatusFlagPointer6;
             if ((*(byte *)(ContextHandle + 0xfd) & 0x20) == 0) {
-              BufferValidationStatus = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
+              BufferSystemValidationStatus = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
             }
             BufferStatusRegister8 = *(long long *)(ContextHandle + 0x1b8);
             LowByte1 = *(byte *)(BufferStatusRegister8 + 0x38c);
@@ -54474,7 +54474,7 @@ SystemBufferValidationError:
               *(byte *)(BufferStatusRegister8 + 0x38c) = LowByte1;
             }
             OperationBufferSize = TemporaryBuffer;
-            BufferValidationStatus = *(long long *)(BufferValidationStatus + 0x1e0);
+            BufferSystemValidationStatus = *(long long *)(BufferValidationStatus + 0x1e0);
             *ProcessingStatusFlagPointer6 = *(void *)(BufferValidationStatus + (unsigned long long)LowByte1 * 0x18);
             ProcessingStatusFlagPointer6[1] = *(void *)(BufferValidationStatus + 8 + (unsigned long long)LowByte1 * 0x18);
             *(uint32_t *)(BufferInitializationPointerArray[0] + 2) =
@@ -54522,7 +54522,7 @@ SystemBufferValidationError:
             }
             *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4f) =
                  *(uint8_t *)(*(long long *)(ContextHandle + 600) + 0x24);
-            BufferValidationStatus = *(long long *)(ContextHandle + 600);
+            BufferSystemValidationStatus = *(long long *)(ContextHandle + 600);
             if (*(char *)(BufferValidationStatus + 0x24) != '\0') {
               InputDataLength = *(uint32_t *)(ContextHandle + 0x2ac);
               SystemChecksum = *(uint32_t *)(ContextHandle + 0x2b0);
@@ -54531,7 +54531,7 @@ SystemBufferValidationError:
               *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x54) = InputDataLength;
               *(uint32_t *)(BufferInitializationPointerArray[0] + 0xb) = SystemChecksum;
               *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x5c) = ProcessingStatusFlag;
-              BufferValidationStatus = *(long long *)(ContextHandle + 600);
+              BufferSystemValidationStatus = *(long long *)(ContextHandle + 600);
             }
             *(bool *)((long long)BufferInitializationPointerArray[0] + 0x4c) = *(long long *)(BufferValidationStatus + 0x10) != 0;
             *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4d) = 1;
@@ -55771,7 +55771,7 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Contex
   float InputParamQ;
   float SecondaryFloatValue;
   float InputParamS;
-  char ValidationStatus;
+  char SystemValidationStatus;
   unsigned long long ReturnRegister;
   long long BufferIndex;
   unsigned long long MemoryIndexB;
@@ -55805,13 +55805,13 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Contex
     if ((*(byte *)(ContextHandle + 0x100) & 4) != 0) {
 StringProcessingComplete:
       MemoryBufferC = *(long long *)(ContextHandle + 0x1b8);
-      ValidationStatus = *(char *)(MemoryBufferC + 0x38c);
-      if (ValidationStatus == '\t') {
-        ValidationStatus = GetSystemValidationStatus();
+      SystemValidationStatus = *(char *)(MemoryBufferC + 0x38c);
+      if (SystemValidationStatus == '\t') {
+        SystemValidationStatus = GetSystemValidationStatus();
         *(char *)(MemoryBufferC + 0x38c) = ValidationStatus;
       }
-      ValidationStatus = ValidateSystemStatus(ContextHandle,ContextHandle + 0x1e8,ValidationStatus,1);
-      if (ValidationStatus == '\0') {
+      SystemValidationStatus = ValidateSystemStatus(ContextHandle,ContextHandle + 0x1e8,ValidationStatus,1);
+      if (SystemValidationStatus == '\0') {
         *(byte *)(ContextHandle + 0xfe) = *(byte *)(ContextHandle + 0xfe) & 0xfb;
       }
       if ((*(uint *)(ContextHandle + 0x100) & 0x4000000) == 0) {
@@ -57318,12 +57318,12 @@ void ConfigureDataStructureStatus(long long ContextHandle
   *(uint32_t *)(ContextHandle + 0x1f8) = *(uint32_t *)(BufferStatus + 0x10);
   *(uint32_t *)(ContextHandle + 0x1fc) = *(uint32_t *)(BufferStatus + 0x88);
   *(uint32_t *)(ContextHandle + 0x200) = *(uint32_t *)(BufferStatus + 0x60);
-  SystemValidationStatus = *(byte *)(ContextHandle + 0xfd) & 0x40;
+  SystemSystemValidationStatus = *(byte *)(ContextHandle + 0xfd) & 0x40;
   if ((((SystemValidationStatus != 0) && (BufferStatus != 0)) || (*(long long *)(ContextHandle + 0x1b0) == 0)) ||
      (CharacterTablePointer = ProcessDataStructureHandleRecursively(), ContextHandle == CharacterTablePointer)) {
     *(uint32_t *)(ContextHandle + 0x204) = *(uint32_t *)(BufferStatus + 200);
   }
-  if (((SystemValidationStatus == 0) || (BufferStatus == 0)) &&
+  if (((SystemSystemValidationStatus == 0) || (BufferStatus == 0)) &&
      ((*(long long *)(ContextHandle + 0x1b0) != 0 && (CharacterTablePointer = AllocateBufferMemory(), ContextHandle != CharacterTablePointer)))) {
     return;
   }
@@ -58707,7 +58707,7 @@ void CleanupSystemBuffer(void)
           MemoryBlockOffset = (unsigned long long)(UnicodeCharacterValue >> 0xb);
           MemoryBlockSize = (unsigned long long)(BufferOperationStatus + -1 + UnicodeCharacterValue >> 0xb);
           if (MemoryBlockOffset <= MemoryBlockSize) {
-            SystemStringSystemValidationStatus = (char *)((long long)CharacterValidationBuffer + MemoryAllocationOffset + SystemMemoryFunctionOffset108);
+            SystemStringSystemSystemValidationStatus = (char *)((long long)CharacterValidationBuffer + MemoryAllocationOffset + SystemMemoryFunctionOffset108);
             SystemContextValue = (InputDataLength - MemoryAllocationOffset) + 1;
             ProcessingStatusPointer = CharacterValidationBuffer + MemoryAllocationOffset * 2 + 2;
             do {
@@ -58739,7 +58739,7 @@ void CleanupSystemBuffer(void)
               }
               MemoryAllocationOffset = (unsigned long long)(IterationCounter + 1);
               ProcessingStatusPointer = ProcessingStatusPointer + 2;
-              SystemStringValidationStatus = SystemStringValidationStatus + 1;
+              SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
               SystemContextValue = SystemContextValue + -1;
             } while (SystemContextValue != 0);
           }
@@ -61957,7 +61957,7 @@ void ProcessSystemDataTransfer(uint64_t ContextHandle,long long *ContextHandleSi
   SystemContextHandle = CoreEngineSystemState;
   CharacterTablePointer = 0xfffffffffffffffe;
   EncodedKey = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
-  SystemValidationStatus = 0;
+  SystemSystemValidationStatus = 0;
   Utf8SourcePointer = Utf8SourcePointer * 2;
   SystemEventBuffer = &SystemValidationStatus;
   FunctionAddressBuffer = TemporaryBuffer;
@@ -61973,7 +61973,7 @@ void ProcessSystemDataTransfer(uint64_t ContextHandle,long long *ContextHandleSi
   *(int *)(*ContextHandleSize + 0x18) = Utf8SourcePointer;
   *(int *)(*ContextHandleSize + 0x1c) = Utf8SourcePointer;
   *(uint8_t *)(*ContextHandleSize + 0x20) = 0;
-  SystemValidationStatus = 1;
+  SystemSystemValidationStatus = 1;
     CoreEngineExecuteUtilityFunction(EncodedKey ^ (unsigned long long)SystemEncryptionKey);
 }
 
@@ -62010,7 +62010,7 @@ void ProcessSystemDataAllocation(uint64_t ContextHandle,long long *ContextHandle
   
   CharacterTablePointer = 0xfffffffffffffffe;
   EncodedKey = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
-  SystemValidationStatus = 0;
+  SystemSystemValidationStatus = 0;
   SystemEventBuffer = &SystemValidationStatus;
   FunctionAddressBuffer = TemporaryBuffer;
   TemporaryBuffer[0] = 0;
@@ -62021,7 +62021,7 @@ void ProcessSystemDataAllocation(uint64_t ContextHandle,long long *ContextHandle
   SystemEventBuffer = &ThreadLocalStorageTemplate;
   MemoryAllocationHandle = MemoryAllocate(MemoryPoolManager,Utf8SourcePointer,0x10,3);
   ProcessSystemContextData(ContextHandle,OperationBufferSize);
-  SystemValidationStatus = 1;
+  SystemSystemValidationStatus = 1;
   *(void *)(*ContextHandleSize + 0x10) = MemoryAllocationHandle;
   *(uint32_t *)(*ContextHandleSize + 0x18) = Utf8SourcePointer;
   *(uint32_t *)(*ContextHandleSize + 0x1c) = Utf8SourcePointer;
@@ -62064,7 +62064,7 @@ void ProcessSystemDataInitialization(uint64_t ContextHandle,long long *ContextHa
   SystemContextHandle = CoreEngineSystemState;
   CharacterTablePointer = 0xfffffffffffffffe;
   EncodedKey = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
-  SystemValidationStatus = 0;
+  SystemSystemValidationStatus = 0;
   SystemEventBuffer = &SystemValidationStatus;
   FunctionAddressBuffer = TemporaryBuffer;
   TemporaryBuffer[0] = 0;
@@ -62079,7 +62079,7 @@ void ProcessSystemDataInitialization(uint64_t ContextHandle,long long *ContextHa
   *(uint32_t *)(*ContextHandleSize + 0x18) = Utf8SourcePointer;
   *(uint32_t *)(*ContextHandleSize + 0x1c) = Utf8SourcePointer;
   *(uint8_t *)(*ContextHandleSize + 0x20) = 0;
-  SystemValidationStatus = 1;
+  SystemSystemValidationStatus = 1;
     CoreEngineExecuteUtilityFunction(EncodedKey ^ (unsigned long long)SystemEncryptionKey);
 }
 
@@ -65846,7 +65846,7 @@ void ProcessCharacterStatusBufferCopyAndMemoryManagement(void
           SourceCharacterStatusBuffer = (uint32_t *)(*(long long *)(SourceConfigurationString + 2) + (long long)LoopCounter * 0x10);
           ValidationValue = SourceCharacterStatusBuffer[1];
           DataBlockSize = SourceCharacterStatusBuffer[2];
-          BufferValidationStatus = SourceCharacterStatusBuffer[3];
+          BufferSystemValidationStatus = SourceCharacterStatusBuffer[3];
           TargetProcessingStatusFlag = (uint32_t *)(*(long long *)(TargetCharacterStatusBuffer + 2) + (long long)LoopCounter * 0x10);
           *TargetProcessingStatusFlag = *SourceCharacterStatusBuffer;
           TargetProcessingStatusFlag[1] = ValidationValue;
@@ -65880,7 +65880,7 @@ void ProcessCharacterStatusBufferCopyAndMemoryManagement(void
           SourceCharacterStatusBuffer = (uint32_t *)(*(long long *)(SourceConfigurationString + 0xc) + (long long)LoopCounter * 0x10);
           ValidationValue = SourceCharacterStatusBuffer[1];
           DataBlockSize = SourceCharacterStatusBuffer[2];
-          BufferValidationStatus = SourceCharacterStatusBuffer[3];
+          BufferSystemValidationStatus = SourceCharacterStatusBuffer[3];
           TargetProcessingStatusFlag = (uint32_t *)(*(long long *)(TargetCharacterStatusBuffer + 0xc) + (long long)LoopCounter * 0x10);
           *TargetProcessingStatusFlag = *SourceCharacterStatusBuffer;
           TargetProcessingStatusFlag[1] = ValidationValue;
@@ -65964,7 +65964,7 @@ void ProcessCharacterStatusBufferCopyAndMemoryManagement(void
         SourceCharacterStatusBuffer = (uint32_t *)(*(long long *)(SourceBuffer + 2) + (long long)LoopIndex * 0x10);
         ComparisonValue = SourceCharacterStatusBuffer[1];
         DataBlockSize = SourceCharacterStatusBuffer[2];
-        BufferValidationStatus = SourceCharacterStatusBuffer[3];
+        BufferSystemValidationStatus = SourceCharacterStatusBuffer[3];
         TargetProcessingStatusFlag = (uint32_t *)(*(long long *)(TargetBuffer + 2) + (long long)LoopIndex * 0x10);
         *TargetProcessingStatusFlag = *SourceCharacterStatusBuffer;
         TargetProcessingStatusFlag[1] = ComparisonValue;
@@ -65998,7 +65998,7 @@ void ProcessCharacterStatusBufferCopyAndMemoryManagement(void
         SourceCharacterStatusBuffer = (uint32_t *)(*(long long *)(SourceBuffer + 0xc) + (long long)LoopIndex * 0x10);
         ComparisonValue = SourceCharacterStatusBuffer[1];
         DataBlockSize = SourceCharacterStatusBuffer[2];
-        BufferValidationStatus = SourceCharacterStatusBuffer[3];
+        BufferSystemValidationStatus = SourceCharacterStatusBuffer[3];
         TargetProcessingStatusFlag = (uint32_t *)(*(long long *)(TargetBuffer + 0xc) + (long long)LoopIndex * 0x10);
         *TargetProcessingStatusFlag = *SourceCharacterStatusBuffer;
         TargetProcessingStatusFlag[1] = ComparisonValue;
@@ -66623,14 +66623,14 @@ void CopyAndSynchronizeFloatDataStructureContent(int *ContextHandle, int *Contex
  */
 uint8_t ValidateFloatDataStructure(float *ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   
   if ((((((ABS(*ContextHandle - 1.0) < 0.0001) && (ABS(ContextHandle[1]) < 0.0001)) &&
         (ABS(ContextHandle[2]) < 0.0001)) &&
        ((ABS(ContextHandle[4]) < 0.0001 && (ABS(ContextHandle[5] - 1.0) < 0.0001)))) &&
       ((ABS(ContextHandle[6]) < 0.0001 && ((ABS(ContextHandle[8]) < 0.0001 && (ABS(ContextHandle[9]) < 0.0001)))))) &&
      (ABS(ContextHandle[10] - 1.0) < 0.0001)) {
-    ValidationStatus = ValidateSystemStatus(ContextHandle + 0xc,&FunctionParameterTemplate);
+    SystemValidationStatus = ValidateSystemStatus(ContextHandle + 0xc,&FunctionParameterTemplate);
     if (ValidationStatus != '\0') {
       return 1;
     }
@@ -67411,7 +67411,7 @@ void BufferAllocationStateHandler(long long *ContextHandle
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemValue2a8;
   MemoryPoolIndex = 0;
   DataBufferPointer = &SystemHandlerTemplatePrimary;
-  pBufferValidationStatus = aSystemUintBuffer240;
+  pBufferSystemValidationStatus = aSystemUintBuffer240;
   aSystemUintBuffer240[0] = 0;
   BufferTypeFlag = *(uint *)(Utf8SourcePointer + 0x10);
   CharacterStatusBuffer = &CoreEngineDataTemplate;
@@ -67760,7 +67760,7 @@ StatusHandlerComplete:
  */
 uint64_t SystemContextBufferAllocator(int ContextHandle,long long *ContextHandleSize,uint8_t *Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long BufferStatus;
   void *SystemEventTemplatePointer;
   uint64_t MemoryAllocationMaskPointer;
@@ -67833,11 +67833,11 @@ ConfigHandlerLAB180087418:
     ContextHandleTablePointer = SystemValidationPointer;
   }
   ProcessSystemContextConfiguration(&pMemoryOffsetValue,&SystemConfigurationTemplateSecondary,ContextHandleTablePointer,SystemEventTemplatePointer);
-  ValidationStatus = CoreEngineValidateSystemStatus(&CoreEnginePointerBuffer78);
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = CoreEngineValidateSystemStatus(&CoreEnginePointerBuffer78);
+  if (SystemValidationStatus == '\0') {
 CleanupHandlerLAB18008755d:
-    ValidationStatus = CoreEngineValidateSystemStatus(&pMemoryOffsetValue);
-    if (ValidationStatus == '\0') goto MemoryResetHandlerLAB18008758f;
+    SystemValidationStatus = CoreEngineValidateSystemStatus(&pMemoryOffsetValue);
+    if (SystemValidationStatus == '\0') goto MemoryResetHandlerLAB18008758f;
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferTertiary != NULL) {
       SystemEventTemplatePointer = SystemCharacterStatusBufferTertiary;
@@ -67846,8 +67846,8 @@ CleanupHandlerLAB18008755d:
     *Utf8SourcePointer = 1;
   }
   else {
-    ValidationStatus = CoreEngineValidateSystemStatus(&pSystemOperationValidationFlag);
-    if (ValidationStatus == '\0') goto NullCharacterCheckComplete;
+    SystemValidationStatus = CoreEngineValidateSystemStatus(&pSystemOperationValidationFlag);
+    if (SystemValidationStatus == '\0') goto NullCharacterCheckComplete;
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPrimary != NULL) {
       SystemEventTemplatePointer = SystemCharacterStatusBufferPrimary;
@@ -67970,7 +67970,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *ContextHandle,uint64_t *Co
   uint32_t OperationResult;
   uint32_t SystemStatusValue;
   uint32_t ProcessingStatusFlag;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int FileOperationResult;
   uint8_t *SystemCharacterStatusBuffer;
   long long *ContextHandle;
@@ -68045,10 +68045,10 @@ void InitializeSystemDataStructureProcessor(uint64_t *ContextHandle,uint64_t *Co
   if (CoreEngineDataBuffer != (uint8_t *)0x0) {
     SystemCharacterStatusBuffer = CoreEngineDataBuffer;
   }
-  ValidationStatus = ValidateSystemHandlesAndStatus(SystemHandleArray,SystemCharacterStatusBuffer,5,0x105);
+  SystemValidationStatus = ValidateSystemHandlesAndStatus(SystemHandleArray,SystemCharacterStatusBuffer,5,0x105);
   MemoryBufferPointer = ContextHandleData;
   MemoryOffset = SystemHandleArray[0];
-  if (ValidationStatus == '\0') {
+  if (SystemValidationStatus == '\0') {
     SystemValidationResult = 0;
     if (CoreEngineDataBuffer != (uint8_t *)0x0) {
       *CoreEngineDataBuffer = 0;
@@ -68070,7 +68070,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *ContextHandle,uint64_t *Co
     if (CoreEngineDataBuffer != (uint8_t *)0x0) {
       SystemCharacterStatusBuffer = CoreEngineDataBuffer;
     }
-    ValidationStatus = ValidateSystemHandlesAndStatus(SystemHandleArray,SystemCharacterStatusBuffer,5,0x105);
+    SystemValidationStatus = ValidateSystemHandlesAndStatus(SystemHandleArray,SystemCharacterStatusBuffer,5,0x105);
     MemoryOffset = SystemHandleArray[0];
     if (ValidationStatus != '\0') goto CharacterProcessingComplete;
     SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
@@ -68542,7 +68542,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         }
         SystemStackUnsigned298 = SystemStackUnsigned298 & 0xffffffff;
       }
-      pBufferValidationStatus = &SystemNullTemplate;
+      pBufferSystemValidationStatus = &SystemNullTemplate;
       SystemStackUnsigned238 = 0;
       SystemStackOffset248 = 0;
       SystemUintBuffer240 = 0;
@@ -68560,13 +68560,13 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
       if (OperationStatus != '\0') {
         ValidateDataStructure(&pBufferValidationStatus);
       }
-      pBufferValidationStatus = &SystemNullTemplate;
+      pBufferSystemValidationStatus = &SystemNullTemplate;
       if (SystemStackOffset248 != 0) {
           ProcessSystemEventHandling();
       }
       SystemStackOffset248 = 0;
       SystemStackUnsigned238 = SystemStackUnsigned238 & 0xffffffff00000000;
-      pBufferValidationStatus = &ThreadLocalStorageTemplate;
+      pBufferSystemValidationStatus = &ThreadLocalStorageTemplate;
       pSystemValue2b0 = &SystemNullTemplate;
       if (pSystemValue2a8 != (uint8_t *)0x0) {
           ProcessSystemEventHandling();
@@ -69042,7 +69042,7 @@ void InitializeSystemDataProcessor(void
       SystemPriorityLevel[0] = 0;
       SystemResourceIndex = 0xffffffff;
       SystemDataTablePointer = *(long long *)(SystemMemoryStatus + 0x8a8) + SystemParameter;
-      SystemValidationStatus = *(uint *)(SystemDataTablePointer + 0x10);
+      SystemSystemValidationStatus = *(uint *)(SystemDataTablePointer + 0x10);
       SystemCounter = (unsigned long long)SystemValidationStatus;
       if (*(long long *)(SystemDataTablePointer + 8) != 0) {
         CoreEngineProcessSystemEvent(&SystemOperationStatus,SystemCounter);
@@ -69788,7 +69788,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
   uint64_t *TemporaryBuffer;
   uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   long long LoopIndex;
   long long CharacterTablePointer;
@@ -69884,7 +69884,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemCharacterDataArray;
   SystemProcessingStatus = 0;
   SystemDataNode3 = ContextHandle;
-  if ((ContextHandle[10] == 0) || (ValidationStatus = (*(code *)ContextHandle[0xb])(*ContextHandle), ValidationStatus != '\0')) {
+  if ((ContextHandle[10] == 0) || (SystemValidationStatus = (*(code *)ContextHandle[0xb])(*ContextHandle), ValidationStatus != '\0')) {
     SystemDataNode1 = NULL;
     SystemDataNode2 = NULL;
     SystemDataValue = 0;
@@ -69923,7 +69923,7 @@ PathSeparatorFound:
           SystemValidationBuffer = &UnknownDataStructureTemplate;
           SystemValidationData = SystemValidationArray;
           SystemValidationArray[0] = 0;
-          SystemValidationStatus = 6;
+          SystemSystemValidationStatus = 6;
           strcpy_s(SystemValidationArray,0x10,&SystemStringTemplate);
           if (*(uint *)(PrimaryProcessingStatusFlag7 + 2) < SystemValidationStatus) {
 MemoryBoundaryCheck:
@@ -70076,9 +70076,9 @@ MemoryAddressProcessing:
             *(uint8_t *)SystemEventQueueData = 0;
           }
           SystemDataBufferPointer = (void *)CONCAT71(SystemDataBufferPointer.FullPart,MemoryAllocationMaskPointer);
-          ValidationStatus = ProcessSystemContextData(&SystemContextHandle,&SystemEventQueueNode,&SystemDataBufferPointer2,&CharacterStatusBufferPointer538);
+          SystemValidationStatus = ProcessSystemContextData(&SystemContextHandle,&SystemEventQueueNode,&SystemDataBufferPointer2,&CharacterStatusBufferPointer538);
           LoopIndex = SystemContextHandle;
-          if (ValidationStatus == '\0') {
+          if (SystemValidationStatus == '\0') {
             CharacterStatusBuffer9 = &CoreEngineDataTemplate;
             if (SystemCharacterBuffer != (uint8_t *)0x0) {
               CharacterStatusBuffer9 = SystemCharacterBuffer;
@@ -70154,7 +70154,7 @@ BufferAllocation:
           puStack_430 = NULL;
           uStack_420 = 0;
           puStack_438 = &ThreadLocalStorageTemplate;
-          ValidationStatus = (*(code *)ContextHandle[0xf])(&puStack_558);
+          SystemValidationStatus = (*(code *)ContextHandle[0xf])(&puStack_558);
           puStack_558 = &SystemNullTemplate;
           if (ValidationStatus != '\0') {
             if (puStack_550 != (uint8_t *)0x0) {
@@ -70633,7 +70633,7 @@ MemoryPoolProcessing:
 void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sourceData,long long *reservedParameter1,long long *reservedParameter2,
                                           uint8_t *additionalParameter1,uint8_t *additionalParameter2
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   uint64_t UnicodeCodePoint;
   long long SystemDataRegistry;
@@ -70679,14 +70679,14 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   MemoryPoolBlockSize = 0;
   lStack_248 = OperationBufferSize;
   if (Utf16EndPointer != (long long *)0x0) {
-    ValidationStatus = *(char *)((long long)Utf8SourcePointer + 0x44);
+    SystemValidationStatus = *(char *)((long long)Utf8SourcePointer + 0x44);
     if (ValidationStatus != '\0') {
       pMemoryCopyBuffer = &SystemConfigDataH;
       ValidateSystemConfiguration(SystemConfigHandle,0,0x80000000000,9);
-      ValidationStatus = *(char *)((long long)Utf8SourcePointer + 0x44);
+      SystemValidationStatus = *(char *)((long long)Utf8SourcePointer + 0x44);
     }
     lStack_240 = Utf16EndPointer[1];
-    if (ValidationStatus == '\0') {
+    if (SystemValidationStatus == '\0') {
       SystemDataTablePointer = SystemDataTablePointer + *Utf16EndPointer;
       MemoryPoolBlockSize = 0;
       SystemDataRegistry = lStack_240;
@@ -70695,7 +70695,7 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
       MemoryPoolBlockSize = *Utf16EndPointer;
     }
   }
-  BufferValidationStatus = (uint32_t)Utf8SourcePointer[8];
+  BufferSystemValidationStatus = (uint32_t)Utf8SourcePointer[8];
   DataBufferPointer = (void *)SystemUintBuffer238;
   pcStack_228 = (code *)0x0;
   pcStack_220 = _guard_check_icall;
@@ -70824,7 +70824,7 @@ void ExecuteSystemCallback(long long ContextHandle,uint64_t OperationBufferSize,
 void ValidateSystemDataIntegrity(uint64_t ContextHandle,long long OperationBufferSize,long long *Utf8SourcePointer,long long *Utf16EndPointer,
                   long long AdditionalParameter1
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -70857,9 +70857,9 @@ void ValidateSystemDataIntegrity(uint64_t ContextHandle,long long OperationBuffe
     ContextHandleTablePointer = *(void **)(OperationBufferSize + 0x60);
   }
   lStack_2e0 = OperationBufferSize;
-  ValidationStatus = ValidateSystemHandlesAndStatus(StackSystemData2f0,ContextHandleTablePointer,5,0x105);
+  SystemValidationStatus = ValidateSystemHandlesAndStatus(StackSystemData2f0,ContextHandleTablePointer,5,0x105);
   MemoryBoundaryEnd = StackSystemData2f0[0];
-  if (ValidationStatus == '\0') {
+  if (SystemValidationStatus == '\0') {
     if (StackSystemData2f0[0] != -1) {
       LOCK();
       SystemReferenceCounter = SystemReferenceCounter + -1;
@@ -74945,7 +74945,7 @@ SystemStateResetLabel:
       *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
       AdditionalParameter2 = *(long long **)(AdditionalParameter2[1] + 8);
     }
-    ValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
+    SystemValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
   } while( true );
 }
 
@@ -76462,7 +76462,7 @@ InitializeSystemDataStructure(uint64_t *ContextHandle,uint64_t OperationBufferSi
  */
 void CoreEngineUpdateSystemStatus(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char SystemCheckResult;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -76491,12 +76491,12 @@ void CoreEngineUpdateSystemStatus(void
   SystemOperationStatusMask = 0xfffffffffffffffe;
   StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)SystemCleanupFlagF;
   *(uint8_t *)(SystemMemoryManager + 0x1889) = *(uint8_t *)(SystemMemoryManager + 0x1888);
-  ValidationStatus = *(char *)(*(long long *)(CoreEngineSystemContext + 8) + 0xbc +
+  SystemValidationStatus = *(char *)(*(long long *)(CoreEngineSystemContext + 8) + 0xbc +
                    (unsigned long long)(*(uint *)(*(long long *)(CoreEngineSystemContext + 8) + 0x13c) & 1) * 0x48);
   *(char *)(MemoryBoundaryEnd + 0x1888) = ValidationStatus;
   SystemCheckResult = *(char *)(MemoryBoundaryEnd + 0x1889);
   if (*(int *)(CoreEngineMemoryContext + 0x2370) == 0) {
-    if (ValidationStatus == SystemCheckResult) goto LAB_1800911c4;
+    if (SystemValidationStatus == SystemCheckResult) goto LAB_1800911c4;
     if (ValidationStatus != '\0') goto LAB_180091164;
     SystemEventPointer = &SystemValidationStatus;
     pCalculationFunctionAddress = StackProcessingBuffer70;
@@ -76579,13 +76579,13 @@ void ProcessSystemStatusValidation(void
   int LockOperationResult;
   int MemoryComparisonResult;
   
-  ValidationStatus = *(char **)(CoreEngineSystemDataTable + 0x2010);
+  SystemValidationStatus = *(char **)(CoreEngineSystemDataTable + 0x2010);
   LockOperationResult = (int)(*(float *)(SystemMemoryManager + 0x17f0) * *(float *)(SystemMemoryManager + 0x17e4));
   InputDataLength = (int)(*(float *)(SystemMemoryManager + 0x17ec) * *(float *)(SystemMemoryManager + 0x17e0));
-  if (*ValidationStatus == '\0') {
+  if (*SystemValidationStatus == '\0') {
     *(int *)(ValidationStatus + 4) = InputDataLength;
     *(int *)(ValidationStatus + 8) = LockOperationResult;
-    *ValidationStatus = '\x01';
+    *SystemValidationStatus = '\x01';
     return;
   }
   if ((*(int *)(ValidationStatus + 4) == InputDataLength) && (*(int *)(ValidationStatus + 8) == LockOperationResult)) {
@@ -77328,7 +77328,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
       uStack_220 = 0xffffffff;
       uStack_21c = 0;
       SystemUintBuffer240 = 7;
-      BufferValidationStatus = (uint)*(ushort *)(*(long long *)(CoreEngineRenderContext + 0x121e0) + 0x32c);
+      BufferSystemValidationStatus = (uint)*(ushort *)(*(long long *)(CoreEngineRenderContext + 0x121e0) + 0x32c);
       SystemUnsignedValue24C = (uint)*(ushort *)(*(long long *)(CoreEngineRenderContext + 0x121e0) + 0x32e);
       memoryAllocationBuffer = &SystemValidationStatus;
       DataProcessingBuffer = aDataProcessingFlags;
@@ -79942,7 +79942,7 @@ CharacterStatusBufferProcessingLabel:
       CharacterPointer = (char *)SystemCharacterStatusBuffer[5];
       LoopIndex = (long long)ValidationBytePointer - (long long)CharacterPointer;
       do {
-        ValidationStatus = CharacterPointer + LoopIndex;
+        SystemValidationStatus = CharacterPointer + LoopIndex;
         if (*CharacterPointer != *ValidationStatus) break;
         CharacterPointer = CharacterPointer + 1;
       } while (*SystemValidationStatus != '\0');
@@ -80080,7 +80080,7 @@ CharacterStatusBufferValidationLabel:
       CharacterPointer = (char *)SystemCharacterStatusBuffer[5];
       LoopIndex = (long long)ValidationBytePointer - (long long)CharacterPointer;
       do {
-        ValidationStatus = CharacterPointer + LoopIndex;
+        SystemValidationStatus = CharacterPointer + LoopIndex;
         if (*CharacterPointer != *ValidationStatus) break;
         CharacterPointer = CharacterPointer + 1;
       } while (*SystemValidationStatus != '\0');
@@ -80176,7 +80176,7 @@ void ConfigureSystemRenderBuffer(uint64_t ContextHandle, uint32_t OperationBuffe
  */
 void ProcessSystemDataStructureMemoryManagement(uint64_t ContextHandle, long long OperationBufferSize, long long Utf8SourcePointer, char Utf16EndPointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char SystemCheckResult;
   char OperationStatus;
   uint MemoryAllocationMaskPointer;
@@ -80232,7 +80232,7 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t ContextHandle, long lon
     ConfigurationString = StringProcessingStatus;
   }
   OperationStatus = ProcessCharacterVariableAndCharacterStatusBuffer(ConfigurationString,acStackX_20);
-  ValidationStatus = acStackX_20[0];
+  SystemValidationStatus = acStackX_20[0];
   if (OperationStatus != '\0') {
     StringDataPointer = (char *)ProcessSystemCharacterHandling(Utf8SourcePointer + 0xf0,OperationBufferSize + 0x20);
     *StringDataPointer = ValidationStatus;
@@ -80268,10 +80268,6 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t ContextHandle, long lon
 
 
 
-6040(void/**
- * @brief 初始化系统核心组件
- 180096040
- */
 /**
  * @brief 初始化系统核心组件
  * 
@@ -81799,14 +81795,14 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
   if (*(int *)(OperationBufferSize + 0x10) != 0) {
     MemoryBlockIndex2 = 0;
     BufferStatus4 = MemoryBlockIndex2;
-    BufferValidationStatus = MemoryBlockIndex2;
+    BufferSystemValidationStatus = MemoryBlockIndex2;
     BufferStatus9 = MemoryBlockIndex2;
     if (1 < SystemConfigurationIterator) {
       ContextHandle9 = *(long long **)(OperationBufferSize + 8);
       BufferStatus6 = (SystemConfigurationIterator - 2U >> 1) + 1;
       BufferStatus4 = BufferStatus6 * 2;
       do {
-        BufferValidationStatus = BufferValidationStatus + *(int *)(*ContextHandle9 + 0x20);
+        BufferSystemValidationStatus = BufferValidationStatus + *(int *)(*ContextHandle9 + 0x20);
         BufferStatus9 = BufferStatus9 + *(int *)(ContextHandle9[1] + 0x20);
         ContextHandle9 = ContextHandle9 + 2;
         BufferStatus6 = BufferStatus6 + -1;
@@ -81869,28 +81865,28 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
           if (3 < UnicodeCodePoint5) {
             do {
               BufferStatus9 = (long long)(int)SystemStatusValue;
-              BufferValidationStatus = *(long long *)(BufferStatus4 + 0x28);
+              BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x28);
               *PrimaryProcessingStatusFlag8 = *(uint32_t *)(BufferValidationStatus + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[1] = *(uint32_t *)(BufferValidationStatus + 4 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[2] = 0;
               *SystemEventTemplatePointer0 = *(uint32_t *)(BufferValidationStatus + 8 + BufferStatus9 * 0x14);
               SystemEventTemplatePointer0[1] = *(uint32_t *)(BufferValidationStatus + 0xc + BufferStatus9 * 0x14);
               *PrimaryProcessingStatusFlag3 = *(uint32_t *)(BufferValidationStatus + 0x10 + BufferStatus9 * 0x14);
-              BufferValidationStatus = *(long long *)(BufferStatus4 + 0x28);
+              BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x28);
               PrimaryProcessingStatusFlag8[3] = *(uint32_t *)(BufferValidationStatus + 0x14 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[4] = *(uint32_t *)(BufferValidationStatus + 0x18 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[5] = 0;
               SystemEventTemplatePointer0[2] = *(uint32_t *)(BufferValidationStatus + 0x1c + BufferStatus9 * 0x14);
               SystemEventTemplatePointer0[3] = *(uint32_t *)(BufferValidationStatus + 0x20 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag3[1] = *(uint32_t *)(BufferValidationStatus + 0x24 + BufferStatus9 * 0x14);
-              BufferValidationStatus = *(long long *)(BufferStatus4 + 0x28);
+              BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x28);
               PrimaryProcessingStatusFlag8[6] = *(uint32_t *)(BufferValidationStatus + 0x28 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[7] = *(uint32_t *)(BufferValidationStatus + 0x2c + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[8] = 0;
               SystemEventTemplatePointer0[4] = *(uint32_t *)(BufferValidationStatus + 0x30 + BufferStatus9 * 0x14);
               SystemEventTemplatePointer0[5] = *(uint32_t *)(BufferValidationStatus + 0x34 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag3[2] = *(uint32_t *)(BufferValidationStatus + 0x38 + BufferStatus9 * 0x14);
-              BufferValidationStatus = *(long long *)(BufferStatus4 + 0x28);
+              BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x28);
               PrimaryProcessingStatusFlag8[9] = *(uint32_t *)(BufferValidationStatus + 0x3c + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[10] = *(uint32_t *)(BufferValidationStatus + 0x40 + BufferStatus9 * 0x14);
               PrimaryProcessingStatusFlag8[0xb] = 0;
@@ -81906,7 +81902,7 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
           LockOperationResult5 = 0;
           for (; SystemStatusValue < UnicodeCodePoint5; SystemStatusValue = SystemStatusValue + 1) {
             BufferStatus9 = (long long)(int)SystemStatusValue;
-            BufferValidationStatus = *(long long *)(BufferStatus4 + 0x28);
+            BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x28);
             *PrimaryProcessingStatusFlag8 = *(uint32_t *)(BufferValidationStatus + BufferStatus9 * 0x14);
             PrimaryProcessingStatusFlag8[1] = *(uint32_t *)(BufferValidationStatus + 4 + BufferStatus9 * 0x14);
             PrimaryProcessingStatusFlag8[2] = 0;
@@ -81918,13 +81914,13 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
             PrimaryProcessingStatusFlag8 = PrimaryProcessingStatusFlag8 + 3;
           }
           if (0 < *(int *)(BufferStatus4 + 0x10)) {
-            BufferValidationStatus = 0;
+            BufferSystemValidationStatus = 0;
             do {
               *(short *)(lStack_2a0 + SystemConfigurationIterator * 2) =
                    *(short *)(BufferValidationStatus + *(long long *)(BufferStatus4 + 0x18)) + (short)InputDataLength3;
               SystemConfigurationIterator = SystemConfigurationIterator + 1;
               LockOperationResult5 = LockOperationResult5 + 1;
-              BufferValidationStatus = BufferValidationStatus + 2;
+              BufferSystemValidationStatus = BufferValidationStatus + 2;
             } while (LockOperationResult5 < *(int *)(BufferStatus4 + 0x10));
           }
           InputDataLength3 = InputDataLength3 + *(int *)(BufferStatus4 + 0x20);
@@ -82074,7 +82070,7 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
                 BufferStatus4 = *(long long *)(*(long long *)(ContextHandle + 0x18) + 0x18);
                 if (*(long long *)(SystemConfigurationIterator + 0x8238) != BufferStatus4) {
                   *(long long *)(SystemConfigurationIterator + 0x8238) = BufferStatus4;
-                  BufferValidationStatus = *(long long *)(BufferStatus4 + 0x18);
+                  BufferSystemValidationStatus = *(long long *)(BufferStatus4 + 0x18);
                   *(uint32_t *)(BufferValidationStatus + 0x16c) = *(uint32_t *)(CoreEngineSystemContext + 0x224);
                   if ((*(byte *)(BufferStatus4 + 4) & 1) == 0) {
                     MemoryAllocationCounter = 0x39;
@@ -82126,14 +82122,14 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
                 uStack_25c = MemoryPoolIndex;
                 (**(code **)(*ContextHandle9 + 0x160))(ContextHandle9,1,&MemoryCopyBuffer);
                 ContextHandle9 = *(long long **)(SystemConfigurationIterator + 0x8400);
-                BufferValidationStatus = UnicodeCodePoint5;
+                BufferSystemValidationStatus = UnicodeCodePoint5;
                 SystemUnsignedValue24C = UnicodeCodePoint7;
                 BufferTypeFlag = UnicodeCharacterIndex;
                 SystemUnsignedValue244 = SystemStatusValue;
                 (**(code **)(*ContextHandle9 + 0x168))(ContextHandle9,1,&BufferValidationStatus);
                 ContextHandle = lStack_298;
                 LockOperationResult5 = iStack_2c4;
-                if (SystemValidationStatus == '\0') {
+                if (SystemSystemValidationStatus == '\0') {
                   ContextHandle9 = *(long long **)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x8400);
                   (**(code **)(*ContextHandle9 + 0x60))(ContextHandle9,(*systemEventTemplatePtr6 / 3) * 3,iStack_2c8,0);
                   ContextHandle = lStack_298;
@@ -89756,7 +89752,7 @@ uint64_t * Configure64BitUnsignedIntegerDataStructure(uint64_t *ContextHandle
  */
 long long ProcessSystemDataStreamInitialization(long long ContextHandle,uint64_t OperationBufferSize,uint32_t Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long BufferStatus;
   uint64_t UnicodeCodePoint;
   uint64_t *MemoryAllocationMaskPointer;
@@ -89770,8 +89766,8 @@ long long ProcessSystemDataStreamInitialization(long long ContextHandle,uint64_t
       UnicodeCodePoint = GetLocaleFromBasicStreambuf
                         (ContextHandle,aProcessingCounter);
       UnicodeCodePoint = ProcessSystemDataAndCalculateAllocation(UnicodeCodePoint);
-      ValidationStatus = CheckCodecvtBaseAlwaysNoConversion(UnicodeCodePoint);
-      if (ValidationStatus == '\0') {
+      SystemValidationStatus = CheckCodecvtBaseAlwaysNoConversion(UnicodeCodePoint);
+      if (SystemValidationStatus == '\0') {
         *(void *)(ContextHandle + 0x68) = UnicodeCodePoint;
         InitializeBasicStreambuf(ContextHandle);
       }
@@ -90233,7 +90229,7 @@ void InitializeEngineCore(void
   code *ValidationStatus;
   
   InitializeEngineCore();
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -90773,11 +90769,11 @@ LAB_18009fa96:
  */
 void SetSystemDataStructureConfiguration(long long ContextHandle,uint64_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint64_t MemoryPoolIndex;
   
   MemoryPoolIndex = ProcessSystemDataAndCalculateAllocation(OperationBufferSize);
-  ValidationStatus = _always_noconv_codecvt_base_std__QEBA_NXZ(MemoryPoolIndex);
+  SystemValidationStatus = _always_noconv_codecvt_base_std__QEBA_NXZ(MemoryPoolIndex);
   if (ValidationStatus != '\0') {
     *(void *)(ContextHandle + 0x68) = 0;
     return;
@@ -93418,7 +93414,7 @@ SystemValidationComplete: // 原始标签：LAB_1801035ea，SystemValidationComp
  */
 uint64_t ProcessSystemDataStructureSearch(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   void *SearchTemplatePointer;
   void *MemoryAllocationMaskPointerPointer;
@@ -93436,7 +93432,7 @@ uint64_t ProcessSystemDataStructureSearch(uint64_t ContextHandle,long long *Cont
   if (ProcessingCounter != 0) {
     StringOffset = 0;
     do {
-      ValidationStatus = pStackValidationFlag[StringOffset];
+      SystemValidationStatus = pStackValidationFlag[StringOffset];
       if ((byte)(ValidationStatus + 0xbfU) < 0x1a) {
         pStackValidationFlag[StringOffset] = ValidationStatus + ' ';
       }
@@ -94156,7 +94152,7 @@ uint64_t ProcessSystemDataStructureValidationAndConfiguration(uint64_t ContextHa
  */
 void ProcessContextHandleStatus(long long ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint32_t MemoryPoolIndex;
   uint32_t UnicodeCodePoint;
   void *MemoryAllocationMaskPointer;
@@ -94206,13 +94202,13 @@ void ProcessContextHandleStatus(long long ContextHandle
   auStack_170[0] = 0;
   uStack_178 = 0xb;
   strcpy_s(auStack_170,0x20,&SystemStringTemplateConfigA);
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackSystemContextSecondary);
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackSystemContextSecondary);
   pProcessingStatus = &ThreadLocalStorageTemplate;
   if (ValidationStatus != '\0') {
     StackProcessingVariableArray[0] = 0;
     MemoryPoolIndex = 0;
     if ((*(long long *)(ContextHandle + 0x1f00) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(StackProcessingVariable), MemoryPoolIndex = StackProcessingVariableArray[0], ValidationStatus == '\0'       ) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1f08))(StackProcessingVariable), MemoryPoolIndex = StackProcessingVariableArray[0], SystemValidationStatus == '\0'       ) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1eb0) != NULL) {
@@ -94226,7 +94222,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     SystemValue1a8 = 0x200;
     MemoryPoolIndex = 0x200;
     if ((*(long long *)(ContextHandle + 0x1db0) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1db8))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1db8))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1d60) != NULL) {
@@ -94239,7 +94235,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     *(uint32_t *)(ContextHandle + 0x1d50) = MemoryPoolIndex;
     uStack_1a4 = 0x200;
     if ((*(long long *)(ContextHandle + 0x1e20) == 0) ||
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1e28))(&uStack_1a4), ValidationStatus != '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1e28))(&uStack_1a4), ValidationStatus != '\0')) {
       *(uint32_t *)(ContextHandle + 0x1dc0) = uStack_1a4;
     }
     else {
@@ -94255,7 +94251,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     SystemUnsignedValue1A0 = 100;
     MemoryPoolIndex = 100;
     if ((*(long long *)(ContextHandle + 0x1b10) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&SystemUnsignedValue1A0), MemoryPoolIndex = SystemUnsignedValue1A0, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&SystemUnsignedValue1A0), MemoryPoolIndex = SystemUnsignedValue1A0, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1ac0) != NULL) {
@@ -94272,21 +94268,21 @@ void ProcessContextHandleStatus(long long ContextHandle
   SystemValidationStackArray[0] = 0;
   SystemStatusValue = 0x14;
   strcpy_s(SystemValidationStackArray,0x20,SystemStringTemplateErrorA);
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&CharacterDataBuffer);
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&CharacterDataBuffer);
   CharacterDataBuffer = &ThreadLocalStorageTemplate;
   MemoryPoolIndex = 100;
-  if (ValidationStatus == '\0') {
+  if (SystemValidationStatus == '\0') {
     pProcessingStatus = &RenderConfigManager;
     SystemProcessingStatusFlag = auStack_170;
     auStack_170[0] = 0;
     uStack_178 = 8;
     strcpy_s(auStack_170,0x20,SystemStringTemplateErrorB);
-    ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackSystemContextSecondary);
+    SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackSystemContextSecondary);
     pProcessingStatus = &ThreadLocalStorageTemplate;
     if (ValidationStatus != '\0') {
       SystemValue1a8 = 100;
       if ((*(long long *)(ContextHandle + 0x1b10) != 0) &&
-         (ValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, ValidationStatus == '\0')      {
+         (SystemValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, SystemValidationStatus == '\0')      {
         if (EngineThreadStatus == '\0') {
           MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
           if (*(void **)(ContextHandle + 0x1ac0) != NULL) {
@@ -94303,7 +94299,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     SystemUnsignedValue1A0 = 1;
     UnicodeCodePoint = 1;
     if ((*(long long *)(ContextHandle + 0x1f00) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(&SystemUnsignedValue1A0), UnicodeCodePoint = SystemUnsignedValue1A0, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1f08))(&SystemUnsignedValue1A0), UnicodeCodePoint = SystemUnsignedValue1A0, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1eb0) != NULL) {
@@ -94316,7 +94312,7 @@ void ProcessContextHandleStatus(long long ContextHandle
     *(uint32_t *)(ContextHandle + 0x1ea0) = UnicodeCodePoint;
     uStack_1a4 = 100;
     if ((*(long long *)(ContextHandle + 0x1b10) == 0) ||
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, ValidationStatus != '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1b18))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, ValidationStatus != '\0')) {
 UseSystemMemoryIndex: // 原始标签：LAB_180104808
       *(uint32_t *)(ContextHandle + 0x1ab0) = MemoryPoolIndex;
     }
@@ -94340,8 +94336,8 @@ UseAlternativeMemoryValue: // 原始标签：LAB_1801047f5
   strcpy_s(aBufferMemoryOffset,0x20,&SystemStringTemplateConfigB);
   CalculatedCodePoint = 1;
   uStack_19c = 1;
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackProcessingVariableBuffer);
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackProcessingVariableBuffer);
+  if (SystemValidationStatus == '\0') {
     SystemEventDispatcher = &RenderConfigManager;
     StackTempPointer = SystemOperationStatusMask;
     SystemOperationStatusMask[0] = 0;
@@ -94349,8 +94345,8 @@ UseAlternativeMemoryValue: // 原始标签：LAB_1801047f5
     strcpy_s(SystemOperationStatusMask,0x20,&SystemStringTemplateConfigC);
     CalculatedCodePoint = 3;
     uStack_19c = 3;
-    ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&SystemEventDispatcher);
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&SystemEventDispatcher);
+    if (SystemValidationStatus == '\0') {
       pSystemFlagE = &RenderConfigManager;
       SystemFlagH[0] = 0;
       SystemCleanupFlagG = 10;
@@ -94358,8 +94354,8 @@ UseAlternativeMemoryValue: // 原始标签：LAB_1801047f5
       strcpy_s(SystemFlagH,0x20,&SystemStringTemplateConfigB);
       CalculatedCodePoint = 7;
       uStack_19c = 7;
-      ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&pSystemFlagE);
-      if (ValidationStatus == '\0') {
+      SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&pSystemFlagE);
+      if (SystemValidationStatus == '\0') {
         ThreadLocalStorageBuffer = &RenderConfigManager;
         CoreEnginePointerBuffer = aSystemProcessFlagA;
         aSystemProcessFlagA[0] = 0;
@@ -94367,12 +94363,12 @@ UseAlternativeMemoryValue: // 原始标签：LAB_1801047f5
         strcpy_s(aSystemProcessFlagA,0x20,&SystemStringTemplateConfigE);
         CalculatedCodePoint = 0xf;
         uStack_19c = 0xf;
-        ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&ThreadLocalStorageBuffer);
-        if (ValidationStatus == '\0') goto LAB_18010497b;
+        SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&ThreadLocalStorageBuffer);
+        if (SystemValidationStatus == '\0') goto LAB_18010497b;
       }
     }
   }
-  ValidationStatus = '\x01';
+  SystemValidationStatus = '\x01';
 LAB_18010497b:
   if ((CalculatedCodePoint & 8) != 0) {
     uStack_19c = CalculatedCodePoint & 0xfffffff7;
@@ -94397,7 +94393,7 @@ LAB_18010497b:
     SystemUnsignedValue1A0 = 1;
     MemoryPoolIndex = 1;
     if ((*(long long *)(ContextHandle + 0x1f00) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1f08))(&SystemUnsignedValue1A0), MemoryPoolIndex = SystemUnsignedValue1A0, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1f08))(&SystemUnsignedValue1A0), MemoryPoolIndex = SystemUnsignedValue1A0, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1eb0) != NULL) {
@@ -94411,7 +94407,7 @@ LAB_18010497b:
     uStack_1a4 = 0x780;
     MemoryPoolIndex = 0x780;
     if ((*(long long *)(ContextHandle + 0x1db0) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1db8))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1db8))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1d60) != NULL) {
@@ -94425,7 +94421,7 @@ LAB_18010497b:
     SystemValue1a8 = 0x438;
     MemoryPoolIndex = 0x438;
     if ((*(long long *)(ContextHandle + 0x1e20) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1e28))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1e28))(&SystemValue1a8), MemoryPoolIndex = SystemValue1a8, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x1dd0) != NULL) {
@@ -94442,12 +94438,12 @@ LAB_18010497b:
   SystemValidationStackArray[0] = 0;
   SystemStatusValue = 8;
   strcpy_s(SystemValidationStackArray,0x20,SystemStringTemplateErrorB);
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&CharacterDataBuffer);
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&CharacterDataBuffer);
   CharacterDataBuffer = &ThreadLocalStorageTemplate;
   if (ValidationStatus != '\0') {
     SystemUnsignedValue1A0 = 1;
     if ((*(long long *)(ContextHandle + 0x1c60) == 0) ||
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1c68))(&SystemUnsignedValue1A0), ValidationStatus != '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1c68))(&SystemUnsignedValue1A0), ValidationStatus != '\0')) {
       *(uint32_t *)(ContextHandle + 0x1c00) = SystemUnsignedValue1A0;
     }
     else {
@@ -94463,7 +94459,7 @@ LAB_18010497b:
     uStack_1a4 = 0;
     MemoryPoolIndex = 0;
     if ((*(long long *)(ContextHandle + 0x1330) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x1338))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x1338))(&uStack_1a4), MemoryPoolIndex = uStack_1a4, SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         MemoryAllocationMaskPointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x12e0) != NULL) {
@@ -94476,7 +94472,7 @@ LAB_18010497b:
     *(uint32_t *)(ContextHandle + 0x12d0) = MemoryPoolIndex;
     SystemValue1a8 = 0;
     if ((*(long long *)(ContextHandle + 0xc30) == 0) ||
-       (ValidationStatus = (**(code **)(ContextHandle + 0xc38))(&SystemValue1a8), ValidationStatus != '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0xc38))(&SystemValue1a8), ValidationStatus != '\0')) {
       *(uint32_t *)(ContextHandle + 0xbd0) = SystemValue1a8;
     }
     else {
@@ -95091,9 +95087,9 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCo
   (**(code **)(*(long long *)(ContextHandle + 0x158) + 0x10))((long long *)(ContextHandle + 0x158),&SystemContextTemplateTertiary  ;
   SystemValidationStatus.LowPart = 3;
   CoreEngineInitializeRenderBuffer(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,3);
+  SystemSystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,3);
   CoreEngineSetupRenderPipeline(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = RenderContextPointer;
+  SystemSystemValidationStatus = RenderContextPointer;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemValidationStatus);
   SetupRenderPipeline(RenderConfigBuffer,0);
   *(uint32_t *)(ContextHandle + 0x1318) = 1;
@@ -95105,17 +95101,17 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCo
   (**(code **)(*(long long *)(ContextHandle + 0x12d8) + 0x10)            ((long long *)(ContextHandle + 0x12d8),SystemConfigStringTemplateA);
   SystemValidationStatus.LowPart = 1;
   CoreEngineInitializeRenderBuffer(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,1);
+  SystemSystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,1);
   CoreEngineSetupRenderPipeline(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = RenderContextPointer;
+  SystemSystemValidationStatus = RenderContextPointer;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemValidationStatus);
   RenderContextPointer = ContextHandle + 0x17a0;
   (**(code **)(*(long long *)(ContextHandle + 0x17a8) + 0x10)            ((long long *)(ContextHandle + 0x17a8),SystemConfigStringTemplateB);
   SystemValidationStatus.LowPart = 0x3f000000;
   CoreEngineInitializeRenderBuffer(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,0x3f000000);
+  SystemSystemValidationStatus = CONCAT44(SystemValidationStatus.HighPart,0x3f000000);
   CoreEngineSetupRenderPipeline(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = RenderContextPointer;
+  SystemSystemValidationStatus = RenderContextPointer;
   ProcessSystemContextAllocation(ContextHandle + 0x28,&SystemValidationStatus);
   InitializeRenderSystem(RenderConfigBuffer,0);
   *(uint32_t *)(ContextHandle + 0x1778) = 0;
@@ -95125,11 +95121,11 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCo
   }
   RenderContextPointer = ContextHandle + 0x1730;
   (**(code **)(*(long long *)(ContextHandle + 0x1738) + 0x10)            ((long long *)(ContextHandle + 0x1738),SystemConfigStringTemplateC);
-  SystemValidationStatus = SystemValidationStatus & 0xffffffff00000000;
+  SystemSystemValidationStatus = SystemValidationStatus & 0xffffffff00000000;
   CoreEngineInitializeRenderBuffer(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = SystemValidationStatus & 0xffffffff00000000;
+  SystemSystemValidationStatus = SystemValidationStatus & 0xffffffff00000000;
   CoreEngineSetupRenderPipeline(RenderContextPointer,&SystemValidationStatus);
-  SystemValidationStatus = RenderContextPointer;
+  SystemSystemValidationStatus = RenderContextPointer;
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemValidationStatus);
   ConfigureRenderBuffers(RenderConfigurationData,0);
   *(uint32_t *)(ContextHandle + 0x128) = 2;
@@ -97354,7 +97350,7 @@ LAB_1801080f5:
 
 9920(long long ContextHandlevoid InitializeCoreEngineSystemResources(long long ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint32_t MemoryPoolIndex;
   void *SystemEventTemplatePointer;
   uint MemoryAllocationMaskPointer;
@@ -97383,7 +97379,7 @@ LAB_1801080f5:
   aOperationStatus[0] = 0;
   MemoryPoolIndex = 0;
   if ((*(long long *)(ContextHandle + SecondaryProcessingStatusOffset) != 0) &&
-     (ValidationStatus = (**(code **)(ContextHandle + 0x378))(aOperationStatus), MemoryPoolIndex = aOperationStatus[0], ValidationStatus == '\0')) {
+     (SystemValidationStatus = (**(code **)(ContextHandle + 0x378))(aOperationStatus), MemoryPoolIndex = aOperationStatus[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       SystemEventTemplatePointer = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 800) != NULL) {
@@ -97399,13 +97395,13 @@ LAB_1801080f5:
   aCoreEngineValueC0[0] = 0;
   SystemFlagH = 0xb;
   strcpy_s(aCoreEngineValueC0,0x20,&SystemStringTemplateConfigA);
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&pSystemCleanupFlagF);
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&pSystemCleanupFlagF);
   pSystemCleanupFlagF = &ThreadLocalStorageTemplate;
   if (ValidationStatus != '\0') {
     aOperationStatus[0] = 1;
     MemoryPoolIndex = 1;
     if ((*(long long *)(ContextHandle + 0x680) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x688))(aOperationStatus), MemoryPoolIndex = aOperationStatus[0], ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x688))(aOperationStatus), MemoryPoolIndex = aOperationStatus[0], SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         SystemEventTemplatePointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x630) != NULL) {
@@ -97419,7 +97415,7 @@ LAB_1801080f5:
     aSystemProcessFlagB[0] = 1;
     MemoryPoolIndex = 1;
     if ((*(long long *)(ContextHandle + 0x450) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x458))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x458))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         SystemEventTemplatePointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x400) != NULL) {
@@ -97438,8 +97434,8 @@ LAB_1801080f5:
   strcpy_s(aSystemKeyPointer,0x20,SystemStringTemplateErrorB);
   MemoryAllocationMaskPointer = 1;
   ErrorCode = 1;
-  ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&EnginePointerBuffer);
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&EnginePointerBuffer);
+  if (SystemValidationStatus == '\0') {
     StackTempPointer = &RenderConfigManager;
     pSystemOperationValidationFlag = StackValidationData;
     StackValidationData[0] = 0;
@@ -97447,10 +97443,10 @@ LAB_1801080f5:
     strcpy_s(StackValidationData,0x20,SystemStringTemplateErrorA);
     MemoryAllocationMaskPointer = 3;
     ErrorCode = 3;
-    ValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackTempPointer);
-    if (ValidationStatus == '\0') goto LAB_180109ba3;
+    SystemValidationStatus = ValidateSystemContext(CoreEngineSystemContext,&StackTempPointer);
+    if (SystemValidationStatus == '\0') goto LAB_180109ba3;
   }
-  ValidationStatus = '\x01';
+  SystemValidationStatus = '\x01';
 LAB_180109ba3:
   if ((MemoryAllocationMaskPointer & 2) != 0) {
     ErrorCode = MemoryAllocationMaskPointer & 0xfffffffd;
@@ -97465,7 +97461,7 @@ LAB_180109ba3:
     aSystemProcessFlagB[0] = 0;
     MemoryPoolIndex = 0;
     if ((*(long long *)(ContextHandle + 0x680) != 0) &&
-       (ValidationStatus = (**(code **)(ContextHandle + 0x688))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], ValidationStatus == '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x688))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], SystemValidationStatus == '\0')) {
       if (EngineThreadStatus == '\0') {
         SystemEventTemplatePointer = &CoreEngineDataTemplate;
         if (*(void **)(ContextHandle + 0x630) != NULL) {
@@ -97479,7 +97475,7 @@ LAB_180109ba3:
     aSystemProcessFlagB[0] = 1;
     MemoryPoolIndex = 1;
     if ((*(long long *)(ContextHandle + 0x450) == 0) ||
-       (ValidationStatus = (**(code **)(ContextHandle + 0x458))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], ValidationStatus != '\0')) {
+       (SystemValidationStatus = (**(code **)(ContextHandle + 0x458))(aSystemProcessFlagB), MemoryPoolIndex = aSystemProcessFlagB[0], ValidationStatus != '\0')) {
       *(uint32_t *)(ContextHandle + 0x3f0) = MemoryPoolIndex;
     }
     else {
@@ -97495,7 +97491,7 @@ LAB_180109ba3:
   }
   aSystemProcessFlagB[0] = 0;
   if ((*(long long *)(ContextHandle + 0x680) == 0) ||
-     (ValidationStatus = (**(code **)(ContextHandle + 0x688))(aSystemProcessFlagB), ValidationStatus != '\0')) {
+     (SystemValidationStatus = (**(code **)(ContextHandle + 0x688))(aSystemProcessFlagB), ValidationStatus != '\0')) {
     *(uint32_t *)(ContextHandle + 0x620) = aSystemProcessFlagB[0];
   }
   else {
@@ -98751,10 +98747,10 @@ void ProcessSystemCallbacks(void
   if (CallbackFunction != (code *)0x0) {
     (*CallbackFunction)();
   }
-  ValidationStatus = *(code **)(SystemDataNode + 0x10);
+  SystemValidationStatus = *(code **)(SystemDataNode + 0x10);
   if (ValidationStatus != (code *)0x0) {
     (*ValidationStatus)();
-    ValidationStatus = *(code **)(SystemDataNode + 0x10);
+    SystemValidationStatus = *(code **)(SystemDataNode + 0x10);
   }
   *(code **)(SystemContext + SystemContextMemoryOffset) = ValidationStatus;
   *(void *)(SystemContext + 0x18) = *(void *)(SystemDataNode + 0x18);
@@ -98798,10 +98794,10 @@ long long CopySystemDataStructure(long long ContextHandle,long long OperationBuf
     if (*(code **)(ContextHandle + 0x10) != (code *)0x0) {
       (**(code **)(ContextHandle + 0x10))(ContextHandle,0,0);
     }
-    ValidationStatus = *(code **)(OperationBufferSize + 0x10);
+    SystemValidationStatus = *(code **)(OperationBufferSize + 0x10);
     if (ValidationStatus != (code *)0x0) {
       (*ValidationStatus)(ContextHandle,OperationBufferSize,1);
-      ValidationStatus = *(code **)(OperationBufferSize + 0x10);
+      SystemValidationStatus = *(code **)(OperationBufferSize + 0x10);
     }
     *(code **)(ContextHandle + 0x10) = ValidationStatus;
     *(void *)(ContextHandle + 0x18) = *(void *)(OperationBufferSize + 0x18);
@@ -98833,10 +98829,10 @@ void InitializeSystemDataStructure(uint64_t ContextHandle
   if (ProcessingResult != (code *)0x0) {
     (*ProcessingResult)(ContextHandle,0,0);
   }
-  ValidationStatus = *(code **)(SystemDataNode + 0x10);
+  SystemValidationStatus = *(code **)(SystemDataNode + 0x10);
   if (ValidationStatus != (code *)0x0) {
     (*ValidationStatus)();
-    ValidationStatus = *(code **)(SystemDataNode + 0x10);
+    SystemValidationStatus = *(code **)(SystemDataNode + 0x10);
   }
   *(code **)(SystemContext + SystemContextMemoryOffset) = ValidationStatus;
   *(void *)(SystemContext + 0x18) = *(void *)(SystemDataNode + 0x18);
@@ -99124,13 +99120,13 @@ cc70(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void ProcessSystemDataStructureConfigurationAndEventInitialization(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t ParameterStackBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x1bf0) != 0) &&
-     (ParameterStackBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1bf8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
+     (ParameterStackBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1bf8))(ParameterStackBuffer),
+     OperationBufferSize = ParameterStackBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1ba0) != NULL) {
@@ -99159,13 +99155,13 @@ void ProcessSystemDataStructureConfigurationAndEventInitialization(long long Con
  */
 void ProcessSystemDataStructureSecondaryConfigurationAndEventInitialization(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t ParameterStackBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x1fe0) != 0) &&
-     (ParameterStackBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1fe8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
+     (ParameterStackBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1fe8))(ParameterStackBuffer),
+     OperationBufferSize = ParameterStackBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1f90) != NULL) {
@@ -99194,13 +99190,13 @@ void ProcessSystemDataStructureSecondaryConfigurationAndEventInitialization(long
  */
 void ProcessSystemDataStructureTertiaryConfigurationAndEventInitialization(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t ParameterStackBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x20c0) != 0) &&
-     (ParameterStackBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x20c8))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
+     (ParameterStackBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x20c8))(ParameterStackBuffer),
+     OperationBufferSize = ParameterStackBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x2070) != NULL) {
@@ -99229,13 +99225,13 @@ void ProcessSystemDataStructureTertiaryConfigurationAndEventInitialization(long 
  */
 void ProcessSystemDataStructureQuaternaryConfigurationAndEventInitialization(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t ParameterStackBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x2210) != 0) &&
-     (ParameterStackBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x2218))(ParameterStackBuffer),
-     OperationBufferSize = ParameterStackBuffer[0], ValidationStatus == '\0')) {
+     (ParameterStackBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x2218))(ParameterStackBuffer),
+     OperationBufferSize = ParameterStackBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x21c0) != NULL) {
@@ -99267,13 +99263,13 @@ void ProcessSystemDataStructureQuaternaryConfigurationAndEventInitialization(lon
  */
 void ConfigureSystemDataStructureWithValidation(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x2280) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x2288))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x2288))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x2230) != NULL) {
@@ -99305,13 +99301,13 @@ void ConfigureSystemDataStructureWithValidation(long long ContextHandle,uint32_t
  */
 void ConfigureSystemDataStructureWithEventHandling(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x21a0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x21a8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x21a8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x2150) != NULL) {
@@ -99343,13 +99339,13 @@ void ConfigureSystemDataStructureWithEventHandling(long long ContextHandle,uint3
  */
 void ConfigureSystemDataStructureWithMemoryManagement(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x2130) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x2138))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x2138))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x20e0) != NULL) {
@@ -99378,13 +99374,13 @@ void ConfigureSystemDataStructureWithMemoryManagement(long long ContextHandle,ui
  */
 void GetSystemValueByIndex(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x1330) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1338))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1338))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x12e0) != NULL) {
@@ -99414,13 +99410,13 @@ void GetSystemValueByIndex(long long ContextHandle,uint32_t OperationBufferSize
  */
 void ConfigureSystemDataStructureOffset070(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t SystemParameterBuffer [6];
   
   if ((*(long long *)(ContextHandle + 0x1100) != 0) &&
-     (SystemParameterBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1108))(SystemParameterBuffer),
-     OperationBufferSize = SystemParameterBuffer[0], ValidationStatus == '\0')) {
+     (SystemParameterBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1108))(SystemParameterBuffer),
+     OperationBufferSize = SystemParameterBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x10b0) != NULL) {
@@ -99450,13 +99446,13 @@ void ConfigureSystemDataStructureOffset070(long long ContextHandle, uint32_t Ope
  */
 void ConfigureSystemDataStructureOffset0f0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x1090) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1098))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1098))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1040) != NULL) {
@@ -99476,13 +99472,13 @@ void ConfigureSystemDataStructureOffset0f0(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffset170(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x1020) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1028))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1028))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xfd0) != NULL) {
@@ -99502,13 +99498,13 @@ void ConfigureSystemDataStructureOffset170(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffset1f0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xfb0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xfb8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xfb8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xf60) != NULL) {
@@ -99528,13 +99524,13 @@ void ConfigureSystemDataStructureOffset1f0(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffset270(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xf40) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xf48))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xf48))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xef0) != NULL) {
@@ -99554,13 +99550,13 @@ void ConfigureSystemDataStructureOffset270(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffset2f0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xed0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xed8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xed8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xe80) != NULL) {
@@ -99580,13 +99576,13 @@ void ConfigureSystemDataStructureOffset2f0(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffset3b0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xe60) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xe68))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xe68))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xe10) != NULL) {
@@ -99617,13 +99613,13 @@ d470(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void SetContextHandleOffsetD90(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xdf0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xdf8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xdf8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xda0) != NULL) {
@@ -99654,13 +99650,13 @@ d4f0(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void SetContextHandleOffsetD20(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xd80) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xd88))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xd88))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xd30) != NULL) {
@@ -99691,13 +99687,13 @@ d570(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void SetContextHandleOffsetCD0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xd10) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xd18))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xd18))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xcc0) != NULL) {
@@ -99728,13 +99724,13 @@ d5f0(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void SetContextHandleOffsetC80(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xca0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xca8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xca8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xc50) != NULL) {
@@ -99765,13 +99761,13 @@ d670(long long ContextHandle,uint32_t OperationBufferSize/**
  */
 void ConfigureSystemDataStructureOffset670(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xc30) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xc38))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xc38))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xbe0) != NULL) {
@@ -99800,13 +99796,13 @@ void ConfigureSystemDataStructureOffset670(long long ContextHandle,uint32_t Oper
  */
 void ConfigureSystemDataStructureOffset6f0(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xbc0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xbc8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xbc8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xb70) != NULL) {
@@ -99835,13 +99831,13 @@ void ConfigureSystemDataStructureOffset6f0(long long ContextHandle, uint32_t Ope
  */
 void ConfigureSystemDataStructureOffset770(long long ContextHandle, uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xb50) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xb58))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xb58))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xb00) != NULL) {
@@ -99861,13 +99857,13 @@ void ConfigureSystemDataStructureOffset770(long long ContextHandle, uint32_t Ope
 
 void InitializeGraphicsContext(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xae0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xae8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xae8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xa90) != NULL) {
@@ -99887,13 +99883,13 @@ void InitializeGraphicsContext(long long ContextHandle,uint32_t OperationBufferS
 
 void SetupGraphicsParameters(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xa70) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xa78))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xa78))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xa20) != NULL) {
@@ -99913,13 +99909,13 @@ void SetupGraphicsParameters(long long ContextHandle,uint32_t OperationBufferSiz
 
 void ConfigureGraphicsRendering(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0xa00) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0xa08))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0xa08))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x9b0) != NULL) {
@@ -99939,13 +99935,13 @@ void ConfigureGraphicsRendering(long long ContextHandle,uint32_t OperationBuffer
 
 void ProcessGraphicsPipeline(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x990) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x998))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x998))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x940) != NULL) {
@@ -99965,13 +99961,13 @@ void ProcessGraphicsPipeline(long long ContextHandle,uint32_t OperationBufferSiz
 
 void ExecuteGraphicsDraw(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x920) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x928))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x928))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x8d0) != NULL) {
@@ -99991,13 +99987,13 @@ void ExecuteGraphicsDraw(long long ContextHandle,uint32_t OperationBufferSize
 
 void FinalizeGraphicsFrame(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x8b0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x8b8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x8b8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x860) != NULL) {
@@ -100015,15 +100011,24 @@ void FinalizeGraphicsFrame(long long ContextHandle,uint32_t OperationBufferSize
 
 
 
-void CleanupGraphicsResources(long long ContextHandle,uint32_t OperationBufferSize
+/**
+ * @brief 清理图形资源
+ * 
+ * 该函数负责清理和释放图形系统使用的资源，包括纹理、着色器、
+ * 缓冲区等图形对象的内存管理和资源回收。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ */
+void CleanupGraphicsResources(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x840) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x848))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x848))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x7f0) != NULL) {
@@ -100043,13 +100048,13 @@ void CleanupGraphicsResources(long long ContextHandle,uint32_t OperationBufferSi
 
 void ConfigureSystemDataStructureOffsetb70(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 2000) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x7d8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x7d8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x780) != NULL) {
@@ -100069,13 +100074,13 @@ void ConfigureSystemDataStructureOffsetb70(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffsetbf0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x760) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x768))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x768))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x710) != NULL) {
@@ -100095,13 +100100,13 @@ void ConfigureSystemDataStructureOffsetbf0(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffsetc70(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x6f0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x6f8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x6f8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x6a0) != NULL) {
@@ -100121,13 +100126,13 @@ void ConfigureSystemDataStructureOffsetc70(long long ContextHandle, uint32_t Ope
 
 void ConfigureSystemDataStructureOffsetcf0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x680) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x688))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x688))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x630) != NULL) {
@@ -100147,13 +100152,13 @@ void ConfigureSystemDataStructureOffsetcf0(long long ContextHandle, uint32_t Ope
 
 dd70(long long ContextHandle,uint32_t OperationBufferSizevoid ConfigureSystemDataStructureOffsetd70(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x610) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x618))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x618))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x5c0) != NULL) {
@@ -100173,13 +100178,13 @@ dd70(long long ContextHandle,uint32_t OperationBufferSizevoid ConfigureSystemDat
 
 void ConfigureSystemDataStructureOffsetde30(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t SystemParameterStack[6];
   
   if ((*(long long *)(ContextHandle + 0x4c0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x4c8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x4c8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x470) != NULL) {
@@ -100199,13 +100204,13 @@ void ConfigureSystemDataStructureOffsetde30(long long ContextHandle,uint32_t Ope
 
 void ConfigureSystemDataStructureOffsetef0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
   uint32_t SystemParameterStack[6];
   
   if ((*(long long *)(ContextHandle + SecondaryProcessingStatusOffset) != 0) &&
-     (SystemParameterStack[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x378))(SystemParameterStack),
-     OperationBufferSize = SystemParameterStack[0], ValidationStatus == '\0')) {
+     (SystemParameterStack[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x378))(SystemParameterStack),
+     OperationBufferSize = SystemParameterStack[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 800) != NULL) {
@@ -100225,13 +100230,13 @@ void ConfigureSystemDataStructureOffsetef0(long long ContextHandle,uint32_t Oper
 
 void ConfigureSystemDataStructureOffsetfb0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x300) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x308))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x308))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x2b0) != NULL) {
@@ -100251,13 +100256,13 @@ void ConfigureSystemDataStructureOffsetfb0(long long ContextHandle,uint32_t Oper
 
 void SetSystemDataStructureOffset030(long long ContextHandle,uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x290) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x298))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x298))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x240) != NULL) {
@@ -100277,13 +100282,13 @@ void SetSystemDataStructureOffset030(long long ContextHandle,uint32_t OperationB
 
 e0b0(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStructureOffset0b0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x220) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x228))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x228))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x1d0) != NULL) {
@@ -100303,13 +100308,13 @@ e0b0(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
 
 e170(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStructureOffset150(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x1b0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x1b8))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x1b8))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x160) != NULL) {
@@ -100329,13 +100334,13 @@ e170(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
 
 e230(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStructureOffsetE0(long long ContextHandle,uint32_t OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x140) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x148))(StackBufferX10),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x148))(StackBufferX10),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0xf0) != NULL) {
@@ -100365,13 +100370,13 @@ e230(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
  */
 void ConfigureSystemDataStructureOffset1C0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x450) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x458))(StackProcessingBuffer),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x458))(StackProcessingBuffer),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x400) != NULL) {
@@ -100401,13 +100406,13 @@ void ConfigureSystemDataStructureOffset1C0(long long ContextHandle, uint32_t Ope
  */
 void ConfigureSystemDataStructureOffset220(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x3e0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 1000))(StackProcessingBuffer),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 1000))(StackProcessingBuffer),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x390) != NULL) {
@@ -100437,13 +100442,13 @@ void ConfigureSystemDataStructureOffset220(long long ContextHandle, uint32_t Ope
  */
 void ConfigureSystemDataStructureOffset280(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x5a0) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x5a8))(StackProcessingBuffer),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x5a8))(StackProcessingBuffer),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x550) != NULL) {
@@ -100473,13 +100478,13 @@ void ConfigureSystemDataStructureOffset280(long long ContextHandle, uint32_t Ope
  */
 void ConfigureSystemDataStructureOffset2E0(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *PrimaryProcessingStatusFlag;
-  uint32_t StackProcessingBuffer[6];
+  uint32_t SystemProcessingStackBuffer[6];
   
   if ((*(long long *)(ContextHandle + 0x530) != 0) &&
-     (StackProcessingBuffer[0] = OperationBufferSize, ValidationStatus = (**(code **)(ContextHandle + 0x538))(StackProcessingBuffer),
-     OperationBufferSize = StackProcessingBuffer[0], ValidationStatus == '\0')) {
+     (StackProcessingBuffer[0] = OperationBufferSize, SystemValidationStatus = (**(code **)(ContextHandle + 0x538))(StackProcessingBuffer),
+     OperationBufferSize = StackProcessingBuffer[0], SystemValidationStatus == '\0')) {
     if (EngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x4e0) != NULL) {
@@ -102491,8 +102496,8 @@ char ValidateSystemMemoryAllocationSecondary(uint64_t SystemContextHandle, uint3
   }
   
   // 初始化字符验证状态
-  CharacterValidationStatus = '\0';
-  MemoryValidationStatus = CheckSystemStatus();
+  CharacterSystemValidationStatus = '\0';
+  MemorySystemValidationStatus = CheckSystemStatus();
   if (OperationStatus == '\0') {
 CharacterDataValidationStart:
     if (((*(char *)(SystemContext + 0x1dd0) != '\0') && ((RegisterEBPValue >> 0xc & 1) != 0)) &&
@@ -102681,7 +102686,7 @@ SystemContextProcessingContinue:
  */
 char CheckSystemMemoryStatus(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint8_t MemoryPoolIndex;
   long long SystemContext;
   uint RegisterEBPValue;
@@ -102755,8 +102760,8 @@ char CheckSystemMemoryStatus(void
     }
     if ((((RegisterEBPValue & 1) == 0) || (*(int *)(SystemContext + SystemContextProcessingCounterOffset) != CharacterTablePointer)) ||
        (*(float *)(SystemContext + 0x424) <= 0.0)) goto SystemCalculationComplete;
-    ValidationStatus = ProcessSystemTime(0);
-    if (ValidationStatus == '\0') goto SystemCalculationComplete;
+    SystemValidationStatus = ProcessSystemTime(0);
+    if (SystemValidationStatus == '\0') goto SystemCalculationComplete;
     NullPointerValueB = '\x01';
   }
   else {
@@ -102774,7 +102779,7 @@ SystemContextProcessingContinue:
   if (*(int *)(SystemContext + SystemContextValidationOffset3) == CharacterTablePointer) {
     RemainingSpace = *(int *)(SystemContext + SystemContextValidationOffset2);
     CalculatedDistance = (float)PerformSystemCalculation(0);
-    ValidationStatus = 0.0 < CalculatedDistance;
+    SystemValidationStatus = 0.0 < CalculatedDistance;
     if ((RemainingSpace == CharacterTablePointer) || ((bool)ValidationStatus)) {
       NullPointerValueB = '\x01';
     }
@@ -104342,7 +104347,7 @@ void ProcessRenderParameterCalculation(int ContextHandle
   uint SystemIndex;
   uint32_t MemoryPoolIndex;
   void *SystemCharacterStatusBuffer;
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long OperationResult;
   uint Utf16Char;
   unsigned long long ExtendedUtf16Char;
@@ -104383,12 +104388,12 @@ void ProcessRenderParameterCalculation(int ContextHandle
     *(uint8_t *)(MemoryBoundaryEnd + 0x1b3f) = 1;
   }
   if (ContextHandle == 0) {
-    ValidationStatus = *(char *)(SystemDataRegistry + 0xad);
+    SystemValidationStatus = *(char *)(SystemDataRegistry + 0xad);
   }
   else {
-    ValidationStatus = *(char *)(SystemDataRegistry + 0xac);
+    SystemValidationStatus = *(char *)(SystemDataRegistry + 0xac);
   }
-  if (ValidationStatus == '\0') {
+  if (SystemValidationStatus == '\0') {
     RenderTransformRotationZ = 0.0;
   }
   else {
@@ -104607,7 +104612,7 @@ void ProcessRenderParameterCalculation(int ContextHandle
     }
     CharacterStatusBuffer = (uint32_t *)(MemoryPoolBlockSize + 0x1628 + (SystemDataTablePointer + 10) * 0x10);
     RenderValidationStatus1 = *CharacterStatusBuffer;
-    RenderValidationStatus = CharacterStatusBuffer[1];
+    RenderSystemValidationStatus = CharacterStatusBuffer[1];
     RenderValidationStatus3 = CharacterStatusBuffer[2];
     RenderScaleFactor = (float)CharacterStatusBuffer[3] * *(float *)(MemoryPoolBlockSize + 0x1628);
     MemoryPoolIndex = ValidateSystemData(&RenderValidationStatus1);
@@ -106336,11 +106341,11 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *ContextHandle, 
     if (*(int *)(AllocatedMemorySize + 0x1b30) == StringLength) {
       *(uint8_t *)(AllocatedMemorySize + 0x1b3f) = 1;
     }
-    ValidationStatus = ContextHandle;
+    SystemValidationStatus = ContextHandle;
     if (ContextHandle != (char *)0xffffffffffffffff) {
       while (*ValidationStatus != '\0') {
-        if (((*ValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
-           (ValidationStatus = ValidationStatus + 1, ValidationStatus == (char *)0xffffffffffffffff)) break;
+        if (((*SystemValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
+           (SystemValidationStatus = ValidationStatus + 1, SystemValidationStatus == (char *)0xffffffffffffffff)) break;
       }
     }
     pCalculatedFilterValue = *(float **)(AllocatedMemorySize + 0x19f0);
@@ -107036,11 +107041,11 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
      ContextSecondaryFloat <= CalculatedFloatBoundary)) {
     CalculatedFloatBoundary = ContextSecondaryFloat;
   }
-  ValidationStatus = &MemoryAllocationStackBuffer;
+  SystemValidationStatus = &MemoryAllocationStackBuffer;
   if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
     while (*SystemValidationStatus != '\0') {
-      if (((*ValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
-         (ValidationStatus = ValidationStatus + 1, ValidationStatus == (char *)0xffffffffffffffff)) break;
+      if (((*SystemValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
+         (SystemValidationStatus = ValidationStatus + 1, SystemValidationStatus == (char *)0xffffffffffffffff)) break;
     }
   }
   if (((int)ValidationStatus != (int)&MemoryAllocationStackBuffer) &&
@@ -107917,7 +107922,7 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
   float DistanceValue;
   uint64_t ProcessingStatusFlag;
   float TempFloatValue;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   uint32_t SystemStatusCode;
   uint32_t ValidationResult;
@@ -107986,11 +107991,11 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
     else {
       ContextSecondaryFloat6 = 0.0;
     }
-    SystemStringValidationStatus = ContextHandle;
+    SystemStringSystemValidationStatus = ContextHandle;
     if (ContextHandle != (char *)0xffffffffffffffff) {
       while (*SystemStringValidationStatus != '\0') {
-        if (((*SystemStringValidationStatus == '#') && (SystemStringValidationStatus[1] == '#')) ||
-           (SystemStringValidationStatus = SystemStringValidationStatus + 1, SystemStringValidationStatus == (char *)0xffffffffffffffff)) break;
+        if (((*SystemStringSystemValidationStatus == '#') && (SystemStringValidationStatus[1] == '#')) ||
+           (SystemStringSystemValidationStatus = SystemStringValidationStatus + 1, SystemStringSystemValidationStatus == (char *)0xffffffffffffffff)) break;
       }
     }
     pContextSecondaryFloat1 = *(float **)(AllocatedMemorySize + 0x19f0);
@@ -109527,9 +109532,9 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
         }
         while( true ) {
           StringCodeBuffer = (char *)memchr(ValidationStatus7,10,(long long)ValidationStatus8 - (long long)ValidationStatus7);
-          ValidationStatus = ValidationStatus8;
+          SystemValidationStatus = ValidationStatus8;
           if (StringCodeBuffer != (char *)0x0) {
-            ValidationStatus = StringCodeBuffer;
+            SystemValidationStatus = StringCodeBuffer;
           }
           if ((ValidationStatus != ValidationStatus8) || (ValidationStatus7 != ValidationStatus)) {
             SystemOperationResult = (int)ValidationStatus - (int)ValidationStatus7;
@@ -109541,7 +109546,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
               ProcessSystemDataWithMultipleParameters(&SystemDataTablePrimary,IntegerValue9,ValidationStatus7,IntegerValue9,ValidationStatus3);
             }
           }
-          if (ValidationStatus == ValidationStatus8) break;
+          if (SystemValidationStatus == ValidationStatus8) break;
           ValidationStatus7 = ValidationStatus + 1;
         }
       }
@@ -109771,9 +109776,9 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
         }
         while( true ) {
           StringCodeBuffer = (char *)memchr(ValidationStatus7,10,(long long)ValidationStatus8 - (long long)ValidationStatus7);
-          ValidationStatus = ValidationStatus8;
+          SystemValidationStatus = ValidationStatus8;
           if (StringCodeBuffer != (char *)0x0) {
-            ValidationStatus = StringCodeBuffer;
+            SystemValidationStatus = StringCodeBuffer;
           }
           if ((ValidationStatus != ValidationStatus8) || (ValidationStatus7 != ValidationStatus)) {
             SystemOperationResult = (int)ValidationStatus - (int)ValidationStatus7;
@@ -109785,7 +109790,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
               ProcessSystemDataWithMultipleParameters(&SystemDataTablePrimary,IntegerValue9,ValidationStatus7,IntegerValue9,ValidationStatus3);
             }
           }
-          if (ValidationStatus == ValidationStatus8) break;
+          if (SystemValidationStatus == ValidationStatus8) break;
           ValidationStatus7 = ValidationStatus + 1;
         }
       }
@@ -111607,7 +111612,7 @@ void ProcessSystemContextUtf8Buffer(long long ContextHandle,int *ContextHandleSi
 uint64_t ProcessDataStructureValidation(long long ContextHandle,int *ContextHandleSize,uint64_t Utf8SourcePointer,int Utf16EndPointer
 {
   int LockResult;
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint64_t OperationResult;
   int MinValue;
   int MaxValue;
@@ -111632,8 +111637,8 @@ uint64_t ProcessDataStructureValidation(long long ContextHandle,int *ContextHand
     *ContextHandleSize = CurrentValue;
   }
   ProcessSystemAudio(ContextHandle,OperationBufferSize);
-  ValidationStatus = ValidateFloatDataCamera(ContextHandle,*ContextHandleSize,Utf8SourcePointer,Utf16EndPointer);
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = ValidateFloatDataCamera(ContextHandle,*ContextHandleSize,Utf8SourcePointer,Utf16EndPointer);
+  if (SystemValidationStatus == '\0') {
     if (*(short *)((long long)OperationBufferSize + 0xe16) != 0) {
       *(short *)((long long)OperationBufferSize + 0xe16) = *(short *)((long long)OperationBufferSize + 0xe16) + -1;
     }
@@ -112625,7 +112630,7 @@ void ProcessUtf16CharacterConversionAndMemoryManagement(long long ContextHandle,
   if (StringLength != 0) {
     ValidationFlag = *(int *)(OperationBufferSize + 0xe1c) + StringLength;
     if (ValidationFlag < 999) {
-      ValidationStatus = PatternIndexRegister[0x388];
+      SystemValidationStatus = PatternIndexRegister[0x388];
       if (ValidationStatus < ValidationFlag) {
         CharacterProcessingIndex = (short)PatternIndexRegister[0x386];
         do {
@@ -112634,7 +112639,7 @@ void ProcessUtf16CharacterConversionAndMemoryManagement(long long ContextHandle,
           }
           if (CharacterProcessingIndex < 99) {
             if (-1 < PatternIndexRegister[0x191]) {
-              ValidationStatus = ValidationStatus + PatternIndexRegister[399];
+              SystemValidationStatus = ValidationStatus + PatternIndexRegister[399];
               PatternIndexRegister[0x388] = ValidationStatus;
                 memmove((long long)PatternIndexRegister + ((long long)ValidationStatus + 0x324) * 2,
                       (long long)PatternIndexRegister +
@@ -112653,7 +112658,7 @@ void ProcessUtf16CharacterConversionAndMemoryManagement(long long ContextHandle,
       if (0 < StringLength) {
         AllocatedMemorySize = (long long)InitialIntegerValue * 2;
         do {
-          ValidationStatus = PatternIndexRegister[(long long)(short)ValidationFlag * 4 + 5] + CalculatedResult;
+          SystemValidationStatus = PatternIndexRegister[(long long)(short)ValidationFlag * 4 + 5] + CalculatedResult;
           CalculatedResult = CalculatedResult + 1;
           *(uint16_t *)((long long)PatternIndexRegister + (long long)ValidationStatus * 2 + 0x648) =
                *(uint16_t *)(AllocatedMemorySize + *(long long *)(FramePointerRegister + 0x10));
@@ -112850,8 +112855,8 @@ unsigned long long CoreEngineSystemProcessor(uint64_t ContextHandle,char *Contex
   bool CurrentByteResult;
   long long LoopCounter;
   float SystemFloatValue;
-  char ValidationStatus;
-  char ValidationStatus;
+  char SystemValidationStatus;
+  char SystemValidationStatus;
   float SystemFloatValue2;
   int LockOperationResult;
   uint32_t MemoryPoolIndex;
@@ -113233,9 +113238,9 @@ LAB_180117102:
     else {
       IsSystemContextValidationResult = true;
     }
-    SystemValidationStatus = ValidationStatus8;
+    SystemSystemValidationStatus = ValidationStatus8;
     if (((cStack_248 == '\0') ||
-        (SystemValidationStatus = *(char *)(MemoryBlockIndex9 + 0x136), *(char *)(MemoryBlockIndex9 + 0x137) == '\0')) ||
+        (SystemSystemValidationStatus = *(char *)(MemoryBlockIndex9 + 0x136), *(char *)(MemoryBlockIndex9 + 0x137) == '\0')) ||
        ((ValidationStatus8 != '\0' || (SystemValidationStatus != '\0')))) {
       hasComparisonResult5 = 0;
       if ((((ValidationStatus8 == '\0') || (ValidationStatus7 != '\0')) || (*(char *)(MemoryBlockIndex9 + 0x136) != '\0')) ||
@@ -113419,7 +113424,7 @@ LAB_180117593:
       MemoryAllocationCounter = (uint32_t)((unsigned long long)Utf8SourcePointerParameter >> 0x20);
       if ((ValidationStatus7 != '\0') && (SystemValidationFlag != 0)) {
         if (*(int *)(MemoryBlockIndex9 + 0x1ef4) == *(int *)(MemoryBlockIndex9 + 0x1ef8)) {
-          if (SystemValidationStatus == '\0') {
+          if (SystemSystemValidationStatus == '\0') {
             if ((((cStack_248 == '\0') || (*(char *)(MemoryBlockIndex9 + 0x137) == '\0')) ||
                 (*(char *)(MemoryBlockIndex9 + 0x136) != '\0')) || (*(char *)(MemoryBlockIndex9 + 0x134) != '\0')            goto LAB_18011774b;
             MemoryPoolIndexAdditional = 0x30004;
@@ -114255,7 +114260,7 @@ char ProcessSystemRenderingAndMemoryManagement(void
   float StackFloatValue74;
   float RenderingContextHandle;
   
-  SystemValidationStatus = ValidateSystemConfigurationStatus(FramePointer + -0x18,NullPointerD);
+  SystemSystemValidationStatus = ValidateSystemConfigurationStatus(FramePointer + -0x18,NullPointerD);
   if (SystemValidationStatus != '\0') {
     *(uint32_t *)(SourceRegisterIndex + 0x1dcc) = 1;
   }
@@ -117805,11 +117810,11 @@ LAB_180119eed:
     SystemDataNode = SystemConfigurationHandle;
   }
   *(void *)(FramePointer + -0x79) = 0;
-  ValidationStatus = CharacterLimit;
+  SystemValidationStatus = CharacterLimit;
   if (CharacterLimit != (char *)0xffffffffffffffff) {
     while (*SystemValidationStatus != '\0') {
-      if (((*ValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
-         (ValidationStatus = ValidationStatus + 1, ValidationStatus == (char *)0xffffffffffffffff)) break;
+      if (((*SystemValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
+         (SystemValidationStatus = ValidationStatus + 1, SystemValidationStatus == (char *)0xffffffffffffffff)) break;
     }
   }
   SystemContextValue = SystemDataNode;
@@ -118878,11 +118883,11 @@ a864(voidvoid CoreEngineResetSystemState(void
   *(uint32_t *)(FramePointer + 0xb0) = XMM15RegisterA;
   StackUintValue68 = 0x3f000000;
   *(float *)(FramePointer + 0xb4) = AuxiliaryFloat13 + *(float *)(NullPointerValue + 0x1660);
-  ValidationStatus = SystemDataNode;
+  SystemValidationStatus = SystemDataNode;
   if (SystemDataNode != (char *)0xffffffffffffffff) {
     while (*SystemValidationStatus != '\0') {
-      if (((*ValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
-         (ValidationStatus = ValidationStatus + 1, ValidationStatus == (char *)0xffffffffffffffff)) break;
+      if (((*SystemValidationStatus == '#') && (ValidationStatus[1] == '#')) ||
+         (SystemValidationStatus = ValidationStatus + 1, SystemValidationStatus == (char *)0xffffffffffffffff)) break;
     }
   }
   if ((int)ValidationStatus != (int)SystemDataNode) {
@@ -118935,7 +118940,7 @@ a9a4(voidvoid CoreEngineProcessedCharacter(void
   uint64_t MemoryPoolIndexAdditional0;
   
   BufferStatus = SystemConfigurationHandle;
-  ValidationStatus = *(char **)(FramePointer + 0xd0);
+  SystemValidationStatus = *(char **)(FramePointer + 0xd0);
   if (ValidationStatus != (char *)0x0) {
     *(uint32_t *)(FramePointer + 0xb0) = XMM15RegisterA;
     *(float *)(FramePointer + 0xb4) = AuxiliaryFloat13 + *(float *)(NullPointerValue + 0x1660);
@@ -121261,7 +121266,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *ContextHandle,char *Co
       Utf16ConversionContext = (unsigned long long)MemoryPoolIndexAdditional;
       ValidateSystemParameters(ContextHandle,Utf16ConversionContext);
       IntegerValue9 = *ContextHandle;
-      BufferValidationStatus = SystemConfigurationHandle;
+      BufferSystemValidationStatus = SystemConfigurationHandle;
     }
     SystemConfigurationIterator = (long long)IntegerValue9;
     Utf16ConversionContext = CONCAT71((int7)(Utf16ConversionContext >> 8),1);
@@ -121354,7 +121359,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *ContextHandle,char *Co
     }
     SecondaryScalingFactor = FilterInputValue5;
     ProcessSystemParameters(&FloatStackValue108,&PrimaryScalingFactor,CONCAT71((int7)(Utf16ConversionContext >> 8),1));
-    BufferValidationStatus = SystemConfigurationHandle;
+    BufferSystemValidationStatus = SystemConfigurationHandle;
   }
   else {
     CharStackValue137 = '\0';
@@ -121481,7 +121486,7 @@ LAB_18011c9d9:
       }
       AllocateSystemMemoryAndInitialize(CharacterTablePointer + 0x10,IntegerValue9);
       IntegerValue = *(int *)(CharacterTablePointer + 0x10);
-      BufferValidationStatus = SystemConfigurationHandle;
+      BufferSystemValidationStatus = SystemConfigurationHandle;
     }
     SystemConfigurationIterator = *(long long *)(CharacterTablePointer + 0x18);
     BufferStatus1 = (long long)IntegerValue * 0x40;
@@ -121535,7 +121540,7 @@ LAB_18011cbeb:
   if (ProcessedCharacter == *(uint *)(SystemConfigurationHandle + 0x1ca0)) {
     ProcessMemoryLock(&fStack_130,1,SystemConfigurationHandle);
   }
-  BufferValidationStatus = SystemConfigurationHandle;
+  BufferSystemValidationStatus = SystemConfigurationHandle;
   ValidationStatus0 = AllocateSystemBuffer(8);
   Utf16ConversionContext = uStack_118;
   if ((ValidationStatus0 != '\0') &&
@@ -123067,18 +123072,18 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long ContextHand
                                        SystemStatusCode,Utf16EndPointer,ValidationStatus1,&SystemProcessFlagB);
       ContextSecondaryFloat0 = *SystemContextPrimaryFloatPointer;
       StringComparisonByte7 = SystemProcessFlagB == Utf16EndPointer;
-      SystemStringValidationStatus = SystemProcessFlagB;
+      SystemStringSystemValidationStatus = SystemProcessFlagB;
       if (StringComparisonByte7) {
         if (SystemProcessFlagB < ValidationStatus1) {
           SystemOperationResult = ValidateSystemDataEx(&SystemProcessFlagB,Utf16EndPointer,ValidationStatus1);
-          SystemStringValidationStatus = Utf16EndPointer + IntegerValue9;
+          SystemStringSystemValidationStatus = Utf16EndPointer + IntegerValue9;
           SystemStatusCode = SystemStatusCode & 0xffffffff00000000;
           SystemContextPrimaryFloatPointer = (float *)ProcessFloatAndSystemConfiguration(*(void *)(MemoryBlockIndex + 0x19f0),&ErrorCode,
                                            *(uint32_t *)(MemoryBlockIndex + 0x19f8),0x7f7fffff,SystemStatusCode,Utf16EndPointer
                                            ,SystemStringValidationStatus,0);
           ContextSecondaryFloat0 = *SystemContextPrimaryFloatPointer;
         }
-        StringComparisonByte7 = SystemStringValidationStatus == Utf16EndPointer;
+        StringComparisonByte7 = SystemStringSystemValidationStatus == Utf16EndPointer;
       }
       ValidationStatus1 = SystemStringValidationStatus;
       if (Utf16EndPointer <= SystemStringValidationStatus && !StringComparisonByte7) {
@@ -123090,7 +123095,7 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long ContextHand
                                            *(uint32_t *)(MemoryBlockIndex + 0x19f8),0x7f7fffff,SystemStatusCode,ValidationStatus1
                                            ,SystemStringValidationStatus,0);
           ContextSecondaryFloat0 = ContextSecondaryFloat0 - *SystemContextPrimaryFloatPointer;
-          SystemStringValidationStatus = ValidationStatus1;
+          SystemStringSystemValidationStatus = ValidationStatus1;
         } while (Utf16EndPointer < ValidationStatus1);
       }
       SystemProcessFlagB = (char *)0x0;
@@ -123152,7 +123157,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float ContextHandle,float OperationBuf
   uint64_t ArraySize;
   uint64_t MemoryPoolIndex;
   uint64_t ProcessedCharacter;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   uint32_t Utf16Char4;
   float *pSystemFloatValue;
@@ -123224,7 +123229,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float ContextHandle,float OperationBuf
     SystemContextPrimaryFloat = *(float *)(NullPointerValue + 0x1660);
     *(float *)(FramePointer + 0x6f) = ContextSecondaryFloat2;
     *(float *)(FramePointer + 0x73) = ContextSecondaryFloat1 - SystemContextPrimaryFloat;
-    ValidationStatus = PatternIndex;
+    SystemValidationStatus = PatternIndex;
     TempCalculationResultC = ContextSecondaryFloat4;
     ValidateSystemDataStructure(ContextSecondaryFloat2,&DataStackBuffer,FramePointer + 0x6f,&NameTemplateBuffer);
     Utf16Char4 = (uint32_t)((unsigned long long)ValidationStatus >> 0x20);
@@ -123249,7 +123254,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float ContextHandle,float OperationBuf
     RenderingContextHandle =
          (char *)CONCAT44(RegisterR12Value[1] + *(float *)(NullPointerValue + 0x1660) + ContextSecondaryFloat2,
                           (RegisterR12Value[2] - *(float *)(NullPointerValue + 0x165c)) - ContextSecondaryFloat2);
-    ValidationStatus = ProcessSystemStatus(IntegerValue,&DataStackBuffer,ContextSecondaryFloat2);
+    SystemValidationStatus = ProcessSystemStatus(IntegerValue,&DataStackBuffer,ContextSecondaryFloat2);
     MemoryPoolBlockSize = SystemConfigurationHandle;
     MemoryAllocationHandle = *(uint *)(FramePointer + 0x6f) & 0xff;
     if (ValidationStatus != '\0') {
@@ -123269,11 +123274,11 @@ uint8_t ProcessUtf16EncodingAndConversion(float ContextHandle,float OperationBuf
     }
     TempCalculationResultC = ContextSecondaryFloat4 - (ContextSecondaryFloat2 + ContextSecondaryFloat2);
   }
-  ValidationStatus = CharacterLimit;
+  SystemValidationStatus = CharacterLimit;
   if (CharacterLimit != (char *)0xffffffffffffffff) {
     do {
-      if ((*ValidationStatus == '\0') || ((*ValidationStatus == '#' && (ValidationStatus[1] == '#')))) break;
-      ValidationStatus = ValidationStatus + 1;
+      if ((*SystemValidationStatus == '\0') || ((*SystemValidationStatus == '#' && (ValidationStatus[1] == '#')))) break;
+      SystemValidationStatus = ValidationStatus + 1;
     } while (ValidationStatus != (char *)0xffffffffffffffff);
   }
   if (AuxiliaryFloat12 <= ContextSecondaryFloat4 - OperationBufferSize) {
@@ -125262,7 +125267,7 @@ uint8_t ProcessAdvancedDataFiltering(uint64_t ContextHandle
  */
 char ProcessStringFormattingAndEncoding(char *ContextHandle, uint64_t OperationBufferSize, uint32_t Utf8SourcePointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *StringProcessingResult;
   bool IsHighByteSet;
   uint8_t EncodingBuffer [32];
@@ -125272,10 +125277,10 @@ char ProcessStringFormattingAndEncoding(char *ContextHandle, uint64_t OperationB
   
   EncodedValue = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 StringFormattingComplete:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatBuffer, 0x40, ContextHandle, Utf8SourcePointer);
         StringProcessingResult = &FormatBuffer;
         while (FormatBuffer == ' ') {
@@ -125287,10 +125292,10 @@ StringFormattingComplete:
       }
         CoreEngineExecuteUtilityFunction(EncodedValue ^ (unsigned long long)EncodingBuffer);
     }
-    IsHighByteSet = ValidationStatus == '%';
+    IsHighByteSet = SystemValidationStatus == '%';
     if (IsHighByteSet) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto StringFormattingComplete;
       }
       IsHighByteSet = true;
@@ -125322,7 +125327,7 @@ StringFormattingComplete:
  * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
  */
 void ProcessStringFormatting32Bit(char *ContextHandle,uint64_t OperationBufferSize,uint32_t Utf8SourcePointer) {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *FormatStringPointer;
   bool IsHighByteSet;
   bool IsPercentCharacter;
@@ -125333,10 +125338,10 @@ void ProcessStringFormatting32Bit(char *ContextHandle,uint64_t OperationBufferSi
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 LAB_18011f4b5:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
         while (cStack_58 == ' ') {
@@ -125348,10 +125353,10 @@ LAB_18011f4b5:
       }
         CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
     }
-    LowByte = ValidationStatus == '%';
+    LowByte = SystemValidationStatus == '%';
     if (LowByte) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto LAB_18011f4b5;
       }
       LowByte = true;
@@ -125383,7 +125388,7 @@ LAB_18011f4b5:
  * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
  */
 void ProcessStringFormatting64Bit(char *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer) {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *SystemValidationFunction;
   bool IsHighByteSet;
   uint8_t EncodingBuffer[32];
@@ -125393,10 +125398,10 @@ void ProcessStringFormatting64Bit(char *ContextHandle,uint64_t OperationBufferSi
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 LAB_18011f555:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
         while (FormatResultChar == ' ') {
@@ -125408,10 +125413,10 @@ LAB_18011f555:
       }
         CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    IsHighByteSet = ValidationStatus == '%';
+    IsHighByteSet = SystemValidationStatus == '%';
     if (IsHighByteSet) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto LAB_18011f555;
       }
       IsHighByteSet = true;
@@ -125443,7 +125448,7 @@ LAB_18011f555:
  * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
  */
 void ProcessStringFormatting64BitV2(char *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer) {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *SystemValidationFunction;
   bool IsHighByteSet;
   uint8_t EncodingBuffer[32];
@@ -125453,10 +125458,10 @@ void ProcessStringFormatting64BitV2(char *ContextHandle,uint64_t OperationBuffer
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 LAB_18011f5f5:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
         while (FormatResultChar == ' ') {
@@ -125468,10 +125473,10 @@ LAB_18011f5f5:
       }
         CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    IsHighByteSet = ValidationStatus == '%';
+    IsHighByteSet = SystemValidationStatus == '%';
     if (IsHighByteSet) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto LAB_18011f5f5;
       }
       IsHighByteSet = true;
@@ -125505,7 +125510,7 @@ LAB_18011f5f5:
  */
 void ProcessStringFormattingFloat(char *ContextHandle,uint64_t OperationBufferSize,float Utf8SourcePointer) {
   double ConvertedFloatValue;
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *FormatStringPointer;
   bool IsPercentCharacter;
   uint8_t EncodingBuffer[32];
@@ -125515,10 +125520,10 @@ void ProcessStringFormattingFloat(char *ContextHandle,uint64_t OperationBufferSi
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 LAB_18011f6c5:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,(double)Utf8SourcePointer);
         FormatStringPointer = &FormatResultChar;
         while (FormatResultChar == ' ') {
@@ -125530,10 +125535,10 @@ LAB_18011f6c5:
       }
         CoreEngineExecuteUtilityFunction(Utf8SourcePointer);
     }
-    IsPercentCharacter = ValidationStatus == '%';
+    IsPercentCharacter = SystemValidationStatus == '%';
     if (IsPercentCharacter) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto LAB_18011f6c5;
       }
       IsPercentCharacter = true;
@@ -125569,7 +125574,7 @@ LAB_18011f6c5:
  */
 void CalculateRenderCoordinates(char *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *StringProcessingPointer;
   bool IsPercentCharacter;
   uint8_t EncodingBuffer [32];
@@ -125579,10 +125584,10 @@ void CalculateRenderCoordinates(char *ContextHandle,uint64_t OperationBufferSize
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    ValidationStatus = *ContextHandle;
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = *ContextHandle;
+    if (SystemValidationStatus == '\0') {
 LAB_18011f775:
-      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+      if ((SystemValidationStatus == '%') && (ContextHandle[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,Utf8SourcePointer);
         StringProcessingPointer = &FormatResultChar;
         while (FormatResultChar == ' ') {
@@ -125594,10 +125599,10 @@ LAB_18011f775:
       }
         CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    IsPercentCharacter = ValidationStatus == '%';
+    IsPercentCharacter = SystemValidationStatus == '%';
     if (IsPercentCharacter) {
       if (ContextHandle[1] != '%') {
-        ValidationStatus = *ContextHandle;
+        SystemValidationStatus = *ContextHandle;
         goto LAB_18011f775;
       }
       IsPercentCharacter = true;
@@ -130438,7 +130443,7 @@ uint64_t ValidateSystemConfigurationStatus(long long ContextHandle,int Operation
  */
 uint64_t UpdateSystemParameterCounters(long long ContextHandle,int OperationBufferSize,char Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   int MemoryComparisonResult;
   long long SystemDataRegistry;
@@ -130455,7 +130460,7 @@ uint64_t UpdateSystemParameterCounters(long long ContextHandle,int OperationBuff
        (*(int *)(ContextHandle + 0x400) == 0x7fffffff)) &&
       ((*(int *)(ContextHandle + 0x404) == 0x7fffffff && (*(char *)(SystemDataRegistry + 0x134) == '\0')))) &&
      (-1 < *(int *)(SystemDataRegistry + 0x3c))) {
-    ValidationStatus = ValidateSystemConfiguration(*(int *)(SystemDataRegistry + 0x3c),1);
+    SystemValidationStatus = ValidateSystemConfiguration(*(int *)(SystemDataRegistry + 0x3c),1);
     if (ValidationStatus != '\0') {
       if (*(char *)(SystemDataRegistry + 0x135) == '\0') {
         LockOperationResult = 1;
@@ -137097,7 +137102,7 @@ void ProcessSystemStringAndEncodingConversion(void)
     }
     StringOffset = SystemConfigurationHandle;
     MemoryAllocationIndex = 0;
-    if (((SystemChecksum >> 0x18 & 1) == 0) && (SystemValidationStatus = (char *)(SystemConfigurationHandle + 0x2e38), *SystemValidationStatus != '\0')    {
+    if (((SystemChecksum >> 0x18 & 1) == 0) && (SystemSystemValidationStatus = (char *)(SystemConfigurationHandle + 0x2e38), *SystemValidationStatus != '\0')    {
       pSystemPriorityLevel = (void *)0x18012d075;
       CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
       if (*(long long *)(StringOffset + 0x2e40) != 0) {
@@ -137134,7 +137139,7 @@ void ProcessSystemStringAndEncodingConversion(void)
         }
       }
       StringOffset = SystemConfigurationHandle;
-      *ValidationStatus = '\0';
+      *SystemValidationStatus = '\0';
     }
     if (((*(long long *)(SystemStringIndex + 0x408) != 0) && ((*(byte *)(SystemStringIndex + 0x432) & 2) != 0)) &&
        (SystemDataTablePointer = *(long long *)(*(long long *)(SystemStringIndex + 0x408) + 0x68), SystemDataTablePointer != 0)) {
@@ -137819,7 +137824,7 @@ uint64_t * HandleFloatMemoryOperations(uint64_t *ContextHandle,long long Operati
 
 float * ProcessFloatMemoryBuffers(float *ContextHandle,long long OperationBufferSize,char Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long BufferStatus;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
@@ -137868,7 +137873,7 @@ float * ProcessFloatMemoryBuffers(float *ContextHandle,long long OperationBuffer
             (*(float *)(OperationBufferSize + 0x54) - *(float *)(OperationBufferSize + 0xa8)) * FloatOffsetValue;
     ContextHandle[1] = MatrixTransformMultiplier;
   }
-  ValidationStatus = *(char *)(OperationBufferSize + 0xb2);
+  SystemValidationStatus = *(char *)(OperationBufferSize + 0xb2);
   if (MatrixTransformMultiplier <= 0.0) {
     MatrixTransformMultiplier = 0.0;
   }
@@ -137878,7 +137883,7 @@ float * ProcessFloatMemoryBuffers(float *ContextHandle,long long OperationBuffer
   }
   ContextHandle[1] = MatrixTransformMultiplier;
   *ContextHandle = FloatOffsetValue;
-  if ((ValidationStatus == '\0') && (*(char *)(OperationBufferSize + 0xb4) == '\0')) {
+  if ((SystemValidationStatus == '\0') && (*(char *)(OperationBufferSize + 0xb4) == '\0')) {
     MatrixTransformMultiplier1 = *(float *)(OperationBufferSize + 0x60) - (*(float *)(OperationBufferSize + 0x50) - *(float *)(OperationBufferSize + 0xa4));
     CalculatedDistance = *(float *)(OperationBufferSize + 0x54);
     CalculatedFilterValue = *(float *)(OperationBufferSize + 0xa8);
@@ -138124,7 +138129,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *ContextHandle,long long
 
 99b0(char *ContextHandle,uint8_t *ContextHandleSize,uint Utf8SourcePointervoid InitializeSystemCharacterStatusBuffer(char *ContextHandle,uint8_t *ContextHandleSize,uint Utf8SourcePointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint16_t MemoryPoolIndex;
   bool IsHighByteSet;
   long long SystemDataRegistry;
@@ -138418,7 +138423,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *ContextHandle,long long
        ((*(uint *)((long long)SystemMemoryContext + 0xc) & 0x80000) == 0)))) && (cStack_22f == '\0')) {
     ValidationStatus1 = pcStack_100;
     do {
-      ValidationStatus = *ValidationStatus1;
+      SystemValidationStatus = *ValidationStatus1;
       CharacterStatus2 = ValidationStatus1[*SystemMemoryContext - (long long)pcStack_100];
       if (ValidationStatus != CharacterStatus2) break;
       ValidationStatus1 = ValidationStatus1 + 1;
@@ -138646,7 +138651,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *ContextHandle,long long
     ContextHandleData = (long long *)AllocateVertexBuffer(ValidationResult,&SystemStackData);
   }
   SystemContextValue = LoopCounterVariable;
-  ValidationStatus = cStack_22e;
+  SystemValidationStatus = cStack_22e;
   CharacterDataValidationResult = cStack_230;
   SystemMemoryContext[9] = *ContextHandle4;
   if (*(char *)((long long)SystemMemoryContext + 0xb2) == '\0') {
@@ -140134,12 +140139,12 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t ContextHandle, uint64_t 
        ((*(uint *)((long long)RenderingContextHandle + 0xc) & 0x80000) == 0)))) &&
      (SystemParameterNullCheck == '\0')) {
     pOperationStatus = *(char **)(FramePointer + 0x1e);
-    SystemStringValidationStatus = pOperationStatus;
+    SystemStringSystemValidationStatus = pOperationStatus;
     do {
       CharacterNodeComparisonResult = *SystemStringValidationStatus;
       SystemValidationChar = SystemStringValidationStatus[*RenderingContextHandle - (long long)pOperationStatus];
       if (SystemCheckResult != SystemValidationChar) break;
-      SystemStringValidationStatus = SystemStringValidationStatus + 1;
+      SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
     } while (SystemValidationChar != '\0');
     if (SystemCheckResult != SystemValidationChar) {
       _StackFloatValue50 = (long long)(int)RenderingContextHandle[0x10];
@@ -144217,7 +144222,7 @@ LAB_18012ac57:
     CleanupSystemResources(SystemDataTablePointerA0);
     MemoryBufferC = _StackFloatValue50;
     pSystemFloatValue = (float *)0x180bf66e8;
-    BufferValidationStatus = 0;
+    BufferSystemValidationStatus = 0;
     do {
       ArraySize = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
       _StackFloatValue50 =
@@ -144288,7 +144293,7 @@ LAB_18012b0d0:
         FramePointer[BufferValidationStatus + 0x20] = FilterInputValue5;
       }
       InputDataLength = InputDataLength + 1;
-      BufferValidationStatus = BufferValidationStatus + 1;
+      BufferSystemValidationStatus = BufferValidationStatus + 1;
       pSystemFloatValue = pSystemFloatValue + 6;
     } while (BufferValidationStatus < *(long long *)(FramePointer + -0xe));
     FilterInputValue0 = FramePointer[2];
@@ -144964,7 +144969,7 @@ LAB_18012b465:
   ContextHandleTablePointer = *(uint8_t **)(FramePointer + 10);
   if ((((ContextHandleTablePointer != (uint8_t *)0x0) &&
        (MemoryBufferC = RenderingContextHandle[5], *(char *)(MemoryBufferC + 0x48) != '\0')) &&
-      (BufferValidationStatus = ProcessSystemMemoryAllocation(), MemoryBufferC != BufferValidationStatus)) &&
+      (BufferSystemValidationStatus = ProcessSystemMemoryAllocation(), MemoryBufferC != BufferValidationStatus)) &&
      (((*(byte *)((long long)RenderingContextHandle + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)RenderingContextHandle + 0x432) & 2) != 0)))) {
     *(uint8_t *)(MemoryBufferC + 0x48) = 0;
@@ -152596,7 +152601,7 @@ void ProcessContextHandleConversionAndValidation(long long ContextHandle)
 
 void InitializeSystemEventProcessor(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint8_t MemoryPoolIndex;
   int InputDataLength;
   long long FramePointer;
@@ -152635,14 +152640,14 @@ void InitializeSystemEventProcessor(void)
     *(uint32_t *)(eventDataStructureHandle + 0xd8) = 1;
   }
   if ((*(int *)(RenderingContextHandle + 0xd8) < 1) && (*(int *)(RenderingContextHandle + 0xdc) < 1)) {
-    ValidationStatus = '\0';
+    SystemValidationStatus = '\0';
   }
   else {
-    ValidationStatus = '\x01';
+    SystemValidationStatus = '\x01';
   }
   *(char *)(RenderingContextHandle + 0xb6) = ValidationStatus;
   if (((((*(char *)(RenderingContextHandle + 0xb2) == '\0') &&
-        (*(char *)(RenderingContextHandle + 0xaf) != '\0')) && (ValidationStatus == '\0')) ||
+        (*(char *)(RenderingContextHandle + 0xaf) != '\0')) && (SystemValidationStatus == '\0')) ||
       ((0 < *(int *)(RenderingContextHandle + 0xc4) || (0 < *(int *)(RenderingContextHandle + 200))))) ||
      (0 < *(int *)(RenderingContextHandle + 0xdc))) {
     MemoryPoolIndex = 0;
@@ -152659,7 +152664,7 @@ void InitializeSystemEventProcessor(void)
 
 void ProcessSystemMemoryCleanup(void)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint8_t MemoryPoolIndex;
   long long FramePointer;
   long long PatternMatchStatus;
@@ -152693,14 +152698,14 @@ void ProcessSystemMemoryCleanup(void)
     *(uint32_t *)(eventDataStructureHandle + 0xd8) = 1;
   }
   if ((*(int *)(RenderingContextHandle + 0xd8) < 1) && (*(int *)(RenderingContextHandle + 0xdc) < 1)) {
-    ValidationStatus = '\0';
+    SystemValidationStatus = '\0';
   }
   else {
-    ValidationStatus = '\x01';
+    SystemValidationStatus = '\x01';
   }
   *(char *)(RenderingContextHandle + 0xb6) = ValidationStatus;
   if (((((*(char *)(RenderingContextHandle + 0xb2) == '\0') &&
-        (*(char *)(RenderingContextHandle + 0xaf) != '\0')) && (ValidationStatus == '\0')) ||
+        (*(char *)(RenderingContextHandle + 0xaf) != '\0')) && (SystemValidationStatus == '\0')) ||
       ((0 < *(int *)(RenderingContextHandle + 0xc4) || (0 < *(int *)(RenderingContextHandle + 200))))) ||
      (0 < *(int *)(RenderingContextHandle + 0xdc))) {
     MemoryPoolIndex = 0;
@@ -152790,7 +152795,7 @@ void ExecuteSystemConfigurationFilter(void
     }
     SystemDataTablePointer = SystemConfigurationHandle;
     StringOffset = 0;
-    if (((StructureOperationResult >> 0x18 & 1) == 0) && (SystemValidationStatus = (char *)(SystemConfigurationHandle + 0x2e38), *SystemValidationStatus != '\0')    {
+    if (((StructureOperationResult >> 0x18 & 1) == 0) && (SystemSystemValidationStatus = (char *)(SystemConfigurationHandle + 0x2e38), *SystemValidationStatus != '\0')    {
       CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
       if (*(long long *)(SystemDataTablePointer + 0x2e40) != 0) {
         MemoryPoolBlockSize = __acrt_iob_func(1);
@@ -152821,7 +152826,7 @@ void ExecuteSystemConfigurationFilter(void
         }
       }
       SystemDataTablePointer = SystemConfigurationHandle;
-      *ValidationStatus = '\0';
+      *SystemValidationStatus = '\0';
     }
     if (((*(long long *)(SystemDataRegistry + 0x408) != 0) && ((*(byte *)(SystemDataRegistry + 0x432) & 2) != 0)) &&
        (MemoryPoolBlockSize = *(long long *)(*(long long *)(SystemDataRegistry + 0x408) + 0x68), MemoryPoolBlockSize != 0)) {
@@ -152892,7 +152897,7 @@ void InitializeSystemDataProcessor(void)
     SystemContext = SystemConfigurationHandle;
   }
   SystemDataTablePointer = 0;
-  if (((StructureOperationResult >> 0x18 & 1) == 0) && (SystemValidationStatus = (char *)(SystemContext + 0x2e38), *SystemValidationStatus != '\0')) {
+  if (((StructureOperationResult >> 0x18 & 1) == 0) && (SystemSystemValidationStatus = (char *)(SystemContext + 0x2e38), *SystemValidationStatus != '\0')) {
     CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
     if (*(long long *)(SystemContext + 0x2e40) != 0) {
       MemoryPoolBlockSize = __acrt_iob_func(1);
@@ -152923,7 +152928,7 @@ void InitializeSystemDataProcessor(void)
       }
     }
     SystemContext = SystemConfigurationHandle;
-    *ValidationStatus = '\0';
+    *SystemValidationStatus = '\0';
   }
   if (((*(long long *)(SystemDataRegistry + 0x408) != 0) && ((*(byte *)(SystemDataRegistry + 0x432) & 2) != 0)) &&
      (MemoryPoolBlockSize = *(long long *)(*(long long *)(SystemDataRegistry + 0x408) + 0x68), MemoryPoolBlockSize != 0)) {
@@ -152980,7 +152985,7 @@ void ProcessSystemDataValidation(void)
   long long SystemDataNode;
   float CalculatedDistance;
   
-  SystemValidationStatus = (char *)(SystemContext + 0x2e38);
+  SystemSystemValidationStatus = (char *)(SystemContext + 0x2e38);
   if (*ValidationStatus != (char)PatternIndex) {
     CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
     if (*(long long *)(SystemContext + 0x2e40) != PatternIndex) {
@@ -153010,7 +153015,7 @@ void ProcessSystemDataValidation(void)
       }
     }
     SystemContext = SystemConfigurationHandle;
-    *ValidationStatus = (char)PatternIndex;
+    *SystemValidationStatus = (char)PatternIndex;
   }
   if (((*(long long *)(FramePointer + 0x408) != 0) && ((*(byte *)(FramePointer + 0x432) & 2) != 0)) &&
      (long long AllocatedMemorySize = *(long long *)(*(long long *)(FramePointer + 0x408) + 0x68), AllocatedMemorySize != 0)) {
@@ -157097,7 +157102,7 @@ void ProcessSystemBufferStatus(void)
   long long SystemContext;
   int SystemStatusValue;
   uint64_t FramePointer;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult0;
   unsigned long long PatternMatchStatus;
   uint64_t SystemDataNode;
@@ -157140,7 +157145,7 @@ void ProcessSystemBufferStatus(void)
   *(uint32_t *)(ProcessingResult + -0x54) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x50) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x4c) = XMM8RegisterD;
-  ValidationStatus = (char)PatternIndex;
+  SystemValidationStatus = (char)PatternIndex;
   if (LockOperationResult0 < *(int *)(SystemContext + 0x1c68)) {
     MemoryAllocationCounter = PatternIndex & 0xffffffff;
     do {
@@ -161572,7 +161577,7 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle, uint32_t Operatio
   int ProcessingCounter;
   
   SystemFloatParameter = (float)CalculateContextHandleFloatValue(OperationBufferSize);
-  CharacterValidationStatus = (char)SystemRegisterValue;
+  CharacterSystemValidationStatus = (char)SystemRegisterValue;
   StringLength = (int)SystemRegisterValue;
   if (*(int *)(SystemContextPointer + 0x1d2c) == -1) {
     if (*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus) goto LAB_180132ba2;
@@ -162469,7 +162474,7 @@ LAB_1801335e1:
 
 uint64_t ProcessContextHandleWithMemoryAllocation(float ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long SystemRegisterR10;
   uint32_t SystemRegisterR11D;
   float FloatXMM5;
@@ -162482,10 +162487,10 @@ uint64_t ProcessContextHandleWithMemoryAllocation(float ContextHandle,uint64_t O
   if (ContextSecondaryFloat <= in_XMM5_Da) {
     ContextSecondaryFloat = in_XMM5_Da;
   }
-  ValidationStatus = ValidateSystemConfiguration();
-  if (ValidationStatus == '\0') {
-    ValidationStatus = ValidateSystemConfiguration(SystemRegisterR11D);
-    if (ValidationStatus == '\0') goto LAB_1801335e1;
+  SystemValidationStatus = ValidateSystemConfiguration();
+  if (SystemValidationStatus == '\0') {
+    SystemValidationStatus = ValidateSystemConfiguration(SystemRegisterR11D);
+    if (SystemValidationStatus == '\0') goto LAB_1801335e1;
     in_XMM5_Db = 0;
     *(uint32_t *)(SystemRegisterR10 + 0x1d2c) = 2;
     *(uint32_t *)(SystemRegisterR10 + 0x1d34) = 3;
@@ -163815,7 +163820,7 @@ void CoreEngineProcessSystemOperationStatus(void)
   unsigned long long ProcessedCharacter;
   long long SystemDataNode;
   char CharacterLimitB;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   unsigned long long NullPointerValue;
   float SystemContextPrimaryFloat4;
@@ -163832,7 +163837,7 @@ void CoreEngineProcessSystemOperationStatus(void)
     *(unsigned long long *)(SystemContext + 0x1cd8) = NullPointerValue;
   }
   MemoryAllocationIndex = *(long long *)(SystemContext + 0x1cd8);
-  ValidationStatus = (char)NullPointerValue;
+  SystemValidationStatus = (char)NullPointerValue;
   if ((MemoryAllocationIndex != 0) && (*(int *)(SystemContext + 0x1cc0) == 3)) {
     SystemContextPrimaryFloat4 = (*(float *)(SystemContext + 0x1cf0) - 0.2) * 20.0;
     if (FloatingPointRegisterA <= SystemContextPrimaryFloat4) {
@@ -164008,7 +164013,7 @@ void CoreEngineProcessSystemBufferStatus(void)
   char ValidationStatus1;
   uint RegisterR12ValueD;
   char CharacterLimitB;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   unsigned long long NullPointerValue;
   float SystemContextPrimaryFloat4;
@@ -164018,7 +164023,7 @@ void CoreEngineProcessSystemBufferStatus(void)
   unsigned long long MemoryAllocationLoopCounter;
   
   ValidationStatus1 = (char)RegisterR12ValueD;
-  ValidationStatus = (char)NullPointerValue;
+  SystemValidationStatus = (char)NullPointerValue;
   if (*(int *)(SystemContext + 0x1cc0) == 3) {
     SystemContextPrimaryFloat4 = (*(float *)(SystemContext + 0x1cf0) - 0.2) * 20.0;
     if (FloatingPointRegisterA <= SystemContextPrimaryFloat4) {
@@ -175651,7 +175656,7 @@ LAB_18013bc7c:
          ((SystemContextValue != 0 || (shouldReturnSource)))) {
         ProcessSystemCharacterEx(acStack_1c0 + 0x68);
         ProcessSystemCharacterEx(acStack_268);
-        ValidationStatus = acStack_1c0 + 0x68;
+        SystemValidationStatus = acStack_1c0 + 0x68;
         ValidationStatus6 = ValidationStatus;
         if ((SystemContextValue != 0) &&
            ((SystemDataTablePointer = *(long long *)(SystemContextValue + 8), MemoryPoolBlockSize = SystemContextValue, SystemDataTablePointer != 0 ||
@@ -176096,7 +176101,7 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long ContextHandle
  */
 void ProcessUtf8CharacterEncodingValidation(long long ContextHandle, uint64_t *ContextHandleSize, uint64_t Utf8SourcePointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int *LockOperationResultPointer;
   long long SearchStartIndex;
   int EncodingValidationResult;
@@ -176139,7 +176144,7 @@ void ProcessUtf8CharacterEncodingValidation(long long ContextHandle, uint64_t *C
     if (0 < SystemDataTablePointer) {
       CharacterPointer = (char *)(*(long long *)(LockOperationResultPointer + 10) + 0xd);
       do {
-        ValidationStatus = *CharacterPointer;
+        SystemValidationStatus = *CharacterPointer;
         CharacterPointer = CharacterPointer + 0x20;
         if (EncodingValidationResult <= ValidationStatus) {
           EncodingValidationResult = (int)ValidationStatus;
@@ -176174,7 +176179,7 @@ void ProcessUtf8CharacterEncodingValidation(long long ContextHandle, uint64_t *C
           ProcessStringFormattingOperation(Utf8SourcePointer,&SystemDataValidationTemplateG,IntegerValue9,(int)*(short *)(SystemDataTablePointer + 0x1a + MemoryBlockIndex),
                         CONCAT44(MemoryPoolIndex,(int)*(short *)(SystemDataTablePointer + 0x1c + MemoryBlockIndex)),MatchCounter,CharacterStatusBuffer2);
         }
-        ValidationStatus = *(char *)(SystemDataTablePointer + 0xc + MemoryBlockIndex);
+        SystemValidationStatus = *(char *)(SystemDataTablePointer + 0xc + MemoryBlockIndex);
         if (ValidationStatus != -1) {
           ProcessStringFormattingOperation(Utf8SourcePointer,&SystemDataValidationTemplateI,(ValidationStatus != '\0') + 'X');
         }
@@ -176210,7 +176215,7 @@ void ProcessUtf8CharacterEncodingValidation(long long ContextHandle, uint64_t *C
  */
 void ValidateContextHandleRange(int ContextHandle)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long BufferStatus;
   char *SystemFunctionPointer;
   int EncodingValidationResult;
@@ -176245,7 +176250,7 @@ void ValidateContextHandleRange(int ContextHandle)
   if (0 < MemoryBoundaryEnd) {
     SystemFunctionPointer = (char *)(*(long long *)(CharacterLimit + 10) + 0xd);
     do {
-      ValidationStatus = *SystemFunctionPointer;
+      SystemValidationStatus = *SystemFunctionPointer;
       SystemFunctionPointer = SystemFunctionPointer + 0x20;
       if (SystemContextValidationFlag <= ValidationStatus) {
         SystemContextValidationFlag = ValidationStatus;
@@ -177018,9 +177023,9 @@ void ProcessSystemDataSynchronize(void)
     }
     *LineEndPointer = '\0';
     if (*SystemDataNode != ';') {
-      if (((*SystemDataNode == '[') && (SystemDataNode < LineEndPointer)) && (ValidationStatus = LineEndPointer + -1, LineEndPointer[-1] == ']'         ) {
+      if (((*SystemDataNode == '[') && (SystemDataNode < LineEndPointer)) && (SystemValidationStatus = LineEndPointer + -1, LineEndPointer[-1] == ']'         ) {
         pIsSystemContextValidationResult = (byte *)(SystemDataNode + 1);
-        *ValidationStatus = '\0';
+        *SystemValidationStatus = '\0';
         ContextHandleTablePointer = (uint8_t *)memchr(pIsSystemContextValidationResult,0x5d,(long long)ValidationStatus - (long long)pIsSystemContextValidationResult);
         if ((ContextHandleTablePointer == (uint8_t *)0x0) ||
            (MemoryBoundaryEnd = memchr(ContextHandleTablePointer + 1,0x5b,(long long)ValidationStatus - (long long)(ContextHandleTablePointer + 1)), MemoryBoundaryEnd == 0)        {
@@ -177159,9 +177164,9 @@ void ProcessSystemConfigurationData(void)
       *LineEndPointer = '\0';
       if (*SystemDataNode != ';') {
         if (((*SystemDataNode == '[') && (SystemDataNode < LineEndPointer)) &&
-           (ValidationStatus = LineEndPointer + -1, LineEndPointer[-1] == ']')) {
+           (SystemValidationStatus = LineEndPointer + -1, LineEndPointer[-1] == ']')) {
           pIsSystemContextValidationResult = (byte *)(SystemDataNode + 1);
-          *ValidationStatus = '\0';
+          *SystemValidationStatus = '\0';
           ContextHandleTablePointer = (uint8_t *)memchr(pIsSystemContextValidationResult,0x5d,(long long)ValidationStatus - (long long)pIsSystemContextValidationResult);
           if ((ContextHandleTablePointer == (uint8_t *)0x0) ||
              (MemoryBoundaryEnd = memchr(ContextHandleTablePointer + 1,0x5b,(long long)ValidationStatus - (long long)(ContextHandleTablePointer + 1)), MemoryBoundaryEnd == 0             ) {
@@ -181139,7 +181144,7 @@ uint64_t * ProcessContextHandleAllocation(uint64_t *ContextHandle)
  */
 unsigned long long InitializeSystemMemoryPool(long long *ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint32_t MemoryPoolIndex;
   int MemoryComparisonResult;
   uint MemoryAllocationMaskPointer;
@@ -181282,7 +181287,7 @@ LAB_180141f1f:
   ValidationResult = Utf16Char4;
   if ((int)Utf16ConversionContext != 0) {
     do {
-      ValidationStatus = pMemoryOffsetValue[ValidationResult];
+      SystemValidationStatus = pMemoryOffsetValue[ValidationResult];
       if ((byte)(ValidationStatus + 0xbfU) < 0x1a) {
         pMemoryOffsetValue[ValidationResult] = ValidationStatus + ' ';
         Utf16ConversionContext = (unsigned long long)SystemStackRegisterBuffer;
@@ -182278,7 +182283,7 @@ uint64_t ProcessContextHandleWithSecondaryValidation(uint64_t ContextHandle,unsi
 void InitializeContextHandleProcessor(uint64_t *ContextHandle)
 {
   *ContextHandle = SystemTargetDataSecondary;
-  if (*(char*)SystemMemoryValidationStatus == '\0') {
+  if (*(char*)SystemMemorySystemValidationStatus == '\0') {
     ProcessCharacterWithSystemContext();
   }
   ContextHandle[100] = &SystemNullTemplate;
@@ -182992,7 +182997,7 @@ void * ProcessSystemContextAllocation(int ContextHandle,uint64_t OperationBuffer
     CheckRenderParameterStatus(SystemTertiaryStatusData);
     if (ValidationStatusStatusValue == -1) {
       *(void**)SystemValidationStatusData = &SystemValidationStatus;
-      *(void**)SystemSecondaryValidationStatus = SystemTertiaryValidationStatus;
+      *(void**)SystemSecondarySystemValidationStatus = SystemTertiaryValidationStatus;
 
 void ProcessSystemContextManagement(uint64_t *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
@@ -183887,10 +183892,10 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *ContextHandle, uint64_t *Co
   ContextHandle[3] = 0;
   ContextHandle[4] = _guard_check_icall;
   if (ContextHandle + 1 != OperationBufferSize + 1) {
-    ValidationStatus = (code *)OperationBufferSize[3];
+    SystemValidationStatus = (code *)OperationBufferSize[3];
     if (ValidationStatus != (code *)0x0) {
       (*ValidationStatus)(ContextHandle + 1,OperationBufferSize + 1,1,Utf16EndPointer,0xfffffffffffffffe);
-      ValidationStatus = (code *)OperationBufferSize[3];
+      SystemValidationStatus = (code *)OperationBufferSize[3];
     }
     ContextHandle[3] = ValidationStatus;
     ContextHandle[4] = OperationBufferSize[4];
@@ -191003,7 +191008,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long ContextHandle
   
   uStack_170 = 0xfffffffffffffffe;
   StackValidationData = EncodingDecodingKey ^ (unsigned long long)aDataProcessingStatus;
-  SystemStringSystemValidationStatus = (char *)0x0;
+  SystemStringSystemSystemValidationStatus = (char *)0x0;
   SystemValue1a8 = 0;
   if (*(char *)(CoreEngineSystemContext + 0x12f3) != '\0') {
     *(uint8_t *)(CoreEngineSystemContext + 0x12f3) = 0;
@@ -193801,7 +193806,7 @@ LAB_1801545d1:
  */
 void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int MutexLockResult;
   int MemoryComparisonResult;
   uint32_t *MemoryAllocationMaskPointer;
@@ -193885,8 +193890,8 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *ContextHandle, 
   ConfigurationString = pSystemOperationStatusMask;
   if (ArraySize != 0) {
     do {
-      ValidationStatus = (**(code **)(*ContextHandle + 8))(ContextHandle,*MemoryAllocationMaskPointer);
-      if (ValidationStatus == '\0') {
+      SystemValidationStatus = (**(code **)(*ContextHandle + 8))(ContextHandle,*MemoryAllocationMaskPointer);
+      if (SystemValidationStatus == '\0') {
         if (ContextHandleTablePointer < StackTempPointer) {
           CharacterStatusBuffer2 = ContextHandleTablePointer + 1;
           *ContextHandlePointer = *MemoryAllocationMaskPointer;
@@ -195546,7 +195551,7 @@ void ProcessSystemCharacterDataAndManagement(long long *ContextHandle,int Operat
   SystemStackFlag = 0xfffffffffffffffe;
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackProcessingDataPointer;
   if (OperationBufferSize == 0) {
-    ValidationStatus = *(code **)(*ContextHandle + 0x18);
+    SystemValidationStatus = *(code **)(*ContextHandle + 0x18);
     pSystemPriorityLevel = &UnknownDataStructureTemplate;
     pFunctionAddress = aStackValidationFlag;
     aStackValidationFlag[0] = 0;
@@ -195555,7 +195560,7 @@ void ProcessSystemCharacterDataAndManagement(long long *ContextHandle,int Operat
     (*ValidationStatus)(ContextHandle,&pSystemPriorityLevel,0);
   }
   else if (OperationBufferSize == 1) {
-    ValidationStatus = *(code **)(*ContextHandle + 0x18);
+    SystemValidationStatus = *(code **)(*ContextHandle + 0x18);
     pSystemPriorityLevel = &UnknownDataStructureTemplate;
     pFunctionAddress = aStackValidationFlag;
     aStackValidationFlag[0] = 0;
@@ -195564,7 +195569,7 @@ void ProcessSystemCharacterDataAndManagement(long long *ContextHandle,int Operat
     (*ValidationStatus)(ContextHandle,&pSystemPriorityLevel,0x3f800000);
   }
   else if (OperationBufferSize == 2) {
-    ValidationStatus = *(code **)(*ContextHandle + 0x18);
+    SystemValidationStatus = *(code **)(*ContextHandle + 0x18);
     pSystemPriorityLevel = &UnknownDataStructureTemplate;
     pFunctionAddress = aStackValidationFlag;
     aStackValidationFlag[0] = 0;
@@ -195574,7 +195579,7 @@ void ProcessSystemCharacterDataAndManagement(long long *ContextHandle,int Operat
   }
   else {
     if (OperationBufferSize != 3) goto LAB_180158962;
-    ValidationStatus = *(code **)(*ContextHandle + 0x18);
+    SystemValidationStatus = *(code **)(*ContextHandle + 0x18);
     pSystemPriorityLevel = &UnknownDataStructureTemplate;
     pFunctionAddress = aStackValidationFlag;
     aStackValidationFlag[0] = 0;
@@ -204896,7 +204901,7 @@ long long ProcessCoreEngineContextHandle(long long *ContextHandle,long long Oper
  */
 long long * ProcessSystemCalculationFunctionAddress(long long *ContextHandle,long long OperationBufferSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   bool IsHighByteSet;
   uint MemoryAllocationMaskPointer;
@@ -204934,17 +204939,17 @@ long long * ProcessSystemCalculationFunctionAddress(long long *ContextHandle,lon
       SystemValidationPointer = (uint8_t *)0x0;
       StringProcessingIndex = 0;
       SystemStackFlag = 0;
-      ValidationStatus = *StringCodeBuffer;
+      SystemValidationStatus = *StringCodeBuffer;
       ContextHandleTablePointer = StringProcessingStatus;
       SystemStatusContext = StringProcessingStatus;
       if (ValidationStatus != '\0') {
         do {
-          SystemStringValidationStatus = StringCodeBuffer;
-          if (ValidationStatus == '\"') {
+          SystemStringSystemValidationStatus = StringCodeBuffer;
+          if (SystemValidationStatus == '\"') {
             LowByte = !LowByte;
           }
           else {
-            if ((!LowByte) && (ValidationStatus == ' ')) break;
+            if ((!LowByte) && (SystemValidationStatus == ' ')) break;
             ProcessingStatusFlag = (int)CharacterStatusBuffer3 + 1;
             if (ProcessingStatusFlag != 0) {
               MemoryAllocationMaskPointer = (int)CharacterStatusBuffer3 + 2;
@@ -204998,7 +205003,7 @@ LAB_180169e1e:
             SystemStackFlag = ProcessingStatusFlag;
           }
           StringCodeBuffer = SystemStringValidationStatus + 1;
-          ValidationStatus = *StringCodeBuffer;
+          SystemValidationStatus = *StringCodeBuffer;
         } while (ValidationStatus != '\0');
         StringCodeBuffer = SystemStringValidationStatus + 1;
       }
@@ -206881,7 +206886,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle, uin
   void *TemporaryBuffer;
   long long MemoryAllocationIndex;
   uint64_t ProcessedCharacter;
-  char ValidationStatus;
+  char SystemValidationStatus;
   int IntegerValue;
   long long LoopIndex;
   long long CharacterTablePointer;
@@ -206952,7 +206957,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle, uin
       if (TemporaryBuffer != NULL) {
         SystemCharacterStatusPointer = TemporaryBuffer;
       }
-      ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&SystemRegisterFlag);
+      SystemValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&SystemRegisterFlag);
       if (ValidationStatus != '\0') {
         *(int *)(ContextHandle + 0x68) = IntegerValue;
       }
@@ -207053,7 +207058,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
   void *TemporaryBuffer;                              // 临时缓冲区
   long long MemoryAllocationIndex;                // 编码转换结果
   uint64_t ProcessedCharacter;                        // 已处理字符
-  char ValidationStatus;                              // 当前字符
+  char SystemValidationStatus;                              // 当前字符
   int IntegerValue;                                    // 整数值
   long long ProcessingResult;                         // 处理结果
   long long LoopIndex;                                 // 循环索引
@@ -207137,7 +207142,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
       if (TemporaryBuffer != NULL) {
         SystemCharacterStatusPointer = TemporaryBuffer;
       }
-      ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&StackValidationBuffer90);
+      SystemValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&StackValidationBuffer90);
       if (ValidationStatus != '\0') {
         *(int *)(ContextHandle + 0x68) = IntegerValue;
       }
@@ -207258,7 +207263,7 @@ void ProcessSystemConfigurationAndStringMatching(void)
   long long SystemStringIndex;                        // 系统字符串索引，用于字符串操作
   
   // 验证和状态变量
-  char ValidationStatus;                             // 验证状态，标识操作结果
+  char SystemValidationStatus;                             // 验证状态，标识操作结果
   int IntegerValue;                                  // 整数值，用于临时存储
   long long LoopIndex;                               // 循环索引，用于迭代操作
   long long CharacterTablePointer;                   // 字符表指针，用于字符处理
@@ -207301,7 +207306,7 @@ void ProcessSystemConfigurationAndStringMatching(void)
     }
     
     // 验证系统数据并检查状态
-    ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &SystemValidationStackBuffer);
+    SystemValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &SystemValidationStackBuffer);
     if (ValidationStatus != '\0') {
       *(int *)(PatternIndex + 0x68) = ProcessingIndex;
     }
@@ -213879,7 +213884,7 @@ uint64_t *
 
 unsigned long long ProcessCharacterEncodingAndThreadPriorityManagement(long long *ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   uint64_t UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
@@ -213894,9 +213899,9 @@ unsigned long long ProcessCharacterEncodingAndThreadPriorityManagement(long long
   
   UnicodeCodePoint = GetCurrentThread();
   MemoryAllocationMaskPointer = SetThreadPriority(UnicodeCodePoint,2);
-  ValidationStatus = (char)ContextHandle[0xb];
+  SystemValidationStatus = (char)ContextHandle[0xb];
   do {
-    if (ValidationStatus == '\0') {
+    if (SystemValidationStatus == '\0') {
       return MemoryAllocationMaskPointer;
     }
     MemoryAllocationMaskPointer = (**(code **)(*ContextHandle + 0x20))(ContextHandle,1);
@@ -213938,7 +213943,7 @@ unsigned long long ProcessCharacterEncodingAndThreadPriorityManagement(long long
       }
     }
 LAB_1801748de:
-    ValidationStatus = (char)ContextHandle[0xb];
+    SystemValidationStatus = (char)ContextHandle[0xb];
   } while( true );
 }
 
@@ -216399,12 +216404,12 @@ ValidateEmptyString:
       else {
         ContextValidationPointer = ProgramCounter;
         do {
-          MemoryValidationStatus = *ContextValidationPointer;
+          MemorySystemValidationStatus = *ContextValidationPointer;
           SystemContextCheckResult = ContextValidationPointer[*(long long *)(OperationBufferSize + 8) - (long long)ProgramCounter];
           if (MemoryValidationStatus != SystemContextCheckResult) break;
           ContextValidationPointer = ContextValidationPointer + 1;
         } while (SystemContextCheckResult != '\0');
-        SystemContextIsNull = MemoryValidationStatus == SystemContextCheckResult;
+        SystemContextIsNull = MemorySystemValidationStatus == SystemContextCheckResult;
       }
     }
     else {
@@ -221938,7 +221943,7 @@ void SystemDataProcessingFunction(void
     ProcessingStatusFlag = ProcessSystemStatusFlag(ProcessingStatusFlag);
     (**(code **)(**(long long **)(SystemDataTablePointer + 0x40) + 8))(*(long long **)(SystemDataTablePointer + 0x40),ProcessingStatusFlag);
     (**(code **)(**(long long **)(SystemDataTablePointer + 0x2b0) + 0x80)              (*(long long **)(SystemDataTablePointer + 0x2b0),*(void *)(SystemDataTablePointer + 0x40));
-    pppppValidationStatus = (code ******)pppppcStack_188;
+    pppppSystemValidationStatus = (code ******)pppppcStack_188;
     if ((*(int *)(SystemDataTablePointer + 0x3c) == -1) || (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c))    {
       *(int *)(SystemDataTablePointer + 0x318) = *(int *)(SystemDataTablePointer + 0x318) + 1;
     }
@@ -222195,7 +222200,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021e9c0;
-      pppppValidationStatus = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
+      pppppSystemValidationStatus = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (pppppValidationStatus != (code ******)0x0) {
         pppppcStack_178 = (code *****)pppppValidationStatus;
         (*(code *)(*pppppValidationStatus)[5])(pppppValidationStatus);
@@ -222217,7 +222222,7 @@ LAB_180180381:
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
       ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
-      pppppValidationStatus = (code ******)pppppcStack_180;
+      pppppSystemValidationStatus = (code ******)pppppcStack_180;
       if ((*(int *)(SystemDataTablePointer + 0x3c) == -1) ||
          (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c))) {
         *(int *)(SystemDataTablePointer + 0x318) = *(int *)(SystemDataTablePointer + 0x318) + 1;
@@ -222450,7 +222455,7 @@ LAB_180180381:
       uStack_158 = &SystemUnsignedValueBufferSenary;
       pppcStack_170 = (code ***)FUN_18013ea70;
       pDataContentStatus = (uint32_t *)CoreEngineMemoryContext;
-      pppppValidationStatus = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
+      pppppSystemValidationStatus = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (pppppValidationStatus != (code ******)0x0) {
         pppppcStack_178 = (code *****)pppppValidationStatus;
         (*(code *)(*pppppValidationStatus)[5])(pppppValidationStatus);
@@ -222472,7 +222477,7 @@ LAB_180180381:
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
       ProcessSystemDataTable(SystemDataTablePointer + 800,&pppppcStack_180);
-      pppppValidationStatus = (code ******)pppppcStack_180;
+      pppppSystemValidationStatus = (code ******)pppppcStack_180;
       if ((*(int *)(SystemDataTablePointer + 0x3c) == -1) ||
          (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c))) {
         *(int *)(SystemDataTablePointer + 0x318) = *(int *)(SystemDataTablePointer + 0x318) + 1;
@@ -224371,7 +224376,7 @@ InitializeContextHandlePointer(uint64_t *ContextHandle,unsigned long long Operat
 
 void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint32_t *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   uint64_t *MemoryAllocationMaskPointer;
@@ -224490,21 +224495,21 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
           }
           MemoryBlockListHead = (long long *)ContextHandleTablePointer[2];
           if (*(char *)((long long)MemoryBlockListHead + SystemNodeStatusOffset) == '\0') {
-            ValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
+            SystemValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
             ContextHandleTablePointer = MemoryBlockListHead;
             MemoryBlockListHead = (long long *)*MemoryBlockListHead;
-            while (ValidationStatus == '\0') {
-              ValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
+            while (SystemValidationStatus == '\0') {
+              SystemValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
               ContextHandleTablePointer = MemoryBlockListHead;
               MemoryBlockListHead = (long long *)*MemoryBlockListHead;
             }
           }
           else {
-            ValidationStatus = *(char *)(ContextHandleTablePointer[1] + SystemNodeStatusOffset);
+            SystemValidationStatus = *(char *)(ContextHandleTablePointer[1] + SystemNodeStatusOffset);
             MemoryRangeBoundary = (long long *)ContextHandleTablePointer[1];
             MemoryBlockListHead = ContextHandleTablePointer;
-            while ((ContextHandleTablePointer = MemoryRangeBoundary, ValidationStatus == '\0' && (MemoryBlockListHead == (long long *)ContextHandleTablePointer[2]))) {
-              ValidationStatus = *(char *)(ContextHandleTablePointer[1] + SystemNodeStatusOffset);
+            while ((ContextHandleTablePointer = MemoryRangeBoundary, SystemValidationStatus == '\0' && (MemoryBlockListHead == (long long *)ContextHandleTablePointer[2]))) {
+              SystemValidationStatus = *(char *)(ContextHandleTablePointer[1] + SystemNodeStatusOffset);
               MemoryRangeBoundary = (long long *)ContextHandleTablePointer[1];
               MemoryBlockListHead = ContextHandleTablePointer;
             }
@@ -224887,7 +224892,7 @@ void ProcessDualContextCharacterEncoding(long long *ContextHandle, uint64_t Oper
  */
 void ProcessMixedTypeContextHandle(long long ContextHandle, uint64_t *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   void *SystemContext;
   long long SearchStartIndex;
   long long *EngineContext;
@@ -224951,21 +224956,21 @@ void ProcessMixedTypeContextHandle(long long ContextHandle, uint64_t *ContextHan
       }
       MemoryBlockListHead = (long long *)SystemDataTablePointer[2];
       if (*(char *)((long long)MemoryBlockListHead + SystemNodeStatusOffset) == '\0') {
-        ValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
+        SystemValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
         SystemDataTablePointer = MemoryBlockListHead;
         MemoryBlockListHead = (long long *)*MemoryBlockListHead;
-        while (ValidationStatus == '\0') {
-          ValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
+        while (SystemValidationStatus == '\0') {
+          SystemValidationStatus = *(char *)(*MemoryBlockListHead + SystemNodeStatusOffset);
           SystemDataTablePointer = MemoryBlockListHead;
           MemoryBlockListHead = (long long *)*MemoryBlockListHead;
         }
       }
       else {
-        ValidationStatus = *(char *)(SystemDataTablePointer[1] + SystemNodeStatusOffset);
+        SystemValidationStatus = *(char *)(SystemDataTablePointer[1] + SystemNodeStatusOffset);
         SystemContextPtr = (long long *)SystemDataTablePointer[1];
         MemoryBlockListHead = SystemDataTablePointer;
-        while ((SystemDataTablePointer = SystemContextPtr, ValidationStatus == '\0' && (MemoryBlockListHead == (long long *)SystemDataTablePointer[2]))) {
-          ValidationStatus = *(char *)(SystemDataTablePointer[1] + SystemNodeStatusOffset);
+        while ((SystemDataTablePointer = SystemContextPtr, SystemValidationStatus == '\0' && (MemoryBlockListHead == (long long *)SystemDataTablePointer[2]))) {
+          SystemValidationStatus = *(char *)(SystemDataTablePointer[1] + SystemNodeStatusOffset);
           SystemContextPtr = (long long *)SystemDataTablePointer[1];
           MemoryBlockListHead = SystemDataTablePointer;
         }
@@ -225164,7 +225169,7 @@ void SetScreenshotHighlightAsync(long long ContextHandle,uint64_t *ContextHandle
   
   MemoryOffsetValue = 0xfffffffffffffffe;
   EncodedStackValue = EncodingDecodingKey ^ (unsigned long long)SystemProcessFlagArray;
-  OperationValidationStatus = 0;
+  OperationSystemValidationStatus = 0;
   SystemCharacterStatusBufferPointer = OperationBufferSize;
   if (0xf < (unsigned long long)OperationBufferSize[3]) {
     SystemCharacterStatusBufferPointer = (void *)*ContextHandleSize;
@@ -225181,7 +225186,7 @@ void SetScreenshotHighlightAsync(long long ContextHandle,uint64_t *ContextHandle
   if (CharacterStatusBuffer != NULL) {
     StackPointer60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,StackArray98);
   }
-  OperationValidationStatus = 3;
+  OperationSystemValidationStatus = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
   StackPointerD0 = (long long *)MemoryBlockIndex;
   TimeoutValue = Utf16EndPointer;
@@ -225201,7 +225206,7 @@ LAB_180185631:
   *(void *)(MemoryBlockIndex + 0x40) = TimeoutValue;
   NVGSDK_Highlights_SetScreenshotHighlightAsync
             (*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,ProcessSystemAsyncCallback,MemoryBlockIndex);
-  OperationValidationStatus = 1;
+  OperationSystemValidationStatus = 1;
   StackPointerD0 = StackArray98;
   if (StackPointer60 != (long long *)0x0) {
     (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
@@ -225255,7 +225260,7 @@ void SetVideoHighlightAsync(long long ContextHandle,uint64_t *ContextHandleSize,
   
   StackValueB0 = 0xfffffffffffffffe;
   EncodedStackValue = EncodingDecodingKey ^ (unsigned long long)SystemProcessFlagArray;
-  OperationValidationStatus = 0;
+  OperationSystemValidationStatus = 0;
   SystemCharacterStatusBufferPointer = OperationBufferSize;
   if (0xf < (unsigned long long)OperationBufferSize[3]) {
     SystemCharacterStatusBufferPointer = (void *)*ContextHandleSize;
@@ -225274,7 +225279,7 @@ void SetVideoHighlightAsync(long long ContextHandle,uint64_t *ContextHandleSize,
   if (CharacterStatusBuffer != NULL) {
     StackPointer60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,StackArray98);
   }
-  OperationValidationStatus = 3;
+  OperationSystemValidationStatus = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
   StackPointerD0 = (long long *)MemoryBlockIndex;
   TimeoutValue = Utf16EndPointer;
@@ -225294,7 +225299,7 @@ LAB_1801857bd:
   *(void *)(MemoryBlockIndex + 0x40) = TimeoutValue;
   NVGSDK_Highlights_SetVideoHighlightAsync
             (*(void *)(ContextHandle + 8),&SystemCharacterStatusBufferPointer,ProcessSystemAsyncCallback,MemoryBlockIndex);
-  OperationValidationStatus = 1;
+  OperationSystemValidationStatus = 1;
   StackPointerD0 = StackArray98;
   if (StackPointer60 != (long long *)0x0) {
     (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
@@ -225560,7 +225565,7 @@ void ProcessShortIntegerContextHandle(int ContextHandle, uint16_t *ContextHandle
       BufferAllocationState = (long long *)Utf8SourcePointer[7];
       if (BufferAllocationState == (long long *)0x0) {
         __Xbad_function_call_std__YAXXZ();
-        ValidationStatus = (code *)swi(3);
+        SystemValidationStatus = (code *)swi(3);
         (*ValidationStatus)();
         return;
       }
@@ -228219,20 +228224,20 @@ void InitializeCharacterTablePointer(void)
  */
 void RecursiveProcessSystemContextAndMemoryAllocation(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long *BufferAllocationState;
   uint64_t UnicodeCodePoint;
   
   UnicodeCodePoint = 0xfffffffffffffffe;
-  ValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
-  while (ValidationStatus == '\0') {
+  SystemValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
+  while (SystemValidationStatus == '\0') {
     RecursiveProcessSystemContextAndMemoryAllocation(ContextHandle,OperationBufferSize[2],Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint);
     BufferAllocationState = (long long *)*ContextHandleSize;
     ProcessSystemStackData(OperationBufferSize + 8);
     ProcessSystemStackData(OperationBufferSize + 4);
     free(OperationBufferSize,0x60);
     OperationBufferSize = BufferAllocationState;
-    ValidationStatus = *(char *)((long long)BufferAllocationState + SystemNodeStatusOffset);
+    SystemValidationStatus = *(char *)((long long)BufferAllocationState + SystemNodeStatusOffset);
   }
   return;
 }
@@ -228276,13 +228281,13 @@ void ProcessSystemMemory(uint64_t ContextHandle, long long *ContextHandleSize
   char MemoryValidationStatus;
   long long *MemoryBufferStatus;
   
-  MemoryValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
-  while (MemoryValidationStatus == '\0') {
+  MemorySystemValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
+  while (MemorySystemValidationStatus == '\0') {
     ProcessSystemMemory(ContextHandle, OperationBufferSize[2]);
     MemoryBufferStatus = (long long *)*ContextHandleSize;
     free(OperationBufferSize, 0x28);
     OperationBufferSize = MemoryBufferStatus;
-    MemoryValidationStatus = *(char *)((long long)MemoryBufferStatus + SystemNodeStatusOffset);
+    MemorySystemValidationStatus = *(char *)((long long)MemoryBufferStatus + SystemNodeStatusOffset);
   }
   return;
 }
@@ -228959,7 +228964,7 @@ void ExpandCharacterStatusBufferAndInsert64BitElement(long long *CharacterStatus
   if (CurrentCapacity < NewSize) {
     if (0x1fffffffffffffff < NewSize) {
       ExecuteSystemValidationAndExceptionHandling();
-      ValidationStatus = (code *)swi(3);
+      SystemValidationStatus = (code *)swi(3);
       (*ValidationStatus)();
       return;
     }
@@ -229036,7 +229041,7 @@ void ReallocateCharacterStatusBufferAndCopy32BitData(long long *CharacterStatusB
   if (0x3fffffffffffffff < RequiredElementCount) {
 LAB_180189786:
     ExecuteSystemValidationAndExceptionHandling();
-    ValidationStatus = (code *)swi(3);
+    SystemValidationStatus = (code *)swi(3);
     (*ValidationStatus)();
     return;
   }
@@ -229204,7 +229209,7 @@ void ExecuteSystemValidationAndExceptionHandling(void)
   code *ValidationStatus;
   
   __Xlength_error_std__YAXPEBD_Z(&SystemBufferNonary);
-  ValidationStatus = (code *)swi(3);
+  SystemValidationStatus = (code *)swi(3);
   (*ValidationStatus)();
   return;
 }
@@ -230135,7 +230140,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
       uint32_t Utf16EndValue = *Utf16EndPointer;
       EncodingLockOperationResult = *(int *)((long long)Utf8SourcePointer + 0x1c);
       bool IsSystemContextValidationResult = SBORROW4(EncodingLockOperationResult,Utf16EndValue);
-      EncodingValidationStatus = EncodingLockOperationResult - Utf16EndValue;
+      EncodingSystemValidationStatus = EncodingLockOperationResult - Utf16EndValue;
       if (Utf16EndValue < EncodingLockOperationResult) {
         if (*(char *)((long long)Utf8SourcePointer + SystemNodeStatusOffset) == '\0') {
           MemoryBlockIterator = Utf8SourcePointer;
@@ -230160,7 +230165,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
         else {
           MemoryBlockBoundary = (long long *)Utf8SourcePointer[2];
         }
-        EncodingValidationStatus = *Utf16EndPointer;
+        EncodingSystemValidationStatus = *Utf16EndPointer;
         if (*(int *)((long long)MemoryBlockBoundary + 0x1c) < EncodingValidationStatus) {
           if (*(char *)(MemoryBlockBoundary[2] + SystemNodeStatusOffset) != '\0') {
             ProcessCharacterMemoryAllocationAndBufferManagement(ContextHandle,OperationBufferSize,0);
@@ -230170,7 +230175,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
           return OperationBufferSize;
         }
         IsSystemContextValidationResult = SBORROW4(*(int *)((long long)Utf8SourcePointer + 0x1c),EncodingValidationStatus);
-        EncodingValidationStatus = *(int *)((long long)Utf8SourcePointer + 0x1c) - EncodingValidationStatus;
+        EncodingSystemValidationStatus = *(int *)((long long)Utf8SourcePointer + 0x1c) - EncodingValidationStatus;
       }
       if (IsSystemContextValidationResult != EncodingValidationStatus < 0) {
         MemoryBlockIterator = (long long *)Utf8SourcePointer[2];
@@ -230388,7 +230393,7 @@ void *ProcessCharacterEncodingMemoryAllocationAndStatusManagement(long long *Con
   }
   *(long long **)(AllocatedMemorySize + 0x10) = AdditionalParameter2;
 LAB_18018aab4:
-  ValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
+  SystemValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
   SystemDataTablePointer = AdditionalParameter2;
   do {
     if (ValidationStatus != '\0') {
@@ -230475,7 +230480,7 @@ LAB_18018ac29:
       *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
       AdditionalParameter2 = *(long long **)(AdditionalParameter2[1] + 8);
     }
-    ValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
+    SystemValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
   } while( true );
 }
 
@@ -230662,7 +230667,7 @@ uint64_t *
 ProcessCharacterMemoryAllocationAndBufferManagement(long long *ContextHandle,uint64_t *ContextHandleSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              uint64_t AdditionalParameter1,long long *AdditionalParameter2
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long *BufferAllocationState;
   code *SystemFunctionPointer;
   uint64_t *MemoryAllocationMaskPointer;
@@ -230699,7 +230704,7 @@ ProcessCharacterMemoryAllocationAndBufferManagement(long long *ContextHandle,uin
   }
   *(long long **)(AllocatedMemorySize + 0x10) = AdditionalParameter2;
 LAB_18018afb4:
-  ValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
+  SystemValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
   SystemDataTablePointer = AdditionalParameter2;
   do {
     if (ValidationStatus != '\0') {
@@ -230786,7 +230791,7 @@ LAB_18018b129:
       *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
       AdditionalParameter2 = *(long long **)(AdditionalParameter2[1] + 8);
     }
-    ValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
+    SystemValidationStatus = *(char *)(AdditionalParameter2[1] + 0x18);
   } while( true );
 }
 
@@ -231846,8 +231851,8 @@ void DecodeSystemCharacterData(uint64_t ContextHandle,uint64_t OperationBufferSi
     SystemValidationFunction3 = SystemValidationFunction2;
     SystemValidationFunction2 = SystemValidationFunction3 + 1;
   } while (*SystemValidationFunction2 != '\0');
-  ValidationStatus = (char *)0x0;
-  for (SystemValidationFunction2 = *(char **)(Utf16EndPointer + 0x30); ValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
+  SystemValidationStatus = (char *)0x0;
+  for (SystemValidationFunction2 = *(char **)(Utf16EndPointer + 0x30); SystemValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
       SystemValidationFunction2 = *(char **)(SystemValidationFunction2 + 0x58)) {
     ValidationStatus3 = *(char **)SystemValidationFunction2;
     if (ValidationStatus3 == (char *)0x0) {
@@ -231859,7 +231864,7 @@ void DecodeSystemCharacterData(uint64_t ContextHandle,uint64_t OperationBufferSi
     }
     if (StringDataPointer == SystemValidationFunction3 + -0x180a04ee3) {
       StringDataPointer = StringDataPointer + (long long)ValidationStatus3;
-      ValidationStatus = SystemValidationFunction2;
+      SystemValidationStatus = SystemValidationFunction2;
       if (StringDataPointer <= ValidationStatus3) break;
       LoopIndex = (long long)&LoopCounterTable - (long long)ValidationStatus3; /* 系统内存偏移量表 - 存储内存地址偏移信息 */
       while (*ValidationStatus3 == ValidationStatus3[LoopIndex]) {
@@ -231875,7 +231880,7 @@ LAB_18018c406:
     SystemValidationFunction3 = SystemValidationFunction2;
     SystemValidationFunction2 = SystemValidationFunction3 + 1;
   } while (*SystemValidationFunction2 != '\0');
-  for (SystemValidationFunction2 = *(char **)(ValidationStatus + 0x30); ValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
+  for (SystemValidationFunction2 = *(char **)(ValidationStatus + 0x30); SystemValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
       SystemValidationFunction2 = *(char **)(SystemValidationFunction2 + 0x58)) {
     ValidationStatus3 = *(char **)SystemValidationFunction2;
     if (ValidationStatus3 == (char *)0x0) {
@@ -231887,7 +231892,7 @@ LAB_18018c406:
     }
     if (StringDataPointer == SystemValidationFunction3 + -0x180a0ae0f) {
       StringDataPointer = StringDataPointer + (long long)ValidationStatus3;
-      ValidationStatus = SystemValidationFunction2;
+      SystemValidationStatus = SystemValidationFunction2;
       if (StringDataPointer <= ValidationStatus3) break;
       LoopIndex = (long long)&SystemMemoryCheckBoundary1 - (long long)ValidationStatus3;
       while (*ValidationStatus3 == ValidationStatus3[LoopIndex]) {
@@ -231903,7 +231908,7 @@ LAB_18018c46e:
     SystemValidationFunction3 = SystemValidationFunction2;
     SystemValidationFunction2 = SystemValidationFunction3 + 1;
   } while (*SystemValidationFunction2 != '\0');
-  for (SystemValidationFunction2 = *(char **)(ValidationStatus + 0x30); ValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
+  for (SystemValidationFunction2 = *(char **)(ValidationStatus + 0x30); SystemValidationStatus = ValidationStatus, SystemValidationFunction2 != (char *)0x0;
       SystemValidationFunction2 = *(char **)(SystemValidationFunction2 + 0x58)) {
     ValidationStatus3 = *(char **)SystemValidationFunction2;
     if (ValidationStatus3 == (char *)0x0) {
@@ -231915,7 +231920,7 @@ LAB_18018c46e:
     }
     if (StringDataPointer == SystemValidationFunction3 + -0x180a0ae2f) {
       StringDataPointer = ValidationStatus3 + (long long)StringDataPointer;
-      ValidationStatus = SystemValidationFunction2;
+      SystemValidationStatus = SystemValidationFunction2;
       if (StringDataPointer <= ValidationStatus3) break;
       LoopIndex = (long long)&SystemMemoryCheckBoundary3 - (long long)ValidationStatus3;
       while (*ValidationStatus3 == ValidationStatus3[LoopIndex]) {
@@ -231944,13 +231949,13 @@ LAB_18018c4de:
         SystemValidationFunction2 = (char *)*CharacterStatusBuffer;
         if (SystemValidationFunction2 == (char *)0x0) {
           SystemValidationFunction2 = (char *)0x180d48d24;
-          ValidationStatus = (char *)0x0;
+          SystemValidationStatus = (char *)0x0;
         }
         else {
-          ValidationStatus = (char *)CharacterStatusBuffer[2];
+          SystemValidationStatus = (char *)CharacterStatusBuffer[2];
         }
-        if (ValidationStatus == SystemValidationFunction3 + -0x180a0ae27) {
-          ValidationStatus = ValidationStatus + (long long)SystemValidationFunction2;
+        if (SystemValidationStatus == SystemValidationFunction3 + -0x180a0ae27) {
+          SystemValidationStatus = ValidationStatus + (long long)SystemValidationFunction2;
           if (ValidationStatus <= SystemValidationFunction2) {
 LAB_18018c580:
             LoopIndex = 0x180d48d24;
@@ -232193,10 +232198,10 @@ LAB_18018c714:
       } while (*SystemValidationFunction2 != '\0');
       for (CharacterStatusBuffer = *(uint64_t **)(*AdditionalParameter1 + 0x58); CharacterStatusBuffer != NULL;
           CharacterStatusBuffer = (void *)CharacterStatusBuffer[0xb]) {
-        ValidationStatus = (char *)*CharacterStatusBuffer;
+        SystemValidationStatus = (char *)*CharacterStatusBuffer;
         SystemValidationFunction2 = (char *)0x0;
-        if (ValidationStatus == (char *)0x0) {
-          ValidationStatus = (char *)0x180d48d24;
+        if (SystemValidationStatus == (char *)0x0) {
+          SystemValidationStatus = (char *)0x180d48d24;
         }
         else {
           SystemValidationFunction2 = (char *)CharacterStatusBuffer[2];
@@ -232205,8 +232210,8 @@ LAB_18018c714:
           SystemValidationFunction2 = SystemValidationFunction2 + (long long)ValidationStatus;
           if (SystemValidationFunction2 <= ValidationStatus) goto LAB_18018c9b2;
           LoopIndex = (long long)&SystemMemoryCheckBoundary3 - (long long)ValidationStatus;
-          while (*ValidationStatus == ValidationStatus[LoopIndex]) {
-            ValidationStatus = ValidationStatus + 1;
+          while (*SystemValidationStatus == ValidationStatus[LoopIndex]) {
+            SystemValidationStatus = ValidationStatus + 1;
             if (SystemValidationFunction2 <= ValidationStatus) goto LAB_18018c9b2;
           }
         }
@@ -232590,13 +232595,13 @@ void ProcessSystemUnicodeConversion(long long ContextHandle,long long OperationB
     pSystemStatusChar = *(char **)SystemValidationFunction3;
     if (pSystemStatusChar == (char *)0x0) {
       pSystemStatusChar = (char *)0x180d48d24;
-      SystemStringValidationStatus = SystemValidationFunction2;
+      SystemStringSystemValidationStatus = SystemValidationFunction2;
     }
     else {
-      SystemStringValidationStatus = *(char **)(SystemValidationFunction3 + 0x10);
+      SystemStringSystemValidationStatus = *(char **)(SystemValidationFunction3 + 0x10);
     }
-    if (SystemStringValidationStatus == SystemValidationFunction4 + -0x180a0ae9f) {
-      SystemStringValidationStatus = pSystemStatusChar + (long long)SystemStringValidationStatus;
+    if (SystemStringSystemValidationStatus == SystemValidationFunction4 + -0x180a0ae9f) {
+      SystemStringSystemValidationStatus = pSystemStatusChar + (long long)SystemStringValidationStatus;
       ValidationStatus8 = SystemValidationFunction3;
       if (SystemStringValidationStatus <= pSystemStatusChar) break;
       SystemConfigurationIterator = (long long)&SystemSecondaryDataTable - (long long)pSystemStatusChar; /* 系统次要数据表 - 存储辅助系统数据 */
@@ -234410,14 +234415,14 @@ void ValidateSystemHandle(long long ContextHandle)
   long long MemoryAllocationSize;
   
   // 计算缓冲区验证状态
-  BufferValidationStatus = SUB168(SEXT816(HandleProcessingResult) * SEXT816(ContextHandle), 8);
-  BufferValidationStatus = (BufferValidationStatus >> 8) - (BufferValidationStatus >> 0x3f);
-  if (BufferValidationStatus == 0) {
-    BufferValidationStatus = 1;
+  BufferSystemValidationStatus = SUB168(SEXT816(HandleProcessingResult) * SEXT816(ContextHandle), 8);
+  BufferSystemValidationStatus = (BufferValidationStatus >> 8) - (BufferValidationStatus >> 0x3f);
+  if (BufferSystemValidationStatus == 0) {
+    BufferSystemValidationStatus = 1;
   }
   else {
-    BufferValidationStatus = BufferValidationStatus * 2;
-    if (BufferValidationStatus == 0) {
+    BufferSystemValidationStatus = BufferValidationStatus * 2;
+    if (BufferSystemValidationStatus == 0) {
       SystemDataRegistry = 0;
       MemoryAllocationSize = SystemDataRegistry;
       goto validation_complete;
@@ -235733,20 +235738,20 @@ void ProcessSystemMemoryBufferAndCharacterEncoding(long long ContextHandle,long 
       return;
     }
     SystemBufferStatus = ((OperationBufferSize - ContextHandle) / 0x690) * 0x348 + ContextHandle;
-    SystemValidationStatus = ValidateSystemOperationStatus(OperationBufferSize - ContextHandle,ContextHandle,SystemBufferStatus);
-    if (SystemValidationStatus == '\0') {
-      SystemValidationStatus = ValidateSystemOperationStatus();
+    SystemSystemValidationStatus = ValidateSystemOperationStatus(OperationBufferSize - ContextHandle,ContextHandle,SystemBufferStatus);
+    if (SystemSystemValidationStatus == '\0') {
+      SystemSystemValidationStatus = ValidateSystemOperationStatus();
       MemoryBlockIndex = ContextHandle;
-      if (SystemValidationStatus == '\0') {
-        SystemValidationStatus = ValidateSystemOperationStatus();
+      if (SystemSystemValidationStatus == '\0') {
+        SystemSystemValidationStatus = ValidateSystemOperationStatus();
         goto LAB_180190f00;
       }
     }
     else {
-      SystemValidationStatus = ValidateSystemOperationStatus();
+      SystemSystemValidationStatus = ValidateSystemOperationStatus();
       MemoryBlockIndex = SystemBufferStatus;
-      if (SystemValidationStatus == '\0') {
-        SystemValidationStatus = ValidateSystemOperationStatus();
+      if (SystemSystemValidationStatus == '\0') {
+        SystemSystemValidationStatus = ValidateSystemOperationStatus();
         SystemBufferStatus = ContextHandle;
 LAB_180190f00:
         MemoryBlockIndex = SystemBufferStatus;
@@ -243534,7 +243539,7 @@ LAB_18019a129:
               BufferStatus3 = *ContextHandle2;
               if (BufferStatus3 != 0) {
                 pMemoryCopyBuffer = &SystemNullTemplate;
-                BufferValidationStatus = 0;
+                BufferSystemValidationStatus = 0;
                 pSystemValidationFlag = (byte *)0x0;
                 iStack_258 = 0;
                 CoreEngineProcessSystemEvent(&pMemoryCopyBuffer,*(uint32_t *)(BufferStatus3 + 0x20));
@@ -243610,7 +243615,7 @@ LAB_18019a2ca:
                     CoreEngineFreeSystemMemory(Utf8OutputPointer);
                 }
                 pSystemValidationFlag = (byte *)0x0;
-                BufferValidationStatus = BufferValidationStatus & 0xffffffff00000000;
+                BufferSystemValidationStatus = BufferValidationStatus & 0xffffffff00000000;
                 pMemoryCopyBuffer = &ThreadLocalStorageTemplate;
                 pBufferTypeFlag = &SystemNullTemplate;
                 uStack_230 = 0;
@@ -245648,7 +245653,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   }
   ProcessSystemEventQueueData(&SystemDataTemplateQuaternary,TemporaryBuffer);
   pSystemStackRegisterBuffer = &SystemNullTemplate;
-  SystemOperationValidationStatus = 0;
+  SystemOperationSystemValidationStatus = 0;
   SystemEventDispatcherPointer = (uint8_t *)0x0;
   CoreEngineProcessingValueA0 = 0;
   SystemOperationStatusMaskPointer = NULL;
@@ -245688,7 +245693,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
             SystemEventDispatcherPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventDispatcherPointer,Utf16ConversionContext,0x10,0x13);
           }
           OperationResult = GetMemoryAllocationInfo(SystemEventDispatcherPointer);
-          SystemOperationValidationStatus = CONCAT44(SystemOperationValidationStatus.HighPart,OperationResult);
+          SystemOperationSystemValidationStatus = CONCAT44(SystemOperationValidationStatus.HighPart,OperationResult);
         }
 LAB_18019d47d:
           memcpy(SystemEventDispatcherPointer + CoreEngineProcessingValueA0,TemporaryBuffer,(long long)((int)CharacterTablePointer6 + 2));
@@ -246743,7 +246748,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         SystemValue2b8 = CONCAT44(ContextSecondaryFloat4,fStack_1e4);
         SystemValue2b0 = CONCAT44(ContextSecondaryFloat4,ContextSecondaryFloat4);
         fStack_1e8 = *(float *)(SystemConfigurationIterator + 0xa0) - fStack_1e8;
-        EventValidationStatus = CONCAT44(ContextSecondaryFloat4,fStack_1e8);
+        EventSystemValidationStatus = CONCAT44(ContextSecondaryFloat4,fStack_1e8);
         ContextSecondaryFloat4 = *(float *)(LoopIndex + 0x78) * 0.5;
         ContextSecondaryFloat1 = *(float *)(LoopIndex + 0x74) * 0.5;
         MatrixTransformElementB = *(float *)(LoopIndex + 0x70) * 0.5;
@@ -246884,7 +246889,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
           }
           fStack_254 = FilterInputValue4 / FilterInputValue0;
           SystemUintBuffer258 = 0x3f800000;
-          BufferValidationStatus = 0;
+          BufferSystemValidationStatus = 0;
           *(uint32_t *)(pSystemStackPointer2e0 + 0x55) = 0x3f800000;
           *(float *)((long long)pSystemStackPointer2e0 + 0x2ac) = fStack_254;
           *(uint32_t *)(pSystemStackPointer2e0 + 0x56) = 0;
@@ -246916,7 +246921,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         IntegerValue = (int)((double)(int)ContextSecondaryFloat4 * 1.5);
         SystemChecksum = CONCAT44(fStack_234,fStack_238);
         UnicodeCodePoint = CONCAT44(uStack_22c,fStack_230);
-        EventValidationStatus = CONCAT44(fStack_224,fStack_228);
+        EventSystemValidationStatus = CONCAT44(fStack_224,fStack_228);
         SystemConfigurationMode = CONCAT44(uStack_21c,fStack_220);
         MemoryAllocationMaskPointer = CONCAT44(fStack_214,fStack_218);
         CalculatedCodePoint = CONCAT44(ProcessingCounterc,fStack_210);
@@ -246927,7 +246932,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         MemoryCopyBuffer = SystemChecksum;
         SystemUintBuffer260 = UnicodeCodePoint;
         ResetSystemProcessingState();
-        EventValidationStatus = CONCAT44(fStack_1f4,fStack_1f8);
+        EventSystemValidationStatus = CONCAT44(fStack_1f4,fStack_1f8);
         SystemConfigurationMode = CONCAT44(uStack_1ec,fStack_1f0);
         uStack_298 = CONCAT44(fStack_1e4,fStack_1e8);
         uStack_290 = CONCAT44(uStack_1dc,fStack_1e0);
@@ -247552,7 +247557,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
               *CharacterStatusBufferCurrent = *CharacterStatusBufferCurrent | 1;
               UNLOCK();
             } while ((MemoryAllocationOffset & 1) != 0);
-            EventValidationStatus = *(void *)(CharacterStatusBufferCurrent + 1);
+            EventSystemValidationStatus = *(void *)(CharacterStatusBufferCurrent + 1);
             SystemConfigurationMode = *(void *)(CharacterStatusBufferCurrent + 3);
             MatrixTransformElementB = (float)CharacterStatusBufferCurrent[5];
             ContextSecondaryFloat6 = (float)CharacterStatusBufferCurrent[6];
@@ -248442,14 +248447,14 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     SystemStringEncodingIndex = *(long long *)(SystemAllocatedMemorySize + 0x70);
     SystemSecondaryContextFloatPointer2 = SystemStackFloatPointer1E0;
     SystemSecondaryFloatPointer = SystemStackFloatPointer1D8;
-    for (SystemBufferValidationStatus = *(long long *)(SystemAllocatedMemorySize + 0x68); SystemStackFloatPointer1E0 = SystemSecondaryContextFloatPointer2, SystemStackFloatPointer1D8 = SystemSecondaryFloatPointer,
-        SystemBufferValidationStatus != SystemStringEncodingIndex; SystemBufferValidationStatus = SystemBufferValidationStatus + 4) {
+    for (SystemBufferSystemValidationStatus = *(long long *)(SystemAllocatedMemorySize + 0x68); SystemStackFloatPointer1E0 = SystemSecondaryContextFloatPointer2, SystemStackFloatPointer1D8 = SystemSecondaryFloatPointer,
+        SystemBufferValidationStatus != SystemStringEncodingIndex; SystemBufferSystemValidationStatus = SystemBufferValidationStatus + 4) {
       CoreEngineProcessDynamicArrayInsert(&SystemStackFloatPointer1E0,SystemBufferValidationStatus);
       SystemSecondaryContextFloatPointer2 = SystemStackFloatPointer1E0;
       SystemSecondaryFloatPointer = SystemStackFloatPointer1D8;
     }
     if (SystemSecondaryContextFloatPointer2 != SystemSecondaryFloatPointer) {
-      SystemBufferValidationStatus = (long long)SystemSecondaryFloatPointer - (long long)SystemSecondaryContextFloatPointer2 >> 2;
+      SystemBufferSystemValidationStatus = (long long)SystemSecondaryFloatPointer - (long long)SystemSecondaryContextFloatPointer2 >> 2;
       SystemMemoryAllocationOffset = SystemUtf16CharacterCode;
       for (SystemStringEncodingIndex = SystemBufferValidationStatus; SystemStringEncodingIndex != 0; SystemStringEncodingIndex = SystemStringEncodingIndex >> 1) {
         SystemMemoryAllocationHandle = (int)SystemMemoryAllocationOffset + 1;
@@ -248490,7 +248495,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     if (3 < SystemStringIndex) {
       FilterInputValue5 = 1.0 / (float)StringLength;
       pContextSecondaryFloat2 = pfStack_1e0 + 2;
-      BufferValidationStatus = (SystemStringIndex - 4U >> 2) + 1;
+      BufferSystemValidationStatus = (SystemStringIndex - 4U >> 2) + 1;
       MemoryAllocationOffset = BufferValidationStatus * 4;
       do {
         CalculatedDifference3 = (double)(FilterInputValue5 * pContextSecondaryFloat2[-2]) + CalculatedDifference3;
@@ -248502,7 +248507,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         CalculatedDifference3 = CalculatedDifference3 + (double)(FilterInputValue5 * pContextSecondaryFloat2[1]);
         *(double *)(AllocatedMemorySize + 0xa8) = CalculatedDifference3;
         pContextSecondaryFloat2 = pContextSecondaryFloat2 + 4;
-        BufferValidationStatus = BufferValidationStatus + -1;
+        BufferSystemValidationStatus = BufferValidationStatus + -1;
       } while (BufferValidationStatus != 0);
     }
     if ((long long)MemoryAllocationOffset < SystemStringIndex) {
@@ -248515,14 +248520,14 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     SystemStringIndex = *(long long *)(AllocatedMemorySize + 0x90);
     pContextSecondaryFloat2 = pfStack_1e0;
     FloatVariablePointer4 = pfStack_1e0;
-    for (BufferValidationStatus = *(long long *)(AllocatedMemorySize + 0x88); pfStack_1e0 = FloatVariablePointer4, pfStack_1d8 = pContextSecondaryFloat2,
-        BufferValidationStatus != SystemStringIndex; BufferValidationStatus = BufferValidationStatus + 4) {
+    for (BufferSystemValidationStatus = *(long long *)(AllocatedMemorySize + 0x88); pfStack_1e0 = FloatVariablePointer4, pfStack_1d8 = pContextSecondaryFloat2,
+        BufferValidationStatus != SystemStringIndex; BufferSystemValidationStatus = BufferValidationStatus + 4) {
       CoreEngineProcessDynamicArrayInsert(&pfStack_1e0,BufferValidationStatus);
       pContextSecondaryFloat2 = pfStack_1d8;
       FloatVariablePointer4 = pfStack_1e0;
     }
     if (FloatVariablePointer4 != pContextSecondaryFloat2) {
-      BufferValidationStatus = (long long)pContextSecondaryFloat2 - (long long)FloatVariablePointer4 >> 2;
+      BufferSystemValidationStatus = (long long)pContextSecondaryFloat2 - (long long)FloatVariablePointer4 >> 2;
       MemoryAllocationOffset = Utf16Char4;
       for (SystemStringIndex = BufferValidationStatus; SystemStringIndex != 0; SystemStringIndex = SystemStringIndex >> 1) {
         Utf16Character = (int)MemoryAllocationOffset + 1;
@@ -248586,7 +248591,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     if (3 < SystemStringIndex) {
       FilterInputValue5 = 1.0 / (float)StringLength;
       pContextSecondaryFloat2 = pfStack_1e0 + 2;
-      BufferValidationStatus = (SystemStringIndex - 4U >> 2) + 1;
+      BufferSystemValidationStatus = (SystemStringIndex - 4U >> 2) + 1;
       Utf16Char4 = BufferValidationStatus * 4;
       CalculatedDifference4 = 0.0;
       do {
@@ -248599,7 +248604,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         CalculatedDifference4 = CalculatedDifference4 + (double)(FilterInputValue5 * pContextSecondaryFloat2[1]);
         *(double *)(AllocatedMemorySize + 0xb0) = CalculatedDifference4;
         pContextSecondaryFloat2 = pContextSecondaryFloat2 + 4;
-        BufferValidationStatus = BufferValidationStatus + -1;
+        BufferSystemValidationStatus = BufferValidationStatus + -1;
       } while (BufferValidationStatus != 0);
     }
     if ((long long)Utf16Char4 < SystemStringIndex) {
@@ -248643,7 +248648,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
       }
       SystemStringIndex = -1;
       do {
-        BufferValidationStatus = SystemStringIndex;
+        BufferSystemValidationStatus = SystemStringIndex;
         SystemStringIndex = BufferValidationStatus + 1;
       } while (SystemValidationFunction9[SystemStringIndex] != '\0');
       if (0 < (int)SystemStringIndex) {
@@ -249317,7 +249322,7 @@ LAB_1802016f7:
       }
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueOctodenary,PrimaryProcessingStatusFlag8);
       SystemStringIndex = *(long long *)(AllocatedMemorySize + 0x70);
-      BufferValidationStatus = *(long long *)(AllocatedMemorySize + 0x68);
+      BufferSystemValidationStatus = *(long long *)(AllocatedMemorySize + 0x68);
       MemoryAllocationHandle = uStack_1f8 + 0x10;
       CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,MemoryAllocationHandle);
       PrimaryProcessingStatusFlag3 = (void *)(UnsignedProcessingStatusFlag + uStack_1f8);
@@ -249325,7 +249330,7 @@ LAB_1802016f7:
       PrimaryProcessingStatusFlag3[1] = 0x202c7365756c6156;
       *(uint8_t *)(PrimaryProcessingStatusFlag3 + 2) = 0;
       StringLength = (int)(SystemStringIndex - BufferValidationStatus >> 2);
-      BufferValidationStatus = (long long)(StringLength + -1);
+      BufferSystemValidationStatus = (long long)(StringLength + -1);
       SystemStringIndex = 0x14;
       uStack_1f8 = MemoryAllocationHandle;
       if (0x14 < BufferValidationStatus) {
@@ -256834,7 +256839,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
             ValidationResult = (unsigned long long)((StackProcessingParameter5 - 1) + Utf16Char >> 0xb);
             InputDataLength = StackProcessingParameter5;
             if (MemoryAllocationCounter <= ValidationResult) {
-              ValidationStatus = (char *)((long long)CharacterStatusBufferCurrent + MemoryAllocationCounter + 0x408);
+              SystemValidationStatus = (char *)((long long)CharacterStatusBufferCurrent + MemoryAllocationCounter + 0x408);
               LoopIndex = (ValidationResult - MemoryAllocationCounter) + 1;
               PrimaryProcessingStatusFlag4 = CharacterStatusBufferCurrent + MemoryAllocationCounter * 2 + 2;
               do {
@@ -256872,7 +256877,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
                 }
                 MemoryAllocationCounter = (unsigned long long)(IntegerValue5 + 1);
                 PrimaryProcessingStatusFlag4 = PrimaryProcessingStatusFlag4 + 2;
-                ValidationStatus = ValidationStatus + 1;
+                SystemValidationStatus = ValidationStatus + 1;
                 LoopIndex = LoopIndex + -1;
                 SystemStringIndex = StackLongValue58;
               } while (LoopIndex != 0);
@@ -258300,17 +258305,17 @@ long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,lon
     do {
       StringCodeBuffer = (char *)0x0;
       SystemConfigurationIterator = CharacterTablePointer6 * 0x3088 + OperationBufferSize;
-      SystemStringValidationStatus = "base";
+      SystemStringSystemValidationStatus = "base";
       do {
         CharacterPointer = SystemStringValidationStatus;
-        SystemStringValidationStatus = CharacterPointer + 1;
+        SystemStringSystemValidationStatus = CharacterPointer + 1;
       } while (*SystemStringValidationStatus != '\0');
       SystemStatusContext = *(uint64_t **)(SystemConfigurationIterator + 0x30);
       if (CharacterStatusBuffer3 != NULL) {
 LAB_180209ba0:
-        SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-        if (SystemStringValidationStatus == (char *)0x0) {
-          SystemStringSystemValidationStatus = (char *)0x180d48d24;
+        SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+        if (SystemStringSystemValidationStatus == (char *)0x0) {
+          SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
           StringDataPointer = StringCodeBuffer;
         }
         else {
@@ -258320,20 +258325,20 @@ LAB_180209ba0:
         StringDataPointer = SystemStringValidationStatus + (long long)StringDataPointer;
         if (SystemStringValidationStatus < StringDataPointer) {
           SystemStringIndex = (long long)&LoopCounterPointer - (long long)SystemStringValidationStatus;
-          while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-            SystemStringValidationStatus = SystemStringValidationStatus + 1;
+          while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+            SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
             if (StringDataPointer <= SystemStringValidationStatus) goto LAB_180209bd8;
           }
           goto LAB_180209c13;
         }
 LAB_180209bd8:
-        SystemStringValidationStatus = "skinned_decals";
+        SystemStringSystemValidationStatus = "skinned_decals";
         do {
           CharacterPointer = SystemStringValidationStatus;
-          SystemStringValidationStatus = CharacterPointer + 1;
+          SystemStringSystemValidationStatus = CharacterPointer + 1;
         } while (*SystemStringValidationStatus != '\0');
-        for (SystemStringSystemValidationStatus = (char *)CharacterStatusBuffer3[6]; StringDataPointer = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
-            SystemStringValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
+        for (SystemStringSystemSystemValidationStatus = (char *)CharacterStatusBuffer3[6]; StringDataPointer = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
+            SystemStringSystemValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
           pSystemStatusChar = *(char **)SystemStringValidationStatus;
           if (pSystemStatusChar == (char *)0x0) {
             pSystemStatusChar = (char *)0x180d48d24;
@@ -258354,13 +258359,13 @@ LAB_180209bd8:
           }
         }
 LAB_180209c65:
-        SystemStringValidationStatus = "skinned_decal";
+        SystemStringSystemValidationStatus = "skinned_decal";
         do {
           CharacterPointer = SystemStringValidationStatus;
-          SystemStringValidationStatus = CharacterPointer + 1;
+          SystemStringSystemValidationStatus = CharacterPointer + 1;
         } while (*SystemStringValidationStatus != '\0');
-        for (SystemStringValidationStatus = *(char **)(StringDataPointer + 0x30); StringDataPointer = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
-            SystemStringValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
+        for (SystemStringSystemValidationStatus = *(char **)(StringDataPointer + 0x30); StringDataPointer = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
+            SystemStringSystemValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
           pSystemStatusChar = *(char **)SystemStringValidationStatus;
           if (pSystemStatusChar == (char *)0x0) {
             pSystemStatusChar = (char *)0x180d48d24;
@@ -258381,16 +258386,16 @@ LAB_180209c65:
           }
         }
 LAB_180209cd5:
-        SystemStringValidationStatus = "textures";
+        SystemStringSystemValidationStatus = "textures";
         do {
           CharacterPointer = SystemStringValidationStatus;
-          SystemStringValidationStatus = CharacterPointer + 1;
+          SystemStringSystemValidationStatus = CharacterPointer + 1;
         } while (*SystemStringValidationStatus != '\0');
         for (SystemStatusContext = *(uint64_t **)(StringDataPointer + 0x30); CharacterStatusBuffer3 != NULL;
             SystemStatusContext = (void *)CharacterStatusBuffer3[0xb]) {
-          SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-          if (SystemStringValidationStatus == (char *)0x0) {
-            SystemStringSystemValidationStatus = (char *)0x180d48d24;
+          SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+          if (SystemStringSystemValidationStatus == (char *)0x0) {
+            SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
             pSystemStatusChar = StringCodeBuffer;
           }
           else {
@@ -258400,13 +258405,13 @@ LAB_180209cd5:
             pSystemStatusChar = pSystemStatusChar + (long long)SystemStringValidationStatus;
             if (pSystemStatusChar <= SystemStringValidationStatus) {
 LAB_180209d30:
-              SystemStringValidationStatus = "texture";
+              SystemStringSystemValidationStatus = "texture";
               do {
                 CharacterPointer = SystemStringValidationStatus;
-                SystemStringValidationStatus = CharacterPointer + 1;
+                SystemStringSystemValidationStatus = CharacterPointer + 1;
               } while (*SystemStringValidationStatus != '\0');
-              for (SystemStringSystemValidationStatus = (char *)CharacterStatusBuffer3[6]; pSystemStatusChar = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
-                  SystemStringValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
+              for (SystemStringSystemSystemValidationStatus = (char *)CharacterStatusBuffer3[6]; pSystemStatusChar = StringCodeBuffer, SystemStringValidationStatus != (char *)0x0;
+                  SystemStringSystemValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
                 pSystemValidationChar = *(char **)SystemStringValidationStatus;
                 if (pSystemValidationChar == (char *)0x0) {
                   pSystemValidationChar = (char *)0x180d48d24;
@@ -258433,16 +258438,16 @@ joined_r0x000180209daf:
                 SystemCleanupFlagG = 0;
                 lStack_e0 = 0;
                 iStack_d8 = 0;
-                SystemStringValidationStatus = "type";
+                SystemStringSystemValidationStatus = "type";
                 do {
                   StringCodeBuffer = SystemStringValidationStatus;
-                  SystemStringValidationStatus = StringCodeBuffer + 1;
+                  SystemStringSystemValidationStatus = StringCodeBuffer + 1;
                 } while (*SystemStringValidationStatus != '\0');
                 for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); CharacterStatusBuffer3 != NULL;
                     SystemStatusContext = (void *)CharacterStatusBuffer3[6]) {
-                  SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-                  if (SystemStringValidationStatus == (char *)0x0) {
-                    SystemStringSystemValidationStatus = (char *)0x180d48d24;
+                  SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+                  if (SystemStringSystemValidationStatus == (char *)0x0) {
+                    SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
                     CharacterPointer = (char *)0x0;
                   }
                   else {
@@ -258460,8 +258465,8 @@ LAB_180209e40:
                       break;
                     }
                     SystemStringIndex = (long long)&SystemStringConstantQuaternary - (long long)SystemStringValidationStatus;
-                    while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-                      SystemStringValidationStatus = SystemStringValidationStatus + 1;
+                    while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+                      SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
                       if (CharacterPointer <= SystemStringValidationStatus) goto LAB_180209e40;
                     }
                   }
@@ -258480,16 +258485,16 @@ LAB_180209e40:
                   SystemStackRegisterBuffer = 0;
                   lStack_c0 = 0;
                   MemoryOffsetValue = 0;
-                  SystemStringValidationStatus = "name";
+                  SystemStringSystemValidationStatus = "name";
                   do {
                     StringCodeBuffer = SystemStringValidationStatus;
-                    SystemStringValidationStatus = StringCodeBuffer + 1;
+                    SystemStringSystemValidationStatus = StringCodeBuffer + 1;
                   } while (*SystemStringValidationStatus != '\0');
                   for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); CharacterStatusBuffer3 != NULL;
                       SystemStatusContext = (void *)CharacterStatusBuffer3[6]) {
-                    SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-                    if (SystemStringValidationStatus == (char *)0x0) {
-                      SystemStringSystemValidationStatus = (char *)0x180d48d24;
+                    SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+                    if (SystemStringSystemValidationStatus == (char *)0x0) {
+                      SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
                       CharacterPointer = (char *)0x0;
                     }
                     else {
@@ -258507,8 +258512,8 @@ LAB_180209f34:
                         break;
                       }
                       SystemStringIndex = (long long)&SystemUnknownProcessingStatusFlagF - (long long)SystemStringValidationStatus;
-                      while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-                        SystemStringValidationStatus = SystemStringValidationStatus + 1;
+                      while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+                        SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
                         if (CharacterPointer <= SystemStringValidationStatus) goto LAB_180209f34;
                       }
                     }
@@ -258545,16 +258550,16 @@ LAB_180209f34:
                     SystemOperationStatusMask = 0;
                     CoreEngineSignedValueA0 = 0;
                     SystemOperationValidationFlag = 0;
-                    SystemStringValidationStatus = "name";
+                    SystemStringSystemValidationStatus = "name";
                     do {
                       StringCodeBuffer = SystemStringValidationStatus;
-                      SystemStringValidationStatus = StringCodeBuffer + 1;
+                      SystemStringSystemValidationStatus = StringCodeBuffer + 1;
                     } while (*SystemStringValidationStatus != '\0');
                     for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); CharacterStatusBuffer3 != NULL;
                         SystemStatusContext = (void *)CharacterStatusBuffer3[6]) {
-                      SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-                      if (SystemStringValidationStatus == (char *)0x0) {
-                        SystemStringSystemValidationStatus = (char *)0x180d48d24;
+                      SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+                      if (SystemStringSystemValidationStatus == (char *)0x0) {
+                        SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
                         CharacterPointer = (char *)0x0;
                       }
                       else {
@@ -258572,8 +258577,8 @@ LAB_18020a094:
                           break;
                         }
                         SystemStringIndex = (long long)&SystemUnknownProcessingStatusFlagF - (long long)SystemStringValidationStatus;
-                        while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-                          SystemStringValidationStatus = SystemStringValidationStatus + 1;
+                        while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+                          SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
                           if (CharacterPointer <= SystemStringValidationStatus) goto LAB_18020a094;
                         }
                       }
@@ -258610,16 +258615,16 @@ LAB_18020a094:
                       ProgramCounterStack110 = (code *)0x0;
                       lStack_120 = 0;
                       pcStack_118 = (code *)((unsigned long long)pcStack_118 & 0xffffffff00000000);
-                      SystemStringValidationStatus = "name";
+                      SystemStringSystemValidationStatus = "name";
                       do {
                         StringCodeBuffer = SystemStringValidationStatus;
-                        SystemStringValidationStatus = StringCodeBuffer + 1;
+                        SystemStringSystemValidationStatus = StringCodeBuffer + 1;
                       } while (*SystemStringValidationStatus != '\0');
                       for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); CharacterStatusBuffer3 != NULL;
                           SystemStatusContext = (void *)CharacterStatusBuffer3[6]) {
-                        SystemStringSystemValidationStatus = (char *)*CharacterStatusBuffer3;
-                        if (SystemStringValidationStatus == (char *)0x0) {
-                          SystemStringSystemValidationStatus = (char *)0x180d48d24;
+                        SystemStringSystemSystemValidationStatus = (char *)*CharacterStatusBuffer3;
+                        if (SystemStringSystemValidationStatus == (char *)0x0) {
+                          SystemStringSystemSystemValidationStatus = (char *)0x180d48d24;
                           CharacterPointer = (char *)0x0;
                         }
                         else {
@@ -258637,8 +258642,8 @@ LAB_18020a1f4:
                             break;
                           }
                           SystemStringIndex = (long long)&SystemUnknownProcessingStatusFlagF - (long long)SystemStringValidationStatus;
-                          while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-                            SystemStringValidationStatus = SystemStringValidationStatus + 1;
+                          while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+                            SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
                             if (CharacterPointer <= SystemStringValidationStatus) goto LAB_18020a1f4;
                           }
                         }
@@ -258664,13 +258669,13 @@ LAB_18020a1f4:
                     }
                   }
                 }
-                SystemStringValidationStatus = "texture";
+                SystemStringSystemValidationStatus = "texture";
                 do {
                   StringCodeBuffer = SystemStringValidationStatus;
-                  SystemStringValidationStatus = StringCodeBuffer + 1;
+                  SystemStringSystemValidationStatus = StringCodeBuffer + 1;
                 } while (*SystemStringValidationStatus != '\0');
-                for (SystemStringValidationStatus = *(char **)(pSystemStatusChar + 0x58); pSystemStatusChar = (char *)0x0,
-                    SystemStringValidationStatus != (char *)0x0; SystemStringValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
+                for (SystemStringSystemValidationStatus = *(char **)(pSystemStatusChar + 0x58); pSystemStatusChar = (char *)0x0,
+                    SystemStringValidationStatus != (char *)0x0; SystemStringSystemValidationStatus = *(char **)(SystemStringValidationStatus + 0x58)) {
                   CharacterPointer = *(char **)SystemStringValidationStatus;
                   if (CharacterPointer == (char *)0x0) {
                     CharacterPointer = (char *)0x180d48d24;
@@ -258701,14 +258706,14 @@ LAB_18020a31a:
               } while( true );
             }
             SystemStringIndex = (long long)&SystemStringConstantSeptenary - (long long)SystemStringValidationStatus;
-            while (*SystemStringValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
-              SystemStringValidationStatus = SystemStringValidationStatus + 1;
+            while (*SystemStringSystemValidationStatus == SystemStringValidationStatus[SystemStringIndex]) {
+              SystemStringSystemValidationStatus = SystemStringValidationStatus + 1;
               if (pSystemStatusChar <= SystemStringValidationStatus) goto LAB_180209d30;
             }
           }
         }
 LAB_18020a368:
-        SystemStringSystemValidationStatus = (char *)0x0;
+        SystemStringSystemSystemValidationStatus = (char *)0x0;
         StringCodeBuffer = "materials";
         do {
           CharacterPointer = StringCodeBuffer;
@@ -258820,7 +258825,7 @@ LAB_18020a528:
                   }
                   *(uint32_t *)((long long)MemoryBlockListHead + 0x3c) = OperationStatus.HighPart;
                 }
-                SystemStringSystemValidationStatus = (char *)(unsigned long long)((int)SystemStringValidationStatus + 1);
+                SystemStringSystemSystemValidationStatus = (char *)(unsigned long long)((int)SystemStringValidationStatus + 1);
                 StringCodeBuffer = "material";
                 do {
                   CharacterPointer = StringCodeBuffer;
@@ -259390,10 +259395,10 @@ LAB_18020b0af:
   } while (*SystemValidationFunction8 != '\0');
   for (StringProcessingStatus = (void *)ConfigurationString[6]; StringProcessingStatus != NULL;
       StringProcessingStatus = (void *)StringProcessingStatus[0xb]) {
-    SystemValidationStatus = (char *)*StringProcessingStatus;
+    SystemSystemValidationStatus = (char *)*StringProcessingStatus;
     SystemValidationFunction8 = (char *)0x0;
-    if (ValidationStatus == (char *)0x0) {
-      SystemValidationStatus = (char *)0x180d48d24;
+    if (SystemValidationStatus == (char *)0x0) {
+      SystemSystemValidationStatus = (char *)0x180d48d24;
     }
     else {
       SystemValidationFunction8 = (char *)StringProcessingStatus[2];
@@ -259402,8 +259407,8 @@ LAB_18020b0af:
       SystemValidationFunction8 = SystemValidationFunction8 + (long long)ValidationStatus;
       if (SystemValidationFunction8 <= ValidationStatus) goto LAB_18020b1b3;
       StringOffset = (long long)&SystemMemoryBufferPrimary - (long long)ValidationStatus;
-      while (*ValidationStatus == ValidationStatus[StringOffset]) {
-        ValidationStatus = ValidationStatus + 1;
+      while (*SystemValidationStatus == ValidationStatus[StringOffset]) {
+        SystemValidationStatus = ValidationStatus + 1;
         if (SystemValidationFunction8 <= ValidationStatus) goto LAB_18020b1b3;
       }
     }
@@ -259425,9 +259430,9 @@ LAB_18020b1b3:
       SystemValidationFunction8 = SystemValidationFunction9 + 1;
     } while (*SystemValidationFunction8 != '\0');
     for (SystemValidationFunction8 = (char *)StringProcessingStatus[6]; SystemValidationFunction8 != (char *)0x0; SystemValidationFunction8 = *(char **)(SystemValidationFunction8 + 0x58)    {
-      ValidationStatus = *(char **)SystemValidationFunction8;
-      if (ValidationStatus == (char *)0x0) {
-        SystemValidationStatus = (char *)0x180d48d24;
+      SystemValidationStatus = *(char **)SystemValidationFunction8;
+      if (SystemValidationStatus == (char *)0x0) {
+        SystemSystemValidationStatus = (char *)0x180d48d24;
         SystemValidationFunction1 = (char *)0x0;
       }
       else {
@@ -259437,8 +259442,8 @@ LAB_18020b1b3:
         SystemValidationFunction1 = SystemValidationFunction1 + (long long)ValidationStatus;
         if (SystemValidationFunction1 <= ValidationStatus) goto LAB_18020b280;
         StringOffset = (long long)&SystemConfigurationDataPrimary - (long long)ValidationStatus;
-        while (*ValidationStatus == ValidationStatus[StringOffset]) {
-          ValidationStatus = ValidationStatus + 1;
+        while (*SystemValidationStatus == ValidationStatus[StringOffset]) {
+          SystemValidationStatus = ValidationStatus + 1;
           if (SystemValidationFunction1 <= ValidationStatus) goto LAB_18020b280;
         }
       }
@@ -259458,16 +259463,16 @@ LAB_18020b280:
     StackUnsigned4C8 = 0;
     pbStack_4d8 = (byte *)0x0;
     iStack_4d0 = 0;
-    ValidationStatus = "name";
+    SystemValidationStatus = "name";
     do {
       SystemValidationFunction1 = ValidationStatus;
-      ValidationStatus = SystemValidationFunction1 + 1;
+      SystemValidationStatus = SystemValidationFunction1 + 1;
     } while (*SystemValidationStatus != '\0');
     for (StringProcessingStatus = *(uint64_t **)(SystemValidationFunction8 + 0x40); StringProcessingStatus != NULL;
         StringProcessingStatus = (void *)StringProcessingStatus[6]) {
-      SystemValidationStatus = (char *)*StringProcessingStatus;
-      if (ValidationStatus == (char *)0x0) {
-        SystemValidationStatus = (char *)0x180d48d24;
+      SystemSystemValidationStatus = (char *)*StringProcessingStatus;
+      if (SystemValidationStatus == (char *)0x0) {
+        SystemSystemValidationStatus = (char *)0x180d48d24;
         ValidationStatus7 = SystemValidationFunction9;
       }
       else {
@@ -259485,8 +259490,8 @@ LAB_18020b304:
           break;
         }
         StringOffset = (long long)&SystemUnknownProcessingStatusFlagF - (long long)ValidationStatus;
-        while (*ValidationStatus == ValidationStatus[StringOffset]) {
-          ValidationStatus = ValidationStatus + 1;
+        while (*SystemValidationStatus == ValidationStatus[StringOffset]) {
+          SystemValidationStatus = ValidationStatus + 1;
           if (ValidationStatus7 <= ValidationStatus) goto LAB_18020b304;
         }
       }
@@ -259496,13 +259501,13 @@ LAB_18020b304:
     ppppppSystemCharacterStatusBuffer = pppppppuStack_478;
     if (pppppppuStack_478 == (uint64_t *******)0x0) {
 LAB_18020b3fb:
-      ValidationStatus = "game_entity";
+      SystemValidationStatus = "game_entity";
       do {
         SystemValidationFunction1 = ValidationStatus;
-        ValidationStatus = SystemValidationFunction1 + 1;
+        SystemValidationStatus = SystemValidationFunction1 + 1;
       } while (*SystemValidationStatus != '\0');
-      for (ValidationStatus = *(char **)(SystemValidationFunction8 + 0x58); SystemValidationFunction8 = SystemValidationFunction9, ValidationStatus != (char *)0x0;
-          ValidationStatus = *(char **)(ValidationStatus + 0x58)) {
+      for (SystemValidationStatus = *(char **)(SystemValidationFunction8 + 0x58); SystemValidationFunction8 = SystemValidationFunction9, ValidationStatus != (char *)0x0;
+          SystemValidationStatus = *(char **)(ValidationStatus + 0x58)) {
         ValidationStatus7 = *(char **)ValidationStatus;
         if (ValidationStatus7 == (char *)0x0) {
           ValidationStatus7 = (char *)0x180d48d24;
@@ -259607,11 +259612,11 @@ LAB_18020b539:
           SystemValidationFunction9 = (char *)BufferAllocate(MemoryPoolManager,StringOffset * 8);
           StringProcessingStatus = (void *)BufferAllocationState4[1];
           ConfigurationString = (void *)*BufferAllocationState4;
-          ValidationStatus = SystemValidationFunction9;
+          SystemValidationStatus = SystemValidationFunction9;
         }
         else {
           StringOffset = StringOffset * 2;
-          ValidationStatus = SystemValidationFunction9;
+          SystemValidationStatus = SystemValidationFunction9;
           if (StringOffset != 0) goto LAB_18020b539;
         }
         for (; ConfigurationString != StringProcessingStatus; ConfigurationString = ConfigurationString + 1) {
@@ -259668,7 +259673,7 @@ LAB_18020b539:
       }
       SystemValidationFunction9 = "game_entity";
       do {
-        ValidationStatus = SystemValidationFunction9;
+        SystemValidationStatus = SystemValidationFunction9;
         SystemValidationFunction9 = ValidationStatus + 1;
       } while (*SystemValidationFunction9 != '\0');
       for (SystemValidationFunction9 = *(char **)(SystemValidationFunction8 + 0x58); SystemValidationFunction8 = (char *)0x0, SystemValidationFunction9 != (char *)0x0;
@@ -259766,7 +259771,7 @@ LAB_18020b6e6:
       pcStack_2a0 = (char *)0x0;
       uStack_298 = 0;
       CoreEngineProcessSystemEvent(&pSystemValue2a8,*(uint32_t *)(StringOffset + 0x298));
-      ValidationStatus = pcStack_2a0;
+      SystemValidationStatus = pcStack_2a0;
       if (*(int *)(StringOffset + 0x298) != 0) {
           memcpy(pcStack_2a0,*(void *)(StringOffset + 0x290),*(int *)(StringOffset + 0x298) + 1);
       }
@@ -259826,7 +259831,7 @@ LAB_18020b6e6:
       SystemCharacterStatusBufferPointer = &ThreadLocalStorageTemplate;
       if (SystemCheckResult != '\0') {
         pMemoryCopyBuffer = &SystemNullTemplate;
-        BufferValidationStatus = 0;
+        BufferSystemValidationStatus = 0;
         ValidationBufferPointer = (uint8_t *)0x0;
         SystemUintBuffer258 = 0;
         StringOffset = -1;
@@ -259844,7 +259849,7 @@ LAB_18020b6e6:
           *ContextHandlePointer = 0;
           ValidationBufferPointer = ContextHandleTablePointer;
           MemoryAllocationMaskPointer = GetMemoryAllocationInfo(ContextHandleTablePointer);
-          BufferValidationStatus = CONCAT44(BufferValidationStatus.HighPart,MemoryAllocationMaskPointer);
+          BufferSystemValidationStatus = CONCAT44(BufferValidationStatus.HighPart,MemoryAllocationMaskPointer);
             memcpy(ContextHandleTablePointer,acStack_238,ComputedResult);
         }
         SystemUintBuffer258 = 0;
@@ -259854,7 +259859,7 @@ LAB_18020b6e6:
             ProcessSystemEventHandling();
         }
         ValidationBufferPointer = (uint8_t *)0x0;
-        BufferValidationStatus = BufferValidationStatus & 0xffffffff00000000;
+        BufferSystemValidationStatus = BufferValidationStatus & 0xffffffff00000000;
         pMemoryCopyBuffer = &ThreadLocalStorageTemplate;
       }
       pSystemValue2a8 = &SystemNullTemplate;
@@ -261886,14 +261891,14 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint64_t *ContextHandle,
 
  void InitializeSystemContext(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid InitializeSystemContext(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   uint64_t MemoryPoolIndex;
   
   MemoryPoolIndex = 0xfffffffffffffffe;
   *ContextHandle = &FinalDataStructureTemplate;
-  ValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  SystemValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   while (ValidationStatus != '\0') {
-    ValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,MemoryPoolIndex);
+    SystemValidationStatus = ProcessSystemLockOperationResult(ContextHandle,1,Utf8SourcePointer,Utf16EndPointer,MemoryPoolIndex);
   }
   if (ContextHandle[1] == 0) {
     ContextHandle[1] = 0;
@@ -262103,15 +262108,15 @@ void CleanupSystemContextAndThreadSync(long long ContextHandle)
  */
 void ProcessSystemContextValidation(long long *ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   
-  ValidationStatus = (char)ContextHandle[0xb];
+  SystemValidationStatus = (char)ContextHandle[0xb];
   while (ValidationStatus != '\0') {
-    ValidationStatus = (**(code **)(*ContextHandle + 0x20))(ContextHandle,1);
-    if (ValidationStatus == '\0') {
+    SystemValidationStatus = (**(code **)(*ContextHandle + 0x20))(ContextHandle,1);
+    if (SystemValidationStatus == '\0') {
       (**(code **)(*ContextHandle + 0x18))(ContextHandle);
     }
-    ValidationStatus = (char)ContextHandle[0xb];
+    SystemValidationStatus = (char)ContextHandle[0xb];
   }
   return;
 }
@@ -262544,7 +262549,7 @@ void ProcessSystemContextHandler(uint64_t *ContextHandle)
   BufferAllocationState[0x18] = (long long)StackArrayB8;
   StackPointerC0 = BufferAllocationState;
   (**(code **)(*BufferAllocationState + 0x28))(BufferAllocationState);
-  ValidationStatus = *(code **)*ContextHandle;
+  SystemValidationStatus = *(code **)*ContextHandle;
   SystemTemporaryValueD0 = &StackPointerD8;
   StackPointerD8 = BufferAllocationState;
   (**(code **)(*BufferAllocationState + 0x28))(BufferAllocationState);
@@ -262578,7 +262583,7 @@ void ProcessSystemContextHandler(uint64_t *ContextHandle)
  */
 uint64_t ProcessSystemContextAndMemoryManagement(long long ContextHandle,char OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   int LockOperationResult;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -262589,7 +262594,7 @@ uint64_t ProcessSystemContextAndMemoryManagement(long long ContextHandle,char Op
   
   SystemContextRegister = (long long *)0x0;
   if (OperationBufferSize == '\0') {
-    ValidationStatus = ValidateSystemConfiguration(*(void *)(ContextHandle + 0x60),ContextHandle + 0x78,&SystemContextRegister);
+    SystemValidationStatus = ValidateSystemConfiguration(*(void *)(ContextHandle + 0x60),ContextHandle + 0x78,&SystemContextRegister);
     SystemContextPtr = SystemContextRegister;
     OperationResult = TimeoutValueStorage;
     if (ValidationStatus != '\0') {
@@ -267566,12 +267571,12 @@ void SystemNullOperation(void)
  */
 uint64_t ValidateSystemContextStatus(long long ContextHandle, int OperationBufferSize)
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   
   // 检查上下文句柄的激活状态
   if (*(char *)(ContextHandle + 0x430) != '\0') {
     // 执行上下文验证操作
-    ValidationStatus = (**(code **)(**(long long **)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x80))();
+    SystemValidationStatus = (**(code **)(**(long long **)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x80))();
     if (ValidationStatus != '\0') {
       return 1;
     }
@@ -271129,7 +271134,7 @@ void SystemTerminateFunction(void)
 
 1e0a0(voidvoid FUN_18021e0a0(void
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   bool HighByte;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAllocationMaskPointer;
@@ -271249,7 +271254,7 @@ void SystemTerminateFunction(void)
   uStack_218 = 3;
   iStack_310 = 0;
   if (0 < (int)ppCoreEngineUnsignedValue318) {
-    EventValidationStatus = 0;
+    EventSystemValidationStatus = 0;
     SystemEventFlag0 = 0;
     do {
       LoopIndex = SystemEventFlag0;
@@ -271272,7 +271277,7 @@ void SystemTerminateFunction(void)
         }
       }
       else {
-        pBufferValidationStatus = NULL;
+        pBufferSystemValidationStatus = NULL;
         pBufferTypeFlag = NULL;
         SystemUintBuffer240 = 0;
         SystemUintBuffer238 = 3;
@@ -271348,7 +271353,7 @@ LAB_18021e424:
               ValidationStatus6 = ValidationStatus0;
               do {
                 ValidationStatus3 = *ValidationStatus6;
-                ValidationStatus = ValidationStatus6[(long long)CharacterValidationBuffer - (long long)ValidationStatus0];
+                SystemValidationStatus = ValidationStatus6[(long long)CharacterValidationBuffer - (long long)ValidationStatus0];
                 if (ValidationStatus3 != ValidationStatus) break;
                 ValidationStatus6 = ValidationStatus6 + 1;
               } while (ValidationStatus != '\0');
@@ -271425,21 +271430,21 @@ LAB_18021e424:
         }
         for (; CharacterStatusBuffer2 = pBufferTypeFlag, SystemCharacterStatusBuffer = pBufferValidationStatus, SystemEventTemplatePointer != pBufferTypeFlag;
             SystemEventTemplatePointer = SystemEventTemplatePointer + 4) {
-          pBufferValidationStatus = MemoryAllocationMaskPointer;
+          pBufferSystemValidationStatus = MemoryAllocationMaskPointer;
           pBufferTypeFlag = ContextHandleTablePointer;
           (**(code **)*SystemEventTemplatePointer)(SystemEventTemplatePointer,0);
           MemoryAllocationMaskPointer = pBufferValidationStatus;
           ContextHandleTablePointer = pBufferTypeFlag;
           pBufferTypeFlag = CharacterStatusBuffer2;
-          pBufferValidationStatus = SystemCharacterStatusBuffer;
+          pBufferSystemValidationStatus = SystemCharacterStatusBuffer;
         }
         if (pBufferValidationStatus != NULL) {
-          pBufferValidationStatus = MemoryAllocationMaskPointer;
+          pBufferSystemValidationStatus = MemoryAllocationMaskPointer;
           pBufferTypeFlag = ContextHandleTablePointer;
             CoreEngineFreeSystemMemory(SystemCharacterStatusBuffer);
         }
         pSystemValue2a8 = &SystemNullTemplate;
-        pBufferValidationStatus = MemoryAllocationMaskPointer;
+        pBufferSystemValidationStatus = MemoryAllocationMaskPointer;
         pBufferTypeFlag = ContextHandleTablePointer;
         if (lStack_2a0 != 0) {
             ProcessSystemEventHandling();
@@ -271449,7 +271454,7 @@ LAB_18021e424:
       lStack_2a0 = 0;
       pSystemValue2a8 = &ThreadLocalStorageTemplate;
       iStack_310 = LockOperationResult7 + 1;
-      EventValidationStatus = EventValidationStatus + 1;
+      EventSystemValidationStatus = EventValidationStatus + 1;
       SystemEventFlag0 = LoopIndex + 0x20;
     } while (iStack_310 < (int)ppCoreEngineUnsignedValue318);
   }
@@ -274280,7 +274285,7 @@ int ParseSystemIdentifier(long long ContextHandle
   if ((InputDataLength == 8) && (LockOperationResult = strcmp(*(void *)(ContextHandle + 8),&SystemComparisonStringB), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(ContextHandle + 8), *ValidationStatus == 'A')) && (ValidationStatus[1] == '8')     && (ValidationStatus[2] == '\0')) {
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(ContextHandle + 8), *SystemValidationStatus == 'A')) && (ValidationStatus[1] == '8')     && (ValidationStatus[2] == '\0')) {
     return 6;
   }
   if ((InputDataLength == 8) && (LockOperationResult = strcmp(*(void *)(ContextHandle + 8),SystemStringConstantUTF32), LockOperationResult == 0)) {
@@ -274296,12 +274301,12 @@ int ParseSystemIdentifier(long long ContextHandle
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(ContextHandle + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(ContextHandle + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(ContextHandle + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(ContextHandle + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -274605,7 +274610,7 @@ int SystemIdentifierParserVariant(void
      (LockOperationResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant130f0), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -274626,12 +274631,12 @@ int SystemIdentifierParserVariant(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -274961,7 +274966,7 @@ int ValidateSystemStringProcessing(void)
      (LockOperationResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant130f0), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -274982,12 +274987,12 @@ int ValidateSystemStringProcessing(void)
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -275313,7 +275318,7 @@ int IdentifySystemIdentifierByPattern(void)
      (LockOperationResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant130f0), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -275334,12 +275339,12 @@ int IdentifySystemIdentifierByPattern(void)
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -275657,7 +275662,7 @@ int IdentifySystemIdentifierByPatternVariantB(void
      (LockOperationResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant130f0), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -275678,12 +275683,12 @@ int IdentifySystemIdentifierByPatternVariantB(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -275991,7 +275996,7 @@ int IdentifySystemIdentifierByPatternVariantC(void
      (LockOperationResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant130f0), LockOperationResult == 0)) {
     return 5;
   }
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -276012,12 +276017,12 @@ int IdentifySystemIdentifierByPatternVariantC(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -276321,7 +276326,7 @@ int IdentifySystemIdentifierByPatternVariantD(void
   long long SystemDataRegistry;
   long long SystemDataNode;
   
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'A')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'A')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 6;
   }
@@ -276342,12 +276347,12 @@ int IdentifySystemIdentifierByPatternVariantD(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -276667,12 +276672,12 @@ int IdentifySystemIdentifierPatternB(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -276988,12 +276993,12 @@ int IdentifySystemIdentifierPatternC(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -277306,12 +277311,12 @@ int IdentifySystemIdentifierPatternD(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -277620,12 +277625,12 @@ int IdentifySystemIdentifierPatternE(void
     return 9;
   }
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -277930,12 +277935,12 @@ int IdentifySystemIdentifierByPatternVariantA(void)
   long long SystemDataNode;
   
   if (InputDataLength == 2) {
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'L') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 10;
     }
-    ValidationStatus = *(char **)(SystemDataNode + 8);
-    if (((*ValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
+    SystemValidationStatus = *(char **)(SystemDataNode + 8);
+    if (((*SystemValidationStatus == 'R') && (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
       return 0xb;
     }
   }
@@ -278249,7 +278254,7 @@ int IdentifySystemIdentifierByPatternVariantB(void)
   long long SystemDataRegistry;
   long long SystemDataNode;
   
-  if ((((InputDataLength == 2) && (ValidationStatus = *(char **)(SystemDataNode + 8), *ValidationStatus == 'R')) &&
+  if ((((InputDataLength == 2) && (SystemValidationStatus = *(char **)(SystemDataNode + 8), *SystemValidationStatus == 'R')) &&
       (ValidationStatus[1] == '8')) && (ValidationStatus[2] == '\0')) {
     return 0xb;
   }
@@ -284977,7 +284982,7 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
 
 26a90(char *ContextHandle,long long *ContextHandleSizevoid FUN_180226a90(char *ContextHandle,long long *ContextHandleSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   char *SystemValidationFunction;
   int MemoryComparisonResult;
   uint32_t *MemoryAllocationMaskPointer;
@@ -285004,8 +285009,8 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
   ValidateSystemContextIntegrity(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x20);
   ValidateSystemContextIntegrity(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x40);
   FUN_18063a050(OperationBufferSize,ContextHandle + 0x10);
-  ValidationStatus = *ContextHandle;
-  if (ValidationStatus == '\0') {
+  SystemValidationStatus = *ContextHandle;
+  if (SystemValidationStatus == '\0') {
     MemoryAllocationMaskPointer = (uint32_t *)OperationBufferSize[1];
     CalculatedCodePoint = *(uint32_t *)(ContextHandle + 0x30);
     if ((unsigned long long)((*ContextHandleSize - (long long)MemoryAllocationMaskPointer) + OperationBufferSize[2]) < 5) {
@@ -285016,7 +285021,7 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
     OperationBufferSize[1] = OperationBufferSize[1] + 4;
     CalculatedCodePoint = *(uint32_t *)(ContextHandle + 0x34);
   }
-  else if (ValidationStatus == '\x01') {
+  else if (SystemValidationStatus == '\x01') {
     FUN_180229820();
     FUN_180229820();
     FUN_180229820();
@@ -289693,7 +289698,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long ContextHandle,
   int CharacterTableIndex;
   char ValidationStatus0;
   int MatchCounter;
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long CharacterTableIndexValue;  // 字符表索引值
   float SystemContextFloat4;
   float SystemFloatValue;
@@ -289716,7 +289721,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long ContextHandle,
      ((*(unsigned long long *)(CharacterTableIndex * 0x1b0 + 0xe0 + *(long long *)(Utf16EndPointer + 0x140)) & UnicodeCodePoint) != 0)) {
     MatchCounter = -1;
     do {
-      ValidationStatus = (char)Utf8SourcePointer;
+      SystemValidationStatus = (char)Utf8SourcePointer;
       ValidationStatus0 = *(char *)((long long)ValidationStatus + 0x100 + Utf16EndPointer);
       Utf8SourcePointer = (int)ValidationStatus0;
       SystemOperationResult = Utf8SourcePointer;
@@ -291420,7 +291425,7 @@ LAB_18022d28d:
  */
 bool ValidateSystemCharacterProcessingStatus(long long ContextHandle
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long *BufferAllocationState;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -291428,21 +291433,21 @@ bool ValidateSystemCharacterProcessingStatus(long long ContextHandle
   uint OperationResult;
   unsigned long long SystemChecksum;
   
-  ValidationStatus = *(char *)(ContextHandle + 0x3c1);
-  if (ValidationStatus == -1) {
+  SystemValidationStatus = *(char *)(ContextHandle + 0x3c1);
+  if (SystemValidationStatus == -1) {
     MemoryBlockIndex = ContextHandle;
-    ValidationStatus = FUN_18022cda0();
-    if ((((((ValidationStatus == '\0') ||
+    SystemValidationStatus = FUN_18022cda0();
+    if ((((((SystemValidationStatus == '\0') ||
            (MemoryBlockIndex = *(long long *)(MemoryBlockIndex + 0x1e0), 1 < *(int *)(MemoryBlockIndex + 0x1c4) - 1U)) ||
           ((*(uint *)(MemoryBlockIndex + 0x1588) & 0x10000) != 0)) ||
          (((*(uint *)(ContextHandle + 0x388) >> 0x19 & 1) != 0 || (*(int *)(MemoryBlockIndex + 0x290) != 0)))) ||
         ((*(char *)(ContextHandle + 0x13c) != '\x06' && (*(char *)(ContextHandle + 0x13c) != '\0')))) ||
        ((*(unsigned long long *)(ContextHandle + 0x140) & *(unsigned long long *)(ContextHandle + 0x398)) != 0)) {
 LAB_18022d44f:
-      ValidationStatus = '\0';
+      SystemValidationStatus = '\0';
     }
     else {
-      ValidationStatus = '\x01';
+      SystemValidationStatus = '\x01';
       BufferAllocationState = (long long *)FUN_180240a60();
       SystemChecksum = 0;
       SystemDataRegistry = BufferAllocationState[1] - *BufferAllocationState;
@@ -291460,7 +291465,7 @@ LAB_18022d44f:
     }
     *(char *)(ContextHandle + 0x3c1) = ValidationStatus;
   }
-  return ValidationStatus == '\x01';
+  return SystemValidationStatus == '\x01';
 }
 
 
@@ -291475,7 +291480,7 @@ LAB_18022d44f:
  */
 uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleSize
 {
-  char ValidationStatus;
+  char SystemValidationStatus;
   long long *BufferAllocationState;
   uint UnicodeCodePoint;
   uint MemoryAllocationMaskPointer;
@@ -291509,8 +291514,8 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
     do {
       AllocatedMemorySize = *BufferAllocationState;
       if (((AllocatedMemorySize != 0) &&
-          (((ValidationStatus = GetContextHandleAtPosition(ContextHandle,0), ValidationStatus == '\0' || ((UnicodeCodePoint & 0xfffffff9) != 0)           || (UnicodeCodePoint == 6)))) &&
-         ((((ValidationStatus = GetContextHandleAtPosition(ContextHandle,1), ValidationStatus == '\0' ||
+          (((SystemValidationStatus = GetContextHandleAtPosition(ContextHandle,0), SystemValidationStatus == '\0' || ((UnicodeCodePoint & 0xfffffff9) != 0)           || (UnicodeCodePoint == 6)))) &&
+         ((((SystemValidationStatus = GetContextHandleAtPosition(ContextHandle,1), SystemValidationStatus == '\0' ||
             ((UnicodeCodePoint - 1 & 0xfffffffd) != 0)) && (*(int *)(AllocatedMemorySize + 0x380) != 2)) &&
           ((*(int *)(*BufferAllocationState + 0x380) != 3 && (*(long long *)(*BufferAllocationState + 0xa8) != 0)))))) {
         MemoryAllocationMaskPointer = MemoryAllocationMaskPointer + 1;
