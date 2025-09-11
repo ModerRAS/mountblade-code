@@ -253937,7 +253937,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
                             ContextHandle8[1] = ContextHandle8[1] + 0x18;
                           }
                           else {
-                            FUN_180207840(ContextHandle8,ProcessingContextPointer + (long long)IntegerValue7 * 3);
+                            ProcessSystemMemoryAllocation(ContextHandle8,ProcessingContextPointer + (long long)IntegerValue7 * 3);
                           }
                           SystemEventTemplatePointer = *(uint32_t **                                    (*(long long *)(lStack_1f0 * 0x20 + 0x4a8 + ContextHandle) + -0x18);
                           if (*(long long *)(SystemEventTemplatePointer + 2) != 0) {
@@ -254034,11 +254034,11 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             }
             ConfigurationString = puStack_190;
             if (puStack_190 < pProcessingStatus) {
-              FUN_180204a00(puStack_190);
+              InitializeSystemMemoryAllocation(puStack_190);
               puStack_190 = ConfigurationString + 3;
             }
             else {
-              FUN_180207840(&ProcessingContextPointer,SystemDataTablePointer);
+              ProcessSystemMemoryAllocation(&ProcessingContextPointer,SystemDataTablePointer);
             }
             IntegerValue6 = IntegerValue6 + 1;
             SystemDataTablePointer = SystemDataTablePointer + 0x18;
@@ -254090,7 +254090,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
             CoreEngineFreeSystemMemory(ContextHandleTablePointer);
         }
         for (; StringOffset != EncodingConversionResult; StringOffset = StringOffset + 0x18) {
-          FUN_18004bf50(StringOffset);
+          ValidateSystemDataIntegrity(StringOffset);
         }
         if (SystemDataTablePointer != 0) {
             CoreEngineFreeSystemMemory(SystemDataTablePointer);
@@ -254225,7 +254225,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   }
   else {
     SystemChecksum = 0x401;
-    MemoryPoolIndex = FUN_180206330(Utf16EndPointer);
+    MemoryPoolIndex = ProcessSystemMemoryPool(Utf16EndPointer);
     MemoryPoolIndex = FUN_180225e50(MemoryPoolIndex);
   }
   OperationBufferSize[1] = 0;
