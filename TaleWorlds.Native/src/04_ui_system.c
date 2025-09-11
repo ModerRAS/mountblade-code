@@ -124913,7 +124913,7 @@ void ProcessUIContextDataAndFontRendering(UIHandle uiContext,UIHandle dataSource
   RenderContextSize = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_1807466e0(stackUInt120,dataSource);
+    operationResult = ValidateUIDataFormat(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073a35a;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -124964,7 +124964,7 @@ void ProcessUIContextDataTransferOperation(UIHandle uiContext,UIDword dataSource
   stackLong148 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
-    operationResult = FUN_180746780(stackUInt140,dataSource,targetBuffer);
+    operationResult = ProcessUIBufferDataCopy(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073a47d;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
