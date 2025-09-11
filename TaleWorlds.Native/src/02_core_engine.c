@@ -242916,13 +242916,13 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     IsSystemContextValidationResult = false;
     if ((*(long long *)(MemoryBufferC + 0x20) - *(long long *)(MemoryBufferC + 0x18) >> 4 != 0) &&
        (*(char *)(*(long long *)(BufferIndex + 0x88) + 0x60b91) != '\0')) {
-      FUN_180460970(MemoryBufferC,OperationBufferSize);
+      ExecuteSystemRenderPipeline(MemoryBufferC,OperationBufferSize);
       IsSystemContextValidationResult = true;
     }
     if (((*(char *)(*(long long *)(BufferIndex + 0x88) + 0x60b91) != '\0') && (IsSystemContextValidationResult)) &&
        (*(long long *)(*(long long *)(BufferIndex + 0x3c8) + 0x20) -
         *(long long *)(*(long long *)(BufferIndex + 0x3c8) + 0x18) >> 4 == 0)) {
-      FUN_18045ff20();
+      InitializeSystemRenderState();
     }
   }
   ContextHandleData = ContextHandle + 0x1c;
@@ -242965,7 +242965,7 @@ void ProcessSystemContextValidationAndFloatConversion(long long *ContextHandle, 
     }
     SystemStatusCode = ProcessSystemStatusCheck();
     *(uint32_t *)(OperationBufferSize + 0x133d) = SystemStatusCode;
-    FUN_180303b70(OperationBufferSize[0x6b0],MemoryAllocationHandle,OperationBufferSize);
+    ProcessSystemMemoryAllocation(OperationBufferSize[0x6b0],MemoryAllocationHandle,OperationBufferSize);
     ContextHandle7 = *(long long **)(OperationBufferSize[0x6b0] + 0x530);
     if (ContextHandle7 != (long long *)0x0) {
       plStack_228 = ContextHandle7;
@@ -244183,7 +244183,7 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
         RemainingSpace = CoreEngineUnsignedValueA0 + (int)SystemDataTablePointer;
         if (RemainingSpace != 0) {
           Utf16ConversionContext = RemainingSpace + 1;
-          if (SystemEventDispatcher == (uint8_t *)0x0) {
+          if (SystemEventDispatcherPointer == (uint8_t *)0x0) {
             if ((int)Utf16ConversionContext < 0x10) {
               Utf16ConversionContext = 0x10;
             }
@@ -244202,10 +244202,10 @@ LAB_18019d47d:
       }
       Utf16Char4 = (unsigned long long)RemainingSpace;
       if (Utf16Char4 < MemoryPoolIndex) {
-        Utf16ConversionContext = CoreEngineUnsignedValueA0 + 2;
+        Utf16ConversionContext = CoreEngineProcessingValueA0 + 2;
         if (Utf16ConversionContext != 0) {
-          SystemChecksum = CoreEngineUnsignedValueA0 + 3;
-          if (SystemEventDispatcher == (uint8_t *)0x0) {
+          SystemChecksum = CoreEngineProcessingValueA0 + 3;
+          if (SystemEventDispatcherPointer == (uint8_t *)0x0) {
             if ((int)SystemChecksum < 0x10) {
               SystemChecksum = 0x10;
             }
@@ -244344,7 +244344,7 @@ LAB_18019d905:
   }
   if (CharacterStatusBuffer8 == NULL) {
     pSystemStackRegisterBuffer = &SystemNullTemplate;
-    if (SystemEventDispatcher == (uint8_t *)0x0) {
+    if (SystemEventDispatcherPointer == (uint8_t *)0x0) {
       SystemEventDispatcher = (uint8_t *)0x0;
       SystemOperationValidationFlag = SystemOperationValidationFlag & 0xffffffff00000000;
       pSystemStackRegisterBuffer = &ThreadLocalStorageTemplate;
