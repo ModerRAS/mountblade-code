@@ -102,15 +102,11 @@
 #define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
 #define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
 #define ExceptionDataTable2Address 0x180a21690                   // 异常数据表2地址 - 异常处理数据表的第二个地址
-
-// === 异常处理地址常量 ===
-#define ExceptionCriticalSectionAddress 0x180c82210              // 异常临界区地址 - 异常处理临界区的存储地址
-#define ExceptionDataTable1Address 0x18098bdc8                   // 异常数据表1地址 - 异常处理数据表的第一个地址
-#define ExceptionDataTable2Address 0x180a21690                   // 异常数据表2地址 - 异常处理数据表的第二个地址
-#define SystemConfigurationFailed 0x2                            // 系统配置失败
-#define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败
-#define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败
-#define SystemStateValidationFailed 0x5                          // 系统状态验证失败
+// === 系统错误码常量 ===
+#define SystemConfigurationFailed 0x2                            // 系统配置失败 - 系统配置过程中出现错误
+#define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败 - 内存管理器初始化过程中出现错误
+#define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败 - 异常处理器初始化过程中出现错误
+#define SystemStateValidationFailed 0x5                          // 系统状态验证失败 - 系统状态验证过程中出现错误
 
 // === 资源管理常量 ===
 #define ResourceReferenceDecrement -1                             // 资源引用计数递减值
