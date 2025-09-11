@@ -12373,7 +12373,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180894dd0 - 请求处理函数A0
 // 功能：处理系统请求
-#define ProcessRequestA0 FUN_180894dd0
+#define ProcessRequestA0 ProcessSystemRequestWithValidation
 
 // 原始函数名：FUN_180741df0 - 上下文初始化函数A0
 // 功能：初始化系统上下文
