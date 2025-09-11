@@ -151,6 +151,10 @@
 // 系统优先级处理函数语义化宏定义
 #define FUN_18009ec20 HandleSystemPriorityLevel                         // 处理系统优先级
 #define FUN_1800c4800 ProcessSystemPriorityAllocation                   // 处理系统优先级分配
+#define FUN_180626eb0 InitializeSystemRegistry                          // 初始化系统注册表
+
+// 系统事件处理函数语义化宏定义
+#define FUN_180623fd0 HandleSystemEventProcessing                        // 处理系统事件处理
 
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
