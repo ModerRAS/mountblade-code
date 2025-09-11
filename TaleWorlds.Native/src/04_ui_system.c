@@ -126019,8 +126019,7 @@ void ExecuteUIRenderContextTask(void)
 
 
 
- void FUN_18073adcf(void)
-void FUN_18073adcf(void)
+ void ReleaseUIMemoryAndExecuteRender(void)
 
 {
   ulonglong stackParam00000140;

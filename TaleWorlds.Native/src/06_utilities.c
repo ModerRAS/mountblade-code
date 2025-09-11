@@ -10682,7 +10682,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899040 - 数据验证处理函数A0
 // 功能：验证并处理数据，包含多个验证阶段
-#define ValidateAndProcessDataA0 FUN_180899040
+#define ValidateAndProcessDataA0 ValidateAndProcessDataWithChecks
 
 // 原始函数名：FUN_180899090 - 数据处理函数A1
 // 功能：处理数据块，支持多种数据格式
@@ -10698,15 +10698,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源和状态
-#define CleanupSystemResourcesA0 FUN_180899790
+#define CleanupSystemResourcesA0 CleanupSystemResourcesWithMemoryRelease
 
 // 原始函数名：FUN_180899799 - 系统重置函数A0
 // 功能：重置系统状态和配置
-#define ResetSystemStateA0 FUN_180899799
+#define ResetSystemStateA0 ResetSystemStateAndCleanup
 
 // 原始函数名：FUN_1808997b0 - 数据同步函数A0
 // 功能：同步数据状态
-#define SynchronizeDataA0 FUN_1808997b0
+#define SynchronizeDataA0 SynchronizeDataWithValidation
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存资源
@@ -12612,7 +12612,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180899040 - 数据验证处理函数A0
 // 功能：验证和处理数据，包括系统配置和状态检查
-#define ValidateAndProcessDataA0 FUN_180899040
+#define ValidateAndProcessDataA0 ValidateAndProcessDataWithChecks
 
 // 原始函数名：FUN_180899090 - 数据处理函数A1
 // 功能：处理数据块，包括多段数据处理
@@ -22524,7 +22524,7 @@ uint8_t DataConfigurationTableA8;
 
 // 原始函数名：FUN_180899040 - 数据验证和处理函数A0
 // 功能：验证数据并处理
-#define ValidateAndProcessDataA0 FUN_180899040
+#define ValidateAndProcessDataA0 ValidateAndProcessDataWithChecks
 
 // 原始函数名：FUN_18089a750 - 数据处理函数A0
 // 功能：处理数据和状态
