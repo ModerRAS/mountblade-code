@@ -41291,10 +41291,10 @@ ValidationErrorHandler2:
     *(float *)(dataPointer + SystemDataRecordOffset3c) = secondaryFloatResult;
     validationStatus = *(uint *)(registerContext + 8);
   }
-  if (0x8a < validationStatus) {
+  if (DataValidationThreshold8A < validationStatus) {
     dataContext = *registerContext;
     *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
-    memoryRegionBase = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
+    memoryRegionBase = ExecuteDataValidationOperation(dataContext,StackFrameContext + StackFrameStatusOffset);
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
     }
@@ -139712,7 +139712,7 @@ uint8_t SystemExceptionHandlerStateTable;
 // 栈变量语义化宏定义
 // 原始变量名：auStack_28 - 安全验证缓冲区A
 // 功能：用于安全验证操作的数据缓冲区
-#define securityValidationBuffer auStack_28
+#define SecurityValidationBufferA auStack_28
 
 // 原始变量名：auStack_80 - 安全验证缓冲区B
 // 功能：用于安全验证操作的数据缓冲区
