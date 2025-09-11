@@ -284664,7 +284664,7 @@ uint64_t * InitializeContextHandleTableData(uint64_t *ContextHandle
 
 
 
-265d0(uint64_t ContextHandle,uint64_t *ContextHandleSizevoid FUN_1802265d0(uint64_t ContextHandle,uint64_t *ContextHandleSize
+void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
   uint Utf16Char;
   uint8_t aMemoryCopyBuffer [32];
