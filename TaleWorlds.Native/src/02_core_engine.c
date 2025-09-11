@@ -252588,7 +252588,23 @@ ProcessContextHandleTableAndMemoryPoolAllocation:
 
 
 
-04ea2(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_180204ea2(uint64_t ContextHandle,long long OperationBufferSize
+04ea2(uint64_t ContextHandle,long long OperationBufferSize/**
+ * @brief 扩展系统数据缓冲区容量
+ * 
+ * 该函数负责扩展系统数据缓冲区的容量，包括：
+ * - 计算新的缓冲区大小和内存分配
+ * - 复制现有数据到新的缓冲区
+ * - 更新系统上下文和指针引用
+ * - 处理内存块和事件通知
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180204ea2
+ * @note 这是系统内存管理的重要函数，用于动态扩展数据缓冲区
+ * @see AllocateSystemMemoryPool, ProcessSystemEventHandling
+ */
+void ExpandSystemDataBufferCapacity(uint64_t ContextHandle,long long OperationBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t MemoryPoolIndex;
