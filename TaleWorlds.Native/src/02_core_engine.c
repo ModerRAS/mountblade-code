@@ -27654,7 +27654,19 @@ CoreEngineProcessDataNode(uint64_t *DataNode,unsigned long long ProcessingFlags,
 
 
 
- void CoreEngineHandleSystemError(void)
+ /**
+ * @brief 处理系统错误
+ * 
+ * 该函数负责处理系统级别的错误情况。
+ * 当发生严重错误时，会调用系统终止函数来安全地关闭系统。
+ * 
+ * @param 无
+ * @return void 无返回值
+ * 
+ * @note 这是一个错误处理函数，会直接终止系统运行
+ * @note 用于处理不可恢复的系统级错误
+ */
+void CoreEngineHandleSystemError(void)
 {
     CoreEngineTerminateSystem();
 }
