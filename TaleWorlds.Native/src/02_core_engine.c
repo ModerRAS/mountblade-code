@@ -1292,9 +1292,18 @@ uint32_t ProcessUnicodeCharacter(uint32_t unicodeCodePoint)
  * 
  * 处理系统状态标志和内存池块大小指针
  * 
+ * @param statusPointer 状态指针
+ * @param memoryPoolBlockSize 内存池块大小
+ * @return 返回处理结果状态码
+ * 
  * @note 原始函数名：FUN_180058830
  */
-#define ProcessSystemStatus FUN_180058830
+uint32_t ProcessSystemStatus(void *statusPointer, uint32_t memoryPoolBlockSize)
+{
+    // 简化实现：直接返回成功
+    // 实际实现应该处理系统状态标志和内存池块大小
+    return NetworkOperationSuccess;
+}
 
 /**
  * @brief 系统条件初始化函数
@@ -1306,7 +1315,12 @@ uint32_t ProcessUnicodeCharacter(uint32_t unicodeCodePoint)
  * 
  * @note 原始函数名：FUN_180046190
  */
-#define InitializeSystemCondition FUN_180046190
+void InitializeSystemCondition(void *conditionPointer)
+{
+    // 简化实现：空操作
+    // 实际实现应该初始化系统条件变量
+    return;
+}
 
 /**
  * @brief 字符状态缓冲区处理函数
@@ -3826,7 +3840,7 @@ uint32_t ProcessUnicodeCharacter(uint32_t unicodeCodePoint)
 #define GetSystemErrorCodeEx FUN_18021aef5                       // 获取系统错误代码扩展
 #define IdentifySystemIdentifierByPatternVariantO IdentifySystemIdentifierByPatternVariantO  // 识别系统标识符模式O (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantP IdentifySystemIdentifierByPatternVariantP  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
-#define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
+#define IdentifySystemIdentifierByPatternVariantQ IdentifySystemIdentifierByPatternVariantQ  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantR FUN_180225727  // 识别系统标识符模式R (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
