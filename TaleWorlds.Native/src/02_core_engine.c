@@ -65,10 +65,10 @@
 #define ProcessSystemHandleOperationEx FUN_18018bd0d                // 处理系统句柄操作扩展
 #define ResetSystemDataProcessingEx FUN_18018bd5f                  // 重置系统数据处理扩展
 #define ExecuteSystemStringEncodingOperationEx FUN_18018c050       // 执行系统字符串编码操作扩展
-#define FUN_18018cef0 ProcessSystemUnicodeConversion              // 处理系统Unicode转换
-#define FUN_18018e0f0 HandleSystemStringEncoding                 // 处理系统字符串编码
-#define FUN_18018f6a0 ProcessSystemContextOperation              // 处理系统上下文操作
-#define FUN_18018fb50 InitializeSystemDataProcessor              // 初始化系统数据处理器
+#define ProcessSystemUnicodeConversionEx FUN_18018cef0              // 处理系统Unicode转换扩展
+#define HandleSystemStringEncodingEx FUN_18018e0f0                 // 处理系统字符串编码扩展
+#define ProcessSystemContextOperationEx FUN_18018f6a0              // 处理系统上下文操作扩展
+#define InitializeSystemDataProcessorEx FUN_18018fb50              // 初始化系统数据处理器扩展
 #define FUN_18019067c ValidateSystemHandle                       // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                  // 重置系统操作状态
 #define FUN_180190780 ReleaseSystemHandle                        // 释放系统句柄
