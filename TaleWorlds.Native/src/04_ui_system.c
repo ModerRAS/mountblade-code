@@ -134627,35 +134627,52 @@ event_handling_complete:
 
 
 
- void FUN_18073faec(void)
+ /**
+ * @brief 处理UI纹理数据验证操作
+ * 
+ * 该函数负责处理UI纹理数据的验证和处理操作，包括：
+ * - 处理UI纹理数据
+ * - 验证UI缓冲区数据
+ * - 执行数据比较操作
+ * - 执行UI上下文数据操作
+ */
+void ProcessUITextureDataValidationOperation(void)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword UIPreservedEBP;
-  UIDword unmodifiedESI;
+  UIDword reservedRegisterEBP;
+  UIDword unmodifiedRegisterESI;
   
-  operationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUIDataAndCompare(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),unmodifiedEBP);
+  operationResult = ProcessUITextureDataWithSize(&TextureDataBuffer,0x100);
+  uiValidationResult = ProcessUIBufferDataWithControl(&TextureDataBuffer + processingResult,0x100 - processingResult,&UIBufferControlData);
+  ProcessUIDataAndCompare(&TextureDataBuffer + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),reservedRegisterEBP);
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,2);
+  ExecuteUIContextDataOperation(unmodifiedRegisterESI,2);
 }
 
 
 
 
- void FUN_18073fb64(void)
+ /**
+ * @brief 条件性释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责根据条件释放UI内存资源并执行渲染任务，包括：
+ * - 检查内存资源参数
+ * - 条件性释放内存资源
+ * - 执行UI渲染任务
+ */
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
-  longlong stackParam00000030;
+  longlong memoryResourceParam;
   ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (memoryResourceParam != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(RenderTaskParameter ^ (ulonglong)&StackBaseAddress);
 }
 
 

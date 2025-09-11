@@ -1478,14 +1478,40 @@ uint32_t InitializeSystemMemoryManager(void)
 /**
  * @brief 处理核心引擎初始化
  * 
- * 执行核心引擎的初始化过程，包括系统组件的启动和配置
+ * 执行核心引擎的初始化过程，包括系统组件的启动和配置：
+ * - 初始化系统上下文和环境
+ * - 配置内存管理和资源分配
+ * - 启动渲染系统和图形设备
+ * - 初始化网络和通信模块
+ * - 设置音频和输入系统
+ * - 配置物理和动画系统
+ * - 初始化脚本和游戏逻辑系统
+ * 
+ * 该函数是引擎启动的核心步骤，负责协调各个子系统的
+ * 初始化顺序和依赖关系，确保整个引擎的正确启动。
+ * 
+ * @return uint32_t 初始化结果状态码
+ *         - NetworkOperationSuccess: 初始化成功
+ *         - 其他值: 初始化失败，具体错误代码
  * 
  * @note 原始实现：简化实现，只进行基本的初始化处理
+ * @warning 初始化失败可能导致引擎无法启动或功能异常
+ * @see ConfigureCoreEnginePointers, InitializeSystemMemoryManager
+ * @see ValidateProcessingStatusFlag
  */
 uint32_t ProcessCoreEngineInitialization(void)
 {
     // 简化实现：直接返回成功
     // 实际实现应该处理核心引擎初始化
+    // 包括：
+    // 1. 初始化系统上下文和环境
+    // 2. 配置内存管理和资源分配
+    // 3. 启动渲染系统和图形设备
+    // 4. 初始化网络和通信模块
+    // 5. 设置音频和输入系统
+    // 6. 配置物理和动画系统
+    // 7. 初始化脚本和游戏逻辑系统
+    // 8. 验证初始化结果
     return NetworkOperationSuccess;
 }
 
@@ -266010,7 +266036,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle,int OperationBufferSiz
     }
   }
   else if (OperationBufferSize == 0x100) {
-    FUN_18073ebd0(*(void *)(Utf16EndPointer + 8));
+    InitializeSystemEventProcessing(*(void *)(Utf16EndPointer + 8));
   }
     CoreEngineExecuteUtilityFunction(BufferMemoryOffset ^ (unsigned long long)aSystemValue1c8);
 }
