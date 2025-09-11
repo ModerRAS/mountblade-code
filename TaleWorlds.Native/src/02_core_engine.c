@@ -167,6 +167,7 @@
 #define FUN_180170380 ValidateCharacterEncodingAndData                    // 处理字符编码和数据验证
 #define FUN_180170700 HandleCharacterEncodingAndMemoryPool                // 处理字符编码和内存池操作
 #define FUN_180170900 ResetCharacterBufferAndCleanup                      // 处理字符缓冲区重置和清理
+#define FUN_1802356b0 ProcessSystemDataValidationAndInitialization         // 处理系统数据验证和初始化
 #define FUN_18014c7d0 HandleMemoryReferenceCount                           // 管理内存引用计数和资源释放
 #define FUN_18014c9e0 UpdateMemoryPoolSize                                // 计算和更新系统内存池大小
 #define FUN_18015c190 HandleSystemEventAndMemoryAllocation                // 处理系统事件和内存分配
@@ -196,6 +197,7 @@
 #define FUN_180112630 ValidateSystemCharacters                              // 处理系统字符验证
 #define FUN_180170ac0 ManageSystemEncodingAndBuffer                        // 处理系统编码和缓冲区管理
 #define FUN_180170ba0 ConvertAndValidateCharacterEncoding                   // 处理字符编码转换和验证
+#define FUN_180275cf0 ProcessCodePointAndCharacterData                      // 处理码点和字符数据
 #define FUN_18006b6f0 SetupThreadLocalStorage                              // 处理线程本地存储设置
 #define FUN_180046480 ConfigureThreadLocalStorage                            // 设置线程本地存储
 #define FUN_18020f940 SetupThreadOperations                                 // 初始化线程操作
@@ -223932,7 +223934,6 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 
 
 
-// 函数: void FUN_180186430(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理系统内存块和缓冲区清理
  * 
@@ -223952,7 +223953,7 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 #define ProcessSystemMemoryBlockAndBufferCleanup FUN_180186430
 void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *ContextHandle;
+  long long *SystemContextPointer;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -223960,25 +223961,25 @@ void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t O
   uint64_t OperationResult;
   
   OperationResult = 0xfffffffffffffffe;
-  ContextHandle = (long long *)(ContextHandle + 0x28);
-  BufferStatus = *ContextHandle;
+  SystemContextPointer = (long long *)(ContextHandle + 0x28);
+  BufferStatus = *SystemContextPointer;
   SystemDataRegistry = BufferStatus;
   MemoryBlockListHead = *(long long **)(BufferStatus + 8);
   if (*(char *)((long long)*(long long **)(BufferStatus + 8) + SystemNodeStatusOffset) == '\0') {
     do {
-      ProcessSystemMemory(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
+      ProcessSystemMemory(SystemContextPointer,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
       MemoryBlockIndex = (long long *)*MemoryBlockListHead;
       free(MemoryBlockListHead,0x28);
       MemoryBlockListHead = MemoryBlockIndex;
     } while (*(char *)((long long)MemoryBlockIndex + SystemNodeStatusOffset) == '\0');
-    SystemDataRegistry = *ContextHandle;
+    SystemDataRegistry = *SystemContextPointer;
   }
   *(long long *)(SystemDataRegistry + 8) = BufferStatus;
-  *(long long *)*ContextHandle = BufferStatus;
-  *(long long *)(*ContextHandle + 0x10) = BufferStatus;
-  *(void *)(ContextHandle + 0x30) = 0;
-  free(*ContextHandle,0x28);
-  ProcessSystemStackData(ContextHandle + 8);
+  *(long long *)*SystemContextPointer = BufferStatus;
+  *(long long *)(*SystemContextPointer + 0x10) = BufferStatus;
+  *(void *)(SystemContextPointer + 0x30) = 0;
+  free(*SystemContextPointer,0x28);
+  ProcessSystemStackData(SystemContextPointer + 8);
   return;
 }
 
