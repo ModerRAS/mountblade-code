@@ -5428,7 +5428,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_1808fc51c
  */
-#define ConfigureSystemParametersAndSettings ConfigureSystemParametersAndSettings
+#define FUN_1808fc51c ConfigureSystemParametersAndSettings
 
 /**
  * @brief 系统数据验证器
@@ -5438,7 +5438,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_1808fc914
  */
-#define ValidateSystemDataIntegrityAndFormat ValidateSystemDataAndFormat
+#define FUN_1808fc914 ValidateSystemDataIntegrityAndFormat
 
 // 系统状态验证器 - 验证系统状态的正确性
 
@@ -6683,7 +6683,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：Unwind_180904820 - 异常上下文重置函数偏移量0x20
 // 功能：重置异常上下文处理器状态（偏移量0x20），设置临时异常处理器并清理状态标志
-#define ResetExceptionContextAtSecondaryOffset Unwind_180904820
+#define ResetExceptionContextAtSecondaryOffset ResetExceptionContextAtOffset32
 
 // 原始函数名：Unwind_180904830 - 默认异常处理器设置函数
 // 功能：设置默认异常处理器B到异常上下文中

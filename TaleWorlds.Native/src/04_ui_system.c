@@ -50098,7 +50098,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
           aresult93._0_2_ = eventIndex7 + (ushort)(0 < eventIndex7) + UIContextFirstValue65;
           aresult93._2_2_ = eventIndex6 + (ushort)(0 < eventIndex6) + eventIndex5;
           aresult93._4_2_ = sVar77 + (ushort)(0 < sVar77) + UIContextSecondValue7;
-          aresult93._6_2_ = sVar126 + (ushort)(0 < sVar126) + sVar75;
+          aresult93._6_2_ = TextureOffset126 + (ushort)(0 < TextureOffset126) + TextureOffset75;
           aresult93._8_2_ = UIContextSecondValue3 + (ushort)(0 < UIContextSecondValue3) + sVar120;
           aresult93._10_2_ = BufferCapacityValue8 + (ushort)(0 < BufferCapacityValue8) + sVar274;
           aresult93._12_2_ = sVar248 + (ushort)(0 < sVar248) + sVar132;
