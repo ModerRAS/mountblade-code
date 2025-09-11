@@ -132,6 +132,26 @@
 // 系统浮点数处理函数语义化宏定义
 #define FUN_180208f20 ProcessSystemFloatDataOperation                    // 处理系统浮点数数据操作
 
+// 系统字符数据处理函数语义化宏定义
+#define FUN_1801efdb0 ProcessCharacterEncodingConversion                 // 处理字符编码转换
+#define FUN_1801ef300 ValidateCharacterDataTable                         // 验证字符数据表
+#define FUN_1801ef620 TransformCharacterMatrixData                     // 转换字符矩阵数据
+
+// 系统内存处理函数语义化宏定义
+#define FUN_18007f0e0 ProcessSystemMemoryAllocationAndValidation        // 处理系统内存分配和验证
+#define FUN_1800b6de0 InitializeSystemMemoryManager                      // 初始化系统内存管理器
+#define FUN_180079240 GetSystemMemoryBlockIndex                         // 获取系统内存块索引
+#define FUN_1800b32c0 ConfigureSystemMemoryAllocation                     // 配置系统内存分配
+#define FUN_180209980 ProcessSystemDataTransfer                          // 处理系统数据传输
+#define FUN_180209840 FinalizeSystemDataTransfer                         // 完成系统数据传输
+#define FUN_180207ea0 CleanupSystemMemoryResources                       // 清理系统内存资源
+#define FUN_1800bb630 ValidateSystemMemoryIntegrity                      // 验证系统内存完整性
+#define FUN_18020d6c0 ProcessSystemConfigurationData                     // 处理系统配置数据
+
+// 系统优先级处理函数语义化宏定义
+#define FUN_18009ec20 HandleSystemPriorityLevel                         // 处理系统优先级
+#define FUN_1800c4800 ProcessSystemPriorityAllocation                   // 处理系统优先级分配
+
 // 系统节点标识符常量
 #define SystemNodeIdentifierPrimary 0x4b2d79e470ee4e2c    // 系统节点主标识符
 #define SystemNodeIdentifierSecondary 0x9c552acd3ed5548d   // 系统节点次标识符

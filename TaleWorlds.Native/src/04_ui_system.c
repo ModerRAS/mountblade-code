@@ -106,6 +106,8 @@ typedef enum {
 // UI系统函数语义化宏定义
 #define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
 #define FUN_18073f710 CleanupUIRenderContextAndReleaseResources  // 清理UI渲染上下文并释放资源
+#define FUN_18073f990 InitializeUIDataSourceWithValidation  // 初始化UI数据源并执行验证
+#define FUN_18073fa70 ProcessUIDataSourceWithTextureValidation  // 处理UI数据源并执行纹理验证
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
@@ -134438,84 +134440,117 @@ void InitializeUIDataSourceAndCopy(UIHandle uiContext,UIHandle *dataSource)
 
  
 
- void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
-void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
+ /**
+ * @brief UI数据源初始化和验证函数
+ * 
+ * 该函数负责初始化UI数据源并执行验证操作，主要功能包括：
+ * - 初始化UI数据源并设置初始值
+ * - 创建和配置数据源处理上下文
+ * - 执行数据源的安全验证
+ * - 处理数据源的复制和传输
+ * - 管理异常情况和错误状态
+ * - 执行渲染任务和数据操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * @param dataSource 数据源指针，用于存储和操作数据源
+ * 
+ * @note 此函数会处理加密密钥操作，确保数据安全
+ * @warning 函数执行后可能会调用不返回的子函数
+ */
+void InitializeUIDataSourceWithValidation(UIHandle uiContext,UIDword *dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *validationBuffer;
+  longlong renderContextSize;
+  UIHandle dataSourceHandle;
+  UIByte securityBuffer [256];
+  ulonglong encryptedKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if (dataSource != (UIDword *)0x0) {
     *dataSource = 0;
   }
-  RenderContextSize = 0;
-  operationResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
+  renderContextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext,&dataSourceHandle,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180756330(stackUInt120,dataSource);
-    if (operationResult == 0) goto LAB_18073fa2f;
+    operationResult = ProcessUIDataSourceExtract(dataSourceHandle,dataSource);
+    if (operationResult == 0) goto validation_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ValidateUIDataWithContext(securityBuffer,0x100,dataSource);
+    validationBuffer = securityBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957be0);
   }
-LAB_18073fa2f:
-  if (RenderContextSize != 0) {
+validation_complete:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
 }
 
 
 
  
 
- void FUN_18073fa70(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
-void FUN_18073fa70(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
+ /**
+ * @brief UI数据源处理和纹理数据验证函数
+ * 
+ * 该函数负责处理UI数据源并执行纹理数据的验证操作，主要功能包括：
+ * - 初始化UI数据源并设置初始值
+ * - 创建和配置纹理数据处理上下文
+ * - 执行纹理数据的大小验证和完整性检查
+ * - 处理缓冲区数据的控制和比较
+ * - 管理数据源的复制和传输到目标缓冲区
+ * - 执行渲染任务和数据操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI渲染状态信息
+ * @param dataSource 数据源指针，用于存储和操作数据源
+ * @param targetBuffer 目标缓冲区，用于存储处理后的数据
+ * 
+ * @note 此函数会处理加密密钥操作，确保数据安全
+ * @warning 函数执行后可能会调用不返回的子函数
+ */
+void ProcessUIDataSourceWithTextureValidation(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int dataValidationResult;
+  int textureValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer [32];
+  UIByte *textureProcessingBuffer;
+  longlong renderContextSize;
+  UIHandle textureHandle;
+  UIByte validationBuffer [256];
+  ulonglong encryptedKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if (dataSource != (UIDword *)0x0) {
     *dataSource = 0;
   }
-  stackLong148 = 0;
-  operationResult = FUN_180758ed0(uiContext,&stackUInt140,&stackLong148);
+  renderContextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext,&textureHandle,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180756450(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073fb64;
+    operationResult = FUN_180756450(textureHandle,dataSource,targetBuffer);
+    if (operationResult == 0) goto texture_validation_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataAndCompare(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    textureValidationResult = ProcessUITextureDataWithSize(validationBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(validationBuffer + textureValidationResult,0x100 - textureValidationResult,&UIBufferControlData);
+    ProcessUIDataAndCompare(validationBuffer + (textureValidationResult + bufferCompareResult),0x100 - (textureValidationResult + bufferCompareResult),targetBuffer);
+    textureProcessingBuffer = validationBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b58);
   }
-FUN_18073fb64:
-  if (stackLong148 != 0) {
+texture_validation_complete:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
 }
 
 
