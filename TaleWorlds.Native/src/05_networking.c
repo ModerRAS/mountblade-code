@@ -95,6 +95,12 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkOperationSuccess 0x0                          // 网络操作：成功
 #define NetworkOperationFailure 0x1                          // 网络操作：失败
 
+// 网络缓冲区大小常量
+#define NetworkStandardBufferSize4KB 0x1000                               // 网络标准缓冲区大小：4KB
+#define NetworkStandardBufferSize64KB 0x10000                             // 网络标准缓冲区大小：64KB
+#define NetworkStandardBufferSize128KB 0x20000                            // 网络标准缓冲区大小：128KB
+#define NetworkStandardBufferSize1MB 0x100000                             // 网络标准缓冲区大小：1MB
+
 // 网络连接类型定义
 #define NetworkConnectionTypeBase 0x20200                      // 网络连接类型基础值
 #define NetworkConnectionTypeRange 0x100                      // 网络连接类型范围
@@ -468,14 +474,14 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 定义网络系统使用的各种缓冲区大小，用于内存分配和管理
  */
 #define NetworkSocketContextSize 0x100                            // 套接字上下文大小256字节
-#define NetworkSocketSize 0x40                                     // 套接字大小64字节
-#define NetworkSendBufferSize 0x10000                            // 发送缓冲区大小64KB
-#define NetworkReceiveBufferSize 0x10000                          // 接收缓冲区大小64KB
-#define NetworkBufferCapacity 0x20000                              // 缓冲区容量128KB
-#define NetworkPacketQueueSize 0x100                               // 数据包队列大小256
-#define NetworkStandardBufferSize 0x1000                               // 网络标准缓冲区大小：4KB
-#define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
-#define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
+#define NetworkSocketSize64Bytes 0x40                                     // 套接字大小64字节
+#define NetworkSendBufferSize64KB 0x10000                            // 发送缓冲区大小64KB
+#define NetworkReceiveBufferSize64KB 0x10000                          // 接收缓冲区大小64KB
+#define NetworkBufferCapacity128KB 0x20000                              // 缓冲区容量128KB
+#define NetworkPacketQueueSize256 0x100                               // 数据包队列大小256
+#define NetworkStandardBufferSize NetworkStandardBufferSize4KB                               // 网络标准缓冲区大小：4KB
+#define NetworkPacketContextSize256Bytes 0x100                              // 网络数据包上下文大小：256字节
+#define NetworkConnectionContextSize512Bytes 0x200                           // 网络连接上下文大小：512字节
 
 /**
  * @brief 网络超时常量
@@ -537,55 +543,55 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkBackoffTimeout 2000          // 退避时间2秒
 
 // 网络数据包常量
-#define NetworkStandardPacketHeaderSize 0x20                        // 标准数据包头大小32字节
+#define NetworkStandardPacketHeaderSize32Bytes 0x20                        // 标准数据包头大小32字节
 #define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
 #define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
-#define NetworkStandardPacketProcessingSize 0x100                 // 标准数据包处理大小256字节
-#define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
-#define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
-#define NetworkConnectionCompletionHandle 0x7d                   // 连接完成状态句柄值 (125)
+#define NetworkStandardPacketProcessingSize256Bytes 0x100                 // 标准数据包处理大小256字节
+#define NetworkValidationBufferSize39Bytes 0x27                   // 验证缓冲区大小39字节
+#define NetworkErrorCodeInvalidPacket28 0x1c                     // 无效数据包错误码28
+#define NetworkConnectionCompletionHandle125 0x7d                   // 连接完成状态句柄值125
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
 #define NetworkBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
-#define NetworkValidationMagicMask 0x03                     // 魔数验证掩码
-#define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
+#define NetworkValidationMagicMask3 0x03                     // 魔数验证掩码
+#define NetworkPacketFirstMagicValidMask1 0x01               // 第一个魔数有效掩码
 #define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
-#define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
+#define NetworkPacketSizeLimit85Bytes 0x55                          // 数据包大小限制85字节
 
 // 网络连接验证偏移量常量
-#define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证数据偏移量
-#define NetworkPacketStatusSizeLimit 0x100                      // 数据包状态大小限制（256字节）
-#define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
+#define NetworkConnectionSecondaryValidationOffset84 0x54         // 第二级连接验证数据偏移量84
+#define NetworkPacketStatusSizeLimit256Bytes 0x100                      // 数据包状态大小限制256字节
+#define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit256Bytes  // 兼容性别名 - 数据包状态大小限制
 
 // 网络连接完整性偏移量常量
-#define NetworkConnectionPrimaryIntegrityOffset 0x5a           // 主连接完整性数据偏移量
-#define NetworkConnectionSecondaryIntegrityOffset 0x5c          // 次连接完整性数据偏移量
+#define NetworkConnectionPrimaryIntegrityOffset90 0x5a           // 主连接完整性数据偏移量90
+#define NetworkConnectionSecondaryIntegrityOffset92 0x5c          // 次连接完整性数据偏移量92
 
 // 网络数据包大小限制常量
-#define NetworkPacketSizeAlternative 0x60                      // 替代数据包大小限制（96字节）
+#define NetworkPacketSizeAlternative96Bytes 0x60                      // 替代数据包大小限制96字节
 
 // 网络缓冲区对齐和大小常量
-#define NetworkBufferAlignmentMask 0xfffffffc              // 网络缓冲区对齐掩码（4字节对齐）
+#define NetworkBufferAlignmentMask4Bytes 0xfffffffc              // 网络缓冲区对齐掩码（4字节对齐）
 #define NetworkBitShift31Bits 0x1f                        // 31位偏移值
-#define NetworkByteMaskValue 0xff                           // 字节掩码值
-#define NetworkConnectionAlignmentSize 4                    // 网络连接对齐大小（4字节）
-#define NetworkContextTableOffset 0xb0                      // 网络上下文表数据偏移量
-#define NetworkConnectionIdOffset 0x98                     // 网络连接ID数据偏移量
-#define NetworkStatusDataOffset 0x200                       // 网络状态有效数据偏移量
-#define NetworkResourceAllocationSize 0x20                  // 网络资源分配大小（32字节）
-#define NetworkResourceAllocationSizeEx 0x28               // 网络资源扩展分配大小（40字节）
-#define NetworkHandleStorageSize 0x30                       // 网络句柄存储大小（48字节）
-#define NetworkPacketProcessingSize 0x100                    // 网络数据包处理大小（256字节）
-#define NetworkStandardPacketSize 0x27                    // 标准数据包大小39字节
-#define NetworkErrorReportSize 0xb                          // 网络错误报告大小（11字节）
-#define NetworkSecurityReportSize 0xd                       // 网络安全报告大小（13字节）
-#define NetworkConnectionReportSize 0xf                     // 网络连接报告大小（15字节）
-#define NetworkPacketReportSize 0xc                         // 网络数据包报告大小（12字节）
+#define NetworkByteMaskValue255 0xff                           // 字节掩码值255
+#define NetworkConnectionAlignmentSize4Bytes 4                    // 网络连接对齐大小4字节
+#define NetworkContextTableOffset176 0xb0                      // 网络上下文表数据偏移量176
+#define NetworkConnectionIdOffset152 0x98                     // 网络连接ID数据偏移量152
+#define NetworkStatusDataOffset512 0x200                       // 网络状态有效数据偏移量512
+#define NetworkResourceAllocationSize32Bytes 0x20                  // 网络资源分配大小32字节
+#define NetworkResourceAllocationSizeEx40Bytes 0x28               // 网络资源扩展分配大小40字节
+#define NetworkHandleStorageSize48Bytes 0x30                       // 网络句柄存储大小48字节
+#define NetworkPacketProcessingSize256Bytes 0x100                    // 网络数据包处理大小256字节
+#define NetworkStandardPacketSize39Bytes 0x27                    // 标准数据包大小39字节
+#define NetworkErrorReportSize11Bytes 0xb                          // 网络错误报告大小11字节
+#define NetworkSecurityReportSize13Bytes 0xd                       // 网络安全报告大小13字节
+#define NetworkConnectionReportSize15Bytes 0xf                     // 网络连接报告大小15字节
+#define NetworkPacketReportSize12Bytes 0xc                         // 网络数据包报告大小12字节
 
 // 网络连接默认配置
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
