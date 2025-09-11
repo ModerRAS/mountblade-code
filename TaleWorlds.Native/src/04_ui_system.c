@@ -2127,6 +2127,30 @@ typedef enum {
 // UI系统函数宏定义 - 处理UI浮点变换
 #define ProcessUIFloatTransformation FUN_180707b03
 
+// UI系统函数宏定义 - 重置UI全局状态
+#define ResetUIGlobalState FUN_18073c099
+
+// UI系统函数宏定义 - 释放UI内存资源
+#define ReleaseUIMemoryAndCleanResources FUN_18073c111
+
+// UI系统函数宏定义 - 清理UI内存
+#define CleanupUIMemoryContext FUN_18073c133
+
+// UI系统函数宏定义 - 处理UI长操作
+#define ProcessUILongOperation FUN_18073c160
+
+// UI系统函数宏定义 - 处理UI长操作B
+#define ProcessUILongOperationB FUN_18073c17d
+
+// UI系统函数宏定义 - 完成UI任务
+#define CompleteUITask FUN_18073c1e0
+
+// UI系统函数宏定义 - 处理UI事件
+#define ProcessUIEventHandling FUN_18073c258
+
+// UI系统函数宏定义 - 释放UI资源
+#define ReleaseUIResources FUN_18073c27a
+
 // UI系统函数宏定义 - 处理UI句柄变换
 #define ProcessUIHandleTransformation FUN_180707d35
 

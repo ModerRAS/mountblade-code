@@ -3046,6 +3046,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 原始函数名：FUN_180169350 - 核心引擎字符代码处理函数
 #define ProcessCoreEngineContextHandle FUN_180169350
 
+// 新美化的系统事件处理函数
+#define FUN_180196af0 InitializeSystemEventHandling                    // 初始化系统事件处理
+#define FUN_180196b10 ProcessSystemEventHandlingWithTimeout           // 处理系统事件超时
+#define FUN_180196b30 ResetSystemEventHandling                         // 重置系统事件处理
+#define FUN_180196b80 InitializeSystemDataTemplateWithMemoryBlock      // 初始化系统数据模板和内存块
+
 // 系统内存和线程本地存储管理函数语义化映射
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
 #define InitializeSystemCharacterEncodingValidation FUN_1801659e0  // 初始化系统字符编码验证
@@ -238993,7 +238999,7 @@ void ResetSystemEventHandling(long long ContextHandle)
 
 
 
-96b80(long long ContextHandlevoid FUN_180196b80(long long ContextHandle
+void InitializeSystemDataTemplateWithMemoryBlock(long long ContextHandle)
 {
   uint64_t Utf16Char;
   
