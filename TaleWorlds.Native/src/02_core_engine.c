@@ -227531,7 +227531,6 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
 
 
 
-// 函数: void FUN_180187c00(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief UTF-16字符处理和内存块管理函数
  * 
