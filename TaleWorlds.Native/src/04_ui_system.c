@@ -5310,9 +5310,9 @@ void* UIGestureCoordinates;
 #define UIContextOperationAdvancedTable UNK_180957310    // UI上下文操作高级表 - 存储上下文操作的高级数据
 #define UIContextOperationExtendedTable UNK_180957898    // UI上下文操作扩展表 - 存储上下文操作的扩展数据
 #define UIContextOperationIndexTable UNK_180957810    // UI上下文操作索引表 - 存储上下文操作的索引数据
-#define UIContextOperationDataTable6a0 UNK_1809576a0    // UI上下文操作数据表6a0 - 存储上下文操作的临时数据
-#define UIContextOperationDataTable880 UNK_180957880    // UI上下文操作数据表880 - 存储上下文操作的缓冲区数据
-#define UIContextOperationDataTable7b0 UNK_1809577b0    // UI上下文操作数据表7b0 - 存储上下文操作的元数据
+#define UIContextOperationTempTable UNK_1809576a0    // UI上下文操作临时表 - 存储上下文操作的临时数据
+#define UIContextOperationBufferTable UNK_180957880    // UI上下文操作缓冲区表 - 存储上下文操作的缓冲区数据
+#define UIContextOperationMetadataTable UNK_1809577b0    // UI上下文操作元数据表 - 存储上下文操作的元数据
 #define UIContextOperationDataTable8d0 UNK_1809578d0    // UI上下文操作数据表8d0 - 存储上下文操作的统计数据
 #define UIContextOperationDataTable7f0 UNK_1809577f0    // UI上下文操作数据表7f0 - 存储上下文操作的日志数据
 
