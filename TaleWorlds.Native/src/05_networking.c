@@ -3996,34 +3996,6 @@ NetworkHandle ProcessConnectionPacketData(int64_t *NetworkConnectionContext, int
 }
 
 /**
- * @brief 处理网络连接状态变化
- * 
- * 处理网络连接状态的变化，包括连接建立、断开、重连等状态转换。
- * 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作。
- * 
- * @details 该函数执行以下关键操作：
- * - 验证连接上下文的有效性
- * - 解析数据包中的状态更新信息
- * - 更新连接状态和标志位
- * - 处理连接超时和重连逻辑
- * - 管理连接的生命周期
- * - 触发相应的回调事件
- * 
- * @param ConnectionContext 连接上下文句柄，包含当前连接的状态信息
- * @param PacketData 数据包数据，包含状态更新的相关信息
- * 
- * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
- * 
- * @retval NetworkOperationSuccess 状态更新成功
- * @retval NetworkErrorInvalidHandle 连接上下文无效
- * @retval NetworkErrorConnectionFailed 连接处理失败
- * @retval NetworkErrorTimeout 连接超时
- * 
- * @note 此函数使用状态机模式处理连接状态转换
- * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
- * @see InitializeNetworkConnectionResultHandler, ProcessNetworkConnectionPacketData
- */
-/**
  * @brief 更新网络连接状态
  * 
  * 更新网络连接的状态信息，包括验证状态、超时状态和处理状态等。

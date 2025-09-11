@@ -128197,7 +128197,7 @@ void FUN_18073c5f0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
     ValidateUIDataWithContext(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578d0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextStatisticsData);
   }
 FUN_18073c6e3:
   if (stackLong148 != 0) {
@@ -128241,7 +128241,7 @@ void FUN_18073c60d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
     uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     ValidateUIDataWithContext(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809578d0,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextStatisticsData,&stack0x00000040);
   }
 FUN_18073c6e3:
   if (lStack0000000000000030 != 0) {
