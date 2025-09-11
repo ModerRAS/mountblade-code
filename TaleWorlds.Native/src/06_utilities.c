@@ -5368,7 +5368,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_180074a80
  */
-#define ProcessSystemDataReadWrite ProcessSystemDataReadWrite
+#define FUN_180074a80 ProcessSystemDataReadWrite
 
 /**
  * @brief 系统数据加密器
@@ -5378,7 +5378,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define EncryptSystemDataForSecurity EncryptSystemDataForSecurity
+#define FUN_18064e900 EncryptSystemDataForSecurity
 
 /**
  * @brief 系统上下文生命周期管理器
@@ -5388,7 +5388,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ManageSystemContextLifecycle ManageSystemContextLifecycle
+#define FUN_18007f840 ManageSystemContextLifecycle
 
 /**
  * @brief 数据类型安全转换器
@@ -5398,7 +5398,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ConvertDataTypesSafely ConvertDataTypesSafely
+#define FUN_18007f6a0 ConvertDataTypesSafely
 
 /**
  * @brief 系统内存分配管理器
@@ -5408,7 +5408,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * 
  * @note 原始函数名：FUN_18013ea00
  */
-#define ManageSystemMemoryAllocation ManageSystemMemoryAllocation
+#define FUN_18013ea00 ManageSystemMemoryAllocation
 
 /**
  * @brief 系统健康状态检查器

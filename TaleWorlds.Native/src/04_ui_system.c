@@ -134887,7 +134887,26 @@ LAB_180740150:
 
  
 
- void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI数据缓冲区操作
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，包括：
+ * - 验证UI资源和数据完整性
+ * - 处理数据缓冲区的复制和控制
+ * - 执行UI上下文数据操作
+ * - 管理内存资源的分配和释放
+ * 
+ * @param uiContext UI上下文句柄，指定操作的UI上下文
+ * @param dataSource 数据源句柄，提供数据缓冲区的源数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180740190
+ * @note 该函数使用XOR加密技术保护数据安全
+ * @see ValidateUIResource, ProcessUIDataBuffer, ExecuteUIContextDataOperation
+ */
+void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
