@@ -225987,30 +225987,30 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandl
  * @note 原始函数名：FUN_180187cd0
  */
 #define ProcessCharacterTableAndDataInitialization FUN_180187cd0
-void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
+void ProcessCharacterTableAndDataInitialization(long long *CharacterContextHandle)
 {
-  long long MainCalculationResult;
-  long long SystemBufferStatus;
+  long long CharacterTableCalculationResult;
+  long long CharacterMemoryStatus;
   
-  long long CurrentCharacterTablePointer = *ContextHandle;
-  if (CurrentCharacterTablePointer != 0) {
-    SystemBufferStatus = ContextHandle[1];
-    if (CurrentCharacterTablePointer != SystemBufferStatus) {
+  long long CharacterTableDataPointer = *CharacterContextHandle;
+  if (CharacterTableDataPointer != 0) {
+    CharacterMemoryStatus = CharacterContextHandle[1];
+    if (CharacterTableDataPointer != CharacterMemoryStatus) {
       do {
-        ProcessSystemStringIndexAndCharacterTableOperation(CurrentCharacterTablePointer);
-        CurrentCharacterTablePointer = CurrentCharacterTablePointer + 0x40;
-      } while (CurrentCharacterTablePointer != SystemBufferStatus);
-      CurrentCharacterTablePointer = *ContextHandle;
+        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTableDataPointer);
+        CharacterTableDataPointer = CharacterTableDataPointer + 0x40;
+      } while (CharacterTableDataPointer != CharacterMemoryStatus);
+      CharacterTableDataPointer = *CharacterContextHandle;
     }
-    SystemBufferStatus = LoopCounter;
-    if ((0xfff < (ContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (SystemBufferStatus = *(long long *)(CurrentCharacterTablePointer + -8), 0x1f < (CurrentCharacterTablePointer - SystemBufferStatus) - 8U)) {
+    CharacterMemoryStatus = LoopCounter;
+    if ((0xfff < (CharacterContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
+       (CharacterMemoryStatus = *(long long *)(CharacterTableDataPointer + -8), 0x1f < (CharacterTableDataPointer - CharacterMemoryStatus) - 8U)) {
         _invalid_parameter_noinfo_noreturn();
     }
-    free(SystemBufferStatus);
-    *ContextHandle = 0;
-    ContextHandle[1] = 0;
-    ContextHandle[2] = 0;
+    free(CharacterMemoryStatus);
+    *CharacterContextHandle = 0;
+    CharacterContextHandle[1] = 0;
+    CharacterContextHandle[2] = 0;
   }
   return;
 }
