@@ -358,9 +358,7 @@
 #define FUN_1802e8c60 ProcessSystemDataRegistry
 #define FUN_1802e6b00 HandleSystemDataTransfer
 #define FUN_18020b790 ConfigureSystemBufferAccess
-#define FUN_1802f5440 ManageSystemMemoryOperation
-#define FUN_1802f1890 ExecuteSystemMemoryTransfer
-#define FUN_1802f1930 ProcessSystemMemoryAllocation
+// 系统内存操作函数语义化宏定义（已清理重复定义）
 #define FUN_1803ba550 ProcessSystemStackOperation
 #define FUN_18009ec80 HandleSystemParameterProcessing
 #define FUN_18009fb60 FinalizeSystemProcessing
