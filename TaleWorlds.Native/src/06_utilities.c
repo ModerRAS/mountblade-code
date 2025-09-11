@@ -147,27 +147,27 @@
 #define SystemDataRecordHeaderOffset 0x14                       // 系统数据记录头偏移量 - 用于数据记录头部的偏移位置
 
 // 系统数据大小常量
-#define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
-#define SystemDataBufferMinimumSize 0x70                         // 系统数据缓冲区最小尺寸
-#define SystemDataSizeOffset 8                                   // 系统数据大小偏移量
-#define SystemDataBufferArrayIndex 1                             // 系统数据缓冲区数组索引
-#define StatusCounterMaximumValue 0x6d                           // 状态计数器最大值
-#define SystemDataBufferSizeMaximum 0x81                          // 系统数据缓冲区最大尺寸
-#define SystemDataBufferArrayIndex2 2                            // 系统数据缓冲区数组索引2
-#define SystemDataBufferArrayIndex3 3                            // 系统数据缓冲区数组索引3
-#define SystemDataSizeThreshold6A 0x6a                           // 系统数据大小阈值6A
+#define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值 - 用于数据大小验证的最小阈值
+#define SystemDataBufferMinimumSize 0x70                         // 系统数据缓冲区最小尺寸 - 数据缓冲区的最小分配大小
+#define SystemDataSizeOffset 8                                   // 系统数据大小偏移量 - 数据大小字段的偏移位置
+#define SystemDataBufferArrayIndex 1                             // 系统数据缓冲区数组索引 - 缓冲区数组的第一索引
+#define StatusCounterMaximumValue 0x6d                           // 状态计数器最大值 - 状态计数器的最大计数值
+#define SystemDataBufferSizeMaximum 0x81                          // 系统数据缓冲区最大尺寸 - 数据缓冲区的最大分配大小
+#define SystemDataBufferArrayIndex2 2                            // 系统数据缓冲区数组索引2 - 缓冲区数组的第二索引
+#define SystemDataBufferArrayIndex3 3                            // 系统数据缓冲区数组索引3 - 缓冲区数组的第三索引
+#define SystemDataSizeThreshold6A 0x6a                           // 系统数据大小阈值6A - 用于数据大小验证的第二阈值
 
 // 系统内存管理常量
-#define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48
-#define SystemMemoryRegionOffset50 0x50                         // 系统内存区域偏移量50
-#define SystemMemoryRegionSize1C 0x1c                           // 系统内存区域大小1C
-#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14
-#define SystemMemoryDataBufferOffset2 0x2                       // 系统内存数据缓冲区偏移量2
-#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30
-#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C
+#define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48 - 用于内存区域管理的主偏移量
+#define SystemMemoryRegionOffset50 0x50                         // 系统内存区域偏移量50 - 用于内存区域管理的辅助偏移量
+#define SystemMemoryRegionSize1C 0x1c                           // 系统内存区域大小1C - 内存区域的标准大小
+#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14 - 数据缓冲区的第一偏移量
+#define SystemMemoryDataBufferOffset2 0x2                       // 系统内存数据缓冲区偏移量2 - 数据缓冲区的第二偏移量
+#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30 - 数据缓冲区的第三偏移量
+#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C - 数据缓冲区的第四偏移量
 
 // 数据处理相关常量
-#define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C
+#define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C - 用于数据大小计算的乘数常量
 
 // 数据验证阈值常量
 #define DataValidationThreshold55 0x55                           // 数据验证阈值55 - 用于数据大小验证
@@ -63144,7 +63144,7 @@ void SystemExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ExceptionHandlerContextOffset40) & 1) != 0) {
     *(uint *)(dataBuffer + ExceptionHandlerContextOffset40) = *(uint *)(dataBuffer + ExceptionHandlerContextOffset40) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + DataProcessingOffset70);
+    ProcessAndValidateDataBlock(dataBuffer + DataProcessingOffset70);
   }
   return;
 }
@@ -64188,7 +64188,7 @@ void SetupExceptionHandlerAtOffset1A0(DataBuffer operationBase,int64_t dataBuffe
 {
   if ((*(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) & ExceptionHandlerSetupFlag) != 0) {
     *(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) = *(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) & ExceptionHandlerSetupMask;
-    ValidateDataA0(dataBuffer + ExceptionHandlerDataValidationOffset);
+    ProcessAndValidateDataBlock(dataBuffer + ExceptionHandlerDataValidationOffset);
   }
   return;
 }
@@ -78903,7 +78903,7 @@ void ConditionallySetExceptionHandlerAtOffsetA0(DataBuffer operationBase,int64_t
 {
   if ((*(uint *)(dataBuffer + SystemDataValidationOffset34) & 1) != 0) {
     *(uint *)(dataBuffer + SystemDataValidationOffset34) = *(uint *)(dataBuffer + SystemDataValidationOffset34) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + 0x298);
+    ProcessAndValidateDataBlock(dataBuffer + 0x298);
   }
   return;
 }
@@ -78925,7 +78925,7 @@ void ConditionallyValidateDataAtOffset270(DataBuffer operationBase,int64_t dataB
 {
   if ((*(uint *)(dataBuffer + SystemDataValidationOffset34) & 2) != 0) {
     *(uint *)(dataBuffer + SystemDataValidationOffset34) = *(uint *)(dataBuffer + SystemDataValidationOffset34) & 0xfffffffd;
-    ValidateDataA0(dataBuffer + 0x270);
+    ProcessAndValidateDataBlock(dataBuffer + 0x270);
   }
   return;
 }
@@ -79545,7 +79545,7 @@ void ClearAndValidateBit1Offset30(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 1) != 0) {
     *(uint *)(dataBuffer + DataBufferOffset30) = *(uint *)(dataBuffer + DataBufferOffset30) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + ExceptionHandlerContextOffset1f0);
+    ProcessAndValidateDataBlock(dataBuffer + ExceptionHandlerContextOffset1f0);
   }
   return;
 }
