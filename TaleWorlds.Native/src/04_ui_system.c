@@ -49175,13 +49175,13 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       adataPointer3._8_4_ = iterationData54._8_4_ + 0x2000 >> 0xe;
       adataPointer3._12_4_ = iterationData54._12_4_ + 0x2000 >> 0xe;
       astackUInta98 = packssdw(adataPointer3,aloopCounter0);
-      iterationData19 = pmaddwd(acomponentIndex1,_DAT_1809473b0);
+      iterationData19 = pmaddwd(acomponentIndex1,UIVectorMultiplyMask8);
       adataPointer4._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       adataPointer4._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       adataPointer4._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       adataPointer4._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
-      iterationData19 = pmaddwd(aeventCodeType58,_DAT_1809473b0);
-      aeventCodeType26 = pmaddwd(aeventCodeType58,_DAT_180947430);
+      iterationData19 = pmaddwd(aeventCodeType58,UIVectorMultiplyMask8);
+      aeventCodeType26 = pmaddwd(aeventCodeType58,UIVectorMultiplyMask16);
       iterationData54 = pmaddwd(acomponentIndex1,_DAT_180947430);
       aeventCodeType00 = pmaddwd(aresult77,_DAT_180947330);
       aprocessingFlags16 = pmaddwd(aeventCodeType83,_DAT_180947330);
