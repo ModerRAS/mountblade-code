@@ -18951,7 +18951,7 @@ DataBuffer ValidateMemoryAccess(int64_t memoryContext)
     calculatedMemoryAccessPointer = 0;
   }
   else {
-    calculatedMemoryAccessPointer = calculatedMemoryAccessPointer + -8;
+    calculatedMemoryAccessPointer = calculatedMemoryAccessPointer - 8;
   }
   if (*(int64_t *)(calculatedMemoryAccessPointer + ExceptionHandlerCallbackOffset) == 0) {
     return ResourceInvalidErrorCode;
