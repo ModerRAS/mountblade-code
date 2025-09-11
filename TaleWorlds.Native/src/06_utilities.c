@@ -29625,7 +29625,7 @@ SecurityValidationLabel:
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
         LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
-        if ((LoopCounter != 0) || (allocatedMemoryBlock = ValidateDataA2(dataContext,ValidationFloatArrayC,0), allocatedMemoryBlock != 0)) break;
+        if ((LoopCounter != 0) || (allocatedMemoryBlock = ValidateDataWithSecurityCheck(dataContext,ValidationFloatArrayC,0), allocatedMemoryBlock != 0)) break;
         LoopCounter = arrayIndex;
         if (ValidationFloatArrayC[0] != 1.0) {
           DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
@@ -29924,7 +29924,7 @@ void ProcessFloatingPointDataWithValidation(void)
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
         validationErrorCode = ValidateDataIntegrityA0(validationStatus,StackFrameContext + -0x80);
-        if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&NormalizedParameterValue,0), validationErrorCode != 0)) break;
+        if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataWithSecurityCheck(dataContext,&NormalizedParameterValue,0), validationErrorCode != 0)) break;
         if (NormalizedParameterValue != 1.0) {
           ProcessedFloatValue = NormalizedParameterValue;
           ValidationDataBuffer = &SystemValidationDataTableA7;
@@ -31814,7 +31814,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
                 do {
                   exceptionContext5 = *(int64_t *)(exceptionContextPointer4[2] + 8 + (int64_t)iterationCount * ArrayElementSize16);
                   if (((*(int64_t *)(exceptionContext5 + ResourceManagementOffset80) != 0) && (*(int64_t *)(exceptionContext5 + ResourceManagementOffset350) == 0))
-                     && (calculatedSize = ConvertAndValidateDataA0(operationBase), calculatedSize != 0)) goto DataBufferValidationCheckpoint;
+                     && (calculatedSize = ConvertAndValidateDataWithFormatCheck(operationBase), calculatedSize != 0)) goto DataBufferValidationCheckpoint;
                 } while ((iterationCount != -1) &&
                         (iterationCount = *(int *)(exceptionContextPointer4[2] + 4 + (int64_t)iterationCount * ArrayElementSize16), iterationCount != -1));
                 iterationCount = allocatedMemoryBlock + 1;
