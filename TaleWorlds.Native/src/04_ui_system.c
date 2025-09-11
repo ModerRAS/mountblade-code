@@ -193135,6 +193135,9 @@ undefined UIConfigDataQuaternary;
 #define DAT_180c4ea98 UIEventThresholdCounter
 #define DAT_180c4ea94 UIEventThresholdCounterValue
 
+// UI系统处理状态变量语义化定义
+#define DAT_180a3f750 UIProcessingStatusTable750  // UI处理状态表750 - 存储UI处理过程中的状态数据
+
 undefined UIConfigDataTable3600;
 undefined UIConfigDataTable34f0;
 undefined UIConfigDataTable34f4;

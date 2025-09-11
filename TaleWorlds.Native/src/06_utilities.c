@@ -79567,7 +79567,7 @@ void ClearAndValidateBit2Offset30(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 2) != 0) {
     *(uint *)(dataBuffer + DataBufferOffset30) = *(uint *)(dataBuffer + DataBufferOffset30) & 0xfffffffd;
-    ValidateDataA0(dataBuffer + SystemExceptionDataOffset218);
+    ProcessAndValidateDataBlock(dataBuffer + SystemExceptionDataOffset218);
   }
   return;
 }
@@ -79649,7 +79649,7 @@ void ValidateDataHandlerA0Conditional(DataBuffer operationBase,int64_t dataBuffe
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 8) != 0) {
     *(uint *)(dataBuffer + DataBufferOffset30) = *(uint *)(dataBuffer + DataBufferOffset30) & 0xfffffff7;
-    ValidateDataA0(exceptionDataBuffer + DataBufferOffset480);
+    ProcessAndValidateDataBlock(exceptionDataBuffer + DataBufferOffset480);
   }
   return;
 }
