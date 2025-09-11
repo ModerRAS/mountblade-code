@@ -42567,8 +42567,8 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
     SystemTemplatePointer = PrimaryStackPointerf8;
   }
   ProcessSystemContextConfiguration(&ContextHandle,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterValidationBuffer0);
-  SecondaryStackPointer20 = NULL;
-  SecondaryStackPointer18 = NULL;
+  SecondaryDataBufferPointer20 = NULL;
+  SecondaryDataBufferPointer18 = NULL;
   SystemProcessingStackValue210 = 0;
   CoreEngineProcessingFlag208 = 3;
   PrimaryStackPointer60 = NULL;
