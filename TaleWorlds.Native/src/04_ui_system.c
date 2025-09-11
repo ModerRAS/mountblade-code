@@ -246,6 +246,7 @@ typedef enum {
 #define FUN_18073c380 ProcessUIContextBufferOperationC
 #define FUN_18073c39d ProcessUIContextBufferOperationD
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
+#define FUN_18073ab80 ProcessUIContextWithDataOperation          // 处理UI上下文数据操作
 #define FUN_180739b90 ProcessUIDataWithTargetBuffer              // 处理带目标缓冲区的UI数据
 #define FUN_18073a3ad ProcessUIDataWithTargetValidation          // 处理带目标验证的UI数据
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
@@ -367154,11 +367155,11 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
     bufferValue = bufferSize;
   }
   contextValue = bufferValue | (eventStatus & 0x20 | 1) << 0x11;
-  sourceDataInt = FUN_18073ab80(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer);
+  sourceDataInt = ProcessUIContextWithDataOperation(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer);
   if ((sourceDataInt != 0) &&
      ((((*(byte *)(uiContext + 0x24) & 1) == 0 ||
        (sourceDataInt = ProcessUIContextWithDataSource(*(UIHandle *)(uiContext + 0x78),2), sourceDataInt != 0)) ||
-      (sourceDataInt = FUN_18073ab80(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer), sourceDataInt != 0))))
+      (sourceDataInt = ProcessUIContextWithDataOperation(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer), sourceDataInt != 0))))
   goto LAB_18087dbb3;
   isCharacterMatch4 = ~(byte)(dataPointer >> 2) & 1;
   sourceDataInt = FUN_18088c380(*(UIDword *)(uiBufferData + 0x18),*(UIDword *)(uiBufferData + 0x2c8));
