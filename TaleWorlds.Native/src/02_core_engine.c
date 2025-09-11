@@ -7625,8 +7625,8 @@ void* SystemDataTemplateSecondaryPointer;
 void* SystemDataTemplatePointer;
 
 // 系统数据模板常量
-const void* const SystemDataTemplate4F08 = (void*)0x180a00320;
-const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
+const void* const SystemDataTemplateConfig = (void*)0x180a00320;
+const void* const MessageBoxTemplateUser = (void*)0x180a00340;
 
 // 函数语义化宏定义
 
@@ -45206,7 +45206,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
     else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
       SystemMessageTemplatePointer = &MessageBoxTemplateAA0;
       SystemSecondaryMessageTemplate = &MessageBoxTemplateB24;
-      SystemDataTemplatePointer = &SystemDataTemplate4F08;
+      SystemDataTemplatePointer = &SystemDataTemplateConfig;
       ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd);
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB28);
@@ -45444,7 +45444,7 @@ SystemValidationStart: // 原始标签：LAB_180066bf4，SystemValidationStart
         if (InputDataLength == 4) goto SystemValidationStart;
       }
       else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
-        ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd,&SystemDataTemplate4F08,&MessageBoxTemplateB24,
+        ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd,&SystemDataTemplateConfig,&MessageBoxTemplateB24,
                       &MessageBoxTemplateAA0);
       }
       ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB28);
@@ -48654,7 +48654,7 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
         if (((EngineThreadStatus == '\0') || (EncodingValidationResult = IsDebuggerPresent(), EncodingValidationResult != 0)) &&
            (EngineRunningFlag == '\0')) break;
         if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
-          pDataContentStatus = &SystemDataTemplate4F08;
+          pDataContentStatus = &SystemDataTemplateConfig;
           ContextHandle = CharacterStatusBuffer8;
           CoreEnginePointerBuffer158 = CharacterStatusBuffer2;
           ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd);
@@ -48693,7 +48693,7 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
         }
         else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
           ContextHandle = &SystemConstantDataA;
-          pDataContentStatus = &SystemDataTemplate4F08;
+          pDataContentStatus = &SystemDataTemplateConfig;
           CoreEnginePointerBuffer158 = CharacterStatusBuffer2;
           ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd);
         }
