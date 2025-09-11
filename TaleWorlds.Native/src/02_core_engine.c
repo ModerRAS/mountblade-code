@@ -296598,6 +296598,8 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 // 已美化的函数宏定义
 #define ClearContextHandleBuffer FUN_18019eb00                     // 清理上下文句柄缓冲区
 #define ResetContextHandleData FUN_18019eb40                      // 重置上下文句柄数据
+#define CheckAndExecuteSystemInitialization FUN_180202e0f        // 检查并执行系统初始化
+#define ExecuteSystemResourceInitialization FUN_180202e19          // 执行系统资源初始化
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 #define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
 #define ConfigureSystemStackHandler FUN_18031c090                   // 配置系统栈处理器
