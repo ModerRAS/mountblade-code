@@ -130975,7 +130975,7 @@ void ProcessUIContextDataWithEncryption(UIHandle uiContext,longlong dataSource,U
     func_0x00018074b830(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957830);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIResourceHandle830);
   }
 FUN_18073d4b8:
   if (stackLong148 != 0) {
