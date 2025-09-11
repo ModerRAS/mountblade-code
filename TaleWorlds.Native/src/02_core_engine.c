@@ -233083,7 +233083,18 @@ void CompleteSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHand
 
 
 
-90a4d(voidvoid FUN_180190a4d(void
+/**
+ * @brief 重置系统传输状态
+ * 
+ * 该函数负责重置系统数据传输的状态，包括字符处理和内存地址管理。
+ * 函数通过循环处理字符数据，重置传输状态标志，并确保数据一致性。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180190a4d
+ * @see ProcessSystemDataPair, ResetSystemOperationState
+ */
+void ResetSystemTransferState(void)
 {
   uint64_t Utf16Char;
   void *SystemContext;
@@ -233092,12 +233103,12 @@ void CompleteSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHand
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *CharacterLimit;
   uint64_t *NullPointerValue;
-  uint32_t StackUnsignedValue50;
-  uint32_t SystemUnsignedValue54;
+  uint32_t CharacterProcessingValue;
+  uint32_t SystemValidationValue;
   
   do {
     Utf16Char = *CharacterLimit;
-    _StackUnsignedValue50 = Utf16Char;
+    CharacterProcessingValue = Utf16Char;
     PrimaryProcessingStatusFlag = CharacterLimit;
     MemoryAddressMaskPointer = CharacterLimit;
     while (PrimaryProcessingStatusFlag != FramePointer) {
@@ -233109,8 +233120,8 @@ void CompleteSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHand
       PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + -1;
     }
     CharacterLimit = CharacterLimit + 1;
-    *(uint32_t *)MemoryAddressMaskPointer = StackUnsignedValue50;
-    *(uint32_t *)((long long)MemoryAddressMaskPointer + 4) = SystemUnsignedValue54;
+    *(uint32_t *)MemoryAddressMaskPointer = CharacterProcessingValue;
+    *(uint32_t *)((long long)MemoryAddressMaskPointer + 4) = SystemValidationValue;
     if (CharacterLimit == NullPointerValue) {
       return;
     }
@@ -233120,7 +233131,18 @@ void CompleteSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHand
 
 
 
-90ad0(voidvoid FUN_180190ad0(void
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统内存管理器，为后续的内存分配和操作做准备。
+ * 这是一个初始化函数，可能包含系统特定的内存管理器设置代码。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180190ad0
+ * @see InitializeSystemContext, SetupSystemMemoryAllocator
+ */
+void InitializeSystemMemoryManager(void)
 {
   return;
 }

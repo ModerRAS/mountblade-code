@@ -1904,6 +1904,35 @@ typedef enum {
 #define transformCoefficient AnimationDelta
 #define transformCoeff16 MinimumBoundsValue
 #define transformCoeff18 MaximumBoundsValue
+
+// UI系统栈指针变量美化
+#define afStack_60e8 UIStackPointer60E8
+
+// UI系统局部变量美化
+#define localChar8 UILocalChar8
+#define localChar9 UILocalChar9
+#define unmodifiedEBX UIPreservedEBX
+#define preservedRegister12 UIPreservedRegister12
+#define preservedRegister13 UIPreservedRegister13
+#define preservedRegister15 UIPreservedRegister15
+#define allocatedMemory UIAllocatedMemoryBlock
+#define processingResult6 UIProcessingResult6
+#define finalResult UIFinalResult
+#define FloatValue1 UIFloatValue1
+#define FloatValue2 UIFloatValue2
+#define in_XMM5_Da UIInputXMM5_DataA
+#define preservedXMM6 UIPreservedXMM6
+#define preservedXMM7 UIPreservedXMM7
+#define unmodifiedXMM8_Da UIRegisterXMM8_DataA
+#define unmodifiedXMM9_Da UIRegisterXMM9_DataA
+#define unmodifiedXMM10_Da UIRegisterXMM10_DataA
+#define unmodifiedXMM12_Da UIRegisterXMM12_DataA
+#define unmodifiedXMM12_Db UIRegisterXMM12_DataB
+#define unmodifiedXMM12_Dc UIRegisterXMM12_DataC
+#define unmodifiedXMM12_Dd UIRegisterXMM12_DataD
+#define unmodifiedXMM13_Da UIRegisterXMM13_DataA
+#define unmodifiedXMM14_Da UIRegisterXMM14_DataA
+#define unmodifiedXMM15_Da UIRegisterXMM15_DataA
 #define transformCoeff19 CurrentRotationValue
 #define componentData ColorBufferPointer
 #define pcontextOffset ResourceBufferPointer
@@ -1935,6 +1964,12 @@ typedef enum {
 
  // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent FUN_18070ba50
+
+// UI系统函数宏定义 - 计算UI组件边界框
+#define CalculateUIComponentBounds FUN_18065a1d0
+
+// UI系统函数宏定义 - 处理UI边界框碰撞检测
+#define ProcessUIBoundingBoxCollision FUN_180659a40
 
 // UI系统函数宏定义 - 初始化UI内存池
 #define InitializeUIMemoryPool FUN_1807806c0
@@ -100049,24 +100084,24 @@ int CalculateUIDataSimilarity(longlong uiContext,longlong dataSource,int targetB
 int NormalizeUIDataOptimized(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
-  float *BaseValuePointer;
-  UIByte aiterationCount [16];
-  double CalculationResultValue;
-  uint processingStatus;
+  float *baseValuePointer;
+  UIByte iterationData [16];
+  double calculationResult;
+  uint processingFlags;
   float *transformCoeffPointer;
   int loopCounter;
-  longlong localLong7;
-  ulonglong eventProcessingCounter;
-  float LocalFloatValue9;
-  float baseValue0;
-  float baseValue1;
-  float baseValue2;
-  float baseValue3;
+  longlong contextOffset;
+  ulonglong iterationCount;
+  float tempFloatValue;
+  float normalizedSum0;
+  float normalizedSum1;
+  float normalizedSum2;
+  float normalizedSum3;
   float vectorComponentX;
-  float baseValue5;
-  float baseValue6;
+  float normalizedSum5;
+  float normalizedSum6;
   float finalResult;
-  float FloatValue1;
+  float epsilonValue;
   
   FloatValue1 = 1e-15;
   finalResult = 1e-15;
