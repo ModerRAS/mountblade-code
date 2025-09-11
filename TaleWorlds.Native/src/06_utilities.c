@@ -19307,7 +19307,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
     ResourceReferenceCount = CleanupResourceData(resourceContextPointer,0);
     if (ResourceReferenceCount == 0) {
       ResourceReferenceCount = ValidateSystemParameters(decrementValue);
-      if (resourceReferenceCount == 0) {
+      if (ResourceReferenceCount == 0) {
           ReleaseSystemResources(resourceDataBuffer);
       }
     }
