@@ -3138,6 +3138,23 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 原始函数名：FUN_180169350 - 核心引擎字符代码处理函数
 #define ProcessCoreEngineContextHandle FUN_180169350
 
+// 系统渲染和显示处理函数语义化映射
+#define ProcessSystemRenderingAndDisplay FUN_18019c6e0                 // 处理系统渲染和显示操作
+#define ExecuteSystemDataTransferOperation FUN_1802e5be0               // 执行系统数据传输操作
+#define ProcessSystemAnimationSequencing FUN_1801acb30                 // 处理系统动画序列
+#define HandleSystemTextureMapping FUN_180316460                        // 处理系统纹理映射
+#define ProcessSystemShaderCompilation FUN_18031a470                    // 处理系统着色器编译
+#define ExecuteSystemRenderPipeline FUN_180460970                       // 执行系统渲染管线
+#define InitializeSystemRenderState FUN_18045ff20                      // 初始化系统渲染状态
+#define ProcessSystemMemoryAllocation FUN_180303b70                    // 处理系统内存分配
+#define ExecuteSystemContextInitialization FUN_1801c1c40               // 执行系统上下文初始化
+#define HandleSystemBufferManagement FUN_18031e320                     // 处理系统缓冲区管理
+#define ExecuteSystemDataProcessing FUN_1802ea790                      // 执行系统数据处理
+#define InitializeSystemGraphicsState FUN_1802ee720                    // 初始化系统图形状态
+#define ProcessSystemRenderInitialization FUN_18037c8d0                // 处理系统渲染初始化
+#define ExecuteSystemVertexProcessing FUN_180389b20                    // 执行系统顶点处理
+#define HandleSystemPixelShader FUN_180374f40                          // 处理系统像素着色器
+
 // 新美化的系统事件处理函数
 #define FUN_180196af0 InitializeSystemEventHandling                    // 初始化系统事件处理
 #define FUN_180196b10 ProcessSystemEventHandlingWithTimeout           // 处理系统事件超时
@@ -244138,20 +244155,20 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
   }
   ProcessSystemEventQueueData(&SystemDataTemplateQuaternary,TemporaryBuffer);
   pSystemStackRegisterBuffer = &SystemNullTemplate;
-  SystemOperationValidationFlag = 0;
-  SystemEventDispatcher = (uint8_t *)0x0;
-  CoreEngineUnsignedValueA0 = 0;
-  pSystemOperationStatusMask = NULL;
-  SystemEventPointer = NULL;
-  CalculationFunctionAddress = 0;
-  StackProcessingValue78 = 3;
-  FUN_1801b84e0(ContextHandle + 0xc060,&pSystemOperationStatusMask);
+  SystemOperationValidationStatus = 0;
+  SystemEventDispatcherPointer = (uint8_t *)0x0;
+  CoreEngineProcessingValueA0 = 0;
+  SystemOperationStatusMaskPointer = NULL;
+  SystemEventQueuePointer = NULL;
+  CalculationFunctionPointer = 0;
+  SystemStackProcessingValue78 = 3;
+  FUN_1801b84e0(ContextHandle + 0xc060,&SystemOperationStatusMaskPointer);
   (**(code **)(pSystemStackRegisterBuffer + 0x10))(&pSystemStackRegisterBuffer,&CoreEngineDataTemplate);
-  MemoryPoolIndex = (long long)SystemEventPointer - (long long)pSystemOperationStatusMask >> SystemEventContextShiftCount;
-  uStackX_10 = MemoryPoolIndex;
+  MemoryPoolIndex = (long long)SystemEventQueuePointer - (long long)SystemOperationStatusMaskPointer >> SystemEventContextShiftCount;
+  SystemTemporaryData10 = MemoryPoolIndex;
   if (MemoryPoolIndex != 0) {
     RemainingSpace = 1;
-    CharacterStatusBuffer8 = pSystemOperationStatusMask + 1;
+    CharacterStatusBuffer8 = SystemOperationStatusMaskPointer + 1;
     do {
       TemporaryBuffer = &CoreEngineDataTemplate;
       if ((void *)*CharacterStatusBuffer8 != NULL) {
@@ -244170,18 +244187,18 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
             if ((int)Utf16ConversionContext < 0x10) {
               Utf16ConversionContext = 0x10;
             }
-            SystemEventDispatcher = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16ConversionContext,0x13);
-            *SystemEventDispatcher = 0;
+            SystemEventDispatcherPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16ConversionContext,0x13);
+            *SystemEventDispatcherPointer = 0;
           }
           else {
-            if (Utf16ConversionContext <= (uint)SystemOperationValidationFlag) goto LAB_18019d47d;
-            SystemEventDispatcher = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventDispatcher,Utf16ConversionContext,0x10,0x13);
+            if (Utf16ConversionContext <= (uint)SystemOperationValidationStatus) goto LAB_18019d47d;
+            SystemEventDispatcherPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventDispatcherPointer,Utf16ConversionContext,0x10,0x13);
           }
-          OperationResult = GetMemoryAllocationInfo(SystemEventDispatcher);
-          SystemOperationValidationFlag = CONCAT44(SystemOperationValidationFlag.HighPart,OperationResult);
+          OperationResult = GetMemoryAllocationInfo(SystemEventDispatcherPointer);
+          SystemOperationValidationStatus = CONCAT44(SystemOperationValidationStatus.HighPart,OperationResult);
         }
 LAB_18019d47d:
-          memcpy(SystemEventDispatcher + CoreEngineUnsignedValueA0,TemporaryBuffer,(long long)((int)CharacterTablePointer6 + 2));
+          memcpy(SystemEventDispatcherPointer + CoreEngineProcessingValueA0,TemporaryBuffer,(long long)((int)CharacterTablePointer6 + 2));
       }
       Utf16Char4 = (unsigned long long)RemainingSpace;
       if (Utf16Char4 < MemoryPoolIndex) {

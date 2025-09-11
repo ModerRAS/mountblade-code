@@ -215,7 +215,7 @@ typedef enum {
 #define FUN_18073c133 ProcessUIContextMemoryCleanup
 #define FUN_18073c160 ProcessUIContextLongOperation
 #define FUN_18073c17d ProcessUIContextLongOperationB
-#define FUN_18073c1e0 ProcessUIContextTaskCompletion
+#define CompleteUIContextProcessingTask ProcessUIContextTaskCompletion
 #define FUN_18073c258 ProcessUIContextEventHandling
 #define FUN_18073c27a ProcessUIContextResourceRelease
 #define FUN_18073c2a0 ProcessUIContextDataTransfer
@@ -1006,14 +1006,14 @@ typedef enum {
 #define ProcessUIRenderDataUpdate UpdateUIRenderData
 
 // UI系统函数宏定义 - 数据验证和清理
-#define ProcessUIComponentDataValidationAndResourceCleanup FUN_180787e70  // 处理UI组件数据验证和资源清理 - 验证数据并清理资源
-#define FUN_18073c1e0 ProcessUIContextTaskCompletion
+#define ProcessUIComponentDataValidationAndResourceCleanup ValidateUIComponentDataAndCleanupResources  // 处理UI组件数据验证和资源清理 - 验证数据并清理资源
+#define CompleteUIContextProcessingTask ProcessUIContextTaskCompletion
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
 // UI系统函数宏定义 - 上下文清理和验证
-#define CleanupUIContextWithMemoryRelease FUN_1807864f0                // 清理UI上下文并释放内存 - 释放UI上下文占用的内存资源
-#define ProcessUIComponentDataSourceAndValidation FUN_180760790        // 处理UI组件数据源和验证 - 验证UI组件数据源的有效性
+#define CleanupUIContextWithMemoryRelease ReleaseUIContextMemoryAndCleanup                // 清理UI上下文并释放内存 - 释放UI上下文占用的内存资源
+#define ProcessUIComponentDataSourceAndValidation ValidateUIComponentDataSource        // 处理UI组件数据源和验证 - 验证UI组件数据源的有效性
 #define ProcessUIComponentResourceAllocation FUN_180760c90            // 处理UI组件资源分配 - 为UI组件分配必要的资源
 #define ValidateUIComponentHandleWithBounds FUN_180749940             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
 #define ProcessUIComponentHandleWithEventDispatch FUN_180744ae0      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
@@ -2144,7 +2144,7 @@ typedef enum {
 #define ProcessUILongOperationB FUN_18073c17d
 
 // UI系统函数宏定义 - 完成UI任务
-#define CompleteUITask FUN_18073c1e0
+#define CompleteUITask CompleteUIContextProcessingTask
 
 // UI系统函数宏定义 - 处理UI事件
 #define ProcessUIEventHandling FUN_18073c258
@@ -128491,8 +128491,9 @@ ProcessUIContextMemoryCleanupAndRender:
   if (DataSourceOffset != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  
+  // 执行UI渲染任务（使用加密栈值）
+  ExecuteUIRenderTask(EncryptedStackValue ^ (ulonglong)EncryptionKeyBuffer);
 }
 
 
@@ -128566,7 +128567,7 @@ FUN_18073c258:
 
 
 
- void FUN_18073c1e0(void)
+ void CompleteUIContextProcessingTask(void)
 /**
  * @brief UI上下文任务完成处理器
  * 
@@ -128580,7 +128581,7 @@ FUN_18073c258:
  * 2. 执行UI缓冲区数据处理
  * 3. 执行UI上下文数据操作
  * 
- * @note 原始函数名：FUN_18073c1e0
+ * @note 原始函数名：CompleteUIContextProcessingTask
  */
 void ProcessUIContextTaskCompletion(void)
 
@@ -207412,7 +207413,7 @@ LAB_180787df9:
  * 
  * @note 原始函数名：ProcessUICharacterValidation
  * @warning 该函数包含复杂的字符编码处理逻辑，需要仔细验证
- * @see ValidateUIMemoryOperation, FUN_180760790, FUN_180760c90
+ * @see ValidateUIMemoryOperation, ValidateUIComponentDataSource, FUN_180760c90
  */
 int ProcessUICharacterValidation(longlong uiContext, UIDword dataSource, longlong *targetBuffer, longlong *bufferSize)
 {
@@ -207575,14 +207576,14 @@ LAB_180787ee9:
     
     // 清理UI资源
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787f3e;
-    FUN_1807864f0(memoryAllocationFlag, 0);
+    ReleaseUIContextMemoryAndCleanup(memoryAllocationFlag, 0);
     *(UIDword *)(*(longlong *)(memoryAllocationFlag + 0x48) + 0x116e8) = *(UIDword *)(memoryAllocationFlag + 0x318);
     contextDataHandle = *(longlong *)(*(longlong *)(memoryAllocationFlag + 0x48) + 0x107b8);
     
     if (*(int *)(contextDataHandle + 0x30) == 0) {
       *(int *)(memoryAllocationFlag + 0x318) = *(int *)(memoryAllocationFlag + 0x318) + 1;
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787fd1;
-      operationResult = FUN_180760790(contextDataHandle, registerValue);
+      operationResult = ValidateUIComponentDataSource(contextDataHandle, registerValue);
       *(UIDword *)(contextDataHandle + 0x34) = 0;
     }
     else {
@@ -207626,7 +207627,7 @@ LAB_180787ee9:
         }
         
         *(UIHandle *)((longlong)register0x00000020 + -8) = 0x18078805e;
-        FUN_1807864f0(memoryAllocationFlag, 2);
+        ReleaseUIContextMemoryAndCleanup(memoryAllocationFlag, 2);
         operationResult = 0;
       }
     }
@@ -207665,7 +207666,7 @@ LAB_180788061:
  * 
  * @note 原始函数名：FUN_180787e70
  * @warning 该函数包含不返回的子程序调用，使用时需要特别注意
- * @see ValidateUIMemoryOperation, FUN_1807864f0, FUN_180760790
+ * @see ValidateUIMemoryOperation, ReleaseUIContextMemoryAndCleanup, ValidateUIComponentDataSource
  */
 int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSource,longlong *targetBuffer,longlong *bufferSize)
 
@@ -207695,12 +207696,12 @@ int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSo
       func_0x000180743c20(*bufferSize,(int)bufferSize[1]);
       *(UIByte *)((longlong)bufferSize + 0xc) = 1;
     }
-    FUN_1807864f0(uiContext,0);
+    ReleaseUIContextMemoryAndCleanup(uiContext,0);
     *(UIDword *)(*(longlong *)(uiBufferData + 0x48) + 0x116e8) = *(UIDword *)(uiBufferData + 0x318);
     componentHandle = *(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x107b8);
     if (*(int *)(componentIndex + 0x30) == 0) {
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
-      sourceDataInt = FUN_180760790(componentIndex,dataSource);
+      sourceDataInt = ValidateUIComponentDataSource(componentIndex,dataSource);
       *(UIDword *)(componentIndex + 0x34) = 0;
     }
     else {
@@ -207726,7 +207727,7 @@ int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSo
            ((*(uint *)(componentIndex + 0x11840) & 0x100) != 0)) {
           (**(code **)(componentIndex + 0x11838))(componentIndex,0x100,0,0,*(UIHandle *)(componentIndex + 0x11670));
         }
-        FUN_1807864f0(uiContext,2);
+        ReleaseUIContextMemoryAndCleanup(uiContext,2);
         sourceDataInt = 0;
       }
     }
@@ -207770,12 +207771,12 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
       func_0x000180743c20(*bufferSize,(int)bufferSize[1]);
       *(UIByte *)((longlong)bufferSize + 0xc) = 1;
     }
-    FUN_1807864f0(uiContext,0);
+    ReleaseUIContextMemoryAndCleanup(uiContext,0);
     *(UIDword *)(*(longlong *)(uiBufferData + 0x48) + 0x116e8) = *(UIDword *)(uiBufferData + 0x318);
     allocatedMemory = *(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x107b8);
     if (*(int *)(allocatedMemory + 0x30) == 0) {
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
-      uiCompareResult = FUN_180760790(allocatedMemory,dataSource);
+      uiCompareResult = ValidateUIComponentDataSource(allocatedMemory,dataSource);
       *(UIDword *)(allocatedMemory + 0x34) = 0;
     }
     else {
@@ -207801,7 +207802,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
            ((*(uint *)(allocatedMemory + 0x11840) & 0x100) != 0)) {
           (**(code **)(allocatedMemory + 0x11838))(allocatedMemory,0x100,0,0,*(UIHandle *)(allocatedMemory + 0x11670));
         }
-        FUN_1807864f0(uiContext,2);
+        ReleaseUIContextMemoryAndCleanup(uiContext,2);
         uiCompareResult = 0;
       }
     }
