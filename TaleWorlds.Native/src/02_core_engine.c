@@ -293,7 +293,8 @@
 #define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
 #define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
-#define FUN_180190780 ReleaseSystemHandle              #define FUN_1801907f0 ProcessSystemByteOperation                        // 处理系统字节操作
+#define FUN_180190780 ReleaseSystemHandleResources                       // 释放系统句柄资源
+#define FUN_1801907f0 ProcessSystemByteOperation                        // 处理系统字节操作
 #define FUN_180190a20 InitializeSystemContextTransfer                    // 初始化系统上下文传输
 #define FUN_180190a35 FinalizeSystemContextTransfer                      // 完成系统上下文传输
 #define FUN_180190a4d ResetSystemTransferState                           // 重置系统传输状态
@@ -295212,4 +295213,53 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  * @note 原始函数名：FUN_1801865a0
  */
 #define FinalizeSystemContextAndCleanup FUN_1801865a0
+
+// =============================================================================
+// 额外的核心引擎函数美化定义
+// =============================================================================
+
+/**
+ * @brief 系统资源分配和初始化函数
+ * 
+ * 负责系统资源的分配和初始化操作，包括内存分配、资源初始化等
+ * 
+ * @note 原始函数名：FUN_1801879d0
+ */
+#define AllocateAndInitializeSystemResources FUN_1801879d0
+
+/**
+ * @brief 系统缓冲区数据处理函数
+ * 
+ * 处理系统缓冲区中的数据，包括数据的读取、写入和转换操作
+ * 
+ * @note 原始函数名：FUN_180187a30
+ */
+#define ProcessSystemBufferDataOperations FUN_180187a30
+
+/**
+ * @brief 系统内存管理和优化函数
+ * 
+ * 执行系统内存的管理和优化操作，提高内存使用效率
+ * 
+ * @note 原始函数名：FUN_180187aa0
+ */
+#define OptimizeSystemMemoryManagement FUN_180187aa0
+
+/**
+ * @brief 系统数据传输和同步函数
+ * 
+ * 执行系统数据的传输和同步操作，确保数据一致性
+ * 
+ * @note 原始函数名：FUN_180187b40
+ */
+#define SynchronizeSystemDataTransfer FUN_180187b40
+
+/**
+ * @brief 系统状态监控和报告函数
+ * 
+ * 监控系统状态并生成报告，用于系统维护和调试
+ * 
+ * @note 原始函数名：FUN_180187bd0
+ */
+#define MonitorAndReportSystemStatus FUN_180187bd0
 

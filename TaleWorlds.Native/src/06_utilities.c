@@ -142318,19 +142318,19 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
 int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlags, uint8_t OptimizationLevel)
 {
     // 系统资源清理状态变量
-    uint32_t cleanupStatus;
-    uint32_t memoryFreedCount;
-    uint32_t cacheClearedCount;
-    uint32_t optimizationScore;
-    void* resourcePointer;
-    uint8_t currentCleanupFlag;
+    uint32_t CleanupStatus;
+    uint32_t MemoryFreedCount;
+    uint32_t CacheClearedCount;
+    uint32_t OptimizationScore;
+    void* ResourcePointer;
+    uint8_t CurrentCleanupFlag;
     
     // 初始化清理状态变量
-    cleanupStatus = 0;
-    memoryFreedCount = 0;
-    cacheClearedCount = 0;
-    optimizationScore = 0;
-    resourcePointer = ResourceHandle;
+    CleanupStatus = 0;
+    MemoryFreedCount = 0;
+    CacheClearedCount = 0;
+    OptimizationScore = 0;
+    ResourcePointer = ResourceHandle;
     
     // 验证资源句柄的有效性
     if (ResourcePointer == NULL) {
@@ -142340,27 +142340,27 @@ int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlag
     // 根据清理标志执行相应的清理操作
     if (CleanupFlags & CleanupMemoryFlag) {
         // 执行内存清理操作
-        cleanupStatus = ExecuteMemoryCleanup(resourcePointer);
-        if (cleanupStatus == CleanupSuccess) {
-            memoryFreedCount = GetFreedMemoryCount(resourcePointer);
+        CleanupStatus = ExecuteMemoryCleanup(ResourcePointer);
+        if (CleanupStatus == CleanupSuccess) {
+            MemoryFreedCount = GetFreedMemoryCount(ResourcePointer);
         }
     }
     
     if (CleanupFlags & CleanupCacheFlag) {
         // 执行缓存清理操作
-        cleanupStatus = ExecuteCacheCleanup(resourcePointer);
-        if (cleanupStatus == CleanupSuccess) {
-            cacheClearedCount = GetClearedCacheCount(resourcePointer);
+        CleanupStatus = ExecuteCacheCleanup(ResourcePointer);
+        if (CleanupStatus == CleanupSuccess) {
+            CacheClearedCount = GetClearedCacheCount(ResourcePointer);
         }
     }
     
     // 根据优化级别执行优化操作
     if (OptimizationLevel > 0) {
-        optimizationScore = ExecuteResourceOptimization(resourcePointer, OptimizationLevel);
+        OptimizationScore = ExecuteResourceOptimization(ResourcePointer, OptimizationLevel);
     }
     
     // 返回清理结果状态
-    if (cleanupStatus == CleanupSuccess) {
+    if (CleanupStatus == CleanupSuccess) {
         return ResourceCleanupSuccess;
     } else {
         return ResourceCleanupFailure;
