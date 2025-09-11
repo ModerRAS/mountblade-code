@@ -42878,11 +42878,25 @@ void UtilityNoOperationV(void)
 /**
  * @brief 数据格式验证函数A1
  * 
- * 该函数负责验证数据格式，执行多层安全检查和内存分配操作
+ * 该函数负责验证数据格式，执行多层安全检查和内存分配操作。这是系统数据
+ * 验证的重要组成部分，确保数据在系统处理过程中保持完整性和安全性。
  * 
- * @param operationBase 操作基础参数
- * @param dataBuffer 数据缓冲区指针
- * @return DataBuffer 验证状态结果
+ * @details 函数执行流程：
+ * 1. 执行安全验证，检查数据缓冲区的安全性
+ * 2. 初始化验证标志和内存分配缓冲区
+ * 3. 执行数据安全验证，检查数据格式和完整性
+ * 4. 根据验证结果决定是否需要额外的安全检查
+ * 5. 返回验证状态结果
+ * 
+ * @param operationBase 操作基础参数，用于指定验证操作的上下文
+ * @param dataBuffer 数据缓冲区指针，指向需要验证的数据区域
+ * @return DataBuffer 验证状态结果，包含验证成功或失败的详细信息
+ * 
+ * @note 原始函数名：FUN_18089d240
+ * @note 该函数是数据验证系统的核心组件之一
+ * @warning 如果验证失败，可能需要终止数据处理操作
+ * 
+ * @see ExecuteSecurityValidation, ValidateDataSecurityA0, ExecutePortControlOperation
  */
 DataBuffer ValidateDataFormatA1(DataBuffer operationBase,int64_t *dataBuffer)
 
@@ -42989,9 +43003,23 @@ ValidationStateUpdate2:
 /**
  * @brief 获取系统状态A2
  * 
- * 该函数负责获取系统状态信息，执行多层安全检查和内存分配操作
+ * 该函数负责获取系统状态信息，执行多层安全检查和内存分配操作。这是系统状态
+ * 监控的重要组成部分，确保系统能够准确报告当前的运行状态和健康状况。
  * 
- * @return DataBuffer 系统状态结果
+ * @details 函数执行流程：
+ * 1. 初始化异常上下文和验证状态变量
+ * 2. 设置系统验证参数和状态标志
+ * 3. 执行系统状态检查和安全验证
+ * 4. 处理异常情况和错误状态
+ * 5. 返回系统状态结果
+ * 
+ * @return DataBuffer 系统状态结果，包含系统当前状态的详细信息
+ * 
+ * @note 原始函数名：FUN_18089d2c0
+ * @note 该函数是系统状态监控的核心组件之一
+ * @warning 如果系统状态检查失败，可能需要重启系统服务
+ * 
+ * @see ValidateSystemState, CheckSystemHealth, MonitorSystemPerformance
  */
 DataBuffer GetSystemStatusA2(void)
 
