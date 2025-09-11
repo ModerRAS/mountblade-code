@@ -58,13 +58,13 @@
 #define DataProcessingMultiplier 0xc
 
 // 数据处理操作偏移常量
-#define DataOperationParameterOffset10 0x10                  // 数据操作参数偏移量10 - 用于数据操作的第一参数
-#define DataOperationParameterOffset14 0x14                  // 数据操作参数偏移量14 - 用于数据操作的第二参数
-#define DataOperationParameterOffset16 0x16                  // 数据操作参数偏移量16 - 用于数据操作的第三参数
+#define DataOperationParameterPrimaryOffset 0x10                  // 数据操作参数主偏移量 - 用于数据操作的第一参数
+#define DataOperationParameterSecondaryOffset 0x14                  // 数据操作参数次偏移量 - 用于数据操作的第二参数
+#define DataOperationParameterTertiaryOffset 0x16                  // 数据操作参数三级偏移量 - 用于数据操作的第三参数
 
 // 资源清理偏移常量
-#define ResourceCleanupPrimaryOffset28 0x28                   // 资源清理主偏移量28 - 用于主资源清理操作
-#define ResourceCleanupSecondaryOffset48 0x48                // 资源清理辅助偏移量48 - 用于辅助资源清理操作
+#define ResourceCleanupPrimaryOffset 0x28                   // 资源清理主偏移量 - 用于主资源清理操作
+#define ResourceCleanupSecondaryOffset 0x48                // 资源清理辅助偏移量 - 用于辅助资源清理操作
 #define ExceptionContextResetOffset18 0x18                    // 异常上下文重置偏移量18 - 用于异常上下文重置操作
 #define ExceptionContextResetOffset20 0x20                    // 异常上下文重置偏移量20 - 用于异常上下文重置操作
 
@@ -2191,7 +2191,7 @@
 #define SystemParameterValidationOffset 0x28               // 系统参数验证偏移量
 #define SystemDataParameterOffset 0x20                      // 系统数据参数偏移量
 #define SystemDataRecordMultiplier 0x18                      // 系统数据记录乘数18
-#define SystemDataRecordOffset3c 0x3c                         // 系统数据记录偏移量3c
+#define SystemDataRecordOffset 0x3c                         // 系统数据记录偏移量
 #define ExceptionHandlerHierarchyB1_CleanupStateOffsetEB8 0xeb8  // 清理状态偏移量EB8
 #define ExceptionHandlerHierarchyB1_CleanupOffsetEC8 0xec8       // 清理偏移量EC8
 #define ExceptionHandlerHierarchyB1_TempCallbackOffsetE90 0xe90 // 临时回调偏移量E90
