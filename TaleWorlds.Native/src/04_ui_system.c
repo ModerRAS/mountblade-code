@@ -133899,7 +133899,7 @@ void ProcessUIContextWithDataTransfer(UIHandle uiContext,UIDword dataSource,UIHa
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(registerPointer + -0x28) = eventHandle;
   memoryResourceHandle = 0;
-  operationResult = FUN_180754f10(uiContext,&contextDataHandle,&memoryResourceHandle);
+  operationResult = InitializeUIRenderContext(uiContext,&contextDataHandle,&memoryResourceHandle);
   if (operationResult == 0) {
     operationResult = func_0x0001807533d0(contextDataHandle,dataSource,targetBuffer);
     if (operationResult == 0) goto CleanupUIContextDataTransfer;
@@ -134054,7 +134054,7 @@ void ProcessUIContextWithEncryption(UIHandle uiContext,UIDword dataSource,UIHand
   
   processedEncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
   memoryResourceHandle = 0;
-  operationResult = FUN_180754f10(uiContext,&contextDataHandle,&memoryResourceHandle);
+  operationResult = InitializeUIRenderContext(uiContext,&contextDataHandle,&memoryResourceHandle);
   if (operationResult == 0) {
     operationResult = func_0x0001807534d0(contextDataHandle,dataSource,targetBuffer);
     if (operationResult == 0) goto CleanupUIContextWithEncryption;
