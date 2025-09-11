@@ -1025,6 +1025,7 @@ typedef enum {
 #define auStackX_10 UIStackTransformBuffer10                // UI栈变换缓冲区10
 
 // UI系统函数补充定义
+#define FUN_18073bbdd UIEventCleanupHandler  // UI事件清理处理器
 #define FUN_1808005be ProcessUIComponentWithByte
 #define FUN_180801390 ProcessUIComponentWithUInt
 #define FUN_180801a10 ProcessUIComponentWithDword
@@ -128521,7 +128522,7 @@ void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,U
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = func_0x000180748d70(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073bbdd;
+    if (operationResult == 0) goto UIEventCleanupHandler;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = ProcessUIDataAndCompare(astackUInt138,0x100,dataSource);
@@ -128579,7 +128580,7 @@ void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDwo
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = func_0x000180748d70(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073bbdd;
+    if (operationResult == 0) goto UIEventCleanupHandler;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = ProcessUIDataAndCompare(&stack0x00000040,0x100,dataSource);
@@ -134674,7 +134675,6 @@ event_handling_complete:
  
 
  void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
-void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
 
 {
   int operationResult;
