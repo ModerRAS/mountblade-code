@@ -39433,6 +39433,15 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   ByteFlag securityBuffer1 [32];
   ByteFlag securityBuffer2 [32];
   
+  // 缺失的变量定义 - 根据代码使用情况添加
+  DataBuffer *dataBuffer;                    // 数据缓冲区指针
+  int64_t operationBase;                      // 操作基础地址
+  DataBuffer systemDataBuffer;                // 系统数据缓冲区
+  uint64_t validationOutcome;                // 验证结果
+  DataBuffer stackDataBuffer78;              // 栈数据缓冲区78
+  DataBuffer stackDataBuffer74;              // 栈数据缓冲区74
+  DataBuffer stackDataBuffer70;              // 栈数据缓冲区70
+  
   validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,SecurityValidationCodeLMPO);
   if ((int)validationResult != 0) {
     return validationResult;
