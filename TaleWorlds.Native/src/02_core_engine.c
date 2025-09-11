@@ -181,7 +181,7 @@
 #define FUN_180631000 ProcessSystemStringWithMemoryBuffer                // 处理系统字符串与内存缓冲区
 
 // 系统内存分配函数语义化宏定义
-#define FUN_18020d8a0 ProcessSystemMemoryAllocation                      // 处理系统内存分配
+#define FUN_18020d8a0 ProcessSystemMemoryAllocationAndDataTransfer       // 处理系统内存分配和数据传输
 #define FUN_18020d730 AllocateSystemContextBuffer                        // 分配系统上下文缓冲区
 
 // 系统字符转换函数语义化宏定义
@@ -261871,7 +261871,18 @@ LAB_18020d80a:
 
 
 
-0d8a0(long long *ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020d8a0(long long *ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存分配和数据传输操作
+ * 
+ * 该函数负责处理系统级别的内存分配和数据传输，包括内存管理、
+ * 数据传输和资源清理功能。
+ * 
+ * @param ContextHandle 上下文句柄指针，用于访问系统资源
+ * @param ContextHandleSize 上下文句柄大小指针，指定上下文的大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的数据
+ * @param Utf16EndPointer UTF-16结束指针，用于标记处理后的数据位置
+ */
+void ProcessSystemMemoryAllocationAndDataTransfer(long long *ContextHandle, uint64_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
