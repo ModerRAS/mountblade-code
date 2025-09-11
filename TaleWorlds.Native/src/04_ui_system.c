@@ -134757,7 +134757,7 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
     *dataSource = 0;
   }
   RenderContextSize = 0;
-  operationResult = FUN_180758ed0(uiContext,&pstackLong120,&RenderContextSize);
+  operationResult = InitializeUIDataSource(uiContext,&pstackLong120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = (**(code **)(*pstackLong120 + 0x1f0))(pstackLong120,dataSource);
     if (operationResult == 0) goto LAB_18073fc56;

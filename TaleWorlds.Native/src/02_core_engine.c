@@ -259977,7 +259977,7 @@ LAB_18020b1b3:
     auStack_4e8[0] = 1;
   }
   *(uint8_t *)(plStack_438 + 9) = auStack_4e8[0];
-  ContextHandleTablePointer = (long long *)FUN_18020d6c0(pcStack_498,plStack_438 + 4);
+  ContextHandleTablePointer = (long long *)ValidateSystemMemoryIntegrity(pcStack_498,plStack_438 + 4);
   plStack_448 = ContextHandleTablePointer;
   if (StringProcessingStatus != NULL) {
     SystemValidationFunction8 = "game_entity";
