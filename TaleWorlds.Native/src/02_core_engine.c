@@ -227018,45 +227018,45 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
       SystemStringIndex = -1;
       do {
         SystemStringIndex = SystemStringIndex + 1;
-      } while (*(char *)(*(long long *)((long long)*pCharacterStatusBuffer + 0x40) + SystemStringIndex) != '\0');
-      ReallocateContextHandle(&pSystemCleanupFlagF);
-      SystemStringIndex = (long long)*pCharacterStatusBuffer;
-      MemoryOffsetValue = *(uint8_t *)(SystemStringIndex + 0x48);
-      uStack_b4 = *(void *)(SystemStringIndex + 0x4c);
-      ProcessingCounter = 0;
+      } while (*(char *)(*(long long *)((long long)*CharacterStatusBufferPointer + 0x40) + SystemStringIndex) != '\0');
+      ReallocateContextHandle(&SystemCleanupFlagPointer);
+      SystemStringIndex = (long long)*CharacterStatusBufferPointer;
+      MemoryAllocationOffset = *(uint8_t *)(SystemStringIndex + 0x48);
+      StackTemporaryValueB4 = *(void *)(SystemStringIndex + 0x4c);
+      ProcessingIterationCounter = 0;
       if (*(long long *)(SystemStringIndex + 0x60) != 0) {
-        pThreadLocalStorageBuffer = (uint64_t **)0x0;
+        ThreadLocalStorageIndexBuffer = (uint64_t **)0x0;
         do {
-          SystemStringIndex = *(long long *)(*(long long *)(SystemStringIndex + 0x58) + 8 + (long long)pThreadLocalStorageBuffer);
-          StackValidationData = 0;
-          CalculationFunctionAddress = 0xf;
+          SystemStringIndex = *(long long *)(*(long long *)(SystemStringIndex + 0x58) + 8 + (long long)ThreadLocalStorageIndexBuffer);
+          StackValidationParameter = 0;
+          FunctionCalculationAddress = 0xf;
           SystemOperationValidationFlag = 0;
           SystemContextValue = -1;
           do {
             SystemContextValue = SystemContextValue + 1;
           } while (*(char *)(OperationBufferSize + SystemContextValue) != '\0');
           ReallocateContextHandle(&SystemOperationValidationFlag,OperationBufferSize);
-          Utf16Char4 = CalculationFunctionAddress;
-          ProcessingStatusFlag = StackValidationData;
-          TemporaryBuffer = SystemEventDispatcher;
+          Utf16CharacterCount4 = FunctionCalculationAddress;
+          SystemProcessingStatusFlag = StackValidationParameter;
+          TemporarySystemBuffer = SystemEventDispatcher;
           if (*(char *)((long long)SystemEventDispatcher[1] + SystemNodeStatusOffset) == '\0') {
-            PrimaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_97,SystemOperationValidationFlag);
+            PrimaryStatusProcessingFlag = (uint8_t *)CONCAT71(StackTemporaryValue97,SystemOperationValidationFlag);
             MemoryAllocationMaskPointer = (void *)SystemEventDispatcher[1];
             do {
-              SecondaryProcessingStatusFlag = MemoryAllocationMaskPointer + 4;
-              StringProcessingStatus = &SystemOperationValidationFlag;
-              if (0xf < Utf16Char4) {
-                TertiaryNode = PrimaryStatusBlock;
+              SecondaryStatusProcessingFlag = MemoryAllocationMaskPointer + 4;
+              StringProcessingBuffer = &SystemOperationValidationFlag;
+              if (0xf < Utf16CharacterCount4) {
+                SystemTertiaryNode = PrimaryStatusBlock;
               }
-              Utf16Char = MemoryAllocationMaskPointer[6];
+              Utf16Character = MemoryAllocationMaskPointer[6];
               if (0xf < (unsigned long long)MemoryAllocationMaskPointer[7]) {
-                SecondaryProcessingStatusFlag = (void *)*SecondaryProcessingStatusFlag;
+                SecondaryStatusProcessingFlag = (void *)*SecondaryStatusProcessingFlag;
               }
-              ValidationResult = Utf16Char;
-              if (ProcessingStatusFlag < Utf16Char) {
-                ValidationResult = ProcessingStatusFlag;
+              CharacterValidationResult = Utf16Character;
+              if (SystemProcessingStatusFlag < Utf16Character) {
+                CharacterValidationResult = SystemProcessingStatusFlag;
               }
-              MemoryNodeComparisonResult = memcmp(SecondaryProcessingStatusFlag,StringProcessingStatus,ValidationResult);
+              MemoryNodeComparisonResult = memcmp(SecondaryStatusProcessingFlag,StringProcessingBuffer,CharacterValidationResult);
               if (InputDataLength == 0) {
                 if (Utf16Char < ProcessingStatusFlag) goto LAB_180187642;
 LAB_1801875f6:
