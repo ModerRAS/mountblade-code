@@ -140263,11 +140263,11 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：销毁系统互斥锁，清理同步资源
 #define DestroySystemMutex Unwind_180908750
 
-// 原始函数名：Unwind_180908760 - 条件互斥锁销毁函数
+// 条件互斥锁销毁函数
 // 功能：销毁指定数据缓冲区中的条件互斥锁
 #define DestroyConditionalMutex Unwind_180908760
 
-// 原始函数名：Unwind_180908770 - 异常处理器链执行函数
+// 异常处理器链执行函数
 // 功能：遍历异常处理器链，执行所有注册的异常处理器
 #define ExecuteExceptionHandlerChain Unwind_180908770
 
