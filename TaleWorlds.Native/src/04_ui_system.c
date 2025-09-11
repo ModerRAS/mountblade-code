@@ -129525,28 +129525,39 @@ LAB_18073cb2b:
 
  
 
- void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 复制UI数据缓冲区并执行渲染任务
+ * 
+ * 该函数负责复制UI数据缓冲区，包括数据验证、缓冲区复制和渲染任务执行。
+ * 使用XOR加密保护栈参数，确保数据操作的安全性。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识数据来源
+ * 
+ * @note 此函数使用加密栈保护参数安全
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void CopyUIDataBufferAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  UIHandle *apstackUInt128 [2];
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *bufferDataPointer;
+  UIHandle *contextHandleArray [2];
+  UIByte bufferCopyData [256];
+  ulonglong encryptedStackKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = func_0x00018074fb10(uiContext,apstackUInt128,0);
-  if (((processingResult != 0) || (operationResult = (**(code **)*apstackUInt128[0])(apstackUInt128[0],dataSource), processingResult != 0))
+  encryptedStackKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  operationResult = func_0x00018074fb10(uiContext,contextHandleArray,0);
+  if (((processingResult != 0) || (operationResult = (**(code **)*contextHandleArray[0])(contextHandleArray[0],dataSource), processingResult != 0))
      && ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    CopyUIDataBuffer(bufferCopyData,0x100,dataSource);
+    bufferDataPointer = bufferCopyData;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationEventData);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedStackKey ^ (ulonglong)encryptionBuffer);
 }
 
 
