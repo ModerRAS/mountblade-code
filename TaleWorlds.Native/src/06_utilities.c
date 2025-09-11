@@ -1001,29 +1001,31 @@ typedef union {
 #define ExceptionHandlerResetOffset1980 ExceptionHandlerRecoveryAddress1980        // 异常处理器恢复地址1980
 
 // 异常处理器状态重置偏移量常量 (1a30系列)
-#define ExceptionHandlerResetOffset1a30 0x1a30
-#define ExceptionHandlerResetOffset1a20 0x1a20
-#define ExceptionHandlerResetOffset19f8 0x19f8
-#define ExceptionHandlerResetOffset1a00 0x1a00
-#define ExceptionHandlerResetOffset1a10 0x1a10
-#define ExceptionHandlerResetOffset19d8 0x19d8
-#define ExceptionHandlerResetOffset19e0 0x19e0
-#define ExceptionHandlerResetOffset19f0 0x19f0
+#define ExceptionHandlerResetOffset1a30 ExceptionHandlerResetAddress1A30          // 异常处理器重置地址1A30
+#define ExceptionHandlerResetOffset1a20 ExceptionHandlerResetSecondaryAddress1A20 // 异常处理器重置辅助地址1A20
+#define ExceptionHandlerResetOffset19f8 ExceptionHandlerResetControlAddress19F8   // 异常处理器重置控制地址19F8
+#define ExceptionHandlerResetOffset1a00 ExceptionHandlerResetStatusAddress1A00    // 异常处理器重置状态地址1A00
+#define ExceptionHandlerResetOffset1a10 ExceptionHandlerResetDataAddress1A10      // 异常处理器重置数据地址1A10
+#define ExceptionHandlerResetOffset19d8 ExceptionHandlerResetValidationAddress19D8 // 异常处理器重置验证地址19D8
+#define ExceptionHandlerResetOffset19e0 ExceptionHandlerResetConfigAddress19E0     // 异常处理器重置配置地址19E0
+#define ExceptionHandlerResetOffset19f0 ExceptionHandlerResetFlagAddress19F0     // 异常处理器重置标志地址19F0
 
 // 异常处理器状态重置偏移量常量 (1aa0系列)
-#define ExceptionHandlerResetOffset1aa0 0x1aa0
-#define ExceptionHandlerResetOffset1a90 0x1a90
-#define ExceptionHandlerResetOffset1ab0 0x1ab0
-#define ExceptionHandlerResetOffset1a98 0x1a98
-#define ExceptionHandlerResetOffset1aa8 0x1aa8
-#define ExceptionHandlerResetOffset1a58 0x1a58
-#define ExceptionHandlerResetOffset1a68 0x1a68
-#define ExceptionHandlerResetOffset1a78 0x1a78
-#define ExceptionRecoveryHandlerOffset78 0x78
-#define ExceptionRecoveryHandlerOffset80 0x80
-#define ExceptionRecoveryHandlerOffset90 0x90
-#define ExceptionRecoveryHandlerOffset148 0x148
-#define ExceptionRecoveryHandlerOffsetB0 0xb0
+#define ExceptionHandlerResetOffset1aa0 ExceptionHandlerRecoveryAddress1AA0       // 异常处理器恢复地址1AA0
+#define ExceptionHandlerResetOffset1a90 ExceptionHandlerRecoverySecondaryAddress1A90 // 异常处理器恢复辅助地址1A90
+#define ExceptionHandlerResetOffset1ab0 ExceptionHandlerRecoveryTertiaryAddress1AB0 // 异常处理器恢复第三地址1AB0
+#define ExceptionHandlerResetOffset1a98 ExceptionHandlerRecoveryControlAddress1A98 // 异常处理器恢复控制地址1A98
+#define ExceptionHandlerResetOffset1aa8 ExceptionHandlerRecoveryStatusAddress1AA8  // 异常处理器恢复状态地址1AA8
+#define ExceptionHandlerResetOffset1a58 ExceptionHandlerRecoveryDataAddress1A58   // 异常处理器恢复数据地址1A58
+#define ExceptionHandlerResetOffset1a68 ExceptionHandlerRecoveryConfigAddress1A68 // 异常处理器恢复配置地址1A68
+#define ExceptionHandlerResetOffset1a78 ExceptionHandlerRecoveryFlagAddress1A78   // 异常处理器恢复标志地址1A78
+
+// 异常恢复处理器偏移量常量
+#define ExceptionRecoveryHandlerOffset78 ExceptionRecoveryBaseAddress78           // 异常恢复基础地址78
+#define ExceptionRecoveryHandlerOffset80 ExceptionRecoveryStatusAddress80       // 异常恢复状态地址80
+#define ExceptionRecoveryHandlerOffset90 ExceptionRecoveryDataAddress90         // 异常恢复数据地址90
+#define ExceptionRecoveryHandlerOffset148 ExceptionRecoveryControlAddress148    // 异常恢复控制地址148
+#define ExceptionRecoveryHandlerOffsetB0 ExceptionRecoveryConfigAddressB0        // 异常恢复配置地址B0
 
 // 资源清理偏移量常量
 #define ResourceCleanupOffset438 0x438                    // 资源清理偏移量438
