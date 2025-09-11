@@ -10089,7 +10089,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1808a5d60 - 内存分配验证函数
 // 功能：验证内存分配状态和访问权限
-#define ValidateMemoryAllocation FUN_1808a5d60
+#define ValidateMemoryAllocation VerifyMemoryAllocationStatus
 
 // 异常处理器清理函数组
 #define CleanupExceptionHandlerA0 Unwind_1809115c0
@@ -10099,10 +10099,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统功能函数组
 #define GetSystemParameter GetSystemParameter
 #define GetSecurityCheckResult GetSecurityCheckResult
-#define ProcessDataValidationAndSecurityCheck FUN_18089dcf0
+#define ProcessDataValidationAndSecurityCheck ExecuteDataValidationAndSecurityVerification
 
 // 系统处理和验证函数组
-#define ProcesssystemContext FUN_18089dd54
+#define ProcesssystemContext ExecuteSystemContextProcessing
 #define ValidateSystemState FUN_18089dd78
 
 /**
