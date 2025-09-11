@@ -5001,8 +5001,8 @@ void* UIGestureCoordinates;
 
  // UI系统全局状态标志宏定义
 #define UIGlobalStatusFlag1 UIRenderStateInitializationFlag     // UI全局状态标志1 - 渲染状态初始化标志
-#define UIGlobalStatusFlag2 _DAT_180d4a740               // UI全局状态标志2
-#define UIGlobalStatusFlag3 _DAT_180d4a700               // UI全局状态标志3
+#define UIGlobalStatusFlag2 UIComponentActiveFlag         // UI全局状态标志2 - 组件活动标志
+#define UIGlobalStatusFlag3 UILayoutProcessingFlag        // UI全局状态标志3 - 布局处理标志
 #define UIGlobalStatusFlag4 _DAT_180d4a6e0               // UI全局状态标志4
 #define UIGlobalStatusFlag5 _DAT_180d4a6b8               // UI全局状态标志5
 #define UIGlobalStatusFlag6 _DAT_180d4a968               // UI全局状态标志6
@@ -100010,6 +100010,19 @@ int NormalizeUIDataOptimized(longlong uiContext,longlong dataSource,int targetBu
 
 
 
+/**
+ * @brief 处理UI SIMD操作
+ * 
+ * 该函数使用SIMD指令执行UI相关的高性能计算操作：
+ * - 执行单指令多数据流处理
+ * - 优化UI计算性能
+ * - 处理浮点数运算和位操作
+ * 
+ * @return 处理结果的整数表示
+ * 
+ * @note 原始函数名：ProcessUISIMDOperation
+ * @note 该函数使用了movmskpd指令进行掩码提取
+ */
 int ProcessUISIMDOperation(void)
 
 {
