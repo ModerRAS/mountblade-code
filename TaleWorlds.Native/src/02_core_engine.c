@@ -32478,7 +32478,7 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
             (unsigned long long)(long long)QueueIndex) goto IndexValidationLoop;
         MemoryAddress = (long long)QueueIndex * 0x20 + MemoryAddress;
       }
-      PrimaryStackPointer18 = &SystemNullTemplate;
+      PrimaryEventBufferData = &SystemNullTemplate;
       StackBufferSizeValue = 0;
       PrimaryStackPointer10 = (uint8_t *)0x0;
       StackProcessingSizeValue = 0;
