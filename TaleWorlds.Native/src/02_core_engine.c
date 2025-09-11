@@ -235287,7 +235287,23 @@ void ProcessSystemMemoryConfigurationAndCleanup(long long ContextHandle,uint64_t
 
 
 
-void FUN_180191df0(long long ContextHandle,int OperationBufferSize)
+// 函数: void InitializeSystemMemoryPoolAndContext(long long ContextHandle,int OperationBufferSize)
+/**
+ * @brief 初始化系统内存池和上下文
+ * 
+ * 该函数负责初始化系统内存池和上下文，主要功能包括：
+ * - 分配和初始化内存池
+ * - 设置字符表指针和状态
+ * - 配置线程本地存储数据
+ * - 初始化系统上下文句柄
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180191df0
+ */
+#define InitializeSystemMemoryPoolAndContext FUN_180191df0
+void InitializeSystemMemoryPoolAndContext(long long ContextHandle,int OperationBufferSize)
 {
   long long MainCalculationResult;
   uint64_t MemoryPoolIndex;
