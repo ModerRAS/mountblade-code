@@ -125447,15 +125447,20 @@ void ProcessUIComponentStateUpdate(void)
 
 
 
- void FUN_18073a6eb(void)
-void FUN_18073a6eb(void)
+ /**
+ * 处理UI动画数据
+ * 
+ * 该函数处理UI动画相关的数据，释放内存资源并执行渲染任务。
+ * 
+ */
+void ProcessUIAnimationData(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong uiStackEncryptionKey;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(uiStackEncryptionKey ^ (ulonglong)&UIStackBasePointer);
 }
 
 
