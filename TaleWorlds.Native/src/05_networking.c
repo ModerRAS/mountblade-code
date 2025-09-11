@@ -5497,7 +5497,7 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *Connectio
  * 对网络连接进行全面的安全性和完整性验证，包括数据传输的完整性检查、
  * 安全协议验证、连接状态确认等关键安全环节。
  * 
- * @param NetworkConnectionContext 网络连接上下文指针，包含连接的所有状态和安全信息
+ * @param ConnectionContext 网络连接上下文指针，包含连接的所有状态和安全信息
  * @return uint32_t 验证结果，NetworkValidationSuccess表示验证通过，其他值表示具体的验证失败类型
  * 
  * @retval NetworkValidationSuccess 验证成功，连接完整性和安全性都符合要求
@@ -5509,20 +5509,20 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *Connectio
  * 
  * 原始实现：简化实现，通过组合数据完整性检查和安全验证来完成验证
  */
-static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *connectionContext)
+static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *ConnectionContext)
 {
-    uint32_t dataIntegrityCheckResult;
-    uint32_t securityValidationResult;
+    uint32_t DataIntegrityCheckResult;
+    uint32_t SecurityValidationResult;
     
     // 执行数据完整性检查
-    dataIntegrityCheckResult = PerformDataIntegrityCheck(connectionContext);
+    DataIntegrityCheckResult = PerformDataIntegrityCheck(ConnectionContext);
     
     // 执行安全性验证
-    securityValidationResult = PerformSecurityValidation(connectionContext);
+    SecurityValidationResult = PerformSecurityValidation(ConnectionContext);
     
     // 综合验证结果
-    if (dataIntegrityCheckResult == NetworkValidationSuccess && 
-        securityValidationResult == NetworkValidationSuccess) {
+    if (DataIntegrityCheckResult == NetworkValidationSuccess && 
+        SecurityValidationResult == NetworkValidationSuccess) {
         return NetworkValidationSuccess;
     }
     
@@ -5534,16 +5534,16 @@ static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *connection
  * 
  * 更新网络连接的最后活动时间戳
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionContext 网络连接上下文指针
  */
-static void UpdateConnectionTimestamp(NetworkConnectionContext *connectionContext)
+static void UpdateConnectionTimestamp(NetworkConnectionContext *ConnectionContext)
 {
     // 获取当前系统时间
-    uint64_t currentSystemTime = GetCurrentSystemTime();
+    uint64_t CurrentSystemTime = GetCurrentSystemTime();
     
     // 更新连接时间戳
-    NetworkConnectionContext->lastActivityTime = currentSystemTime;
-    NetworkConnectionContext->heartbeatTimestamp = currentSystemTime;
+    ConnectionContext->lastActivityTime = CurrentSystemTime;
+    ConnectionContext->heartbeatTimestamp = CurrentSystemTime;
 }
 
 /**
@@ -5551,19 +5551,19 @@ static void UpdateConnectionTimestamp(NetworkConnectionContext *connectionContex
  * 
  * 安全地终止网络连接并释放相关资源
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionContext 网络连接上下文指针
  */
-static void TerminateNetworkConnection(NetworkConnectionContext *connectionContext)
+static void TerminateNetworkConnection(NetworkConnectionContext *ConnectionContext)
 {
     // 发送连接终止通知
-    SendConnectionTerminationNotification(connectionContext);
+    SendConnectionTerminationNotification(ConnectionContext);
     
     // 释放连接资源
-    ReleaseConnectionResources(connectionContext);
+    ReleaseConnectionResources(ConnectionContext);
     
     // 清理连接状态
-    NetworkConnectionContext->connectionStatus = 0;
-    NetworkConnectionContext->connectionHandle = NetworkErrorInvalidHandle;
+    ConnectionContext->connectionStatus = 0;
+    ConnectionContext->connectionHandle = NetworkErrorInvalidHandle;
 }
 
 /**
@@ -5571,29 +5571,29 @@ static void TerminateNetworkConnection(NetworkConnectionContext *connectionConte
  * 
  * 建立新的网络连接
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionContext 网络连接上下文指针
  * @param TimeoutValue 超时值
  * @return NetworkHandle 返回网络句柄
  */
-static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *connectionContext, uint32_t timeoutValue)
+static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *ConnectionContext, uint32_t TimeoutValue)
 {
-    NetworkHandle newConnectionHandle;
-    uint32_t connectionEstablishmentResult;
+    NetworkHandle NewConnectionHandle;
+    uint32_t ConnectionEstablishmentResult;
     
     // 初始化连接参数
-    InitializeConnectionParameters(connectionContext);
+    InitializeConnectionParameters(ConnectionContext);
     
     // 执行连接建立过程
-    connectionEstablishmentResult = PerformConnectionHandshake(connectionContext, timeoutValue);
+    ConnectionEstablishmentResult = PerformConnectionHandshake(ConnectionContext, TimeoutValue);
     
-    if (connectionEstablishmentResult == NetworkOperationSuccess) {
+    if (ConnectionEstablishmentResult == NetworkOperationSuccess) {
         // 连接成功，生成连接句柄
-        newConnectionHandle = GenerateConnectionHandle(connectionContext);
+        NewConnectionHandle = GenerateConnectionHandle(ConnectionContext);
         
         // 初始化连接安全上下文
-        InitializeSecurityContext(connectionContext);
+        InitializeSecurityContext(ConnectionContext);
         
-        return newConnectionHandle;
+        return NewConnectionHandle;
     }
     
     return NetworkErrorConnectionFailed;

@@ -65038,18 +65038,18 @@ uint8_t GetSystemStatusFlag(void)
   
   do {
     Sleep(0);
-    while ((*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + systemDataIndexPtr) != '\x02' &&
-           (*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + systemDataIndexPtr) != '\x01'))) {
-      ResourceMemoryOffset = (long long)systemIndex;
-      systemDataIndexPtr = systemDataIndexPtr + SystemInitializationDataOffset18;
-      systemIndex = systemIndex + 1;
+    while ((*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + SystemDataIndexPointer) != '\x02' &&
+           (*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + SystemDataIndexPointer) != '\x01'))) {
+      ResourceMemoryOffset = (long long)SystemIterationIndex;
+      SystemDataIndexPointer = SystemDataIndexPointer + SystemInitializationDataOffset18;
+      SystemIterationIndex = SystemIterationIndex + 1;
       LOCK();
       SystemDataPointer = (uint8_t *)(*(long long *)(MemoryBlockAddress + 0x1e0) + ResourceMemoryOffset * 0x18 + 0x15);
       resourceCreationFlags = *SystemDataPointer;
       *SystemDataPointer = 0;
       UNLOCK();
-      if (0xf < systemIndex) {
-        return resourceCreationFlags;
+      if (0xf < SystemIterationIndex) {
+        return ResourceCreationFlags;
       }
     }
   } while( true );
