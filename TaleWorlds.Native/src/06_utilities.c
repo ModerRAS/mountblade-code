@@ -18897,8 +18897,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   }
   if (*(int32_t *)(SystemContextPointer + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
     SystemDataQueryStatus = ProcessInputData(SystemContextPointer,ComponentValidationDataBuffer);
-    if ((int32_t)systemDataQueryStatus != 0) {
-      return systemDataQueryStatus;
+    if ((int32_t)SystemDataQueryStatus != 0) {
+      return SystemDataQueryStatus;
     }
     componentValidationStatus = ValidateInputData(componentValidationDataBuffer);
     if ((int32_t)componentValidationStatus != 0) {
