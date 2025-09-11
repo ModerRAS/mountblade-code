@@ -127858,8 +127858,18 @@ void PerformUIContextFinalCleanup(void)
 
 
 
- void FUN_18073bbff(void)
-void FUN_18073bbff(void)
+ /**
+ * @brief 执行UI内存资源释放和渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行后续的渲染任务。这是一个关键的清理函数，
+ * 确保UI系统的资源得到正确释放，并触发必要的渲染操作。
+ * 
+ * @note 原始函数名：FUN_18073bbff
+ * @note 这是UI系统资源管理的核心函数之一
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+#define ReleaseUIMemoryAndExecuteRenderTask FUN_18073bbff
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong stackParam00000140;
@@ -127873,8 +127883,27 @@ void FUN_18073bbff(void)
 
  
 
- void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
-void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 执行UI上下文数据处理和验证操作
+ * 
+ * 该函数负责处理UI上下文数据，包括数据验证、清理操作和渲染任务执行。
+ * 它通过多个步骤确保UI数据的完整性和正确性：
+ * 1. 初始化UI上下文和相关参数
+ * 2. 执行数据验证和控制操作
+ * 3. 根据验证结果决定后续处理流程
+ * 4. 在必要时释放内存资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI上下文
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * 
+ * @return void 无返回值，通过内部状态码表示操作结果
+ * 
+ * @note 原始函数名：FUN_18073bc20
+ * @note 该函数是UI数据处理流程的重要组成部分
+ * @see ProcessUIContextWithCleanup, ValidateUIDataAndInitialize, ExecuteUIRenderTask
+ */
+#define ProcessUIContextWithDataValidation FUN_18073bc20
+void ProcessUIContextWithDataValidation(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
