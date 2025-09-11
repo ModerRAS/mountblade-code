@@ -263827,7 +263827,7 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
       HashValue = (HashValue ^ CurrentHashByte) * 0x100000001b3;
     } while (StringLength < *(uint *)(OperationBufferSize + 0x10));
   }
-  MemoryLocationResult = FUN_180218bc0((unsigned long long)*(uint *)(ContextHandle + 0x10),
+  MemoryLocationResult = ProcessSystemContextAccess((unsigned long long)*(uint *)(ContextHandle + 0x10),
                                   *(void *                                   (*(long long *)(ContextHandle + 8) +
                                    (HashValue % (unsigned long long)*(uint *)(ContextHandle + 0x10)) * 8),OperationBufferSize);
   if (lStack_18 == 0) {
