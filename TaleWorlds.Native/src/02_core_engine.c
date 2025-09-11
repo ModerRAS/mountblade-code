@@ -263596,7 +263596,23 @@ void FUN_18020f790(long long ContextHandle, uint64_t OperationBufferSize, uint64
 
 
 
-0f7d0(long long ContextHandlevoid FUN_18020f7d0(long long ContextHandle
+/**
+ * @brief 处理系统上下文释放和线程信号
+ * 
+ * 该函数负责处理系统上下文的释放和线程信号操作，主要功能包括：
+ * - 释放字符状态缓冲区
+ * - 锁定和解锁互斥锁
+ * - 发送条件变量信号
+ * - 执行回调函数
+ * - 清理系统资源
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18020f7d0
+ */
+#define HandleSystemContextReleaseAndThreadSignal FUN_18020f7d0
+void FUN_18020f7d0(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
