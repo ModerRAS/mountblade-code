@@ -150022,8 +150022,8 @@ void ProcessUIContextDataSourceAndMemoryManagement(UIHandle *uiContext, longlong
   longlong contextDataHandle;
   
   contextDataHandle = 0;
-  localChar3 = (**(code **)*uiContext)();
-  if (localChar3 != '\0') {
+  isContextValid = (**(code **)*uiContext)();
+  if (isContextValid != '\0') {
     contextDataHandle = uiContext[0x30];
   }
   uiContext[0x23] = dataSource;
@@ -150037,7 +150037,7 @@ void ProcessUIContextDataSourceAndMemoryManagement(UIHandle *uiContext, longlong
       *(UIHandle *)(contextDataHandle + 0x118) = *(UIHandle *)(uiContext[0x1b] + 0x11720);
     }
   }
-  CleanupUIContextState(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x120));
   uiMemoryPointer = uiContext + 0x24;
   *(longlong *)uiContext[0x25] = *uiMemoryPointer;
   *(UIHandle *)(*uiMemoryPointer + 8) = uiContext[0x25];
@@ -150056,26 +150056,40 @@ void ProcessUIContextDataSourceAndMemoryManagement(UIHandle *uiContext, longlong
   *uiMemoryPointer = (longlong)uiMemoryPointer;
   contextDataHandle = uiContext[0x1b];
   uiMemoryPointer = (longlong *)uiContext[0x23];
-  componentHandle = *(longlong *)(contextDataHandle + 0x11728);
+  componentIndex = *(longlong *)(contextDataHandle + 0x11728);
   *uiMemoryPointer = componentIndex;
   uiMemoryPointer[1] = contextDataHandle + 0x11728;
   *(longlong **)(componentIndex + 8) = uiMemoryPointer;
   *(longlong **)uiMemoryPointer[1] = uiMemoryPointer;
                      WARNING: Subroutine does not return
-  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x120));
 }
 
 
 
-UIHandle FUN_180752820(UIHandle *uiContext,int dataSource,longlong targetBuffer,char bufferSize)
+/**
+ * @brief 处理UI事件激活和数据验证
+ * @param uiContext UI上下文句柄指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小标志
+ * @return 返回处理结果的UI句柄
+ * 
+ * 该函数负责处理UI事件的激活状态和数据验证，包括：
+ * - 数据源边界检查
+ * - 目标缓冲区验证
+ * - 事件处理状态管理
+ * - 内存分配和处理
+ */
+UIHandle ProcessUIEventActivationAndDataValidation(UIHandle *uiContext, int dataSource, longlong targetBuffer, char bufferSize)
 
 {
   longlong allocatedMemory;
   bool IsEventProcessingActive;
-  bool ProcessingFlag;
-  char localChar4;
+  bool IsProcessingActive;
+  char isContextAvailable;
   UIHandle loopCounter;
-  UIHandle *ptrLocal6;
+  UIHandle *contextPointer;
   UIHandle stackUInt88;
   UIHandle stackUInt80;
   UIHandle stackUInt78;

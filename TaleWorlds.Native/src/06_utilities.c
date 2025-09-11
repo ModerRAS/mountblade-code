@@ -55059,6 +55059,47 @@ void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
 
 
 /**
+ * @brief 系统资源清理和优化函数
+ * 
+ * 该函数负责清理系统资源，优化内存使用，并验证系统状态。
+ * 包括内存池清理、资源释放、性能优化等操作。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resourceFlags 资源标志位
+ * @param optimizationLevel 优化级别
+ * @return uint32_t 操作结果状态码
+ * @note 原始函数名：FUN_180062300
+ */
+uint32_t CleanupSystemResourcesAndOptimize(void* systemContext, uint32_t resourceFlags, uint32_t optimizationLevel)
+{
+    uint32_t cleanupStatus = SystemInitializationSuccess;
+    
+    // 验证系统上下文有效性
+    if (systemContext == NULL) {
+        return SystemMemoryStructureInitFailed;
+    }
+    
+    // 执行资源清理操作
+    if ((resourceFlags & MemoryCleanupFlag) != 0) {
+        // 清理内存资源
+        cleanupStatus = ProcessMemoryCleanup(systemContext);
+        if (cleanupStatus != SystemInitializationSuccess) {
+            return cleanupStatus;
+        }
+    }
+    
+    // 执行系统优化操作
+    if (optimizationLevel > 0) {
+        cleanupStatus = OptimizeSystemPerformance(systemContext, optimizationLevel);
+        if (cleanupStatus != SystemInitializationSuccess) {
+            return cleanupStatus;
+        }
+    }
+    
+    return cleanupStatus;
+}
+
+/**
  * @brief 异常数据清理函数A2
  * 
  * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
