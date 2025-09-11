@@ -1348,6 +1348,22 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define LAB_18008ee00 SystemCharacterProcessingLabel           // 系统字符处理标签
 #define LAB_18008f4f4 SystemDataValidationLabel               // 系统数据验证标签
 
+// 额外的系统处理标签语义化宏定义
+#define LAB_18009b417 StringComparisonLoopLabel                // 字符串比较循环标签
+#define LAB_18009b467 StringProcessingCompleteLabel             // 字符串处理完成标签
+#define LAB_18009b517 MemoryValidationStartLabel                // 内存验证开始标签
+#define LAB_18009b567 MemoryValidationCompleteLabel             // 内存验证完成标签
+#define LAB_18009b617 CharacterEncodingStartLabel                // 字符编码开始标签
+#define LAB_18009b658 CharacterEncodingCompleteLabel            // 字符编码完成标签
+#define LAB_18009b737 BufferProcessingStartLabel                 // 缓冲区处理开始标签
+#define LAB_18009b73a BufferProcessingContinueLabel              // 缓冲区处理继续标签
+#define LAB_18009b758 SystemDataProcessingLabel                 // 系统数据处理标签
+#define LAB_18009b76b SystemResourceCleanupLabel                 // 系统资源清理标签
+#define LAB_18009b7f7 ThreadLocalStorageInitLabel                // 线程本地存储初始化标签
+#define LAB_18009b838 ThreadMemoryAllocationLabel                // 线程内存分配标签
+#define LAB_18009b917 SystemExceptionHandlingLabel               // 系统异常处理标签
+#define LAB_18009b91a SystemExceptionContinueLabel               // 系统异常继续标签
+
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
 #define SystemValidationFlag ValidationFlag119             // 系统验证标志119
