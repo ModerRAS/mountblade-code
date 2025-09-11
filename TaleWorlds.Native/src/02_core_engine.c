@@ -47311,6 +47311,7 @@ void ProcessSystemDataStructureValidation(uint64_t ContextHandle,long long Opera
   uint8_t SystemStackValidationFlag116;
   uint StackOperationFlag114;
   char SystemValidationStatusFlag118;
+  void *StackTempPointer;
   void *CoreEnginePointerBuffer;
   uint8_t *StackValidationBuffer108;
   uint SystemProcessFlagA;
@@ -54637,7 +54638,7 @@ void ProcessSystemRenderParametersAndStatus(void
   uint32_t StackDataOffset60;
   uint32_t StackDataOffset64;
   uint32_t StackDataOffset68;
-  uint32_t StackValidationFlag6c;
+  uint32_t SystemStackValidationFlag6c;
   uint32_t SystemValidationStatusE0;
   uint32_t StackProcessingParameterE8;  // 栈参数E8，用于存储参数数据
   uint32_t StackProcessingParameterE0;  // 栈参数E0，用于存储浮点计算参数
@@ -54651,7 +54652,7 @@ void ProcessSystemRenderParametersAndStatus(void
   StackDataOffset64 = *(uint32_t *)((long long)SystemDataNode + 0x34);
   StackDataOffset68 = *(uint32_t *)(SystemDataNode + 7);
   StackDataOffset28 = StackProcessingParameterE8;
-  StackValidationFlag6c = 0x3f800000;
+  SystemStackValidationFlag6c = 0x3f800000;
   StackDataOffset58 = SystemDataNode[5] & 0xffffffff;
   StackDataOffset48 = SystemDataNode[3] & 0xffffffff;
   StackDataOffset38 = SystemDataNode[1] & 0xffffffff;

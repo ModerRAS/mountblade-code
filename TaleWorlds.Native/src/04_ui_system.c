@@ -2063,7 +2063,7 @@ typedef enum {
 #define ProcessUIBoundingBoxCollision ProcessUIBoundingBoxCollision
 
 // UI系统函数宏定义 - 初始化UI内存池
-#define InitializeUIMemoryPool FUN_1807806c0
+#define InitializeUIMemoryPool InitializeUIMemoryPool
 
 // UI系统函数宏定义 - 更新UI渲染
 #define UpdateUIRendering FUN_1807808b0
@@ -142530,7 +142530,7 @@ int FUN_180749060(longlong uiContext)
                                                             localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,0,0,
                                                                                   0);
                                                             if (localValidationResult == 0) {
-                                                              eventCode = FUN_1807806c0();
+                                                              eventCode = InitializeUIMemoryPool();
                                                               localValidationResult = ValidateUIDataStructure(*pcontextDataHandle,eventCodeType,0,
                                                                                     0,0);
                                                               if (localValidationResult == 0) {
@@ -200971,8 +200971,8 @@ UIHandle FUN_180780360(longlong uiContext)
 
 
 
- void FUN_1807806c0(void)
-void FUN_1807806c0(void)
+ void InitializeUIMemoryPool(void)
+void InitializeUIMemoryPool(void)
 
 {
                      WARNING: Subroutine does not return
