@@ -140144,8 +140144,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统终止执行函数A0
  * 
  * 执行系统终止操作，处理系统终止流程
- * 
- * @note 原始函数名：Unwind_180909890
  */
 #define ExecuteSystemTerminationA0 Unwind_180909890
 
@@ -140153,8 +140151,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统退出处理函数A0
  * 
  * 处理系统退出操作，包括系统退出和清理
- * 
- * @note 原始函数名：Unwind_1809098a0
  */
 #define ProcessSystemExitA0 Unwind_1809098a0
 
@@ -140162,8 +140158,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统退出执行函数A0
  * 
  * 执行系统退出操作，处理系统退出流程
- * 
- * @note 原始函数名：Unwind_1809098b0
  */
 #define ExecuteSystemExitA0 Unwind_1809098b0
 
@@ -140171,8 +140165,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统中止处理函数A0
  * 
  * 处理系统中止操作，包括系统中止和清理
- * 
- * @note 原始函数名：Unwind_1809098c0
  */
 #define ProcessSystemAbortA0 Unwind_1809098c0
 
@@ -140180,8 +140172,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统中止执行函数A0
  * 
  * 执行系统中止操作，处理系统中止流程
- * 
- * @note 原始函数名：Unwind_1809098d0
  */
 #define ExecuteSystemAbortA0 Unwind_1809098d0
 

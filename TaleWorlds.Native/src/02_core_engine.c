@@ -233915,7 +233915,20 @@ void SystemDataValidationAndProcessing(void)
 
  (ram,0x0001801910ba (ram,0x0001801910c0 (ram,0x0001801910d3 (ram,0x0001801910f7 (ram,0x000180191100 (ram,0x000180191112 (ram,0x000180191115 (ram,0x000180191133 (ram,0x000180191135 (ram,0x000180191148 (ram,0x000180191150 (ram,0x000180191167 (ram,0x00018019117d (ram,0x000180191190 (ram,0x00018019119d
 
-90e0a(voidvoid FUN_180190e0a(void
+// 系统数据表处理和排序函数
+#define ProcessSystemDataTableAndSort FUN_180190e0a
+
+/**
+ * @brief 处理系统数据表和排序操作
+ * 
+ * 该函数负责处理系统数据表的排序操作，主要功能包括：
+ * - 数据表元素的排序和重组
+ * - 内存边界管理
+ * - 系统数据处理和验证
+ * 
+ * @note 原始函数名：FUN_180190e0a
+ */
+void ProcessSystemDataTableAndSort(void)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -235341,7 +235354,17 @@ void InitializeSystemMemoryPoolAndContext(long long ContextHandle,int OperationB
 
 
 
-91ea0(voidvoid FUN_180191ea0(void
+// 系统终止函数
+#define TerminateCoreEngineSystem FUN_180191ea0
+
+/**
+ * @brief 终止核心引擎系统
+ * 
+ * 该函数负责终止核心引擎系统的运行，清理系统资源。
+ * 
+ * @note 原始函数名：FUN_180191ea0
+ */
+void TerminateCoreEngineSystem(void)
 {
     CoreEngineTerminateSystem();
 }
