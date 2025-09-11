@@ -27674,12 +27674,16 @@ void CoreEngineHandleSystemError(void)
 
 
 
- void CoreEngineSetupThreadLocalStorage(uint64_t *ContextHandle/**
+ /**
  * @brief 设置线程本地存储模板
  * 
  * 该函数负责设置线程本地存储的模板指针，用于线程特定的数据存储。
  * 
  * @param ThreadLocalStoragePointer 线程本地存储指针的引用
+ * @return void 无返回值
+ * 
+ * @note 该函数将指针设置为预定义的线程本地存储模板
+ * @note 用于初始化线程本地存储机制
  */
 void CoreEngineSetThreadLocalStorageTemplate(uint64_t *ThreadLocalStoragePointer
 {
