@@ -13492,6 +13492,28 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * @note 原始函数名：InitializeUtilityModule
  * @note 这是工具模块的核心初始化函数
  */
+/**
+ * @brief 初始化系统工具模块
+ * 
+ * 初始化系统的工具模块，包括内存结构、资源配置、内存管理和异常处理机制的初始化。
+ * 该函数是系统启动过程中的关键步骤，确保所有工具模块都正确初始化并准备好使用。
+ * 
+ * @details 实现细节：
+ * - 初始化系统内存结构，为工具模块分配必要的内存空间
+ * - 配置系统参数，设置工具模块的运行参数和配置选项
+ * - 初始化内存管理器，建立内存分配和释放机制
+ * - 配置异常处理机制，建立错误处理和恢复机制
+ * - 验证系统状态，确保所有组件都正确初始化
+ * 
+ * @note 这是系统启动过程中必须调用的函数之一
+ * @warning 如果初始化失败，系统可能无法正常工作
+ * @see ConfigureSystemParameters, InitializeMemoryManager, ConfigureExceptionHandler
+ * 
+ * @return void 无返回值
+ * 
+ * @post 如果初始化成功，UtilitySystemInitializationStatus设置为SystemInitializationSuccess
+ * @post 如果初始化失败，UtilitySystemInitializationStatus设置为相应的错误代码
+ */
 void InitializeUtilityModule(void)
 {
     // 系统初始化状态变量
@@ -13559,6 +13581,39 @@ void InitializeUtilityModule(void)
  * 
  * @note 原始函数名：FUN_180062300
  * @note 这是系统数据传输处理的核心函数
+ */
+/**
+ * @brief 处理系统数据传输并验证
+ * 
+ * 执行系统数据传输操作，包括数据验证、完整性检查和传输控制。
+ * 该函数确保数据在传输过程中的完整性和安全性，支持多种验证模式。
+ * 
+ * @param inputData 输入数据缓冲区的指针，包含要传输的源数据
+ * @param outputData 输出数据缓冲区的指针，用于存储传输后的数据
+ * @param dataSize 要传输的数据大小（字节）
+ * @param validationFlags 验证标志位，指定要执行的验证类型：
+ *                        - ValidateDataIntegrity (0x1): 数据完整性验证
+ *                        - ValidateDataSecurity (0x2): 数据安全性验证
+ *                        - ValidateDataConsistency (0x4): 数据一致性验证
+ * 
+ * @return int 操作结果状态码：
+ *         - OperationSuccess (0x0): 操作成功
+ *         - InvalidParameterError (0x1): 无效参数
+ *         - MemoryAlignmentError (0x2): 内存对齐错误
+ *         - DataTransferFailed (0x3): 数据传输失败
+ *         - DataValidationFailed (0x4): 数据验证失败
+ *         - SecurityValidationFailed (0x5): 安全验证失败
+ * 
+ * @details 实现细节：
+ * - 验证输入参数的有效性，包括空指针检查和数据大小验证
+ * - 执行内存对齐检查，确保数据访问的效率
+ * - 执行内存传输操作，将数据从输入缓冲区复制到输出缓冲区
+ * - 根据验证标志执行相应的验证操作
+ * - 返回操作结果状态码
+ * 
+ * @note 该函数支持多种验证模式，可以根据需要组合使用
+ * @warning 调用此函数前，确保输入和输出缓冲区已正确分配
+ * @see ValidateDataIntegrityCheck, ValidateDataSecurityCheck, ExecuteMemoryTransfer
  */
 int ProcessSystemDataTransferWithValidation(void* inputData, void* outputData, size_t dataSize, uint32_t validationFlags)
 {

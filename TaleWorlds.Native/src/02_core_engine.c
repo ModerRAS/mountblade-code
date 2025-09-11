@@ -238959,7 +238959,7 @@ void InitializeThreadLocalStorageA0(long long ContextHandle)
       (*(char *)((long long)ContextHandle + 0x2a62) != '\0')) && (*(int *)(SystemConfigData + 0xaf0) != 0)) {
     (**(code **)(*ContextHandle[99] + 0x40))();
   }
-  FUN_180397d70(ContextHandle + 0xc0fc,ContextHandle + 0x53a);
+  ConfigureSystemMemoryAllocation(ContextHandle + 0xc0fc,ContextHandle + 0x53a);
   if (((ContextHandle[99] != (long long *)0x0) && (*(char *)((long long)ContextHandle + 0x2a61) != '\0')) &&
      ((*(char *)((long long)ContextHandle + 0x2a62) != '\0' && (*(int *)(SystemConfigData + 0xaf0) != 0)))) {
     (**(code **)(*ContextHandle[99] + 0x40))();
