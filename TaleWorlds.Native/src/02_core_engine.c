@@ -248644,7 +248644,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
       MemoryAllocationOffset = (int)MemoryPoolIndexAdditional + 1;
       MemoryPoolIndexAdditional = (unsigned long long)MemoryAllocationOffset;
     }
-    FUN_180202d20(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(MemoryAllocationOffset - 1) * 2,0);
+    ConvertSystemFloatData(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(MemoryAllocationOffset - 1) * 2,0);
     if (BufferStatus3 < 0x1d) {
       ProcessFloatingPointData(FloatVariablePointer4,pContextSecondaryFloat4);
     }
