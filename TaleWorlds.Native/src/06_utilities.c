@@ -12060,16 +12060,137 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
+/**
+ * @brief 执行系统安全验证检查
+ * 
+ * 执行系统级的安全验证检查，包括栈完整性、内存保护和权限验证
+ * 
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_1808fc050
+ */
 #define ExecuteSecurityCheck ExecuteSystemSecurityValidation
 
+/**
+ * @brief 分配内存块并进行大小和对齐验证
+ * 
+ * 分配指定大小的内存块，并进行对齐验证，确保内存分配的安全性
+ * 
+ * @param Size 要分配的内存大小
+ * @param Alignment 内存对齐要求
+ * @return void* 分配的内存块指针，失败时返回NULL
+ * 
+ * @note 原始函数名：FUN_18089b7d0
+ */
 #define AllocateMemoryBlockA0 AllocateMemoryWithSizeAndAlignment
+
+/**
+ * @brief 释放内存块并进行安全检查
+ * 
+ * 释放指定的内存块，执行安全检查以防止释放无效内存
+ * 
+ * @param MemoryPointer 要释放的内存块指针
+ * @return int 释放结果状态码
+ * 
+ * @note 原始函数名：FUN_18089b813
+ */
 #define ReleaseMemoryBlockA0 ReleaseMemoryWithSecurityChecks
+
+/**
+ * @brief 复制内存块并进行边界检查
+ * 
+ * 复制源内存块到目标内存块，执行边界检查以防止缓冲区溢出
+ * 
+ * @param Destination 目标内存块指针
+ * @param Source 源内存块指针
+ * @param Size 要复制的字节数
+ * @return int 复制结果状态码
+ * 
+ * @note 原始函数名：FUN_18089b86d
+ */
 #define CopyMemoryBlockA0 CopyMemoryBlockWithBoundsChecking
+
+/**
+ * @brief 移动内存块并提供重叠保护
+ * 
+ * 移动源内存块到目标内存块，处理内存重叠情况
+ * 
+ * @param Destination 目标内存块指针
+ * @param Source 源内存块指针
+ * @param Size 要移动的字节数
+ * @return int 移动结果状态码
+ * 
+ * @note 原始函数名：FUN_18089b896
+ */
 #define MoveMemoryBlockA0 MoveMemoryBlockWithOverlapProtection
+
+/**
+ * @brief 验证内存块的完整性和边界
+ * 
+ * 验证内存块的完整性和边界，检查内存是否有效且可访问
+ * 
+ * @param MemoryPointer 要验证的内存块指针
+ * @param Size 内存块大小
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_18089bd70
+ */
 #define ValidateMemoryBlockA0 ValidateMemoryBlockIntegrityAndBounds
+
+/**
+ * @brief 使用指定模式初始化内存块
+ * 
+ * 使用指定的模式初始化内存块，通常用于内存安全初始化
+ * 
+ * @param MemoryPointer 要初始化的内存块指针
+ * @param Size 内存块大小
+ * @param Pattern 初始化模式
+ * @return int 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_18089c030
+ */
 #define InitializeMemoryBlockA0 InitializeMemoryBlockWithPattern
+
+/**
+ * @brief 使用零模式清空内存块
+ * 
+ * 使用零模式清空内存块，确保敏感数据不会被意外泄露
+ * 
+ * @param MemoryPointer 要清空的内存块指针
+ * @param Size 内存块大小
+ * @return int 清空结果状态码
+ * 
+ * @note 原始函数名：FUN_18089c190
+ */
 #define ClearMemoryBlockA0 ClearMemoryBlockWithZeroPattern
+
+/**
+ * @brief 使用优化算法比较内存块
+ * 
+ * 使用优化的算法比较两个内存块的内容是否相同
+ * 
+ * @param MemoryBlock1 第一个内存块指针
+ * @param MemoryBlock2 第二个内存块指针
+ * @param Size 要比较的字节数
+ * @return int 比较结果，0表示相同，非0表示不同
+ * 
+ * @note 原始函数名：FUN_18089c2d8
+ */
 #define CompareMemoryBlocksA0 CompareMemoryBlocksWithOptimizedAlgorithm
+
+/**
+ * @brief 使用Boyer-Moore算法查找内存模式
+ * 
+ * 使用Boyer-Moore算法在内存块中查找指定的模式
+ * 
+ * @param MemoryPointer 要搜索的内存块指针
+ * @param MemorySize 内存块大小
+ * @param Pattern 要查找的模式
+ * @param PatternSize 模式大小
+ * @return void* 找到的模式指针，未找到时返回NULL
+ * 
+ * @note 原始函数名：FUN_18089c630
+ */
 #define FindMemoryPatternA0 FindMemoryPatternWithBoyerMooreAlgorithm
 
 // 内存管理函数宏定义

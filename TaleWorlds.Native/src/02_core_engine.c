@@ -240780,11 +240780,11 @@ unsigned long long ManageSystemMemoryBuffer(long long ContextHandle, long long *
   uint64_t SystemStatusCode;
   
   SystemStatusCode = 0xfffffffffffffffe;
-  OperationStatus = FUN_1802eee20(*ContextHandleSize,&SystemConfigurationTemplateQuinary);
+  OperationStatus = ProcessSystemValidationOperation(*ContextHandleSize,&SystemConfigurationTemplateQuinary);
   if (OperationStatus != '\0') {
     *(uint16_t *)(ContextHandle + 0x5c40) = 0x101;
   }
-  OperationStatus = FUN_1802eee20(*ContextHandleSize,&SystemConfigurationTemplateSenary);
+  OperationStatus = ProcessSystemValidationOperation(*ContextHandleSize,&SystemConfigurationTemplateSenary);
   if (OperationStatus != '\0') {
     *(uint8_t *)(ContextHandle + 0x5bf0) = 1;
     *(uint8_t *)(ContextHandle + 0x5c42) = 1;
