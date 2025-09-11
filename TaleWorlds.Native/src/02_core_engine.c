@@ -15670,7 +15670,7 @@ void InitializeCoreEnginePhysicsSystem(void) {
   PhysicsTraversalNode = PhysicsSystemRootNode;
   PhysicsSearchNode = (void *)PhysicsSystemRootNode[1];
   while (PhysicsNodeInitializedFlag == '\0') {
-    PhysicsDataNodeComparisonResult = memcmp(PhysicsSearchNode + SystemNodeHeaderSize, &SystemComparisonDataTertiary, SystemDataStructureSize);
+    PhysicsDataComparisonResult = memcmp(PhysicsSearchNode + SystemNodeHeaderSize, &SystemComparisonDataTertiary, SystemDataStructureSize);
     if (PhysicsDataComparisonResult < 0) {
       PhysicsNextNodeInChain = (void *)PhysicsSearchNode[2];
       PhysicsSearchNode = PhysicsTraversalNode;
