@@ -1,18 +1,17 @@
 #!/bin/bash
 
 # 函数替换脚本
-# 用于替换99_unmatched_functions.c中的函数调用
+# 用于替换02_core_engine.c中的函数调用
 
 # 定义要替换的函数映射
 declare -A function_map=(
-    ["FUN_18029fc10"]="ProcessSystemDataTransferAndValidation"
-    ["FUN_18029d760"]="ProcessSystemDataWithIndexAndBuffer"
-    ["FUN_18029d930"]="ProcessSystemDataWithIndexAndSize"
-    ["FUN_18029c8a0"]="ProcessSystemDataWithParameters"
-    ["FUN_1800cd410"]="ProcessSystemBufferAndCleanup"
-    ["FUN_1802c2ac0"]="ProcessSystemContextAndValidation"
-    ["FUN_1800c6320"]="ProcessSystemStringEncoding"
-    ["FUN_1802c8260"]="ProcessSystemDataWithConfiguration"
+    ["FUN_180218bc0"]="ProcessSystemContextAccess"
+    ["FUN_180217b00"]="InitializeSystemDataTransfer"
+    ["FUN_180219260"]="ExecuteSystemDataTransformation"
+    ["FUN_180218a80"]="FinalizeSystemDataOperation"
+    ["FUN_180219020"]="ProcessSystemMemoryAccess"
+    ["FUN_18021a140"]="RetrieveSystemContextInfo"
+    ["FUN_1802121b0"]="InitializeSystemModule"
 )
 
 # 遍历函数映射并进行替换
@@ -21,7 +20,7 @@ for func in "${!function_map[@]}"; do
     echo "替换 $func 为 $replacement"
     
     # 使用sed进行替换
-    sed -i "s/$func(/$replacement(/g" /dev/shm/mountblade-code/TaleWorlds.Native/src/99_unmatched_functions.c
+    sed -i "s/$func(/$replacement(/g" /dev/shm/mountblade-code/TaleWorlds.Native/src/02_core_engine.c
 done
 
 echo "函数替换完成"

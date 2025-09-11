@@ -135339,19 +135339,27 @@ CleanupAndExit:
 
 
 
- void FUN_18074020b(void)
-void FUN_18074020b(void)
-
+ /**
+ * @brief 初始化UI系统数据缓冲区
+ * 
+ * 该函数负责初始化UI系统的数据缓冲区，执行以下操作：
+ * - 复制UI数据缓冲区内容
+ * - 验证UI缓冲区数据的有效性
+ * - 处理UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18074020b
+ */
+void InitializeUIDataBuffer(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedESI;
+  UIDword preservedRegisterValue;
   
   operationResult = CopyUIDataBuffer(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  dataValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  CopyUIDataBuffer(&stack0x00000040 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,7);
+  ExecuteUIContextDataOperation(preservedRegisterValue,7);
 }
 
 
