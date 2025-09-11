@@ -147,6 +147,11 @@
 // 系统数据块大小常量
 #define SystemDataElementSize 0x30                             // 系统数据块元素大小
 
+// 异常处理器偏移量常量
+#define ExceptionHandlerOffset3B0 0x3b0                        // 异常处理器偏移量3B0 - 用于设置默认异常处理器
+#define ExceptionHandlerOffset470 0x470                        // 异常处理器偏移量470 - 用于设置默认异常处理器
+#define ExceptionHandlerOffset4D0 0x4d0                        // 异常处理器偏移量4D0 - 用于设置默认异常处理器
+
 // 位操作掩码常量
 #define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000 - 用于高位位操作 masking
 #define BitOperationValue4000 0x4000                            // 位操作值4000 - 用于位操作验证
@@ -100027,7 +100032,7 @@ void SetDefaultExceptionHandlerAtOffset4D0(DataBuffer operationBase,int64_t data
 void SetDefaultExceptionHandlerAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x3b0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset3B0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
