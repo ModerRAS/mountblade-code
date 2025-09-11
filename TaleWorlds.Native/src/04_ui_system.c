@@ -1029,8 +1029,8 @@ typedef enum {
 #define ClearUIRenderCache ClearUIRenderCache                             // 清理UI渲染缓存 - 清除UI渲染过程中的缓存数据
 #define ClearUIComponentState ClearUIComponentState                          // 清理UI组件状态 - 清除UI组件的状态信息
 #define ProcessUIBufferAllocationInternal AllocateUIBufferInternal              // 处理UI缓冲区内部分配 - 在内部处理UI缓冲区的分配操作
-#define InitializeUISystemState FUN_18072f881                        // 初始化UI系统状态 - 设置UI系统的初始状态
-#define ExecuteUIRenderingTask FUN_18072f7ab                         // 执行UI渲染任务 - 执行UI相关的渲染任务
+#define InitializeUISystemState InitializeUISystemState                        // 初始化UI系统状态 - 设置UI系统的初始状态
+#define ExecuteUIRenderingTask ExecuteUIRenderingTask                         // 执行UI渲染任务 - 执行UI相关的渲染任务
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -2479,9 +2479,9 @@ typedef enum {
 #define ProcessUIEventDispatch FUN_18072edd0
 #define ProcessUIEventBufferWithValidation FUN_18072f4d0
 #define ProcessUIEventSystemReset FUN_18072f60f
-#define ProcessUIEventSystemValidation FUN_18072f7ab
+#define ProcessUIEventSystemValidation ExecuteUIRenderingTask
 #define ProcessUIEventSystemWithParameters FUN_18072f7ec
-#define ProcessUIEventSystemState FUN_18072f881
+#define ProcessUIEventSystemState InitializeUISystemState
 #define ProcessUITextDataEncoding FUN_18072f890
 #define ProcessUIRenderSurface FUN_18072fba0
 #define ProcessUIRenderWithParameters FUN_180730040
@@ -114320,7 +114320,7 @@ void ProcessUIEventStateUpdate(void)
  * 该函数负责执行UI渲染任务，调用渲染系统进行UI元素的渲染操作。
  * 这是一个不返回的函数，会直接调用渲染任务并结束当前执行流程。
  * 
- * @note 原始函数名：FUN_18072f7ab
+ * @note 原始函数名：ExecuteUIRenderingTask
  */
 void ExecuteUIRenderingTask(void)
 
@@ -114442,7 +114442,7 @@ void ProcessUIComponentDataCalculation(longlong uiContext,UIHandle dataSource,in
  * 该函数负责初始化UI系统的基本状态，确保系统处于正确的初始状态。
  * 这是一个简单的初始化函数，为后续的UI操作做准备。
  * 
- * @note 原始函数名：FUN_18072f881
+ * @note 原始函数名：InitializeUISystemState
  */
 void InitializeUISystemState(void)
 

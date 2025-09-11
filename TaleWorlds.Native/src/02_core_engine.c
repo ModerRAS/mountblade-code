@@ -111357,8 +111357,8 @@ unsigned long long ValidateAndProcessCharacterData(uint *ContextHandle,uint Oper
     StackProcessingFlags2 = 0;
     CharacterFunctionAddress = (ushort)ContextHandle;
     SystemMemoryPoolData1 = 0;
-    StackData2 = 0;
-    StackData3 = 0;
+    SystemMemoryPoolData2 = 0;
+    SystemMemoryPoolData3 = 0;
     StackData4 = 0;
     ValidationBuffer2 = OperationBufferSize;
     SystemPriorityLevel = Utf16EndPointer;
