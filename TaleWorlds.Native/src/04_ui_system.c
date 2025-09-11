@@ -131566,7 +131566,7 @@ void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = FUN_180752c80(uiContext,apRenderContextSize,0);
+  operationResult = ManageUIContextResources(uiContext,apRenderContextSize,0);
   if (operationResult == 0) {
     if (((int)apRenderContextSize[0][0x22] == 0) || ((int)apRenderContextSize[0][0x22] == 7)) {
       operationResult = (**(code **)(*apRenderContextSize[0] + 0x120))(apRenderContextSize[0],dataSource);
