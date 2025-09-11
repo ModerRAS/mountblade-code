@@ -132556,8 +132556,19 @@ FUN_18073e6ce:
 
 
 
- void FUN_18073e5ea(void)
-void FUN_18073e5ea(void)
+ /**
+ * @brief 处理UI缓冲区操作验证
+ * 
+ * 该函数处理UI系统中的缓冲区操作验证，包括：
+ * - 数据缓冲区复制
+ * - 缓冲区控制处理
+ * - 纹理数据处理
+ * - 数据填充操作
+ * 
+ * @note 原始函数名：FUN_18073e5ea
+ * @note 该函数不接受参数，直接处理系统缓冲区操作
+ */
+void ProcessUIBufferOperationWithValidation(void)
 
 {
   int operationResult;
@@ -132582,19 +132593,29 @@ void FUN_18073e5ea(void)
 
 
 
- void FUN_18073e6ce(void)
-void FUN_18073e6ce(void)
+ /**
+ * @brief 处理UI缓冲区清理任务
+ * 
+ * 该函数执行UI系统缓冲区的清理任务，包括：
+ * - 系统资源清理
+ * - 渲染任务执行
+ * - 内存管理
+ * 
+ * @note 原始函数名：FUN_18073e6ce
+ * @note 该函数是一个标签位置，用于跳转执行清理操作
+ */
+void ProcessUIBufferCleanupTask(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong cleanupParameter;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (cleanupParameter != 0) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackParam00000030,0xc);
+    ProcessUISystemCleanup(cleanupParameter,0xc);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
