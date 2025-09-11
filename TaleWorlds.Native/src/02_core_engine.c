@@ -251093,12 +251093,12 @@ joined_r0x0001802045de:
 
 
 
-void FUN_180204463(uint64_t ContextHandle,long long OperationBufferSize)
+void ProcessSystemContextBufferValidation(uint64_t SystemContextHandle, long long ValidationBufferSize)
 {
-  long long MainCalculationResult;
-  int LockOperationResult;
-  int MemoryComparisonResult;
-  bool BooleanOperationFlag4;
+  long long MainValidationResult;
+  int DataComparisonResult;
+  int MemoryCheckResult;
+  bool ValidationCompleteFlag;
   uint64_t CalculatedCodePoint;
   uint64_t OperationResult;
   uint64_t SystemChecksum;
@@ -251107,14 +251107,14 @@ void FUN_180204463(uint64_t ContextHandle,long long OperationBufferSize)
   uint64_t *PatternIndex;
   uint64_t *TemporaryBuffer;
   uint64_t *CharacterStatusBuffer;
-  uint64_t *SystemRegisterR10;
+  uint64_t *SystemDataPointer;
   uint64_t *SystemCharacterStatusBuffer;
   uint64_t *CharacterStatusBuffer2;
-  long long SystemRegisterR11;
-  long long OperationResult13;
-  long long LoopIndex;
+  long long SystemDataIndex;
+  long long ValidationOperationResult;
+  long long LoopCounter;
   uint64_t *CharacterValidationBuffer;
-  uint64_t *NullPointerValue;
+  uint64_t *OutputBufferPointer;
   
   SystemDataTablePointer = SystemRegisterR11 >> 3;
   LoopIndex = SystemDataTablePointer * 0x10;
