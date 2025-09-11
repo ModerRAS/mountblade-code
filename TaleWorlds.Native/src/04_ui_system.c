@@ -660,6 +660,20 @@ typedef enum {
 #define localChar9 UISystemStatus
 #define localChar8 UIBoundingBoxValidationFlag
 #define localChar36 UIComponentContextIndex
+
+// 渲染系统栈变量宏定义
+#define stackUInt190 UIVertexIndexBuffer190
+#define stackUInt18c UIMaxFloatValue18C
+#define stackUInt180 UIRenderParameter180
+#define stackUInt17c UIMaxFloatValue17C
+#define stackUInt160 UIComponentIndex160
+#define stackUInt15c UIMaxFloatValue15C
+#define stackUInt150 UIResourceHandle150
+#define stackUInt14c UIMaxFloatValue14C
+#define stackUInt198 UIVertexDataBuffer198
+#define stackUInt194 UIVertexOffsetBuffer194
+#define stackUInt164 UIShaderHandle164
+#define stackUInt154 UIComponentData154
 #define localChar34 UIPreviousComponentContext
 #define localChar26 UIComponentContextBackup
 #define localChar23 UIComponentContextCurrent
@@ -125231,8 +125245,8 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
+ void ProcessUIContextAndBufferData(UIHandle uiContext,UIHandle dataSource)
+void ProcessUIContextAndBufferData(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
@@ -408041,6 +408055,58 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_18076c8c0 ProcessUIComponentIndexAndDataSource   // 处理UI组件索引和数据源 - 处理UI组件的索引操作和数据源
 #define FUN_18074b880 ValidateUIBufferDataOperation         // 验证UI缓冲区数据操作 - 验证和处理UI缓冲区数据
 #define FUN_1807c41d0 CalculateUILayoutMetrics               // 计算UI布局度量 - 计算UI组件的布局度量信息
+
+// 补充缺失的UI系统变量定义
+#define astackUIntf8 UITransformFactorStackF8                // UI变换因子栈F8 - 用于存储UI变换的因子数据
+#define astackUInt48 UIAnimationStateStack48                 // UI动画状态栈48 - 用于存储UI动画状态数据
+#define astackUInt1c8 UIDataBufferStack1C8                   // UI数据缓冲区栈1C8 - 用于存储UI数据的缓冲区
+#define astackUIntb8 UIComponentStackB8                      // UI组件栈B8 - 用于存储UI组件相关数据
+#define astackUInt98 UILayoutBuffer98                       // UI布局缓冲区98 - 用于存储UI布局数据的缓冲区
+#define astackUInt158 UIDataEncryptionStack158               // UI数据加密栈158 - 用于存储UI加密数据
+#define astackUInt128 UIContextHandleStack128               // UI上下文句柄栈128 - 用于存储UI上下文句柄
+#define astackUInt108 UIResourceHandleStack108               // UI资源句柄栈108 - 用于存储UI资源句柄
+#define astackUInta78 UIEventBufferStackA78                 // UI事件缓冲区栈A78 - 用于存储UI事件数据
+#define astackUInt9f8 UIRenderBufferStack9F8                // UI渲染缓冲区栈9F8 - 用于存储UI渲染数据
+#define astackUInt9c0 UIStateBufferStack9C0                  // UI状态缓冲区栈9C0 - 用于存储UI状态数据
+#define astackUInt928 UITextureBufferStack928                // UI纹理缓冲区栈928 - 用于存储UI纹理数据
+#define astackUInt888 UIVertexBufferStack888                 // UI顶点缓冲区栈888 - 用于存储UI顶点数据
+#define astackUInt878 UIColorBufferStack878                 // UI颜色缓冲区栈878 - 用于存储UI颜色数据
+#define astackUInt868 UITransformBuffer868                  // UI变换缓冲区栈868 - 用于存储UI变换数据
+#define astackUInt858 UIClipBufferStack858                  // UI裁剪缓冲区栈858 - 用于存储UI裁剪数据
+#define astackUInt848 UIMaterialBuffer848                   // UI材质缓冲区栈848 - 用于存储UI材质数据
+#define astackUInt838 UILightBufferStack838                 // UI光照缓冲区栈838 - 用于存储UI光照数据
+#define astackUInt808 UIFontBufferStack808                  // UI字体缓冲区栈808 - 用于存储UI字体数据
+#define astackUInt7f8 UICursorBufferStack7F8                // UI光标缓冲区栈7F8 - 用于存储UI光标数据
+#define astackUInt7e8 UIShaderBuffer7E8                     // UI着色器缓冲区栈7E8 - 用于存储UI着色器数据
+#define astackUInt7d8 UIParticleBuffer7D8                   // UI粒子缓冲区栈7D8 - 用于存储UI粒子数据
+#define astackUInt7b8 UIIndexBuffer7B8                      // UI索引缓冲区栈7B8 - 用于存储UI索引数据
+#define astackUInt768 UIComponentArray768                   // UI组件数组栈768 - 用于存储UI组件数组
+#define astackUInt758 UIAnimationBuffer758                  // UI动画缓冲区栈758 - 用于存储UI动画数据
+#define astackUInt248 UISoundBufferStack248                 // UI声音缓冲区栈248 - 用于存储UI声音数据
+#define astackUInt1a8 UIInputBufferStack1A8                 // UI输入缓冲区栈1A8 - 用于存储UI输入数据
+#define astackUInt188 UICameraBufferStack188                // UI相机缓冲区栈188 - 用于存储UI相机数据
+#define astackUInt3a8 UIVirtualMemory3A8                   // UI虚拟内存栈3A8 - 用于存储UI虚拟内存数据
+#define astackUInt358 UIPhysicsBuffer358                    // UI物理缓冲区栈358 - 用于存储UI物理数据
+
+// 补充其他未美化的变量定义
+#define pstackUIntd8 UIPointerD8                            // UI指针D8 - 通用的UI指针
+#define pstackUIntd0 UIPointerD0                            // UI指针D0 - 通用的UI指针
+#define stackUIntc8 UIStackValueC8                          // UI栈值C8 - 通用的UI栈值
+#define stackUIntc0 UIStackValueC0                          // UI栈值C0 - 通用的UI栈值
+#define stackUIntb8 UIStackValueB8                          // UI栈值B8 - 通用的UI栈值
+#define pstackUIntb0 UIPointerB0                            // UI指针B0 - 通用的UI指针
+#define stackLonga8 UIStackLongA8                           // UI长整型栈A8 - 通用的UI长整型栈值
+#define stackUInta0 UIStackValueA0                          // UI栈值A0 - 通用的UI栈值
+#define stackUInt90 UIStackValue90                          // UI栈值90 - 通用的UI栈值
+#define pstackUInt88 UIPointer88                            // UI指针88 - 通用的UI指针
+#define pstackUInt80 UIPointer80                            // UI指针80 - 通用的UI指针
+#define stackUInt78 UIStackValue78                          // UI栈值78 - 通用的UI栈值
+#define stackUInt70 UIStackValue70                          // UI栈值70 - 通用的UI栈值
+#define stackUInt68 UIStackValue68                          // UI栈值68 - 通用的UI栈值
+#define pstackUInt60 UIPointer60                            // UI指针60 - 通用的UI指针
+#define pstackUInt58 UIPointer58                            // UI指针58 - 通用的UI指针
+#define stackInt50 UIStackInt50                             // UI整型栈50 - 通用的UI整型栈值
+#define stackUInt38 UIStackValue38                          // UI栈值38 - 通用的UI栈值
 
 
 
