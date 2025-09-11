@@ -12598,7 +12598,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089b896
  */
-#define MoveMemoryBlockA0 MoveMemoryBlockWithOverlapProtection
+#define MoveMemoryBlockWithOverlapProtection FUN_18089b896
 
 /**
  * @brief 验证内存块的完整性和边界
