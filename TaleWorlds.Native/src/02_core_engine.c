@@ -98,12 +98,12 @@
 #define ProcessUtf16CharacterData ProcessUtf16CharacterData                          // 处理UTF-16字符处理
 #define ManageContextHandleOperations ManageContextHandleOperations                     // 处理上下文句柄管理
 #define CompleteSystemContextTask CompleteSystemContextTask                          // 完成系统上下文操作
-#define ProcessSystemDataRegistryAndStackParameters FUN_1802e8c60                   // 处理系统数据注册和堆栈参数 - 管理系统数据注册表并处理相关堆栈参数
-#define ProcessSystemContextFloatOperations FUN_180208f20                         // 处理系统上下文浮点数操作 - 执行系统上下文中的浮点数计算和缓冲区管理
-#define ProcessSystemContextFloatConversion FUN_18020902a                          // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
-#define SystemNullOperation FUN_18020cad4                                        // 系统空操作函数 - 执行空操作
-#define SystemCoreEngineTermination FUN_18020fb10                              // 系统核心引擎终止函数 - 执行引擎终止操作
-#define ProcessSystemContextMemoryManagement FUN_18020cae0                     // 处理系统上下文内存管理 - 执行内存块遍历和释放操作
+#define ProcessSystemDataRegistryAndStackParameters ProcessSystemDataRegistryAndStackParameters   // 处理系统数据注册和堆栈参数 - 管理系统数据注册表并处理相关堆栈参数
+#define ProcessSystemContextFloatOperations ProcessSystemContextFloatOperations             // 处理系统上下文浮点数操作 - 执行系统上下文中的浮点数计算和缓冲区管理
+#define ProcessSystemContextFloatConversion ProcessSystemContextFloatConversion            // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
+#define SystemNullOperation SystemNullOperation                                         // 系统空操作函数 - 执行空操作
+#define SystemCoreEngineTermination SystemCoreEngineTermination                              // 系统核心引擎终止函数 - 执行引擎终止操作
+#define ProcessSystemContextMemoryManagement ProcessSystemContextMemoryManagement                     // 处理系统上下文内存管理 - 执行内存块遍历和释放操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -120,13 +120,13 @@
 #define NetworkManagerIdentifierSecondary 0xa9191d34ad910696
 
 // 系统资源管理函数语义化宏定义
-#define FUN_180240390 ManageSystemResourceLifecycle                        // 管理系统资源生命周期
-#define FUN_180241080 AllocateSystemResourceBuffer                        // 分配系统资源缓冲区
-#define FUN_180241680 ConfigureSystemResourceTable                        // 配置系统资源表
-#define FUN_180242280 ValidateSystemResourceIntegrity                      // 验证系统资源完整性
-#define FUN_180242e80 ProcessSystemResourceCleanup                         // 处理系统资源清理
-#define FUN_180243a80 OptimizeSystemResourceUsage                         // 优化系统资源使用
-#define FUN_180244680 MonitorSystemResourcePerformance                    // 监控系统资源性能
+#define ManageSystemResourceLifecycle ManageSystemResourceLifecycle                        // 管理系统资源生命周期
+#define AllocateSystemResourceBuffer AllocateSystemResourceBuffer                        // 分配系统资源缓冲区
+#define ConfigureSystemResourceTable ConfigureSystemResourceTable                        // 配置系统资源表
+#define ValidateSystemResourceIntegrity ValidateSystemResourceIntegrity                      // 验证系统资源完整性
+#define ProcessSystemResourceCleanup ProcessSystemResourceCleanup                         // 处理系统资源清理
+#define OptimizeSystemResourceUsage OptimizeSystemResourceUsage                         // 优化系统资源使用
+#define MonitorSystemResourcePerformance MonitorSystemResourcePerformance                    // 监控系统资源性能
 
 // 上下文句柄结构体偏移量
 #define ContextHandleStatusOffset 0x15
@@ -100019,6 +100019,18 @@ void ConfigureSystemDataStructureOffset270(long long ContextHandle, uint32_t Ope
 
 
 
+/**
+ * @brief 配置系统数据结构偏移量0x2f0
+ * 
+ * 此函数负责配置系统数据结构中偏移量0x2f0位置的值，
+ * 处理系统验证状态和事件初始化。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 涉及系统事件初始化和状态验证
+ * @note 根据引擎线程状态设置处理标志
+ */
 void ConfigureSystemDataStructureOffset2f0(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char SystemValidationStatus;
