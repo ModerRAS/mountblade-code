@@ -140179,8 +140179,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统内存清理函数A0
  * 
  * 清理系统内存，释放内存资源
- * 
- * @note 原始函数名：Unwind_1809098e0
  */
 #define CleanupSystemMemoryA0 Unwind_1809098e0
 
@@ -140188,24 +140186,22 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统状态重置函数A0
  * 
  * 重置系统状态，恢复到初始状态
- * 
- * @note 原始函数名：Unwind_180909900
  */
 #define ResetSystemStateA0 Unwind_180909900
 
-// 原始函数名：Unwind_180909930 - 系统完整性验证函数A0
+// 系统完整性验证函数A0
 // 功能：验证系统完整性，检查系统状态和数据
 #define ValidateSystemIntegrityA0 Unwind_180909930
 
-// 原始函数名：Unwind_180909960 - 系统完整性检查执行函数A0
+// 系统完整性检查执行函数A0
 // 功能：执行系统完整性检查，处理系统验证
 #define ExecuteSystemIntegrityCheckA0 Unwind_180909960
 
-// 原始函数名：Unwind_180908e10 - 数据处理器状态验证函数A0
+// 数据处理器状态验证函数A0
 // 功能：验证数据处理器状态，确保处理器正常运行
 #define ValidateDataHandlerStateA0 Unwind_180908e10
 
-// 原始函数名：Unwind_180909970 - 解锁系统互斥锁并处理错误函数A0
+// 解锁系统互斥锁并处理错误函数A0
 // 功能：解锁系统互斥锁并处理相关错误
 #define UnlockSystemMutexAndHandleErrorA0 Unwind_180909970
 
@@ -140213,8 +140209,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 设置默认异常处理器函数A0
  * 
  * 该函数负责在偏移量1D0处设置默认异常处理器。
- * 
- * @note 原始函数名：Unwind_180909980
  */
 #define SetDefaultExceptionHandlerAtOffset1D0A0 Unwind_180909980
 
@@ -140222,8 +140216,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 设置异常数据表指针函数A0
  * 
  * 该函数负责设置异常数据表的指针。
- * 
- * @note 原始函数名：Unwind_180909990
  */
 #define SetExceptionDataTablePointersA0 Unwind_180909990
 
@@ -140231,8 +140223,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 清理偏移量E0处数据缓冲区函数A0
  * 
  * 该函数负责清理偏移量E0处的数据缓冲区。
- * 
- * @note 原始函数名：Unwind_1809099a0
  */
 #define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 
@@ -140240,8 +140230,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 系统状态更新处理函数A0
  * 
  * 该函数负责处理系统状态更新操作。
- * 
- * @note 原始函数名：Unwind_180907800
  */
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
 
@@ -140249,8 +140237,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 异常处理器状态重置函数
  * 
  * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器。
- * 
- * @note 原始函数名：Unwind_180910ee0
  */
 #define ResetExceptionHandlerStates Unwind_180910ee0
 
@@ -140258,8 +140244,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 异常处理器上下文清理函数
  * 
  * 该函数负责清理异常处理器上下文，重置相关状态和处理器指针。
- * 
- * @note 原始函数名：Unwind_180910f00
  */
 #define CleanupExceptionHandlerContext Unwind_180910f00
 
@@ -140267,8 +140251,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * @brief 异常处理器最终清理函数
  * 
  * 该函数负责执行异常处理器的最终清理操作，重置状态并设置默认处理器。
- * 
- * @note 原始函数名：Unwind_180910f20
  */
 #define FinalizeExceptionHandlerCleanup Unwind_180910f20
 

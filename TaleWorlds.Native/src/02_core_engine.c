@@ -236218,7 +236218,20 @@ void ProcessSystemDataStructureCopy(long long ContextHandle
 
 
 
-93de0(voidvoid FUN_180193de0(void
+// 系统数据验证器重置函数
+#define ResetSystemDataValidator FUN_180193de0
+
+/**
+ * @brief 重置系统数据验证器
+ * 
+ * 该函数负责重置系统数据验证器，主要功能包括：
+ * - 清理系统上下文数据
+ * - 释放系统内存资源
+ * - 重置数据验证状态
+ * 
+ * @note 原始函数名：FUN_180193de0
+ */
+void ResetSystemDataValidator(void)
 {
   uint64_t *SystemContext;
   long long FramePointer;
