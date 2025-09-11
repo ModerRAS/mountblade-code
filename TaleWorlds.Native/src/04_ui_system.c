@@ -5304,19 +5304,19 @@ void* UIGestureCoordinates;
 
 // UI系统上下文操作数据表定义
 #define UIContextOperationDataTable248 UIContextOperationDataBaseTable
-#define UIContextOperationConfigTable UNK_1809571c8    // UI上下文操作配置表 - 存储上下文操作的配置数据
-#define UIContextOperationStatusTable UNK_180957158    // UI上下文操作状态表 - 存储上下文操作的状态数据
-#define UIContextOperationValidationTable UNK_1809570f8    // UI上下文操作验证表 - 存储上下文操作的验证数据
-#define UIContextOperationCacheTable UNK_180957188    // UI上下文操作缓存表 - 存储上下文操作的缓存数据
-#define UIContextOperationResultTable UNK_180957260    // UI上下文操作结果表 - 存储上下文操作的结果数据
-#define UIContextOperationAdvancedTable UNK_180957310    // UI上下文操作高级表 - 存储上下文操作的高级数据
-#define UIContextOperationExtendedTable UNK_180957898    // UI上下文操作扩展表 - 存储上下文操作的扩展数据
-#define UIContextOperationIndexTable UNK_180957810    // UI上下文操作索引表 - 存储上下文操作的索引数据
-#define UIContextOperationTempTable UNK_1809576a0    // UI上下文操作临时表 - 存储上下文操作的临时数据
-#define UIContextOperationBufferTable UNK_180957880    // UI上下文操作缓冲区表 - 存储上下文操作的缓冲区数据
-#define UIContextOperationMetadataTable UNK_1809577b0    // UI上下文操作元数据表 - 存储上下文操作的元数据
-#define UIContextOperationStatisticsTable UNK_1809578d0    // UI上下文操作统计表 - 存储上下文操作的统计数据
-#define UIContextOperationLogTable UNK_1809577f0    // UI上下文操作日志表 - 存储上下文操作的日志数据
+#define UIContextOperationConfigTable UIContextConfigData    // UI上下文操作配置表 - 存储上下文操作的配置数据
+#define UIContextOperationStatusTable UIContextStateData    // UI上下文操作状态表 - 存储上下文操作的状态数据
+#define UIContextOperationValidationTable UIContextValidationData    // UI上下文操作验证表 - 存储上下文操作的验证数据
+#define UIContextOperationCacheTable UIContextCacheData    // UI上下文操作缓存表 - 存储上下文操作的缓存数据
+#define UIContextOperationResultTable UIContextResultData    // UI上下文操作结果表 - 存储上下文操作的结果数据
+#define UIContextOperationAdvancedTable UIContextAdvancedData    // UI上下文操作高级表 - 存储上下文操作的高级数据
+#define UIContextOperationExtendedTable UIContextExtendedData    // UI上下文操作扩展表 - 存储上下文操作的扩展数据
+#define UIContextOperationIndexTable UIContextIndexData    // UI上下文操作索引表 - 存储上下文操作的索引数据
+#define UIContextOperationTempTable UIContextTemporaryData    // UI上下文操作临时表 - 存储上下文操作的临时数据
+#define UIContextOperationBufferTable UIContextBufferData    // UI上下文操作缓冲区表 - 存储上下文操作的缓冲区数据
+#define UIContextOperationMetadataTable UIContextMetadata    // UI上下文操作元数据表 - 存储上下文操作的元数据
+#define UIContextOperationStatisticsTable UIContextStatisticsData    // UI上下文操作统计表 - 存储上下文操作的统计数据
+#define UIContextOperationLogTable UIContextLogData    // UI上下文操作日志表 - 存储上下文操作的日志数据
 
 // UI上下文操作数据表语义化别名
 #define UIContextConfigData UIContextOperationConfigTable     // UI上下文配置数据表
