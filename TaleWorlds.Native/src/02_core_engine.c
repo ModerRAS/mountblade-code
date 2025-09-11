@@ -35875,48 +35875,64 @@ void CoreEngineProcessDataCleanup(long long *ContextHandle
 
 
 
- void CoreEngineInitializeMemoryPool(long long ContextHandlevoid CoreEngineInitializeMemoryPool(long long ContextHandle
+ /**
+ * @brief 初始化核心引擎内存池
+ * 
+ * 该函数负责初始化核心引擎的内存池，包括：
+ * - 遍历并清理已分配的内存块
+ * - 重置内存池状态
+ * - 处理系统事件模板的引用计数
+ * - 释放相关的系统资源
+ * 
+ * @param ContextHandle 内存池上下文句柄，包含内存池配置信息
+ * 
+ * @note 原始函数名：FUN_1801848b0
+ * @note 内存地址掩码：0xffffffffffc00000
+ * @note 内存块大小：0x50字节
+ * @note 系统事件偏移：0x80, 0x70, 0x20, 0x18, 0xe
+ */
+void InitializeCoreEngineMemoryPool(long long *MemoryPoolContextHandle)
 {
-  int *ReferenceCountPointer;
-  long long BufferStatus;
-  uint64_t *SystemEventTemplatePointer;
-  long long SystemDataRegistry;
-  unsigned long long CalculatedCodePoint;
-  unsigned long long OperationResult;
+  int *MemoryReferenceCount;
+  long long MemoryBlockStatus;
+  uint64_t *SystemEventTemplate;
+  long long MemoryRegistryPointer;
+  unsigned long long MemoryBlockIndex;
+  unsigned long long TotalMemoryBlocks;
   
-  OperationResult = *(unsigned long long *)(ContextHandle + 0x10);
-  SystemDataRegistry = *(long long *)(ContextHandle + 8);
-  CalculatedCodePoint = 0;
-  if (OperationResult != 0) {
+  TotalMemoryBlocks = *(unsigned long long *)(MemoryPoolContextHandle + 0x10);
+  MemoryRegistryPointer = *(long long *)(MemoryPoolContextHandle + 8);
+  MemoryBlockIndex = 0;
+  if (TotalMemoryBlocks != 0) {
     do {
-      BufferStatus = *(long long *)(SystemDataRegistry + CalculatedCodePoint * 8);
-      if (BufferStatus != 0) {
-          CoreEngineFreeSystemMemory(BufferStatus);
+      MemoryBlockStatus = *(long long *)(MemoryRegistryPointer + MemoryBlockIndex * 8);
+      if (MemoryBlockStatus != 0) {
+          ReleaseCoreEngineSystemMemory(MemoryBlockStatus);
       }
-      *(void *)(SystemDataRegistry + CalculatedCodePoint * 8) = 0;
-      CalculatedCodePoint = CalculatedCodePoint + 1;
-    } while (CalculatedCodePoint < OperationResult);
-    OperationResult = *(unsigned long long *)(ContextHandle + 0x10);
+      *(void *)(MemoryRegistryPointer + MemoryBlockIndex * 8) = 0;
+      MemoryBlockIndex = MemoryBlockIndex + 1;
+    } while (MemoryBlockIndex < TotalMemoryBlocks);
+    TotalMemoryBlocks = *(unsigned long long *)(MemoryPoolContextHandle + 0x10);
   }
-  *(void *)(ContextHandle + 0x18) = 0;
-  if ((1 < OperationResult) && (SystemEventTemplatePointer = *(uint64_t **)(ContextHandle + 8), SystemEventTemplatePointer != NULL)) {
-    OperationResult = (unsigned long long)SystemEventTemplatePointer & 0xffffffffffc00000;
-    if (OperationResult != 0) {
-      SystemDataRegistry = OperationResult + 0x80 + ((long long)SystemEventTemplatePointer - OperationResult >> 0x10) * 0x50;
-      SystemDataRegistry = SystemDataRegistry - (unsigned long long)*(uint *)(SystemDataRegistry + 4);
-      if ((*(void ***)(OperationResult + 0x70) == &ExceptionList) && (*(char *)(SystemDataRegistry + 0xe) == '\0')) {
-        *SystemEventTemplatePointer = *(void *)(SystemDataRegistry + 0x20);
-        *(uint64_t **)(SystemDataRegistry + 0x20) = SystemEventTemplatePointer;
-        ReferenceCountPointer = (int *)(SystemDataRegistry + 0x18);
-        *ReferenceCountPointer = *ReferenceCountPointer + -1;
-        if (*ReferenceCountPointer == 0) {
+  *(void *)(MemoryPoolContextHandle + 0x18) = 0;
+  if ((1 < TotalMemoryBlocks) && (SystemEventTemplate = *(uint64_t **)(MemoryPoolContextHandle + 8), SystemEventTemplate != NULL)) {
+    TotalMemoryBlocks = (unsigned long long)SystemEventTemplate & 0xffffffffffc00000;
+    if (TotalMemoryBlocks != 0) {
+      MemoryRegistryPointer = TotalMemoryBlocks + 0x80 + ((long long)SystemEventTemplate - TotalMemoryBlocks >> 0x10) * 0x50;
+      MemoryRegistryPointer = MemoryRegistryPointer - (unsigned long long)*(uint *)(MemoryRegistryPointer + 4);
+      if ((*(void ***)(TotalMemoryBlocks + 0x70) == &ExceptionList) && (*(char *)(MemoryRegistryPointer + 0xe) == '\0')) {
+        *SystemEventTemplate = *(void *)(MemoryRegistryPointer + 0x20);
+        *(uint64_t **)(MemoryRegistryPointer + 0x20) = SystemEventTemplate;
+        MemoryReferenceCount = (int *)(MemoryRegistryPointer + 0x18);
+        *MemoryReferenceCount = *MemoryReferenceCount + -1;
+        if (*MemoryReferenceCount == 0) {
           ReleaseMemoryReferenceCount();
           return;
         }
       }
       else {
-        HandleMemoryAllocationException(OperationResult,CONCAT71(0xff000000,*(void ***)(OperationResult + 0x70) == &ExceptionList),
-                            SystemEventTemplatePointer,OperationResult,0xfffffffffffffffe);
+        HandleMemoryAllocationException(TotalMemoryBlocks,CONCAT71(0xff000000,*(void ***)(TotalMemoryBlocks + 0x70) == &ExceptionList),
+                            SystemEventTemplate,TotalMemoryBlocks,0xfffffffffffffffe);
       }
     }
     return;
