@@ -243203,15 +243203,15 @@ LAB_180198f21:
   }
   ContextHandleTablePointer = StackPointerC0;
   ArraySize = SystemCleanupFlagG;
-  if (pbStack_f8 != (byte *)0x0) {
-      CoreEngineFreeSystemMemory(pbStack_f8);
+  if (StackBytePointerF8 != (byte *)0x0) {
+      CoreEngineFreeSystemMemory(StackBytePointerF8);
   }
   SystemStatusCode = 0;
-  pbStack_f8 = pbStack_d8;
+  StackBytePointerF8 = StackBytePointerD8;
   ErrorCode = SystemFlagH;
   SystemCleanupFlagG = 0;
-  uStack_104 = SystemChecksum & 0xfffffffd;
-  pbStack_d8 = (byte *)0x0;
+  StackUnsigned104 = SystemChecksum & 0xfffffffd;
+  StackBytePointerD8 = (byte *)0x0;
   SystemFlagH = 0;
   pSystemFlagE = &ThreadLocalStorageTemplate;
   MatchCounter = (int)plStack_c0;
