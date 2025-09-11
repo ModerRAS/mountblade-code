@@ -21,7 +21,7 @@
 #define FloatValidationMask 0x7f800000
 #define IntegerMinValue -0x80000000
 #define ProcessingFlagMask 0x80000000
-#define MaxSafeBufferSize 0x1000000
+#define MaxSafeBufferSize SystemFlagBit80000
 #define FloatInfinityValue 0x7f800000
 #define NegativeZeroFloat 0x80000000
 
@@ -65,7 +65,7 @@
 // 安全和验证常量
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
-#define OperationFlagMask 0x10000000
+#define OperationFlagMask SystemFlagBit800000
 // === 线程本地存储地址常量 ===
 #define ThreadLocalStoragePrimaryAddress 0x180c4f450            // 线程本地存储主地址 - 线程本地存储的主基地址
 #define ThreadLocalStorageSecondaryAddress 0x180c4f460         // 线程本地存储辅助地址 - 线程本地存储的辅助基地址
@@ -101,6 +101,21 @@
 #define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败 - 内存管理器初始化过程中出现错误
 #define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败 - 异常处理器初始化过程中出现错误
 #define SystemStateValidationFailed 0x5                          // 系统状态验证失败 - 系统状态验证过程中出现错误
+
+// 系统标志常量
+#define SystemFlagBit8 SystemFlagBit8                                    // 系统标志位8 - 第8位标志
+#define SystemFlagBit11 0x800                                   // 系统标志位11 - 第11位标志
+#define StandardMemoryBlockSize StandardMemoryBlockSize                            // 标准内存块大小 - 512字节
+#define SmallMemoryBlockSize 0x20                                // 小内存块大小 - 32字节
+#define MediumMemoryBlockSize 0x28                               // 中等内存块大小 - 40字节
+
+// 系统数据偏移常量
+#define SystemDataOffset218 0x218                                // 系统数据偏移量218
+#define SystemDataOffset8b0 0x8b0                               // 系统数据偏移量8b0
+#define SecurityBufferOffset8 8                                  // 安全缓冲区偏移量8
+#define SystemContextOffset4 4                                   // 系统上下文偏移量4
+#define SystemDataOffset30 0x30                                  // 系统数据偏移量30
+#define ExceptionHandlerOffset868 0x868                          // 异常处理器偏移量868
 
 // === 资源管理常量 ===
 #define ResourceReferenceDecrement -1                             // 资源引用计数递减值 - 用于减少资源引用计数的常量
@@ -250,7 +265,7 @@
 #define SecurityValidationTSLP 0x54534c50                         // 安全验证标识TSLP - 用于线程安全锁定保护验证
 
 // 内存操作标志常量
-#define MemoryOperationFlagMask 0x1000000                        // 内存操作标志掩码 - 用于标识内存操作状态
+#define MemoryOperationFlagMask SystemFlagBit80000                        // 内存操作标志掩码 - 用于标识内存操作状态
 
 // 位域操作联合体定义 - 用于处理特定位域操作
 typedef union {
@@ -336,7 +351,7 @@ typedef union {
 #define ExceptionHandlerParameterOffset1010 0x1010       // 异常处理器参数偏移量1010 - 用于异常处理器参数存储
 #define ExceptionHandlerCleanupOffsetFe8 0xfe8          // 异常处理器清理偏移量Fe8 - 用于异常处理器清理操作
 #define ExceptionHandlerStatusOffsetFf0 0xff0           // 异常处理器状态偏移量Ff0 - 用于异常处理器状态检查
-#define ExceptionHandlerDataOffset1000 0x1000             // 异常处理器数据偏移量1000 - 用于异常处理器数据存储
+#define ExceptionHandlerDataOffset1000 SystemFlagBit80             // 异常处理器数据偏移量1000 - 用于异常处理器数据存储
 #define ExceptionHandlerCleanupOffsetFc8 0xfc8          // 异常处理器清理偏移量Fc8 - 用于异常处理器清理操作
 #define ExceptionHandlerStatusOffsetFd0 0xfd0           // 异常处理器状态偏移量Fd0 - 用于异常处理器状态检查
 #define ExceptionHandlerDataOffsetFe0 0xfe0               // 异常处理器数据偏移量Fe0 - 用于异常处理器数据存储
@@ -391,7 +406,7 @@ typedef union {
 #define SystemConfigurationOffsetSecondary 0xd8                     // 系统配置偏移量Secondary - 系统配置的偏移位置Secondary
 #define SystemValidationOffsetSecondary 0xf8                          // 系统验证偏移量Secondary - 系统验证的偏移位置Secondary
 #define SystemDataStreamOffsetSecondary 0xe8                          // 系统数据流偏移量Secondary - 系统数据流的偏移位置Secondary
-#define ExceptionHandlerContextPointerRangeEnd 0x100          // 异常处理上下文指针范围结束 - 异常处理上下文指针的范围结束位置
+#define ExceptionHandlerContextPointerRangeEnd SystemFlagBit8          // 异常处理上下文指针范围结束 - 异常处理上下文指针的范围结束位置
 
 // 内存资源管理常量
 #define MemoryResourceManagementOffset 0x70
@@ -464,7 +479,7 @@ typedef union {
 #define ExceptionHandlerOffsetPrimary 0x50
 #define ExceptionHandlerOffsetSecondary 0xf0
 #define ExceptionHandlerOffsetTertiary 0xf8
-#define ExceptionHandlerOffsetQuaternary 0x100
+#define ExceptionHandlerOffsetQuaternary SystemFlagBit8
 #define CleanupHandlerOffsetPrimary 0x108
 #define SystemParameterValidationOffsetPrimary 0x28
 #define SystemDataParameterOffsetPrimary 0x20
@@ -473,7 +488,7 @@ typedef union {
 #define SystemContextOffsetPointerPrimary 0x90
 
 // 异常处理器指针偏移量常量
-#define ExceptionHandlerPointerOffsetPrimary 0x100
+#define ExceptionHandlerPointerOffsetPrimary SystemFlagBit8
 #define ExceptionHandlerPointerOffsetSecondary 0x108
 #define ExceptionHandlerPointerOffsetTertiary 0x110
 #define ExceptionHandlerPointerOffset120 0x120
@@ -640,7 +655,7 @@ typedef union {
 
 // 数据缓冲区偏移量常量
 #define DataBufferOffset1d0 0x1d0                              // 数据缓冲区偏移量1d0
-#define DataBufferOffset200 0x200                              // 数据缓冲区偏移量200
+#define DataBufferOffset200 StandardMemoryBlockSize                              // 数据缓冲区偏移量200
 
 // 系统默认异常处理器地址常量
 #define SystemDefaultExceptionHandlerBOffset0x540 0x540          // 系统默认异常处理器B偏移量0x540
@@ -654,7 +669,7 @@ typedef union {
 #define ExceptionContextStatusOffset 0x68                    // 异常上下文状态偏移量68
 #define ResourceManagementOffset80b0 0x80b0                    // 资源管理偏移量80b0
 #define ResourceManagementOffset8088 0x8088                    // 资源管理偏移量8088
-#define MemoryBlockOffset200 0x200                             // 内存块偏移量200
+#define MemoryBlockOffset200 StandardMemoryBlockSize                             // 内存块偏移量200
 #define MemoryBlockOffsetD0 0xd0                                // 内存块偏移量D0
 #define ResourceValidationFlagOffset60 0x60                     // 资源验证标志偏移量60
 
@@ -750,7 +765,7 @@ typedef union {
 #define MemoryAllocationFlagsF4 0xf4
 #define MemoryAllocationFlags0 0
 #define MemoryAllocationFlags1 1
-#define MemoryAllocationSize100 0x100
+#define MemoryAllocationSize100 SystemFlagBit8
 #define MemoryAllocationFlag1 1
 #define FloatingPointValidationMask11 0x11
 #define ResourceIteratorDataOffset 0x14
@@ -777,7 +792,7 @@ typedef union {
 #define ExceptionHandlerContextOffset190 0x190
 #define ExceptionHandlerContextOffsetQuinary 0x1b0
 #define ExceptionHandlerContextOffsetSenary 0x1d0
-#define StackFrameContextOffset200 0x200
+#define StackFrameContextOffset200 StandardMemoryBlockSize
 #define ValueContextOffset8 0x8
 #define OperationBaseOffset8 0x8
 #define DataDescriptorOffset8 0x8
@@ -868,7 +883,7 @@ typedef union {
 #define SecurityValidationCodeBLMP 0x424c4d50             // 安全验证代码BLMP - 用于安全验证的代码
 
 // 内存管理相关常量
-#define MemoryReleaseBufferSize 0x100                     // 内存释放缓冲区大小 - 用于内存释放操作的缓冲区大小
+#define MemoryReleaseBufferSize SystemFlagBit8                     // 内存释放缓冲区大小 - 用于内存释放操作的缓冲区大小
 #define MemoryAllocationUnitSize 1                        // 内存分配单元大小 - 用于内存分配的单元大小
 
 // 数据缓冲区偏移量常量
@@ -1141,7 +1156,7 @@ typedef union {
 #define ExceptionHandlerContextOffset800 0x800
 #define SystemContextPointerOffsetPrimaryConfig 0x900
 #define SystemManagementOffsetExceptionHandlerConfig 0x980
-#define ExceptionHandlerContextOffset100 0x100
+#define ExceptionHandlerContextOffset100 SystemFlagBit8
 #define ExceptionHandlerContextOffsetF0 0xf0
 #define ExceptionHandlerContextOffset110 0x110
 #define ExceptionHandlerContextOffset130 0x130
@@ -1772,7 +1787,7 @@ typedef union {
 #define ExceptionHandlerPointerOffset4B8 0x4b8
 #define ExceptionDataBufferOffset128 0x128
 #define ExceptionDataContextOffset120 0x120
-#define ExceptionHandlerTemporaryOffset100 0x100
+#define ExceptionHandlerTemporaryOffset100 SystemFlagBit8
 
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c
@@ -1988,7 +2003,7 @@ typedef union {
 #define ResourceCallbackDataOffset 0x1c                   // 资源回调数据偏移量
 #define ResourceDataBufferOffset 0x20                     // 资源数据缓冲区偏移量
 #define ResourceCountOffset 0x20                          // 资源计数偏移量
-#define SystemResourceDataBufferSize 0x100               // 系统资源数据缓冲区大小
+#define SystemResourceDataBufferSize SystemFlagBit8               // 系统资源数据缓冲区大小
 
 // 数据缓冲区通用偏移量常量
 #define DataBufferContextOffset 0x14                    // 数据缓冲区上下文偏移量
@@ -2570,7 +2585,7 @@ typedef union {
 #define ExceptionHandlerCleanupOffset120 0x120
 #define ExceptionHandlerCleanupStateOffset128 0x128
 #define ExceptionHandlerCleanupFlagOffset138 0x138
-#define ExceptionHandlerCleanupOffset100 0x100
+#define ExceptionHandlerCleanupOffset100 SystemFlagBit8
 #define ExceptionHandlerCleanupStateOffset108 0x108
 #define ExceptionHandlerCleanupFlagOffset118 0x118
 #define ExceptionHandlerCleanupOffsetE0 0xe0
@@ -2752,7 +2767,7 @@ typedef union {
 #define SystemFloatDataOffset388 0x388
 #define SystemMemoryCleanupOffset1F0 0x1f0
 #define SystemTemporaryExceptionHandlerOffset1F8 0x1f8
-#define SystemMemoryPointerOffset0 0x200
+#define SystemMemoryPointerOffset0 StandardMemoryBlockSize
 #define SystemCleanupFlagOffset210 0x210
 #define SecurityValidationMrpOperation 0x424d5250
 #define SecurityValidationPortControlAlt 0x42464550
@@ -2767,6 +2782,12 @@ typedef union {
 #define SecurityValidationFfcOperationAlt 0x46464550
 #define SecurityValidationFfcOperationSecurity 0x46464553
 #define SecurityValidationFfcOperationRequest 0x46464353
+
+// 系统处理器操作常量
+#define SecurityValidationSystemProcessorOperation 0x53505250    // "SPRP" - System Processor Operation
+#define SecurityValidationPortOperationRequest 0x504f5250        // "PORP" - Port Operation Request  
+#define SecurityValidationJobOperationRequest 0x4a4f5250          // "JORP" - Job Operation Request
+#define SecurityValidationTipsProcessingOperation 0x54495053     // "TIPS" - Tips Processing Operation
 
 // 异常处理上下文常量
 #define ExceptionHandlerPointerOffset 0x2b8
@@ -2785,7 +2806,7 @@ typedef union {
 #define SystemOperationDataOffset 0x2a0
 #define SystemOperationStatusOffset 0x30
 #define SystemResourceCleanupOffset 0x40
-#define ExceptionDataTableOffset 0x100
+#define ExceptionDataTableOffset SystemFlagBit8
 #define ExceptionDataContextOffset 0x18
 #define ExceptionHandlerContextDataOffset 0x20
 #define ExceptionHandlerSetupOffset 0x38
@@ -2814,7 +2835,7 @@ typedef union {
 #define ValidationResultOffset 0xb0
 #define SystemDataOffset40 0x40
 #define MemoryOperationResultMask 0x1f
-#define MemoryBlockSize 0x100
+#define MemoryBlockSize SystemFlagBit8
 #define MemoryAllocationBlockSize 0x20
 #define SystemMemoryBoundary 0x8000000000000000
 #define MemoryAddressCalculationMultiplier 8
@@ -2848,7 +2869,7 @@ typedef union {
 #define ExceptionDataListOffset 0x3c8
 #define ExceptionHandlerContextPointerOffsetE0 0xe0
 #define MemoryResourcePointerOffsetF0 0xf0
-#define ValidationStatusPointerOffset100 0x100
+#define ValidationStatusPointerOffset100 SystemFlagBit8
 #define OffsetStackDataOffset260 0x260
 #define ExceptionHandlerDataOffset268 0x268
 #define ResourceEntryDataOffsetD0 0xd0
@@ -2997,7 +3018,7 @@ typedef union {
 #define ExceptionHandlerPointerOffset18 0x18                  // 异常处理器指针偏移量18
 #define ExceptionHandlerPointerOffset20 0x20                 // 异常处理器指针偏移量20
 #define MemoryRegionMask 0xffffffffffff0000                   // 内存区域掩码
-#define ExceptionMemoryRegionOffset 0x1000                   // 异常内存区域偏移量
+#define ExceptionMemoryRegionOffset SystemFlagBit80                   // 异常内存区域偏移量
 // ExceptionMemoryBlockMultiplier已在前面定义
 #define ExceptionMemoryRegionOffset70 0x70                   // 异常内存区域偏移量70
 #define SystemCleanupFlagAlternative 0x80000000               // 系统清理标志备选方案 - 用于资源清理和内存管理的标准标志值
@@ -3042,10 +3063,10 @@ typedef union {
 #define ExceptionHandlerOffset80 0x80                  // 异常处理器偏移量80
 
 // 内存操作基础常量
-#define MemoryOperationBaseAddress 0x1000         // 内存操作基础地址
-#define MemoryPageSize 0x1000                      // 内存页大小
-#define SystemMemoryAlignment 0x1000               // 系统内存对齐大小
-#define ExceptionHandlerStackSize 0x2000            // 异常处理器栈大小
+#define MemoryOperationBaseAddress SystemFlagBit80         // 内存操作基础地址
+#define MemoryPageSize SystemFlagBit80                      // 内存页大小
+#define SystemMemoryAlignment SystemFlagBit80               // 系统内存对齐大小
+#define ExceptionHandlerStackSize StandardMemoryBlockSize0            // 异常处理器栈大小
 // 系统验证状态码
 #define SystemValidationSuccessCode 0xc0000001            // 系统验证成功代码
 #define SystemErrorStatusCode 0xc0000002                 // 系统错误状态代码
@@ -3260,7 +3281,7 @@ typedef union {
 #define ExceptionHandlerContextOffset1028 0x1028          // 异常处理上下文偏移量1028
 #define ExceptionHandlerContextOffsetFF0 0xff0             // 异常处理上下文偏移量FF0
 #define ExceptionHandlerContextOffsetFF8 0xff8             // 异常处理上下文偏移量FF8
-#define ExceptionHandlerContextOffset1008 0x1008          // 异常处理上下文偏移量1008
+#define ExceptionHandlerContextOffset1008 SystemFlagBit88          // 异常处理上下文偏移量1008
 #define ExceptionHandlerContextOffsetFD0 0xfd0             // 异常处理上下文偏移量FD0
 
 // 额外的异常处理器偏移量常量
@@ -3753,7 +3774,7 @@ typedef union {
 
 // 位操作和掩码相关常量
 #define BitMask8 0x8                              // 位掩码8
-#define BitMask100 0x100                           // 位掩码100
+#define BitMask100 SystemFlagBit8                           // 位掩码100
 #define BitMask800 0x800                           // 位掩码800
 #define BitMaskC000 0xc000                         // 位掩码C000
 #define BitMask7FFF 0x7fff                         // 位掩码7FFF
@@ -3799,7 +3820,7 @@ typedef union {
 #define MemoryResourceDataOffset 0xe                // 内存资源数据偏移量
 #define MemoryResourceSizeOffset 0x10              // 内存资源大小偏移量
 #define MemoryResourceFlagsIndex 0x11              // 内存资源标志索引
-#define MemoryBlockSizeOffset 0x200                 // 内存块大小偏移量
+#define MemoryBlockSizeOffset StandardMemoryBlockSize                 // 内存块大小偏移量
 #define MemoryBlockFlagsOffset 0xd0                // 内存块标志偏移量
 #define OperationResultStatusIndex 0x3d            // 操作结果状态索引
 #define SystemCleanupDataOffset 0x27               // 系统清理数据偏移量
@@ -3907,7 +3928,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define GlobalDataPointerFinalStatusOffset 0x40 // 全局数据指针Final状态偏移量
 
 // 内存堆管理常量
-#define MemoryHeapPrimarySize 0x1000             // 内存堆主大小
+#define MemoryHeapPrimarySize SystemFlagBit80             // 内存堆主大小
 #define MemoryHeapSecondarySize 0x800            // 内存堆次大小
 #define MemoryHeapTertiarySize 0x400             // 内存堆第三大小
 #define MemoryHeapAlignment 0x10                // 内存堆对齐大小
@@ -4197,7 +4218,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define DataContextOffset20 0x20                       // 数据上下文偏移量20
 #define DataContextOffset2c 0x2c                       // 数据上下文偏移量2c
 #define DataContextOffset38 0x38                       // 数据上下文偏移量38
-#define ExceptionHandlerContextOffset100 0x100         // 异常处理上下文偏移量100
+#define ExceptionHandlerContextOffset100 SystemFlagBit8         // 异常处理上下文偏移量100
 #define ExceptionHandlerContextOffset108 0x108         // 异常处理上下文偏移量108
 #define ExceptionHandlerContextOffset110 0x110         // 异常处理上下文偏移量110
 #define ExceptionHandlerContextOffset118 0x118         // 异常处理上下文偏移量118
@@ -4275,7 +4296,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define SystemStackPointerOffset 0x50                  // 系统栈指针偏移量
 #define SystemStackDataOffset 0x2b0                    // 系统栈数据偏移量
 #define SystemStackResultOffset 0x78                   // 系统栈结果偏移量
-#define SystemDataValidationOffset 0x200               // 系统数据验证偏移量
+#define SystemDataValidationOffset StandardMemoryBlockSize               // 系统数据验证偏移量
 
 // 异常处理上下文相关偏移量常量
 #define ExceptionHandlerContextOffset18 0x18            // 异常处理上下文偏移量18
@@ -4400,7 +4421,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define ExceptionHandlerTableTertiaryOffset 0x120         // 异常处理器第三表偏移量 - 第三级异常处理器查找表的起始位置
 #define ExceptionHandlerStatusTertiaryOffset 0x128        // 异常处理器第三状态偏移量 - 第三级异常处理器状态信息的存储位置
 #define ExceptionHandlerStateTertiaryOffset 0x138         // 异常处理器第三状态偏移量 - 第三级异常处理器运行状态的存储位置
-#define ExceptionHandlerTableQuaternaryOffset 0x100        // 异常处理器第四表偏移量 - 第四级异常处理器查找表的起始位置
+#define ExceptionHandlerTableQuaternaryOffset SystemFlagBit8        // 异常处理器第四表偏移量 - 第四级异常处理器查找表的起始位置
 #define ExceptionHandlerStatusQuaternaryOffset 0x108       // 异常处理器第四状态偏移量 - 第四级异常处理器状态信息的存储位置
 #define ExceptionHandlerStateQuaternaryOffset 0x118        // 异常处理器第四状态偏移量 - 第四级异常处理器运行状态的存储位置
 #define ExceptionHandlerTableQuinaryOffset 0xe0            // 异常处理器第五表偏移量 - 第五级异常处理器查找表的起始位置
@@ -4570,7 +4591,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define DefaultExceptionHandlerBReferenceOffset 0xd0               // 默认异常处理器B引用偏移量
 
 // 异常处理器相关偏移量常量
-#define ExceptionHandlerContextOffset100 0x100                    // 异常处理上下文偏移量100
+#define ExceptionHandlerContextOffset100 SystemFlagBit8                    // 异常处理上下文偏移量100
 #define ExceptionHandlerContextOffset108 0x108                    // 异常处理上下文偏移量108
 #define ExceptionHandlerContextOffset110 0x110                    // 异常处理上下文偏移量110
 #define ExceptionHandlerContextOffset118 0x118                    // 异常处理上下文偏移量118
@@ -12837,7 +12858,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define CleanupExceptionAtOffset1F0 Unwind_18090d020
 
 // 原始函数名：Unwind_18090d030 - 异常清理函数C3
-// 功能：清理异常处理状态，偏移量0x200处的资源
+// 功能：清理异常处理状态，偏移量StandardMemoryBlockSize处的资源
 #define CleanupExceptionAtOffset200 Unwind_18090d030
 
 // 原始函数名：Unwind_18090d040 - 异常清理函数C4
@@ -28219,7 +28240,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
     }
     if ((0 < (int)dataCounter) && (*componentContext != 0)) {
       // 调用安全清理函数
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*componentContext,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*componentContext,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     // 重置组件状态
     *componentContext = 0;
@@ -28251,7 +28272,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   // 最终安全检查和清理
   if ((0 < *(int *)((int64_t)componentContext + ComponentContextCapacityOffset)) && (*componentContext != 0)) {
     // 调用安全清理函数
-    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*componentContext,&SystemMemoryPoolB,0x100,1);
+    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*componentContext,&SystemMemoryPoolB,SystemFlagBit8,1);
   }
   
   // 完成组件初始化
@@ -28328,7 +28349,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
     }
     if ((0 < (int)validationCounter) && (*exceptionContext != 0)) {
       // 调用安全清理函数
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*exceptionContext,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*exceptionContext,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     // 重置验证上下文
     *exceptionContext = 0;
@@ -28383,7 +28404,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
     }
     if ((0 < (int)validationCounter) && (*parameterContext != 0)) {
       // 调用安全清理函数
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*parameterContext,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*parameterContext,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     // 重置参数上下文
     *parameterContext = 0;
@@ -28441,7 +28462,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
       return ResourceInvalidErrorCode;
     }
     if ((0 < (int)parameterFlags) && (*parameterContext != 0)) {
-        AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + GlobalResourceTableOffset1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
+        AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + GlobalResourceTableOffset1a0),*parameterContext,&ParameterCleanupBuffer,SystemFlagBit8,1);
     }
     *parameterContext = 0;
     *(DataWord *)((int64_t)parameterContext + ParameterContextFlagsOffset) = 0;
@@ -29529,7 +29550,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *dataProcessingBuffer,int bufferS
   }
 CalculationLabel:
   if ((0 < *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC)) && (*dataProcessingBuffer != 0)) {
-      FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,0x100,1);
+      FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,SystemFlagBit8,1);
   }
   *dataProcessingBuffer = (int64_t)newBuffer;
   *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC) = bufferSize;
@@ -29568,7 +29589,7 @@ DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
   if (bufferSize == 0) {
 CalculationLabel:
     if ((0 < *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC)) && (*dataProcessingBuffer != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     *dataProcessingBuffer = (int64_t)newBuffer;
     *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC) = bufferSize;
@@ -29639,7 +29660,7 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
   }
 DataTransferLabel:
   if ((0 < *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC)) && (*contextPointer != 0)) {
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,SystemFlagBit8,1);
   }
   *contextPointer = allocatedMemory;
   *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC) = validationCount;
@@ -29663,7 +29684,7 @@ DataBuffer ProcessInputData(DataBuffer inputData,int processingMode)
   if (processingMode == 0) {
 DataTransferLabel:
     if ((0 < *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC)) && (*contextPointer != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     *contextPointer = allocatedMemory;
     *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC) = processingMode;
@@ -29938,7 +29959,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
                   }
                   if ((0 < (int)StackMemoryData.lowWord) && (StackMemoryBuffer != 0)) {
                       ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),StackMemoryBuffer,&SystemMemoryPoolB,
-                                  0x100,1);
+                                  SystemFlagBit8,1);
                   }
                   StackMemoryBuffer = 0;
                   StackMemoryData = 0;
@@ -30018,7 +30039,7 @@ MemoryAllocationLabel:
     if (arrayIterationIndex < 0) {
       if (0 < dataFlagCounter) goto ProcessCheckpointParameterValidation;
       if ((0 < arrayIndex) && (dataFlags != 0)) {
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataFlags,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
       StackMemoryBuffer = 0;
       StackMemoryData = 0;
@@ -30464,7 +30485,7 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
       ValidationFlag = 0;
       ValidationOffset = 0;
       ValidationData = operationFlagA;
-      InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),0x200);
+      InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),StandardMemoryBlockSize);
       DataFlagsPointer = exceptionContextPointer;
 SecurityValidationLabel:
       operationStatus = ValidateDataIntegrityA0(operationBase,DataFlagsPointer);
@@ -31130,8 +31151,8 @@ void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
   EncryptionKeyXorResult = ExceptionEncryptionKeyValue ^ (uint64_t)SecondaryEncryptionKeyBuffer;
   exceptionContext = operationBase[4];
   if (((char)exceptionContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
-    operationResult = (**(FunctionPointer**)(*dataBuffer + ExceptionHandlerCallbackOffset))(dataBuffer,DataBufferB,0x200);
-    ProcessData(DataBufferB + operationResult,0x200 - operationResult,10);
+    operationResult = (**(FunctionPointer**)(*dataBuffer + ExceptionHandlerCallbackOffset))(dataBuffer,DataBufferB,StandardMemoryBlockSize);
+    ProcessData(DataBufferB + operationResult,StandardMemoryBlockSize - operationResult,10);
     operationResult = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,DataBufferB);
     if ((operationResult == 0) &&
        (((char)exceptionContext == '\0' && (operationResult = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase), operationResult == 0)))) {
@@ -31157,7 +31178,7 @@ void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
   uint64_t stackMemoryAddress;
   
   inputParameter = (**(FunctionPointer**)(systemInputAccumulator + ExceptionHandlerCallbackOffset))();
-  ProcessData(stackByteBuffer + inputParameter,0x200 - inputParameter,10);
+  ProcessData(stackByteBuffer + inputParameter,StandardMemoryBlockSize - inputParameter,10);
   inputParameter = (**(FunctionPointer**)(*DestinationContext + 8))();
   if (((inputParameter == 0) && (systemStatus == '\0')) &&
      (inputParameter = (**(FunctionPointer**)(*DestinationContext + SystemDataSecondaryOffset18))(), inputParameter == 0)) {
@@ -32378,8 +32399,8 @@ OperationFailedLabel:
           secondaryDataBuffer = SystemConfigurationDataBuffer[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
-          operationStatus = (**(FunctionPointer**)(pResourceManagementData + ExceptionHandlerCallbackOffset))(&pResourceManagementData,DataTransferBufferA,0x200);
-          ProcessData((int64_t)DataTransferBufferA + (int64_t)operationStatus,0x200 - operationStatus,10);
+          operationStatus = (**(FunctionPointer**)(pResourceManagementData + ExceptionHandlerCallbackOffset))(&pResourceManagementData,DataTransferBufferA,StandardMemoryBlockSize);
+          ProcessData((int64_t)DataTransferBufferA + (int64_t)operationStatus,StandardMemoryBlockSize - operationStatus,10);
           operationStatus = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,DataTransferBufferA);
           if (operationStatus != 0) goto ProcessCheckpointResourceValidation;
           if ((char)dataContext == '\0') {
@@ -32823,8 +32844,8 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
           if (((char)exceptionContext5 == '\0') &&
              (iterationCount = ValidateSystemDataA0(operationBase,SetBitFlag((ValidationByteCount)(ExceptionHandlerData >> 8),1)), iterationCount != 0
              )) goto DataBufferValidationCheckpoint;
-          iterationCount = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset))(&StackPointerVariableE,DataTransferBufferA,0x200);
-          ProcessData(DataTransferBufferA + iterationCount,0x200 - iterationCount,10);
+          iterationCount = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset))(&StackPointerVariableE,DataTransferBufferA,StandardMemoryBlockSize);
+          ProcessData(DataTransferBufferA + iterationCount,StandardMemoryBlockSize - iterationCount,10);
           iterationCount = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,DataTransferBufferA);
           if (iterationCount != 0) goto BufferValidationCheckpoint;
           if ((char)exceptionContext5 == '\0') {
@@ -32881,8 +32902,8 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
               allocatedMemoryBlock = ValidateDataIntegrityA0(operationBase,&StackLongIntegerPointerB);
               if (allocatedMemoryBlock != 0) goto BufferValidationCheckpoint;
             }
-            allocatedMemoryBlock = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset))(&StackPointerVariableE,StackUnsignedIntegerUnionB,0x200);
-            ProcessData(StackUnsignedIntegerUnionB + allocatedMemoryBlock,0x200 - allocatedMemoryBlock,10);
+            allocatedMemoryBlock = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset))(&StackPointerVariableE,StackUnsignedIntegerUnionB,StandardMemoryBlockSize);
+            ProcessData(StackUnsignedIntegerUnionB + allocatedMemoryBlock,StandardMemoryBlockSize - allocatedMemoryBlock,10);
             allocatedMemoryBlock = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,StackUnsignedIntegerUnionB);
             if (allocatedMemoryBlock != 0) goto BufferValidationCheckpoint;
             if ((char)exceptionContext1 == '\0') {
@@ -33835,7 +33856,7 @@ DataBuffer ProcessDataA3(int64_t *DataHandle,int DataSize)
   }
 ValidationCheckpoint:
   if ((0 < *(int *)((int64_t)DataHandle + DataBufferOffsetC)) && (*DataHandle != 0)) {
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataHandle,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataHandle,&SystemMemoryPoolB,SystemFlagBit8,1);
   }
   *DataHandle = (int64_t)ValidationBuffer;
   *(int *)((int64_t)DataHandle + DataBufferOffsetC) = DataSize;
@@ -33874,7 +33895,7 @@ DataBuffer ProcessDataBufferA0(DataBuffer DataBufferHandle,int DataBufferSize)
   if (DataBufferSize == 0) {
 ValidationCheckpointA:
     if ((0 < *(int *)((int64_t)DataBufferHandle + DataBufferSizeOffsetC)) && (*DataBufferHandle != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataBufferHandle,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataBufferHandle,&SystemMemoryPoolB,SystemFlagBit8,1);
     }
     *DataBufferHandle = (int64_t)TargetDataBuffer;
     *(int *)((int64_t)DataBufferHandle + DataBufferSizeOffsetC) = DataBufferSize;
@@ -35383,7 +35404,7 @@ void ProcessSystemDataItem(int64_t systemContext, DataWord *DataItemPointer)
         (inputParameter = CheckSystemStateAndReturnCodeO1(systemContext,DataItemPointer + DataItemPointerOffsetF), inputParameter == 0)) &&
        (inputParameter = CheckSystemStateAndReturnCodeO1(systemContext,DataItemPointer + ExceptionHandlerCallbackOffset), inputParameter == 0)))) &&
      (inputParameter = CheckSystemStateAndReturnCodeO1(systemContext,DataItemPointer + DataItemPointerOffset11), inputParameter == 0)) {
-    if ((DataItemPointer[1] & 0x100) != 0) {
+    if ((DataItemPointer[1] & SystemFlagBit8) != 0) {
       parameterBuffer[0] = DataItemPointer[SecurityCheckOffset12];
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(systemContext + SystemContextDataOffset8))
                         (*(DataBuffer **)(systemContext + SystemContextDataOffset8),parameterBuffer,4);
@@ -35431,7 +35452,7 @@ void ValidateSystemDataIntegrity(void)
     systemStatus = CheckSystemStateAndReturnCodeO1();
     if ((((systemStatus == 0) && (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) &&
         (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) && (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) {
-      if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
+      if ((*(uint *)(registerContext + 4) & SystemFlagBit8) != 0) {
         validationParameter = *(DataWord *)(registerContext + ContextDataOffset48);
         systemStatus = (**(FunctionPointer**)**(DataBuffer **)(destinationContext + 8))
                           (*(DataBuffer **)(destinationContext + 8),&validationParameter,4);
@@ -36034,7 +36055,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
   }
   if (((*(int *)(dataBuffer + SystemDataRecordOffset3c) != 0) || (*(int *)(dataBuffer + ExceptionHandlerContextOffset40) != 0)) ||
      (*(int *)(dataBuffer + DataBufferOffset44) != 0)) {
-    operationResult = operationResult | 0x100;
+    operationResult = operationResult | SystemFlagBit8;
   }
   memoryRegionBase = ProcessDataPointer(operationBase);
   if ((int)memoryRegionBase == 0) {
@@ -36097,7 +36118,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 ((memoryRegionBase = ProcessDataOperationA4(operationBase,dataBuffer + SystemDataValidationOffset34), (int)memoryRegionBase == 0 &&
                  (memoryRegionBase = ProcessDataOperationA4(operationBase,dataBuffer + SystemFloatDataOffset38), (int)memoryRegionBase == 0)))))) &&
               ((-1 < (char)operationResult || (memoryRegionBase = ProcessDataPointer(operationBase,dataBuffer + ExceptionHandlerCallbackOffset), (int)memoryRegionBase == 0)
-               ))) && (((operationResult & 0x100) == 0 ||
+               ))) && (((operationResult & SystemFlagBit8) == 0 ||
                        (((memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + SystemDataRecordOffset3c), (int)memoryRegionBase == 0 &&
                          (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + ExceptionHandlerContextOffset40), (int)memoryRegionBase == 0)) &&
                         (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + DataBufferOffset44), (int)memoryRegionBase == 0)))))) {
@@ -36157,7 +36178,7 @@ DataBuffer ExecuteDataCleanupA0(void)
        (((systemContext & 0x40) == 0 ||
         ((validationStatus = ProcessDataOperationA4(), (int)validationStatus == 0 && (validationStatus = ProcessDataOperationA4(), (int)validationStatus == 0)))))
        ) && ((-1 < (char)systemContext || (validationStatus = ProcessDataPointer(), (int)validationStatus == 0)))) &&
-     (((systemContext & 0x100) == 0 ||
+     (((systemContext & SystemFlagBit8) == 0 ||
       (((validationStatus = ValidateParametersA1(), (int)validationStatus == 0 && (validationStatus = ValidateParametersA1(), (int)validationStatus == 0)) &&
        (validationStatus = ValidateParametersA1(), (int)validationStatus == 0)))))) {
     validationStatus = 0;
@@ -39396,7 +39417,7 @@ ValidationLabelB:
           return validationOutcome;
         }
         if ((0 < (int)systemStackDataBuffer.lowWord) && (systemStackDataPointer != (DataBuffer *)0x0)) {
-            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),systemStackDataPointer,&SystemMemoryPoolB,0x100,1);
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),systemStackDataPointer,&SystemMemoryPoolB,SystemFlagBit8,1);
         }
         systemStackDataPointer = (DataBuffer *)0x0;
         systemStackDataBuffer = systemStackDataBuffer & SystemCleanupFlag;
@@ -39648,7 +39669,7 @@ ValidationLabelB:
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(StackFrameContext + -0x29) != 0)) {
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
-                        &SystemMemoryPoolB,0x100,1);
+                        &SystemMemoryPoolB,SystemFlagBit8,1);
         }
         *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
         *(DataWord *)(StackFrameContext + -0x1d) = 0;
@@ -39728,7 +39749,7 @@ ValidationLabelB:
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionBuffer3 != (DataBuffer *)0x0)) {
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionBuffer3,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionBuffer3,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
       *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
       *(DataWord *)(StackFrameContext + StackFrameContextOffsetNegative1D) = 0;
@@ -39904,7 +39925,7 @@ ValidationProcessingLabel:
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(StackFrameContext + -0x29) != 0)) {
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
-                        &SystemMemoryPoolB,0x100,1);
+                        &SystemMemoryPoolB,SystemFlagBit8,1);
         }
         *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
         *(DataWord *)(StackFrameContext + -0x1d) = 0;
@@ -39984,7 +40005,7 @@ ValidationProcessingLabel:
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer != (DataBuffer *)0x0)) {
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
       *(DataBuffer *)(StackFrameContext + StackFrameContextOffsetNegative29) = 0;
       *(DataWord *)(StackFrameContext + -0x1d) = 0;
@@ -40171,7 +40192,7 @@ ValidationLabelB:
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(StackFrameContext + -0x29) != 0)) {
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
-                        &SystemMemoryPoolB,0x100,1);
+                        &SystemMemoryPoolB,SystemFlagBit8,1);
         }
         *(DataBuffer **)(StackFrameContext + -0x29) = registerValueR12;
         *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
@@ -40252,7 +40273,7 @@ ValidationLabelB:
     if ((int)loopCounter < 0) {
       if (0 < inputParameterTertiary) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer4 != (DataBuffer *)0x0)) {
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer4,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),exceptionDataBuffer4,&SystemMemoryPoolB,SystemFlagBit8,1);
       }
       *(DataBuffer **)(StackFrameContext + -0x29) = FloatRegisterR12;
       *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
@@ -42701,7 +42722,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer operationBase,int64_t *dataBuffer)
   ByteFlag SecurityValidationBuffer [32];
   ByteFlag SystemSecurityBuffer [32];
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,SystemSecurityBuffer,1,0x53505250);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,SystemSecurityBuffer,1,SecurityValidationSystemProcessorOperation);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -42715,7 +42736,7 @@ ValidationDataHandler:
     return validationStatus;
   }
   if (ValidationFlags[0] < 1) goto ProcessCheckpointValidationData;
-  validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBuffer,0,0x504f5250);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBuffer,0,SecurityValidationPortOperationRequest);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -42967,7 +42988,7 @@ void ValidateDataParametersWithSecurity(int64_t DataContext, DataBuffer *Securit
   ByteFlag portControlBuffer [32];
   ByteFlag stackValidationBuffer [32];
   
-  securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,0x4a4f5250);
+  securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,SecurityValidationJobOperationRequest);
   if (((securityCheckResult == 0) && (securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,0x494b4e42), securityCheckResult == 0)) &&
      (securityCheckResult = ValidatePortControlRequest(SecurityBuffer,DataContext + ExceptionHandlerCallbackOffset), securityCheckResult == 0)) {
     if (*(uint *)(SecurityBuffer + 8) < 0x37) {
@@ -48224,7 +48245,7 @@ void SetDefaultExceptionHandlerForOffset98(DataBuffer context, int64_t systemDat
 /**
  * @brief 清理系统标志位8
  * 
- * 该函数检查并清理系统数据中的第8位标志(0x100)，
+ * 该函数检查并清理系统数据中的第8位标志(SystemFlagBit8)，
  * 如果该位被设置，则清除它并调用相应的清理函数
  * 
  * @param context 上下文参数
@@ -48233,7 +48254,7 @@ void SetDefaultExceptionHandlerForOffset98(DataBuffer context, int64_t systemDat
 void CleanupSystemFlagBit8(DataBuffer context, int64_t systemData)
 
 {
-  if ((*(uint *)(systemData + 0x30) & 0x100) != 0) {
+  if ((*(uint *)(systemData + 0x30) & SystemFlagBit8) != 0) {
     *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xfffffeff;
     CleanupResourceHandler(systemData + SystemFloatDataOffset38);
   }
@@ -54071,7 +54092,7 @@ void ExecuteSystemCleanupF(DataBuffer dataBuffer, int64_t executionContext, Data
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(executionContext + 0x40) + 0xf0,
-                *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x100),cleanupParam,cleanupParamB,
+                *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + SystemFlagBit8),cleanupParam,cleanupParamB,
                 SystemCleanupFlagAlternative);
   return;
 }
@@ -58146,7 +58167,7 @@ void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,Da
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextStatusOffsetE8) = 0;
   *(DataWord *)(exceptionContext + ExceptionContextDataOffsetF8) = 0;
-  *(DataBuffer *)(exceptionContext + 0xe0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffsetE0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -60106,7 +60127,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextStatusOffsetE8) = 0;
   *(DataWord *)(exceptionContext + ExceptionContextDataOffsetF8) = 0;
-  *(DataBuffer *)(exceptionContext + 0xe0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffsetE0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -60116,7 +60137,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
  * @brief 在多个偏移量清理异常处理器
  * 
  * 该函数负责在多个偏移量位置清理和设置异常处理器，包括：
- * - 偏移量0x220、0x200、0x1e0、0x1c0、0x1a0等位置
+ * - 偏移量0x220、StandardMemoryBlockSize、0x1e0、0x1c0、0x1a0等位置
  * - 设置临时异常处理器然后替换为默认异常处理器B
  * - 执行安全检查和清理操作
  * 
@@ -63961,7 +63982,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = dataFlags;
     }
     if (memoryOffset == memoryRegionOffset) break;
-    memoryOffset = *(int64_t *)(memoryOffset + 0x100);
+    memoryOffset = *(int64_t *)(memoryOffset + SystemFlagBit8);
     operationResult = dataFlags;
   }
     _CxxThrowException(0,0);
@@ -64007,7 +64028,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = operationResult;
     }
     if (memoryPointer == dataPointer) break;
-    memoryPointer = *(int64_t *)(memoryPointer + 0x100);
+    memoryPointer = *(int64_t *)(memoryPointer + SystemFlagBit8);
     memoryRegionBase = operationResult;
   }
   securityCheckResult = *(int64_t *)(dataBuffer + DataBufferOffset30) - 1U & SystemCleanupFlagffffffe0;
@@ -64024,7 +64045,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
           memoryRegionOffset[1] & *memoryRegionOffset - 1U) * 8) + 8) = 0;
       memoryRegionOffset = *(int64_t **)(exceptionContext + ResourceValidationFlagOffset60);
       memoryRegionOffset[1] = memoryRegionOffset[1] - 1U & *memoryRegionOffset - 1U;
-      dataPointer = *(int64_t *)(dataPointer + 0x100);
+      dataPointer = *(int64_t *)(dataPointer + SystemFlagBit8);
       if (dataPointer == 0) break;
       securityCheckResult = *(uint64_t *)(dataBuffer + MemoryPointerOffset);
     }
@@ -66230,7 +66251,7 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuff
 /**
  * @brief 执行异常处理回调函数A1
  * 
- * 该函数从数据缓冲区的0x100偏移量获取异常处理回调函数指针，
+ * 该函数从数据缓冲区的SystemFlagBit8偏移量获取异常处理回调函数指针，
  * 如果回调函数存在，则执行该回调函数，传递相关参数。
  * 
  * @param operationBase 操作基础地址（未使用）
@@ -66286,7 +66307,7 @@ void ExecuteExceptionHandlerCallback440(DataBuffer operationBase,int64_t dataBuf
 /**
  * @brief 执行异常处理回调函数450
  * 
- * 该函数从数据缓冲区的0x100偏移量获取异常处理回调函数指针，
+ * 该函数从数据缓冲区的SystemFlagBit8偏移量获取异常处理回调函数指针，
  * 如果回调函数存在，则执行该回调函数，传递相关参数。
  * 
  * @param operationBase 操作基础地址（未使用）
@@ -67400,13 +67421,13 @@ void CleanupExceptionResourcesA(DataBuffer exceptionContext, int64_t unwindParam
 void InitializeExceptionHandlerPointers(DataBuffer exceptionContext, int64_t handlerContext)
 
 {
-  *(DataBuffer *)(handlerContext + 0x100) = &DefaultExceptionHandlerA;
+  *(DataBuffer *)(handlerContext + SystemFlagBit8) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0x108) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(handlerContext + 0x108) = 0;
   *(DataWord *)(handlerContext + 0x118) = 0;
-  *(DataBuffer *)(handlerContext + 0x100) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(handlerContext + SystemFlagBit8) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(handlerContext + 0xe0) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xe8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -67831,7 +67852,7 @@ void CleanupExceptionHandling8C0(DataBuffer operationBase,int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区指针，包含资源管理信息
  * 
  * @note 原始函数名：Unwind_1809058d0
- * @note 处理数据缓冲区的0x200、0x208、0x218偏移量的异常处理资源
+ * @note 处理数据缓冲区的StandardMemoryBlockSize、0x208、0x218偏移量的异常处理资源
  */
 void ManageExceptionHandlingResources8D0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -67857,7 +67878,7 @@ void ManageExceptionHandlingResources8D0(DataBuffer operationBase,int64_t dataBu
  * @param dataBuffer 数据缓冲区指针，包含缓冲区清理信息
  * 
  * @note 原始函数名：Unwind_1809058e0
- * @note 重置数据缓冲区0x200偏移量的异常处理器指针
+ * @note 重置数据缓冲区StandardMemoryBlockSize偏移量的异常处理器指针
  */
 void ClearExceptionHandlingBuffer8E0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -68564,13 +68585,13 @@ void ResetExceptionHandlerD(DataBuffer systemContext, int64_t ExecutionContext)
 void CleanupSystemExceptionHandlingA0(DataBuffer systemContext, int64_t executionContext)
 
 {
-  *(DataBuffer *)(executionContext + 0x100) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(executionContext + SystemFlagBit8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(executionContext + 0x108) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(executionContext + 0x108) = 0;
   *(DataWord *)(executionContext + 0x118) = 0;
-  *(DataBuffer *)(executionContext + 0x100) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(executionContext + SystemFlagBit8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -74257,7 +74278,7 @@ void ValidateContextStateA(DataBuffer exceptionContext, int64_t validationRange)
 {
   int64_t *contextPointer;
   
-  for (contextPointer = *(int64_t **)(validationRange + 0xf8); contextPointer != *(int64_t **)(validationRange + 0x100);
+  for (contextPointer = *(int64_t **)(validationRange + 0xf8); contextPointer != *(int64_t **)(validationRange + SystemFlagBit8);
       contextPointer = contextPointer + 4) {
     if (*contextPointer != 0) {
         TerminateSystemExecutionAndCleanupResources();
@@ -74587,7 +74608,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
 /**
  * @brief 验证异常上下文指针范围
  * 
- * 该函数验证位于0xf8到0x100偏移量范围内的异常上下文指针。它会遍历这个范围内的所有指针，
+ * 该函数验证位于0xf8到SystemFlagBit8偏移量范围内的异常上下文指针。它会遍历这个范围内的所有指针，
  * 检查它们是否为0。如果发现任何非零指针，会调用系统终止函数。
  * 这是一个异常状态验证函数，用于确保异常上下文的完整性。
  * 
@@ -74596,7 +74617,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
  * 
  * @note 原始函数名：Unwind_180906ce0
  * @note 这是一个异常展开（unwind）处理函数，用于异常上下文验证
- * @note 函数检查0xf8到0x100偏移量范围内的指针
+ * @note 函数检查0xf8到SystemFlagBit8偏移量范围内的指针
  * @warning 如果发现异常状态，会调用系统终止函数
  */
 void ValidateExceptionContextPointerRange(DataBuffer operationBase,int64_t dataBuffer)
@@ -79490,7 +79511,7 @@ void ProcessExceptionDataA(DataBuffer operationBase,int64_t dataBuffer,DataBuffe
  * @brief 异常处理器回调执行函数A30
  * 
  * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
- * 它会验证0x200、0x1e0和0x1c0偏移处的函数指针，如果存在则调用相应的回调函数。
+ * 它会验证StandardMemoryBlockSize、0x1e0和0x1c0偏移处的函数指针，如果存在则调用相应的回调函数。
  * 主要用于异常处理过程中的回调执行和资源清理。
  * 
  * @param operationBase 操作基址
@@ -101838,9 +101859,9 @@ void SetDefaultExceptionHandlerBAtOffset750(DataBuffer operationBase,int64_t dat
 
 
 /**
- * @brief 调用0x200偏移量的函数指针
+ * @brief 调用StandardMemoryBlockSize偏移量的函数指针
  * 
- * 该函数检查数据缓冲区0x200偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 该函数检查数据缓冲区StandardMemoryBlockSize偏移量处的函数指针是否有效，如果有效则调用该函数。
  * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
  * 
  * @param operationBase 操作基地址
@@ -104295,7 +104316,7 @@ void InvokeExceptionHandlerAtMemoryCleanupOffset1F0(DataBuffer operationBase,int
  * @return void 无返回值
  * 
  * @note 原始函数名：Unwind_18090cf20
- * @note 偏移量：0x1F8, 0x200, 0x210
+ * @note 偏移量：0x1F8, StandardMemoryBlockSize, 0x210
  * @note 如果发现异常状态，会调用TerminateSystemExecutionAndCleanupResources()终止系统
  */
 void ConfigureTemporaryAndDefaultExceptionHandlersCF20(DataBuffer operationBase,int64_t dataBuffer)
@@ -114116,7 +114137,7 @@ void ProcessDataValidationFlagCA0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常处理器回调函数ECD0
  * 
- * 该函数处理异常处理器回调，从0x100偏移量获取异常上下文指针
+ * 该函数处理异常处理器回调，从SystemFlagBit8偏移量获取异常上下文指针
  * 并执行相应的回调函数。
  * 
  * @param operationBase 操作基地址
@@ -115844,7 +115865,7 @@ void ProcessDataBufferWithMemoryPointerAtOffset0f0(DataBuffer operationBase,int6
 
 
 /**
- * @brief 使用内存指针处理数据缓冲区（偏移0x100）
+ * @brief 使用内存指针处理数据缓冲区（偏移SystemFlagBit8）
  * 
  * 该函数负责使用内存指针处理数据缓冲区，调用ProcessDataBufferA5函数
  * 进行实际的数据处理操作。功能与ProcessDataBufferWithMemoryPointerAtOffset0f0完全相同。
@@ -116369,7 +116390,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
  * @brief 清理资源引用计数A1
  * 
  * 该函数负责清理指定偏移量处的资源引用计数。与CleanupResourceReferenceCountA0类似，
- * 但操作的是不同的偏移量（0x100）。这是异常处理机制中的重要组成部分，
+ * 但操作的是不同的偏移量（SystemFlagBit8）。这是异常处理机制中的重要组成部分，
  * 用于确保资源的正确释放。
  * 
  * @param operationBase 操作基础对象（未使用）
@@ -116385,7 +116406,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) + 0x100);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) + SystemFlagBit8);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -121135,7 +121156,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
 
 
 /**
- * @brief 内存资源处理器清理（偏移量0xd0和0x200）
+ * @brief 内存资源处理器清理（偏移量0xd0和StandardMemoryBlockSize）
  * 
  * 该函数负责清理内存资源处理器，遍历内存资源指针并调用清理函数。
  * 主要功能包括：
@@ -121149,7 +121170,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180910330
- * @note 该函数处理偏移量0xd0和0x200处的内存资源清理
+ * @note 该函数处理偏移量0xd0和StandardMemoryBlockSize处的内存资源清理
  */
 void CleanupMemoryResourceHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -130775,7 +130796,7 @@ void HandleDataBufferExceptionAtOffset1e0(DataBuffer operationBase,int64_t dataB
 
 
 
-// 数据缓冲区异常处理函数 - 在偏移量0x200处处理数据缓冲区操作异常
+// 数据缓冲区异常处理函数 - 在偏移量StandardMemoryBlockSize处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -131315,10 +131336,10 @@ void HandlesystemContextExceptionAtOffset3d0(DataBuffer operationBase,int64_t da
 
 
 /**
- * @brief 处理0x200偏移0x8异常上下文
+ * @brief 处理StandardMemoryBlockSize偏移0x8异常上下文
  * 
- * 该函数负责处理数据缓冲区0x200偏移量0x8处的异常上下文，执行异常处理操作
- * 从0x200偏移量的0x8处获取异常上下文并进行处理
+ * 该函数负责处理数据缓冲区StandardMemoryBlockSize偏移量0x8处的异常上下文，执行异常处理操作
+ * 从StandardMemoryBlockSize偏移量的0x8处获取异常上下文并进行处理
  * 
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
@@ -131347,10 +131368,10 @@ void HandleExceptionContextAtDataBufferOffset8(DataBuffer operationBase,int64_t 
 
 
 /**
- * @brief 处理0x200偏移0x18异常上下文
+ * @brief 处理StandardMemoryBlockSize偏移0x18异常上下文
  * 
- * 该函数负责处理数据缓冲区0x200偏移量0x18处的异常上下文，执行异常处理操作
- * 从0x200偏移量的0x18处获取异常上下文并进行处理
+ * 该函数负责处理数据缓冲区StandardMemoryBlockSize偏移量0x18处的异常上下文，执行异常处理操作
+ * 从StandardMemoryBlockSize偏移量的0x18处获取异常上下文并进行处理
  * 
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
@@ -131379,10 +131400,10 @@ void HandleExceptionContextAtSecondaryDataOffset(DataBuffer operationBase,int64_
 
 
 /**
- * @brief 处理0x200偏移0x28异常上下文
+ * @brief 处理StandardMemoryBlockSize偏移0x28异常上下文
  * 
- * 该函数负责处理数据缓冲区0x200偏移量0x28处的异常上下文，执行异常处理操作
- * 从0x200偏移量的0x28处获取异常上下文并进行处理
+ * 该函数负责处理数据缓冲区StandardMemoryBlockSize偏移量0x28处的异常上下文，执行异常处理操作
+ * 从StandardMemoryBlockSize偏移量的0x28处获取异常上下文并进行处理
  * 
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
@@ -133155,7 +133176,7 @@ void InitializeUtilityModule(void)
         // 遍历所有内存区域并进行初始化
         for (CurrentMemoryRegionAddress = SystemMemoryStartAddress; 
              CurrentMemoryRegionAddress != SystemMemoryEndAddress; 
-             CurrentMemoryRegionAddress = CurrentMemoryRegionAddress + 0x100) {
+             CurrentMemoryRegionAddress = CurrentMemoryRegionAddress + SystemFlagBit8) {
             InitializeMemoryRegion(CurrentMemoryRegionAddress);
         }
         
@@ -139727,7 +139748,7 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteExceptionHandlerCallback440 Unwind_180905440
 
 // 原始函数名：Unwind_180905450 - 异常处理回调函数450
-// 功能：执行异常处理回调函数，从数据缓冲区的0x100偏移量获取回调函数指针
+// 功能：执行异常处理回调函数，从数据缓冲区的SystemFlagBit8偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback450 Unwind_180905450
 
 // 原始函数名：Unwind_180905460 - 异常处理回调函数460
