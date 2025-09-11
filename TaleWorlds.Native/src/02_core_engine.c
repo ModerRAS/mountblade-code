@@ -256956,13 +256956,13 @@ void ProcessSystemFloatDataOperation(long long SystemContextHandle, long long Me
   float ScaledFloatValue;                    // 缩放后的浮点值
   float ContextPrimaryFloatValue;            // 上下文主浮点值
   
-  if (OperationBufferSize == *(long long *)(ContextHandle + 0x20)) {
-    ScaledFloatValue = *(float *)(ContextHandle + 0x28);
+  if (MemoryOperationSize == *(long long *)(SystemContextHandle + 0x20)) {
+    ScaledFloatValue = *(float *)(SystemContextHandle + 0x28);
   }
   else {
-    ScaledFloatValue = *(float *)(ContextHandle + 0x848);
+    ScaledFloatValue = *(float *)(SystemContextHandle + 0x848);
   }
-  ComputedResultPointer = *(int **)(OperationBufferSize + 0xb8);
+  ComputedResultPointer = *(int **)(MemoryOperationSize + 0xb8);
   SystemOperationResult = 0;
   ScaledFloatValue = ScaledFloatValue * 30.0;
   ValidationResult = (int)((*(long long *)(OperationBufferSize + 0xc0) - (long long)ComputedResultPointer) / 0x28) + -1;
