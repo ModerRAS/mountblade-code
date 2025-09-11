@@ -2836,13 +2836,13 @@ typedef enum {
 #define FUN_180721810 ProcessUITransformDataWithCoefficients
 #define FUN_18072182d ProcessUISimpleDataTransform
 #define FUN_180721864 ProcessUIComplexDataTransform
-#define FUN_180721984 ResetUITransformStateOperation
-#define FUN_1807219ee ProcessUIBufferWithTransformOperation
+#define FUN_180721984 ResetUITransformState
+#define FUN_1807219ee ProcessUIBufferWithTransform
 
 // UI系统数据处理函数宏定义
 #define FUN_180787940 ProcessUIContextDataWithBufferOperation
-#define FUN_1807e4c10 ProcessUIeventDataIndexOperation
-#define FUN_18075a230 ProcessUIContextAndDataSourceOperation
+#define FUN_1807e4c10 ProcessUIEventDataIndex
+#define FUN_18075a230 ProcessUIContextAndDataSource
 
 // UI系统堆栈变量美化
 // afStack_6260 已在上面定义为 UIAnimationSpeedStack6260
@@ -3154,7 +3154,7 @@ typedef enum {
  * @note 原始函数名：FUN_18068f9a0
  * @see UIMatrixDataProcessor858
  */
-#define FUN_18068f9a0 ProcessUIBatchDataWithValidation
+#define FUN_18068f9a0 ProcessUIBatchDataValidation
 
 /**
  * @brief 验证UI数据版本并应用Alpha混合
@@ -5220,6 +5220,21 @@ void* UIGestureCoordinates;
 #define UIContextOperationDataTable7b0 UNK_1809577b0    // UI上下文操作数据表7b0 - 存储上下文操作的元数据
 #define UIContextOperationDataTable8d0 UNK_1809578d0    // UI上下文操作数据表8d0 - 存储上下文操作的统计数据
 #define UIContextOperationDataTable7f0 UNK_1809577f0    // UI上下文操作数据表7f0 - 存储上下文操作的日志数据
+
+// UI上下文操作数据表语义化别名
+#define UIContextConfigData UIContextOperationDataTable1c8     // UI上下文配置数据表
+#define UIContextStateData UIContextOperationDataTable158     // UI上下文状态数据表
+#define UIContextValidationData UIContextOperationDataTable0f8  // UI上下文验证数据表
+#define UIContextCacheData UIContextOperationDataTable188      // UI上下文缓存数据表
+#define UIContextResultData UIContextOperationDataTable260     // UI上下文结果数据表
+#define UIContextAdvancedData UIContextOperationDataTable310   // UI上下文高级数据表
+#define UIContextExtendedData UIContextOperationDataTable898   // UI上下文扩展数据表
+#define UIContextIndexData UIContextOperationDataTable810      // UI上下文索引数据表
+#define UIContextTemporaryData UIContextOperationDataTable6a0  // UI上下文临时数据表
+#define UIContextBufferData UIContextOperationDataTable880     // UI上下文缓冲区数据表
+#define UIContextMetadata UIContextOperationDataTable7b0       // UI上下文元数据表
+#define UIContextStatisticsData UIContextOperationDataTable8d0  // UI上下文统计数据表
+#define UIContextLogData UIContextOperationDataTable7f0        // UI上下文日志数据表
 
 // UI系统栈变量宏定义
 #define UIStackTransformMatrix70 &stack0x00000070        // UI变换矩阵栈70 - 存储UI变换矩阵数据
