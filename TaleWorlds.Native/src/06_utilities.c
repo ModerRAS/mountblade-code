@@ -143696,8 +143696,8 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 // === 新增的系统功能语义化定义 ===
 
 // 系统内存管理相关变量语义化定义
-#define UNK_180c4f450 SystemMemoryPoolManager              // 系统内存池管理器 - 负责系统内存池的分配和管理
-#define UNK_180c4f460 SystemMemoryAllocator                // 系统内存分配器 - 负责系统内存的分配操作
+#define SystemMemoryPoolManager UNK_180c4f450              // 系统内存池管理器 - 负责系统内存池的分配和管理
+#define SystemMemoryAllocator UNK_180c4f460                // 系统内存分配器 - 负责系统内存的分配操作
 // 系统内存管理器指针
 #define SystemMemoryManagerPointer SystemPrimaryMemoryManager
 
@@ -143705,32 +143705,32 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SystemMemorySecondaryManagerPointer SystemSecondaryMemoryManager
 
 // 系统内存清理处理器
-#define SystemMemoryCleanupHandler UNK_180c919f0
+#define SystemMemoryCleanupHandler SystemMemoryCleanupProcessor
 
 // 系统线程管理相关变量语义化定义
 // 系统线程管理器指针
-#define SystemThreadManagerPointer UNK_180c96690
+#define SystemThreadManagerPointer SystemThreadManagementController
 
 // 系统线程调度器指针
-#define SystemThreadSchedulerPointer UNK_180c966f0
+#define SystemThreadSchedulerPointer SystemThreadSchedulingController
 
 // 系统线程同步器指针
-#define SystemThreadSynchronizerPointer UNK_180c96740
+#define SystemThreadSynchronizerPointer SystemThreadSynchronizationController
 // 系统线程上下文管理器指针
-#define SystemThreadContextManagerPointer UNK_180c497e0
+#define SystemThreadContextManagerPointer SystemThreadContextManagementController
 
 // 系统线程异常处理器指针
-#define SystemThreadExceptionHandlerPointer UNK_180c498a0
+#define SystemThreadExceptionHandlerPointer SystemThreadExceptionHandlingController
 
 // 系统异常处理相关变量语义化定义
 // 系统异常表指针
-#define SystemExceptionTablePointer UNK_180d49e70
+#define SystemExceptionTablePointer SystemExceptionDataTable
 
 // 系统异常处理器指针
-#define SystemExceptionHandlerPointer UNK_180d49f10
+#define SystemExceptionHandlerPointer SystemExceptionProcessingHandler
 
 // 系统异常栈指针
-#define SystemExceptionStackPointer UNK_180d497e0
+#define SystemExceptionStackPointer SystemExceptionStackData
 
 // 系统异常帧指针
 #define SystemExceptionFramePointer UNK_180d498a0
