@@ -47329,7 +47329,7 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
 {
     int mutexUnlockStatus;
     
-    mutexUnlockStatus = _Mtx_unlock(*(DataBuffer *)(unwindParameter + ResourceValidationFlagOffset60));
+    mutexUnlockStatus = UnlockMutex(*(DataBuffer *)(unwindParameter + ResourceValidationFlagOffset60));
     if (mutexUnlockStatus != 0) {
         ThrowCStandardError(mutexUnlockStatus);
     }
@@ -47356,7 +47356,7 @@ void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwi
     int mutexUnlockStatus;
     
     ExceptionContextPtr = *(DataBuffer *)(unwindParam + ExceptionHandlerContextOffset40);
-    mutexUnlockStatus = _Mtx_unlock(SystemMutexObjectAddress);
+    mutexUnlockStatus = UnlockMutex(SystemMutexObjectAddress);
     if (mutexUnlockStatus != 0) {
         ThrowCStandardError(mutexUnlockStatus);
     }
@@ -47502,7 +47502,7 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
   ExceptionContext = *(DataBuffer *)(contextData + ExceptionContextDataOffset88);
   
   // 解锁互斥锁
-  unlockResult = _Mtx_unlock(SystemMutexObjectAddress);
+  unlockResult = UnlockMutex(SystemMutexObjectAddress);
   if (unlockResult != 0) {
     // 如果解锁失败，抛出C标准错误
     ThrowCStandardError(unlockResult);
@@ -63000,7 +63000,7 @@ void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
 {
   int unlockResult;
   
-  unlockResult = _Mtx_unlock(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset58));
+  unlockResult = UnlockMutex(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset58));
   if (unlockResult != 0) {
     ThrowCStandardError(unlockResult);
   }
@@ -67151,7 +67151,7 @@ void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -67577,7 +67577,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   *(ByteFlag *)((int64_t)operationResult + SystemStatusByteOffset) = 1;
   dataContext = operationResult + SystemDataContextOffset;
   dataProcessingPointer = dataContext;
-  iterationCount = _Mtx_lock(dataContext);
+  iterationCount = LockMutex(dataContext);
   if (iterationCount != 0) {
     ThrowCStandardError(iterationCount);
   }
@@ -67636,7 +67636,7 @@ ProcessCheckpointValidationData3:
     dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   }
   operationResult[systemContextArrayOffset] = dataProcessingBuffer;
-  iterationCount = _Mtx_unlock(dataContext);
+  iterationCount = UnlockMutex(dataContext);
   if (iterationCount != 0) {
     ThrowCStandardError(iterationCount);
   }
@@ -68398,7 +68398,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
   *(ByteFlag *)((int64_t)operationResult + 0x162) = 1;
   dataContext = operationResult + 0x1a;
   dataProcessingPointer = dataContext;
-  iterationCount = _Mtx_lock(dataContext);
+  iterationCount = LockMutex(dataContext);
   if (iterationCount != 0) {
     ThrowCStandardError(iterationCount);
   }
@@ -68457,7 +68457,7 @@ ProcessCheckpointValidationData3:
     dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   }
   operationResult[OperationResultIndex2E] = dataProcessingBuffer;
-  iterationCount = _Mtx_unlock(dataContext);
+  iterationCount = UnlockMutex(dataContext);
   if (iterationCount != 0) {
     ThrowCStandardError(iterationCount);
   }
@@ -69867,7 +69867,7 @@ void ReleaseMutexLockDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
   int inputParameter;
   
   if (*(char *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) != '\0') {
-    inputParameter = _Mtx_unlock(*(DataBuffer *)(exceptionDataBuffer + DataBufferOffset48));
+    inputParameter = UnlockMutex(*(DataBuffer *)(exceptionDataBuffer + DataBufferOffset48));
     if (inputParameter != 0) {
       ThrowCStandardError(inputParameter);
     }
@@ -71208,7 +71208,7 @@ void UnlockMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -83057,7 +83057,7 @@ void UnlockMutexWithErrorHandling(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemManagementOffset98));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemManagementOffset98));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -83350,7 +83350,7 @@ void MutexUnlockerA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + DataBufferOffset1d0));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + DataBufferOffset1d0));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -84269,7 +84269,7 @@ void UnlockMutexAtOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffsetC0));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffsetC0));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -84292,7 +84292,7 @@ void UnlockMutexAtOffset200(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemDataBufferOffset200));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemDataBufferOffset200));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -84631,7 +84631,7 @@ void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
   int systemMutexUnlockResult;
   
   ExceptionContextPtr = *(DataBuffer *)(stackFrame + 0x70);
-  systemMutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
+  systemMutexUnlockResult = UnlockMutex(SystemMutexObjectAddress);
   if (systemMutexUnlockResult != 0) {
     ThrowCStandardError(systemMutexUnlockResult);
   }
@@ -84645,7 +84645,7 @@ void ReleaseMutexLockA20(DataBuffer exceptionContext, int64_t stackFrame)
 {
   int systemMutexUnlockResult;
   
-  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x68));
+  systemMutexUnlockResult = UnlockMutex(*(DataBuffer *)(stackFrame + 0x68));
   if (systemMutexUnlockResult != 0) {
     ThrowCStandardError(systemMutexUnlockResult);
   }
@@ -84659,7 +84659,7 @@ void ReleaseMutexLockA30(DataBuffer exceptionContext, int64_t stackFrame)
 {
   int systemMutexUnlockResult;
   
-  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x148));
+  systemMutexUnlockResult = UnlockMutex(*(DataBuffer *)(stackFrame + 0x148));
   if (systemMutexUnlockResult != 0) {
     ThrowCStandardError(systemMutexUnlockResult);
   }
@@ -84673,7 +84673,7 @@ void ReleaseMutexLockA10(DataBuffer exceptionContext, int64_t stackFrame)
 {
   int systemMutexUnlockResult;
   
-  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + ResourceManagementOffset1d8));
+  systemMutexUnlockResult = UnlockMutex(*(DataBuffer *)(stackFrame + ResourceManagementOffset1d8));
   if (systemMutexUnlockResult != 0) {
     ThrowCStandardError(systemMutexUnlockResult);
   }
@@ -90360,7 +90360,7 @@ void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuff
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexUnlockOffsetE8));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemMutexUnlockOffsetE8));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -90577,7 +90577,7 @@ void UnlockMutexAndHandleErrorA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetD8));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetD8));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -90860,7 +90860,7 @@ void UnlockSystemMutexB20(DataBuffer operationBase,int64_t dataBuffer)
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexOffset));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemMutexOffset));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -91072,7 +91072,7 @@ void UnlockSystemMutexBE0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemOperationStatusOffset));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemOperationStatusOffset));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -91292,7 +91292,7 @@ void UnlockMutexAtDataBufferOffset(DataBuffer operationBase, int64_t dataBuffer)
   int mutexUnlockResult;
   
   if (*(char *)(dataBuffer + SystemStatePrimaryOffset) != '\0') {
-    mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemStackDataOffset));
+    mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + SystemStackDataOffset));
     if (mutexUnlockResult != 0) {
       ThrowCStandardError(mutexUnlockResult);
     }
@@ -93293,7 +93293,7 @@ void UnlockMutexA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerCountOffset));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + ExceptionHandlerCountOffset));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -93471,7 +93471,7 @@ void UnlockMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + systemContextPointerOffset90));
+  mutexUnlockResult = UnlockMutex(*(DataBuffer *)(dataBuffer + systemContextPointerOffset90));
   if (mutexUnlockResult != 0) {
     ThrowCStandardError(mutexUnlockResult);
   }
@@ -104890,7 +104890,7 @@ void ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffe
   int inputParameter;
   
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + ValidationResultOffset);
-  inputParameter = _Mtx_unlock(SystemMutexObjectAddress + ResourceValidationFlagOffset60);
+  inputParameter = UnlockMutex(SystemMutexObjectAddress + ResourceValidationFlagOffset60);
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }
@@ -104924,7 +104924,7 @@ void ReleaseSystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + systemContextPointerOffset90);
   
   // 尝试解锁系统互斥锁
-  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress + ResourceValidationFlagOffset60);
+  mutexUnlockResult = UnlockMutex(SystemMutexObjectAddress + ResourceValidationFlagOffset60);
   
   // 检查解锁操作是否成功
   if (mutexUnlockResult != 0) {
@@ -117996,7 +117996,7 @@ void UnlockMutexAtOffset140(DataBuffer operationBase,int64_t dataBuffer)
 {
   int inputParameter;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + DataBufferOffset140));
+  inputParameter = UnlockMutex(*(DataBuffer *)(dataBuffer + DataBufferOffset140));
   if (inputParameter != 0) {
     ThrowCStandardError(inputParameter);
   }

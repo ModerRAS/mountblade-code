@@ -235258,7 +235258,7 @@ void InitializeSystemContextManager(void)
   long long NullPointerValue;
   bool StringComparisonByte2;
   uint32_t TemporaryStackValue58;
-  uint32_t TemporaryStackValue5c;
+  uint32_t HighByteStorage;
   
   do {
     StringProcessingStatus = FramePointer;
