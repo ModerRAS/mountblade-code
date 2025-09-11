@@ -98997,6 +98997,18 @@ long long InitializeSystemDataStructureAlternatePointerConfiguration(long long C
  * @note 原始函数名为FUN_18010bf30，现已重命名为ConfigureSystemDataStructureHandles
  * @warning 如果目标数据结构无效，可能导致配置失败
  */
+/**
+ * @brief 配置系统数据结构句柄
+ * 
+ * 该函数负责配置系统数据结构的句柄，设置系统栈缓冲区和函数地址。
+ * 主要用于系统初始化和数据结构管理。
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @return 返回配置后的上下文句柄
+ * 
+ * @note 这是系统数据结构管理的核心函数
+ * @warning 如果上下文句柄无效，可能导致系统错误
+ */
 long long ConfigureSystemDataStructureHandles(long long ContextHandle
 {
   *(void **)(ContextHandle + 0x10) = &SystemStackBufferE;
@@ -256925,18 +256937,18 @@ LAB_180208d4a:
  */
 void FUN_180208f20(long long ContextHandle, long long OperationBufferSize, int *Utf8SourcePointer, long long Utf16EndPointer, float AdditionalParameter1)
 {
-  bool StringComparisonByte;
-  long long BufferStatus;
-  float *pFilterInputValue;
-  int EncodingValidationResult;
-  long long AllocatedMemorySize;
-  long long MemoryBoundaryEnd;
-  int *StringLength;
-  int *pComputedResult;
-  int IntegerValue9;
-  long long MemoryAllocationIndex;
-  float SecondaryFloatValue;
-  float SystemContextPrimaryFloat2;
+  bool CharacterComparisonFlag;              // 字符比较标志
+  long long ProcessingBufferStatus;          // 处理缓冲区状态
+  float *FilterValuePointer;                 // 过滤值指针
+  int ValidationResult;                      // 验证结果
+  long long AllocatedMemorySize;             // 已分配内存大小
+  long long MemoryBoundaryEnd;               // 内存边界结束位置
+  int *StringLengthPointer;                  // 字符串长度指针
+  int *ComputedResultPointer;                // 计算结果指针
+  int ArrayIndex;                           // 数组索引
+  long long MemoryBlockIndex;                // 内存块索引
+  float ScaledFloatValue;                    // 缩放后的浮点值
+  float ContextPrimaryFloatValue;            // 上下文主浮点值
   
   if (OperationBufferSize == *(long long *)(ContextHandle + 0x20)) {
     SecondaryFloatValue = *(float *)(ContextHandle + 0x28);

@@ -33052,6 +33052,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
           exceptionContextPointer4 = (int64_t *)(uint64_t)SystemDataBufferTertiary;
         } while ((int)SystemDataBufferTertiary < iterationCount);
       }
+      // 设置系统清理状态为完成
       SystemCleanupStatusLocal = AllBitsSet;
       StackFloatArrayD[0] = -NAN;
       StackLongIntegerPointerA = (int64_t *)(*(int64_t *)(operationBase[1] + systemContextPointerOffset90) + SystemFloatDataOffset38);
@@ -33136,6 +33137,7 @@ CalculationCheckpoint:
     }
   }
 MemoryCheckpoint:
+    // 释放上下文资源，完成函数执行
     ReleaseResourceA1(contextProcessingBuffer + ContextResourceReleaseOffset);
 }
 
