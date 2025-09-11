@@ -6960,35 +6960,35 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 
 // 原始函数名：Unwind_180909500 - 异常状态重置函数A0
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA0 Unwind_180909500
+#define ResetExceptionStatusA0 ResetExceptionStatusAtOffset1280
 
 // 原始函数名：Unwind_180909510 - 异常状态重置函数A1
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA1 Unwind_180909510
+#define ResetExceptionStatusA1 ResetExceptionStatusAtOffset1296
 
 // 原始函数名：Unwind_180909520 - 异常状态重置函数A2
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA2 Unwind_180909520
+#define ResetExceptionStatusA2 ResetExceptionStatusAtOffset1312
 
 // 原始函数名：Unwind_180909530 - 异常状态重置函数A3
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA3 Unwind_180909530
+#define ResetExceptionStatusA3 ResetExceptionStatusAtOffset1328
 
 // 原始函数名：Unwind_180909540 - 异常状态重置函数A4
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA4 Unwind_180909540
+#define ResetExceptionStatusA4 ResetExceptionStatusAtOffset1344
 
 // 原始函数名：Unwind_180909550 - 异常状态重置函数A5
 // 功能：重置异常状态标志，清理异常处理状态
-#define ResetExceptionStatusA5 Unwind_180909550
+#define ResetExceptionStatusA5 ResetExceptionStatusAtOffset1360
 
 // 原始函数名：Unwind_1809095c0 - 异常处理器初始化函数A0
 // 功能：初始化异常处理器，设置异常处理上下文
-#define InitializeExceptionHandlerA0 Unwind_1809095c0
+#define InitializeExceptionHandlerA0 InitializeExceptionHandlerAtOffset1472
 
 // 原始函数名：Unwind_1809095d0 - 异常处理器初始化函数A1
 // 功能：初始化异常处理器，设置异常处理上下文
-#define InitializeExceptionHandlerA1 Unwind_1809095d0
+#define InitializeExceptionHandlerA1 InitializeExceptionHandlerAtOffset1488
 
 // 原始函数名：Unwind_180909600 - 异常处理器配置函数A0
 // 功能：配置异常处理器参数，设置异常处理选项
