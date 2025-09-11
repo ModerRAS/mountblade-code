@@ -5000,7 +5000,7 @@ void* UIGestureCoordinates;
 #define UIFunctionTablePointer7 _DAT_180d4a7e8     // UI函数表指针7 - 状态处理函数表
 
  // UI系统全局状态标志宏定义
-#define UIGlobalStatusFlag1 _DAT_180d4a788               // UI全局状态标志1
+#define UIGlobalStatusFlag1 UIRenderStateInitializationFlag     // UI全局状态标志1 - 渲染状态初始化标志
 #define UIGlobalStatusFlag2 _DAT_180d4a740               // UI全局状态标志2
 #define UIGlobalStatusFlag3 _DAT_180d4a700               // UI全局状态标志3
 #define UIGlobalStatusFlag4 _DAT_180d4a6e0               // UI全局状态标志4
@@ -93759,6 +93759,7 @@ void UINoOperationHandler(void)
 #define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
 
 // 函数: void FUN_18071ace8(void)
+#define UIReturnEmptyFunction FUN_18071ace8
 /**
  * @brief UI系统空返回函数
  * 
@@ -124183,6 +124184,7 @@ void CleanupUIBufferResources(void)
 
 
 
+ #define CleanupUIResources FUN_180739b3f
  void FUN_180739b3f(void)
 void CleanupUIResources(void)
 
@@ -124200,6 +124202,7 @@ void CleanupUIResources(void)
 
 
 
+ #define ReleaseUIMemoryAndExecuteRender FUN_180739b61
  void FUN_180739b61(void)
 /**
  * @brief 释放UI内存资源并执行渲染任务
@@ -150200,8 +150203,8 @@ UIHandle ProcessUIEventActivationAndDataValidation(UIHandle *uiContext, int data
                      WARNING: Subroutine does not return
         ProcessUISystemCleanup(uiContext[0x1b],3);
       }
-      localChar4 = (**(code **)*uiContext)(uiContext);
-      if (localChar4 != '\0') {
+      isContextAvailable = (**(code **)*uiContext)(uiContext);
+      if (isContextAvailable != '\0') {
         if (targetBuffer != 0) {
           LOCK();
           *(uint *)(uiContext + 0xb) = *(uint *)(uiContext + 0xb) | 0x10;
