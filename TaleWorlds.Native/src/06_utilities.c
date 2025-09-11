@@ -2186,8 +2186,8 @@
 #define SystemDataValidationOffset 0x34                    // 系统数据验证偏移量
 #define SystemDataProcessingFlagsOffset 0x2d8                // 系统数据处理标志偏移量
 #define SystemDataSecondaryOffset 0x18                     // 系统数据次级偏移量
-#define SystemManagementOffset98 0x98                        // 系统管理偏移量98
-#define SystemContextPointerOffsetPrimary 0x90                    // 系统上下文指针偏移量90
+#define SystemManagementOffset 0x98                        // 系统管理偏移量
+#define SystemContextPointerOffset 0x90                    // 系统上下文指针偏移量
 #define SystemParameterValidationOffsetPrimary 0x28               // 系统参数验证偏移量28
 #define SystemDataParameterOffsetPrimary 0x20                      // 系统数据参数偏移量20
 #define SystemDataRecordMultiplier 0x18                      // 系统数据记录乘数18
