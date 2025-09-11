@@ -49997,21 +49997,21 @@ void ProcessSystemConfigurationData(long long ContextHandle, long long *ContextH
   Utf16Char = *(ushort *)(ContextHandle + 0x62);
   if ((unsigned long long)((*ContextHandleSize - (long long)ContextHandleTablePointer) + OperationBufferSize[2]) < 5) {
     ProcessBufferIndexllocation(OperationBufferSize,(long long)ContextHandleTablePointer + (4 - *ContextHandleSize));
-    SystemBufferPointer = (uint *)OperationBuffer[1];
+    ContextHandleTablePointer = (uint *)OperationBufferSize[1];
   }
-  *ContextHandleTablePointer = (uint)Utf16Character;
-  MemoryBoundaryEnd = OperationBuffer[1] + 4;
-  OperationBuffer[1] = MemoryBoundaryEnd;
+  *ContextHandlePointer = (uint)Utf16Char;
+  MemoryBoundaryEnd = OperationBufferSize[1] + 4;
+  OperationBufferSize[1] = MemoryBoundaryEnd;
   if (*(ushort *)(ContextHandle + 0x62) == 0) {
     return;
   }
-  MemoryPoolDataPointer = *(void *)(ContextHandle + 0x5a);
-  DataArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x62) * 4;
-  if ((unsigned long long)((*ContextHandleSize - MemoryBoundaryEnd) + OperationBuffer[2]) <= DataArraySize) {
-    ProcessBufferIndexllocation(OperationBuffer,DataArraySize + (MemoryBoundaryEnd - *ContextHandleSize));
-    MemoryBoundaryEnd = OperationBuffer[1];
+  MemoryPoolIndex = *(void *)(ContextHandle + 0x5a);
+  ArraySize = (unsigned long long)*(ushort *)(ContextHandle + 0x62) * 4;
+  if ((unsigned long long)((*ContextHandleSize - MemoryBoundaryEnd) + OperationBufferSize[2]) <= ArraySize) {
+    ProcessBufferIndexllocation(OperationBufferSize,ArraySize + (MemoryBoundaryEnd - *ContextHandleSize));
+    MemoryBoundaryEnd = OperationBufferSize[1];
   }
-    memcpy(MemoryBoundaryEnd,MemoryPoolDataPointer,DataArraySize);
+    memcpy(MemoryBoundaryEnd,MemoryPoolIndex,ArraySize);
 }
 
 
