@@ -249449,7 +249449,7 @@ void ProcessOptimizedFloatArraySorting(float *ContextHandle,float *ContextHandle
 
 
 
-02d4d(uint32_t ContextHandle,float *ContextHandleSizevoid FUN_180202d4d(uint32_t ContextHandle,float *ContextHandleSize
+void FUN_180202d4d(uint32_t ContextHandle,float *ContextHandleSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -249549,7 +249549,7 @@ void ExecuteSystemResourceInitialization(void)
 
 
 
-02e40(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointervoid FUN_180202e40(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer
+void FUN_180202e40(float *ContextHandle,float *ContextHandleSize,float *Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   unsigned long long MemoryPoolIndex;

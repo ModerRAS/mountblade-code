@@ -452,7 +452,7 @@ typedef enum {
 #define ProcessUIDataWithValidation FUN_180748b40          // 处理带验证的UI数据
 #define ProcessUIDataWithSecurity ProcessUIContextDataValidationAndEventRender
 #define ProcessUIDataWithCompression ProcessUIDataSourceValidationAndBufferOperation
-#define ProcessUIDataWithOptimization FUN_1807498f0        // 处理带优化的UI数据
+#define ProcessUIDataWithOptimization ProcessUIBufferDataTransferAndOptimization
 
 // UI上下文管理函数
 #define ManageUIContextResources FUN_180752c80              // 管理UI上下文资源
@@ -650,8 +650,8 @@ typedef enum {
 #define ProcessUITextureDataUpload FUN_1807485c0             // 处理UI纹理数据上传
 #define ProcessUIComponentDataSync FUN_180748b40             // 处理UI组件数据同步
 #define ProcessUIContextDataRelease ProcessUIContextDataValidationAndEventRender
-#define ProcessUIResourceDataCleanup FUN_180748ea0           // 处理UI资源数据清理
-#define ProcessUIBufferDataTransfer FUN_1807498f0            // 处理UI缓冲区数据传输
+#define ProcessUIResourceDataCleanup ProcessUIDataSourceValidationAndBufferOperation
+#define ProcessUIBufferDataTransfer ProcessUIBufferDataTransferAndOptimization
 #define ProcessUIDataWithAnimationState FUN_180739420        // 处理带动画状态的UI数据
 #define ReleaseUIMemoryAndExecuteRenderTask FUN_180739b61      // 释放UI内存资源并执行渲染任务
 #define ValidateAndProcessUIContextData FUN_180739df0         // 验证和处理UI上下文数据
@@ -11033,11 +11033,11 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
   targetY = targetBuffer[5];
   bufferY = bufferSize[5];
   targetZ = targetBuffer[6];
-  epsilonValue = targetY * bufferZ - targetZ * bufferY;
-  bufferX = bufferSize[4];
-  FloatValue2 = bufferX * targetZ - baseValue * bufferZ;
-  crossProductZ = baseValue * bufferY - bufferX * targetY;
-  normalizedSum3 = FloatValue2 * dataSource[5] + epsilonValue * dataSource[4] + crossProductZ * sourceZ;
+  crossProductY = targetYCoord * bufferZCoord - targetZCoord * bufferYCoord;
+  bufferXCoord = bufferSize[4];
+  crossProductZ = bufferXCoord * targetZCoord - targetBaseValue * bufferZCoord;
+  finalCrossProductZ = targetBaseValue * bufferYCoord - bufferXCoord * targetYCoord;
+  determinantValue = crossProductZ * dataSource[5] + crossProductY * dataSource[4] + finalCrossProductZ * sourceZCoord;
   if (normalizedSum3 != 0.0) {
     finalResult = dataSource[5] * dataSource[1] + dataSource[4] * *dataSource + sourceZ * dataSource[2];
     vectorComponentX = 1.0 / normalizedSum3;
@@ -142958,8 +142958,24 @@ int FUN_180749060(longlong uiContext)
 
 
 
- void FUN_1807498f0(longlong uiContext,UIDword dataSource)
-void FUN_1807498f0(longlong uiContext,UIDword dataSource)
+ /**
+ * @brief 处理UI缓冲区数据传输和优化操作
+ * 
+ * 该函数负责处理UI缓冲区数据传输和优化操作，包括：
+ * - 验证UI上下文状态
+ * - 执行数据传输操作
+ * - 管理缓冲区优化
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的上下文信息
+ * @param dataSource 数据源标识符，标识要传输的数据源
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1807498f0
+ * @note 该函数是UI缓冲区数据传输和优化系统的核心组件
+ * @see FUN_180749060, FUN_180772870
+ */
+void ProcessUIBufferDataTransferAndOptimization(longlong uiContext,UIDword dataSource)
 
 {
   int operationResult;
@@ -408266,6 +408282,9 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define RegisterUIeventHandler AddUIeventHandler
 #define UnregisterUIeventHandler RemoveUIeventHandler
 #define FindUIeventHandler SearchUIeventHandler
+
+// UI系统清理函数
+#define FUN_18089e0be UICleanupAndExitProcedure                 // UI清理和退出程序
 
 // UI系统组件管理函数
 #define CreateUIComponent GenerateUIComponent
