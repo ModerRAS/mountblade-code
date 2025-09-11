@@ -635,6 +635,7 @@ typedef enum {
 #define ProcessUIContextAndBufferData FUN_18073a4c0              // 处理UI上下文和缓冲区数据
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
 #define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
+#define ProcessUIContextDataOperationAndInitialization FUN_180745946 // 处理UI上下文数据操作和初始化
 #define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
 #define ValidateUIContextAndExecuteRender FUN_18073a98b              // 验证UI上下文并执行渲染
 #define ReleaseUIResourceAndExecuteRender FUN_18073a9b5                // 释放UI资源并执行渲染
