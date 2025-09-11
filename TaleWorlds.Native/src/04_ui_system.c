@@ -128486,7 +128486,25 @@ ProcessUIContextMemoryCleanupAndRender:
  
 
  void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
-void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+/**
+ * @brief UI上下文长操作处理器B
+ * 
+ * 处理UI上下文的长时间操作，包括数据移位、缓冲区管理和渲染任务执行
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 初始化寄存器状态和内存资源
+ * 2. 执行数据源移位操作
+ * 3. 处理UI缓冲区数据和验证
+ * 4. 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073c17d
+ */
+void ProcessUIContextLongOperationB(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;

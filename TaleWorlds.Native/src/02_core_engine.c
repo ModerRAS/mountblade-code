@@ -48183,7 +48183,7 @@ void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBuffer
  * 
  * @note 原始函数名：FUN_18013730
  */
-void ProcessSystemDataStreamAndTransfer(uint64_t ContextHandle, uint64_t OperationBufferSize)/**
+void ProcessSystemDataStream(uint64_t ContextHandle, uint64_t OperationBufferSize))/**
  * @brief 处理系统数据流和数据传输
  * 
  * 该函数负责处理系统数据流和数据传输，包括：
@@ -48197,7 +48197,7 @@ void ProcessSystemDataStreamAndTransfer(uint64_t ContextHandle, uint64_t Operati
  * 
  180073730，ProcessSystemDataStream
  */
-void ProcessSystemDataStream(uint64_t ContextHandle, uint64_t OperationBufferSize
+void ProcessSystemDataStream(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   void *CharacterStatusBuffer;
   char SystemCheckResult;
@@ -238595,7 +238595,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   ContextHandle[0xb94] = 0;
   ContextHandle[0xb95] = 0;
   *(uint32_t *)(ContextHandle + 0xb96) = 3;
-  ProcessSystemResourceInitialization(ContextHandle + 0xb97,0x2408,1,&SystemEventTemplatePrimary,FUN_1801b99e0);
+  ProcessSystemResourceInitialization(ContextHandle + 0xb97,0x2408,1,&SystemEventTemplatePrimary,ProcessSystemEventTemplate);
   *(uint32_t *)(ContextHandle + 0x1018) = 0;
   _Mtx_init_in_situ(ContextHandle + 0x1019,2);
   ContextHandle[0x1023] = 0;
@@ -239231,7 +239231,7 @@ uint64_t * InitializeContextHandleDataStructure(uint64_t *ContextHandle)
  */
 void InitializeSystemMemoryBlockA0(uint64_t ContextHandle)
 {
-  InitializeSystemMemoryBlock(ContextHandle,0x2408,1,FUN_1801b99e0,0xfffffffffffffffe);
+  InitializeSystemMemoryBlock(ContextHandle,0x2408,1,ProcessSystemEventTemplate,0xfffffffffffffffe);
   return;
 }
 
@@ -239281,7 +239281,7 @@ void CleanupSystemResourcesA0(long long ContextHandle)
  */
 void InitializeSystemMemoryBlockA1(long long ContextHandle)
 {
-  InitializeSystemMemoryBlock(ContextHandle + 8,0x20,0x20,FUN_18004a130,0xfffffffffffffffe);
+  InitializeSystemMemoryBlock(ContextHandle + 8,0x20,0x20,SetupSystemMemoryBlock,0xfffffffffffffffe);
   return;
 }
 
@@ -240116,7 +240116,7 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
       ProcessSystemEventHandling();
   }
   _Mtx_destroy_in_situ();
-  InitializeSystemMemoryBlock(ContextHandle + 0xb97,0x2408,1,FUN_1801b99e0);
+  InitializeSystemMemoryBlock(ContextHandle + 0xb97,0x2408,1,ProcessSystemEventTemplate);
   if (ContextHandle[0xb93] != 0) {
       ProcessSystemEventHandling();
   }
