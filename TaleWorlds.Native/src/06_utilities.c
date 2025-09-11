@@ -2178,7 +2178,6 @@
 #define SystemDataProcessingFlagsOffset 0x2d8                // 系统数据处理标志偏移量
 #define SystemDataSecondaryOffset18 0x18                     // 系统数据次级偏移量18
 #define SystemManagementOffset98 0x98                        // 系统管理偏移量98
-#define SystemFloatDataOffset38 0x38                         // 系统浮点数据偏移量38
 #define SystemContextPointerOffsetPrimary 0x90                    // 系统上下文指针偏移量90
 #define SystemParameterValidationOffsetPrimary 0x28               // 系统参数验证偏移量28
 #define SystemDataParameterOffsetPrimary 0x20                      // 系统数据参数偏移量20
@@ -3736,7 +3735,6 @@
 #define ResourceOffset11 0x11                       // 资源偏移量11
 #define ResourceTableIndex1049 0x1049               // 资源表索引1049
 #define SystemDataOffset1049 0x1049                // 系统数据偏移量1049
-#define SystemFloatDataOffset38 0x38                // 系统浮点数据偏移量38
 #define MemoryResourcePointerOffsetD 0xd           // 内存资源指针偏移量D
 #define MemoryResourcePointerOffsetE 0xe           // 内存资源指针偏移量E
 #define MemoryResourcePointerOffset10 0x10         // 内存资源指针偏移量10
