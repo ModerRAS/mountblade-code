@@ -252423,28 +252423,28 @@ void ProcessSystemContextDataTransferAndMemoryManagement(long long ContextHandle
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
     goto ProcessSystemDataCleanupAndMemoryRelease;
   }
-  ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
-  MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)ContextHandleTablePointer >> 4;
+  void *ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
+  MemoryPoolBlockSize = (long long)StringDataBuffer - (long long)ContextHandleTablePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
 MemoryPoolAllocationLabel:
     MemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
-    StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
+    StringDataBuffer = (void *)SecondaryProcessingStatusFlag[1];
   }
   else {
     MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
     if (MemoryPoolBlockSize != 0) goto LAB_180204eca;
     MemoryAddressMaskPointer = NULL;
   }
-  if (ContextHandleTablePointer != StringProcessingStatus) {
-      memmove(MemoryAddressMaskPointer,ContextHandleTablePointer,(long long)StringProcessingStatus - (long long)ContextHandleTablePointer);
+  if (ContextHandleTablePointer != StringDataBuffer) {
+      memmove(MemoryAddressMaskPointer,ContextHandleTablePointer,(long long)StringDataBuffer - (long long)ContextHandleTablePointer);
   }
-  IntegerValue = OperationBufferSize[2];
-  LockOperationResult = OperationBufferSize[3];
+  DataValueIndex = OperationBufferSize[2];
+  MemoryLockOperationResult = OperationBufferSize[3];
   *MemoryAddressMaskPointer = *(void *)OperationBufferSize;
-  *(int *)(MemoryAddressMaskPointer + 1) = IntegerValue;
-  *(int *)((long long)MemoryAddressMaskPointer + 0xc) = LockOperationResult;
+  *(int *)(MemoryAddressMaskPointer + 1) = DataValueIndex;
+  *(int *)((long long)MemoryAddressMaskPointer + 0xc) = MemoryLockOperationResult;
   if (*SecondaryProcessingStatusFlag != 0) {
       ProcessSystemEventHandling();
   }
