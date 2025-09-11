@@ -21110,8 +21110,8 @@ int CheckUtilitySystemPermission(uint32_t permissionFlags)
     if (PermissionValidationResult == 0) {
         PermissionValidationResult = 0;
     }
-    else if (ResourceMemoryHandle != 0) {
-        InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0), ResourceMemoryHandle, &SystemMemoryPoolB, MemoryOperationModeE9, PermissionOperationMode);
+    else if (SecurityContextMemoryHandle != 0) {
+        InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0), SecurityContextMemoryHandle, &SystemMemoryPoolB, MemoryOperationModeE9, SecurityPermissionOperationMode);
         return PermissionValidationResult;
     }
     
