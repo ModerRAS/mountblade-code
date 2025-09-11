@@ -126920,7 +126920,7 @@ void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = func_0x000180748d40(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073ba9f;
+    if (operationResult == 0) goto ExecuteUIRenderTaskWithResourceRelease;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
