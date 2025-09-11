@@ -12611,7 +12611,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089bd70
  */
-#define ValidateMemoryBlockA0 ValidateMemoryBlockIntegrityAndBounds
+#define ValidateMemoryBlockIntegrityAndBounds FUN_18089bd70
 
 /**
  * @brief 使用指定模式初始化内存块

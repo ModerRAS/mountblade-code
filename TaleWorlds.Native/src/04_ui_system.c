@@ -141182,58 +141182,58 @@ ulonglong ProcessUIContextDataOperationAndInitialization(UIDword uiContext, UIDw
       uiEventStatus = uiTargetHandle[0xb];
       *(UIHandle *)(memoryContextHandle + 0x88) = uiTargetHandle[10];
       *(UIHandle *)(memoryContextHandle + 0x90) = uiEventStatus;
-      eventStatus = uiTargetHandle[0xd];
-      *(UIHandle *)(contextDataHandle + 0x98) = uiTargetHandle[0xc];
-      *(UIHandle *)(contextDataHandle + 0xa0) = eventStatus;
-      eventStatus = uiTargetHandle[0xf];
-      *(UIHandle *)(contextDataHandle + 0xa8) = uiTargetHandle[0xe];
-      *(UIHandle *)(contextDataHandle + 0xb0) = eventStatus;
-      eventStatus = uiTargetHandle[0x11];
-      *(UIHandle *)(contextDataHandle + 0xb8) = uiTargetHandle[0x10];
-      *(UIHandle *)(contextDataHandle + 0xc0) = eventStatus;
-      eventStatus = uiTargetHandle[0x13];
-      *(UIHandle *)(contextDataHandle + 200) = uiTargetHandle[0x12];
-      *(UIHandle *)(contextDataHandle + 0xd0) = eventStatus;
-      eventStatus = uiTargetHandle[0x15];
-      *(UIHandle *)(contextDataHandle + 0xd8) = uiTargetHandle[0x14];
-      *(UIHandle *)(contextDataHandle + 0xe0) = eventStatus;
-      eventStatus = uiTargetHandle[0x17];
-      *(UIHandle *)(contextDataHandle + 0xe8) = uiTargetHandle[0x16];
-      *(UIHandle *)(contextDataHandle + 0xf0) = eventStatus;
-      result = *(UIDword *)((longlong)uiTargetHandle + 0xc4);
-      iterationCount = *(UIDword *)(uiTargetHandle + 0x19);
-      eventCode = *(UIDword *)((longlong)uiTargetHandle + 0xcc);
-      *(UIDword *)(contextDataHandle + 0xf8) = *(UIDword *)(uiTargetHandle + 0x18);
-      *(UIDword *)(contextDataHandle + 0xfc) = result;
-      *(UIDword *)(contextDataHandle + 0x100) = iterationCount;
-      *(UIDword *)(contextDataHandle + 0x104) = eventCodeType;
-      result = *(UIDword *)((longlong)uiTargetHandle + 0xd4);
-      iterationCount = *(UIDword *)(uiTargetHandle + 0x1b);
-      eventCode = *(UIDword *)((longlong)uiTargetHandle + 0xdc);
-      *(UIDword *)(contextDataHandle + 0x108) = *(UIDword *)(uiTargetHandle + 0x1a);
-      *(UIDword *)(contextDataHandle + 0x10c) = result;
-      *(UIDword *)(contextDataHandle + 0x110) = iterationCount;
-      *(UIDword *)(contextDataHandle + 0x114) = eventCodeType;
-      *(UIByte *)(componentData[0x21] + 0x118) = 1;
+      uiEventStatus = uiTargetHandle[0xd];
+      *(UIHandle *)(memoryContextHandle + 0x98) = uiTargetHandle[0xc];
+      *(UIHandle *)(memoryContextHandle + 0xa0) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0xf];
+      *(UIHandle *)(memoryContextHandle + 0xa8) = uiTargetHandle[0xe];
+      *(UIHandle *)(memoryContextHandle + 0xb0) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0x11];
+      *(UIHandle *)(memoryContextHandle + 0xb8) = uiTargetHandle[0x10];
+      *(UIHandle *)(memoryContextHandle + 0xc0) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0x13];
+      *(UIHandle *)(memoryContextHandle + 200) = uiTargetHandle[0x12];
+      *(UIHandle *)(memoryContextHandle + 0xd0) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0x15];
+      *(UIHandle *)(memoryContextHandle + 0xd8) = uiTargetHandle[0x14];
+      *(UIHandle *)(memoryContextHandle + 0xe0) = uiEventStatus;
+      uiEventStatus = uiTargetHandle[0x17];
+      *(UIHandle *)(memoryContextHandle + 0xe8) = uiTargetHandle[0x16];
+      *(UIHandle *)(memoryContextHandle + 0xf0) = uiEventStatus;
+      operationResult = *(UIDword *)((longlong)uiTargetHandle + 0xc4);
+      eventCounter = *(UIDword *)(uiTargetHandle + 0x19);
+      eventCodeType = *(UIDword *)((longlong)uiTargetHandle + 0xcc);
+      *(UIDword *)(memoryContextHandle + 0xf8) = *(UIDword *)(uiTargetHandle + 0x18);
+      *(UIDword *)(memoryContextHandle + 0xfc) = operationResult;
+      *(UIDword *)(memoryContextHandle + 0x100) = eventCounter;
+      *(UIDword *)(memoryContextHandle + 0x104) = eventCodeType;
+      operationResult = *(UIDword *)((longlong)uiTargetHandle + 0xd4);
+      eventCounter = *(UIDword *)(uiTargetHandle + 0x1b);
+      eventCodeType = *(UIDword *)((longlong)uiTargetHandle + 0xdc);
+      *(UIDword *)(memoryContextHandle + 0x108) = *(UIDword *)(uiTargetHandle + 0x1a);
+      *(UIDword *)(memoryContextHandle + 0x10c) = operationResult;
+      *(UIDword *)(memoryContextHandle + 0x110) = eventCounter;
+      *(UIDword *)(memoryContextHandle + 0x114) = eventCodeType;
+      *(UIByte *)(uiComponentData[0x21] + 0x118) = 1;
       if (uiTargetHandle[0x17] != 0) {
-        (**(code **)(*componentData + 0xd8))(componentData);
+        (**(code **)(*uiComponentData + 0xd8))(uiComponentData);
       }
-      allocatedMemory0 = componentData[0x21];
-      StackData4 = *(UIDword *)((longlong)uiTargetHandle + 0xd4);
-      contextDataHandle = allocatedMemory0 + 0x128;
-      if (*(int *)(allocatedMemory0 + 0x68) != 0) {
+      allocatedMemoryBlock = uiComponentData[0x21];
+      stackDataSource = *(UIDword *)((longlong)uiTargetHandle + 0xd4);
+      memoryContextHandle = allocatedMemoryBlock + 0x128;
+      if (*(int *)(allocatedMemoryBlock + 0x68) != 0) {
                      WARNING: Subroutine does not return
-        memcpy(contextDataHandle,*(UIHandle *)(allocatedMemory0 + 0x60),(longlong)*(int *)(allocatedMemory0 + 0x68) << 2);
+        memcpy(memoryContextHandle,*(UIHandle *)(allocatedMemoryBlock + 0x60),(longlong)*(int *)(allocatedMemoryBlock + 0x68) << 2);
       }
-      if (*(longlong *)(allocatedMemory0 + 0x88) != 0) {
-        func_0x00018076b450(contextDataHandle,*(longlong *)(allocatedMemory0 + 0x88),sourceDataInt);
-        *(longlong *)(componentData[0x21] + 0x88) = contextDataHandle;
-        allocatedMemory0 = componentData[0x21];
-        contextDataHandle = contextDataHandle + sourceDataInt;
+      if (*(longlong *)(allocatedMemoryBlock + 0x88) != 0) {
+        func_0x00018076b450(memoryContextHandle,*(longlong *)(allocatedMemoryBlock + 0x88),sourceDataIndex);
+        *(longlong *)(uiComponentData[0x21] + 0x88) = memoryContextHandle;
+        allocatedMemoryBlock = uiComponentData[0x21];
+        memoryContextHandle = memoryContextHandle + sourceDataIndex;
       }
-      if (*(longlong *)(allocatedMemory0 + 0x90) != 0) {
-        func_0x00018076b450(contextDataHandle,*(longlong *)(allocatedMemory0 + 0x90),ProcessingResult2);
-        *(longlong *)(componentData[0x21] + 0x90) = contextDataHandle;
+      if (*(longlong *)(allocatedMemoryBlock + 0x90) != 0) {
+        func_0x00018076b450(memoryContextHandle,*(longlong *)(allocatedMemoryBlock + 0x90),secondaryAllocationSize);
+        *(longlong *)(uiComponentData[0x21] + 0x90) = memoryContextHandle;
       }
     }
     loopCounter = FUN_18076ac40(StackData4,componentData[0x21] + 0x10);
