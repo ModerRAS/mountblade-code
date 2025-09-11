@@ -143699,10 +143699,10 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define UNK_180c4f450 SystemMemoryPoolManager              // 系统内存池管理器 - 负责系统内存池的分配和管理
 #define UNK_180c4f460 SystemMemoryAllocator                // 系统内存分配器 - 负责系统内存的分配操作
 // 系统内存管理器指针
-#define SystemMemoryManagerPointer UNK_180c91970
+#define SystemMemoryManagerPointer SystemPrimaryMemoryManager
 
 // 系统内存辅助管理器指针
-#define SystemMemorySecondaryManagerPointer UNK_180c91f70
+#define SystemMemorySecondaryManagerPointer SystemSecondaryMemoryManager
 
 // 系统内存清理处理器
 #define SystemMemoryCleanupHandler UNK_180c919f0
