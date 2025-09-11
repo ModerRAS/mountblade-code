@@ -57,10 +57,10 @@
 #define HandleSystemMemoryAllocationEx FUN_180187aa0              // 处理系统内存分配扩展
 #define ManageSystemResourceOperationEx FUN_180187b40            // 管理系统资源操作扩展
 #define ReleaseSystemResourcesEx FUN_180187bd0                    // 释放系统资源扩展
-#define FUN_180187c00 FinalizeSystemBufferOperation             // 完成系统缓冲区操作
-#define FUN_180187cd0 CleanupSystemOperations                   // 清理系统操作
-#define FUN_18018b8c0 ValidateSystemContext                      // 验证系统上下文
-#define FUN_18018b9e0 ProcessSystemMemoryAllocation              // 处理系统内存分配
+#define FinalizeSystemBufferOperationEx FUN_180187c00             // 完成系统缓冲区操作扩展
+#define CleanupSystemOperationsEx FUN_180187cd0                   // 清理系统操作扩展
+#define ValidateSystemContextEx FUN_18018b8c0                      // 验证系统上下文扩展
+#define ProcessSystemMemoryAllocationEx FUN_18018b9e0              // 处理系统内存分配扩展
 #define FUN_18018bbd0 HandleSystemContextValidation               // 处理系统上下文验证
 #define FUN_18018bd0d ProcessSystemHandleOperation                // 处理系统句柄操作
 #define FUN_18018bd5f ResetSystemDataProcessing                  // 重置系统数据处理
