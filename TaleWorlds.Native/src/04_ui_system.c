@@ -300040,32 +300040,47 @@ LAB_1808453a2:
 
 
 
- void FUN_180845324(void)
-void FUN_180845324(void)
-
+ /**
+ * @brief 处理UI数据缓冲区的快捷操作
+ * 
+ * 该函数提供一个简化的UI数据缓冲区处理流程，包括：
+ * - 复制UI数据到缓冲区
+ * - 验证和处理缓冲区数据
+ * - 执行UI上下文数据操作
+ * 
+ * @note 这是一个简化版本的UI数据处理函数
+ * @note 原始函数名：FUN_180845324
+ */
+void ProcessUIBufferDataShortcut(void)
 {
-  int processingResult;
-  int uiValidationResult;
-  UIDword unmodifiedESI;
+  int dataCopyResult;
+  int dataValidationResult;
+  UIDword operationContext;
   
-  processingResult = CopyUIDataBuffer(&stack0x00000040,0x100);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
-                     WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,0xb);
+  dataCopyResult = CopyUIDataBuffer(&stack0x00000040,0x100);
+  dataValidationResult = FUN_18074b880(&stack0x00000040 + dataCopyResult,0x100 - dataCopyResult,&UIBufferControlData);
+  CopyUIDataBuffer(&stack0x00000040 + (dataCopyResult + dataValidationResult),0x100 - (dataCopyResult + dataValidationResult));
+  ExecuteUIContextDataOperation(operationContext,0xb);
 }
 
 
 
 
- void FUN_18084539c(void)
-void FUN_18084539c(void)
-
+ /**
+ * @brief 执行UI渲染任务的快捷操作
+ * 
+ * 该函数提供一个简化的UI渲染任务执行流程：
+ * - 使用加密密钥进行XOR操作
+ * - 执行UI渲染任务
+ * 
+ * @note 这是一个简化版本的UI渲染函数
+ * @note 原始函数名：FUN_18084539c
+ */
+void ExecuteUIRenderTaskShortcut(void)
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptedTaskParam;
   
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
