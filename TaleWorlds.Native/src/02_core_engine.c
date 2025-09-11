@@ -253901,7 +253901,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
           ContextHandle8[1] = ContextHandle8[1] + 0x18;
         }
         else {
-          FUN_180207840(ContextHandle8,&LocalDataStructure160);
+          ProcessSystemMemoryAllocation(ContextHandle8,&LocalDataStructure160);
         }
         if (0 < (int)StringOffset) {
           do {
