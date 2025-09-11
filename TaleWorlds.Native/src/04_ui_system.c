@@ -10200,54 +10200,55 @@ void CleanupUIResources(void)
  * 根据不同的单位标识符（K、M、G）对验证结果进行相应的处理。
  * 主要用于确保UI系统在运行过程中的状态一致性。
  * 
-  无返回值
-  原始函数名: ValidateUIState
- void ValidateUIState(void)
+ * @return 无返回值
+ * @note 原始函数名: ValidateUIState
+ */
+void ValidateUIState(void)
 
 {
-  char unitCharacter;
-  int validationValue;
-  char *stringPointer;
-  longlong contextHandlePointer;
-  int *stateFlagPointer;
+  char unitConversionCharacter;
+  int validationResult;
+  char *stringProcessingPointer;
+  longlong uiContextHandlePointer;
+  int *stateValidationPointer;
   
-  *(longlong *)(contextHandlePointer + -0x69) = contextHandlePointer + -0x59;
-  validationValue = strtol(contextHandlePointer + -0x59,contextHandlePointer + -0x69,10);
-  stringPointer = *(char **)(contextHandlePointer + -0x69);
-  if (stateFlagPointer[2] == 8) {
-    unitCharacter = *stringPointer;
-    if (unitCharacter == 'K') {
-      stringPointer = stringPointer + 1;
-      *(char **)(contextHandlePointer + -0x69) = stringPointer;
+  *(longlong *)(uiContextHandlePointer + -0x69) = uiContextHandlePointer + -0x59;
+  validationResult = strtol(uiContextHandlePointer + -0x59,uiContextHandlePointer + -0x69,10);
+  stringProcessingPointer = *(char **)(uiContextHandlePointer + -0x69);
+  if (stateValidationPointer[2] == 8) {
+    unitConversionCharacter = *stringProcessingPointer;
+    if (unitConversionCharacter == 'K') {
+      stringProcessingPointer = stringProcessingPointer + 1;
+      *(char **)(uiContextHandlePointer + -0x69) = stringProcessingPointer;
     }
-    else if (unitCharacter == 'M') {
-      validationValue = validationValue << 10;
-      stringPointer = stringPointer + 1;
-      *(char **)(contextHandlePointer + -0x69) = stringPointer;
+    else if (unitConversionCharacter == 'M') {
+      validationResult = validationResult << 10;
+      stringProcessingPointer = stringProcessingPointer + 1;
+      *(char **)(uiContextHandlePointer + -0x69) = stringProcessingPointer;
     }
-    else if (unitCharacter == 'G') {
-      validationValue = validationValue << 0x14;
-      stringPointer = stringPointer + 1;
-      *(char **)(contextHandlePointer + -0x69) = stringPointer;
+    else if (unitConversionCharacter == 'G') {
+      validationResult = validationResult << 0x14;
+      stringProcessingPointer = stringProcessingPointer + 1;
+      *(char **)(uiContextHandlePointer + -0x69) = stringProcessingPointer;
     }
     else {
-      validationValue = (int)((longlong)validationValue + 0x3ffU >> 10);
+      validationResult = (int)((longlong)validationResult + 0x3ffU >> 10);
     }
-    if (*stringPointer == 'B') {
-      stringPointer = stringPointer + 1;
-      *(char **)(contextHandlePointer + -0x69) = stringPointer;
+    if (*stringProcessingPointer == 'B') {
+      stringProcessingPointer = stringProcessingPointer + 1;
+      *(char **)(uiContextHandlePointer + -0x69) = stringProcessingPointer;
     }
   }
-  if (*stringPointer == '\0') {
-    *stateFlagPointer = validationValue;
-    stateFlagPointer[1] = 2;
+  if (*stringProcessingPointer == '\0') {
+    *stateValidationPointer = validationResult;
+    stateValidationPointer[1] = 2;
   }
   else {
-    ValidateUIData(&UIValidationData,*(UIHandle *)(stateFlagPointer + 4),contextHandlePointer + -0x59);
-    stateFlagPointer[1] = 1;
+    ValidateUIData(&UIValidationData,*(UIHandle *)(stateValidationPointer + 4),uiContextHandlePointer + -0x59);
+    stateValidationPointer[1] = 1;
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(contextHandlePointer + 0x47) ^ (ulonglong)UIStackBufferBase);
+  ExecuteUIRenderTask(*(ulonglong *)(uiContextHandlePointer + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
