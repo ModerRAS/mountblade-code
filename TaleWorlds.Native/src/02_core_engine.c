@@ -258502,7 +258502,7 @@ LAB_1802097bc:
   AllocatedMemorySize = *SystemDataNode;
   if (AllocatedMemorySize != CharacterTablePointer) {
     do {
-      FUN_180207ea0(AllocatedMemorySize);
+      CleanupSystemMemoryResources(AllocatedMemorySize);
       AllocatedMemorySize = AllocatedMemorySize + 0x78;
     } while (AllocatedMemorySize != CharacterTablePointer);
     AllocatedMemorySize = *SystemDataNode;
