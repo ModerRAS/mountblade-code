@@ -108,6 +108,7 @@ typedef enum {
 #define FUN_18073f710 CleanupUIRenderContextAndReleaseResources  // 清理UI渲染上下文并释放资源
 #define FUN_18073f990 InitializeUIDataSourceWithValidation  // 初始化UI数据源并执行验证
 #define FUN_18073fa70 ProcessUIDataSourceWithTextureValidation  // 处理UI数据源并执行纹理验证
+#define FUN_18073fa8d ProcessUIDataSourceWithEventHandling  // 处理UI数据源并执行事件处理
 #define func_0x000180753600 ProcessUIDataTransfer  // 处理UI数据传输
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
