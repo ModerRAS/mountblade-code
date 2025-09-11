@@ -248806,7 +248806,7 @@ void ExecuteSystemInitializationAndCleanup(void)
     CharacterTablePointer = (long long)SystemContext - (long long)SystemDataNode >> 2;
     for (SystemContextValue = CharacterTablePointer; SystemContextValue != 0; SystemContextValue = SystemContextValue >> 1) {
     }
-    FUN_180202d20();
+    ConvertSystemFloatData();
     if (CharacterTablePointer < 0x1d) {
       ProcessFloatingPointData();
     }
