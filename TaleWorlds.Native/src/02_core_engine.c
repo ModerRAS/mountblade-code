@@ -15470,17 +15470,6 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 /**
  * @brief 初始化核心引擎数据结构
  * 
- * 该函数负责初始化核心引擎的数据结构，包括：
- * - 获取引擎系统上下文和根节点
- * - 检查系统节点初始化状态
- * - 遍历系统节点链表并建立数据结构
- * - 初始化系统节点的内存布局和链接关系
- * 
- * 该函数是引擎启动时的关键初始化步骤，确保数据结构正确建立
- */
-/**
- * @brief 初始化核心引擎数据结构
- * 
  * 该函数负责初始化TaleWorlds引擎的核心数据结构，包括：
  * - 系统节点树的构建和初始化
  * - 数据结构的内存分配和设置
@@ -240371,7 +240360,7 @@ void ProcessSystemContextFloatingPointCalculator(long long ContextHandle, float 
   fStack_44 = fStack_44 * SystemContextPrimaryFloat;
   if (-0.1 < fStack_40) {
     fStack_40 = -0.1;
-    FUN_1801c2560(&fStack_48);
+    ProcessSystemMathCalculation(&fStack_48);
   }
   fStack_40 = -fStack_40;
   SystemContextPrimaryFloat = -fStack_44;
@@ -240391,7 +240380,7 @@ void ProcessSystemContextFloatingPointCalculator(long long ContextHandle, float 
   OperationBufferSize[1] = fStack_44;
   OperationBufferSize[2] = fStack_40;
   OperationBufferSize[3] = 3.4028235e+38;
-  FUN_1801c24a0(OperationBufferSize);
+  ProcessSystemFloatCalculation(OperationBufferSize);
   OperationBufferSize[4] = OperationBufferSize[2] * OperationBufferSize[9] - OperationBufferSize[1] * OperationBufferSize[10];
   OperationBufferSize[5] = *ContextHandleSize * OperationBufferSize[10] - OperationBufferSize[2] * OperationBufferSize[8];
   OperationBufferSize[6] = OperationBufferSize[1] * OperationBufferSize[8] - *ContextHandleSize * OperationBufferSize[9];
@@ -240542,12 +240531,12 @@ LAB_180198720:
   }
   *(uint *)(ContextHandle + 0x3e08) = *(uint *)(ContextHandle + 0x3e08) | 2;
 LAB_180198827:
-  FUN_1801983b0(ContextHandle,ContextHandle + 0x3830);
+  ProcessSystemDataCalculation(ContextHandle,ContextHandle + 0x3830);
   *(uint32_t *)(ContextHandle + 0x3860) = 0;
   *(uint32_t *)(ContextHandle + 0x3864) = 0;
   *(uint32_t *)(ContextHandle + 0x3868) = 0;
   *(uint32_t *)(ContextHandle + 0x386c) = 0x7f7fffff;
-  FUN_1801b32d0(ContextHandle);
+  ProcessSystemMathOperation(ContextHandle);
   FUN_1801983b0(ContextHandle,ContextHandle + 0x3830);
   *(int *)(ContextHandle + 0x28b4) = *(int *)(ContextHandle + 0x28b4) + 1;
   *(uint32_t *)(ContextHandle + 0x3860) = 0;
