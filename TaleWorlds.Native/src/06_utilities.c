@@ -143749,34 +143749,34 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define SystemResourceCachePointer SystemResourceCacheData
 
 // 系统配置管理相关变量语义化定义
-#define SystemConfigurationManager SystemConfigurationManager            // 系统配置管理器 - 管理系统配置
-#define SystemConfigurationData SystemConfigurationData              // 系统配置数据 - 存储系统配置数据
-#define SystemConfigurationValidator SystemConfigurationValidator         // 系统配置验证器 - 验证系统配置
-#define SystemConfigurationCache SystemConfigurationCache            // 系统配置缓存 - 缓存系统配置
+#define SystemConfigurationManager UNK_180985090            // 系统配置管理器 - 管理系统配置
+#define SystemConfigurationData UNK_1809850a0              // 系统配置数据 - 存储系统配置数据
+#define SystemConfigurationValidator UNK_1809850b0         // 系统配置验证器 - 验证系统配置
+#define SystemConfigurationCache UNK_1809850c0            // 系统配置缓存 - 缓存系统配置
 
 // 系统性能监控相关变量语义化定义
-#define SystemPerformanceMonitor SystemPerformanceMonitor             // 系统性能监控器 - 监控系统性能
-#define SystemPerformanceCounter SystemPerformanceCounter             // 系统性能计数器 - 计数系统性能
-#define SystemPerformanceLogger SystemPerformanceLogger              // 系统性能日志器 - 记录系统性能
-#define SystemPerformanceAnalyzer SystemPerformanceAnalyzer            // 系统性能分析器 - 分析系统性能
+#define SystemPerformanceMonitor UNK_1809850d0             // 系统性能监控器 - 监控系统性能
+#define SystemPerformanceCounter UNK_1809850e0             // 系统性能计数器 - 计数系统性能
+#define SystemPerformanceLogger UNK_1809850f0              // 系统性能日志器 - 记录系统性能
+#define SystemPerformanceAnalyzer UNK_180985100            // 系统性能分析器 - 分析系统性能
 
 // 系统日志记录相关变量语义化定义
-#define SystemLoggerManager SystemLoggerManager                  // 系统日志管理器 - 管理系统日志
-#define SystemLogBuffer SystemLogBuffer                      // 系统日志缓冲区 - 存储系统日志
-#define SystemLogFormatter SystemLogFormatter                   // 系统日志格式化器 - 格式化系统日志
-#define SystemLogWriter SystemLogWriter                      // 系统日志写入器 - 写入系统日志
+#define SystemLoggerManager UNK_180985110                  // 系统日志管理器 - 管理系统日志
+#define SystemLogBuffer UNK_180985120                      // 系统日志缓冲区 - 存储系统日志
+#define SystemLogFormatter UNK_180985130                   // 系统日志格式化器 - 格式化系统日志
+#define SystemLogWriter UNK_180985140                      // 系统日志写入器 - 写入系统日志
 
 // 系统数据验证相关变量语义化定义
-#define SystemDataValidator SystemDataValidator                  // 系统数据验证器 - 验证系统数据
-#define SystemDataIntegrityChecker SystemDataIntegrityChecker          // 系统数据完整性检查器 - 检查系统数据完整性
-#define SystemDataVerificationTable SystemDataVerificationTable          // 系统数据验证表 - 存储系统数据验证信息
-#define SystemDataErrorLogger SystemDataErrorLogger                // 系统数据错误日志器 - 记录系统数据错误
+#define SystemDataValidator UNK_180985150                  // 系统数据验证器 - 验证系统数据
+#define SystemDataIntegrityChecker UNK_180985160          // 系统数据完整性检查器 - 检查系统数据完整性
+#define SystemDataVerificationTable UNK_180985170          // 系统数据验证表 - 存储系统数据验证信息
+#define SystemDataErrorLogger UNK_180985180                // 系统数据错误日志器 - 记录系统数据错误
 
 // 系统状态管理相关变量语义化定义
-#define SystemStateManager SystemStateManager                   // 系统状态管理器 - 管理系统状态
-#define SystemStatusMonitor SystemStatusMonitor                  // 系统状态监控器 - 监控系统状态
-#define SystemHealthChecker SystemHealthChecker                  // 系统健康检查器 - 检查系统健康状态
-#define SystemDiagnosticsManager SystemDiagnosticsManager            // 系统诊断管理器 - 管理系统诊断
+#define SystemStateManager UNK_180985190                   // 系统状态管理器 - 管理系统状态
+#define SystemStatusMonitor UNK_1809851a0                  // 系统状态监控器 - 监控系统状态
+#define SystemHealthChecker UNK_1809851b0                  // 系统健康检查器 - 检查系统健康状态
+#define SystemDiagnosticsManager UNK_1809851c0            // 系统诊断管理器 - 管理系统诊断
 
 // === 新增的系统功能函数语义化定义 ===
 
