@@ -200007,19 +200007,19 @@ LAB_180161e6a:
  */
 void ConvertCharacterEncoding(long long ContextHandle,long long OperationBufferSize)
 {
-  long long *ContextHandle;
+  long long *SystemContextHandle;
   long long *BufferAllocationState;
-  long long SearchStartIndex;
-  long long *EngineContext;
+  long long MemoryBlockIndex;
+  long long *SystemContextPointer;
   
   *(long long *)(OperationBufferSize + 0x48) = ContextHandle;
-  SystemContextPtr = *(long long **)(ContextHandle + 0x30);
-  ContextHandle = (long long *)0x0;
+  SystemContextPointer = *(long long **)(ContextHandle + 0x30);
+  SystemContextHandle = (long long *)0x0;
   BufferAllocationState = *(long long **)(ContextHandle + 0x28);
-  MemoryBlockIndex = (long long)SystemContextPtr - (long long)BufferAllocationState >> 3;
-  if (SystemContextPtr < *(long long **)(ContextHandle + 0x38)) {
-    *(long long **)(ContextHandle + 0x30) = SystemContextPtr + 1;
-    *SystemContextPtr = OperationBufferSize;
+  MemoryBlockIndex = (long long)SystemContextPointer - (long long)BufferAllocationState >> 3;
+  if (SystemContextPointer < *(long long **)(ContextHandle + 0x38)) {
+    *(long long **)(ContextHandle + 0x30) = SystemContextPointer + 1;
+    *SystemContextPointer = OperationBufferSize;
     return;
   }
   if (MemoryBlockIndex == 0) {
@@ -200029,18 +200029,18 @@ void ConvertCharacterEncoding(long long ContextHandle,long long OperationBufferS
     MemoryBlockIndex = MemoryBlockIndex * 2;
     if (MemoryBlockIndex == 0) goto LAB_180161f28;
   }
-  ContextHandle = (long long *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 8,*(uint8_t *)(ContextHandle + 0x40));
+  SystemContextHandle = (long long *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 8,*(uint8_t *)(ContextHandle + 0x40));
   BufferAllocationState = *(long long **)(ContextHandle + 0x28);
-  SystemContextPtr = *(long long **)(ContextHandle + 0x30);
+  SystemContextPointer = *(long long **)(ContextHandle + 0x30);
 LAB_180161f28:
-  if (BufferAllocationState != SystemContextPtr) {
-      memmove(ContextHandle,BufferAllocationState,(long long)SystemContextPtr - (long long)BufferAllocationState);
+  if (BufferAllocationState != SystemContextPointer) {
+      memmove(SystemContextHandle,BufferAllocationState,(long long)SystemContextPointer - (long long)BufferAllocationState);
   }
-  *ContextHandle = OperationBufferSize;
+  *SystemContextHandle = OperationBufferSize;
   if (*(long long *)(ContextHandle + 0x28) == 0) {
-    *(long long **)(ContextHandle + 0x28) = ContextHandle;
-    *(long long **)(ContextHandle + 0x38) = ContextHandle + MemoryBlockIndex;
-    *(long long **)(ContextHandle + 0x30) = ContextHandle + 1;
+    *(long long **)(ContextHandle + 0x28) = SystemContextHandle;
+    *(long long **)(ContextHandle + 0x38) = SystemContextHandle + MemoryBlockIndex;
+    *(long long **)(ContextHandle + 0x30) = SystemContextHandle + 1;
     return;
   }
     ProcessSystemEventHandling();
