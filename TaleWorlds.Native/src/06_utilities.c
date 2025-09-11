@@ -23699,6 +23699,8 @@ void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemConte
  * @note 该函数会执行系统清理操作
  * @note 原始函数名：FUN_180896c39
  */
+#define ValidateDataReturnStatusA2 FUN_180896c39
+
 DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 
 {
