@@ -231212,7 +231212,7 @@ LAB_18018e08d:
 
 
 
-8e0f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_18018e0f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+void ProcessSystemContextWithBuffer(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   int LockResult;
   unsigned long long MemoryPoolIndex;
@@ -232044,7 +232044,7 @@ LAB_18018f515:
 
 
 
-8f6a0(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_18018f6a0(uint64_t ContextHandle,long long OperationBufferSize
+void ValidateSystemContextAndMemory(uint64_t ContextHandle,long long OperationBufferSize)
 {
   byte StringComparisonByte;
   uint32_t MemoryPoolIndex;
@@ -232243,7 +232243,7 @@ LAB_18018fa06:
 
 
 
-8fb50(voidvoid FUN_18018fb50(void
+void TerminateSystemEngine(void)
 {
     CoreEngineTerminateSystem();
 }
@@ -241021,7 +241021,7 @@ LAB_18019a25b:
                 }
                 if (ppppppSystemCharacterStatusBuffer == &ppppppSystemValue1a8) {
 LAB_18019a2aa:
-                  CharacterStatusBuffer = (void *)FUN_1800c2ab0(&ppppppSystemValue1a8,aSystemKeyPointer);
+                  CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&ppppppSystemValue1a8,aSystemKeyPointer);
                   ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
                 }
                 else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
@@ -241100,7 +241100,7 @@ LAB_18019a3db:
                 }
                 if (ppppppSystemCharacterStatusBuffer == &ppppppSystemValue1a8) {
 LAB_18019a42a:
-                  CharacterStatusBuffer = (void *)FUN_1800c2ab0(&ppppppSystemValue1a8,&SystemTemporaryValueD0);
+                  CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&ppppppSystemValue1a8,&SystemTemporaryValueD0);
                   ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
                 }
                 else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {

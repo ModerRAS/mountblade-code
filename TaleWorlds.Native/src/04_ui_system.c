@@ -125703,8 +125703,20 @@ void ValidateUIContextAndExecuteRender(void)
 
 
 
- void FUN_18073a9b5(void)
-void FUN_18073a9b5(void)
+ /**
+ * @brief 释放UI资源并执行渲染任务
+ * 
+ * 该函数直接释放UI内存资源并执行渲染任务。
+ * 这是一个简化的资源清理和渲染执行函数。
+ */
+void ReleaseUIResourceAndExecuteRender(void)
+/**
+ * @brief 释放UI资源并执行渲染任务
+ * 
+ * 该函数直接释放UI内存资源并执行渲染任务。
+ * 这是一个简化的资源清理和渲染执行函数。
+ */
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
   ulonglong stackParam00000140;
