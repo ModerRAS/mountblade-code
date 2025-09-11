@@ -245565,7 +245565,7 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
           uStack_18c = 0x7f7fffff;
           fStack_198 = fStack_244;
           if (*(long long *)(SystemCharacterStatusBufferPointerA + 0x350) == 0) {
-            TemporaryBuffer = (void *)FUN_180094e80();
+            TemporaryBuffer = (void *)GetSystemTemporaryBuffer();
             SystemChecksum = *TemporaryBuffer;
             *TemporaryBuffer = 0;
             plStack_178 = *(long long **)(LoopIndex + 0x350);
