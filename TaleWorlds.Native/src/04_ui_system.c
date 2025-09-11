@@ -126833,8 +126833,19 @@ void ExecuteUIRenderTaskWithDisplayControl(uint32_t param6, uint64_t stackParame
 
 
 
- void FUN_18073b215(void)
-void FUN_18073b215(void)
+ #define ProcessUITextureDataWithValidation FUN_18073b215
+/**
+ * @brief 处理UI纹理数据验证和填充操作
+ * 
+ * 该函数负责处理UI纹理数据的验证和填充操作，包括：
+ * - 执行数据缓冲区的验证和控制
+ * - 复制和填充纹理数据
+ * - 处理事件句柄和纹理数据
+ * 
+ * @note 原始函数名：FUN_18073b215
+ * @note 该函数不返回，执行完毕后会跳转到UI上下文数据操作
+ */
+void ProcessUITextureDataWithValidation(void)
 
 {
   int operationResult;
@@ -126857,8 +126868,18 @@ void FUN_18073b215(void)
 
 
 
- void FUN_18073b2c4(void)
-void FUN_18073b2c4(void)
+ #define ReleaseUIResourceAndExecuteRender FUN_18073b2c4
+/**
+ * @brief 释放UI资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073b2c4
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
@@ -126874,8 +126895,18 @@ void FUN_18073b2c4(void)
 
 
 
- void FUN_18073b2ee(void)
-void FUN_18073b2ee(void)
+ #define ReleaseUIResourceAndExecuteRenderTask FUN_18073b2ee
+/**
+ * @brief 释放UI资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073b2ee
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRenderTask(void)
 
 {
   ulonglong stackParam00000140;
@@ -126889,8 +126920,23 @@ void FUN_18073b2ee(void)
 
  
 
- void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
-void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
+ #define ProcessUIContextWithEncryption FUN_18073b310
+/**
+ * @brief 处理UI上下文与加密操作
+ * 
+ * 该函数负责处理UI上下文与加密操作，包括：
+ * - 处理UI上下文和清理操作
+ * - 执行加密和解密操作
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * 
+ * @note 原始函数名：FUN_18073b310
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIContextWithEncryption(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
@@ -126926,8 +126972,24 @@ LAB_18073b3a8:
 
  
 
- void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073b3e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ #define ProcessUIContextWithTextureData FUN_18073b3e0
+/**
+ * @brief 处理UI上下文与纹理数据操作
+ * 
+ * 该函数负责处理UI上下文与纹理数据操作，包括：
+ * - 处理UI上下文和清理操作
+ * - 执行纹理数据的复制和处理
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_18073b3e0
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIContextWithTextureData(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -126967,8 +127029,24 @@ FUN_18073b4cf:
 
  
 
- void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18073b3fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ #define ProcessUIContextWithAnimationData FUN_18073b3fd
+/**
+ * @brief 处理UI上下文与动画数据操作
+ * 
+ * 该函数负责处理UI上下文与动画数据操作，包括：
+ * - 处理UI上下文和清理操作
+ * - 执行动画数据的复制和处理
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_18073b3fd
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIContextWithAnimationData(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;

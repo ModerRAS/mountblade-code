@@ -237193,44 +237193,55 @@ float * ProcessContextHandleMatrixTransform(float *ContextHandle,float *ContextH
  * 
  * 该函数负责处理系统上下文句柄的大小操作。
  */
-void FUN_180194a50(long long *ContextHandle, uint8_t *ContextHandleSize
+/**
+ * @brief 处理字符状态缓冲区扩展
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * 该函数负责处理字符状态缓冲区的扩展操作，包括：
+ * 1. 检查缓冲区是否有足够空间
+ * 2. 分配新的内存块
+ * 3. 移动现有数据到新位置
+ * 4. 更新上下文句柄信息
+ */
+void ProcessCharacterStatusBufferExpansion(long long *ContextHandle, uint8_t *ContextHandleSize)
 {
-  uint8_t *CharacterStatusBuffer;
-  uint8_t *PrimaryProcessingStatusFlag;
-  long long SearchStartIndex;
-  uint8_t *MemoryAddressMaskPointer;
+  uint8_t *NewCharacterBuffer;
+  uint8_t *CurrentBufferStart;
+  long long NewBufferSize;
+  uint8_t *CurrentBufferPosition;
   
-  MemoryAddressMaskPointer = (uint8_t *)ContextHandle[1];
-  if (MemoryAddressMaskPointer < (uint8_t *)ContextHandle[2]) {
-    ContextHandle[1] = (long long)(MemoryAddressMaskPointer + 1);
-    *MemoryAddressMaskPointer = *ContextHandleSize;
+  CurrentBufferPosition = (uint8_t *)ContextHandle[1];
+  if (CurrentBufferPosition < (uint8_t *)ContextHandle[2]) {
+    ContextHandle[1] = (long long)(CurrentBufferPosition + 1);
+    *CurrentBufferPosition = *ContextHandleSize;
     return;
   }
-  PrimaryProcessingStatusFlag = (uint8_t *)*ContextHandle;
-  if ((long long)MemoryAddressMaskPointer - (long long)PrimaryProcessingStatusFlag == 0) {
-    MemoryBlockIndex = 1;
+  CurrentBufferStart = (uint8_t *)*ContextHandle;
+  if ((long long)CurrentBufferPosition - (long long)CurrentBufferStart == 0) {
+    NewBufferSize = 1;
   }
   else {
-    MemoryBlockIndex = ((long long)MemoryAddressMaskPointer - (long long)PrimaryProcessingStatusFlag) * 2;
-    if (MemoryBlockIndex == 0) {
-      CharacterStatusBuffer = (uint8_t *)0x0;
-      goto LAB_180194acf;
+    NewBufferSize = ((long long)CurrentBufferPosition - (long long)CurrentBufferStart) * 2;
+    if (NewBufferSize == 0) {
+      NewCharacterBuffer = (uint8_t *)0x0;
+      goto BufferAllocationComplete;
     }
   }
-  CharacterStatusBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex,(char)ContextHandle[3]);
-  PrimaryProcessingStatusFlag = (uint8_t *)*ContextHandle;
-  MemoryAddressMaskPointer = (uint8_t *)ContextHandle[1];
-LAB_180194acf:
-  if (PrimaryProcessingStatusFlag != MemoryAddressMaskPointer) {
-      memmove(CharacterStatusBuffer,PrimaryProcessingStatusFlag,(long long)MemoryAddressMaskPointer - (long long)PrimaryProcessingStatusFlag);
+  NewCharacterBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,NewBufferSize,(char)ContextHandle[3]);
+  CurrentBufferStart = (uint8_t *)*ContextHandle;
+  CurrentBufferPosition = (uint8_t *)ContextHandle[1];
+BufferAllocationComplete:
+  if (CurrentBufferStart != CurrentBufferPosition) {
+      memmove(NewCharacterBuffer,CurrentBufferStart,(long long)CurrentBufferPosition - (long long)CurrentBufferStart);
   }
-  *CharacterStatusBuffer = *ContextHandleSize;
+  *NewCharacterBuffer = *ContextHandleSize;
   if (*ContextHandle != 0) {
       ProcessSystemEventHandling();
   }
-  *ContextHandle = (long long)CharacterStatusBuffer;
-  ContextHandle[1] = (long long)(CharacterStatusBuffer + 1);
-  ContextHandle[2] = (long long)(CharacterStatusBuffer + MemoryBlockIndex);
+  *ContextHandle = (long long)NewCharacterBuffer;
+  ContextHandle[1] = (long long)(NewCharacterBuffer + 1);
+  ContextHandle[2] = (long long)(NewCharacterBuffer + NewBufferSize);
   return;
 }
 
@@ -237608,22 +237619,20 @@ uint64_t * ProcessContextHandle(long long ContextHandle)
 
 
 /**
- * @brief 初始化系统数据结构
+ * @brief 清理系统窗口和资源
  * @param ContextHandle 上下文句柄
  * @param ContextHandleSize 上下文句柄大小指针
  * 
- * 该函数负责初始化系统数据结构。
+ * 该函数负责清理系统窗口和释放相关资源。
  */
-void FUN_180195140(long long ContextHandle, uint64_t *ContextHandleSize
+void CleanupSystemWindowAndResources(long long ContextHandle, uint64_t *ContextHandleSize)
 {
-  long long MainCalculationResult;
-  
   ProcessSystemWindowUpdate(ContextHandle + 0x28);
   if (OperationBufferSize != NULL) {
-    CharacterTablePointer = __RTCastToVoid(OperationBufferSize);
+    void *ResourcePointer = __RTCastToVoid(OperationBufferSize);
     (**(code **)*ContextHandleSize)(OperationBufferSize,0);
-    if (CharacterTablePointer != 0) {
-        CoreEngineFreeSystemMemory(CharacterTablePointer);
+    if (ResourcePointer != 0) {
+        CoreEngineFreeSystemMemory(ResourcePointer);
     }
   }
   return;
@@ -237633,19 +237642,19 @@ void FUN_180195140(long long ContextHandle, uint64_t *ContextHandleSize
 
 
 /**
- * @brief 系统空操作函数1
+ * @brief 释放系统资源回调
  * 
- * 该函数是一个空操作函数，用于系统初始化或清理。
+ * 该函数负责释放系统资源并执行回调清理操作。
  */
-void FUN_18019515a(void)
+void ReleaseSystemResourceCallback(void)
 {
-  long long MainCalculationResult;
+  void *ResourcePointer;
   uint64_t *SystemContext;
   
-  CharacterTablePointer = __RTCastToVoid();
+  ResourcePointer = __RTCastToVoid();
   (**(code **)*SystemContext)();
-  if (CharacterTablePointer != 0) {
-      CoreEngineFreeSystemMemory(CharacterTablePointer);
+  if (ResourcePointer != 0) {
+      CoreEngineFreeSystemMemory(ResourcePointer);
   }
   return;
 }
