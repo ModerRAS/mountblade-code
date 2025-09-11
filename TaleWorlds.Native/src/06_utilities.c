@@ -3054,7 +3054,7 @@ typedef union {
  * 
  * @note 系统数据传输处理器
  */
-#define FUN_18089e230 ProcessSystemDataTransferWithValidation
+#define InitializeSystemMemoryPool ProcessSystemDataTransferWithValidation
 #define FUN_180062300 ProcessSystemDataTransferWithValidation
 
 // 数据操作类型常量
