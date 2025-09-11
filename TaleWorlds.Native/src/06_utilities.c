@@ -25118,25 +25118,25 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   else {
     resultStorageLocation = temporaryStackData + -8;
   }
-  *(DataWord *)(resultStoragePointer + systemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
-  resultStoragePointer = *(int64_t *)(operationContext + systemContextConfigOffset98);
-  if ((*(int *)(resultStoragePointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultStoragePointer + SystemConfigSecondaryOffset) != 0)) {
-    temporaryStackValue = 0;
-    InitializesystemContextA0(&temporaryStackValue,valueContext,exceptionContext,processingContext,destinationExecutionContext);
-    if (temporaryStackValue == *(int64_t *)((int64_t)*(int *)(resultStoragePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
-      SystemOperationResult = ProcessSystemDataEC0(resultStoragePointer,valueContext);
-      if ((int)SystemOperationResult == 0) {
+  *(DataWord *)(resultStorageLocation + systemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
+  resultStorageLocation = *(int64_t *)(operationContext + systemContextConfigOffset98);
+  if ((*(int *)(resultStorageLocation + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultStorageLocation + SystemConfigSecondaryOffset) != 0)) {
+    temporaryStackData = 0;
+    InitializesystemContextA0(&temporaryStackData,valueContext,exceptionContext,processingContext,targetExecutionContext);
+    if (temporaryStackData == *(int64_t *)((int64_t)*(int *)(resultStorageLocation + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
+      systemValidationResult = ProcessSystemDataEC0(resultStorageLocation,valueContext);
+      if ((int)systemValidationResult == 0) {
         return 0;
       }
-      return systemOperationResult;
+      return systemValidationResult;
     }
   }
   *(uint *)(valueContext + ValueContextOffset8) = *(int *)(valueContext + ValueContextOffset8) + DataAlignmentValue & SecurityAlignmentMask;
-  SystemOperationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultStoragePointer + SystemConfigTertiaryOffset));
-  if ((int)SystemOperationResult == 0) {
+  systemValidationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultStorageLocation + SystemConfigTertiaryOffset));
+  if ((int)systemValidationResult == 0) {
     return 0;
   }
-  return systemOperationResult;
+  return systemValidationResult;
 }
 
 

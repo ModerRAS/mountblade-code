@@ -2082,8 +2082,8 @@ typedef enum {
 #define componentDataOffset1 0xc                                // 组件数据偏移量1
 #define componentDataOffset2 0x18                               // 组件数据偏移量2
 #define componentDataOffset3 0x24                               // 组件数据偏移量3
-#define systemEventHandler UNK_180986218                        // 系统事件处理器
-#define systemMemoryManager UNK_1809fe7f8                      // 系统内存管理器
+#define systemEventHandler SystemEventHandlerInstance
+#define systemMemoryManager SystemMemoryManagerInstance
 #define acomponentStatus6 UIComponentStatusArray6
 #define aprocessingStatus7 UIprocessingStatusArray7
 #define aloopCounter0 UILoopCounterArray0
@@ -5301,8 +5301,8 @@ void* UIGestureCoordinates;
 #define UIDataTableResource (void*)0x180981620    // UI资源数据表 - 存储资源相关数据
 
 // UI系统上下文操作数据表定义
-#define UIContextOperationDataTable248 UNK_180957248    // UI上下文操作数据表248 - 存储上下文操作的基础数据
-#define UIContextOperationDataTable1c8 UNK_1809571c8    // UI上下文操作数据表1c8 - 存储上下文操作的配置数据
+#define UIContextOperationDataTable248 UIContextOperationDataBaseTable
+#define UIContextOperationConfigTable UNK_1809571c8    // UI上下文操作配置表 - 存储上下文操作的配置数据
 #define UIContextOperationDataTable158 UNK_180957158    // UI上下文操作数据表158 - 存储上下文操作的状态数据
 #define UIContextOperationDataTable0f8 UNK_1809570f8    // UI上下文操作数据表0f8 - 存储上下文操作的验证数据
 #define UIContextOperationDataTable188 UNK_180957188    // UI上下文操作数据表188 - 存储上下文操作的缓存数据
