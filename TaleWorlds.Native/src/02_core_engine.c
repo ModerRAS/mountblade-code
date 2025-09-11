@@ -3167,6 +3167,19 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemDataEncoding FUN_18029de40                 // 处理系统数据编码
 #define ProcessSystemCharacterTransformation FUN_1802ebcb0      // 处理系统字符转换
 #define ProcessSystemBufferOperation FUN_1802e7e20              // 处理系统缓冲区操作
+
+// 核心引擎函数调用语义化映射
+#define ProcessSystemMemoryBlockOperation FUN_1801bb3a0             // 处理系统内存块操作
+#define HandleSystemContextMemoryOperation FUN_18019c6e0            // 处理系统上下文内存操作
+#define ReleaseSystemMemoryContext FUN_1801acb30                    // 释放系统内存上下文
+#define ProcessSystemDataBufferOperation FUN_1801c1c40              // 处理系统数据缓冲区操作
+#define InitializeSystemDataTemplate FUN_1801c1af0                  // 初始化系统数据模板
+#define ProcessSystemMemoryAllocation FUN_18019c5b0                 // 处理系统内存分配
+#define HandleSystemBufferPointerOperation FUN_18019cf00            // 处理系统缓冲区指针操作
+#define ValidateSystemContextMemory FUN_18019d190                   // 验证系统上下文内存
+#define ProcessSystemCharacterEncoding FUN_180199930               // 处理系统字符编码
+#define ExecuteSystemMemoryValidation FUN_1801b84e0                 // 执行系统内存验证
+#define CleanupSystemMemoryFlag FUN_1801c1720                       // 清理系统内存标志
 #define ProcessSystemMemoryAllocation FUN_18063ad30             // 处理系统内存分配
 #define ProcessSystemRenderMaterial FUN_18029c8a0               // 处理系统渲染材质
 #define ProcessSystemMemoryAllocationEx FUN_1802aaef0           // 处理系统内存分配扩展
@@ -15495,6 +15508,26 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @warning 函数内部有复杂的内存管理操作，错误处理需要特别小心
  * @see CoreEngineGetSystemHandle, CoreEngineAllocateMemory, CoreEngineSetupDataStructure
  */
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 该函数负责初始化核心引擎的基础数据结构，包括系统节点的创建、内存分配和数据结构设置。
+ * 函数会遍历现有的节点结构，查找合适的位置插入新的系统节点。
+ * 
+ * @details 函数执行流程：
+ * 1. 获取引擎系统上下文和系统根节点
+ * 2. 检查系统节点的初始化状态
+ * 3. 遍历节点链表，查找合适的插入位置
+ * 4. 分配内存并创建新的系统节点
+ * 5. 设置节点标识符和数据模板
+ * 6. 配置系统初始化函数指针
+ * 
+ * @note 此函数是引擎初始化的核心组件
+ * @note 系统节点使用特定的标识符进行验证
+ * @note 内存分配由系统内存管理器自动处理
+ * 
+ * @return void 无返回值
+ */
 void InitializeCoreEngineDataStructure(void) {
   bool SystemNodeInitializedFlag;          // 系统节点初始化标志
   void *SystemRootNode;                    // 系统根节点指针
@@ -15621,7 +15654,7 @@ void InitializeCoreEngineRenderingSystem(void) {
   }
   
   // 检查是否需要创建新的渲染系统节点
-  if ((RenderingTraversalNode == RenderingSystemRootNode) || (RenderingDataNodeComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
+  if ((RenderingTraversalNode == RenderingSystemRootNode) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
     // 分配内存并创建新的渲染节点
     RenderingMemoryOffset = CoreEngineAllocateMemory(RenderingEngineSystemContext);
     CoreEngineSetupDataStructure(RenderingEngineSystemContext, &CreatedRenderingNode, RenderingTraversalNode, RenderingMemoryOffset + SystemMemoryAllocationOffset, RenderingMemoryOffset);
