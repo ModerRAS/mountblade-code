@@ -15595,7 +15595,7 @@ void InitializeCoreEngineRenderingSystem(void) {
   // 遍历渲染系统节点链表，查找合适的插入位置
   while (IsRenderingNodeInitialized == '\0') {
     // 比较渲染节点数据以确定插入位置
-    RenderingDataNodeComparisonResult = memcmp(RenderingSearchNode + SystemNodeHeaderSize, &SystemComparisonDataSecondary, SystemDataStructureSize);
+    RenderingDataComparisonResult = memcmp(RenderingSearchNode + SystemNodeHeaderSize, &SystemComparisonDataSecondary, SystemDataStructureSize);
     if (RenderingDataComparisonResult < 0) {
       // 向左子树移动
       RenderingNextNodeInChain = (void *)RenderingSearchNode[2];
@@ -98748,7 +98748,7 @@ void ConfigureSystemDataStructureOffsetfb0(long long ContextHandle,uint32_t Oper
 
 
 
-e030(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStructureOffset030(long long ContextHandle,uint32_t OperationBufferSize
+void SetSystemDataStructureOffset030(long long ContextHandle,uint32_t OperationBufferSize)
 {
   char ValidationStatus;
   void *PrimaryProcessingStatusFlag;
@@ -241366,7 +241366,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
 
 
 
-998a0(long long ContextHandle,uint32_t OperationBufferSizevoid FUN_1801998a0(long long ContextHandle,uint32_t OperationBufferSize
+void FUN_1801998a0(long long ContextHandle,uint32_t OperationBufferSize)
 {
   long long *ContextHandle;
   unsigned long long MemoryPoolIndex;
@@ -241391,7 +241391,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
 
 
 
-998ce(voidvoid FUN_1801998ce(void
+void FUN_1801998ce(void)
 {
   long long SystemContext;
   unsigned long long Utf16Char;
@@ -256033,7 +256033,25 @@ long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,lon
 
 
 
-long long * FUN_180209980(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
+// 函数: long long * FUN_180209980(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 处理内存池分配和UTF编码转换
+ * 
+ * 该函数负责处理内存池的分配操作和UTF编码转换，主要功能包括：
+ * - 管理内存池的分配和释放
+ * - 处理UTF-16字符的编码转换
+ * - 验证内存边界的有效性
+ * - 计算和分配内存块大小
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180209980
+ */
+#define ProcessMemoryPoolAllocationAndUtfEncodingConversion FUN_180209980
 {
   uint Utf16Char;
   long long *BufferAllocationState;
