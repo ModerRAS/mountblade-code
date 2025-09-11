@@ -116,6 +116,8 @@
 #define FUN_1801605c8 ClearContextHandleData                             // 清理上下文句柄数据
 #define FUN_18016060f ConvertFloatContextHandle                          // 处理浮点上下文句柄转换
 #define FUN_180160af0 ExecuteAdvancedContextHandleOperations              // 处理上下文句柄高级操作
+#define FUN_180204700 ProcessSystemContextMemoryAllocation                  // 处理系统上下文内存分配
+#define FUN_180204870 ExecuteSystemContextMemoryManagement                // 执行系统上下文内存管理
 
 // 核心引擎数据处理函数语义化宏定义
 #define FUN_180173c40 ValidateSystemContextIntegrity                     // 处理系统上下文验证
@@ -3185,6 +3187,22 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationEx FUN_1802aaef0           // 处理系统内存分配扩展
 #define ProcessSystemMemoryAllocationVariantB FUN_1800ba230     // 处理系统内存分配变体B
 #define ProcessSystemMemoryPoolCleanup FUN_1802ab0c0            // 处理系统内存池清理
+
+// 核心引擎函数调用语义化映射
+#define ProcessSystemMemoryBlockOperation FUN_1801bb3a0             // 处理系统内存块操作
+#define HandleSystemContextMemoryOperation FUN_18019c6e0            // 处理系统上下文内存操作
+#define ReleaseSystemMemoryContext FUN_1801acb30                    // 释放系统内存上下文
+#define ProcessSystemDataBufferOperation FUN_1801c1c40              // 处理系统数据缓冲区操作
+#define InitializeSystemDataTemplate FUN_1801c1af0                  // 初始化系统数据模板
+#define ProcessSystemMemoryAllocation FUN_18019c5b0                 // 处理系统内存分配
+#define HandleSystemBufferPointerOperation FUN_18019cf00            // 处理系统缓冲区指针操作
+#define ValidateSystemContextMemory FUN_18019d190                   // 验证系统上下文内存
+#define ProcessSystemCharacterEncoding FUN_180199930               // 处理系统字符编码
+#define ExecuteSystemMemoryValidation FUN_1801b84e0                 // 执行系统内存验证
+#define CleanupSystemMemoryFlag FUN_1801c1720                       // 清理系统内存标志
+#define ProcessExtendedMemoryOperation FUN_1802e5be0                // 处理扩展内存操作
+#define InitializeSystemMemoryAllocator FUN_180316460               // 初始化系统内存分配器
+#define ConfigureSystemMemoryParameters FUN_18031a470               // 配置系统内存参数
 
 // 上下文句柄和系统缓冲区管理函数语义化映射
 #define ProcessContextHandleAndUtfConversion FUN_1801879d0     // 处理上下文句柄和UTF转换操作

@@ -128395,8 +128395,7 @@ void ProcessUIContextStateValidation(void)
 
 
 
- void FUN_18073c133(void)
-/**
+ /**
  * @brief UI上下文内存清理函数
  * 
  * 清理UI上下文的内存资源，包括内存释放和渲染任务执行
@@ -128410,6 +128409,7 @@ void ProcessUIContextStateValidation(void)
  * 
  * @note 原始函数名：FUN_18073c133
  */
+#define ProcessUIContextMemoryCleanup FUN_18073c133
 void ProcessUIContextMemoryCleanup(void)
 
 {
