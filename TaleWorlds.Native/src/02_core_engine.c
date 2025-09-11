@@ -1126,6 +1126,86 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define DecrementMemoryReferenceCount FUN_180057796
 
 /**
+ * @brief 处理系统上下文数据传输和内存管理
+ * 
+ * 该函数负责处理系统上下文的数据传输和内存管理操作，包括：
+ * - 处理上下文句柄的验证和管理
+ * - 管理内存池的分配和释放
+ * - 处理字符串编码转换
+ * - 控制系统数据处理流程
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @note 原始函数名：FUN_180204e40
+ */
+#define ProcessSystemContextDataTransferAndMemoryManagement FUN_180204e40
+
+/**
+ * @brief 处理UTF-16字符编码和内存池分配
+ * 
+ * 该函数负责处理UTF-16字符编码和内存池分配，包括：
+ * - UTF-16字符数据处理
+ * - 内存池块大小计算
+ * - 字符代码表指针管理
+ * - 次要处理状态标志控制
+ * 
+ * @param ContextHandle 字符代码
+ * @param OperationBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180204e64
+ */
+#define ProcessUtf16CharacterEncodingAndMemoryPoolAllocation FUN_180204e64
+
+/**
+ * @brief 处理上下文句柄表和内存池分配
+ * 
+ * 该函数负责处理上下文句柄表的内存池分配和管理，包括：
+ * - UTF-16字符数据处理
+ * - 内存池块大小计算
+ * - 字符代码表指针管理
+ * - 次要处理状态标志控制
+ * 
+ * @param ContextHandle 字符代码
+ * @param OperationBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180204ea2
+ */
+#define ProcessContextHandleTableAndMemoryPoolAllocation FUN_180204ea2
+
+/**
+ * @brief 处理系统数据缓冲区扩展和内存管理
+ * 
+ * 该函数负责处理系统数据缓冲区的扩展和内存管理，包括：
+ * - 缓冲区大小计算和扩展
+ * - 内存分配和释放
+ * - 数据块移动和复制
+ * - 系统状态标志管理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180204f4d
+ */
+#define ProcessSystemDataBufferExpansionAndMemoryManagement FUN_180204f4d
+
+/**
+ * @brief 处理系统缓冲区大小和内存块索引管理
+ * 
+ * 该函数负责管理系统缓冲区的大小设置和内存块索引的处理，包括：
+ * - 初始化系统缓冲区大小为-1
+ * - 清零相关内存区域
+ * - 调用内存块索引的清理函数
+ * - 设置缓冲区参数
+ * 
+ * @param OperationBufferSize 系统缓冲区大小数组指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180204f57
+ */
+#define ProcessOperationBufferSizeAndMemoryBlockIndexManagement FUN_180204f57
+
+/**
  * @brief 安全释放内存引用计数
  * 
  * 安全地减少内存引用计数，包含额外的安全检查
