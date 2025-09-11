@@ -36415,7 +36415,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   secondResourceDataValue = memoryResourcePointer[1];
   thirdResourceDataValue = memoryResourcePointer[2];
   fourthResourceDataValue = memoryResourcePointer[3];
-  validationStatus = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,0,0x4c525443);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,0,SecurityValidationLrtc);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + SystemDataParameterOffset20), (int)validationStatus == 0)) {
     memoryRegionBase = SystemOperationCode0x1c;
@@ -125189,7 +125189,7 @@ void ProcessExceptionCleanupAtOffset180911220(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911240
  */
-void ProcessExceptionCleanupAtOffset180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionCleanupAtOffset40Secondary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -125822,7 +125822,7 @@ void ResetExceptionContextAtOffset18E0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void ProcessExceptionCleanupAtOffset180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionCleanupAtOffset40Tertiary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
