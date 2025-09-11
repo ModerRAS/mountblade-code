@@ -248,6 +248,7 @@ typedef enum {
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
 #define FUN_18073ab80 ProcessUIContextWithDataOperation          // 处理UI上下文数据操作
 #define FUN_18073da7d ProcessUIContextDataOperationAndRenderTask  // 处理UI上下文数据操作和渲染任务
+#define FUN_18073dba0 ProcessUIContextWithDataFill                  // 处理UI上下文数据填充操作
 #define FUN_180767c00 ProcessUIEventWithDataSourceAndTarget        // 处理UI事件与数据源和目标
 #define FUN_1807863b0 ValidateUIContextAndEventData                // 验证UI上下文和事件数据
 #define FUN_18088c380 ProcessUIBufferDataWithValidation           // 处理UI缓冲区数据与验证
