@@ -2958,6 +2958,7 @@
  * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
  */
 #define FUN_18089e230 ProcessSystemDataTransferWithValidation
+#define FUN_180062300 ProcessSystemDataTransferWithValidation
 
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作

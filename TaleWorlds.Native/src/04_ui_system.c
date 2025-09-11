@@ -1966,9 +1966,38 @@ typedef enum {
 #define ProcessUIComponentEvent FUN_18070ba50
 
 // UI系统函数宏定义 - 计算UI组件边界框
+/**
+ * @brief 计算UI组件边界框
+ * 
+ * 该函数用于计算UI组件在3D空间中的边界框，包括：
+ * - 3D坐标变换和投影计算
+ * - 边界框的尺寸和位置确定
+ * - 与相机视锥体的裁剪测试
+ * - 深度缓冲区的比较和验证
+ * 
+ * 该函数是UI渲染系统的重要组成部分，确保UI元素在3D空间中
+ * 正确显示和交互。
+ * 
+ * @param componentTransform 组件变换矩阵指针
+ * @param contextData 上下文数据指针，包含渲染状态信息
+ * @return 边界框计算结果，成功返回1，失败返回0
+ * 
+ * @note 原始函数名：FUN_18065a1d0
+ */
 #define CalculateUIComponentBounds FUN_18065a1d0
 
 // UI系统函数宏定义 - 处理UI边界框碰撞检测
+/**
+ * @brief 处理UI元素的3D边界框碰撞检测
+ * 
+ * 该函数用于计算和检测UI元素在3D空间中的边界框碰撞。
+ * 它执行复杂的几何计算，包括距离计算、边界框验证和碰撞响应。
+ * 
+ * @param elementBoundingBox 指向UI元素边界框数据的指针
+ * @return 碰撞检测结果，1表示碰撞成功，0表示无碰撞
+ * 
+ * @note 原始函数名：FUN_180659a40
+ */
 #define ProcessUIBoundingBoxCollision FUN_180659a40
 
 // UI系统函数宏定义 - 初始化UI内存池

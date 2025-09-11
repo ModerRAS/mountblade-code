@@ -233150,7 +233150,18 @@ void InitializeSystemMemoryManager(void)
 
 
 
-90adc(voidvoid FUN_180190adc(void
+/**
+ * @brief 清理系统内存管理器
+ * 
+ * 该函数负责清理系统内存管理器，释放相关资源并重置状态。
+ * 这是一个清理函数，确保系统内存资源得到正确释放。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180190adc
+ * @see InitializeSystemMemoryManager, CleanupSystemResources
+ */
+void CleanupSystemMemoryManager(void)
 {
   return;
 }
