@@ -1014,8 +1014,8 @@ typedef enum {
 // UI系统函数宏定义 - 上下文清理和验证
 #define CleanupUIContextWithMemoryRelease ReleaseUIContextMemoryAndCleanup                // 清理UI上下文并释放内存 - 释放UI上下文占用的内存资源
 #define ProcessUIComponentDataSourceAndValidation ValidateUIComponentDataSource        // 处理UI组件数据源和验证 - 验证UI组件数据源的有效性
-#define ProcessUIComponentResourceAllocation FUN_180760c90            // 处理UI组件资源分配 - 为UI组件分配必要的资源
-#define ValidateUIComponentHandleWithBounds FUN_180749940             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
+#define ProcessUIComponentResourceAllocation AllocateUIComponentResources            // 处理UI组件资源分配 - 为UI组件分配必要的资源
+#define ValidateUIComponentHandleWithBounds ValidateUIComponentHandleBounds             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
 #define ProcessUIComponentHandleWithEventDispatch FUN_180744ae0      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
 #define SetupUIContextEventHandle FUN_180786104                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
 #define InitializeUIContextDataBuffer FUN_1807861b0                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
@@ -142839,7 +142839,7 @@ ExitFunction:
 
 
 
-int FUN_180749940(longlong uiContext)
+int ValidateUIComponentHandleBounds(longlong uiContext)
 
 {
   int operationResult;
@@ -166840,7 +166840,7 @@ void FUN_180760c64(void)
 
 
 
-UIHandle FUN_180760c90(longlong uiContext,longlong dataSource,UIDword targetBuffer,UIDword bufferSize)
+UIHandle AllocateUIComponentResources(longlong uiContext,longlong dataSource,UIDword targetBuffer,UIDword bufferSize)
 
 {
   uint *resultPointer;
@@ -207413,7 +207413,7 @@ LAB_180787df9:
  * 
  * @note 原始函数名：ProcessUICharacterValidation
  * @warning 该函数包含复杂的字符编码处理逻辑，需要仔细验证
- * @see ValidateUIMemoryOperation, ValidateUIComponentDataSource, FUN_180760c90
+ * @see ValidateUIMemoryOperation, ValidateUIComponentDataSource, AllocateUIComponentResources
  */
 int ProcessUICharacterValidation(longlong uiContext, UIDword dataSource, longlong *targetBuffer, longlong *bufferSize)
 {
@@ -207599,7 +207599,7 @@ LAB_180787ee9:
       *(UIDword *)(contextDataHandle + 0x34) = 1;
       *(int *)(memoryAllocationFlag + 0x318) = *(int *)(memoryAllocationFlag + 0x318) + 1;
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787fb3;
-      operationResult = FUN_180760c90(contextDataHandle, iterationCount, registerValue);
+      operationResult = AllocateUIComponentResources(contextDataHandle, iterationCount, registerValue);
     }
     
     if ((componentData != 0) && (preservedRegisterFlag != '\0')) {
@@ -207611,7 +207611,7 @@ LAB_180787ee9:
     if (operationResult == 0) {
       iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180788001;
-      operationResult = FUN_180749940(iterationCount);
+      operationResult = ValidateUIComponentHandleBounds(iterationCount);
       
       if (operationResult == 0) {
         iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
@@ -207712,14 +207712,14 @@ int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSo
       *(UIDword *)(componentIndex + 0x30) = 0;
       *(UIDword *)(componentIndex + 0x34) = 1;
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
-      sourceDataInt = FUN_180760c90(componentIndex,uStackX_8,dataSource);
+      sourceDataInt = AllocateUIComponentResources(componentIndex,uStackX_8,dataSource);
     }
     if ((allocatedMemory != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
       ProcessUISystemCleanup(allocatedMemory,2);
     }
     if (sourceDataInt == 0) {
-      sourceDataInt = FUN_180749940(*(UIHandle *)(uiContext + 0x48));
+      sourceDataInt = ValidateUIComponentHandleBounds(*(UIHandle *)(uiContext + 0x48));
       if (sourceDataInt == 0) {
         FUN_180744ae0(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
         componentHandle = *(longlong *)(uiBufferData + 0x48);
@@ -207794,7 +207794,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
       ProcessUISystemCleanup();
     }
     if (uiCompareResult == 0) {
-      uiCompareResult = FUN_180749940(*(UIHandle *)(uiContext + 0x48));
+      uiCompareResult = ValidateUIComponentHandleBounds(*(UIHandle *)(uiContext + 0x48));
       if (uiCompareResult == 0) {
         FUN_180744ae0(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
         EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
