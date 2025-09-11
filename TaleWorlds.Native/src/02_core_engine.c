@@ -3047,6 +3047,18 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 系统渲染和状态管理函数语义化映射
 #define ProcessSystemRenderState FUN_1801c93c0                 // 处理系统渲染状态
+
+// 系统初始化和清理函数语义化映射
+#define InitializeSystemResources FUN_180197a20                   // 初始化系统资源
+#define ProcessSystemContextConfiguration FUN_180397bc0          // 处理系统上下文配置
+#define ConfigureSystemMemoryAllocation FUN_180397d70            // 配置系统内存分配
+#define ProcessSystemUnicodeConversion FUN_1803005b0              // 处理系统Unicode转换
+#define ExecuteSystemStringEncoding FUN_1802ee610                // 执行系统字符串编码
+#define ValidateSystemStringEncoding FUN_18039f2b0                // 验证系统字符串编码
+#define CompleteSystemUnicodeProcessing FUN_1802fca80            // 完成系统Unicode处理
+#define InitializeSystemEventConfiguration FUN_1802f9710         // 初始化系统事件配置
+#define ProcessSystemMemoryValidation FUN_1801985e0               // 处理系统内存验证
+#define FinalizeSystemStringEncoding FUN_1802eeba0               // 完成系统字符串编码
 #define ProcessSystemStringData FUN_1800ab6f0                   // 处理系统字符串数据
 #define ProcessSystemMemoryBlock FUN_1800a3880                  // 处理系统内存块
 #define ProcessSystemRenderObjectConfiguration FUN_18029ae20    // 处理系统渲染对象配置
@@ -235189,7 +235201,7 @@ void FUN_180191d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t
 
 
 
-91df0(long long ContextHandle,int OperationBufferSizevoid FUN_180191df0(long long ContextHandle,int OperationBufferSize
+void FUN_180191df0(long long ContextHandle,int OperationBufferSize)
 {
   long long MainCalculationResult;
   uint64_t MemoryPoolIndex;
