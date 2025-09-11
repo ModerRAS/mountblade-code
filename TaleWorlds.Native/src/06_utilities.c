@@ -142702,3 +142702,184 @@ int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlag
     }
 }
 
+/**
+ * @brief 系统状态检查和验证函数实现
+ * 
+ * 检查系统当前状态，验证各个组件的运行状况，并返回详细的状态码。
+ * 该函数监控系统健康状态，包括内存使用、CPU利用率、进程状态等关键指标。
+ * 
+ * @param statusBuffer 状态缓冲区指针，用于存储状态检查结果
+ * @param bufferSize 缓冲区大小，指定可用的存储空间
+ * @param checkFlags 检查标志位，指定要检查的系统组件
+ * @param validationLevel 验证级别，控制检查的深度和严格程度
+ * @return int 系统状态码，0表示系统健康，其他值表示不同类型的错误
+ * 
+ * @note 原始函数名：CheckSystemStatusCodeWithValidation
+ * @note 这是系统监控的核心函数，提供全面的系统健康检查
+ * @see ValidateSystemConfiguration, MonitorSystemPerformance
+ */
+int CheckSystemStatusCodeWithValidation(void *statusBuffer, uint32_t bufferSize, uint32_t checkFlags, uint8_t validationLevel)
+{
+    // 参数验证
+    if (statusBuffer == NULL || bufferSize < sizeof(SystemStatusInfo)) {
+        return UnknownError;
+    }
+    
+    // 系统状态变量
+    SystemStatusInfo *statusInfo = (SystemStatusInfo *)statusBuffer;
+    uint32_t memoryStatus = 0;
+    uint32_t cpuStatus = 0;
+    uint32_t processStatus = 0;
+    uint32_t networkStatus = 0;
+    uint32_t diskStatus = 0;
+    
+    // 初始化状态信息结构
+    statusInfo->overallStatus = SystemHealthy;
+    statusInfo->memoryUsage = 0;
+    statusInfo->cpuUsage = 0;
+    statusInfo->processCount = 0;
+    statusInfo->networkStatus = 0;
+    statusInfo->diskUsage = 0;
+    statusInfo->timestamp = GetSystemTimestamp();
+    
+    // 根据检查标志执行相应的状态检查
+    if (checkFlags & CheckMemoryStatus) {
+        memoryStatus = CheckMemoryStatus();
+        statusInfo->memoryUsage = memoryStatus;
+        if (memoryStatus > 90) { // 内存使用超过90%
+            statusInfo->overallStatus = SystemWarning;
+        }
+        if (memoryStatus > 95) { // 内存使用超过95%
+            statusInfo->overallStatus = MemoryOverflow;
+        }
+    }
+    
+    if (checkFlags & CheckCPUUsage) {
+        cpuStatus = CheckCPUUsage();
+        statusInfo->cpuUsage = cpuStatus;
+        if (cpuStatus > 80) { // CPU使用超过80%
+            if (statusInfo->overallStatus == SystemHealthy) {
+                statusInfo->overallStatus = SystemWarning;
+            }
+        }
+        if (cpuStatus > 90) { // CPU使用超过90%
+            statusInfo->overallStatus = CPUOverload;
+        }
+    }
+    
+    if (checkFlags & CheckProcessStatus) {
+        processStatus = CheckProcessStatus();
+        statusInfo->processCount = processStatus;
+        if (processStatus == 0) { // 没有运行进程
+            statusInfo->overallStatus = ProcessFailure;
+        }
+    }
+    
+    if (checkFlags & CheckNetworkStatus) {
+        networkStatus = CheckNetworkStatus();
+        statusInfo->networkStatus = networkStatus;
+        if (networkStatus == 0) { // 网络断开
+            statusInfo->overallStatus = NetworkFailure;
+        }
+    }
+    
+    if (checkFlags & CheckDiskStatus) {
+        diskStatus = CheckDiskStatus();
+        statusInfo->diskUsage = diskStatus;
+        if (diskStatus > 95) { // 磁盘使用超过95%
+            if (statusInfo->overallStatus == SystemHealthy) {
+                statusInfo->overallStatus = SystemWarning;
+            }
+        }
+        if (diskStatus > 99) { // 磁盘使用超过99%
+            statusInfo->overallStatus = DiskFailure;
+        }
+    }
+    
+    // 根据验证级别执行额外的检查
+    if (validationLevel > 64) {
+        // 执行深度验证
+        uint32_t detailedStatus = PerformDetailedSystemValidation();
+        if (detailedStatus != 0) {
+            statusInfo->overallStatus = SystemError;
+        }
+    }
+    
+    return statusInfo->overallStatus;
+}
+
+/**
+ * @brief 多参数数据处理和验证函数实现
+ * 
+ * 处理包含多个参数的数据操作，执行数据验证、转换和处理。
+ * 该函数支持多种数据类型和复杂的参数组合，是系统数据处理的核心组件。
+ * 
+ * @param parameterArray 参数数组指针，包含要处理的所有参数
+ * @param parameterCount 参数数量，指定数组中参数的个数
+ * @param processingFlags 处理标志位，控制处理的方式和类型
+ * @param validationContext 验证上下文指针，包含验证规则和配置信息
+ * @param outputBuffer 输出缓冲区指针，用于存储处理结果
+ * @param outputBufferSize 输出缓冲区大小
+ * @return int 处理结果状态码，0表示成功，其他值表示不同类型的错误
+ * 
+ * @note 原始函数名：ProcessMultiParameterDataWithValidation
+ * @note 这是系统数据处理的核心组件，支持复杂的多参数场景
+ * @see ValidateSystemConfiguration, ProcessDataBuffer
+ */
+int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t parameterCount, uint32_t processingFlags, void *validationContext, void *outputBuffer, uint32_t outputBufferSize)
+{
+    // 参数验证
+    if (parameterArray == NULL || parameterCount == 0 || outputBuffer == NULL || outputBufferSize == 0) {
+        return InvalidParameterCount;
+    }
+    
+    // 数据处理变量
+    uint8_t *inputData = (uint8_t *)parameterArray;
+    uint8_t *outputData = (uint8_t *)outputBuffer;
+    uint32_t processedCount = 0;
+    uint32_t validationStatus = 0;
+    uint32_t conversionStatus = 0;
+    uint32_t normalizationStatus = 0;
+    uint32_t encryptionStatus = 0;
+    
+    // 验证输入数据的有效性
+    if (processingFlags & DataValidationFlag) {
+        validationStatus = ValidateInputData(inputData, parameterCount);
+        if (validationStatus != 0) {
+            return ValidationFailed;
+        }
+    }
+    
+    // 执行数据转换
+    if (processingFlags & DataConversionFlag) {
+        conversionStatus = ConvertDataFormat(inputData, parameterCount, outputData, outputBufferSize);
+        if (conversionStatus != 0) {
+            return conversionStatus;
+        }
+    }
+    
+    // 执行数据标准化
+    if (processingFlags & DataNormalizationFlag) {
+        normalizationStatus = NormalizeData(outputData, parameterCount);
+        if (normalizationStatus != 0) {
+            return normalizationStatus;
+        }
+    }
+    
+    // 执行数据加密
+    if (processingFlags & DataEncryptionFlag) {
+        encryptionStatus = EncryptData(outputData, parameterCount, validationContext);
+        if (encryptionStatus != 0) {
+            return EncryptionError;
+        }
+    }
+    
+    // 执行数据完整性验证
+    validationStatus = ValidateOutputData(outputData, parameterCount);
+    if (validationStatus != 0) {
+        return validationStatus;
+    }
+    
+    return DataProcessingSuccess;
+}
+
