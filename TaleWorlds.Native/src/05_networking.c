@@ -5484,9 +5484,9 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
  * 
  * 该函数负责处理网络连接的状态变化，包括连接建立、维护和断开
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
- * @param ConnectionStatus 连接状态指针
- * @param TimeoutValue 超时值
+ * @param connectionContext 网络连接上下文指针
+ * @param connectionStatus 连接状态指针
+ * @param timeoutValue 超时值
  * @return NetworkHandle 返回网络句柄
  */
 NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectionContext, NetworkConnectionStatus *connectionStatus, uint32_t timeoutValue)
