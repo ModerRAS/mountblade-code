@@ -1092,6 +1092,37 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress FramePointer         // 栈帧地址
 
+// 栈变量语义化宏定义 - 美化代码中的栈变量名
+#define uStack_138 StringProcessingStatusFlags               // 字符串处理状态标志138
+#define iStack_178 LoopCounter                               // 循环计数器178
+#define puStack_190 SourceCharacterBufferPointer             // 源字符缓冲区指针190
+#define iStack_188 StringLength                             // 字符串长度188
+#define uStack_1c0 MemoryAllocationStatus                   // 内存分配状态1c0
+#define stackPointer1B0 TargetCharacterBufferPointer         // 目标字符缓冲区指针1B0
+#define SystemValue1a8 MemoryAllocationHandle                // 内存分配句柄1a8
+#define SystemPointerValue170 ContextDataPointer             // 上下文数据指针170
+#define SystemUnsignedValue160 DataProcessingStatus         // 数据处理状态160
+#define Utf16Char4 CharacterDataLength                       // 字符数据长度4
+#define SystemCharacterStatusPointer CharacterStatusBuffer  // 字符状态缓冲区指针
+#define Utf16Character CharacterEncodingValue               // 字符编码值
+#define ProcessingStatusFlagPointer6 StatusFlagBuffer      // 状态标志缓冲区6
+#define StringLength CharacterCount                          // 字符计数
+#define uStack_150 ArraySize                                 // 数组大小150
+#define uStack_158 MemoryAllocationInfo                     // 内存分配信息158
+#define SystemValue1c8 ValidationFlags                       // 验证标志1c8
+#define uStack_1d0 FloatProcessingFlags                      // 浮点处理标志1d0
+#define CharacterStatusBufferCurrent CurrentStatusBuffer     // 当前状态缓冲区
+#define puStack_538 UnicodeDataBufferPointer                // Unicode数据缓冲区指针538
+#define puStack_550 CharacterTablePointer                   // 字符表指针550
+#define puStack_558 StringOffsetTablePointer                 // 字符串偏移表指针558
+#define puStack_570 MemoryBlockIndexPointer                 // 内存块索引指针570
+#define puStack_578 SystemContextPointer                    // 系统上下文指针578
+#define puStack_590 ProcessingStackPointer                  // 处理栈指针590
+#define puStack_598 ValidationStackPointer                  // 验证栈指针598
+#define uStack_218 MemoryAllocationFlags                    // 内存分配标志218
+#define pfStack_1e0 FloatArrayPointer                       // 浮点数组指针1e0
+#define pfStack_1d8 FloatProcessingPointer                  // 浮点处理指针1d8
+
 // 系统状态变量语义化宏定义
 #define PrimaryStatusBlock SystemPrimaryStatusBlock               // 主要状态块
 #define SecondaryProcessingStatusFlag SystemSecondaryProcessingStatusFlag    // 次要处理状态标志
@@ -2637,6 +2668,18 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define CharacterStatus2 SystemCharacterStatus2             // 字符状态2（系统字符状态2）
 #define SystemStatusChar SystemStatusCharacter              // 系统状态字符（系统状态字符）
 #define HighByte UnicodeHighByte                           // 高字节（Unicode高字节）
+
+// 更多系统处理标签语义化宏定义
+#define LAB_180095527 SystemByteProcessingLabel                  // 系统字节处理标签
+#define LAB_18009556a SystemChecksumValidationLabel              // 系统校验和验证标签
+#define LAB_1800957c7 SystemSecondaryProcessingLabel            // 系统次级处理标签
+#define LAB_18009580a SystemByteRangeValidationLabel             // 系统字节范围验证标签
+#define LAB_18009611a StringCodePointComparisonLabel            // 字符串代码点比较标签
+#define LAB_180096a34 LowByteValidationLabel                     // 低字节验证标签
+#define LAB_18009662b SystemStringProcessingContinueLabel        // 系统字符串处理继续标签
+#define LAB_1800967cd StringStatusCheckLabel                     // 字符串状态检查标签
+#define LAB_180096990 SystemProcessingCompleteLabel              // 系统处理完成标签
+#define LAB_180097ca1 MemoryAllocationMaskCheckLabel             // 内存分配掩码检查标签
 #define Utf16Char Utf16CodeValue                      // UTF-16字符（UTF-16字符值）
 #define SystemDataNode SystemContextDataNode               // 系统数据节点（系统上下文数据节点）
 #define AllocatedMemorySize SystemContextSize               // 已分配内存大小（系统上下文大小）
@@ -262215,7 +262258,17 @@ long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,l
 
 
 
-0ddf0(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_18020ddf0(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 初始化系统数据传输操作
+ * 
+ * 该函数负责初始化系统数据传输操作，包括数据准备和传输状态设置。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18020ddf0
+ */
+void InitializeSystemDataTransfer(uint64_t ContextHandle,long long OperationBufferSize)
 {
   long long MainCalculationResult;
   void *PrimaryProcessingStatusFlag;
@@ -262384,7 +262437,16 @@ uint64_t ProcessSystemContextHandleAndManageMemory(uint64_t ContextHandle,unsign
 
 
 
-0e3b0(long long *ContextHandlevoid FUN_18020e3b0(long long *ContextHandle
+/**
+ * @brief 验证系统上下文句柄
+ * 
+ * 该函数负责验证系统上下文句柄的有效性，确保上下文操作的正常执行。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_18020e3b0
+ */
+void ValidateSystemContextHandle(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long *BufferAllocationState;
