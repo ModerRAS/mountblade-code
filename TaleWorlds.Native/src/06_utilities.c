@@ -138225,55 +138225,6 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
-/**
- * @brief 执行异常处理器A6
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
- * 
- * @note 原始函数名：Unwind_18090ac70
- */
-#define ExecuteExceptionHandlerA6 Unwind_18090ac70
-
-/**
- * @brief 执行异常处理器A7
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
- * 
- * @note 原始函数名：Unwind_18090ac90
- */
-#define ExecuteExceptionHandlerA7 Unwind_18090ac90
-
-/**
- * @brief 执行异常处理器A8
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
- * 
- * @note 原始函数名：Unwind_18090acb0
- */
-#define ExecuteExceptionHandlerA8 Unwind_18090acb0
-
-/**
- * @brief 执行异常处理器A9
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
- * 
- * @note 原始函数名：Unwind_18090acd0
- */
-#define ExecuteExceptionHandlerA9 Unwind_18090acd0
-
-/**
- * @brief 执行异常处理器A10
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
- * 
- * @note 原始函数名：Unwind_18090acf0
- */
-#define ExecuteExceptionHandlerA10 Unwind_18090acf0
-
-/**
- * @brief 执行异常处理器A11
- * 
- * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
  * 
  * @note 原始函数名：Unwind_18090ad10
  */
