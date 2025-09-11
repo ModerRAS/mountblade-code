@@ -18947,9 +18947,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         *(int32_t *)(ComponentDataPointer + COMPONENT_ACTIVE_OFFSET) = *(int32_t )(ComponentDataPointer + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        systemDataQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationDataBuffer);
-        if ((int32_t)systemDataQueryStatus != 0) {
-          return systemDataQueryStatus;
+        SystemDataQueryStatus = ExecuteComponentCommand(ComponentDataPointer + COMPONENT_COMMAND_OFFSET, ComponentValidationDataBuffer);
+        if ((int32_t)SystemDataQueryStatus != 0) {
+          return SystemDataQueryStatus;
         }
       }
     }
