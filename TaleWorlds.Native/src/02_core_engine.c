@@ -255401,56 +255401,72 @@ void SetSystemContextStatusFlag(long long SystemContextHandle)
 
 
 
-08610(long long ContextHandle,float OperationBufferSizevoid FUN_180208610(long long ContextHandle,float OperationBufferSize
+// 函数: void FUN_180208610(long long ContextHandle,float OperationBufferSize)
+/**
+ * @brief 处理系统上下文浮点数运算和过滤
+ * 
+ * 该函数负责处理系统上下文的浮点数运算和过滤操作，主要功能包括：
+ * - 执行浮点数的加法和减法运算
+ * - 处理过滤值的计算和比较
+ * - 管理系统上下文的状态和资源释放
+ * - 执行上下文句柄的清理操作
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小（浮点数）
+ * 
+ * @note 原始函数名：FUN_180208610
+ */
+#define ProcessSystemContextFloatOperations FUN_180208610
+void ProcessSystemContextFloatOperations(long long SystemContextHandle,float FloatOperationSize)
 {
   long long *ContextHandle;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   
-  if (*(long long *)(ContextHandle + 0x38) != 0) {
-    ContextSecondaryFloat = OperationBufferSize + *(float *)(ContextHandle + 0x848);
-    *(float *)(ContextHandle + 0x848) = ContextSecondaryFloat;
-    CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(ContextHandle + 0x38) + 0xc0) + -0x28) *
+  if (*(long long *)(SystemContextHandle + 0x38) != 0) {
+    ContextSecondaryFloat = FloatOperationSize + *(float *)(SystemContextHandle + 0x848);
+    *(float *)(SystemContextHandle + 0x848) = ContextSecondaryFloat;
+    CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(SystemContextHandle + 0x38) + 0xc0) + -0x28) *
             0.033333335;
     if (FilterInputValue < ContextSecondaryFloat) {
-      if (*(char *)(ContextHandle + 0x40) == '\0') {
-        *(float *)(ContextHandle + 0x848) = FilterInputValue;
+      if (*(char *)(SystemContextHandle + 0x40) == '\0') {
+        *(float *)(SystemContextHandle + 0x848) = FilterInputValue;
       }
       else {
         ContextSecondaryFloat = ContextSecondaryFloat - FilterInputValue;
         if (ContextSecondaryFloat <= 0.0) {
           ContextSecondaryFloat = 0.0;
         }
-        *(float *)(ContextHandle + 0x848) = ContextSecondaryFloat;
+        *(float *)(SystemContextHandle + 0x848) = ContextSecondaryFloat;
       }
     }
   }
-  if (*(long long *)(ContextHandle + 0x20) != 0) {
-    ContextSecondaryFloat = OperationBufferSize + *(float *)(ContextHandle + 0x28);
-    *(float *)(ContextHandle + 0x28) = ContextSecondaryFloat;
-    CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(ContextHandle + 0x20) + 0xc0) + -0x28) *
+  if (*(long long *)(SystemContextHandle + 0x20) != 0) {
+    ContextSecondaryFloat = FloatOperationSize + *(float *)(SystemContextHandle + 0x28);
+    *(float *)(SystemContextHandle + 0x28) = ContextSecondaryFloat;
+    CalculatedFilterValue = (float)*(int *)(*(long long *)(*(long long *)(SystemContextHandle + 0x20) + 0xc0) + -0x28) *
             0.033333335;
     if (FilterInputValue < ContextSecondaryFloat) {
-      if (*(char *)(ContextHandle + 0x30) == '\0') {
-        *(float *)(ContextHandle + 0x28) = FilterInputValue;
+      if (*(char *)(SystemContextHandle + 0x30) == '\0') {
+        *(float *)(SystemContextHandle + 0x28) = FilterInputValue;
       }
       else {
         ContextSecondaryFloat = ContextSecondaryFloat - FilterInputValue;
         if (ContextSecondaryFloat <= 0.0) {
           ContextSecondaryFloat = 0.0;
         }
-        *(float *)(ContextHandle + 0x28) = ContextSecondaryFloat;
+        *(float *)(SystemContextHandle + 0x28) = ContextSecondaryFloat;
       }
     }
-    ContextSecondaryFloat = *(float *)(ContextHandle + 0x2c) - OperationBufferSize * 5.0;
-    *(float *)(ContextHandle + 0x2c) = ContextSecondaryFloat;
+    ContextSecondaryFloat = *(float *)(SystemContextHandle + 0x2c) - FloatOperationSize * 5.0;
+    *(float *)(SystemContextHandle + 0x2c) = ContextSecondaryFloat;
     if (ContextSecondaryFloat <= 0.0) {
-      ContextHandle = *(long long **)(ContextHandle + 0x20);
-      *(void *)(ContextHandle + 0x20) = 0;
+      ContextHandle = *(long long **)(SystemContextHandle + 0x20);
+      *(void *)(SystemContextHandle + 0x20) = 0;
       if (ContextHandle != (long long *)0x0) {
         (**(code **)(*ContextHandle + 0x38))();
       }
-      *(uint32_t *)(ContextHandle + 0x2c) = 0;
+      *(uint32_t *)(SystemContextHandle + 0x2c) = 0;
     }
   }
   return;
