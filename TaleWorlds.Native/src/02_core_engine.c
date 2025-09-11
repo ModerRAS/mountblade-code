@@ -253895,7 +253895,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
         CoreEngineSignedValueE8 = SystemDataTablePointer;
         lStack_e0 = EncodingConversionResult;
         SystemChecksum = CalculateSystemChecksum(SystemStringIndex,0,IntegerValue9);
-        FUN_1802064e0(ContextHandle,&LocalDataStructure160,SystemChecksum,IntegerValue9);
+        TransferCharacterEncodingContext(ContextHandle,&LocalDataStructure160,SystemChecksum,IntegerValue9);
         if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
           InitializeSystemMemoryAllocation();
           ContextHandle8[1] = ContextHandle8[1] + 0x18;
