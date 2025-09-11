@@ -2386,7 +2386,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
-      (DataTableSystemIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), DataTableSystemIdentifierComparisonResult < 0)) {
+      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, SystemIdentifierSize), DataTableIdentifierComparisonResult < 0)) {
     DataTableRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &NewDataTableNodePointer, PreviousSystemNodePointer, DataTableRequiredMemorySize + NodeAllocationExtraSize, DataTableRequiredMemorySize);
     PreviousSystemNodePointer = NewDataTableNodePointer;
@@ -2481,17 +2481,17 @@ void InitializeSystemCoreConfig(void)
  */
 void InitializeSystemMemoryPool(void)
 {
-  bool IsMemoryPoolNodeActive;
-  void** MainSystemTablePointer;
-  int MemoryPoolIdentifierComparisonResult;
-  long long* SystemMemoryInfoPointer;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** PreviousNodePointer;
-  long long SystemRequiredMemorySize;
-  void** AllocatedMemoryPoolNode;
-  void* MemoryPoolInitializationHandler;
+  bool IsMemoryPoolNodeActive;                             // 内存池节点是否已激活
+  void** MainSystemTablePointer;                           // 主系统表指针
+  long long* SystemMemoryInfoPointer;                      // 系统内存信息指针
+  void** RootNodeReference;                                 // 根节点引用
+  void** CurrentNodePointer;                                // 当前节点指针
+  void** PreviousNodePointer;                               // 前一个节点指针
+  void** NextNodePointer;                                   // 下一个节点指针
+  int MemoryPoolIdentifierComparisonResult;                 // 内存池标识符比较结果
+  long long SystemRequiredMemorySize;                       // 系统所需内存大小
+  void** AllocatedMemoryPoolNode;                           // 已分配内存池节点
+  void* MemoryPoolInitializationHandler;                   // 内存池初始化处理器
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
@@ -2576,8 +2576,8 @@ void InitializeSystemThreadPool(void)
     IsCurrentNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   if ((HashTablePointer == RootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemConfigurationIdentifier, HashTablePointer + NodeIdentifierOffset, SystemIdentifierSize), NodeIdentifierComparisonResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, RequiredMemorySize + SystemNodeAllocationExtraSize, RequiredMemorySize);
     HashTablePointer = AllocatedMemoryNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
