@@ -242,6 +242,14 @@
 // 错误代码常量
 #define SecurityValidationFlag0x1C 0x1c                         // 安全验证标志0x1C - 用于安全验证操作
 
+// 安全验证码常量
+#define SecurityValidationCodeLRTC 0x4c525443                    // 安全验证码LRTC - 用于端口控制请求验证
+#define SecurityValidationCodeTIVE 0x54495645                    // 安全验证码TIVE - 用于数据完整性验证  
+#define SecurityValidationCodeBIVE 0x42495645                    // 安全验证码BIVE - 用于备份数据验证
+#define SecurityValidationCodeTSNI 0x54534e49                    // 安全验证码TSNI - 用于线程安全验证
+#define SecurityValidationCodePAM  0x2050414d                    // 安全验证码PAM - 用于参数访问管理验证
+#define SecurityValidationCodeMRAP 0x4d524150                    // 安全验证码MRAP - 用于内存资源访问验证
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误
@@ -36012,7 +36020,7 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
   
   systemDataBuffer = ValidatePortControlRequest(dataBuffer,systemBufferA,1,SecurityValidationFfcOperation);
   if (((((int)systemDataBuffer == 0) &&
-       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,acolorDataWord,0,0x42464542), (int)systemDataBuffer == 0)) &&
+       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,acolorDataWord,0,SecurityValidationPortControl), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)systemDataBuffer == 0)) &&
      ((DataBufferValidationSize < *(uint *)(dataBuffer + 8) ||
       (systemDataBuffer = ManageSystemMemoryA0(dataBuffer,operationBase + OperationDataOffset44), (int)systemDataBuffer == 0)))) {
@@ -36495,7 +36503,7 @@ void UtilityNoOperationC(void)
  * 
  * 处理流程：
  * 1. 从系统资源中提取四个资源数据值
- * 2. 执行安全验证，使用验证码0x4c525443
+ * 2. 执行安全验证，使用验证码SecurityValidationCodeLRTC
  * 3. 验证端口控制请求
  * 4. 根据数据大小选择不同的处理路径
  * 5. 执行数据块处理和端口控制操作
@@ -37239,9 +37247,9 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
   uint flagBuffer[2];
   uint operationCounter[2];
   
-  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,1,0x54495645);
+  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,1,SecurityValidationCodeTIVE);
   if (((((int)systemDataBuffer == 0) &&
-       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer,0,0x42495645), (int)systemDataBuffer == 0)) &&
+       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer,0,SecurityValidationCodeBIVE), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)systemDataBuffer == 0)) &&
      (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + SystemConfigurationOffsetD8), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
