@@ -237698,7 +237698,18 @@ void CleanupSystemWindowAndResourcesVariant(long long ContextHandle, uint64_t *C
 
 
 
-951aa(voidvoid FUN_1801951aa(void
+/**
+ * @brief 释放系统内存资源
+ * 
+ * 该函数负责释放系统内存资源，主要功能包括：
+ * - 释放动态分配的内存块
+ * - 清理系统资源
+ * - 执行内存回收操作
+ * 
+ * @note 原始函数名：FUN_1801951aa
+ */
+#define ReleaseSystemMemoryResources FUN_1801951aa
+void ReleaseSystemMemoryResources(void)
 {
   long long MainCalculationResult;
   uint64_t *SystemContext;
@@ -237714,7 +237725,15 @@ void CleanupSystemWindowAndResourcesVariant(long long ContextHandle, uint64_t *C
 
 
 
-951d4(voidvoid FUN_1801951d4(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于占位或系统初始化。
+ * 
+ * @note 原始函数名：FUN_1801951d4
+ */
+#define SystemNullOperation FUN_1801951d4
+void SystemNullOperation(void)
 {
   return;
 }

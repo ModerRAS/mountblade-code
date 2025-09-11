@@ -126649,18 +126649,7 @@ void ExecuteUIRenderTaskWithResourceRelease(uint32_t param6, uint64_t stackParam
 
 
 
- void FUN_18073b16f(void)
-/**
- * @brief 释放UI内存资源并执行渲染任务
- * 
- * 该函数负责释放UI内存资源并执行后续的渲染任务：
- * 1. 释放UI内存资源
- * 2. 执行UI渲染任务
- * 
- * @note 原始函数名：FUN_18073b16f
- */
-#define ReleaseUIMemoryAndExecuteRenderTask FUN_18073b16f
-void ReleaseUIMemoryAndExecuteRenderTask(void)
+ void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong renderTaskParameter;
@@ -127385,15 +127374,29 @@ void FUN_18073b7af(void)
 
 
 
- void FUN_18073b7e9(void)
-void FUN_18073b7e9(void)
+ /**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源，然后执行渲染任务。这是一个清理函数，
+ * 用于在UI操作完成后释放相关资源并启动渲染流程。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: FUN_18073b7e9
+ * @note 该函数会释放UI内存资源，然后执行渲染任务，不会返回
+ * 
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong RenderTaskParameter;
   
+  // 释放UI内存资源
   ReleaseUIMemoryResource();
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  
+  // 执行渲染任务（此操作不会返回）
+  ExecuteUIRenderTask(RenderTaskParameter ^ (ulonglong)&UIStackBufferBase);
 }
 
 
