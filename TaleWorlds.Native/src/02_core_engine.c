@@ -205,7 +205,7 @@
  * 
  * @param CalculatedCodePoint 计算的码点 - 需要处理的Unicode码点值
  * @param Flags 标志位 - 控制处理行为的标志
- * @param StackPointer140 栈指针140 - 指向字符数据缓冲区的指针
+ * @param CharacterDataBufferPointer 字符数据缓冲区指针 - 指向字符数据缓冲区的指针
  * @param Mode 模式参数 - 指定处理模式的参数
  * 
  * @return 处理结果 - 返回操作执行的状态码
@@ -1414,7 +1414,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define HandleMemoryAllocationException ProcessMemoryAllocationException // 处理内存分配异常
 
 // 栈变量语义化宏定义
-#define StackPointer88 pcStack_88                          // 栈指针88
+#define ProgramCounterStack88 ProgramCounterStack88                          // 程序计数器栈88
 #define CharacterProcessingBuffer CharacterProcessingBuffer               // 字符缓冲区80
 #define StackPointerC0 pcStack_c0                          // 栈指针C0
 #define StackPointerB8 pcStack_b8                          // 栈指针B8
@@ -1645,6 +1645,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemFlagH aSystemFlagH                                 // 系统标志H
 #define SystemProcessFlagA aSystemProcessFlagA                                 // 系统标志A
 #define SystemEventFlag8 aSystemEventFlag8                       // 系统事件标志8
+#define NameTemplateBuffer NameTemplateBuffer                     // 名称模板缓冲区
 
 // 核心引擎数据处理变量语义化宏定义
 #define BufferInitializationPointerArray apBufferInitializationFlag // 缓冲区初始化指针数组
@@ -42572,7 +42573,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t ContextHandle
   SystemProcessingDataValue210 = 0;
   CoreEngineProcessingStatusFlag208 = 3;
   PrimaryContextPointer60 = NULL;
-  CoreEnginePointerBuffer158 = NULL;
+  CoreEngineDataBufferPointer158 = NULL;
   SystemProcessingDataValue150 = 0;
   CoreEngineSystemFlag = 3;
   OperationStatus = &SystemDataStructureTemplate;
