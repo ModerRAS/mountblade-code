@@ -24602,8 +24602,16 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
 #define DataContextValidationOffset 0x60
 #define ResourceCleanupEventOffset 0x98
 
-void ProcessresourcePointer(int64_t *resourceHandle, int64_t operationOffset)
-
+/**
+ * @brief 处理资源指针操作
+ * 
+ * 该函数处理资源指针的操作，包括异常处理、数据验证和资源清理。
+ * 执行安全检查以确保资源操作的安全性。
+ * 
+ * @param resourceHandle 资源句柄指针，指向要操作的资源
+ * @param operationOffset 操作偏移量，指定要执行的操作类型
+ */
+void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
 {
   int64_t exceptionContext;
   int64_t *dataContextPointer;
@@ -24611,15 +24619,22 @@ void ProcessresourcePointer(int64_t *resourceHandle, int64_t operationOffset)
   uint64_t stackGuardValue;
   ByteFlag stackBuffer [40];
   
+  // 执行资源操作并获取异常上下文
   exceptionContext = (**(FunctionPointer**)(*resourceHandle + ResourceFunctionTableOffset))(resourceHandle,operationOffset + OperationValidationOffset);
   if (exceptionContext == 0) {
+      // 验证系统数据
       ValidateSystemDataA0(operationOffset + OperationValidationOffset,stackBuffer);
   }
+  
+  // 验证数据上下文指针
   dataContextPointer = (int64_t *)(exceptionContext + DataContextPointerOffset);
   if (((int64_t *)*dataContextPointer == dataContextPointer) && (*(int64_t **)(exceptionContext + DataContextValidationOffset) == dataContextPointer)) {
+      // 执行安全检查
       ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)stackBuffer);
   }
-    CleanupSystemEventA0(*(DataBuffer *)(resourceContext + ResourceCleanupEventOffset));
+  
+  // 清理系统事件
+  CleanupSystemEventA0(*(DataBuffer *)(resourceContext + ResourceCleanupEventOffset));
 }
 
 
