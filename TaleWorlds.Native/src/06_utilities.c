@@ -21545,16 +21545,14 @@ DataWord NoOperationC(void)
 
 
 
-// 函数: void UtilityErrorHandlerD(void)
-// 
-// 调用系统错误处理函数
-// 处理工具系统的错误情况
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 工具错误处理器D
+ * 
+ * 处理工具系统的错误情况，调用系统错误处理函数
+ * 释放相关资源
+ * 
+ * @note 这是一个错误处理函数，用于处理特定类型的系统错误
+ */
 void UtilityErrorHandlerD(void)
 
 {
@@ -21564,16 +21562,14 @@ void UtilityErrorHandlerD(void)
 
 
 
-// 函数: void UtilityErrorHandlerE(void)
-// 
-// 调用系统错误处理函数
-// 处理工具系统的错误情况
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 工具错误处理器E
+ * 
+ * 处理工具系统的错误情况，调用系统错误处理函数
+ * 释放相关资源
+ * 
+ * @note 这是一个错误处理函数，用于处理特定类型的系统错误
+ */
 void UtilityErrorHandlerE(void)
 
 {

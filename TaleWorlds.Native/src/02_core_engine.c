@@ -243685,7 +243685,6 @@ void SystemNullOperation(void)
 
 
 
-// 函数: void FUN_180199930(long long ContextHandle)
 /**
  * @brief 处理系统字符编码和验证操作
  * 
@@ -243710,7 +243709,6 @@ void SystemNullOperation(void)
  * 
  * @return void 无返回值 - 处理结果通过上下文句柄和系统状态返回
  * 
- * @note 原始函数名：FUN_180199930
  * @warning 此函数涉及复杂的内存管理操作，需要确保传入的上下文句柄有效
  * @see ValidateCharacterEncodingAndData, TransformUtf16ToUtf8Encoding
  * 
