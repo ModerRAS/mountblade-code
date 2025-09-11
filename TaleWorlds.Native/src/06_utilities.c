@@ -34314,7 +34314,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
   uint64_t validationStatus;
   int64_t systemContext;
   uint64_t securityValidationResult;
-  DataWord floatResultA;
+  DataWord processedNormalizedFloatValue;
   DataWord floatResultB;
   DataWord floatResultC;
   DataWord floatResultD;
@@ -34328,7 +34328,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
   validationStatus = 0;
   if (pointerOperationResult == 0) {
     SystemOperationResult = validationStatus;
-    systemStatusCounter = floatResultA;
+    systemStatusCounter = processedNormalizedFloatValue;
     if (0 < systemOperationStatus) {
       do {
         SystemOperationResult = ValidateDataParametersA0(systemStatusCounter,(int64_t)(int)systemOperationResult * DataProcessingMultiplier6C + *(int64_t *)(systemContext + SystemDataParameterOffset20));
@@ -34481,7 +34481,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
   if (operationStatus == 0) {
     memoryPointer = DestinationContext;
     memoryOffset = DestinationContext;
-    securityCheckResult = floatResultA;
+    securityCheckResult = processedNormalizedFloatValue;
     if (0 < (int)systemContext) {
       do {
         resourceIterator = *(int64_t *)(systemContext + systemContextOffset50) + memoryPointer;
@@ -35068,7 +35068,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = ValidateAndExecuteOperationsA1(floatResultA,calculatedIndex + CalculatedIndexOffset1C);
+      operationStatus = ValidateAndExecuteOperationsA1(processedNormalizedFloatValue,calculatedIndex + CalculatedIndexOffset1C);
       if (operationStatus != 0) {
         return;
       }

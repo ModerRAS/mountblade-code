@@ -71,10 +71,10 @@
 #define InitializeSystemDataProcessorEx SetupExtendedSystemDataProcessor              // 初始化系统数据处理器扩展
 #define FUN_18019067c VerifySystemHandleIntegrity
 #define FUN_180190743 ClearSystemOperationState
-#define FUN_180190780 FreeSystemHandleResources                     // 释放系统句柄
-#define FUN_1801907f0 ExecuteSystemByteOperations                 // 处理系统字节操作
-#define FUN_180190a20 SetupSystemContextTransfer                   // 初始化系统上下文传输
-#define FUN_180190a35 CompleteSystemContextTransfer                 // 完成系统上下文传输
+#define FUN_180190780 FreeSystemHandleResources
+#define FUN_1801907f0 ExecuteSystemByteOperations
+#define FUN_180190a20 SetupSystemContextTransfer
+#define FUN_180190a35 CompleteSystemContextTransfer
 #define FUN_180190a4d ReinitializeSystemTransferState               // 重置系统传输状态
 #define FUN_180190ad0 SetupSystemMemoryAllocator                   // 初始化系统内存管理器
 #define FUN_180190adc ClearSystemMemoryManager                     // 清理系统内存管理器
@@ -232717,6 +232717,8 @@ void ExecuteSystemByteOperations(long long ContextHandle, long long OperationBuf
   uint8_t SystemArrayBuffer368 [16];               // 系统数组缓冲区
   void *StringComparisonPointer;                   // 字符串比较指针
   int StringComparisonFlag;                       // 字符串比较标志
+  long long MemoryBlockIndex;                      // 内存块索引
+  int CharacterComparisonResult;                  // 字符比较结果
   
   if (ContextHandle != OperationBufferSize) {
     ValidationResult = 0;
@@ -232752,21 +232754,21 @@ LAB_1801908b0:
           if (MemoryBlockIndex == 0) {
             if (StringComparisonByte0) goto LAB_1801909bf;
             if (*(int *)(TemporaryBuffer + 1) != 0) {
-              if (iStack_350 == 0) {
+              if (StringComparisonFlag == 0) {
 LAB_18019099a:
                 StringComparisonByte0 = true;
               }
               else {
                 SystemBytePointer = (byte *)*TemporaryBuffer;
-                MemoryBlockIndex = (long long)puStack_358 - (long long)SystemBytePointer;
+                MemoryBlockIndex = (long long)StringComparisonPointer - (long long)SystemBytePointer;
                 do {
                   CurrentBytePointer = SystemBytePointer + MemoryBlockIndex;
-                  ValidationResult = (uint)*SystemBytePointer - (uint)*CurrentBytePointer;
+                  CharacterComparisonResult = (uint)*SystemBytePointer - (uint)*CurrentBytePointer;
                   if (CharacterComparisonResult != 0) break;
                   SystemBytePointer = SystemBytePointer + 1;
                 } while (*CurrentBytePointer != 0);
 LAB_180190993:
-                StringComparisonByte0 = 0 < ValidationResult;
+                StringComparisonByte0 = 0 < CharacterComparisonResult;
               }
             }
 LAB_18019099c:
