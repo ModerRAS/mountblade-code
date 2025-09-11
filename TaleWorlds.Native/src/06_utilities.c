@@ -23502,17 +23502,6 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
 
 
 
-// 函数: void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
-// 
-// 重置系统状态并清理事件处理器
-// 该函数负责重置系统状态，包括清理事件处理器和相关数据结构
-// 
-// 参数:
-//   systemConfig - 系统配置指针，包含系统配置信息
-//   cleanupContext - 清理上下文指针，包含清理所需的上下文信息
-// 
-// 返回值:
-//   无
 /**
  * @brief 重置系统状态并清理
  * 
