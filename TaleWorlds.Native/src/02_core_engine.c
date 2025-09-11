@@ -264634,11 +264634,11 @@ LAB_1801571ef:
   uStack_cf8 = 0x400000;
   HandleSystemCleanupOperation(ContextHandle[0x6d],&SystemCleanupFlagG8);
   ContextHandle = ContextHandle + 0x6e;
-  FUN_180845520(ContextHandle[0x6d],ContextHandle);
+  ProcessSystemContextTransfer(ContextHandle[0x6d],ContextHandle);
   if (Utf8SourcePointer != 0) {
     (**(code **)(*ContextHandle + 0x1a0))(ContextHandle,Utf8SourcePointer,4);
   }
-  FUN_18073bc20(*ContextHandle,*(uint32_t *)(CoreEngineMemoryContext + 0x1570));
+  InitializeSystemMemoryContext(*ContextHandle,*(uint32_t *)(CoreEngineMemoryContext + 0x1570));
   FUN_18073bdc0(*ContextHandle,0x400);
     memset(auStack_b98,0,0x68);
 }
