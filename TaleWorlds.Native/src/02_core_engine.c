@@ -682,6 +682,26 @@
 #define FUN_1801c1140 ExecuteSystemStringProcessing               // 执行系统字符串处理
 #define FUN_1801c0fb0 ConvertSystemCharacterData                  // 转换系统字符数据
 
+// 系统内存和缓冲区管理函数
+#define FUN_1806289a0 InitializeSystemMemoryBuffer                // 初始化系统内存缓冲区
+#define FUN_180202180 AllocateSystemMemoryPool                    // 分配系统内存池
+#define FUN_180203790 CalculateSystemStringLength                 // 计算系统字符串长度
+#define FUN_180203740 ValidateSystemStringBuffer                 // 验证系统字符串缓冲区
+#define FUN_1802036f0 ProcessSystemStringOperation                // 处理系统字符串操作
+#define FUN_1802036a0 ExecuteSystemStringEncoding               // 执行系统字符串编码
+#define FUN_18010cc20 RetrieveSystemStringIndex                    // 获取系统字符串索引
+#define FUN_180203660 ConvertSystemStringEncoding                 // 转换系统字符串编码
+#define FUN_180203610 ValidateSystemStringEncoding                // 验证系统字符串编码
+#define FUN_1802035d0 ProcessSystemMemoryAllocation               // 处理系统内存分配
+#define FUN_180203590 CleanupSystemMemoryResources                // 清理系统内存资源
+#define FUN_180203550 InitializeSystemMemoryOperation             // 初始化系统内存操作
+#define FUN_180203500 ExecuteSystemMemoryValidation               // 执行系统内存验证
+#define FUN_1802034c0 ProcessSystemMemoryTransfer                // 处理系统内存传输
+#define FUN_180203470 ValidateSystemMemoryTransfer                // 验证系统内存传输
+#define FUN_180203420 FinalizeSystemMemoryOperation                // 完成系统内存操作
+#define FUN_1802033f0 ReleaseSystemMemoryResources                // 释放系统内存资源
+#define FUN_1802033c0 CleanupSystemMemoryAllocation                // 清理系统内存分配
+
 /**
  * @brief 配置核心引擎指针
  * 
