@@ -141714,26 +141714,42 @@ LAB_180747287:
 
 
  
-int FUN_180746d01(void)
+#define InitializeUIComponentContext FUN_180746d01
+/**
+ * @brief 初始化UI组件上下文
+ * 
+ * 该函数负责初始化UI组件的上下文环境，包括：
+ * - 分配和管理UI组件的内存空间
+ * - 设置组件的数据结构和缓冲区
+ * - 处理组件的生命周期管理
+ * - 验证组件的有效性
+ * 
+ * @return int 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_180746d01
+ * @note 该函数处理UI组件的复杂初始化流程
+ */
+int InitializeUIComponentContext(void)
 
 {
-  uint result;
-  uint iterationCount;
-  int bufferCompareResult;
-  int sourceDataInt;
-  UIDword loopCounter;
-  int loopCounter;
-  longlong contextOffset;
-  ulonglong iterationCount;
-  longlong *pCharacterDataOffset;
-  UIHandle dataPointer;
-  longlong uiContextBasePointer;
-  UIDword result1;
-  ulonglong componentData;
-  longlong uiTargetHandle;
-  UIHandle stackParam00000020;
-  UIHandle bufferValue;
-  UIHandle *componentHandle;
+  // UI组件上下文初始化变量
+  uint operationResult;                    // 操作结果
+  uint processingIterationCount;           // 处理迭代计数
+  int bufferValidationResult;              // 缓冲区验证结果
+  int systemStatusFlag;                   // 系统状态标志
+  UIDword contextLoopCounter;             // 上下文循环计数器
+  int componentLoopCounter;               // 组件循环计数器
+  longlong memoryContextOffset;            // 内存上下文偏移量
+  ulonglong dataIterationCount;           // 数据迭代计数
+  longlong *characterDataBufferPointer;   // 字符数据缓冲区指针
+  UIHandle contextDataPointer;            // 上下文数据指针
+  longlong systemContextBasePointer;      // 系统上下文基指针
+  UIDword componentResultValue;           // 组件结果值
+  ulonglong componentHandleData;          // 组件句柄数据
+  longlong componentTargetHandle;         // 组件目标句柄
+  UIHandle stackParameterData;            // 栈参数数据
+  UIHandle dataBufferValue;               // 数据缓冲区值
+  UIHandle *componentInstanceHandle;      // 组件实例句柄
   
   loopCounter = (UIDword)((ulonglong)stackParam00000020 >> 0x20);
   sourceDataInt = FUN_18078ae40();
