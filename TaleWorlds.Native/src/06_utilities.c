@@ -5,19 +5,32 @@
  * @brief Mount & Blade: Native API - 工具函数和系统服务模块
  * 
  * 本文件包含系统的核心工具函数和服务模块，主要功能包括：
- * - 系统异常处理和清理
- * - 内存管理和资源分配
- * - 系统状态监控和验证
- * - 线程管理和同步机制
+ * - 系统异常处理和清理：提供多层次的异常处理机制和资源清理功能
+ * - 内存管理和资源分配：实现高效的内存分配、释放和管理机制
+ * - 系统状态监控和验证：提供系统健康状态监控和数据完整性验证
+ * - 线程管理和同步机制：实现多线程环境下的资源同步和调度
+ * - 数据传输和验证：提供安全的数据传输和完整性验证机制
+ * - 系统初始化和配置：管理系统的初始化流程和参数配置
+ * 
+ * 该模块为整个系统提供底层支持，确保系统的稳定运行和资源的安全管理。
+ * 
+ * @author Ghidra逆向工程 + 语义化美化
+ * @version 2.0
+ * @date 2025-09-11
+ * @优化 增强了函数文档注释和常量定义的组织结构
  */
 
+// =============================================================================
 // 系统基础常量定义
+// =============================================================================
+
+// 系统数据结构和组件访问常量
 #define DefaultSystemDataAddress 24                               // 默认系统数据地址 (0x18 = 24字节)
 #define ComponentHandleOffset 16                                  // 组件句柄偏移量 (0x10 = 16字节)
 #define SystemContextOffset 8                                     // 系统上下文偏移量 (0x8 = 8字节)
 #define DataBufferElementSize 4                                    // 数据缓冲区元素大小 (4字节)
 
-// 数值处理常量
+// 数值处理和边界检查常量
 #define FloatValidationMask 0x7f800000                              // 浮点数验证掩码 (用于检测无穷大)
 #define IntegerMinValue -2147483648                                 // 32位整数最小值 (-0x80000000)
 #define ProcessingFlagMask 0x80000000                               // 处理标志掩码 (最高位标志)
@@ -41519,7 +41532,7 @@ ValidationContextHandler:
     operationResult = DestinationContext & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x48);
+    operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + DataValidationContextOffset48);
     ValidationFloatValue2 = validationFloatValue;
   }
   else {
@@ -41583,7 +41596,7 @@ ValidationErrorHandler2:
   if (0x8a < memoryRegionBase) {
     dataContext = *registerContext;
     *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
-    operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
+    operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + DataValidationOperationOffset7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -41776,7 +41789,7 @@ ValidationContextHandler:
     operationResult = DestinationContext & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x48);
+    operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + DataValidationContextOffset48);
     ValidationFloatValue2 = validationFloatValue;
   }
   else {
@@ -41840,7 +41853,7 @@ ValidationErrorHandler2:
   if (0x8a < memoryRegionBase) {
     dataContext = *registerContext;
     *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
-    operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
+    operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + DataValidationOperationOffset7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -41987,7 +42000,7 @@ ValidationContextHandler:
     dataFlags = DestinationContext & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == validationErrorCode) {
-    dataFlags = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x48);
+    dataFlags = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + DataValidationContextOffset48);
     operationBase = interpolatedFloatValue;
   }
   else {
@@ -42054,8 +42067,8 @@ DataProcessingHandler:
         ExecutePortControlOperation(operationBase,StackFrameContext + -0x21);
     }
     dataContext = *registerContext;
-    *(int *)(StackFrameContext + 0x7f) = validationErrorCode;
-    dataFlags = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
+    *(int *)(StackFrameContext + DataValidationOperationOffset7f) = validationErrorCode;
+    dataFlags = ExecuteDataValidationOperation(dataContext,StackFrameContext + DataValidationOperationOffset7f);
     if ((int)dataFlags == 0) {
       memoryRegionBase = *(uint *)(StackFrameContext + StackFrameSecondaryValidationFlagOffset7F);
       dataFlags = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,memoryRegionBase >> 1);
@@ -42184,7 +42197,7 @@ ValidationContextHandler2:
     if (0x3ff < validationBuffer[0]) {
       return 0xd;
     }
-    validationStatus = ValidateSystemContextA0(operationBase + 0x48);
+    validationStatus = ValidateSystemContextA0(operationBase + DataSystemContextOffset48);
     if ((int)validationStatus == 0) goto ProcessCheckpointValidationState;
   }
   else {
@@ -42290,7 +42303,7 @@ ValidationStateHandler:
     operationResult = 0;
   }
   else if (*(int *)(systemContext[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = GetMemoryAddressA0(*systemContext,StackFrameContext + 0x5c);
+    operationResult = GetMemoryAddressA0(*systemContext,StackFrameContext + DataSystemContextOffset5c);
   }
   if (operationResult != 0) {
     return (uint64_t)operationResult;
@@ -44046,7 +44059,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
       return ResourceInvalidErrorCode;
     }
     systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + OperationBaseOffset6c);
-    if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + 0x48,0), (int)systemDataBuffer == 0)) {
+    if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + DataSystemContextOffset48,0), (int)systemDataBuffer == 0)) {
       if ((*(int *)(dataBuffer + 8) - 0x4aU < 0x11) &&
          (systemDataBuffer = GetContextData(dataBuffer,operationBase + 0x44), (int)systemDataBuffer != 0)) {
         return systemDataBuffer;
@@ -44151,7 +44164,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = GetMemoryAddressA0(*dataBuffer,operationBase + 0x48);
+  validationStatus = GetMemoryAddressA0(*dataBuffer,operationBase + DataSystemContextOffset48);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
@@ -44570,7 +44583,7 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
       }
     }
     if ((((int)memoryRegionBase == 0) && (memoryRegionBase = ValidateSystemOperationA0(dataBuffer,operationBase + SystemFloatDataOffset38,0), (int)memoryRegionBase == 0)) &&
-       (memoryRegionBase = ValidateSystemOperationA0(dataBuffer,operationBase + 0x48,0), (int)memoryRegionBase == 0)) {
+       (memoryRegionBase = ValidateSystemOperationA0(dataBuffer,operationBase + DataSystemContextOffset48,0), (int)memoryRegionBase == 0)) {
       if (*(uint *)(dataBuffer + 8) < 0x84) {
         GlobalSystemDataTable = NULL_DATA_WORD;
         ValidationResultFlag = 0;
@@ -45261,7 +45274,7 @@ ValidationStartHandler:
   }
   hasValidIndex = *(uint *)(DestinationContext + 8) < 0x34;
   *(char *)(StackFrameContext + StackFrameValidationOffset) = (char)memoryRegionBase;
-  *(char *)(StackFrameContext + 0x7f) = (char)memoryRegionBase;
+  *(char *)(StackFrameContext + DataValidationOperationOffset7f) = (char)memoryRegionBase;
   isDataReady = false;
   if (0x37 < *(uint *)(DestinationContext + 8)) {
     if (*(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0) {
@@ -45363,7 +45376,7 @@ ValidationStateHandler3:
         }
       }
       if (validationStatus == 0) {
-        *(bool *)(StackFrameContext + 0x7f) = *(char *)(StackFrameContext + -0x49) != '\0';
+        *(bool *)(StackFrameContext + DataValidationOperationOffset7f) = *(char *)(StackFrameContext + -0x49) != '\0';
       }
       memoryRegionBase = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -45449,7 +45462,7 @@ ProcessCheckpointValidationState5:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if ((((!isFirstValidation) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
+  if ((((!isFirstValidation) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + DataValidationOperationOffset7f) == '\0'))
      && (!isThirdValidation)) {
     loopCounter = 0;
   }
@@ -45531,7 +45544,7 @@ ProcessCheckpointValidationContext3:
   }
   hasValidIndex = *(uint *)(DestinationContext + 8) < 0x34;
   *(char *)(StackFrameContext + StackFrameValidationOffset) = (char)memoryRegionBase;
-  *(char *)(StackFrameContext + 0x7f) = (char)memoryRegionBase;
+  *(char *)(StackFrameContext + DataValidationOperationOffset7f) = (char)memoryRegionBase;
   isDataReady = false;
   if (*(uint *)(DestinationContext + 8) < 0x38) {
     memoryRegionBase = operationFlagA & SystemCleanupFlag;
@@ -45650,7 +45663,7 @@ ValidationStateHandler3:
     }
 ValidationErrorHandler8:
     if (validationStatus == 0) {
-      *(bool *)(StackFrameContext + 0x7f) = *(char *)(StackFrameContext + -0x49) != '\0';
+      *(bool *)(StackFrameContext + DataValidationOperationOffset7f) = *(char *)(StackFrameContext + -0x49) != '\0';
     }
     memoryRegionBase = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -45749,7 +45762,7 @@ ProcessCheckpointValidationError9:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if ((((!isBufferValid) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + 0x7f) == '\0'))
+  if ((((!isBufferValid) && (*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0')) && (*(char *)(StackFrameContext + DataValidationOperationOffset7f) == '\0'))
      && (!isValidationComplete)) {
     loopCounter = (DataWord)operationFlagA;
   }
