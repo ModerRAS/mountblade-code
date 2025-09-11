@@ -134240,7 +134240,7 @@ void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   if (operationResult == 0) {
     stackUInt160 = 0;
     pstackUInt168 = (UIByte *)CONCAT71(pstackUInt168._1_7_,1);
-    operationResult = FUN_180759220(stackUInt150,dataSource,targetBuffer,bufferSize);
+    operationResult = ProcessUIComponentRegistration(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto LAB_180740150;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -138272,7 +138272,7 @@ LAB_1807439ba:
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
-    eventCode = FUN_180759220(uStackX_8,*(UIHandle *)(allocatedMemory + 0x12640),0,0,1,0);
+    eventCode = ProcessUIComponentRegistration(uStackX_8,*(UIHandle *)(allocatedMemory + 0x12640),0,0,1,0);
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
@@ -139003,7 +139003,7 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
           result = (**(code **)(*bufferSize + 0x120))(bufferSize,0xffffffff,&stackUInt40);
           if ((int)result == 0) {
             processingFlags = CONCAT71((int7)((ulonglong)uiStatusPointer >> 8),1);
-            FUN_180759220(stackUInt38,stackUInt40,&stackUInt28,0,processingFlags,0);
+            ProcessUIComponentRegistration(stackUInt38,stackUInt40,&stackUInt28,0,processingFlags,0);
             func_0x000180766510(stackUInt28,stackUInt48 | 0xfeed0000);
             if ((resultPointer == '\0') && (FUN_18075ec10(stackUInt40,aiStackX_20,0,1), 0 < aiStackX_20[0]))
             {
