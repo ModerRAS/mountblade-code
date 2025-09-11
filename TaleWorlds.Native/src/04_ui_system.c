@@ -247,6 +247,8 @@ typedef enum {
 #define FUN_18073c39d ProcessUIContextBufferOperationD
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
 #define FUN_18073ab80 ProcessUIContextWithDataOperation          // 处理UI上下文数据操作
+#define FUN_18088c380 ProcessUIBufferDataWithValidation           // 处理UI缓冲区数据与验证
+#define func_0x00018088a120 ProcessUIContextUpdateOperation         // 处理UI上下文更新操作
 #define FUN_180739b90 ProcessUIDataWithTargetBuffer              // 处理带目标缓冲区的UI数据
 #define FUN_18073a3ad ProcessUIDataWithTargetValidation          // 处理带目标验证的UI数据
 #define FUN_18073c099 InitializeUIContextGlobalState             // 初始化UI上下文全局状态
@@ -367162,14 +367164,14 @@ int FUN_18087cbd0(longlong uiContext,UIDword dataSource,ulonglong targetBuffer,u
       (sourceDataInt = ProcessUIContextWithDataOperation(*(UIHandle *)(uiContext + 0x78),dataSource,contextValue,resultPointer), sourceDataInt != 0))))
   goto LAB_18087dbb3;
   isCharacterMatch4 = ~(byte)(dataPointer >> 2) & 1;
-  sourceDataInt = FUN_18088c380(*(UIDword *)(uiBufferData + 0x18),*(UIDword *)(uiBufferData + 0x2c8));
+  sourceDataInt = ProcessUIBufferDataWithValidation(*(UIDword *)(uiBufferData + 0x18),*(UIDword *)(uiBufferData + 0x2c8));
   if ((sourceDataInt != 0) || (sourceDataInt = InitializeUIContextState(uiContext + 0xa0,0), sourceDataInt != 0)) goto LAB_18087dbb3;
-  func_0x00018088a120(uiContext);
+  ProcessUIContextUpdateOperation(uiContext);
   stackParamffffffffffffffa0 = stackParamffffffffffffffa0 & 0xffffffffffffff00;
   result1 = 0;
   stackParamffffffffffffff98 = stackParamffffffffffffff98 & 0xffffffff00000000;
   componentContextPtr = (UIHandle *)
-           FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x28,&UIContextDataOperationB90,0x27c,
+           SetupUIResourceAllocator(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x28,&UIContextDataOperationB90,0x27c,
                          stackParamffffffffffffff98,stackParamffffffffffffffa0,1);
   if (componentContextPtr == (UIHandle *)0x0) {
     sourceDataInt = 0x26;
