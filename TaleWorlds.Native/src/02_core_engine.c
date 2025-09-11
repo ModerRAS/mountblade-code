@@ -129,6 +129,8 @@
 #define FUN_180204463 ProcessSystemStringComparison                      // 处理系统字符串比较
 #define FUN_1802044c5 ProcessUtf8StringValidation                        // 处理UTF-8字符串验证
 #define FUN_1802044e0 ProcessSystemMemoryAllocation                       // 处理系统内存分配
+#define FUN_180204700 ProcessContextHandleMemoryValidation                // 处理上下文句柄内存验证
+#define FUN_180204722 ProcessStringEncodingConversion                    // 处理字符串编码转换
 
 // 核心引擎数据处理函数语义化宏定义
 #define FUN_180173c40 ValidateSystemContextIntegrity                     // 处理系统上下文验证
@@ -251627,7 +251629,7 @@ joined_r0x0001802045de:
 
 
 
-04700(long long ContextHandle,long long OperationBufferSizevoid FUN_180204700(long long ContextHandle,long long OperationBufferSize
+void FUN_180204700(long long ContextHandle,long long OperationBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -251715,7 +251717,7 @@ joined_r0x0001802045de:
 
 
 
-04722(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointervoid FUN_180204722(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+void FUN_180204722(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -296643,4 +296645,52 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 #define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
 #define ConfigureSystemStackHandler FUN_18031c090                   // 配置系统栈处理器
+
+// 新增的函数语义化定义 - 基于函数调用上下文推断
+#define FUN_180080810 ProcessSystemEncodingConversionResult          // 处理系统编码转换结果
+#define FUN_180094e80 AllocateSystemTemporaryBuffer                  // 分配系统临时缓冲区
+#define FUN_180275cf0 ProcessSystemDataTableOperation                // 处理系统数据表操作
+#define FUN_180276f30 HandleSystemContextDataTransfer                // 处理系统上下文数据传输
+#define FUN_1801a20e0 ResetSystemEncodingState                       // 重置系统编码状态
+#define FUN_1801b9a40 ValidateCharacterTableData                     // 验证字符表数据
+
+// 更多函数语义化定义 - 基于函数调用上下文推断
+#define FUN_180047e70 ProcessSystemEventDataCleanup                  // 处理系统事件数据清理
+#define FUN_180048980 HandleSystemMemoryValidation                    // 处理系统内存验证
+#define FUN_18004bf50 ConfigureSystemDataEncoding                    // 配置系统数据编码
+#define FUN_180057170 ProcessSystemStatusUpdate                       // 处理系统状态更新
+#define FUN_18005ee30 ValidateSystemOperationFlags                    // 验证系统操作标志
+#define FUN_180060fc0 HandleSystemResourceCleanup                     // 处理系统资源清理
+#define FUN_1800634b0 ProcessSystemSecurityCheck                      // 处理系统安全检查
+#define FUN_180079240 ConfigureSystemMemoryAllocation                 // 配置系统内存分配
+#define FUN_18007f0e0 ValidateSystemContextData                       // 验证系统上下文数据
+#define FUN_180081480 ProcessSystemInitializationComplete             // 处理系统初始化完成
+#define FUN_1800842a0 HandleSystemErrorReporting                     // 处理系统错误报告
+#define FUN_18009ec20 ConfigureSystemTaskScheduler                    // 配置系统任务调度器
+#define FUN_18009ec80 ProcessSystemPerformanceMetrics                 // 处理系统性能指标
+#define FUN_18009fb60 ValidateSystemResourceHandles                  // 验证系统资源句柄
+#define FUN_1800a19c0 HandleSystemDebugLogging                        // 处理系统调试日志
+#define FUN_1800b32c0 ProcessSystemEventNotifications                // 处理系统事件通知
+#define FUN_1800b3590 ValidateSystemConfiguration                     // 验证系统配置
+#define FUN_1800b6de0 HandleSystemExceptionHandling                  // 处理系统异常处理
+
+// 更多函数语义化定义 - 继续添加
+#define FUN_1800b9b80 ConfigureSystemThreading                       // 配置系统线程
+#define FUN_1800bf0e0 ProcessSystemMemoryManagement                  // 处理系统内存管理
+#define FUN_1800c6a20 ValidateSystemSecurityContext                  // 验证系统安全上下文
+#define FUN_1800c8c00 HandleSystemResourceAllocation                 // 处理系统资源分配
+#define FUN_1800d1f80 ProcessSystemTaskExecution                     // 处理系统任务执行
+#define FUN_1800d4c00 ConfigureSystemLogging                         // 配置系统日志
+#define FUN_1800e5d80 HandleSystemMonitoring                         // 处理系统监控
+#define FUN_1800ef9c0 ValidateSystemDataIntegrity                    // 验证系统数据完整性
+#define FUN_1800f1b00 ProcessSystemCacheManagement                   // 处理系统缓存管理
+#define FUN_1800f7cc0 ConfigureSystemNetworking                     // 配置系统网络
+#define FUN_180102880 HandleSystemSynchronization                   // 处理系统同步
+#define FUN_18010a4c0 ProcessSystemResourceMonitoring                // 处理系统资源监控
+#define FUN_18010cbc0 ValidateSystemPerformance                      // 验证系统性能
+#define FUN_180113880 ConfigureSystemServices                        // 配置系统服务
+#define FUN_1801166f0 SetupSystemEventQueue                          // 设置系统事件队列
+#define FUN_18011b2c0 ProcessSystemBufferOperations                 // 处理系统缓冲区操作
+#define FUN_1801234c0 HandleSystemConfiguration                     // 处理系统配置
+#define FUN_180128840 ValidateSystemResources                       // 验证系统资源
 
