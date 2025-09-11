@@ -4098,7 +4098,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define ProcessCharacterBufferReset FUN_180149bd0             // 处理字符缓冲区重置
 #define ProcessSystemDataAllocation FUN_18014ebb6             // 处理系统数据分配
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
-#define lStackX_10 StackLongValue10                         // 栈长整型值10
+#define StackLongValue10 OperationResultBuffer10                 // 操作结果缓冲区10
 #define StackParameterUnsigned20 StackUnsignedValue20                     // 栈无符号值20
 #define SystemMessageTemplatePointer pSystemValue1c8             // 系统消息模板指针
 #define SystemSecondaryMessageTemplate SystemPointerBuffer1d0    // 系统次消息模板指针
@@ -45914,7 +45914,7 @@ void ProcessEngineIOCompletionPort(long long EngineContext)
     if (InputDataLength == 0x2df) {
       return;
     }
-    if (lStackX_10 == 0) break;
+    if (OperationResultBuffer10 == 0) break;
     ExecuteEngineOperation(*(void *)(ContextHandle + 0x20));
   }
     ValidateSystemConfiguration(SystemConfigHandle,&SystemValidationTableA,InputDataLength);
