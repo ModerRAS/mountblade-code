@@ -129934,42 +129934,58 @@ LAB_18073ce8e:
  
 
  void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
-void FUN_18073ced0(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+/**
+ * @brief UI系统数据复制处理器
+ * 
+ * 该函数负责处理UI系统中的数据复制操作，主要功能包括：
+ * - 验证UI上下文和数据源的有效性
+ * - 执行数据缓冲区的复制和验证
+ * - 处理UI资源的管理和释放
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18073ced0
+ */
+#define ProcessUIDataCopyOperation FUN_18073ced0
+void ProcessUIDataCopyOperation(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  longlong *pstackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  int uiValidationResult;
+  int uiCompareResult;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceHandle;
+  longlong *contextPointer;
+  UIByte processingBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong140,&stackLong148);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceHandle = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextPointer,&resourceHandle);
   if (operationResult == 0) {
     dataSource = dataSource << 0x14;
     targetBuffer = targetBuffer << 0x14;
-    operationResult = (**(code **)(*pstackLong140 + 0x100))(pstackLong140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073cfcb;
+    operationResult = (**(code **)(*contextPointer + 0x100))(contextPointer,dataSource,targetBuffer);
+    if (operationResult == 0) goto ReleaseUIResources;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074be80(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    func_0x00018074be80(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    uiValidationResult = func_0x00018074be80(processingBuffer,0x100,dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(processingBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    func_0x00018074be80(processingBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957858);
+    ExecuteUIContextDataOperation(uiCompareResult,4,uiContext,&UNK_180957858);
   }
-FUN_18073cfcb:
-  if (stackLong148 != 0) {
+ReleaseUIResources:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
