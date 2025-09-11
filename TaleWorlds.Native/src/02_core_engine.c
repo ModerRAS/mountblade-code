@@ -79910,7 +79910,7 @@ SystemMemoryRelease:
     uStack_3a8 = 0x3f4ccccd3e4ccccd;
     uStack_3a0 = 0x3f8000003f000000;
     uStack_6d8 = MemoryAddressMaskPointer[3];
-    fStack_8f8 = 4.2039e-45;
+    StackFloatValue8f8 = 4.2039e-45;
     puStack_890 = &SystemNullTemplate;
     uStack_878 = 0;
     SystemEventPointer8 = (uint32_t *)0x0;
