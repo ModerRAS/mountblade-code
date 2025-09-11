@@ -409855,6 +409855,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // 原始函数名: FUN_180765c40
 #define ConfigureUIComponent FUN_180765c40
 
+// UI系统资源验证函数
+// 原始函数名: FUN_180763070
+#define ValidateUIResource FUN_180763070
+
 
 
 

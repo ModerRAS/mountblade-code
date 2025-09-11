@@ -8793,6 +8793,32 @@ const char* const SystemRenderConfigTemplateSpecialEffectG = (const char*)0x180a
 #define FUN_1806393b0 ValidateSystemContextTransfer               // 验证系统上下文传输
 #define FUN_180639930 FinalizeSystemContextOperations             // 完成系统上下文操作
 
+// 系统数据缓冲区处理函数
+#define FUN_1801efdb0 ProcessSystemDataTransform                  // 处理系统数据变换
+#define FUN_1801ef300 ValidateSystemDataTransform                 // 验证系统数据变换
+#define FUN_1801ef620 ExecuteSystemDataTransformOperation        // 执行系统数据变换操作
+#define FUN_18007f0e0 ProcessSystemContextData                   // 处理系统上下文数据
+#define FUN_180208f20 HandleSystemMatrixOperations                // 处理系统矩阵操作
+#define FUN_180204a00 ProcessSystemBufferOperation                // 处理系统缓冲区操作
+
+// 系统字符串处理函数
+#define FUN_18009ec80 ProcessSystemStringEncoding                 // 处理系统字符串编码
+#define FUN_18009fb60 FinalizeSystemStringProcessing               // 完成系统字符串处理
+#define FUN_1801570c0 HandleSystemContextCleanup                  // 处理系统上下文清理
+#define FUN_180217c40 ProcessSystemContextFinalization            // 处理系统上下文最终化
+#define FUN_1801596c0 FinalizeSystemOperations                   // 完成系统操作
+#define FUN_180217f60 InitializeSystemDataCleanup                 // 初始化系统数据清理
+#define FUN_1800a19c0 ProcessSystemDataRelease                    // 处理系统数据释放
+#define FUN_180217db0 HandleSystemDataFinalization                 // 处理系统数据最终化
+
+// 系统字符处理函数
+#define FUN_1801efdb0 ProcessCharacterDataTransform               // 处理字符数据变换
+#define FUN_1801ef300 ValidateCharacterDataTransform              // 验证字符数据变换
+#define FUN_1801ef620 ExecuteCharacterDataTransformOperation     // 执行字符数据变换操作
+#define FUN_18007f0e0 ProcessCharacterContextData                // 处理字符上下文数据
+#define FUN_180208f20 HandleCharacterMatrixOperations             // 处理字符矩阵操作
+#define FUN_180204a00 ProcessCharacterBufferOperation             // 处理字符缓冲区操作
+
 // 系统核心数据常量
 const void* const CoreDataStructureSystem = (void*)0x180941a80;
 const void* const MemoryAllocationBufferSystem = (void*)0x180a06950;
