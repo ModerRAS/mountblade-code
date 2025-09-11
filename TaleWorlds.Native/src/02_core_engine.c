@@ -236768,7 +236768,14 @@ void FUN_180194370(void
 
 
 
-944b0(long long *ContextHandlevoid FUN_1801944b0(long long *ContextHandle
+/**
+ * @brief 配置系统上下文句柄
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * 该函数负责配置系统上下文句柄，包括缓冲区分配状态处理
+ * 和系统事件处理。
+ */
+void FUN_1801944b0(long long *ContextHandle
 {
   long long *ContextHandle;
   long long *BufferAllocationState;
@@ -236792,7 +236799,15 @@ void FUN_180194370(void
 
 
 
-94530(long long *ContextHandle,long long *ContextHandleSizevoid FUN_180194530(long long *ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理系统有符号值
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * 该函数负责处理系统有符号值，包括字符状态缓冲区、
+ * 内存块索引和内存范围边界等操作。
+ */
+void FUN_180194530(long long *ContextHandle, long long *ContextHandleSize
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationState;
