@@ -254226,7 +254226,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   else {
     SystemChecksum = 0x401;
     MemoryPoolIndex = GetCharacterMemoryPoolIndex(Utf16EndPointer);
-    MemoryPoolIndex = FUN_180225e50(MemoryPoolIndex);
+    MemoryPoolIndex = IdentifySystemIdentifierByPatternVariantS(MemoryPoolIndex);
   }
   OperationBufferSize[1] = 0;
   OperationBufferSize[2] = 0;
@@ -254246,7 +254246,7 @@ uint64_t * TransferCharacterEncodingAndContext(long long ContextHandle,uint64_t 
   *ContextHandleSize = SystemContextPtr;
   ProcessingStatusFlag = 1;
   OperationResult = *(uint32_t *)*ContextHandleSize;
-  UnicodeCodePoint = FUN_1802063e0(Utf16EndPointer);
+  UnicodeCodePoint = ConvertUtf8ToUtf16Character(Utf16EndPointer);
   ContextHandleTablePointer = (void *           ProcessSystemMemoryStatus(&SystemUnknownProcessingStatusFlagB,&pSystemTemporaryValue50,*(uint32_t *)(ContextHandle + 0x298),
                          &SystemUnknownProcessingStatusFlagB + (long long)Utf16EndPointer * 0x98,SystemChecksum | 4,0,MemoryPoolIndex,UnicodeCodePoint,OperationResult,0,0
                          ,1,ProcessingStatusFlag);
