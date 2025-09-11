@@ -130537,7 +130537,7 @@ void ExecuteGuardICallCheck4a0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_1809124d0
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset60_4d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtOffset60VersionA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
