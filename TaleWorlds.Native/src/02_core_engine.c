@@ -1697,6 +1697,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStackUnsigned2a8 uStack_2a8                         // 系统栈无符号2a8
 #define SystemStackUnsigned2b0 uStack_2b0                         // 系统栈无符号2b0
 #define SystemStackUnsigned2b8 uStack_2b8                         // 系统栈无符号2b8
+#define SystemStackPointer218 plStack_218                         // 系统栈指针218
+#define SystemStackArray190 auStack_190                           // 系统栈数组190
+#define SystemStackPointer350 puStack_350                         // 系统栈指针350
+#define SystemStackPointer3A8 puStack_3a8                         // 系统栈指针3A8
+#define SystemStackPointer368 puStack_368                         // 系统栈指针368
+#define SystemStackPointer370 puStack_370                         // 系统栈指针370
 #define SystemStackUnsigned2e8 uStack_2e8                         // 系统栈无符号2e8
 #define SystemStackOffset2e0 lStack_2e0                           // 系统栈偏移量2e0
 #define SystemStackOffset2d8 lStack_2d8                           // 系统栈偏移量2d8
@@ -96848,7 +96854,7 @@ af70(uint64_t *ContextHandle,long long OperationBufferSize,long long Utf8SourceP
     MatchCounter = ProcessStringAndCharacterStatusBuffer(CharacterStatusBuffer3,&SystemStringPrimary,acStack_148);
     SystemMemoryAllocationResult = 0;
     while (MatchCounter != -1) {
-      ProcessStringAndCharacterStatusBuffer(CharacterStatusBuffer3,&SystemStringSecondary,aStackProcessingVariable);
+      ProcessStringAndCharacterStatusBuffer(CharacterStatusBuffer3,&SystemStringSecondary,StackProcessingBuffer4);
       MemoryBlockIndex = -1;
       do {
         MemoryBoundaryEnd = MemoryBlockIndex + 1;
@@ -96924,7 +96930,7 @@ af70(uint64_t *ContextHandle,long long OperationBufferSize,long long Utf8SourceP
     MatchCounter = ProcessStringAndCharacterStatusBuffer(ContextHandleTablePointer,&SystemStringPrimary,acStack_148);
     StringProcessingStatus = NULL;
     while (MatchCounter != -1) {
-      ProcessStringAndCharacterStatusBuffer(ContextHandleTablePointer,&SystemStringSecondary,aStackProcessingVariable);
+      ProcessStringAndCharacterStatusBuffer(ContextHandleTablePointer,&SystemStringSecondary,StackProcessingBuffer4);
       MemoryBlockIndex = -1;
       do {
         MemoryBoundaryEnd = MemoryBlockIndex + 1;
@@ -225660,24 +225666,24 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
 void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
 {
   long long MainCalculationResult;
-  long long BufferStatus;
+  long long SystemBufferStatus;
   
   long long CurrentCharacterTablePointer = *ContextHandle;
   if (CurrentCharacterTablePointer != 0) {
-    BufferStatus = ContextHandle[1];
-    if (CurrentCharacterTablePointer != BufferStatus) {
+    SystemBufferStatus = ContextHandle[1];
+    if (CurrentCharacterTablePointer != SystemBufferStatus) {
       do {
         ProcessSystemStringIndexAndCharacterTableOperation(CurrentCharacterTablePointer);
         CurrentCharacterTablePointer = CurrentCharacterTablePointer + 0x40;
-      } while (CurrentCharacterTablePointer != BufferStatus);
+      } while (CurrentCharacterTablePointer != SystemBufferStatus);
       CurrentCharacterTablePointer = *ContextHandle;
     }
-    BufferStatus = LoopCounter;
+    SystemBufferStatus = LoopCounter;
     if ((0xfff < (ContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (BufferStatus = *(long long *)(CurrentCharacterTablePointer + -8), 0x1f < (CurrentCharacterTablePointer - BufferStatus) - 8U)) {
+       (SystemBufferStatus = *(long long *)(CurrentCharacterTablePointer + -8), 0x1f < (CurrentCharacterTablePointer - SystemBufferStatus) - 8U)) {
         _invalid_parameter_noinfo_noreturn();
     }
-    free(BufferStatus);
+    free(SystemBufferStatus);
     *ContextHandle = 0;
     ContextHandle[1] = 0;
     ContextHandle[2] = 0;

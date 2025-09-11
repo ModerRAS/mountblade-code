@@ -128282,8 +128282,9 @@ FUN_18073c111:
 
  
 
- void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_18073c03d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIContextBufferOperationB FUN_18073c03d
+void ProcessUIContextBufferOperationB(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -128324,7 +128325,8 @@ FUN_18073c111:
 
 
 
- void FUN_18073c099(void)
+ // 函数: void FUN_18073c099(void)
+#define ProcessUIContextGlobalReset FUN_18073c099
 /**
  * @brief UI上下文全局重置函数
  * 
@@ -128359,8 +128361,24 @@ void ProcessUIContextGlobalReset(void)
 
 
 
- void FUN_18073c111(void)
-void FUN_18073c111(void)
+ // 函数: void FUN_18073c111(void)
+#define ProcessUIContextStateValidation FUN_18073c111
+/**
+ * @brief UI上下文状态验证函数
+ * 
+ * 验证UI上下文的状态，包括内存资源释放和渲染任务执行
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查内存资源指针是否有效
+ * 2. 释放UI内存资源
+ * 3. 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073c111
+ */
+void ProcessUIContextStateValidation(void)
 
 {
   longlong stackParam00000030;
@@ -128377,7 +128395,21 @@ void FUN_18073c111(void)
 
 
  void FUN_18073c133(void)
-void FUN_18073c133(void)
+/**
+ * @brief UI上下文内存清理函数
+ * 
+ * 清理UI上下文的内存资源，包括内存释放和渲染任务执行
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 释放UI内存资源
+ * 2. 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073c133
+ */
+void ProcessUIContextMemoryCleanup(void)
 
 {
   ulonglong stackParam00000140;
