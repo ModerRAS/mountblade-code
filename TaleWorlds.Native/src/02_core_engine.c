@@ -236919,16 +236919,28 @@ LAB_1801945bb:
 
 
 
-void FUN_1801946c0(long long *ContextHandle)
+/**
+ * @brief 处理系统内存块释放
+ * 
+ * 该函数负责处理系统内存块的释放操作，遍历内存块链表，
+ * 释放相关资源并调用相应的清理函数。
+ * 
+ * @param SystemContext 系统上下文指针 - 包含内存块管理信息的系统上下文
+ * 
+ * @note 该函数会遍历所有内存块并调用相应的释放函数
+ * @note 如果遇到错误状态会调用系统事件处理函数
+ * @note 原始函数名：FUN_1801946c0
+ */
+void ProcessSystemMemoryBlockRelease(long long *SystemContext)
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
+  long long *CharacterTablePointer;
+  long long *BufferStatus;
   
-  CharacterTablePointer = ContextHandle[1];
-  BufferStatus = *ContextHandle;
+  CharacterTablePointer = (long long *)SystemContext[1];
+  BufferStatus = (long long *)*SystemContext;
   while( true ) {
     if (BufferStatus == CharacterTablePointer) {
-      if (*ContextHandle == 0) {
+      if (*SystemContext == 0) {
         return;
       }
         ProcessSystemEventHandling();
@@ -236937,7 +236949,7 @@ void FUN_1801946c0(long long *ContextHandle)
       (**(code **)(**(long long **)(BufferStatus + 0x40) + 0x38))();
     }
     if (*(long long *)(BufferStatus + 0x20) != 0) break;
-    ProcessSystemMemoryBlockRelease(BufferStatus);
+    ProcessSystemMemoryBlockRelease((long long)BufferStatus);
     BufferStatus = BufferStatus + 0x48;
   }
     ProcessSystemEventHandling();
