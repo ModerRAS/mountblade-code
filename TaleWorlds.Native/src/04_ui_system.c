@@ -49142,8 +49142,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType83._10_2_ = sVar407;
       aeventCodeType83._12_2_ = sVar130 + aeventCodeType00._14_2_;
       aeventCodeType83._14_2_ = ContextSecondValue6;
-      iterationData19 = pmaddwd(aeventCodeType83,_DAT_1809474b0);
-      iterationData54 = pmaddwd(aresult77,_DAT_1809474b0);
+      iterationData19 = pmaddwd(aeventCodeType83,UIVectorMultiplyMask24);
+      iterationData54 = pmaddwd(aresult77,UIVectorMultiplyMask24);
       acomponentIndex4._12_2_ = BufferCapacityValue7;
       acomponentIndex4._0_12_ = astackUIntc08._0_12_;
       acomponentIndex4._14_2_ = astackUIntc68._6_2_ - aeventCodeType26._6_2_;
