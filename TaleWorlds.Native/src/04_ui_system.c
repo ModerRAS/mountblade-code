@@ -125743,18 +125743,18 @@ void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *
     }
   }
   else if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataWithContext(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ValidateUIDataWithContext(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    pstackUInt168 = stackArray148;
+    dataValidationResult = ValidateUIDataWithContext(tempBufferArray, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(tempBufferArray + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = CopyUIDataBuffer(tempBufferArray + dataValidationResult, 0x100 - dataValidationResult, targetBuffer);
+    dataValidationResult = dataValidationResult + bufferCompareResult;
+    bufferCompareResult = ProcessUIBufferDataWithControl(tempBufferArray + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    ValidateUIDataWithContext(tempBufferArray + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), bufferSize);
+    tempDataPointer = tempBufferArray;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextEventProcessor);
+    ExecuteUIContextDataOperation(operationResult, 1, uiContext, &UIContextEventProcessor);
   }
-  if (stackLong158 != 0) {
+  if (cleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
