@@ -116,6 +116,8 @@ typedef enum {
 #define FUN_180740283 ReleaseUIMemoryResourceWithValidation  // 释放UI系统内存资源
 #define FUN_1807402a5 ForceReleaseUIMemoryResource  // 强制释放UI系统内存资源
 #define FUN_1807402d0 ProcessUIDataTransferWithValidation  // 处理UI系统数据传输和资源验证
+#define FUN_1807402ed ProcessUIContextAndDataTransfer  // 处理UI系统上下文和数据传输
+#define FUN_180740347 ProcessUITextureDataBuffer  // 处理UI系统纹理数据缓冲区
 #define FUN_180758ed0 InitializeUIDataSource      // 初始化UI数据源
 #define FUN_18073fe4d ProcessUIDataSourceToTargetBuffer  // 处理UI数据源到目标缓冲区的数据传输
 #define FUN_18073fea5 ProcessUIDataValidationAndBufferControl  // 处理UI数据验证和缓冲区控制操作
@@ -135524,19 +135526,27 @@ CleanupAndExit:
 
 
 
- void FUN_180740347(void)
-void FUN_180740347(void)
-
+ /**
+ * @brief 处理UI系统纹理数据缓冲区
+ * 
+ * 该函数负责处理UI系统的纹理数据缓冲区操作：
+ * - 处理纹理数据的大小和格式
+ * - 验证缓冲区数据的有效性
+ * - 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_180740347
+ */
+void ProcessUITextureDataBuffer(void)
 {
   int operationResult;
-  int dataValidationResult;
-  UIDword unmodifiedESI;
+  int textureValidationResult;
+  UIDword preservedRegisterValue;
   
   operationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ProcessUITextureDataWithSize(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  textureValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  ProcessUITextureDataWithSize(&stack0x00000040 + (operationResult + textureValidationResult),0x100 - (operationResult + textureValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,7);
+  ExecuteUIContextDataOperation(preservedRegisterValue,7);
 }
 
 
