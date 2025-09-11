@@ -9745,7 +9745,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DataSecondaryOffset18 0x18                    // 数据次级偏移量18
 #define DataParameterOffset20 0x20                   // 数据参数偏移量20
 #define SystemParameterOffset28 0x28                 // 系统参数偏移量28
-#define SystemFloatDataOffset38 0x38                 // 系统浮点数据偏移量38
 #define ExceptionHandlerOffset300 0x300              // 异常处理器偏移量300
 #define ExceptionHandlerOffset3c0 0x3c0              // 异常处理器偏移量3c0
 #define SystemCleanupFlagExtended 0xffc00000         // 系统清理标志扩展
