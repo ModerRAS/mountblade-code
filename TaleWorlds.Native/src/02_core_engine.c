@@ -93,6 +93,8 @@
 #define ManageContextHandleOperations ManageContextHandleOperations                     // 处理上下文句柄管理
 #define CompleteSystemContextTask CompleteSystemContextTask                          // 完成系统上下文操作
 #define ProcessSystemDataRegistryAndStackParameters FUN_1802e8c60                   // 处理系统数据注册和堆栈参数 - 管理系统数据注册表并处理相关堆栈参数
+#define ProcessSystemContextFloatOperations FUN_180208f20                         // 处理系统上下文浮点数操作 - 执行系统上下文中的浮点数计算和缓冲区管理
+#define ProcessSystemContextFloatConversion FUN_18020902a                          // 处理系统上下文浮点数转换 - 执行系统上下文中的浮点数转换和验证操作
 
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
@@ -4161,6 +4163,8 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define SystemNodeStatusFlag SystemComponentNodeStatusFlag           // 系统节点状态标志
 #define ValidationStatusFlag SystemValidationStatusFlag      // 验证状态标志
 #define ConfigStatusFlag SystemConfigStatusFlag             // 配置状态标志
+#define ConfigStatusFlagA SystemPrimaryConfigBuffer          // 主系统配置缓冲区
+#define ConfigStatusFlagB SystemSecondaryConfigBuffer        // 次系统配置缓冲区
 #define DataStatusFlag SystemDataStatusFlag                 // 数据状态标志
 #define StateStatusFlag SystemStateStatusFlag               // 状态标志
 
@@ -257098,7 +257102,23 @@ ProcessSystemContextFloatAndEncodingConversion:
 
 
 
-0902a(uint64_t ContextHandle,float OperationBufferSize,float Utf8SourcePointervoid FUN_18020902a(uint64_t ContextHandle,float OperationBufferSize,float Utf8SourcePointer
+/**
+ * @brief 处理系统上下文浮点数转换和验证
+ * 
+ * 该函数负责处理系统上下文中的浮点数转换和验证操作，包括：
+ * - 浮点数缩放和验证
+ * - 缓冲区状态管理
+ * - 内存池操作
+ * - 字符编码转换
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18020902a
+ */
+void ProcessSystemContextFloatConversion(uint64_t ContextHandle, float OperationBufferSize, float Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   int LockOperationResult;
