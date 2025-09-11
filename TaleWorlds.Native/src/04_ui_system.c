@@ -73977,7 +73977,7 @@ void InitializeUIEventSystem(longlong uiContext)
   uint maxProcessingCount;
   uint iterationCounter;
   longlong contextOffset;
-  bool bVar9;
+  bool EventSystemInitialized;
   
   allocatedMemory = uiContext + 0x42c0;
   uiCompareResult = AllocateUIComponentMemory(allocatedMemory,0x80);
