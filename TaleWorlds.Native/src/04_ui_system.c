@@ -262,6 +262,7 @@ typedef enum {
 #define DAT_1809473f0 UIVectorOperationMask3F0                  // UI向量操作掩码3F0
 #define DAT_180947510 UIVectorOperationMask510                  // UI向量操作掩码510
 #define DAT_180947370 UIVectorOperationMask370                  // UI向量操作掩码370
+#define DAT_180a40580 UIXOREncryptionKey580                     // UI异或加密密钥580
 #define ProcessUIDataWithMultipleParameters FUN_18073a5ad         // 处理带多参数的UI数据
 #define ProcessUIResourceCleanup FUN_18073a613                  // 处理UI资源清理
 #define ProcessUIComponentStateUpdate FUN_18073a6c1              // 处理UI组件状态更新
@@ -924,17 +925,17 @@ typedef enum {
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
 // 注意：这个变量已经在上面定义为 GlobalUIResourceManagerF0
-#define UIEventThresholdCounterA8 DAT_180c4ea98              // UI事件阈值计数器A8 - 存储UI事件处理的阈值计数
-#define UIDataTablePrimary198 DAT_180be2198                    // UI主数据表198 - 存储UI系统的主要数据
-#define UIDataTableSecondaryF8 DAT_180be2df8                  // UI次数据表F8 - 存储UI系统的次要数据
-#define UIDataTableTertiary88 DAT_180be2288                   // UI第三数据表88 - 存储UI系统的第三级数据
-#define UIDataTableQuaternary08 DAT_180be2d08                 // UI第四数据表08 - 存储UI系统的第四级数据
-#define UIDataTableQuinaryE8 DAT_180be2ee8                   // UI第五数据表E8 - 存储UI系统的第五级数据
-#define UIDataTableSenary40 DAT_180980640                    // UI第六数据表40 - 存储UI系统的第六级数据
-#define UIVectorCalculationMask3F0 DAT_1809473f0             // UI向量计算掩码3F0 - 用于向量运算的掩码
-#define UIVectorCalculationMask510 DAT_180947510             // UI向量计算掩码510 - 用于向量运算的掩码
-#define UIVectorCalculationMask370 DAT_180947370             // UI向量计算掩码370 - 用于向量运算的掩码
-#define UIXOREncryptionKey580 DAT_180a40580                 // UI异或加密密钥580 - 用于UI数据加密的密钥
+#define UIEventThresholdCounterA8 UIEventProcessingThresholdCounter              // UI事件阈值计数器A8 - 存储UI事件处理的阈值计数
+#define UIDataTablePrimary198 UIPrimarySystemDataTable                    // UI主数据表198 - 存储UI系统的主要数据
+#define UIDataTableSecondaryF8 UISecondarySystemDataTable                  // UI次数据表F8 - 存储UI系统的次要数据
+#define UIDataTableTertiary88 UITertiarySystemDataTable                   // UI第三数据表88 - 存储UI系统的第三级数据
+#define UIDataTableQuaternary08 UIQuaternarySystemDataTable                 // UI第四数据表08 - 存储UI系统的第四级数据
+#define UIDataTableQuinaryE8 UIQuinarySystemDataTable                   // UI第五数据表E8 - 存储UI系统的第五级数据
+#define UIDataTableSenary40 UISenarySystemDataTable                    // UI第六数据表40 - 存储UI系统的第六级数据
+#define UIVectorCalculationMask3F0 UIVectorOperationMask3F0             // UI向量计算掩码3F0 - 用于向量运算的掩码
+#define UIVectorCalculationMask510 UIVectorOperationMask510             // UI向量计算掩码510 - 用于向量运算的掩码
+#define UIVectorCalculationMask370 UIVectorOperationMask370             // UI向量计算掩码370 - 用于向量运算的掩码
+#define UIXOREncryptionKey580 UIXOREncryptionKey580                 // UI异或加密密钥580 - 用于UI数据加密的密钥
 #define _DAT_180d4a8b8 UIPixelProcessorPointer            // UI像素处理器指针 - 处理UI像素数据
 #define _DAT_180d4a860 UIImageProcessorPointer            // UI图像处理器指针 - 处理UI图像数据
 #define _DAT_180d4a800 UIColorProcessorPointer            // UI颜色处理器指针 - 处理UI颜色数据
