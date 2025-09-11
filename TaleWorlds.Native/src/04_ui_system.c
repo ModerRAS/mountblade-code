@@ -117,6 +117,7 @@ typedef enum {
 #define FUN_18073fea5 ProcessUIDataValidationAndBufferControl  // 处理UI数据验证和缓冲区控制操作
 #define FUN_18073ff1d CleanupUIMemoryAndExecuteRender  // 清理UI内存资源并执行渲染任务
 #define FUN_18073ff3f ReleaseUIMemoryAndExecuteRender  // 释放UI内存资源并执行渲染任务
+#define FUN_18073ff60 ProcessUIContextDataSourceInitialization  // 处理UI上下文数据源的初始化和验证
 #define func_0x000180756200 ProcessUIDataSourceCopy // 处理UI数据源复制
 #define func_0x000180756330 ProcessUIDataSourceExtract // 处理UI数据源提取
 
@@ -135044,37 +135045,51 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
  
 
- void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
-void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
-
+ /**
+ * @brief 处理UI上下文数据源的初始化和验证
+ * 
+ * 该函数负责处理UI上下文数据源的初始化和验证操作。
+ * 主要功能包括：
+ * - 初始化UI数据源和渲染上下文
+ * - 执行数据验证和初始化
+ * - 处理内存资源的清理和释放
+ * - 执行渲染任务和加密操作
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI操作的环境
+ * @param dataSource 数据源标识符，指定要处理的数据
+ * 
+ * @note 原始函数名：FUN_18073ff60
+ * @warning 包含非返回子程序调用，请谨慎使用
+ */
+void ProcessUIContextDataSourceInitialization(UIHandle uiContext, UIDword dataSource)
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer[32];
+  UIByte *dataValidationPointer;
+  longlong renderContextSize;
+  UIHandle contextHandle;
+  UIByte dataBuffer[256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = InitializeUIDataSource(uiContext, &contextHandle, &renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x0001807580b0(stackUInt120,dataSource);
-    if (operationResult == 0) goto LAB_18073fff8;
+    operationResult = ProcessUIDataSourceWithEncryption(contextHandle, dataSource);
+    if (operationResult == 0) goto CleanupAndExecuteRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ValidateUIDataAndInitialize(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ValidateUIDataAndInitialize(dataBuffer, 0x100, dataSource);
+    dataValidationPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,2,uiContext,&UNK_180957b28);
+    ExecuteUIContextDataOperation(processingResult, 2, uiContext, &GlobalUIEncryptionKey);
   }
-LAB_18073fff8:
-  if (RenderContextSize != 0) {
+CleanupAndExecuteRender:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 

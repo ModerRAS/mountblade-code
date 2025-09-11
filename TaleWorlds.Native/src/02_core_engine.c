@@ -225306,7 +225306,7 @@ void ProcessMixedTypeContextHandle(long long ContextHandle, uint64_t *ContextHan
   }
 LAB_1801852f0:
   *(void *)(MemoryBoundaryEnd + 0x40) = StackProcessingDataPointer;
-  NVGSDK_Highlights_OpenGroupAsync(*(void *)(ContextHandle + 8),&pSystemCleanupFlagF,FUN_1801842a0,MemoryBoundaryEnd);
+  NVGSDK_Highlights_OpenGroupAsync(*(void *)(ContextHandle + 8),&pSystemCleanupFlagF,HandleAsyncCallback,MemoryBoundaryEnd);
   ProcessingCounter = 1;
   ErrorCode = alStack_a8;
   if (CoreEngineSignedValue70 != (long long *)0x0) {
