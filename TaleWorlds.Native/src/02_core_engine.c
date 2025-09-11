@@ -11702,17 +11702,230 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
  * @see ConfigureRenderMeshes, SetupRenderAnimations
  */
 #define InitializeRenderEffects FUN_1800c0c0
+/**
+ * @brief 配置渲染网格系统
+ * 
+ * 该函数负责配置游戏引擎的渲染网格系统，包括：
+ * - 网格数据结构初始化
+ * - 网格属性设置
+ * - 网格缓存管理
+ * - 网格优化配置
+ * 
+ * @return int 配置结果状态码：
+ *         - 0: 配置成功
+ *         - 非0值: 配置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c0e0
+ * @warning 网格配置不当可能导致渲染性能问题
+ * @see InitializeRenderEffects, SetupRenderAnimations
+ */
 #define ConfigureRenderMeshes FUN_1800c0e0
+
+/**
+ * @brief 设置渲染动画系统
+ * 
+ * 该函数负责设置游戏引擎的渲染动画系统，包括：
+ * - 动画数据结构初始化
+ * - 动画状态机配置
+ * - 动画缓存管理
+ * - 动画插值设置
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c100
+ * @warning 动画设置需要与网格配置协同工作
+ * @see InitializeRenderEffects, ConfigureRenderMeshes
+ */
 #define SetupRenderAnimations FUN_1800c100
+
+/**
+ * @brief 初始化渲染物理系统
+ * 
+ * 该函数负责初始化游戏引擎的渲染物理系统，包括：
+ * - 物理引擎初始化
+ * - 碰撞检测配置
+ * - 物理材质设置
+ * - 物理缓存管理
+ * 
+ * @return int 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c120
+ * @warning 物理系统初始化可能消耗大量计算资源
+ * @see ConfigureRenderMeshes, InitializeRenderEffects
+ */
 #define InitializeRenderPhysics FUN_1800c120
+
+/**
+ * @brief 配置渲染音频系统
+ * 
+ * 该函数负责配置游戏引擎的渲染音频系统，包括：
+ * - 音频引擎初始化
+ * - 音频缓冲区设置
+ * - 音频格式配置
+ * - 音频缓存管理
+ * 
+ * @return int 配置结果状态码：
+ *         - 0: 配置成功
+ *         - 非0值: 配置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c140
+ * @warning 音频配置需要与渲染系统同步
+ * @see InitializeRenderPhysics, SetupRenderAnimations
+ */
 #define ConfigureRenderAudio FUN_1800c140
+/**
+ * @brief 设置渲染UI系统
+ * 
+ * 该函数负责设置游戏引擎的渲染UI系统，包括：
+ * - UI组件初始化
+ * - UI布局配置
+ * - UI事件处理设置
+ * - UI缓存管理
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c160
+ * @warning UI系统设置需要与渲染管线协同工作
+ * @see ConfigureRenderAudio, InitializeRenderNetwork
+ */
 #define SetupRenderUI FUN_1800c160
+
+/**
+ * @brief 初始化渲染网络系统
+ * 
+ * 该函数负责初始化游戏引擎的渲染网络系统，包括：
+ * - 网络通信协议设置
+ * - 网络数据同步配置
+ * - 网络事件处理初始化
+ * - 网络缓存管理
+ * 
+ * @return int 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c180
+ * @warning 网络系统初始化需要考虑延迟和带宽限制
+ * @see SetupRenderUI, ConfigureRenderInput
+ */
 #define InitializeRenderNetwork FUN_1800c180
+
+/**
+ * @brief 配置渲染输入系统
+ * 
+ * 该函数负责配置游戏引擎的渲染输入系统，包括：
+ * - 输入设备初始化
+ * - 输入映射设置
+ * - 输入事件处理配置
+ * - 输入缓存管理
+ * 
+ * @return int 配置结果状态码：
+ *         - 0: 配置成功
+ *         - 非0值: 配置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c1a0
+ * @warning 输入配置需要考虑不同平台的输入设备差异
+ * @see InitializeRenderNetwork, SetupRenderDebug
+ */
 #define ConfigureRenderInput FUN_1800c1a0
+
+/**
+ * @brief 设置渲染调试系统
+ * 
+ * 该函数负责设置游戏引擎的渲染调试系统，包括：
+ * - 调试信息显示配置
+ * - 性能监控设置
+ * - 调试工具初始化
+ * - 调试缓存管理
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c1c0
+ * @warning 调试系统在发布版本中可能被禁用
+ * @see ConfigureRenderInput, InitializeRenderProfile
+ */
 #define SetupRenderDebug FUN_1800c1c0
+/**
+ * @brief 初始化渲染性能分析系统
+ * 
+ * 该函数负责初始化游戏引擎的渲染性能分析系统，包括：
+ * - 性能计数器设置
+ * - 性能数据收集配置
+ * - 性能分析工具初始化
+ * - 性能缓存管理
+ * 
+ * @return int 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c1e0
+ * @warning 性能分析系统可能影响整体渲染性能
+ * @see SetupRenderDebug, ConfigureRenderStats
+ */
 #define InitializeRenderProfile FUN_1800c1e0
+
+/**
+ * @brief 配置渲染统计系统
+ * 
+ * 该函数负责配置游戏引擎的渲染统计系统，包括：
+ * - 渲染统计信息收集
+ * - 性能指标监控设置
+ * - 统计数据结构初始化
+ * - 统计缓存管理
+ * 
+ * @return int 配置结果状态码：
+ *         - 0: 配置成功
+ *         - 非0值: 配置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c200
+ * @warning 统计系统在发布版本中可能被简化
+ * @see InitializeRenderProfile, SetupRenderOptimization
+ */
 #define ConfigureRenderStats FUN_1800c200
+
+/**
+ * @brief 设置渲染优化系统
+ * 
+ * 该函数负责设置游戏引擎的渲染优化系统，包括：
+ * - 渲染优化策略配置
+ * - 性能优化参数设置
+ * - 优化算法初始化
+ * - 优化缓存管理
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c220
+ * @warning 优化设置需要根据硬件配置进行调整
+ * @see ConfigureRenderStats, InitializeRenderCache
+ */
 #define SetupRenderOptimization FUN_1800c220
+
+/**
+ * @brief 初始化渲染缓存系统
+ * 
+ * 该函数负责初始化游戏引擎的渲染缓存系统，包括：
+ * - 缓存池初始化
+ * - 缓存策略配置
+ * - 缓存管理器设置
+ * - 缓存优化初始化
+ * 
+ * @return int 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败或错误代码
+ * 
+ * @note 原始函数名：FUN_1800c240
+ * @warning 缓存系统需要合理配置以避免内存浪费
+ * @see SetupRenderOptimization, ConfigureRenderStreaming
+ */
 #define InitializeRenderCache FUN_1800c240
 #define ConfigureRenderStreaming FUN_1800c260
 #define SetupRenderCompression FUN_1800c280
