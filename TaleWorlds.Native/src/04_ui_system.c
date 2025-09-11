@@ -127548,8 +127548,8 @@ LAB_18073b97a:
 
  
 
- void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
-void FUN_18073b9b0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
+ void ProcessUIContextWithTargetBuffer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
+void ProcessUIContextWithTargetBuffer(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -127589,8 +127589,8 @@ ExecuteUIRenderTaskWithResourceRelease:
 
  
 
- void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
-void FUN_18073b9cd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
+ void ProcessUIContextWithValidation(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
+void ProcessUIContextWithValidation(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -127821,8 +127821,8 @@ FUN_18073bbdd:
 
 
 
- void FUN_18073bb65(void)
-void FUN_18073bb65(void)
+ void PerformUIResourceOptimization(void)
+void PerformUIResourceOptimization(void)
 
 {
   int operationResult;
@@ -127841,8 +127841,8 @@ void FUN_18073bb65(void)
 
 
 
- void FUN_18073bbdd(void)
-void FUN_18073bbdd(void)
+ void PerformUIContextFinalCleanup(void)
+void PerformUIContextFinalCleanup(void)
 
 {
   longlong stackParam00000030;
