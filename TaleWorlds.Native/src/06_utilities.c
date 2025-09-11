@@ -29810,6 +29810,15 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   ByteFlag DataBufferA [StandardDataBufferSize];
   uint64_t colorProcessingData;
   
+  // 位域操作变量声明 - 用于处理特定位域操作
+  DataWord BitFieldOperationContext;
+  DataWord FloatingPointProcessingValue;
+  DataWord FloatingPointInputValueA;
+  DataWord FloatingPointStackRegisterB;
+  DataWord SystemParameterArray;
+  DataWord SystemStatusBuffer;
+  DataWord SystemTemporaryMemoryBuffer;
+  
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
   LoopCounter = 0;
   if (operationFlagA != 0) {
