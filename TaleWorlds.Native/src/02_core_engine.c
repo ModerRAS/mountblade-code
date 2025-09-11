@@ -256980,7 +256980,7 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
                     UnicodeContextHandle = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
                   }
                   else {
-                    SystemContextValidationFlag = FUN_1801ef300(CharacterTablePointer6,MemoryAllocationIndex,SystemDataTablePointer);
+                    SystemContextValidationFlag = ValidateCharacterTableContext(CharacterTablePointer6,MemoryAllocationIndex,SystemDataTablePointer);
                     if (SystemContextValidationFlag == '\0') {
                       InitializeSystemEvent(&SystemEventTemplate);
                       IntegerValue4 = *(int *)(BufferIndex + CoreEngineSignedValue48);
