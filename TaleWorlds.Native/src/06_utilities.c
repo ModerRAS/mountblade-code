@@ -27852,42 +27852,49 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
 
 
 
-// 函数: void ExecuteSecurityValidationOperation(uint64_t securityContext)
+/**
+ * @brief 执行安全验证操作
+ * 
+ * 对系统安全上下文进行验证，确保系统操作的合法性
+ * 
+ * @param securityContext 安全上下文句柄，包含验证所需的安全信息
+ */
 void ExecuteSecurityValidationOperation(uint64_t securityContext)
-
 {
-  int ValidationResult;           // 验证结果
-  int64_t systemHandler;
-  int64_t securityContextHandle;
-  int64_t *resultPointer;
-  int64_t systemData;
-  uint64_t contextValue;
-  uint64_t stackGuard;
-  
-  contextValue = securityContext;
-  securityContextHandle = (**(FunctionPointer**)(systemHandler + FunctionPointerSecondaryOffset))();
-  if (securityContextHandle == 0) {
-      InitializeSystemBufferA0(&stackBufferHighAddress,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
-                  contextValue.LowPart);
-  }
-  if (**(int **)(securityContextHandle + ResourceValidationOffset) == 0) {
-    validationResult = ValidateSystemConfigurationA0(*(DataWord *)(systemData + SystemDataSecondaryOffset18));
-    if (validationResult != 0) goto DataProcessingLabel;
-  }
-  *resultPointer = securityContextHandle;
-DataProcessingLabel:
-    ExecuteSecurityCheck(stackGuard ^ (uint64_t)&stackBufferBaseAddress);
+    int validationStatus;                     // 验证状态码
+    int64_t systemHandle;                      // 系统句柄
+    int64_t securityContextPointer;           // 安全上下文指针
+    int64_t* validationResultPointer;          // 验证结果指针
+    int64_t systemDataBuffer;                 // 系统数据缓冲区
+    uint64_t contextFlags;                    // 上下文标志
+    uint64_t stackProtectionValue;            // 栈保护值
+    
+    contextFlags = securityContext;
+    securityContextPointer = (**(FunctionPointer**)(systemHandle + FunctionPointerSecondaryOffset))();
+    if (securityContextPointer == 0) {
+        InitializeSystemBufferA0(&stackBufferHighAddress, MemoryBlockSizeAdjustment, &SystemBufferConfiguration, contextFlags & SystemCleanupFlag, contextFlags & 0xFFFFFFFF);
+    }
+    if (**(int **)(securityContextPointer + ResourceValidationOffset) == 0) {
+        validationStatus = ValidateSystemConfigurationA0(*(DataWord *)(systemDataBuffer + SystemDataSecondaryOffset18));
+        if (validationStatus != 0) goto DataProcessingComplete;
+    }
+    *validationResultPointer = securityContextPointer;
+DataProcessingComplete:
+    ExecuteSecurityCheck(stackProtectionValue ^ (uint64_t)&stackBufferBaseAddress);
 }
 
 
 
 
-// 函数: void ExecuteSecurityCheckWrapper(void)
+/**
+ * @brief 执行安全检查包装器
+ * 
+ * 包装安全检查功能，提供简化的安全检查调用接口
+ */
 void ExecuteSecurityCheckWrapper(void)
-
 {
-  uint64_t stackGuardValue;
-  
+    uint64_t stackGuardValue;      // 栈保护值
+    
     ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&stackBufferBaseAddress);
 }
 
@@ -27896,66 +27903,65 @@ void ExecuteSecurityCheckWrapper(void)
 
 
 /**
- * @brief 数据处理函数B1
+ * @brief 处理带颜色分量的数据
  * 
- * 处理系统数据操作，包括数据验证、转换和存储
+ * 处理系统数据操作，包括颜色数据的验证、转换和存储
  * 
- * @param DataPointer 数据指针，指向待处理的数据
- * @param DataBuffer 数据缓冲区，用于存储处理结果
- * @param ResultPointer 结果指针，用于返回处理状态
+ * @param dataPointer 数据指针，指向待处理的数据
+ * @param dataBuffer 数据缓冲区，用于存储处理结果
+ * @param resultPointer 结果指针，用于返回处理状态
  */
-void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, int64_t *ResultPointer)
-
+void ProcessDataWithColorComponents(int64_t dataPointer, DataWord *dataBuffer, int64_t *resultPointer)
 {
-  int64_t *exceptionContextPtr;
-  int operationResult;
-  int64_t memoryRegionOffset;
-  ByteFlag encryptionKeyBuffer [32];
-  uint colorAlphaLow;
-  uint colorRedHigh;
-  uint colorBlueLow;
-  uint colorGreenLow;
-  uint colorBlueMid;
-  uint colorAlphaHigh;
-  uint colorBlueComponentLow;
-  uint colorBlueComponentMid;
-  uint colorBlueHigh;
-  uint alphaComponent;
-  DataWord colorDataWord;
-  uint redGreenComponents;
-  uint blueAlphaComponents;
-  uint colorPackedData;
-  int64_t systemContext;
-  ByteFlag systemConfigBuffer [40];
-  uint64_t securityCheckValue;
-  
-  securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
-  exceptionContextPtr = *(int64_t **)(operationBase + OperationBaseOffset800);
-  if (exceptionContextPtr != NULL) {
-    colorDataWord = *dataBuffer;
-    redGreenComponents = dataBuffer[1];
-    blueAlphaComponents = dataBuffer[2];
-    colorPackedData = dataBuffer[3];
-    memoryRegionOffset = (**(FunctionPointer**)(*exceptionContextPtr + FunctionPointerTableOffset2f8))(exceptionContextPtr,&colorDataWord,1);
-    if (memoryRegionOffset == 0) {
-      blueComponent = blueAlphaComponents >> 0x18;
-      alphaComponent = colorPackedData >> 0x18;
-      redGreenHigh = redGreenComponents >> 0x10;
-      colorMidHigh = colorPackedData >> 0x10 & 0xff;
-      colorMidLow = colorPackedData >> 8 & 0xff;
-      colorLowByte = colorPackedData & 0xff;
-      blueMidHigh = blueAlphaComponents >> 0x10 & 0xff;
-      blueMidLow = blueAlphaComponents >> 8 & 0xff;
-      blueLowByte = blueAlphaComponents & 0xff;
-      redGreenLow = redGreenComponents & ColorComponentMask;
-        InitializeSystemBufferA0(systemConfigBuffer,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,colorDataWord);
+    int64_t *exceptionContextPointer;           // 异常上下文指针
+    int operationStatus;                         // 操作状态
+    int64_t memoryRegionOffset;                 // 内存区域偏移
+    ByteFlag encryptionKeyBuffer[32];           // 加密密钥缓冲区
+    uint colorAlphaLowValue;                    // 颜色透明度低字节
+    uint colorRedHighValue;                     // 颜色红色高字节
+    uint colorBlueLowValue;                     // 颜色蓝色低字节
+    uint colorGreenLowValue;                    // 颜色绿色低字节
+    uint colorBlueMidValue;                     // 颜色蓝色中字节
+    uint colorAlphaHighValue;                   // 颜色透明度高字节
+    uint colorBlueComponentLowValue;            // 颜色蓝色分量低字节
+    uint colorBlueComponentMidValue;            // 颜色蓝色分量中字节
+    uint colorBlueHighValue;                    // 颜色蓝色高字节
+    uint alphaComponentValue;                   // 透明度分量值
+    DataWord colorDataValue;                    // 颜色数据值
+    uint redGreenComponentsValue;               // 红绿分量值
+    uint blueAlphaComponentsValue;              // 蓝透明度分量值
+    uint colorPackedDataValue;                  // 打包颜色数据值
+    int64_t systemContextHandle;                // 系统上下文句柄
+    ByteFlag systemConfigBuffer[40];            // 系统配置缓冲区
+    uint64_t securityValidationValue;           // 安全验证值
+    
+    securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
+    exceptionContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
+    if (exceptionContextPointer != NULL) {
+        colorDataValue = *dataBuffer;
+        redGreenComponentsValue = dataBuffer[1];
+        blueAlphaComponentsValue = dataBuffer[2];
+        colorPackedDataValue = dataBuffer[3];
+        memoryRegionOffset = (**(FunctionPointer**)(*exceptionContextPointer + FunctionPointerTableOffset2f8))(exceptionContextPointer, &colorDataValue, 1);
+        if (memoryRegionOffset == 0) {
+            uint blueComponentValue = blueAlphaComponentsValue >> 0x18;
+            alphaComponentValue = colorPackedDataValue >> 0x18;
+            uint redGreenHighValue = redGreenComponentsValue >> 0x10;
+            uint colorMidHighValue = colorPackedDataValue >> 0x10 & 0xff;
+            uint colorMidLowValue = colorPackedDataValue >> 8 & 0xff;
+            uint colorLowByteValue = colorPackedDataValue & 0xff;
+            uint blueMidHighValue = blueAlphaComponentsValue >> 0x10 & 0xff;
+            uint blueMidLowValue = blueAlphaComponentsValue >> 8 & 0xff;
+            uint blueLowByteValue = blueAlphaComponentsValue & 0xff;
+            uint redGreenLowValue = redGreenComponentsValue & ColorComponentMask;
+            InitializeSystemBufferA0(systemConfigBuffer, MemoryBlockSizeAdjustment, &SystemBufferConfiguration, colorDataValue);
+        }
+        systemContextHandle = *(int64_t *)(memoryRegionOffset + systemContextOffset48);
+        if ((systemContextHandle != 0) || (operationStatus = ProcessSystemContextA0(operationBase, memoryRegionOffset, &systemContextHandle), operationStatus == 0)) {
+            *operationFlagA = systemContextHandle;
+        }
     }
-    systemContext = *(int64_t *)(memoryRegionOffset + systemContextOffset48);
-    if ((systemContext != 0) || (operationResult = ProcesssystemContextA0(operationBase,memoryRegionOffset,&systemContext), operationResult == 0)) {
-      *operationFlagA = systemContext;
-    }
-  }
-    ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
+    ExecuteSecurityCheck(securityValidationValue ^ (uint64_t)encryptionKeyBuffer);
 }
 
 
