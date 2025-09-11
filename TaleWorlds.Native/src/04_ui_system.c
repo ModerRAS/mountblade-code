@@ -22073,7 +22073,20 @@ void ProcessUIFloatValueAlt(longlong uiContext)
 
 
 
- void CleanupUIElementResources(longlong uiContext)
+ /**
+ * @brief 清理UI元素资源
+ * 
+ * 该函数负责清理UI系统中的元素资源，包括：
+ * - 释放内存资源
+ * - 重置组件状态
+ * - 清理渲染缓冲区
+ * - 重置系统状态
+ * 
+ * @param uiContext UI上下文句柄，指向需要清理的UI上下文
+ * 
+ * @note 此函数会遍历所有UI组件并执行资源清理操作
+ * @warning 清理操作不可逆转，确保在调用前保存必要的状态
+ */
 void CleanupUIElementResources(longlong uiContext)
 
 {

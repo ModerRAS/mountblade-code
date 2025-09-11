@@ -225368,7 +225368,7 @@ void ProcessContextHandleAndUnicodeCalculation(long long *ContextHandle,uint64_t
 
 
 
-// 函数: void FUN_180187b40(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void ManageMemoryPoolBlock(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理上下文句柄和系统缓冲区操作
  * 
@@ -225429,7 +225429,7 @@ void ProcessCharacterTableAndUnicodeAdvancedCalculation(long long *ContextHandle
 
 
 
-// 函数: void FUN_180187bd0(long long *ContextHandle)
+// 函数: void ValidateSystemCharacterEncoding(long long *ContextHandle)
 /**
  * @brief 处理上下文句柄的内存管理操作
  * 
