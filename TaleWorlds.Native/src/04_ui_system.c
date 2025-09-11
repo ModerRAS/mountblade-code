@@ -125758,7 +125758,7 @@ void ExtractUIDataFromContext(UIHandle uiContext, UIDword *dataSource, UIDword *
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptedParam ^ (ulonglong)encryptionKeyArray);
 }
 
 
