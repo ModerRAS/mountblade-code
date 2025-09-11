@@ -1182,6 +1182,12 @@ typedef enum {
 #define stackParam000000d8 UIStackParameterD8
 #define lStack0000000000000038 UIContextRegister38
 #define lStack0000000000000058 UIAllocationLimit58
+#define fStackX_24 UITransformCoefficient24
+#define fStack0000000000000028 UINormalizedSum28
+#define fStack000000000000002c UINormalizedSum5C
+#define fStack0000000000000030 UIFinalResult30
+#define _DAT_180be2288 UITransformationMagicNumber
+#define fStack0000000000000108 UITransformResult108
 #define stackUInte8 UIResourceHandleE8
 #define localChar34 UIPreviousComponentContext
 #define localChar26 UIComponentContextBackup
@@ -138679,19 +138685,26 @@ UIHandle FUN_180744780(longlong uiContext)
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
+  // 处理事件代码
   eventCode = FUN_18078a0c0(uiContext + 0x720,colorBufferPointer + 2,CONCAT71((int7)(eventStatus >> 8),1));
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
+  
+  // 处理事件代码验证
   eventCode = FUN_180765990(colorBufferPointer[2],1);
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
+  
+  // 执行UI上下文处理
   func_0x000180743c20(uiContext,0x11);
   *(UIDword *)(colorBufferPointer + 4) = *(UIDword *)(uiBufferData + 0x127e8);
   maxProcessingCount = (int)*(uint *)(uiContext + 0x127ec) >> 0x1f;
   sourceDataInt = *(int *)(uiBufferData + 0x127e8) + 1;
   operationResult = (*(uint *)(uiContext + 0x127ec) ^ maxProcessingCount) - maxProcessingCount;
+  
+  // 处理源数据验证
   if (processingResult < sourceDataInt) {
     localInt7 = (int)((float)processingResult * 1.5);
     operationResult = sourceDataInt;
@@ -138707,11 +138720,13 @@ UIHandle FUN_180744780(longlong uiContext)
     operationResult = FUN_180747f10((longlong *)(uiContext + 0x127e0),localInt7);
     if (processingResult != 0) goto LAB_1807448f0;
   }
+  
+  // 更新缓冲区数据
   *(longlong **)(*(longlong *)(uiBufferData + 0x127e0) + (longlong)*(int *)(uiBufferData + 0x127e8) * 8) =
        colorBufferPointer;
   *(int *)(uiBufferData + 0x127e8) = *(int *)(uiBufferData + 0x127e8) + 1;
 LAB_1807448f0:
-                     WARNING: Subroutine does not return
+  // 执行UI系统清理
   ProcessUISystemCleanup(uiContext,0x11);
 }
 
