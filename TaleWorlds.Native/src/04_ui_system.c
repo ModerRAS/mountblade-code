@@ -126899,7 +126899,7 @@ ExitWithResourceCleanup:
 
  
 
- void FUN_18073b1ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize,
+ void ProcessUIContextDataEnhanced(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIByte bufferSize,
 /**
  * @brief 执行增强型UI上下文数据处理和资源管理
  * 
@@ -126965,7 +126965,7 @@ ExitWithResourceCleanup:
 
 
 
- void FUN_18073b215(void)
+ void ProcessUITextureDataWithValidation(void)
  * 
  * 该函数负责执行UI渲染任务并控制显示：
  * - 检查参数6并释放UI内存资源
@@ -128579,7 +128579,7 @@ ProcessUIContextMemoryCleanupAndRender:
 
  
 
- void FUN_18073c17d(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+ void ProcessUIContextLongOperationB(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 /**
  * @brief UI上下文长操作处理器B
  * 
@@ -128679,7 +128679,7 @@ void ProcessUIContextTaskCompletion(void)
 
 
 
- void FUN_18073c258(void)
+ void ProcessUIContextEventHandling(void)
 /**
  * @brief UI上下文事件处理器
  * 
