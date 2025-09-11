@@ -238943,9 +238943,9 @@ void InitializeSystemEventHandling(long long ContextHandle)
 
 
 
-96b10(long long ContextHandlevoid FUN_180196b10(long long ContextHandle
+void ProcessSystemEventHandlingWithTimeout(long long ContextHandle)
 {
-  long long *ContextHandle;
+  long long *ContextHandlePointer;
   void *SystemContext;
   long long SearchStartIndex;
   long long *SystemRegisterPointerX10;
@@ -238978,7 +238978,7 @@ void InitializeSystemEventHandling(long long ContextHandle)
 
 
 
-96b30(long long ContextHandlevoid FUN_180196b30(long long ContextHandle
+void ResetSystemEventHandling(long long ContextHandle)
 {
   *(void *)(ContextHandle + 0x40) = &SystemNullTemplate;
   if (*(long long *)(ContextHandle + 0x48) != 0) {
