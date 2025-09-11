@@ -286,6 +286,11 @@ typedef enum {
 #define ProcessUIEventWithSize FUN_18073319f               // 处理UI事件与大小
 #define ProcessUIEventWithShortSize FUN_1807332e3          // 处理UI事件与Short大小
 
+// UI系统核心处理函数
+#define ProcessUIContextDataTransform FUN_180781117        // 处理UI上下文数据转换
+#define ExecuteUISystemSimpleProcessing FUN_1807812a0       // 执行UI系统简单处理
+#define ProcessUIDataSourceWithContextValidation FUN_1807812d0 // 处理UI数据源和上下文验证
+
 // UI数据处理相关函数
 #define ProcessUIDataWithWordBuffer FUN_180733a10          // 处理UI数据与Word缓冲区
 #define ResetUIDataProcessing FUN_180733b18                // 重置UI数据处理
@@ -9246,6 +9251,24 @@ UIHandle GetUIStatusFlag(void)
  * @return void 无返回值
  * 
  * @note 原始函数名: InitializeUISystem
+ */
+/**
+ * @brief 初始化UI系统
+ * 
+ * 初始化游戏UI系统的核心组件，包括缓冲区管理、系统回调设置和错误处理机制。
+ * 该函数负责建立UI系统的基础架构，确保后续UI操作能够正常运行。
+ * 
+ * @param SystemCallback 系统回调函数指针数组，用于处理系统级事件
+ * @return void 无返回值
+ * 
+ * 初始化过程包括：
+ * - 系统同步锁初始化
+ * - 缓冲区索引验证和设置
+ * - 错误处理机制配置
+ * - 系统回调函数注册
+ * 
+ * @note 如果缓冲区索引超过阈值，会触发错误处理程序
+ * @warning 必须在调用其他UI函数之前调用此函数
  */
 void InitializeUISystem(UIFunctionPtr *SystemCallback)
 {
@@ -200029,7 +200052,20 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
 
 
 
-byte FUN_180781117(longlong uiContext)
+/**
+ * @brief 处理UI上下文数据转换
+ * 
+ * 该函数负责处理UI上下文中的数据转换，包括浮点数计算和渲染变换。
+ * 函数会遍历缓冲区中的数据，执行数学运算，并调用渲染变换函数。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * 
+ * @return 返回处理结果的状态字节
+ * 
+ * @note 原始函数名：FUN_180781117
+ * @note 该函数涉及复杂的浮点数运算和UI渲染变换
+ */
+byte ProcessUIContextDataTransform(longlong uiContext)
 
 {
   float baseValue;
@@ -200068,7 +200104,18 @@ byte FUN_180781117(longlong uiContext)
 
 
 
-UIByte FUN_1807812a0(void)
+/**
+ * @brief 执行UI系统简单处理
+ * 
+ * 该函数执行UI系统的简单处理操作，主要是调用内部处理函数
+ * 并返回事件处理状态。
+ * 
+ * @return 返回UI事件处理状态字节
+ * 
+ * @note 原始函数名：FUN_1807812a0
+ * @note 这是一个简单的包装函数，用于调用内部处理函数
+ */
+UIByte ExecuteUISystemSimpleProcessing(void)
 
 {
   UIByte eventHandleB;
