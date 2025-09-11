@@ -15757,7 +15757,7 @@ void RegisterNetworkMessageHandler(void) {
   NetworkSearchNode = NetworkSystemRootNode;
   NetworkTraversalNode = (void**)NetworkSystemRootNode[1];
   while (NetworkNodeInitializedFlag == '\0') {
-    NetworkDataNodeComparisonResult = memcmp(NetworkTraversalNode + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
+    NetworkDataComparisonResult = memcmp(NetworkTraversalNode + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
     if (NetworkDataComparisonResult < 0) {
       NetworkNextNodeInChain = (void**)NetworkTraversalNode[2];
       NetworkTraversalNode = NetworkSearchNode;
@@ -241366,7 +241366,19 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
 
 
 
-void FUN_1801998a0(long long ContextHandle,uint32_t OperationBufferSize)
+/**
+ * @brief 处理系统上下文句柄和内存池索引迭代操作
+ * 
+ * 该函数负责遍历系统上下文中的内存池，对每个内存池项执行指定的操作。
+ * 通过内存池索引进行迭代，处理每个上下文句柄的操作。
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1801998a0
+ * @warning 此函数涉及内存池操作，需要确保ContextHandle有效性
+ */
+void ProcessContextMemoryPoolIteration(long long ContextHandle, uint32_t OperationBufferSize)
 {
   long long *ContextHandle;
   unsigned long long MemoryPoolIndex;
