@@ -256227,7 +256227,22 @@ void ProcessSystemContextFloatOperations(long long SystemContextHandle,float Flo
 
 
 
-08720(long long *ContextHandle,unsigned long long OperationBufferSize,float *Utf8SourcePointer,int Utf16EndPointervoid FUN_180208720(long long *ContextHandle,unsigned long long OperationBufferSize,float *Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief 处理系统浮点数据操作和上下文管理
+ * 
+ * 此函数负责处理系统中的浮点数据操作，包括：
+ * - 浮点数运算和转换
+ * - 系统上下文数据管理
+ * - 内存池操作和数据缓冲区处理
+ * - 字符编码和Unicode处理
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void
+ */
+void ProcessSystemFloatDataOperation(long long *ContextHandle, unsigned long long OperationBufferSize, float *Utf8SourcePointer, int Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   uint32_t MemoryPoolIndex;

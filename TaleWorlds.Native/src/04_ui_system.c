@@ -134246,7 +134246,7 @@ void FUN_180740030(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt150,&stackLong158);
+  operationResult = ValidateUIResource(uiContext,&stackUInt150,&stackLong158);
   if (operationResult == 0) {
     stackUInt160 = 0;
     pstackUInt168 = (UIByte *)CONCAT71(pstackUInt168._1_7_,1);
@@ -134293,7 +134293,7 @@ void FUN_180740190(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt140,&stackLong148);
+  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = ProcessUIDataBuffer(stackUInt140,dataSource,targetBuffer,4);
     if (operationResult == 0) goto FUN_180740283;
@@ -134337,7 +134337,7 @@ void FUN_1807401ad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  operationResult = FUN_180763070(uiContext,&stack0x00000038,&stack0x00000030);
+  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = ProcessUIDataBuffer(stackParam00000038,dataSource,targetBuffer,4);
     if (operationResult == 0) goto FUN_180740283;
@@ -134426,7 +134426,7 @@ void FUN_1807402d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt140,&stackLong148);
+  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = func_0x00018075e4f0(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_1807403bf;
@@ -134470,7 +134470,7 @@ void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  operationResult = FUN_180763070(uiContext,&stack0x00000038,&stack0x00000030);
+  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = func_0x00018075e4f0(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_1807403bf;
@@ -134557,7 +134557,7 @@ void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x00018075e640(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_1807404aa;
@@ -134596,7 +134596,7 @@ void FUN_1807404e0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt140,&stackLong148);
+  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = FUN_18075e9c0(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_1807405cf;
@@ -134640,7 +134640,7 @@ void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  operationResult = FUN_180763070(uiContext,&stack0x00000038,&stack0x00000030);
+  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = FUN_18075e9c0(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_1807405cf;
@@ -134725,7 +134725,7 @@ void FUN_180740620(UIHandle uiContext,UIHandle dataSource)
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = FUN_180763070(uiContext,astackUInt128,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt128,0);
   if (((processingResult != 0) || (operationResult = func_0x00018075ecb0(astackUInt128[0],dataSource), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
@@ -134757,7 +134757,7 @@ void FUN_1807406e0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   ulonglong stackUInt58;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt198;
-  operationResult = FUN_180763070(uiContext,astackUInt168,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt168,0);
   if (operationResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
@@ -134852,7 +134852,7 @@ void FUN_1807408b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   ulonglong stackUInt38;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  operationResult = FUN_180763070(uiContext,stackArray148,0);
+  operationResult = ValidateUIResource(uiContext,stackArray148,0);
   if (((processingResult != 0) || (operationResult = func_0x00018075f1a0(stackArray148[0],dataSource,targetBuffer), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
@@ -134917,7 +134917,7 @@ void FUN_1807409b0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   ulonglong stackUInt48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  operationResult = FUN_180763070(uiContext,astackUInt158,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt158,0);
   if (operationResult == 0) {
     pstackUInt168 = (UIByte *)CONCAT44(pstackUInt168._4_4_,resultPointer);
     operationResult = FUN_18075f1e0(astackUInt158[0],dataSource,targetBuffer,bufferSize);
@@ -135001,7 +135001,7 @@ void FUN_180740b40(UIHandle uiContext,UIHandle dataSource)
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = FUN_180763070(uiContext,astackUInt128,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt128,0);
   if (((processingResult != 0) || (operationResult = func_0x00018075f350(astackUInt128[0],dataSource), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
@@ -135031,7 +135031,7 @@ void FUN_180740c00(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x00018075f440(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_180740c9a;
@@ -135066,7 +135066,7 @@ void FUN_180740cd0(UIHandle uiContext,UIHandle dataSource)
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  operationResult = FUN_180763070(uiContext,astackUInt128,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt128,0);
   if (((processingResult != 0) || (operationResult = func_0x00018075f460(astackUInt128[0],dataSource), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
@@ -135096,7 +135096,7 @@ void FUN_180740d90(UIHandle uiContext)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&pstackLong120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&pstackLong120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = (**(code **)(*pstackLong120 + 0x10))();
     if (operationResult == 0) goto LAB_180740e13;
@@ -135133,7 +135133,7 @@ void FUN_180740e50(UIHandle uiContext)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = FUN_1807603e0(stackUInt120);
     if (operationResult == 0) goto LAB_180740ed2;
@@ -135170,7 +135170,7 @@ void FUN_180740f10(UIHandle uiContext,UIByte dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = FUN_180762070(stackUInt120,dataSource,1);
     if (operationResult == 0) goto LAB_180740faf;
@@ -135207,7 +135207,7 @@ void FUN_180740ff0(UIHandle uiContext,UIByte dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x0001807621a0(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18074108c;
@@ -135244,7 +135244,7 @@ void FUN_1807410d0(UIHandle uiContext,UIHandle dataSource)
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = ValidateUIResource(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x0001807621e0(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18074116a;
@@ -135283,7 +135283,7 @@ void FUN_1807411a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt150,&stackLong158);
+  operationResult = ValidateUIResource(uiContext,&stackUInt150,&stackLong158);
   if (operationResult == 0) {
     operationResult = FUN_1807621f0(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto FUN_1807412d1;
@@ -135332,7 +135332,7 @@ void FUN_1807411bd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
   param_6 = 0;
-  operationResult = FUN_180763070(uiContext,&param_7,&param_6);
+  operationResult = ValidateUIResource(uiContext,&param_7,&param_6);
   if (operationResult == 0) {
     operationResult = FUN_1807621f0(param_7,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto FUN_1807412d1;
@@ -135432,7 +135432,7 @@ void FUN_180741320(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
-  operationResult = FUN_180763070(uiContext,&stackUInt140,&stackLong148);
+  operationResult = ValidateUIResource(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = FUN_1807623d0(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_180741413;
@@ -135476,7 +135476,7 @@ void FUN_18074133d(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
-  operationResult = FUN_180763070(uiContext,&stack0x00000038,&stack0x00000030);
+  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
     operationResult = FUN_1807623d0(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_180741413;
@@ -135565,7 +135565,7 @@ void FUN_180741460(UIHandle uiContext,UIDword dataSource,UIByte targetBuffer)
   ulonglong stackUInt38;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  operationResult = FUN_180763070(uiContext,stackArray148,0);
+  operationResult = ValidateUIResource(uiContext,stackArray148,0);
   if (((processingResult != 0) || (operationResult = func_0x000180762600(stackArray148[0],dataSource,targetBuffer), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
@@ -135630,7 +135630,7 @@ void FUN_180741560(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   ulonglong stackUInt48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  operationResult = FUN_180763070(uiContext,astackUInt158,0);
+  operationResult = ValidateUIResource(uiContext,astackUInt158,0);
   if (((processingResult != 0) || (operationResult = FUN_180762660(astackUInt158[0],dataSource,targetBuffer,bufferSize), processingResult != 0))
      && ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(stackArray148,0x100,dataSource);
@@ -135703,7 +135703,7 @@ void FUN_1807416a0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
   ulonglong stackUInt38;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  operationResult = FUN_180763070(uiContext,stackArray148,0);
+  operationResult = ValidateUIResource(uiContext,stackArray148,0);
   if (((processingResult != 0) || (operationResult = func_0x000180762a70(stackArray148[0],dataSource,targetBuffer), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
@@ -135767,7 +135767,7 @@ void FUN_1807417b0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
   ulonglong stackUInt38;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  operationResult = FUN_180763070(uiContext,stackArray148,0);
+  operationResult = ValidateUIResource(uiContext,stackArray148,0);
   if (((processingResult != 0) || (operationResult = func_0x000180762af0(stackArray148[0],dataSource,targetBuffer), processingResult != 0)) &&
      ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
     uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
@@ -138286,7 +138286,7 @@ LAB_1807439ba:
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
-    eventCode = FUN_180743b50(uiContext,dataSource);
+    eventCode = GenerateUIEventCode(uiContext,dataSource);
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
@@ -138299,7 +138299,7 @@ LAB_1807439ba:
     if ((int)eventCodeType != 0) {
       return eventCodeType;
     }
-    eventCode = FUN_180743b50(uiContext,dataSource);
+    eventCode = GenerateUIEventCode(uiContext,dataSource);
     uiValidationResult = (int)eventCodeType;
   }
   if (uiValidationResult != 0) {
@@ -409858,6 +409858,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统资源验证函数
 // 原始函数名: FUN_180763070
 #define ValidateUIResource FUN_180763070
+
+// UI系统事件码生成函数
+// 原始函数名: FUN_180743b50
+#define GenerateUIEventCode FUN_180743b50
 
 
 
