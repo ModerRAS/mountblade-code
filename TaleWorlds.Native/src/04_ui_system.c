@@ -126607,18 +126607,7 @@ void ExecuteUIRenderTaskWithResourceRelease(uint32_t param6, uint64_t stackParam
 
 
 
- void FUN_18073b058(void)
-/**
- * @brief 执行UI数据缓冲区处理和纹理填充
- * 
- * 该函数负责处理UI数据缓冲区并执行纹理填充操作：
- * 1. 复制数据到缓冲区
- * 2. 执行数据验证和控制
- * 3. 处理纹理数据填充
- * 4. 执行上下文数据操作
- */
-#define ProcessUIDataBufferAndTextureFill FUN_18073b058
-void ProcessUIDataBufferAndTextureFill(void)
+ void ProcessUIDataBufferAndTextureFill(void)
 
 {
   int operationResult;
