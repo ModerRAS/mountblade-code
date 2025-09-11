@@ -196,6 +196,21 @@ typedef enum {
 #define processingResult UIProcessingResultValue
 #define EventprocessingStatus UIEventprocessingStatusValue
 
+// UI系统全局变量语义化定义
+#define UNK_18097ecf0 UIEventDataTable            // UI事件数据表
+#define UNK_18097ed30 UIComponentDataTable         // UI组件数据表
+#define UNK_18097edf8 UIRenderBufferTable          // UI渲染缓冲区表
+#define UNK_18097ee08 UITextureResourceTable       // UI纹理资源表
+#define UNK_18097ee30 UIAnimationDataTable         // UI动画数据表
+#define UNK_18097ed40 UILayoutDataTable           // UI布局数据表
+#define UNK_18097ed50 UIFontResourceTable          // UI字体资源表
+#define UNK_18098b9b8 UIShaderDataTable           // UI着色器数据表
+#define UNK_18097eeb8 UIMemoryPoolTable            // UI内存池表
+#define UNK_18097eec8 UIInputDataTable             // UI输入数据表
+#define UNK_180807714 UISystemConfigTable          // UI系统配置表
+#define UNK_18097d050 UIResourceDataTable          // UI资源数据表
+#define UNK_18097cfe0 UIEventContextTable          // UI事件上下文表
+
 // 未美化变量名语义化定义
 #define stack0x00000000 UIStackBasePointer
 #define stack0x00000040 UIStackDataBuffer
@@ -124507,13 +124522,18 @@ void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextRenderPipeline,&stack0x00000040);
   }
-FUN_180739dad:
-  if (lStack0000000000000030 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
-}
+/**
+ * @brief 执行UI渲染任务和内存资源管理
+ * 
+ * 该函数负责执行UI渲染任务并管理相关的内存资源：
+ * - 检查栈参数并释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @param stackParameter30 栈参数，用于判断是否需要释放内存资源
+ * @param stackParameter140 栈参数，用于计算渲染任务地址
+ * @param stackBaseAddr 栈基址指针
+ */
+void ExecuteUIRenderTaskWithMemoryManagement(uint32_t stackParameter30, uint64_t stackParameter140, uint64_t* stackBaseAddr)
 
 
 
@@ -128470,7 +128490,7 @@ void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
     ProcessUIDataBufferClear(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809576e0);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationRenderData);
   }
 LAB_18073cb2b:
   if (RenderContextSize != 0) {
@@ -128502,7 +128522,7 @@ void FUN_18073cb70(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_1809575c8);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationEventData);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
@@ -128535,7 +128555,7 @@ void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
     ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957680);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationAnimationData);
   }
 LAB_18073cccb:
   if (RenderContextSize != 0) {
@@ -128575,7 +128595,7 @@ void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
     ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UNK_180957770);
+    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationLayoutData);
   }
 LAB_18073cdb6:
   if (RenderContextSize != 0) {
@@ -137561,7 +137581,7 @@ UIHandle FUN_1807455f0(longlong uiContext)
   colorBufferPointer = (longlong *)*colorBufferPointer;
   processStatus = 0;
   peventDataIndex = (longlong *)
-           FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0xb0,&UNK_18097d050,0x7b,0,0,1);
+           FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0xb0,&UIResourceDataTable,0x7b,0,0,1);
   if (peventDataIndex == (longlong *)0x0) {
     processStatus = 0x26;
   }
@@ -137571,7 +137591,7 @@ UIHandle FUN_1807455f0(longlong uiContext)
     peventDataIndex[2] = (longlong)uiMemoryPointer;
     *uiMemoryPointer = (longlong)uiMemoryPointer;
     peventDataIndex[4] = 0;
-    *peventDataIndex = (longlong)&UNK_18097cfe0;
+    *peventDataIndex = (longlong)&UIEventContextTable;
     peventDataIndex[10] = 0;
     peventDataIndex[0xb] = 0;
     peventDataIndex[0xc] = 0;
@@ -137584,7 +137604,7 @@ UIHandle FUN_1807455f0(longlong uiContext)
     peventDataIndex[0x12] = 0;
     *(UIDword *)(peventDataIndex + 0x13) = 0xffffffff;
     *(UIDword *)((longlong)peventDataIndex + 0x9c) = 0;
-    contextDataHandle = FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x10020,&UNK_18097d050,0x83,0,0,1)
+    contextDataHandle = FUN_180741e10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x10020,&UIResourceDataTable,0x83,0,0,1)
     ;
     peventDataIndex[5] = contextDataHandle;
     if (contextDataHandle == 0) {
