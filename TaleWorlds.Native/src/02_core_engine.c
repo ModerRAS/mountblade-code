@@ -653,6 +653,35 @@
 #define AnalyzeSystemBottlenecks FUN_180188c90                  // 分析系统瓶颈
 #define OptimizeSystemPerformance FUN_180188dd0                  // 优化系统性能
 
+// 系统数据处理和验证函数
+#define FUN_18019cf00 ConfigureSystemStringOffset                 // 配置系统字符串偏移
+#define FUN_18022d470 ValidateSystemDataLength                    // 验证系统数据长度
+#define FUN_18022cd30 ProcessSystemDataWithParameters              // 处理带参数的系统数据
+#define FUN_1802decc0 ExecuteSystemDataConversion                  // 执行系统数据转换
+#define FUN_18019d190 InitializeSystemDataPointer                  // 初始化系统数据指针
+#define FUN_1801b84e0 ValidateSystemOperationStatus                // 验证系统操作状态
+#define FUN_1801c1720 FinalizeSystemCleanupOperation               // 完成系统清理操作
+#define FUN_180080810 ProcessSystemCharacterData                  // 处理系统字符数据
+#define FUN_180160500 ValidateSystemContextHandle                  // 验证系统上下文句柄
+#define FUN_180083b20 ProcessSystemUnsignedValues                 // 处理系统无符号值
+#define FUN_180319320 CalculateSystemMemoryAllocation             // 计算系统内存分配
+#define FUN_1801a4e70 AllocateSystemMemoryBuffer                  // 分配系统内存缓冲区
+#define FUN_1801b2460 ReleaseSystemMemoryBuffer                   // 释放系统内存缓冲区
+#define FUN_180379810 ValidateSystemMemoryAllocation              // 验证系统内存分配
+#define FUN_1803769d0 CleanupSystemMemoryResources                // 清理系统内存资源
+#define FUN_1801aedf0 ResetSystemMemoryAllocation                 // 重置系统内存分配
+#define FUN_1802f07e0 ProcessSystemValidationFlag                 // 处理系统验证标志
+#define FUN_1802f0f10 ExecuteSystemValidation                     // 执行系统验证
+#define FUN_180094e80 InitializeSystemProcessingBuffer            // 初始化系统处理缓冲区
+#define FUN_180276f30 ProcessSystemContextData                    // 处理系统上下文数据
+#define FUN_1801a20e0 ResetSystemProcessingState                  // 重置系统处理状态
+#define FUN_1801b9a40 InitializeSystemUnicodeContext              // 初始化系统Unicode上下文
+#define FUN_18020a7b0 ProcessSystemUnicodeConversion              // 处理系统Unicode转换
+#define FUN_1802edfe0 ValidateSystemDataParameters                // 验证系统数据参数
+#define FUN_18063b5f0 ProcessSystemEventData                      // 处理系统事件数据
+#define FUN_1801c1140 ExecuteSystemStringProcessing               // 执行系统字符串处理
+#define FUN_1801c0fb0 ConvertSystemCharacterData                  // 转换系统字符数据
+
 /**
  * @brief 配置核心引擎指针
  * 

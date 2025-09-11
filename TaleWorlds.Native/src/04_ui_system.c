@@ -10081,19 +10081,22 @@ void HandleUIEvent(UIFunctionPtr *eventHandler, UIHandle eventContext, longlong 
 #define UIStackEventData &UIStackEventData
 #define UIStackLayoutData &UIStackLayoutData
 
- 激活UI系统的主函数
- 
- 该函数负责激活整个UI系统，使其开始响应用户输入和渲染UI元素。
- 它会初始化必要的事件分发器，并设置系统的激活状态。
- 
- @return 无返回值
+ /**
+ * @brief 激活UI系统的主函数
+ * 
+ * 该函数负责激活整个UI系统，使其开始响应用户输入和渲染UI元素。
+ * 它会初始化必要的事件分发器，并设置系统的激活状态。
+ * 
+ * @return void 无返回值
+ */
 void ActivateUISystem(void)
 
 {
-  code *renderFunctionPointer;
+  UIFunctionPtr *renderFunctionPointer;
   UIByte *systemStatusFlag;
-  longlong renderContext;
+  UIHandle renderContext;
   
+  systemStatusFlag = (UIByte *)0x1;  // 初始化系统状态标志
   *systemStatusFlag = 1;
   renderFunctionPointer = FunctionPointer;
   if (FunctionPointer == (UIFunctionPtr *)0x0) {
@@ -10110,18 +10113,7 @@ void ActivateUISystem(void)
 
 
 
- void UIEmptyFunction(void)
-/**
- * 空函数，用于占位或未来扩展
- * 
- * 这是一个占位函数，通常用于：
- * - 保留函数接口以备将来扩展
- * - 作为默认的空实现
- * - 在某些条件分支中作为空操作
- * 
- * @return 无返回值
- */
-/**
+ /**
  * @brief UI空函数
  * 
  * 这是一个空的UI函数，通常用作占位符或默认函数指针。
