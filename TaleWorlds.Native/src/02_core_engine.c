@@ -261325,7 +261325,7 @@ void ProcessSystemContextMemoryManagement(long long ContextHandle,uint64_t Opera
           InputDataLength = (int)(PrimaryProcessingStatusFlag[6] - *ContextHandle >> 3);
           if (0 < InputDataLength) {
             do {
-              FUN_18020d310(*(void *)(*ContextHandle + OperationResult * 8));
+              ProcessSystemBufferValidation(*(void *)(*ContextHandle + OperationResult * 8));
               OperationResult = OperationResult + 1;
             } while ((long long)OperationResult < (long long)InputDataLength);
           }
