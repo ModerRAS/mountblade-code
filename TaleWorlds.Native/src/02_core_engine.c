@@ -2601,6 +2601,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemContextHandleData FUN_180194350     // 处理系统上下文句柄数据
 #define ReleaseSystemContextHandle FUN_180194370          // 释放系统上下文句柄
 #define ProcessBufferAllocationAndEventHandling FUN_1801944b0      // 处理缓冲区分配和事件处理
+#define ProcessCharacterTableAndBufferStatus FUN_1801948b0         // 处理字符表和缓冲区状态
 #define ConfigureSystemContextHandle FUN_1801944b0        // 配置系统上下文句柄
 #define InitializeSystemContextAndMemory FUN_180194530    // 初始化系统上下文和内存
 #define ProcessSystemContextValidation FUN_1801946c0      // 处理系统上下文验证

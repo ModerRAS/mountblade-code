@@ -2953,7 +2953,7 @@
  * 
  * 该函数负责处理系统数据传输操作，包括数据验证、完整性检查和传输控制
  * 
- * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
+ * @note 系统数据传输处理器
  */
 #define FUN_18089e230 ProcessSystemDataTransferWithValidation
 #define FUN_180062300 ProcessSystemDataTransferWithValidation
