@@ -53329,7 +53329,7 @@ void CoreEngineProcessSystemContext(void
   unsigned long long MemoryAddressMaskPointer1;
   uint *MemoryAddressMaskPointer2;
   bool ZeroFlagValidation;
-  bool BooleanValidationFlag43;
+  bool SystemValidationFlag43;
   uint32_t stackParameter30;  // 栈参数30，用于存储参数数据
   unsigned long long stackAllocatedMemorySize;  // 栈内存大小，用于内存分配
   uint64_t *stackProcessingStatusFlag40;  // 栈数据指针40，用于指向数据
@@ -90921,7 +90921,7 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t ContextHandle,char Op
   uint32_t uStack_1f8;
   uint64_t uStack_1f0;
   uint64_t DataProcessingStatus;
-  char cStack_1e0;
+  char SystemStackFlag1e0;
   uint64_t SystemStackData;
   uint64_t uStack_1d0;
   uint64_t SystemValue1c8;
@@ -90971,7 +90971,7 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t ContextHandle,char Op
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = uStack_218 & 0xffffffff00000000;
-  cStack_1e0 = OperationBufferSize;
+  SystemStackFlag1e0 = OperationBufferSize;
   StringProcessingStatus = (void *           BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)CharacterTablePointer >> 8),0x13));
   *(uint8_t *)StringProcessingStatus = 0;
   MemoryAllocationPointer = StringProcessingStatus;
@@ -92002,7 +92002,7 @@ SystemValidationComplete: // 原始标签：LAB_1801035ea，SystemValidationComp
     }
   }
   SystemChecksum = GetSystemValueByIndex(MemoryPoolIndex,ProcessedCharacter);
-  if (cStack_1e0 != '\0') {
+  if (SystemStackFlag1e0 != '\0') {
     InitializeSystemResourceAllocationAndTimeoutQueue(SystemChecksum,1);
   }
   DataProcessingStatus = apErrorCode;
