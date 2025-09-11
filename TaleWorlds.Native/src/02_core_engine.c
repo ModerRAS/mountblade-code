@@ -227742,7 +227742,6 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandl
 
 
 
-// 函数: void FUN_180187cd0(long long *ContextHandle)
 /**
  * @brief 处理字符表和数据初始化
  * 
@@ -232011,7 +232010,6 @@ void ManageSystemContextHandleSize(long long ContextHandle, long long *ContextHa
 
 
 
-// 函数: void FUN_18018bd0d(uint32_t *ContextHandle)
 /**
  * @brief 系统句柄验证和数据提取函数
  * 
@@ -262245,7 +262243,7 @@ long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,l
   ContextHandle[0xc] = Utf16EndPointer;
   ContextHandle[0xd] = 0;
   ProcessingConfigurationFlag = Utf8SourcePointer;
-  MemoryBlockIndex = FUN_18005ee30(Utf16EndPointer,1,&TemporaryBuffer,Utf16EndPointer,0xfffffffffffffffe);
+  MemoryBlockIndex = ConvertSystemDataWithParameters(Utf16EndPointer,1,&TemporaryBuffer,Utf16EndPointer,0xfffffffffffffffe);
   if (MemoryBlockIndex != 0) {
     SystemDataRegistry = MemoryBlockIndex + 8;
   }

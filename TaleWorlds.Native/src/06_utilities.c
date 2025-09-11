@@ -31818,8 +31818,8 @@ void ProcessDataTypes(void)
   DataBuffer *StackFrameContext;         // 栈帧上下文 - 栈帧的上下文信息
   int64_t systemContext;                 // 系统上下文 - 系统的上下文信息
   DataBuffer *MemoryResourcePointerSecondary;    // 内存资源指针2 - 第二个内存资源指针
-  float dataPointerD;                    // 数据指针D - D类型数据的指针
-  int64_t systemContext;                 // 系统上下文 - 系统的上下文信息（重复定义）
+  float inputFloatValue;                    // 输入浮点值 - 用于存储输入的浮点数值
+  int64_t systemContextSecondary;                 // 系统上下文次级 - 系统的次级上下文信息
   uint64_t OperationResult3;             // 操作结果3 - 第3个操作结果
   int64_t ContextPointer;                  // 上下文指针 - 指向上下文信息的指针
   DataWord FloatResultA;                  // 浮点结果A - 第一个浮点计算结果

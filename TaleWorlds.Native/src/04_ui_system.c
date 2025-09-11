@@ -950,6 +950,19 @@ typedef enum {
 #define func_0x00018074b830 ProcessUIDataBufferCleanup          // 处理UI数据缓冲区清理
 #define func_0x00018074be80 ValidateUIDataWithBufferControl     // 验证UI数据与缓冲区控制
 
+// UI系统内存处理函数
+#define func_0x00018005d390 ProcessUIMemoryAllocation           // 处理UI内存分配
+#define func_0x00018066c060 ProcessUIStringComparison           // 处理UI字符串比较
+#define func_0x00018066c000 ProcessUIComponentStringComparison   // 处理UI组件字符串比较
+#define func_0x00018004b9a0 GetUIResourcePointer                // 获取UI资源指针
+#define func_0x00018069c2d0 InitializeUIComponentState          // 初始化UI组件状态
+#define func_0x00018066ecc0 ProcessUIComponentDataValidation     // 处理UI组件数据验证
+#define func_0x00018069d1c0 ProcessUIDataSourceValidation       // 处理UI数据源验证
+#define func_0x00018069ba40 ProcessUIContextDataSourceValidation  // 处理UI上下文数据源验证
+#define func_0x0001807534d0 ProcessUIBufferWithValidation         // 处理带验证的UI缓冲区
+#define func_0x000180753560 ProcessUIContextWithDataSource        // 处理带数据源的UI上下文
+#define func_0x000180753580 ProcessUIComponentWithDataSource      // 处理带数据源的UI组件
+
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
 #define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0
@@ -134118,7 +134131,7 @@ void ProcessUIContextDataAndRenderTask(UIHandle uiContext, UIDword dataSource, U
   memoryResourceFlag = 0;
   operationResult = InitializeUIRenderContext(uiContext, &tempBufferHandle, &memoryResourceFlag);
   if (operationResult == 0) {
-    operationResult = func_0x0001807534d0(tempBufferHandle, dataSource, targetBuffer);
+    operationResult = ProcessUIBufferWithValidation(tempBufferHandle, dataSource, targetBuffer);
     if (operationResult == 0) goto CleanupAndReturn;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -134265,7 +134278,7 @@ void ProcessUIContextAndDataSource(UIHandle uiContext, UIHandle dataSource)
   renderContextSize = 0;
   operationResult = InitializeUIRenderContext(uiContext, &contextHandle, &renderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180753560(contextHandle, dataSource);
+    operationResult = ProcessUIContextWithDataSource(contextHandle, dataSource);
     if (operationResult == 0) goto DataValidationComplete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -134314,7 +134327,7 @@ void ProcessUIContextDataSourceOperation(UIHandle uiContext, UIHandle dataSource
   RenderContextSize = 0;
   operationResult = InitializeUIRenderContext(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
-    operationResult = func_0x000180753580(stackUInt120,dataSource);
+    operationResult = ProcessUIComponentWithDataSource(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073f60a;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
