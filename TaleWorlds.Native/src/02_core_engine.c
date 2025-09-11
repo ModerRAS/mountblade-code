@@ -192,6 +192,16 @@
 #define FUN_18020b790 LockSystemResource                                 // 锁定系统资源
 #define FUN_18020c8f0 InitializeCoreEngineConfiguration                  // 初始化核心引擎配置
 #define FUN_18020da10 ProcessSystemContextOperation                      // 处理系统上下文操作
+
+// 系统数据流处理函数语义化宏定义
+#define FUN_18009ec80 ProcessSystemDataStream                            // 处理系统数据流
+
+// 系统数据转换函数语义化宏定义
+#define FUN_18005ee30 ConvertSystemDataWithParameters                    // 转换系统数据与参数
+
+// 系统数据处理函数语义化宏定义
+#define FUN_18020f620 ProcessSystemDataOperation                         // 处理系统数据操作
+#define FUN_180060fc0 ValidateSystemContextConfiguration                  // 验证系统上下文配置
 /**
  * @brief 处理系统数据传输
  * 
@@ -12020,6 +12030,9 @@ const void* const SystemCallbackSystemFunctionPointerErrorEvent = (void*)0x18015
 
 const void* const SystemStackBufferA = (void*)0x18010cb70;
 const void* const SystemStackBufferB = (void*)0x18010cb60;
+const void* const SystemStackBufferC = (void*)0x18010cb50;
+const void* const SystemStackBufferD = (void*)0x18010cb40;
+const void* const SystemStackBufferE = (void*)0x18010cb30;
 const void* const SystemLocalDataBuffer = (void*)0x180103b59;
 
 // 系统错误处理模板常量
@@ -262179,8 +262192,8 @@ long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,l
   *(void **)(auStack_7d0 + (long long)*(int *)(puStack_7d8 + 4) + -8) = &RenderConfigDataD;
   *(int *)((long long)&iStack_7dc + (long long)*(int *)(puStack_7d8 + 4)) =
        *(int *)(puStack_7d8 + 4) + -0xa8;
-  FUN_18009ec20(auStack_7d0);
-  CharacterTablePointer = FUN_18009ec80(auStack_7d0,SystemParameterBuffer,0x12);
+  InitializeSystemStreamProcessor(auStack_7d0);
+  CharacterTablePointer = ProcessSystemDataStream(auStack_7d0,SystemParameterBuffer,0x12);
   if (CharacterTablePointer == 0) {
     _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               (auStack_7d0 + (long long)*(int *)(puStack_7d8 + 4) + -8,2);
@@ -262198,7 +262211,7 @@ long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,l
   *(void **)(auStack_7d0 + (long long)*(int *)(puStack_7d8 + 4) + -8) = &RenderConfigDataD;
   *(int *)((long long)&iStack_7dc + (long long)*(int *)(puStack_7d8 + 4)) =
        *(int *)(puStack_7d8 + 4) + -0xa8;
-  FUN_18009fb60(auStack_7d0);
+  CleanupSystemStreamProcessor(auStack_7d0);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(auStack_7c8);
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(auStack_730);
   puStack_598 = &ThreadLocalStorageTemplate;
