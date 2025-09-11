@@ -126003,8 +126003,7 @@ void ExecuteUIRenderContextTask(void)
 
 
 
- void FUN_18073adad(void)
-void FUN_18073adad(void)
+ void ReleaseUIResourceAndExecuteRender(void)
 
 {
   longlong stackParam00000030;

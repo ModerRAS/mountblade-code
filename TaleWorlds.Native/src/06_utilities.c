@@ -10670,15 +10670,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180892e35 - 系统配置验证函数A0（替代版本）
 // 功能：验证系统配置的有效性，提供替代的验证方法
-#define ValidateSystemConfigurationA0Alternative FUN_180892e35
+#define ValidateSystemConfigurationA0Alternative ValidateSystemConfigurationWithAlternativeMethod
 
 // 原始函数名：FUN_180897d20 - 数据块安全处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
-#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+#define ProcessDataBlockWithSecurityCheckA0 ProcessDataBlockWithSecurityValidation
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构并执行相关操作
-#define ValidateDataStructureA0 FUN_180897d90
+#define ValidateDataStructureA0 ValidateDataStructureWithIntegrityCheck
 
 // 原始函数名：FUN_180899040 - 数据验证处理函数A0
 // 功能：验证并处理数据，包含多个验证阶段
@@ -31677,7 +31677,7 @@ void ProcessSecureData(int64_t *contextPointer, DataBuffer dataSource, DataBuffe
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构A0的有效性
-#define ValidateDataStructureA0 FUN_180897d90
+#define ValidateDataStructureA0 ValidateDataStructureWithIntegrityCheck
 
 /**
  * @brief 验证数据结构A0的有效性
