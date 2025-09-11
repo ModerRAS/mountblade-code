@@ -240135,13 +240135,13 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   if (ContextHandle[0x536] != 0) {
       ProcessSystemEventHandling();
   }
-  FUN_180389750(ContextHandle + 0x534);
-  FUN_180389000(ContextHandle + 0x52e);
+  ProcessSystemFileSystemCleanup(ContextHandle + 0x534);
+  ProcessSystemNetworkCleanup(ContextHandle + 0x52e);
   if (*(char *)((long long)ContextHandle + 0x2901) != '\0') {
     *(uint8_t *)((long long)ContextHandle + 0x2901) = 0;
-    FUN_1801c0df0(ContextHandle + 0x519);
+    ProcessSystemComponentCleanup(ContextHandle + 0x519);
   }
-  FUN_1801c0df0(ContextHandle + 0x519);
+  ProcessSystemComponentCleanup(ContextHandle + 0x519);
   ContextHandle[0x512] = &SystemNullTemplate;
   if (ContextHandle[0x513] != 0) {
       ProcessSystemEventHandling();
@@ -240181,7 +240181,7 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
   if ((long long *)ContextHandle[0x4ce] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0x4ce] + 0x38))();
   }
-  FUN_18024f2c0(ContextHandle + 0xae);
+  ProcessSystemComponentFinalization(ContextHandle + 0xae);
   if (ContextHandle[0xa8] != 0) {
       ProcessSystemEventHandling();
   }
@@ -240237,14 +240237,14 @@ void ProcessSystemConfigurationAndResourceManager(uint64_t *ContextHandle)
       ProcessSystemEventHandling();
   }
   ProcessSystemMemoryIteration(ContextHandle + 0x4d);
-  FUN_180383570(ContextHandle + 0x24);
+  ProcessSystemGraphicsFinalization(ContextHandle + 0x24);
   if ((code *)ContextHandle[0x22] != (code *)0x0) {
     (*(code *)ContextHandle[0x22])(ContextHandle + 0x20,0,0);
   }
   if (ContextHandle[0x1c] != 0) {
       ProcessSystemEventHandling();
   }
-  FUN_1801ba340();
+  ProcessSystemStateFinalization();
   if ((long long *)ContextHandle[0x12] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0x12] + 0x38))();
   }
