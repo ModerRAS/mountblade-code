@@ -44031,7 +44031,7 @@ ValidationStartHandler:
   }
   dataBufferSizeValid = *(uint *)(dataBuffer + 8) < 0x34;
   hasValidSystemName = (char)memoryRegionBase;
-  systemStatusBuffer[0] = CONCAT31(systemStatusBuffer[0]._1_3_,hasValidSystemName);
+  SystemStatusBuffer = CONCAT31(SystemStatusBuffer.BitField3,hasValidSystemName);
   isMemoryAllocationComplete = false;
   if (0x37 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
