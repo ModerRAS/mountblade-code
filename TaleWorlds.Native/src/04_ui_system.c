@@ -125121,7 +125121,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
  void FUN_18073a49f(void)
-void FUN_18073a49f(void)
+void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong stackParam00000140;
