@@ -105,6 +105,16 @@
 // === 资源管理常量 ===
 #define ResourceReferenceDecrement -1                             // 资源引用计数递减值 - 用于减少资源引用计数的常量
 
+// === 验证标志常量 ===
+#define ValidateBoundaryCheck 0x1                                // 边界检查标志 - 启用内存边界验证
+#define ValidateDataProcessing 0x2                                // 数据处理标志 - 启用数据处理和验证
+#define ValidateSecureCleanup 0x4                                 // 安全清理标志 - 启用内存安全清理
+
+// === 错误码常量 ===
+#define InvalidMemoryAddress -1                                   // 无效内存地址错误码
+#define InvalidBufferSize -2                                       // 无效缓冲区大小错误码
+#define BoundaryCheckFailed -3                                     // 边界检查失败错误码
+
 // === 浮点数数据偏移量常量 ===
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
 #define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
@@ -142249,24 +142259,24 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
     
     // 验证缓冲区指针有效性
     if (MemoryBufferPointer == NULL) {
-        return -1; // 无效指针错误
+        return InvalidMemoryAddress; // 无效指针错误
     }
     
     // 验证缓冲区大小
     if (BufferSize == 0 || BufferSize > MaxSafeBufferSize) {
-        return -2; // 无效缓冲区大小错误
+        return InvalidBufferSize; // 无效缓冲区大小错误
     }
     
     // 执行缓冲区边界检查
-    if ((ValidationFlags & 0x1) != 0) {
+    if ((ValidationFlags & ValidateBoundaryCheck) != 0) {
         SecurityCheckResult = ValidateMemoryBoundary(MemoryBufferPointer, BufferSize);
         if (SecurityCheckResult != 0) {
-            return -3; // 边界检查失败
+            return BoundaryCheckFailed; // 边界检查失败
         }
     }
     
     // 处理缓冲区数据
-    if ((ValidationFlags & 0x2) != 0) {
+    if ((ValidationFlags & ValidateDataProcessing) != 0) {
         // 数据处理循环
         while (ProcessedBytesCount < BufferSize) {
             // 读取并处理数据字节
@@ -142283,7 +142293,7 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
     }
     
     // 执行最终安全清理
-    if ((ValidationFlags & 0x4) != 0) {
+    if ((ValidationFlags & ValidateSecureCleanup) != 0) {
         SecureClearMemory(TempValidationBuffer, sizeof(TempValidationBuffer));
     }
     
