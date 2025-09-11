@@ -3478,29 +3478,29 @@ typedef union {
 #define ExecutionContextOffset2e0 0x2e0                      // 执行上下文偏移量2e0
 
 // 数据处理相关偏移量常量
-#define ExceptionHandlerListOffset 0x70                          // 数据处理偏移量70
+#define ExceptionHandlerListOffset 0x70                          // 异常处理器列表偏移量 - 用于存储异常处理器列表
 
 // 异常处理上下文相关偏移量常量
-#define ExceptionHandlerContextOffset40 0x40                  // 异常处理上下文偏移量40
-#define ExceptionHandlerContextOffsetA0 0xa0                  // 异常处理上下文偏移量A0
-#define ExceptionHandlerContextOffset108 0x108                // 异常处理上下文偏移量108
+#define ExceptionHandlerContextOffset40 0x40                     // 异常处理上下文偏移量40 - 用于上下文基础数据
+#define ExceptionHandlerContextOffsetA0 0xa0                    // 异常处理上下文偏移量A0 - 用于上下文扩展数据
+#define ExceptionHandlerContextOffset108 0x108                  // 异常处理上下文偏移量108 - 用于上下文验证数据
 
 // 系统清理相关偏移量常量
-#define SystemCleanupOffsetAlternative 0x1c                  // 系统清理偏移量替换值
+#define SystemCleanupAlternateOffset 0x1c                      // 系统清理备用偏移量 - 用于备用清理操作
 
 // 系统偏移计算相关常量
-#define SystemOffsetC0 0xc0                                  // 系统偏移量c0
-#define SystemOffsetD0 0xd0                                  // 系统偏移量d0
-#define SystemOffsetE0 0xe0                                  // 系统偏移量e0
+#define SystemPrimaryOffset 0xc0                              // 系统主偏移量 - 用于主要计算操作
+#define SystemSecondaryOffset 0xd0                            // 系统辅助偏移量 - 用于辅助计算操作
+#define SystemTertiaryOffset 0xe0                             // 系统第三偏移量 - 用于扩展计算操作
 
 // 异常处理引用计数相关偏移量常量
-#define ExceptionContextReferenceCountOffset 0x18            // 异常上下文引用计数偏移量
+#define ExceptionContextReferenceCountOffset 0x18              // 异常上下文引用计数偏移量 - 用于管理引用计数
 
 // 资源迭代器相关偏移量常量
-#define ResourceIteratorOffset 0x10                          // 资源迭代器偏移量
+#define ResourceIteratorOffset 0x10                            // 资源迭代器偏移量 - 用于遍历资源
 
 // 内存指针相关偏移量常量
-#define MemoryPointerOffset 0x8                              // 内存指针偏移量
+#define MemoryPointerOffset 0x8                                // 内存指针偏移量 - 用于存储内存指针
 
 // 系统数据记录相关偏移量常量
 #define SystemDataRecordOffset198 0x198                      // 系统数据记录偏移量198

@@ -20103,12 +20103,17 @@ void CoreEngineInitializeNetworkingSystem(void)
  * 该函数负责初始化游戏系统的核心引擎组件，包括系统上下文、
  * 数据结构和内存节点的设置。这是游戏启动过程中的关键步骤。
  * 
- * @param 无
- * @return 无
+ * 功能包括：
+ * - 获取系统上下文和状态块
+ * - 设置游戏系统连接模板
+ * - 配置内存节点和数据验证
+ * - 初始化系统回调函数
  * 
- * @note 执行系统上下文获取和内存分配
- * @note 设置数据节点和系统参数
- * @note 使用硬编码的魔数进行初始化
+ * @return 无返回值
+ * 
+ * @note 该函数使用系统内存管理器分配资源
+ * @note 使用硬编码的魔数进行系统初始化
+ * @note 依赖全局系统状态变量
  */
 void CoreEngineInitializeGameSystem(void)
 {
