@@ -126469,12 +126469,12 @@ void ProcessUIContextDataOperation(UIHandle uiContext,UIHandle dataSource,UIHand
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong stackLong158;
-  UIHandle stackUInt150;
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  UIByte encryptionBuffer188 [32];
+  UIByte *resultDataPointer168;
+  longlong contextResourceHandle158;
+  UIHandle processedContextHandle150;
+  UIByte workBuffer148 [256];
+  ulonglong encryptionKey48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   stackLong158 = 0;
