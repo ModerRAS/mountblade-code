@@ -117625,7 +117625,7 @@ void SetExceptionDataBufferHandlerAtOffsetD0(DataBuffer operationBase,int64_t da
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffsetD0);
   *exceptionDataBuffer = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -119920,7 +119920,7 @@ void ExecuteExceptionCallbacksAtOffsetD0(DataBuffer operationBase,int64_t dataBu
   DataBuffer validationStatus;
   
   validationStatus = StandardResourceCleanupFlag;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffsetD0);
   for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemDataBufferOffset200); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,cleanupFlagA,cleanupFlagB,validationStatus);
   }
@@ -120091,7 +120091,7 @@ void CleanupMemoryResourceHandlers(DataBuffer operationBase,int64_t dataBuffer,D
   DataBuffer validationStatus;
   
   validationStatus = StandardResourceCleanupFlag;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffsetD0);
   for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemDataBufferOffset200); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,cleanupFlagA,cleanupFlagB,validationStatus);
   }
@@ -123690,7 +123690,7 @@ void ProcessExceptionCleanupAndRestoreDefaultHandlers(DataBuffer operationBase, 
  * 
  * @note 原始函数名：Unwind_180910e20
  */
-void ProcessExceptionCleanupAtOffset180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -123736,7 +123736,7 @@ void ProcessExceptionCleanupAtOffset180910e20(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180910e40
  */
-void ProcessExceptionCleanupAtOffset180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemExceptionStateVersion40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
