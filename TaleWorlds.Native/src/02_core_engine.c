@@ -250244,7 +250244,7 @@ LAB_18020393c:
       SystemCharacterStatusBuffer = *(void **)(Utf8SourcePointer + 8);
     }
     strcpy_s(StackBuffer80,0x40,SystemCharacterStatusBuffer);
-    pRemainingSpace = (int *)FUN_180203aa0(TemporaryBuffer,&pSystemOperationValidationFlag);
+    pRemainingSpace = (int *)AllocateSystemFloatBuffer(TemporaryBuffer,&pSystemOperationValidationFlag);
     *pRemainingSpace = OperationBufferSize;
   }
   else {
@@ -250257,7 +250257,7 @@ LAB_18020393c:
       SystemCharacterStatusBuffer = *(void **)(Utf8SourcePointer + 8);
     }
     strcpy_s(StackBuffer80,0x40,SystemCharacterStatusBuffer);
-    pRemainingSpace = (int *)FUN_180203aa0(TemporaryBuffer,&pSystemOperationValidationFlag);
+    pRemainingSpace = (int *)AllocateSystemFloatBuffer(TemporaryBuffer,&pSystemOperationValidationFlag);
     ArrayIndex = *pRemainingSpace;
     pSystemProcessFlagB = &SystemValidationStatus;
     pbStack_f0 = aCharacterProcessingByte;
