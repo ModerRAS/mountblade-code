@@ -132140,8 +132140,34 @@ FUN_18073e414:
 
  
 
- void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
+ // 函数: void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,UIHandle resultPointer,longlong *param_6)
+#define ProcessUIDataWithExtendedParameters FUN_18073e28d
+/**
+ * @brief 处理带扩展参数的UI数据
+ * 
+ * 该函数负责处理UI系统中需要扩展参数的数据操作，包括：
+ * - 管理UI上下文资源和寄存器状态
+ * - 处理带有处理标志的数据操作
+ * - 管理多个寄存器和句柄的保存与恢复
+ * - 执行复杂的数据验证和缓冲区比较
+ * - 处理带有额外参数的UI上下文操作
+ * - 管理事件句柄和上下文指针
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文环境
+ * @param dataSource 数据源句柄，提供需要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定缓冲区的容量
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 扩展参数指针，提供额外的处理参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e28d
+ * @note 该函数涉及复杂的寄存器管理和扩展参数处理
+ * @note 包含处理标志和上下文状态管理
+ * @see ManageUIContextResources, ProcessUIContextDataOperation
+ */
+void ProcessUIDataWithExtendedParameters(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,longlong *param_6)
 
 {
