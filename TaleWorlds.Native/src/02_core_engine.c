@@ -284705,7 +284705,7 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
 
 
 
-26750(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180226750(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ReleaseContextHandleAndCleanupResources(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
@@ -284729,7 +284729,7 @@ void ProcessSystemCharacterEncodingAndBufferInitialization(uint64_t ContextHandl
 
 
 
-267d0(long long *ContextHandlevoid FUN_1802267d0(long long *ContextHandle
+void InitializeContextHandleAndSystemResources(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long BufferStatus;
