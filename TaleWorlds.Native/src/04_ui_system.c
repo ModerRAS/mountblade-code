@@ -314836,7 +314836,7 @@ LAB_180850d95:
         localInt7 = FUN_180739140(result,0x19,&stack0x00000078);
         if ((localInt7 != 0) || (localInt7 = FUN_180740f10(lStack0000000000000078,1), localInt7 != 0))
         goto LAB_180850d9b;
-        localInt7 = FUN_18073c020(lStack0000000000000040,0xfffffffd,lStack0000000000000078);
+        localInt7 = ProcessUIContextBufferOperation(lStack0000000000000040,0xfffffffd,lStack0000000000000078);
         goto LAB_180850d95;
       }
 LAB_180850d9b:
@@ -314917,7 +314917,7 @@ LAB_180850eb0:
                                   *(UIDword *)(allocatedMemory6 + result8 * 4));
             if (localInt9 != 0) goto LAB_180851223;
             FUN_180853260(stackParam00000030 + 0x10,&stack0x00000038);
-            localInt9 = FUN_18073c020(stackParam00000030[0xf],iStack0000000000000048 + 1,
+            localInt9 = ProcessUIContextBufferOperation(stackParam00000030[0xf],iStack0000000000000048 + 1,
                                   *(UIHandle *)(stackParam00000038 + 0x30));
             if (localInt9 != 0) goto LAB_180851223;
             result1 = (ulonglong)((int)result1 + 1);
@@ -314943,7 +314943,7 @@ LAB_180850eb0:
                                     *(UIDword *)(allocatedMemory6 + result8 * 4));
               if (localInt7 != 0) goto LAB_180851223;
               FUN_180853260(stackParam00000030 + 0x12,&stack0x00000038);
-              localInt7 = FUN_18073c020(stackParam00000030[0xf],iStack0000000000000048,
+              localInt7 = ProcessUIContextBufferOperation(stackParam00000030[0xf],iStack0000000000000048,
                                     *(UIHandle *)(stackParam00000038 + 0x30));
               if (localInt7 != 0) goto LAB_180851223;
               result1 = (ulonglong)((int)result1 + 1);
@@ -315927,7 +315927,7 @@ LAB_180851f6d:
         } while (localInt9 < (int)param_6[1]);
         if (lStackX_10 == 0) goto LAB_180851f6d;
       }
-      loopCounter = FUN_18073c020(uiContext[0xf],uStackX_20,*(UIHandle *)(lStackX_10 + 0x30));
+      loopCounter = ProcessUIContextBufferOperation(uiContext[0xf],uStackX_20,*(UIHandle *)(lStackX_10 + 0x30));
       if ((int)loopCounter != 0) {
         return loopCounter;
       }
