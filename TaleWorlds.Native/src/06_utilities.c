@@ -119585,7 +119585,7 @@ void CleanupDataValidationFlag280(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
     *(uint *)(dataBuffer + MemoryPointerOffset) = *(uint *)(dataBuffer + MemoryPointerOffset) & 0xfffffffe;
-    ValidateDataA0(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40));
+    ProcessAndValidateDataBlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40));
   }
   return;
 }
@@ -127462,7 +127462,7 @@ void Unwind_StatusFlagCleanupA(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ValidationDataOffset) & 1) != 0) {
     *(uint *)(dataBuffer + ValidationDataOffset) = *(uint *)(dataBuffer + ValidationDataOffset) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + 0x158);
+    ProcessAndValidateDataBlock(dataBuffer + 0x158);
   }
   return;
 }
@@ -127485,7 +127485,7 @@ void Unwind_StatusFlagCleanupB(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ValidationDataOffset) & 2) != 0) {
     *(uint *)(dataBuffer + ValidationDataOffset) = *(uint *)(dataBuffer + ValidationDataOffset) & 0xfffffffd;
-    ValidateDataA0(dataBuffer + SystemValidationDataOffset120);
+    ProcessAndValidateDataBlock(dataBuffer + SystemValidationDataOffset120);
   }
   return;
 }
@@ -127508,7 +127508,7 @@ void Unwind_StatusFlagCleanupC(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ValidationDataOffset) & 4) != 0) {
     *(uint *)(dataBuffer + ValidationDataOffset) = *(uint *)(dataBuffer + ValidationDataOffset) & 0xfffffffb;
-    ValidateDataA0(dataBuffer + DataBufferOffsetE8);
+    ProcessAndValidateDataBlock(dataBuffer + DataBufferOffsetE8);
   }
   return;
 }
@@ -127531,7 +127531,7 @@ void Unwind_StatusFlagCleanupD(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ValidationDataOffset) & 8) != 0) {
     *(uint *)(dataBuffer + ValidationDataOffset) = *(uint *)(dataBuffer + ValidationDataOffset) & 0xfffffff7;
-    ValidateDataA0(dataBuffer + DataBufferOffsetB0);
+    ProcessAndValidateDataBlock(dataBuffer + DataBufferOffsetB0);
   }
   return;
 }
@@ -127723,7 +127723,7 @@ void Unwind_ExceptionContextCleanupC1(DataBuffer operationBase,int64_t dataBuffe
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 1) != 0) {
     *(uint *)(dataBuffer + DataBufferOffset30) = *(uint *)(dataBuffer + DataBufferOffset30) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + DataBufferOffsetB0);
+    ProcessAndValidateDataBlock(dataBuffer + DataBufferOffsetB0);
   }
   return;
 }

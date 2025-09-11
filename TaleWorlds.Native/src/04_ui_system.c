@@ -124460,37 +124460,35 @@ LAB_180739e8e:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
-void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
-
+ void UIContextValidateAndProcessData(UIHandle contextHandle,UIHandle dataSource)
 {
-  int processingResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  int validationResult;
+  UIByte encryptionBuffer [32];
+  UIByte *validationPointer;
+  longlong contextSize;
+  UIHandle renderContextHandle;
+  UIByte validationDataBuffer [256];
+  ulonglong encryptedKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
-  if (processingResult == 0) {
-    processingResult = func_0x000180746440(stackUInt120,dataSource);
-    if (processingResult == 0) goto LAB_180739f5a;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  contextSize = 0;
+  validationResult = FUN_180749e60(contextHandle,&renderContextHandle,&contextSize);
+  if (validationResult == 0) {
+    validationResult = func_0x000180746440(renderContextHandle,dataSource);
+    if (validationResult == 0) goto LAB_180739f5a;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    ValidateUIDataWithContext(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ValidateUIDataWithContext(validationDataBuffer,0x100,dataSource);
+    validationPointer = validationDataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutCalculator);
+    ExecuteUIContextDataOperation(validationResult,1,contextHandle,&UIContextLayoutCalculator);
   }
 LAB_180739f5a:
-  if (RenderContextSize != 0) {
+  if (contextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedKey ^ (ulonglong)encryptionBuffer);
 }
 
 
