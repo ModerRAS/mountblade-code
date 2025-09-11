@@ -123748,7 +123748,7 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIHandle dataSource,UIHandle targe
   UIHandle TempBufferHandle;
   ulonglong RenderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -125474,7 +125474,7 @@ void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -126227,7 +126227,7 @@ void ProcessUIDataWithMultipleParametersAdvanced(UIHandle uiContext,UIDword data
   UIHandle preservedRegister15;
   ulonglong uiStackEncryptionKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
@@ -126600,7 +126600,7 @@ void ExtractUIDataFromContextWithResult(UIHandle uiContext,UIDword *dataSource,U
   UIHandle preservedRegister15;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
@@ -126962,7 +126962,7 @@ void ProcessUIContextDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -127115,7 +127115,7 @@ void ProcessUIContextDataWithBufferValidation(UIHandle uiContext,UIHandle dataSo
   ulonglong renderTaskParameter;
   UIHandle stackParam000001b0;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
@@ -127830,7 +127830,7 @@ void ProcessUIContextWithAnimationData(UIHandle uiContext,UIHandle dataSource,UI
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -128084,7 +128084,7 @@ void ProcessUIContextWithResourceManagement(UIHandle uiContext,UIDword dataSourc
   UIHandle stackParam000001c0;
   UIHandle stackParam000001c8;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister13;
@@ -128383,7 +128383,7 @@ void ProcessUIContextWithValidation(UIHandle uiContext,UIHandle dataSource,UIDwo
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -128571,7 +128571,7 @@ void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDwo
   UIHandle cleanupContext;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -128993,7 +128993,7 @@ void ProcessUIContextBufferOperationB(UIHandle uiContext,UIDword dataSource,UIHa
   longlong *stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -129716,7 +129716,7 @@ FUN_18073c6e3:
   longlong *stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -129866,7 +129866,7 @@ FUN_18073c87f:
   UIHandle preservedRegister15;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
@@ -130854,7 +130854,7 @@ void ProcessUIContextDataWithEncryptionC(UIHandle uiContext,longlong dataSource,
   UIHandle preservedRegister15;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
@@ -131184,7 +131184,7 @@ FUN_18073d683:
   UIDword stackParam000001b0;
   
   processingFlags = (UIDword)((ulonglong)stackParam00000020 >> 0x20);
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
@@ -132431,7 +132431,7 @@ void ProcessUIDataWithExtendedParameters(UIHandle uiContext,UIHandle dataSource,
   UIDword stackParam000001b0;
   
   processingFlags = (UIDword)((ulonglong)stackParam00000020 >> 0x20);
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
@@ -132720,7 +132720,7 @@ void ProcessUIBufferDataWithEncryptionAdvanced(UIHandle uiContext,UIHandle dataS
   ulonglong renderTaskParameter;
   UIHandle stackParam000001b0;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
@@ -133040,7 +133040,7 @@ void ProcessUIBufferDataWithMultiTextureResources(UIHandle uiContext,UIDword dat
   UIHandle stackParam000001e8;
   UIHandle stackParam000001f0;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister13;
@@ -134846,7 +134846,7 @@ void FUN_18073fe4d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -135253,7 +135253,7 @@ void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -135423,7 +135423,7 @@ void FUN_1807404fd(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -136114,7 +136114,7 @@ void FUN_1807411bd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   UIHandle preservedRegister15;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
@@ -136259,7 +136259,7 @@ void FUN_18074133d(UIHandle uiContext,UIByte dataSource,UIByte targetBuffer)
   UIHandle stackParam00000038;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000030 = 0;
@@ -136719,7 +136719,7 @@ void FUN_1807419bd(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
   UIDword stackParam000001c0;
   
   processingFlags = (UIDword)((ulonglong)stackParam00000020 >> 0x20);
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;

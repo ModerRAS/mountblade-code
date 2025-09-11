@@ -260574,7 +260574,21 @@ void SystemNullOperation(void)
 
 
 
-0cae0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18020cae0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统上下文内存管理函数
+ * 
+ * 该函数负责处理系统上下文的内存管理，主要功能包括：
+ * - 遍历内存块并处理内存分配
+ * - 执行系统事件处理
+ * - 释放系统内存
+ * - 处理字符编码终结
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessSystemContextMemoryManagement(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   void *SystemContext;
