@@ -242,12 +242,10 @@
 #define FUN_1801e77d0 ProcessSystemStackFlagsAndVariables                 // 处理系统栈标志和变量
 
 // 核心引擎高级功能函数语义化宏定义
-#define FUN_18018c050 ExecuteSystemStringEncodingOperation              // 执行系统字符串编码操作
 #define FUN_18018cef0 ProcessSystemUnicodeConversion                     // 处理系统Unicode转换
 #define FUN_18018e0f0 HandleSystemStringEncoding                        // 处理系统字符串编码
 #define FUN_18018f6a0 ProcessSystemContextOperation                      // 处理系统上下文操作
 #define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
-#define FUN_18018bd5f ResetSystemHandleState                            // 重置系统句柄状态
 #define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
 #define FUN_180190780 ReleaseSystemHandle                               // 释放系统句柄
@@ -532,7 +530,6 @@
 #define AllocateWindowContextBuffer FUN_18017b070 // 分配窗口上下文缓冲区
 #define ResizeWindowContextBuffer FUN_18017b240 // 调整窗口上下文缓冲区大小
 #define UpdateWindowContextHandle FUN_18017b259 // 更新窗口上下文句柄
-#define CleanupWindowContextResources FUN_18017b28d // 清理窗口上下文资源
 #define ResetWindowContextState FUN_18017b2ed // 重置窗口上下文状态
 #define ProcessWindowContextWithEncoding FUN_18017b400 // 处理带编码的窗口上下文
 #define AllocateSystemContextAndMemory FUN_180186880     // 分配系统上下文和内存
@@ -575,7 +572,6 @@
 #define GetContextHandleWithUtfConversion FUN_18017b070           // 获取上下文句柄并进行UTF转换
 #define GetContextHandleSize FUN_18017b240                        // 获取上下文句柄大小
 #define SetContextHandleSize FUN_18017b259                        // 设置上下文句柄大小
-#define ResetContextHandleState FUN_18017b28d                     // 重置上下文句柄状态
 #define ValidateContextHandle FUN_18017b2ed                      // 验证上下文句柄
 #define ProcessContextHandleWithUtf FUN_18017b400                 // 处理上下文句柄和UTF转换
 #define ProcessContextHandleWithUtfData FUN_18017b480             // 处理上下文句柄和UTF数据
@@ -2413,7 +2409,6 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessContextHandleWithSizeAndData FUN_18017b070                   // 处理带大小和数据的字符代码
 #define ProcessContextHandleWithSizeParameters FUN_18017b240                // 处理带大小参数的字符代码
 #define ProcessContextHandleWithSizeData FUN_18017b259                     // 处理带大小数据的字符代码
-#define ProcessSystemCharacterEncodingCleanup FUN_18017b28d                // 处理系统字符编码清理
 #define ProcessCharacterEncodingWithContextHandle FUN_18017b2ed             // 处理带字符代码的字符编码
 #define ProcessCharacterEncodingWithMultipleData FUN_18017b400              // 处理带多数据的字符编码
 #define ProcessContextHandleWithMultipleParameters FUN_18017b480           // 处理带多参数的字符代码
@@ -2923,7 +2918,6 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemCharacterTable FUN_180067110             // 处理系统字符表
 #define GetSystemBufferStatus FUN_18018a960                    // 获取系统缓冲区状态
 #define GetCharacterTablePointer FUN_18018a9f0                  // 获取字符表指针
-#define ProcessCharacterDataEx FUN_18018c050                     // 处理字符数据扩展
 #define ValidateCharacterDataEx FUN_180371c60                     // 验证字符数据扩展
 #define ProcessCharacterDataBuffer FUN_180184320                   // 处理字符数据缓冲区
 #define CalculateSystemMemoryBoundary FUN_1800c4800                // 计算系统内存边界
