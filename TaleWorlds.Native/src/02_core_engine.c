@@ -256987,9 +256987,9 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
                       Utf16Character = StackProcessingDataPointer;
                       goto SystemCharacterValidationCheck;
                     }
-                    CharacterTablePointer6 = FUN_1801ef620(VectorCalculationResult,MemoryAllocationIndex,SystemDataTablePointer);
+                    CharacterTablePointer6 = ProcessCharacterTableVector(VectorCalculationResult,MemoryAllocationIndex,SystemDataTablePointer);
                     UnicodeContextHandle = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
-                    CharacterTablePointer6 = FUN_1801efdb0(VectorCalculationResult_00,SystemDataTablePointer);
+                    CharacterTablePointer6 = ConvertCharacterTableData(VectorCalculationResult_00,SystemDataTablePointer);
                     LockOperationResult1 = *(int *)(CharacterTablePointer6 + 0x18);
                   }
                   MemoryPoolIndex = *(uint32_t *)(CharacterTablePointer6 + 0x24);
@@ -259359,7 +259359,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     ProgramCounterStack110 = _guard_check_icall;
-    FUN_18023c450(*ContextHandle8,1,0xffffffff,&pBufferInitializationFlag);
+    InitializeSystemBuffer(*ContextHandle8,1,0xffffffff,&pBufferInitializationFlag);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&pBufferInitializationFlag,0,0);
     }
