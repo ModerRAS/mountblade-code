@@ -2044,7 +2044,7 @@ typedef enum {
  * @param contextData 上下文数据指针，包含渲染状态信息
  * @return 边界框计算结果，成功返回1，失败返回0
  * 
- * @note 原始函数名：FUN_18065a1d0
+ * @note 原始函数名：ComputeUIComponentBoundingBox
  */
 #define CalculateUIComponentBounds ComputeUIComponentBoundingBox
 
@@ -2058,9 +2058,9 @@ typedef enum {
  * @param elementBoundingBox 指向UI元素边界框数据的指针
  * @return 碰撞检测结果，1表示碰撞成功，0表示无碰撞
  * 
- * @note 原始函数名：FUN_180659a40
+ * @note 原始函数名：ProcessUIBoundingBoxCollision
  */
-#define ProcessUIBoundingBoxCollision FUN_180659a40
+#define ProcessUIBoundingBoxCollision ProcessUIBoundingBoxCollision
 
 // UI系统函数宏定义 - 初始化UI内存池
 #define InitializeUIMemoryPool FUN_1807806c0

@@ -47308,7 +47308,7 @@ void ProcessSystemDataStructureValidation(uint64_t ContextHandle,long long Opera
   unsigned long long DataProcessingFlags;
   char SystemSecondaryFlag;
   char SystemTertiaryFlag;
-  uint8_t StackValidationFlag116;
+  uint8_t SystemStackValidationFlag116;
   uint StackOperationFlag114;
   char SystemValidationStatusFlag118;
   void *CoreEnginePointerBuffer;
@@ -47747,7 +47747,7 @@ SystemStatusContextLabel:
         CharacterValidationBuffer = StackTempPointer;
       }
       InputDataLength = GetSystemContextFlag(CharacterValidationBuffer);
-      if ((cStack_118 == '\0') && (InputDataLength == 0)) {
+      if ((SystemValidationStatusFlag118 == '\0') && (InputDataLength == 0)) {
         if ((CoreEngineSystemContext == 0) || (*(char *)(CoreEngineSystemContext + 0x141) == '\0')) {
           MemoryAllocationHandle = 0;
         }
