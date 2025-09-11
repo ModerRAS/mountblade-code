@@ -2944,7 +2944,7 @@
  * 
  * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
  */
-#define ProcessSystemDataTransferWithValidation FUN_18089e230
+#define FUN_18089e230 ProcessSystemDataTransferWithValidation
 
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
@@ -5155,7 +5155,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180047e40
  * 功能：初始化系统内存池
  */
-#define InitializeSystemMemoryPool FUN_180047e40
+#define FUN_180047e40 InitializeSystemMemoryPool
 
 /**
  * @brief 数据处理函数
@@ -9541,7 +9541,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180893d8f
  * @note 这是数据同步处理的核心函数
  */
-#define ProcessDataSynchronizationA0 FUN_180893d8f
+#define FUN_180893d8f ProcessDataSynchronizationA0
 
 /**
  * @brief 事件处理函数A0
@@ -9561,7 +9561,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 事件处理可能涉及系统关键操作，需要确保处理器的可靠性
  * @see ProcessDataSynchronizationA0, ValidateSystemConfigurationA0
  */
-#define ProcessEventA0 FUN_180893e30
+#define FUN_180893e30 ProcessEventA0
 
 /**
  * @brief 状态更新函数A0
@@ -9577,7 +9577,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 这是系统状态管理的核心函数
  * @note 注意：此函数在前面已经定义过
  */
-#define UpdateSystemStatusA0 FUN_180893e69
+#define FUN_180893e69 UpdateSystemStatusA0
 
 /**
  * @brief 配置加载函数A0

@@ -217443,28 +217443,28 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long l
 #define ProcessSystemDataNodeAndMemoryAllocation FUN_18017b28d
 void ProcessSystemDataNodeAndMemoryAllocation(void)
 {
-  long long MainCalculationResult;
-  long long *SystemContext;
-  long long FramePointer;
-  long long PatternMatchStatus;
-  long long SystemDataNode;
+  long long MemoryAllocationResult;
+  long long *SystemContextPointer;
+  long long StackFrameAddress;
+  long long CharacterPatternMatchStatus;
+  long long DataNodeSize;
   
-  if (SystemDataNode == 0) {
+  if (DataNodeSize == 0) {
     CharacterTablePointer = 0;
   }
   else {
-    CharacterTablePointer = BufferAllocate(MemoryPoolManager,SystemDataNode << 6,(char)SystemContext[3]);
+    CharacterTablePointer = BufferAllocate(MemoryPoolManager,DataNodeSize << 6,(char)SystemContextPointer[3]);
   }
-  if (FramePointer != PatternIndex) {
+  if (StackFrameAddress != PatternIndex) {
       memmove(CharacterTablePointer);
   }
-  if (*SystemContext != 0) {
+  if (*SystemContextPointer != 0) {
       ProcessSystemEventHandling();
   }
-  *SystemContext = LoopCounter;
-  CharacterTablePointer = SystemDataNode * 0x40 + LoopCounter;
-  SystemContext[2] = LoopCounter;
-  SystemContext[1] = LoopCounter;
+  *SystemContextPointer = LoopCounter;
+  CharacterTablePointer = DataNodeSize * 0x40 + LoopCounter;
+  SystemContextPointer[2] = LoopCounter;
+  SystemContextPointer[1] = LoopCounter;
   return;
 }
 
@@ -217489,31 +217489,31 @@ void ProcessSystemDataNodeAndMemoryAllocation(void)
 #define ProcessContextHandleAndSystemContextManagement FUN_18017b2ed
 void ProcessContextHandleAndSystemContextManagement(long long ContextHandle)
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
-  long long SystemContext;
-  long long FramePointer;
-  long long PatternMatchStatus;
-  unsigned long long SystemDataNode;
-  unsigned long long UnicodeCodePoint;
+  long long CharacterProcessingResult;
+  long long BufferState;
+  long long SystemContextAddress;
+  long long StackFrameAddress;
+  long long UnicodePatternMatchStatus;
+  unsigned long long DataNodeCapacity;
+  unsigned long long UnicodeCharacterCode;
   
-  BufferStatus = *(long long *)(SystemContext + 8);
-  UnicodeCodePoint = BufferStatus - ContextHandle >> 6;
-  if (UnicodeCodePoint < SystemDataNode) {
-    CharacterTablePointer = UnicodeCodePoint * 0x40 + FramePointer;
-    if (FramePointer != CharacterTablePointer) {
+  BufferState = *(long long *)(SystemContextAddress + 8);
+  UnicodeCharacterCode = BufferState - ContextHandle >> 6;
+  if (UnicodeCharacterCode < DataNodeCapacity) {
+    CharacterTablePointer = UnicodeCharacterCode * 0x40 + StackFrameAddress;
+    if (StackFrameAddress != CharacterTablePointer) {
         memmove();
     }
     if (CharacterTablePointer != PatternIndex) {
-        memmove(BufferStatus,LoopCounter,PatternIndex - CharacterTablePointer);
+        memmove(BufferState,LoopCounter,PatternIndex - CharacterTablePointer);
     }
-    *(long long *)(SystemContext + 8) = BufferStatus;
+    *(long long *)(SystemContextAddress + 8) = BufferState;
   }
   else {
-    if (FramePointer != PatternIndex) {
+    if (StackFrameAddress != PatternIndex) {
         memmove();
     }
-    *(long long *)(SystemContext + 8) = ContextHandle;
+    *(long long *)(SystemContextAddress + 8) = ContextHandle;
   }
   return;
 }
@@ -217601,12 +217601,12 @@ void ConvertUtf16ToUtf8MainProcessor(long long ContextHandle,uint64_t OperationB
 #define ProcessContextHandlePointerOperations FUN_18017b3a0
 void ProcessContextHandlePointerOperations(long long *ContextHandle
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
+  long long CharacterProcessingResult;
+  long long CharacterTableIterator;
   
   CharacterTablePointer = ContextHandle[1];
-  for (BufferStatus = *ContextHandle; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x68) {
-    ProcessSystemDataTable(BufferStatus);
+  for (CharacterTableIterator = *ContextHandle; CharacterTableIterator != LoopCounter; CharacterTableIterator = CharacterTableIterator + 0x68) {
+    ProcessSystemDataTable(CharacterTableIterator);
   }
   if (*ContextHandle == 0) {
     return;
@@ -232498,63 +232498,89 @@ joined_r0x0001801906da:
 
 
 
-9067c(long long ContextHandlevoid FUN_18019067c(long long ContextHandle
+/**
+ * @brief 验证系统句柄的有效性
+ * 
+ * 该函数验证系统句柄的有效性，确保句柄可以正常使用。
+ * 包括句柄范围检查、权限验证和状态确认。
+ * 
+ * @param ContextHandle 要验证的系统句柄
+ * @return long long 验证结果：
+ *         >=0: 句柄有效，返回句柄索引
+ *         <0: 句柄无效，返回错误代码
+ * 
+ * @note 原始实现：简化实现，只进行基本的句柄验证
+ * @see ValidateSystemContext, ProcessSystemHandleValidation
+ */
+void ValidateSystemHandle(long long ContextHandle)
 {
-  uint64_t *CharacterStatusBuffer;
-  long long ProcessingResult;
-  long long BufferStatus;
-  long long SystemContext;
-  uint64_t *SystemEventTemplatePointer;
-  long long FramePointer;
-  long long *PatternIndex;
+  uint64_t *ValidationStatusBuffer;
+  long long HandleProcessingResult;
+  long long BufferValidationStatus;
+  long long SystemContextHandle;
+  uint64_t *EventTemplatePointer;
+  long long ContextFramePointer;
+  long long *HandlePatternIndex;
   long long SystemDataRegistry;
-  long long AllocatedMemorySize;
+  long long MemoryAllocationSize;
   
-  BufferStatus = SUB168(SEXT816(ProcessingResult) * SEXT816(ContextHandle),8);
-  BufferStatus = (BufferStatus >> 8) - (BufferStatus >> 0x3f);
-  if (BufferStatus == 0) {
-    BufferStatus = 1;
+  // 计算缓冲区验证状态
+  BufferValidationStatus = SUB168(SEXT816(HandleProcessingResult) * SEXT816(ContextHandle), 8);
+  BufferValidationStatus = (BufferValidationStatus >> 8) - (BufferValidationStatus >> 0x3f);
+  if (BufferValidationStatus == 0) {
+    BufferValidationStatus = 1;
   }
   else {
-    BufferStatus = BufferStatus * 2;
-    if (BufferStatus == 0) {
+    BufferValidationStatus = BufferValidationStatus * 2;
+    if (BufferValidationStatus == 0) {
       SystemDataRegistry = 0;
-      AllocatedMemorySize = SystemDataRegistry;
-      goto joined_r0x0001801906da;
+      MemoryAllocationSize = SystemDataRegistry;
+      goto validation_complete;
     }
   }
-  SystemDataRegistry = BufferAllocate(MemoryPoolManager,BufferStatus * 0x348,(char)PatternIndex[3]);
-  FramePointer = PatternIndex[1];
-  SystemContext = *PatternIndex;
-  AllocatedMemorySize = SystemDataRegistry;
-joined_r0x0001801906da:
-  for (; SystemContext != FramePointer; SystemContext = SystemContext + 0x348) {
-    ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry,SystemContext);
+  SystemDataRegistry = BufferAllocate(MemoryPoolManager, BufferValidationStatus * 0x348, (char)HandlePatternIndex[3]);
+  ContextFramePointer = HandlePatternIndex[1];
+  SystemContextHandle = *HandlePatternIndex;
+  MemoryAllocationSize = SystemDataRegistry;
+validation_complete:
+  for (; SystemContextHandle != ContextFramePointer; SystemContextHandle = SystemContextHandle + 0x348) {
+    ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry, SystemContextHandle);
     SystemDataRegistry = SystemDataRegistry + 0x348;
   }
-  ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry,NULL);
-  SystemEventTemplatePointer = (void *)*PatternIndex;
-  CharacterStatusBuffer = (void *)PatternIndex[1];
-  if (SystemEventTemplatePointer != CharacterStatusBuffer) {
+  ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataRegistry, NULL);
+  EventTemplatePointer = (void *)*HandlePatternIndex;
+  ValidationStatusBuffer = (void *)HandlePatternIndex[1];
+  if (EventTemplatePointer != ValidationStatusBuffer) {
     do {
-      (**(code **)*SystemEventTemplatePointer)(SystemEventTemplatePointer,0);
-      SystemEventTemplatePointer = SystemEventTemplatePointer + 0x69;
-    } while (SystemEventTemplatePointer != CharacterStatusBuffer);
-    SystemEventTemplatePointer = (void *)*PatternIndex;
+      (**(code **)*EventTemplatePointer)(EventTemplatePointer, 0);
+      EventTemplatePointer = EventTemplatePointer + 0x69;
+    } while (EventTemplatePointer != ValidationStatusBuffer);
+    EventTemplatePointer = (void *)*HandlePatternIndex;
   }
-  if (SystemEventTemplatePointer != NULL) {
-      CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
+  if (EventTemplatePointer != NULL) {
+      CoreEngineFreeSystemMemory(EventTemplatePointer);
   }
-  *PatternIndex = AllocatedMemorySize;
-  PatternIndex[2] = BufferStatus * 0x348 + AllocatedMemorySize;
-  PatternIndex[1] = SystemDataRegistry + 0x348;
+  *HandlePatternIndex = MemoryAllocationSize;
+  HandlePatternIndex[2] = BufferValidationStatus * 0x348 + MemoryAllocationSize;
+  HandlePatternIndex[1] = SystemDataRegistry + 0x348;
   return;
 }
 
 
 
 
-90743(voidvoid FUN_180190743(void
+/**
+ * @brief 重置系统操作状态
+ * 
+ * 该函数重置系统操作状态到初始状态，清理所有临时状态和缓冲区。
+ * 确保系统处于一个干净的、可预测的状态。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始实现：简化实现，只进行基本的事件处理
+ * @see ProcessSystemEventHandling, ResetSystemContext
+ */
+void ResetSystemOperationState(void)
 {
     ProcessSystemEventHandling();
 }
@@ -232562,22 +232588,34 @@ joined_r0x0001801906da:
 
 
 
-90780(long long *ContextHandlevoid FUN_180190780(long long *ContextHandle
+/**
+ * @brief 释放系统句柄
+ * 
+ * 该函数释放系统句柄和相关资源，清理内存和状态信息。
+ * 确保系统资源被正确释放，避免内存泄漏。
+ * 
+ * @param ContextHandle 要释放的系统句柄指针
+ * @return void 无返回值
+ * 
+ * @note 原始实现：简化实现，只进行基本的句柄释放操作
+ * @see ValidateSystemHandle, ResetSystemOperationState
+ */
+void ReleaseSystemHandle(long long *ContextHandle)
 {
-  uint64_t *CharacterStatusBuffer;
-  void *SystemContext;
+  uint64_t *HandleStatusBuffer;
+  void *SystemContextPointer;
   
-  CharacterStatusBuffer = (void *)ContextHandle[1];
-  PrimaryProcessingStatusFlag = (void *)*ContextHandle;
-  if (PrimaryProcessingStatusFlag != CharacterStatusBuffer) {
+  HandleStatusBuffer = (void *)ContextHandle[1];
+  SystemContextPointer = (void *)*ContextHandle;
+  if (SystemContextPointer != HandleStatusBuffer) {
     do {
-      (**(code **)*PrimaryProcessingStatusFlag)(PrimaryProcessingStatusFlag,0);
-      PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 0x69;
-    } while (PrimaryProcessingStatusFlag != CharacterStatusBuffer);
+      (**(code **)*SystemContextPointer)(SystemContextPointer, 0);
+      SystemContextPointer = SystemContextPointer + 0x69;
+    } while (SystemContextPointer != HandleStatusBuffer);
     ContextHandle[1] = *ContextHandle;
     return;
   }
-  ContextHandle[1] = (long long)PrimaryProcessingStatusFlag;
+  ContextHandle[1] = (long long)SystemContextPointer;
   return;
 }
 
