@@ -15691,7 +15691,7 @@ void InitializeCoreEnginePhysicsSystem(void) {
     PhysicsSearchNode = PhysicsNextNodeInChain;
     PhysicsNodeInitializedFlag = *(char *)((long long)PhysicsNextNodeInChain + SystemNodeStatusOffset);
   }
-  if ((PhysicsTraversalNode == PhysicsSystemRootNode) || (PhysicsDataNodeComparisonResult = memcmp(&SystemComparisonDataTertiary, PhysicsTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), PhysicsDataComparisonResult < 0)) {
+  if ((PhysicsTraversalNode == PhysicsSystemRootNode) || (PhysicsDataComparisonResult = memcmp(&SystemComparisonDataTertiary, PhysicsTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), PhysicsDataComparisonResult < 0)) {
     PhysicsMemoryOffset = CoreEngineAllocateMemory(PhysicsSystemContext);
     CoreEngineSetupDataStructure(PhysicsSystemContext, &CreatedPhysicsNode, PhysicsTraversalNode, PhysicsMemoryOffset + SystemMemoryAllocationOffset, PhysicsMemoryOffset);
     PhysicsTraversalNode = CreatedPhysicsNode;
@@ -15778,7 +15778,7 @@ void RegisterNetworkMessageHandler(void) {
     NetworkTraversalNode = NetworkNextNodeInChain;
     NetworkNodeInitializedFlag = *(char*)((long long)NetworkNextNodeInChain + SystemNodeStatusOffset);
   }
-  if ((NetworkSearchNode == NetworkSystemRootNode) || (NetworkDataNodeComparisonResult = memcmp(&SystemComparisonDataQuaternary, NetworkSearchNode + SystemNodeHeaderSize, SystemDataStructureSize), NetworkDataComparisonResult < 0)) {
+  if ((NetworkSearchNode == NetworkSystemRootNode) || (NetworkDataComparisonResult = memcmp(&SystemComparisonDataQuaternary, NetworkSearchNode + SystemNodeHeaderSize, SystemDataStructureSize), NetworkDataComparisonResult < 0)) {
     NetworkMemoryOffset = CoreEngineAllocateMemory(NetworkSystemContext);
     CoreEngineSetupMemoryNode(NetworkSystemContext, &CreatedNetworkNode, NetworkSearchNode, NetworkMemoryOffset + NetworkMemoryAllocationOffset, NetworkMemoryOffset);
     NetworkSearchNode = CreatedNetworkNode;
