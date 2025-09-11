@@ -247,6 +247,8 @@ typedef enum {
 #define FUN_18073c39d ProcessUIContextBufferOperationD
 #define FUN_18073c3f9 ProcessUIContextFinalCleanup
 #define FUN_18073ab80 ProcessUIContextWithDataOperation          // 处理UI上下文数据操作
+#define FUN_180767c00 ProcessUIEventWithDataSourceAndTarget        // 处理UI事件与数据源和目标
+#define FUN_1807863b0 ValidateUIContextAndEventData                // 验证UI上下文和事件数据
 #define FUN_18088c380 ProcessUIBufferDataWithValidation           // 处理UI缓冲区数据与验证
 #define func_0x00018088a120 ProcessUIContextUpdateOperation         // 处理UI上下文更新操作
 #define FUN_180739b90 ProcessUIDataWithTargetBuffer              // 处理带目标缓冲区的UI数据
@@ -173873,9 +173875,32 @@ LAB_180767bda:
 
 
  
+/**
+ * @brief 处理UI事件与数据源和目标的交互
+ * 
+ * 该函数负责处理UI事件与数据源和目标缓冲区的交互，包括：
+ * - 事件数据的处理和验证
+ * - 数据源和目标缓冲区的管理
+ * - 事件循环的控制和管理
+ * - 参数的初始化和配置
+ * 
+ * @param uiContext UI上下文句柄，指向UI上下文数据
+ * @param dataSource 数据源句柄，包含事件数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制数据处理的最大长度
+ * @param resultPointer 结果指针，用于返回处理状态
+ * @param param_6 参数6，控制处理模式
+ * @param param_7 参数7，包含处理计数器信息
+ * @param param_8 参数8，包含额外的处理参数
+ * @param param_9 参数9，标志位参数
+ * @return UIHandle 返回处理结果句柄
+ * 
+ * @note 原始函数名：FUN_180767c00
+ * @warning 此函数涉及复杂的内存操作，调用前需确保所有参数有效
+ */
 UIHandle
-FUN_180767c00(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,int resultPointer,
-             char param_6,UIDword param_7,UIHandle param_8,UIByte param_9)
+ProcessUIEventWithDataSourceAndTarget(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,int resultPointer,
+                                     char param_6,UIDword param_7,UIHandle param_8,UIByte param_9)
 
 {
   UIHandle result;
