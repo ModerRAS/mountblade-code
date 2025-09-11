@@ -12375,13 +12375,28 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：处理系统请求
 #define ProcessRequestA0 ProcessSystemRequestWithValidation
 
-// 原始函数名：FUN_180741df0 - 上下文初始化函数A0
-// 功能：初始化系统上下文
-#define InitializeContextA0 FUN_180741df0
+/**
+ * @brief 系统上下文初始化函数A0
+ * 
+ * 初始化系统上下文环境，设置必要的系统参数和状态。
+ * 该函数负责为系统运行准备上下文环境，包括内存分配、
+ * 状态初始化和参数设置等操作。
+ * 
+ * @note 原始函数名：FUN_180741df0
+ * @note 这是一个系统初始化的核心函数，用于建立系统运行环境
+ */
+#define InitializeContextA0 InitializeSystemContextWithParameters
 
-// 原始函数名：FUN_18073b5f0 - 数据验证函数A1
-// 功能：验证系统数据
-#define ValidateSystemDataA1 FUN_18073b5f0
+/**
+ * @brief 系统数据验证函数A1
+ * 
+ * 验证系统数据的完整性和有效性，确保数据符合系统要求。
+ * 该函数执行多重验证检查，包括数据格式、范围和一致性验证。
+ * 
+ * @note 原始函数名：FUN_18073b5f0
+ * @note 这是系统数据验证的第二级验证函数
+ */
+#define ValidateSystemDataA1 ValidateSystemDataWithIntegrityCheck
 
 // 原始函数名：FUN_18073b820 - 数据验证返回函数A0
 // 功能：验证数据并返回结果
