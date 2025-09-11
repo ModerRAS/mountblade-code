@@ -22085,8 +22085,8 @@ void CleanupUIElementResources(longlong uiContext)
   longlong uiContextBasePointer;
   UIByte *componentData;
   float *uiTargetHandle;
-  char *plocalChar6;
-  int localInt7;
+  char *processingFlag;
+  int validationFlag;
   float *pTemporaryFloatValue;
   float tempFloatValue;
   float normalizedSum0;
@@ -22095,8 +22095,8 @@ void CleanupUIElementResources(longlong uiContext)
   UIDword uiStackData3;
   UIDword uiStackData4;
   UIDword uiStackHandle1;
-  UIDword uStack0000000000000050;
-  UIDword uStack0000000000000058;
+  UIDword uiResourceHandle;
+  UIDword uiMemoryHandle;
   UIHandle stackParam00000060;
   UIByte *pstackUInt32_70;
   char *pcStack0000000000000088;
