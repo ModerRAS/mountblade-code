@@ -126414,7 +126414,6 @@ void ReleaseUIResourceAndExecuteRender(void)
  * @note 原始函数名：FUN_18073af9f
  * @warning 此函数不返回，会调用ExecuteUIRenderTask
  */
-void ReleaseUIMemoryAndExecuteRenderTask(void)
 
 {
   ulonglong renderContext;
@@ -126447,7 +126446,23 @@ void ReleaseUIMemoryAndExecuteRenderTask(void)
  * 
  * @note 原始函数名：FUN_18073afc0
  */
-void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+/**
+ * @brief 处理UI上下文数据操作和缓冲区管理
+ * 
+ * 该函数负责处理UI上下文的数据操作，包括：
+ * 1. 初始化UI上下文和清理资源
+ * 2. 处理数据源和目标缓冲区的数据传输
+ * 3. 执行数据验证和缓冲区比较
+ * 4. 管理纹理数据和渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ */
+#define ProcessUIContextDataOperation FUN_18073afc0
+void ProcessUIContextDataOperation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
                   UIHandle resultPointer)
 
 {
