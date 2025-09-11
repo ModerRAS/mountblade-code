@@ -1217,6 +1217,15 @@
 #define FUN_1803ba550 HandleSystemResourceManagement              // 处理系统资源管理
 #define FUN_18020c8f0 ConfigureSystemDataConversion               // 配置系统数据转换
 #define FUN_1802f1930 ValidateSystemMemoryAccess                  // 验证系统内存访问
+#define FUN_18020d730 ProcessSystemDataValidation                  // 处理系统数据验证
+#define FUN_18020da10 ExecuteSystemSecurityCheck                   // 执行系统安全检查
+#define FUN_18020ee40 HandleSystemEventQueue                       // 处理系统事件队列
+#define FUN_18020f620 ReleaseSystemResources                       // 释放系统资源
+#define FUN_180217b00 InitializeSystemContextTransfer              // 初始化系统上下文传输
+#define FUN_180218920 ConfigureSystemContextValidation            // 配置系统上下文验证
+#define FUN_180219260 ExecuteSystemContextSynchronization          // 执行系统上下文同步
+#define FUN_180218a80 CleanupSystemContextResources                // 清理系统上下文资源
+#define FUN_180219020 FinalizeSystemContextTransfer                // 完成系统上下文传输
 #define FUN_18020d730 AllocateSystemContextBuffer                 // 分配系统上下文缓冲区
 #define FUN_18020da10 ProcessSystemContextOperation               // 处理系统上下文操作
 #define FUN_18015c2b0 ReleaseSystemResourceHandle                 // 释放系统资源句柄
