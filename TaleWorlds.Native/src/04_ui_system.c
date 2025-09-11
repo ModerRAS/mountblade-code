@@ -141018,7 +141018,23 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
 
 
  
-ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
+/**
+ * @brief 处理UI上下文数据操作和组件初始化
+ * 
+ * 该函数负责处理UI系统的上下文数据操作，包括：
+ * - 初始化UI内存池和组件数据
+ * - 处理UI目标句柄的数据复制
+ * - 配置UI事件和状态管理
+ * - 执行上下文数据初始化和验证
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @return ulonglong 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_180745946
+ * @note 该函数处理复杂的UI上下文初始化和数据操作
+ */
+ulonglong ProcessUIContextDataOperationAndInitialization(UIDword uiContext, UIDword dataSource)
 
 {
   UIDword result;
