@@ -106,6 +106,7 @@ typedef enum {
 // UI系统函数语义化宏定义
 #define FUN_180754f10 InitializeUIRenderContext  // 初始化UI渲染上下文
 #define FUN_180756450 ProcessUITextureDataWithParameters  // 处理UI纹理数据与参数
+#define FUN_180757ed0 ProcessUIDataBufferWithTarget  // 处理UI数据缓冲区与目标
 #define FUN_18073f710 CleanupUIRenderContextAndReleaseResources  // 清理UI渲染上下文并释放资源
 #define FUN_18073f990 InitializeUIDataSourceWithValidation  // 初始化UI数据源并执行验证
 #define FUN_18073fa70 ProcessUIDataSourceWithTextureValidation  // 处理UI数据源并执行纹理验证
@@ -134580,7 +134581,6 @@ texture_validation_complete:
  * @warning 函数执行后可能会调用不返回的子函数
  */
 void ProcessUIDataSourceWithEventHandling(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
-void FUN_18073fa8d(UIHandle uiContext,UIDword *dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -134626,7 +134626,6 @@ event_handling_complete:
 
 
  void FUN_18073faec(void)
-void FUN_18073faec(void)
 
 {
   int operationResult;
@@ -134645,7 +134644,6 @@ void FUN_18073faec(void)
 
 
  void FUN_18073fb64(void)
-void FUN_18073fb64(void)
 
 {
   longlong stackParam00000030;
@@ -158240,7 +158238,25 @@ void FUN_180757e70(longlong *uiContext,UIDword dataSource)
  WARNING: Removing unreachable block (ram,0x000180758df0)
  WARNING: Removing unreachable block (ram,0x000180758dfd)
 
-UIHandle FUN_180757ed0(longlong uiContext,uint dataSource,uint targetBuffer)
+/**
+ * @brief 处理UI数据缓冲区与目标
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区和目标操作，包括：
+ * - 数据缓冲区的分配和管理
+ * - 目标缓冲区的验证和处理
+ * - 事件状态的处理和更新
+ * - 组件数据的操作和管理
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文环境
+ * @param dataSource 数据源参数，指定要处理的数据
+ * @param targetBuffer 目标缓冲区参数，指定数据处理的目标位置
+ * 
+ * @return UIHandle 操作结果句柄，0表示成功，非0值表示错误代码
+ * 
+ * @note 原始函数名：FUN_180757ed0
+ * @note 该函数在UI数据缓冲区处理中起到关键作用
+ */
+UIHandle ProcessUIDataBufferWithTarget(longlong uiContext,uint dataSource,uint targetBuffer)
 
 {
   longlong allocatedMemory;

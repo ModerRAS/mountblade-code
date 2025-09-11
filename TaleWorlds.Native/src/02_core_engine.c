@@ -257988,13 +257988,13 @@ long long * ProcessContextHandleBoundaryAndMemoryAllocation(long long *ContextHa
   MemoryRangeBoundary = (long long *)ContextHandle[1];
   SystemDataTablePointer = *ContextHandle;
 LAB_1802097bc:
-  FUN_180209980(&SystemContextRegister,SystemDataTablePointer,MemoryRangeBoundary,AllocatedMemorySize);
-  FUN_180209840(SystemContextRegister,OperationBufferSize);
+  ProcessSystemDataTransfer(&SystemContextRegister,SystemDataTablePointer,MemoryRangeBoundary,AllocatedMemorySize);
+  FinalizeSystemDataTransfer(SystemContextRegister,OperationBufferSize);
   SystemDataTablePointer = ContextHandle[1];
   StringOffset = *ContextHandle;
   if (StringOffset != SystemDataTablePointer) {
     do {
-      FUN_180207ea0(StringOffset);
+      CleanupSystemMemoryResources(StringOffset);
       StringOffset = StringOffset + 0x78;
     } while (StringOffset != SystemDataTablePointer);
     StringOffset = *ContextHandle;
