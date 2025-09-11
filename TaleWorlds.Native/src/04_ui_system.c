@@ -126146,7 +126146,18 @@ UIResourceCleanupAndRenderTask:
 
 
 
- void FUN_18073ae88(void)
+ /**
+ * @brief 处理UI数据缓冲区验证和复制操作
+ * 
+ * 该函数负责处理UI数据缓冲区的验证和复制操作，包括：
+ * - 复制UI数据缓冲区到指定位置
+ * - 验证缓冲区数据的完整性
+ * - 处理纹理数据填充操作
+ * - 执行上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18073ae88
+ * @warning 此函数不返回，会调用ExecuteUIContextDataOperation
+ */
 void FUN_18073ae88(void)
 
 {
