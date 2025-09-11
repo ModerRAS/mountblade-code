@@ -227553,7 +227553,6 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
  * @note 地址掩码：0xfffffffffffffffe
  * @note 内存索引偏移：0x28(SystemContextMemoryIndexOffset)
  */
-#define ProcessContextHandleAndSystemResourceManagement FUN_180187c00
 /**
  * @brief 处理UTF-16字符和内存块管理
  * 
