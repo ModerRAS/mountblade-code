@@ -258052,15 +258052,15 @@ LAB_180209615:
  */
 long long * ProcessContextHandleBoundaryAndMemoryAllocation(long long *ContextHandle,long long *ContextHandleSize)
 {
-  uint Utf16Char;
+  uint Utf16CharacterValue;
   long long *BufferAllocationState;
   uint32_t UnicodeCodePoint;
-  uint32_t MemoryAllocationMaskPointer;
+  uint32_t MemoryAllocationMask;
   long long AllocatedMemorySize;
   long long *MemoryRangeBoundary;
   long long MemoryPoolBlockSize;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   long long *SystemContextRegister;
   
   MemoryRangeBoundary = (long long *)ContextHandle[1];
