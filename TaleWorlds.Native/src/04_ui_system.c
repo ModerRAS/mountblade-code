@@ -1266,6 +1266,7 @@ typedef enum {
 // UI系统寄存器变量宏定义
 #define in_register_0000131c UIRegisterValue131c
 #define in_register_0000125c UIRegisterValue125c
+#define puRam0000000000012780 UIResultPointer               // UI结果指针
 
 // UI系统布尔变量宏定义
 #define bVar2 UIIsEventProcessingActive

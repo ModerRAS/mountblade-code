@@ -1865,6 +1865,23 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define StackMemoryPointer14c uStack_14c                    // 栈内存指针14c
 #define StackResourceFlags144 uStack_144                    // 栈资源标志144
 
+// 高频使用栈变量语义化定义
+#define StackFloatCalculationResult fStack_118              // 栈浮点计算结果（使用69次）
+#define StackTransformScaleFactor fStack_d0                 // 栈变换缩放因子（使用63次）
+#define StackMatrixOperationResult fStack_e8                 // 栈矩阵运算结果（使用52次）
+#define StackMemoryOperationData fStack_d8                  // 栈内存操作数据（使用52次）
+#define StackSystemProcessingValue fStack_f0                // 栈系统处理值（使用50次）
+#define StackBufferDataPointer fStack_258                   // 栈缓冲区数据指针（使用49次）
+#define StackSystemStatusFlag fStack_f8                      // 栈系统状态标志（使用47次）
+#define StackDataValidationResult fStack_e0                   // 栈数据验证结果（使用46次）
+#define StackMemoryAllocationOffset fStack_d4                // 栈内存分配偏移量（使用40次）
+#define StackMatrixTransformData fStack_218                 // 栈矩阵变换数据（使用40次）
+#define StackCharacterProcessingResult fStack_1e0            // 栈字符处理结果（使用36次）
+#define StackEncodingConversionData fStack_ec               // 栈编码转换数据（使用35次）
+#define StackUnicodeProcessingValue fStack_128              // 栈Unicode处理值（使用35次）
+#define StackSystemConfigurationValue fStack_100             // 栈系统配置值（使用35次）
+#define StackBufferDataOperation fStack_40                   // 栈缓冲区数据操作（使用34次）
+
 // 额外栈变量语义化定义
 #define StackFloatValue8f8 fStack_8f8                       // 栈浮点值8f8
 #define StackFloatValue70 fStack_70                         // 栈浮点值70
