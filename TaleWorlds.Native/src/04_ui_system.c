@@ -386288,7 +386288,13 @@ UIDword FUN_180890723(void)
 
 
  void FUN_18089074c(void)
-void FUN_18089074c(void)
+/**
+ * @brief 处理UI严重错误并退出
+ * 
+ * 该函数处理UI系统中的严重错误，调用系统错误处理函数并退出。
+ * 这是一个不返回的函数，会导致程序终止。
+ */
+void HandleUICriticalErrorAndExit(void)
 
 {
                      WARNING: Subroutine does not return

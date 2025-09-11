@@ -158,6 +158,11 @@
 #define FUN_180170380 ValidateCharacterEncodingAndData                    // 处理字符编码和数据验证
 #define FUN_180170700 HandleCharacterEncodingAndMemoryPool                // 处理字符编码和内存池操作
 #define FUN_180170900 ResetCharacterBufferAndCleanup                      // 处理字符缓冲区重置和清理
+
+// 新增函数语义化宏定义
+#define FUN_18019cf00 ProcessStringDataWithOffset                          // 处理字符串数据和偏移量
+#define FUN_18022d470 CalculateStringLengthAndValidate                     // 计算字符串长度并验证
+#define FUN_18022cd30 InitializeBufferDataAndResources                     // 初始化缓冲区数据和资源
 /**
  * @brief 处理系统数据验证和初始化
  * 
@@ -243926,7 +243931,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
     *(float *)(*(long long *)(ContextHandle + 0x380) + 0xa4) = SystemContextPrimaryFloat3;
     StringOffset = *(long long *)(ContextHandle + 0x380);
   }
-  FUN_18019cf00(OperationBufferSize + 0x125b8,StringOffset);
+  ProcessStringDataWithOffset(OperationBufferSize + 0x125b8,StringOffset);
   StringOffset = *(long long *)(OperationBufferSize + 0x12608);
   if (StringOffset != 0) {
     ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigB);
@@ -243998,7 +244003,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
     TemporaryFlag = 0;
     BufferInitializationFlag = 3;
     DataProcessingFlags = 0;
-    StringLength = FUN_18022d470(BufferAllocationState,&DataContentStatus);
+    StringLength = CalculateStringLengthAndValidate(BufferAllocationState,&DataContentStatus);
     if (StringLength == 0) {
       if (BufferAllocationState[0x17] != *(long long *)(*(long long *)(ContextHandle + 0x380) + 0x38)) {
         FUN_18022cd30(BufferAllocationState,0);
