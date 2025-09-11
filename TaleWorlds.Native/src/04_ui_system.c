@@ -125909,11 +125909,11 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong memoryCleanupFlag;
+  UIHandle cleanupBufferHandle;
+  ulonglong renderTaskParameter;
   
   *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
@@ -134107,14 +134107,14 @@ void ProcessUIContextAndDataSource(UIHandle uiContext, UIHandle dataSource)
     ValidateUIDataWithContext(dataBuffer, 0x100, dataSource);
     bufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957ad0);
+    ExecuteUIContextDataOperation(operationResult, 3, uiContext, &UNK_180957ad0);
   }
-LAB_18073f53a:
-  if (RenderContextSize != 0) {
+DataValidationComplete:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)tempBuffer);
 }
 
 
