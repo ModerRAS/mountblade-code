@@ -240,6 +240,29 @@ typedef enum {
 #define unmodifiedESI UIUnmodifiedESI
 #define XorEncryptionKey UIXorEncryptionKey
 
+// UI系统事件处理变量语义化定义
+#define resultPointer UIEventResultPointer
+#define piterationCount UIEventIterationCountPointer
+#define eventCodeType UIEventCodeType
+#define bufferPtr UIEventBufferPointer
+#define componentContextPtr UIComponentContextPointer
+#define maxProcessingCount UIMaxProcessingCount
+#define iterationCounter UIEventIterationCounter
+#define contextOffset UIEventContextOffset
+#define eventStatus UIEventStatus
+#define allocatedMemory0 UIAllocatedMemory0
+#define isCharacterMatch1 UIIsCharacterMatch
+#define bufferValue UIEventBufferValue
+#define contextValue UIEventContextValue
+#define resultPointer4 UIEventResultPointer4
+#define resultPointer5 UIEventResultPointer5
+#define sizeData UIEventSizeData
+#define resultPointer7 UIEventResultPointer7
+#define textureHandle UITextureHandle
+#define shaderHandle UIShaderHandle
+#define uiValidationResult1 UIValidationResult1
+#define eventCode UIEventCode
+
 // UI系统全局变量语义化定义
 #define UNK_18097ecf0 UIEventDataTable            // UI事件数据表
 #define UNK_18097ed30 UIComponentDataTable         // UI组件数据表
@@ -326,6 +349,7 @@ typedef enum {
 #define FUN_18073da7d ProcessUIContextDataOperationAndRenderTask  // 处理UI上下文数据操作和渲染任务
 #define FUN_18073dba0 ProcessUIContextWithDataFill                  // 处理UI上下文数据填充操作
 #define FUN_180767c00 ProcessUIEventWithDataSourceAndTarget        // 处理UI事件与数据源和目标
+#define FUN_18076c260 ProcessUIEventDispatch                        // 处理UI事件分发和验证
 #define FUN_1807863b0 ValidateUIContextAndEventData                // 验证UI上下文和事件数据
 #define FUN_18088c380 ProcessUIBufferDataWithValidation           // 处理UI缓冲区数据与验证
 #define FUN_18073f640 ProcessUIContextWithDataValidation           // 处理UI上下文数据并验证
@@ -94841,8 +94865,13 @@ void UINoOperationHandler(void)
 #define FUN_18088aee0 ProcessUIComponentData                    // 处理UI组件数据
 #define FUN_18088af30 ProcessUIComponentValidation               // 处理UI组件验证
 
-// 函数: void FUN_18071ace8(void)
+// UI系统数据处理函数语义化定义
+#define FUN_1808c26e0 ProcessUIDataWithEncryptionAndTarget     // 处理UI数据与加密目标
+
+// UI系统空函数语义化定义
 #define UIReturnEmptyFunction FUN_18071ace8
+
+// 函数: void FUN_18071ace8(void)
 /**
  * @brief UI系统空返回函数
  * 
@@ -180412,8 +180441,26 @@ longlong FUN_18076c0a0(longlong uiContext,longlong dataSource,ulonglong targetBu
 
  
 
- void FUN_18076c260(uint *uiContext,longlong dataSource)
-void FUN_18076c260(uint *uiContext,longlong dataSource)
+ // 函数: void FUN_18076c260(uint *uiContext,longlong dataSource)
+#define ProcessUIEventDispatch FUN_18076c260
+/**
+ * @brief 处理UI事件分发和验证
+ * 
+ * 该函数负责UI事件的分发和验证，包括：
+ * - 验证数据源有效性
+ * - 初始化组件上下文
+ * - 处理事件状态
+ * - 管理事件计数和迭代
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源标识符
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18076c260
+ * @note 这是一个重要的UI事件处理函数，负责事件分发和验证
+ */
+void ProcessUIEventDispatch(uint *uiContext,longlong dataSource)
 
 {
   ulonglong *resultPointer;
