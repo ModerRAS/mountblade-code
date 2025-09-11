@@ -362,6 +362,21 @@ typedef enum {
 #define ProcessUIContextDataTransfer FUN_180728660          // 处理UI上下文数据传输
 #define TransferUIDataToBuffer FUN_180728720                // 传输UI数据到缓冲区
 #define ProcessUIContextValidation FUN_18088eb60            // 处理UI上下文验证
+
+// UI系统高级函数语义化定义（新发现函数）
+#define FUN_18089bbff UINullOperationFunction                     // UI空操作函数 - 执行空操作的UI函数
+#define FUN_18089bc10 ProcessUIComponentDataAndValidation        // 处理UI组件数据和验证 - 验证UI组件数据完整性
+#define FUN_18089bc5a ProcessUIComponentResourceManagement      // 处理UI组件资源管理 - 管理UI组件资源分配和释放
+#define FUN_1808af700 ValidateUIComponentMemoryAllocation        // 验证UI组件内存分配 - 验证UI组件内存分配的有效性
+
+// UI系统验证和处理函数
+#define ValidateUIDataSignatureAndFormat FUN_1808910c0          // 验证UI数据签名和格式 - 验证UI数据的完整性和格式
+#define ValidateUIContextDataAndIntegrity FUN_180891160          // 验证UI上下文数据和完整性 - 验证UI上下文的数据完整性
+#define ProcessUIComponentMetricsCalculation FUN_1808960f0      // 处理UI组件度量计算 - 计算UI组件的度量和尺寸
+#define ProcessUIComponentTransformationAndRendering FUN_1808961a0 // 处理UI组件变换和渲染 - 执行UI组件的变换和渲染操作
+#define ValidateUIComponentRecomponentData FUN_180896280         // 验证UI组件重组成数据 - 验证UI组件重组数据的完整性
+#define ValidateUIDataBufferIntegrityAndSecurity FUN_180896330     // 验证UI数据缓冲区完整性和安全性 - 验证UI数据缓冲区的完整性和安全性
+#define HandleUIValidationErrorProcessingAndRecovery FUN_180896410 // 处理UI验证错误处理和恢复 - 处理UI验证过程中的错误和恢复操作
 #define ProcessUIEventAndComponentData FUN_18088ebb0        // 处理UI事件和组件数据
 #define ProcessUITransformDataWithCoefficients FUN_180721810 // 处理UI变换数据与系数
 #define ValidateUIFloatParameter FUN_180721f12               // 验证UI浮点参数
@@ -682,6 +697,9 @@ typedef enum {
 #define FUN_18086d470 ProcessUIComponentWithMemoryEx2
 #define FUN_18086d620 ProcessUIComponentWithMemoryEx3
 #define FUN_18088ff94 ProcessUIComponentWithHandlesEx15
+#define FUN_180895e19 ProcessUIComponentWithIntEx
+#define FUN_180898a50 ProcessUIComponentWithUIntEx6
+#define FUN_180898b40 ProcessUIComponentWithArrayEx3
 
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
 #define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
