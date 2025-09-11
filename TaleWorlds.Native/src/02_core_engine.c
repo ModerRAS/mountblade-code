@@ -233243,7 +233243,23 @@ LAB_180190c1c:
 
  (ram,0x0001801910ba (ram,0x0001801910c0 (ram,0x0001801910d3 (ram,0x0001801910f7 (ram,0x000180191100 (ram,0x000180191112 (ram,0x000180191115 (ram,0x000180191133 (ram,0x000180191135 (ram,0x000180191148 (ram,0x000180191150 (ram,0x000180191167 (ram,0x00018019117d (ram,0x000180191190 (ram,0x00018019119d
 
-90c90(uint64_t *ContextHandle,uint64_t *ContextHandleSize,long long Utf8SourcePointervoid FUN_180190c90(uint64_t *ContextHandle,uint64_t *ContextHandleSize,long long Utf8SourcePointer
+/**
+ * @brief 处理系统数据配对和内存管理
+ * 
+ * 该函数负责处理系统数据配对操作和内存管理任务。
+ * 主要功能包括：
+ * - 管理上下文句柄和内存分配
+ * - 处理UTF-8到UTF-16的字符转换
+ * - 执行数据配对和验证操作
+ * - 管理内存池和系统状态
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180190c90
+ */
+void ManageSystemDataPairingAndMemoryManagement(uint64_t *ContextHandle, uint64_t *ContextHandleSize, long long Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
@@ -233252,14 +233268,14 @@ LAB_180190c1c:
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   uint64_t *CharacterStatusBuffer;
   long long SystemStringIndex;
   long long SystemContextValue;
   bool ValidationByteFlag3;
-  uint32_t uStackX_20;
-  uint32_t uStackX_24;
+  uint32_t StackValue20;
+  uint32_t StackValue24;
   
   MemoryAddressMaskPointer = (long long)OperationBufferSize - (long long)ContextHandle;
   do {
@@ -233301,10 +233317,10 @@ LAB_180190c1c:
                  *(uint32_t *)((long long)ContextHandle + StringOffset * 8 + 4);
             SystemDataTablePointer = StringOffset;
           }
-          uStackX_20 = (uint32_t)Utf16Char;
-          uStackX_24 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
-          *(uint32_t *)(ContextHandle + SystemDataTablePointer) = uStackX_20;
-          *(uint32_t *)((long long)ContextHandle + SystemDataTablePointer * 8 + 4) = uStackX_24;
+          StackValue20 = (uint32_t)Utf16Char;
+          StackValue24 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+          *(uint32_t *)(ContextHandle + SystemDataTablePointer) = StackValue20;
+          *(uint32_t *)((long long)ContextHandle + SystemDataTablePointer * 8 + 4) = StackValue24;
         } while (SystemContextValue != 0);
       }
       if (1 < AllocatedMemorySize) {
@@ -233417,7 +233433,23 @@ LAB_180190d41:
 
  (ram,0x0001801910ba (ram,0x0001801910c0 (ram,0x0001801910d3 (ram,0x0001801910f7 (ram,0x000180191100 (ram,0x000180191112 (ram,0x000180191115 (ram,0x000180191133 (ram,0x000180191135 (ram,0x000180191148 (ram,0x000180191150 (ram,0x000180191167 (ram,0x00018019117d (ram,0x000180191190 (ram,0x00018019119d
 
-90c9f(uint64_t *ContextHandle,uint64_t *ContextHandleSize,long long Utf8SourcePointervoid FUN_180190c9f(uint64_t *ContextHandle,uint64_t *ContextHandleSize,long long Utf8SourcePointer
+/**
+ * @brief 完成系统数据处理和验证
+ * 
+ * 该函数负责完成系统数据处理和验证任务。
+ * 主要功能包括：
+ * - 验证系统数据完整性
+ * - 处理内存管理和清理
+ * - 执行最终的系统状态检查
+ * - 管理系统资源释放
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180190c9f
+ */
+void CompleteSystemDataProcessingAndValidation(uint64_t *ContextHandle, uint64_t *ContextHandleSize, long long Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
@@ -233427,8 +233459,8 @@ LAB_180190d41:
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   uint64_t *CharacterStatusBuffer;
   long long SystemStringIndex;
   long long SystemContextValue;
@@ -233592,7 +233624,19 @@ LAB_180190d41:
 
  (ram,0x0001801910ba (ram,0x0001801910c0 (ram,0x0001801910d3 (ram,0x0001801910f7 (ram,0x000180191100 (ram,0x000180191112 (ram,0x000180191115 (ram,0x000180191133 (ram,0x000180191135 (ram,0x000180191148 (ram,0x000180191150 (ram,0x000180191167 (ram,0x00018019117d (ram,0x000180191190 (ram,0x00018019119d
 
-90cc0(voidvoid FUN_180190cc0(void
+/**
+ * @brief 初始化系统上下文管理器
+ * 
+ * 该函数负责初始化系统上下文管理器和相关组件。
+ * 主要功能包括：
+ * - 设置系统上下文控制器
+ * - 初始化内存管理器
+ * - 配置字符编码处理
+ * - 设置系统数据表
+ * 
+ * @note 原始函数名：FUN_180190cc0
+ */
+void InitializeSystemContextManager(void)
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
@@ -233602,8 +233646,8 @@ LAB_180190d41:
   void *CurrentNode;
   uint64_t *FramePointer;
   void *PreviousNode;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   long long EncodingConversionResult;
   uint64_t *CharacterLimit;
   long long SystemStringIndex;
