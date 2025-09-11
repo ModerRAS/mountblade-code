@@ -159332,7 +159332,7 @@ void ProcessUtf8CharacterEncodingAndBuffer(int ContextHandle,float *ContextHandl
   float ProcessedFloatValue8;
   float NormalizedParameterValue;
   int FloatingPointRegisterA;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   float fStack000000000000002c;
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
@@ -159437,7 +159437,7 @@ void ProcessUtf8CharacterAndInputBuffer(uint ContextHandle,uint32_t *ContextHand
   int unaff_XMM6_Db;
   int FloatingPointRegisterC;
   int unaff_XMM6_Dd;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   float fStack000000000000002c;
   
   CalculatedCodePoint = 0x1d38;
@@ -159522,7 +159522,7 @@ void ProcessUtf8DataEncodingAndSourcePointer(uint64_t ContextHandle,uint64_t Ope
   uint32_t unaff_XMM6_Db;
   uint32_t FloatingPointRegisterC;
   uint32_t unaff_XMM6_Dd;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   float fStack000000000000002c;
   
   ContextSecondaryFloat = SystemDataNode[1];
@@ -162285,7 +162285,7 @@ void ConvertUtf8ToUtf16Encoding1EB(long long ContextHandle,uint64_t OperationBuf
   float NormalizedParameterValue;
   float PrimaryFloatValue;
   float SecondaryFloatValue;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   float fStack000000000000002c;
   float fStack0000000000000080;
   float fStack0000000000000084;
@@ -166068,7 +166068,7 @@ void InitializeSystemContextAndMemoryManagement(void)
   float BaseFloatValue;
   float SecondaryFloatValue;
   uint32_t uStackX_24;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   uint32_t SystemFloatValue2c;
   uint32_t UnsignedStackProcessingParameter30;
   uint32_t SystemFloatValue34;
@@ -166372,7 +166372,7 @@ void ProcessSystemFloatInitialization(void
   float SystemCoreScaleX;
   float BaseFloatValue;
   float SecondaryFloatValue;
-  float fStack0000000000000028;
+  float HorizontalCoordinate;
   uint32_t SystemFloatValue2c;
   
   AllocatedMemorySize = SystemConfigurationHandle;
