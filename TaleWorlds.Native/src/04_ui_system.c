@@ -134589,6 +134589,7 @@ void ProcessUIDataSourceWithEventHandling(UIHandle uiContext,UIDword *dataSource
   longlong contextSize;
   UIHandle dataSourceHandle;
   ulonglong renderTaskParameter;
+  UIByte validationBuffer [256];
   
   *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
