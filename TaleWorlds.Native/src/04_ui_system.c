@@ -94820,6 +94820,27 @@ void UINoOperationHandler(void)
 #define FUN_180765c40 ProcessUIRenderContext                   // 处理UI渲染上下文
 #define FUN_180741e10 ProcessUIDataWithExtendedParameters      // 处理UI数据与扩展参数
 
+// UI系统事件处理函数语义化定义
+#define FUN_1808e03a0 ProcessUIEventCodeAndValidation           // 处理UI事件代码和验证
+#define FUN_18088ad30 ProcessUIComponentEventValidation        // 处理UI组件事件验证
+#define FUN_1808c1af0 ValidateUIComponentAndEvent             // 验证UI组件和事件
+#define FUN_1808e1610 ProcessUIEventWithDataSource             // 处理UI事件与数据源
+#define FUN_180875800 ProcessUIEventWithComponent             // 处理UI事件与组件
+#define FUN_1808e0820 ProcessUIEventWithParameter             // 处理UI事件与参数
+#define FUN_18088a270 ProcessUIContextAndEvent                 // 处理UI上下文和事件
+#define FUN_18088c740 InitializeUIEventDataSource              // 初始化UI事件数据源
+#define FUN_1808dea20 ProcessUIEventValidation                 // 处理UI事件验证
+#define FUN_1808de9b0 ValidateUIEventMemory                   // 验证UI事件内存
+#define FUN_1808ded80 ExecuteUIEventTask                      // 执行UI事件任务
+#define FUN_18088c790 CleanupUIEventResources                  // 清理UI事件资源
+
+// UI系统组件处理函数语义化定义
+#define FUN_18088a1f0 GetUIComponentHandle                      // 获取UI组件句柄
+#define FUN_18088ac50 ProcessUIContextWithComponent              // 处理UI上下文与组件
+#define FUN_18088aca0 ProcessUIComponentEvent                    // 处理UI组件事件
+#define FUN_18088aee0 ProcessUIComponentData                    // 处理UI组件数据
+#define FUN_18088af30 ProcessUIComponentValidation               // 处理UI组件验证
+
 // 函数: void FUN_18071ace8(void)
 #define UIReturnEmptyFunction FUN_18071ace8
 /**

@@ -264639,7 +264639,7 @@ LAB_1801571ef:
     (**(code **)(*ContextHandle + 0x1a0))(ContextHandle,Utf8SourcePointer,4);
   }
   InitializeSystemMemoryContext(*ContextHandle,*(uint32_t *)(CoreEngineMemoryContext + 0x1570));
-  FUN_18073bdc0(*ContextHandle,0x400);
+  ConfigureSystemMemoryAllocation(*ContextHandle,0x400);
     memset(auStack_b98,0,0x68);
 }
 
