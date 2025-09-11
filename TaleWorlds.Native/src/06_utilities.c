@@ -5690,16 +5690,16 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 #define FUN_1800ba100 ProcessSystemConfigurationUpdate
 
 // 工具系统函数宏定义
-#define ConfigureUtilitySystemBufferC FUN_180942930
-#define ProcessUtilitySystemData FUN_180942a20
-#define ValidateUtilitySystemData FUN_1809429f0
-#define InitializeUtilitySystemResourceA FUN_180942fa0
-#define ConfigureUtilitySystemSecurityA FUN_180942fc0
-#define DestroyMutexC FUN_180943070
-#define InitializeThreadLocalStorageA5 FUN_180943140
-#define InitializeThreadLocalStorageA6 FUN_180943160
-#define InitializeThreadLocalStorageA7 FUN_180943180
-#define InitializeThreadLocalStorageA8 FUN_1809431a0
+#define ConfigureUtilitySystemBufferC ConfigureUtilitySystemDataBuffer
+#define ProcessUtilitySystemData ProcessUtilitySystemCoreData
+#define ValidateUtilitySystemData ValidateUtilitySystemDataIntegrity
+#define InitializeUtilitySystemResourceA InitializeUtilitySystemResourceManager
+#define ConfigureUtilitySystemSecurityA ConfigureUtilitySystemSecurity
+#define DestroyMutexC DestroyUtilitySystemMutex
+#define InitializeThreadLocalStorageA5 InitializeThreadLocalStoragePrimary
+#define InitializeThreadLocalStorageA6 InitializeThreadLocalStorageSecondary
+#define InitializeThreadLocalStorageA7 InitializeThreadLocalStorageTertiary
+#define InitializeThreadLocalStorageA8 InitializeThreadLocalStorageQuaternary
 
 // 系统验证函数 - 验证系统的各个方面
 #define ValidateSystemComponentsAndState ValidateSystemComponentsAndState

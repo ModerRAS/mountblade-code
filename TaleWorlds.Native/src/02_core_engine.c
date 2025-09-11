@@ -245113,7 +245113,7 @@ LAB_18019e833:
               }
               *(void *)(BufferStatus + 0x60b68) = *(void *)(BufferStatus + 0x454);
               *(unsigned long long **)(BufferStatus + 0x60b70) = StackProcessingVariable;
-              FUN_1801b2460(BufferStatus);
+              ReleaseSystemMemoryBuffer(BufferStatus);
               if ((*(char *)(BufferStatus + 0x560) == '\0') &&
                  (BufferStatus1 = *(long long *)(BufferStatus + 0x448), BufferStatus1 != 0)) {
                 *(uint32_t *)(BufferStatus1 + 0x2150) =
