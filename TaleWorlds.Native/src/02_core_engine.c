@@ -265006,11 +265006,11 @@ SkipMemoryAllocation:
         ValidationIndex = ValidationIndex + 1;
       } while (ValidationIndex < 7);
       SystemContextCopy = 0;
-      FUN_180846fe0(ResultHandle, &SystemContextCopy);
+      ProcessSystemMemoryValidation(ResultHandle, &SystemContextCopy);
     }
   }
   else {
-    UnicodeCodePoint = FUN_1808496c0(ResultHandle, &SystemEncodingDataPrimary, 0xffffffff);
+    UnicodeCodePoint = FinalizeSystemMemoryValidation(ResultHandle, &SystemEncodingDataPrimary, 0xffffffff);
     ProcessingStatusFlag = &CoreEngineDataTemplate;
     if (*(void **)(BufferSize + 8) != NULL) {
       ProcessingStatusFlag = *(void **)(BufferSize + 8);
@@ -265097,11 +265097,11 @@ SkipMemoryReallocation:
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
 SkipEventProcessing:
   ProcessingResult = 0;
-  MemoryPoolIndex = FUN_180845d20(*(void *)(SystemContextHandle + 0x368),
+  MemoryPoolIndex = InitializeSystemMemoryValidation(*(void *)(SystemContextHandle + 0x368),
                         (long long)BufferOperationSize * 0x10 + *(long long *)(SystemContextHandle + 0x3b8), &ProcessingResult);
   ProcessCoreEngineDataAndTemplate(MemoryPoolIndex, &CoreEngineDataTemplate);
   if ((ProcessingResult != 0) && (Utf8SourceChar != '\0')) {
-    MemoryPoolIndex = FUN_1808496c0(ProcessingResult, &SystemEncodingDataPrimary, 0xffffffff);
+    MemoryPoolIndex = FinalizeSystemMemoryValidation(ProcessingResult, &SystemEncodingDataPrimary, 0xffffffff);
     ProcessCoreEngineDataAndTemplate(MemoryPoolIndex, &CoreEngineDataTemplate);
   }
   return ProcessingResult;
@@ -265179,7 +265179,7 @@ MemoryAllocationRetry:
   }
 SkipContextValidation:
   CalculatedCodePoint = ProcessUtf8CharacterEncoding(SystemContextHandle, BufferOperationSize, 0);
-  MemoryAllocationStatus = FUN_180840490(CalculatedCodePoint, &SystemRegisterFlag);
+  MemoryAllocationStatus = ValidateSystemCharacterData(CalculatedCodePoint, &SystemRegisterFlag);
   ProcessingStatusFlag = &CoreEngineDataTemplate;
   if (*(void **)(BufferOperationSize + 8) != NULL) {
     ProcessingStatusFlag = *(void **)(BufferOperationSize + 8);
@@ -265370,7 +265370,7 @@ void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uin
   if (SystemCharacterStatusBufferPointer != NULL) {
     StringProcessingStatus = SystemCharacterStatusBufferPointer;
   }
-  LockOperationResult = FUN_180848090(*(void *)(ContextHandle + 0x368),StringProcessingStatus,0,&SystemProcessingCounter);
+  LockOperationResult = HandleSystemStringOperation(*(void *)(ContextHandle + 0x368),StringProcessingStatus,0,&SystemProcessingCounter);
   StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemCharacterStatusBufferPointer != NULL) {
     StringProcessingStatus = SystemCharacterStatusBufferPointer;
@@ -265405,7 +265405,7 @@ void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uin
   }
   else {
 PROCESS_STRING_TEMPLATE_FOUND:
-    UnicodeCodePoint = FUN_1808482f0(SystemProcessingCounter);
+    UnicodeCodePoint = ProcessSystemCharacterBuffer(SystemProcessingCounter);
     StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPointer != NULL) {
       StringProcessingStatus = SystemCharacterStatusBufferPointer;
@@ -266524,7 +266524,7 @@ void ProcessUtf8ToUtf16Conversion(long long ContextHandle,int OperationBufferSiz
     plStack_190 = (long long *)0x0;
     FUN_1808455f0(Utf8SourcePointer,&plStack_190);
     lStack_198 = 0;
-    FUN_180846fe0(plStack_190,&lStack_198);
+    HandleSystemStringEncoding(plStack_190,&lStack_198);
     if ((lStack_198 != 0) && (-1 < *(int *)(lStack_198 + 8))) {
       UnicodeCodePoint = FUN_180844f40(Utf8SourcePointer,&StackValidationData);
       ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,&CoreEngineDataTemplate);
@@ -267220,7 +267220,7 @@ unsigned long long ProcessCharacterEncodingAndBuffer(long long ContextHandle,lon
     }
     BufferStatus = FUN_180213440(ContextHandle,OperationBufferSize,0);
     if (BufferStatus != 0) {
-      Utf16Char = FUN_180840490(BufferStatus,&lStackX_8);
+      Utf16Char = ValidateSystemCharacterData(BufferStatus,&lStackX_8);
       ProcessCoreEngineDataAndTemplate(Utf16Char,&CoreEngineDataTemplate);
       if (lStackX_8 != 0) {
         FUN_180407630(lStackX_8,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
@@ -267263,7 +267263,7 @@ unsigned long long ProcessSystemUnicodeValidation(void
   
   BufferStatus = FUN_180213440();
   if (BufferStatus != 0) {
-    Utf16Char = FUN_180840490(BufferStatus,&TertiaryDataBuffer);
+    Utf16Char = ValidateSystemCharacterData(BufferStatus,&TertiaryDataBuffer);
     ProcessCoreEngineDataAndTemplate(Utf16Char,&CoreEngineDataTemplate);
     BufferStatus = DataStorageValue;
     if (DataStorageValue != 0) {
@@ -267402,7 +267402,7 @@ ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle,int Operatio
         }
       }
       MemoryAllocationMaskPointer = FUN_180213700(ContextHandle,OperationBufferSize,0);
-      UnicodeCodePoint = FUN_180840490(MemoryAllocationMaskPointer,&SystemContextRegister);
+      UnicodeCodePoint = ValidateSystemCharacterData(MemoryAllocationMaskPointer,&SystemContextRegister);
       ProcessCoreEngineDataAndTemplate(UnicodeCodePoint,&CoreEngineDataTemplate);
       ContextHandle = SystemContextRegister;
       FUN_180407630(SystemContextRegister,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
