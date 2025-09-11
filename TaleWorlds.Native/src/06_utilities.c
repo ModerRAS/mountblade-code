@@ -19313,6 +19313,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
     }
   }
   ReleaseSystemResources(resourceDataBuffer);
+  return 0;
 }
 
 
