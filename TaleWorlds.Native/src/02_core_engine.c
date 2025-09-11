@@ -100054,7 +100054,7 @@ void ConfigureSystemDataStructureOffset1C0(long long ContextHandle, uint32_t Ope
  * 
  * @note 原始函数名：e330
  */
-void SetSystemDataStructureOffset220(long long ContextHandle, uint32_t OperationBufferSize)
+void ConfigureSystemDataStructureOffset220(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
   void *PrimaryProcessingStatusFlag;
@@ -100090,7 +100090,7 @@ void SetSystemDataStructureOffset220(long long ContextHandle, uint32_t Operation
  * 
  * @note 原始函数名：e3b0
  */
-void SetSystemDataStructureOffset280(long long ContextHandle, uint32_t OperationBufferSize)
+void ConfigureSystemDataStructureOffset280(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
   void *PrimaryProcessingStatusFlag;
@@ -100126,7 +100126,7 @@ void SetSystemDataStructureOffset280(long long ContextHandle, uint32_t Operation
  * 
  * @note 原始函数名：e430
  */
-void SetSystemDataStructureOffset2E0(long long ContextHandle, uint32_t OperationBufferSize)
+void ConfigureSystemDataStructureOffset2E0(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
   void *PrimaryProcessingStatusFlag;
