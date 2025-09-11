@@ -5506,11 +5506,11 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *connectio
         
         if (connectionValidationStatus == NetworkValidationSuccess) {
             // 连接状态良好，更新连接时间戳
-            UpdateConnectionTimestamp(NetworkConnectionContext);
-            processedConnectionHandle = NetworkConnectionContext->connectionHandle;
+            UpdateConnectionTimestamp(connectionContext);
+            processedConnectionHandle = connectionContext->connectionHandle;
         } else {
             // 连接验证失败，断开连接
-            TerminateNetworkConnection(NetworkConnectionContext);
+            TerminateNetworkConnection(connectionContext);
             processedConnectionHandle = NetworkErrorConnectionFailed;
         }
     } else {
