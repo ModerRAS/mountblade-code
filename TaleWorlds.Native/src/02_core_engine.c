@@ -225934,36 +225934,36 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
  * 
  * @note 原始函数名：FUN_180187c00
  */
-void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandle,uint64_t MemoryOperationSize,uint64_t Utf8SourceDataPointer,uint64_t Utf16EndDataPointer)
 {
-  unsigned long long Utf16Char;
-  long long BufferStatus;
-  long long SearchStartIndex;
-  uint64_t MemoryAddressMaskPointer;
+  unsigned long long Utf16CharacterCode;
+  long long SystemMemoryStatus;
+  long long MemorySearchStartIndex;
+  uint64_t AddressMaskPointer;
   
-  MemoryAddressMaskPointer = 0xfffffffffffffffe;
-  BufferStatus = *ContextHandle;
-  if (BufferStatus != 0) {
-    long long CurrentMemoryBlockIndex = ContextHandle[1];
-    if (BufferStatus != CurrentMemoryBlockIndex) {
+  AddressMaskPointer = 0xfffffffffffffffe;
+  SystemMemoryStatus = *SystemContextHandle;
+  if (SystemMemoryStatus != 0) {
+    long long CurrentMemoryBlockIndex = SystemContextHandle[1];
+    if (SystemMemoryStatus != CurrentMemoryBlockIndex) {
       do {
-        ProcessSystemStackData(BufferStatus);
-        BufferStatus = BufferStatus + SystemContextMemoryIndexOffset;
-      } while (BufferStatus != CurrentMemoryBlockIndex);
-      BufferStatus = *ContextHandle;
+        ProcessSystemStackData(SystemMemoryStatus);
+        SystemMemoryStatus = SystemMemoryStatus + SystemContextMemoryIndexOffset;
+      } while (SystemMemoryStatus != CurrentMemoryBlockIndex);
+      SystemMemoryStatus = *SystemContextHandle;
     }
-    Utf16Char = ((ContextHandle[2] - BufferStatus) / SystemContextMemoryIndexOffset) * SystemContextMemoryIndexOffset;
-    CurrentMemoryBlockIndex = BufferStatus;
-    if (0xfff < Utf16Char) {
-      CurrentMemoryBlockIndex = *(long long *)(BufferStatus + -8);
-      if (0x1f < (BufferStatus - CurrentMemoryBlockIndex) - 8U) {
-          _invalid_parameter_noinfo_noreturn(ContextHandle[2] - BufferStatus,Utf16Char + Utf16CharAdjustmentOffset,Utf8SourcePointer,Utf16EndPointer,MemoryAddressMaskPointer);
+    Utf16CharacterCode = ((SystemContextHandle[2] - SystemMemoryStatus) / SystemContextMemoryIndexOffset) * SystemContextMemoryIndexOffset;
+    CurrentMemoryBlockIndex = SystemMemoryStatus;
+    if (0xfff < Utf16CharacterCode) {
+      CurrentMemoryBlockIndex = *(long long *)(SystemMemoryStatus + -8);
+      if (0x1f < (SystemMemoryStatus - CurrentMemoryBlockIndex) - 8U) {
+          _invalid_parameter_noinfo_noreturn(SystemContextHandle[2] - SystemMemoryStatus,Utf16CharacterCode + Utf16CharAdjustmentOffset,Utf8SourceDataPointer,Utf16EndDataPointer,AddressMaskPointer);
       }
     }
     free(CurrentMemoryBlockIndex);
-    *ContextHandle = 0;
-    ContextHandle[1] = 0;
-    ContextHandle[2] = 0;
+    *SystemContextHandle = 0;
+    SystemContextHandle[1] = 0;
+    SystemContextHandle[2] = 0;
   }
   return;
 }
