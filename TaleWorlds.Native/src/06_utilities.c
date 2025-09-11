@@ -21058,36 +21058,36 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
  */
 int CheckUtilitySystemPermission(uint32_t permissionFlags)
 {
-    int SystemRegisterStatus;
-    int PermissionCheckResult;
-    int64_t MemoryResourceHandle;
-    int64_t SystemContextPointer;
-    DataWord OperationMode;
-    int64_t ContextBuffer;
-    DataWord PermissionParameter;
+    int SystemRegisterState;
+    int PermissionValidationResult;
+    int64_t ResourceMemoryHandle;
+    int64_t SecurityContextPointer;
+    DataBuffer PermissionOperationMode;
+    int64_t ContextDataBuffer;
+    DataBuffer PermissionValidationParameter;
     
-    MemoryResourceHandle = 0;
-    if (SystemRegisterStatus == 0) {
-        ContextBuffer = *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset);
-        OperationMode = 1;
-        MemoryResourceHandle = ContextBuffer;
+    ResourceMemoryHandle = 0;
+    if (SystemRegisterState == 0) {
+        ContextDataBuffer = *(int64_t *)(SecurityContextPointer + ExceptionHandlerCallbackOffset);
+        PermissionOperationMode = 1;
+        ResourceMemoryHandle = ContextDataBuffer;
     }
     else {
-        ContextBuffer = *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset);
-        OperationMode = 2;
+        ContextDataBuffer = *(int64_t *)(SecurityContextPointer + ExceptionHandlerCallbackOffset);
+        PermissionOperationMode = 2;
     }
     
-    PermissionParameter = permissionFlags;
-    PermissionCheckResult = ProcessDataRequest();
-    if (PermissionCheckResult == 0) {
-        PermissionCheckResult = 0;
+    PermissionValidationParameter = permissionFlags;
+    PermissionValidationResult = ProcessDataRequest();
+    if (PermissionValidationResult == 0) {
+        PermissionValidationResult = 0;
     }
-    else if (MemoryResourceHandle != 0) {
-        InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0), MemoryResourceHandle, &SystemMemoryPoolB, MemoryOperationModeE9, OperationMode);
-        return PermissionCheckResult;
+    else if (ResourceMemoryHandle != 0) {
+        InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0), ResourceMemoryHandle, &SystemMemoryPoolB, MemoryOperationModeE9, PermissionOperationMode);
+        return PermissionValidationResult;
     }
     
-    return PermissionCheckResult;
+    return PermissionValidationResult;
 }
 
 
@@ -28013,7 +28013,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
   int DataValidationResult;           // 数据验证结果
   int processedItemCount;
   int64_t dataBufferPointer;
-  int64_t arrayProcessingIndex;
+  int64_t recordArrayProcessingIndex;
   DataBuffer processDataBuffer;
   int64_t systemContextBuffer;
   int currentRecordIndex;
@@ -28028,10 +28028,10 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
   DataBuffer additionalDataBuffer;
   int *statusResultPointer;
   
-  arrayProcessingIndex = CONCAT44(processingFlags,currentRecordIndex) + CONCAT44(processingFlags,currentRecordIndex) * 2;
-  allocatedMemoryBlock = (int64_t)*(int *)(dataBufferPointer + arrayProcessingIndex * 4) + *(int64_t *)(systemContext + systemContextOffset);
-  recordDataType = *(char *)(dataBufferPointer + 8 + arrayProcessingIndex * 4);
-  *(int64_t *)(stackFramePointer + StackFrameContextNegativeOffset80) = arrayProcessingIndex;
+  recordArrayProcessingIndex = CONCAT44(processingFlags,currentRecordIndex) + CONCAT44(processingFlags,currentRecordIndex) * 2;
+  allocatedMemoryBlock = (int64_t)*(int *)(dataBufferPointer + recordArrayProcessingIndex * 4) + *(int64_t *)(systemContext + systemContextOffset);
+  recordDataType = *(char *)(dataBufferPointer + 8 + recordArrayProcessingIndex * 4);
+  *(int64_t *)(stackFramePointer + StackFrameContextNegativeOffset80) = recordArrayProcessingIndex;
   if (recordDataType == dataTypeValidation) {
     processedItemCount = *(int *)(systemContext + systemContextOffsetB0);
     if (currentRecordIndex < processedItemCount) {
@@ -28047,10 +28047,10 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       *(DataWord *)(systemContext + systemContextOffsetB4) = NegativeZeroFloat;
     }
     *(float *)(systemContext + systemContextOffsetA8) = sourceFloatValue;
-    arrayProcessingIndex = 0;
+    recordArrayProcessingIndex = 0;
     sourceFloatValue = (float)*(uint *)(systemContext + systemContextOffset68) * sourceFloatValue;
     if ((9.223372e+18 <= sourceFloatValue) && (sourceFloatValue = sourceFloatValue - 9.223372e+18, sourceFloatValue < 9.223372e+18)) {
-      arrayProcessingIndex = InvalidMemoryOffset;
+      recordArrayProcessingIndex = InvalidMemoryOffset;
     }
     dataProcessingOffset = *(int64_t *)(systemContext + systemContextOffsetA0);
     systemContextBuffer = *(int64_t *)(systemContext + SystemManagementOffset98);
@@ -28063,7 +28063,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       systemContextBuffer = dataProcessingOffset - ((int64_t)normalizedFloatValue + systemContextBuffer);
       *(int64_t *)(dataIterator + SystemManagementOffset98) = systemContextBuffer;
     }
-    recordDataType = (int64_t)sourceFloatValue + arrayProcessingIndex < dataProcessingOffset - systemContextBuffer;
+    recordDataType = (int64_t)sourceFloatValue + recordArrayProcessingIndex < dataProcessingOffset - systemContextBuffer;
     if ((*(SystemByteType *)(dataIterator + DataIteratorStatusOffset6C) & 2) != 0) {
       recordDataType = dataTypeValidation;
     }
@@ -28075,24 +28075,24 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       operationFlagA = ProcessedFloatValue;
       if (operationStatus != 0) goto ValidationSuccessLabel;
     }
-    if ((((characterFlag != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
+    if ((((operationValidationStatus != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
         ((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (arrayProcessingIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
+       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (recordArrayProcessingIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryDataCopyLabel:
         memcpy(StackFrameContext + StackFrameContextNegativeOffset10,dataProcessingBuffer,(int64_t)*(int *)(dataProcessingBuffer + systemContextOffset));
     }
   }
   else {
-    if (characterFlag == '\x06') {
-      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseControlOffset));
-      if (characterFlag == '\0') goto MemoryDataCopyLabel;
+    if (operationValidationStatus == '\x06') {
+      operationValidationStatus = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseControlOffset));
+      if (operationValidationStatus == '\0') goto MemoryDataCopyLabel;
       *dataBufferPointer = 0;
       goto ValidationSuccessLabel;
     }
-    if (characterFlag == '\a') {
-      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseControlOffset));
-      if (characterFlag == '\0') {
+    if (operationValidationStatus == '\a') {
+      operationValidationStatus = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseControlOffset));
+      if (operationValidationStatus == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(DestinationContext + DestinationContextOffset58) + systemContextPointerOffset90) + SystemValidationOffset790) +
                     systemContextValidationOffset1C8) != 0) {
           *dataBufferPointer = 0;
@@ -28102,12 +28102,12 @@ MemoryDataCopyLabel:
       }
     }
     else {
-      if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryDataCopyLabel;
+      if ((operationValidationStatus != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryDataCopyLabel;
       DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(dataProcessingBuffer + SystemDataParameterOffset20);
-      arrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + DataBufferParameterDataOffset);
-      if (arrayProcessingIndex != 0) goto ValidationSuccessLabel;
-      arrayProcessingIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
-      if ((arrayProcessingIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
+      recordArrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + DataBufferParameterDataOffset);
+      if (recordArrayProcessingIndex != 0) goto ValidationSuccessLabel;
+      recordArrayProcessingIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
+      if ((recordArrayProcessingIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
       goto MemoryDataCopyLabel;
     }
   }
@@ -62893,15 +62893,15 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 {
   DataBuffer *exceptionDataBuffer;
-  char characterFlag;
+  char operationValidationStatus;
   DataBuffer validationStatus;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset160);
   validationStatus = StandardResourceCleanupFlag;
   *exceptionDataBuffer = &ExceptionDataTable7;
-  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
-  while (characterFlag != '\0') {
-    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
+  operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+  while (operationValidationStatus != '\0') {
+    operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -63012,15 +63012,15 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
 
 {
   DataBuffer *exceptionDataBuffer;
-  char characterFlag;
+  char operationValidationStatus;
   DataBuffer validationStatus;
   
   exceptionDataBuffer = *(DataBuffer **)(exceptionDataBuffer + ExceptionHandlerContextOffset50);
   validationStatus = StandardResourceCleanupFlag;
   *exceptionDataBuffer = &ExceptionDataTable7;
-  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
-  while (characterFlag != '\0') {
-    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
+  operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+  while (operationValidationStatus != '\0') {
+    operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -63455,15 +63455,15 @@ void ProcessExceptionDataBufferWithMutexHandling(DataBuffer operationBase,int64_
 
 {
   DataBuffer *exceptionDataBuffer;
-  char characterFlag;
+  char operationValidationStatus;
   DataBuffer validationStatus;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferOffset30);
   validationStatus = StandardResourceCleanupFlag;
   *exceptionDataBuffer = &ExceptionDataTable7;
-  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
-  while (characterFlag != '\0') {
-    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
+  operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,SystemCleanupFlagAlternative);
+  while (operationValidationStatus != '\0') {
+    operationValidationStatus = ProcessCharacterDataA0(exceptionDataBuffer,1,cleanupFlagA,cleanupFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -85643,10 +85643,10 @@ void ProcessUncaughtExceptionAndFlushStream(DataBuffer operationBase, int64_t da
 
 {
   int64_t *exceptionContextPointer;
-  char characterFlag;
+  char operationValidationStatus;
   
-  characterFlag = _uncaught_exception_std__YA_NXZ();
-  if (characterFlag == '\0') {
+  operationValidationStatus = _uncaught_exception_std__YA_NXZ();
+  if (operationValidationStatus == '\0') {
     FlushBasicOstream(*(int64_t *)(dataBuffer + SystemFloatDataOffset38));
   }
   exceptionContextPointer = *(int64_t **)(dataBuffer + SystemFloatDataOffset38);

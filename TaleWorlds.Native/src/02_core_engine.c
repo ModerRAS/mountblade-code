@@ -167,6 +167,25 @@
 #define FUN_180170380 ValidateCharacterEncodingAndData                    // 处理字符编码和数据验证
 #define FUN_180170700 HandleCharacterEncodingAndMemoryPool                // 处理字符编码和内存池操作
 #define FUN_180170900 ResetCharacterBufferAndCleanup                      // 处理字符缓冲区重置和清理
+/**
+ * @brief 处理系统数据验证和初始化
+ * 
+ * 该函数负责系统数据的验证和初始化操作。
+ * 主要功能包括：
+ * - 验证系统数据的完整性
+ * - 初始化系统数据结构
+ * - 处理错误码和状态标志
+ * - 管理系统缓冲区配置
+ * 
+ * @param StackPointer190 栈指针190 - 指向系统数据结构的指针
+ * @param ErrorCode 错误代码 - 用于存储和传递错误状态
+ * @param CoreEngineUnsignedValue 核心引擎无符号值 - 系统内部使用的数据值
+ * @param StackValue150 栈值150 - 系统处理过程中的临时数据
+ * @param StackValue158 栈值158 - 系统处理过程中的临时数据
+ * @param ProcessingConfigurationFlag 处理配置标志 - 控制处理行为的标志位
+ * 
+ * @note 原始函数名：FUN_1802356b0
+ */
 #define FUN_1802356b0 ProcessSystemDataValidationAndInitialization         // 处理系统数据验证和初始化
 #define FUN_18014c7d0 HandleMemoryReferenceCount                           // 管理内存引用计数和资源释放
 #define FUN_18014c9e0 UpdateMemoryPoolSize                                // 计算和更新系统内存池大小
@@ -197,6 +216,25 @@
 #define FUN_180112630 ValidateSystemCharacters                              // 处理系统字符验证
 #define FUN_180170ac0 ManageSystemEncodingAndBuffer                        // 处理系统编码和缓冲区管理
 #define FUN_180170ba0 ConvertAndValidateCharacterEncoding                   // 处理字符编码转换和验证
+/**
+ * @brief 处理码点和字符数据
+ * 
+ * 该函数负责处理Unicode码点和字符数据的转换操作。
+ * 主要功能包括：
+ * - 处理Unicode码点转换
+ * - 管理字符数据缓冲区
+ * - 执行字符编码验证
+ * - 控制数据处理流程
+ * 
+ * @param CalculatedCodePoint 计算的码点 - 需要处理的Unicode码点值
+ * @param Flags 标志位 - 控制处理行为的标志
+ * @param StackPointer140 栈指针140 - 指向字符数据缓冲区的指针
+ * @param Mode 模式参数 - 指定处理模式的参数
+ * 
+ * @return 处理结果 - 返回操作执行的状态码
+ * 
+ * @note 原始函数名：FUN_180275cf0
+ */
 #define FUN_180275cf0 ProcessCodePointAndCharacterData                      // 处理码点和字符数据
 #define FUN_18006b6f0 SetupThreadLocalStorage                              // 处理线程本地存储设置
 #define FUN_180046480 ConfigureThreadLocalStorage                            // 设置线程本地存储
@@ -238183,7 +238221,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   uStack_e4 = 0xbf800000;
   SystemFlagE = 0;
   uStack_dc = 0x7f7fffff;
-  FUN_1802356b0(&plStack_190,&ErrorCode,&CoreEngineUnsignedValue,&uStack_150,&uStack_158,aStackProcessingConfigurationFlag);
+  ProcessSystemDataValidationAndInitialization(&plStack_190,&ErrorCode,&CoreEngineUnsignedValue,&uStack_150,&uStack_158,aStackProcessingConfigurationFlag);
   if ((plStack_190 != (long long *)0x0) && (plStack_188 != (long long *)0x0)) {
     if (cStack_15e != '\0') {
       CleanupSystemResources();
@@ -238221,7 +238259,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   CalculatedCodePoint = ContextHandle[0x4fd];
   plStack_140 = MemoryPoolSizePointer;
   (**(code **)(*MemoryPoolSizePointer + 0x28))(MemoryPoolSizePointer);
-  FUN_180275cf0(CalculatedCodePoint,0,&plStack_140,1);
+  ProcessCodePointAndCharacterData(CalculatedCodePoint,0,&plStack_140,1);
   SystemCleanupFlagF = 0;
   SystemCleanupFlagG = 0;
   SystemFlagH = 0;
