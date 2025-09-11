@@ -133914,8 +133914,26 @@ CleanupUIContextWithEncryption:
 
  
 
- void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文数据和渲染任务
+ * 
+ * 该函数负责处理UI上下文的数据操作和渲染任务，包括：
+ * - 验证和初始化UI数据
+ * - 处理缓冲区数据操作
+ * - 执行渲染任务
+ * - 管理内存资源释放
+ * 
+ * @param uiContext UI上下文句柄，标识UI系统上下文
+ * @param dataSource 数据源标识符，提供操作所需数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f38d
+ * @note 这是一个简化的实现版本
+ * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ExecuteUIRenderTask
+ */
+void ProcessUIContextDataAndRenderTask(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 
 {
   int operationResult;
@@ -133923,41 +133941,58 @@ void FUN_18073f38d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong memoryResourceFlag;
+  UIHandle tempBufferHandle;
+  ulonglong renderTaskParam;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = FUN_180754f10(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  memoryResourceFlag = 0;
+  operationResult = FUN_180754f10(uiContext, &tempBufferHandle, &memoryResourceFlag);
   if (operationResult == 0) {
-    operationResult = func_0x0001807534d0(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073f45d;
+    operationResult = func_0x0001807534d0(tempBufferHandle, dataSource, targetBuffer);
+    if (operationResult == 0) goto CleanupAndReturn;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = ValidateUIDataAndInitialize(&tempBufferHandle, 0x100, dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&tempBufferHandle + dataValidationResult, 0x100 - dataValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(&tempBufferHandle + (dataValidationResult + bufferCompareResult), 0x100 - (dataValidationResult + bufferCompareResult), targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957a98,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult, 3, uiContext, &UNK_180957a98, &tempBufferHandle);
   }
-FUN_18073f45d:
-  if (lStack0000000000000030 != 0) {
+CleanupAndReturn:
+  if (memoryResourceFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&tempBufferHandle);
 }
 
 
 
 
- void FUN_18073f3e5(void)
-void FUN_18073f3e5(void)
+ /**
+ * @brief 处理UI数据验证和复制操作
+ * 
+ * 该函数负责验证UI数据的有效性并执行数据复制操作：
+ * - 初始化和验证UI数据缓冲区
+ * - 处理缓冲区数据的控制操作
+ * - 复制数据到目标位置
+ * - 执行上下文数据操作
+ * 
+ * @param unmodifiedEBX 未修改的EBX寄存器值，包含数据源信息
+ * @param unmodifiedESI 未修改的ESI寄存器值，包含操作参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f3e5
+ * @note 这是一个简化的实现版本
+ * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ProcessUIDataValidationAndCopy(UIDword unmodifiedEBX, UIDword unmodifiedESI)
 
 {
   int operationResult;
