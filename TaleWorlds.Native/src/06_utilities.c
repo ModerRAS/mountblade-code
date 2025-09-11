@@ -12443,7 +12443,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18073b820 - 数据验证返回函数A0
 // 功能：验证数据并返回结果
-#define ValidateDataAndReturnA0 FUN_18073b820
+#define ValidateDataAndReturnA0 ValidateDataAndReturnValidationResult
 
 // 原始函数名：FUN_18073b830 - 数据验证返回函数A1
 // 功能：验证数据并返回结果
@@ -12479,7 +12479,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18088c790 - 资源释放函数A1
 // 功能：释放系统资源
-#define ReleaseResourceA1 FUN_18088c790
+#define ReleaseResourceA1 ReleaseSystemResourcesAndMemory
 
 // 原始函数名：FUN_18088aca0 - 状态检查函数A0
 // 功能：检查系统状态
@@ -142318,19 +142318,19 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
 int CleanupAndOptimizeSystemResources(void* ResourceHandle, uint32_t CleanupFlags, uint8_t OptimizationLevel)
 {
     // 系统资源清理状态变量
-    uint32_t CleanupStatus;
-    uint32_t MemoryFreedCount;
-    uint32_t CacheClearedCount;
-    uint32_t OptimizationScore;
-    void* ResourcePointer;
-    uint8_t CurrentCleanupFlag;
+    uint32_t cleanupStatus;
+    uint32_t memoryFreedCount;
+    uint32_t cacheClearedCount;
+    uint32_t optimizationScore;
+    void* resourcePointer;
+    uint8_t currentCleanupFlag;
     
     // 初始化清理状态变量
-    CleanupStatus = 0;
-    MemoryFreedCount = 0;
-    CacheClearedCount = 0;
-    OptimizationScore = 0;
-    ResourcePointer = ResourceHandle;
+    cleanupStatus = 0;
+    memoryFreedCount = 0;
+    cacheClearedCount = 0;
+    optimizationScore = 0;
+    resourcePointer = ResourceHandle;
     
     // 验证资源句柄的有效性
     if (ResourcePointer == NULL) {

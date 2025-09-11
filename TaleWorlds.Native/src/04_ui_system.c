@@ -22110,10 +22110,10 @@ void CleanupUIElementResources(longlong uiContext)
   pcStack0000000000000088 = (char *)(uiContext + 0x1300);
   do {
     pTemporaryFloatValue = (float *)(pcStack0000000000000088 + 0x9c);
-    localInt7 = 0;
-    plocalChar6 = pcStack0000000000000088;
+    validationFlag = 0;
+    processingFlag = pcStack0000000000000088;
     do {
-      if (*plocalChar6 != '\0') {
+      if (*processingFlag != '\0') {
         if (*(char *)((longlong)pTemporaryFloatValue + 10) == '\0') {
           tempFloatValue = 0.0;
         }
@@ -22134,13 +22134,13 @@ void CleanupUIElementResources(longlong uiContext)
                ((((TransformCoefficient4 * uiTargetHandle[0xe] - uiTargetHandle[0xd] * transformCoeff1) * TransformCoefficient2 -
                  TransformCoefficient3 * (tempFloatValue * uiTargetHandle[0xe] - uiTargetHandle[0xd] * baseValue)) -
                 normalizedSum0 * uiTargetHandle[0xc]) +
-               (TransformCoefficient2 * transformCoeff1 - TransformCoefficient3 * uiTargetHandle[10]) * *(float *)(plocalChar6 + -0x1c) +
-               *(float *)(plocalChar6 + -0x20) * normalizedSum0)                (1.0 / ((uiTargetHandle[1] * transformCoeff1 - TransformCoefficient4 * fStack0000000000000090) * TransformCoefficient2 +
+               (TransformCoefficient2 * transformCoeff1 - TransformCoefficient3 * uiTargetHandle[10]) * *(float *)(processingFlag + -0x1c) +
+               *(float *)(processingFlag + -0x20) * normalizedSum0)                (1.0 / ((uiTargetHandle[1] * transformCoeff1 - TransformCoefficient4 * fStack0000000000000090) * TransformCoefficient2 +
                       *uiTargetHandle * normalizedSum0 + TransformCoefficient3 * (fStack0000000000000098 - uiTargetHandle[1] * baseValue))
                );
-          uStack0000000000000058 = *(UIDword *)(uiBufferData + 0x44);
+          uiMemoryHandle = *(UIDword *)(uiBufferData + 0x44);
           lStack0000000000000030 = uiContext + 0x6178;
-          uStack0000000000000050 = *(UIDword *)(uiBufferData + 0x40);
+          uiResourceHandle = *(UIDword *)(uiBufferData + 0x40);
           lStack0000000000000028 = uiContext + 0x6150;
           StackHandle1 = *(UIDword *)(uiBufferData + 0x38);
           StackData4 = 0;

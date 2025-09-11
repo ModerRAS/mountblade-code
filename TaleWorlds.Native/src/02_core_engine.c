@@ -225246,7 +225246,7 @@ void ProcessSystemContextHandleAndMemoryRelease(long long *ContextHandle,uint64_
 
 
 
-// 函数: void FUN_180187a30(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void CheckSystemBufferStatus(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理上下文句柄和字符编码转换操作
  * 
@@ -225307,7 +225307,7 @@ void ProcessCharacterTablePointerAndMemoryRelease(long long *ContextHandle,uint6
 
 
 
-// 函数: void FUN_180187aa0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void ValidateDataInputLength(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理上下文句柄和数据缓冲区管理操作
  * 
