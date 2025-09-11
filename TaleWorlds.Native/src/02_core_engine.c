@@ -261850,14 +261850,30 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint64_t *ContextHandle,
 
 
 
-0e7b0(long long ContextHandlevoid FUN_18020e7b0(long long ContextHandle
+/**
+ * @brief 清理系统上下文和线程同步
+ * 
+ * 该函数负责清理系统上下文并处理线程同步操作，主要功能包括：
+ * - 重置系统上下文状态
+ * - 清理核心引擎系统上下文
+ * - 验证字符状态缓冲区的有效性
+ * - 处理线程ID验证和同步
+ * - 执行线程加入操作并清理资源
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * 
+ * @note 原始函数名：FUN_18020e7b0
+ * @warning 该函数涉及线程同步操作，需要确保线程安全
+ */
+#define CleanupSystemContextAndThreadSync FUN_18020e7b0
+void CleanupSystemContextAndThreadSync(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
-  uint32_t uStack_18;
-  uint32_t uStack_14;
-  uint32_t uStack_10;
-  uint32_t uStack_c;
+  uint32_t ThreadHandle;
+  uint32_t ThreadReserved1;
+  uint32_t ThreadId;
+  uint32_t ThreadReserved2;
   
   *(uint8_t *)(ContextHandle + 0x58) = 0;
   CoreEngineCleanupSystemContext(ContextHandle + 0x150);
@@ -261872,11 +261888,11 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint64_t *ContextHandle,
   if (*(int *)(CharacterStatusBuffer + 1) == LockOperationResult) {
     __Throw_Cpp_error_std__YAXH_Z(5);
   }
-  uStack_18 = *(uint32_t *)CharacterStatusBuffer;
-  uStack_14 = *(uint32_t *)((long long)CharacterStatusBuffer + 4);
-  uStack_10 = *(uint32_t *)(CharacterStatusBuffer + 1);
-  uStack_c = *(uint32_t *)((long long)CharacterStatusBuffer + 0xc);
-  LockOperationResult = _Thrd_join(&uStack_18,0);
+  ThreadHandle = *(uint32_t *)CharacterStatusBuffer;
+  ThreadReserved1 = *(uint32_t *)((long long)CharacterStatusBuffer + 4);
+  ThreadId = *(uint32_t *)(CharacterStatusBuffer + 1);
+  ThreadReserved2 = *(uint32_t *)((long long)CharacterStatusBuffer + 0xc);
+  LockOperationResult = _Thrd_join(&ThreadHandle,0);
   if (LockOperationResult != 0) {
     __Throw_Cpp_error_std__YAXH_Z(2);
   }
