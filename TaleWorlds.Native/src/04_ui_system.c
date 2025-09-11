@@ -137957,6 +137957,22 @@ UIHandle ValidateUIMemoryOperation(longlong uiContext,char dataSource)
 
 
 
+/**
+ * @brief 验证并清理UI元素
+ * 
+ * 该函数负责验证和清理UI系统中的元素，包括：
+ * - 验证UI上下文的有效性
+ * - 清理无效的UI元素
+ * - 处理数据源相关的清理操作
+ * - 执行系统清理任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统上下文
+ * @param dataSource 数据源标志，指示是否需要清理数据源
+ * 
+ * @return UIHandle 返回操作结果
+ * 
+ * @note 原始函数名：FUN_180743166
+ */
 UIHandle ValidateAndCleanupUIElements(longlong uiContext,char dataSource)
 
 {
