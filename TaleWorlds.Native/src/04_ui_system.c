@@ -126239,6 +126239,24 @@ void FUN_18073af9f(void)
  
 
  void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
+/**
+ * @brief 处理带参数的UI数据缓冲区操作
+ * 
+ * 该函数负责处理带参数的UI数据缓冲区操作，包括：
+ * - 处理UI上下文和清理操作
+ * - 执行数据缓冲区复制和验证
+ * - 处理数据源和目标缓冲区的操作
+ * - 进行加密和解密操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18073afc0
+ */
 void FUN_18073afc0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIByte bufferSize,
                   UIHandle resultPointer)
 
