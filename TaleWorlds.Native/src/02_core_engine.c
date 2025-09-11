@@ -2807,6 +2807,14 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 // 额外的栈变量语义化宏定义
 #define StackUnsigned170 SystemMemoryAllocationFlag                  // 系统内存分配标志
 #define StackUnsigned16c BufferSizeStackValue                       // 缓冲区大小栈值
+
+// 新发现的栈变量语义化定义
+#define iStack_340 SystemEventProcessingStatus                      // 系统事件处理状态340
+#define iStack_148 SystemEventDataSize                             // 系统事件数据大小148
+#define iStack_a8 SystemContextProcessingIndex                      // 系统上下文处理索引a8
+#define iStack_a4 SystemMemoryAllocationIndex                      // 系统内存分配索引a4
+#define iStack_a0 SystemDataProcessingIndex                        // 系统数据处理索引a0
+#define iStack_9c SystemValidationResultIndex                      // 系统验证结果索引9c
 #define StackUnsigned164 ValidationStatusStackValue                 // 验证状态栈值
 #define StackSigned148 CharacterDataOffsetStackValue                // 字符数据偏移栈值
 #define StackUnsigned138 SystemStatusFlagStackValue                 // 系统状态标志栈值
@@ -69727,7 +69735,7 @@ StringLengthValidation:
     puStack_350 = &SystemNullTemplate;
     uStack_338 = 0;
     SystemTemplatePointer = (uint8_t *)0x0;
-    iStack_340 = 0;
+    SystemEventProcessingStatus = 0;
     StackMemoryPoolIndex = MemoryPoolIndexAdditional;
     CoreEngineProcessSystemEvent(&puStack_350);
     MemoryAllocationMaskPointer = SystemTemplatePointer;
