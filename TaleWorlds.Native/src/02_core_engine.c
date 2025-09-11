@@ -75,10 +75,10 @@
 #define FUN_1801907f0 ExecuteSystemByteOperations
 #define FUN_180190a20 SetupSystemContextTransfer
 #define FUN_180190a35 CompleteSystemContextTransfer
-#define FUN_180190a4d ReinitializeSystemTransferState
-#define FUN_180190ad0 SetupSystemMemoryAllocator
-#define FUN_180190adc ClearSystemMemoryManager
-#define FUN_180190ae0 TransferSystemMemoryData                    // 处理系统内存传输
+#define FUN_180190a4d ResetSystemTransferState
+#define FUN_180190ad0 InitializeSystemMemoryManager
+#define FUN_180190adc CleanupSystemMemoryManager
+#define FUN_180190ae0 ProcessSystemMemoryTransfer                    // 处理系统内存传输
 #define FUN_180190c90 ManageSystemDataProcessing                   // 处理系统数据处理
 #define FUN_180190c9f CompleteSystemDataProcessing                // 完成系统数据处理
 #define FUN_180190cc0 SetupSystemContextController                 // 初始化系统上下文管理器
@@ -233169,7 +233169,21 @@ void CleanupSystemMemoryManager(void)
 
 
 
-90ae0(uint64_t *ContextHandle,uint64_t *ContextHandleSizevoid FUN_180190ae0(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 处理系统内存传输
+ * 
+ * 该函数负责处理系统内存数据的传输操作，包括字符状态缓冲区的管理、
+ * 字符串比较和数据传输。函数通过循环处理缓冲区数据，确保数据在
+ * 不同内存区域间的正确传输。
+ * 
+ * @param ContextHandle 上下文句柄指针，用于标识内存操作的上下文
+ * @param ContextHandleSize 上下文句柄大小指针，用于指定内存操作的规模
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180190ae0
+ * @see ProcessSystemBufferDataTransfer, InitializeContextHandleSystem
+ */
+void ProcessSystemMemoryTransfer(uint64_t *ContextHandle, uint64_t *ContextHandleSize)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -233180,12 +233194,11 @@ void CleanupSystemMemoryManager(void)
   void *StringProcessingStatus;
   int ComputedResult;
   uint64_t *TemporaryBuffer;
-  uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
-  bool StringComparisonByte2;
+  bool StringComparisonResult;
   uint8_t SystemArrayBuffer368 [16];
-  void *puStack_358;
-  int iStack_350;
+  void *CustomDataPointer;
+  int ValidationFlag;
   
   if (ContextHandle != OperationBufferSize) {
     for (TemporaryBuffer = ContextHandle + 0x69; TemporaryBuffer != OperationBufferSize; TemporaryBuffer = TemporaryBuffer + 0x69) {
@@ -233196,8 +233209,8 @@ void CleanupSystemMemoryManager(void)
         do {
           PrimaryProcessingStatusFlag = SystemCharacterStatusBuffer + -0x69;
           StringProcessingStatus = &CoreEngineDataTemplate;
-          if (puStack_358 != NULL) {
-            StringProcessingStatus = puStack_358;
+          if (CustomDataPointer != NULL) {
+            StringProcessingStatus = CustomDataPointer;
           }
           SystemDataRegistry = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
           StringProcessingStatus = &CoreEngineDataTemplate;
@@ -233205,17 +233218,17 @@ void CleanupSystemMemoryManager(void)
             StringProcessingStatus = (void *)*PrimaryProcessingStatusFlag;
           }
           AllocatedMemorySize = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
-          StringComparisonByte2 = AllocatedMemorySize != 0;
+          StringComparisonResult = AllocatedMemorySize != 0;
           if (SystemDataRegistry == 0) {
-            if (StringComparisonByte2) break;
+            if (StringComparisonResult) break;
             if (*(int *)(SystemCharacterStatusBuffer + -0x68) != 0) {
-              if (iStack_350 == 0) {
+              if (ValidationFlag == 0) {
 LAB_180190c1a:
-                StringComparisonByte2 = true;
+                StringComparisonResult = true;
               }
               else {
                 Utf8OutputPointer = (byte *)*PrimaryProcessingStatusFlag;
-                SystemDataRegistry = (long long)puStack_358 - (long long)Utf8OutputPointer;
+                SystemDataRegistry = (long long)CustomDataPointer - (long long)Utf8OutputPointer;
                 do {
                   LowBytePointer = Utf8OutputPointer + SystemDataRegistry;
                   ComputedResult = (uint)*Utf8OutputPointer - (uint)*LowBytePointer;
@@ -233223,27 +233236,27 @@ LAB_180190c1a:
                   Utf8OutputPointer = Utf8OutputPointer + 1;
                 } while (*LowBytePointer != 0);
 LAB_180190c13:
-                StringComparisonByte2 = 0 < ComputedResult;
+                StringComparisonResult = 0 < ComputedResult;
               }
             }
 LAB_180190c1c:
-            if (!StringComparisonByte2) break;
+            if (!StringComparisonResult) break;
           }
-          else if (StringComparisonByte2) {
+          else if (StringComparisonResult) {
             if (*(int *)(SystemCharacterStatusBuffer + -0x68) == 0) {
-              StringComparisonByte2 = false;
+              StringComparisonResult = false;
             }
             else {
-              if (iStack_350 == 0) goto LAB_180190c1a;
+              if (ValidationFlag == 0) goto LAB_180190c1a;
               Utf8OutputPointer = (byte *)*PrimaryProcessingStatusFlag;
-              SystemDataRegistry = (long long)puStack_358 - (long long)Utf8OutputPointer;
+              SystemDataRegistry = (long long)CustomDataPointer - (long long)Utf8OutputPointer;
               do {
                 LowBytePointer = Utf8OutputPointer + SystemDataRegistry;
                 ComputedResult = (uint)*Utf8OutputPointer - (uint)*LowBytePointer;
                 if (ComputedResult != 0) goto LAB_180190c13;
                 Utf8OutputPointer = Utf8OutputPointer + 1;
               } while (*LowBytePointer != 0);
-              StringComparisonByte2 = false;
+              StringComparisonResult = false;
             }
             goto LAB_180190c1c;
           }
