@@ -289466,7 +289466,7 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
 LAB_18022d7dd:
       if (RemainingSpace == 0) {
         if (-1 < (int)SystemStatusCode) {
-          FUN_18022cd30(ContextHandle,SystemStatusCode,Utf8SourcePointer);
+          InitializeBufferDataAndResources(ContextHandle,SystemStatusCode,Utf8SourcePointer);
           return;
         }
         goto LAB_18022d7ef;

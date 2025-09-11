@@ -386566,7 +386566,14 @@ void ExecuteUIIdleOperation(void)
 
 
 
-UIHandle FUN_1808909ba(void)
+/**
+ * @brief 获取UI系统错误状态
+ * 
+ * 该函数获取UI系统的错误状态，返回错误码。
+ * 
+ * @return 返回UI系统错误状态码
+ */
+UIHandle GetUISystemErrorStatus(void)
 
 {
   return 0x1c;
@@ -386575,18 +386582,26 @@ UIHandle FUN_1808909ba(void)
 
 
  
-UIHandle FUN_1808909d0(longlong uiContext)
+/**
+ * @brief 处理UI上下文数据验证和状态检查
+ * 
+ * 该函数处理UI上下文数据的验证操作，包括状态检查和处理循环。
+ * 
+ * @param uiContext UI上下文句柄
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+UIHandle ProcessUIContextDataValidation(longlong uiContext)
 
 {
   UIHandle result;
-  int *puiValidationResult;
+  int *validationResultPointer;
   UIDword *uiStatusPointer;
   uint processingFlags;
   ulonglong maxProcessingCount;
-  longlong lStackX_8;
+  longlong resourceHandle;
   ulonglong loopCounter;
   
-  result = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),&lStackX_8);
+  result = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),&resourceHandle);
   if ((int)result == 0) {
     loopCounter = 0;
     maxProcessingCount = lStackX_8 - 8;
