@@ -31456,7 +31456,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionContext)
       if (iterationCount == 0) {
         // 获取堆栈长整数值并初始化缓冲区指针
         ProcessingIterationCount = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset);
-        dataProcessingBuffer = exceptionContext4;
+        dataProcessingBuffer = exceptionHandlerContext;
         if (0 < ProcessingIterationCount) {
           // 开始数据处理循环
           do {
