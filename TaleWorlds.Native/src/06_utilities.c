@@ -11566,7 +11566,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 更多工具函数宏定义
 // 原始函数名：FUN_180899220 - 系统参数处理函数A0
 // 功能：处理系统参数并返回处理结果
-#define ProcessSystemParametersA0 FUN_180899220
+#define ProcessSystemParametersA0 ProcessSystemParametersWithValidation
 
 // 原始函数名：FUN_18089923e - 系统信息获取函数A0
 // 功能：获取系统信息并返回信息数据
