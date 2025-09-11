@@ -236717,8 +236717,8 @@ void CompleteSystemContextAndCleanupResources(long long *ContextHandle)
   long long *SystemContext;
   long long *BufferAllocationState;
   
-  ContextHandle = (long long *)ContextHandle[1];
-  for (BufferAllocationState = (long long *)*ContextHandle; BufferAllocationState != ContextHandle; BufferAllocationState = BufferAllocationState + 3) {
+  SystemContext = (long long *)ContextHandle[1];
+  for (BufferAllocationState = (long long *)*SystemContext; BufferAllocationState != SystemContext; BufferAllocationState = BufferAllocationState + 3) {
     if ((long long *)BufferAllocationState[1] != (long long *)0x0) {
       (**(code **)(*(long long *)BufferAllocationState[1] + 0x38))();
     }
@@ -236726,7 +236726,7 @@ void CompleteSystemContextAndCleanupResources(long long *ContextHandle)
       (**(code **)(*(long long *)*BufferAllocationState + 0x38))();
     }
   }
-  if (*ContextHandle == 0) {
+  if (*SystemContext == 0) {
     return;
   }
     ProcessSystemEventHandling();
