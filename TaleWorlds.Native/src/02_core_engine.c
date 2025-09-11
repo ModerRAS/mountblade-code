@@ -75064,8 +75064,8 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
       if (NormalizedParameterValue <= 0.0) {
         NormalizedParameterValue = 0.0;
       }
-      fStack_17c = 1.0 - NormalizedParameterValue * 0.16666666;
-      MemoryAddressMaskPointer = (uint)(fStack_17c * 256.0);
+      StackNormalizedParameter = 1.0 - NormalizedParameterValue * 0.16666666;
+      MemoryAddressMaskPointer = (uint)(StackNormalizedParameter * 256.0);
       if ((int)MemoryAddressMaskPointer < 0) {
         MemoryAddressMaskPointer = 0;
       }
@@ -241864,13 +241864,13 @@ void SystemNullOperation(void)
  */
 void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
 {
-  byte StringComparisonByte;
-  bool HighByte;
-  long long *MemoryBlockIndex;
-  long long *EngineContext;
-  long long *AllocatedMemorySizePointer;
-  byte *Utf8OutputPointer;
-  long long *MemoryPoolSizePointer;
+  byte CharacterComparisonResult;          // 字符比较结果字节
+  bool IsHighByteSet;                      // 高字节设置标志
+  long long *MemoryBlockIndexPointer;       // 内存块索引指针
+  long long *EngineSystemContext;           // 引擎系统上下文指针
+  long long *AllocatedMemorySize;           // 已分配内存大小指针
+  byte *Utf8OutputBufferPointer;            // UTF-8输出缓冲区指针
+  long long *MemoryPoolSize;                // 内存池大小指针
   uint64_t *******ppppppStringProcessingStatus;
   int IntegerValue9;
   uint64_t *CharacterStatusBuffer;
