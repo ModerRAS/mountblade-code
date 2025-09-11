@@ -3807,6 +3807,8 @@ typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无�
 typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号整数，用于栈参数传递
 typedef uint8_t SystemByteType;             // 系统字节类型 - 8位无符号整数，用于系统状态标志
 typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符号整数，用于标志位操作
+typedef uint8_t ValidationByteCount;         // 验证字节计数类型 - 用于数据验证的字节计数
+typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于描述节点信息的三字节数据
 
 // 高低位字合并宏 - 用于将两个16位值合并为32位
 #define MergeHighLowWords(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
@@ -32286,7 +32288,7 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
           SecurityValidationData = exceptionContext1 == 0;
           floatStackValue = ValidationFloatValue8;
           if (((char)exceptionContext5 == '\0') &&
-             (iterationCount = ValidateSystemDataA0(operationBase,SetBitFlag((uint7)(uint3)(ExceptionHandlerData >> 8),1)), iterationCount != 0
+             (iterationCount = ValidateSystemDataA0(operationBase,SetBitFlag((ValidationByteCount)(ExceptionHandlerData >> 8),1)), iterationCount != 0
              )) goto DataBufferValidationCheckpoint;
           iterationCount = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset))(&StackPointerVariableE,DataTransferBufferA,0x200);
           ProcessData(DataTransferBufferA + iterationCount,0x200 - iterationCount,10);
