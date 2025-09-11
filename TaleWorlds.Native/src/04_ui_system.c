@@ -133845,41 +133845,62 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
  
 
- void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ // 函数: void FUN_18073f370(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIContextWithEncryption FUN_18073f370
+/**
+ * @brief 使用加密处理UI上下文数据
+ * 
+ * 该函数负责使用加密方式处理UI上下文数据，包括：
+ * - 初始化加密密钥和上下文
+ * - 验证和处理数据源
+ * - 执行加密的数据缓冲区操作
+ * - 管理内存资源的分配和释放
+ * - 执行加密的渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统的上下文环境
+ * @param dataSource 数据源标识符，提供需要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f370
+ * @note 该函数处理带加密的UI数据操作
+ * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
+ */
+void ProcessUIContextWithEncryption(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int operationResult;
   int dataValidationResult;
   int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong memoryResourceHandle;
+  UIHandle contextDataHandle;
+  UIByte processingBuffer [256];
+  ulonglong processedEncryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt140,&stackLong148);
+  processedEncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  memoryResourceHandle = 0;
+  operationResult = FUN_180754f10(uiContext,&contextDataHandle,&memoryResourceHandle);
   if (operationResult == 0) {
-    operationResult = func_0x0001807534d0(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073f45d;
+    operationResult = func_0x0001807534d0(contextDataHandle,dataSource,targetBuffer);
+    if (operationResult == 0) goto CleanupUIContextWithEncryption;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    dataValidationResult = ValidateUIDataAndInitialize(processingBuffer,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(processingBuffer + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(processingBuffer + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,3,uiContext,&UNK_180957a98);
+    ExecuteUIContextDataOperation(dataValidationResult,3,uiContext,&UNK_180957a98);
   }
-FUN_18073f45d:
-  if (stackLong148 != 0) {
+CleanupUIContextWithEncryption:
+  if (memoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(processedEncryptionKey ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
