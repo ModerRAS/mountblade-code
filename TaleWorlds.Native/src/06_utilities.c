@@ -32814,7 +32814,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     }
     totalProcessedLength = 0;
     currentBufferOffset = 0;
-    nodeDescriptorArray = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
+    nodeDescriptorArray = *(NodeDescriptor *)((int64_t)itemIndex * 3 + dataContext[6]);
     while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != 0xffffff) {
       dataBufferValue = *(uint *)(*dataContext + (uint64_t)currentNodeIndex * 8);
       if ((dataBufferValue & DataValidationMask) != 0xffffff) {
@@ -32845,7 +32845,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
         }
         totalProcessedLength = totalProcessedLength + stringDataLength;
       }
-      nodeDescriptorArray = *(uint3 *)((uint64_t)currentNodeIndex * 3 + dataContext[8]);
+      nodeDescriptorArray = *(NodeDescriptor *)((uint64_t)currentNodeIndex * 3 + dataContext[8]);
     }
     processingResult = 0;
     if (bufferSize != 0) {

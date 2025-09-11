@@ -1647,6 +1647,11 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define PrimaryContextHandle ContextHandle1                          // 主上下文句柄
 #define SystemOperationStatusCode SystemStatusCode                   // 系统操作状态码
 #define SystemContextRegisterPointer in_RCX                          // 系统上下文寄存器指针
+
+// 栈处理变量语义化定义
+#define StackProcessingVariable aStackProcessingVariable               // 栈处理变量
+#define StackProcessingBuffer70 StackProcessingBuffer70            // 栈处理缓冲区70
+#define StackProcessingBuffer708 StackProcessingBuffer708          // 栈处理缓冲区708
 #define SystemContextHandlePointer3 pppContextHandle3               // 系统上下文句柄指针3
 #define SecondaryUtf16Character Utf16Char4                           // 次要UTF16字符
 #define Utf16ConversionContextData Utf16ConversionContext           // UTF16转换上下文数据
@@ -45426,7 +45431,7 @@ void InitializeCoreDataStructure(long long ContextHandle,long long OperationBuff
   unsigned long long LocalStackCounter;
   
   LocalStackProcessingVariable = 0xfffffffffffffffe;
-  LocalStackCounter = EncodingDecodingKey ^ (unsigned long long)aStackProcessingVariable;
+  LocalStackCounter = EncodingDecodingKey ^ (unsigned long long)StackProcessingVariable;
   PointerToStackProcessingVariable = &SystemMemoryBufferEncodingData;
   BytePointerToStack = LocalByteArray;
   StackMemoryDataOffset = 0;
@@ -45444,7 +45449,7 @@ void InitializeCoreDataStructure(long long ContextHandle,long long OperationBuff
       memcpy(ContextHandle,*(long long *)(ContextHandle + 8),CharacterTablePointer - *(long long *)(ContextHandle + 8));
   }
   pDataContentStatus = &ThreadLocalStorageTemplate;
-    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)aStackProcessingVariable);
+    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)StackProcessingVariable);
 }
 
 
@@ -60417,7 +60422,7 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long *ContextHand
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingValue78;
-  uint8_t aStackProcessingVariable70 [72];
+  uint8_t StackProcessingBuffer70 [72];
   unsigned long long EncodingValidationKey;
   
   Utf16Char = CoreEngineSystemState;
@@ -60426,11 +60431,11 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long *ContextHand
   CoreEngineValueA8 = 0;
   Utf8SourcePointer = Utf8SourcePointer * 4;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0x1c;
   SystemStackPointer = OperationBufferSize;
-  strcpy_s(aStackProcessingVariable70,0x40,&StringTemplateBuffer);
+  strcpy_s(StackProcessingBuffer70,0x40,&StringTemplateBuffer);
   ReleaseSystemMemoryResources();
   SystemEventPointer = &ThreadLocalStorageTemplate;
   MemoryPoolIndex = MemoryAllocate(MemoryPoolManager,Utf8SourcePointer,0x10,3);
@@ -75008,7 +75013,7 @@ void CoreEngineUpdateSystemStatus(void
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingValue78;
-  uint8_t aStackProcessingVariable70 [72];
+  uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
   MemoryBoundaryEnd = SystemMemoryManager;
@@ -75023,10 +75028,10 @@ void CoreEngineUpdateSystemStatus(void
     if (ValidationStatus == SystemCheckResult) goto LAB_1800911c4;
     if (ValidationStatus != '\0') goto LAB_180091164;
     SystemEventPointer = &SystemValidationStatus;
-    pCalculationFunctionAddress = aStackProcessingVariable70;
-    aStackProcessingVariable70[0] = 0;
+    pCalculationFunctionAddress = StackProcessingBuffer70;
+    StackProcessingBuffer70[0] = 0;
     StackProcessingValue78 = 0x17;
-    ProcessedCharacter = strcpy_s(aStackProcessingVariable70,0x40,&SystemInfoTemplate);
+    ProcessedCharacter = strcpy_s(StackProcessingBuffer70,0x40,&SystemInfoTemplate);
     MemoryOffsetValue = 1;
     ProcessedCharacter = ProcessSystemEventHandling(ProcessedCharacter,&SystemStackPointer,&SystemEventPointer,0);
     ProcessSystemContextData(MemoryBoundaryEnd + 0x1698,ProcessedCharacter);
@@ -77872,7 +77877,7 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingValue78;
-  uint8_t aStackProcessingVariable70 [72];
+  uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
   Utf16Char = SystemMemoryManagerPointer;
@@ -77880,9 +77885,9 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
   StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)SystemCleanupFlagF;
   CoreEngineValueA8 = 0;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingValue78 = 0;
-  aStackProcessingVariable70[0] = 0;
+  StackProcessingBuffer70[0] = 0;
   SystemOperationValidationFlag = OperationBufferSize;
   if (Utf8SourcePointer != 0) {
     BufferStatus = -1;
@@ -77890,7 +77895,7 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
       BufferStatus = BufferStatus + 1;
     } while (*(char *)(Utf8SourcePointer + BufferStatus) != '\0');
     StackProcessingValue78 = (uint32_t)BufferStatus;
-    strcpy_s(aStackProcessingVariable70,0x40);
+    strcpy_s(StackProcessingBuffer70,0x40);
   }
   MemoryOffsetValue = 0;
   ProcessSystemEventAndManagePointer(Utf16Char,OperationBufferSize,&SystemEventPointer,0);
@@ -196322,7 +196327,7 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   uint8_t auStack_7b0 [56];
   uint8_t auStack_778 [56];
   uint8_t auStack_740 [56];
-  uint8_t aStackProcessingVariable708 [56];
+  uint8_t StackProcessingBuffer708 [56];
   uint8_t auStack_6d0 [56];
   uint8_t auStack_698 [56];
   uint8_t aStackData660 [56];
@@ -197251,8 +197256,8 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   SystemPriorityLevel.LowPart = 0x39;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
-  ProcessSystemPriorityAndFlags(aStackProcessingVariable708,&SystemPriorityLevel,&ProcessingFlags,1);
-  ProcessContextHandleTableOperation(ContextHandle,0x9a,aStackProcessingVariable708);
+  ProcessSystemPriorityAndFlags(StackProcessingBuffer708,&SystemPriorityLevel,&ProcessingFlags,1);
+  ProcessContextHandleTableOperation(ContextHandle,0x9a,StackProcessingBuffer708);
   SystemPriorityLevel.LowPart = 200;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
@@ -218772,10 +218777,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t ContextHandle
   apuStack_628[0] = &ThreadLocalStorageTemplate;
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0xc;
-  strcpy_s(aStackProcessingVariable70,0x40,SystemStringTemplateL);
+  strcpy_s(StackProcessingBuffer70,0x40,SystemStringTemplateL);
   ProcessSystemDataBuffer(apuStack_628,&SystemEventPointer);
   uStack_5d0 = 0xb;
   SystemDataValue18 = 0x4000;
@@ -219598,7 +219603,7 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingValue78;
-  uint8_t aStackProcessingVariable70 [72];
+  uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
   uStack_5d0 = 0xfffffffffffffffe;
@@ -219774,10 +219779,10 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
   apSystemDataValue28[0] = &ThreadLocalStorageTemplate;
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 10;
-  strcpy_s(aStackProcessingVariable70,0x40,SystemStringTemplateL);
+  strcpy_s(StackProcessingBuffer70,0x40,SystemStringTemplateL);
   ProcessSystemDataBuffer(apSystemDataValue28,&SystemEventPointer);
   uStack_570 = 0xb;
   uStack_5e8 = 0x2000;
@@ -241635,7 +241640,7 @@ LAB_180199c3b:
             }
             if (ppppppSystemCharacterStatusBuffer == &pppppEventVariablePointer) {
 LAB_180199c8a:
-              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppEventVariablePointer,aStackProcessingVariable70);
+              CharacterStatusBuffer = (void *)ProcessCharacterStatusBuffer(&pppppEventVariablePointer,StackProcessingBuffer70);
               ppppppSystemCharacterStatusBuffer = (uint64_t *******)*CharacterStatusBuffer;
             }
             else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
@@ -269570,7 +269575,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingValue78;
-  uint8_t aStackProcessingVariable70 [72];
+  uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
   OperationStatus = 0xfffffffffffffffe;
@@ -269601,10 +269606,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0xd;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -269651,10 +269656,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0x1c;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate2);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate2);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -269701,10 +269706,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 10;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate3);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate3);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -269751,10 +269756,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0xb;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate4);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate4);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -269801,10 +269806,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 9;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate5);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate5);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -269851,10 +269856,10 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   }
   pErrorCode = &ThreadLocalStorageTemplate;
   SystemEventPointer = &SystemValidationStatus;
-  pCalculationFunctionAddress = aStackProcessingVariable70;
-  aStackProcessingVariable70[0] = 0;
+  pCalculationFunctionAddress = StackProcessingBuffer70;
+  StackProcessingBuffer70[0] = 0;
   StackProcessingValue78 = 0x14;
-  strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate6);
+  strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate6);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;

@@ -124524,7 +124524,6 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
  
 
- #define ProcessUIDataWithLongBuffer FUN_180739b90
  // 函数: void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 #define ProcessUIDataWithLongBuffer FUN_180739b90
 /**
