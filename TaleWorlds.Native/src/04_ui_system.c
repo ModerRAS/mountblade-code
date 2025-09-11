@@ -1023,10 +1023,10 @@ typedef enum {
 #define ProcessUIContextDataSourceValidation ValidateUIContextDataSource           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
 
 // UI系统函数宏定义 - 变换数据处理
-#define ProcessUITransformDataScaling FUN_18072e5f4                  // 处理UI变换数据缩放 - 对UI变换数据进行缩放操作
-#define ProcessUIComponentBatchTransform FUN_18072e9ce              // 处理UI组件批量变换 - 批量处理UI组件的变换操作
-#define ResetUIRenderState FUN_18072e943                             // 重置UI渲染状态 - 将UI渲染状态重置为初始状态
-#define ClearUIRenderCache FUN_18072e96d                             // 清理UI渲染缓存 - 清除UI渲染过程中的缓存数据
+#define ProcessUITransformDataScaling ScaleUITransformData                  // 处理UI变换数据缩放 - 对UI变换数据进行缩放操作
+#define ProcessUIComponentBatchTransform TransformUIComponentBatch              // 处理UI组件批量变换 - 批量处理UI组件的变换操作
+#define ResetUIRenderState ResetUIRenderState                             // 重置UI渲染状态 - 将UI渲染状态重置为初始状态
+#define ClearUIRenderCache ClearUIRenderCache                             // 清理UI渲染缓存 - 清除UI渲染过程中的缓存数据
 #define ClearUIComponentState FUN_18072eaed                          // 清理UI组件状态 - 清除UI组件的状态信息
 #define ProcessUIBufferAllocationInternal FUN_18072eb00              // 处理UI缓冲区内部分配 - 在内部处理UI缓冲区的分配操作
 #define InitializeUISystemState FUN_18072f881                        // 初始化UI系统状态 - 设置UI系统的初始状态
@@ -112898,7 +112898,7 @@ void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64
  * @param dataSource 数据源句柄
  * @param targetBuffer 目标缓冲区缩放因子
  * 
- * @note 原始函数名：FUN_18072e5f4
+ * @note 原始函数名：ScaleUITransformData
  */
 void ProcessUITransformDataScaling(UIHandle uiContext, UIHandle dataSource, float targetBuffer)
 
@@ -113275,7 +113275,7 @@ void ProcessUIComponentRenderTransform(UIHandle uiContext, UIHandle dataSource, 
  * 2. 执行UI渲染操作（如果需要）
  * 3. 调用核心渲染任务处理器
  * 
- * @note 原始函数名：FUN_18072e943
+ * @note 原始函数名：ResetUIRenderState
  * @warning 该函数不返回，最终调用ExecuteUIRenderTask
  * @see ExecuteUIRenderTask, ExecuteUIRenderingOperation
  */
@@ -113305,7 +113305,7 @@ void ResetUIRenderState(void)
  * 2. 调用核心渲染任务处理器
  * 3. 清理渲染缓存数据
  * 
- * @note 原始函数名：FUN_18072e96d
+ * @note 原始函数名：ClearUIRenderCache
  * @warning 该函数不返回，最终调用ExecuteUIRenderTask
  * @see ExecuteUIRenderTask, ExecuteUIRenderingOperation
  */
@@ -113383,7 +113383,7 @@ void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong t
  * - 内存管理和状态更新
  * - 循环处理多个组件
  * 
- * @note 原始函数名：FUN_18072e9ce
+ * @note 原始函数名：TransformUIComponentBatch
  */
 void ProcessUIComponentBatchTransform(void)
 

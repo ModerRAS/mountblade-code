@@ -53516,19 +53516,19 @@ void CoreEngineProcessSystemContext(void
   }
   *(bool *)((long long)RenderingContextHandle + SystemParameterStatusOffset) = *(long long *)(MemoryBlockIndex3 + 0x10) != 0;
   *(uint8_t *)((long long)RenderingContextHandle + SystemParameterProcessingFlagOffset) = 1;
-  if ((*(char *)(StackData190 + 0xc) != '\0') ||
+  if ((*(char *)(SystemEventStackMemory190 + 0xc) != '\0') ||
      (0 < *(int *)(*(long long *)(SystemContext + 600) + 0x1c))) {
     *(uint8_t *)((long long)RenderingContextHandle + SystemParameterProcessingFlagOffset) = 0;
   }
-  if (*(long long *)(StackData178 + 0x28) == 0) {
+  if (*(long long *)(SystemEventStackMemory178 + 0x28) == 0) {
     SystemValidationStatus30 = 0xffffffff;
     SystemEventTemplatePointer5 = &SystemStackBuffer;
-    MemoryBlockIndex3 = StackData178;
+    MemoryBlockIndex3 = SystemEventStackMemory178;
   }
   else {
     SystemParameter170 = 0xffffffff;
     SystemEventTemplatePointer5 = &SystemEventStackBuffer;
-    MemoryBlockIndex3 = *(long long *)(StackData178 + 0x28);
+    MemoryBlockIndex3 = *(long long *)(SystemEventStackMemory178 + 0x28);
   }
   ProcessSystemMemoryAllocation(MemoryBlockIndex3 + 0x3388,SystemEventTemplatePointer5,&DataStackBuffer);
   FloatValueArray180 = SystemParameter180;
@@ -53729,7 +53729,7 @@ void ProcessFloatCalculationAndDataFiltering(void)
     LowByte0 = GetSystemValidationStatus();
     *(byte *)(MemoryBlockIndex3 + 0x38c) = LowByte0;
   }
-  BufferStatus9 = StackData178;
+  BufferStatus9 = SystemEventStackMemory178;
   MemoryBlockIndex3 = *(long long *)(MemoryBlockIndex5 + 0x1e0);
   *SystemDataNode = *(void *)(MemoryBlockIndex3 + (unsigned long long)LowByte0 * 0x18);
   SystemDataNode[1] = *(void *)(MemoryBlockIndex3 + 8 + (unsigned long long)LowByte0 * 0x18);
@@ -53788,19 +53788,19 @@ void ProcessFloatCalculationAndDataFiltering(void)
   }
   *(bool *)(RenderingContextHandle + 0x4c) = *(long long *)(MemoryBlockIndex3 + 0x10) != 0;
   *(uint8_t *)(RenderingContextHandle + 0x4d) = 1;
-  if ((*(char *)(StackData190 + 0xc) != '\0') ||
+  if ((*(char *)(SystemEventStackMemory190 + 0xc) != '\0') ||
      (0 < *(int *)(*(long long *)(SystemContext + 600) + 0x1c))) {
     *(uint8_t *)(RenderingContextHandle + 0x4d) = 0;
   }
-  if (*(long long *)(StackData178 + 0x28) == 0) {
+  if (*(long long *)(SystemEventStackMemory178 + 0x28) == 0) {
     SystemValidationStatus30 = 0xffffffff;
     SystemEventTemplatePointer4 = &SystemStackBuffer;
-    MemoryBlockIndex3 = StackData178;
+    MemoryBlockIndex3 = SystemEventStackMemory178;
   }
   else {
     SystemParameter170 = 0xffffffff;
     SystemEventTemplatePointer4 = &SystemEventStackBuffer;
-    MemoryBlockIndex3 = *(long long *)(StackData178 + 0x28);
+    MemoryBlockIndex3 = *(long long *)(SystemEventStackMemory178 + 0x28);
   }
   ProcessSystemMemoryAllocation(MemoryBlockIndex3 + 0x3388,SystemEventTemplatePointer4,&DataStackBuffer);
   pFilterInputValue6 = SystemParameter180;
@@ -54146,8 +54146,8 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   uint32_t stackData108;  // 栈数据108，用于存储数据
   uint32_t stackData110;  // 栈数据110，用于存储数据
   uint32_t StackProcessingParameter6;
-  float *FloatDataArray180;
-  uint64_t StackData188;
+  float *SystemTransformMatrixArray180;
+  uint64_t SystemEventStackMemory188;
   
   StackValidationFlag = 0xffffffff;
   ProcessSystemMemoryAllocation(RegisterR13Value + 0x3388,&SystemStackBuffer);
@@ -111318,10 +111318,10 @@ unsigned long long ValidateAndProcessCharacterData(uint *ContextHandle,uint Oper
   uint ValidationBuffer2;
   uint64_t SystemPriorityLevel;
   ushort CharacterFunctionAddress;
-  uint64_t StackData1;
-  uint64_t StackData2;
-  uint64_t StackData3;
-  uint64_t StackData4;
+  uint64_t SystemMemoryPoolData1;
+  uint64_t SystemMemoryPoolData2;
+  uint64_t SystemMemoryPoolData3;
+  uint64_t SystemMemoryPoolData4;
   uint32_t StackProcessingFlags1;
   uint16_t StackProcessingFlags2;
   
@@ -250268,7 +250268,7 @@ LAB_1802042b6:
       ContextHandle = (uint8_t (*) [16])MemoryPoolIndex;
     }
     else {
-      FUN_1802041f0(aFunctionAddress.High64Part,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+      HandleSystemDataConversion(aFunctionAddress.High64Part,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
     }
     MemoryBlockIndex = (long long)paOperationResult - (long long)ContextHandle;
     OperationBufferSize = paOperationResult;

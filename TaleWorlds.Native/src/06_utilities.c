@@ -10422,9 +10422,6 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 // 功能：验证内存地址的有效性和安全性
 #define ValidateMemoryAddressWithSecurity FUN_18089de39
 
-// 原始函数名：FUN_18089e230 - 系统数据传输函数
-// 功能：处理系统数据传输和验证操作
-#define ProcessSystemDataTransferWithValidation FUN_18089e230
 
 // 原始函数名：FUN_18089e297 - 系统状态获取函数
 // 功能：获取系统状态码并返回验证结果
