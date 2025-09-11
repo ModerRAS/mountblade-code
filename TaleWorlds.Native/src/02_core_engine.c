@@ -247400,7 +247400,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         SystemMemoryAllocationHandle = (int)SystemMemoryAllocationOffset + 1;
         SystemMemoryAllocationOffset = (unsigned long long)SystemMemoryAllocationHandle;
       }
-      FUN_180202c00(SystemSecondaryContextFloatPointer2,SystemSecondaryFloatPointer,(long long)(int)(SystemMemoryAllocationHandle - 1) * 2,SystemDataProcessingStatus);
+      ProcessSystemFloatConversion(SystemSecondaryContextFloatPointer2,SystemSecondaryFloatPointer,(long long)(int)(SystemMemoryAllocationHandle - 1) * 2,SystemDataProcessingStatus);
       if (SystemBufferValidationStatus < 0x1d) {
         ProcessFloatingPointData(SystemSecondaryContextFloatPointer2,SystemSecondaryFloatPointer);
       }
@@ -247473,7 +247473,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
         Utf16Character = (int)MemoryAllocationOffset + 1;
         MemoryAllocationOffset = (unsigned long long)Utf16Character;
       }
-      FUN_180202c00(FloatVariablePointer4,pContextSecondaryFloat2,(long long)(int)(Utf16Character - 1) * 2,DataProcessingStatus);
+      ProcessSystemFloatConversion(FloatVariablePointer4,pContextSecondaryFloat2,(long long)(int)(Utf16Character - 1) * 2,DataProcessingStatus);
       pMatrixTransformElementB = FloatVariablePointer4;
       if (BufferValidationStatus < 0x1d) {
         while (pMatrixTransformElementB = pMatrixTransformElementB + 1, pMatrixTransformElementB != pContextSecondaryFloat2) {

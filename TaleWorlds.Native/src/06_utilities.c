@@ -32127,7 +32127,7 @@ ValidationFailedLabel:
  */
 #define ExecuteSecurityCheckAndTerminateA1 FUN_180897afe
 
-void ExecuteSecurityCheckAndTerminateVersion1(void)
+void ExecuteSecurityCheckWithXorOperation1(void)
 
 {
   int64_t systemStackPointer;
@@ -32157,7 +32157,7 @@ void ExecuteSecurityCheckAndTerminateVersion1(void)
  */
 #define ExecuteSecurityCheckAndTerminateA2 FUN_180897b0e
 
-void ExecuteSecurityCheckAndTerminateVersion2(void)
+void ExecuteSecurityCheckWithXorOperation2(void)
 
 {
   int64_t systemStackPointer;
@@ -32202,7 +32202,7 @@ void ExecuteSecurityCheckAndTerminateVersion2(void)
  * @warning 此函数在安全检查失败时会终止程序执行
  * @see ExecuteSecurityCheck, StackFrameContext, securityBuffer
  */
-void ExecuteSecurityCheckAndTerminateVersion3(void)
+void ExecuteSecurityCheckWithXorOperation3(void)
 
 {
   int64_t systemStackPointer;
@@ -34044,7 +34044,7 @@ void ProcessDataBlockOperationPrimary(DataBuffer systemContext,int64_t dataBuffe
  * @warning 如果数据处理失败，函数会尝试下一个偏移量
  * @see ProcessSystemDataD1, ValidateSystemDataD0
  */
-void ProcessSystemDataD0(DataBuffer systemContext,int64_t DataBuffer)
+void ProcessSystemDataWithValidation(DataBuffer systemContext,int64_t DataBuffer)
 
 {
   int ProcessingResult;
@@ -34078,7 +34078,7 @@ void ProcessSystemDataD0(DataBuffer systemContext,int64_t DataBuffer)
  * @warning 如果数据处理失败，函数会尝试下一个数据大小
  * @see ProcessSystemDataD0, ProcessSystemDataD2
  */
-void ProcessSystemDataD1(DataBuffer systemContext,int64_t DataBuffer)
+void ProcessSystemDataWithChunking(DataBuffer systemContext,int64_t DataBuffer)
 
 {
   int ProcessingResult;
