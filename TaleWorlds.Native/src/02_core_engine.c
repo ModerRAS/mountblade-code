@@ -43,6 +43,8 @@
 // 核心引擎临时缓冲区语义化定义
 #define aProcessingConfigurationFlag ProcessingConfigurationBuffer   // 处理配置标志缓冲区
 #define aStackParameterUnsigned20 StackParameterBuffer20             // 堆栈参数缓冲区20
+#define acStack_3e8 StackCharacterBuffer3E8                          // 栈字符缓冲区3E8
+#define alStack_8c0 StackLongBuffer8C0                              // 栈长整型缓冲区8C0
 
 // 核心引擎函数语义化宏定义
 #define ProcessSystemBufferAllocation AllocateSystemBuffer        // 处理系统缓冲区分配
@@ -30612,6 +30614,17 @@ void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
  * 
  * @note 这是一个简单的指针赋值操作，用于初始化线程本地存储
  * @note 线程本地存储模板包含系统预设的线程相关数据结构
+ */
+/**
+ * @brief 初始化线程本地存储模板
+ * 
+ * 此函数负责初始化线程本地存储（TLS）模板指针，
+ * 用于管理线程特定的数据存储和访问。
+ * 
+ * @param threadStoragePointer 线程存储指针的指针
+ * 
+ * @note 该函数设置线程本地存储模板地址
+ * @note 用于线程间数据隔离和访问控制
  */
 void InitializeThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
   *threadStoragePointer = &ThreadLocalStorageTemplate;
