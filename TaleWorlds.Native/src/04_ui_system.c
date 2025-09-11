@@ -4650,6 +4650,7 @@ typedef enum {
  * @see FUN_18088c790
  */
 #define ProcessUIContextValidationAndResourceManagement FUN_180849230
+#define FUN_18088c790 ExecuteUISystemFinalProcessing          // 执行UI系统最终处理
 
  使用高级指令计算图像加权绝对差值
  * 
@@ -40099,12 +40100,17 @@ void ProcessUIPixelConversion(ulonglong *uiContext,longlong dataSource,UIHandle 
 
 
 
- 触发UI渲染更新
- 触发UI系统的渲染更新流程，调用ProcessUIRenderingUpdate
- * 函数来处理渲染更新操作
+ /**
+ * @brief 触发UI渲染更新
  * 
-  原始函数名: FUN_180675430
- #define TriggerUIRenderingUpdate FUN_180675430
+ * 触发UI系统的渲染更新流程，调用ProcessUIRenderingUpdate
+ * 函数来处理渲染更新操作。
+ * 
+ * @return void 无返回值
+ * 
+ * 原始函数名: FUN_180675430
+ */
+#define TriggerUIRenderingUpdate FUN_180675430
 
 void TriggerUIRenderingUpdate(void)
 
@@ -40117,20 +40123,26 @@ void TriggerUIRenderingUpdate(void)
 
  
 
- 处理UI加密像素数据
- 处理UI系统中的加密像素数据，包括数据解密、
- * 像素格式转换和颜色处理
-  dataSource 数据源指针
- *  dataStride 数据步长
- *  dataDest 数据目标指针
- *  width 宽度
- *  height 高度
- *  format 格式
- *  flags 标志
- *  paramX X参数
- *  paramY Y参数
-  原始函数名: FUN_180675570
- #define ProcessUIEncryptedPixels FUN_180675570
+ /**
+ * @brief 处理UI加密像素数据
+ * 
+ * 处理UI系统中的加密像素数据，包括数据解密、
+ * 像素格式转换和颜色处理。
+ * 
+ * @param dataSource 数据源指针
+ * @param dataStride 数据步长
+ * @param dataDest 数据目标指针
+ * @param width 宽度
+ * @param height 高度
+ * @param format 格式
+ * @param flags 标志
+ * @param paramX X参数
+ * @param paramY Y参数
+ * @return void 无返回值
+ * 
+ * 原始函数名: FUN_180675570
+ */
+#define ProcessUIEncryptedPixels FUN_180675570
 
 void ProcessUIEncryptedPixels(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,
                   longlong resultPointer,uint param_6,int param_7,int param_8,int param_9)
