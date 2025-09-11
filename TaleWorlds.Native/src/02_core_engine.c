@@ -2115,9 +2115,9 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define ProgramCounterStack88 ProgramCounterStack88                          // 程序计数器栈88
 #define CharacterProcessingBuffer CharacterProcessingBuffer               // 字符缓冲区80
 #define StackPointerC0 StackPointerC0                          // 栈指针C0
-#define StackPointerB8 pcStack_b8                          // 栈指针B8
+#define StackPointerB8 StackPointerB8                          // 栈指针B8
 #define StackPointer110 ProgramCounterStack110                        // 栈指针110
-#define StackPointerF0 pcStack_f0                          // 栈指针F0
+#define StackPointerF0 StackPointerF0                          // 栈指针F0
 #define StackPointerF8 pcStack_f8                          // 栈指针F8
 #define StackPointerE0 SystemMemoryAllocationPointer            // 栈指针E0
 #define StackPointerD8 pfStack_d8                          // 栈指针D8
@@ -100008,6 +100008,16 @@ e230(long long ContextHandle,uint32_t OperationBufferSizevoid SetSystemDataStruc
 
 
 
+/**
+ * @brief 设置系统数据结构偏移量1C0
+ * 
+ * 该函数负责设置系统上下文中数据结构的偏移量1C0，根据不同的条件执行不同的操作
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：e2b0
+ */
 void SetSystemDataStructureOffset1C0(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
@@ -100034,6 +100044,16 @@ void SetSystemDataStructureOffset1C0(long long ContextHandle, uint32_t Operation
 
 
 
+/**
+ * @brief 设置系统数据结构偏移量220
+ * 
+ * 该函数负责设置系统上下文中数据结构的偏移量220，根据不同的条件执行不同的操作
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：e330
+ */
 void SetSystemDataStructureOffset220(long long ContextHandle, uint32_t OperationBufferSize)
 {
   char ValidationStatus;
@@ -183088,13 +183108,13 @@ void ProcessContextHandleEncodingValidationAndFloatData(long long ContextHandle,
   uint MemoryPoolIndex;
   uint8_t aProcessingCounter [16];
   code *pcStack_f8;
-  code *pcStack_f0;
+  code *StackPointerF0;
   uint ErrorCode;
   long long lStack_e0;
   float *pfStack_d8;
   uint64_t aSystemCleanupFlagG [2];
   code *StackPointerC0;
-  code *pcStack_b8;
+  code *StackPointerB8;
   uint8_t SystemStackRegisterBuffer [16];
   code *SystemSystemFunctionPointer;
   code *pcStack_98;
@@ -183142,14 +183162,14 @@ void ProcessContextHandleEncodingValidationAndFloatData(long long ContextHandle,
     BufferAllocationState = *(long long **)(*(long long *)(ContextHandle + 0xa8) + 0x88);
     SystemFunctionPointer = *(code **)(*BufferAllocationState + 0x70);
     pcStack_f8 = (code *)0x0;
-    pcStack_f0 = _guard_check_icall;
+    StackPointerF0 = _guard_check_icall;
     if (aProcessingCounter != OperationBufferSize) {
       pSystemStatusChar = *(code **)(OperationBufferSize + 0x10);
       if (pSystemStatusChar != (code *)0x0) {
         (*pSystemStatusChar)(aProcessingCounter,OperationBufferSize,1);
         pSystemStatusChar = *(code **)(OperationBufferSize + 0x10);
       }
-      pcStack_f0 = *(code **)(OperationBufferSize + 0x18);
+      StackPointerF0 = *(code **)(OperationBufferSize + 0x18);
       pcStack_f8 = pSystemStatusChar;
     }
     ErrorCode = MemoryPoolIndex;
@@ -183157,7 +183177,7 @@ void ProcessContextHandleEncodingValidationAndFloatData(long long ContextHandle,
     pfStack_d8 = Utf8SourcePointer;
     MemoryBoundaryEnd = GetMemoryBoundaryEnd(StackValidationData,aProcessingCounter);
     StackPointerC0 = ProcessSystemDataBufferAllocation;
-    pcStack_b8 = ProcessSystemCharacterEncodingConversion;
+    StackPointerB8 = ProcessSystemCharacterEncodingConversion;
     SystemChecksum = MemoryAllocate(MemoryPoolManager,0x38,8,MemoryAllocationFlags);
     GetMemoryBoundaryEnd(SystemChecksum,MemoryBoundaryEnd);
     aSystemCleanupFlagG[0] = SystemChecksum;
@@ -245444,7 +245464,7 @@ LAB_18019d905:
     pSystemRegisterFlag = &SystemCleanupFlagG;
     SystemCleanupFlagG = ContextHandle + 0xc182;
     SystemMemoryPointer = &SystemMemoryBlockAddress;
-    pcStack_b8 = ConfigureSystemStackHandler;
+    StackPointerB8 = ConfigureSystemStackHandler;
     CoreEngineExecuteConfiguration(&SystemCleanupFlagG);
   }
   for (; PrimaryProcessingStatusFlag != SystemEventTemplatePointer; PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 4) {

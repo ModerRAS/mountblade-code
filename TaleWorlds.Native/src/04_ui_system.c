@@ -1167,6 +1167,21 @@ typedef enum {
 #define stackUInt120 UIContextBuffer120
 #define stackUInt140 UIProcessingCounter140
 #define stackUInt18 UIEncryptionKey18
+#define pfStackX_20 UIBufferSize20
+#define register9B UIValidationFlag9B
+#define register9D UIComponentIndex9D
+#define register9 UIIterationCounter9
+#define register10 UIArrayIndex10
+#define lStack0000000000000040 UIProcessingOffset40
+#define lStack0000000000000048 UIResourceOffset48
+#define lStack0000000000000050 UIContextOffset50
+#define stackParam00000030 UIStackParameter30
+#define stackParam000000b0 UIStackParameterB0
+#define stackParam000000c8 UIStackParameterC8
+#define stackParam000000d0 UIStackParameterD0
+#define stackParam000000d8 UIStackParameterD8
+#define lStack0000000000000038 UIContextRegister38
+#define lStack0000000000000058 UIAllocationLimit58
 #define stackUInte8 UIResourceHandleE8
 #define localChar34 UIPreviousComponentContext
 #define localChar26 UIComponentContextBackup
@@ -138577,19 +138592,49 @@ UIHandle * InitializeUIContextWithDataSource(UIHandle *uiContext,ulonglong dataS
 
 
 
+/**
+ * @brief 清理带数据源的UI上下文
+ * 
+ * 该函数负责清理UI系统上下文，执行以下操作：
+ * - 重置UI上下文为默认状态
+ * - 根据数据源标志释放内存资源
+ * - 执行资源清理和内存管理
+ * - 返回清理后的UI上下文指针
+ * 
+ * @param uiContext UI上下文指针 - 指向需要清理的UI上下文
+ * @param dataSource 数据源参数 - 包含数据源清理标志的参数，bit 0为1时表示需要释放内存
+ * @return UIHandle* 返回清理后的UI上下文指针
+ */
 UIHandle * FUN_180744750(UIHandle *uiContext,ulonglong dataSource)
 
 {
+  // 重置UI上下文为默认数据结构
   *uiContext = &UNK_180957f58;
+  
+  // 检查数据源清理标志，如果bit 0为1则释放内存
   if ((dataSource & 1) != 0) {
     free(uiContext,0x150);
   }
+  
   return uiContext;
 }
 
 
 
  
+/**
+ * @brief 处理UI上下文内存池操作
+ * 
+ * 该函数负责处理UI系统上下文的内存池操作，包括：
+ * - 初始化内存池并分配缓冲区
+ * - 设置事件状态和上下文偏移量
+ * - 处理事件代码和验证
+ * - 管理资源分配和清理
+ * - 执行UI系统清理操作
+ * 
+ * @param uiContext UI上下文参数 - 包含UI上下文信息的长整型参数
+ * @return UIHandle 返回操作结果码，成功时返回0，失败时返回相应的错误码
+ */
 UIHandle FUN_180744780(longlong uiContext)
 
 {
@@ -138603,18 +138648,29 @@ UIHandle FUN_180744780(longlong uiContext)
   longlong contextOffset;
   ulonglong eventStatus;
   
+  // 获取最大处理数量
   maxProcessingCount = *(uint *)(uiContext + 0x6d8);
   contextOffset = 0;
+  
+  // 计算循环计数器
   loopCounter = (ulonglong)*(uint *)(uiContext + 0x6dc) / (ulonglong)maxProcessingCount;
   operationResult = (int)loopCounter;
+  
+  // 初始化内存池
   colorBufferPointer = (longlong *)
            InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),(maxProcessingCount + 0x16) * processingResult * 4 + 0x40,
                          &UIContextDataController000,0x3b5,0);
+  
+  // 检查内存池初始化是否成功
   if (colorBufferPointer == (longlong *)0x0) {
     return 0x26;
   }
+  
+  // 设置颜色缓冲区指针
   *colorBufferPointer = (longlong)(colorBufferPointer + 6);
   eventStatus = (longlong)processingResult * 0x58 + 0xf + (longlong)(colorBufferPointer + 6) & 0xfffffffffffffff0;
+  
+  // 处理循环，设置上下文偏移量
   if (0 < processingResult) {
     do {
       contextOffset = contextOffset + 0x58;
@@ -195390,6 +195446,7 @@ undefined UIResourceCleanupHandler;
 #define UNK_18095b4ec UIRenderFlagB4ec
 #define UNK_18095b4f4 UIRenderFlagB4f4
 #define UNK_18095b4f8 UIRenderFlagB4f8
+#define UNK_180957f58 UIDefaultCleanupDataStructure      // UI默认清理数据结构
 // UI系统资源管理变量语义化定义
 #define UNK_18095b580 UIResourcePointerB580
 #define UNK_18095b6b8 UIResourcePointerB6b8
