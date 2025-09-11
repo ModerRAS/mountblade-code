@@ -74,6 +74,9 @@
 #define FUN_180193de0 ResetSystemDataValidator                     // 重置系统数据验证器
 #define FUN_180193e88 HandleSystemDataEncodingProcess             // 处理系统数据编码
 #define FUN_1801940f0 InitializeSystemDataProcessor                // 初始化系统数据处理
+#define FUN_1801998a0 ProcessContextMemoryPoolIteration           // 处理系统上下文内存池迭代
+#define FUN_1801998ce ExecuteSystemContextCallbacks                // 执行系统上下文回调函数
+#define FUN_18019991c SystemNullOperation                          // 系统空操作函数
 #define FUN_180194530 ProcessSystemSignedIntegerValues             // 处理系统有符号值
 #define FUN_180204430 HandleCharacterStatusAndStringEncoding             // 处理字符状态缓冲区和字符串编码转换
 #define FUN_180206260 ProcessUtf16CharacterData                          // 处理UTF-16字符处理
