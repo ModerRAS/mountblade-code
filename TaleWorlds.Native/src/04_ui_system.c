@@ -105493,7 +105493,7 @@ void ProcessUIDataTransformationAndValidation(longlong uiContext,float *dataSour
   ulonglong maxProcessingCount;
   ulonglong iterationCounter;
   float TemporaryFloatValue;
-  double dVar9;
+  double TransformationScale;
   UIByte astackUInt78 [48];
   int astackInt48 [4];
   ulonglong stackUInt38;
