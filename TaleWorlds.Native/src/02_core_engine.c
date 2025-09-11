@@ -237573,7 +237573,12 @@ void FUN_18019515a(void)
 
 
 
-95184(voidvoid FUN_180195184(void
+/**
+ * @brief 系统空操作函数2
+ * 
+ * 该函数是一个空操作函数，用于系统初始化或清理。
+ */
+void FUN_180195184(void
 {
   return;
 }
