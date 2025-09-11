@@ -75074,8 +75074,8 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
       }
       SystemChecksum = (uint)SystemContextPrimaryFloat & 0xffffff;
       ProcessingStatus = 0x3f800000;
-      uStack_184 = 0x3f800000;
-      SystemUnsignedValue180 = 0x3f800000;
+      StackProcessingStatus184 = 0x3f800000;
+      StackSystemValue180 = 0x3f800000;
       (**(code **)(**(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2) + SystemMemoryFunctionOffset108)                (*(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2),&ProcessingStatus);
       BufferAllocationState = *(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2);
       if (*(code **)(*BufferAllocationState + 0xc0) == (code *)&MemoryAllocationChecker) {
@@ -283409,9 +283409,9 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
     InputDataLength = InputDataLength + 1;
     SystemValidationFunction = SystemValidationFunction + 0x10;
   } while ((long long)SystemValidationFunction < 0x180bf7e68);
-  FUN_180639ec0(OperationBufferSize,*(void *)(ContextHandle + 0x58));
-  FUN_180639ec0(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x20);
-  FUN_180639ec0(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x40);
+  ValidateSystemContextIntegrity(OperationBufferSize,*(void *)(ContextHandle + 0x58));
+  ValidateSystemContextIntegrity(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x20);
+  ValidateSystemContextIntegrity(OperationBufferSize,*(long long *)(ContextHandle + 0x58) + 0x40);
   FUN_18063a050(OperationBufferSize,ContextHandle + 0x10);
   ValidationStatus = *ContextHandle;
   if (ValidationStatus == '\0') {
@@ -284666,7 +284666,7 @@ LAB_180227e59:
   uint ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
   
-  FUN_180639ec0(OperationBufferSize,ContextHandle);
+  ValidateSystemContextIntegrity(OperationBufferSize,ContextHandle);
   long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x28);
   BufferStatus = *(long long *)(ContextHandle + 0x20);
   MemoryAddressMaskPointer = (uint32_t *)OperationBufferSize[1];
@@ -284684,7 +284684,7 @@ LAB_180227e59:
   ArraySize = OperationResult;
   if (MemoryBlockIndex / 0xe0 + BufferStatus != BufferStatus) {
     do {
-      FUN_180639ec0(OperationBufferSize,AllocatedMemorySize + 8 + OperationResult * 0xe0);
+      ValidateSystemContextIntegrity(OperationBufferSize,AllocatedMemorySize + 8 + OperationResult * 0xe0);
       MemoryAddressMaskPointer = (uint32_t *)OperationBufferSize[1];
       Utf16Char = *(uint32_t *)(SystemChecksum + *(long long *)(ContextHandle + 0x20));
       if ((unsigned long long)((*ContextHandleSize - (long long)MemoryAddressMaskPointer) + OperationBufferSize[2]) < 5) {
@@ -285008,7 +285008,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
     CharacterEncodingLoopCounter = (unsigned long long)((int)CharacterEncodingLoopCounter + 1);
     CharacterPointer = CharacterPointer + 0x10;
   } while ((long long)CharacterPointer < 0x180bf7d28);
-  FUN_180639ec0(OperationBufferSize,ContextHandle + 10);
+  ValidateSystemContextIntegrity(OperationBufferSize,ContextHandle + 10);
   StringProcessingStatus = (uint32_t *)OperationBufferSize[1];
   if ((unsigned long long)((OperationBufferSize[2] - (long long)StringProcessingStatus) + *ContextHandleSize) < 0x11) {
     UpdateSystemProcessingStatusFlag(OperationBufferSize,(long long)StringProcessingStatus + (0x10 - *ContextHandleSize));
@@ -285039,7 +285039,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
   if (0 < ArrayIndex) {
     do {
       MemoryBlockIndex = *(long long *)(ContextHandle + 0x24);
-      FUN_180639ec0(OperationBufferSize,MemoryBlockIndex + 8 + ProcessedCharacter);
+      ValidateSystemContextIntegrity(OperationBufferSize,MemoryBlockIndex + 8 + ProcessedCharacter);
       StringProcessingStatus = (uint8_t *)OperationBufferSize[1];
       MemoryPoolIndex = *(uint8_t *)(ProcessedCharacter + MemoryBlockIndex);
       if ((unsigned long long)((OperationBufferSize[2] - (long long)StringProcessingStatus) + *ContextHandleSize) < 2) {
@@ -285048,7 +285048,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       }
       *StringProcessingStatus = MemoryPoolIndex;
       OperationBufferSize[1] = OperationBufferSize[1] + 1;
-      FUN_180639ec0(OperationBufferSize,MemoryBlockIndex + 0xa0 + ProcessedCharacter);
+      ValidateSystemContextIntegrity(OperationBufferSize,MemoryBlockIndex + 0xa0 + ProcessedCharacter);
       CharacterPointer = (char *)0x180bf7d28;
       ArraySize = Utf16Char4;
       do {
@@ -285220,7 +285220,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
     ProcessedCharacter = (unsigned long long)((int)ProcessedCharacter + 1);
     CharacterPointer = CharacterPointer + 0x10;
   } while ((long long)CharacterPointer < 0x180bf7d28);
-  Utf16ConversionContext = FUN_180639ec0(Utf16ConversionContext,ContextHandle + 10);
+  Utf16ConversionContext = ValidateSystemContextIntegrity(Utf16ConversionContext,ContextHandle + 10);
   StringProcessingStatus = (uint32_t *)SystemContext[1];
   if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
     UpdateSystemProcessingStatusFlag(Utf16ConversionContext,(long long)StringProcessingStatus + (0x10 - *SystemContext));
@@ -285252,7 +285252,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
   if (0 < ArrayIndex) {
     do {
       MemoryBlockIndex = *(long long *)(ContextHandle + 0x24);
-      Utf16ConversionContext = FUN_180639ec0(Utf16ConversionContext,MemoryBlockIndex + 8 + ProcessedCharacter);
+      Utf16ConversionContext = ValidateSystemContextIntegrity(Utf16ConversionContext,MemoryBlockIndex + 8 + ProcessedCharacter);
       StringProcessingStatus = (uint8_t *)SystemContext[1];
       MemoryPoolIndex = *(uint8_t *)(ProcessedCharacter + MemoryBlockIndex);
       if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 2) {
@@ -285261,7 +285261,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       }
       *StringProcessingStatus = MemoryPoolIndex;
       SystemContext[1] = SystemContext[1] + 1;
-      Utf16ConversionContext = FUN_180639ec0(Utf16ConversionContext,MemoryBlockIndex + 0xa0 + ProcessedCharacter);
+      Utf16ConversionContext = ValidateSystemContextIntegrity(Utf16ConversionContext,MemoryBlockIndex + 0xa0 + ProcessedCharacter);
       CharacterPointer = (char *)0x180bf7d28;
       ArraySize = Utf16Char4;
       do {
