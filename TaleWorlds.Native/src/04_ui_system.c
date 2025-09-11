@@ -135818,7 +135818,21 @@ void ProcessUIBufferDataGlobal(void)
 
 
  void FUN_1807405cf(void)
-void FUN_1807405cf(void)
+#define ReleaseUIResourceAndExecuteRenderCleanup FUN_1807405cf
+/**
+ * @brief 释放UI资源并执行渲染清理
+ * 
+ * 该函数负责释放UI系统的内存资源并执行渲染清理任务：
+ * - 检查内存资源状态
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807405cf
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ReleaseUIResourceAndExecuteRenderCleanup(void)
 
 {
   longlong stackParam00000030;
@@ -135835,7 +135849,20 @@ void FUN_1807405cf(void)
 
 
  void FUN_1807405f1(void)
-void FUN_1807405f1(void)
+#define ForceReleaseUIResourceAndExecuteRender FUN_1807405f1
+/**
+ * @brief 强制释放UI资源并执行渲染
+ * 
+ * 该函数负责强制释放UI系统的内存资源并执行渲染任务：
+ * - 强制释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807405f1
+ * @note 该函数执行后不返回，直接跳转到渲染任务
+ */
+void ForceReleaseUIResourceAndExecuteRender(void)
 
 {
   ulonglong renderTaskParameter;

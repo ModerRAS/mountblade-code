@@ -199972,7 +199972,7 @@ void ValidateAndConvertContextHandleData(long long ContextHandle, uint64_t Opera
   int *pRemainingSpace;
   int ValidationResult;
   long long SystemContext;
-  char unaff_BPL;
+  char ValidationFlag;
   int CharacterTablePointer;
   uint SystemChecksum;
   long long SystemDataNode;
@@ -200034,7 +200034,7 @@ LAB_1801604e5:
           }
           pEncodingValidationResult = pEncodingValidationResult + 1;
           MemoryPoolIndex = MemoryPoolIndex - 1;
-          CharacterLimit = _SystemStackInteger224;
+          CharacterLimit = SystemStackInteger224;
         } while (MemoryPoolIndex != 0);
       }
       if ((*(uint *)(SystemContext + 0x34) == RegisterR13ValueD) && (SystemChecksum == *(uint *)(SystemContext + 0x34))) {
@@ -252444,7 +252444,7 @@ void ProcessSystemMemoryOperation(void
  */
 void InitializeSystemComponents(void)
 {
-  uint8_t unaff_BPL;
+  uint8_t ValidationFlag;
   
 
 /**
