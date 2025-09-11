@@ -344,6 +344,9 @@ typedef enum {
 #define ProcessUIDataWithContextHandles FUN_180745870         // 处理UI数据与上下文句柄
 #define ProcessUIDataWithProcessingArray FUN_180738b40        // 处理UI数据与处理数组
 
+// UI系统初始化函数
+#define InitializeUIContextAndParameters FUN_18071ace8         // 初始化UI上下文和参数
+
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
 #define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0
