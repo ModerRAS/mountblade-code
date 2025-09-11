@@ -30026,7 +30026,7 @@ void ProcessFloatingPointDataWithValidation(void)
           DataProcessingOffset = SystemOperationResult;
           operationResult = validationSizeResult;
           validationSizeResult = ValidateDataIntegrityA0(NormalizedParameterValue,&ValidationDataBuffer);
-          processedFloatValue = floatResultA;
+          processedFloatValue = processedNormalizedFloatValue;
           if (validationSizeResult != 0) goto SizeValidationCheckpoint;
         }
         if (*(char *)(dataContext + SystemParameterValidationOffset28) != '\0') {
@@ -30786,7 +30786,7 @@ void ProcessDataTypes(void)
     *(DataWord *)(StackFrameContext + -0xf) = SystemOperationResult;
     *(float *)(StackFrameContext + -0x10) = StackFloatRegisterA;
     outputParameter = dataPointerD;
-    resourceValidationStatus = ValidateDataIntegrityA0(floatResultA,&systemErrorHandlingBuffer);
+    resourceValidationStatus = ValidateDataIntegrityA0(processedNormalizedFloatValue,&systemErrorHandlingBuffer);
     if (resourceValidationStatus == 0) {
       dataSize = (int64_t)*(int *)(contextPointer + SystemParameterValidationOffset28);
       if (0 < dataSize) {
@@ -31008,7 +31008,7 @@ SystemDataValidationCheckpoint:
   uint64_t operationResultSecondary;
   int64_t contextPointer;
   DataWord SystemOperationResultTertiary;
-  DataWord floatResultA;
+  DataWord processedNormalizedFloatValue;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   float interpolatedFloatValue;
@@ -31074,7 +31074,7 @@ SystemDataValidationCheckpoint:
   SystemDataBufferSecondary = (**(FunctionPointer**)*FloatRegisterR12)(FloatRegisterR12);
   resourceValidationStatus = ProcessDataAndReturnO1(SystemDataBufferSecondary,SystemDataBufferTertiary,SystemNameBuffer);
   if (resourceValidationStatus == 0) {
-    OperationResultTertiary = floatResultA;
+    OperationResultTertiary = processedNormalizedFloatValue;
     if (SystemNameBuffer[0] != '\0') {
       SystemDataBufferTertiary = InitializeSystem();
       resourceValidationStatus = memcmp(contextPointer + SystemFloatDataOffset38,SystemDataBufferTertiary,0x30);
@@ -31251,7 +31251,7 @@ void ProcessFloatingPointData(float inputValue)
   float systemValue;
   int64_t temporaryRegister;
   int64_t dataBase;
-  float floatResultA;
+  float processedNormalizedFloatValue;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   DataWord interpolatedFloatValue;
@@ -31281,7 +31281,7 @@ void ProcessFloatingPointData(float inputValue)
     contextValue = systemValue;
     stackInputValue = inputValue;
     operationResult = ValidateDataIntegrityA0(inputValue,&StackValidationBuffer);
-    inputValue = floatResultA;
+    inputValue = processedNormalizedFloatValue;
     if (operationResult != 0) GOTO_ValidationFailure;
   }
   operationResult = ValidateDataA3(inputValue,&SystemValidationContextBuffer,0);
