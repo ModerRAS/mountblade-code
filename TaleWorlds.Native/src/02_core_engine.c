@@ -284053,7 +284053,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
   
   CharacterTablePointer = ContextHandle[1];
   for (BufferStatus = *ContextHandle; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_18040d990(BufferStatus);
+    ReleaseSystemMemoryResources(BufferStatus);
   }
   if (*ContextHandle == 0) {
     return;
@@ -285904,7 +285904,7 @@ LAB_180229003:
       MemoryBoundaryEnd = *(long long *)(ContextHandle + 0x2c);
       if (MemoryBoundaryEnd != BufferStatus1) {
         do {
-          FUN_18040d990(MemoryBoundaryEnd);
+          ReleaseSystemMemoryResources(MemoryBoundaryEnd);
           MemoryBoundaryEnd = MemoryBoundaryEnd + 0x60;
         } while (MemoryBoundaryEnd != BufferStatus1);
         MemoryBoundaryEnd = *(long long *)(ContextHandle + 0x2c);
@@ -286045,7 +286045,7 @@ LAB_1802294ca:
         StringOffset = *(long long *)(ContextHandle + 0x2c);
         if (StringOffset != BufferIndex) {
           do {
-            FUN_18040d990(StringOffset);
+            ReleaseSystemMemoryResources(StringOffset);
             StringOffset = StringOffset + 0x60;
           } while (StringOffset != BufferIndex);
           StringOffset = *(long long *)(ContextHandle + 0x2c);
@@ -286057,7 +286057,7 @@ LAB_1802294ca:
         *(long long *)(ContextHandle + 0x2e) = SystemContextValue + 0x60;
         *(long long *)(ContextHandle + 0x30) = MemoryBoundaryEnd * 0x60 + BufferStatus1;
       }
-      FUN_18040d990(&StackUnsigned4C8);
+      ReleaseSystemMemoryResources(&StackUnsigned4C8);
       uStack_4f8 = uStack_4f8 - 1;
     } while (uStack_4f8 != 0);
   }
@@ -286244,7 +286244,7 @@ LAB_1802297eb:
   
   CharacterTablePointer = ContextHandle[1];
   for (BufferStatus = *ContextHandle; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_18040d990(BufferStatus);
+    ReleaseSystemMemoryResources(BufferStatus);
   }
   if (*ContextHandle == 0) {
     return;
@@ -287049,7 +287049,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
     MemoryBlockIndex = *ContextHandle;
     if (MemoryBlockIndex != SystemDataRegistry) {
       do {
-        FUN_18040d990(MemoryBlockIndex);
+        ReleaseSystemMemoryResources(MemoryBlockIndex);
         MemoryBlockIndex = MemoryBlockIndex + 0x60;
       } while (MemoryBlockIndex != SystemDataRegistry);
       MemoryBlockIndex = *ContextHandle;
@@ -287074,7 +287074,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
       MemoryBlockIndex = FUN_18022a590(OperationBufferSize,Utf8SourcePointer);
       BufferStatus = ContextHandle[1];
       for (SystemDataRegistry = MemoryBlockIndex; SystemDataRegistry != BufferStatus; SystemDataRegistry = SystemDataRegistry + 0x60) {
-        FUN_18040d990(SystemDataRegistry);
+        ReleaseSystemMemoryResources(SystemDataRegistry);
       }
       ContextHandle[1] = MemoryBlockIndex;
     }
@@ -287113,7 +287113,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
   BufferStatus = *PatternIndex;
   if (BufferStatus != MemoryBlockIndex) {
     do {
-      FUN_18040d990(BufferStatus);
+      ReleaseSystemMemoryResources(BufferStatus);
       BufferStatus = BufferStatus + 0x60;
     } while (BufferStatus != MemoryBlockIndex);
     BufferStatus = *PatternIndex;
@@ -287153,7 +287153,7 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
     CharacterTablePointer = FUN_18022a590();
     MemoryBlockIndex = *(long long *)(PatternIndex + 8);
     for (AllocatedMemorySize = LoopCounter; AllocatedMemorySize != MemoryBlockIndex; AllocatedMemorySize = AllocatedMemorySize + 0x60) {
-      FUN_18040d990(AllocatedMemorySize);
+      ReleaseSystemMemoryResources(AllocatedMemorySize);
     }
     *(long long *)(PatternIndex + 8) = LoopCounter;
   }
