@@ -167770,12 +167770,12 @@ void FUN_180760ab7(longlong uiContext)
   longlong *pstringCompareIndex;
   byte *preservedRegister13;
   UIDword eventHandle;
-  byte bStack0000000000000040;
+  byte UIProcessingStatusFlag;
   byte *stackParam00000048;
   ulonglong stackParam00000150;
   
   *(UIDword *)(contextHandle + 0x58) = eventHandle;
-  bStack0000000000000040 = 0;
+  UIProcessingStatusFlag = 0;
   if (uiContext == 0) {
     pstringCompareIndex = *(longlong **)(contextHandle + 0x70);
     if (pstringCompareIndex != (longlong *)(contextHandle + 0x70)) {
@@ -167786,7 +167786,7 @@ void FUN_180760ab7(longlong uiContext)
         else {
           FUN_180762ee0();
         }
-        unmodifiedSIL = unmodifiedSIL | bStack0000000000000040;
+        unmodifiedSIL = unmodifiedSIL | UIProcessingStatusFlag;
         pstringCompareIndex = (longlong *)*pstringCompareIndex;
         preservedRegister13 = stackParam00000048;
       } while (pstringCompareIndex != (longlong *)(contextHandle + 0x70));
@@ -167810,7 +167810,7 @@ LAB_180760ba7:
   }
   else {
     FUN_180760970(uiContext + 8);
-    unmodifiedSIL = bStack0000000000000040;
+    unmodifiedSIL = UIProcessingStatusFlag;
 LAB_180760ba2:
     if (unmodifiedSIL == 0) goto LAB_180760ba7;
   }
@@ -172131,7 +172131,7 @@ UIHandle FUN_180765f57(longlong *uiContext)
   UIByte *inputString;
   longlong stackParam00000048;
   short stackParam00000050;
-  short sStack0000000000000052;
+  short UIComponentSize;
   longlong stackParam00000058;
   UIHandle stackParam000000a8;
   UIDword maxIterations;
@@ -172270,7 +172270,7 @@ UIHandle FUN_180765f5f(longlong *uiContext)
   UIByte *inputString;
   longlong stackParam00000048;
   short stackParam00000050;
-  short sStack0000000000000052;
+  short UIComponentSize;
   longlong stackParam00000058;
   UIHandle stackParam000000a8;
   UIDword maxIterations;
