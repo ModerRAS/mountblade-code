@@ -259369,7 +259369,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     ProgramCounterStack110 = _guard_check_icall;
-    FUN_18023c450(ContextHandle8[1],1,0xffffffff,&pBufferInitializationFlag);
+    InitializeSystemBuffer(ContextHandle8[1],1,0xffffffff,&pBufferInitializationFlag);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&pBufferInitializationFlag,0,0);
     }
@@ -259379,7 +259379,7 @@ LAB_18020a68a:
     lStack_120 = 0;
     pcStack_118 = (code *)0x0;
     ProgramCounterStack110 = _guard_check_icall;
-    FUN_18023c450(ContextHandle8[2],1,0xffffffff,&pBufferInitializationFlag);
+    InitializeSystemBuffer(ContextHandle8[2],1,0xffffffff,&pBufferInitializationFlag);
     if (pcStack_118 != (code *)0x0) {
       (*pcStack_118)(&pBufferInitializationFlag,0,0);
     }
@@ -292010,7 +292010,7 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
           SystemStackFlag = 0;
           ProgramCounterPointer = (code *)0x0;
           pcStack_38 = _guard_check_icall;
-          FUN_18023c450(*BufferAllocationState,0,*(uint32_t *)((long long)OperationBufferSize + 0x14),&SystemKeyPointer);
+          InitializeSystemBuffer(*BufferAllocationState,0,*(uint32_t *)((long long)OperationBufferSize + 0x14),&SystemKeyPointer);
           if (ProgramCounterPointer != (code *)0x0) {
             (*ProgramCounterPointer)(&SystemKeyPointer,0,0);
           }
