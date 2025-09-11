@@ -150002,13 +150002,23 @@ LAB_180752566:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807526e0(UIHandle *uiContext,longlong dataSource)
-void FUN_1807526e0(UIHandle *uiContext,longlong dataSource)
+ /**
+ * @brief 处理UI上下文数据源设置和内存管理
+ * @param uiContext UI上下文句柄指针
+ * @param dataSource 数据源句柄
+ * 
+ * 该函数负责处理UI上下文中的数据源设置和内存管理，包括：
+ * - 上下文数据源的验证和设置
+ * - 内存指针的管理和分配
+ * - 组件索引的处理
+ * - UI上下文状态的清理
+ */
+void ProcessUIContextDataSourceAndMemoryManagement(UIHandle *uiContext, longlong dataSource)
 
 {
   longlong *uiMemoryPointer;
   longlong componentIndex;
-  char localChar3;
+  char isContextValid;
   longlong contextDataHandle;
   
   contextDataHandle = 0;
