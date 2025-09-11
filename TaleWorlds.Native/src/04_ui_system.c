@@ -126185,6 +126185,17 @@ void FUN_18073ae88(void)
 
 
  void FUN_18073af6d(void)
+/**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务，包括：
+ * - 检查并释放UI内存资源
+ * - 执行UI渲染任务
+ * - 处理渲染任务的参数和上下文
+ * 
+ * @note 原始函数名：FUN_18073af6d
+ * @warning 此函数不返回，会调用ExecuteUIRenderTask
+ */
 void FUN_18073af6d(void)
 
 {
@@ -126202,6 +126213,17 @@ void FUN_18073af6d(void)
 
 
  void FUN_18073af9f(void)
+/**
+ * @brief 释放UI内存资源并执行渲染操作
+ * 
+ * 该函数负责释放UI内存资源并执行渲染操作，包括：
+ * - 释放UI内存资源
+ * - 执行UI渲染操作
+ * - 处理渲染操作的上下文和参数
+ * 
+ * @note 原始函数名：FUN_18073af9f
+ * @warning 此函数不返回，会调用ExecuteUIRenderTask
+ */
 void FUN_18073af9f(void)
 
 {
