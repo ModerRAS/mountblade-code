@@ -57539,9 +57539,9 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint64_t *MemoryAddressMaskPointer;
   float MatrixTransformMultiplier;
   uint64_t byteComparisonValue;
-  uint64_t UnsignedVariable7;
-  uint8_t ByteArray8 [16];
-  bool BooleanVariable9;
+  uint64_t SystemHandleValue7;
+  uint8_t CharacterArray8 [16];
+  bool ValidationFlag9;
   int *ResourcePointer10;
   int MemoryAllocationCount;
   long long SystemContextValue;
