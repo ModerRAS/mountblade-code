@@ -19496,7 +19496,7 @@ DataWord ReleaseStackResource(void)
 {
   int64_t processorRegisterValue = 0;
   int64_t calculatedStackresourcePointer;
-  int64_t* systemStackDataPointer;
+  int64_t* systemResourcePointer;
   
   // 根据处理器寄存器值计算栈资源指针
   if (processorRegisterValue == 0) {
@@ -19506,14 +19506,14 @@ DataWord ReleaseStackResource(void)
     calculatedStackresourcePointer = processorRegisterValue - 8;
   }
   
-  // 检查栈数据指针
-  systemStackDataPointer = (int64_t *)(calculatedStackresourcePointer + ExceptionHandlerCallbackOffset);
-  if (*systemStackDataPointer == 0) {
+  // 检查系统资源指针
+  systemResourcePointer = (int64_t *)(calculatedStackresourcePointer + ExceptionHandlerCallbackOffset);
+  if (*systemResourcePointer == 0) {
     return ResourceInvalidErrorCode;  // 返回资源无效错误代码
   }
   
-  // 释放栈资源（注意：此函数不会返回）
-  ReleaseResource(*systemStackDataPointer, 1);
+  // 释放系统资源（注意：此函数不会返回）
+  ReleaseResource(*systemResourcePointer, 1);
 }
 
 
