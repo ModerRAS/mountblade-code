@@ -296,6 +296,7 @@ typedef union {
 #define SecurityValidationCodePAM  0x2050414d                    // 安全验证码PAM - 用于参数访问管理验证
 #define SecurityValidationCodeMRAP 0x4d524150                    // 安全验证码MRAP - 用于内存资源访问验证
 #define SecurityValidationCodeBMRP 0x424d5250                    // 安全验证码BMRP - 用于备份内存资源处理验证
+#define SecurityValidationCodeTSIL 0x5453494c                    // 安全验证码TSIL - 用于数据缓冲区操作验证
 
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
@@ -46055,6 +46056,14 @@ void UtilityNoOperationZ(void)
 
 
 
+/**
+ * @brief 空操作函数AA
+ * 
+ * 这是一个空操作函数，不执行任何实际操作。通常用作占位符或在需要空函数指针的地方使用。
+ * 
+ * @note 原始函数名：UtilityNoOperationAA
+ * @note 这是一个简化的实现，直接返回而不执行任何操作
+ */
 void UtilityNoOperationAA(void)
 
 {
@@ -46084,14 +46093,14 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
   ByteFlag validationBuffer2 [64];
   ByteFlag stackValidationBuffer [40];
   
-  operationResult = ExecuteDataBufferOperation(dataBuffer,stackValidationBuffer,1,0x5453494c,operationFlagA);
+  operationResult = ExecuteDataBufferOperation(dataBuffer,stackValidationBuffer,1,SecurityValidationCodeTSIL,operationFlagA);
   if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,validationBuffer2,0,operationFlagB,0), (int)operationResult == 0))
   {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = ProcessDataPointer(*dataBuffer,operationBase + ExceptionHandlerCallbackOffset);
       operationResult = (uint64_t)systemDataBuffer;
       if ((systemDataBuffer == 0) &&
-         ((operationMode == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + 0x48,dataBuffer), (int)operationResult == 0)))) {
+         ((operationMode == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + DataContextIntegrityOffset,dataBuffer), (int)operationResult == 0)))) {
           ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer2);
       }
     }
