@@ -249797,11 +249797,11 @@ void ValidateSystemContextFloatValues(uint32_t ContextHandle,float *ContextHandl
       pMatrixTransformMultiplier = pMatrixTransformMultiplier + 1;
     }
     FramePointer = FramePointer + -1;
-    ContextHandle = FUN_180202d20(pMatrixTransformMultiplier,OperationBufferSize,FramePointer,RegisterValueBL);
+    ContextHandle = ConvertSystemFloatData(pMatrixTransformMultiplier,OperationBufferSize,FramePointer,RegisterValueBL);
     OperationBufferSize = pMatrixTransformMultiplier;
   } while (0x70 < (long long)((long long)pMatrixTransformMultiplier - (long long)PatternIndex & 0xfffffffffffffffcU));
   if (FramePointer == 0) {
-    FUN_180203100(ContextHandle,pMatrixTransformMultiplier,pMatrixTransformMultiplier,RegisterValueBL);
+    ValidateSystemFloatContext(ContextHandle,pMatrixTransformMultiplier,pMatrixTransformMultiplier,RegisterValueBL);
   }
   return;
 }
