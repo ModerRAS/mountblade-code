@@ -3573,7 +3573,9 @@ typedef enum {
 #define FUN_1807219ee ProcessUIBufferWithTransform
 
 // UI系统数据处理函数宏定义
-#define FUN_180787940 ProcessUIContextDataWithBufferOperation
+#define FUN_180744640 InitializeUIContextWithDataSource    // 初始化带数据源的UI上下文
+#define FUN_180744750 CleanupUIContextWithDataSource      // 清理带数据源的UI上下文
+#define FUN_180744780 ProcessUIContextMemoryPoolOperation  // 处理UI上下文内存池操作
 #define FUN_1807e4c10 ProcessUIEventDataIndex
 #define FUN_18075a230 ProcessUIContextAndDataSource
 
@@ -138512,38 +138514,61 @@ void FUN_180743e90(UIHandle *uiContext)
 
 
 
-UIHandle * FUN_180744640(UIHandle *uiContext,ulonglong dataSource)
+/**
+ * @brief 初始化带数据源的UI上下文
+ * 
+ * 该函数负责初始化UI系统上下文，包括：
+ * - 设置默认UI上下文数据
+ * - 初始化内存管理结构
+ * - 验证数据完整性
+ * - 处理数据源绑定
+ * - 配置UI组件状态
+ * 
+ * @param uiContext UI上下文指针 - 指向需要初始化的UI上下文
+ * @param dataSource 数据源参数 - 包含数据源配置信息的参数
+ * @return UIHandle* 返回初始化后的UI上下文指针，失败时返回NULL
+ */
+UIHandle * InitializeUIContextWithDataSource(UIHandle *uiContext,ulonglong dataSource)
 
 {
-  longlong *uiMemoryPointer;
-  int dataValidationResult;
+  longlong *contextMemoryPointer;
+  int initializationResult;
   
-  *uiContext = &UNK_180957fe0;
-  FUN_180744d60(uiContext + 0x24fc);
-  uiMemoryPointer = uiContext + 0x24fa;
-  *(longlong *)uiContext[0x24fb] = *uiMemoryPointer;
-  *(UIHandle *)(*uiMemoryPointer + 8) = uiContext[0x24fb];
-  uiContext[0x24fb] = uiMemoryPointer;
-  *uiMemoryPointer = (longlong)uiMemoryPointer;
-  uiValidationResult = FUN_180744cc0(uiContext + 0x24f5);
-  if (uiValidationResult == 0) {
-    uiValidationResult = FUN_180744e20(uiContext + 0x24f7);
-    if (uiValidationResult == 0) {
+  // 设置默认UI上下文数据结构
+  *uiContext = &DefaultUIDataStructure;
+  ProcessUIContextValidation(uiContext + 0x24fc);
+  contextMemoryPointer = uiContext + 0x24fa;
+  *(longlong *)uiContext[0x24fb] = *contextMemoryPointer;
+  *(UIHandle *)(*contextMemoryPointer + 8) = uiContext[0x24fb];
+  uiContext[0x24fb] = contextMemoryPointer;
+  *contextMemoryPointer = (longlong)contextMemoryPointer;
+  
+  // 执行上下文初始化验证
+  initializationResult = ValidateUIContextInitialization(uiContext + 0x24f5);
+  if (initializationResult == 0) {
+    initializationResult = ConfigureUIContextData(uiContext + 0x24f7);
+    if (initializationResult == 0) {
       *(UIDword *)(uiBufferData + 0x24f9) = 0xffffffff;
       *(UIDword *)((longlong)uiContext + 0x127cc) = 0;
     }
   }
-  FUN_180744e20(uiContext + 0x24f7);
-  FUN_180744cc0(uiContext + 0x24f5);
-  func_0x000180785a10(uiContext + 0x2487);
-  uiContext[0x2444] = &UNK_180957f58;
-  ThunkUIDataProcess(uiContext + 0x217a);
-  ThunkUIDataProcess(uiContext + 0x2109);
-  uiMemoryPointer = uiContext + 0xd8;
-  *(longlong *)uiContext[0xd9] = *uiMemoryPointer;
-  *(UIHandle *)(*uiMemoryPointer + 8) = uiContext[0xd9];
-  uiContext[0xd9] = uiMemoryPointer;
-  *uiMemoryPointer = (longlong)uiMemoryPointer;
+  
+  // 完成上下文配置
+  ConfigureUIContextData(uiContext + 0x24f7);
+  ValidateUIContextInitialization(uiContext + 0x24f5);
+  SetupUIContextComponents(uiContext + 0x2487);
+  uiContext[0x2444] = &DefaultUIComponentData;
+  ProcessUIDataInitialization(uiContext + 0x217a);
+  ProcessUIDataInitialization(uiContext + 0x2109);
+  
+  // 配置内存管理结构
+  contextMemoryPointer = uiContext + 0xd8;
+  *(longlong *)uiContext[0xd9] = *contextMemoryPointer;
+  *(UIHandle *)(*contextMemoryPointer + 8) = uiContext[0xd9];
+  uiContext[0xd9] = contextMemoryPointer;
+  *contextMemoryPointer = (longlong)contextMemoryPointer;
+  
+  // 根据数据源标志决定是否释放内存
   if ((dataSource & 1) != 0) {
     free(uiContext,0x127f8);
   }
