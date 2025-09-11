@@ -5028,15 +5028,45 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 数据加密处理函数
+ * 
+ * 该函数使用AES加密算法处理敏感数据，确保数据在存储和传输过程中的安全性。
+ * 它支持多种加密模式和密钥长度，适用于不同安全级别的数据保护需求。
+ * 
+ * @param dataPointer 指向待加密数据的指针
+ * @param dataSize 待加密数据的大小（字节）
+ * @param encryptionKey 加密密钥，支持128位、192位和256位密钥
+ * @param initializationVector 初始化向量，用于CBC模式的加密
+ * @param encryptionMode 加密模式（ECB、CBC、CTR等）
+ * @return int 加密结果状态码，0表示成功，非0表示失败
+ * 
  * @note 原始函数名：func_0x00018074be80
- * 功能：使用AES算法加密敏感数据
+ * @see DecryptSensitiveDataWithAES, ValidateEncryptionKey
+ * @warning 密钥和初始化向量必须妥善保管，泄露会导致安全隐患
  */
 #define EncryptSensitiveDataWithAES EncryptSensitiveDataWithAES
 
 /**
  * @brief 数据验证处理函数
+ * 
+ * 该函数负责验证数据的完整性和有效性，通过多种验证机制确保数据的一致性和可靠性。
+ * 它支持校验和验证、数据结构验证和业务逻辑验证等多种验证方式。
+ * 
+ * @param dataBuffer 指向待验证数据的缓冲区
+ * @param bufferSize 数据缓冲区的大小
+ * @param validationFlags 验证标志位，指定验证类型和严格程度
+ * @param expectedChecksum 期望的校验和值（可选）
+ * @return int 验证结果状态码，0表示验证成功，非0表示验证失败
+ * 
+ * @details 验证机制包括：
+ * - CRC32校验和验证
+ * - 数据结构完整性检查
+ * - 内存边界验证
+ * - 业务逻辑规则验证
+ * - 安全性验证
+ * 
  * @note 原始函数名：ValidateData
- * 功能：验证数据的完整性和有效性
+ * @see EncryptSensitiveDataWithAES, RepairCorruptedData
+ * @warning 验证失败时可能导致数据访问拒绝或系统终止
  */
 #define ValidateDataIntegrity ValidateDataIntegrity
 
