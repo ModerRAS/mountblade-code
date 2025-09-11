@@ -68720,16 +68720,16 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
   SystemProcessingStatus = 0;
   SystemDataNode3 = ContextHandle;
   if ((ContextHandle[10] == 0) || (ValidationStatus = (*(code *)ContextHandle[0xb])(*ContextHandle), ValidationStatus != '\0')) {
-    puStack_470 = NULL;
-    puStack_468 = NULL;
-    uStack_460 = 0;
+    SystemDataNode1 = NULL;
+    SystemDataNode2 = NULL;
+    SystemDataValue = 0;
     uStack_458 = 3;
-    ProcessSystemConfigurationHandle(*ContextHandle,&puStack_470,&SystemFunctionParameter);
-    puStack_538 = &SystemNullTemplate;
-    uStack_520 = 0;
-    puStack_530 = (uint8_t *)0x0;
-    uStack_528 = 0;
-    lStack_448 = (long long)(int)((long long)puStack_468 - (long long)puStack_470 >> SystemEventContextShiftCount);
+    ProcessSystemConfigurationHandle(*ContextHandle,&SystemDataNode1,&SystemFunctionParameter);
+    CharacterStatusBufferPointer538 = &SystemNullTemplate;
+    SystemDataBufferCapacity = 0;
+    SystemCharacterBuffer = (uint8_t *)0x0;
+    SystemDataBufferSize = 0;
+    DataOffsetValue = (long long)(int)((long long)SystemDataNode2 - (long long)SystemDataNode1 >> SystemEventContextShiftCount);
     if (0 < lStack_448) {
       lStack_478 = 0;
       do {
