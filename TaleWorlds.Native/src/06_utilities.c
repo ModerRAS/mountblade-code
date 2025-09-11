@@ -47326,15 +47326,14 @@ void SetExceptionHandlerPointer(DataBuffer exceptionContext, int64_t handlerPoin
  * @param unwindParameter 异常展开参数
  */
 void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParameter)
-
 {
-  int mutexUnlockResult;
-  
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(unwindParameter + ResourceValidationFlagOffset60));
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
-  }
-  return;
+    int mutexUnlockStatus;
+    
+    mutexUnlockStatus = _Mtx_unlock(*(DataBuffer *)(unwindParameter + ResourceValidationFlagOffset60));
+    if (mutexUnlockStatus != 0) {
+        ThrowCStandardError(mutexUnlockStatus);
+    }
+    return;
 }
 
 
@@ -47353,16 +47352,15 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
  * @warning 如果互斥体解锁失败，会抛出C标准错误
  */
 void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwindParam)
-
 {
-  int mutexUnlockResult;
-  
-  ExceptionContextPtr = *(DataBuffer *)(unwindParam + ExceptionHandlerContextOffset40);
-  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
-  }
-  return;
+    int mutexUnlockStatus;
+    
+    ExceptionContextPtr = *(DataBuffer *)(unwindParam + ExceptionHandlerContextOffset40);
+    mutexUnlockStatus = _Mtx_unlock(SystemMutexObjectAddress);
+    if (mutexUnlockStatus != 0) {
+        ThrowCStandardError(mutexUnlockStatus);
+    }
+    return;
 }
 
 
@@ -47507,7 +47505,7 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
   unlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (unlockResult != 0) {
     // 如果解锁失败，抛出C标准错误
-    __Throw_C_error_std__YAXH_Z(unlockResult);
+    ThrowCStandardError(unlockResult);
   }
   return;
 }
@@ -63004,7 +63002,7 @@ void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
   
   unlockResult = _Mtx_unlock(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset58));
   if (unlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(unlockResult);
+    ThrowCStandardError(unlockResult);
   }
   return;
 }
@@ -67155,7 +67153,7 @@ void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }

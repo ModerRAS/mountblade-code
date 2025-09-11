@@ -235113,9 +235113,9 @@ void CompleteSystemDataProcessingAndValidation(uint64_t *ContextHandle, uint64_t
             SystemDataTablePointer = StringOffset;
           }
           TemporaryStackValue58 = (uint32_t)Utf16Char;
-          TemporaryStackValue5c = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+          HighByteStorage = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
           *(uint32_t *)(ContextHandle + SystemDataTablePointer) = TemporaryStackValue58;
-          *(uint32_t *)((long long)ContextHandle + SystemDataTablePointer * 8 + 4) = TemporaryStackValue5c;
+          *(uint32_t *)((long long)ContextHandle + SystemDataTablePointer * 8 + 4) = HighByteStorage;
         } while (SystemContextValue != 0);
       }
       if (1 < AllocatedMemorySize) {
@@ -235355,7 +235355,7 @@ LAB_180190d41:
         SystemDataTablePointer = StringOffset;
       }
       TemporaryStackValue58 = (uint32_t)Utf16Char;
-      TemporaryStackValue5c = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+      HighByteStorage = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
       *(uint32_t *)(CharacterLimit + SystemDataTablePointer) = TemporaryStackValue58;
       *(uint32_t *)((long long)CharacterLimit + SystemDataTablePointer * 8 + 4) = TemporaryStackValue5c;
     } while (SystemStringIndex != 0);
@@ -235470,7 +235470,7 @@ void SystemDataValidationAndProcessing(void)
         MemoryBlockIndex = SystemDataRegistry;
       }
       CharacterLimit[MemoryBlockIndex * 2] = TemporaryStackValue58;
-      CharacterLimit[MemoryBlockIndex * 2 + 1] = TemporaryStackValue5c;
+      CharacterLimit[MemoryBlockIndex * 2 + 1] = HighByteStorage;
     } while (MemoryBoundaryEnd != 0);
   }
   if (1 < SystemDataTablePointer) {
@@ -235590,7 +235590,7 @@ void ProcessSystemDataTableAndSort(void)
         MemoryBlockIndex = SystemDataRegistry;
       }
       CharacterLimit[MemoryBlockIndex * 2] = TemporaryStackValue58;
-      CharacterLimit[MemoryBlockIndex * 2 + 1] = TemporaryStackValue5c;
+      CharacterLimit[MemoryBlockIndex * 2 + 1] = HighByteStorage;
     } while (MemoryBoundaryEnd != 0);
   }
   if (1 < SystemDataTablePointer) {
