@@ -436,6 +436,9 @@ typedef enum {
 #define ProcessUIContextDataRelease FUN_180748dd0            // 处理UI上下文数据释放
 #define ProcessUIResourceDataCleanup FUN_180748ea0           // 处理UI资源数据清理
 #define ProcessUIBufferDataTransfer FUN_1807498f0            // 处理UI缓冲区数据传输
+#define ProcessUIDataWithAnimationState FUN_180739420        // 处理带动画状态的UI数据
+#define ReleaseUIMemoryAndExecuteRenderTask FUN_180739b61      // 释放UI内存资源并执行渲染任务
+#define ValidateAndProcessUIContextData FUN_180739df0         // 验证和处理UI上下文数据
 #define ProcessUIMemoryDataCopy ProcessUIDataBufferWithSize                 // 处理UI内存数据复制
 #define ProcessUIBufferDataClear ProcessUIDataBufferClear               // 处理UI缓冲区数据清除
 #define ProcessUITextureDataClear ProcessUITextureDataWithSize               // 处理UI纹理数据清除

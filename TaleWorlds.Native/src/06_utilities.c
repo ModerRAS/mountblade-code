@@ -11721,15 +11721,15 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
 // 功能：初始化数据结构并设置指针，包含验证逻辑
-#define InitializeDataStructureA0 FUN_180941445
+#define InitializeDataStructureA0 InitializeDataStructureWithPointerValidation
 
 // 原始函数名：FUN_180941486 - 条件执行函数A0
 // 功能：根据条件执行特定的函数调用
-#define ConditionalExecuteFunctionA0 FUN_180941486
+#define ConditionalExecuteFunctionA0 ExecuteFunctionWithConditionValidation
 
 // 原始函数名：FUN_1809414b5 - 函数指针调用函数A0
 // 功能：通过函数指针调用指定的函数
-#define InvokeFunctionPointerA0 FUN_1809414b5
+#define InvokeFunctionPointerA0 InvokeFunctionPointerWithValidation
 
 // 空操作函数语义化宏定义
 // 原始函数名：FUN_18089107f - 空操作函数D
@@ -11747,7 +11747,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089a51d - 系统状态查询函数A0
 // 功能：查询系统状态并返回状态信息
-#define QuerySystemStateA0 FUN_18089a51d
+#define QuerySystemStateA0 QuerySystemStateWithValidation
 
 // 注意：FUN_18089a690 已在前面定义为 ProcessDataStreamEx
 // 注意：FUN_18089a6e8 已在前面定义为 ValidateDataStreamIntegrity  

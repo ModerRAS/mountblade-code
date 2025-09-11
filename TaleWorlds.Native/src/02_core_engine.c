@@ -69,8 +69,8 @@
 #define HandleSystemStringEncodingEx ProcessExtendedStringEncoding                 // 处理系统字符串编码扩展
 #define ProcessSystemContextOperationEx ManageExtendedSystemContext              // 处理系统上下文操作扩展
 #define InitializeSystemDataProcessorEx SetupExtendedSystemDataProcessor              // 初始化系统数据处理器扩展
-#define FUN_18019067c VerifySystemHandleIntegrity                  // 验证系统句柄
-#define FUN_180190743 ClearSystemOperationState                    // 重置系统操作状态
+#define FUN_18019067c VerifySystemHandleIntegrity
+#define FUN_180190743 ClearSystemOperationState
 #define FUN_180190780 FreeSystemHandleResources                     // 释放系统句柄
 #define FUN_1801907f0 ExecuteSystemByteOperations                 // 处理系统字节操作
 #define FUN_180190a20 SetupSystemContextTransfer                   // 初始化系统上下文传输
