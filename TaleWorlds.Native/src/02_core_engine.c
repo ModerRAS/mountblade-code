@@ -123972,45 +123972,45 @@ LAB_18011f5f5:
  * @note 支持浮点数参数转换
  */
 void ProcessStringFormattingFloat(char *ContextHandle,uint64_t OperationBufferSize,float Utf8SourcePointer) {
-  double ConfigurationParamA;
-  char SystemCheckResult;
-  char *SystemFunctionPointer;
-  bool BooleanOperationFlag4;
-  uint8_t aStackProcessingValue78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  double ConvertedFloatValue;
+  char ValidationStatus;
+  char *FormatStringPointer;
+  bool IsPercentCharacter;
+  uint8_t EncodingBuffer[32];
+  char FormatResultChar;
+  char FormattedValidationStatus[63];
+  unsigned long long EncodingKey;
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
-    SystemCheckResult = *ContextHandle;
-    if (SystemCheckResult == '\0') {
+    ValidationStatus = *ContextHandle;
+    if (ValidationStatus == '\0') {
 LAB_18011f6c5:
-      if ((SystemCheckResult == '%') && (ContextHandle[1] != '%')) {
-        OperateBufferAndSetParameters(&cStack_58,0x40,ContextHandle,(double)Utf8SourcePointer);
-        SystemFunctionPointer = &cStack_58;
-        while (cStack_58 == ' ') {
-          SystemFunctionPointer = SystemFunctionPointer + 1;
-          cStack_58 = *SystemFunctionPointer;
+      if ((ValidationStatus == '%') && (ContextHandle[1] != '%')) {
+        OperateBufferAndSetParameters(&FormatResultChar,0x40,ContextHandle,(double)Utf8SourcePointer);
+        FormatStringPointer = &FormatResultChar;
+        while (FormatResultChar == ' ') {
+          FormatStringPointer = FormatStringPointer + 1;
+          FormatResultChar = *FormatStringPointer;
         }
-        ConfigurationParamA = (double)atof();
-          CoreEngineExecuteUtilityFunction((float)ConfigurationParamA);
+        ConvertedFloatValue = (double)atof();
+          CoreEngineExecuteUtilityFunction((float)ConvertedFloatValue);
       }
         CoreEngineExecuteUtilityFunction(Utf8SourcePointer);
     }
-    hasNodeComparisonResult = SystemCheckResult == '%';
-    if (hasComparisonResult) {
+    IsPercentCharacter = ValidationStatus == '%';
+    if (IsPercentCharacter) {
       if (ContextHandle[1] != '%') {
-        SystemCheckResult = *ContextHandle;
+        ValidationStatus = *ContextHandle;
         goto LAB_18011f6c5;
       }
-      hasNodeComparisonResult = true;
+      IsPercentCharacter = true;
     }
-    SystemFunctionPointer = ContextHandle + 1;
-    if (!hasComparisonResult) {
-      SystemFunctionPointer = ContextHandle;
+    FormatStringPointer = ContextHandle + 1;
+    if (!IsPercentCharacter) {
+      FormatStringPointer = ContextHandle;
     }
-    ContextHandle = SystemFunctionPointer + 1;
+    ContextHandle = FormatStringPointer + 1;
   } while( true );
 }
 
