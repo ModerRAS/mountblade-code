@@ -40074,6 +40074,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float normalizedFloatValue;        // 标准化浮点值，用于存储标准化后的浮点数值
   float interpolatedFloatValue;       // 插值浮点值，用于存储插值计算的浮点数值
   float validationFloatValue;        // 验证浮点值，用于存储验证操作的浮点数值
+  float calculatedFloatValue;        // 计算浮点值，用于存储计算结果的浮点数值
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {

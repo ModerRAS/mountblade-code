@@ -296918,3 +296918,17 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define FUN_1801234c0 HandleSystemConfiguration                     // 处理系统配置
 #define FUN_180128840 ValidateSystemResources                       // 验证系统资源
 
+// 遗漏的FUN_函数语义化定义 - 2025年9月11日添加
+#define FUN_18018bd0d ProcessSystemHandleValidation                   // 处理系统句柄验证
+#define FUN_18018bd5f FinalizeSystemContextInitialization            // 完成系统上下文初始化
+#define FUN_180190e30 ProcessSystemMemoryAndDataTransfer             // 处理系统内存和数据传输
+#define FUN_180196bd0 AllocateSystemContextHandle                    // 分配系统上下文句柄
+#define FUN_1801977e0 HandleSystemMemoryAllocation                   // 处理系统内存分配
+#define FUN_180199930 ProcessSystemCharacterEncoding                 // 处理系统字符编码
+#define FUN_180209980 ProcessSystemDataStructureManagement           // 处理系统数据结构管理
+#define FUN_18022a8cd GetSystemInitializationStatus                  // 获取系统初始化状态
+
+// 根据函数调用上下文推断的其他函数定义
+#define FUN_180187c00 ProcessContextHandleAndSystemResourceManagement // 处理上下文句柄和系统资源管理
+#define FUN_180187cd0 ProcessCharacterTableAndDataInitialization     // 处理字符表和数据初始化
+
