@@ -248279,9 +248279,9 @@ LAB_1802016f7:
           MemoryAllocationHandle = uStack_1f8 + 1;
           CoreEngineProcessSystemEvent(&pCoreEngineUnsignedValue208,MemoryAllocationHandle);
           *(uint16_t *)(UnsignedProcessingStatusFlag + uStack_1f8) = 0x2c;
-          SystemStringIndex = SystemStringIndex + 1;
+          SystemContextStringIndex = SystemContextStringIndex + 1;
           uStack_1f8 = MemoryAllocationHandle;
-        } while (SystemStringIndex < BufferValidationStatus);
+        } while (SystemContextStringIndex < BufferValidationStatus);
       }
       ProcessSystemFloatData(&pCoreEngineUnsignedValue208,
                     *(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x88) + -4 + (long long)StringLength * 4));
@@ -248594,7 +248594,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
       Utf16Character = (int)MemoryPoolIndexAdditional + 1;
       MemoryPoolIndexAdditional = (unsigned long long)Utf16Character;
     }
-    FUN_180202d20(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(Utf16Character - 1) * 2,0);
+    ConvertSystemFloatData(FloatVariablePointer4,pContextSecondaryFloat4,(long long)(int)(Utf16Character - 1) * 2,0);
     if (BufferStatus3 < 0x1d) {
       ProcessFloatingPointData(FloatVariablePointer4,pContextSecondaryFloat4);
     }
@@ -248835,7 +248835,7 @@ void ExecuteSystemInitializationAndCleanup(void)
       Utf16Char4 = (int)Utf16Character + 1;
       Utf16Character = (unsigned long long)Utf16Char4;
     }
-    FUN_180202d20(FloatVariablePointer4,pSystemFloatValue,(long long)(int)(Utf16Char4 - 1) * 2,0);
+    ConvertSystemFloatData(FloatVariablePointer4,pSystemFloatValue,(long long)(int)(Utf16Char4 - 1) * 2,0);
     if (CharacterTablePointer < 0x1d) {
       ProcessFloatingPointData(FloatVariablePointer4,pSystemFloatValue);
     }
