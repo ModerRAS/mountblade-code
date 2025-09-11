@@ -125318,6 +125318,7 @@ ReleaseUIMemoryAndExecuteRenderLabel:
  
 
  // 函数: void FUN_18073a3ad(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+#define ProcessUIDataWithContextAndRender FUN_18073a3ad
 /**
  * @brief 处理UI上下文数据并执行渲染任务
  * 
