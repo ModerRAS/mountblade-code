@@ -34112,7 +34112,7 @@ void ProcessSystemDataWithChunking(DataBuffer systemContext,int64_t DataBuffer)
  * @warning 如果验证失败，函数会尝试验证下一个数据块
  * @see ValidateSystemDataD1, ProcessSystemDataD0
  */
-void ValidateSystemDataD0(int64_t systemContext,DataWord *DataValidationPtr)
+void ValidateSystemDataWithChunks(int64_t systemContext,DataWord *DataValidationPtr)
 
 {
   int ValidationResult;
@@ -126121,7 +126121,7 @@ void CleanupSystemExceptionStateVersion200(DataBuffer operationBase,int64_t data
  * 
  * @note 原始函数名：Unwind_180911220
  */
-void ProcessExceptionCleanupAtOffset180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessSystemExceptionCleanupAtPrimaryOffset(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -126167,7 +126167,7 @@ void ProcessExceptionCleanupAtOffset180911220(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_180911240
  */
-void ProcessExceptionCleanupAtOffset40Secondary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessSystemExceptionCleanupAtSecondaryOffset(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;

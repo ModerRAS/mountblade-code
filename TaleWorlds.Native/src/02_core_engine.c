@@ -249337,7 +249337,7 @@ void ProcessFloatArraySortingAndConversion(float *ContextHandle,float *ContextHa
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180202c00(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
+    ProcessSystemFloatConversion(pCalculatedDistance,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
     UnicodeCodePoint = (long long)pCalculatedDistance - (long long)ContextHandle;
     OperationBufferSize = pCalculatedDistance;
   }
