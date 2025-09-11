@@ -46,10 +46,10 @@
 #define SystemMemoryCleanupMask 0xffc00000                            // 系统内存清理掩码
 
 // 系统配置常量
-#define SystemBufferConfigMultiplier 0x278
-#define SystemResourceManagerMultiplier 0x1a8
-#define SignBitShiftCount 0x1f
-#define DataProcessingMultiplier 0xc
+#define SystemBufferConfigMultiplier 632                                // 系统缓冲区配置乘数 (0x278 = 632)
+#define SystemResourceManagerMultiplier 424                            // 系统资源管理器乘数 (0x1a8 = 424)
+#define SignBitShiftCount 31                                           // 符号位移位计数 (0x1f = 31位)
+#define DataProcessingMultiplier 12                                     // 数据处理乘数 (0xc = 12)
 
 // 数据处理操作偏移常量
 #define DataOperationParameterPrimaryOffset 0x10
