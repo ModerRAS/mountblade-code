@@ -8355,52 +8355,52 @@ void InitializeSystemResourceInitializer(void)
 void InitializeSystemFloatingPointCalculator(void)
 
 {
-  uint64_t TableIndex;
+  uint64_t CalculationIndex;
   float *TableEntryPointer;
   int NodeIdentifierComparisonResult;
-  uint64_t OuterLoopCounter;
+  uint64_t TableSizeCounter;
   uint32_t InnerLoopCounter;
-  uint64_t BaseCounter;
-  int RangeOffset;
+  uint64_t BaseIndex;
+  int CalculationRangeOffset;
   float *CurrentTableAddress;
-  float CalculatedValue;
+  float ComputedValue;
   
   CurrentTableAddress = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
-  BaseCounter = 0;
-  RangeOffset = -3;
-  OuterLoopCounter = BaseCounter;
+  BaseIndex = 0;
+  CalculationRangeOffset = -3;
+  TableSizeCounter = BaseIndex;
   do {
-    if (0 < (long long)OuterLoopCounter) {
-      int InnerOffsetValue = -3;
-      TableIndex = BaseCounter;
+    if (0 < (long long)TableSizeCounter) {
+      int InnerCalculationOffset = -3;
+      CalculationIndex = BaseIndex;
       TableEntryPointer = CurrentTableAddress;
       do {
-        CalculatedValue = 0.0;
-        if (-1 < (long long)TableIndex) {
-          if ((long long)TableIndex < 3) {
-            CalculatedValue = 0.75;
+        ComputedValue = 0.0;
+        if (-1 < (long long)CalculationIndex) {
+          if ((long long)CalculationIndex < 3) {
+            ComputedValue = 0.75;
           }
           else {
-            CalculatedValue = 1.0 - (float)InnerOffsetValue / (float)RangeOffset;
-            CalculatedValue = CalculateSquareRoot(CalculatedValue) * CalculatedValue;
+            ComputedValue = 1.0 - (float)InnerCalculationOffset / (float)CalculationRangeOffset;
+            ComputedValue = CalculateSquareRoot(ComputedValue) * ComputedValue;
           }
         }
-        *TableEntryPointer = CalculatedValue;
-        InnerOffsetValue = InnerOffsetValue + 1;
+        *TableEntryPointer = ComputedValue;
+        InnerCalculationOffset = InnerCalculationOffset + 1;
         TableEntryPointer = TableEntryPointer + 1;
-        TableIndex = TableIndex + 1;
-      } while ((long long)TableIndex < (long long)OuterLoopCounter);
+        CalculationIndex = CalculationIndex + 1;
+      } while ((long long)CalculationIndex < (long long)TableSizeCounter);
     }
-    RangeOffset = RangeOffset + 1;
-    OuterLoopCounter = OuterLoopCounter + 1;
+    CalculationRangeOffset = CalculationRangeOffset + 1;
+    TableSizeCounter = TableSizeCounter + 1;
     CurrentTableAddress = CurrentTableAddress + SystemTableAddressIncrement;
   } while ((long long)CurrentTableAddress < SYSTEM_FLOAT_TABLE_END_ADDRESS);
   CurrentTableAddress = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
-    InnerLoopCounter = (int)BaseCounter + 1;
-    *CurrentTableAddress = 1.0 / CalculateSquareRoot((float)BaseCounter) + 1.0 / CalculateSquareRoot((float)BaseCounter);
+    InnerLoopCounter = (int)BaseIndex + 1;
+    *CurrentTableAddress = 1.0 / CalculateSquareRoot((float)BaseIndex) + 1.0 / CalculateSquareRoot((float)BaseIndex);
     CurrentTableAddress = CurrentTableAddress + 1;
-    BaseCounter = (ulong long)InnerLoopCounter;
+    BaseIndex = (ulong long)InnerLoopCounter;
   } while (InnerLoopCounter < 0x40);
   return;
 }

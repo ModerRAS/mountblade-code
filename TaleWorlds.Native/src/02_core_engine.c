@@ -1338,56 +1338,140 @@
 /**
  * @brief 配置核心引擎指针
  * 
- * 初始化和配置核心引擎的各种指针，包括系统上下文、内存管理器等
+ * 初始化和配置核心引擎的各种指针，包括：
+ * - 系统上下文指针
+ * - 内存管理器指针
+ * - 资源管理器指针
+ * - 渲染系统指针
+ * - 网络系统指针
+ * 
+ * 该函数是引擎初始化过程中的关键步骤，确保所有系统组件
+ * 都能正确访问所需的资源和数据结构。
+ * 
+ * @return uint32_t 配置结果状态码
+ *         - NetworkOperationSuccess: 配置成功
+ *         - 其他值: 配置失败，具体错误代码
  * 
  * @note 原始实现：简化实现，只进行基本的指针初始化
+ * @warning 指针配置失败可能导致系统崩溃或功能异常
+ * @see InitializeSystemMemoryManager, ProcessCoreEngineInitialization
  */
 uint32_t ConfigureCoreEnginePointers(void)
 {
     // 简化实现：直接返回成功
     // 实际实现应该配置核心引擎指针
+    // 包括：
+    // 1. 验证指针参数的有效性
+    // 2. 初始化内存管理器指针
+    // 3. 设置系统上下文指针
+    // 4. 配置资源管理器指针
+    // 5. 初始化渲染系统指针
+    // 6. 验证所有指针的正确性
     return NetworkOperationSuccess;
 }
 
 /**
  * @brief 验证处理状态标志
  * 
- * 检查系统处理状态标志的有效性和正确性
+ * 检查系统处理状态标志的有效性和正确性，包括：
+ * - 验证状态标志的位模式
+ * - 检查状态标志的一致性
+ * - 确保状态标志在有效范围内
+ * - 验证状态标志与系统状态的匹配性
+ * 
+ * 该函数用于确保系统处理状态的正确性，防止状态错误
+ * 导致的系统异常或数据处理错误。
+ * 
+ * @param ProcessingStatusFlag 要验证的处理状态标志
+ * @return uint32_t 验证结果状态码
+ *         - NetworkOperationSuccess: 验证成功
+ *         - 其他值: 验证失败，具体错误代码
  * 
  * @note 原始实现：简化实现，只进行基本的状态验证
+ * @warning 状态标志验证失败可能导致系统状态不一致
+ * @see ConfigureCoreEnginePointers, ProcessCoreEngineInitialization
  */
 uint32_t ValidateProcessingStatusFlag(uint32_t ProcessingStatusFlag)
 {
     // 简化实现：直接返回成功
     // 实际实现应该验证处理状态标志
+    // 包括：
+    // 1. 检查状态标志是否为0
+    // 2. 验证状态标志的位模式
+    // 3. 检查状态标志与系统状态的匹配性
+    // 4. 验证状态标志的有效范围
+    // 5. 返回验证结果
     return NetworkOperationSuccess;
 }
 
 /**
  * @brief 验证内存引用
  * 
- * 验证内存引用的有效性和安全性
+ * 验证内存引用的有效性和安全性，包括：
+ * - 检查内存引用是否为NULL
+ * - 验证内存引用的对齐性
+ * - 确保内存引用在有效地址范围内
+ * - 检查内存引用的访问权限
+ * - 验证内存引用的完整性
+ * 
+ * 该函数用于防止内存访问错误和系统崩溃，确保内存操作的
+ * 安全性和稳定性。是系统内存管理的重要组成部分。
+ * 
+ * @param MemoryReference 要验证的内存引用指针
+ * @return uint32_t 验证结果状态码
+ *         - NetworkOperationSuccess: 验证成功
+ *         - 其他值: 验证失败，具体错误代码
  * 
  * @note 原始实现：简化实现，只进行基本的内存引用验证
+ * @warning 内存引用验证失败可能导致系统崩溃或数据损坏
+ * @see InitializeSystemMemoryManager, ProcessCoreEngineInitialization
  */
 uint32_t ValidateMemoryReference(void *MemoryReference)
 {
     // 简化实现：直接返回成功
     // 实际实现应该验证内存引用
+    // 包括：
+    // 1. 检查内存引用是否为NULL
+    // 2. 验证内存引用的地址范围
+    // 3. 检查内存引用的对齐性
+    // 4. 验证内存引用的访问权限
+    // 5. 检查内存引用的完整性
     return NetworkOperationSuccess;
 }
 
 /**
  * @brief 初始化系统内存管理器
  * 
- * 初始化系统内存管理器，设置内存池和分配策略
+ * 初始化系统内存管理器，设置内存池和分配策略，包括：
+ * - 创建内存池和内存块
+ * - 设置内存分配策略和算法
+ * - 初始化内存监控和统计功能
+ * - 配置内存安全检查机制
+ * - 设置内存回收和清理策略
+ * 
+ * 该函数是系统初始化的核心步骤，确保内存管理系统的
+ * 正确运行，为整个系统提供稳定可靠的内存服务。
+ * 
+ * @return uint32_t 初始化结果状态码
+ *         - NetworkOperationSuccess: 初始化成功
+ *         - 其他值: 初始化失败，具体错误代码
  * 
  * @note 原始实现：简化实现，只进行基本的内存管理器初始化
+ * @warning 内存管理器初始化失败可能导致系统无法正常运行
+ * @see ConfigureCoreEnginePointers, ProcessCoreEngineInitialization
+ * @see ValidateMemoryReference
  */
 uint32_t InitializeSystemMemoryManager(void)
 {
     // 简化实现：直接返回成功
     // 实际实现应该初始化系统内存管理器
+    // 包括：
+    // 1. 创建内存池和内存块
+    // 2. 设置内存分配策略和算法
+    // 3. 初始化内存监控和统计功能
+    // 4. 配置内存安全检查机制
+    // 5. 设置内存回收和清理策略
+    // 6. 验证初始化结果
     return NetworkOperationSuccess;
 }
 
@@ -266174,7 +266258,7 @@ LAB_1802158f5:
       plStack_60 = pStringOffset + 0x13;
       pStringOffset[0x15] = 0;
       pStringOffset[0x16] = (long long)_guard_check_icall;
-      FUN_180406a00(pStringOffset,AllocatedMemorySize,Utf16EndPointer,AdditionalParameter1);
+      ExecuteSystemDataTransfer(pStringOffset,AllocatedMemorySize,Utf16EndPointer,AdditionalParameter1);
       pSystemStackRegisterValue58 = pStringOffset;
       (**(code **)(*pStringOffset + 0x28))(pStringOffset);
       (**(code **)(*pStringOffset + 0x28))(pStringOffset);
@@ -266186,7 +266270,7 @@ LAB_1802158f5:
       (**(code **)(*pStringOffset + 0x38))(pStringOffset);
     }
     else {
-      FUN_180406a00(*ContextHandleSize,AllocatedMemorySize,Utf16EndPointer,AdditionalParameter1);
+      ExecuteSystemDataTransfer(*ContextHandleSize,AllocatedMemorySize,Utf16EndPointer,AdditionalParameter1);
     }
     return OperationBufferSize;
   }
