@@ -227004,16 +227004,16 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
       SystemStringIndex = SystemStringIndex + 1;
     } while (*(char *)(OperationBufferSize + SystemStringIndex) != '\0');
     ReallocateContextHandle(aStackProcessingDataFlags,OperationBufferSize);
-    for (pCharacterStatusBuffer = (uint64_t **)ContextHandle[3]; pCoreEnginePointerBuffer = pCharacterStatusBuffer,
-        pCharacterStatusBuffer != (uint64_t **)ContextHandle[4]; pCharacterStatusBuffer = (uint64_t **)((long long *)pCharacterStatusBuffer + 1)    {
-      SystemFlagH = 0;
-      CoreEngineValueC0 = 0xf;
-      pSystemCleanupFlagF = (void *)((unsigned long long)pSystemCleanupFlagF & 0xffffffffffffff00);
-      MemoryOffsetValue = 1;
-      uStack_b4 = 0;
-      pThreadLocalStorageBuffer = &SystemEventDispatcher;
+    for (CharacterStatusBufferPointer = (uint64_t **)ContextHandle[3]; CoreEnginePointerBuffer = CharacterStatusBufferPointer,
+        CharacterStatusBufferPointer != (uint64_t **)ContextHandle[4]; CharacterStatusBufferPointer = (uint64_t **)((long long *)CharacterStatusBufferPointer + 1)    {
+      SystemValidationFlagH = 0;
+      CoreEngineProcessingValueC0 = 0xf;
+      SystemCleanupFlagPointer = (void *)((unsigned long long)SystemCleanupFlagPointer & 0xffffffffffffff00);
+      MemoryAllocationOffset = 1;
+      StackTemporaryValueB4 = 0;
+      ThreadLocalStoragePointer = &SystemEventDispatcher;
       SystemEventDispatcher = NULL;
-      pStackTempPointer = (void **)0x0;
+      StackTemporaryPointer = (void **)0x0;
       SystemEventDispatcher = (void *)GetSystemMemoryHandle();
       SystemStringIndex = -1;
       do {
