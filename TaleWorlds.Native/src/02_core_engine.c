@@ -20083,7 +20083,7 @@ void CoreEngineInitializeQueueManager(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
@@ -20779,7 +20779,7 @@ void InitializeNetworkSecurityNode(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
@@ -21249,7 +21249,7 @@ void NetworkSecurityProcessorInitialize(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
@@ -23022,7 +23022,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = NetworkSecurityCallback;
@@ -23397,7 +23397,7 @@ void CoreEngineInitializeEventManager(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
@@ -23772,7 +23772,7 @@ void CoreEngineInitializeSecurityManager(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
@@ -24770,7 +24770,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = SystemQueueIdentifierPrimary;
-  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[7] = SystemQueueIdentifierSecondary;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
