@@ -247564,7 +247564,7 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
     if (OperationBufferSize == 0) {
       if (*(char *)(SystemMemoryAllocatorA + 0xda) == '\0') {
         if (CoreEngineThreadStatus != '\0') {
-          FUN_180202180(SystemMemoryAllocatorA);
+          AllocateSystemMemoryPool(SystemMemoryAllocatorA);
         }
         goto LAB_1802020ad;
       }
