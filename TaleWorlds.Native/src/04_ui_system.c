@@ -1007,6 +1007,7 @@ typedef enum {
 
 // UI系统函数宏定义 - 数据验证和清理
 #define ProcessUIComponentDataValidationAndResourceCleanup FUN_180787e70  // 处理UI组件数据验证和资源清理 - 验证数据并清理资源
+#define FUN_18073c1e0 ProcessUIContextTaskCompletion
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
@@ -128553,7 +128554,22 @@ FUN_18073c258:
 
 
  void FUN_18073c1e0(void)
-void FUN_18073c1e0(void)
+/**
+ * @brief UI上下文任务完成处理器
+ * 
+ * 处理UI上下文任务的完成操作，包括缓冲区数据处理和验证
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 初始化操作结果变量
+ * 2. 执行UI缓冲区数据处理
+ * 3. 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_18073c1e0
+ */
+void ProcessUIContextTaskCompletion(void)
 
 {
   int operationResult;
@@ -128571,7 +128587,22 @@ void FUN_18073c1e0(void)
 
 
  void FUN_18073c258(void)
-void FUN_18073c258(void)
+/**
+ * @brief UI上下文事件处理器
+ * 
+ * 处理UI上下文的事件，包括内存资源释放和渲染任务执行
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查栈参数状态
+ * 2. 如果需要，释放UI内存资源
+ * 3. 执行UI渲染任务
+ * 
+ * @note 原始函数名：FUN_18073c258
+ */
+void ProcessUIContextEventHandling(void)
 
 {
   longlong stackParam00000030;
