@@ -5533,6 +5533,12 @@ void* UIGestureCoordinates;
 #define UIStackParameterFFFFFFFFFFFFFFB8 stackParamffffffffffffffb8    // UI栈参数B8 - 用于存储事件处理状态的高位部分
 #define UIStackParameterFFFFFFFFFFFFFFB0 stackParamffffffffffffffb0    // UI栈参数B0 - 用于存储处理计数器的值
 
+// UI系统上下文和缓冲区变量宏定义
+#define UIContext uiContext          // UI上下文变量 - 存储UI系统的上下文信息
+#define UIBufferData uiBufferData    // UI缓冲区数据变量 - 存储UI系统的缓冲区数据
+#define EventCode eventCode          // 事件代码变量 - 存储事件处理的返回代码
+#define EventCodeType eventCodeType  // 事件代码类型变量 - 存储事件处理的类型信息
+
  // UI系统渲染缓冲区指针宏定义
 #define UIComponentDataBufferPointer (void*)0x18097f660        // UI组件数据缓冲区指针
 #define UIEventHandlingBufferPointer (void*)0x18097f960         // UI事件处理缓冲区指针
@@ -126131,7 +126137,7 @@ void ProcessUIContextAndTargetBuffer(UIHandle uiContext,UIDword dataSource,UIHan
   stackLong148 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
-    operationResult = FUN_1807478a0(stackUInt140,dataSource,targetBuffer);
+    operationResult = ProcessUIDataWithContext(stackUInt140,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073adad;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -126184,7 +126190,7 @@ void ProcessUIContextDataTransfer(UIHandle uiContext,UIDword dataSource,UIHandle
   lStack0000000000000030 = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
   if (operationResult == 0) {
-    operationResult = FUN_1807478a0(stackParam00000038,dataSource,targetBuffer);
+    operationResult = ProcessUIDataWithContext(stackParam00000038,dataSource,targetBuffer);
     if (operationResult == 0) goto FUN_18073adad;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -126525,7 +126531,7 @@ void ProcessUIContextDataOperation(UIHandle uiContext,UIHandle dataSource,UIHand
   operationResult = ProcessUIContextWithCleanup(uiContext,&processedContextHandle150,&contextResourceHandle158);
   if (operationResult == 0) {
     resultDataPointer168 = (UIByte *)resultPointer;
-    operationResult = FUN_180747ad0(processedContextHandle150,dataSource,targetBuffer,bufferSize);
+    operationResult = ProcessUIDataWithBuffer(processedContextHandle150,dataSource,targetBuffer,bufferSize);
     if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -126598,7 +126604,7 @@ void ProcessUIContextDataOperationAdvanced(UIHandle uiContext,UIHandle dataSourc
   eventProcessor = 0;
   operationResult = ProcessUIContextWithCleanup(uiContext,&resourceManager,&eventProcessor);
   if (operationResult == 0) {
-    operationResult = FUN_180747ad0(resourceManager,dataSource,targetBuffer,bufferSize,stackParam1b0);
+    operationResult = ProcessUIDataWithBuffer(resourceManager,dataSource,targetBuffer,bufferSize,stackParam1b0);
     if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
@@ -208609,21 +208615,24 @@ UIHandle ValidateAndReleaseUIRecomponentData(void **UIContextPointer)
 UIHandle ProcessUIEventsAndManageResources(void *UIContext)
 
 {
-  void *EventMemoryAllocation;
-  UIHandle *EventIterator;
-  UIHandle eventCodeType;
-  UIHandle *BufferPointer;
-  UIDword UIStackBuffer8 [2];
-  UIDword UIStackBuffer10 [2];
-  UIDword UIBufferValidation [4];
-  UIHandle UIStackParameterA8;
-  uint UILoopCounter;
-  UIHandle UIStackParameterB0;
-  uint8_t UIProcessingCounter;
-  uint64_t UIMaxProcessingCount;
-  UIHandle UIStackParameterB8;
-  uint UIEventProcessingStatus;
-  uint64_t UIEventProcessingCounter;
+  // 事件处理相关变量
+  void *EventMemoryAllocation;             // 事件内存分配指针 - 用于存储事件处理过程中分配的内存
+  UIHandle *EventIterator;                 // 事件迭代器指针 - 用于遍历事件队列
+  UIHandle eventCodeType;                  // 事件代码类型 - 存储事件处理的结果类型
+  UIHandle *BufferPointer;                 // 缓冲区指针 - 指向UI缓冲区的指针
+  UIDword UIStackBuffer8 [2];              // UI栈缓冲区8 - 用于存储栈数据
+  UIDword UIStackBuffer10 [2];             // UI栈缓冲区10 - 用于存储栈数据
+  UIDword UIBufferValidation [4];          // UI缓冲区验证数组 - 用于验证缓冲区数据的有效性
+  UIHandle UIStackParameterA8;            // UI栈参数A8 - 用于存储栈参数值
+  
+  // 事件处理状态变量
+  uint UILoopCounter;                      // 循环计数器 - 用于事件处理的循环控制
+  UIHandle UIStackParameterB0;            // UI栈参数B0 - 用于存储栈参数值
+  uint8_t UIProcessingCounter;             // 处理计数器 - 用于计数处理的次数
+  uint64_t UIMaxProcessingCount;          // 最大处理计数 - 用于限制最大处理次数
+  UIHandle UIStackParameterB8;            // UI栈参数B8 - 用于存储栈参数值
+  uint UIEventProcessingStatus;            // 事件处理状态 - 存储事件处理的当前状态
+  uint64_t UIEventProcessingCounter;       // 事件处理计数器 - 用于计数事件处理的次数
   
   // 初始化事件处理参数
   UILoopCounter = (uint)((ulonglong)UIStackParameterFFFFFFFFFFFFFFA8 >> 0x20);
