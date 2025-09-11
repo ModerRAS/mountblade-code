@@ -13949,9 +13949,8 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * 处理数据缓冲区，执行数据验证和清理操作
  * 
- * @note 原始函数名：ProcessDataBufferA0
+ * @note 原始函数名：FUN_1808998a0 - 已合并到ProcessDataBufferA0
  */
-#define ProcessDataBufferA0 FUN_1808998a0
 
 /**
  * @brief 内存地址计算函数
