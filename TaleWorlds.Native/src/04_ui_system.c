@@ -434,11 +434,11 @@ typedef enum {
 #define UIContextDataValidatorD90 (void*)0x180958d90        // UI上下文数据验证器D90 - 数据验证功能
 
 // UI系统函数指针语义化定义
-#define UIEventDispatchFunction (*_DAT_180d4a958)            // UI事件调度函数指针
-#define UIMemoryAllocatorFunction (*_DAT_180c0c6d0)          // UI内存分配器函数指针
-#define UIResourceHandlerFunction (*_DAT_180c0d100)           // UI资源处理函数指针
-#define UITransformFunction (*_DAT_180c0e170)                // UI变换函数指针
-#define UIRenderFunction (*_DAT_180c108d0)                    // UI渲染函数指针
+#define UIEventDispatchFunction (*UIEventDispatchFunctionPointer)            // UI事件调度函数指针
+#define UIMemoryAllocatorFunction (*UIMemoryAllocatorFunctionPointer)          // UI内存分配器函数指针
+#define UIResourceHandlerFunction (*UIResourceHandlerFunctionPointer)           // UI资源处理函数指针
+#define UITransformFunction (*UITransformFunctionPointer)                // UI变换函数指针
+#define UIRenderFunction (*UIRenderFunctionPointer)                    // UI渲染函数指针
 #define UIContextDataBufferCD0 (void*)0x180984cd0          // UI上下文数据缓冲区CD0 - 临时数据存储
 #define UIContextDataHandlerD40 (void*)0x18095ad40          // UI上下文数据处理器D40 - 数据处理操作
 #define UIContextDataControllerD60 (void*)0x18097ed60       // UI上下文数据控制器D60 - 数据控制功能
