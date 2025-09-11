@@ -2269,6 +2269,15 @@
 // 系统栈帧偏移量常量
 #define StackFrameValidationOffset 0x77             // 栈帧验证偏移量
 #define StackFrameStatusOffset 0x7f                 // 栈帧状态偏移量
+#define StackFrameResultOffset 0x54                 // 栈帧结果偏移量 - 用于存储操作结果
+#define StackFrameBasePointerOffset 0x70            // 栈帧基指针偏移量 - 用于存储基指针
+#define StackFrameValidationStatusOffset 0x64       // 栈帧验证状态偏移量 - 用于存储验证状态
+#define StackFrameMemoryRegionOffset 0x60           // 栈帧内存区域偏移量 - 用于存储内存区域信息
+#define StackFrameOperationResultOffset 0x5c        // 栈帧操作结果偏移量 - 用于存储操作结果
+#define StackFrameDataFlagsOffset 0x58              // 栈帧数据标志偏移量 - 用于存储数据标志
+#define StackFrameLoopCounterOffset 0x68            // 栈帧循环计数器偏移量 - 用于存储循环计数器
+#define StackFrameDataTableReferenceOffset 0x80     // 栈帧数据表引用偏移量 - 用于存储数据表引用
+#define StackFrameInitialValueOffset 0x78           // 栈帧初始值偏移量 - 用于存储初始值
 
 // 数据阈值常量
 #define SystemValidationThreshold0x6f 0x6f          // 系统验证阈值0x6f
@@ -29612,7 +29621,7 @@ SecurityValidationLabel:
     }
   }
   if (((operationFlagB != '\0') || (*(int *)(*(int64_t *)(dataBuffer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == 0)) &&
-     (operationStatus = ConfigureSystemParametersA0(operationBase,dataBuffer,operationFlagA), operationStatus == 0)) {
+     (operationStatus = ConfigureSystemA1(operationBase,dataBuffer,operationFlagA), operationStatus == 0)) {
     for (operationStatus = 0; (-1 < operationStatus && (operationStatus < *(int *)(dataBuffer + DataBufferStatusOffset))); operationStatus = operationStatus + 1) {
       exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionContext + ExceptionContextStatusOffset68);
@@ -46244,7 +46253,7 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
       referenceCounter = (int *)(handlerAddress + ExceptionHandlerPointerOffset18);
       *referenceCounter = *referenceCounter + -1;
       if (*referenceCounter == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -46304,7 +46313,7 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext, int64_t unwindParam)
       
       // 如果引用计数为0，则调用异常处理函数
       if (*exceptionHandlerReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -46397,7 +46406,7 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
       dataReferenceCount = (int *)(memoryBlockAddress + ExceptionHandlerPointerOffset18);
       *dataReferenceCount = *dataReferenceCount + -1;
       if (*dataReferenceCount == 0) {
-        HandleExceptionE0();  // 引用计数为0，调用异常处理函数
+        HandleMemoryResourceException();  // 引用计数为0，调用异常处理函数
         return;
       }
     }
@@ -46451,7 +46460,7 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
       referenceCount = (int *)(memoryRegionOffset + SystemDataSecondaryOffset18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -47445,7 +47454,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -47919,7 +47928,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -49173,7 +49182,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -49236,7 +49245,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -49348,7 +49357,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -49395,7 +49404,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -49528,7 +49537,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer operationBase,int64_t dataBuf
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -49593,7 +49602,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer operationBase,int64_t dataBu
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -49738,7 +49747,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer operationBase,int64_t dataBu
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -49803,7 +49812,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer operationBase,int64_t dataBu
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -50047,7 +50056,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50568,7 +50577,7 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50699,7 +50708,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50745,7 +50754,7 @@ void CleanupresourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50793,7 +50802,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50865,7 +50874,7 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -50929,7 +50938,7 @@ void CleanupMemoryBlock(DataBuffer operationBase, int64_t dataBuffer)
             *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
             if (*resourceReferenceCount == 0) {
                 // 引用计数归零，处理异常情况
-                HandleExceptionE0();
+                HandleMemoryResourceException();
                 return;
             }
         }
@@ -51299,7 +51308,7 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -51335,7 +51344,7 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -51682,7 +51691,7 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -51718,7 +51727,7 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -51754,7 +51763,7 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -51795,7 +51804,7 @@ void CleanupStackFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(calculatedIndex + SystemDataSecondaryOffset18);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -51856,7 +51865,7 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -51910,7 +51919,7 @@ void CleanupExceptionHandlerReferences(DataBuffer operationBase,int64_t dataBuff
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -52125,7 +52134,7 @@ void CleanupResourceReference(DataBuffer operationBase, int64_t dataBuffer)
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         // 引用计数为0时触发异常处理
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52625,7 +52634,7 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52661,7 +52670,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52729,7 +52738,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52839,7 +52848,7 @@ void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52949,7 +52958,7 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -52985,7 +52994,7 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53280,7 +53289,7 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53630,7 +53639,7 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionResourceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53708,7 +53717,7 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53754,7 +53763,7 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53800,7 +53809,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53846,7 +53855,7 @@ void ManageResourceReferenceCountWithMemoryRegion(DataBuffer operationBase,int64
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -53892,7 +53901,7 @@ void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -53940,7 +53949,7 @@ void ManageResourceReferenceCountWithExceptionHandling(DataBuffer operationBase,
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -54013,7 +54022,7 @@ void CleanupSystemContextResourcesWithValidation(DataBuffer operationBase, int64
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -54059,7 +54068,7 @@ void CleanupSystemResourcePointerWithMemoryManagement(DataBuffer operationBase, 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -54129,7 +54138,7 @@ void CleanupSystemDataWithMemoryManagement(DataBuffer operationBase, int64_t dat
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -54213,7 +54222,7 @@ void CleanupSystemContextWithCompleteValidation(DataBuffer operationBase, int64_
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -54328,7 +54337,7 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -54376,7 +54385,7 @@ void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -60740,7 +60749,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -61768,7 +61777,7 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -61818,7 +61827,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -61909,7 +61918,7 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -61980,7 +61989,7 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62039,7 +62048,7 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62122,7 +62131,7 @@ void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t d
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62169,7 +62178,7 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62217,7 +62226,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62328,7 +62337,7 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62399,7 +62408,7 @@ void ExceptionUnwindHandlerWithDataBuffer(DataBuffer operationBase,int64_t dataB
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62477,7 +62486,7 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62550,7 +62559,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -62605,7 +62614,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -63322,7 +63331,7 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -63486,7 +63495,7 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -63686,7 +63695,7 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -63891,7 +63900,7 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -63961,7 +63970,7 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -64460,7 +64469,7 @@ void CleanupSystemResourceBuffer(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryCalculatedOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -64534,7 +64543,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -64619,7 +64628,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -64699,7 +64708,7 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -64982,7 +64991,7 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -65552,7 +65561,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -65646,7 +65655,7 @@ void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -65691,7 +65700,7 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -66627,7 +66636,7 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -66985,7 +66994,7 @@ void ConfigureExceptionHandling940(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(calculatedIndex + SystemDataSecondaryOffset18);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -67683,7 +67692,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t resourcePoin
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -68097,7 +68106,7 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -68324,7 +68333,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -68986,7 +68995,7 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -69116,7 +69125,7 @@ void CleanupSystemResources(DataBuffer systemContext, int64_t contextHandle)
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -69396,7 +69405,7 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -69500,7 +69509,7 @@ void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t d
       resourceReferenceCountPointer = (int *)(resourceCleanupIterator + ReferenceCountOffset);
       *resourceReferenceCountPointer = *resourceReferenceCountPointer + -1;
       if (*resourceReferenceCountPointer == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -69969,7 +69978,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -70017,7 +70026,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -70064,7 +70073,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -70234,7 +70243,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -70686,7 +70695,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -72776,7 +72785,7 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -72972,7 +72981,7 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73018,7 +73027,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73177,7 +73186,7 @@ void CleanupExceptionListNode(DataBuffer exceptionContext, int64_t cleanupContex
       referenceCount = (int *)(listOffset + SystemDataSecondaryOffset18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73280,7 +73289,7 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73331,7 +73340,7 @@ void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73382,7 +73391,7 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73466,7 +73475,7 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73516,7 +73525,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73600,7 +73609,7 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73648,7 +73657,7 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73696,7 +73705,7 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73776,7 +73785,7 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73824,7 +73833,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t resourcePoin
       ReferenceCount = (int *)(BlockOffset + MemoryReferenceOffset);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73873,7 +73882,7 @@ void ReleaseExceptionResources(DataBuffer ExceptionContext, int64_t resourcePoin
       ReferenceCount = (int *)(BlockOffset + MemoryReferenceOffset);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73922,7 +73931,7 @@ void CleanupExceptionMemoryBlock(DataBuffer ExceptionContext, int64_t MemoryCont
       ReferenceCount = (int *)(MemoryOffset + SystemDataSecondaryOffset18);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -73973,7 +73982,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -74024,7 +74033,7 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -74081,7 +74090,7 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -74133,7 +74142,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -74233,7 +74242,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76141,7 +76150,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76190,7 +76199,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76239,7 +76248,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76600,7 +76609,7 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76656,7 +76665,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -76702,7 +76711,7 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -77785,7 +77794,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -78295,7 +78304,7 @@ void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -78333,7 +78342,7 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -78400,7 +78409,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -78528,7 +78537,7 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -78576,7 +78585,7 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -79210,7 +79219,7 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -79343,7 +79352,7 @@ void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -79390,7 +79399,7 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -79694,7 +79703,7 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80024,7 +80033,7 @@ void ProcessReferenceCountAndresourcePointers(DataBuffer operationBase,int64_t d
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80070,7 +80079,7 @@ void ProcessReferenceCountAndresourcePointersOffset38(DataBuffer operationBase,i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80116,7 +80125,7 @@ void ProcessReferenceCountAndresourcePointersOffset60(DataBuffer operationBase,i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80162,7 +80171,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V2(DataBuffer operationBase
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80208,7 +80217,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80592,7 +80601,7 @@ void CleanupresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -80686,7 +80695,7 @@ void HandleExceptionWithContextA3(DataBuffer ContextParameter, int64_t systemCon
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -82090,7 +82099,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -82523,7 +82532,7 @@ void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -82711,7 +82720,7 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -82760,7 +82769,7 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -82864,7 +82873,7 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83334,7 +83343,7 @@ void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83377,7 +83386,7 @@ void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83420,7 +83429,7 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83470,7 +83479,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83520,7 +83529,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83568,7 +83577,7 @@ void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83616,7 +83625,7 @@ void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83664,7 +83673,7 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83730,7 +83739,7 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83778,7 +83787,7 @@ void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83826,7 +83835,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -83941,7 +83950,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -84742,7 +84751,7 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -84825,7 +84834,7 @@ void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase, int
             resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
             *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
             if (*resourceReferenceCount == 0) {
-                HandleExceptionE0();
+                HandleMemoryResourceException();
                 return;
             }
         }
@@ -84879,7 +84888,7 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -84967,7 +84976,7 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -85003,7 +85012,7 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -85051,7 +85060,7 @@ void CleanupSystemResourcesWithValidation(DataBuffer operationBase, int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -85700,7 +85709,7 @@ void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int6
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -85830,7 +85839,7 @@ void ExecuteSystemOptimizationA0(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -86314,7 +86323,7 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -86386,7 +86395,7 @@ void ValidateAndCleanupMemoryResources(DataBuffer operationBase,int64_t dataBuff
         resourceReferenceCount = (int *)(calculatedIndex + SystemDataSecondaryOffset18);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -86441,7 +86450,7 @@ void InitializeSystemExceptionHandlerWithResourceManagement(DataBuffer operation
         resourceReferenceCount = (int *)(calculatedIndex + SystemDataSecondaryOffset18);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -87786,7 +87795,7 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -87837,7 +87846,7 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -87886,7 +87895,7 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -87937,7 +87946,7 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -87989,7 +87998,7 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -88733,7 +88742,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -89130,7 +89139,7 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -89242,7 +89251,7 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -89289,7 +89298,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -89748,7 +89757,7 @@ void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryCalculatedOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -90421,7 +90430,7 @@ void CleanupMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataB
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -91381,7 +91390,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -91729,7 +91738,7 @@ void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -91774,7 +91783,7 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -92075,7 +92084,7 @@ void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -92141,7 +92150,7 @@ void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -92500,7 +92509,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
       
       // 检查引用计数是否为零
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -92537,7 +92546,7 @@ void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -92873,7 +92882,7 @@ void ExceptionHandlerC7(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -92933,7 +92942,7 @@ void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -92988,7 +92997,7 @@ void ReleaseMemoryResourceAndManageReferenceCountA(DataBuffer operationBase, int
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -93044,7 +93053,7 @@ void ReleaseMemoryResourceAndManageReferenceCountB(DataBuffer operationBase, int
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -93100,7 +93109,7 @@ void ReleaseMemoryResourceAndManageReferenceCountC(DataBuffer operationBase, int
         resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
         if (*resourceReferenceCount == 0) {
-          HandleExceptionE0();
+          HandleMemoryResourceException();
           return;
         }
       }
@@ -97873,7 +97882,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98182,7 +98191,7 @@ void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98395,7 +98404,7 @@ void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98467,7 +98476,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98503,7 +98512,7 @@ void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98741,7 +98750,7 @@ void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -98847,7 +98856,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
       
       // 如果引用计数降为0，调用异常处理函数
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -99305,7 +99314,7 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -99863,7 +99872,7 @@ void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataB
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -99911,7 +99920,7 @@ void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103576,7 +103585,7 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103622,7 +103631,7 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103668,7 +103677,7 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103714,7 +103723,7 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103764,7 +103773,7 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
       ResourceReferenceCount = (int *)(ExceptionFrameAddress + MemoryReferenceOffset);
       *ResourceReferenceCount = *ResourceReferenceCount + -1;
       if (*ResourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103814,7 +103823,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
       ResourceReferenceCount = (int *)(ExceptionFrameAddress + MemoryReferenceOffset);
       *ResourceReferenceCount = *ResourceReferenceCount + -1;
       if (*ResourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103860,7 +103869,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103906,7 +103915,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -103953,7 +103962,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104000,7 +104009,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104036,7 +104045,7 @@ void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104089,7 +104098,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104143,7 +104152,7 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104188,7 +104197,7 @@ void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104243,7 +104252,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104298,7 +104307,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104353,7 +104362,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104408,7 +104417,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104463,7 +104472,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104518,7 +104527,7 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104578,7 +104587,7 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104643,7 +104652,7 @@ void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104690,7 +104699,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104737,7 +104746,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104784,7 +104793,7 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104852,7 +104861,7 @@ void ManageResourceReferenceCountA3(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104899,7 +104908,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104946,7 +104955,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -104993,7 +105002,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105040,7 +105049,7 @@ void ManageResourceReferenceCountC2(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105087,7 +105096,7 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105134,7 +105143,7 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105181,7 +105190,7 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105228,7 +105237,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105275,7 +105284,7 @@ void ManageResourceReferenceCountD0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105322,7 +105331,7 @@ void ManageResourceReferenceCountD1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105369,7 +105378,7 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105417,7 +105426,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105465,7 +105474,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105529,7 +105538,7 @@ void ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
       
       // 如果引用计数为0，处理异常
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105596,7 +105605,7 @@ void ProcessExceptionContextAndManageMemoryReferences(DataBuffer operationBase,i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105650,7 +105659,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105701,7 +105710,7 @@ void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105752,7 +105761,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105803,7 +105812,7 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105854,7 +105863,7 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105921,7 +105930,7 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
       
       // 如果引用计数归零，调用异常处理函数
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -105974,7 +105983,7 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106026,7 +106035,7 @@ void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106191,7 +106200,7 @@ void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106243,7 +106252,7 @@ void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106295,7 +106304,7 @@ void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106347,7 +106356,7 @@ void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106399,7 +106408,7 @@ void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106451,7 +106460,7 @@ void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106503,7 +106512,7 @@ void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106555,7 +106564,7 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106607,7 +106616,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106659,7 +106668,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,in
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106704,7 +106713,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106749,7 +106758,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106803,7 +106812,7 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106848,7 +106857,7 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106893,7 +106902,7 @@ void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106939,7 +106948,7 @@ void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -106985,7 +106994,7 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107037,7 +107046,7 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107089,7 +107098,7 @@ void ManageMemoryResourceReferenceCount480(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107141,7 +107150,7 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107177,7 +107186,7 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107213,7 +107222,7 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107258,7 +107267,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107294,7 +107303,7 @@ void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107346,7 +107355,7 @@ void ManageMemoryResourceReferenceCount4E0(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -107398,7 +107407,7 @@ void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -108329,7 +108338,7 @@ void ExecuteExceptionContextCleanupAndMemoryManagement(DataBuffer operationBase,
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -109332,7 +109341,7 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -109720,7 +109729,7 @@ void ManageExceptionHandlerResourcesE000(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -110321,7 +110330,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -110371,7 +110380,7 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -113795,7 +113804,7 @@ void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -113860,7 +113869,7 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -113930,7 +113939,7 @@ void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -114000,7 +114009,7 @@ void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -114051,7 +114060,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115086,7 +115095,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115122,7 +115131,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115191,7 +115200,7 @@ void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115239,7 +115248,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115287,7 +115296,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115335,7 +115344,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115383,7 +115392,7 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115431,7 +115440,7 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -115512,7 +115521,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -118624,7 +118633,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120008,7 +120017,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120091,7 +120100,7 @@ void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuff
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120138,7 +120147,7 @@ void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120265,7 +120274,7 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120614,7 +120623,7 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120660,7 +120669,7 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120954,7 +120963,7 @@ void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -120990,7 +120999,7 @@ void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -121113,7 +121122,7 @@ void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -121216,7 +121225,7 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -121300,7 +121309,7 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -121348,7 +121357,7 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -121396,7 +121405,7 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -127318,7 +127327,7 @@ void ManageResourceReferenceCountZ0(DataBuffer operationBase, int64_t dataBuffer
       resourceReferenceCount = (int *)(calculatedMemoryOffset + SystemDataSecondaryOffset18);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -127417,7 +127426,7 @@ void ManageResourceReferenceCountZ1(DataBuffer operationBase, int64_t dataBuffer
       resourceReferenceCount = (int *)(calculatedMemoryOffset + SystemDataSecondaryOffset18);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -127629,7 +127638,7 @@ void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuf
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -131664,7 +131673,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
       if (*resourceReferenceCount == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
@@ -132596,7 +132605,7 @@ void ProcessSystemExceptionDataG1(void)
       exceptionDataPointer = (int *)(memoryOffset + SystemDataSecondaryOffset18);
       *exceptionDataPointer = *exceptionDataPointer + -1;
       if (*exceptionDataPointer == 0) {
-        HandleExceptionE0();
+        HandleMemoryResourceException();
         return;
       }
     }
