@@ -258,6 +258,10 @@ typedef enum {
 #define DAT_180be2288 UITertiarySystemDataTable                  // UI第三数据表
 #define DAT_180be2d08 UIQuaternarySystemDataTable                // UI第四数据表
 #define DAT_180be2ee8 UIQuinarySystemDataTable                   // UI第五数据表
+
+// UI系统向量处理常量
+#define _DAT_180947370 UIVectorMultiplyMask20                  // UI向量乘法掩码20 - 用于向量乘法运算的掩码
+#define _DAT_180947500 UIVectorMultiplyMask21                  // UI向量乘法掩码21 - 用于向量乘法运算的掩码
 #define DAT_180980640 UISenarySystemDataTable                    // UI第六数据表
 #define DAT_1809473f0 UIVectorOperationMask3F0                  // UI向量操作掩码3F0
 #define DAT_180947510 UIVectorOperationMask510                  // UI向量操作掩码510
