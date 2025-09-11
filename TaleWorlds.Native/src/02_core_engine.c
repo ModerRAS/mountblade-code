@@ -253715,11 +253715,11 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
                             if (((int *)*StringProcessingStatus != (int *)0x0) &&
                                (ReferenceCountPointer5[-2] * IntegerValue <= *(int *)*StringProcessingStatus)) {
                               if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
-                                FUN_180204a00();
+                                InitializeSystemMemoryAllocation();
                                 ContextHandle8[1] = ContextHandle8[1] + 0x18;
                               }
                               else {
-                                FUN_180207840(ContextHandle8,ConfigurationString + (long long)IntegerValue7 * 3);
+                                ProcessSystemMemoryAllocation(ContextHandle8,ConfigurationString + (long long)IntegerValue7 * 3);
                               }
                               SystemEventTemplatePointer = *(uint32_t **                                        (*(long long *)(lStack_1f0 * 0x20 + 0x4a8 + ContextHandle) + -0x18                              ;
                               if (*(long long *)(SystemEventTemplatePointer + 2) != 0) {
@@ -253897,7 +253897,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
         SystemChecksum = FUN_180206690(SystemStringIndex,0,IntegerValue9);
         FUN_1802064e0(ContextHandle,&LocalDataStructure160,SystemChecksum,IntegerValue9);
         if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
-          FUN_180204a00();
+          InitializeSystemMemoryAllocation();
           ContextHandle8[1] = ContextHandle8[1] + 0x18;
         }
         else {
@@ -253933,7 +253933,7 @@ void ProcessSystemContextAndBufferSizeValidation(long long ContextHandle)
                         if (((int *)*StringProcessingStatus != (int *)0x0) &&
                            (CharacterStatusBuffer2[3] * IntegerValue <= *(int *)*StringProcessingStatus)) {
                           if ((unsigned long long)ContextHandle8[1] < (unsigned long long)ContextHandle8[2]) {
-                            FUN_180204a00();
+                            InitializeSystemMemoryAllocation();
                             ContextHandle8[1] = ContextHandle8[1] + 0x18;
                           }
                           else {
