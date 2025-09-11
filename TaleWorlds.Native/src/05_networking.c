@@ -383,10 +383,8 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkConnectionResultHandleContextOffset 0xe8             // 网络连接句柄上下文数据偏移量
 #define NetworkPacketSecondaryDataOffset 0x44                  // 网络数据包次级数据偏移量
 
-// 网络状态常量 - 系统状态和限制值
-#define NetworkStatusActive 0x01                               // 网络状态：活跃
-#define NetworkMaximumSignedInt32Value 0x7fffffff                        // 最大32位有符号整数值
-#define NetworkExtendedPacketSizeLimit 0x53                // 扩展数据包大小限制（83字节）
+// 网络数据包大小限制常量
+#define NetworkMaximumPacketSize 0x100000                      // 最大数据包大小（1MB）
 #define NetworkStandardPacketSizeLimit 0x31                       // 标准数据包大小限制（49字节）
 #define NetworkStatusInactive 0x00                          // 网络状态：非活跃
 #define NetworkStatusReserved 0x02                          // 网络状态：保留
@@ -596,6 +594,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 
 // 网络连接配置常量
 #define NetworkConnectionPoolCapacity 1000                       // 网络连接池容量
+#define NetworkTimestampInitialValue 1000000                     // 时间戳计数器初始值
 #define NetworkHealthStatusNormal 0x01                             // 网络正常健康状态
 #define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 无效网络管理器句柄
 #define SocketDescriptorInvalid 0xFFFFFFFF                  // 无效套接字描述符
@@ -4907,7 +4906,7 @@ NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t Pa
   }
   
   // 检查数据包长度是否合理
-  if (PacketData > NetworkPacketHeaderSize && PacketData < 0x100000) {
+  if (PacketData > NetworkPacketHeaderSize && PacketData < NetworkMaximumPacketSize) {
     PacketLengthValidationResult = NetworkValidationSuccess;
   }
   
@@ -5862,6 +5861,6 @@ static uint32_t PerformSecurityValidation(NetworkConnectionContext *connectionCo
 static uint64_t GetCurrentSystemTime(void)
 {
     // 简化实现：返回递增时间戳
-    static uint64_t timestampCounter = 1000000;
+    static uint64_t timestampCounter = NetworkTimestampInitialValue;
     return timestampCounter++;
 }
