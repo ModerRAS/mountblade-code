@@ -251824,13 +251824,13 @@ LAB_180204eec:
 04f4d(voidvoid FUN_180204f4d(void
 {
   uint64_t *PatternIndex;
-  long long *plStack0000000000000038;
+  long long *PatternCleanupHandler;
   
   *PatternIndex = 0xffffffffffffffff;
-  plStack0000000000000038 = (long long *)PatternIndex[2];
+  PatternCleanupHandler = (long long *)PatternIndex[2];
   PatternIndex[2] = 0;
-  if (plStack0000000000000038 != (long long *)0x0) {
-    (**(code **)(*plStack0000000000000038 + 0x38))();
+  if (PatternCleanupHandler != (long long *)0x0) {
+    (**(code **)(*PatternCleanupHandler + 0x38))();
   }
   *(uint32_t *)((long long)PatternIndex + 0xc) = 0x10;
   *(uint32_t *)(PatternIndex + 1) = 0xffffffff;
@@ -296019,7 +296019,7 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ProcessSystemEventConfiguration FUN_1801a0860             // 处理系统事件配置
 #define ProcessSystemBufferEncoding FUN_180275cf0                 // 处理系统缓冲区编码
 #define ProcessSystemContextTransfer FUN_180276f30                // 处理系统上下文传输
-#define ProcessSystemMemoryValidation FUN_1801970c0              // 处理系统内存验证
+#define ProcessSystemMemoryValidation ProcessSystemMatrixTransformAndFloatingPointOperations // 处理系统内存验证（复用现有定义）
 #define ProcessSystemDataIntegrityCheck FUN_1801998a0             // 处理系统数据完整性检查
 #define ProcessSystemMemoryBuffer FUN_1801c2360                   // 处理系统内存缓冲区
 #define ProcessSystemEncodingValidation FUN_1802e92b0             // 处理系统编码验证
