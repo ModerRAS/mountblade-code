@@ -138,13 +138,13 @@
 #define SystemDataElementSize 0x30                             // 系统数据块元素大小
 
 // 位操作掩码常量
-#define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000
-#define BitOperationValue4000 0x4000                            // 位操作值4000
-#define BitOperationMask7fff 0x7fff                              // 位操作掩码7fff
+#define BitOperationMaskC000 0xffffc000                         // 位操作掩码C000 - 用于高位位操作 masking
+#define BitOperationValue4000 0x4000                            // 位操作值4000 - 用于位操作验证
+#define BitOperationMask7fff 0x7fff                              // 位操作掩码7fff - 用于低位位操作 masking
 
 // 字符验证常量
-#define CharacterValidationOffset 0x57                           // 字符验证偏移量
-#define SystemDataRecordHeaderOffset 0x14                       // 系统数据记录头偏移量
+#define CharacterValidationOffset 0x57                           // 字符验证偏移量 - 用于字符编码验证的偏移位置
+#define SystemDataRecordHeaderOffset 0x14                       // 系统数据记录头偏移量 - 用于数据记录头部的偏移位置
 
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
