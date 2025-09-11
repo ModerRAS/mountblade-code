@@ -12570,7 +12570,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：FUN_18089b813
  */
-#define ReleaseMemoryBlockA0 ReleaseMemoryWithSecurityChecks
+#define ReleaseMemoryWithSecurityChecks FUN_18089b813
 
 /**
  * @brief 复制内存块并进行边界检查
