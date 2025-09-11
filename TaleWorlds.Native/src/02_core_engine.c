@@ -232323,7 +232323,7 @@ LAB_18018c406:
       StringDataPointer = StringDataPointer + (long long)ValidationStatus3;
       SystemValidationStatus = SystemValidationFunction2;
       if (StringDataPointer <= ValidationStatus3) break;
-      LoopIndex = (long long)&SystemMemoryCheckBoundary1 - (long long)ValidationStatus3;
+      LoopIndex = (long long)&SystemMemoryCheckBoundaryLower - (long long)ValidationStatus3;
       while (*ValidationStatus3 == ValidationStatus3[LoopIndex]) {
         ValidationStatus3 = ValidationStatus3 + 1;
         if (StringDataPointer <= ValidationStatus3) goto LAB_18018c46e;
@@ -232351,7 +232351,7 @@ LAB_18018c46e:
       StringDataPointer = ValidationStatus3 + (long long)StringDataPointer;
       SystemValidationStatus = SystemValidationFunction2;
       if (StringDataPointer <= ValidationStatus3) break;
-      LoopIndex = (long long)&SystemMemoryCheckBoundary3 - (long long)ValidationStatus3;
+      LoopIndex = (long long)&SystemMemoryCheckBoundaryUpper - (long long)ValidationStatus3;
       while (*ValidationStatus3 == ValidationStatus3[LoopIndex]) {
         ValidationStatus3 = ValidationStatus3 + 1;
         if (StringDataPointer <= ValidationStatus3) goto LAB_18018c4de;
@@ -232394,7 +232394,7 @@ LAB_18018c580:
             CoreEngineConfigureSystemEvent(&EncodingBuffer,LoopIndex);
             break;
           }
-          LoopIndex = (long long)&SystemMemoryCheckBoundary2 - (long long)SystemValidationFunction2;
+          LoopIndex = (long long)&SystemMemoryCheckBoundaryMiddle - (long long)SystemValidationFunction2;
           while (*SystemValidationFunction2 == SystemValidationFunction2[LoopIndex]) {
             SystemValidationFunction2 = SystemValidationFunction2 + 1;
             if (ValidationStatus <= SystemValidationFunction2) goto LAB_18018c580;
@@ -232638,7 +232638,7 @@ LAB_18018c714:
         if (SystemValidationFunction2 == SystemValidationFunction3 + -0x180a0ae2f) {
           SystemValidationFunction2 = SystemValidationFunction2 + (long long)ValidationStatus;
           if (SystemValidationFunction2 <= ValidationStatus) goto LAB_18018c9b2;
-          LoopIndex = (long long)&SystemMemoryCheckBoundary3 - (long long)ValidationStatus;
+          LoopIndex = (long long)&SystemMemoryCheckBoundaryUpper - (long long)ValidationStatus;
           while (*SystemValidationStatus == ValidationStatus[LoopIndex]) {
             SystemValidationStatus = ValidationStatus + 1;
             if (SystemValidationFunction2 <= ValidationStatus) goto LAB_18018c9b2;
@@ -233560,7 +233560,7 @@ void ProcessSystemContextWithBuffer(uint64_t ContextHandle,long long OperationBu
       if (CoreEnginePointerBuffer158 != (uint8_t *)0x0) {
         TemporaryBuffer = CoreEnginePointerBuffer158;
       }
-      AllocatedMemorySize = strstr(TemporaryBuffer,&SystemMemoryBoundaryCheck4);
+      AllocatedMemorySize = strstr(TemporaryBuffer,&SystemMemoryBoundaryCheckStart);
       SystemCharacterStatusBuffer = pDataProcessingFlags;
       if (AllocatedMemorySize == 0) {
         ContextHandle = &SystemNullTemplate;
@@ -234467,7 +234467,7 @@ void ValidateSystemContextAndMemory(uint64_t ContextHandle,long long OperationBu
   }
   puStack_4f8 = &ThreadLocalStorageTemplate;
   puStack_628 = auStack_560;
-  *(void **)((long long)alStack_618 + (long long)*(int *)(alStack_618[0] + 4)) = &SystemMemoryBoundaryCheck5;
+  *(void **)((long long)alStack_618 + (long long)*(int *)(alStack_618[0] + 4)) = &SystemMemoryBoundaryCheckMid;
   *(int *)((long long)&iStack_61c + (long long)*(int *)(alStack_618[0] + 4)) =
        *(int *)(alStack_618[0] + 4) + -0xb8;
   ProcessSystemDataAndCleanupSecondary(aStackProcessingDataFlags0);
@@ -234531,12 +234531,12 @@ bool ValidateStringComparisonAndMemoryBoundary(uint64_t ContextHandle,long long 
   if (*(void **)(OperationBufferSize + 0x10) != NULL) {
     DataStructureHandle = *(void **)(OperationBufferSize + 0x10);
   }
-  FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+  FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
   DataStructureHandle = &CoreEngineDataTemplate;
   if (*(void **)(Utf8SourcePointer + 0x10) != NULL) {
     ContextHandleTablePointer = *(void **)(Utf8SourcePointer + 0x10);
   }
-  long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+  long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
   if (FirstStringSearchResult == 0) {
     if ((SecondStringSearchResult != 0) || (*(int *)(Utf8SourcePointer + 0x18) == 0)) {
       return false;
@@ -234999,12 +234999,12 @@ LAB_1801908b0:
           if (StringComparisonPointer != NULL) {
             StringProcessingStatus = StringComparisonPointer;
           }
-          MemoryBlockIndex = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          MemoryBlockIndex = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheckEnd);
           StringProcessingStatus = &CoreEngineDataTemplate;
           if ((void *)*TemporaryBuffer != NULL) {
             StringProcessingStatus = (void *)*TemporaryBuffer;
           }
-          SystemDataRegistry = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          SystemDataRegistry = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheckEnd);
           StringComparisonByte0 = SystemDataRegistry != 0;
           if (MemoryBlockIndex == 0) {
             if (StringComparisonByte0) goto LAB_1801909bf;
@@ -235269,12 +235269,12 @@ void ProcessSystemMemoryTransfer(uint64_t *ContextHandle, uint64_t *ContextHandl
           if (CustomDataPointer != NULL) {
             StringProcessingStatus = CustomDataPointer;
           }
-          SystemDataRegistry = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          SystemDataRegistry = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheckEnd);
           StringProcessingStatus = &CoreEngineDataTemplate;
           if ((void *)*PrimaryProcessingStatusFlag != NULL) {
             StringProcessingStatus = (void *)*PrimaryProcessingStatusFlag;
           }
-          AllocatedMemorySize = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          AllocatedMemorySize = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheckEnd);
           StringNodeComparisonResult = AllocatedMemorySize != 0;
           if (SystemDataRegistry == 0) {
             if (StringComparisonResult) break;
@@ -236693,12 +236693,12 @@ void ProcessSystemEncodingConversionAndValidation(long long ContextHandle,long l
       if ((void *)*pStringOffset != NULL) {
         SecondaryProcessingStatusFlag = (void *)*pStringOffset;
       }
-      SystemDataTablePointer = strstr(SecondaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
+      SystemDataTablePointer = strstr(SecondaryProcessingStatusFlag,&SystemMemoryBoundaryCheckEnd);
       SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(ContextHandle + 0x10) != NULL) {
         SecondaryProcessingStatusFlag = *(void **)(ContextHandle + 0x10);
       }
-      MemoryAllocationIndex = strstr(SecondaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
+      MemoryAllocationIndex = strstr(SecondaryProcessingStatusFlag,&SystemMemoryBoundaryCheckEnd);
       if (SystemDataTablePointer == 0) {
         if (MemoryAllocationIndex == 0) {
           if (*(int *)(ContextHandle + 0x18) == 0) {
@@ -236783,12 +236783,12 @@ unsigned long long ValidateUtf8DataIntegrity(unsigned long long ContextHandle,un
       if (*(void **)(ContextHandle + 0x10) != NULL) {
         ContextHandleTablePointer = *(void **)(ContextHandle + 0x10);
       }
-      FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+      FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
       DataStructureHandle = &CoreEngineDataTemplate;
       if (*(void **)(Utf8SourcePointer + 0x10) != NULL) {
         ContextHandleTablePointer = *(void **)(Utf8SourcePointer + 0x10);
       }
-      long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+      long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
       IsSystemContextValidationResult = MemoryBlockIndex != 0;
       if (BufferStatus != 0) break;
       if (!IsSystemContextValidationResult) {
@@ -236815,12 +236815,12 @@ LAB_18019166c:
         if (*(void **)(Utf8SourcePointer + 0x10) != NULL) {
           ContextHandleTablePointer = *(void **)(Utf8SourcePointer + 0x10);
         }
-        FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+        FirstStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
         DataStructureHandle = &CoreEngineDataTemplate;
         if (*(void **)(SystemChecksum - 0x338) != NULL) {
           ContextHandleTablePointer = *(void **)(SystemChecksum - 0x338);
         }
-        long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheck6);
+        long long SecondStringSearchResult = strstr(DataStructureHandle,&SystemMemoryBoundaryCheckEnd);
         IsSystemContextValidationResult = MemoryBlockIndex != 0;
         if (BufferStatus == 0) {
           if (IsSystemContextValidationResult) break;
@@ -236924,12 +236924,12 @@ long long ProcessCharacterEncodingConversion(long long ContextHandle,long long O
     if (*(void **)(SystemDataTablePointer + 0x10) != NULL) {
       SystemCharacterStatusBuffer = *(void **)(SystemDataTablePointer + 0x10);
     }
-    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheck6);
+    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheckEnd);
     SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
     if (*(void **)(SystemDataTablePointer + -0x338) != NULL) {
       SystemCharacterStatusBuffer = *(void **)(SystemDataTablePointer + -0x338);
     }
-    StringOffset = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheck6);
+    StringOffset = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheckEnd);
     if (SystemDataTablePointer == 0) {
       if (StringOffset == 0) {
         if (*(int *)(SystemDataTablePointer + -0x330) == 0) {
@@ -236991,12 +236991,12 @@ LAB_1801918cd:
     if (*(void **)(LoopIndex + 0x10) != NULL) {
       SystemCharacterStatusBuffer = *(void **)(LoopIndex + 0x10);
     }
-    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheck6);
+    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheckEnd);
     SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
     if (*(void **)(AdditionalParameter1 + 0x10) != NULL) {
       SystemCharacterStatusBuffer = *(void **)(AdditionalParameter1 + 0x10);
     }
-    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheck6);
+    SystemDataTablePointer = strstr(SystemCharacterStatusBuffer,&SystemMemoryBoundaryCheckEnd);
     StringComparisonByte6 = SystemDataTablePointer != 0;
     if (SystemDataTablePointer == 0) {
       if (StringComparisonByte6) break;
@@ -237528,7 +237528,7 @@ SystemMemoryValidationComplete:
         (**(code **)(*(long long *)(ContextHandle + 8) + 0x10)                  (ContextHandle + 8,SystemDataRegistry,SystemValidationFunction,SecondaryProcessingStatusFlag,0xfffffffffffffffe);
         break;
       }
-      SystemDataRegistry = (long long)&SystemMemoryCheckBoundary2 - (long long)SystemFunctionPointer;
+      SystemDataRegistry = (long long)&SystemMemoryCheckBoundaryMiddle - (long long)SystemFunctionPointer;
       while (*SystemFunctionPointer == SystemFunctionPointer[SystemDataRegistry]) {
         SystemFunctionPointer = SystemFunctionPointer + 1;
         if (SystemValidationFunction <= SystemFunctionPointer) goto SystemMemoryValidationComplete;
