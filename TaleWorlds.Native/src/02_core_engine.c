@@ -99997,23 +99997,23 @@ void ValidateSystemDataStructureIntegrity(uint64_t ContextHandle
   float SecondaryFloatValue;
   uint32_t AuxiliaryCalculationFloat9;
   float SystemFloatValue;
-  uint32_t XMM9RegisterC;
+  uint32_t MatrixTransformRegister9;
   float SystemCoreScaleX;
-  uint32_t AuxiliaryFloat12;
-  uint32_t XMM12RegisterC;
-  float AuxiliaryFloat13;
-  float FloatingPointRegister14Da;
-  uint32_t XMM15RegisterA;
-  uint32_t XMM15RegisterC;
+  uint32_t VertexProcessingRegister12;
+  uint32_t GeometryTransformRegister12;
+  float TextureCoordinateRegister13;
+  float FragmentShaderRegister14;
+  uint32_t PixelOutputRegister15A;
+  uint32_t PixelOutputRegister15C;
   float TemporaryFloat1;
   float SystemValidationBackupFloat;
-  float CalculationBuffer;
+  float MatrixCalculationBuffer;
   uint32_t FunctionReturnValue;
-  uint32_t StackProcessingParameter0;
-  uint32_t StackProcessingParameter3;
-  uint32_t StackProcessingParameter6;
+  uint32_t StackParameter0;
+  uint32_t StackParameter3;
+  uint32_t StackParameter6;
   uint32_t InputParameter1;
-  uint32_t StackProcessingParameterC8;
+  uint32_t StackParameterC8;
   
   StackFloatValue50 = (float)ContextHandle;
   SystemContextPrimaryFloat3 = 0.0;
@@ -253959,7 +253959,8 @@ LAB_1802078c3:
 
 
 
-07a20(uint64_t *ContextHandlevoid FUN_180207a20(uint64_t *ContextHandle
+// 释放系统上下文资源和清理内存
+void ReleaseSystemContextResources(uint64_t *ContextHandle)
 {
   int *ReferenceCountPointer;
   int LockOperationResult;
@@ -254092,7 +254093,8 @@ long long ProcessUtf8SourcePointerAndContext(long long *ContextHandle,long long 
 
 
 
-07c90(long long ContextHandle,long long OperationBufferSizevoid FUN_180207c90(long long ContextHandle,long long OperationBufferSize
+// 转换系统字符值和处理编码操作
+void ConvertSystemCharacterValue(long long ContextHandle, long long OperationBufferSize)
 {
   uint64_t Utf16Char;
   
@@ -254209,7 +254211,8 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
 
  (ram,0x000180207fb0 (ram,0x000180207fcf
 
-07f50(uint64_t ContextHandle,long long *ContextHandleSizevoid FUN_180207f50(uint64_t ContextHandle,long long *ContextHandleSize
+// 初始化系统数据模板和配置处理
+void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHandleSize)
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;

@@ -129380,111 +129380,145 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
  
 
- void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI纹理数据并执行渲染任务
+ * 
+ * 该函数负责处理UI纹理数据，包括数据验证、纹理处理和渲染任务执行。
+ * 使用XOR加密保护栈参数，确保数据传输的安全性。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识纹理数据来源
+ * 
+ * @note 此函数使用加密栈保护参数安全
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ProcessUITextureDataAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *textureDataPointer;
+  longlong renderContextSize;
+  longlong *contextDataPointer;
+  UIByte textureProcessingBuffer [256];
+  ulonglong encryptedStackKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptedStackKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextDataPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x98))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073c96e;
+    operationResult = (**(code **)(*contextDataPointer + 0x98))(contextDataPointer,dataSource);
+    if (operationResult == 0) goto CleanupAndRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUITextureDataWithSize(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUITextureDataWithSize(textureProcessingBuffer,0x100,dataSource);
+    textureDataPointer = textureProcessingBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationControlData);
+    ExecuteUIContextDataOperation(operationResult,4,uiContext,&UIContextOperationControlData);
   }
-LAB_18073c96e:
-  if (RenderContextSize != 0) {
+CleanupAndRender:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedStackKey ^ (ulonglong)encryptionBuffer);
 }
 
 
 
  
 
- void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI缓冲区数据填充并执行渲染任务
+ * 
+ * 该函数负责处理UI缓冲区数据的填充操作，包括数据验证、缓冲区填充和渲染任务执行。
+ * 使用XOR加密保护栈参数，确保数据操作的安全性。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识数据来源
+ * 
+ * @note 此函数使用加密栈保护参数安全
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ProcessUIBufferFillAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *bufferDataPointer;
+  longlong renderContextSize;
+  longlong *contextDataPointer;
+  UIByte bufferProcessingData [256];
+  ulonglong encryptedStackKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptedStackKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&contextDataPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x18))(pstackLong120,dataSource);
-    if (operationResult == 0) goto LAB_18073ca4b;
+    operationResult = (**(code **)(*contextDataPointer + 0x18))(contextDataPointer,dataSource);
+    if (operationResult == 0) goto CleanupAndRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIBufferDataFill(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIBufferDataFill(bufferProcessingData,0x100,dataSource);
+    bufferDataPointer = bufferProcessingData;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationTransformData);
+    ExecuteUIContextDataOperation(operationResult,4,uiContext,&UIContextOperationTransformData);
   }
-LAB_18073ca4b:
-  if (RenderContextSize != 0) {
+CleanupAndRender:
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedStackKey ^ (ulonglong)encryptionBuffer);
 }
 
 
 
  
 
- void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
-void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 清除UI数据缓冲区并执行渲染任务
+ * 
+ * 该函数负责清除UI数据缓冲区，包括数据验证、缓冲区清理和渲染任务执行。
+ * 使用XOR加密保护栈参数，确保数据操作的安全性。
+ * 
+ * @param uiContext UI上下文句柄，标识目标UI上下文
+ * @param dataSource 数据源句柄，标识数据来源
+ * 
+ * @note 此函数使用加密栈保护参数安全
+ * @warning 子函数不返回，确保调用上下文正确处理
+ */
+void ClearUIDataBufferAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
+void ClearUIDataBufferAndExecuteRender(UIHandle uiContext,UIHandle dataSource)
 
 {
   int operationResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  longlong *pstackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong renderContextSize;
+  longlong *renderContextPointer;
+  UIByte processingBuffer [256];
+  ulonglong encryptedValue;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  operationResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
+  encryptedValue = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  renderContextSize = 0;
+  operationResult = func_0x00018074fb10(uiContext,&renderContextPointer,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = (**(code **)(*pstackLong120 + 0x50))(pstackLong120,dataSource);
+    operationResult = (**(code **)(*renderContextPointer + 0x50))(renderContextPointer,dataSource);
     if (operationResult == 0) goto LAB_18073cb2b;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    ProcessUIDataBufferClear(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+    ProcessUIDataBufferClear(processingBuffer,0x100,dataSource);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,4,uiContext,&UIContextOperationRenderData);
   }
 LAB_18073cb2b:
-  if (RenderContextSize != 0) {
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptedValue ^ (ulonglong)encryptionBuffer);
 }
 
 
