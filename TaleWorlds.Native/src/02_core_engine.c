@@ -261013,7 +261013,23 @@ LAB_18020f126:
 
 
 
- void ProcessSystemContextHandler(uint64_t *ContextHandlevoid ProcessSystemContextHandler(uint64_t *ContextHandle
+ /**
+ * @brief 处理系统上下文处理器
+ * 
+ * 该函数负责处理系统上下文的初始化和管理操作。
+ * 主要功能包括：
+ * - 初始化系统上下文处理器
+ * - 分配和配置缓冲区状态
+ * - 管理系统标志和计数器
+ * - 执行上下文验证操作
+ * 
+ * @param ContextHandle 系统上下文句柄 - 指向系统上下文结构的指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：ProcessSystemContextHandler
+ */
+void ProcessSystemContextHandler(uint64_t *ContextHandle)
 {
   code *ValidationStatus;
   long long *BufferAllocationState;
