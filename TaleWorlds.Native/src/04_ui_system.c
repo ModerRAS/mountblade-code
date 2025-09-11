@@ -606,7 +606,7 @@ typedef enum {
 #define DAT_180be2ee8 UIQuinarySystemDataTable                   // UI第五数据表
 
 // UI系统向量处理常量
-#define _DAT_180947370 UIVectorMultiplyMask20                  // UI向量乘法掩码20 - 用于向量乘法运算的掩码
+#define UIVectorMultiplyMask370 UIVectorMultiplyMask20                  // UI向量乘法掩码20 - 用于向量乘法运算的掩码
 #define _DAT_180947500 UIVectorMultiplyMask21                  // UI向量乘法掩码21 - 用于向量乘法运算的掩码
 #define DAT_180980640 UISenarySystemDataTable                    // UI第六数据表
 #define DAT_1809473f0 UIVectorOperationMask3F0                  // UI向量操作掩码3F0
@@ -5968,7 +5968,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask1 _DAT_180947340
 #define UIVectorMultiplyMask2 _DAT_180947350
 #define UIVectorMultiplyMask3 _DAT_180947360
-#define UIVectorMultiplyMask4 _DAT_180947370
+#define UIVectorMultiplyMask4 UIVectorMultiplyMask370
 #define UIVectorMultiplyMask5 _DAT_180947380
 #define UIVectorMultiplyMask6 _DAT_180947390
 #define UIVectorMultiplyMask7 _DAT_1809473a0
@@ -48669,10 +48669,10 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags24 = pmaddwd(aprocessingFlags23,UIVectorMultiplyMask20);
       aprocessingFlags43 = packssdw(aprocessingFlags42,aprocessingFlags0);
       aeventCodeType11 = pmaddwd(aeventCodeType04,UIVectorMultiplyMask20);
-      iterationData19 = pmaddwd(aeventCodeType04,_DAT_180947370);
-      iterationData54 = pmaddwd(aprocessingFlags23,_DAT_180947370);
+      iterationData19 = pmaddwd(aeventCodeType04,UIVectorMultiplyMask370);
+      iterationData54 = pmaddwd(aprocessingFlags23,UIVectorMultiplyMask370);
       aeventCodeType50 = pmaddwd(aeventCodeType81,_DAT_180947500);
-      aprocessingFlags16 = pmaddwd(aeventCodeType81,_DAT_180947370);
+      aprocessingFlags16 = pmaddwd(aeventCodeType81,UIVectorMultiplyMask370);
       aprocessingFlags1._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       aprocessingFlags1._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       aprocessingFlags1._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
@@ -48683,7 +48683,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType99._12_4_ = iterationData54._12_4_ + 0x2000 >> 0xe;
       aprocessingFlags00 = packssdw(aeventCodeType99,aprocessingFlags1);
       iterationData19 = pmaddwd(astackUIntcc8,_DAT_180947500);
-      iterationData54 = pmaddwd(aeventStatus7,_DAT_180947370);
+      iterationData54 = pmaddwd(aeventStatus7,UIVectorMultiplyMask370);
       iterationData82 = pmaddwd(aeventStatus7,_DAT_180947500);
       aeventCodeType56._0_4_ = aeventCodeType50._0_4_ + 0x2000 >> 0xe;
       aeventCodeType56._4_4_ = aeventCodeType50._4_4_ + 0x2000 >> 0xe;
@@ -48708,13 +48708,13 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aprocessingFlags3._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags3._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       aeventCodeType74 = packssdw(iterationData25,aprocessingFlags3);
-      iterationData19 = pmaddwd(astackUIntd18,_DAT_180947370);
+      iterationData19 = pmaddwd(astackUIntd18,UIVectorMultiplyMask370);
       aprocessingFlags4._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       aprocessingFlags4._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       aprocessingFlags4._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aprocessingFlags4._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       astackUIntd28 = packssdw(aeventprocessingFlags8,aprocessingFlags4);
-      iterationData19 = pmaddwd(astackUIntcc8,_DAT_180947370);
+      iterationData19 = pmaddwd(astackUIntcc8,UIVectorMultiplyMask370);
       aprocessingFlags25._0_4_ = aprocessingFlags24._0_4_ + 0x2000 >> 0xe;
       aprocessingFlags25._4_4_ = aprocessingFlags24._4_4_ + 0x2000 >> 0xe;
       aprocessingFlags25._8_4_ = aprocessingFlags24._8_4_ + 0x2000 >> 0xe;
@@ -48809,9 +48809,9 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       acomponentStatus6._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
       astackUIntad8 = packssdw(aeventprocessingFlags9,acomponentStatus6);
       iterationData19 = pmaddwd(iterationDataer2,_DAT_180947470);
-      iterationData82 = pmaddwd(aresult74,_DAT_180947370);
+      iterationData82 = pmaddwd(aresult74,UIVectorMultiplyMask370);
       iterationData54 = pmaddwd(aresult74,_DAT_180947470);
-      aeventCodeType11 = pmaddwd(iterationDataer2,_DAT_180947370);
+      aeventCodeType11 = pmaddwd(iterationDataer2,UIVectorMultiplyMask370);
       aeventCodeType34._0_4_ = aeventCodeType50._0_4_ + 0x2000 >> 0xe;
       aeventCodeType34._4_4_ = aeventCodeType50._4_4_ + 0x2000 >> 0xe;
       aeventCodeType34._8_4_ = aeventCodeType50._8_4_ + 0x2000 >> 0xe;
@@ -48879,8 +48879,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aresult76._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       aresult76._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
       aresult76._12_4_ = iterationData19._12_4_ + 0x2000 >> 0xe;
-      iterationData54 = pmaddwd(acontextValue9,_DAT_180947370);
-      iterationData19 = pmaddwd(adataPointer1,_DAT_180947370);
+      iterationData54 = pmaddwd(acontextValue9,UIVectorMultiplyMask370);
+      iterationData19 = pmaddwd(adataPointer1,UIVectorMultiplyMask370);
       iterationData58._0_4_ = iterationData54._0_4_ + 0x2000 >> 0xe;
       iterationData58._4_4_ = iterationData54._4_4_ + 0x2000 >> 0xe;
       iterationData58._8_4_ = iterationData54._8_4_ + 0x2000 >> 0xe;
@@ -48898,8 +48898,8 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
       aeventCodeType11 = packssdw(aresult76,aprocessingFlags9);
       iterationData19 = pmaddwd(adataPointer1,_DAT_180947470);
       iterationData54 = pmaddwd(acontextValue9,_DAT_180947470);
-      aeventCodeType50 = pmaddwd(iterationDataer4,_DAT_180947370);
-      aprocessingFlags16 = pmaddwd(iterationData86,_DAT_180947370);
+      aeventCodeType50 = pmaddwd(iterationDataer4,UIVectorMultiplyMask370);
+      aprocessingFlags16 = pmaddwd(iterationData86,UIVectorMultiplyMask370);
       adataPointer2._0_4_ = iterationData19._0_4_ + 0x2000 >> 0xe;
       adataPointer2._4_4_ = iterationData19._4_4_ + 0x2000 >> 0xe;
       adataPointer2._8_4_ = iterationData19._8_4_ + 0x2000 >> 0xe;
@@ -50401,7 +50401,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aresult15._0_2_ = sVar59 - eventIndex;
     iterationDataer5 = pmaddwd(iterationData4,UIVectorCalculationMask3F0);
     aeventStatus5 = pmaddwd(aresult15,_DAT_180947470);
-    aresult13 = pmaddwd(aresult15,_DAT_180947370);
+    aresult13 = pmaddwd(aresult15,UIVectorMultiplyMask370);
     maxProcessingCount0._2_2_ = sVar48 - ContextFirstValue3;
     maxProcessingCount0._0_2_ = sVar69 - sVar19;
     maxProcessingCount0._4_2_ = sVar70 - sVar20;
@@ -50458,7 +50458,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
     aresult14._12_4_ = aresult19._12_4_ + 0x2000 >> 0xe;
     aresult15 = packssdw(aresult14,acomponentIndex);
     aloopCounter2 = pmaddwd(maxProcessingCount0,_DAT_180947470);
-    iterationDataer5 = pmaddwd(maxProcessingCount0,_DAT_180947370);
+    iterationDataer5 = pmaddwd(maxProcessingCount0,UIVectorMultiplyMask370);
     iterationData4._0_4_ = iterationData2._0_4_ + 0x2000 >> 0xe;
     iterationData4._4_4_ = iterationData2._4_4_ + 0x2000 >> 0xe;
     iterationData4._8_4_ = iterationData2._8_4_ + 0x2000 >> 0xe;
