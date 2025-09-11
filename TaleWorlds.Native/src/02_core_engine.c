@@ -15528,7 +15528,7 @@ void InitializeCoreEngineDataStructure(void) {
   }
   
   // 检查是否需要创建新的系统节点
-  if ((SystemTraversalNode == SystemRootNode) || (DataNodeComparisonResult = memcmp(&SystemComparisonDataPrimary, SystemTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), DataComparisonResult < 0)) {
+  if ((SystemTraversalNode == SystemRootNode) || (DataComparisonResult = memcmp(&SystemComparisonDataPrimary, SystemTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), DataComparisonResult < 0)) {
     // 分配内存并创建新的系统节点
     SystemMemoryOffset = CoreEngineAllocateMemory(EngineSystemContext);
     CoreEngineSetupDataStructure(EngineSystemContext, &CreatedSystemNode, SystemTraversalNode, SystemMemoryOffset + SystemMemoryAllocationOffset, SystemMemoryOffset);
