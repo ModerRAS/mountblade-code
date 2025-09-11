@@ -55930,7 +55930,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t ContextHandle, ui
   TempCalculationResultC = Utf8SourcePointer * Xmm4RegisterTertiary + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + SystemDataNode[0xe];
   StackProcessingParameterE8 = StackProcessingParameterE8;
   StackUintValue6c = 0x3f800000;
-  TemporaryStackValue5c = 0;
+  HighByteStorage = 0;
   StackProcessingParameter4C = 0;
   StackProcessingParameter3C = 0;
   CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatOffsetValue,CharacterLimitD,&SystemStackBuffer,StackProcessingParameterE0);
@@ -108288,7 +108288,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
   ContextPrimaryFloat9 = SystemCoreScaleY - FloatingPointRegisterA;
   CharacterStatusBuffer = (uint32_t *)(SystemContextValue + 0x1628 + SystemContext);
   TemporaryStackValue58 = *CharacterStatusBuffer;
-  TemporaryStackValue5c = CharacterStatusBuffer[1];
+  HighByteStorage = CharacterStatusBuffer[1];
   FunctionReturnValue = CharacterStatusBuffer[2];
   TempCalculationResultB = (float)CharacterStatusBuffer[3] * *(float *)(SystemContext + 0x1628);
   SystemParameter1 = FilterInputValue;
@@ -108296,7 +108296,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
   RenderingContextHandle = ContextPrimaryFloat9;
   StackUint7c = MemoryPoolIndex;
   MemoryPoolIndex = ValidateSystemData(&StackBuffer58);
-  TemporaryStackValue58 = CONCAT44(TemporaryStackValue5c,MemoryPoolIndex);
+  TemporaryStackValue58 = CONCAT44(HighByteStorage,MemoryPoolIndex);
   if (CharacterLimitD == *(int *)(SystemContext + SystemContextValidationOffset1)) {
     ProcessMemoryLock(FramePointer + -0x80,1);
     SystemContext = SystemConfigurationHandle;
@@ -227107,31 +227107,31 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
  */
 void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandle,uint64_t MemoryOperationSize,uint64_t Utf8SourceDataPointer,uint64_t Utf16EndDataPointer)
 {
-  unsigned long long Utf16CharacterCode;
-  long long SystemMemoryStatus;
+  unsigned long long CharacterCodeValue;
+  long long MemoryBlockStatus;
   long long MemorySearchStartIndex;
-  uint64_t AddressMaskPointer;
+  uint64_t AddressMaskValue;
   
-  AddressMaskPointer = 0xfffffffffffffffe;
-  SystemMemoryStatus = *SystemContextHandle;
-  if (SystemMemoryStatus != 0) {
-    long long CurrentMemoryBlockIndex = SystemContextHandle[1];
-    if (SystemMemoryStatus != CurrentMemoryBlockIndex) {
+  AddressMaskValue = 0xfffffffffffffffe;
+  MemoryBlockStatus = *SystemContextHandle;
+  if (MemoryBlockStatus != 0) {
+    long long CurrentBlockIndex = SystemContextHandle[1];
+    if (MemoryBlockStatus != CurrentBlockIndex) {
       do {
-        ProcessSystemStackData(SystemMemoryStatus);
-        SystemMemoryStatus = SystemMemoryStatus + SystemContextMemoryIndexOffset;
-      } while (SystemMemoryStatus != CurrentMemoryBlockIndex);
-      SystemMemoryStatus = *SystemContextHandle;
+        ProcessSystemStackData(MemoryBlockStatus);
+        MemoryBlockStatus = MemoryBlockStatus + SystemContextMemoryIndexOffset;
+      } while (MemoryBlockStatus != CurrentBlockIndex);
+      MemoryBlockStatus = *SystemContextHandle;
     }
-    Utf16CharacterCode = ((SystemContextHandle[2] - SystemMemoryStatus) / SystemContextMemoryIndexOffset) * SystemContextMemoryIndexOffset;
-    CurrentMemoryBlockIndex = SystemMemoryStatus;
-    if (0xfff < Utf16CharacterCode) {
-      CurrentMemoryBlockIndex = *(long long *)(SystemMemoryStatus + -8);
-      if (0x1f < (SystemMemoryStatus - CurrentMemoryBlockIndex) - 8U) {
-          _invalid_parameter_noinfo_noreturn(SystemContextHandle[2] - SystemMemoryStatus,Utf16CharacterCode + Utf16CharAdjustmentOffset,Utf8SourceDataPointer,Utf16EndDataPointer,AddressMaskPointer);
+    CharacterCodeValue = ((SystemContextHandle[2] - MemoryBlockStatus) / SystemContextMemoryIndexOffset) * SystemContextMemoryIndexOffset;
+    CurrentBlockIndex = MemoryBlockStatus;
+    if (0xfff < CharacterCodeValue) {
+      CurrentBlockIndex = *(long long *)(MemoryBlockStatus + -8);
+      if (0x1f < (MemoryBlockStatus - CurrentBlockIndex) - 8U) {
+          _invalid_parameter_noinfo_noreturn(SystemContextHandle[2] - MemoryBlockStatus,CharacterCodeValue + Utf16CharAdjustmentOffset,Utf8SourceDataPointer,Utf16EndDataPointer,AddressMaskValue);
       }
     }
-    free(CurrentMemoryBlockIndex);
+    free(CurrentBlockIndex);
     *SystemContextHandle = 0;
     SystemContextHandle[1] = 0;
     SystemContextHandle[2] = 0;
@@ -227160,25 +227160,25 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *SystemContextHandl
 #define ProcessCharacterTableAndDataInitialization FUN_180187cd0
 void ProcessCharacterTableAndDataInitialization(long long *CharacterContextHandle)
 {
-  long long CharacterTableCalculationResult;
-  long long CharacterMemoryStatus;
+  long long TableCalculationResult;
+  long long MemoryAllocationStatus;
   
-  long long CharacterTableDataPointer = *CharacterContextHandle;
-  if (CharacterTableDataPointer != 0) {
-    CharacterMemoryStatus = CharacterContextHandle[1];
-    if (CharacterTableDataPointer != CharacterMemoryStatus) {
+  long long TableDataPointer = *CharacterContextHandle;
+  if (TableDataPointer != 0) {
+    MemoryAllocationStatus = CharacterContextHandle[1];
+    if (TableDataPointer != MemoryAllocationStatus) {
       do {
-        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTableDataPointer);
-        CharacterTableDataPointer = CharacterTableDataPointer + 0x40;
-      } while (CharacterTableDataPointer != CharacterMemoryStatus);
-      CharacterTableDataPointer = *CharacterContextHandle;
+        ProcessSystemStringIndexAndCharacterTableOperation(TableDataPointer);
+        TableDataPointer = TableDataPointer + 0x40;
+      } while (TableDataPointer != MemoryAllocationStatus);
+      TableDataPointer = *CharacterContextHandle;
     }
-    CharacterMemoryStatus = LoopCounter;
+    MemoryAllocationStatus = LoopCounter;
     if ((0xfff < (CharacterContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (CharacterMemoryStatus = *(long long *)(CharacterTableDataPointer + -8), 0x1f < (CharacterTableDataPointer - CharacterMemoryStatus) - 8U)) {
+       (MemoryAllocationStatus = *(long long *)(TableDataPointer + -8), 0x1f < (TableDataPointer - MemoryAllocationStatus) - 8U)) {
         _invalid_parameter_noinfo_noreturn();
     }
-    free(CharacterMemoryStatus);
+    free(MemoryAllocationStatus);
     *CharacterContextHandle = 0;
     CharacterContextHandle[1] = 0;
     CharacterContextHandle[2] = 0;
@@ -235070,7 +235070,7 @@ void CompleteSystemDataProcessingAndValidation(uint64_t *ContextHandle, uint64_t
   long long SystemContextValue;
   bool ValidationByteFlag3;
   uint32_t TemporaryStackValue58;
-  uint32_t TemporaryStackValue5c;
+  uint32_t HighByteStorage;
   
   MemoryAllocationMaskPointer = ProcessingResult - (long long)ContextHandle;
   do {
