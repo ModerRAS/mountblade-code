@@ -99051,7 +99051,7 @@ void ScanSystemCharacterStatusBuffer(uint64_t ContextHandle,uint64_t OperationBu
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = Utf8SourcePointer;
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   CharacterStatusBuffer = (void *)GetSystemCharacterStatusBuffer();
   __stdio_common_vsscanf(*CharacterStatusBuffer,ContextHandle,0xffffffffffffffff,OperationBufferSize,0,&ProcessingConfigurationFlag);
   return;
@@ -102646,7 +102646,7 @@ char CheckSystemMemoryStatus(void
   uint8_t *RenderResultBuffer;
   uint32_t MemoryAllocationMaskPointer;
   
-  *(void *)(SystemContext + SystemContextDataBufferMemoryOffset) = StackParameterUnsigned20;
+  *(void *)(SystemContext + SystemContextDataBufferMemoryOffset) = SystemStackParameter;
   OperationStatus = (char)SystemDataNode;
   MemoryAllocationMaskPointer = (uint32_t)SystemDataNode;
   if (RegisterR12ValueB == '\0') goto CharacterDataValidationFailed;
@@ -103789,12 +103789,12 @@ uint8_t ProcessDataStructureWithParameters(uint32_t ContextHandle,float *Context
               *(float *)(SystemConfigurationHandle + 0x1660) + *(float *)(SystemConfigurationHandle + 0x1660);
   ValidateSystemData(&ErrorCode,ContextHandle,0);
   ArraySize = ProcessSystemParameters(&ErrorCode,ContextHandle,&fStackX_10,&fStackX_18,0);
-  pSystemFloatValue = (float *)&StackParameterUnsigned20;
+  pSystemFloatValue = (float *)&SystemStackParameter;
   if (Utf8SourcePointer == 0) {
-    StackParameterUnsigned20 = 0;
+    SystemStackParameter = 0;
   }
   else {
-    StackParameterUnsigned20 = (unsigned long long)(uint)(0.5 - (float)(int)(*(float *)(MemoryPoolBlockSize + 0x1674) * 0.5));
+    SystemStackParameter = (unsigned long long)(uint)(0.5 - (float)(int)(*(float *)(MemoryPoolBlockSize + 0x1674) * 0.5));
   }
   if ((fStackX_18._0_1_ == '\0') || (fStackX_10._0_1_ == '\0')) {
     SystemContextValue = (unsigned long long)(fStackX_10._0_1_ != '\0') + 0x15;
@@ -117905,7 +117905,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
     SystemOperationResult = 0;
     SystemCoreScaleY = *(float *)(SystemContextValue + 0x19f8);
     ProcessingConfigurationFlag = Utf8SourcePointer;
-    StackParameterUnsigned20 = Utf16EndPointer;
+    SystemStackParameter = Utf16EndPointer;
     if (OperationBufferSize == pSystemStatusChar) {
       SystemCoreScaleX = 0.0;
     }
@@ -117991,7 +117991,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
       else {
         hasNodeComparisonResult = false;
       }
-      CalculatedCodePoint = StackParameterUnsigned20;
+      CalculatedCodePoint = SystemStackParameter;
       MemoryAllocationBase = (uint32_t)((unsigned long long)FloatProcessingParameter >> 0x20);
       CharacterTablePointer = SystemContextValue;
       if ((AdditionalParameter4 == 3.4028235e+38) || (AdditionalParameter5 == 3.4028235e+38)) {
@@ -118036,7 +118036,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
         }
         ValidationResult = IntegerValue9 - 1;
         Utf16Char4 = (unsigned long long)ValidationResult;
-        ProcessedCharacter = StackParameterUnsigned20;
+        ProcessedCharacter = SystemStackParameter;
         if (hasComparisonResult) {
           SystemCoreScaleY = (*(float *)(CharacterTablePointer + 0x118) - ContextPrimaryFloat9) / (ContextSecondaryFloat2 - ContextPrimaryFloat9);
           if (0.0 <= SystemCoreScaleY) {
@@ -118052,7 +118052,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
           SystemCoreScaleY = (float)SystemCallFloatConversion(StackParameterUnsigned20,
                                               (long long)(IntegerValue9 + AdditionalParameter2) % (long long)AdditionalParameter1 &
                                               0xffffffff);
-          ProcessedCharacter = StackParameterUnsigned20;
+          ProcessedCharacter = SystemStackParameter;
           SystemCoreScaleX = (float)SystemCallFloatConversion(StackParameterUnsigned20,
                                               (long long)(IntegerValue9 + AdditionalParameter2 + 1) % (long long)AdditionalParameter1 &
                                               0xffffffff);
@@ -127364,7 +127364,7 @@ void ExecuteSystemMemoryOperation(uint64_t ContextHandle,uint64_t OperationBuffe
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = Utf8SourcePointer;
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ValidateSystemStatus(ContextHandle,OperationBufferSize,&ProcessingConfigurationFlag);
   return;
 }
@@ -154867,7 +154867,7 @@ ea30(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePoin
   
   uStackX_10 = OperationBufferSize;
   ProcessingConfigurationFlag = Utf8SourcePointer;
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   if (*(char *)(SystemConfigurationHandle + 0x1dd1) == '\0') {
     InitializeSystemComponentsEx(ContextHandle,1);
   }
@@ -176333,7 +176333,7 @@ void InitializeSystemCharacterProcessing(void)
     CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x2e40);
     uStackX_10 = OperationBufferSize;
     ProcessingConfigurationFlag = Utf8SourcePointer;
-    StackParameterUnsigned20 = Utf16EndPointer;
+    SystemStackParameter = Utf16EndPointer;
     if (CharacterTablePointer != 0) {
       PrimaryProcessingStatusFlag = (void *)GetSystemMemoryInfo();
       __stdio_common_vfprintf(*PrimaryProcessingStatusFlag,LoopCounter,ContextHandle,0,&uStackX_10);
@@ -194682,7 +194682,7 @@ InitializeMemoryPoolManager(long long *ContextHandle,long long *ContextHandleSiz
   SystemContextRegister = ContextHandle;
   SystemRegisterPointerX10 = OperationBufferSize;
   lStackX_18 = Utf8SourcePointer;
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   if ((char)SystemMemoryManager[0x42] != '\0') {
     BufferAllocationState = (long long *)SystemMemoryManager[0x3d];
     *ContextHandleSize = (long long)BufferAllocationState;
@@ -205169,7 +205169,7 @@ LAB_18016a086:
     if (EnginePointerBuffer != NULL) {
         ProcessSystemEventHandling();
     }
-    StackParameterUnsigned20 = 0;
+    SystemStackParameter = 0;
     Utf16Char4 = (long long)pStringOffset - (long long)SystemContextRegister >> 3;
     StackProcessingDataSize = Utf16Char4;
     if (Utf16Char4 != 0) {
@@ -207019,7 +207019,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
   uint32_t unaff_XMM6_Db;                             // XMM6寄存器Db
   uint32_t FloatingPointRegisterC;                    // 浮点寄存器C
   uint32_t unaff_XMM6_Dd;                             // XMM6寄存器Dd
-  uint32_t aStackParameterUnsigned20 [2];                           // 栈数组X_20
+  uint32_t SystemStackParameterArray [2];                           // 栈数组X_20
   uint64_t StackProcessingParameter3;                 // 栈处理参数3
   
   *(void *)(ProcessingResult + 0x10) = SystemContext;
@@ -208956,7 +208956,7 @@ ProcessUtf8ToUtf16ConversionAdvanced(uint64_t *ContextHandle,uint64_t OperationB
   uint64_t SystemStackParameter;
   
   StringLength = 0;
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   if ((Utf8SourcePointer[1] - *Utf8SourcePointer & 0xffffffffffffffe0U) == 0) {
     *(bool *)(*(long long *)(CoreEngineSystemContext + 0x3d8) + 0xae0) =
          *(char *)(*(long long *)(CoreEngineSystemContext + 0x3d8) + 0xae0) == '\0';
@@ -228966,7 +228966,7 @@ void ReallocateCharacterStatusBufferAndCopy32BitData(long long *CharacterStatusB
   unsigned long long CurrentCapacity;
   unsigned long long RequiredElementCount;
   long long MemoryBoundaryEnd;
-  uint8_t aStackParameterUnsigned20 [8];
+  uint8_t SystemStackParameterArray [8];
   
   OldBufferPointer = *CharacterStatusBuffer;
   OperationResult = OperationResult - SourceData;
@@ -229480,7 +229480,7 @@ void ProcessUtf16CharacterConversionPrimary(uint64_t ContextHandle, uint32_t *Co
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterPrimary,&ProcessingConfigurationFlag);
   return;
 }
@@ -229509,7 +229509,7 @@ void ProcessUtf16CharacterConversionSecondary(uint64_t ContextHandle, uint32_t *
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSecondary,&ProcessingConfigurationFlag);
   return;
 }
@@ -229538,7 +229538,7 @@ void ProcessUtf16CharacterConversionTertiary(uint64_t ContextHandle, uint32_t *C
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterTertiary,&ProcessingConfigurationFlag);
   return;
 }
@@ -229567,7 +229567,7 @@ void ProcessUtf16CharacterConversionQuaternary(uint64_t ContextHandle, uint32_t 
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuaternary,&ProcessingConfigurationFlag);
   return;
 }
@@ -229596,7 +229596,7 @@ void ProcessUtf16CharacterConversionQuinary(uint64_t ContextHandle, uint32_t *Co
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuinary,&ProcessingConfigurationFlag);
   return;
 }
@@ -229625,7 +229625,7 @@ void ProcessUtf16CharacterConversionSenary(uint64_t ContextHandle, uint32_t *Con
   uint64_t SystemStackParameter;
   
   ProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
-  StackParameterUnsigned20 = Utf16EndPointer;
+  SystemStackParameter = Utf16EndPointer;
   ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSenary,&ProcessingConfigurationFlag);
   return;
 }
@@ -231781,7 +231781,7 @@ void DecodeSystemCharacterData(uint64_t ContextHandle,uint64_t OperationBufferSi
   char *SystemValidationFunction2;
   char *SystemValidationFunction3;
   uint64_t SystemRegisterFlag;
-  uint8_t aStackParameterUnsigned20 [8];
+  uint8_t SystemStackParameterArray [8];
   void *EncodingBuffer;
   byte *pbStack_58;
   int iStack_50;
