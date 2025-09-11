@@ -249777,7 +249777,7 @@ void ProcessFloatArraySortingAndInsertion(float *ContextHandle,float *ContextHan
   unsigned long long LoopCounter;
   bool ComparisonFlag;
   
-  SystemMemoryAllocationResult = (long long)OperationBufferSize - (long long)ContextHandle >> 2;
+  ArraySize = (long long)OperationBufferSize - (long long)ContextHandle >> 2;
   if (1 < (long long)SystemMemoryAllocationResult) {
     SystemChecksum = ((long long)(SystemMemoryAllocationResult - 2) >> 1) + 1;
     MemoryAddressMaskPointer = SystemChecksum * 2 + 2;
