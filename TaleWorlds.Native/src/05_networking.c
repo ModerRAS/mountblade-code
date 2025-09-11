@@ -5650,8 +5650,8 @@ static void SendConnectionTerminationNotification(NetworkConnectionContext *conn
 {
     // 简化实现：仅更新连接状态
     // 实际实现应该发送终止数据包并等待确认
-    if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionStatus |= 0x80;  // 设置终止标志
+    if (connectionContext) {
+        connectionContext->connectionStatus |= 0x80;  // 设置终止标志
     }
 }
 
@@ -5666,9 +5666,9 @@ static void ReleaseConnectionResources(NetworkConnectionContext *connectionConte
 {
     // 简化实现：仅重置连接句柄
     // 实际实现应该释放所有相关资源
-    if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionHandle = NetworkErrorInvalidHandle;
-        NetworkConnectionContext->connectionStatus = 0;
+    if (connectionContext) {
+        connectionContext->connectionHandle = NetworkErrorInvalidHandle;
+        connectionContext->connectionStatus = 0;
     }
 }
 
