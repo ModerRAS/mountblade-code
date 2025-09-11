@@ -241380,21 +241380,21 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
  */
 void ProcessContextMemoryPoolIteration(long long ContextHandle, uint32_t OperationBufferSize)
 {
-  long long *ContextHandle;
+  long long *PoolContextHandle;
   unsigned long long MemoryPoolIndex;
-  uint UnicodeCodePoint;
-  unsigned long long MemoryOffsetValue;
+  uint IterationCounter;
+  unsigned long long ContextMemoryOffset;
   
   MemoryPoolIndex = 0;
-  MemoryAddressMaskPointer = MemoryPoolIndex;
+  ContextMemoryOffset = MemoryPoolIndex;
   if (*(long long *)(ContextHandle + 0xe8) - *(long long *)(ContextHandle + 0xe0) >> 3 != 0) {
     do {
-      ContextHandle = *(long long **)(MemoryPoolIndex + *(long long *)(ContextHandle + 0xe0));
-      (**(code **)(*ContextHandle + 0x10))(ContextHandle,ContextHandle,OperationBufferSize);
+      PoolContextHandle = *(long long **)(MemoryPoolIndex + *(long long *)(ContextHandle + 0xe0));
+      (**(code **)(*PoolContextHandle + 0x10))(PoolContextHandle, PoolContextHandle, OperationBufferSize);
       MemoryPoolIndex = MemoryPoolIndex + 8;
-      UnicodeCodePoint = (int)MemoryAddressMaskPointer + 1;
-      MemoryAddressMaskPointer = (unsigned long long)UnicodeCodePoint;
-    } while ((unsigned long long)(long long)(int)UnicodeCodePoint <
+      IterationCounter = (int)ContextMemoryOffset + 1;
+      ContextMemoryOffset = (unsigned long long)IterationCounter;
+    } while ((unsigned long long)(long long)(int)IterationCounter <
              (unsigned long long)(*(long long *)(ContextHandle + 0xe8) - *(long long *)(ContextHandle + 0xe0) >> 3));
   }
   return;
