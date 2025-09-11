@@ -62,8 +62,8 @@
 #define ValidateSystemContextEx FUN_18018b8c0                      // 验证系统上下文扩展
 #define ProcessSystemMemoryAllocationEx FUN_18018b9e0              // 处理系统内存分配扩展
 #define HandleSystemContextValidationEx FUN_18018bbd0               // 处理系统上下文验证扩展
-#define ProcessSystemHandleOperationEx FUN_18018bd0d                // 处理系统句柄操作扩展
-#define ResetSystemDataProcessingEx FUN_18018bd5f                  // 重置系统数据处理扩展
+#define ProcessSystemHandleOperationEx FUN_18018bd0d                // 处理系统句柄验证和操作扩展
+#define ResetSystemDataProcessingEx FUN_18018bd5f                  // 重置系统数据处理和状态扩展
 #define ExecuteSystemStringEncodingOperationEx FUN_18018c050       // 执行系统字符串编码操作扩展
 #define ProcessSystemUnicodeConversionEx FUN_18018cef0              // 处理系统Unicode转换扩展
 #define HandleSystemStringEncodingEx FUN_18018e0f0                 // 处理系统字符串编码扩展
@@ -247,7 +247,6 @@
 #define FUN_18018e0f0 HandleSystemStringEncoding                        // 处理系统字符串编码
 #define FUN_18018f6a0 ProcessSystemContextOperation                      // 处理系统上下文操作
 #define FUN_18018fb50 InitializeSystemDataProcessor                      // 初始化系统数据处理器
-#define FUN_18018bd0d ProcessSystemHandleValidation                      // 处理系统句柄验证
 #define FUN_18018bd5f ResetSystemHandleState                            // 重置系统句柄状态
 #define FUN_18019067c ValidateSystemHandle                               // 验证系统句柄
 #define FUN_180190743 ResetSystemOperationState                         // 重置系统操作状态
@@ -251588,7 +251587,23 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
 
 
 
-uint64_t * FUN_180206260(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 处理UTF-16字符转换和上下文复制
+ * 
+ * 该函数负责处理UTF-16字符的转换操作，主要功能包括：
+ * - 复制上下文句柄和大小信息
+ * - 处理UTF-16字符的保存和恢复
+ * - 执行缓冲区分配状态的回调函数
+ * - 管理字符转换的内存操作
+ * 
+ * @param ContextHandle 目标上下文句柄指针
+ * @param ContextHandleSize 源上下文大小指针
+ * @return 返回处理后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180206260
+ */
+#define ProcessUtf16CharacterConversionAndContextCopy FUN_180206260
+uint64_t * ProcessUtf16CharacterConversionAndContextCopy(uint64_t *ContextHandle,uint64_t *ContextHandleSize
 {
   uint64_t Utf16Char;
   long long *BufferAllocationState;
