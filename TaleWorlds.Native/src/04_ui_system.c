@@ -245,6 +245,7 @@ typedef enum {
 #define ProcessUITargetBufferOperation FUN_18073a590              // 处理UI目标缓冲区操作
 #define ProcessUIContextDataTransformAndRender FUN_18073a72d     // 处理UI上下文数据转换和渲染
 #define ProcessUIDataWithControlAndCopy FUN_18073a8dd                // 处理UI数据控制和复制操作
+#define ValidateUIContextAndExecuteRender FUN_18073a98b              // 验证UI上下文并执行渲染
 
 // UI系统函数指针变量定义
 #define _DAT_180d4a958 UIEventDispatchFunctionPointer           // UI事件调度函数指针
@@ -125672,8 +125673,20 @@ void ProcessUIDataWithControlAndCopy(void)
 
 
 
- void FUN_18073a98b(void)
-void FUN_18073a98b(void)
+ /**
+ * @brief 验证UI上下文并执行渲染任务
+ * 
+ * 该函数负责验证UI上下文的有效性，并执行相应的渲染任务。
+ * 包含内存资源释放和渲染任务执行的功能。
+ */
+void ValidateUIContextAndExecuteRender(void)
+/**
+ * @brief 验证UI上下文并执行渲染任务
+ * 
+ * 该函数负责验证UI上下文的有效性，并执行相应的渲染任务。
+ * 包含内存资源释放和渲染任务执行的功能。
+ */
+void ValidateUIContextAndExecuteRender(void)
 
 {
   longlong stackParam00000030;
