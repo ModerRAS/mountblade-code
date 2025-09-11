@@ -139062,12 +139062,12 @@ uint8_t SystemExceptionHandlerStateTable;
 #define TemporaryDataBufferA uStack_140
 
 // 栈数据缓冲区B
-// 功能：存储数据缓冲区的栈变量
-#define TemporaryDataBufferB uStack_138
+// 功能：存储临时数据的缓冲区
+#define StackTemporaryDataBufferB uStack_138
 
 // 栈数据字J
 // 功能：存储异常上下文的数据字1
-#define StackExceptionContextData1 uStack_130
+#define StackExceptionContextWord1 uStack_130
 
 // 栈数据字K
 // 功能：存储异常上下文的数据字2
