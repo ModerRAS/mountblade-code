@@ -199112,7 +199112,7 @@ void ProcessCharacterEncodingAndBufferConversion(uint64_t ContextHandle, uint64_
   char SystemStackCharacter128;
   uint SystemStackUnsigned132;
   
-  ProcessEngineDataTransfer(ContextHandle,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
+  ProcessEngineDataTransfer(ContextHandle,&StackDataBuffer80,Utf8SourcePointer,Utf16EndPointer,1);
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,*(uint8_t *)(SystemDataNode + 0x2c));
   *PrimaryProcessingStatusFlag = *SystemContext;
   PrimaryProcessingStatusFlag[1] = 0;
@@ -199641,7 +199641,7 @@ void ConvertUtf8ToUtf16(uint64_t ContextHandle,uint64_t OperationBufferSize,uint
   char SystemStackCharacter128;
   uint SystemStackUnsigned132;
   
-  ProcessEngineDataTransfer(ContextHandle,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
+  ProcessEngineDataTransfer(ContextHandle,&StackDataBuffer80,Utf8SourcePointer,Utf16EndPointer,1);
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x48,*(uint8_t *)(SystemDataNode + 0x2c));
   *PrimaryProcessingStatusFlag = *SystemContext;
   *(void *)(PrimaryProcessingStatusFlag + 1) = 0;
@@ -205945,7 +205945,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
       if (TemporaryBuffer != NULL) {
         SystemCharacterStatusPointer = TemporaryBuffer;
       }
-      ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&stack0x00000090);
+      ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,ComputedResult == IntegerValue,0,&StackValidationBuffer90);
       if (ValidationStatus != '\0') {
         *(int *)(ContextHandle + 0x68) = IntegerValue;
       }
@@ -226307,7 +226307,7 @@ LAB_18018802f:
     else if (-1 < InputDataLength) goto LAB_18018802f;
   }
   SystemDataRegistry = ProcessSystemEventDispatcher(ContextHandle);
-  ProcessSystemMemoryValidation(ContextHandle,&stack0x00000080,SecondaryProcessingStatusFlag,SystemDataRegistry + 0x20,SystemDataRegistry);
+  ProcessSystemMemoryValidation(ContextHandle,&StackMemoryBuffer80,SecondaryProcessingStatusFlag,SystemDataRegistry + 0x20,SystemDataRegistry);
   return (void *)(StackProcessingParameter3 + 0x40);
 }
 
@@ -287899,7 +287899,7 @@ long long GetSystemParameterAndStackFrameOffset(void
     ProcessedFloatValue8 = afStackX_20[CalculatedCodePoint * 4] * aSystemStatusCode.LowPart;
     NormalizedParameterValue = afStackX_20[CalculatedCodePoint * 4 + 1] * aSystemStatusCode.HighPart;
     SecondaryFloatValue = *(float *)(&EmergencyStackBuffer + CalculatedCodePoint * 0x10) * aSystemStatusCode._8_4_;
-    SystemCoreScaleY = *(float *)(&stack0x0000002c + CalculatedCodePoint * 0x10) * aSystemStatusCode.High32Part;
+    SystemCoreScaleY = *(float *)(&StackFloatBuffer2C + CalculatedCodePoint * 0x10) * aSystemStatusCode.High32Part;
     if (BaseFloatValue < (float)((uint)PrimaryFloatValue & in_XMM5_Da)) {
       SystemContextPrimaryFloat4 = ProcessedFloatValue8 * 0.7 + 0.3;
       SystemFloatValue = NormalizedParameterValue * 0.7 + 0.0;
