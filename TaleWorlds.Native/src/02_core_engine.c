@@ -232796,7 +232796,7 @@ LAB_1801909bf:
 
 
 
-90a20(uint64_t *ContextHandle,uint64_t *ContextHandleSizevoid FUN_180190a20(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+void SetupSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHandleSize)
 {
   uint64_t Utf16Char;
   void *SystemContext;
@@ -232831,7 +232831,7 @@ LAB_1801909bf:
 
 
 
-90a35(uint64_t *ContextHandle,uint64_t *ContextHandleSizevoid FUN_180190a35(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+void CompleteSystemContextTransfer(uint64_t *ContextHandle,uint64_t *ContextHandleSize)
 {
   uint64_t Utf16Char;
   void *SystemContext;
@@ -242583,19 +242583,19 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
   FUN_18019cf00(OperationBufferSize + 0x125b8,StringOffset);
   StringOffset = *(long long *)(OperationBufferSize + 0x12608);
   if (StringOffset != 0) {
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigB);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigB);
     *(void *)(OperationBufferSize + 0x12610) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigC);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigC);
     *(void *)(OperationBufferSize + 0x12618) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigD);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigD);
     *(void *)(OperationBufferSize + 0x12620) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigE);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigE);
     *(void *)(OperationBufferSize + 0x12628) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigF);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigF);
     *(void *)(OperationBufferSize + 0x12630) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigG);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigG);
     *(void *)(OperationBufferSize + 0x12638) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(StringOffset,&SystemProcessingConfigH);
+    ProcessingStatusFlag = ProcessSystemDataComparison(StringOffset,&SystemProcessingConfigH);
     *(void *)(OperationBufferSize + 0x12640) = ProcessingStatusFlag;
   }
   shouldReturnSource = true;
