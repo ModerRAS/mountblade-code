@@ -42903,7 +42903,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer operationBase,int64_t *dataBuffer)
   }
   ValidationFlags[0] = 0;
   validationStatus = ValidateDataSecurityA0(dataBuffer,ValidationFlags);
-  if ((int)validationStatus == 0x12) {
+  if ((int)validationStatus == DataValidationSecurityCheckRequired) {
 ValidationDataHandler:
       ExecutePortControlOperation(dataBuffer,SystemSecurityBuffer);
   }
