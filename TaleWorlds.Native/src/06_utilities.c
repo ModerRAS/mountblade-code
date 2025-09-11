@@ -19069,6 +19069,8 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
   uint64_t systemModuleOperationResult;        // 系统模块操作结果
   int32_t moduleInitializationStatus;          // 模块初始化状态
   uint32_t gameMessageProcessingStatus;        // 游戏消息处理状态
+  int64_t stackMemoryContext;                  // 栈内存上下文
+  int64_t systemResourceContext;              // 系统资源上下文
   
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_SECONDARY_CONFIG_OFFSET),&temporarySystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
