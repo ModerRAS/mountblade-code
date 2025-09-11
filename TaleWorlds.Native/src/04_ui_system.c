@@ -128071,8 +128071,26 @@ LAB_18073be58:
 
  
 
- void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
-void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
+ /**
+ * @brief 执行UI上下文数据处理和结果管理操作
+ * 
+ * 该函数负责处理UI上下文数据和结果管理，包括：
+ * 1. 初始化UI上下文和相关参数
+ * 2. 执行数据验证和控制操作
+ * 3. 处理结果数据和管理操作
+ * 4. 根据需要释放内存资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI上下文
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * 
+ * @return void 无返回值，通过内部状态码表示操作结果
+ * 
+ * @note 原始函数名：FUN_18073be90
+ * @note 该函数是UI数据处理和结果管理的重要组成部分
+ * @see ProcessUIContextWithCleanup, ProcessUIDataAndCompare, ExecuteUIContextDataOperation
+ */
+#define ProcessUIContextWithResultManagement FUN_18073be90
+void ProcessUIContextWithResultManagement(UIHandle uiContext,UIDword dataSource)
 
 {
   int operationResult;
