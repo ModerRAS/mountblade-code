@@ -1141,6 +1141,44 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ReceiveNetworkData FUN_1800589d0                       // 接收网络数据
 #define CloseNetworkConnection FUN_1800589f0                   // 关闭网络连接
 #define ValidateNetworkConnection FUN_180058a10                // 验证网络连接
+
+/**
+ * @brief 初始化网络连接
+ * 
+ * 初始化系统的网络连接，为网络通信做准备
+ * 该函数负责：
+ * 1. 初始化网络套接字库
+ * 2. 创建网络套接字
+ * 3. 配置网络参数
+ * 4. 建立网络连接
+ * 
+ * @param serverAddress 服务器地址
+ * @param serverPort 服务器端口
+ * @param connectionTimeout 连接超时时间（毫秒）
+ * @return 连接结果状态码：
+ *         - 0: 连接成功
+ *         - 非0值: 连接失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180058990
+ * @warning 网络连接初始化失败可能导致系统无法进行网络通信
+ * @see SendNetworkData, ReceiveNetworkData, CloseNetworkConnection
+ */
+#define InitializeNetworkConnection FUN_180058990
+
+/**
+ * @brief 发送网络数据
+ * 
+ * 通过网络连接发送数据到远程服务器
+ * 
+ * @param connectionHandle 网络连接句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param dataSize 要发送的数据大小（字节）
+ * @param sendFlags 发送标志
+ * @return 实际发送的字节数，发送失败返回-1
+ * 
+ * @note 原始函数名：FUN_1800589b0
+ */
+#define SendNetworkData FUN_1800589b0
 #define SystemParameterProcessingFlagOffset 0x4d             // 系统参数处理标志偏移量
 #define SystemParameterMemoryAllocationOffset 0x54           // 系统参数内存分配偏移量
 
