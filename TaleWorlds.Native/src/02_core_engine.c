@@ -255379,9 +255379,22 @@ void ProcessSystemCharacterBufferAndStatusManagement(void)
 
 
 
-085f8(long long ContextHandlevoid FUN_1802085f8(long long ContextHandle
+// 函数: void FUN_1802085f8(long long ContextHandle)
+/**
+ * @brief 设置系统上下文状态标志
+ * 
+ * 该函数负责设置系统上下文的状态标志，主要功能包括：
+ * - 将上下文句柄的状态标志设置为1
+ * - 表示系统上下文已经完成初始化或处理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * 
+ * @note 原始函数名：FUN_1802085f8
+ */
+#define SetSystemContextStatusFlag FUN_1802085f8
+void SetSystemContextStatusFlag(long long SystemContextHandle)
 {
-  *(uint8_t *)(ContextHandle + 0x41) = 1;
+  *(uint8_t *)(SystemContextHandle + 0x41) = 1;
   return;
 }
 
