@@ -191060,7 +191060,7 @@ void ProcessContextHandleEvent(uint64_t ContextHandle)
  */
 uint64_t * InitializeContextHandleProcessingSystem(uint64_t *ContextHandle)
 {
-  long long *SystemDataPointer;
+  long long *systemDataPointer;
   
   // 设置主数据结构和次数据结构
   *ContextHandle = &SystemPrimaryDataStructure;
@@ -293613,7 +293613,7 @@ void InitializeSystemFlag(long long *ContextHandle,long long *ContextHandleSize,
 
 void CleanupSystemCharacterData(uint64_t *ContextHandle
 {
-  long long *SystemDataPointer;
+  long long *systemDataPointer;
   
   if (ContextHandle[1] != 0) {
     if (*(char *)((long long)ContextHandle + 0x32) != '\0') {
