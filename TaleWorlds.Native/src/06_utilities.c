@@ -3087,6 +3087,7 @@
 #define ExceptionHandlerSecondaryStateOffset8c8 0x8c8 // 异常处理器次级状态偏移量8c8
 #define ExceptionHandlerSecondaryFlagOffset8d8 0x8d8   // 异常处理器次级标志偏移量8d8
 #define ExceptionHandlerTertiaryOffset8a0 0x8a0        // 异常处理器三级偏移量8a0
+#define ExceptionDataBufferOffsetD0 0xd0                 // 异常数据缓冲区偏移量D0
 #define ExceptionHandlerTertiaryStateOffset8a8 0x8a8   // 异常处理器三级状态偏移量8a8
 #define ExceptionHandlerTertiaryFlagOffset8b8 0x8b8   // 异常处理器三级标志偏移量8b8
 #define ExceptionHandlerQuaternaryOffset880 0x880      // 异常处理器四级偏移量880

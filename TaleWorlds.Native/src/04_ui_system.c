@@ -136165,7 +136165,21 @@ UIHandle FUN_180743e50(longlong uiContext)
 
 
 
- void FUN_180743e90(UIHandle *uiContext)
+ /**
+ * @brief 初始化UI上下文和资源
+ * 
+ * 该函数负责初始化UI系统的上下文结构和相关资源。
+ * 执行以下主要操作：
+ * - 设置UI上下文的基础指针和内存结构
+ * - 初始化UI组件的状态和句柄
+ * - 配置UI系统的内存管理器
+ * - 建立UI事件处理的基础设施
+ * 
+ * @param uiContext UI上下文句柄指针，用于存储初始化后的UI上下文
+ * 
+ * @note 原始函数名：FUN_180743e90
+ * @note 这是UI系统初始化的核心函数，负责建立完整的UI运行时环境
+ */
 void FUN_180743e90(UIHandle *uiContext)
 
 {
