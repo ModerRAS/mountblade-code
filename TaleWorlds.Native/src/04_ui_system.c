@@ -130710,8 +130710,8 @@ void ProcessUIRenderTaskWithExceptionHandling(void)
 
 
 
- void FUN_18073d4da(void)
-void FUN_18073d4da(void)
+ void ProcessUIRenderTaskWithMemoryManager(void)
+void ProcessUIRenderTaskWithMemoryManager(void)
 
 {
   ulonglong stackParam00000140;
@@ -130725,8 +130725,8 @@ void FUN_18073d4da(void)
 
  
 
- void FUN_18073d500(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
-void FUN_18073d500(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
+ void ProcessUIDataBufferOperationA(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
+void ProcessUIDataBufferOperationA(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
                   UIDword resultPointer)
 
 {
@@ -130837,8 +130837,8 @@ FUN_18073d683:
 
 
 
- void FUN_18073d59f(void)
-void FUN_18073d59f(void)
+ void ProcessUIResourceCleanupTask(void)
+void ProcessUIResourceCleanupTask(void)
 
 {
   int operationResult;
