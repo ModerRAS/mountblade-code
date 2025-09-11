@@ -407140,6 +407140,21 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_18073af9f ReleaseUIMemoryAndExecuteRender         // 释放UI内存并执行渲染 - 释放UI内存资源并执行渲染操作
 #define FUN_18073afc0 ProcessUIDataBufferWithParameters       // 处理带参数的UI数据缓冲区 - 处理带参数的UI数据缓冲区操作
 #define FUN_18073afdd ProcessUIDataBufferWithExtendedParams  // 处理带扩展参数的UI数据缓冲区 - 处理带扩展参数的UI数据缓冲区操作
+#define FUN_18073b058 ResetUIDataBufferState                  // 重置UI数据缓冲区状态 - 重置UI数据缓冲区的状态
+#define FUN_18073b13d ValidateUIComponentMemory              // 验证UI组件内存 - 验证UI组件的内存分配
+#define FUN_18073b16f InitializeUIRenderingContext           // 初始化UI渲染上下文 - 初始化UI渲染的上下文
+#define FUN_18073b190 ProcessUIDataBufferWithDWordSource     // 处理双字源数据的UI缓冲区 - 处理双字源数据的UI缓冲区操作
+#define FUN_18073b1ad ProcessUIDataBufferWithDWordParams     // 处理双字参数的UI缓冲区 - 处理双字参数的UI缓冲区操作
+#define FUN_18073b215 CleanupUIRenderContext                  // 清理UI渲染上下文 - 清理UI渲染的上下文数据
+#define FUN_18073b2c4 ValidateUIDataBufferIntegrity          // 验证UI数据缓冲区完整性 - 验证UI数据缓冲区的完整性
+#define FUN_18073b2ee InitializeUIComponentData              // 初始化UI组件数据 - 初始化UI组件的数据
+#define FUN_18073b310 ProcessUIDataSourceWithContext          // 处理带上下文的UI数据源 - 处理带上下文的UI数据源
+#define FUN_18073b3e0 ProcessUIThreeParameterBuffer           // 处理三参数UI缓冲区 - 处理三参数的UI缓冲区操作
+#define FUN_18073b3fd ProcessUIDataWithTargetBuffer           // 处理带目标缓冲区的UI数据 - 处理带目标缓冲区的UI数据
+#define FUN_18073b457 ReleaseUIComponentResources             // 释放UI组件资源 - 释放UI组件的资源
+#define FUN_18073b4cf InitializeUIDataTransfer               // 初始化UI数据传输 - 初始化UI数据的传输
+#define FUN_18073b4f1 FinalizeUIDataTransfer                  // 完成UI数据传输 - 完成UI数据的传输
+#define FUN_18073b520 ProcessUIContextWithHandle              // 处理带句柄的UI上下文 - 处理带句柄的UI上下文
 
 // 补充缺失的UI系统变量定义
 #define astackUIntf8 UITransformFactorStackF8                // UI变换因子栈F8 - 用于存储UI变换的因子数据
