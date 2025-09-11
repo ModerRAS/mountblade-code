@@ -1024,8 +1024,8 @@ typedef enum {
 #define ExecuteUIContextDataOperation ExecuteUIContextDataOperation                // 执行UI上下文数据操作 - 执行UI上下文数据的操作
 #define ProcessUIWordDataTransfer FUN_180724090                    // 处理UI字数据传输 - 处理UI字数据的传输
 #define ProcessUIWordDataValidation FUN_1807234d0                  // 处理UI字数据验证 - 处理UI字数据的验证
-#define FUN_1807238f3 GetUIWordDataPointer                         // 获取UI字数据指针 - 获取UI字数据的指针
-#define FUN_18072390f CalculateUIComponentSimilarityScore         // 计算UI组件相似度得分 - 计算UI组件的相似度得分
+#define GetUIWordDataPointer FUN_1807238f3                         // 获取UI字数据指针 - 获取UI字数据的指针
+#define CalculateUIComponentSimilarityScore FUN_18072390f         // 计算UI组件相似度得分 - 计算UI组件的相似度得分
 #define FUN_180723ee0 ProcessUICharacterDataValidation            // 处理UI字符数据验证 - 处理UI字符数据的验证
 #define FUN_180723c9b UIEmptyProcessingFunction                    // UI空处理函数 - 执行空处理的函数
 
