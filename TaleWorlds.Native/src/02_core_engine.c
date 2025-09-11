@@ -256296,17 +256296,17 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
   long long SystemStackRegisterValue;
   long long CoreEngineSignedValue;
   
-  if (((*(char *)((long long)ContextHandle + 0x41) != '\0') ||
-      (SystemStringIndex = SUB168(SEXT816(-0x7777777777777777) * SEXT816(ContextHandle[1] - *ContextHandle),8) +
-                (ContextHandle[1] - *ContextHandle), SystemStringIndex >> 6 == SystemStringIndex >> 0x3f)) ||
-     ((SystemStringIndex = ContextHandle[7], SystemStringIndex == 0 &&
-      ((Utf16EndPointer < 1 && (*(float *)((long long)ContextHandle + 0x2c) <= 0.0)))))) {
-    SystemStringIndex = *ContextHandle;
+  if (((*(char *)((long long)SystemContextHandle + 0x41) != '\0') ||
+      (SystemStringIndex = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - *SystemContextHandle),8) +
+                (SystemContextHandle[1] - *SystemContextHandle), SystemStringIndex >> 6 == SystemStringIndex >> 0x3f)) ||
+     ((SystemStringIndex = SystemContextHandle[7], SystemStringIndex == 0 &&
+      ((Utf16EndPointer < 1 && (*(float *)((long long)SystemContextHandle + 0x2c) <= 0.0)))))) {
+    SystemStringIndex = *SystemContextHandle;
     MemoryAllocationOffset = 0;
-    BufferIndex = SUB168(SEXT816(-0x7777777777777777) * SEXT816(ContextHandle[1] - SystemStringIndex),8) +
-             (ContextHandle[1] - SystemStringIndex);
+    BufferIndex = SUB168(SEXT816(-0x7777777777777777) * SEXT816(SystemContextHandle[1] - SystemStringIndex),8) +
+             (SystemContextHandle[1] - SystemStringIndex);
     MemoryAllocationBase = MemoryAllocationOffset;
-    MemoryPoolIndexSecondary = MemoryAllocationOffset;
+    SecondaryMemoryPoolIndex = MemoryAllocationOffset;
     if (BufferIndex >> 6 != BufferIndex >> 0x3f) {
       do {
         BufferIndex = *(long long *)(SystemStringIndex + MemoryPoolIndexSecondary);
@@ -256339,19 +256339,19 @@ void ProcessSystemFloatDataOperation(long long *SystemContextHandle, unsigned lo
     }
   }
   else {
-    FilterInputValue0 = 1.0;
-    MemoryPoolIndexSecondary = 0;
-    uStackX_10 = OperationBufferSize & 0xffffffff00000000;
-    MemoryAllocationBase = MemoryPoolIndexSecondary;
+    FilterInputValue = 1.0;
+    SecondaryMemoryPoolIndex = 0;
+    SystemStackValue = OperationBufferSize & 0xffffffff00000000;
+    MemoryAllocationBase = SecondaryMemoryPoolIndex;
     if (SystemStringIndex != 0) {
-      MatrixTransformElementC = 1.0 - *(float *)((long long)ContextHandle + 0x2c);
-      FUN_180208f20(MatrixTransformElementC,SystemStringIndex,&uStackX_10,(long long)ContextHandle + 0x44,MatrixTransformElementC);
-      MemoryAllocationBase = uStackX_10 & 0xffffffff;
+      MatrixTransformElement = 1.0 - *(float *)((long long)SystemContextHandle + 0x2c);
+      FUN_180208f20(MatrixTransformElement,SystemStringIndex,&SystemStackValue,(long long)SystemContextHandle + 0x44,MatrixTransformElement);
+      MemoryAllocationBase = SystemStackValue & 0xffffffff;
     }
-    if (ContextHandle[4] != 0) {
-      FUN_180208f20(ContextHandle,ContextHandle[4],&uStackX_10,(long long)ContextHandle + 0x44,
-                    *(uint32_t *)((long long)ContextHandle + 0x2c));
-      MemoryAllocationBase = uStackX_10 & 0xffffffff;
+    if (SystemContextHandle[4] != 0) {
+      FUN_180208f20(SystemContextHandle,SystemContextHandle[4],&SystemStackValue,(long long)SystemContextHandle + 0x44,
+                    *(uint32_t *)((long long)SystemContextHandle + 0x2c));
+      MemoryAllocationBase = SystemStackValue & 0xffffffff;
     }
     MemoryAllocationOffset = MemoryPoolIndexSecondary;
     if (0 < (long long)Utf16EndPointer) {
