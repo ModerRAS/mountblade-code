@@ -143696,8 +143696,8 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 // === 新增的系统功能语义化定义 ===
 
 // 系统内存管理相关变量语义化定义
-#define SystemMemoryPoolManager UNK_180c4f450              // 系统内存池管理器 - 负责系统内存池的分配和管理
-#define SystemMemoryAllocator UNK_180c4f460                // 系统内存分配器 - 负责系统内存的分配操作
+#define SystemMemoryPoolManager SystemMemoryPoolManager              // 系统内存池管理器 - 负责系统内存池的分配和管理
+#define SystemMemoryAllocator SystemMemoryAllocator                // 系统内存分配器 - 负责系统内存的分配操作
 // 系统内存管理器指针
 #define SystemMemoryManagerPointer SystemPrimaryMemoryManager
 
