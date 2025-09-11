@@ -247122,31 +247122,31 @@ void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int Sy
   void *SystemProcessingCounterArray [22];
   unsigned long long SystemBufferOffset;
   
-  AllocatedMemorySize = SystemMemoryAllocatorA;
-  uStack_118 = 0xfffffffffffffffe;
-  BufferOffset = EncodingDecodingKey ^ (unsigned long long)SystemUintBuffer238;
-  Utf16Char4 = 0;
-  MemoryAllocationHandle = 0;
-  uStack_1c0 = 0;
-  lStack_120 = SystemMemoryAllocatorA;
-  ppBufferInitializationFlag = Utf8SourcePointer;
-  pCoreEnginePointerBuffer = Utf8SourcePointer;
-  if (OperationBufferSize == 1) {
-    PrimaryProcessingStatusFlag8 = *(void **               ((long long)*(int *)(CoreEngineRenderContext + 0x1d40) * 0xd0 + 0x18 +
+  SystemAllocatedMemorySize = SystemMemoryAllocatorA;
+  SystemStackOffset118 = 0xfffffffffffffffe;
+  SystemBufferOffset = EncodingDecodingKey ^ (unsigned long long)SystemUintBuffer238;
+  SystemUtf16CharacterCode = 0;
+  SystemMemoryAllocationHandle = 0;
+  SystemStackVariable1C0 = 0;
+  SystemStackInteger120 = SystemMemoryAllocatorA;
+  SystemBufferInitializationFlagPointer = SystemUtf8SourcePointer;
+  SystemCoreEnginePointerBuffer = SystemUtf8SourcePointer;
+  if (SystemOperationBufferSize == 1) {
+    SystemPrimaryProcessingStatusFlag8 = *(void **               ((long long)*(int *)(CoreEngineRenderContext + 0x1d40) * 0xd0 + 0x18 +
                *(long long *)(CoreEngineRenderContext + 0x1d20));
-    pSystemStatusValue = &CoreEngineDataTemplate;
-    if (PrimaryProcessingStatusFlag8 != NULL) {
-      pSystemStatusValue = PrimaryProcessingStatusFlag8;
+    SystemStatusValuePointer = &CoreEngineDataTemplate;
+    if (SystemPrimaryProcessingStatusFlag8 != NULL) {
+      SystemStatusValuePointer = SystemPrimaryProcessingStatusFlag8;
     }
-    (**(code **)(*(long long *)(SystemMemoryAllocatorA + 0x20) + 0x10))(SystemMemoryAllocatorA + 0x20,pSystemStatusValue);
-    SystemStringIndex = ProcessMemoryStack(apProcessingCounter);
-    PrimaryProcessingStatusFlag8 = &CoreEngineDataTemplate;
-    if (*(void **)(SystemStringIndex + 8) != NULL) {
-      PrimaryProcessingStatusFlag8 = *(void **)(SystemStringIndex + 8);
+    (**(code **)(*(long long *)(SystemMemoryAllocatorA + 0x20) + 0x10))(SystemMemoryAllocatorA + 0x20,SystemStatusValuePointer);
+    SystemStringEncodingIndex = ProcessMemoryStack(SystemProcessingCounterArray);
+    SystemPrimaryProcessingStatusFlag8 = &CoreEngineDataTemplate;
+    if (*(void **)(SystemStringEncodingIndex + 8) != NULL) {
+      SystemPrimaryProcessingStatusFlag8 = *(void **)(SystemStringEncodingIndex + 8);
     }
-    (**(code **)(*(long long *)(AllocatedMemorySize + 0x40) + 0x10))(AllocatedMemorySize + 0x40,PrimaryProcessingStatusFlag8);
-    ppBufferInitializationFlag = apProcessingCounter;
-    apProcessingCounter[0] = &ThreadLocalStorageTemplate;
+    (**(code **)(*(long long *)(SystemAllocatedMemorySize + 0x40) + 0x10))(SystemAllocatedMemorySize + 0x40,SystemPrimaryProcessingStatusFlag8);
+    SystemBufferInitializationFlagPointer = SystemProcessingCounterArray;
+    SystemProcessingCounterArray[0] = &ThreadLocalStorageTemplate;
     InitializeSystemMemoryStack(AllocatedMemorySize + 0x40);
     *(uint32_t *)(AllocatedMemorySize + 0xd0) = 0x7f7fffff;
     *(uint32_t *)(AllocatedMemorySize + 200) = 0x7f7fffff;

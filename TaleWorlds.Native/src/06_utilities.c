@@ -142360,22 +142360,22 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
     
     // 参数验证
     if (DataBufferPointer == NULL || EncryptionKey == NULL) {
-        return -1; // 无效参数错误
+        return InvalidParametersError; // 无效参数错误
     }
     
     // 验证数据大小
     if (DataBufferSize == 0 || DataBufferSize > MaxSafeBufferSize) {
-        return -1; // 无效数据大小
+        return InvalidDataSize; // 无效数据大小
     }
     
     // 分配加密数据缓冲区
     EncryptedDataPointer = (uint8_t *)AllocateSystemMemoryA0(DataBufferSize);
     if (EncryptedDataPointer == NULL) {
-        return -3; // 内存分配失败
+        return MemoryAllocationFailed; // 内存分配失败
     }
     
     // 执行数据加密处理
-    if ((EncryptionFlags & 0x1) != 0) {
+    if ((EncryptionFlags & EncryptStandardMode) != 0) {
         // 标准加密模式
         while (ProcessedDataSize < DataBufferSize) {
             // 读取源数据
@@ -142392,16 +142392,16 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
     }
     
     // 执行加密验证
-    if ((EncryptionFlags & 0x2) != 0) {
+    if ((EncryptionFlags & EncryptValidateIntegrity) != 0) {
         ValidationStatus = ValidateEncryptedDataIntegrity(EncryptedDataPointer, DataBufferSize);
         if (ValidationStatus != 0) {
             ReleaseMemoryResourceA1(EncryptedDataPointer);
-            return -2; // 加密验证失败
+            return EncryptionValidationFailed; // 加密验证失败
         }
     }
     
     // 执行安全清理
-    if ((EncryptionFlags & 0x4) != 0) {
+    if ((EncryptionFlags & EncryptSecureCleanup) != 0) {
         SecureClearMemory(TemporaryEncryptionBuffer, sizeof(TemporaryEncryptionBuffer));
         SecureClearMemory(SourceDataPointer, DataBufferSize);
     }
@@ -142409,7 +142409,7 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
     // 释放加密数据缓冲区
     ReleaseMemoryResourceA1(EncryptedDataPointer);
     
-    return 0; // 加密成功
+    return EncryptionSuccess; // 加密成功
 }
 
 /**
