@@ -133377,7 +133377,7 @@ DataWord InitializeDataStructureA0(DataBuffer operationBase,int64_t dataBuffer)
   *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40) = operationBase;
   *(DataBuffer *)(dataBuffer + DataBufferOffset30) = operationBase;
   *(DataBuffer *)(dataBuffer + SystemFloatDataOffset38) = **(DataBuffer **)(dataBuffer + DataBufferOffset30);
-  if (**(int **)(dataBuffer + SystemFloatDataOffset38) != -0x1f928c9d) {
+  if (**(int **)(dataBuffer + SystemFloatDataOffset38) != SystemInitializationMagicNumber) {
     *(DataWord *)(dataBuffer + MemoryPointerOffset) = 0;
     return *(DataWord *)(dataBuffer + MemoryPointerOffset);
   }
