@@ -4973,6 +4973,13 @@ typedef enum {
 #define fStack_f4 UITimeOffsetF4
 #define fStack_f8 UIFadeOutFactor
 
+// UI系统更多栈变量美化
+#define stackLong148 UIContextOffset148
+#define stack0x00000038 UIProcessingFlag38
+#define stack0x00000030 UIValidationFlag30
+#define stackUInt120 UIBufferSize120
+#define stackLong118 UIContextOffset118
+
 // UI系统浮点数栈变量语义化定义
 #define fStack_180 UIAnimationSpeedFactor180                // UI动画速度因子180 - 用于控制UI动画播放速度的因子
 #define fStack_17c UITransformCoefficient17c               // UI变换系数17C - 用于UI元素变换计算的系数
