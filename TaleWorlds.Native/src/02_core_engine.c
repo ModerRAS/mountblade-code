@@ -250596,7 +250596,7 @@ LAB_180203b67:
       if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_180203b67;
     }
   }
-  SystemContextPtr = (long long *)FUN_180203ba0();
+  SystemContextPtr = (long long *)InitializeSystemFloatProcessor();
   return (void *)(*SystemContextPtr + 0x78);
 }
 
