@@ -94006,7 +94006,7 @@ void ExecuteExceptionHandlerCallbackB1(DataBuffer operationBase,int64_t dataBuff
   int64_t *exceptionContextPointer;
   
   // 获取0x48偏移处的异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x48);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(systemExceptionBuffer + ExceptionHandlerContextOffset50) + 0x48);
   
   // 如果上下文指针有效，则执行回调函数
   if (exceptionContextPointer != NULL) {
@@ -94035,7 +94035,7 @@ void ExecuteExceptionHandlerCallbackB2(DataBuffer operationBase,int64_t dataBuff
   int64_t *exceptionContextPointer;
   
   // 获取0x50偏移处的异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x50);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(systemExceptionBuffer + ExceptionHandlerContextOffset50) + 0x50);
   
   // 如果上下文指针有效，则执行回调函数
   if (exceptionContextPointer != NULL) {
