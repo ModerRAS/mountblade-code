@@ -131722,26 +131722,46 @@ void ExecuteUIRenderTaskSimple(void)
 
  
 
- void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer)
+ #define ProcessUIContextDataWithEncryption FUN_18073df50
+
+/**
+ * @brief 处理UI上下文数据与加密操作
+ * 
+ * 该函数处理UI上下文数据，包括数据缓冲区管理、加密操作和渲染任务执行。
+ * 它支持多种数据验证和复制操作，并在特定条件下执行加密数据处理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小句柄
+ * @param resultPointer 结果数据指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073df50
+ * @note 该函数包含XOR加密操作和UI渲染任务执行
+ * 
+ * @warning 某些子函数调用不会返回，需要谨慎处理
+ */
+void ProcessUIContextDataWithEncryption(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+                                         UIHandle resultPointer)
 
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong *apstackLong158 [2];
-  UIByte stackArray148 [256];
-  ulonglong stackUInt48;
+  int uiValidationResult;
+  int uiCompareResult;
+  UIByte encryptionKeyArray [32];
+  UIByte *pResultDataPointer;
+  longlong *resourceManagerArray [2];
+  UIByte dataBufferArray [256];
+  ulonglong encryptionKey;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt188;
-  operationResult = ManageUIContextResources(uiContext,apstackLong158,0);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyArray;
+  operationResult = ManageUIContextResources(uiContext,resourceManagerArray,0);
   if (operationResult == 0) {
-    if (((int)apstackLong158[0][0x22] == 0) || ((int)apstackLong158[0][0x22] == 7)) {
-      pstackUInt168 = (UIByte *)resultPointer;
-      operationResult = (**(code **)(*apstackLong158[0] + 0xa0))(apstackLong158[0],dataSource,targetBuffer,bufferSize);
+    if (((int)resourceManagerArray[0][0x22] == 0) || ((int)resourceManagerArray[0][0x22] == 7)) {
+      pResultDataPointer = (UIByte *)resultPointer;
+      operationResult = (**(code **)(*resourceManagerArray[0] + 0xa0))(resourceManagerArray[0],dataSource,targetBuffer,bufferSize);
       if (operationResult == 0) goto LAB_18073e0bd;
     }
     else {
@@ -131749,24 +131769,24 @@ void FUN_18073df50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
     }
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = CopyUIDataBuffer(stackArray148,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiValidationResult = CopyUIDataBuffer(dataBufferArray,0x100,dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBufferArray + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = CopyUIDataBuffer(stackArray148 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = CopyUIDataBuffer(dataBufferArray + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBufferArray + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ValidateUIDataWithContext(stackArray148 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
+    uiCompareResult = ValidateUIDataWithContext(dataBufferArray + uiValidationResult,0x100 - uiValidationResult,bufferSize);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = ProcessUIBufferDataWithControl(stackArray148 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ValidateUIDataWithContext(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
-    pstackUInt168 = stackArray148;
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBufferArray + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    ValidateUIDataWithContext(dataBufferArray + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),resultPointer);
+    pResultDataPointer = dataBufferArray;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_1809579c8);
+    ExecuteUIContextDataOperation(operationResult,5,uiContext,&UNK_1809579c8);
   }
 LAB_18073e0bd:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionKeyArray);
 }
 
 
@@ -131802,11 +131822,23 @@ void ExecuteUIDataBufferCopyAndValidation(void)
 
 
 
- void FUN_18073e0bb(void)
-void FUN_18073e0bb(void)
+ #define ExecuteUIContextInitialization FUN_18073e0bb
+
+/**
+ * @brief 执行UI上下文初始化
+ * 
+ * 该函数执行UI上下文的初始化操作，分配必要的内存资源。
+ * 这是一个基础的初始化函数，为后续的UI操作做准备。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e0bb
+ * @note 该函数分配栈空间用于UI上下文初始化
+ */
+void ExecuteUIContextInitialization(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong initializationParameter;
   
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -131816,77 +131848,112 @@ void FUN_18073e0bb(void)
 
  
 
- void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
-void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
+ #define ProcessUIContextDataOperationSimple FUN_18073e110
+
+/**
+ * @brief 简单处理UI上下文数据操作
+ * 
+ * 该函数执行简化的UI上下文数据操作，包括资源管理、加密处理和验证。
+ * 它是UI系统中常用的数据处理函数，支持多种操作模式。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e110
+ * @note 该函数包含XOR加密操作和资源管理
+ */
+void ProcessUIContextDataOperationSimple(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong *pstackLong148;
-  longlong stackLong140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  int uiValidationResult;
+  int uiCompareResult;
+  UIByte encryptionKeyArray [32];
+  UIByte *pDataPointer;
+  longlong *pResourceHandle;
+  longlong resourceSize;
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong140 = 0;
-  operationResult = ManageUIContextResources(uiContext,&pstackLong148,&stackLong140);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyArray;
+  resourceSize = 0;
+  operationResult = ManageUIContextResources(uiContext,&pResourceHandle,&resourceSize);
   if (operationResult == 0) {
-    if (((int)pstackLong148[0x22] == 0) || ((int)pstackLong148[0x22] == 7)) {
-      operationResult = (**(code **)(*pstackLong148 + 0x98))(pstackLong148,dataSource,targetBuffer);
-      if (operationResult == 0) goto FUN_18073e229;
+    if (((int)pResourceHandle[0x22] == 0) || ((int)pResourceHandle[0x22] == 7)) {
+      operationResult = (**(code **)(*pResourceHandle + 0x98))(pResourceHandle,dataSource,targetBuffer);
+      if (operationResult == 0) goto LAB_18073e229;
     }
     else {
       operationResult = 0x2e;
     }
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(astackUInt138,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUIDataAndCompare(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    uiValidationResult = ProcessUITextureDataWithSize(dataBuffer,0x100,dataSource);
+    uiCompareResult = ProcessUIBufferDataWithControl(dataBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    ProcessUIDataAndCompare(dataBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    pDataPointer = dataBuffer;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,5,uiContext,&UNK_1809579b0);
+    ExecuteUIContextDataOperation(operationResult,5,uiContext,&UNK_1809579b0);
   }
-FUN_18073e229:
-  if (stackLong140 != 0) {
+LAB_18073e229:
+  if (resourceSize != 0) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(stackLong140,0xc);
+    ProcessUISystemCleanup(resourceSize,0xc);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionKeyArray);
 }
 
 
 
  
 
- void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,longlong *param_6)
+ #define ProcessUIContextDataWithExtendedParameters FUN_18073e12d
+
+/**
+ * @brief 处理UI上下文数据与扩展参数
+ * 
+ * 该函数处理UI上下文数据，支持扩展参数和事件处理。
+ * 它管理UI上下文资源、事件句柄和寄存器操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小句柄
+ * @param resultPointer 结果数据指针
+ * @param extendedParameters 扩展参数指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18073e12d
+ * @note 该函数包含寄存器操作和事件处理
+ */
+void ProcessUIContextDataWithExtendedParameters(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,UIHandle bufferSize,
+                                                UIHandle resultPointer,longlong *extendedParameters)
 
 {
   int operationResult;
-  int dataValidationResult;
-  int bufferCompareResult;
+  int uiValidationResult;
+  int uiCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000038;
-  ulonglong stackParam00000140;
+  longlong stackParameter38;
+  ulonglong stackParameter140;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000038 = 0;
-  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  stackParameter38 = 0;
+  operationResult = ManageUIContextResources(uiContext,&extendedParameters,&stackParameter38);
   if (operationResult == 0) {
-    if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
-      operationResult = (**(code **)(*param_6 + 0x98))(param_6,dataSource,targetBuffer);
-      if (operationResult == 0) goto FUN_18073e229;
+    if (((int)extendedParameters[0x22] == 0) || ((int)extendedParameters[0x22] == 7)) {
+      operationResult = (**(code **)(*extendedParameters + 0x98))(extendedParameters,dataSource,targetBuffer);
+      if (operationResult == 0) goto LAB_18073e229;
     }
     else {
       operationResult = 0x2e;
