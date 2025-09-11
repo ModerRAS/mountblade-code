@@ -10075,97 +10075,97 @@ ProcessUIDataValidation:
 void ProcessUIUpdates(void)
 
 {
-  char currentChar;
-  code *errorHandler;
-  UIByte upperCaseChar;
+  char currentProcessingChar;
+  code *errorHandlerFunction;
+  UIByte upperCaseConvertedChar;
   int numericValue;
-  longlong stringSearchResult;
-  char *charPointer;
-  ulonglong stringLength;
-  longlong stackPointer;
-  int *resultPointer;
-  ulonglong stringPointer;
-  ulonglong charIndex;
-  char *cacheSearchResult;
-  int parsedNumericValue;
-  char *unitSuffixPointer;
+  longlong stringCacheSearchResult;
+  char *charProcessingPointer;
+  ulonglong inputStringLength;
+  longlong stackFramePointer;
+  int *uiContextResultPointer;
+  ulonglong stringDataPointer;
+  ulonglong charProcessingIndex;
+  char *stringCacheLookupResult;
+  int parsedNumericResult;
+  char *unitSuffixProcessingPointer;
   char unitConversionChar;
-  char *stringBuffer;
-  char **bufferPointer;
+  char *stringProcessingBuffer;
+  char **bufferPointerArray;
   
-  stringBuffer = (char *)(stackPointer + -0x59);
-  bufferPointer = (char **)(stackPointer + -0x69);
+  stringProcessingBuffer = (char *)(stackFramePointer + -0x59);
+  bufferPointerArray = (char **)(stackFramePointer + -0x69);
   
-  stringLength = 0xffffffffffffffff;
+  inputStringLength = 0xffffffffffffffff;
   do {
-    stringLength = stringLength + 1;
-  } while (*(char *)(stackPointer + -9 + stringLength) != '\0');
-  if (0x40 < stringLength) {
-    stringLength = stringPointer;
+    inputStringLength = inputStringLength + 1;
+  } while (*(char *)(stackFramePointer + -9 + inputStringLength) != '\0');
+  if (0x40 < inputStringLength) {
+    inputStringLength = stringDataPointer;
   }
-  charIndex = 0;
-  if (stringLength != 0) {
+  charProcessingIndex = 0;
+  if (inputStringLength != 0) {
     do {
-      upperCaseChar = toupper((int)*(char *)(stackPointer + -9 + charIndex));
-      *(UIByte *)(stringBuffer + charIndex) = upperCaseChar;
-      charIndex = charIndex + 1;
-    } while (charIndex < stringLength);
+      upperCaseConvertedChar = toupper((int)*(char *)(stackFramePointer + -9 + charProcessingIndex));
+      *(UIByte *)(stringProcessingBuffer + charProcessingIndex) = upperCaseConvertedChar;
+      charProcessingIndex = charProcessingIndex + 1;
+    } while (charProcessingIndex < inputStringLength);
   }
-  if (0x40 < stringLength) {
+  if (0x40 < inputStringLength) {
     TriggerUIErrorHandler();
-    errorHandler = (UIFunctionPtr *)swi(3);
-    (*errorHandler)();
+    errorHandlerFunction = (UIFunctionPtr *)swi(3);
+    (*errorHandlerFunction)();
     return;
   }
-  *(UIByte *)(stringBuffer + stringLength) = 0;
-  if (*stringBuffer == '\0') {
+  *(UIByte *)(stringProcessingBuffer + inputStringLength) = 0;
+  if (*stringProcessingBuffer == '\0') {
 LAB_UIStringCacheFound:
-    *resultPointer = 1;
+    *uiContextResultPointer = 1;
   }
   else {
-    cacheSearchResult = strstr(&UIStringCache,stringBuffer);
-    if (cacheSearchResult != 0) goto LAB_UIStringCacheFound;
-    cacheSearchResult = strstr(&DefaultUIStringCache,stringBuffer);
-    if (cacheSearchResult == 0) {
-      *bufferPointer = stringBuffer;
-      parsedNumericValue = strtol(stringBuffer,bufferPointer,10);
-      unitSuffixPointer = *bufferPointer;
-      if (resultPointer[2] == 8) {
-        unitConversionChar = *unitSuffixPointer;
+    stringCacheLookupResult = strstr(&UIStringCache,stringProcessingBuffer);
+    if (stringCacheLookupResult != 0) goto LAB_UIStringCacheFound;
+    stringCacheLookupResult = strstr(&DefaultUIStringCache,stringProcessingBuffer);
+    if (stringCacheLookupResult == 0) {
+      *bufferPointerArray = stringProcessingBuffer;
+      parsedNumericResult = strtol(stringProcessingBuffer,bufferPointerArray,10);
+      unitSuffixProcessingPointer = *bufferPointerArray;
+      if (uiContextResultPointer[2] == 8) {
+        unitConversionChar = *unitSuffixProcessingPointer;
         if (unitConversionChar == 'K') {
-          unitSuffixPointer = unitSuffixPointer + 1;
-          *bufferPointer = unitSuffixPointer;
+          unitSuffixProcessingPointer = unitSuffixProcessingPointer + 1;
+          *bufferPointerArray = unitSuffixProcessingPointer;
         }
         else if (unitConversionChar == 'M') {
-          parsedNumericValue = parsedNumericValue << 10;
-          unitSuffixPointer = unitSuffixPointer + 1;
-          *bufferPointer = unitSuffixPointer;
+          parsedNumericResult = parsedNumericResult << 10;
+          unitSuffixProcessingPointer = unitSuffixProcessingPointer + 1;
+          *bufferPointerArray = unitSuffixProcessingPointer;
         }
         else if (unitConversionChar == 'G') {
-          parsedNumericValue = parsedNumericValue << 0x14;
-          unitSuffixPointer = unitSuffixPointer + 1;
-          *bufferPointer = unitSuffixPointer;
+          parsedNumericResult = parsedNumericResult << 0x14;
+          unitSuffixProcessingPointer = unitSuffixProcessingPointer + 1;
+          *bufferPointerArray = unitSuffixProcessingPointer;
         }
         else {
-          parsedNumericValue = (int)((longlong)parsedNumericValue + 0x3ffU >> 10);
+          parsedNumericResult = (int)((longlong)parsedNumericResult + 0x3ffU >> 10);
         }
-        if (*unitSuffixPointer == 'B') {
-          unitSuffixPointer = unitSuffixPointer + 1;
-          *bufferPointer = unitSuffixPointer;
+        if (*unitSuffixProcessingPointer == 'B') {
+          unitSuffixProcessingPointer = unitSuffixProcessingPointer + 1;
+          *bufferPointerArray = unitSuffixProcessingPointer;
         }
       }
-      if (*unitSuffixPointer != '\0') {
-        ValidateUIData(&UIValidationData,*(UIHandle *)(resultPointer + 4),stringBuffer);
-        resultPointer[1] = 1;
+      if (*unitSuffixProcessingPointer != '\0') {
+        ValidateUIData(&UIValidationData,*(UIHandle *)(uiContextResultPointer + 4),stringProcessingBuffer);
+        uiContextResultPointer[1] = 1;
         goto LAB_UIRenderTaskExecution;
       }
-      *resultPointer = parsedNumericValue;
+      *uiContextResultPointer = parsedNumericResult;
     }
     else {
-      *resultPointer = 0;
+      *uiContextResultPointer = 0;
     }
   }
-  resultPointer[1] = 2;
+  uiContextResultPointer[1] = 2;
 LAB_UIRenderTaskExecution:
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(0);
@@ -10174,19 +10174,22 @@ LAB_UIRenderTaskExecution:
 
 
 
-  清理UI资源
- 清理UI系统占用的各种资源，包括内存、缓冲区、
+  /**
+ * @brief 清理UI资源
+ * 
+ * 清理UI系统占用的各种资源，包括内存、缓冲区、
  * 事件处理器等。它会确保所有资源都被正确释放，避免内存泄漏。
  * 
-  无返回值
-  原始函数名: CleanupUIResources
- void CleanupUIResources(void)
+ * @return 无返回值
+ * @note 原始函数名: CleanupUIResources
+ */
+void CleanupUIResources(void)
 
 {
-  longlong contextHandlePointer;
+  longlong uiContextHandlePointer;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(contextHandlePointer + 0x47) ^ (ulonglong)UIStackBufferBase);
+  ExecuteUIRenderTask(*(ulonglong *)(uiContextHandlePointer + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 

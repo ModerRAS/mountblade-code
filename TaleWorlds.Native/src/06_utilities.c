@@ -3888,6 +3888,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define systemContextConversionOffset 0x24              // 系统上下文转换偏移量
 #define systemContextValidationOffset 0x78              // 系统上下文验证偏移量
 
+// 系统状态标志位常量定义
+#define SystemStateFlagsExtendedOffset 0x17f0           // 系统状态标志位扩展偏移量
+#define SystemStateFlagsPrimaryOffset 0x17f0             // 系统状态标志位主偏移量
+
+// 数据处理偏移量常量定义
+#define DataConfigurationOffset 0x20                     // 数据配置偏移量
+#define ResourceArrayIterator 0                          // 资源数组迭代器
+#define ResourceProcessingOffset 0                       // 资源处理偏移量
+#define ResourceProcessingBuffer 0                       // 资源处理缓冲区
+
 // 内存分配大小常量定义
 #define DataBlockMemorySizeA0 0x28                      // 数据块内存大小A0 - 用于InitializeDataBlockPointerA0函数
 #define DataBlockMemorySizeA1 0x38                      // 数据块内存大小A1 - 用于InitializeDataBlockPointerA1函数
@@ -17779,7 +17789,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     DataProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能处理
-    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(systemContextArray[PrimarySystemContextIndex] + systemContextOffset),
+    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + systemContextOperationOffset), *(int64_t *)(systemContextArray[PrimarySystemContextIndex] + systemContextOffset),
                           &DataProcessingBuffer);
     
     // 处理执行结果
@@ -18014,7 +18024,7 @@ void ValidateSystemState(void)
   uint64_t SystemSecurityValidationBuffer;// 系统安全验证缓冲区
   
   // 检查系统上下文中的状态标志位（第7位）
-  if ((*(uint32_t *)(SystemContextPointer + SystemStateFlagsExtendedOffset) >> 7 & 1) != 0) {
+  if ((*(uint32_t *)(SystemContextPointer + SystemStateFlagsPrimaryOffset) >> 7 & 1) != 0) {
     ReleaseResource();
   }
   
