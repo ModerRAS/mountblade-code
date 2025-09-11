@@ -237059,7 +237059,7 @@ uint64_t *InitializeContextHandleAndSystemBuffer(uint64_t *ContextHandle,unsigne
   
   Utf16Char = 0xfffffffffffffffe;
   *ContextHandle = (uint64_t)&SystemDataNodeTemplateQuaternary;
-  FUN_1801c2640();
+  ReleaseSystemResources();
   if ((OperationBufferSize & 1) != 0) {
     free(ContextHandle,0xb8,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
@@ -237150,7 +237150,7 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
   UnicodeCodePoint = MemoryPoolIndex >> 0x20;
   if ((int)(MemoryPoolIndex >> 0x20) != 0) {
     do {
-      FUN_180195450(MemoryAddressMaskPointer + CharacterTablePointer);
+      ProcessSystemMemoryIteration(MemoryAddressMaskPointer + CharacterTablePointer);
       MemoryAddressMaskPointer = (unsigned long long)(uint)((int)MemoryAddressMaskPointer + (int)MemoryPoolIndex);
       UnicodeCodePoint = UnicodeCodePoint - 1;
     } while (UnicodeCodePoint != 0);
@@ -237173,7 +237173,7 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
   MemoryPoolIndex = Utf16Char >> 0x20;
   if ((int)(Utf16Char >> 0x20) != 0) {
     do {
-      FUN_180195450(UnicodeCodePoint + SystemDataNode);
+      ProcessSystemMemoryIteration(UnicodeCodePoint + SystemDataNode);
       UnicodeCodePoint = (unsigned long long)(uint)((int)UnicodeCodePoint + (int)Utf16Char);
       MemoryPoolIndex = MemoryPoolIndex - 1;
     } while (MemoryPoolIndex != 0);
@@ -237192,7 +237192,7 @@ InitializeSystemConfigurationAndThreadLocalStorage(uint64_t ContextHandle,uint64
   long long SystemDataNode;
   
   do {
-    FUN_180195450((unsigned long long)InputDataLength + SystemDataNode);
+    ProcessSystemMemoryIteration((unsigned long long)InputDataLength + SystemDataNode);
     InputDataLength = InputDataLength + RegisterEBPValue;
     ProcessingResult = ProcessingResult + -1;
   } while (ProcessingResult != 0);
@@ -237436,7 +237436,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   ContextHandle[0xa9] = 0;
   ContextHandle[0xaa] = 0;
   *(uint32_t *)(ContextHandle + 0xab) = 3;
-  FUN_18024f160(ContextHandle + 0xae);
+  InitializeSystemComponent(ContextHandle + 0xae);
   ContextHandle[0x4ce] = 0;
   _Cnd_init_in_situ(ContextHandle + 0x4cf);
   _Mtx_init_in_situ(ContextHandle + 0x4d8,2);
@@ -237548,7 +237548,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   ContextHandle[0x540] = 0;
   *(uint32_t *)(ContextHandle + 0x541) = 3;
   _Mtx_init_in_situ(ContextHandle + 0x542,2);
-  FUN_18038a910(ContextHandle + 0x54d);
+  InitializeSystemGraphics(ContextHandle + 0x54d);
   *(void *)((long long)ContextHandle + 0x3004) = 0;
   *(void *)((long long)ContextHandle + 0x300c) = 0;
   ProcessSystemFunctionCall(ContextHandle + 0x603);
