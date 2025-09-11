@@ -265727,21 +265727,39 @@ void ProcessSystemOperationStatusUpdate(long long ContextHandle,int OperationBuf
 
 
 
-16bc2(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointervoid FUN_180216bc2(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 执行系统数据处理操作
+ * 
+ * 该函数执行系统数据的处理操作，包括上下文调用和状态更新
+ * 
+ * @param ContextHandle 上下文句柄 - 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小 - 操作缓冲区的大小参数
+ * @param Utf8SourcePointer UTF-8源指针 - UTF-8编码数据的源指针
+ * 
+ * @note 原始函数名：FUN_180216bc2
+ */
+void ExecuteSystemDataProcessingOperation(long long ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer)
 {
-  long long *ContextHandle;
-  long long SystemDataNode;
+  long long *SystemContextHandle;
+  long long DataNodePointer;
   
-  ContextHandle = (long long *)(*(long long *)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x18);
-  (**(code **)(*ContextHandle + 0x10))(ContextHandle,Utf8SourcePointer);
-  *(uint8_t *)((long long)OperationBufferSize + 0x3f8 + SystemDataNode) = 1;
+  SystemContextHandle = (long long *)(*(long long *)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x18);
+  (**(code **)(*SystemContextHandle + 0x10))(SystemContextHandle,Utf8SourcePointer);
+  *(uint8_t *)((long long)OperationBufferSize + 0x3f8 + DataNodePointer) = 1;
   return;
 }
 
 
 
 
-16bec(voidvoid FUN_180216bec(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于保持系统调用的完整性
+ * 
+ * @note 原始函数名：FUN_180216bec
+ */
+void SystemNullOperation(void)
 {
   return;
 }
@@ -296613,6 +296631,9 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ResetContextHandleData FUN_18019eb40                      // 重置上下文句柄数据
 #define CheckAndExecuteSystemInitialization FUN_180202e0f        // 检查并执行系统初始化
 #define ExecuteSystemResourceInitialization FUN_180202e19          // 执行系统资源初始化
+#define ProcessSystemOperationStatusUpdate FUN_180216bb0         // 处理系统操作状态更新
+#define ExecuteSystemDataProcessingOperation FUN_180216bc2       // 执行系统数据处理操作
+#define SystemNullOperation FUN_180216bec                         // 系统空操作函数
 #define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 #define ProcessSystemContextAndBufferOperations FUN_18019d190     // 处理系统上下文和缓冲区操作
 #define ConfigureSystemStackHandler FUN_18031c090                   // 配置系统栈处理器
