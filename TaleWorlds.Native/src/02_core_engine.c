@@ -16142,7 +16142,7 @@ void CoreEngineInitializePhysicsConfig(void)
 
 
 
- void CoreEngineInitializeAudioConfig(void/**
+ /**
  * @brief 初始化游戏音频配置管理器
  * 
  * 该函数负责初始化游戏音频配置系统的管理器，设置音频系统的
@@ -16151,7 +16151,7 @@ void CoreEngineInitializePhysicsConfig(void)
  * @param 无
  * @return void
  */
-void CoreEngineInitializeAudioConfig(void
+void CoreEngineInitializeAudioConfig(void)
 {
   bool ConnectionPoolActive;
   uint64_t *ConnectionPoolPointer;
@@ -16362,7 +16362,7 @@ void InitializeGameDataStructureNode(void
 
 
 
- void CoreEngineInitializeMemoryConfig(void/**
+ /**
  * @brief 初始化网络连接池资源管理器
  * 
  * 该函数负责初始化网络连接池的资源管理器，用于管理网络连接的资源分配。
