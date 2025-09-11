@@ -127041,7 +127041,23 @@ void ExecuteUIRenderTaskWithMemoryCleanup(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+ /**
+ * @brief 处理UI上下文和缓冲区操作
+ * 
+ * 该函数负责处理UI上下文相关的数据操作和缓冲区管理。
+ * 主要功能包括：
+ * - 初始化UI上下文处理状态
+ * - 验证和处理UI数据源
+ * - 执行数据缓冲区操作
+ * - 管理内存资源和加密操作
+ * - 执行最终的渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @note 该函数可能不会返回（WARNING: Subroutine does not return）
+ */
+void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void ProcessUIContextWithBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
@@ -127083,7 +127099,23 @@ FUN_18073bbdd:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
+ /**
+ * @brief 处理UI组件事件
+ * 
+ * 该函数负责处理UI组件相关的事件操作和上下文管理。
+ * 主要功能包括：
+ * - 初始化事件处理上下文
+ * - 设置组件句柄和指针
+ * - 验证和处理事件数据
+ * - 执行事件相关的数据操作
+ * - 管理事件处理状态
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @note 该函数用于处理UI组件的事件响应和管理
+ */
+void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 void ProcessUIComponentEventHandling(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 
 {
