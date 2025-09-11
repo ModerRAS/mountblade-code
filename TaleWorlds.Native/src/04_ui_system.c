@@ -134116,7 +134116,7 @@ void ProcessUIContextDataAndRenderTask(UIHandle uiContext, UIDword dataSource, U
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(registerPointer + -0x28) = eventHandle;
   memoryResourceFlag = 0;
-  operationResult = FUN_180754f10(uiContext, &tempBufferHandle, &memoryResourceFlag);
+  operationResult = InitializeUIRenderContext(uiContext, &tempBufferHandle, &memoryResourceFlag);
   if (operationResult == 0) {
     operationResult = func_0x0001807534d0(tempBufferHandle, dataSource, targetBuffer);
     if (operationResult == 0) goto CleanupAndReturn;
@@ -134263,7 +134263,7 @@ void ProcessUIContextAndDataSource(UIHandle uiContext, UIHandle dataSource)
   
   encryptionKey = XorEncryptionKey ^ (ulonglong)tempBuffer;
   renderContextSize = 0;
-  operationResult = FUN_180754f10(uiContext, &contextHandle, &renderContextSize);
+  operationResult = InitializeUIRenderContext(uiContext, &contextHandle, &renderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x000180753560(contextHandle, dataSource);
     if (operationResult == 0) goto DataValidationComplete;
@@ -134312,7 +134312,7 @@ void ProcessUIContextDataSourceOperation(UIHandle uiContext, UIHandle dataSource
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   RenderContextSize = 0;
-  operationResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
+  operationResult = InitializeUIRenderContext(uiContext,&stackUInt120,&RenderContextSize);
   if (operationResult == 0) {
     operationResult = func_0x000180753580(stackUInt120,dataSource);
     if (operationResult == 0) goto LAB_18073f60a;
@@ -134590,7 +134590,7 @@ void ProcessUIDataSourceWithTextureValidation(UIHandle uiContext,UIDword *dataSo
   renderContextSize = 0;
   operationResult = InitializeUIDataSource(uiContext,&textureHandle,&renderContextSize);
   if (operationResult == 0) {
-    operationResult = FUN_180756450(textureHandle,dataSource,targetBuffer);
+    operationResult = ProcessUITextureDataWithParameters(textureHandle,dataSource,targetBuffer);
     if (operationResult == 0) goto texture_validation_complete;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {

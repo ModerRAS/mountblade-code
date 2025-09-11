@@ -259942,7 +259942,7 @@ LAB_18020b0af:
     AdditionalParameter1[2] = (long long)(SystemCharacterStatusPointer + StringOffset);
   }
   if (OperationBufferSize != 0) {
-    FUN_180631420(OperationBufferSize,ConfigurationString,memoryBlockListHead);
+    EncodeSystemConfigurationString(OperationBufferSize,ConfigurationString,memoryBlockListHead);
   }
   SystemValidationFunction8 = "prefabs";
   do {
@@ -259971,7 +259971,7 @@ LAB_18020b0af:
   }
   StringProcessingStatus = NULL;
 LAB_18020b1b3:
-  StringOffset = FUN_180631000(StringProcessingStatus,&SystemMemoryBufferSecondary,auStack_4e8);
+  StringOffset = ProcessSystemStringWithMemoryBuffer(StringProcessingStatus,&SystemMemoryBufferSecondary,auStack_4e8);
   memoryBlockListHead = plStack_438;
   if (StringOffset == 0) {
     auStack_4e8[0] = 1;
