@@ -222,6 +222,15 @@ typedef enum {
 #define FUN_18073d39c ProcessUIRenderTaskWithResourceRelease
 #define FUN_18073d3c0 ProcessUIContextDataWithEncryption
 #define FUN_18073d3dd ProcessUIContextDataWithEncryptionB
+#define FUN_18073d24d ProcessUIContextDataWithEncryptionC
+#define FUN_18073d440 ProcessUIRenderTaskFinalCleanup
+#define FUN_18073d4b8 ProcessUIRenderTaskWithExceptionHandling
+#define FUN_18073d4da ProcessUIRenderTaskWithMemoryManager
+#define FUN_18073d500 ProcessUIDataBufferOperationA
+#define FUN_18073d51d ProcessUIDataBufferOperationB
+#define FUN_18073d59f ProcessUIResourceCleanupTask
+#define FUN_18073d683 ProcessUIComponentResetTask
+#define FUN_18073d6b5 ProcessUIContextStateReset
 #define FUN_18073bf60 ProcessUIContextCleanup
 #define FUN_18073c020 ProcessUIContextBufferOperation
 #define FUN_18073c03d ProcessUIContextBufferOperationB
@@ -130471,8 +130480,8 @@ LAB_18073d372:
 
  
 
- void FUN_18073d24d(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
-void FUN_18073d24d(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
+ void ProcessUIContextDataWithEncryptionC(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
+void ProcessUIContextDataWithEncryptionC(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIByte bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong *param_7)
 
 {
@@ -130575,8 +130584,8 @@ void FUN_18073d39c(void)
 
  
 
- void FUN_18073d3c0(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
-void FUN_18073d3c0(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+ void ProcessUIContextDataWithEncryption(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+void ProcessUIContextDataWithEncryption(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -130617,8 +130626,8 @@ FUN_18073d4b8:
 
  
 
- void FUN_18073d3dd(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
-void FUN_18073d3dd(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+ void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
+void ProcessUIContextDataWithEncryptionB(UIHandle uiContext,longlong dataSource,UIDword targetBuffer)
 
 {
   int operationResult;
@@ -130666,8 +130675,8 @@ FUN_18073d4b8:
 
 
 
- void FUN_18073d440(void)
-void FUN_18073d440(void)
+ void ProcessUIRenderTaskFinalCleanup(void)
+void ProcessUIRenderTaskFinalCleanup(void)
 
 {
   int operationResult;
@@ -130684,8 +130693,8 @@ void FUN_18073d440(void)
 
 
 
- void FUN_18073d4b8(void)
-void FUN_18073d4b8(void)
+ void ProcessUIRenderTaskWithExceptionHandling(void)
+void ProcessUIRenderTaskWithExceptionHandling(void)
 
 {
   longlong stackParam00000030;

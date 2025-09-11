@@ -143397,3 +143397,311 @@ int ProcessMultiParameterDataWithValidation(void *parameterArray, uint32_t param
 #define FUN_18090a210 AnalyzeSystemPerformanceData         // 分析系统性能数据 - 分析系统的性能数据
 #define FUN_18090a220 GenerateSystemPerformanceReport     // 生成系统性能报告 - 生成系统的性能报告
 
+/**
+ * @brief 重置系统异常处理器指针实现
+ * 
+ * 重置系统中所有异常处理相关的指针，清理内存和资源引用。
+ * 该函数负责：
+ * - 清理异常处理器指针数组
+ * - 重置异常处理上下文数据
+ * - 释放异常处理相关的内存资源
+ * - 重置异常处理状态标志
+ * - 恢复默认异常处理配置
+ */
+void ResetSystemExceptionHandlerPointers(void)
+{
+    // 重置核心异常处理器指针
+    CoreUtilityResourcePtr = NULL;
+    CoreUtilityMemoryPtr = NULL;
+    SystemUtilityMemoryPtr = NULL;
+    SystemUtilityResourcePtr = NULL;
+    
+    // 重置异常处理配置
+    UtilityCorePointerResetConfig = 0;
+    UtilitySystemPointerResetConfig = 0;
+    UtilityNetworkPointerResetConfig = 0;
+    UtilitySecurityPointerResetConfig = 0;
+    
+    // 重置模块配置状态
+    UtilityInputModuleConfig = 0;
+    UtilityOutputModuleConfig = 0;
+    UtilityInputModuleSecondaryConfig = 0;
+    UtilityOutputModuleSecondaryConfig = 0;
+    
+    // 重置模块激活状态
+    UtilityCoreModuleActiveState = false;
+    UtilitySystemModuleActiveState = false;
+    
+    // 清理系统异常处理相关资源
+    if (SystemExceptionHandlerAddress != 0) {
+        // 重置异常处理器地址
+        *(uint64_t*)SystemExceptionHandlerAddress = 0;
+    }
+    
+    if (SystemExceptionTableAddress != 0) {
+        // 清理异常表
+        *(uint64_t*)SystemExceptionTableAddress = 0;
+    }
+    
+    // 重置异常处理状态
+    SystemExceptionHandlerStatus = 0;
+    SystemExceptionContextStatus = 0;
+    
+    // 恢复默认异常处理配置
+    RestoreDefaultExceptionHandlerConfig();
+}
+
+/**
+ * @brief 重置系统资源管理器指针实现
+ * 
+ * 清理和重置第二组工具模块相关的指针，包括：
+ * - 资源管理器指针
+ * - 内存管理器指针
+ * - 系统配置指针
+ * - 缓存管理器指针
+ */
+void ResetSystemResourceManagerPointers(void)
+{
+    // 重置资源管理器指针
+    if (SystemResourceManagerAddress != 0) {
+        *(uint64_t*)SystemResourceManagerAddress = 0;
+    }
+    
+    if (SystemResourcePoolAddress != 0) {
+        *(uint64_t*)SystemResourcePoolAddress = 0;
+    }
+    
+    // 重置内存管理器指针
+    if (SystemMemoryManagerAddress != 0) {
+        *(uint64_t*)SystemMemoryManagerAddress = 0;
+    }
+    
+    if (SystemMemoryAllocatorAddress != 0) {
+        *(uint64_t*)SystemMemoryAllocatorAddress = 0;
+    }
+    
+    // 重置缓存管理器指针
+    if (SystemResourceCacheAddress != 0) {
+        *(uint64_t*)SystemResourceCacheAddress = 0;
+    }
+    
+    // 清理资源管理状态
+    SystemResourceManagerStatus = 0;
+    SystemResourcePoolStatus = 0;
+    SystemMemoryManagerStatus = 0;
+    SystemResourceCacheStatus = 0;
+    
+    // 重置资源计数器
+    SystemActiveResourceCount = 0;
+    SystemAllocatedMemoryCount = 0;
+    SystemCachedResourceCount = 0;
+    
+    // 重置资源管理配置
+    SystemResourceManagementConfig = 0;
+    SystemMemoryAllocationConfig = 0;
+    SystemCacheManagementConfig = 0;
+}
+
+/**
+ * @brief 执行内存清理操作实现
+ * 
+ * 执行系统内存的清理操作，释放未使用的内存资源
+ * 
+ * @param ResourceHandle 资源句柄，指定要清理的内存资源
+ * @return int 操作结果状态码，成功返回0，失败返回错误码
+ */
+int ExecuteMemoryCleanup(void* ResourceHandle)
+{
+    // 验证资源句柄的有效性
+    if (ResourceHandle == NULL) {
+        return InvalidResourceHandleError;
+    }
+    
+    // 获取内存资源信息
+    MemoryResourceInfo* resourceInfo = (MemoryResourceInfo*)ResourceHandle;
+    
+    // 验证资源类型
+    if (resourceInfo->resourceType != MemoryResourceType) {
+        return InvalidResourceTypeError;
+    }
+    
+    // 检查资源是否已经被清理
+    if (resourceInfo->cleanupStatus == ResourceCleanupCompleted) {
+        return ResourceAlreadyCleanedError;
+    }
+    
+    // 执行内存清理操作
+    if (resourceInfo->memoryAddress != NULL) {
+        // 释放内存块
+        free(resourceInfo->memoryAddress);
+        resourceInfo->memoryAddress = NULL;
+    }
+    
+    // 更新资源状态
+    resourceInfo->cleanupStatus = ResourceCleanupCompleted;
+    resourceInfo->resourceSize = 0;
+    resourceInfo->allocationTime = 0;
+    
+    // 更新系统计数器
+    SystemFreedMemoryCount++;
+    SystemCleanupOperationCount++;
+    
+    return OperationSuccess;
+}
+
+/**
+ * @brief 执行缓存清理操作实现
+ * 
+ * 执行系统缓存的清理操作，释放未使用的缓存资源
+ * 
+ * @param ResourceHandle 资源句柄，指定要清理的缓存资源
+ * @return int 操作结果状态码，成功返回0，失败返回错误码
+ */
+int ExecuteCacheCleanup(void* ResourceHandle)
+{
+    // 验证资源句柄的有效性
+    if (ResourceHandle == NULL) {
+        return InvalidResourceHandleError;
+    }
+    
+    // 获取缓存资源信息
+    CacheResourceInfo* resourceInfo = (CacheResourceInfo*)ResourceHandle;
+    
+    // 验证资源类型
+    if (resourceInfo->resourceType != CacheResourceType) {
+        return InvalidResourceTypeError;
+    }
+    
+    // 检查资源是否已经被清理
+    if (resourceInfo->cleanupStatus == ResourceCleanupCompleted) {
+        return ResourceAlreadyCleanedError;
+    }
+    
+    // 执行缓存清理操作
+    if (resourceInfo->cacheData != NULL) {
+        // 释放缓存数据
+        free(resourceInfo->cacheData);
+        resourceInfo->cacheData = NULL;
+    }
+    
+    // 清理缓存元数据
+    if (resourceInfo->cacheMetadata != NULL) {
+        free(resourceInfo->cacheMetadata);
+        resourceInfo->cacheMetadata = NULL;
+    }
+    
+    // 更新资源状态
+    resourceInfo->cleanupStatus = ResourceCleanupCompleted;
+    resourceInfo->cacheSize = 0;
+    resourceInfo->lastAccessTime = 0;
+    resourceInfo->hitCount = 0;
+    
+    // 更新系统计数器
+    SystemClearedCacheCount++;
+    SystemCleanupOperationCount++;
+    
+    return OperationSuccess;
+}
+
+/**
+ * @brief 执行资源优化操作实现
+ * 
+ * 执行系统资源的优化操作，提高资源使用效率
+ * 
+ * @param ResourceHandle 资源句柄，指定要优化的资源
+ * @param OptimizationLevel 优化级别，指定优化的深度
+ * @return int 操作结果状态码，成功返回0，失败返回错误码
+ */
+int ExecuteResourceOptimization(void* ResourceHandle, uint8_t OptimizationLevel)
+{
+    // 验证资源句柄的有效性
+    if (ResourceHandle == NULL) {
+        return InvalidResourceHandleError;
+    }
+    
+    // 验证优化级别的有效性
+    if (OptimizationLevel > MaxOptimizationLevel) {
+        return InvalidOptimizationLevelError;
+    }
+    
+    // 获取资源信息
+    SystemResourceInfo* resourceInfo = (SystemResourceInfo*)ResourceHandle;
+    
+    // 根据优化级别执行不同的优化策略
+    switch (OptimizationLevel) {
+        case OptimizationLevelBasic:
+            // 基础优化：整理内存碎片
+            OptimizeMemoryFragmentation(resourceInfo);
+            break;
+            
+        case OptimizationLevelStandard:
+            // 标准优化：整理内存碎片 + 压缩数据
+            OptimizeMemoryFragmentation(resourceInfo);
+            CompressResourceData(resourceInfo);
+            break;
+            
+        case OptimizationLevelAggressive:
+            // 激进优化：整理内存碎片 + 压缩数据 + 预加载优化
+            OptimizeMemoryFragmentation(resourceInfo);
+            CompressResourceData(resourceInfo);
+            OptimizeResourcePreloading(resourceInfo);
+            break;
+            
+        default:
+            return InvalidOptimizationLevelError;
+    }
+    
+    // 更新资源优化状态
+    resourceInfo->optimizationLevel = OptimizationLevel;
+    resourceInfo->lastOptimizationTime = GetCurrentSystemTime();
+    
+    // 更新系统计数器
+    SystemOptimizationOperationCount++;
+    
+    return OperationSuccess;
+}
+
+/**
+ * @brief 获取已释放内存数量实现
+ * 
+ * 获取指定资源句柄已经释放的内存数量
+ * 
+ * @param ResourceHandle 资源句柄，指定要查询的资源
+ * @return uint32_t 已释放内存的数量
+ */
+uint32_t GetFreedMemoryCount(void* ResourceHandle)
+{
+    // 验证资源句柄的有效性
+    if (ResourceHandle == NULL) {
+        return 0;
+    }
+    
+    // 获取内存资源信息
+    MemoryResourceInfo* resourceInfo = (MemoryResourceInfo*)ResourceHandle;
+    
+    // 返回已释放内存数量
+    return resourceInfo->freedMemoryCount;
+}
+
+/**
+ * @brief 获取已清理缓存数量实现
+ * 
+ * 获取指定资源句柄已经清理的缓存数量
+ * 
+ * @param ResourceHandle 资源句柄，指定要查询的资源
+ * @return uint32_t 已清理缓存的数量
+ */
+uint32_t GetClearedCacheCount(void* ResourceHandle)
+{
+    // 验证资源句柄的有效性
+    if (ResourceHandle == NULL) {
+        return 0;
+    }
+    
+    // 获取缓存资源信息
+    CacheResourceInfo* resourceInfo = (CacheResourceInfo*)ResourceHandle;
+    
+    // 返回已清理缓存数量
+    return resourceInfo->clearedCacheCount;
+}
+
