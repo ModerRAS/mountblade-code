@@ -297729,3 +297729,291 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
  */
 #define FUN_180207ea0 CleanupSystemMemoryResourcesOperation
 
+/**
+ * @brief 初始化系统处理上下文
+ * 
+ * 根据调用上下文推断，此函数负责初始化系统处理的上下文
+ * 
+ * @note 原始函数名：FUN_1800b3590
+ */
+#define FUN_1800b3590 InitializeSystemProcessingContextOperation
+
+/**
+ * @brief 处理UTF-8编码转换
+ * 
+ * 根据调用上下文推断，此函数负责处理UTF-8编码的转换操作
+ * 
+ * @note 原始函数名：FUN_180208400
+ */
+#define FUN_180208400 ProcessUtf8EncodingConversionOperation
+
+/**
+ * @brief 处理字符串编码传输
+ * 
+ * 根据调用上下文推断，此函数负责处理字符串编码的传输操作
+ * 
+ * @note 原始函数名：FUN_180080810
+ */
+#define FUN_180080810 ProcessStringEncodingTransferOperation
+
+/**
+ * @brief 处理系统浮点数变换
+ * 
+ * 根据调用上下文推断，此函数负责处理系统浮点数的变换操作
+ * 
+ * @note 原始函数名：FUN_180208f20
+ */
+#define FUN_180208f20 ProcessSystemFloatTransformOperation
+
+/**
+ * @brief 处理系统优先级
+ * 
+ * 根据调用上下文推断，此函数负责处理系统优先级的设置
+ * 
+ * @note 原始函数名：FUN_18009ec20
+ */
+#define FUN_18009ec20 ProcessSystemPriorityOperation
+
+/**
+ * @brief 处理系统优先级分配
+ * 
+ * 根据调用上下文推断，此函数负责处理系统优先级的分配
+ * 
+ * @note 原始函数名：FUN_1800c4800
+ */
+#define FUN_1800c4800 ProcessSystemPriorityAllocationOperation
+
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 根据调用上下文推断，此函数负责初始化系统内存管理器
+ * 
+ * @note 原始函数名：FUN_1800b6de0
+ */
+#define FUN_1800b6de0 InitializeSystemMemoryManagerOperation
+
+/**
+ * @brief 获取内存块索引
+ * 
+ * 根据调用上下文推断，此函数负责获取内存块的索引
+ * 
+ * @note 原始函数名：FUN_180079240
+ */
+#define FUN_180079240 GetMemoryBlockIndexOperation
+
+/**
+ * @brief 配置系统内存分配
+ * 
+ * 根据调用上下文推断，此函数负责配置系统内存的分配
+ * 
+ * @note 原始函数名：FUN_1800b32c0
+ */
+#define FUN_1800b32c0 ConfigureSystemMemoryAllocationOperation
+
+/**
+ * @brief 处理系统数据传输
+ * 
+ * 根据调用上下文推断，此函数负责处理系统数据的传输
+ * 
+ * @note 原始函数名：FUN_180209980
+ */
+#define FUN_180209980 ProcessSystemDataTransferOperation
+
+/**
+ * @brief 处理系统配置数据
+ * 
+ * 根据调用上下文推断，此函数负责处理系统配置数据
+ * 
+ * @note 原始函数名：FUN_18020d6c0
+ */
+#define FUN_18020d6c0 ProcessSystemConfigurationDataOperation
+
+/**
+ * @brief 处理系统注册表操作
+ * 
+ * 根据调用上下文推断，此函数负责处理系统注册表的操作
+ * 
+ * @note 原始函数名：FUN_1802e8c60
+ */
+#define FUN_1802e8c60 ProcessSystemRegistryOperation
+
+/**
+ * @brief 获取系统配置索引
+ * 
+ * 根据调用上下文推断，此函数负责获取系统配置的索引
+ * 
+ * @note 原始函数名：FUN_1802e6b00
+ */
+#define FUN_1802e6b00 GetSystemConfigurationIndexOperation
+
+/**
+ * @brief 配置系统数据表
+ * 
+ * 根据调用上下文推断，此函数负责配置系统数据表
+ * 
+ * @note 原始函数名：FUN_18020d8a0
+ */
+#define FUN_18020d8a0 ConfigureSystemDataTableOperation
+
+/**
+ * @brief 初始化系统注册表
+ * 
+ * 根据调用上下文推断，此函数负责初始化系统注册表
+ * 
+ * @note 原始函数名：FUN_180626eb0
+ */
+#define FUN_180626eb0 InitializeSystemRegistryOperation
+
+/**
+ * @brief 分配系统资源缓冲区
+ * 
+ * 根据调用上下文推断，此函数负责分配系统资源的缓冲区
+ * 
+ * @note 原始函数名：FUN_18005ee30
+ */
+#define FUN_18005ee30 AllocateSystemResourceBufferOperation
+
+/**
+ * @brief 处理系统事件
+ * 
+ * 根据调用上下文推断，此函数负责处理系统事件
+ * 
+ * @note 原始函数名：FUN_180623fd0
+ */
+#define FUN_180623fd0 ProcessSystemEventOperation
+
+/**
+ * @brief 处理系统事件队列
+ * 
+ * 根据调用上下文推断，此函数负责处理系统事件队列
+ * 
+ * @note 原始函数名：FUN_18020ee40
+ */
+#define FUN_18020ee40 ProcessSystemEventQueueOperation
+
+/**
+ * @brief 初始化系统上下文传输
+ * 
+ * 根据调用上下文推断，此函数负责初始化系统上下文的传输
+ * 
+ * @note 原始函数名：FUN_180217b00
+ */
+#define FUN_180217b00 InitializeSystemContextTransferOperation
+
+/**
+ * @brief 配置系统上下文验证
+ * 
+ * 根据调用上下文推断，此函数负责配置系统上下文的验证
+ * 
+ * @note 原始函数名：FUN_180218920
+ */
+#define FUN_180218920 ConfigureSystemContextValidationOperation
+
+/**
+ * @brief 执行系统上下文同步
+ * 
+ * 根据调用上下文推断，此函数负责执行系统上下文的同步
+ * 
+ * @note 原始函数名：FUN_180219260
+ */
+#define FUN_180219260 ExecuteSystemContextSynchronizationOperation
+
+/**
+ * @brief 释放系统上下文资源
+ * 
+ * 根据调用上下文推断，此函数负责释放系统上下文的资源
+ * 
+ * @note 原始函数名：FUN_180218a80
+ */
+#define FUN_180218a80 ReleaseSystemContextResourcesOperation
+
+/**
+ * @brief 完成系统上下文传输
+ * 
+ * 根据调用上下文推断，此函数负责完成系统上下文的传输
+ * 
+ * @note 原始函数名：FUN_180219020
+ */
+#define FUN_180219020 FinalizeSystemContextTransferOperation
+
+/**
+ * @brief 获取系统上下文指针
+ * 
+ * 根据调用上下文推断，此函数负责获取系统上下文的指针
+ * 
+ * @note 原始函数名：FUN_18021a140
+ */
+#define FUN_18021a140 GetSystemContextPointerOperation
+
+/**
+ * @brief 重置系统指针状态
+ * 
+ * 根据调用上下文推断，此函数负责重置系统指针的状态
+ * 
+ * @note 原始函数名：FUN_1802185b0
+ */
+#define FUN_1802185b0 ResetSystemPointerStateOperation
+
+/**
+ * @brief 处理UTF-16编码转换
+ * 
+ * 根据调用上下文推断，此函数负责处理UTF-16编码的转换
+ * 
+ * @note 原始函数名：FUN_180208400
+ */
+#define FUN_180208400 ProcessUtf16EncodingConversionOperation
+
+/**
+ * @brief 处理系统缓冲区操作
+ * 
+ * 根据调用上下文推断，此函数负责处理系统缓冲区的操作
+ * 
+ * @note 原始函数名：FUN_1802084b0
+ */
+#define FUN_1802084b0 ProcessSystemBufferOperation
+
+/**
+ * @brief 执行系统空操作
+ * 
+ * 根据调用上下文推断，此函数执行系统的空操作
+ * 
+ * @note 原始函数名：FUN_1802084f6
+ */
+#define FUN_1802084f6 ExecuteSystemNullOperationSecondary
+
+/**
+ * @brief 处理系统上下文状态
+ * 
+ * 根据调用上下文推断，此函数负责处理系统上下文的状态
+ * 
+ * @note 原始函数名：FUN_1802085f8
+ */
+#define FUN_1802085f8 ProcessSystemContextStateOperation
+
+/**
+ * @brief 处理系统浮点数参数
+ * 
+ * 根据调用上下文推断，此函数负责处理系统浮点数的参数
+ * 
+ * @note 原始函数名：FUN_180208610
+ */
+#define FUN_180208610 ProcessSystemFloatParameterOperation
+
+/**
+ * @brief 处理系统浮点数数据
+ * 
+ * 根据调用上下文推断，此函数负责处理系统浮点数的数据
+ * 
+ * @note 原始函数名：FUN_180208720
+ */
+#define FUN_180208720 ProcessSystemFloatDataOperation
+
+/**
+ * @brief 处理系统扩展操作
+ * 
+ * 根据调用上下文推断，此函数负责处理系统的扩展操作
+ * 
+ * @note 原始函数名：FUN_180208e16
+ */
+#define FUN_180208e16 ProcessSystemExtendedOperation
+
