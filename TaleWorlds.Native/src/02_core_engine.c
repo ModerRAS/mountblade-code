@@ -237663,11 +237663,11 @@ void ReleaseSystemResourceCallback(void)
 
 
 /**
- * @brief 系统空操作函数2
+ * @brief 系统空操作函数
  * 
  * 该函数是一个空操作函数，用于系统初始化或清理。
  */
-void FUN_180195184(void
+void SystemNoOperationFunction(void)
 {
   return;
 }
