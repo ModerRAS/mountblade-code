@@ -125915,28 +125915,28 @@ void ProcessUIDataWithContextAndRender(UIHandle uiContext,UIDword dataSource,UIH
   UIHandle cleanupBufferHandle;
   ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  operationResult = ProcessUIContextWithCleanup(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  memoryCleanupFlag = 0;
+  operationResult = ProcessUIContextWithCleanup(uiContext,&cleanupBufferHandle,&memoryCleanupFlag);
   if (operationResult == 0) {
-    operationResult = ProcessUIBufferDataCopy(stackParam00000038,dataSource,targetBuffer);
+    operationResult = ProcessUIBufferDataCopy(cleanupBufferHandle,dataSource,targetBuffer);
     if (operationResult == 0) goto ReleaseUIMemoryAndExecuteRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ValidateUIDataWithContext(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    ValidateUIDataWithContext(&stack0x00000040 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextBufferManager,&stack0x00000040);
   }
 ReleaseUIMemoryAndExecuteRender:
-  if (lStack0000000000000030 != 0) {
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -125961,14 +125961,14 @@ void ProcessUIBufferDataValidation(void)
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword dataSourceParameter;
+  UIDword processingFlags;
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  ValidateUIDataWithContext(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,dataSourceParameter);
+  dataValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + operationResult,0x100 - operationResult,&UIBufferControlData);
+  ValidateUIDataWithContext(&stack0x00000040 + (operationResult + dataValidationResult),0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(processingFlags,1);
 }
 
 
@@ -125977,14 +125977,14 @@ void ProcessUIBufferDataValidation(void)
  void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryCleanupFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
