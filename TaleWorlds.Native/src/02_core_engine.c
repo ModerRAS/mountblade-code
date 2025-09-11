@@ -261297,7 +261297,7 @@ void HandleSystemContextValidation(long long ContextHandle
 
 
 
-0d310(long long ContextHandlevoid FUN_18020d310(long long ContextHandle
+0d310(long long ContextHandlevoid CleanupSystemContextResources(long long ContextHandle)
 {
   int LockResult;
   long long *BufferAllocationState;
