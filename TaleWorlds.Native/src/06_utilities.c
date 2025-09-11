@@ -3029,14 +3029,14 @@
 // 数据验证和处理常量
 #define SystemContextValidationOffset 0x1c8            // 系统上下文验证偏移量
 #define DataProcessingParameterOffset 0x30              // 数据处理参数偏移量
-#define SecurityContextValidationOffset5F0 0x5f0         // 安全上下文验证偏移量5F0
-#define SystemDataParameterOffsetPrimary 0x20                 // 系统数据参数偏移量20
-#define OperationBaseControlOffset 0x58                        // 操作基础偏移量58
-#define OperationBaseOffset6C 0x6c                        // 操作基础偏移量6C
-#define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
-#define SystemContextPointerOffsetPrimary 0x90                 // 系统上下文指针偏移量90
-#define SystemValidationOffset790 0x790                  // 系统主验证数据偏移量 - 用于存储系统验证的主要数据结构
-#define DataProcessingBufferOffsetNegative78 -0x78         // 数据处理缓冲区负偏移量78
+#define SecurityContextValidationOffset 0x5f0         // 安全上下文验证偏移量
+#define SystemDataPrimaryParameterOffset 0x20                 // 系统数据主参数偏移量
+#define OperationControlOffset 0x58                        // 操作控制偏移量
+#define OperationSecondaryOffset 0x6c                        // 操作次级偏移量
+#define DestinationContextOffset 0x58                    // 目标上下文偏移量
+#define SystemContextPrimaryPointerOffset 0x90                 // 系统上下文主指针偏移量
+#define SystemMainValidationDataOffset 0x790                  // 系统主验证数据偏移量
+#define DataProcessingBufferNegativeOffset -0x78         // 数据处理缓冲区负偏移量
 #define StackFrameContextOffsetNegative10 -0x10            // 栈帧上下文负偏移量10
 #define StackFrameContextOffsetNegative68 -0x68            // 栈帧上下文负偏移量68
 #define StackFrameContextOffsetNegative80 -0x80            // 栈帧上下文负偏移量80
