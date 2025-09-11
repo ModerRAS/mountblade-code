@@ -18931,7 +18931,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
   int64_t *validationContext;                  // 验证上下文指针
   int64_t systemStackContext;                  // 系统栈上下文
   int64_t temporarySystemStackContext;        // 临时系统栈上下文
-  int64_t stackMemoryContext;                 // 栈内存上下文
+  int64_t systemMemoryContext;                // 系统内存上下文
   int64_t *baseValidationContext;              // 基础验证上下文指针
   int64_t *exceptionContextPointer;           // 异常上下文指针
   uint64_t systemModuleOperationResult;        // 系统模块操作结果
@@ -29685,10 +29685,10 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   int64_t exceptionContextIndex;
   int loopCounterInput;
   bool validationStatusFlag;
-  int stackContextBuffer [2];
-  unsigned int stackParameterBuffer [2];
-  DataBuffer stackValidationValue;
-  ByteFlag stackByteBuffer [8];
+  int systemContextBuffer [2];
+  unsigned int systemParameterBuffer [2];
+  DataBuffer systemValidationValue;
+  ByteFlag systemByteBuffer [8];
   uint64_t memoryOperationCounter;
   DataBuffer memoryOperationHandle;
   int64_t *systemContextPointer;
@@ -29698,40 +29698,40 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   DataWord dataProcessingWordA;
   DataWord dataProcessingWordB;
   uint8_t *systemConfigurationContext;
-  DataWord configurationWordA;
-  DataWord configurationWordB;
-  DataWord configurationWordC;
-  uint8_t *exceptionContextA;
-  DataWord validationWordA;
-  DataWord validationWordB;
-  uint colorRedValue;
+  DataWord systemConfigurationWordA;
+  DataWord systemConfigurationWordB;
+  DataWord systemConfigurationWordC;
+  uint8_t *exceptionContextBuffer;
+  DataWord validationStatusWordA;
+  DataWord validationStatusWordB;
+  uint colorComponentValue;
   uint8_t *securityCheckContext;
   DataWord securityCheckWordA;
   DataWord securityCheckWordB;
   ByteFlag operationStatusByte;
-  ByteFlag validationBuffer1 [8];
-  ByteFlag validationBuffer2 [8];
+  ByteFlag validationBufferPrimary [8];
+  ByteFlag validationBufferSecondary [8];
   ByteFlag extendedValidationBuffer [40];
-  DataWord *systemStackDataPointerInput;
+  DataWord *systemDataPointerPrimary;
   DataWord *systemResourceDataPointer;
   DataWord *systemValidationDataPointer;
-  DataWord *systemStackDataPointerSecondary;
-  DataWord *systemStackDataPointerTertiary;
-  DataWord *systemStackDataPointerQuaternary;
-  DataWord *systemStackDataPointerQuinary;
-  DataWord *systemStackDataPointerSenary;
-  DataWord *systemStackDataPointerSeptenary;
-  DataWord stackDataOffsetPrimary;
-  DataWord stackDataOffsetSecondary;
-  DataWord stackDataOffsetTertiary;
-  DataWord stackDataOffsetQuaternary;
-  DataWord stackDataOffsetQuinary;
-  DataWord stackDataOffsetSenary;
-  DataWord stackDataOffsetSeptenary;
-  DataWord stackDataOffsetOctonary;
-  DataWord stackDataOffsetNonary;
-  DataWord stackDataOffsetDenary;
-  int stackMemoryIndex;
+  DataWord *systemDataPointerSecondary;
+  DataWord *systemDataPointerTertiary;
+  DataWord *systemDataPointerQuaternary;
+  DataWord *systemDataPointerQuinary;
+  DataWord *systemDataPointerSenary;
+  DataWord *systemDataPointerSeptenary;
+  DataWord systemDataOffsetPrimary;
+  DataWord systemDataOffsetSecondary;
+  DataWord systemDataOffsetTertiary;
+  DataWord systemDataOffsetQuaternary;
+  DataWord systemDataOffsetQuinary;
+  DataWord systemDataOffsetSenary;
+  DataWord systemDataOffsetSeptenary;
+  DataWord systemDataOffsetOctonary;
+  DataWord systemDataOffsetNonary;
+  DataWord systemDataOffsetDenary;
+  int systemMemoryIndex;
   int dataFlagCounter;
   int arrayIterationIndex;
   
