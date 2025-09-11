@@ -133992,26 +133992,40 @@ CleanupAndReturn:
  * @note 这是一个简化的实现版本
  * @see ValidateUIDataAndInitialize, ProcessUIBufferDataWithControl, ExecuteUIContextDataOperation
  */
-void ProcessUIDataValidationAndCopy(UIDword unmodifiedEBX, UIDword unmodifiedESI)
+void ProcessUIDataValidationAndCopy(UIDword dataSource, UIDword operationParam)
 
 {
   int operationResult;
   int dataValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
   
-  operationResult = ValidateUIDataAndInitialize(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = ProcessUIBufferDataWithControl(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  operationResult = ValidateUIDataAndInitialize(&tempBufferHandle, 0x100, dataSource);
+  dataValidationResult = ProcessUIBufferDataWithControl(&tempBufferHandle + operationResult, 0x100 - operationResult, &UIBufferControlData);
+  CopyUIDataBuffer(&tempBufferHandle + (operationResult + dataValidationResult), 0x100 - (operationResult + dataValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,3);
+  ExecuteUIContextDataOperation(operationParam, 3);
 }
 
 
 
 
- void FUN_18073f45d(void)
-void FUN_18073f45d(void)
+ /**
+ * @brief 释放UI内存资源
+ * 
+ * 该函数负责释放UI系统中的内存资源：
+ * - 检查内存资源标志
+ * - 释放已分配的内存资源
+ * - 执行后续的渲染任务
+ * 
+ * @param memoryResourceFlag 内存资源标志，指示是否需要释放资源
+ * @param renderTaskParam 渲染任务参数，用于执行后续渲染
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073f45d
+ * @note 这是一个简化的实现版本
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void ReleaseUIMemoryResources(longlong memoryResourceFlag, ulonglong renderTaskParam)
 
 {
   longlong stackParam00000030;
@@ -200020,10 +200034,16 @@ UIHandle FUN_18077c38b(longlong uiContext)
 
 
 
-UIHandle FUN_18077cd48(void)
-
+/**
+ * @brief 获取UI系统句柄实现
+ * 
+ * 获取UI系统的主句柄，用于系统级别的UI操作
+ * 
+ * @return UIHandle UI系统句柄，成功返回非0值，失败返回0
+ */
+UIHandle GetUISystemHandle(void)
 {
-  return 0;
+    return 0;
 }
 
 
