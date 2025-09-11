@@ -235524,7 +235524,7 @@ void ValidateSystemMemoryIntegrity(long long ContextHandle,long long OperationBu
     if (SystemValidationFunction == pSystemStatusChar + -0x180a0ae27) {
       SystemValidationFunction = SystemValidationFunction + (long long)SystemFunctionPointer;
       if (SystemValidationFunction <= SystemFunctionPointer) {
-LAB_180193562:
+SystemMemoryValidationComplete:
         SystemDataRegistry = 0x180d48d24;
         if (SecondaryProcessingStatusFlag[1] != 0) {
           SystemDataRegistry = SecondaryProcessingStatusFlag[1];
@@ -235535,7 +235535,7 @@ LAB_180193562:
       SystemDataRegistry = (long long)&SystemMemoryCheckBoundary2 - (long long)SystemFunctionPointer;
       while (*SystemFunctionPointer == SystemFunctionPointer[SystemDataRegistry]) {
         SystemFunctionPointer = SystemFunctionPointer + 1;
-        if (SystemValidationFunction <= SystemFunctionPointer) goto LAB_180193562;
+        if (SystemValidationFunction <= SystemFunctionPointer) goto SystemMemoryValidationComplete;
       }
     }
   }
@@ -235561,7 +235561,7 @@ LAB_180193562:
     if (SystemValidationFunction == SystemFunctionPointer + -0x180a0b09f) {
       SystemValidationFunction = SystemValidationFunction + (long long)pSystemStatusChar;
       if (SystemValidationFunction <= pSystemStatusChar) {
-LAB_180193610:
+SystemEventConfigurationComplete:
         SystemDataRegistry = 0x180d48d24;
         if (SecondaryProcessingStatusFlag[1] != 0) {
           SystemDataRegistry = SecondaryProcessingStatusFlag[1];
@@ -244439,7 +244439,7 @@ void ValidateSystemContext(long long ContextHandle
         PrimaryProcessingStatusFlag4 = StackProcessingVariable;
       }
       do {
-        FUN_1801c2360(BufferStatus1);
+        ProcessSystemMemoryBuffer(BufferStatus1);
         SystemDataTablePointer = CoreEngineSignedValueA0;
         MemoryAllocationHandle = SystemOperationValidationFlag;
         Utf16Char4 = StackValidationData;
@@ -244537,7 +244537,7 @@ LAB_18019e5b4:
           }
           DataContentStatus = 0;
           do {
-            FUN_1801c2360(BufferStatus1);
+            ProcessSystemMemoryBuffer(BufferStatus1);
             SystemDataTablePointer = plStack_80;
             MemoryAllocationHandle = StackProcessingValue78;
             Utf16Char4 = StackProcessingValue;
