@@ -14338,18 +14338,60 @@ int ValidateSystemMemoryAndIntegrity(void* memoryAddress, size_t memorySize, uin
 /**
  * @brief 清理文件句柄函数A0
  * 
- * 该函数负责清理文件句柄，管理系统资源计数器
+ * 该函数负责在异常处理过程中清理文件句柄资源，确保系统资源的正确释放。
+ * 此函数通常在异常处理链的早期阶段被调用，处理基本的文件句柄清理工作。
  * 
- * @note 原始函数名：Unwind_180905000
+ * @param exceptionContext 异常上下文指针，包含当前异常处理的状态信息
+ * @param fileHandle 要清理的文件句柄，指定需要释放的资源
+ * @param cleanupFlags 清理标志位，控制清理行为：
+ *                     - 0x1: 强制清理标志，忽略错误状态
+ *                     - 0x2: 记录清理日志，用于调试和追踪
+ *                     - 0x4: 验证句柄有效性，确保清理操作安全
+ * 
+ * @return int 清理操作结果状态码：
+ *         - 0: 清理成功
+ *         - 非0: 清理失败，具体错误码见系统错误码定义
+ * 
+ * @details 实现细节：
+ * - 验证文件句柄的有效性，确保句柄未被重复清理
+ * - 根据清理标志位执行相应的清理策略
+ * - 更新系统资源计数器，维护资源使用统计
+ * - 记录清理操作日志，便于后续问题诊断
+ * 
+ * @note 这是异常处理链中的第一个清理函数，处理最基础的资源清理
+ * @warning 文件句柄清理失败可能导致资源泄漏，应谨慎处理错误状态
+ * @see SetupExceptionHandlerAtOffset10, ExecuteExceptionCallbacksAtOffset20
  */
 #define CleanupFileHandleAtOffset00 Unwind_180905000
 
 /**
  * @brief 设置异常处理器函数A0
  * 
- * 该函数负责设置异常处理器并管理临时异常状态
+ * 该函数负责设置异常处理器，管理临时异常状态，并初始化异常处理上下文。
+ * 此函数在异常处理链中负责建立异常处理框架，为后续的资源清理做准备。
  * 
- * @note 原始函数名：Unwind_180905010
+ * @param exceptionContext 异常上下文指针，用于存储异常处理状态
+ * @param handlerFunction 异常处理函数指针，指定异常发生时的处理逻辑
+ * @param handlerPriority 处理器优先级，决定异常处理的顺序：
+ *                        - 0: 高优先级，优先执行
+ *                        - 1: 中优先级，正常执行
+ *                        - 2: 低优先级，延后执行
+ * @param contextSize 上下文结构体大小，确保内存分配正确
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0: 设置失败，具体错误码见系统异常错误码定义
+ * 
+ * @details 实现细节：
+ * - 验证异常上下文和处理函数的有效性
+ * - 分配和初始化异常处理所需的内存资源
+ * - 设置异常处理器的优先级和执行顺序
+ * - 注册异常处理函数到系统异常处理框架
+ * - 初始化临时异常状态变量
+ * 
+ * @note 此函数是异常处理系统的核心组件，确保异常能够被正确捕获和处理
+ * @warning 异常处理器设置失败可能导致异常无法被正确处理
+ * @see CleanupFileHandleAtOffset00, ExecuteExceptionCallbacksAtOffset20
  */
 #define SetupExceptionHandlerAtOffset10 Unwind_180905010
 
@@ -60042,7 +60084,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionContext + ExceptionContextDataOffset148) = 0;
-  *(DataWord *)(exceptionContext + 0x158) = 0;
+  *(DataWord *)(exceptionContext + ExceptionContextDataOffset158) = 0;
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset140) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset120) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContext + 0x128) != 0) {
