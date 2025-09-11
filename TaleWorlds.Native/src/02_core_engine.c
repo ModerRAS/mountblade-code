@@ -247160,7 +247160,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
         FramePointer[-0x19] =
              MatrixTransformElementC * FramePointer[7] + FilterInputValue5 * FramePointer[0xb] + FilterInputValue0 * FramePointer[0xf] +
              FramePointer[0x13];
-        FUN_1801c1140(FramePointer + 0x68,FramePointer + 0x20);
+        ExecuteSystemStringProcessing(FramePointer + 0x68,FramePointer + 0x20);
         CharacterTablePointer = BufferStatus1 * 0x1b0 + *(long long *)(*(long long *)(BufferStatus4 + 0x208) + 0x140);
         MatrixTransformMultiplier11 = *(float *)(CharacterTablePointer + 0x30);
         ScalingFactor = *(float *)(CharacterTablePointer + 0x34);
