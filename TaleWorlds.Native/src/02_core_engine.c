@@ -2207,8 +2207,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 系统栈变量语义化映射
 #define SystemStackUnsigned110 UnsignedStackValue110                  // 系统栈无符号110
 #define SystemStackArray158 auStack_158                     // 系统栈数组158
-#define SystemStackUnsigned158 uStack_158                   // 系统栈无符号158
-#define SystemStackByte25c uStack_25c                       // 系统栈字节25c
+// 系统事件配置索引值
+#define SystemEventConfigIndex uStack_158
+// 内存块偏移计算值
+#define MemoryBlockOffset uStack_25c
 #define SystemStackArray418 auStack_418                     // 系统栈数组418
 #define SystemStackPointer418 puStack_418                   // 系统栈指针418
 #define SystemStackArray4d8 apuStack_4d8                    // 系统栈数组4d8
