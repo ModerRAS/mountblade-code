@@ -124965,7 +124965,7 @@ void ProcessUIContextDataTransferOperation(UIHandle uiContext,UIDword dataSource
   operationResult = ProcessUIContextWithCleanup(uiContext,&stackUInt140,&stackLong148);
   if (operationResult == 0) {
     operationResult = ProcessUIBufferDataCopy(stackUInt140,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_18073a47d;
+    if (operationResult == 0) goto ReleaseUIMemoryAndExecuteRender;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
     uiValidationResult = func_0x00018074b7d0(astackUInt138,0x100,dataSource);
