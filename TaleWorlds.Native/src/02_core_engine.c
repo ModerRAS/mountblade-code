@@ -1199,6 +1199,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define EngineParameterInverseValueA PrimaryEngineParameterInverseValue // 主引擎参数逆值
 #define EngineParameterInverseValueB SecondaryEngineParameterInverseValue // 次引擎参数逆值
 #define SystemEventTemplatePointer SystemEventTemplateDataPointer // 系统事件模板数据指针
+#define FirstThreadPriority PrimaryThreadPriority               // 主线程优先级
+#define SecondThreadPriority SecondaryThreadPriority           // 次线程优先级
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
 // 新增系统配置偏移量常量
