@@ -87406,7 +87406,7 @@ void ValidateAndCleanupMemoryResourceA0(DataBuffer operationBase,int64_t dataBuf
 {
   if ((*(uint *)(dataBuffer + 400) & 1) != 0) {
     *(uint *)(dataBuffer + 400) = *(uint *)(dataBuffer + 400) & 0xfffffffe;
-    ValidateDataA0(dataBuffer + 0x390);
+    ProcessAndValidateDataBlock(dataBuffer + 0x390);
   }
   return;
 }
@@ -93229,7 +93229,7 @@ void ValidateDataAndClearStateFlag(DataBuffer operationBase, int64_t dataBuffer)
 {
   if ((*(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) & 2) != 0) {
     *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) = *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) & 0xfffffffd;
-    ValidateDataA0(dataBuffer + ExceptionHandlerContextOffsetA0);
+    ProcessAndValidateDataBlock(dataBuffer + ExceptionHandlerContextOffsetA0);
   }
   return;
 }
