@@ -2925,7 +2925,6 @@
 #define ExceptionHandlerContextOffset1cd0 0x1cd0         // 异常上下文处理器偏移量1cd0
 
 // 系统管理相关偏移量常量
-#define SystemManagementOffset98 0x98
 
 // 异常处理器指针相关偏移量常量
 #define ExceptionHandlerPointerOffset 0x48                    // 异常处理器指针偏移量
