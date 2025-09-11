@@ -386287,13 +386287,13 @@ UIDword FUN_180890723(void)
 
 
 
- void FUN_18089074c(void)
-/**
+ /**
  * @brief 处理UI严重错误并退出
  * 
  * 该函数处理UI系统中的严重错误，调用系统错误处理函数并退出。
  * 这是一个不返回的函数，会导致程序终止。
  */
+void HandleUICriticalErrorAndExit(void)
 void HandleUICriticalErrorAndExit(void)
 
 {
@@ -386304,8 +386304,13 @@ void HandleUICriticalErrorAndExit(void)
 
 
 
- void FUN_18089079f(void)
-void FUN_18089079f(void)
+ /**
+ * @brief 执行UI空操作
+ * 
+ * 该函数执行一个空操作，通常用作占位符或默认处理函数。
+ */
+void ExecuteUINullOperation(void)
+void ExecuteUINullOperation(void)
 
 {
   return;
@@ -386313,29 +386318,37 @@ void FUN_18089079f(void)
 
 
 
-UIHandle FUN_1808907b0(longlong uiContext)
+/**
+ * @brief 处理UI资源句柄获取
+ * 
+ * 该函数处理UI系统中的资源句柄获取操作，包括验证和分配资源。
+ * 
+ * @param uiContext UI上下文句柄
+ * @return 返回获取的资源句柄，失败时返回错误码
+ */
+UIHandle ProcessUIResourceHandleAcquisition(longlong uiContext)
 
 {
   UIHandle result;
-  longlong alStackX_8 [2];
-  longlong alStackX_18 [2];
+  longlong resourceValidationBuffer [2];
+  longlong resourceHandleBuffer [2];
   
-  result = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),alStackX_18);
+  result = func_0x00018088c530(*(UIDword *)(uiBufferData + 0x10),resourceHandleBuffer);
   if ((int)result == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+    if (resourceHandleBuffer[0] == 0) {
+      resourceHandleBuffer[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      resourceHandleBuffer[0] = resourceHandleBuffer[0] + -8;
     }
-    alStackX_8[0] = 0;
-    result = FUN_1808681d0(alStackX_18[0],uiContext + 0x18,alStackX_8);
+    resourceValidationBuffer[0] = 0;
+    result = FUN_1808681d0(resourceHandleBuffer[0],uiContext + 0x18,resourceValidationBuffer);
     if ((int)result == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+      if (resourceValidationBuffer[0] != 0) {
+        if (*(longlong *)(resourceValidationBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        result = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(UIDword *)(uiBufferData + 0x20),
+        result = FUN_1808d73b0(*(longlong *)(resourceValidationBuffer[0] + 8),*(UIDword *)(uiBufferData + 0x20),
                               *(UIByte *)(uiContext + 0x24));
         if ((int)result != 0) {
           return result;

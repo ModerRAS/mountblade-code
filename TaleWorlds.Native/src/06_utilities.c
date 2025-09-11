@@ -5538,13 +5538,155 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
  * @see ManageSystemResourcePool, HandleSystemResourceAllocation
  */
 #define FUN_1808fc914 CheckSystemResourceAvailability
+/**
+ * @brief 系统内存管理器初始化器
+ * 
+ * 初始化系统内存管理模块，设置内存分配器、内存池和内存管理策略。
+ * 该函数为系统内存管理做准备，确保内存管理功能正常工作。
+ * 
+ * @param memoryConfig 内存配置结构体指针
+ * @param configSize 配置结构体大小
+ * @return int 初始化状态码：
+ *         - 0: 初始化成功
+ *         - 非0: 初始化失败，具体错误码见系统内存错误码定义
+ * 
+ * @note 系统启动时必须调用此函数进行内存管理初始化
+ * @warning 内存管理初始化失败可能导致系统无法正常运行
+ * @see ValidateSystemMemoryAndIntegrity, ManageSystemResourcePool
+ */
 #define FUN_18004b790 InitializeSystemMemoryManager
+
+/**
+ * @brief 系统安全参数验证器
+ * 
+ * 验证系统安全参数的有效性和合规性，确保安全参数配置正确。
+ * 该函数检查安全策略、权限设置和安全配置的合法性。
+ * 
+ * @param securityParams 安全参数结构体指针
+ * @param paramsSize 参数结构体大小
+ * @param validationFlags 验证标志位，指定验证的项目和级别
+ * @return int 安全参数验证结果：
+ *         - 0: 验证通过
+ *         - 非0: 验证失败，具体错误码见系统安全错误码定义
+ * 
+ * @note 安全参数变更后必须调用此函数进行验证
+ * @warning 安全参数验证失败可能导致安全防护失效
+ * @see ProcessSystemSecurityCheck, ValidateSystemConfiguration
+ */
 #define FUN_180080060 ValidateSystemSecurityParameters
+
+/**
+ * @brief 系统数据缓冲区处理器
+ * 
+ * 处理系统数据缓冲区的各种操作，包括缓冲区创建、读写、清理和同步。
+ * 该函数提供统一的数据缓冲区操作接口，确保数据缓冲区的正确使用。
+ * 
+ * @param bufferOperation 缓冲区操作类型
+ * @param bufferHandle 缓冲区句柄，标识要操作的缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return int 缓冲区操作结果：
+ *         - 0: 操作成功
+ *         - 非0: 操作失败，具体错误码见系统缓冲区错误码定义
+ * 
+ * @note 这是数据缓冲区管理的核心函数
+ * @warning 缓冲区操作失败可能导致数据丢失或系统不稳定
+ * @see ProcessSystemDataOperations, ProcessSystemDataTransferWithValidation
+ */
 #define FUN_1800809a0 ProcessSystemDataBuffer
+
+/**
+ * @brief 系统资源分配处理器
+ * 
+ * 处理系统资源的分配操作，包括内存分配、文件句柄分配和网络资源分配。
+ * 该函数确保资源的合理分配和使用，防止资源泄漏。
+ * 
+ * @param resourceType 资源类型，指定要分配的资源种类
+ * @param allocationSize 分配大小，指定需要的资源数量
+ * @param allocationFlags 分配标志位，指定分配的选项和要求
+ * @return int* 资源分配结果：
+ *         - 成功: 返回资源句柄指针
+ *         - 失败: 返回NULL，具体错误码见系统资源错误码定义
+ * 
+ * @note 这是资源分配的核心函数
+ * @warning 资源分配失败可能导致功能无法使用
+ * @see ManageSystemResourcePool, CheckSystemResourceAvailability
+ */
 #define FUN_180080870 HandleSystemResourceAllocation
+
+/**
+ * @brief 系统线程操作处理器
+ * 
+ * 处理系统线程的各种操作，包括线程创建、销毁、同步和调度。
+ * 该函数提供统一的线程管理接口，确保线程的正确创建和管理。
+ * 
+ * @param threadOperation 线程操作类型
+ * @param threadParams 线程参数结构体指针
+ * @param paramsSize 参数结构体大小
+ * @return int 线程操作结果：
+ *         - 0: 操作成功
+ *         - 非0: 操作失败，具体错误码见系统线程错误码定义
+ * 
+ * @note 这是线程管理的核心函数
+ * @warning 线程操作失败可能导致系统响应异常
+ * @see ValidateSystemPerformanceMetrics, HandleSystemCleanupOperations
+ */
 #define FUN_1808fc074 ProcessSystemThreadOperations
+
+/**
+ * @brief 系统性能指标验证器
+ * 
+ * 验证系统性能指标的有效性和合理性，确保系统性能处于正常范围。
+ * 该函数检查CPU使用率、内存使用率、响应时间等关键性能指标。
+ * 
+ * @param performanceData 性能数据结构体指针
+ * @param dataSize 数据结构体大小
+ * @param validationThreshold 验证阈值，指定性能指标的可接受范围
+ * @return int 性能验证结果：
+ *         - 0: 性能验证通过
+ *         - 非0: 性能验证失败，具体错误码见系统性能错误码定义
+ * 
+ * @note 这是性能监控的重要函数
+ * @warning 性能指标异常可能表明系统存在问题
+ * @see ProcessSystemThreadOperations, HandleSystemCleanupOperations
+ */
 #define FUN_1803f33b0 ValidateSystemPerformanceMetrics
+
+/**
+ * @brief 系统清理操作处理器
+ * 
+ * 处理系统的清理操作，包括内存清理、文件清理、注册表清理和临时文件清理。
+ * 该函数确保系统资源的正确释放和系统状态的正确维护。
+ * 
+ * @param cleanupType 清理类型，指定要清理的项目
+ * @param cleanupFlags 清理标志位，指定清理的选项和深度
+ * @return int 清理操作结果：
+ *         - 0: 清理成功
+ *         - 非0: 清理失败，具体错误码见系统清理错误码定义
+ * 
+ * @note 这是系统维护的重要函数
+ * @warning 清理操作失败可能导致资源泄漏或系统不稳定
+ * @see HandleSystemResourceAllocation, HandleSystemExceptionRecovery
+ */
 #define FUN_180089640 HandleSystemCleanupOperations
+
+/**
+ * @brief 系统配置更新处理器
+ * 
+ * 处理系统配置的更新操作，包括配置的加载、验证、应用和同步。
+ * 该函数确保系统配置的正确更新和配置变更的一致性。
+ * 
+ * @param configUpdateType 配置更新类型
+ * @param configData 配置数据指针
+ * @param dataSize 配置数据大小
+ * @return int 配置更新结果：
+ *         - 0: 更新成功
+ *         - 非0: 更新失败，具体错误码见系统配置错误码定义
+ * 
+ * @note 这是配置管理的核心函数
+ * @warning 配置更新失败可能导致系统功能异常
+ * @see ValidateSystemConfiguration, InitializeSystemDataValidation
+ */
 #define FUN_1800ba100 ProcessSystemConfigurationUpdate
 
 // 工具系统函数宏定义
