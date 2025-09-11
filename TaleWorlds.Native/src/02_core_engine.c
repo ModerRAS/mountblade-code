@@ -2331,7 +2331,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackValidationFlag49 StackValidationFlag49                 // 栈验证标志49
 
 // 系统栈处理变量定义
-#define aStackProcessingValue78 SystemStackProcessingBuffer78        // 系统栈处理缓冲区78
+#define aStackProcessingDataBuffer SystemStackProcessingBuffer78        // 系统栈处理缓冲区78
 #define uStack_18 SystemStackUnsignedValue18                        // 系统栈无符号值18
 #define StackFloatValue190 StackFloatValue190                                // 栈浮点值190
 #define fStack_194 StackFloatValue194                                // 栈浮点值194
@@ -2404,7 +2404,7 @@ uint32_t ProcessSystemInfo(void *systemInfoBuffer, uint32_t bufferSize)
 #define StackProcessingValueac StackProcessingUnsignedValueac       // 栈处理值ac - 浮点运算值
 #define StackFloatValue98 StackFloatValue98                       // 栈浮点值98 - 浮点处理状态
 #define StackLong88 StackLong88                                   // 栈长整型88 - 系统数据指针
-#define StackProcessingValue78 StackProcessingValue78               // 栈处理值78 - 系统处理变量
+#define StackProcessingDataBuffer StackProcessingDataBuffer               // 栈处理值78 - 系统处理变量
 #define StackProcessingVariable70 StackProcessingVariableValue70    // 栈处理变量70 - 系统处理变量值
 #define StackFloatValue58 StackFloatValue58                       // 栈浮点值58 - 浮点运算值
 #define StackFloatValue54 StackFloatValue54                       // 栈浮点值54 - 浮点运算值
@@ -48374,7 +48374,7 @@ void ProcessDataStructureWithSource(uint64_t ContextHandle,long long OperationBu
     *SystemEventPointer = 0;
 SystemEventMemoryAllocationLabel:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
   else if (MemoryPoolIndex < 0x13) {
     CalculationFunctionAddress = 0x11;
@@ -48391,9 +48391,9 @@ SystemEventMemoryAllocationLabel:
 SystemEventMemoryAllocationComplete: // 原始标签：LAB_180071af3
 SystemEventProcessingLabel:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
-  else if ((uint)StackProcessingValue78 < 0x14) {
+  else if ((uint)StackProcessingDataBuffer < 0x14) {
     CalculationFunctionAddress = 0x12;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x14,0x10,0x13);
     goto SystemEventDataProcessingComplete;
@@ -48422,12 +48422,12 @@ SystemEventDataProcessingComplete: // 原始标签：LAB_180071b69
         }
         else {
           ProcessedCharacter = CalculationFunctionAddress;
-          if (SystemStatusCode <= (uint)StackProcessingValue78) goto LabelSystemEventProcessingStart;
+          if (SystemStatusCode <= (uint)StackProcessingDataBuffer) goto LabelSystemEventProcessingStart;
           CalculationFunctionAddress = MemoryPoolIndex;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
         }
         UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-        StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+        StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
         ProcessedCharacter = CalculationFunctionAddress;
       }
 SystemEventValidationLabel:
@@ -48441,9 +48441,9 @@ SystemEventValidationLabel:
     *SystemEventPointer = 0;
 MemoryAllocationProcessingStart:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
-  else if ((uint)StackProcessingValue78 < 0x15) {
+  else if ((uint)StackProcessingDataBuffer < 0x15) {
     CalculationFunctionAddress = MemoryPoolIndex;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x15,0x10,0x13);
     goto MemoryAllocationProcessingStart;
@@ -48463,11 +48463,11 @@ MemoryAllocationProcessingStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (SystemStatusCode <= (uint)StackProcessingValue78) goto LabelSystemEventProcessingContinue;
+      if (SystemStatusCode <= (uint)StackProcessingDataBuffer) goto LabelSystemEventProcessingContinue;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
 StringProcessingStart:
   *(uint16_t *)(SystemEventPointer + CalculationFunctionAddress) = 10;
@@ -48483,11 +48483,11 @@ StringProcessingStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessedCharacter <= (uint)StackProcessingValue78) goto MemoryAllocationFailureLabel;
+      if (ProcessedCharacter <= (uint)StackProcessingDataBuffer) goto MemoryAllocationFailureLabel;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessedCharacter,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
 MemoryAllocationFailureLabel:
   StringProcessingStatus = (void *)(SystemEventPointer + CalculationFunctionAddress);
@@ -48513,11 +48513,11 @@ MemoryAllocationFailureLabel:
           *SystemEventPointer = 0;
         }
         else {
-          if (MemoryPoolIndex <= (uint)StackProcessingValue78) goto MemoryCopyOperationStart;
+          if (MemoryPoolIndex <= (uint)StackProcessingDataBuffer) goto MemoryCopyOperationStart;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,MemoryPoolIndex,0x10,0x13);
         }
         UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-        StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+        StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
       }
 MemoryCopyOperationStart:
         memcpy(SystemEventPointer + CalculationFunctionAddress,Utf16EndPointer,(long long)((int)MemoryAllocationIndex + 2));
@@ -48533,11 +48533,11 @@ MemoryCopyOperationStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessedCharacter <= (uint)StackProcessingValue78) goto SystemMemoryCleanupLabel;
+      if (ProcessedCharacter <= (uint)StackProcessingDataBuffer) goto SystemMemoryCleanupLabel;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessedCharacter,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
   }
 SystemMemoryCleanupLabel:
   *(uint16_t *)(SystemEventPointer + CalculationFunctionAddress) = 10;
@@ -48565,7 +48565,7 @@ SystemMemoryCleanupLabel:
   pSystemOperationStatusMask = &SystemNullTemplate;
   if (SystemEventPointer == (uint8_t *)0x0) {
     SystemEventPointer = (uint8_t *)0x0;
-    StackProcessingValue78 = StackProcessingValue78 & 0xffffffff00000000;
+    StackProcessingDataBuffer = StackProcessingDataBuffer & 0xffffffff00000000;
     pSystemOperationStatusMask = &ThreadLocalStorageTemplate;
     StackProcessingVariableBuffer = &SystemNullTemplate;
     if (TemporaryBuffer == NULL) {
@@ -49412,7 +49412,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
     SecondaryProcessingStatusFlag = pProcessingCounter;
   }
   pSystemOperationStatusMask = &SystemNullTemplate;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   SystemEventPointer = (uint8_t *)0x0;
   CalculationFunctionAddress = 0;
   if (InputDataLength != 0) {
@@ -49425,10 +49425,10 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
     *NextNode = 0;
     SystemEventPointer = StringProcessingStatus;
     Utf16Char = GetMemoryAllocationInfo(StringProcessingStatus);
-    StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,Utf16Char);
+    StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,Utf16Char);
       memcpy(StringProcessingStatus,*pStringProcessingStatus,Utf16ConversionContext);
   }
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   CalculationFunctionAddress = 0;
   if ((ProcessedCharacter & 2) != 0) {
     Utf16ConversionContext = ProcessedCharacter & 0xfffffffd;
@@ -49469,7 +49469,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
   pSystemOperationStatusMask = &SystemNullTemplate;
   if (SystemEventPointer == (uint8_t *)0x0) {
     SystemEventPointer = (uint8_t *)0x0;
-    StackProcessingValue78 = StackProcessingValue78 & 0xffffffff00000000;
+    StackProcessingDataBuffer = StackProcessingDataBuffer & 0xffffffff00000000;
     pSystemOperationStatusMask = &ThreadLocalStorageTemplate;
     for (ContextHandleTablePointer = EnginePointerBuffer; ContextHandleTablePointer != EncodingBuffer; ContextHandleTablePointer = ContextHandleTablePointer + 4) {
       (**(code **)*ContextHandlePointer)(ContextHandleTablePointer,0);
@@ -52722,7 +52722,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
   float *StackFloatValue98;
   uint32_t configurationFlag;
   long long StackLong88;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariableValue70;
   uint64_t StackProcessingValue;
   uint64_t StackProcessingUnsignedValue60;
@@ -52794,7 +52794,7 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
     }
     FloatProcessingStatusFlag = *(float **)(ContextHandle + 0x6e);
     if ((pCalculatedDistance != (float *)0x0) && (((uint)pCalculatedDistance[0x4e] & 0x3000) != 0)) {
-      StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+      StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
       StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
       StackProcessingValue = *(void *)(ContextHandle + 0x4c);
       StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -52804,11 +52804,11 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
       StackFloatValue4C = ContextHandle[0x53];
       StackUnsigned48 = *(void *)(ContextHandle + 0x54);
       SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-      InitializeStackUnsignedData(&StackProcessingValue78);
-      ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
+      InitializeStackUnsignedData(&StackProcessingDataBuffer);
+      ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
       FloatProcessingStatusFlag = *(float **)(ContextHandle + 0x6e);
       if (((uint)pCalculatedDistance[0x4e] & 0x3000) == 0x2000) {
-        StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+        StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
         StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
         StackProcessingValue = *(void *)(ContextHandle + 0x4c);
         StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -52818,9 +52818,9 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
         StackFloatValue4C = ContextHandle[0x53];
         StackUnsigned48 = *(void *)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-        ConvertAngleToRadians(&StackProcessingValue78,0x3fc90fdb);
-        ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
-        StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+        ConvertAngleToRadians(&StackProcessingDataBuffer,0x3fc90fdb);
+        ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
+        StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
         StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
         StackProcessingValue = *(void *)(ContextHandle + 0x4c);
         StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -52830,8 +52830,8 @@ float * ProcessFloatBoundaryCalculation(float *ContextHandle
         StackFloatValue4C = ContextHandle[0x53];
         StackUnsigned48 = *(void *)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-        NormalizeFloatValue(&StackProcessingValue78);
-        FloatProcessingStatusFlag = (float *)ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
+        NormalizeFloatValue(&StackProcessingDataBuffer);
+        FloatProcessingStatusFlag = (float *)ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
       }
     }
     FloatVariablePointer4 = StackFloatValue98;
@@ -54011,7 +54011,7 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long ContextHandle,long long 
   unsigned long long Utf16Char4;
   code *StringCodeBuffer;
   bool StringComparisonByte6;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
   uint16_t StackProcessingValue;
@@ -54043,7 +54043,7 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long ContextHandle,long long 
     *(int *)(OperationBufferSize + 0x124e8) = *(int *)(OperationBufferSize + 0x124e8) + 1;
   }
   else if (*(char *)(*(long long *)(SystemDataTablePointer + 0x1e0) + SystemContextValue + 0x15) != '\x04') {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     StackProcessingVariable70 = 0;
     SystemUnsignedValue6C = 0xffffffff;
     StackProcessingValue = 1;
@@ -54056,7 +54056,7 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long ContextHandle,long long 
     SystemPriorityLevel = 0;
     FunctionAddress = 3;
     ProcessingFlags = 0;
-    ComputedResult = GetMemoryAllocationStatus(*(void *)(ContextHandle + 0x1b8),&StackProcessingValue78);
+    ComputedResult = GetMemoryAllocationStatus(*(void *)(ContextHandle + 0x1b8),&StackProcessingDataBuffer);
     if (ComputedResult < 1) {
       if (SystemTemporaryValue50 != 0) {
           ProcessSystemEventHandling();
@@ -54258,7 +54258,7 @@ unsigned long long ProcessSystemEventAndDataStructure(long long ContextHandle,ui
   float MatrixElementD;
   float MatrixElementMaxX;
   float MatrixElementMaxY;
-  float MatrixElementG;
+  float MatrixElementMaxZ;
   float MatrixElementH;
   float MatrixElementMinX;
   float MatrixElementMinY;
@@ -54529,7 +54529,7 @@ SystemBufferValidationError:
       CalculatedFilterValue = *(float *)(ContextHandle + 0x144);
       MatrixElementMaxX = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
       MatrixElementMaxY = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier * PrimaryFloatValue + matrixTransformMultiplier1 * SystemCoreScaleY;
-      MatrixElementG = MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
+      MatrixElementMaxZ = MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
       MatrixElementH = MatrixTransformMultiplier1 * SystemCoreScaleX + MatrixTransformMultiplier * SystemContextPrimaryFloat2 + matrixTransformMultiplier1 * ContextSecondaryFloat0;
       matrixTransformMultiplier1 = *(float *)(ContextHandle + 0x148);
       float matrixTransformMultiplier3 = *(float *)(ContextHandle + 0x154);
@@ -55725,7 +55725,7 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Contex
   byte MemoryFlagD;
   uint64_t StackValidationData;
   unsigned long long CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   unsigned long long StackProcessingVariable70;
   uint64_t StackProcessingValue;
   unsigned long long StackProcessingUnsignedValue60;
@@ -55763,7 +55763,7 @@ StringProcessingComplete:
       if ((*(uint *)(ContextHandle + 0x100) & 0x4000000) == 0) {
         StackValidationData = *(void *)Utf16EndPointer;
         CalculationFunctionAddress.LowPart = (float)*(void *)(Utf16EndPointer + 2);
-        StackProcessingValue78 = *(void *)(Utf16EndPointer + 4);
+        StackProcessingDataBuffer = *(void *)(Utf16EndPointer + 4);
         StackProcessingVariable70.LowPart = (float)*(void *)(Utf16EndPointer + 6);
         StackProcessingValue = *(void *)(Utf16EndPointer + 8);
         StackProcessingUnsignedValue60.LowPart = (float)*(void *)(Utf16EndPointer + 10);
@@ -55798,7 +55798,7 @@ StringProcessingComplete:
         ContextSecondaryFloat = *(float *)(ContextHandle + 0x150);
         StackProcessingUnsignedValue60.LowPart = MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + NormalizedParameterValue * SystemFloatValue + SystemContextPrimaryFloat * SystemCoreScaleY;
         CalculatedDistance = *(float *)(ContextHandle + 0x158);
-        StackProcessingValue78 = CONCAT44(FilterInputValue * SecondaryFloatValue + FloatOffsetValue * SystemContextPrimaryFloat4 + ProcessedFloatValue8 * SecondaryFloatValue,
+        StackProcessingDataBuffer = CONCAT44(FilterInputValue * SecondaryFloatValue + FloatOffsetValue * SystemContextPrimaryFloat4 + ProcessedFloatValue8 * SecondaryFloatValue,
                              FilterInputValue * PrimaryFloatValue + FloatOffsetValue * SystemContextPrimaryFloat3 + ProcessedFloatValue8 * SystemCoreScaleX);
         StackProcessingValue = CONCAT44(MatrixTransformMultiplier1 * SecondaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat * SecondaryFloatValue,
                              MatrixTransformMultiplier1 * PrimaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat * SystemCoreScaleX);
@@ -59018,9 +59018,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
         if (MatrixElementMaxY < ContextHandle[0xa2]) {
           MatrixElementMaxY = ContextHandle[0xa2];
         }
-        MatrixElementG = pFloatOffsetValue[2];
-        if (MatrixElementG < ContextHandle[0xa3]) {
-          MatrixElementG = ContextHandle[0xa3];
+        MatrixElementMaxZ = pFloatOffsetValue[2];
+        if (MatrixElementMaxZ < ContextHandle[0xa3]) {
+          MatrixElementMaxZ = ContextHandle[0xa3];
         }
         *(unsigned long long *)(ContextHandle + 0xa1) = CONCAT44(MatrixElementMaxY,MatrixElementMaxX);
         *(unsigned long long *)(ContextHandle + 0xa3) = CONCAT44(StackProcessingUnsignedValueac,StackFloatValueb0);
@@ -59029,7 +59029,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
     }
     pFloatOffsetValue = *(float **)(ContextHandle + 0x6e);
     if ((pFloatOffsetValue != (float *)0x0) && (((uint)pFloatOffsetValue[0x4e] & 0x3000) != 0)) {
-      StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+      StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
       StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
       StackProcessingValue = *(void *)(ContextHandle + 0x4c);
       StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -59038,11 +59038,11 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
       StackFloatValue4C = ContextHandle[0x53];
       ContextDataPointer = *(void **)(ContextHandle + 0x54);
       SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-      InitializeStackUnsignedData(&StackProcessingValue78);
-      ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
+      InitializeStackUnsignedData(&StackProcessingDataBuffer);
+      ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
       pFloatOffsetValue = *(float **)(ContextHandle + 0x6e);
       if (((uint)pFloatOffsetValue[0x4e] & 0x3000) == 0x2000) {
-        StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+        StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
         StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
         StackProcessingValue = *(void *)(ContextHandle + 0x4c);
         StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -59051,9 +59051,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
         StackFloatValue4C = ContextHandle[0x53];
         ContextDataPointer = *(void **)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-        ConvertAngleToRadians(&StackProcessingValue78,0x3fc90fdb);
-        ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
-        StackProcessingValue78 = *(void *)(ContextHandle + 0x48);
+        ConvertAngleToRadians(&StackProcessingDataBuffer,0x3fc90fdb);
+        ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
+        StackProcessingDataBuffer = *(void *)(ContextHandle + 0x48);
         StackProcessingVariable70 = *(void *)(ContextHandle + 0x4a);
         StackProcessingValue = *(void *)(ContextHandle + 0x4c);
         StackProcessingUnsignedValue60 = *(void *)(ContextHandle + 0x4e);
@@ -59062,8 +59062,8 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
         StackFloatValue4C = ContextHandle[0x53];
         ContextDataPointer = *(void **)(ContextHandle + 0x54);
         SystemPriorityLevel = *(void *)(ContextHandle + 0x56);
-        NormalizeFloatValue(&StackProcessingValue78);
-        pFloatOffsetValue = (float *)ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingValue78);
+        NormalizeFloatValue(&StackProcessingDataBuffer);
+        pFloatOffsetValue = (float *)ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackProcessingDataBuffer);
       }
     }
     FloatVariablePointer4 = pMatrixElementM;
@@ -61841,7 +61841,7 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long *ContextHand
   long long *SystemStackPointer;
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint8_t StackProcessingBuffer70 [72];
   unsigned long long EncodingValidationKey;
   
@@ -61853,7 +61853,7 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long *ContextHand
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0x1c;
+  StackProcessingDataBuffer = 0x1c;
   SystemStackPointer = OperationBufferSize;
   strcpy_s(StackProcessingBuffer70,0x40,&StringTemplateBuffer);
   ReleaseSystemMemoryResources();
@@ -76429,7 +76429,7 @@ void CoreEngineUpdateSystemStatus(void
   uint64_t SystemOperationStatusMask;
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
@@ -76447,7 +76447,7 @@ void CoreEngineUpdateSystemStatus(void
     SystemEventPointer = &SystemValidationStatus;
     pCalculationFunctionAddress = StackProcessingBuffer70;
     StackProcessingBuffer70[0] = 0;
-    StackProcessingValue78 = 0x17;
+    StackProcessingDataBuffer = 0x17;
     ProcessedCharacter = strcpy_s(StackProcessingBuffer70,0x40,&SystemInfoTemplate);
     MemoryOffsetValue = 1;
     ProcessedCharacter = ProcessSystemEventHandling(ProcessedCharacter,&SystemStackPointer,&SystemEventPointer,0);
@@ -79293,7 +79293,7 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
   uint64_t SystemOperationValidationFlag;
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
@@ -79303,7 +79303,7 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
   CoreEngineValueA8 = 0;
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   StackProcessingBuffer70[0] = 0;
   SystemOperationValidationFlag = OperationBufferSize;
   if (Utf8SourcePointer != 0) {
@@ -79311,7 +79311,7 @@ void ConfigureSystemDataStructureMemory(uint64_t ContextHandle, uint64_t Operati
     do {
       BufferStatus = BufferStatus + 1;
     } while (*(char *)(Utf8SourcePointer + BufferStatus) != '\0');
-    StackProcessingValue78 = (uint32_t)BufferStatus;
+    StackProcessingDataBuffer = (uint32_t)BufferStatus;
     strcpy_s(StackProcessingBuffer70,0x40);
   }
   MemoryOffsetValue = 0;
@@ -80808,8 +80808,8 @@ void InitializeSystemDataStructureAndCoreEngineParameters(uint64_t ContextHandle
   void *puStack_7d8;
   long long lStack_7d0;
   uint32_t uStack_7c0;
-  uint64_t StackProcessingValue788;
-  uint64_t StackProcessingValue780;
+  uint64_t StackProcessingDataBuffer8;
+  uint64_t StackProcessingDataBuffer0;
   void *puStack_728;
   uint8_t *puStack_720;
   uint32_t uStack_718;
@@ -80832,7 +80832,7 @@ void InitializeSystemDataStructureAndCoreEngineParameters(uint64_t ContextHandle
   if (Utf8SourcePointer == 0) {
     return;
   }
-  StackProcessingValue788 = 0xfffffffffffffffe;
+  StackProcessingDataBuffer8 = 0xfffffffffffffffe;
   BufferOffset = EncodingDecodingKey ^ (unsigned long long)auStack_958;
   lStack_800 = Utf8SourcePointer;
   (**(code **)(*(long long *)(Utf8SourcePointer + 0x20) + 0x10))((long long *)(Utf8SourcePointer + 0x20),&DataTable180A0143C);
@@ -80856,7 +80856,7 @@ void InitializeSystemDataStructureAndCoreEngineParameters(uint64_t ContextHandle
   if (*(char *)(StringOffset + 0x124) != '\0') {
     *(float *)(StringOffset + 0x120) = (float)*(double *)(Utf8SourcePointer + 0x40);
   }
-  StackProcessingValue780 = 0x180c91970;
+  StackProcessingDataBuffer0 = 0x180c91970;
   StringLength = _Mtx_lock(0x180c91970);
   if (StringLength != 0) {
     __Throw_C_error_std__YAXH_Z(StringLength);
@@ -81246,7 +81246,7 @@ void InitializeCoreEngineDataStructure(long long *ContextHandle,int OperationBuf
   long long *SystemTemporaryValue90;
   uint64_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   long long *CoreEngineSignedValue70;
   long long *SystemMemoryPointer68;
   void *EncodingBuffer;
@@ -81255,7 +81255,7 @@ void InitializeCoreEngineDataStructure(long long *ContextHandle,int OperationBuf
   uint8_t SystemStackFlagArray[16];
   unsigned long long FunctionAddress;
   
-  StackProcessingValue78 = 0xfffffffffffffffe;
+  StackProcessingDataBuffer = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)CoreSystemStatusContext;
   MemoryBlockIndex = *ContextHandle;
   SystemConfigurationHandle = MemoryBlockIndex;
@@ -105210,7 +105210,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long ContextHand
         MatrixElementMaxX = AdditionalParameter2[2];
         MatrixElementMaxY = AdditionalParameter2[3] * *(float *)(SystemConfigurationHandle + 0x1628);
         MemoryPoolIndex = ValidateSystemData(&MatrixElementC);
-        ProcessSystemDataAndConfigure(*(void *)(MemoryBlockIndex + 0x2e8),&MatrixElementG,&MatrixElementMinX,MemoryPoolIndex,
+        ProcessSystemDataAndConfigure(*(void *)(MemoryBlockIndex + 0x2e8),&MatrixElementMaxZ,&MatrixElementMinX,MemoryPoolIndex,
                       SystemStatusCode & 0xffffffff00000000,0xf);
       }
       MemoryBlockIndex = *(long long *)(MemoryBlockIndex + 0x2e8);
@@ -105230,7 +105230,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long ContextHand
           hasNodeComparisonResult = false;
         }
         ProcessSystemConfigurationAndDataOperation(MemoryBlockIndex,6,4);
-        ProcessSystemDataStructureAndContextOperation(MemoryBlockIndex,&MatrixElementG,&MatrixElementMinX,Utf8SourcePointer,Utf16EndPointer,ProcessedCharacter);
+        ProcessSystemDataStructureAndContextOperation(MemoryBlockIndex,&MatrixElementMaxZ,&MatrixElementMinX,Utf8SourcePointer,Utf16EndPointer,ProcessedCharacter);
         if (hasComparisonResult) {
           *(int *)(MemoryBlockIndex + 0x70) = *(int *)(MemoryBlockIndex + 0x70) + -1;
           ValidateSystemData(MemoryBlockIndex);
@@ -125268,9 +125268,9 @@ LAB_18011f4b5:
           cStack_58 = *SystemValidationFunction;
         }
         atof();
-          CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+          CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
       }
-        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
     }
     LowByte = ValidationStatus == '%';
     if (LowByte) {
@@ -129030,7 +129030,7 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
   float fStackX_24;
   float MatrixElementMaxX;
   float MatrixElementMaxY;
-  float MatrixElementG;
+  float MatrixElementMaxZ;
   float MatrixElementH;
   
   if (((*(char *)(Utf8SourcePointer + 0x1d06) == '\0') || ((OperationBufferSize & 4) != 0)) &&
@@ -129045,7 +129045,7 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
     CalculatedFilterValue = *(float *)(AllocatedMemorySize + 0x22c);
     MatrixElementMaxX = *ContextHandle;
     MatrixElementMaxY = ContextHandle[1];
-    MatrixElementG = ContextHandle[2];
+    MatrixElementMaxZ = ContextHandle[2];
     MatrixElementH = ContextHandle[3];
     SystemContextPrimaryFloat4 = ContextSecondaryFloat;
     if (ContextSecondaryFloat <= MatrixElementMaxX) {
@@ -129057,8 +129057,8 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
     }
     MatrixTransformMultiplier1 = *(float *)(AllocatedMemorySize + 0x230);
     PrimaryFloatValue = MatrixTransformMultiplier1;
-    if (MatrixElementG <= MatrixTransformMultiplier1) {
-      PrimaryFloatValue = MatrixElementG;
+    if (MatrixElementMaxZ <= MatrixTransformMultiplier1) {
+      PrimaryFloatValue = MatrixElementMaxZ;
     }
     ProcessedFloatValue8 = *(float *)(AllocatedMemorySize + 0x234);
     if (MatrixElementH <= *(float *)(AllocatedMemorySize + 0x234)) {
@@ -129086,7 +129086,7 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
       }
       MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19a8);
       MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19ac);
-      MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19b0);
+      MatrixElementMaxZ = *(float *)(SystemConfigurationHandle + 0x19b0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19b4) * *(float *)(SystemConfigurationHandle + 0x1628);
       SystemChecksum = ValidateSystemData(&MatrixElementMaxX);
       fStackX_18 = PrimaryFloatValue + 3.0;
@@ -129107,7 +129107,7 @@ void ProcessMemoryLock(float *ContextHandle,uint OperationBufferSize,long long U
       long long AllocatedMemorySize = *(long long *)(AllocatedMemorySize + 0x2e8);
       MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19a8);
       MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19ac);
-      MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19b0);
+      MatrixElementMaxZ = *(float *)(SystemConfigurationHandle + 0x19b0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19b4) * *(float *)(SystemConfigurationHandle + 0x1628);
       SystemChecksum = ValidateSystemData(&MatrixElementMaxX);
       if ((SystemChecksum & 0xff000000) != 0) {
@@ -133097,7 +133097,7 @@ void ProcessSystemDataStructureAndMatrix(void)
   float MatrixElementD;
   float MatrixElementMaxX;
   float MatrixElementMaxY;
-  float MatrixElementG;
+  float MatrixElementMaxZ;
   float MatrixElementH;
   float MatrixElementMinX;
   float MatrixElementMinY;
@@ -133177,7 +133177,7 @@ LAB_180126e9d:
         MatrixElementB = *(float *)(BufferStatus + 0x44);
         MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19c8);
         MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19cc);
-        MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19d0);
+        MatrixElementMaxZ = *(float *)(SystemConfigurationHandle + 0x19d0);
         MatrixElementC = *(float *)(BufferStatus + 0x40) + *(float *)(BufferStatus + 0x48);
         MatrixElementD = *(float *)(BufferStatus + 0x44) + *(float *)(BufferStatus + 0x4c);
         MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19d4) *
@@ -133210,7 +133210,7 @@ LAB_180126e9d:
       }
       MatrixElementMaxX = *(float *)(SystemConfigurationHandle + 0x19b8);
       MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x19bc);
-      MatrixElementG = *(float *)(SystemConfigurationHandle + 0x19c0);
+      MatrixElementMaxZ = *(float *)(SystemConfigurationHandle + 0x19c0);
       MatrixElementH = *(float *)(SystemConfigurationHandle + 0x19c4);
       SystemCoreScaleY = *(float *)(SystemDataRegistry + 0x1cf4) * *(float *)(SystemConfigurationHandle + 0x1628) * MatrixElementH;
       if (0.0 <= MatrixElementMaxX) {
@@ -133231,9 +133231,9 @@ LAB_180126e9d:
       else {
         SystemFloatValue = 0.0;
       }
-      if (0.0 <= MatrixElementG) {
-        SystemCoreScaleX = MatrixElementG;
-        if (1.0 <= MatrixElementG) {
+      if (0.0 <= MatrixElementMaxZ) {
+        SystemCoreScaleX = MatrixElementMaxZ;
+        if (1.0 <= MatrixElementMaxZ) {
           SystemCoreScaleX = 1.0;
         }
       }
@@ -155815,12 +155815,12 @@ void ProcessFloatDataWithFilters(float *ContextHandle,float *ContextHandleSize,f
   float SecondaryFloatValue;
   float SystemContextPrimaryFloat2;
   float SystemContextPrimaryFloat3;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
   unsigned long long StackProcessingValue;
   
-  StackProcessingValue = EncodingDecodingKey ^ (unsigned long long)&StackProcessingValue78;
+  StackProcessingValue = EncodingDecodingKey ^ (unsigned long long)&StackProcessingDataBuffer;
   PrimaryFloatValue = OperationBufferSize[1];
   SystemContextPrimaryFloat = *Utf8SourcePointer;
   ContextSecondaryFloat = Utf8SourcePointer[1];
@@ -155837,13 +155837,13 @@ void ProcessFloatDataWithFilters(float *ContextHandle,float *ContextHandleSize,f
   }
   if (AdditionalParameter3 == 1) {
     RemainingSpace = *Utf16EndPointer;
-    StackProcessingValue78 = 0x100000003;
+    StackProcessingDataBuffer = 0x100000003;
     StackProcessingVariable70 = 0;
     SystemUnsignedValue6C = 2;
     SystemDataTablePointer = -(unsigned long long)(RemainingSpace != -1);
     do {
       ValidationResult = RemainingSpace;
-      if ((SystemDataTablePointer == -1) || (ValidationResult = *(int *)((long long)&StackProcessingValue78 + SystemDataTablePointer * 4), ValidationResult != RemainingSpace)) {
+      if ((SystemDataTablePointer == -1) || (ValidationResult = *(int *)((long long)&StackProcessingDataBuffer + SystemDataTablePointer * 4), ValidationResult != RemainingSpace)) {
         NormalizedParameterValue = 0.0;
         PrimaryFloatValue = 0.0;
         if (ValidationResult == 3) {
@@ -155876,13 +155876,13 @@ LAB_18012f381:
     } while (SystemDataTablePointer < 4);
   }
   RemainingSpace = *Utf16EndPointer;
-  StackProcessingValue78 = 0x300000001;
+  StackProcessingDataBuffer = 0x300000001;
   StackProcessingVariable70 = 2;
   SystemUnsignedValue6C = 0;
   SystemDataTablePointer = -(unsigned long long)(RemainingSpace != -1);
   do {
     ValidationResult = RemainingSpace;
-    if ((SystemDataTablePointer == -1) || (ValidationResult = *(int *)((long long)&StackProcessingValue78 + SystemDataTablePointer * 4), ValidationResult != RemainingSpace)) {
+    if ((SystemDataTablePointer == -1) || (ValidationResult = *(int *)((long long)&StackProcessingDataBuffer + SystemDataTablePointer * 4), ValidationResult != RemainingSpace)) {
       if (ValidationResult == 0) {
         PrimaryFloatValue = *AdditionalParameter2;
       }
@@ -155945,20 +155945,20 @@ LAB_18012f381:
       if (PrimaryFloatValue < *AdditionalParameter1) {
         PrimaryFloatValue = *AdditionalParameter1;
       }
-      StackProcessingValue78.HighPart = (float)((unsigned long long)MemoryAllocationMaskPointer >> 0x20);
-      StackProcessingValue78.HighPart = Utf8SourcePointer[1] + StackProcessingValue78.HighPart;
-      if (AdditionalParameter1[3] <= StackProcessingValue78.HighPart) {
-        StackProcessingValue78.HighPart = AdditionalParameter1[3];
+      StackProcessingDataBuffer.HighPart = (float)((unsigned long long)MemoryAllocationMaskPointer >> 0x20);
+      StackProcessingDataBuffer.HighPart = Utf8SourcePointer[1] + StackProcessingDataBuffer.HighPart;
+      if (AdditionalParameter1[3] <= StackProcessingDataBuffer.HighPart) {
+        StackProcessingDataBuffer.HighPart = AdditionalParameter1[3];
       }
-      StackProcessingValue78.HighPart = StackProcessingValue78.HighPart - Utf8SourcePointer[1];
-      if (StackProcessingValue78.HighPart < AdditionalParameter1[1]) {
-        StackProcessingValue78.HighPart = AdditionalParameter1[1];
+      StackProcessingDataBuffer.HighPart = StackProcessingDataBuffer.HighPart - Utf8SourcePointer[1];
+      if (StackProcessingDataBuffer.HighPart < AdditionalParameter1[1]) {
+        StackProcessingDataBuffer.HighPart = AdditionalParameter1[1];
       }
       *ContextHandle = PrimaryFloatValue;
-      ContextHandle[1] = StackProcessingValue78.HighPart;
-      StackProcessingValue78 = MemoryAllocationMaskPointer;
+      ContextHandle[1] = StackProcessingDataBuffer.HighPart;
+      StackProcessingDataBuffer = MemoryAllocationMaskPointer;
 LAB_18012f4b4:
-        CoreEngineExecuteUtilityFunction(StackProcessingValue ^ (unsigned long long)&StackProcessingValue78);
+        CoreEngineExecuteUtilityFunction(StackProcessingValue ^ (unsigned long long)&StackProcessingDataBuffer);
     }
   } while( true );
 }
@@ -160572,20 +160572,20 @@ LAB_180132de6:
     MemoryAllocationBase = PrimaryProcessingStatusFlag[1];
   }
   if (StringIndexCounter == 0) {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     StackProcessingVariable70 = 0;
   }
   else {
     StackProcessingVariable70.LowPart = (float)MemoryAllocationBase;
-    StackProcessingValue78.LowPart = (float)InputDataLength;
+    StackProcessingDataBuffer.LowPart = (float)InputDataLength;
     StackProcessingVariable70.HighPart = (float)((unsigned long long)MemoryAllocationBase >> 0x20);
-    StackProcessingValue78.HighPart = (float)((unsigned long long)InputDataLength >> 0x20);
+    StackProcessingDataBuffer.HighPart = (float)((unsigned long long)InputDataLength >> 0x20);
     StackProcessingVariable70 = CONCAT44(*(float *)(StringIndexCounter + 0x44) + StackProcessingVariable70.HighPart,
                          *(float *)(StringIndexCounter + 0x40) + (float)StackProcessingVariable70);
-    StackProcessingValue78 = CONCAT44(*(float *)(StringIndexCounter + 0x44) + StackProcessingValue78.HighPart,
-                         *(float *)(StringIndexCounter + 0x40) + (float)StackProcessingValue78);
+    StackProcessingDataBuffer = CONCAT44(*(float *)(StringIndexCounter + 0x44) + StackProcessingDataBuffer.HighPart,
+                         *(float *)(StringIndexCounter + 0x40) + (float)StackProcessingDataBuffer);
   }
-  *(void *)(MemoryPoolBlockSize + 0x1cc4) = StackProcessingValue78;
+  *(void *)(MemoryPoolBlockSize + 0x1cc4) = StackProcessingDataBuffer;
   *(void *)(MemoryPoolBlockSize + 0x1ccc) = StackProcessingVariable70;
   *(float *)(MemoryPoolBlockSize + 0x1cd0) = MatrixTransformElementB + *(float *)(MemoryPoolBlockSize + 0x1cd0);
   *(float *)(MemoryPoolBlockSize + 0x1cc8) = MatrixTransformElementB + *(float *)(MemoryPoolBlockSize + 0x1cc8);
@@ -169933,7 +169933,7 @@ void ProcessCharacterMemoryAllocation(long long ContextHandle, uint64_t Operatio
   char cStack_c7;
   float MatrixElementMaxX;
   float MatrixElementMaxY;
-  float MatrixElementG;
+  float MatrixElementMaxZ;
   float MatrixElementH;
   uint32_t *SystemEventDispatcher;
   uint64_t CoreEngineUnsignedValueA0;
@@ -169942,7 +169942,7 @@ void ProcessCharacterMemoryAllocation(long long ContextHandle, uint64_t Operatio
   uint32_t uStack_84;
   uint32_t CalculationFunctionAddress;
   float fStack_7c;
-  uint8_t aStackProcessingValue78 [24];
+  uint8_t aStackProcessingDataBuffer [24];
   unsigned long long StackProcessingUnsignedValue60;
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
@@ -170120,14 +170120,14 @@ LAB_180137566:
         *(uint32_t *)(SystemStringIndex + 0x1c4c) = UnicodeCodePoint;
         *(uint32_t *)(SystemStringIndex + 0x1c50) = MemoryAllocationMaskPointer;
         *(uint32_t *)(SystemStringIndex + 0x1c54) = ContextHandle[0x19];
-        OperateBufferAndSetParameters(aStackProcessingValue78,0x14,(char*)SystemMemoryAllocationMask,*ContextHandle);
+        OperateBufferAndSetParameters(aStackProcessingDataBuffer,0x14,(char*)SystemMemoryAllocationMask,*ContextHandle);
         SystemStringIndex = SystemConfigurationHandle;
         MatrixElementMaxX = 1.4013e-45;
         MatrixElementMaxY = *(float *)(SystemConfigurationHandle + 0x162c);
-        MatrixElementG = *(float *)(SystemConfigurationHandle + 0x1630);
+        MatrixElementMaxZ = *(float *)(SystemConfigurationHandle + 0x1630);
         ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,&MatrixElementMaxX);
         *(void *)(SystemStringIndex + 0x162c) = 0;
-        InitializeSystemCharacterStatusBuffer(aStackProcessingValue78,0,0x20081139);
+        InitializeSystemCharacterStatusBuffer(aStackProcessingDataBuffer,0,0x20081139);
         SystemStringIndex = SystemConfigurationHandle;
         SystemContextValue = (long long)*(int *)(SystemConfigurationHandle + 0x1b90);
         SystemConfigurationIterator = *(long long *)(SystemConfigurationHandle + 0x1b98);
@@ -170277,7 +170277,7 @@ LAB_180137c29:
       MatrixElementMaxY = (float)ContextHandle[0xf];
       MatrixElementMaxX = (float)ContextHandle[0xe];
       MatrixElementH = MatrixElementMaxY + (float)ContextHandle[0x11];
-      MatrixElementG = MatrixElementMaxX + (float)ContextHandle[0x10];
+      MatrixElementMaxZ = MatrixElementMaxX + (float)ContextHandle[0x10];
       CoreEngineUnsignedValueA0 = (uint32_t *                  CONCAT44(*(float *)(SystemConfigurationIterator + 0x3c) + *(float *)(SystemConfigurationIterator + 0x44),
                            *(float *)(SystemConfigurationIterator + 0x38) + *(float *)(SystemConfigurationIterator + 0x40));
       ArraySize = ValidateSystemData(&StackValidationData);
@@ -183253,7 +183253,7 @@ void ProcessContextHandleSizeAndSystemProcessFlagBuffer(long long ContextHandle,
   uint8_t *apSystemOperationValidationFlag [2];
   code *pcStack_88;
   code *CharacterProcessingBuffer;
-  uint8_t aStackProcessingValue78 [16];
+  uint8_t aStackProcessingDataBuffer [16];
   code *SystemFunctionPointer68;
   code *ProgramCounterStack60;
   uint64_t BufferOffset;
@@ -183320,12 +183320,12 @@ void ProcessContextHandleSizeAndSystemProcessFlagBuffer(long long ContextHandle,
     if (StackPointerD8 != (code *)0x0) {
       (*StackPointerD8)(SystemProcessFlagBuffer,0,0);
     }
-    (*SystemValidationFunction)(ContextHandle,&SystemConfigTemplatePrimary,*(long long *)(ContextHandle + 0xa8) + 0xc,0,apSystemOperationValidationFlag,aStackProcessingValue78);
+    (*SystemValidationFunction)(ContextHandle,&SystemConfigTemplatePrimary,*(long long *)(ContextHandle + 0xa8) + 0xc,0,apSystemOperationValidationFlag,aStackProcessingDataBuffer);
     if (StackPointer88 != (code *)0x0) {
       (*StackPointer88)(apSystemOperationValidationFlag,0,0);
     }
     if (StackPointer68 != (code *)0x0) {
-      (*StackPointer68)(aStackProcessingValue78,0,0);
+      (*StackPointer68)(aStackProcessingDataBuffer,0,0);
     }
   }
   else {
@@ -183993,7 +183993,7 @@ void ProcessContextHandleBufferResetAndValidation(uint64_t *ContextHandle,uint64
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
   uint32_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint64_t StackProcessingValue;
   uint32_t StackProcessingUnsignedValue60;
@@ -184021,7 +184021,7 @@ void ProcessContextHandleBufferResetAndValidation(uint64_t *ContextHandle,uint64
   SystemOperationStatusMask = 0;
   StackValidationData = 0;
   CalculationFunctionAddress = 6;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   StackProcessingVariable70 = 0;
   StackProcessingValue = 0;
   StackProcessingUnsignedValue60 = 6;
@@ -184032,7 +184032,7 @@ void ProcessContextHandleBufferResetAndValidation(uint64_t *ContextHandle,uint64
   ProcessCharacterWithMemoryDataEx(&pMemoryOffsetValue,OperationBufferSize);
   ProcessCharacterWithSystemMemory(*(void *)(ContextHandle[1] + 0xb8),&pMemoryOffsetValue,MemoryBlockIndex);
   ProcessCharacterWithSystemOperations(&BufferOffset);
-  ProcessCharacterWithMemoryOperations(&StackProcessingValue78);
+  ProcessCharacterWithMemoryOperations(&StackProcessingDataBuffer);
   ProcessCharacterWithBufferOperations(&SystemOperationValidationFlag);
   pMemoryOffsetValue = &SystemNullTemplate;
   if (SystemStackOffsetB0 != 0) {
@@ -184439,7 +184439,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   float MatrixElementC;
   float MatrixElementMaxX;
   float MatrixElementMaxY;
-  float MatrixElementG;
+  float MatrixElementMaxZ;
   uint32_t StackProcessingUnsignedValueac;
   float MatrixElementMinX;
   float MatrixElementMinY;
@@ -184453,7 +184453,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   float fStack_84;
   float fStack_80;
   uint32_t uStack_7c;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint32_t StackProcessingValue;
   unsigned long long ProcessedCharacter;
@@ -184461,7 +184461,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   ArraySize = 0;
   MatrixElementMaxX = -3.4028235e+38;
   MatrixElementMaxY = -3.4028235e+38;
-  MatrixElementG = -3.4028235e+38;
+  MatrixElementMaxZ = -3.4028235e+38;
   uStack_7c = 0xff7fffff;
   AllocatedMemorySize = ContextHandle[8];
   MatrixElementA = -3.4028235e+38;
@@ -184477,7 +184477,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   ValidationResult = ArraySize;
   MatrixElementMinX = MatrixElementMaxX;
   MatrixElementMinY = MatrixElementMaxY;
-  MatrixElementMinZ = MatrixElementG;
+  MatrixElementMinZ = MatrixElementMaxZ;
   if (LoopIndex != SystemContextValue) {
     do {
       MemoryBoundaryEnd = *(long long *)(AllocatedMemorySize + 0x28 + ProcessingStatusFlag);
@@ -184497,13 +184497,13 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
             MatrixElementMaxY = fStack_d4;
           }
           MatrixElementMinZ = *pFloatOffsetValue;
-          MatrixElementG = MatrixElementMinZ;
+          MatrixElementMaxZ = MatrixElementMinZ;
           if (fStack_d0 <= MatrixElementMinZ) {
-            MatrixElementG = fStack_d0;
+            MatrixElementMaxZ = fStack_d0;
           }
           fStack_d8 = MatrixElementMaxX;
           fStack_d4 = MatrixElementMaxY;
-          fStack_d0 = MatrixElementG;
+          fStack_d0 = MatrixElementMaxZ;
           uStack_cc = StackCharacterValueAc;
           if (MatrixElementMinX <= MatrixElementA) {
             MatrixElementMinX = MatrixElementA;
@@ -184528,7 +184528,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       ValidationResult = (unsigned long long)MemoryPoolIndex;
       MatrixElementMaxX = MatrixElementMinX;
       MatrixElementMaxY = MatrixElementMinY;
-      MatrixElementG = MatrixElementMinZ;
+      MatrixElementMaxZ = MatrixElementMinZ;
     } while ((unsigned long long)(long long)(int)MemoryPoolIndex < (unsigned long long)(LoopIndex - SystemContextValue));
   }
   pFloatOffsetValue = (float *)*ContextHandle;
@@ -184540,7 +184540,7 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       SystemContextPrimaryFloat = *pFloatOffsetValue;
       MatrixElementMaxX = pFloatOffsetValue[1];
       ContextSecondaryFloat = pFloatOffsetValue[5];
-      MatrixElementG = pFloatOffsetValue[3];
+      MatrixElementMaxZ = pFloatOffsetValue[3];
       MatrixElementMinX = MatrixElementMaxX;
       if (ContextSecondaryFloat <= MatrixElementMaxX) {
         MatrixElementMinX = ContextSecondaryFloat;
@@ -184548,8 +184548,8 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       MatrixElementMaxY = pFloatOffsetValue[2];
       CalculatedFilterValue = pFloatOffsetValue[7];
       MatrixTransformMultiplier1 = pFloatOffsetValue[6];
-      MatrixElementMinZ = MatrixElementG;
-      if (FilterInputValue <= MatrixElementG) {
+      MatrixElementMinZ = MatrixElementMaxZ;
+      if (FilterInputValue <= MatrixElementMaxZ) {
         MatrixElementMinZ = FilterInputValue;
       }
       MatrixElementMinY = MatrixElementMaxY;
@@ -184575,14 +184575,14 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       if (MatrixElementMaxX <= ContextSecondaryFloat) {
         MatrixElementMaxX = ContextSecondaryFloat;
       }
-      if (MatrixElementG <= FilterInputValue) {
-        MatrixElementG = FilterInputValue;
+      if (MatrixElementMaxZ <= FilterInputValue) {
+        MatrixElementMaxZ = FilterInputValue;
       }
       if (MatrixElementMaxY <= MatrixTransformMultiplier1) {
         MatrixElementMaxY = MatrixTransformMultiplier1;
       }
       MatrixElementMaxX = MatrixElementMaxX + SystemContextPrimaryFloat;
-      MatrixElementG = MatrixElementG + SystemContextPrimaryFloat;
+      MatrixElementMaxZ = MatrixElementMaxZ + SystemContextPrimaryFloat;
       MatrixElementMaxY = MatrixElementMaxY + SystemContextPrimaryFloat;
       if (MatrixElementMaxX <= MatrixElementA) {
         MatrixElementMaxX = MatrixElementA;
@@ -184590,12 +184590,12 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       if (MatrixElementMaxY <= MatrixElementB) {
         MatrixElementMaxY = MatrixElementB;
       }
-      if (MatrixElementG <= MatrixElementC) {
-        MatrixElementG = MatrixElementC;
+      if (MatrixElementMaxZ <= MatrixElementC) {
+        MatrixElementMaxZ = MatrixElementC;
       }
       MatrixElementA = MatrixElementMaxX;
       MatrixElementB = MatrixElementMaxY;
-      MatrixElementC = MatrixElementG;
+      MatrixElementC = MatrixElementMaxZ;
       MemoryPoolIndex = (int)ProcessingStatusFlag + 1;
       pFloatOffsetValue = pFloatOffsetValue + 0xc;
       ProcessingStatusFlag = (unsigned long long)MemoryPoolIndex;
@@ -184607,13 +184607,13 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   ProcessingStatusFlag = ArraySize;
   if (ValidationResult != 0) {
     do {
-      MatrixElementG = *(float *)(AllocatedMemorySize + ArraySize);
+      MatrixElementMaxZ = *(float *)(AllocatedMemorySize + ArraySize);
       MatrixElementMaxX = *(float *)(AllocatedMemorySize + 4 + ArraySize);
       MatrixElementMaxY = *(float *)(AllocatedMemorySize + 8 + ArraySize);
       SystemContextPrimaryFloat = *(float *)(AllocatedMemorySize + 0xc + ArraySize);
-      MatrixElementMinX = MatrixElementMaxX - MatrixElementG;
-      MatrixElementMinY = MatrixElementMaxY - MatrixElementG;
-      MatrixElementMinZ = SystemContextPrimaryFloat - MatrixElementG;
+      MatrixElementMinX = MatrixElementMaxX - MatrixElementMaxZ;
+      MatrixElementMinY = MatrixElementMaxY - MatrixElementMaxZ;
+      MatrixElementMinZ = SystemContextPrimaryFloat - MatrixElementMaxZ;
       if (fStack_d8 <= MatrixElementMinX) {
         MatrixElementMinX = fStack_d8;
       }
@@ -184627,21 +184627,21 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
       fStack_d4 = MatrixElementMinY;
       fStack_d0 = MatrixElementMinZ;
       uStack_cc = uStack_9c;
-      MatrixElementMaxX = MatrixElementG + MatrixElementMaxX;
+      MatrixElementMaxX = MatrixElementMaxZ + MatrixElementMaxX;
       if (MatrixElementMaxX <= MatrixElementA) {
         MatrixElementMaxX = MatrixElementA;
       }
-      MatrixElementMaxY = MatrixElementG + MatrixElementMaxY;
-      MatrixElementG = MatrixElementG + SystemContextPrimaryFloat;
+      MatrixElementMaxY = MatrixElementMaxZ + MatrixElementMaxY;
+      MatrixElementMaxZ = MatrixElementMaxZ + SystemContextPrimaryFloat;
       if (MatrixElementMaxY <= MatrixElementB) {
         MatrixElementMaxY = MatrixElementB;
       }
-      if (MatrixElementG <= MatrixElementC) {
-        MatrixElementG = MatrixElementC;
+      if (MatrixElementMaxZ <= MatrixElementC) {
+        MatrixElementMaxZ = MatrixElementC;
       }
       MatrixElementA = MatrixElementMaxX;
       MatrixElementB = MatrixElementMaxY;
-      MatrixElementC = MatrixElementG;
+      MatrixElementC = MatrixElementMaxZ;
       MemoryPoolIndex = (int)ProcessingStatusFlag + 1;
       ArraySize = ArraySize + 0x20;
       ProcessingStatusFlag = (unsigned long long)MemoryPoolIndex;
@@ -184654,13 +184654,13 @@ void ProcessSystemContextData(uint64_t *ContextHandle)
   uStack_8c = uStack_cc;
   fStack_88 = MatrixElementMaxX;
   fStack_84 = MatrixElementMaxY;
-  fStack_80 = MatrixElementG;
+  fStack_80 = MatrixElementMaxZ;
   ProcessMatrixElement(&MatrixElementM);
   ContextHandle[0x1f] = CONCAT44(MatrixElementN,MatrixElementM);
   ContextHandle[0x20] = CONCAT44(uStack_8c,MatrixElementO);
   ContextHandle[0x21] = CONCAT44(fStack_84,fStack_88);
   ContextHandle[0x22] = CONCAT44(uStack_7c,fStack_80);
-  ContextHandle[0x23] = StackProcessingValue78;
+  ContextHandle[0x23] = StackProcessingDataBuffer;
   ContextHandle[0x24] = StackProcessingVariable70;
   *(uint32_t *)(ContextHandle + 0x25) = StackProcessingValue;
   return;
@@ -186133,7 +186133,7 @@ uint8_t ProcessContextHandleWithFullValidation(long long ContextHandle,uint64_t 
   uint32_t configurationFlag;
   uint32_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   ushort StackProcessingVariable70;
   uint32_t uStack_6e;
   unsigned long long ValidationResult;
@@ -186211,7 +186211,7 @@ LAB_18014c263:
   SystemOperationStatusMask = 0;
   StackValidationData = 0;
   CalculationFunctionAddress = 0;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   uStack_6e = 0xff00ff;
   CoreEngineValueA8 = (uint32_t)(((long long)pSystemCleanupFlagF - (long long)SecondaryProcessingStatusFlag) / 0xc);
   aMemoryOffsetValue[0] = 0xc;
@@ -187176,7 +187176,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
   uint32_t StackValidationData;
   uint32_t uStack_84;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   void *StackProcessingVariableBuffer;
   unsigned long long StackProcessingValue;
   uint32_t StackProcessingUnsignedValue60;
@@ -187209,7 +187209,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
         ppSystemInitializationMode = (void **)&CalculationFunctionAddress;
         CalculationFunctionAddress = &SystemNullTemplate;
         StackProcessingValue = 0;
-        StackProcessingValue78 = 0;
+        StackProcessingDataBuffer = 0;
         StackProcessingVariableBuffer = (void *)((unsigned long long)StackProcessingVariableBuffer & 0xffffffff00000000);
         Utf8SourcePointer[1] = Utf8SourcePointer[1] + 4;
         SecondaryProcessingStatusFlag = (uint32_t *)Utf8SourcePointer[1];
@@ -187248,10 +187248,10 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
         *(long long *)(SystemDataTablePointer + 0x18 + LoopIndex) = SystemStringIndex;
         ppSystemInitializationMode = (void **)&CalculationFunctionAddress;
         CalculationFunctionAddress = &SystemNullTemplate;
-        if (StackProcessingValue78 != 0) {
+        if (StackProcessingDataBuffer != 0) {
             ProcessSystemEventHandling();
         }
-        StackProcessingValue78 = 0;
+        StackProcessingDataBuffer = 0;
         StackProcessingValue = StackProcessingValue & 0xffffffff00000000;
         CalculationFunctionAddress = &ThreadLocalStorageTemplate;
         MemoryAllocationOffset = MemoryAllocationOffset - 1;
@@ -187297,9 +187297,9 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
         CalculationFunctionAddress = (void *)CONCAT44(SecondaryProcessingStatusFlag[7],UnicodeCodePoint);
         Utf8SourcePointer[1] = (long long)(SecondaryProcessingStatusFlag + 8);
         UnicodeCodePoint = SecondaryProcessingStatusFlag[8];
-        StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,UnicodeCodePoint);
+        StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,UnicodeCodePoint);
         Utf8SourcePointer[1] = (long long)(SecondaryProcessingStatusFlag + 9);
-        ProcessCharacterWithSecondaryValidationEx(UnicodeCodePoint,Utf8SourcePointer,(long long)&StackProcessingValue78 + 4);
+        ProcessCharacterWithSecondaryValidationEx(UnicodeCodePoint,Utf8SourcePointer,(long long)&StackProcessingDataBuffer + 4);
         Utf16Character = *(uint *)Utf8SourcePointer[1];
         PrimaryProcessingStatusFlag = (uint *)Utf8SourcePointer[1] + 1;
         Utf8SourcePointer[1] = (long long)PrimaryProcessingStatusFlag;
@@ -187315,9 +187315,9 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
         *SecondaryProcessingStatusFlag = uStack_84;
         SecondaryProcessingStatusFlag[1] = (uint32_t)CalculationFunctionAddress;
         SecondaryProcessingStatusFlag[2] = CalculationFunctionAddress.HighPart;
-        SecondaryProcessingStatusFlag[3] = (uint32_t)StackProcessingValue78;
+        SecondaryProcessingStatusFlag[3] = (uint32_t)StackProcessingDataBuffer;
         *(uint32_t *)(SystemDataTablePointer + LoopIndex) = (uint32_t)SystemOperationValidationFlag;
-        *(uint32_t *)(SystemDataTablePointer + 0x24 + LoopIndex) = StackProcessingValue78.HighPart;
+        *(uint32_t *)(SystemDataTablePointer + 0x24 + LoopIndex) = StackProcessingDataBuffer.HighPart;
         MemoryPoolBlockSize = NetworkConnectionManager;
         ComputedResult = ProcessNetworkConnection(NetworkConnectionManager,&StackProcessingVariableBuffer);
         SystemStringIndex = SystemConfigurationIterator;
@@ -187407,7 +187407,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
     StackValidationData = (uint32_t)CharacterValidationBuffer[2];
     uStack_84 = (uint32_t)((unsigned long long)CharacterValidationBuffer[2] >> 0x20);
     CalculationFunctionAddress = (void *)CharacterValidationBuffer[3];
-    StackProcessingValue78 = CharacterValidationBuffer[4];
+    StackProcessingDataBuffer = CharacterValidationBuffer[4];
     StackProcessingVariableBuffer = (void *)CharacterValidationBuffer[5];
     StackProcessingValue = CharacterValidationBuffer[6];
     StackProcessingUnsignedValue60 = *(uint32_t *)(CharacterValidationBuffer + 7);
@@ -192355,7 +192355,7 @@ void ConfigureSystemDataStructureParameters(long long ContextHandle)
 {
   int LockResult;
   char SystemCheckResult;
-  uint8_t aStackProcessingValue78 [32];
+  uint8_t aStackProcessingDataBuffer [32];
   uint64_t BufferOffset;
   void *SystemValidationPointer;
   uint8_t *ContextDataPointer;
@@ -192380,7 +192380,7 @@ void ConfigureSystemDataStructureParameters(long long ContextHandle)
   if (SystemCheckResult != '\0') {
     ConfigureSystemDataStructureOffset670(ContextHandle,10);
   }
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
 }
 
 
@@ -193747,7 +193747,7 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *ContextHandle, 
   uint32_t *pSystemOperationStatusMask;
   uint32_t *SystemEventPointer;
   uint32_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint32_t *StackProcessingVariableBuffer;
   uint32_t *EnginePointerBuffer;
   uint32_t *EncodingBuffer;
@@ -193758,7 +193758,7 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *ContextHandle, 
   SystemEventPointer = (uint32_t *)0x0;
   StringProcessingStatus = (uint32_t *)0x0;
   pCalculationFunctionAddress = (uint32_t *)0x0;
-  StackProcessingValue78 = 3;
+  StackProcessingDataBuffer = 3;
   pSystemStackRegisterBuffer = (uint32_t *)0x0;
   SystemEventDispatcher = (uint32_t *)0x0;
   StackTempPointer = (uint32_t *)0x0;
@@ -194647,7 +194647,7 @@ InitializeMemoryPoolManager(long long *ContextHandle,long long *ContextHandleSiz
   long long SystemTemporaryValue90;
   uint32_t StackValidationData;
   unsigned long long CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   void **ProcessingContextPointerBuffer;
   long long *SystemMemoryPointer68;
   uint64_t StackProcessingUnsignedValue60;
@@ -194741,7 +194741,7 @@ LAB_180157585:
   CalculationFunctionAddress = 0;
   SystemTemporaryValue90 = 0;
   StackValidationData = 0;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   RenderConfigurationDataA0[0] = 0;
   SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(Utf8SourcePointer + 8) != NULL) {
@@ -195107,7 +195107,7 @@ ResizeMemoryPool(long long *ContextHandle,long long *ContextHandleSize,uint64_t 
   unsigned long long SystemOperationStatusMask;
   uint32_t StackValidationData;
   void **ppCalculationFunctionAddress;
-  uint32_t aStackProcessingValue78 [2];
+  uint32_t aStackProcessingDataBuffer [2];
   long long *CoreEngineSignedValue70;
   uint64_t StackProcessingValue;
   long long *plStack_60;
@@ -195140,10 +195140,10 @@ ResizeMemoryPool(long long *ContextHandle,long long *ContextHandleSize,uint64_t 
     SystemContextRegister[8] = AdditionalParameter1;
     *(uint8_t *)(SystemContextRegister + 9) = 0;
     *(uint8_t *)((long long)SystemContextRegister + 0x49) = AdditionalParameter3;
-    aStackProcessingValue78[0] = (uint32_t)SystemContextRegister[10];
+    aStackProcessingDataBuffer[0] = (uint32_t)SystemContextRegister[10];
     CoreEngineSignedValue70 = SystemContextRegister;
     (**(code **)(*SystemContextRegister + 0x28))();
-    ProcessSystemBufferStatusManagement(BufferAllocationState + 6,aBufferOffset,aStackProcessingValue78);
+    ProcessSystemBufferStatusManagement(BufferAllocationState + 6,aBufferOffset,aStackProcessingDataBuffer);
     if (CoreEngineSignedValue70 != (long long *)0x0) {
       (**(code **)(*CoreEngineSignedValue70 + 0x38))();
     }
@@ -195207,7 +195207,7 @@ ReleaseMemoryPool(long long *ContextHandle,long long *ContextHandleSize,uint64_t
   unsigned long long SystemOperationStatusMask;
   uint32_t StackValidationData;
   void **ppCalculationFunctionAddress;
-  uint32_t aStackProcessingValue78 [2];
+  uint32_t aStackProcessingDataBuffer [2];
   long long *CoreEngineSignedValue70;
   uint64_t StackProcessingValue;
   long long *plStack_60;
@@ -195241,10 +195241,10 @@ ReleaseMemoryPool(long long *ContextHandle,long long *ContextHandleSize,uint64_t
     (**(code **)(SystemContextRegister[3] + 0x10))(SystemContextRegister + 3,MemoryAllocationMaskPointer);
     *(uint8_t *)(SystemContextRegister + 9) = AdditionalParameter3;
     *(uint8_t *)((long long)SystemContextRegister + 0x49) = AdditionalParameter2;
-    aStackProcessingValue78[0] = (uint32_t)SystemContextRegister[10];
+    aStackProcessingDataBuffer[0] = (uint32_t)SystemContextRegister[10];
     CoreEngineSignedValue70 = SystemContextRegister;
     (**(code **)(*SystemContextRegister + 0x28))();
-    ProcessSystemBufferStatusManagement(ContextHandle + 6,aBufferOffset,aStackProcessingValue78);
+    ProcessSystemBufferStatusManagement(ContextHandle + 6,aBufferOffset,aStackProcessingDataBuffer);
     if (CoreEngineSignedValue70 != (long long *)0x0) {
       (**(code **)(*CoreEngineSignedValue70 + 0x38))();
     }
@@ -196427,7 +196427,7 @@ void ProcessContextHandleMemoryAllocationAndReferenceCount(long long *ContextHan
   uint SystemOperationStatusMask;
   uint32_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   int *piStack_70;
   uint32_t *aEnginePointerBuffer [2];
   code *pcStack_58;
@@ -196478,12 +196478,12 @@ void ProcessContextHandleMemoryAllocationAndReferenceCount(long long *ContextHan
       piStack_70 = StackIntegerArray;
       pcStack_58 = ProcessSystemMemoryAllocationEx;
       SystemValidationPointer = &SystemValidationBuffer;
-      StackProcessingValue78 = MemoryPoolSizePointer;
+      StackProcessingDataBuffer = MemoryPoolSizePointer;
       aEnginePointerBuffer[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
       *aEnginePointerBuffer[0] = (uint32_t)CalculationFunctionAddress;
       aEnginePointerBuffer[0][1] = CalculationFunctionAddress.HighPart;
-      aEnginePointerBuffer[0][2] = (uint32_t)StackProcessingValue78;
-      aEnginePointerBuffer[0][3] = StackProcessingValue78.HighPart;
+      aEnginePointerBuffer[0][2] = (uint32_t)StackProcessingDataBuffer;
+      aEnginePointerBuffer[0][3] = StackProcessingDataBuffer.HighPart;
       *(int **)(aEnginePointerBuffer[0] + 4) = piStack_70;
       ProcessSystemCharacterBufferOperation(MemoryPoolSizePointer[1] - *MemoryPoolSizePointer,0,(MemoryPoolSizePointer[1] - *MemoryPoolSizePointer) / 0x28,1,0xffffffffffffffff,
                     aEnginePointerBuffer);
@@ -197830,7 +197830,7 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   uint8_t aDataProcessingFlags [56];
   uint8_t SystemProcessFlagBuffer [56];
   uint8_t SystemStackRegisterBuffer [56];
-  uint8_t aStackProcessingValue78 [56];
+  uint8_t aStackProcessingDataBuffer [56];
   uint64_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -198879,8 +198879,8 @@ void InitializeSystemPriorityAndFlagConfiguration(long long ContextHandle)
   SystemPriorityLevel.LowPart = 0x50;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
-  ProcessSystemPriorityAndFlags(aStackProcessingValue78,&SystemPriorityLevel,&ProcessingFlags,1);
-  ProcessContextHandleTableOperation(ContextHandle,0xb6,aStackProcessingValue78);
+  ProcessSystemPriorityAndFlags(aStackProcessingDataBuffer,&SystemPriorityLevel,&ProcessingFlags,1);
+  ProcessContextHandleTableOperation(ContextHandle,0xb6,aStackProcessingDataBuffer);
   SystemPriorityLevel.LowPart = 0x4b;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
@@ -203387,7 +203387,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
   uint64_t *MemoryAllocationMaskPointer;
   void *SystemEventPointer;
   uint64_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   void *StackPointer;
   uint64_t *EncodingBuffer;
@@ -203406,14 +203406,14 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
     SystemEventPointer = &SystemNullTemplate;
     StackProcessingVariable70 = 0;
     pCalculationFunctionAddress = NULL;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13,Utf16EndPointer,0,0xfffffffffffffffe);
     *(uint8_t *)SystemEventTemplatePointer = 0;
     pCalculationFunctionAddress = (void *)SystemEventTemplatePointer;
     MemoryPoolIndex = GetMemoryAllocationInfo(SystemEventTemplatePointer);
     *SystemEventTemplatePointer = 0x65736162;
     *(uint8_t *)(SystemEventTemplatePointer + 1) = 0;
-    StackProcessingValue78 = 4;
+    StackProcessingDataBuffer = 4;
     StackProcessingVariable70.LowPart = MemoryPoolIndex;
     ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
@@ -203445,13 +203445,13 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
     SystemEventPointer = &SystemNullTemplate;
     StackProcessingVariable70 = 0;
     pCalculationFunctionAddress = NULL;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     MemoryAllocationMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
     *(uint8_t *)MemoryAllocationMaskPointer = 0;
     pCalculationFunctionAddress = MemoryAllocationMaskPointer;
     MemoryPoolIndex = GetMemoryAllocationInfo(MemoryAllocationMaskPointer);
     *MemoryAllocationMaskPointer = 0x325f6c6576656c;
-    StackProcessingValue78 = 7;
+    StackProcessingDataBuffer = 7;
     StackProcessingVariable70.LowPart = MemoryPoolIndex;
     ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
@@ -203483,14 +203483,14 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
     SystemEventPointer = &SystemNullTemplate;
     StackProcessingVariable70 = 0;
     pCalculationFunctionAddress = NULL;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     MemoryAllocationMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
     *(uint8_t *)MemoryAllocationMaskPointer = 0;
     pCalculationFunctionAddress = MemoryAllocationMaskPointer;
     MemoryPoolIndex = GetMemoryAllocationInfo(MemoryAllocationMaskPointer);
     *MemoryAllocationMaskPointer = 0x6e61696c69766963;
     *(uint8_t *)(MemoryAllocationMaskPointer + 1) = 0;
-    StackProcessingValue78 = 8;
+    StackProcessingDataBuffer = 8;
     StackProcessingVariable70.LowPart = MemoryPoolIndex;
     ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
@@ -203795,7 +203795,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t ContextHandle,uint64_t *Conte
   bool BooleanValidationStatus8;
   void *SystemEventPointer;
   uint32_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   unsigned long long StackProcessingVariable70;
   void *StackPointer;
   void *EncodingBuffer;
@@ -203810,7 +203810,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t ContextHandle,uint64_t *Conte
     SystemEventPointer = &SystemNullTemplate;
     StackProcessingVariable70 = 0;
     pCalculationFunctionAddress = (uint32_t *)0x0;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     ContextHandleTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x17,0x13,Utf16EndPointer,0,0xfffffffffffffffe);
     *(uint8_t *)ContextHandleTablePointer = 0;
     pCalculationFunctionAddress = ContextHandleTablePointer;
@@ -203823,7 +203823,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t ContextHandle,uint64_t *Conte
     ContextHandleTablePointer[4] = 0x742e7372;
     *(uint16_t *)(ContextHandleTablePointer + 5) = 0x7478;
     *(uint8_t *)((long long)ContextHandleTablePointer + 0x16) = 0;
-    StackProcessingValue78 = 0x16;
+    StackProcessingDataBuffer = 0x16;
     pMemoryAllocationMaskPointer = &SystemEventPointer;
   }
   else {
@@ -203927,7 +203927,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t ContextHandle,uint64_t *C
   bool BooleanValidationStatus8;
   void *SystemEventPointer;
   uint32_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   unsigned long long StackProcessingVariable70;
   void *StackPointer;
   void *EncodingBuffer;
@@ -203942,7 +203942,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t ContextHandle,uint64_t *C
     SystemEventPointer = &SystemNullTemplate;
     StackProcessingVariable70 = 0;
     pCalculationFunctionAddress = (uint32_t *)0x0;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     ContextHandleTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x18,0x13,Utf16EndPointer,0,0xfffffffffffffffe);
     *(uint8_t *)ContextHandleTablePointer = 0;
     pCalculationFunctionAddress = ContextHandleTablePointer;
@@ -203953,7 +203953,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t ContextHandle,uint64_t *C
     ContextHandleTablePointer[2] = 0x69626d6f;
     ContextHandleTablePointer[3] = 0x6974616e;
     *(void *)(ContextHandleTablePointer + 4) = 0x7478742e736e6f;
-    StackProcessingValue78 = 0x17;
+    StackProcessingDataBuffer = 0x17;
     pMemoryAllocationMaskPointer = &SystemEventPointer;
   }
   else {
@@ -205026,7 +205026,7 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
   void *pSystemOperationStatusMask;                          // 系统操作90指针
   long long lStack_88;                                // 栈变量88
   uint CalculationFunctionAddress;                    // 计算函数地址
-  unsigned long long StackProcessingValue78;  // 栈处理无符号值78
+  unsigned long long StackProcessingDataBuffer;  // 栈处理无符号值78
   unsigned long long StackProcessingVariable70;      // 栈处理变量70
   void *StackPointer;                                // 栈指针
   long long lStack_60;                                // 栈变量60
@@ -205092,7 +205092,7 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
           }
           CalculationFunctionAddress = *(uint *)(MemoryBlockIndex + 0x10);
           lStack_88 = *(long long *)(MemoryBlockIndex + 8);
-          StackProcessingValue78 = *(unsigned long long *)(MemoryBlockIndex + 0x18);
+          StackProcessingDataBuffer = *(unsigned long long *)(MemoryBlockIndex + 0x18);
           *(uint32_t *)(MemoryBlockIndex + 0x10) = 0;
           *(void *)(MemoryBlockIndex + 8) = 0;
           *(void *)(MemoryBlockIndex + 0x18) = 0;
@@ -205278,7 +205278,7 @@ LAB_18016a555:
       ProcessSystemEventHandling();
   }
   lStack_88 = 0;
-  StackProcessingValue78 = StackProcessingValue78 & 0xffffffff00000000;
+  StackProcessingDataBuffer = StackProcessingDataBuffer & 0xffffffff00000000;
   pSystemOperationStatusMask = &ThreadLocalStorageTemplate;
   pSystemCleanupFlagG = &SystemNullTemplate;
   if (CoreEngineSignedValueC8 != 0) {
@@ -207993,7 +207993,7 @@ void InitializeContextHandleAndSystemData(uint64_t *ContextHandle)
 {
   uint32_t *CharacterStatusBuffer;
   uint8_t SystemOperationBuffer [32];
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint64_t *EnginePointerBuffer;
   uint8_t *EncodingBuffer;
@@ -208006,7 +208006,7 @@ void InitializeContextHandleAndSystemData(uint64_t *ContextHandle)
   
   StackProcessingVariable70 = 0xfffffffffffffffe;
   uStack_10 = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   EncodingBuffer = aBufferOffset;
   pFunctionAddress = &UnknownDataStructureTemplate;
   LocalProcessingStatusFlag = aProcessingCounter;
@@ -208029,7 +208029,7 @@ void InitializeContextHandleAndSystemData(uint64_t *ContextHandle)
   *CharacterStatusBuffer = 0x656e6f44;
   *(uint8_t *)(CharacterStatusBuffer + 1) = 0;
   *(uint32_t *)(ContextHandle + 2) = 4;
-  StackProcessingValue78 = 1;
+  StackProcessingDataBuffer = 1;
     CoreEngineExecuteUtilityFunction(uStack_10 ^ (unsigned long long)SystemOperationBuffer);
 }
 
@@ -210147,7 +210147,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t ContextHandle,uint
   uint32_t StackValidationData;
   uint32_t uStack_84;
   uint64_t CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint32_t uStack_74;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
@@ -210157,8 +210157,8 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t ContextHandle,uint
   
   SystemProcessFlagB = 0xfffffffffffffffe;
   StackValidationFlag = EncodingDecodingKey ^ (unsigned long long)aBufferInitializationFlag;
-  StackProcessingValue78 = 0x48;
-  GetMonitorInfoA(ContextHandle,&StackProcessingValue78);
+  StackProcessingDataBuffer = 0x48;
+  GetMonitorInfoA(ContextHandle,&StackProcessingDataBuffer);
   UnicodeCodePoint = GetDC(0);
   uStack_fc = GetDeviceCaps(UnicodeCodePoint,0x58);
   SystemProcessFlagA = GetDeviceCaps(UnicodeCodePoint,0x5a);
@@ -210778,7 +210778,7 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
   
   // 栈处理变量
   uint64_t StackSecurityValidationParameter;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint64_t StackProcessingValue;
   uint64_t SystemDataValue1;
@@ -210791,7 +210791,7 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long ContextHandle)
   
   // 初始化栈变量
   StackSecurityValidationParameter = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   StackProcessingVariable70 = 0;
   StackProcessingValue = 0;
   SystemDataValue1 = 0;
@@ -214036,7 +214036,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
   uint8_t StackValidationData;
   uint32_t CalculationFunctionAddress;
   uint32_t uStack_7c;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint32_t uStack_74;
   code *SystemFunctionPointer70;
   code *SystemFunctionPointer68;
@@ -214084,7 +214084,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
   ProgramCounterStack68 = CopyCharacterEncodingData;
   CalculationFunctionAddress = (uint32_t)uStack_1e0;
   uStack_7c = uStack_1e0.HighPart;
-  StackProcessingValue78 = (uint32_t)SystemStackData;
+  StackProcessingDataBuffer = (uint32_t)SystemStackData;
   uStack_74 = SystemStackData.HighPart;
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackProcessingUnsignedValue60,0,0);
@@ -217182,7 +217182,7 @@ void ProcessMemoryAddressMaskAndBufferStatus(long long ContextHandle,uint64_t Op
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
   uint32_t CalculationFunctionAddress;
-  uint8_t aStackProcessingValue78 [8];
+  uint8_t aStackProcessingDataBuffer [8];
   uint64_t StackProcessingVariable70;
   uint8_t StackProcessingValue [8];
   uint32_t StackProcessingUnsignedValue60;
@@ -217234,7 +217234,7 @@ LAB_1801794f5:
     }
     if ((PrimaryProcessingStatusFlag == StringProcessingStatus) || (ContextHandle < (long long *)PrimaryProcessingStatusFlag[4])) {
       pSystemContextPointerA8 = &SystemStackPointer;
-      PrimaryProcessingStatusFlag = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
+      PrimaryProcessingStatusFlag = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       ContextHandle = SystemStackPointer;
     }
@@ -217284,7 +217284,7 @@ LAB_1801794f5:
     }
     if ((SystemEventTemplatePointer == StringProcessingStatus) || (ContextHandle < (long long *)SystemEventTemplatePointer[4])) {
       pSystemContextPointerA8 = &SystemStackPointer;
-      SystemEventTemplatePointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
+      SystemEventTemplatePointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
       SystemEventTemplatePointer = (void *)*SystemEventTemplatePointer;
       ContextHandle = SystemStackPointer;
     }
@@ -217308,7 +217308,7 @@ LAB_1801794f5:
   SystemOperationStatusMask = StackValidationData;
   if ((MemoryAllocationMaskPointer == StringProcessingStatus) || (ContextHandle < (long long *)MemoryAllocationMaskPointer[4])) {
     pSystemContextPointerA8 = &SystemStackPointer;
-    MemoryAllocationMaskPointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
+    MemoryAllocationMaskPointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingDataBuffer);
     MemoryAllocationMaskPointer = (void *)*MemoryAllocationMaskPointer;
   }
   ProcessSystemDataTablePointerOperation(MemoryAllocationMaskPointer + 5,&StackValidationData);
@@ -218687,13 +218687,13 @@ void CleanupSystemDataTable(long long *ContextHandle
   long long *SystemStackPointer;
   long long *pSystemTemporaryValue90;
   uint StackValidationData;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   long long **pCoreEngineSignedValue70;
   long long **pSystemMemoryPointer68;
   long long **SystemDataTableRegistry;
   long long *pSystemStackRegisterValue58;
   
-  StackProcessingValue78 = 0xfffffffffffffffe;
+  StackProcessingDataBuffer = 0xfffffffffffffffe;
   while (MemoryAllocationMaskPointer = TimeoutValueStorage, *(int *)(ContextHandle + 0x80) != 0) {
     AllocatedMemorySize = GetSystemSystemDataRegistry(TimeoutValueStorage);
     if (AllocatedMemorySize != 0) {
@@ -220252,7 +220252,7 @@ void InitializeCoreEngineSystemConfiguration(uint64_t ContextHandle
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0xc;
+  StackProcessingDataBuffer = 0xc;
   strcpy_s(StackProcessingBuffer70,0x40,SystemStringTemplateL);
   ProcessSystemDataBuffer(apuStack_628,&SystemEventPointer);
   uStack_5d0 = 0xb;
@@ -220345,7 +220345,7 @@ void ProcessUtf16CharacterAndContextManagement(uint64_t ContextHandle, uint64_t 
   void *pSystemOperationStatusMask;
   uint64_t *SystemEventPointer;
   uint32_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t ProcessingFlags;
   
   ProcessingFlags = 0x18017c7c8;
@@ -220357,14 +220357,14 @@ void ProcessUtf16CharacterAndContextManagement(uint64_t ContextHandle, uint64_t 
   SystemEventTemplatePointer[0xe] = 0;
   *(uint32_t *)(SystemEventTemplatePointer + 0xf) = 0x3f800000;
   pSystemOperationStatusMask = &SystemNullTemplate;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   SystemEventPointer = NULL;
   CalculationFunctionAddress = 0;
   SystemEventTemplatePointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
   *(uint8_t *)SystemEventTemplatePointer = 0;
   SystemEventPointer = SystemEventTemplatePointer;
   Utf16Char = GetMemoryAllocationInfo(SystemEventTemplatePointer);
-  StackProcessingValue78 = CONCAT44(StackProcessingValue78.HighPart,Utf16Char);
+  StackProcessingDataBuffer = CONCAT44(StackProcessingDataBuffer.HighPart,Utf16Char);
   *SystemEventTemplatePointer = 0x6c6169726574614d;
   *(uint8_t *)(SystemEventTemplatePointer + 1) = 0;
   CalculationFunctionAddress = 8;
@@ -221075,7 +221075,7 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
   uint8_t aSystemCleanupFlagG [72];
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
@@ -221254,7 +221254,7 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 10;
+  StackProcessingDataBuffer = 10;
   strcpy_s(StackProcessingBuffer70,0x40,SystemStringTemplateL);
   ProcessSystemDataBuffer(apSystemDataValue28,&SystemEventPointer);
   uStack_570 = 0xb;
@@ -222834,7 +222834,7 @@ void CalculateSystemCharacterMetrics(long long ContextHandle,int OperationBuffer
   uint32_t uStack_84;
   float fStack_80;
   float fStack_7c;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   long long *CoreEngineSignedValue70;
   long long *SystemMemoryPointer68;
   uint8_t StackProcessingUnsignedValue60 [8];
@@ -222871,7 +222871,7 @@ LAB_180181af9:
   }
   NormalizedParameterValue = *Utf8SourcePointer;
   fStack_88 = Utf8SourcePointer[2];
-  StackProcessingValue78 = *(void *)(Utf8SourcePointer + 2);
+  StackProcessingDataBuffer = *(void *)(Utf8SourcePointer + 2);
   MatrixElementP = (pFloatOffsetValue[3] - pFloatOffsetValue[1]) * AdditionalParameter2[1];
   PrimaryFloatValue = pFloatOffsetValue[2];
   SecondaryFloatValue = *pFloatOffsetValue;
@@ -223877,7 +223877,7 @@ void Utf8ToUtf16EncodingConverter(uint64_t ContextHandle, int OperationBufferSiz
   long long *ContextHandle;
   code *SystemValidationFunction;
   long long SearchStartIndex;
-  uint8_t aStackProcessingValue78 [32];
+  uint8_t aStackProcessingDataBuffer [32];
   int aStringComparisonMode [2];
   long long *pSystemTemporaryValue50;
   uint8_t *ContextDataPointer;
@@ -223888,7 +223888,7 @@ void Utf8ToUtf16EncodingConverter(uint64_t ContextHandle, int OperationBufferSiz
   unsigned long long uStack_10;
   
   aMemoryOperationStatus[1] = 0xfffffffffffffffe;
-  uStack_10 = EncodingDecodingKey ^ (unsigned long long)aStackProcessingValue78;
+  uStack_10 = EncodingDecodingKey ^ (unsigned long long)aStackProcessingDataBuffer;
   ContextHandle = (long long *)Utf16EndPointer[7];
   pSystemTemporaryValue50 = Utf16EndPointer;
   if (ContextHandle != (long long *)0x0) {
@@ -223927,7 +223927,7 @@ void Utf8ToUtf16EncodingConverter(uint64_t ContextHandle, int OperationBufferSiz
     Utf16EndPointer[7] = 0;
   }
   free(Utf16EndPointer,0x48);
-    CoreEngineExecuteUtilityFunction(uStack_10 ^ (unsigned long long)aStackProcessingValue78);
+    CoreEngineExecuteUtilityFunction(uStack_10 ^ (unsigned long long)aStackProcessingDataBuffer);
 }
 
 
@@ -224015,7 +224015,7 @@ void ProcessCharacterDataBuffer(int ContextHandle, long long OperationBufferSize
   unsigned long long SystemStatusCode;
   uint8_t aCoreEngineValueA8 [32];
   long long lStack_88;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint64_t ***primaryCharacterStatusBufferPointer;
   uint64_t StackProcessingUnsignedValue60;
@@ -224058,8 +224058,8 @@ void ProcessCharacterDataBuffer(int ContextHandle, long long OperationBufferSize
           }
           else {
 LAB_180184411:
-            StackProcessingValue78 = ReferenceCountPointer;
-            lStack_88 = ProcessSystemSecondaryCharacterStatus(&primaryCharacterStatusBufferPointer,primaryCharacterStatusBufferPointer,&StackProcessingValue78);
+            StackProcessingDataBuffer = ReferenceCountPointer;
+            lStack_88 = ProcessSystemSecondaryCharacterStatus(&primaryCharacterStatusBufferPointer,primaryCharacterStatusBufferPointer,&StackProcessingDataBuffer);
             ProcessUtf8ToUtf16CharacterEncodingVariant(&primaryCharacterStatusBufferPointer,&ppSystemValidationPointer,pppSystemCharacterStatusBuffer,lStack_88 + 0x1c);
             pppSystemCharacterStatusBuffer = (uint64_t ****)ppSystemValidationPointer;
           }
@@ -224067,7 +224067,7 @@ LAB_180184411:
           SystemStatusCode = SystemStatusCode + 1;
         } while (SystemStatusCode < *(unsigned long long *)(OperationBufferSize + 0x10));
       }
-      StackProcessingValue78 = (int *)((unsigned long long)StackProcessingValue78.HighPart << 0x20);
+      StackProcessingDataBuffer = (int *)((unsigned long long)StackProcessingDataBuffer.HighPart << 0x20);
       SystemContextPtr = *(long long **)(Utf8SourcePointer + 0x38);
       if (SystemContextPtr == (long long *)0x0) {
         __Xbad_function_call_std__YAXXZ();
@@ -224075,7 +224075,7 @@ LAB_180184411:
         (*CharacterPointer)();
         return;
       }
-      (**(code **)(*SystemContextPtr + 0x10))(SystemContextPtr,&StackProcessingValue78,&StackProcessingVariable70);
+      (**(code **)(*SystemContextPtr + 0x10))(SystemContextPtr,&StackProcessingDataBuffer,&StackProcessingVariable70);
       ppStringProcessingStatus = primaryCharacterStatusBufferPointer;
       ppSystemValidationPointer = &primaryCharacterStatusBufferPointer;
       SystemCheckResult = *(char *)((long long)primaryCharacterStatusBufferPointer[1] + SystemNodeStatusOffset);
@@ -224097,8 +224097,8 @@ LAB_180184411:
       ppSystemValidationPointer = *(uint64_t ****)(Utf8SourcePointer + 0x40);
       SystemStackFlag = *(uint8_t *)(OperationBufferSize + 8);
       uStack_44 = *(uint32_t *)(OperationBufferSize + 0xc);
-      StackProcessingValue78 = (int *)CONCAT44(StackProcessingValue78.HighPart,1);
-      (**(code **)(*SystemContextPtr + 0x10))(SystemContextPtr,&StackProcessingValue78,&ppSystemValidationPointer);
+      StackProcessingDataBuffer = (int *)CONCAT44(StackProcessingDataBuffer.HighPart,1);
+      (**(code **)(*SystemContextPtr + 0x10))(SystemContextPtr,&StackProcessingDataBuffer,&ppSystemValidationPointer);
     }
   }
     CoreEngineExecuteUtilityFunction(SystemPriorityLevel ^ (unsigned long long)aCoreEngineValueA8);
@@ -239717,7 +239717,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   uint32_t uStack_84;
   uint32_t CalculationFunctionAddress;
   uint32_t uStack_7c;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint32_t uStack_74;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
@@ -239918,7 +239918,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   uStack_84 = 0;
   CalculationFunctionAddress = 0;
   uStack_7c = 0;
-  StackProcessingValue78 = 0x3f800000;
+  StackProcessingDataBuffer = 0x3f800000;
   uStack_74 = 0;
   StackProcessingVariable70 = 0;
   SystemUnsignedValue6C = 0;
@@ -242408,7 +242408,7 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   long long StackLongValue90;
   uint64_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   char StackBuffer70 [16];
   char SystemBuffer60 [16];
   char StackBuffer50 [16];
@@ -242425,7 +242425,7 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   ProcessingCounter = Utf16EndPointer;
   SystemTemporaryValue90 = ContextHandle;
   StackValidationData = OperationBufferSize;
-  StackProcessingValue78 = OperationBufferSize;
+  StackProcessingDataBuffer = OperationBufferSize;
   plStack_c0 = (long long *)ProcessSystemDataProcessing(0,Utf8SourcePointer);
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))(plStack_c0);
@@ -243066,14 +243066,14 @@ void ProcessSystemCharacterEncodingAndValidation(long long ContextHandle)
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
   uint32_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint8_t StackProcessingVariable70 [8];
   uint8_t StackProcessingValue [8];
   uint8_t StackProcessingUnsignedValue60 [8];
   uint8_t BufferOffset [8];
   uint8_t SystemKeyPointer [16];
   
-  StackProcessingValue78 = 0xfffffffffffffffe;
+  StackProcessingDataBuffer = 0xfffffffffffffffe;
   MemoryPoolIndex7 = 0;
   (**(code **)(*(long long *)(ContextHandle + 0x60740) + 0x10)            ((long long *)(ContextHandle + 0x60740),&CoreEngineDataTemplate);
   (**(code **)(*(long long *)(ContextHandle + 0x60760) + 0x10)            ((long long *)(ContextHandle + 0x60760),&CoreEngineDataTemplate);
@@ -245082,7 +245082,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint32_t StackProcessingValue;
   uint32_t SystemDataValue1;
@@ -245172,7 +245172,7 @@ void ProcessSystemContextAndMemoryBufferManagement(long long ContextHandle, long
     SystemOperationStatusMask = 0;
     StackValidationData = 0x3f80000000000000;
     CalculationFunctionAddress = 0;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     StackProcessingVariable70 = 0x3f800000;
     StackProcessingValue = 0;
     SystemDataValue1 = 0;
@@ -245511,7 +245511,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   uint64_t *SystemOperationStatusMaskPointer;
   uint64_t *SystemEventQueuePointer;
   uint64_t CalculationFunctionPointer;
-  uint32_t SystemStackProcessingValue78;
+  uint32_t SystemStackProcessingDataBuffer;
   
   ContextHandle = (long long *)*CoreEngineConfigFlag;
   pSystemRegisterFlag = ContextHandle;
@@ -245578,7 +245578,7 @@ void InitializeSystemDataPointer(uint64_t *ContextHandle,unsigned long long Oper
   SystemOperationStatusMaskPointer = NULL;
   SystemEventQueuePointer = NULL;
   CalculationFunctionPointer = 0;
-  SystemStackProcessingValue78 = 3;
+  SystemStackProcessingDataBuffer = 3;
   ValidateSystemOperationStatus(ContextHandle + 0xc060,&SystemOperationStatusMaskPointer);
   (**(code **)(pSystemStackRegisterBuffer + 0x10))(&pSystemStackRegisterBuffer,&CoreEngineDataTemplate);
   MemoryPoolIndex = (long long)SystemEventQueuePointer - (long long)SystemOperationStatusMaskPointer >> SystemEventContextShiftCount;
@@ -246004,7 +246004,7 @@ void ValidateSystemContext(long long ContextHandle
   unsigned long long SystemOperationValidationFlag;
   unsigned long long StackValidationData;
   long long *plStack_80;
-  unsigned long long StackProcessingValue78;
+  unsigned long long StackProcessingDataBuffer;
   unsigned long long StackProcessingValue;
   uint8_t aStackProcessingUnsignedValue60 [56];
   
@@ -246142,7 +246142,7 @@ LAB_18019e5b4:
           do {
             ProcessSystemMemoryBuffer(BufferStatus1);
             SystemDataTablePointer = plStack_80;
-            MemoryAllocationHandle = StackProcessingValue78;
+            MemoryAllocationHandle = StackProcessingDataBuffer;
             Utf16Char4 = StackProcessingValue;
             PrimaryProcessingStatusFlag2 = PrimaryProcessingStatusFlag4;
             CharacterStatusBuffer9 = DataContentPointer;
@@ -255690,7 +255690,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   uint64_t SystemOperationStatusMask;
   uint64_t StackValidationData;
   uint64_t CalculationFunctionAddress;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
   uint32_t StackProcessingValue;
@@ -255734,7 +255734,7 @@ void InitializeSystemDataTemplate(uint64_t ContextHandle, long long *ContextHand
   SystemOperationStatusMask = 0x3f800000;
   StackValidationData = 0;
   CalculationFunctionAddress = 0x3f80000000000000;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   StackProcessingVariable70 = 0;
   SystemUnsignedValue6C = 0;
   StackProcessingValue = 0x3f800000;
@@ -255817,7 +255817,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   uint64_t StackValidationData;
   uint32_t CalculationFunctionAddress;
   uint32_t uStack_7c;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint32_t uStack_74;
   uint32_t StackProcessingVariable70;
   uint32_t SystemUnsignedValue6C;
@@ -255867,7 +255867,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   StackValidationData = AdditionalParameter1[3];
   CalculationFunctionAddress = *(uint32_t *)(AdditionalParameter1 + 4);
   uStack_7c = *(uint32_t *)((long long)AdditionalParameter1 + 0x24);
-  StackProcessingValue78 = *(uint32_t *)(AdditionalParameter1 + 5);
+  StackProcessingDataBuffer = *(uint32_t *)(AdditionalParameter1 + 5);
   uStack_74 = *(uint32_t *)((long long)AdditionalParameter1 + 0x2c);
   StackProcessingVariable70 = *(uint32_t *)(AdditionalParameter1 + 6);
   SystemUnsignedValue6C = *(uint32_t *)((long long)AdditionalParameter1 + 0x34);
@@ -259893,7 +259893,7 @@ long long *ProcessContextHandleAndUtf8DataSearch(uint64_t ContextHandle, long lo
   long long SystemTemporaryValue90;
   long long StackParameter88;
   uint64_t CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   long long CoreEngineSignedValue70;
   long long StackParameter68;
   unsigned long long StackProcessingUnsignedValue60;
@@ -259976,7 +259976,7 @@ LAB_18020c1b3:
   SystemTemporaryValue90 = 0;
   StackParameter88 = 0;
   CalculationFunctionAddress = 0;
-  StackProcessingValue78 = 3;
+  StackProcessingDataBuffer = 3;
   ProcessSystemContextAllocation(&SystemTemporaryValue90, &StackParameter18);
   FUN_1802e8c60(Utf8SourcePointer, &SystemTemporaryValue90);
   BufferInitializationFlag = NULL;
@@ -264437,7 +264437,7 @@ LAB_180214064:
   uint32_t Utf16Char;
   uint64_t MemoryPoolIndex;
   int MemoryComparisonResult;
-  uint8_t aStackProcessingValue78 [32];
+  uint8_t aStackProcessingDataBuffer [32];
   uint32_t BufferOffset;
   uint32_t SystemUnsignedValue54;
   uint32_t SystemKeyPointer;
@@ -264494,7 +264494,7 @@ LAB_180214064:
       InitializeSystemEvent(&SystemEventTemplateDataPrimary);
     }
   }
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
 }
 
 
@@ -267171,7 +267171,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
   uint8_t uStack_8e;
   void *SystemEventPointer;
   long long lStack_80;
-  uint StackProcessingValue78;
+  uint StackProcessingDataBuffer;
   uint32_t StackProcessingVariable70;
   void *StackPointer;
   void *EncodingBuffer;
@@ -267191,9 +267191,9 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
   BufferStatus = MemoryOperationStatus;
   if (MemoryOperationStatus == 0) {
     BufferStatus = FUN_1801595d0(MemoryPoolIndex,&SystemEventPointer);
-    OperationResult = StackProcessingValue78 + 0x13;
+    OperationResult = StackProcessingDataBuffer + 0x13;
     CoreEngineProcessSystemEvent(&SystemEventPointer,OperationResult);
-    StringProcessingStatus = (uint32_t *)((unsigned long long)StackProcessingValue78 + lStack_80);
+    StringProcessingStatus = (uint32_t *)((unsigned long long)StackProcessingDataBuffer + lStack_80);
     *StringProcessingStatus = 0x6e756f53;
     StringProcessingStatus[1] = 0x74614464;
     StringProcessingStatus[2] = 0x672e7361;
@@ -267203,7 +267203,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
     if (*(void **)(BufferStatus + 8) != NULL) {
       ContextHandleTablePointer = *(void **)(BufferStatus + 8);
     }
-    StackProcessingValue78 = OperationResult;
+    StackProcessingDataBuffer = OperationResult;
     InitializeSystemEvent(&SystemEventInitializer,ContextHandleTablePointer);
     SystemEventPointer = &SystemNullTemplate;
     if (lStack_80 != 0) {
@@ -270287,7 +270287,7 @@ LAB_18021a863:
   uint8_t uStack_8e;
   void *SystemEventPointer;
   long long lStack_80;
-  uint StackProcessingValue78;
+  uint StackProcessingDataBuffer;
   uint32_t StackProcessingVariable70;
   void *StackPointer;
   void *EncodingBuffer;
@@ -270307,9 +270307,9 @@ LAB_18021a863:
   BufferStatus = MemoryOperationStatus;
   if (MemoryOperationStatus == 0) {
     BufferStatus = FUN_1801595d0(MemoryPoolIndex,&SystemEventPointer);
-    OperationResult = StackProcessingValue78 + 0x13;
+    OperationResult = StackProcessingDataBuffer + 0x13;
     CoreEngineProcessSystemEvent(&SystemEventPointer,OperationResult);
-    StringProcessingStatus = (uint32_t *)((unsigned long long)StackProcessingValue78 + lStack_80);
+    StringProcessingStatus = (uint32_t *)((unsigned long long)StackProcessingDataBuffer + lStack_80);
     *StringProcessingStatus = 0x6e756f53;
     StringProcessingStatus[1] = 0x74614464;
     StringProcessingStatus[2] = 0x672e7361;
@@ -270319,7 +270319,7 @@ LAB_18021a863:
     if (*(void **)(BufferStatus + 8) != NULL) {
       ContextHandleTablePointer = *(void **)(BufferStatus + 8);
     }
-    StackProcessingValue78 = OperationResult;
+    StackProcessingDataBuffer = OperationResult;
     InitializeSystemEvent(&SystemEventInitializer,ContextHandleTablePointer);
     SystemEventPointer = &SystemNullTemplate;
     if (lStack_80 != 0) {
@@ -271778,7 +271778,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uint8_t aSystemCleanupFlagG [72];
   void *SystemEventPointer;
   uint8_t *pCalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint8_t StackProcessingBuffer70 [72];
   unsigned long long StackValidationFlag;
   
@@ -271812,7 +271812,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0xd;
+  StackProcessingDataBuffer = 0xd;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -271862,7 +271862,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0x1c;
+  StackProcessingDataBuffer = 0x1c;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate2);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -271912,7 +271912,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 10;
+  StackProcessingDataBuffer = 10;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate3);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -271962,7 +271962,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0xb;
+  StackProcessingDataBuffer = 0xb;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate4);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -272012,7 +272012,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 9;
+  StackProcessingDataBuffer = 9;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate5);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -272062,7 +272062,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemEventPointer = &SystemValidationStatus;
   pCalculationFunctionAddress = StackProcessingBuffer70;
   StackProcessingBuffer70[0] = 0;
-  StackProcessingValue78 = 0x14;
+  StackProcessingDataBuffer = 0x14;
   strcpy_s(StackProcessingBuffer70,0x40,&SystemVariableTemplate6);
   UnsignedStackValue110 = 1;
   uStack_118 = 0;
@@ -285260,7 +285260,7 @@ uint64_t * InitializeSystemProcessingStatusFlags(uint64_t ContextHandle, long lo
   uint32_t uStack_84;
   uint32_t CalculationFunctionAddress;
   uint32_t uStack_7c;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   uint64_t StackProcessingValue;
   uint32_t StackProcessingUnsignedValue60;
@@ -285285,7 +285285,7 @@ uint64_t * InitializeSystemProcessingStatusFlags(uint64_t ContextHandle, long lo
     pSystemCleanupFlagF = SystemFlagH;
     SystemCleanupFlagG = 0;
     SystemFlagH[0] = 0;
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     StackProcessingVariable70 = 0;
     StackProcessingValue = 0;
     StackProcessingUnsignedValue60 = 3;
@@ -285323,8 +285323,8 @@ uint64_t * InitializeSystemProcessingStatusFlags(uint64_t ContextHandle, long lo
     FUN_180227790(*(void *)(ContextHandle + 0xb0),&CoreEnginePointerBuffer158,aProcessingCounter);
     ppProcessingStatus = (void **)&BufferOffset;
     FUN_180229940(&BufferOffset);
-    ppProcessingStatus = (void **)&StackProcessingValue78;
-    FUN_180229ab0(&StackProcessingValue78);
+    ppProcessingStatus = (void **)&StackProcessingDataBuffer;
+    FUN_180229ab0(&StackProcessingDataBuffer);
     pSystemFlagE = &ThreadLocalStorageTemplate;
     ppProcessingStatus = (void **)&uStack_138;
     FUN_1802299a0(&uStack_138);
@@ -290445,7 +290445,7 @@ LAB_18022c460:
   uint32_t *pSystemOperationStatusMask;
   uint32_t StackValidationData;
   unsigned long long CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   void *StackPointer;
   uint8_t *EncodingBuffer;
@@ -290561,7 +290561,7 @@ LAB_18022c460:
   StackProcessingVariable70 = 0xfffffffffffffffe;
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
   hasMemoryBoundaryChanged = false;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   *(void *)(ContextHandle + 0x1d0) = 0;
   if (CoreEngineEventInitialized == 0) goto LAB_18022d28d;
   LoopIndex = FUN_180178540();
@@ -290589,13 +290589,13 @@ LAB_18022cf5f:
     *(uint16_t *)(CharacterStatusBuffer + 5) = 0x67;
     StackValidationData = 0x15;
     hasMemoryBoundaryChanged = true;
-    StackProcessingValue78 = 1;
+    StackProcessingDataBuffer = 1;
     LoopIndex = ProcessSystemDataAllocationAndMemoryPool(UnicodeCodePoint,&pSystemOperationValidationFlag,0);
     if (LoopIndex == 0) goto LAB_18022cf5f;
     isSystemContextNull = true;
   }
   if (hasMemoryBoundaryChanged) {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     pSystemOperationValidationFlag = &SystemNullTemplate;
     if (CharacterStatusBuffer != (uint32_t *)0x0) {
         CoreEngineFreeSystemMemory(CharacterStatusBuffer);
@@ -290881,7 +290881,7 @@ void InitializeBufferDataAndResources(long long ContextHandle,int OperationBuffe
   uint32_t *pSystemOperationStatusMask;
   uint32_t StackValidationData;
   unsigned long long CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   void *StackPointer;
   uint8_t *EncodingBuffer;
@@ -290904,7 +290904,7 @@ void InitializeBufferDataAndResources(long long ContextHandle,int OperationBuffe
   StackProcessingVariable70 = 0xfffffffffffffffe;
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
   LowByte = false;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   *(void *)(ContextHandle + 0x1d0) = 0;
   if (CoreEngineEventInitialized == 0) goto LAB_18022d28d;
   MemoryPoolBlockSize = FUN_180178540();
@@ -290932,13 +290932,13 @@ LAB_18022cf5f:
     *(uint16_t *)(StringProcessingStatus + 5) = 0x67;
     StackValidationData = 0x15;
     LowByte = true;
-    StackProcessingValue78 = 1;
+    StackProcessingDataBuffer = 1;
     MemoryPoolBlockSize = ProcessSystemDataAllocationAndMemoryPool(MemoryPoolIndex,&pSystemOperationValidationFlag,0);
     if (MemoryPoolBlockSize == 0) goto LAB_18022cf5f;
     hasNodeComparisonResult = true;
   }
   if (LowByte) {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     pSystemOperationValidationFlag = &SystemNullTemplate;
     if (StringProcessingStatus != (uint32_t *)0x0) {
         CoreEngineFreeSystemMemory(StringProcessingStatus);
@@ -291037,7 +291037,7 @@ LAB_18022d28d:
   uint32_t *pSystemOperationStatusMask;
   uint32_t StackValidationData;
   unsigned long long CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   void *StackPointer;
   uint8_t *EncodingBuffer;
@@ -291048,7 +291048,7 @@ LAB_18022d28d:
   StackProcessingVariable70 = 0xfffffffffffffffe;
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
   HighByte = false;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   *(void *)(ContextHandle + 0x1d0) = 0;
   if (CoreEngineEventInitialized == 0) goto LAB_18022d28d;
   MemoryBoundaryEnd = FUN_180178540();
@@ -291076,13 +291076,13 @@ LAB_18022cf5f:
     *(uint16_t *)(StringProcessingStatus + 5) = 0x67;
     StackValidationData = 0x15;
     HighByte = true;
-    StackProcessingValue78 = 1;
+    StackProcessingDataBuffer = 1;
     MemoryBoundaryEnd = ProcessSystemDataAllocationAndMemoryPool(Utf16Char,&pSystemOperationValidationFlag,0);
     if (MemoryBoundaryEnd == 0) goto LAB_18022cf5f;
     LowByte = true;
   }
   if (HighByte) {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     pSystemOperationValidationFlag = &SystemNullTemplate;
     if (StringProcessingStatus != (uint32_t *)0x0) {
         CoreEngineFreeSystemMemory(StringProcessingStatus);
@@ -291310,7 +291310,7 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
 2d6c0(long long ContextHandlevoid FUN_18022d6c0(long long ContextHandle
 {
   uint64_t Utf16Char;
-  uint8_t aStackProcessingValue78 [32];
+  uint8_t aStackProcessingDataBuffer [32];
   uint64_t BufferOffset;
   void *SystemValidationPointer;
   uint8_t *ContextDataPointer;
@@ -291328,7 +291328,7 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
   strcpy_s(aFunctionAddress,0x20,&SystemFunctionAddressTemplate);
   ProcessSystemDataAllocationAndMemoryPool(Utf16Char,&SystemValidationPointer,0);
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingDataBuffer);
 }
 
 
@@ -292702,7 +292702,7 @@ uint64_t * ProcessUnicodeCodePointAndCharacterBuffer(long long ContextHandle,lon
   long long AllocatedMemorySize;
   unsigned long long OperationResult;
   uint8_t SystemOperationBuffer [32];
-  uint32_t StackProcessingValue78;
+  uint32_t StackProcessingDataBuffer;
   uint64_t StackProcessingVariable70;
   void *StackPointer;
   unsigned long long *EncodingBuffer;
@@ -292713,7 +292713,7 @@ uint64_t * ProcessUnicodeCodePointAndCharacterBuffer(long long ContextHandle,lon
   StackProcessingVariable70 = 0xfffffffffffffffe;
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   StringComparisonByte = false;
-  StackProcessingValue78 = 0;
+  StackProcessingDataBuffer = 0;
   *(uint8_t *)(ContextHandle + 0x1d8) = 1;
   long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x1e0);
   MemoryAllocationMaskPointer = EncodingBuffer;
@@ -292735,7 +292735,7 @@ uint64_t * ProcessUnicodeCodePointAndCharacterBuffer(long long ContextHandle,lon
     *(uint16_t *)((long long)MemoryAllocationMaskPointer + 0x14) = 0x67;
     BufferOffset = 0x15;
     StringComparisonByte = true;
-    StackProcessingValue78 = 1;
+    StackProcessingDataBuffer = 1;
     AllocatedMemorySize = ProcessSystemDataAllocationAndMemoryPool(AllocatedMemorySize,&EnginePointerBuffer,0);
     if (AllocatedMemorySize != 0) {
       HighByte = true;
@@ -292745,7 +292745,7 @@ uint64_t * ProcessUnicodeCodePointAndCharacterBuffer(long long ContextHandle,lon
   HighByte = false;
 LAB_18022f178:
   if (StringComparisonByte) {
-    StackProcessingValue78 = 0;
+    StackProcessingDataBuffer = 0;
     EnginePointerBuffer = &SystemNullTemplate;
     if (MemoryAllocationMaskPointer != (unsigned long long *)0x0) {
         CoreEngineFreeSystemMemory(MemoryAllocationMaskPointer);
@@ -293063,9 +293063,9 @@ void ProcessSystemMatrixTransformation(uint64_t ContextHandle,long long Operatio
   long long *aSystemStackPointer [2];
   code *pcStack_88;
   code *CharacterProcessingBuffer;
-  uint64_t StackProcessingValue78;
+  uint64_t StackProcessingDataBuffer;
   
-  StackProcessingValue78 = 0xfffffffffffffffe;
+  StackProcessingDataBuffer = 0xfffffffffffffffe;
   aiStackX_18[0] = Utf8SourcePointer;
   aiStackX_20[0] = Utf16EndPointer;
   FUN_180234690();
