@@ -120025,7 +120025,7 @@ void ValidateIntegerDataShader(long long ContextHandle,byte *ContextHandleSize)
 
 
 
-bb4f(voidvoid FinalizeIntegerDataShader(void
+void FinalizeIntegerDataShader(void)
 {
   long long MainCalculationResult;
   int LockOperationResult;
@@ -120044,7 +120044,7 @@ bb4f(voidvoid FinalizeIntegerDataShader(void
 
 
 
-bba1(voidvoid CoreEngineCleanupShaderData(void
+void CoreEngineCleanupShaderData(void)
 {
   return;
 }
