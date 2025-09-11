@@ -124326,7 +124326,7 @@ CleanupAndExit:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739cdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+ void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 void ProcessUIContextDataWithEventHandling(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
