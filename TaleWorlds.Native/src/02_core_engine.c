@@ -236365,15 +236365,31 @@ LAB_180193ed9:
  * 该函数负责处理系统数据的编码进程，包括字符串比较、
  * Unicode码点处理和内存分配等操作。
  */
-void FUN_180193e88(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, uint64_t *Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符串编码转换和验证
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符串编码转换，包括：
+ * - 验证字符串编码的有效性
+ * - 处理高字节和Unicode码点转换
+ * - 执行字符串比较和模式匹配
+ * - 管理系统上下文和内存分配
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16目标数据指针
+ * 
+ * @note 原始函数名：FUN_180193e88
+ */
+void ProcessUtf8ToUtf16StringEncodingAndValidation(uint64_t ContextHandle, uint64_t OperationBufferSize, long long Utf8SourcePointer, uint64_t *Utf16EndPointer)
 {
-  bool StringComparisonByte;
+  bool StringComparisonResult;
   byte *HighBytePointer;
   uint UnicodeCodePoint;
   int EncodingValidationResult;
   uint64_t *SystemContext;
   long long PatternMatchStatus;
-  long long AllocatedMemorySize;
+  long long MemoryOffset;
   void *CurrentNode;
   void *PreviousNode;
   uint64_t *SystemRegisterR11;
@@ -236381,22 +236397,22 @@ void FUN_180193e88(uint64_t ContextHandle, uint64_t OperationBufferSize, long lo
   do {
     if (*(int *)(Utf8SourcePointer + 0x10) == 0) {
       SecondaryProcessingStatusFlag = (void *)Utf16EndPointer[1];
-      StringComparisonByte = false;
+      StringComparisonResult = false;
     }
     else {
       if (*(int *)(Utf16EndPointer + 6) == 0) {
-        StringComparisonByte = true;
+        StringComparisonResult = true;
       }
       else {
         HighBytePointer = *(byte **)(PatternIndex + 8);
-        AllocatedMemorySize = Utf16EndPointer[5] - (long long)HighBytePointer;
+        MemoryOffset = Utf16EndPointer[5] - (long long)HighBytePointer;
         do {
-          UnicodeCodePoint = (uint)HighBytePointer[AllocatedMemorySize];
+          UnicodeCodePoint = (uint)HighBytePointer[MemoryOffset];
           EncodingValidationResult = *HighBytePointer - UnicodeCodePoint;
           if (*HighBytePointer != UnicodeCodePoint) break;
           HighBytePointer = HighBytePointer + 1;
         } while (UnicodeCodePoint != 0);
-        StringComparisonByte = 0 < EncodingValidationResult;
+        StringComparisonResult = 0 < EncodingValidationResult;
         if (EncodingValidationResult < 1) {
           SecondaryProcessingStatusFlag = (void *)Utf16EndPointer[1];
           goto LAB_180193ed9;
@@ -236684,9 +236700,21 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
  * 该函数负责完成系统上下文的操作，包括缓冲区分配状态处理
  * 和系统事件处理。
  */
-void FUN_180194350(long long *ContextHandle)
+/**
+ * @brief 完成系统上下文操作并清理资源
+ * 
+ * 该函数负责完成系统上下文的操作，包括：
+ * - 遍历和清理缓冲区分配状态
+ * - 执行系统事件处理回调
+ * - 释放相关资源
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180194350
+ */
+void CompleteSystemContextAndCleanupResources(long long *ContextHandle)
 {
-  long long *ContextHandle;
+  long long *SystemContext;
   long long *BufferAllocationState;
   
   ContextHandle = (long long *)ContextHandle[1];

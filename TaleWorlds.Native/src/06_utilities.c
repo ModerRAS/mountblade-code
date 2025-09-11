@@ -10493,7 +10493,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089604
  * @note 这是系统内存管理的重要函数
  */
-#define CleanupSystemDataCache FUN_18089604
+#define CleanupSystemDataCache FUN_180896040
 
 // 原始函数名：FUN_18089513 - 数据验证函数
 // 功能：验证系统数据块的完整性
