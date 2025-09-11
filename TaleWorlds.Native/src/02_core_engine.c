@@ -224875,7 +224875,7 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
   }
 LAB_180184aa5:
   *(void *)(MemoryPoolBlockSize + 0x40) = StackProcessingDataPointer;
-  NVGSDK_Highlights_ConfigureAsync(*(void *)(CoreEngineSignedValueE8 + 8),&StackBufferMemoryOffsetE0,FUN_1801842a0,MemoryPoolBlockSize);
+  NVGSDK_Highlights_ConfigureAsync(*(void *)(CoreEngineSignedValueE8 + 8),&StackBufferMemoryOffsetE0,HandleAsyncCallback,MemoryPoolBlockSize);
   CoreEngineUnsignedValue = 1;
   SystemProcessFlagB = &SystemEventDispatcher;
   if (ProcessingContextPointerBuffer != (uint64_t **)0x0) {

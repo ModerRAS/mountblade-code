@@ -72087,19 +72087,19 @@ void CleanupExceptionAtOffset192(SystemContext systemContext, ExceptionContext e
  */
 #define ExecuteResourceCleanup Unwind_180906460
 
-void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteResourceCleanup(SystemContext systemContext, ExceptionContext exceptionContext, CleanupParameter cleanupParameterA, CleanupParameter cleanupParameterB)
 
 {
-  DataBuffer *exceptionDataBuffer;
-  DataBuffer *memoryResourcePointer;
-  DataBuffer validationStatus;
+  ExceptionDataBuffer *exceptionDataBuffer;
+  MemoryResourcePointer *memoryResourcePointer;
+  CleanupStatus validationStatus;
   
   validationStatus = StandardResourceCleanupFlag;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffsetE8);
-  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffsetE0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + ResourcePointerStepSize) {
-    (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,cleanupFlagA,cleanupFlagB,validationStatus);
+  exceptionDataBuffer = *(ExceptionDataBuffer **)(exceptionContext + ExceptionDataBufferOffsetE8);
+  for (memoryResourcePointer = *(MemoryResourcePointer **)(exceptionContext + MemoryResourcePointerOffsetE0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + ResourcePointerStepSize) {
+    (**(CleanupCallbackFunction**)*memoryResourcePointer)(memoryResourcePointer, 0, cleanupParameterA, cleanupParameterB, validationStatus);
   }
-  if (*(int64_t *)(dataBuffer + MemoryResourcePointerOffsetE0) == 0) {
+  if (*(int64_t *)(exceptionContext + MemoryResourcePointerOffsetE0) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
