@@ -247047,7 +247047,7 @@ void ProcessSystemContextMatrixTransform(long long ContextHandle,long long Opera
 
 
 
-void FUN_180200780(uint64_t ContextHandle,int OperationBufferSize,void **Utf8SourcePointer
+void ProcessSystemMemoryAndCharacterEncoding(uint64_t SystemContextHandle,int SystemOperationBufferSize,void **SystemUtf8SourcePointer
 {
   float SystemContextPrimaryFloat;
   uint8_t aMemoryPoolIndex [16];
