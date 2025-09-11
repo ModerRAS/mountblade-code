@@ -223791,16 +223791,16 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   long long *BufferAllocationState;
   long long SearchStartIndex;
   uint64_t MemoryAllocationMaskPointer;
-  uint8_t aSystemProcessFlagB [32];
-  uint32_t SystemCleanupFlagF;
-  long long *pSystemTemporaryValueD0;
+  uint8_t SystemProcessFlagArray[32];
+  uint32_t SystemCleanupStatusFlag;
+  long long *TemporarySystemPointerD0;
   long long CoreEngineSignedValueC8;
-  long long StackMemoryBufferC0;
+  long long StackTemporaryValueC0;
   uint64_t MemoryOffsetValue;
   long long *SystemContextPointerB0;
-  long long lStack_a8;
-  long long aStackLongValue [7];
-  long long *plStack_60;
+  long long StackTemporaryValueA8;
+  long long EncodingParameterArray[7];
+  long long *EncodingContextPointer;
   uint64_t BufferMemoryOffset;
   unsigned long long SystemStackFlag;
   
