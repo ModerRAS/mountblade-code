@@ -208600,8 +208600,9 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
   uint UIEventProcessingStatus;
   uint64_t UIEventProcessingCounter;
   
-  UILoopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
-  UIEventProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
+  // 初始化事件处理参数
+  UILoopCounter = (uint)((ulonglong)UIStackParameterFFFFFFFFFFFFFFA8 >> 0x20);
+  UIEventProcessingStatus = (uint)((ulonglong)UIStackParameterFFFFFFFFFFFFFFB8 >> 0x20);
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f4) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f2) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f0) = 0;
