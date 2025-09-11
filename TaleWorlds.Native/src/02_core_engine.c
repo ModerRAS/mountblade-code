@@ -238916,6 +238916,19 @@ uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long Op
 
 
 
+/**
+ * @brief 初始化系统事件处理
+ * 
+ * 该函数负责初始化系统事件处理机制，主要功能包括：
+ * - 设置字符表指针和内存地址掩码
+ * - 初始化事件处理标志和状态
+ * - 配置系统事件处理的数据结构
+ * 
+ * @param ContextHandle 上下文句柄，包含系统配置和状态信息
+ * 
+ * @note 原始函数名：FUN_180196af0
+ * @note 这是系统事件处理初始化的核心函数
+ */
 void InitializeSystemEventHandling(long long ContextHandle)
 {
   long long MainCalculationResult;
@@ -238949,6 +238962,20 @@ void InitializeSystemEventHandling(long long ContextHandle)
 
 
 
+/**
+ * @brief 处理系统事件超时
+ * 
+ * 该函数负责处理系统事件的超时机制，主要功能包括：
+ * - 设置超时值存储和内存块索引
+ * - 处理上下文句柄的指针操作
+ * - 配置性能频率寄存器
+ * - 执行系统事件处理函数
+ * 
+ * @param ContextHandle 上下文句柄，包含系统事件配置信息
+ * 
+ * @note 原始函数名：FUN_180196b10
+ * @note 这是处理系统事件超时的核心函数
+ */
 void ProcessSystemEventHandlingWithTimeout(long long ContextHandle)
 {
   long long *ContextHandlePointer;
@@ -238984,6 +239011,20 @@ void ProcessSystemEventHandlingWithTimeout(long long ContextHandle)
 
 
 
+/**
+ * @brief 重置系统事件处理
+ * 
+ * 该函数负责重置系统事件处理机制，主要功能包括：
+ * - 设置系统空模板到指定位置
+ * - 处理现有事件的清理
+ * - 重置事件处理状态和标志
+ * - 配置线程本地存储模板
+ * 
+ * @param ContextHandle 上下文句柄，包含系统事件状态信息
+ * 
+ * @note 原始函数名：FUN_180196b30
+ * @note 这是重置系统事件处理的核心函数
+ */
 void ResetSystemEventHandling(long long ContextHandle)
 {
   *(void *)(ContextHandle + 0x40) = &SystemNullTemplate;
@@ -238999,6 +239040,20 @@ void ResetSystemEventHandling(long long ContextHandle)
 
 
 
+/**
+ * @brief 初始化系统数据模板和内存块
+ * 
+ * 该函数负责初始化系统数据模板和内存块，主要功能包括：
+ * - 设置UTF-16字符编码参数
+ * - 处理系统数据模板的初始化
+ * - 配置内存块的分配和初始化
+ * - 设置系统数据结构的参数
+ * 
+ * @param ContextHandle 上下文句柄，包含系统数据配置信息
+ * 
+ * @note 原始函数名：FUN_180196b80
+ * @note 这是初始化系统数据模板和内存块的核心函数
+ */
 void InitializeSystemDataTemplateWithMemoryBlock(long long ContextHandle)
 {
   uint64_t Utf16Char;
