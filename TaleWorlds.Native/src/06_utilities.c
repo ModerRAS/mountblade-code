@@ -6303,7 +6303,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180046860
  * @see InitializeSystemComponents, ValidateSystemContextA0
  */
-#define InitializeSystemMemoryPoolA0 FUN_180046860
+#define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolWithValidation
 
 /**
  * @brief 初始化系统内存池并配置缓存
@@ -9447,7 +9447,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808935c0
  * @return int 复制状态码，0表示成功
  */
-#define ProcessMemoryCopyA0 FUN_1808935c0
+#define ProcessMemoryCopyA0 CopyMemoryWithBufferManagement
 
 /**
  * @brief 数据缓冲区验证处理函数
@@ -9597,7 +9597,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 配置文件损坏可能导致系统启动失败，需要确保配置文件的完整性
  * @see SaveSystemConfigurationA0, ValidateSystemConfigurationA0
  */
-#define LoadSystemConfigurationA0 FUN_180893e94
+#define LoadSystemConfigurationA0 LoadConfigurationFromStorage
 
 /**
  * @brief 配置保存函数A0
@@ -9617,7 +9617,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 配置保存失败可能导致配置丢失，需要确保存储介质的可靠性
  * @see LoadSystemConfigurationA0, ValidateSystemConfigurationA0
  */
-#define SaveSystemConfigurationA0 FUN_180893f00
+#define SaveSystemConfigurationA0 SaveConfigurationToStorage
 
 /**
  * @brief 配置验证函数A0
@@ -9637,7 +9637,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 配置验证失败可能导致系统运行异常，需要确保配置的正确性
  * @see LoadSystemConfigurationA0, SaveSystemConfigurationA0
  */
-#define ValidateSystemConfigurationA0 FUN_180893f64
+#define ValidateSystemConfigurationA0 ValidateConfigurationIntegrity
 
 /**
  * @brief 全局指针设置函数A24
@@ -10121,7 +10121,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：ValidateDataProcessingA0 - 数据验证处理函数A0
 // 功能：验证数据完整性和处理状态
-#define ValidateDataProcessingA0 FUN_1808995c0
+#define ValidateDataProcessingA0 ValidateDataProcessingPipeline
 
 /**
  * @brief 数据标志处理函数A0
@@ -10138,7 +10138,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808a54c0
  * @see ValidateDataIntegrityA1, CleanupDataBufferA0
  */
-#define ProcessDataFlagsA0 FUN_1808a54c0
+#define ProcessDataFlagsA0 ProcessDataFlagsWithValidation
 
 /**
  * @brief 数据清理函数A0
@@ -10155,7 +10155,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808aef40
  * @see ProcessDataFlagsA0, ValidateDataIntegrityA1
  */
-#define CleanupDataBufferA0 FUN_1808aef40
+#define CleanupDataBufferA0 CleanupDataBufferWithMemoryManagement
 
 /**
  * @brief 内存状态检查函数A0
@@ -10171,7 +10171,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180883750
  * @see ProcessDataWithValidationA0, ValidateDataIntegrityA1
  */
-#define CheckMemoryStatusA0 FUN_180883750
+#define CheckMemoryStatusA0 CheckMemoryStatusAndHealth
 
 /**
  * @brief 数据验证函数A1
@@ -10203,7 +10203,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808a5780
  * @see ValidateDataIntegrityA1, CheckMemoryStatusA0
  */
-#define ProcessDataWithValidationA0 FUN_1808a5780
+#define ProcessDataWithValidationA0 ProcessDataWithValidationAndChecks
 
 /**
  * @brief 系统状态检查函数A0
@@ -10219,7 +10219,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1807d3e20
  * @see ProcessDataWithValidationA0, ValidateDataIntegrityA1
  */
-#define CheckSystemStatusA0 FUN_1807d3e20
+#define CheckSystemStatusA0 CheckSystemHealthAndStatus
 
 /**
  * @brief 系统内存管理函数
@@ -10252,7 +10252,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：InitializeDataStructureA0 - 数据初始化函数A0
 // 功能：初始化数据结构和缓冲区
-#define InitializeDataStructureA0 FUN_180899790
+#define InitializeDataStructureA0 InitializeDataStructureWithDefaults
 
 // 原始函数名：ValidateDataSecurityA0 - 数据验证函数A2
 // 功能：验证数据完整性和安全性
@@ -10277,7 +10277,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateAndProcessDataOperation ValidateDataAndExecuteProcessing
 
 // 系统初始化函数A0 - 初始化系统组件和状态
-#define InitializeSystemComponentsA0 FUN_18004c0b0
+#define InitializeSystemComponentsA0 InitializeSystemComponentsWithValidation
 
 // 系统重置函数 - 重置系统状态和清理资源
 #define ResetSystemComponents ResetSystemStateAndCleanupResources
@@ -10314,7 +10314,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_18089fac2 - 系统清理函数
 // 功能：清理系统资源和释放内存
-#define CleanupSystemResourcesA0 FUN_18089fac2
+#define CleanupSystemResourcesA0 CleanupSystemResourcesWithMemoryRelease
 
 // 原始函数名：FUN_18089fad8 - 系统初始化函数
 // 功能：初始化系统组件和设置
@@ -136658,7 +136658,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：FUN_1808a54c0
  */
-#define ProcessDataFlagsA0 FUN_1808a54c0
+#define ProcessDataFlagsA0 ProcessDataFlagsWithValidation
 
 /**
  * @brief 数据清理函数A0

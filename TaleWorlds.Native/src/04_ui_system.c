@@ -125802,8 +125802,7 @@ LAB_18073ab4a:
 
  
 
- void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
-void ProcessUIRenderContextWithBufferValidation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
+ void ProcessUIRenderContextWithBufferValidation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
 {
   int operationResult;
@@ -125838,7 +125837,7 @@ void ProcessUIRenderContextWithBufferValidation(UIHandle uiContext,UIDword dataS
 
 
  void FUN_18073abec(void)
-void FUN_18073abec(void)
+void ProcessUIBufferDataAndControl(void)
 
 {
   int operationResult;
