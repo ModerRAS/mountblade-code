@@ -10015,11 +10015,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1809419e0 - 全局指针设置函数B12
 // 功能：设置全局数据指针B12到指定地址
-#define SetGlobalDataPointerB12 FUN_1809419e0
+#define SetGlobalDataPointerB12 ConfigureGlobalDataPointerAtOffsetB12
 
 // 原始函数名：FUN_180941a30 - 全局指针设置函数B13
 // 功能：设置全局数据指针B13到指定地址
-#define SetGlobalDataPointerB13 FUN_180941a30
+#define SetGlobalDataPointerB13 ConfigureGlobalDataPointerAtOffsetB13
 
 // 原始函数名：FUN_180941ad0 - 全局指针设置函数B14
 // 功能：设置全局数据指针B14到指定地址
@@ -24193,46 +24193,46 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   isVectorXInfinity = 0;
   isVectorZInfinitySecondary = isVectorXInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent2cInfinity = FloatInfinityValidationResult;
+    isVectorZInfinitySecondary = FloatInfinityValidationResult;
   }
-  isVectorComponent1cInfinity = isVectorComponent18Infinity;
+  isVectorYInfinity = isVectorXInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent1cInfinity = FloatInfinityValidationResult;
+    isVectorYInfinity = FloatInfinityValidationResult;
   }
-  isVectorComponent20Infinity = isVectorComponent18Infinity;
+  isVectorWInfinity = isVectorXInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent20Infinity = FloatInfinityValidationResult;
+    isVectorWInfinity = FloatInfinityValidationResult;
   }
-  if ((isVectorComponent2cInfinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isVectorZInfinitySecondary != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   isVectorComponentZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent28Infinity = FloatInfinityValidationResult;
+    isVectorZInfinityPrimary = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent1cInfinity = FloatInfinityValidationResult;
+    isVectorYInfinity = FloatInfinityValidationResult;
   }
   isVectorComponentYInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent20Infinity = FloatInfinityValidationResult;
+    isVectorWInfinity = FloatInfinityValidationResult;
   }
-  if ((isVectorComponent28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isVectorZInfinityPrimary != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  isVectorComponent28Infinity = isVectorComponentZInfinity;
+  isVectorZInfinityPrimary = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent28Infinity = FloatInfinityValidationResult;
+    isVectorZInfinityPrimary = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent1cInfinity = FloatInfinityValidationResult;
+    isVectorYInfinity = FloatInfinityValidationResult;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorComponent2cInfinity = FloatInfinityValidationResult;
+    isVectorZInfinitySecondary = FloatInfinityValidationResult;
   }
-  if ((isVectorComponent28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponent2cInfinity != 0) {
+  if ((isVectorZInfinityPrimary != 0 || isVectorComponentXInfinity != 0) || isVectorZInfinitySecondary != 0) {
     return ComponentDataValidationFailure;
   }
   vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
