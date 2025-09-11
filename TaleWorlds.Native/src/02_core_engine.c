@@ -20033,13 +20033,23 @@ void CoreEngineInitializeQueueManager(void
 
 
 
- void CoreEngineInitializeNetworkingSystem(void/**
- * @brief 初始化系统线程池管理器
+ /**
+ * @brief 初始化网络系统核心引擎
  * 
- * 该函数负责初始化系统线程池管理器，设置线程池和线程处理机制。
- * 用于管理引擎中的各种线程资源。
+ * 该函数负责初始化游戏网络系统的核心引擎组件，包括系统上下文、
+ * 数据结构和内存节点的设置。这是游戏网络系统启动过程中的关键步骤。
+ * 
+ * 功能包括：
+ * - 获取系统上下文
+ * - 设置网络连接状态数据
+ * - 配置网络连接模板
+ * - 初始化网络处理回调函数
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用全局变量和系统内存管理器进行资源分配
  */
-void CoreEngineInitializeThreadPoolManager(void
+void CoreEngineInitializeNetworkingSystem(void)
 {
   char ValidationStatus;
   void *SystemContext;
