@@ -165,6 +165,33 @@
 #define FUN_1800b6de0 InitializeSystemMemoryManager                      // 初始化系统内存管理器
 #define FUN_180079240 GetSystemMemoryBlockIndex                         // 获取系统内存块索引
 #define FUN_1800b32c0 ConfigureSystemMemoryAllocation                     // 配置系统内存分配
+
+// 系统数据验证函数语义化宏定义
+#define FUN_1800bb630 ProcessSystemMemoryValidation                      // 处理系统内存验证
+#define FUN_18020d6c0 ValidateSystemMemoryIntegrity                      // 验证系统内存完整性
+#define FUN_1802e6b00 ValidateSystemChecksum                             // 验证系统校验和
+
+// 系统流处理函数语义化宏定义
+#define FUN_18009ec20 InitializeSystemStreamProcessor                     // 初始化系统流处理器
+#define FUN_18009fb60 CleanupSystemStreamProcessor                        // 清理系统流处理器
+
+// 系统字符串编码函数语义化宏定义
+#define FUN_1800c4800 ProcessSystemStringEncoding                        // 处理系统字符串编码
+#define FUN_180631420 EncodeSystemConfigurationString                    // 编码系统配置字符串
+#define FUN_180631000 ProcessSystemStringWithMemoryBuffer                // 处理系统字符串与内存缓冲区
+
+// 系统内存分配函数语义化宏定义
+#define FUN_18020d8a0 ProcessSystemMemoryAllocation                      // 处理系统内存分配
+#define FUN_18020d730 AllocateSystemContextBuffer                        // 分配系统上下文缓冲区
+
+// 系统字符转换函数语义化宏定义
+#define FUN_180626eb0 ConvertUtf8ToUtf16WithValidation                   // 转换UTF-8到UTF-16并验证
+#define FUN_1802e8c60 FinalizeStringEncodingOperation                    // 完成字符串编码操作
+
+// 系统资源管理函数语义化宏定义
+#define FUN_18020b790 LockSystemResource                                 // 锁定系统资源
+#define FUN_18020c8f0 InitializeCoreEngineConfiguration                  // 初始化核心引擎配置
+#define FUN_18020da10 ProcessSystemContextOperation                      // 处理系统上下文操作
 /**
  * @brief 处理系统数据传输
  * 
@@ -50699,8 +50726,8 @@ void ProcessSystemDataStructureSerialization(uint *DataStructure)
   long long *SystemContext;
   long long AllocatedMemorySize;
   unsigned long long OperationResult;
-  long long RegisterR12;
-  uint RegisterR13D;
+  long long SystemMemoryAllocationSize;
+  uint SystemDataIndex;
   long long RegisterR15;
   
   OperationResult = (unsigned long long)RegisterR13D;
@@ -119987,8 +120014,8 @@ uint64_t ProcessUtf16CharacterConversion(void)
   int *SystemDataNode;
   uint32_t *TertiaryStatusFlag;
   uint ProcessingStatusFlag;
-  long long RegisterR12;
-  uint64_t *RegisterR13;
+  long long MemoryAllocationPointer;
+  uint64_t *SystemDataPointer;
   uint Register14D;
   float SystemFloatParam1;
   float SystemValidationStatus;
