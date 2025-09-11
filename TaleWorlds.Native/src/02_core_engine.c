@@ -217499,21 +217499,25 @@ void ProcessSystemDataNodeAndMemoryAllocation(void)
   long long StackFrameAddress;
   long long CharacterPatternMatchStatus;
   long long DataNodeSize;
+  long long *CharacterTablePointer;
+  long long LoopCounter;
+  void *MemoryPoolManager;
+  long long PatternIndex;
   
   if (DataNodeSize == 0) {
     CharacterTablePointer = 0;
   }
   else {
-    CharacterTablePointer = BufferAllocate(MemoryPoolManager,DataNodeSize << 6,(char)SystemContextPointer[3]);
+    CharacterTablePointer = (long long *)BufferAllocate(MemoryPoolManager,DataNodeSize << 6,(char)SystemContextPointer[3]);
   }
   if (StackFrameAddress != PatternIndex) {
-      memmove(CharacterTablePointer);
+      memmove(CharacterTablePointer, SystemContextPointer, DataNodeSize * 0x40);
   }
   if (*SystemContextPointer != 0) {
       ProcessSystemEventHandling();
   }
   *SystemContextPointer = LoopCounter;
-  CharacterTablePointer = DataNodeSize * 0x40 + LoopCounter;
+  CharacterTablePointer = (long long *)(DataNodeSize * 0x40 + LoopCounter);
   SystemContextPointer[2] = LoopCounter;
   SystemContextPointer[1] = LoopCounter;
   return;
@@ -217547,22 +217551,25 @@ void ProcessContextHandleAndSystemContextManagement(long long ContextHandle)
   long long UnicodePatternMatchStatus;
   unsigned long long DataNodeCapacity;
   unsigned long long UnicodeCharacterCode;
+  long long *CharacterTablePointer;
+  long long LoopCounter;
+  long long PatternIndex;
   
   BufferState = *(long long *)(SystemContextAddress + 8);
-  UnicodeCharacterCode = BufferState - ContextHandle >> 6;
+  UnicodeCharacterCode = BufferState - (ContextHandle >> 6);
   if (UnicodeCharacterCode < DataNodeCapacity) {
-    CharacterTablePointer = UnicodeCharacterCode * 0x40 + StackFrameAddress;
-    if (StackFrameAddress != CharacterTablePointer) {
-        memmove();
+    CharacterTablePointer = (long long *)(UnicodeCharacterCode * 0x40 + StackFrameAddress);
+    if (StackFrameAddress != (long long)CharacterTablePointer) {
+        memmove(CharacterTablePointer, &StackFrameAddress, sizeof(long long));
     }
-    if (CharacterTablePointer != PatternIndex) {
-        memmove(BufferState,LoopCounter,PatternIndex - CharacterTablePointer);
+    if ((long long)CharacterTablePointer != PatternIndex) {
+        memmove(&BufferState, &LoopCounter, PatternIndex - (long long)CharacterTablePointer);
     }
     *(long long *)(SystemContextAddress + 8) = BufferState;
   }
   else {
     if (StackFrameAddress != PatternIndex) {
-        memmove();
+        memmove(&StackFrameAddress, &PatternIndex, sizeof(long long));
     }
     *(long long *)(SystemContextAddress + 8) = ContextHandle;
   }
@@ -217689,10 +217696,13 @@ void ProcessContextHandlePointerOperations(long long *ContextHandle
 #define ProcessSystemMemoryAllocationAndEventHandling FUN_18017b400
 void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
+  void *OperationBufferSize;
+  void *MemoryPoolManager;
+  
   if (OperationBufferSize != NULL) {
     ProcessSystemMemoryAllocationAndEventHandling(ContextHandle,*ContextHandleSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     if ((long long *)OperationBufferSize[4] != (long long *)0x0) {
-      (**(code **)(*(long long *)OperationBufferSize[4] + 0x38))();
+      (**(void (**)(void))(*(long long *)OperationBufferSize[4] + 0x38))();
     }
       CoreEngineFreeSystemMemory(OperationBufferSize);
   }
