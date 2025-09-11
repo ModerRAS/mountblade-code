@@ -281,13 +281,13 @@
 #define SystemDataSizeSecondaryThreshold 0x6a                    // 系统数据次级大小阈值 - 用于数据大小验证的第二阈值
 
 // 系统内存管理常量
-#define SystemMemoryRegionPrimaryOffset 0x48                    // 系统内存区域主偏移量 - 用于内存区域管理的主要偏移量
-#define SystemMemoryRegionSecondaryOffset 0x50                  // 系统内存区域次偏移量 - 用于内存区域管理的辅助偏移量
+#define SystemMemoryRegionPrimaryOffset 0x48                    // 系统内存区域主偏移量 - 用于内存区域管理
+#define SystemMemoryRegionSecondaryOffset 0x50                  // 系统内存区域次偏移量 - 用于内存区域管理
 #define SystemMemoryRegionStandardSize 0x1c                     // 系统内存区域标准大小 - 内存区域的标准大小
-#define SystemMemoryMainDataBufferOffset 0x14                   // 系统内存主数据缓冲区偏移量 - 主要数据缓冲区的偏移量
-#define SystemMemoryAuxiliaryDataBufferOffset 0x2               // 系统内存辅助数据缓冲区偏移量 - 辅助数据缓冲区的偏移量
-#define SystemMemoryFloatingPointBufferOffset 0x30              // 系统内存浮点数据缓冲区偏移量 - 浮点数据缓冲区的偏移量
-#define SystemMemoryExtendedDataBufferOffset 0x4c               // 系统内存扩展数据缓冲区偏移量 - 扩展数据缓冲区的偏移量
+#define SystemMemoryMainDataBufferOffset 0x14                   // 系统内存主数据缓冲区偏移量 - 主要数据缓冲区
+#define SystemMemoryAuxiliaryDataBufferOffset 0x2               // 系统内存辅助数据缓冲区偏移量 - 辅助数据缓冲区
+#define SystemMemoryFloatingPointBufferOffset 0x30              // 系统内存浮点数据缓冲区偏移量 - 浮点数据缓冲区
+#define SystemMemoryExtendedDataBufferOffset 0x4c               // 系统内存扩展数据缓冲区偏移量 - 扩展数据缓冲区
 
 // 数据处理相关常量
 #define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C - 用于数据大小计算的乘数常量
