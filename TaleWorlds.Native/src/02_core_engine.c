@@ -15470,23 +15470,20 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 /**
  * @brief 初始化核心引擎数据结构
  * 
- * 该函数负责初始化TaleWorlds引擎的核心数据结构，包括：
- * - 系统节点树的构建和初始化
- * - 数据结构的内存分配和设置
- * - 节点遍历和插入操作
- * - 系统上下文的配置
+ * 初始化TaleWorlds引擎的核心数据结构，包括系统节点、内存管理器和数据结构。
+ * 该函数负责创建和配置引擎运行所需的基本数据结构，确保系统能够正常启动和运行。
  * 
- * @details
- * 函数执行以下主要步骤：
- * 1. 获取引擎系统上下文和根节点
- * 2. 检查系统节点初始化状态
- * 3. 遍历系统节点链表，查找合适的插入位置
- * 4. 根据比较结果创建新的系统节点
- * 5. 配置数据结构和内存分配
+ * @details 实现细节：
+ * - 获取引擎系统上下文和根节点指针
+ * - 检查系统节点的初始化状态
+ * - 遍历系统节点链表，查找合适的插入位置
+ * - 根据需要创建新的系统节点
+ * - 设置数据结构和内存管理器
+ * - 初始化系统节点的数据
  * 
- * @note 这是引擎启动时的关键初始化函数
- * @warning 必须在系统启动早期调用此函数
- * @see CoreEngineGetSystemHandle, CoreEngineGetDataInitializer, CoreEngineAllocateMemory
+ * @note 这是引擎启动过程中的关键函数，必须在其他系统初始化之前调用
+ * @warning 函数内部有复杂的内存管理操作，错误处理需要特别小心
+ * @see CoreEngineGetSystemHandle, CoreEngineAllocateMemory, CoreEngineSetupDataStructure
  */
 void InitializeCoreEngineDataStructure(void) {
   bool SystemNodeInitializedFlag;          // 系统节点初始化标志
@@ -235585,12 +235582,12 @@ SystemEventConfigurationComplete:
       SystemDataRegistry = (long long)&SystemKeyStringStaticFriction - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[SystemDataRegistry]) {
         pSystemStatusChar = pSystemStatusChar + 1;
-        if (SystemValidationFunction <= pSystemStatusChar) goto LAB_180193610;
+        if (SystemValidationFunction <= pSystemStatusChar) goto SystemEventConfigurationComplete;
       }
     }
   }
   CoreEngineInitializeSystemEvent(ContextHandle + 0x28,ContextHandle + 8);
-LAB_18019368b:
+SystemEventInitializationComplete:
   SystemDataRegistry = ProcessSystemKeyData(OperationBufferSize,&SystemKeyStringDynamicFriction,SystemKeyBuffer);
   if ((SystemDataRegistry != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(ContextHandle + 0x48) = *(byte *)(ContextHandle + 0x48) | 1;
@@ -235625,7 +235622,7 @@ LAB_18019368b:
     if (SystemValidationFunction == SystemFunctionPointer + -0x180a0b147) {
       SystemValidationFunction = SystemValidationFunction + (long long)pSystemStatusChar;
       if (SystemValidationFunction <= pSystemStatusChar) {
-LAB_180193772:
+BouncinessProcessingComplete:
         pSystemStatusChar = (char *)0x180d48d24;
         if ((char *)SecondaryProcessingStatusFlag[1] != (char *)0x0) {
           pSystemStatusChar = (char *)SecondaryProcessingStatusFlag[1];
@@ -235635,7 +235632,7 @@ LAB_180193772:
       SystemDataRegistry = (long long)&SystemKeyStringBounciness - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[SystemDataRegistry]) {
         pSystemStatusChar = pSystemStatusChar + 1;
-        if (SystemValidationFunction <= pSystemStatusChar) goto LAB_180193772;
+        if (SystemValidationFunction <= pSystemStatusChar) goto BouncinessProcessingComplete;
       }
     }
   }
@@ -240818,9 +240815,9 @@ unsigned long long ManageSystemMemoryBuffer(long long ContextHandle, long long *
     SecondaryUnsignedStorage = 0;
     ProcessSystemMemoryAllocationAndValidation(BufferStatus,MemoryBoundaryEnd,0,*(long long *)(BufferStatus + 0x20) == ContextHandle,AdditionalParameter2,0x16);
   }
-  FUN_1802eaec0(*ContextHandleSize,ContextHandle,Utf8SourcePointer,Utf16EndPointer,AdditionalParameter1,SecondaryUnsignedStorage & 0xffffff00,
+  ProcessSystemEncodingOperation(*ContextHandleSize,ContextHandle,Utf8SourcePointer,Utf16EndPointer,AdditionalParameter1,SecondaryUnsignedStorage & 0xffffff00,
                 AdditionalParameter2,0xffffffff,SystemStatusCode);
-  FUN_1802f2240(*ContextHandleSize,*(void *)(ContextHandle + 600));
+  ExecuteSystemContextDataTransfer(*ContextHandleSize,*(void *)(ContextHandle + 600));
   OperationBufferSize = (long long *)*ContextHandleSize;
   RemainingSpace = _Mtx_lock(ContextHandle + 0x607e0);
   if (RemainingSpace != 0) {
@@ -289904,7 +289901,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
 
 
 
-2ebe0(long long *ContextHandlevoid FUN_18022ebe0(long long *ContextHandle
+void FUN_18022ebe0(long long *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -289927,7 +289924,7 @@ void ProcessContextHandleHash(unsigned long long *ContextHandle,long long Operat
 
 
 
-2ec40(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+void FUN_18022ec40(long long *ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   unsigned long long MemoryPoolIndex;
@@ -296024,4 +296021,5 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
 #define ProcessSystemMemoryBuffer FUN_1801c2360                   // 处理系统内存缓冲区
 #define ProcessSystemEncodingValidation FUN_1802e92b0             // 处理系统编码验证
 #define ProcessSystemDataStructure FUN_18019aac0                 // 处理系统数据结构
+#define ExecuteSystemContextDataTransfer FUN_1802f2240             // 执行系统上下文数据传输
 
