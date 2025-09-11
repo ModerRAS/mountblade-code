@@ -135469,43 +135469,56 @@ CleanupAndExit:
 
  
 
- void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_1807402ed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-
+ /**
+ * @brief 处理UI系统上下文和数据传输
+ * 
+ * 该函数负责处理UI系统的上下文管理和数据传输操作：
+ * - 设置UI上下文句柄和事件句柄
+ * - 验证UI资源并执行数据处理
+ * - 管理纹理数据和缓冲区操作
+ * - 执行内存清理和渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_1807402ed
+ */
+void ProcessUIContextAndDataTransfer(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 {
   int operationResult;
-  int dataValidationResult;
+  int textureValidationResult;
   int bufferCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
   longlong cleanupFlag;
-  UIHandle stackParam00000038;
+  UIHandle validatedResource;
   ulonglong renderTaskParameter;
   
   *(UIHandle *)(registerPointer + -0x10) = contextHandle;
   *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(registerPointer + -0x28) = eventHandle;
   cleanupFlag = 0;
-  operationResult = ValidateUIResource(uiContext,&stack0x00000038,&stack0x00000030);
+  operationResult = ValidateUIResource(uiContext,&validatedResource,&cleanupFlag);
   if (operationResult == 0) {
-    operationResult = func_0x00018075e4f0(stackParam00000038,dataSource,targetBuffer);
-    if (operationResult == 0) goto FUN_1807403bf;
+    operationResult = ProcessUIResourceOperation(validatedResource,dataSource,targetBuffer);
+    if (operationResult == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    ProcessUITextureDataWithSize(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    textureValidationResult = ProcessUITextureDataWithSize(&stack0x00000040,0x100,dataSource);
+    bufferCompareResult = ProcessUIBufferDataWithControl(&stack0x00000040 + textureValidationResult,0x100 - textureValidationResult,&UIBufferControlData);
+    ProcessUITextureDataWithSize(&stack0x00000040 + (textureValidationResult + bufferCompareResult),0x100 - (textureValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,7,uiContext,&UNK_180957dd0,&stack0x00000040);
+    ExecuteUIContextDataOperation(operationResult,7,uiContext,&UNK_180957dd0,&stack0x00000040);
   }
-FUN_1807403bf:
+CleanupAndExit:
   if (cleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
