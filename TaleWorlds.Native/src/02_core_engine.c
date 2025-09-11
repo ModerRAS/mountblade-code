@@ -234077,7 +234077,7 @@ LAB_180190f00:
 
 
 
-90fa0(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointervoid FUN_180190fa0(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+void FUN_180190fa0(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -234238,7 +234238,7 @@ LAB_180190f00:
 
 
 
-90fbb(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointervoid FUN_180190fbb(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+void FUN_180190fbb(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -234400,7 +234400,7 @@ LAB_180190f00:
 
 
 
-911b1(voidvoid FUN_1801911b1(void
+void FUN_1801911b1(void)
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
@@ -234468,7 +234468,7 @@ LAB_180190f00:
 
 
 
-912b0(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_1801912b0(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointer
+void FUN_1801912b0(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   long long *ContextHandle;
   byte *HighBytePointer;
@@ -235151,7 +235151,7 @@ LAB_180191cda:
 
 
 
-91d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180191d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_180191d40(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   unsigned long long MemoryPoolIndex;
