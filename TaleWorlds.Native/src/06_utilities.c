@@ -136,9 +136,10 @@
 #define NULL_VOID_POINTER (void *)0x0
 #define NULL_UINT_POINTER (uint *)0x0
 #define NULL_DATA_BUFFER (DataBuffer *)0x0
-#define NULL_DATA_WORD NULL_DATA_WORD
-#define NULL_BYTE_PAIR NULL_BYTE_PAIR
-#define NULL_INT64_POINTER NULL_INT64_POINTER
+#define NULL_DATA_WORD (DataWord *)0x0
+#define NULL_BYTE_PAIR (BytePair *)0x0
+#define NULL_INT64_POINTER (int64_t *)0x0
+#define NULL_FUNCTION_POINTER_TYPE NULL_FUNCTION_POINTER_TYPE
 
 // 浮点数数据偏移量常量
 #define FloatingPointPrimaryDataOffset 0x20
@@ -47942,7 +47943,7 @@ void ProcessExceptionCallback(DataBuffer operationBase,int64_t dataBuffer,DataBu
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -47997,7 +47998,7 @@ void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataB
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -52357,7 +52358,7 @@ void CleanupSyncObject(DataBuffer operationBase, int64_t dataBuffer, DataBuffer 
     cleanupFunction = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
     
     // 如果清理函数有效，则调用清理函数
-    if (cleanupFunction != (FunctionPointer *)0x0) {
+    if (cleanupFunction != NULL_FUNCTION_POINTER_TYPE) {
         (*cleanupFunction)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
     }
     
@@ -52403,7 +52404,7 @@ void CleanupMutexLock(DataBuffer operationBase, int64_t dataBuffer, DataBuffer o
     exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
     
     // 如果异常处理回调函数有效，则调用回调函数
-    if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
         (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
     }
     
@@ -56799,7 +56800,7 @@ void InvokeExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset88) + ExceptionHandlerCallbackOffset60);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset88) + ExceptionHandlerContextOffset50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -56822,7 +56823,7 @@ void InvokeExceptionHandlerCallback90(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + systemContextPointerOffset90) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + systemContextPointerOffset90),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -57515,7 +57516,7 @@ void SystemExceptionHandlerType8(DataBuffer operationBase,int64_t dataBuffer,Dat
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -57602,7 +57603,7 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x68);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x58,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -57629,7 +57630,7 @@ void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -58395,7 +58396,7 @@ void SystemExceptionHandlerType47(DataBuffer operationBase,int64_t dataBuffer,Da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextSecondaryOffset) + ExceptionHandlerCallbackOffset68);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextSecondaryOffset) + ExceptionHandlerCallbackDataOffset58,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -60111,7 +60112,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ResourceValidationFlagOffset60);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -60133,7 +60134,7 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ValidationResultOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ValidationResultOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -60179,7 +60180,7 @@ void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + ResourceValidationFlagOffset60);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -60321,7 +60322,7 @@ void SetupExceptionHandlersWithCallbackC0(DataBuffer operationBase,int64_t dataB
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xb0);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xa0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -60372,7 +60373,7 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + systemContextOffset) + ExceptionCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + systemContextOffset) + ExceptionContextOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62150,7 +62151,7 @@ void CallExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,D
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62176,7 +62177,7 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62202,7 +62203,7 @@ void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62251,7 +62252,7 @@ void ExecuteExceptionHandlerCallbackC(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionDataPtrOffset) + ExceptionHandlerCallbackOffset30);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionDataPtrOffset) + ExceptionHandlerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62389,7 +62390,7 @@ void ExecuteExceptionHandlerCallbackD(DataBuffer systemContext,int64_t exception
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset);
   
   // 如果回调函数指针有效，则执行回调
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(exceptionDataPtr + ExceptionHandlerOffset, 0, 0, callbackFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -62427,7 +62428,7 @@ void ExecuteExceptionHandlerCallbackE(DataBuffer systemContext,int64_t exception
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset);
   
   // 如果回调函数指针有效，则执行回调
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(exceptionDataPtr, 0, 0, callbackFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -62465,7 +62466,7 @@ void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionContext + ExceptionHandlerContextOffsetD0);
   
   // 如果回调函数指针有效，则执行回调
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(exceptionContext + ExceptionHandlerContextOffsetC0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   
@@ -62492,7 +62493,7 @@ void ExecuteExceptionHandlerCallbackG(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62519,7 +62520,7 @@ void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataContextOffset68),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62565,7 +62566,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -62700,7 +62701,7 @@ void CallExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,Da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66549,7 +66550,7 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetF0) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetF0),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66577,7 +66578,7 @@ void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset100) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset100),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66605,7 +66606,7 @@ void ExecuteExceptionHandlerCallback440(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66633,7 +66634,7 @@ void ExecuteExceptionHandlerCallback450(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset100) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset100),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66661,7 +66662,7 @@ void ExecuteExceptionHandlerCallback460(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66689,7 +66690,7 @@ void ExecuteExceptionHandlerCallback470(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetA8) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetA8),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66713,7 +66714,7 @@ void ExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,Data
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetF8) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetF8),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -66737,7 +66738,7 @@ void ExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,Data
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -67253,7 +67254,7 @@ void ExecuteExceptionHandlerCallbackA3(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x158);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x148,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -67279,7 +67280,7 @@ void ExecuteExceptionHandlerCallbackA4(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x178);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x168,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -67341,7 +67342,7 @@ void ExecuteExceptionHandlerCallbackA5(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x158);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x148,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -67367,7 +67368,7 @@ void ExecuteExceptionHandlerCallbackA6(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x178);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x168,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -67393,7 +67394,7 @@ void ExecuteExceptionHandlerCallbackA7(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + DataBufferOffset48),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -68626,7 +68627,7 @@ void ExecuteExceptionHandlerCallback9B0(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemDataBufferPointerOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemDataBufferPointerOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -69855,7 +69856,7 @@ void ExecuteContextualExceptionCleanupCallback(DataBuffer operationBase,int64_t 
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffset30) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffset30),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -69972,7 +69973,7 @@ void ExecuteExtendedContextExceptionCleanup(DataBuffer operationBase,int64_t dat
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x158);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 0x148,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -70242,7 +70243,7 @@ void ExecutePrimaryContextExceptionCleanup(DataBuffer operationBase,int64_t data
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + 0x158);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + 0x148,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -70271,7 +70272,7 @@ void ExecuteSecondaryContextExceptionCleanup(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferPointerOffset70) + ExceptionHandlerSecondaryOffset178);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferPointerOffset70) + ExceptionHandlerTertiaryOffset168,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -70300,7 +70301,7 @@ void ExecuteTertiaryContextExceptionCleanup(DataBuffer operationBase,int64_t dat
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionContextSecondaryOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionContextSecondaryOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -75873,7 +75874,7 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase, int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset170) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset170),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -76056,7 +76057,7 @@ void ExecuteExceptionHandlerCallbackF0(DataBuffer operationBase, int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset170) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset170), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
@@ -80377,7 +80378,7 @@ void ExecuteExceptionHandlerCallbackOffset50(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x50);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x40,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -80404,7 +80405,7 @@ void ExecuteExceptionHandlerCallbackOffset70(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x70);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + ExceptionDataBufferOffset60,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -81770,7 +81771,7 @@ void ExecuteExceptionHandlerCallbackOffset18(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataSecondaryOffset18);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -82844,7 +82845,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerCallbackOffset18);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerContextCallbackOffset8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -82871,7 +82872,7 @@ void HandleSystemExceptionWithCallback(DataBuffer operationBase,int64_t dataBuff
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + SystemDataSecondaryOffset18);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) + 8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -88035,7 +88036,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemManagementOffset98) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemManagementOffset98),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -88049,7 +88050,7 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffe
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemManagementOffset98) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemManagementOffset98),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -88241,7 +88242,7 @@ void ExecuteExceptionHandlerCallbackOffset48(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(exceptionDataBuffer + DataBufferOffset48) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(exceptionDataBuffer + DataBufferOffset48),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -88428,7 +88429,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   
   // 获取异常处理器回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     // 执行异常处理器回调函数
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerListOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -107509,7 +107510,7 @@ void CleanupResourceAtOffset6F0WithFlags(DataBuffer operationBase,int64_t dataBu
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetA88) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetA88),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -107536,7 +107537,7 @@ void CallExceptionHandlerCallbackAtOffsetA88(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetA88) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetA88),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -107563,7 +107564,7 @@ void CallExceptionHandlerCallbackAtOffsetA80(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetA80) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetA80),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -107595,7 +107596,7 @@ void ExecuteExceptionHandlerCallback350(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetA80) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetA80),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -108882,7 +108883,7 @@ void InvokeExceptionHandlerCallbackD500(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ValidationResultOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ValidationResultOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -108910,7 +108911,7 @@ void InvokeExceptionHandlerCallbackD510(DataBuffer operationBase,int64_t dataBuf
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetE8) + 0xd0);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetE8) + 0xc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -114539,7 +114540,7 @@ void ExecuteExceptionHandlerCallbackED00(DataBuffer operationBase,int64_t dataBu
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -114567,7 +114568,7 @@ void ExecuteExceptionHandlerCallbackED10(DataBuffer operationBase,int64_t dataBu
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -114807,7 +114808,7 @@ void ExecuteExceptionHandlerCallbackWithFlags(DataBuffer operationBase, int64_t 
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffset178) + ExceptionHandlerCallbackOffset);
   
   // 检查回调函数指针是否有效
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     // 调用异常处理回调函数，传递相关参数
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffset178), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -114835,7 +114836,7 @@ void ExecuteExceptionHandlerCallbackFromAlternateBuffer(DataBuffer operationBase
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffset150) + ExceptionHandlerCallbackOffset);
   
   // 检查回调函数指针是否有效
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     // 调用异常处理回调函数，传递相关参数
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffset150), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -114931,7 +114932,7 @@ void ExecuteExceptionHandlerCallbackOffset88(DataBuffer operationBase,int64_t da
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset88) + ExceptionHandlerCallbackOffset30);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset88) + SystemDataParameterOffset20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -115022,7 +115023,7 @@ void ExecuteExceptionHandlerCallbackOffset150(DataBuffer operationBase,int64_t d
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset150) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset150),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -115068,7 +115069,7 @@ void SetupExceptionHandlerCallbacksA(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemManagementOffset98) + 0x30);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemManagementOffset98) + SystemDataParameterOffset20,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -115152,7 +115153,7 @@ void SetupExceptionHandlerCallbacksC(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffsetE8) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffsetE8),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -115176,7 +115177,7 @@ void SetupExceptionHandlerCallbacksD(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferOffset178) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferOffset178),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -115565,7 +115566,7 @@ void InvokeExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset) + ExceptionHandlerCallbackOffset);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerCountOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -116143,7 +116144,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x68);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x58,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
@@ -126929,7 +126930,7 @@ void ResetExceptionHandlerAtOffset1560(DataBuffer operationBase,int64_t dataBuff
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionContext + 0x1560);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(exceptionContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1528) = &SystemTemporaryExceptionHandler;
@@ -126976,7 +126977,7 @@ void ResetExceptionHandlerAtOffset15d0(DataBuffer operationBase,int64_t dataBuff
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionContext + 0x15d0);
-  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+  if (exceptionHandlerCallback != NULL_FUNCTION_POINTER_TYPE) {
     (*exceptionHandlerCallback)(exceptionContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionContext + 0x1598) = &SystemTemporaryExceptionHandler;
