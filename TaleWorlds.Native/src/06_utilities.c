@@ -50038,6 +50038,23 @@ void HandleSystemException7D0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统异常资源清理函数A0
+ * 
+ * 该函数负责在异常处理过程中清理系统资源，主要功能包括：
+ * - 获取内存资源指针
+ * - 执行资源清理操作
+ * - 释放资源引用
+ * - 终止资源使用
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理相关信息
+ * @param resourceManager 资源管理器，管理系统资源的分配和释放
+ * @param cleanupParam1 清理参数1，指定清理的详细参数
+ * @param cleanupParam2 清理参数2，指定清理的附加参数
+ * 
+ * @note 原始函数名：ExceptionResourceCleanupA0
+ * @note 该函数包含资源管理的完整生命周期处理
+ */
 void ExceptionResourceCleanupA0(DataBuffer exceptionContext,int64_t resourceManager,DataBuffer cleanupParam1,DataBuffer cleanupParam2)
 
 {
@@ -50054,14 +50071,32 @@ void ExceptionResourceCleanupA0(DataBuffer exceptionContext,int64_t resourceMana
 
 
 
+/**
+ * @brief 系统异常资源清理函数A1
+ * 
+ * 该函数负责在异常处理过程中清理系统资源，主要功能包括：
+ * - 获取内存资源指针（偏移量0x78）
+ * - 执行资源清理操作
+ * - 释放资源引用
+ * - 终止资源使用
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理相关信息
+ * @param resourceManager 资源管理器，管理系统资源的分配和释放
+ * @param cleanupParam1 清理参数1，指定清理的详细参数
+ * @param cleanupParam2 清理参数2，指定清理的附加参数
+ * 
+ * @note 原始函数名：ExceptionResourceCleanupA1
+ * @note 该函数与A0版本类似，但使用不同的偏移量
+ * @note 偏移量0x78用于资源管理器中的特定资源访问
+ */
 void ExceptionResourceCleanupA1(DataBuffer exceptionContext,int64_t resourceManager,DataBuffer cleanupParam1,DataBuffer cleanupParam2)
 
 {
   DataBuffer *memoryResourcePointer;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(resourceManager + 0x78) + ExceptionHandlerCallbackOffset);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(resourceManager + ExceptionHandlerCallbackOffset) + ExceptionHandlerCallbackOffset);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
-    ProcessResourceCleanup(*(int64_t *)(resourceManager + 0x78),*memoryResourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
+    ProcessResourceCleanup(*(int64_t *)(resourceManager + ExceptionHandlerCallbackOffset),*memoryResourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
     ReleaseResourceReference(memoryResourcePointer);
       TerminateResource(memoryResourcePointer);
   }
@@ -50100,11 +50135,22 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 /**
- * @brief 清理异常状态偏移量112
+ * @brief 清理异常状态偏移量112处的资源
  * 
- * 该函数用于清理异常状态偏移量为112的资源
+ * 该函数负责清理异常状态结构中偏移量为112字节处的系统资源。
+ * 主要功能包括：
+ * - 获取异常处理列表指针
+ * - 执行系统参数验证和处理
+ * - 使用系统清理标志进行资源清理
+ * 
+ * @param operationBase 系统上下文句柄，用于系统操作
+ * @param dataBuffer 异常状态结构指针，包含异常相关信息
+ * @param operationFlagA 清理参数1，指定清理的详细参数
+ * @param operationFlagB 清理参数2，指定清理的附加参数
  * 
  * @note 原始函数名：Unwind_180902810
+ * @note 偏移量112用于访问异常状态结构中的特定资源
+ * @note 使用SystemDataSecondaryOffset18和SystemParameterValidationOffset进行参数验证
  */
 void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
