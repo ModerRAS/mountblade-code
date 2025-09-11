@@ -13622,7 +13622,7 @@ int ProcessSystemDataTransferWithValidation(void* inputData, void* outputData, s
 int ValidateSystemMemoryAndIntegrity(void* memoryAddress, size_t memorySize, uint32_t validationType)
 {
     // 内存验证状态变量
-    int validationStatus;
+    uint32_t validationStatus;
     uint32_t accessFlags;
     uint64_t memoryAttributes;
     
@@ -14319,8 +14319,8 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 
 // 异常处理系统全局变量
 ExceptionHandlerTable* ExceptionHandlerTablePtr;        // 异常处理器表指针
-int SystemExceptionHandlerState;          // 系统异常处理状态
-int SystemExceptionCleanupFlag;           // 系统异常清理标志
+uint32_t SystemExceptionHandlerState;      // 系统异常处理状态
+uint32_t SystemExceptionCleanupFlag;       // 系统异常清理标志
 ExceptionHandler* SystemTemporaryExceptionHandlerPtr;     // 系统临时异常处理器
 
 /**
@@ -15170,7 +15170,7 @@ uint8_t UtilityProcessSecondaryContext;
 uint8_t UtilityProcessSecondaryBuffer;
 uint8_t UtilityProcessSecondaryResult;
 uint8_t UtilityProcessSecondaryPointer;
-int UtilityDataProcessingErrorCode;          // 工具系统数据处理错误代码
+uint32_t UtilityDataProcessingErrorCode;      // 工具系统数据处理错误代码
 
 /**
  * @brief 创建工具系统内存堆
@@ -16569,7 +16569,7 @@ double SystemPerformanceMetricPrimary;        // 系统性能指标主值
 // 系统性能指标次值
 double SystemPerformanceMetricSecondary;       // 系统性能指标次值
 // 工具系统错误计数器
-int UtilitySystemErrorCount;                  // 工具系统错误计数器
+uint32_t UtilitySystemErrorCount;              // 工具系统错误计数器
 // 系统计时值
 double SystemTimingValue;                     // 系统计时值
 // 系统主状态
