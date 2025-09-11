@@ -126633,19 +126633,7 @@ void ExecuteUIRenderTaskWithResourceRelease(uint32_t param6, uint64_t stackParam
 
 
 
- void FUN_18073b13d(void)
-/**
- * @brief 执行UI渲染任务和内存资源管理
- * 
- * 该函数负责执行UI渲染任务并在必要时释放内存资源：
- * 1. 检查内存资源状态
- * 2. 在需要时释放UI内存资源
- * 3. 执行UI渲染任务
- * 
- * @note 原始函数名：FUN_18073b13d
- */
-#define ExecuteUIRenderTaskWithMemoryManagement FUN_18073b13d
-void ExecuteUIRenderTaskWithMemoryManagement(void)
+ void ExecuteUIRenderTaskWithMemoryManagement(void)
 
 {
   longlong resourceReleaseFlag;
