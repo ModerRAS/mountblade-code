@@ -2834,7 +2834,7 @@ typedef enum {
 
 // UI系统数据处理函数宏定义
 #define FUN_180721810 ProcessUITransformDataWithCoefficients
-#define FUN_18072182d ProcessUISimpleDataTransformOperation
+#define FUN_18072182d ProcessUISimpleDataTransform
 #define FUN_180721864 ProcessUIComplexDataTransformOperation
 #define FUN_180721984 ResetUITransformStateOperation
 #define FUN_1807219ee ProcessUIBufferWithTransformOperation
