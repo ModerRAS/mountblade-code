@@ -258230,7 +258230,16 @@ LAB_1802097bc:
 
 
 
-0980e(voidvoid FUN_18020980e(void
+/**
+ * @brief 系统事件处理包装函数
+ * 
+ * 该函数是系统事件处理的包装函数，负责调用系统事件处理程序。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18020980e
+ */
+void SystemEventProcessingWrapper(void)
 {
     ProcessSystemEventHandling();
 }
@@ -258254,10 +258263,10 @@ LAB_1802097bc:
  */
 long long * InitializeContextHandleAndDataStructure(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint Utf16Char;
+  uint Utf16CharacterValue;
   long long *BufferAllocationState;
   uint32_t UnicodeCodePoint;
-  uint32_t MemoryAllocationMaskPointer;
+  uint32_t MemoryAllocationMask;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   uint64_t SystemChecksum;
