@@ -73216,9 +73216,9 @@ void ProcessDataStructureMemoryReorganization(long long *ContextHandle,uint64_t 
           } while (CharacterStatusBuffer2 != (uint32_t *)0x0);
           SystemCharacterStatusBuffer = (uint32_t *)ContextHandle[1];
         }
-        lStackX_10 = *Utf16EndPointer;
+        OperationResultBuffer10 = *Utf16EndPointer;
         alStackX_18[0] = AllocatedMemorySize;
-        AllocateSystemMemoryBuffer(alStackX_18,&lStackX_10,SystemCharacterStatusBuffer);
+        AllocateSystemMemoryBuffer(alStackX_18,&OperationResultBuffer10,SystemCharacterStatusBuffer);
         TemporaryBuffer = (void *)ContextHandle[1];
         CharacterStatusBuffer = TemporaryBuffer + ((long long)CharacterValidationBuffer - (long long)ConfigurationString) * 2;
         StringProcessingStatus = OperationBufferSize;
@@ -231866,41 +231866,41 @@ void ResetSystemHandleState(void)
   uint32_t CharacterLoopCounter;
   long long SystemDataSourceNode;
   
-  ProcessBufferIndexllocation();
-  *(uint32_t *)SystemContext[1] = LoopCounter;
-  SystemContext[1] = SystemContext[1] + 4;
-  PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-  Utf16Char = *(uint32_t *)(SystemDataNode + 0xc);
-  if ((unsigned long long)((*SystemContext - (long long)PrimaryProcessingStatusFlag) + SystemContext[2]) < 5) {
-    ProcessBufferIndexllocation();
-    PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  AllocateBufferIndex();
+  *(uint32_t *)SystemContextPointer[1] = CharacterLoopCounter;
+  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0xc);
+  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+    AllocateBufferIndex();
+    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
   }
-  *PrimaryProcessingStatusFlag = Utf16Char;
-  SystemContext[1] = SystemContext[1] + 4;
-  PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-  Utf16Char = *(uint32_t *)(SystemDataNode + 0x10);
-  if ((unsigned long long)((*SystemContext - (long long)PrimaryProcessingStatusFlag) + SystemContext[2]) < 5) {
-    ProcessBufferIndexllocation();
-    PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  *TargetDataPointer = Utf16CharacterValue;
+  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x10);
+  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+    AllocateBufferIndex();
+    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
   }
-  *PrimaryProcessingStatusFlag = Utf16Char;
-  SystemContext[1] = SystemContext[1] + 4;
-  PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-  Utf16Char = *(uint32_t *)(SystemDataNode + 0x14);
-  if ((unsigned long long)((*SystemContext - (long long)PrimaryProcessingStatusFlag) + SystemContext[2]) < 5) {
-    ProcessBufferIndexllocation();
-    PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  *TargetDataPointer = Utf16CharacterValue;
+  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x14);
+  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+    AllocateBufferIndex();
+    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
   }
-  *PrimaryProcessingStatusFlag = Utf16Char;
-  SystemContext[1] = SystemContext[1] + 4;
-  PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-  Utf16Char = *(uint32_t *)(SystemDataNode + 0x18);
-  if ((unsigned long long)((*SystemContext - (long long)PrimaryProcessingStatusFlag) + SystemContext[2]) < 5) {
-    ProcessBufferIndexllocation();
-    PrimaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  *TargetDataPointer = Utf16CharacterValue;
+  SystemContextPointer[1] = SystemContextPointer[1] + 4;
+  TargetDataPointer = (uint32_t *)SystemContextPointer[1];
+  Utf16CharacterValue = *(uint32_t *)(SystemDataSourceNode + 0x18);
+  if ((unsigned long long)((*SystemContextPointer - (long long)TargetDataPointer) + SystemContextPointer[2]) < 5) {
+    AllocateBufferIndex();
+    TargetDataPointer = (uint32_t *)SystemContextPointer[1];
   }
-  *PrimaryProcessingStatusFlag = Utf16Char;
-  SystemContext[1] = SystemContext[1] + 4;
+  *TargetDataPointer = Utf16CharacterValue;
+  SystemContextPointer[1] = SystemContextPointer[1] + 4;
   return;
 }
 
