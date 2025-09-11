@@ -241403,18 +241403,27 @@ void ProcessContextMemoryPoolIteration(long long ContextHandle, uint32_t Operati
 
 
 
-void FUN_1801998ce(void)
+/**
+ * @brief 执行系统上下文回调函数迭代处理
+ * 
+ * 该函数负责遍历系统上下文中的回调函数列表，依次执行每个回调函数。
+ * 通过UTF-16字符编码的偏移量进行迭代，处理每个系统上下文回调。
+ * 
+ * @note 原始函数名：FUN_1801998ce
+ * @warning 此函数涉及回调函数执行，需要确保系统上下文有效性
+ */
+void ExecuteSystemContextCallbacks(void)
 {
   long long SystemContext;
-  unsigned long long Utf16Char;
-  uint RegisterValueEDI;
+  unsigned long long CallbackOffset;
+  uint CallbackIndex;
   
-  Utf16Char = (unsigned long long)RegisterValueEDI;
+  CallbackOffset = (unsigned long long)CallbackIndex;
   do {
-    (**(code **)(**(long long **)(Utf16Char + *(long long *)(SystemContext + 0xe0)) + 0x10))();
-    Utf16Char = Utf16Char + 8;
-    RegisterValueEDI = RegisterValueEDI + 1;
-  } while ((unsigned long long)(long long)(int)RegisterValueEDI <
+    (**(code **)(**(long long **)(CallbackOffset + *(long long *)(SystemContext + 0xe0)) + 0x10))();
+    CallbackOffset = CallbackOffset + 8;
+    CallbackIndex = CallbackIndex + 1;
+  } while ((unsigned long long)(long long)(int)CallbackIndex <
            (unsigned long long)(*(long long *)(SystemContext + 0xe8) - *(long long *)(SystemContext + 0xe0) >> 3));
   return;
 }
@@ -241422,7 +241431,15 @@ void FUN_1801998ce(void)
 
 
 
-9991c(voidvoid FUN_18019991c(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 这是一个空的系统操作函数，用于占位或作为默认的处理函数。
+ * 不执行任何操作，直接返回。
+ * 
+ * @note 原始函数名：FUN_18019991c
+ */
+void SystemNullOperation(void)
 {
   return;
 }
