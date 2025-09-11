@@ -100081,9 +100081,12 @@ void ComplexValidationContextCleanup(DataBuffer operationBase, int64_t dataBuffe
  * 该函数负责为异常处理上下文设置默认的异常处理器，
  * 用于处理特定偏移量的异常情况
  * 
+ * @param operationBase 操作基址，用于异常处理的基准地址
+ * @param dataBuffer 数据缓冲区，包含异常处理相关的数据
+ * 
  * @note 原始函数名：Unwind_18090c4c0
  */
-void SetDefaultExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerC0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataBufferOffset140) = &SystemDefaultExceptionHandlerB;
@@ -100098,9 +100101,12 @@ void SetDefaultExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
  * 该函数负责验证异常处理上下文并执行相应的回调函数，
  * 确保异常处理的完整性
  * 
+ * @param operationBase 操作基址，用于异常处理的基准地址
+ * @param dataBuffer 数据缓冲区，包含异常处理相关的数据
+ * 
  * @note 原始函数名：Unwind_18090c4d0
  */
-void ValidateAndExecuteContextCallback(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateAndExecuteContextCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + DataBufferOffsetD0) != (int64_t *)0x0) {

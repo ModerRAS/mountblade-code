@@ -131245,7 +131245,7 @@ void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong140 = 0;
-  operationResult = FUN_180752c80(uiContext,&pstackLong148,&stackLong140);
+  operationResult = ManageUIContextResources(uiContext,&pstackLong148,&stackLong140);
   if (operationResult == 0) {
     if (((int)pstackLong148[0x22] == 0) || ((int)pstackLong148[0x22] == 7)) {
       operationResult = (**(code **)(*pstackLong148 + 0x98))(pstackLong148,dataSource,targetBuffer);
@@ -131295,7 +131295,7 @@ void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
   lStack0000000000000038 = 0;
-  operationResult = FUN_180752c80(uiContext,&param_6,&stack0x00000038);
+  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
   if (operationResult == 0) {
     if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
       operationResult = (**(code **)(*param_6 + 0x98))(param_6,dataSource,targetBuffer);
@@ -131457,7 +131457,7 @@ void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
   lStack0000000000000038 = 0;
-  operationResult = FUN_180752c80(uiContext,&param_6,&stack0x00000038);
+  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
   if (operationResult == 0) {
     if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
       operationResult = (**(code **)(*param_6 + 0x140))
@@ -131771,7 +131771,7 @@ void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   uiValidationResult = 0;
   stackLong140 = 0;
-  operationResult = FUN_180752c80(uiContext,&pstackLong148,&stackLong140);
+  operationResult = ManageUIContextResources(uiContext,&pstackLong148,&stackLong140);
   if (operationResult == 0) {
     if (pstackLong148[0x21] != 0) {
       uiValidationResult = *(int *)(pstackLong148[0x21] + 0x124);
@@ -132134,7 +132134,7 @@ void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
   *(UIDword *)(RegisterPointer + -0x30) = unmodifiedXMM6_Dc;
   *(UIDword *)(RegisterPointer + -0x2c) = unmodifiedXMM6_Dd;
   lStack0000000000000038 = 0;
-  operationResult = FUN_180752c80(uiContext,&param_6,&stack0x00000038);
+  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
   if (operationResult == 0) {
     if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
       operationResult = (**(code **)(*param_6 + 0x38))(param_6,dataSource,targetBuffer);
@@ -132339,7 +132339,7 @@ void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   *(UIHandle *)(RegisterPointer + -0x30) = eventHandle;
   *(UIHandle *)(RegisterPointer + -0x38) = preservedRegister15;
   lStack0000000000000038 = 0;
-  operationResult = FUN_180752c80(uiContext,&param_6,&stack0x00000038);
+  operationResult = ManageUIContextResources(uiContext,&param_6,&stack0x00000038);
   if (operationResult == 0) {
     if (((int)param_6[0x22] == 0) || ((int)param_6[0x22] == 7)) {
       operationResult = (**(code **)(*param_6 + 0x30))
