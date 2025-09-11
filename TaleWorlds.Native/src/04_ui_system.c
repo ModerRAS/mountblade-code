@@ -29739,7 +29739,7 @@ void InitializeUITheme(void)
   *(longlong *)(uiContextBasePointer + 0x18) = componentData;
   allocatedMemory = uiContextBasePointer + -0x28;
   do {
-    func_0x00018005d390(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
     allocatedMemory = allocatedMemory + 8;
     componentData = componentData + -1;
   } while (componentData != 0);

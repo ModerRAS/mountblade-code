@@ -31820,7 +31820,7 @@ void ProcessDataTypes(void)
   DataBuffer *MemoryResourcePointerSecondary;    // 内存资源指针2 - 第二个内存资源指针
   float inputFloatValue;                    // 输入浮点值 - 用于存储输入的浮点数值
   int64_t systemContextSecondary;                 // 系统上下文次级 - 系统的次级上下文信息
-  uint64_t OperationResult3;             // 操作结果3 - 第3个操作结果
+  uint64_t operationResultSecondary;             // 操作结果次级 - 第3个操作结果
   int64_t ContextPointer;                  // 上下文指针 - 指向上下文信息的指针
   DataWord FloatResultA;                  // 浮点结果A - 第一个浮点计算结果
   DataWord SystemOperationResult4;         // 系统操作结果4 - 第四个系统操作结果
@@ -31846,7 +31846,7 @@ void ProcessDataTypes(void)
   float FloatComparisonValue;            // 浮点比较值 - 用于浮点数比较的值
   float SystemInputParameter;            // 系统输入参数 - 系统的输入参数
   DataBuffer *ResourceDataPointer;       // 资源数据指针 - 指向资源数据的指针
-  int64_t systemDataBuffer;               // 栈数据缓冲区 - 栈中的数据缓冲区
+  int64_t stackDataBuffer;               // 栈数据缓冲区 - 栈中的数据缓冲区
   int64_t stackOperationContext;         // 栈操作上下文 - 栈操作的上下文信息
   uint8_t *secondarySystemByteDataBuffer;      // 次要系统字节数据缓冲区 - 第二个系统字节数据缓冲区
   float floatInputValueSecondary;        // 次要浮点输入值 - 第二个浮点输入值

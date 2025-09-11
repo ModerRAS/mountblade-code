@@ -232088,7 +232088,6 @@ void ValidateSystemHandleAndExtractUtf16Data(uint32_t *OutputContextHandle)
 
 
 
-// 函数: void FUN_18018bd5f(void)
 /**
  * @brief 重置系统句柄状态
  * 
