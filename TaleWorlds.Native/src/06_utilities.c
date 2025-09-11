@@ -3042,14 +3042,14 @@
 #define StackFrameContextOffset68 -0x68            // 栈帧上下文偏移量68
 #define StackFrameContextOffset80 -0x80            // 栈帧上下文偏移量80
 #define StackFrameContextOffset54 -0x54            // 栈帧上下文偏移量54
-#define StackFrameContextOffsetNegative70 -0x70            // 栈帧上下文负偏移量70
-#define StackFrameContextOffsetNegative64 -0x64            // 栈帧上下文负偏移量64
-#define SystemDataSecondaryOffset18 0x18                  // 系统数据二级偏移量18
-#define SystemDataFunctionOffset50 0x50                   // 系统数据函数偏移量50
+#define StackFrameContextOffset70 -0x70            // 栈帧上下文偏移量70
+#define StackFrameContextOffset64 -0x64            // 栈帧上下文偏移量64
+#define SystemDataSecondaryOffset 0x18                  // 系统数据二级偏移量
+#define SystemDataFunctionOffset 0x50                   // 系统数据函数偏移量
 
 // 系统配置和验证常量
-#define SystemConfigurationOffsetD8 0xd8                  // 系统配置偏移量D8
-#define SystemValidationOffsetF8 0xf8                       // 系统验证偏移量F8
+#define SystemConfigurationOffset 0xd8                  // 系统配置偏移量
+#define SystemValidationOffset 0xf8                       // 系统验证偏移量
 #define SystemContextOffset60 0x60                         // 系统上下文偏移量60
 #define SystemContextOffsetA4 0xa4                         // 系统上下文偏移量A4
 #define SystemContextOffset94 0x94                         // 系统上下文偏移量94
