@@ -11689,7 +11689,7 @@ typedef uint32_t NodeDescriptor;             // 节点描述符类型 - 用于�
 // C++标准库函数宏定义
 // 错误处理函数 - 抛出C标准错误并处理错误码
 // 用于在系统遇到严重错误时抛出异常并进行错误处理
-#define ThrowCErrorAndHandleCode __Throw_C_error_std__YAXH_Z
+#define ThrowCErrorAndHandleCode ThrowCStandardError
 
 // 异常状态检查函数 - 检查当前是否有未捕获的异常
 // 用于异常处理系统中检测是否有未处理的异常状态
@@ -49156,7 +49156,7 @@ void ExceptionContextCleanupHandlerB14(DataBuffer ExceptionContext, int64_t Vali
   if (*(char *)(exceptionData + SystemStatusFlagOffsetD1) != '\0') {
     ResetSystemStateE0();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *(DataBuffer *)(exceptionData + PrimaryExceptionHandlerSlotOffset) = &ExceptionHandlerB;
   *(DataBuffer *)(exceptionData + SecondaryExceptionHandlerSlotOffset) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + SecondaryExceptionHandlerStatusOffset) != 0) {
@@ -49199,7 +49199,7 @@ void ExceptionContextCleanupHandlerB15(DataBuffer ExceptionContext, int64_t Vali
   if (*(char *)(exceptionData + SystemStatusFlagOffsetD1) != '\0') {
     ResetSystemStateE0();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSlotOffset) = &ExceptionHandlerB;
   *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerTempSlotOffset) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + ExtendedExceptionHandlerStatusOffset) != 0) {
@@ -49242,7 +49242,7 @@ void ExceptionContextCleanupHandlerB16(DataBuffer ExceptionContext, int64_t Cont
   if (*(char *)((int64_t)exceptionHandlerArray + 0xb1) != '\0') {
     ResetSystemStateE0();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *exceptionHandlerArray = &ExceptionHandlerB;
   exceptionHandlerArray[7] = &SystemTemporaryExceptionHandler;
   if (exceptionHandlerArray[8] != 0) {
@@ -49283,7 +49283,7 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionHandlerPointer;
   
   exceptionHandlerPointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerCountOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *exceptionHandlerPointer = &ExceptionHandlerB;
   exceptionHandlerPointer[7] = &SystemTemporaryExceptionHandler;
   if (exceptionHandlerPointer[8] != 0) {
@@ -49375,7 +49375,7 @@ void HandleExceptionRecoveryB0(DataBuffer context, int64_t exceptionData, DataBu
 void DestroyMutexInExceptionC(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -49388,7 +49388,7 @@ void DestroyMutexInExceptionC(void)
 void DestroyMutexInExceptionD(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -49478,7 +49478,7 @@ void ExceptionUnwindHandlerA31(DataBuffer exceptionContext,int64_t unwindParam)
 void DestroyMutexInPlace(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -49498,7 +49498,7 @@ void DestroyMutexInPlace(void)
 void DestroyMutexAtOffset(DataBuffer mutexContext,int64_t mutexParam)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(mutexParam + 0x78));
+  DestroyMutexInPlace(*(DataBuffer *)(mutexParam + 0x78));
   return;
 }
 
@@ -49766,7 +49766,7 @@ void HandleExceptionRecoveryC0(DataBuffer context, int64_t exceptionData, DataBu
 void DestroyMutexResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -49876,7 +49876,7 @@ void HandleExceptionRecoveryF0(DataBuffer context, int64_t exceptionData, DataBu
 void DestroyMutexResources2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -52236,7 +52236,7 @@ void CleanupThreadResource(DataBuffer operationBase, int64_t dataBuffer)
     *exceptionDataBuffer = &ExceptionDataTable5;
     
     // 销毁互斥锁和条件变量
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
     
     // 重置异常处理表
@@ -52290,9 +52290,9 @@ void CleanupSystemThreadContext(DataBuffer operationBase, int64_t dataBuffer, Da
         exceptionDataBuffer[1] = 0;
         
         // 销毁线程同步对象
-        _Mtx_destroy_in_situ();
+        DestroyMutexInPlace();
         _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
-        _Mtx_destroy_in_situ();
+        DestroyMutexInPlace();
         
         // 更新系统状态
         UpdateSystemStatusA0();
@@ -52729,7 +52729,7 @@ void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   operationResult = StandardResourceCleanupFlag;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   ExecuteMemoryOperation(exceptionContext + ExceptionHandlerPointerOffset3E0,0x20,0x20,CleanupResourceHandler,operationResult);
   CleanupSystemResourcesA2();
   ExecuteMemoryOperation(exceptionContext + ExceptionHandlerPointerOffset138,8,0x20,ValidateDataHandler);
@@ -52827,7 +52827,7 @@ void CleanupEnumMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupGlobalMutexOnException(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -53801,7 +53801,7 @@ void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataB
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerListOffset);
   operationResult = StandardResourceCleanupFlag;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   ProcessSystemParametersWithValidation(exceptionContext + ExceptionHandlerPointerOffset110,*(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset120),cleanupFlagA,cleanupFlagB,operationResult);
   ProcessSystemParametersWithValidation(exceptionContext + 0xe0,*(DataBuffer *)(exceptionContext + 0xf0));
   ProcessSystemParametersWithValidation(exceptionContext + 0xb0,*(DataBuffer *)(exceptionContext + 0xc0));
@@ -54164,7 +54164,7 @@ void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBu
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   operationResult = StandardResourceCleanupFlag;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   ProcessSystemParametersWithValidation(exceptionContext + ExceptionHandlerPointerOffset110,*(DataBuffer *)(exceptionContext + ExceptionHandlerPointerOffset120),cleanupFlagA,cleanupFlagB,operationResult);
   ProcessSystemParametersWithValidation(exceptionContext + 0xe0,*(DataBuffer *)(exceptionContext + 0xf0));
   ProcessSystemParametersWithValidation(exceptionContext + 0xb0,*(DataBuffer *)(exceptionContext + 0xc0));
@@ -54401,7 +54401,7 @@ void ExecuteSystemCleanupF(DataBuffer dataBuffer, int64_t executionContext, Data
 void DestroyMutexResourceB(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -55227,7 +55227,7 @@ void CleanupSystemContextResourcesWithValidation(DataBuffer operationBase, int64
   uint64_t dataFlags;
   
   contextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerListOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   validationStatusPointer = (DataBuffer *)*contextPointer;
   if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -55511,16 +55511,16 @@ void DestroyConditionVariable(void)
  * @note 原始函数名：Unwind_1809035b0
  * 
  * @details
- * 该函数调用底层的_Mtx_destroy_in_situ()函数来销毁互斥锁。
+ * 该函数调用底层的DestroyMutexInPlace()函数来销毁互斥锁。
  * 这是一个线程安全操作，确保互斥锁被正确清理。
  * 
  * @warning 在互斥锁仍被线程持有时销毁可能导致未定义行为
- * @see DestroyConditionVariable, _Mtx_destroy_in_situ
+ * @see DestroyConditionVariable, DestroyMutexInPlace
  */
 void DestroyMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -62525,7 +62525,7 @@ void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffe
 void CleanupSynchronizationPrimitives(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ(dataBuffer + ExceptionHandlerListOffset);
   return;
 }
@@ -62605,7 +62605,7 @@ void DestroyConditionOnException(void)
 void DestroyMutexOnException(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -62641,7 +62641,7 @@ void DestroyConditionFromBufferOffset20OnException(DataBuffer operationBase,int6
 void DestroyMutexBOnException(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -62661,7 +62661,7 @@ void DestroyMutexBOnException(void)
 void DestroyMutexCFromBufferOnException(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + MemoryRegionDataReferenceOffset));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + MemoryRegionDataReferenceOffset));
   return;
 }
 
@@ -62703,7 +62703,7 @@ void CallExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,Da
 void DestroyMutexOnExceptionAlt(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -62722,7 +62722,7 @@ void DestroyMutexOnExceptionAlt(void)
 void DestroyMutexFromBufferOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ValidationResultOffset));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + ValidationResultOffset));
   return;
 }
 
@@ -64043,9 +64043,9 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset) = 0;
@@ -64162,9 +64162,9 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset) = 0;
@@ -64409,7 +64409,7 @@ void ConfigureExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)((int64_t)exceptionDataBuffer + 0xb1) != '\0') {
     ResetSystemStateE0();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *exceptionDataBuffer = &ExceptionHandlerB;
   exceptionDataBuffer[7] = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
@@ -64446,7 +64446,7 @@ void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   *exceptionDataBuffer = &ExceptionHandlerB;
   exceptionDataBuffer[ExceptionHandlerIndex7] = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[ExceptionHandlerIndex8] != 0) {
@@ -64514,7 +64514,7 @@ void ConfigureExceptionHandlersSimple(DataBuffer operationBase,int64_t dataBuffe
 void DestroyMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -64605,9 +64605,9 @@ void ProcessExceptionDataBufferWithMutexHandling(DataBuffer operationBase,int64_
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset) = 0;
@@ -66847,7 +66847,7 @@ void InitializeExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(exceptionDataBuffer + ExceptionHandlerContextOffset50);
   *exceptionDataBuffer = &ExceptionDataTableAddress;
   InitializeSystemA0();
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   ProcessExceptionA0(exceptionDataBuffer + 2);
   if ((int64_t *)exceptionDataBuffer[1] != (int64_t *)0x0) {
@@ -66866,7 +66866,7 @@ void InitializeExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 void DestroyThreadLocalMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -66880,7 +66880,7 @@ void DestroyThreadLocalMutex(void)
 void DestroyGlobalMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -66960,7 +66960,7 @@ void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -66974,7 +66974,7 @@ void DestroySystemMutex(void)
 void DestroySecondaryMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -67079,7 +67079,7 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -67095,7 +67095,7 @@ void DestroySystemMutex(void)
 void DestroyGlobalMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -67579,7 +67579,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   dataProcessingPointer = dataContext;
   iterationCount = _Mtx_lock(dataContext);
   if (iterationCount != 0) {
-    __Throw_C_error_std__YAXH_Z(iterationCount);
+    ThrowCStandardError(iterationCount);
   }
   loopCounter = 0;
   systemMemoryBuffer = loopCounter;
@@ -67638,7 +67638,7 @@ ProcessCheckpointValidationData3:
   operationResult[systemContextArrayOffset] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
   if (iterationCount != 0) {
-    __Throw_C_error_std__YAXH_Z(iterationCount);
+    ThrowCStandardError(iterationCount);
   }
   if (operationResult[SystemOperationOffset] != 0) {
     free();
@@ -67656,13 +67656,13 @@ ProcessCheckpointValidationData3:
   systemContextPointer = operationResult + 0x24;
   CleanupResourcesA0();
   systemContextPointer = dataContext;
-  _Mtx_destroy_in_situ(dataContext);
+  DestroyMutexInPlace(dataContext);
   systemContextPointer = operationResult + SystemValidationOffset;
   if (*systemContextPointer != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   systemContextPointer = operationResult + SystemMutexOffset;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   systemContextPointer = exceptionContextPointer;
   ValidateProcessingA0(exceptionContextPointer);
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
@@ -68400,7 +68400,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
   dataProcessingPointer = dataContext;
   iterationCount = _Mtx_lock(dataContext);
   if (iterationCount != 0) {
-    __Throw_C_error_std__YAXH_Z(iterationCount);
+    ThrowCStandardError(iterationCount);
   }
   loopCounter = 0;
   systemMemoryBuffer = loopCounter;
@@ -68459,7 +68459,7 @@ ProcessCheckpointValidationData3:
   operationResult[OperationResultIndex2E] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
   if (iterationCount != 0) {
-    __Throw_C_error_std__YAXH_Z(iterationCount);
+    ThrowCStandardError(iterationCount);
   }
   if (operationResult[OperationResultIndex4A] != 0) {
     free();
@@ -68477,13 +68477,13 @@ ProcessCheckpointValidationData3:
   systemContextPointer = operationResult + 0x24;
   CleanupResourcesA0();
   systemContextPointer = dataContext;
-  _Mtx_destroy_in_situ(dataContext);
+  DestroyMutexInPlace(dataContext);
   systemContextPointer = operationResult + 0x16;
   if (*systemContextPointer != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   systemContextPointer = operationResult + 0xc;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   systemContextPointer = exceptionContextPointer;
   ValidateProcessingA0(exceptionContextPointer);
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
@@ -68642,7 +68642,7 @@ void CleanupExceptionHandling9C0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 销毁互斥量A
  * 
- * 该函数调用 _Mtx_destroy_in_situ() 来销毁互斥量。
+ * 该函数调用 DestroyMutexInPlace() 来销毁互斥量。
  * 这是一个简单的线程同步资源清理函数。
  * 
  * @note 原始函数名：Unwind_1809059d0
@@ -68651,7 +68651,7 @@ void CleanupExceptionHandling9C0(DataBuffer operationBase,int64_t dataBuffer)
 void DestroyMutexA(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -68742,7 +68742,7 @@ void ExecuteExceptionHandlerCallbackA30(DataBuffer operationBase,int64_t dataBuf
 void DestroySystemMutexA(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -68759,7 +68759,7 @@ void DestroySystemMutexA(void)
 void CleanupExecutionContextMutex(DataBuffer systemContext, int64_t ExecutionContext)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(ExecutionContext + 0x2e0));
+  DestroyMutexInPlace(*(DataBuffer *)(ExecutionContext + 0x2e0));
   return;
 }
 
@@ -68907,7 +68907,7 @@ void CleanupSystemResourcesAndMutexA0(DataBuffer systemContext, int64_t executio
   
   exceptionDataBuffer = *(DataBuffer **)(executionContext + 0x50);
   *exceptionDataBuffer = &SystemCleanupExceptionHandler;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &SystemConfigurationTable;
   *exceptionDataBuffer = &ExceptionDataTable;
@@ -68934,7 +68934,7 @@ void ExecuteSystemCallbackWithCleanupFlags(DataBuffer systemContext, int64_t exe
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -69011,7 +69011,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t resourcePoin
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   validationStatusPointer = *(DataBuffer **)(resourceIterator + ExceptionHandlerCallbackOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -69183,7 +69183,7 @@ void UnwindDestroyConditionVariableInSitu(void)
 void UnwindDestroyMutexInSitu(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -69205,7 +69205,7 @@ void UnwindDestroyConditionVariableAtPosition(DataBuffer exceptionContext,int64_
 void UnwindDestroyMutexInSitu2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -69216,7 +69216,7 @@ void UnwindDestroyMutexInSitu2(void)
 void UnwindDestroyMutexAtPosition(DataBuffer exceptionContext,int64_t unwindContext)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(unwindContext + 0x30));
+  DestroyMutexInPlace(*(DataBuffer *)(unwindContext + 0x30));
   return;
 }
 
@@ -69425,7 +69425,7 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   validationStatusPointer = *(DataBuffer **)(resourceIterator + ExceptionHandlerCallbackOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -69723,7 +69723,7 @@ void DestroyConditionVariableA(void)
 /**
  * @brief 销毁互斥量B
  * 
- * 该函数调用 _Mtx_destroy_in_situ() 来销毁互斥量。
+ * 该函数调用 DestroyMutexInPlace() 来销毁互斥量。
  * 这是一个简单的线程同步资源清理函数。
  * 
  * @note 原始函数名：Unwind_180905cd0
@@ -69732,7 +69732,7 @@ void DestroyConditionVariableA(void)
 void DestroyMutexB(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -69869,7 +69869,7 @@ void ReleaseMutexLockDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) != '\0') {
     inputParameter = _Mtx_unlock(*(DataBuffer *)(exceptionDataBuffer + DataBufferOffset48));
     if (inputParameter != 0) {
-      __Throw_C_error_std__YAXH_Z(inputParameter);
+      ThrowCStandardError(inputParameter);
     }
   }
   return;
@@ -70314,7 +70314,7 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(dataBuffer + ThreadContextDataOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -70528,7 +70528,7 @@ void DestroyConditionVariable(void)
 void DestroyMutexA(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -70544,7 +70544,7 @@ void DestroyMutexA(void)
 void DestroyMutexB(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -70564,7 +70564,7 @@ void DestroyMutexB(void)
 void DestroyMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68));
   return;
 }
 
@@ -70694,7 +70694,7 @@ void CleanupExceptionDataTableAndSynchronization(DataBuffer operationBase,int64_
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerListOffset);
   *exceptionDataBuffer = &ExceptionDataTable5;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
@@ -70732,7 +70732,7 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
   uint64_t memoryRegionFlags;
   
   threadContextIterator = *(int64_t *)(dataBuffer + ExceptionHandlerListOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ();
   validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -70914,7 +70914,7 @@ void ExecuteFinalExceptionCleanup(void)
 void DestroyMutexInSituA0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -70949,7 +70949,7 @@ void DestroyConditionInSituOffset80(DataBuffer operationBase,int64_t dataBuffer)
 void DestroyMutexInSituA1(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -70968,7 +70968,7 @@ void DestroyMutexInSituA1(void)
 void DestroyMutexInSituOffset80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + SystemDataBufferOffset80));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + SystemDataBufferOffset80));
   return;
 }
 
@@ -71026,7 +71026,7 @@ void ExceptionCleanupWithMutexDestructionA(DataBuffer exceptionContext,int64_t s
   int64_t *dataContextPointer;
   
   dataContextPointer = *(int64_t **)(systemContext + ExceptionContextPrimaryOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   exceptionContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionContextPointer != dataContextPointer) {
       TerminateSystemE0(exceptionContextPointer);
@@ -71053,7 +71053,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer exceptionContext,int64_t s
   int64_t *dataContextPointer;
   
   dataContextPointer = (int64_t *)(*(int64_t *)(systemContext + ExceptionContextPrimaryOffset) + ExceptionContextSecondaryOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   exceptionContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionContextPointer != dataContextPointer) {
       TerminateSystemE0(exceptionContextPointer);
@@ -71081,7 +71081,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer operationBase,int64_t data
   int64_t *exceptionDataContext;
   
   exceptionDataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionContextPrimaryOffset) + ExceptionContextTertiaryOffset);
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   exceptionContextPointer = (int64_t *)*exceptionDataContext;
   if (exceptionContextPointer != exceptionDataContext) {
       TerminateSystemE0(exceptionContextPointer);
@@ -71126,7 +71126,7 @@ void ValidateExceptionContextAndTerminate(DataBuffer operationBase,int64_t dataB
 void DestroyMutexInSituA2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -71167,7 +71167,7 @@ void ValidateExceptionContextAndTerminateB(DataBuffer operationBase,int64_t data
 void DestroyMutexInSituA3(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -71186,7 +71186,7 @@ void DestroyMutexInSituA3(void)
 void DestroyMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset));
   return;
 }
 
@@ -71210,7 +71210,7 @@ void UnlockMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerListOffset));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -71252,7 +71252,7 @@ void ValidateExceptionContextAndTerminateC(DataBuffer operationBase,int64_t data
 void DestroyMutexInSituA4(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -72785,7 +72785,7 @@ void SetTemporaryExceptionHandlerReference(DataBuffer operationBase,int64_t data
 void DestroyMutexInPlace(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -72802,7 +72802,7 @@ void DestroyMutexInPlace(void)
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ(MutexObjectPtr);
+  DestroyMutexInPlace(MutexObjectPtr);
   return;
 }
 
@@ -83008,14 +83008,14 @@ void ExecuteMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 互斥锁销毁函数
  * 
  * 该函数负责销毁互斥锁资源，释放系统中的同步机制。
- * 通过调用_Mtx_destroy_in_situ函数来销毁互斥锁，确保系统资源的正确清理。
+ * 通过调用DestroyMutexInPlace函数来销毁互斥锁，确保系统资源的正确清理。
  * 
  * @note 原始函数名：Unwind_180908380
  */
 void DestroyMutexInSitu(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -83059,7 +83059,7 @@ void UnlockMutexWithErrorHandling(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemManagementOffset98));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -83155,7 +83155,7 @@ void CleanupResourceHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 void MutexDestroyer(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -83352,7 +83352,7 @@ void MutexUnlockerA0(DataBuffer operationBase,int64_t dataBuffer)
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + DataBufferOffset1d0));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -83498,7 +83498,7 @@ void CleanupSystemAndManageResources(DataBuffer operationBase,int64_t dataBuffer
   
   exceptionContext = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset50);
   operationResult = StandardResourceCleanupFlag;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   ExecuteMemoryOperation(exceptionContext + ExceptionHandlerPointerOffset3E0,0x20,0x20,CleanupResourceHandler,operationResult);
   CleanupSystemResourcesA2();
   ExecuteMemoryOperation(exceptionContext + ExceptionHandlerPointerOffset138,8,0x20,ValidateDataHandler);
@@ -83634,7 +83634,7 @@ void InvokeExceptionHandlerAtOffset1800(DataBuffer operationBase,int64_t dataBuf
 /**
  * @brief 销毁互斥锁资源
  * 
- * 该函数负责销毁互斥锁资源，调用系统内部函数_Mtx_destroy_in_situ()。
+ * 该函数负责销毁互斥锁资源，调用系统内部函数DestroyMutexInPlace()。
  * 这是一个资源清理函数，用于释放系统中的互斥锁资源。
  * 
  * @note 原始函数名：Unwind_1809086f0
@@ -83642,7 +83642,7 @@ void InvokeExceptionHandlerAtOffset1800(DataBuffer operationBase,int64_t dataBuf
 void DestroyMutexResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -83722,7 +83722,7 @@ void ExecuteExceptionHandlerCallbackChain(DataBuffer operationBase,int64_t dataB
 void DestroyMutexResource(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -83741,7 +83741,7 @@ void DestroyMutexResource(void)
 void DestroyConditionalMutex(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset60));
+  DestroyMutexInPlace(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset60));
   return;
 }
 
@@ -84271,7 +84271,7 @@ void UnlockMutexAtOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffsetC0));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -84294,7 +84294,7 @@ void UnlockMutexAtOffset200(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemDataBufferOffset200));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -84589,7 +84589,7 @@ void ExecuteValidationContextCleanupA0(DataBuffer exceptionContext, int64_t stac
 void CleanupSystemMutexA(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -84608,7 +84608,7 @@ void CleanupSystemMutexA(void)
 void CleanupSystemMutexB(void)
 
 {
-  _Mtx_destroy_in_situ(SystemMutexObjectAddress);
+  DestroyMutexInPlace(SystemMutexObjectAddress);
   return;
 }
 
@@ -84633,7 +84633,7 @@ void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
   ExceptionContextPtr = *(DataBuffer *)(stackFrame + 0x70);
   systemMutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (systemMutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
+    ThrowCStandardError(systemMutexUnlockResult);
   }
   return;
 }
@@ -84647,7 +84647,7 @@ void ReleaseMutexLockA20(DataBuffer exceptionContext, int64_t stackFrame)
   
   systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x68));
   if (systemMutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
+    ThrowCStandardError(systemMutexUnlockResult);
   }
   return;
 }
@@ -84661,7 +84661,7 @@ void ReleaseMutexLockA30(DataBuffer exceptionContext, int64_t stackFrame)
   
   systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x148));
   if (systemMutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
+    ThrowCStandardError(systemMutexUnlockResult);
   }
   return;
 }
@@ -84675,7 +84675,7 @@ void ReleaseMutexLockA10(DataBuffer exceptionContext, int64_t stackFrame)
   
   systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + ResourceManagementOffset1d8));
   if (systemMutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
+    ThrowCStandardError(systemMutexUnlockResult);
   }
   return;
 }
@@ -86470,7 +86470,7 @@ void ExecuteSystemCleanupAndValidation(DataBuffer operationBase,int64_t dataBuff
   operationResult = StandardResourceCleanupFlag;
   
   // 销毁互斥锁
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   
   // 执行系统参数验证和清理操作
   ProcessSystemParametersWithValidation(exceptionContext + 0x110, *(DataBuffer *)(exceptionContext + ExceptionHandlerContextOffset120), operationFlagA, operationFlagB, operationResult);
@@ -87153,7 +87153,7 @@ void ProcessExceptionContextCallbackAndSystemOperations(DataBuffer operationBase
   if (*(int64_t **)(exceptionContext + ExceptionContextDataOffset1C70) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(exceptionContext + ExceptionContextDataOffset1C70) + SystemFloatDataOffset38))();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -87978,7 +87978,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
 void DestroyGlobalMutexA(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -87987,7 +87987,7 @@ void DestroyGlobalMutexA(void)
 void DestroyGlobalMutexB(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -87996,7 +87996,7 @@ void DestroyGlobalMutexB(void)
 void DestroyDataBufferMutex(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + DataBufferOffset128));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + DataBufferOffset128));
   return;
 }
 
@@ -89962,7 +89962,7 @@ void ProcessResourceDataBufferD6(DataBuffer operationBase, int64_t dataBuffer, D
 void DestroyMutexInSitu(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -90362,7 +90362,7 @@ void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuff
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexUnlockOffsetE8));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -90579,7 +90579,7 @@ void UnlockMutexAndHandleErrorA0(DataBuffer operationBase, int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionDataBufferOffsetD8));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -90862,7 +90862,7 @@ void UnlockSystemMutexB20(DataBuffer operationBase,int64_t dataBuffer)
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexOffset));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -90977,7 +90977,7 @@ void CleanupExceptionDataB70(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
   *exceptionDataBuffer = &ExceptionDataTable5;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
@@ -91074,7 +91074,7 @@ void UnlockSystemMutexBE0(DataBuffer operationBase,int64_t dataBuffer)
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemOperationStatusOffset));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -91178,7 +91178,7 @@ void SetupExceptionHandlerAtThreadContextOffset(DataBuffer operationBase, int64_
 void ExecuteExceptionCallbacksAtSystemCleanup(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91195,7 +91195,7 @@ void ExecuteExceptionCallbacksAtSystemCleanup(void)
 void CleanupResourceReferenceCountAtPrimaryOffset(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91212,7 +91212,7 @@ void CleanupResourceReferenceCountAtPrimaryOffset(void)
 void CleanupResourceReferenceCountAtSecondaryOffset(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91232,7 +91232,7 @@ void CleanupResourceReferenceCountAtSecondaryOffset(void)
 void DestroyMutexAtExceptionHandlerOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
   return;
 }
 
@@ -91249,7 +91249,7 @@ void DestroyMutexAtExceptionHandlerOffset(DataBuffer operationBase, int64_t data
 void DestroyMutexAtGlobalOffset(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91269,7 +91269,7 @@ void DestroyMutexAtGlobalOffset(void)
 void DestroyMutexAtsystemContextOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + systemContextOffset98));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + systemContextOffset98));
   return;
 }
 
@@ -91294,7 +91294,7 @@ void UnlockMutexAtDataBufferOffset(DataBuffer operationBase, int64_t dataBuffer)
   if (*(char *)(dataBuffer + SystemStatePrimaryOffset) != '\0') {
     mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemStackDataOffset));
     if (mutexUnlockResult != 0) {
-      __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+      ThrowCStandardError(mutexUnlockResult);
     }
   }
   return;
@@ -91569,7 +91569,7 @@ void ProcessSystemConfiguration740(DataBuffer operationBase,int64_t dataBuffer,D
 void DestroyMutexInSituA0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91580,7 +91580,7 @@ void DestroyMutexInSituA0(void)
 void DestroyMutexInSituA1(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91591,7 +91591,7 @@ void DestroyMutexInSituA1(void)
 void DestroyMutexInSituA2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91603,13 +91603,13 @@ void DestroyMutexInSituA2(void)
  * 销毁系统中的互斥锁对象，释放相关资源。
  * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
  * 
- * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 函数直接调用DestroyMutexInPlace()进行互斥锁销毁
  * @note 这是异常处理和资源清理的一部分
  */
 void DestroySystemMutexE0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91621,13 +91621,13 @@ void DestroySystemMutexE0(void)
  * 销毁系统中的互斥锁对象，释放相关资源。
  * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
  * 
- * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 函数直接调用DestroyMutexInPlace()进行互斥锁销毁
  * @note 这是异常处理和资源清理的一部分
  */
 void DestroySystemMutexE1(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91639,13 +91639,13 @@ void DestroySystemMutexE1(void)
  * 销毁系统中的互斥锁对象，释放相关资源。
  * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
  * 
- * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 函数直接调用DestroyMutexInPlace()进行互斥锁销毁
  * @note 这是异常处理和资源清理的一部分
  */
 void DestroySystemMutexE2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91663,7 +91663,7 @@ void DestroySystemMutexE2(void)
 void DestroyMutexCleanupA12(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91681,7 +91681,7 @@ void DestroyMutexCleanupA12(void)
 void DestroyMutexCleanupA13(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91699,7 +91699,7 @@ void DestroyMutexCleanupA13(void)
 void DestroyMutexCleanupA14(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91716,7 +91716,7 @@ void DestroyMutexCleanupA14(void)
 void DestroySystemMutexF20(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -91782,7 +91782,7 @@ void CleanupMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataB
   
   memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   UpdateSystemStatusA2();
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   if (*(int64_t *)(memoryRegionOffset + 0xae0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -91823,7 +91823,7 @@ void CleanupMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataB
 void CleanupMutexResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92527,12 +92527,12 @@ void ProcessSystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,Da
  * @note 原始函数名：Unwind_18090a2f0
  * @note 这是一个异常展开（unwind）处理函数，用于异常处理中的资源清理
  * @warning 调用此函数时需要确保互斥锁未被其他线程持有
- * @see _Mtx_destroy_in_situ, CleanupExceptionDataAndMutexA0, UpdateSystemStatusA0
+ * @see DestroyMutexInPlace, CleanupExceptionDataAndMutexA0, UpdateSystemStatusA0
  */
 void DestroyMutexLock(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92548,7 +92548,7 @@ void DestroyMutexLock(void)
 void UpdateSystemStatusA0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92565,7 +92565,7 @@ void UpdateSystemStatusA0(void)
 void CleanupExceptionDataAndMutexA0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92582,7 +92582,7 @@ void CleanupExceptionDataAndMutexA0(void)
 void CleanupExceptionDataAndMutexA1(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92599,7 +92599,7 @@ void CleanupExceptionDataAndMutexA1(void)
 void CleanupExceptionDataAndMutexA2(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92616,7 +92616,7 @@ void CleanupExceptionDataAndMutexA2(void)
 void CleanupExceptionDataAndMutexA3(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92633,7 +92633,7 @@ void CleanupExceptionDataAndMutexA3(void)
 void CleanupExceptionDataAndMutexA4(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92650,7 +92650,7 @@ void CleanupExceptionDataAndMutexA4(void)
 void CleanupExceptionDataAndMutexA5(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92667,7 +92667,7 @@ void CleanupExceptionDataAndMutexA5(void)
 void CleanupExceptionDataAndMutexA6(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92683,7 +92683,7 @@ void CleanupExceptionDataAndMutexA6(void)
 void InitializeSystemA0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -92742,7 +92742,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
   
   memoryRegionOffset = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60);
   UpdateSystemStatusA2();
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   if (*(int64_t *)(memoryRegionOffset + 0xae0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -92785,7 +92785,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 void DestroyMutexAndReleaseResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -93173,7 +93173,7 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
 void DestroyMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -93295,7 +93295,7 @@ void UnlockMutexA0(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + ExceptionHandlerCountOffset));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -93473,7 +93473,7 @@ void UnlockMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
   
   mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + systemContextPointerOffset90));
   if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   return;
 }
@@ -96684,13 +96684,13 @@ void ExecuteExceptionHandlerCallbackA7(DataBuffer operationBase, int64_t dataBuf
  * 销毁系统中的互斥锁对象，释放相关资源。
  * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
  * 
- * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 函数直接调用DestroyMutexInPlace()进行互斥锁销毁
  * @note 这是异常处理和资源清理的一部分
  */
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -96798,13 +96798,13 @@ void CleanupMemoryResourceCallbackB0(DataBuffer operationBase,int64_t dataBuffer
  * 销毁系统中的互斥锁对象，释放相关资源。
  * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
  * 
- * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 函数直接调用DestroyMutexInPlace()进行互斥锁销毁
  * @note 这是异常处理和资源清理的一部分
  */
 void DestroySystemMutexCopy(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -96825,7 +96825,7 @@ void DestroySystemMutexCopy(void)
 void DestroyMutexAtContextOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset58));
+  DestroyMutexInPlace(*(DataBuffer *)(exceptionDataBuffer + ExceptionHandlerContextOffset58));
   return;
 }
 
@@ -98242,7 +98242,7 @@ void ProcessExceptionContextAtOffset410(DataBuffer operationBase,int64_t dataBuf
 void DestroyMutexLock(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -104892,7 +104892,7 @@ void ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffe
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + ValidationResultOffset);
   inputParameter = _Mtx_unlock(SystemMutexObjectAddress + ResourceValidationFlagOffset60);
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -104929,7 +104929,7 @@ void ReleaseSystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
   // 检查解锁操作是否成功
   if (mutexUnlockResult != 0) {
     // 解锁失败，抛出C标准错误
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+    ThrowCStandardError(mutexUnlockResult);
   }
   
   return;
@@ -109509,7 +109509,7 @@ void ExecuteExceptionContextResourceCleanupD6A0(DataBuffer operationBase,int64_t
 void DestroyMutexResource(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -110657,17 +110657,17 @@ void ExecuteMemoryCleanupOperationA2(DataBuffer operationBase,int64_t dataBuffer
  * @brief 销毁互斥锁
  * 
  * 该函数负责销毁互斥锁对象，释放相关的系统资源。
- * 它调用_Mtx_destroy_in_situ函数来执行实际的销毁操作。
+ * 它调用DestroyMutexInPlace函数来执行实际的销毁操作。
  * 
  * @note 原始函数名：Unwind_18090de10
  * @note 该函数是系统清理过程的一部分
  * 
- * @see _Mtx_destroy_in_situ
+ * @see DestroyMutexInPlace
  */
 void DestroySystemMutexDE10(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -110863,7 +110863,7 @@ void InvokeExceptionHandlerAtOffset60(DataBuffer operationBase,int64_t dataBuffe
 void DestroySystemMutexDE70(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -110968,14 +110968,14 @@ void ExecuteSystemMemoryOperationAndCleanupDEC0(DataBuffer operationBase, int64_
  * @brief 销毁系统互斥锁并释放资源
  * 
  * 该函数销毁系统互斥锁，释放系统资源。
- * 它通过调用_Mtx_destroy_in_situ函数来销毁互斥锁。
+ * 它通过调用DestroyMutexInPlace函数来销毁互斥锁。
  * 
  * @note 原始函数名：Unwind_18090df00
  * @note 系统互斥锁销毁函数
  */
 void DestroySystemMutexAndReleaseResourcesDF00(void)
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -111865,7 +111865,7 @@ void CleanupExceptionHandlerChainE3E0(DataBuffer operationBase,int64_t dataBuffe
 void DestroyMutexE3F0(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -111874,7 +111874,7 @@ void DestroyMutexE3F0(void)
 void ExecuteMemoryCleanupOperationA9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + DataBufferOffsetE8));
+  DestroyMutexInPlace(*(DataBuffer *)(dataBuffer + DataBufferOffsetE8));
   return;
 }
 
@@ -116574,7 +116574,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 void DestroyMutexInSitu(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -116598,7 +116598,7 @@ void TerminateSystemOnExceptionCondition(DataBuffer operationBase,int64_t dataBu
   if (*(int64_t *)(*(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60) + ResourceValidationFlagOffset60) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -116964,7 +116964,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
 void DestroyMutexInSituAtOffset310(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -117998,7 +117998,7 @@ void UnlockMutexAtOffset140(DataBuffer operationBase,int64_t dataBuffer)
   
   inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + DataBufferOffset140));
   if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+    ThrowCStandardError(inputParameter);
   }
   return;
 }
@@ -118529,7 +118529,7 @@ void ManageExceptionDataTableA20(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferOffset130);
   *exceptionDataBuffer = &ExceptionDataTable5;
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
@@ -121725,7 +121725,7 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
 void DestroyMutex(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
   return;
 }
 
@@ -133688,7 +133688,7 @@ void UtilityResetPointer6(void)
 void DestroyMutexAndCondition(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
                           _Cnd_destroy_in_situ();
   return;
 }
@@ -133707,7 +133707,7 @@ void DestroyMutexAndCondition(void)
 void CleanupThreadSyncResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
                             _Cnd_destroy_in_situ();
   return;
 }
@@ -133726,7 +133726,7 @@ void CleanupThreadSyncResources(void)
 void ReleaseMutexAndCondition(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
                             _Cnd_destroy_in_situ();
   return;
 }
@@ -133745,7 +133745,7 @@ void ReleaseMutexAndCondition(void)
 void CleanupThreadResources(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInPlace();
                         _Cnd_destroy_in_situ();
   return;
 }
@@ -133783,7 +133783,7 @@ void CloseSystemHandle(void)
 void DestroyMutex(void)
 
 {
-                            _Mtx_destroy_in_situ(MutexObjectPointer);
+                            DestroyMutexInPlace(MutexObjectPointer);
   return;
 }
 
@@ -134013,7 +134013,7 @@ void SetDefaultExceptionHandlerA1(void)
 void DestroyMutexA0(void)
 
 {
-       _Mtx_destroy_in_situ(SystemMutexObjectAddress);
+       DestroyMutexInPlace(SystemMutexObjectAddress);
   return;
 }
 
@@ -134251,7 +134251,7 @@ void CleanupSystemStateAndResourcesH0(void)
     if (SystemCleanupStatus != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    _Mtx_destroy_in_situ();
+    DestroyMutexInPlace();
     _Cnd_destroy_in_situ();
     CleanupSystemMemoryA0(SystemMutexCleanupAddress);
   }
@@ -134333,7 +134333,7 @@ void InitializeExceptionHandlingSystem(void)
 void DestroyMutexResource(void)
 
 {
-                                 _Mtx_destroy_in_situ(MutexResourceAddress);
+                                 DestroyMutexInPlace(MutexResourceAddress);
   return;
 }
 
@@ -135387,7 +135387,7 @@ void DestroyMutexD(void)
 
 {
   // 销毁指定地址的互斥锁
-  _Mtx_destroy_in_situ(SystemMutexObjectSecondaryAddress);
+  DestroyMutexInPlace(SystemMutexObjectSecondaryAddress);
   return;
 }
 
@@ -135606,7 +135606,7 @@ void SetDefaultExceptionHandlerA0(void)
 
 {
   DefaultExceptionHandlerPointerA0 = &SystemDefaultExceptionHandlerB;
-                                _Mtx_destroy_in_situ();
+                                DestroyMutexInPlace();
   return;
 }
 
@@ -136105,7 +136105,7 @@ void CleanupUtilityMemoryA0(void)
 void DestroyMutexLockA0(void)
 
 {
-                                    _Mtx_destroy_in_situ(SystemMutexAddress);
+                                    DestroyMutexInPlace(SystemMutexAddress);
   return;
 }
 
@@ -136389,7 +136389,7 @@ void ExecuteSystemValidationAndCleanup(void)
     SystemValidationTerminationFlag = 0;
     if (SystemValidationContextPointer != 0) {
       CleanupSystemMemoryRegion(SystemValidationContextPointer + 0x360,0xcc8,8,ExecuteMemoryCleanupCallback,SystemCleanupFlagAlternative);
-      _Mtx_destroy_in_situ();
+      DestroyMutexInPlace();
       _Cnd_destroy_in_situ();
       ReleaseSystemResources(currentValidationContext + ResourceValidationFlagOffset60);
       ExecuteSystemCleanupRoutine();
@@ -136571,7 +136571,7 @@ void InitializeExceptionHandlerA(void)
 void DestroyMutexA(void)
 
 {
-                                   _Mtx_destroy_in_situ(SystemExceptionInitializerAddressA);
+                                   DestroyMutexInPlace(SystemExceptionInitializerAddressA);
   return;
 }
 
@@ -136593,7 +136593,7 @@ void DestroyMutexA(void)
 void DestroyMutexB(void)
 
 {
-                                      _Mtx_destroy_in_situ(SystemExceptionInitializerAddressB);
+                                      DestroyMutexInPlace(SystemExceptionInitializerAddressB);
   return;
 }
 
@@ -136615,7 +136615,7 @@ void DestroyMutexB(void)
 void DestroyMutexC(void)
 
 {
-                                           _Mtx_destroy_in_situ(SystemMutexCleanupAddressA);
+                                           DestroyMutexInPlace(SystemMutexCleanupAddressA);
   return;
 }
 
@@ -136713,7 +136713,7 @@ void InitializeUtilitySystem(void)
 void DestroyMutexInPlace(void)
 
 {
-                                          _Mtx_destroy_in_situ(SystemMutexCleanupAddressB);
+                                          DestroyMutexInPlace(SystemMutexCleanupAddressB);
   return;
 }
 
@@ -136735,7 +136735,7 @@ void DestroyMutexInPlace(void)
 void CleanupThreadMutex(void)
 
 {
-                                           _Mtx_destroy_in_situ(SystemMutexCleanupAddressC);
+                                           DestroyMutexInPlace(SystemMutexCleanupAddressC);
   return;
 }
 
