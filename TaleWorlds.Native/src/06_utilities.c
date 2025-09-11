@@ -20477,15 +20477,6 @@ void ExecuteSystemNoOperation(void)
  * @note 此错误码表示资源无效或不可访问
  * @note 原始函数名：FUN_180890ac7
  */
-/**
- * @brief 返回资源无效错误码
- * 
- * 返回预定义的资源无效错误码，用于指示资源访问或操作失败
- * 
- * @return uint64_t 资源无效错误码常量值
- * 
- * @note 该函数提供统一的错误码返回机制
- */
 uint64_t ReturnResourceInvalidErrorCode64(void)
 {
   return ResourceInvalidErrorCode;
@@ -21579,7 +21570,7 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   uint64_t floatValidationResult;
   DataBuffer *floatDataArrayPointer;
   DataBuffer *floatDataIterator;
-  int floatIntegerConversionResult;
+  int floatToIntegerConversionResult;
   float floatProcessingValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
