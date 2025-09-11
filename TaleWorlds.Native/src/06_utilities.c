@@ -31854,7 +31854,7 @@ void ProcessDataTypes(void)
   DataWord dataWordInputValueExtendedSecondary; // 次要扩展数据字输入值 - 第二个扩展数据字输入值
   
   MemoryResourcePointer = (DataBuffer *)(systemContext + SystemContextDataOffset8);
-  StackFloatRegisterA = dataPointerD;
+  StackFloatRegisterA = inputFloatValue;
   StackPointerRegisterA = MemoryResourcePointer;
   ExceptionContext = (*(code *)*systemInputAccumulator)(MemoryResourcePointer);
   resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(ExceptionContext + ExceptionHandlerContext5OffsetD0),&validationBuffer);
@@ -31862,12 +31862,12 @@ void ProcessDataTypes(void)
     systemErrorHandlingBuffer = &DataValidationErrorBase;
     *(DataWord *)(StackFrameContext + -0xf) = SystemOperationResult;
     *(float *)(StackFrameContext + -0x10) = StackFloatRegisterA;
-    outputParameter = dataPointerD;
+    outputParameter = inputFloatValue;
     resourceValidationStatus = ValidateDataIntegrityA0(processedNormalizedFloatValue,&systemErrorHandlingBuffer);
     if (resourceValidationStatus == 0) {
       dataSize = (int64_t)*(int *)(contextPointer + SystemParameterValidationOffset);
       if (0 < dataSize) {
-        OperationResultTertiary = (uint64_t)(uint)dataPointerD;
+        OperationResultTertiary = (uint64_t)(uint)inputFloatValue;
         OperationResultPrimary = (uint64_t)(uint)dataPointerD;
         do {
           ExceptionContext = *(int64_t *)(contextPointer + SystemDataParameterOffset20);

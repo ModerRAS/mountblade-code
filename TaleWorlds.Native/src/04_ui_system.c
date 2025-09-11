@@ -30637,7 +30637,7 @@ LAB_18066bb69:
             if ((*pcontextDataHandle == 0) || (*(char *)(*pcontextDataHandle + 0x18) == '\x01')) {
               *(UIByte *)(stringCompareIndex + 0x18) = 1;
               *(UIByte *)(pcontextDataHandle + 3) = 0;
-              stringCompareIndex = func_0x00018066c060(pcontextDataHandle,dataSource[2]);
+              stringCompareIndex = ProcessUIStringComparison(pcontextDataHandle,dataSource[2]);
               dataSource[2] = stringCompareIndex;
               pcontextDataHandle = (longlong *)*componentData;
             }
@@ -30646,7 +30646,7 @@ LAB_18066bb69:
             if (*pcontextDataHandle != 0) {
               *(UIByte *)(*pcontextDataHandle + 0x18) = 1;
             }
-            stringCompareIndex = func_0x00018066c000(componentData,dataSource[2]);
+            stringCompareIndex = ProcessUIComponentStringComparison(componentData,dataSource[2]);
 LAB_18066bd4e:
             dataSource[2] = stringCompareIndex;
             break;
@@ -30685,7 +30685,7 @@ LAB_18066bd4e:
             if ((pcontextDataHandle[1] == 0) || (*(char *)(pcontextDataHandle[1] + 0x18) == '\x01')) {
               *(UIByte *)(stringCompareIndex + 0x18) = 1;
               *(UIByte *)(pcontextDataHandle + 3) = 0;
-              stringCompareIndex = func_0x00018066c000(pcontextDataHandle,dataSource[2]);
+              stringCompareIndex = ProcessUIComponentStringComparison(pcontextDataHandle,dataSource[2]);
               dataSource[2] = stringCompareIndex;
               pcontextDataHandle = (longlong *)componentData[1];
             }
@@ -30694,7 +30694,7 @@ LAB_18066bd4e:
             if (pcontextDataHandle[1] != 0) {
               *(UIByte *)(pcontextDataHandle[1] + 0x18) = 1;
             }
-            stringCompareIndex = func_0x00018066c060(componentData,dataSource[2]);
+            stringCompareIndex = ProcessUIStringComparison(componentData,dataSource[2]);
             goto LAB_18066bd4e;
           }
         }
@@ -32233,7 +32233,7 @@ void HandleUIComponentError(longlong uiContext)
   UIDword *uiTargetHandle;
   
   *(UIDword *)(uiBufferData + 4) = 1;
-  resultPointer = (ulonglong *)func_0x00018004b9a0();
+  resultPointer = (ulonglong *)GetUIResourcePointer();
   __stdio_common_vsprintf(*resultPointer | 2,uiTargetHandle + 2,0x4f);
   *(UIByte *)((longlong)uiTargetHandle + 0x57) = 0;
   if (uiTargetHandle[0x16] == 0) {
