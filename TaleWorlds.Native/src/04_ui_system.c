@@ -125258,8 +125258,7 @@ LAB_18073a55a:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073a590(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
-void FUN_18073a590(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
+ void ProcessUITargetBufferOperation(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UIHandle bufferSize)
 
 {
   int operationResult;
