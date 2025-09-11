@@ -264317,7 +264317,7 @@ uint64_t ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle, int OperationBuffe
 
 
 
-11f70(uint64_t ContextHandle,uint32_t OperationBufferSizevoid FUN_180211f70(uint64_t ContextHandle,uint32_t OperationBufferSize
+11f70(uint64_t ContextHandle,uint32_t OperationBufferSizevoid ConfigureSystemOperationParameters(uint64_t ContextHandle,uint32_t OperationBufferSize
 {
   AllocateMemoryPool(MemoryPoolManager,ContextHandle,OperationBufferSize,0x10,7);
   return;

@@ -94802,6 +94802,24 @@ void UINoOperationHandler(void)
 #define ProcessUIContextWithHandle FUN_18073edfd           // 处理带句柄的UI上下文
 #define ProcessUIContextWithDataSource2 FUN_18073ee30       // 处理带数据源的UI上下文2
 
+// UI系统资源分配函数语义化定义
+#define FUN_18075e9c0 ProcessUIResourceAllocationAndValidation  // 处理UI资源分配和验证
+#define FUN_1808db010 ProcessUIDataWithTransformParameters       // 处理UI数据与变换参数
+#define FUN_1808673a0 ValidateUIContextAndResources             // 验证UI上下文和资源
+#define FUN_180882400 ProcessUIContextStateAndValidation         // 处理UI上下文状态和验证
+#define FUN_1808c26e0 ProcessUIDataWithEncryptionAndBuffer      // 处理UI数据与加密缓冲区
+#define FUN_180738630 InitializeUIContextBuffer                 // 初始化UI上下文缓冲区
+#define FUN_180739890 ProcessUIResourceHandleAndValidation       // 处理UI资源句柄和验证
+
+// UI系统处理函数语义化定义
+#define FUN_18088e470 ProcessUIDataWithContext                 // 处理UI数据与上下文
+#define FUN_180748ee0 ProcessUITextureResourceAndValidation     // 处理UI纹理资源和验证
+#define FUN_18076a7d0 ProcessUIComponentDataTransfer          // 处理UI组件数据传输
+#define FUN_18076b930 ExecuteUIComponentCleanupTask            // 执行UI组件清理任务
+#define FUN_1807636f0 ExecuteUIRenderingTask                   // 执行UI渲染任务
+#define FUN_180765c40 ProcessUIRenderContext                   // 处理UI渲染上下文
+#define FUN_180741e10 ProcessUIDataWithExtendedParameters      // 处理UI数据与扩展参数
+
 // 函数: void FUN_18071ace8(void)
 #define UIReturnEmptyFunction FUN_18071ace8
 /**
