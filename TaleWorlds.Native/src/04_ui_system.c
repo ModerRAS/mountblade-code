@@ -258,6 +258,59 @@ typedef enum {
 #define FUN_18073c111 ValidateUIContextSystemState              // 验证UI上下文系统状态
 
 /**
+ * @brief 处理UI上下文数据操作
+ * 
+ * 该函数负责处理UI上下文中的数据操作，包括数据读取、写入和转换。
+ * 支持多种数据源和上下文值的处理，确保数据操作的安全性和完整性。
+ * 
+ * @param uiContext UI上下文句柄，指定操作的UI上下文
+ * @param dataSource 数据源标识符，指定要处理的数据类型
+ * @param contextValue 上下文值，包含操作所需的上下文信息
+ * @param resultPointer 结果指针，用于存储操作结果
+ * 
+ * @return int 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0: 操作失败，返回错误码
+ * 
+ * @note 原始函数名：FUN_18073ab80
+ * @warning 调用此函数前确保所有参数都已正确初始化
+ */
+#define FUN_18073ab80 ProcessUIContextWithDataOperation
+
+/**
+ * @brief 处理UI缓冲区数据与验证
+ * 
+ * 该函数处理UI缓冲区中的数据并执行验证操作，确保数据的完整性和一致性。
+ * 支持多种数据格式的处理和验证规则的检查。
+ * 
+ * @param bufferData1 第一个缓冲区数据指针
+ * @param bufferData2 第二个缓冲区数据指针
+ * 
+ * @return int 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 非0: 处理失败或验证错误
+ * 
+ * @note 原始函数名：FUN_18088c380
+ * @warning 缓冲区数据必须已正确分配和初始化
+ */
+#define FUN_18088c380 ProcessUIBufferDataWithValidation
+
+/**
+ * @brief 处理UI上下文更新操作
+ * 
+ * 该函数负责更新UI上下文的状态和属性，确保UI组件能够正确响应状态变化。
+ * 包括位置、大小、可见性等属性的更新和同步。
+ * 
+ * @param uiContext UI上下文句柄，指定要更新的UI上下文
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：func_0x00018088a120
+ * @warning 更新操作可能会触发UI重新渲染
+ */
+#define func_0x00018088a120 ProcessUIContextUpdateOperation
+
+/**
  * @brief 处理带目标缓冲区的UI数据
  * 
  * 该函数处理UI数据并将其复制到目标缓冲区，支持数据格式转换和验证。
