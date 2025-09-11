@@ -5003,12 +5003,12 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag1 UIRenderStateInitializationFlag     // UI全局状态标志1 - 渲染状态初始化标志
 #define UIGlobalStatusFlag2 UIComponentActiveFlag         // UI全局状态标志2 - 组件活动标志
 #define UIGlobalStatusFlag3 UILayoutProcessingFlag        // UI全局状态标志3 - 布局处理标志
-#define UIGlobalStatusFlag4 _DAT_180d4a6e0               // UI全局状态标志4
-#define UIGlobalStatusFlag5 _DAT_180d4a6b8               // UI全局状态标志5
-#define UIGlobalStatusFlag6 _DAT_180d4a968               // UI全局状态标志6
-#define UIGlobalStatusFlag7 _DAT_180d4a948               // UI全局状态标志7
-#define UIGlobalStatusFlag8 _DAT_180d4a920               // UI全局状态标志8
-#define UIGlobalStatusFlag9 _DAT_180d4a8f0               // UI全局状态标志9
+#define UIGlobalStatusFlag4 UIEventProcessingFlag         // UI全局状态标志4 - 事件处理标志
+#define UIGlobalStatusFlag5 UIRenderQueueActiveFlag       // UI全局状态标志5 - 渲染队列活动标志
+#define UIGlobalStatusFlag6 UIAnimationActiveFlag         // UI全局状态标志6 - 动画活动标志
+#define UIGlobalStatusFlag7 UITextureLoadingFlag         // UI全局状态标志7 - 纹理加载标志
+#define UIGlobalStatusFlag8 UIFontRenderingFlag          // UI全局状态标志8 - 字体渲染标志
+#define UIGlobalStatusFlag9 UIInputProcessingFlag        // UI全局状态标志9 - 输入处理标志
 #define UIGlobalStatusFlag10 _DAT_180d4a8d0              // UI全局状态标志10
 #define UIGlobalStatusFlag11 _DAT_180d4a898              // UI全局状态标志11
 #define UIGlobalStatusFlag12 _DAT_180d4a858              // UI全局状态标志12
