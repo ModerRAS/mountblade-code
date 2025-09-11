@@ -334147,7 +334147,7 @@ UIHandle FUN_180861a70(longlong uiContext,UIHandle dataSource)
   longlong *componentData;
   
   *(UIDword *)(uiBufferData + 0x2e4) = 1;
-  processingFlags = FUN_18073ced0(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,0xffffffffffffffff)
+  processingFlags = ProcessUIDataWithLongParams(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,0xffffffffffffffff)
   ;
   if ((((((int)processingFlags == 0) && (processingFlags = FUN_1808b2f30(uiContext + 8,0x1e), (int)processingFlags == 0)) &&
        (processingFlags = FUN_1808b2f30(uiContext + 8,0x1f), (int)processingFlags == 0)) &&
@@ -336258,7 +336258,7 @@ UIHandle FUN_180862e90(longlong uiContext,byte dataSource)
       if ((int)processingFlags != 0) {
         return processingFlags;
       }
-      processingFlags = FUN_18073ced0(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,
+      processingFlags = ProcessUIDataWithLongParams(*(UIHandle *)(*(longlong *)(uiBufferData + 0x2b0) + 0x78),0,
                             0xffffffffffffffff);
       uiValidationResult = (int)processingFlags;
     }
