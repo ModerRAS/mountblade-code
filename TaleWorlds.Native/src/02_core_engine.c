@@ -239776,14 +239776,14 @@ void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandl
     LockOperationResult = ProcessSystemLockOperation(OperationBufferSize,7);
     if (LockOperationResult != 0) {
       do {
-        SystemContextPtr = (long long *)FUN_1802ed2b0(OperationBufferSize,&SystemContextRegister,7,CalculatedCodePoint);
+        SystemContextPtr = (long long *)ProcessSystemContextRetrieval(OperationBufferSize,&SystemContextRegister,7,CalculatedCodePoint);
         CharacterTablePointer = *SystemContextPtr;
         if (SystemContextRegister != (long long *)0x0) {
           (**(code **)(*SystemContextRegister + 0x38))();
         }
         *(uint8_t *)(CharacterTablePointer + 0x39) = 1;
         CalculatedCodePoint = CalculatedCodePoint + 1;
-        UnicodeCodePoint = FUN_1802ed190(OperationBufferSize,7);
+        UnicodeCodePoint = ProcessSystemLockOperation(OperationBufferSize,7);
       } while (CalculatedCodePoint < UnicodeCodePoint);
     }
   }
@@ -241190,7 +241190,7 @@ LAB_18019a44a:
       }
       SystemOperationResult = LockOperationResult0;
       if (MemoryBufferC != 0) {
-        SystemOperationResult = FUN_1802a0ec0(*(uint32_t *)(MemoryBufferC + 0x324));
+        SystemOperationResult = ProcessSystemDataMatching(*(uint32_t *)(MemoryBufferC + 0x324));
         SystemOperationResult = LockOperationResult0 + (uint)*(ushort *)(MemoryBufferC + 0x32e) * (uint)*(ushort *)(MemoryBufferC + 0x32c) *
                          ((int)(IntegerValue9 + (IntegerValue9 >> 0x1f & 7U)) >> 3);
       }
@@ -241610,7 +241610,7 @@ LAB_18019a44a:
     cStack_308 = '\0';
   }
   FUN_1801b65d0(ContextHandle,OperationBufferSize);
-  SystemValidationChar = FUN_1802e1840(OperationBufferSize[0x6b0] + 0x560,ContextHandle);
+  SystemValidationChar = ProcessSystemCharacterValidation(OperationBufferSize[0x6b0] + 0x560,ContextHandle);
   if (SystemValidationChar != '\0') {
     *(uint32_t *)(OperationBufferSize[0x6b0] + 0x5e4) = 0xffffffff;
   }
@@ -241833,7 +241833,7 @@ LAB_18019a44a:
     else {
       MemoryAllocationHandle = MemoryAllocationHandle | 0x800;
     }
-    SystemStatusCode = FUN_1801f2a40();
+    SystemStatusCode = ProcessSystemStatusCheck();
     *(uint32_t *)(OperationBufferSize + 0x133d) = SystemStatusCode;
     FUN_180303b70(OperationBufferSize[0x6b0],MemoryAllocationHandle,OperationBufferSize);
     ContextHandle7 = *(long long **)(OperationBufferSize[0x6b0] + 0x530);
