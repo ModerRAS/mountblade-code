@@ -12060,11 +12060,19 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
-// 原始函数名：FUN_1808fc050 - 执行安全检查
+#define ExecuteSecurityCheck FUN_1808fc050
+
+#define AllocateMemoryBlockA0 FUN_18089b7d0
+#define ReleaseMemoryBlockA0 FUN_18089b813
+#define CopyMemoryBlockA0 FUN_18089b86d
+#define MoveMemoryBlockA0 FUN_18089b896
+#define ValidateMemoryBlockA0 FUN_18089bd70
+#define InitializeMemoryBlockA0 FUN_18089c030
+#define ClearMemoryBlockA0 FUN_18089c190
+#define CompareMemoryBlocksA0 FUN_18089c2d8
+#define FindMemoryPatternA0 FUN_18089c630
 
 // 内存管理函数宏定义
-// 原始函数名：FUN_18089b7d0 - 内存分配函数A0
-// 功能：分配内存并返回分配结果
 #define AllocateMemoryA0 AllocateMemoryWithSizeValidation    // 带大小验证的内存分配函数
 
 // 原始函数名：FUN_18089b813 - 内存释放函数A0
