@@ -109111,7 +109111,7 @@ void ProcessSystemDataComparison(uint64_t ContextHandle,char *ContextHandleSize)
   uint32_t StackProcessingParameter4;
   uint32_t TemporaryValue1;
   float StackFloat1;
-  uint32_t StackUint74;
+  uint32_t SystemDataProcessingFlagA;
   uint32_t StackUint78;
   uint32_t StackUint7c;
   
@@ -109174,7 +109174,7 @@ void ProcessSystemDataComparison(uint64_t ContextHandle,char *ContextHandleSize)
     *(uint32_t *)(SystemConfigurationHandle + 0x1be0) = 1;
     *(void *)(SystemDataRegistry + 0x1c28) = 0;
     *(void *)(SystemDataRegistry + 0x1c30) = 0;
-    StackUint74 = 0;
+    SystemDataProcessingFlagA = 0;
     StackUint78 = 0x7f7fffff;
     *(float *)(SystemDataRegistry + 0x1c18) = AuxiliaryCalculationFloat10;
     *(uint32_t *)(SystemDataRegistry + 0x1c1c) = 0;
@@ -109297,7 +109297,7 @@ void InitializeSystemResourceAndData(void)
   uint32_t StackUintValue68;
   uint32_t StackUintValue6c;
   float StackFloatValue70;
-  uint32_t StackUint74;
+  uint32_t SystemDataProcessingFlagA;
   uint32_t StackUint78;
   uint32_t StackUint7c;
   
@@ -109335,7 +109335,7 @@ void InitializeSystemResourceAndData(void)
     *(uint32_t *)(SystemConfigurationHandle + 0x1be0) = 1;
     *(void *)(SystemDataRegistry + 0x1c28) = 0;
     *(void *)(SystemDataRegistry + 0x1c30) = 0;
-    StackUint74 = 0;
+    SystemDataProcessingFlagA = 0;
     StackUint78 = 0x7f7fffff;
     *(float *)(SystemDataRegistry + 0x1c18) = AuxiliaryCalculationFloat10;
     *(uint32_t *)(SystemDataRegistry + 0x1c1c) = 0;
@@ -122623,7 +122623,7 @@ char CoreEngineValidateSystemStatus(void
   uint32_t StackProcessingParameter0;
   float StackProcessingParameter3;
   uint32_t StackProcessingParameter5;
-  uint32_t StackUint74;
+  uint32_t SystemDataProcessingFlagA;
   uint64_t MemoryPoolIndex78;
   
   LockOperationResult2 = (int)SystemDataNode;
@@ -122793,7 +122793,7 @@ LAB_18011c9d9:
     MemoryPoolIndex = *(void *)(FramePointer + -0x78);
     MemoryBoundaryEnd = *(long long *)(BufferStatus5 + 0x18);
     BufferStatus1 = (long long)IntegerValue7 * 0x40;
-    *(void *)(BufferStatus1 + MemoryBoundaryEnd) = CONCAT44(StackUint74,StackOperationFlag70);
+    *(void *)(BufferStatus1 + MemoryBoundaryEnd) = CONCAT44(SystemDataProcessingFlagA,StackOperationFlag70);
     ((void *)(BufferStatus1 + MemoryBoundaryEnd))[1] = RenderingContextHandle;
     ProcessedCharacter = *(void *)(FramePointer + -0x70);
     SystemStatusCode = *(void *)(FramePointer + -0x68);
@@ -122958,7 +122958,7 @@ char ManageSystemResourceAndRelease(void)
   uint32_t StackProcessingParameter0;
   float StackProcessingParameter3;
   uint32_t StackProcessingParameter5;
-  uint32_t StackUint74;
+  uint32_t SystemDataProcessingFlagA;
   uint64_t MemoryPoolIndex78;
   
   LockOperationResult2 = (int)SystemDataNode;
@@ -123128,7 +123128,7 @@ LAB_18011c9d9:
     MemoryPoolIndex = *(void *)(FramePointer + -0x78);
     MemoryBoundaryEnd = *(long long *)(BufferStatus5 + 0x18);
     BufferStatus1 = (long long)IntegerValue7 * 0x40;
-    *(void *)(BufferStatus1 + MemoryBoundaryEnd) = CONCAT44(StackUint74,StackOperationFlag70);
+    *(void *)(BufferStatus1 + MemoryBoundaryEnd) = CONCAT44(SystemDataProcessingFlagA,StackOperationFlag70);
     ((void *)(BufferStatus1 + MemoryBoundaryEnd))[1] = RenderingContextHandle;
     ProcessedCharacter = *(void *)(FramePointer + -0x70);
     SystemStatusCode = *(void *)(FramePointer + -0x68);
@@ -236559,10 +236559,10 @@ void ProcessSystemDataOptimizationAndValidation(uint64_t *ContextHandle,uint64_t
              *(uint32_t *)((long long)ContextHandle + SystemDataRegistry * 8 + 4);
         MemoryBlockIndex = SystemDataRegistry;
       }
-      StackUint78 = (uint32_t)Utf16Char;
-      StackUint7c = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
-      *(uint32_t *)(ContextHandle + MemoryBlockIndex) = StackUint78;
-      *(uint32_t *)((long long)ContextHandle + MemoryBlockIndex * 8 + 4) = StackUint7c;
+      SystemProcessingFlagA = (uint32_t)Utf16Char;
+      SystemProcessingFlagB = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+      *(uint32_t *)(ContextHandle + MemoryBlockIndex) = SystemProcessingFlagA;
+      *(uint32_t *)((long long)ContextHandle + MemoryBlockIndex * 8 + 4) = SystemProcessingFlagB;
       OperationBufferSize = _StackUintValue68;
       StringProcessingStatus = _StackUintValue68;
     } while (MemoryBoundaryEnd != 0);
@@ -236607,10 +236607,10 @@ void ProcessSystemDataOptimizationAndValidation(uint64_t *ContextHandle,uint64_t
              *(uint32_t *)((long long)ContextHandle + MemoryBoundaryEnd * 8 + 4);
         AllocatedMemorySize = MemoryBoundaryEnd;
       }
-      StackUint78 = (uint32_t)Utf16Char;
-      StackUint7c = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
-      *(uint32_t *)(ContextHandle + AllocatedMemorySize) = StackUint78;
-      *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = StackUint7c;
+      SystemProcessingFlagA = (uint32_t)Utf16Char;
+      SystemProcessingFlagB = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
+      *(uint32_t *)(ContextHandle + AllocatedMemorySize) = SystemProcessingFlagA;
+      *(uint32_t *)((long long)ContextHandle + AllocatedMemorySize * 8 + 4) = SystemProcessingFlagB;
     }
     StringProcessingStatus = _StackUintValue68;
   }

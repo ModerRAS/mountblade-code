@@ -80014,38 +80014,57 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_180907a60
  */
 #define ManageResourceReferenceCountA60 Unwind_180907a60
-void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer)
-
+void ManageResourceReferenceCountA60(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryRegionOffset;
-  uint64_t memoryRegionBase;
-  
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset130);
-  if (memoryResourcePointer == NULL_DATA_BUFFER) {
-    return;
-  }
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
-  if (memoryRegionBase != 0) {
-    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + ResourceReferenceDecrement;
-      if (*resourceReferenceCount == 0) {
-        HandleMemoryResourceException();
+    // 资源引用计数管理变量
+    int *resourceRefCountPointer;                           // 资源引用计数指针
+    DataBuffer *memoryResourcePtr;                          // 内存资源指针
+    int64_t calculatedMemoryOffset;                         // 计算出的内存偏移量
+    uint64_t memoryRegionBaseAddress;                       // 内存区域基地址
+    
+    // 从数据缓冲区获取内存资源指针
+    memoryResourcePtr = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset130);
+    if (memoryResourcePtr == NULL_DATA_BUFFER) {
         return;
-      }
     }
-    else {
-      ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+    
+    // 计算内存区域基地址
+    memoryRegionBaseAddress = (uint64_t)memoryResourcePtr & MemoryRegionMask;
+    if (memoryRegionBaseAddress != 0) {
+        // 计算内存偏移量
+        calculatedMemoryOffset = memoryRegionBaseAddress + MemoryBaseOffset + 
+                                ((int64_t)memoryResourcePtr - memoryRegionBaseAddress >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+        calculatedMemoryOffset = calculatedMemoryOffset - (uint64_t)*(uint *)(calculatedMemoryOffset + MemoryOffsetAdjustment);
+        
+        // 检查内存区域是否有效且异常检查通过
+        if ((*(void ***)(memoryRegionBaseAddress + MemoryPointerTableOffset) == &ExceptionList) && 
+            (*(char *)(calculatedMemoryOffset + MemoryExceptionCheckOffset) == '\0')) {
+            
+            // 更新内存资源指针链表
+            *memoryResourcePtr = *(DataBuffer *)(calculatedMemoryOffset + MemoryDataOffset);
+            *(DataBuffer **)(calculatedMemoryOffset + MemoryDataOffset) = memoryResourcePtr;
+            
+            // 管理资源引用计数
+            resourceRefCountPointer = (int *)(calculatedMemoryOffset + MemoryReferenceOffset);
+            *resourceRefCountPointer = *resourceRefCountPointer + ResourceReferenceDecrement;
+            
+            // 检查资源引用计数是否为零，触发资源释放
+            if (*resourceRefCountPointer == 0) {
+                HandleMemoryResourceException();
+                return;
+            }
+        }
+        else {
+            // 执行内存管理操作
+            ManageMemory(memoryRegionBaseAddress, 
+                       SetBitFlag(MemoryManagementFlagMask, 
+                                 *(void ***)(memoryRegionBaseAddress + MemoryPointerTableOffset70) == &ExceptionList),
+                       memoryResourcePtr, 
+                       memoryRegionBaseAddress, 
+                       SystemCleanupFlagAlternative);
+        }
     }
-  }
-  return;
+    return;
 }
 
 
