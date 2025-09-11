@@ -140255,7 +140255,7 @@ uint8_t SystemExceptionHandlerStateTable;
 #define FinalizeExceptionHandlerCleanup Unwind_180910f20
 
 // 工具系统异常处理函数定义
-// 原始函数名：Unwind_180908730 - 异常处理器迭代执行函数
+// 异常处理器迭代执行函数
 // 功能：遍历异常处理器上下文指针，执行所有非空的异常处理器回调函数
 #define IterateAndExecuteExceptionHandlers Unwind_180908730
 
