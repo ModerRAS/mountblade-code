@@ -394,7 +394,7 @@ typedef enum {
 #define InitializeUISystemMemoryAndEventValidation FUN_18072c44d // UI系统内存和事件验证初始化
 #define ProcessUIComponentTransformCoefficients FUN_18072cc1b    // UI组件变换系数和字符数据处理
 #define ProcessUIContextInitialization FUN_1807270a0     // UI上下文初始化
-#define ProcessUIEventBufferManagement FUN_18072eb00     // UI事件缓冲区管理
+#define ProcessUIEventBufferManagement AllocateUIBufferInternal     // UI事件缓冲区管理
 #define ProcessUIGraphicsParameters FUN_18072e720        // UI图形参数处理
 #define ProcessUIRenderContext FUN_180726fd0           // UI渲染上下文处理
 #define ProcessUIComponentLayout FUN_18072ec50          // UI组件布局处理
@@ -1027,8 +1027,8 @@ typedef enum {
 #define ProcessUIComponentBatchTransform TransformUIComponentBatch              // 处理UI组件批量变换 - 批量处理UI组件的变换操作
 #define ResetUIRenderState ResetUIRenderState                             // 重置UI渲染状态 - 将UI渲染状态重置为初始状态
 #define ClearUIRenderCache ClearUIRenderCache                             // 清理UI渲染缓存 - 清除UI渲染过程中的缓存数据
-#define ClearUIComponentState FUN_18072eaed                          // 清理UI组件状态 - 清除UI组件的状态信息
-#define ProcessUIBufferAllocationInternal FUN_18072eb00              // 处理UI缓冲区内部分配 - 在内部处理UI缓冲区的分配操作
+#define ClearUIComponentState ClearUIComponentState                          // 清理UI组件状态 - 清除UI组件的状态信息
+#define ProcessUIBufferAllocationInternal AllocateUIBufferInternal              // 处理UI缓冲区内部分配 - 在内部处理UI缓冲区的分配操作
 #define InitializeUISystemState FUN_18072f881                        // 初始化UI系统状态 - 设置UI系统的初始状态
 #define ExecuteUIRenderingTask FUN_18072f7ab                         // 执行UI渲染任务 - 执行UI相关的渲染任务
 
@@ -113450,7 +113450,7 @@ void ProcessUIComponentBatchTransform(void)
  * 
  * @return 无返回值
  * 
- * @note 原始函数名：FUN_18072eaed
+ * @note 原始函数名：ClearUIComponentState
  * @note 这是一个空实现函数，不执行任何操作
  */
 void UIEmptyOperation(void)
@@ -113477,7 +113477,7 @@ void UIEmptyOperation(void)
  * @param param_7 额外参数7
  * @param param_8 额外参数8
  * 
- * @note 原始函数名：FUN_18072eb00
+ * @note 原始函数名：AllocateUIBufferInternal
  */
 void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,float *resultPointer,
                   int param_6,int param_7,int param_8)

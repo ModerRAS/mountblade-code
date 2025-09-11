@@ -111355,7 +111355,7 @@ unsigned long long ValidateAndProcessCharacterData(uint *ContextHandle,uint Oper
     StackProcessingFlags1 = 0;
     StackProcessingFlags2 = 0;
     CharacterFunctionAddress = (ushort)ContextHandle;
-    StackData1 = 0;
+    SystemMemoryPoolData1 = 0;
     StackData2 = 0;
     StackData3 = 0;
     StackData4 = 0;
